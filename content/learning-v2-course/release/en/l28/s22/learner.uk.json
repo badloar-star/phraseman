@@ -1,0 +1,1038 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-28:session-22",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-28:session-22:i01",
+      "ordinal": 4,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повідомте, що у вас запис на ранок.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-22:i01:audio"
+      ],
+      "accessibilityLabel": "Повідомте, що у вас запис на ранок.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-22:i01:audio",
+          "transcript": "I have an appointment this morning."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have an appointment this morning.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-22:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — dashboard",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-22:i02:audio"
+      ],
+      "accessibilityLabel": "Картка слова — dashboard",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-22:i02:audio",
+          "transcript": "dashboard"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-22:i02:r1",
+            "targetText": "dashboard",
+            "meaningByLocale": {
+              "ru": "Приборная панель автомобиля перед водителем.",
+              "uk": "Приладова панель автомобіля перед водієм."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dashboard",
+          "definitionByLocale": {
+            "ru": "Приборная панель автомобиля перед водителем.",
+            "uk": "Приладова панель автомобіля перед водієм."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-22:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повідомте про ввімкнений індикатор на приладовій панелі.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Повідомте про ввімкнений індикатор на приладовій панелі.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There is a light on the dashboard.",
+        "localizedMeaning": {
+          "ru": "Сообщите о горящем индикаторе на приборной панели.",
+          "uk": "Повідомте про ввімкнений індикатор на приладовій панелі."
+        },
+        "orderedTokens": [
+          "There",
+          "is",
+          "a",
+          "light",
+          "on",
+          "the",
+          "dashboard"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-22:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-22:i04:r1",
+          "text": "Your car will be checked this afternoon."
+        },
+        {
+          "responseId": "en:lesson-28:session-22:i04:r2",
+          "text": "Your car will be checked tomorrow morning."
+        },
+        {
+          "responseId": "en:lesson-28:session-22:i04:r3",
+          "text": "Your car was checked this afternoon."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-22:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-22:i04:audio",
+          "transcript": "Your car will be checked this afternoon."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-22:i04:r1",
+            "targetText": "Your car will be checked this afternoon.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-22:i04:r2",
+            "targetText": "Your car will be checked tomorrow morning.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-22:i04:r3",
+            "targetText": "Your car was checked this afternoon.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-22:i04:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Your car will be checked this afternoon.",
+              "uk": "У записі звучить Your car will be checked this afternoon."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-22:i04:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Your car will be checked this afternoon.",
+              "uk": "У записі звучить Your car will be checked this afternoon."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-22:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — accelerator",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-22:i05:audio"
+      ],
+      "accessibilityLabel": "Картка слова — accelerator",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-22:i05:audio",
+          "transcript": "accelerator"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-22:i05:r1",
+            "targetText": "accelerator",
+            "meaningByLocale": {
+              "ru": "Педаль газа.",
+              "uk": "Педаль газу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "accelerator",
+          "definitionByLocale": {
+            "ru": "Педаль газа.",
+            "uk": "Педаль газу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-22:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повідомте, що педаль газу застрягла.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-22:i06:audio"
+      ],
+      "accessibilityLabel": "Повідомте, що педаль газу застрягла.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-22:i06:audio",
+          "transcript": "The accelerator is stuck."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The accelerator is stuck.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-22:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Акумулятор замінили вчора.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-22:i07:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-28:session-22:i07:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-28:session-22:i07:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Акумулятор замінили вчора.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Аккумулятор заменили вчера.",
+          "uk": "Акумулятор замінили вчора."
+        },
+        "gappedTargetPhrase": "The battery ___ replaced yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-22:i07:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-28:session-22:i07:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-28:session-22:i07:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Акумулятор замінили вчора.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-22:i07:r2",
+            "correct": false,
+            "testedDimension": "Акумулятор замінили вчора.",
+            "feedbackByLocale": {
+              "ru": "Один аккумулятор в прошлом: was.",
+              "uk": "Один акумулятор у минулому: was."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-22:i07:r3",
+            "correct": false,
+            "testedDimension": "Акумулятор замінили вчора.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем was replaced.",
+              "uk": "Тут використовуємо was replaced."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-22:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви хотіли б менш шумну машину.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви хотіли б менш шумну машину.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I wish my car were quieter.",
+        "localizedMeaning": {
+          "ru": "Вы хотели бы менее шумную машину.",
+          "uk": "Ви хотіли б менш шумну машину."
+        },
+        "orderedTokens": [
+          "I",
+          "wish",
+          "my",
+          "car",
+          "were",
+          "quieter"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-22:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — gearbox",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-22:i09:audio"
+      ],
+      "accessibilityLabel": "Картка слова — gearbox",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-22:i09:audio",
+          "transcript": "gearbox"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-22:i09:r1",
+            "targetText": "gearbox",
+            "meaningByLocale": {
+              "ru": "Коробка передач автомобиля.",
+              "uk": "Коробка передач автомобіля."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "gearbox",
+          "definitionByLocale": {
+            "ru": "Коробка передач автомобиля.",
+            "uk": "Коробка передач автомобіля."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-22:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-22:i10:r1",
+          "text": "The gearbox will be checked tomorrow."
+        },
+        {
+          "responseId": "en:lesson-28:session-22:i10:r2",
+          "text": "The gearbox will be checked on Friday."
+        },
+        {
+          "responseId": "en:lesson-28:session-22:i10:r3",
+          "text": "The brakes will be checked tomorrow."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-22:i10:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-22:i10:audio",
+          "transcript": "The gearbox will be checked tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-22:i10:r1",
+            "targetText": "The gearbox will be checked tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-22:i10:r2",
+            "targetText": "The gearbox will be checked on Friday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-22:i10:r3",
+            "targetText": "The brakes will be checked tomorrow.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-22:i10:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The gearbox will be checked tomorrow.",
+              "uk": "У записі звучить The gearbox will be checked tomorrow."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-22:i10:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The gearbox will be checked tomorrow.",
+              "uk": "У записі звучить The gearbox will be checked tomorrow."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-22:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть повідомити вартість до початку робіт.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-22:i11:audio"
+      ],
+      "accessibilityLabel": "Попросіть повідомити вартість до початку робіт.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-22:i11:audio",
+          "transcript": "Please tell me the price before you start."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Please tell me the price before you start.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-22:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "У цьому сервісі машини перевіряють перед видачею власникам.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-22:i12:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-28:session-22:i12:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-28:session-22:i12:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У цьому сервісі машини перевіряють перед видачею власникам.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В этом сервисе машины проверяют перед выдачей владельцам.",
+          "uk": "У цьому сервісі машини перевіряють перед видачею власникам."
+        },
+        "gappedTargetPhrase": "Cars ___ checked before collection.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-22:i12:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-28:session-22:i12:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-28:session-22:i12:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "У цьому сервісі машини перевіряють перед видачею власникам.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-22:i12:r2",
+            "correct": false,
+            "testedDimension": "У цьому сервісі машини перевіряють перед видачею власникам.",
+            "feedbackByLocale": {
+              "ru": "Cars — несколько: are.",
+              "uk": "Cars — кілька: are."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-22:i12:r3",
+            "correct": false,
+            "testedDimension": "У цьому сервісі машини перевіряють перед видачею власникам.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем are checked.",
+              "uk": "Тут використовуємо are checked."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-22:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — speedometer",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-22:i13:audio"
+      ],
+      "accessibilityLabel": "Картка слова — speedometer",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-22:i13:audio",
+          "transcript": "speedometer"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-22:i13:r1",
+            "targetText": "speedometer",
+            "meaningByLocale": {
+              "ru": "Спидометр: прибор, показывающий скорость движения.",
+              "uk": "Спідометр: прилад, який показує швидкість руху."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "speedometer",
+          "definitionByLocale": {
+            "ru": "Спидометр: прибор, показывающий скорость движения.",
+            "uk": "Спідометр: прилад, який показує швидкість руху."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-22:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повідомте, що спідометр не працює.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Повідомте, що спідометр не працює.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The speedometer is not working.",
+        "localizedMeaning": {
+          "ru": "Сообщите, что спидометр не работает.",
+          "uk": "Повідомте, що спідометр не працює."
+        },
+        "orderedTokens": [
+          "The",
+          "speedometer",
+          "is",
+          "not",
+          "working"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-22:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-22:i15:r1",
+          "text": "The tyres were changed last month."
+        },
+        {
+          "responseId": "en:lesson-28:session-22:i15:r2",
+          "text": "The tyres were changed last year."
+        },
+        {
+          "responseId": "en:lesson-28:session-22:i15:r3",
+          "text": "The brakes were changed last month."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-22:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-22:i15:audio",
+          "transcript": "The tyres were changed last month."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-22:i15:r1",
+            "targetText": "The tyres were changed last month.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-22:i15:r2",
+            "targetText": "The tyres were changed last year.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-22:i15:r3",
+            "targetText": "The brakes were changed last month.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-22:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The tyres were changed last month.",
+              "uk": "У записі звучить The tyres were changed last month."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-22:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The tyres were changed last month.",
+              "uk": "У записі звучить The tyres were changed last month."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-22:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора сервіс уже зачинився до вашого приїзду. Завершіть ранішу подію.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-22:i16:r1",
+          "text": "closed"
+        },
+        {
+          "responseId": "en:lesson-28:session-22:i16:r2",
+          "text": "close"
+        },
+        {
+          "responseId": "en:lesson-28:session-22:i16:r3",
+          "text": "closing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора сервіс уже зачинився до вашого приїзду. Завершіть ранішу подію.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера сервис уже закрылся к вашему приезду. Завершите более раннее событие.",
+          "uk": "Учора сервіс уже зачинився до вашого приїзду. Завершіть ранішу подію."
+        },
+        "gappedTargetPhrase": "The garage had ___ by the time I arrived.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-22:i16:r1",
+            "text": "closed"
+          },
+          {
+            "responseId": "en:lesson-28:session-22:i16:r2",
+            "text": "close"
+          },
+          {
+            "responseId": "en:lesson-28:session-22:i16:r3",
+            "text": "closing"
+          }
+        ],
+        "testedDimension": "Учора сервіс уже зачинився до вашого приїзду. Завершіть ранішу подію.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-22:i16:r2",
+            "correct": false,
+            "testedDimension": "Учора сервіс уже зачинився до вашого приїзду. Завершіть ранішу подію.",
+            "feedbackByLocale": {
+              "ru": "После had нужна closed.",
+              "uk": "Після had потрібна closed."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-22:i16:r3",
+            "correct": false,
+            "testedDimension": "Учора сервіс уже зачинився до вашого приїзду. Завершіть ранішу подію.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем had closed.",
+              "uk": "Тут використовуємо had closed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-22:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, коли надішлють рахунок.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-22:i17:audio"
+      ],
+      "accessibilityLabel": "Послухайте, коли надішлють рахунок.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-22:i17:audio",
+          "transcript": "The bill will be sent today."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The bill will be sent today.",
+        "orderedTokens": [
+          "The",
+          "bill",
+          "will",
+          "be",
+          "sent",
+          "today"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-22:i18",
+      "ordinal": 21,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте, коли можна забрати машину.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-22:i18:audio"
+      ],
+      "accessibilityLabel": "Запитайте, коли можна забрати машину.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-22:i18:audio",
+          "transcript": "When can I collect the car?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "When can I collect the car?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-22:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Деталь замовлять сьогодні. Вставте пропущену частину.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-22:i19:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-28:session-22:i19:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-28:session-22:i19:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Деталь замовлять сьогодні. Вставте пропущену частину.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Деталь закажут сегодня. Вставьте недостающую часть.",
+          "uk": "Деталь замовлять сьогодні. Вставте пропущену частину."
+        },
+        "gappedTargetPhrase": "The part will ___ ordered today.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-22:i19:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-28:session-22:i19:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-28:session-22:i19:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Деталь замовлять сьогодні. Вставте пропущену частину.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-22:i19:r2",
+            "correct": false,
+            "testedDimension": "Деталь замовлять сьогодні. Вставте пропущену частину.",
+            "feedbackByLocale": {
+              "ru": "После will нужна be.",
+              "uk": "Після will потрібна be."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-22:i19:r3",
+            "correct": false,
+            "testedDimension": "Деталь замовлять сьогодні. Вставте пропущену частину.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна will be ordered.",
+              "uk": "Тут потрібна will be ordered."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-22:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, де зберігатимуть ключі.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-22:i20:audio"
+      ],
+      "accessibilityLabel": "Послухайте, де зберігатимуть ключі.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-22:i20:audio",
+          "transcript": "The keys will be kept in the office."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The keys will be kept in the office.",
+        "orderedTokens": [
+          "The",
+          "keys",
+          "will",
+          "be",
+          "kept",
+          "in",
+          "the",
+          "office"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-22:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть зателефонувати, коли все буде готове.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-22:i21:audio"
+      ],
+      "accessibilityLabel": "Попросіть зателефонувати, коли все буде готове.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-22:i21:audio",
+          "transcript": "Please call me when it is ready."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Please call me when it is ready.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "939828113af6d20be3cc972f68e7c768e509ad916cb884a7cc53c99258b09cff"
+}

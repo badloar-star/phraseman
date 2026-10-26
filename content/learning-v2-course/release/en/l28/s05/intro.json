@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-28:session-05",
+  "learningOutcomeByLocale": {
+    "ru": "как описать действие над вещью, выразить желание о настоящем и рассказать о подготовке, законченной до гостей.",
+    "uk": "як описати дію над річчю, висловити бажання про теперішнє й розповісти про підготовку, завершену до гостей."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-28:session-05:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Упаковка подарка",
+        "uk": "Пакування подарунка"
+      },
+      "bodyByLocale": {
+        "ru": "В магазине продавец объясняет, что подарки упаковывают у этой стойки. Gifts are wrapped here — подарки упаковывают здесь. Начните с Gifts, затем поставьте are wrapped, а в конце here. Gifts означает несколько подарков, поэтому are. Wrapped показывает, что подарки упаковывают; в этой форме wrap последняя p удваивается перед -ed.",
+        "uk": "У крамниці продавець пояснює, що подарунки пакують біля цієї стійки. Gifts are wrapped here — подарунки пакують тут. Почніть із Gifts, потім поставте are wrapped, а наприкінці here. Gifts означає кілька подарунків, тому are. Wrapped показує, що подарунки пакують; у цій формі wrap остання p подвоюється перед -ed."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-05:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-05:intro1:r1",
+              "text": "Gifts are wrapped here."
+            },
+            {
+              "responseId": "en:lesson-28:session-05:intro1:r2",
+              "text": "Gifts is wrapped here."
+            },
+            {
+              "responseId": "en:lesson-28:session-05:intro1:r3",
+              "text": "Gifts are wrap here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-05:intro1:r1",
+              "text": "Gifts are wrapped here."
+            },
+            {
+              "responseId": "en:lesson-28:session-05:intro1:r2",
+              "text": "Gifts is wrapped here."
+            },
+            {
+              "responseId": "en:lesson-28:session-05:intro1:r3",
+              "text": "Gifts are wrap here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-28:session-05:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Мало места для гостей",
+        "uk": "Мало місця для гостей"
+      },
+      "bodyByLocale": {
+        "ru": "Вы ставите стулья для гостей и понимаете, что комната тесная. I wish our room were bigger — хотелось бы, чтобы наша комната была больше. Начните с I wish, добавьте our room, затем were bigger. Эта форма после I wish описывает желаемое отличие сейчас: комната пока маленькая.",
+        "uk": "Ви ставите стільці для гостей і розумієте, що кімната тісна. I wish our room were bigger — хотілося б, щоб наша кімната була більшою. Почніть з I wish, додайте our room, потім were bigger. Ця форма після I wish описує бажану відмінність зараз: кімната поки маленька."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-05:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-05:intro2:r1",
+              "text": "I wish our room were bigger."
+            },
+            {
+              "responseId": "en:lesson-28:session-05:intro2:r2",
+              "text": "I wish our room is bigger."
+            },
+            {
+              "responseId": "en:lesson-28:session-05:intro2:r3",
+              "text": "I wish our room be bigger."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-05:intro2:r1",
+              "text": "I wish our room were bigger."
+            },
+            {
+              "responseId": "en:lesson-28:session-05:intro2:r2",
+              "text": "I wish our room is bigger."
+            },
+            {
+              "responseId": "en:lesson-28:session-05:intro2:r3",
+              "text": "I wish our room be bigger."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-28:session-05:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Успели до гостей",
+        "uk": "Встигли до гостей"
+      },
+      "bodyByLocale": {
+        "ru": "Вчера вы закончили украшать комнату до прихода гостей. We had decorated the room by the time our guests arrived — к приходу гостей мы уже украсили комнату. Сначала We + had decorated + the room: законченное раньше действие. Затем by the time + our guests arrived: более поздний момент. Had decorated показывает, что к приходу гостей украшения были готовы.",
+        "uk": "Учора ви закінчили прикрашати кімнату до приходу гостей. We had decorated the room by the time our guests arrived — до приходу гостей ми вже прикрасили кімнату. Спочатку We + had decorated + the room: завершена раніше дія. Потім by the time + our guests arrived: пізніший момент. Had decorated показує, що до приходу гостей прикраси були готові."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-05:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-05:intro3:r1",
+              "text": "We had decorated the room by the time our guests arrived."
+            },
+            {
+              "responseId": "en:lesson-28:session-05:intro3:r2",
+              "text": "We had decorate the room by the time our guests arrived."
+            },
+            {
+              "responseId": "en:lesson-28:session-05:intro3:r3",
+              "text": "We had decorated the room by the time our guests arrive."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-05:intro3:r1",
+              "text": "We had decorated the room by the time our guests arrived."
+            },
+            {
+              "responseId": "en:lesson-28:session-05:intro3:r2",
+              "text": "We had decorate the room by the time our guests arrived."
+            },
+            {
+              "responseId": "en:lesson-28:session-05:intro3:r3",
+              "text": "We had decorated the room by the time our guests arrive."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ed4ee2966d26adb0f62ccab3398c5b4f84dc3f85e66c9953ca71f8b72ee82733"
+}

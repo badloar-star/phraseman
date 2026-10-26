@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-29:session-21",
+  "learningOutcomeByLocale": {
+    "ru": "как назвать продукты, уточнить упаковку и объяснить, кто составил список.",
+    "uk": "як назвати продукти, уточнити упаковку й пояснити, хто склав список."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-29:session-21:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Где купить продукты",
+        "uk": "Де купити продукти"
+      },
+      "bodyByLocale": {
+        "ru": "Друг ищет место для покупки сыра, и вы советуете знакомый магазин. Скажите: I know a shop where you can buy cheese — я знаю магазин, где можно купить сыр. Соберите I know a shop + where + you can buy cheese. Where связывает покупку с магазином. После where ставим you can buy cheese в обычном порядке, без перестановки can и you.",
+        "uk": "Друг шукає місце для купівлі сиру, і ви радите знайомий магазин. Скажіть: I know a shop where you can buy cheese — я знаю магазин, де можна купити сир. Складіть I know a shop + where + you can buy cheese. Where пов’язує купівлю з магазином. Після where ставимо you can buy cheese у звичайному порядку, без перестановки can і you."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-21:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-21:intro1:r1",
+              "text": "I know a shop where you can buy cheese."
+            },
+            {
+              "responseId": "en:lesson-29:session-21:intro1:r2",
+              "text": "I know a shop where can you buy cheese."
+            },
+            {
+              "responseId": "en:lesson-29:session-21:intro1:r3",
+              "text": "I know a shop who you can buy cheese."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-21:intro1:r1",
+              "text": "I know a shop where you can buy cheese."
+            },
+            {
+              "responseId": "en:lesson-29:session-21:intro1:r2",
+              "text": "I know a shop where can you buy cheese."
+            },
+            {
+              "responseId": "en:lesson-29:session-21:intro1:r3",
+              "text": "I know a shop who you can buy cheese."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-29:session-21:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Кто подготовил список",
+        "uk": "Хто підготував список"
+      },
+      "bodyByLocale": {
+        "ru": "Перед покупками вы объясняете другу, кто написал список продуктов. Скажите: The list was written by my sister — список написала моя сестра. Соберите The list + was written + by my sister. Начните с предмета — the list. Was written означает, что список был написан, а by my sister называет человека, который это сделал.",
+        "uk": "Перед покупками ви пояснюєте другові, хто написав список продуктів. Скажіть: The list was written by my sister — список написала моя сестра. Складіть The list + was written + by my sister. Почніть із предмета — the list. Was written означає, що список був написаний, а by my sister називає людину, яка це зробила."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-21:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-21:intro2:r1",
+              "text": "The list was written by my sister."
+            },
+            {
+              "responseId": "en:lesson-29:session-21:intro2:r2",
+              "text": "The list was written of my sister."
+            },
+            {
+              "responseId": "en:lesson-29:session-21:intro2:r3",
+              "text": "The list was wrote by my sister."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-21:intro2:r1",
+              "text": "The list was written by my sister."
+            },
+            {
+              "responseId": "en:lesson-29:session-21:intro2:r2",
+              "text": "The list was written of my sister."
+            },
+            {
+              "responseId": "en:lesson-29:session-21:intro2:r3",
+              "text": "The list was wrote by my sister."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-29:session-21:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Нужная упаковка",
+        "uk": "Потрібна упаковка"
+      },
+      "bodyByLocale": {
+        "ru": "Вы выбираете между двумя упаковками и просите ту, у которой синяя этикетка. Скажите: I want the packet which has a blue label — мне нужна упаковка с синей этикеткой. Соберите I want the packet + which + has a blue label. Which обозначает упаковку внутри уточнения. Поэтому сразу после which ставим has, без дополнительного it.",
+        "uk": "Ви обираєте між двома упаковками й просите ту, у якої синя етикетка. Скажіть: I want the packet which has a blue label — мені потрібна упаковка із синьою етикеткою. Складіть I want the packet + which + has a blue label. Which позначає упаковку всередині уточнення. Тому відразу після which ставимо has, без додаткового it."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-21:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-21:intro3:r1",
+              "text": "I want the packet which has a blue label."
+            },
+            {
+              "responseId": "en:lesson-29:session-21:intro3:r2",
+              "text": "I want the packet which it has a blue label."
+            },
+            {
+              "responseId": "en:lesson-29:session-21:intro3:r3",
+              "text": "I want the packet who has a blue label."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-21:intro3:r1",
+              "text": "I want the packet which has a blue label."
+            },
+            {
+              "responseId": "en:lesson-29:session-21:intro3:r2",
+              "text": "I want the packet which it has a blue label."
+            },
+            {
+              "responseId": "en:lesson-29:session-21:intro3:r3",
+              "text": "I want the packet who has a blue label."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2487222e3f49fe0ef15fe559364e1b48e7c732f995bcf4b517240265b4b38c72"
+}

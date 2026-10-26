@@ -1,0 +1,1035 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-28:session-12",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-28:session-12:i01",
+      "ordinal": 4,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Сообщите продавцу, что пришли за заказом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-12:i01:audio"
+      ],
+      "accessibilityLabel": "Сообщите продавцу, что пришли за заказом.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-12:i01:audio",
+          "transcript": "I am here to collect my order."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am here to collect my order.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-12:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — audiobook",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-12:i02:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — audiobook",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-12:i02:audio",
+          "transcript": "audiobook"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-12:i02:r1",
+            "targetText": "audiobook",
+            "meaningByLocale": {
+              "ru": "Аудиокнига: запись книги, которую можно слушать.",
+              "uk": "Аудіокнижка: запис книжки, який можна слухати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "audiobook",
+          "definitionByLocale": {
+            "ru": "Аудиокнига: запись книги, которую можно слушать.",
+            "uk": "Аудіокнижка: запис книжки, який можна слухати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-12:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-12:i03:r1",
+          "text": "The audiobook was recorded last year."
+        },
+        {
+          "responseId": "en:lesson-28:session-12:i03:r2",
+          "text": "The audiobook was recorded last month."
+        },
+        {
+          "responseId": "en:lesson-28:session-12:i03:r3",
+          "text": "The interview was recorded last year."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-12:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-12:i03:audio",
+          "transcript": "The audiobook was recorded last year."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-12:i03:r1",
+            "targetText": "The audiobook was recorded last year.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-12:i03:r2",
+            "targetText": "The audiobook was recorded last month.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-12:i03:r3",
+            "targetText": "The interview was recorded last year.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-12:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The audiobook was recorded last year.",
+              "uk": "У записі звучить The audiobook was recorded last year."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-12:i03:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The audiobook was recorded last year.",
+              "uk": "У записі звучить The audiobook was recorded last year."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-12:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите, сколько длится запись.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите, сколько длится запись.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "How long is the recording?",
+        "localizedMeaning": {
+          "ru": "Спросите, сколько длится запись.",
+          "uk": "Запитайте, скільки триває запис."
+        },
+        "orderedTokens": [
+          "How",
+          "long",
+          "is",
+          "the",
+          "recording"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-12:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — memoir",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-12:i05:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — memoir",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-12:i05:audio",
+          "transcript": "memoir"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-12:i05:r1",
+            "targetText": "memoir",
+            "meaningByLocale": {
+              "ru": "Мемуары: книга, в которой автор рассказывает о событиях своей жизни; здесь одна книга — a memoir.",
+              "uk": "Мемуари: книжка, у якій автор розповідає про події свого життя; тут одна книжка — a memoir."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "memoir",
+          "definitionByLocale": {
+            "ru": "Мемуары: книга, в которой автор рассказывает о событиях своей жизни; здесь одна книга — a memoir.",
+            "uk": "Мемуари: книжка, у якій автор розповідає про події свого життя; тут одна книжка — a memoir."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-12:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Эту книгу воспоминаний опубликовали в прошлом году.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-12:i06:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-28:session-12:i06:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-28:session-12:i06:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Эту книгу воспоминаний опубликовали в прошлом году.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Эту книгу воспоминаний опубликовали в прошлом году.",
+          "uk": "Цю книжку спогадів опублікували минулого року."
+        },
+        "gappedTargetPhrase": "This memoir ___ published last year.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-12:i06:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-28:session-12:i06:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-28:session-12:i06:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Эту книгу воспоминаний опубликовали в прошлом году.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-12:i06:r2",
+            "correct": false,
+            "testedDimension": "Эту книгу воспоминаний опубликовали в прошлом году.",
+            "feedbackByLocale": {
+              "ru": "Одна книга в прошлом: was.",
+              "uk": "Одна книжка в минулому: was."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-12:i06:r3",
+            "correct": false,
+            "testedDimension": "Эту книгу воспоминаний опубликовали в прошлом году.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна was published.",
+              "uk": "Тут потрібна was published."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-12:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите посмотреть книгу перед покупкой.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-12:i07:audio"
+      ],
+      "accessibilityLabel": "Попросите посмотреть книгу перед покупкой.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-12:i07:audio",
+          "transcript": "May I have a look?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "May I have a look?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-12:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы хотели бы больше времени для чтения.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы хотели бы больше времени для чтения.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I wish I had more time to read.",
+        "localizedMeaning": {
+          "ru": "Вы хотели бы больше времени для чтения.",
+          "uk": "Ви хотіли б більше часу для читання."
+        },
+        "orderedTokens": [
+          "I",
+          "wish",
+          "I",
+          "had",
+          "more",
+          "time",
+          "to",
+          "read"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-12:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bestseller",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-12:i09:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bestseller",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-12:i09:audio",
+          "transcript": "bestseller"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-12:i09:r1",
+            "targetText": "bestseller",
+            "meaningByLocale": {
+              "ru": "Бестселлер: книга, которая продаётся особенно хорошо.",
+              "uk": "Бестселер: книжка, яка продається особливо добре."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bestseller",
+          "definitionByLocale": {
+            "ru": "Бестселлер: книга, которая продаётся особенно хорошо.",
+            "uk": "Бестселер: книжка, яка продається особливо добре."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-12:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-12:i10:r1",
+          "text": "This bestseller is displayed near the entrance."
+        },
+        {
+          "responseId": "en:lesson-28:session-12:i10:r2",
+          "text": "This bestseller is displayed near the stairs."
+        },
+        {
+          "responseId": "en:lesson-28:session-12:i10:r3",
+          "text": "This dictionary is displayed near the entrance."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-12:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-12:i10:audio",
+          "transcript": "This bestseller is displayed near the entrance."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-12:i10:r1",
+            "targetText": "This bestseller is displayed near the entrance.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-12:i10:r2",
+            "targetText": "This bestseller is displayed near the stairs.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-12:i10:r3",
+            "targetText": "This dictionary is displayed near the entrance.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-12:i10:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This bestseller is displayed near the entrance.",
+              "uk": "У записі звучить This bestseller is displayed near the entrance."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-12:i10:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This bestseller is displayed near the entrance.",
+              "uk": "У записі звучить This bestseller is displayed near the entrance."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-12:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Книги на этой полке продают со скидкой. Выберите форму для нескольких книг.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-12:i11:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-28:session-12:i11:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-28:session-12:i11:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Книги на этой полке продают со скидкой. Выберите форму для нескольких книг.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Книги на этой полке продают со скидкой. Выберите форму для нескольких книг.",
+          "uk": "Книжки на цій полиці продають зі знижкою. Виберіть форму для кількох книжок."
+        },
+        "gappedTargetPhrase": "These books ___ sold at a discount.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-12:i11:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-28:session-12:i11:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-28:session-12:i11:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Книги на этой полке продают со скидкой. Выберите форму для нескольких книг.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-12:i11:r2",
+            "correct": false,
+            "testedDimension": "Книги на этой полке продают со скидкой. Выберите форму для нескольких книг.",
+            "feedbackByLocale": {
+              "ru": "Books — несколько: are.",
+              "uk": "Books — кілька: are."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-12:i11:r3",
+            "correct": false,
+            "testedDimension": "Книги на этой полке продают со скидкой. Выберите форму для нескольких книг.",
+            "feedbackByLocale": {
+              "ru": "Am подходит к I; здесь are.",
+              "uk": "Am підходить до I; тут are."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-12:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — prequel",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-12:i12:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — prequel",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-12:i12:audio",
+          "transcript": "prequel"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-12:i12:r1",
+            "targetText": "prequel",
+            "meaningByLocale": {
+              "ru": "Приквел: книга или фильм, события которого происходят раньше событий уже известной истории.",
+              "uk": "Приквел: книжка або фільм, події якого відбуваються раніше за події вже відомої історії."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "prequel",
+          "definitionByLocale": {
+            "ru": "Приквел: книга или фильм, события которого происходят раньше событий уже известной истории.",
+            "uk": "Приквел: книжка або фільм, події якого відбуваються раніше за події вже відомої історії."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-12:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите, является ли эта книга приквелом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите, является ли эта книга приквелом.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Is this book a prequel?",
+        "localizedMeaning": {
+          "ru": "Спросите, является ли эта книга приквелом.",
+          "uk": "Запитайте, чи є ця книжка приквелом."
+        },
+        "orderedTokens": [
+          "Is",
+          "this",
+          "book",
+          "a",
+          "prequel"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-12:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите продавца посоветовать, с какой книги начать.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-12:i14:audio"
+      ],
+      "accessibilityLabel": "Попросите продавца посоветовать, с какой книги начать.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-12:i14:audio",
+          "transcript": "Which book should I read first?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Which book should I read first?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-12:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-12:i15:r1",
+          "text": "The author was interviewed yesterday."
+        },
+        {
+          "responseId": "en:lesson-28:session-12:i15:r2",
+          "text": "The author was interviewed last week."
+        },
+        {
+          "responseId": "en:lesson-28:session-12:i15:r3",
+          "text": "The actor was interviewed yesterday."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-12:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-12:i15:audio",
+          "transcript": "The author was interviewed yesterday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-12:i15:r1",
+            "targetText": "The author was interviewed yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-12:i15:r2",
+            "targetText": "The author was interviewed last week.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-12:i15:r3",
+            "targetText": "The actor was interviewed yesterday.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-12:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The author was interviewed yesterday.",
+              "uk": "У записі звучить The author was interviewed yesterday."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-12:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The author was interviewed yesterday.",
+              "uk": "У записі звучить The author was interviewed yesterday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-12:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Заказ уже прибыл к вашему приходу вчера. Завершите более раннее событие.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-12:i16:r1",
+          "text": "arrived"
+        },
+        {
+          "responseId": "en:lesson-28:session-12:i16:r2",
+          "text": "arrive"
+        },
+        {
+          "responseId": "en:lesson-28:session-12:i16:r3",
+          "text": "arriving"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Заказ уже прибыл к вашему приходу вчера. Завершите более раннее событие.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Заказ уже прибыл к вашему приходу вчера. Завершите более раннее событие.",
+          "uk": "Замовлення вже прибуло до вашого приходу вчора. Завершіть ранішу подію."
+        },
+        "gappedTargetPhrase": "My order had ___ by the time I got there.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-12:i16:r1",
+            "text": "arrived"
+          },
+          {
+            "responseId": "en:lesson-28:session-12:i16:r2",
+            "text": "arrive"
+          },
+          {
+            "responseId": "en:lesson-28:session-12:i16:r3",
+            "text": "arriving"
+          }
+        ],
+        "testedDimension": "Заказ уже прибыл к вашему приходу вчера. Завершите более раннее событие.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-12:i16:r2",
+            "correct": false,
+            "testedDimension": "Заказ уже прибыл к вашему приходу вчера. Завершите более раннее событие.",
+            "feedbackByLocale": {
+              "ru": "После had нужна arrived.",
+              "uk": "Після had потрібна arrived."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-12:i16:r3",
+            "correct": false,
+            "testedDimension": "Заказ уже прибыл к вашему приходу вчера. Завершите более раннее событие.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем had arrived.",
+              "uk": "Тут використовуємо had arrived."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-12:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, где упаковывают подарки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-12:i17:audio"
+      ],
+      "accessibilityLabel": "Послушайте, где упаковывают подарки.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-12:i17:audio",
+          "transcript": "Gifts are wrapped at the back of the shop."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Gifts are wrapped at the back of the shop.",
+        "orderedTokens": [
+          "Gifts",
+          "are",
+          "wrapped",
+          "at",
+          "the",
+          "back",
+          "of",
+          "the",
+          "shop"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-12:i18",
+      "ordinal": 21,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите упаковать книгу на подарок.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-12:i18:audio"
+      ],
+      "accessibilityLabel": "Попросите упаковать книгу на подарок.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-12:i18:audio",
+          "transcript": "Could you wrap this as a gift?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you wrap this as a gift?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-12:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Книга дорогая. Вы хотели бы более низкую цену.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Книга дорогая. Вы хотели бы более низкую цену.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I wish it were cheaper.",
+        "localizedMeaning": {
+          "ru": "Книга дорогая. Вы хотели бы более низкую цену.",
+          "uk": "Книжка дорога. Ви хотіли б нижчу ціну."
+        },
+        "orderedTokens": [
+          "I",
+          "wish",
+          "it",
+          "were",
+          "cheaper"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-12:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Эти книги были доставлены утром. Выберите форму для нескольких книг.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-12:i20:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-28:session-12:i20:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-28:session-12:i20:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Эти книги были доставлены утром. Выберите форму для нескольких книг.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Эти книги были доставлены утром. Выберите форму для нескольких книг.",
+          "uk": "Ці книжки були доставлені вранці. Виберіть форму для кількох книжок."
+        },
+        "gappedTargetPhrase": "These books ___ delivered this morning.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-12:i20:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-28:session-12:i20:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-28:session-12:i20:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Эти книги были доставлены утром. Выберите форму для нескольких книг.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-12:i20:r2",
+            "correct": false,
+            "testedDimension": "Эти книги были доставлены утром. Выберите форму для нескольких книг.",
+            "feedbackByLocale": {
+              "ru": "Books — несколько: were.",
+              "uk": "Books — кілька: were."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-12:i20:r3",
+            "correct": false,
+            "testedDimension": "Эти книги были доставлены утром. Выберите форму для нескольких книг.",
+            "feedbackByLocale": {
+              "ru": "Для прошедшей доставки здесь нужна were.",
+              "uk": "Для минулої доставки тут потрібна were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-12:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Выбрали одну книгу. Сообщите об этом, пока стопка не выросла до высоты вашей полки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-12:i21:audio"
+      ],
+      "accessibilityLabel": "Выбрали одну книгу. Сообщите об этом, пока стопка не выросла до высоты вашей полки.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-12:i21:audio",
+          "transcript": "I will take this one, please."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I will take this one, please.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "b7c46fe0f30158626690b46d5d069f6f143932c79c3292dc8c6aef3a972a406c"
+}

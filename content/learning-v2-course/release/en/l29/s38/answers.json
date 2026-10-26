@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-29:session-38:i01",
+    "correctText": "The memoir I borrowed was moving.",
+    "correctResponseId": "en:lesson-29:session-38:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-38:i02",
+    "correctText": "resemble",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-38:i03",
+    "correctText": "You resemble our grandmother.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-38:i04",
+    "correctText": "I borrowed",
+    "correctResponseId": "en:lesson-29:session-38:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-38:i05",
+    "correctText": "Where did she grow up?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-38:i06",
+    "correctText": "upbringing",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-38:i07",
+    "correctText": "She had a strict upbringing.",
+    "correctResponseId": "en:lesson-29:session-38:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-38:i08",
+    "correctText": "This is the woman whose story I read.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-38:i09",
+    "correctText": "whose",
+    "correctResponseId": "en:lesson-29:session-38:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-38:i10",
+    "correctText": "anecdote",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-38:i11",
+    "correctText": "Grandad told us a funny anecdote.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-38:i12",
+    "correctText": "Could you tell me more?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-38:i13",
+    "correctText": "milestone",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-38:i14",
+    "correctText": "Graduation was an important milestone.",
+    "correctResponseId": "en:lesson-29:session-38:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-38:i15",
+    "correctText": "en:lesson-29:session-38:i15:p1=resemble\nen:lesson-29:session-38:i15:p2=upbringing\nen:lesson-29:session-38:i15:p3=anecdote\nen:lesson-29:session-38:i15:p4=milestone",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-38:i16",
+    "correctText": "who",
+    "correctResponseId": "en:lesson-29:session-38:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-38:i17",
+    "correctText": "She had a strict upbringing.",
+    "correctResponseId": "en:lesson-29:session-38:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-38:i18",
+    "correctText": "Grandad told us a funny anecdote.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-38:i19",
+    "correctText": "I enjoyed reading about her life.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-38:i20",
+    "correctText": "you told me",
+    "correctResponseId": "en:lesson-29:session-38:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-38:i21",
+    "correctText": "Thank you for lending me the book.",
+    "correctResponseId": null
+  }
+]

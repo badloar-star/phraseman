@@ -1,0 +1,1113 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-28:session-37",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-28:session-37:i01",
+      "ordinal": 4,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите, где вход в музей.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-37:i01:audio"
+      ],
+      "accessibilityLabel": "Спросите, где вход в музей.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-37:i01:audio",
+          "transcript": "Where is the entrance?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Where is the entrance?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-37:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — inventor",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-37:i02:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — inventor",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-37:i02:audio",
+          "transcript": "inventor"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-37:i02:r1",
+            "targetText": "inventor",
+            "meaningByLocale": {
+              "ru": "Изобретатель. Человек, который придумывает новое устройство или способ что-либо делать.",
+              "uk": "Винахідник. Людина, яка вигадує новий пристрій або спосіб щось робити."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "inventor",
+          "definitionByLocale": {
+            "ru": "Изобретатель. Человек, который придумывает новое устройство или способ что-либо делать.",
+            "uk": "Винахідник. Людина, яка вигадує новий пристрій або спосіб щось робити."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-37:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-37:i03:r1",
+          "text": "The inventor lived in this town."
+        },
+        {
+          "responseId": "en:lesson-28:session-37:i03:r2",
+          "text": "The inventor lived in this house."
+        },
+        {
+          "responseId": "en:lesson-28:session-37:i03:r3",
+          "text": "The inventor worked in this town."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-37:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-37:i03:audio",
+          "transcript": "The inventor lived in this town."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-37:i03:r1",
+            "targetText": "The inventor lived in this town.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-37:i03:r2",
+            "targetText": "The inventor lived in this house.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-37:i03:r3",
+            "targetText": "The inventor worked in this town.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-37:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The inventor lived in this town.",
+              "uk": "У записі звучить The inventor lived in this town."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-37:i03:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The inventor lived in this town.",
+              "uk": "У записі звучить The inventor lived in this town."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-37:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы называете человека, создавшего машину.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-37:i04:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-28:session-37:i04:r2",
+          "text": "of"
+        },
+        {
+          "responseId": "en:lesson-28:session-37:i04:r3",
+          "text": "at"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы называете человека, создавшего машину.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы называете человека, создавшего машину.",
+          "uk": "Ви називаєте людину, яка створила машину."
+        },
+        "gappedTargetPhrase": "The machine was invented ___ a local teacher.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-37:i04:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-28:session-37:i04:r2",
+            "text": "of"
+          },
+          {
+            "responseId": "en:lesson-28:session-37:i04:r3",
+            "text": "at"
+          }
+        ],
+        "testedDimension": "Вы называете человека, создавшего машину.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-37:i04:r2",
+            "correct": false,
+            "testedDimension": "Вы называете человека, создавшего машину.",
+            "feedbackByLocale": {
+              "ru": "Создателя вводит by.",
+              "uk": "Творця вводить by."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-37:i04:r3",
+            "correct": false,
+            "testedDimension": "Вы называете человека, создавшего машину.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна by a local teacher.",
+              "uk": "Тут потрібна by a local teacher."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-37:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте объявление о новом зале.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-37:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте объявление о новом зале.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-37:i05:audio",
+          "transcript": "The new room will be opened tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The new room will be opened tomorrow.",
+        "orderedTokens": [
+          "The",
+          "new",
+          "room",
+          "will",
+          "be",
+          "opened",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-37:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — invention",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-37:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — invention",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-37:i06:audio",
+          "transcript": "invention"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-37:i06:r1",
+            "targetText": "invention",
+            "meaningByLocale": {
+              "ru": "Изобретение. Новое устройство или способ что-либо делать, придуманные человеком.",
+              "uk": "Винахід. Новий пристрій або спосіб щось робити, вигадані людиною."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "invention",
+          "definitionByLocale": {
+            "ru": "Изобретение. Новое устройство или способ что-либо делать, придуманные человеком.",
+            "uk": "Винахід. Новий пристрій або спосіб щось робити, вигадані людиною."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-37:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что это полезное изобретение.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что это полезное изобретение.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is a useful invention.",
+        "localizedMeaning": {
+          "ru": "Скажите, что это полезное изобретение.",
+          "uk": "Скажіть, що це корисний винахід."
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "a",
+          "useful",
+          "invention"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-37:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточните, разрешено ли трогать модель.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-37:i08:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-28:session-37:i08:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-28:session-37:i08:r3",
+          "text": "was"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточните, разрешено ли трогать модель.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните, разрешено ли трогать модель.",
+          "uk": "Уточніть, чи дозволено торкатися моделі."
+        },
+        "gappedTargetPhrase": "Can this model ___ touched?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-37:i08:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-28:session-37:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-28:session-37:i08:r3",
+            "text": "was"
+          }
+        ],
+        "testedDimension": "Уточните, разрешено ли трогать модель.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-37:i08:r2",
+            "correct": false,
+            "testedDimension": "Уточните, разрешено ли трогать модель.",
+            "feedbackByLocale": {
+              "ru": "После can нужна be.",
+              "uk": "Після can потрібна be."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-37:i08:r3",
+            "correct": false,
+            "testedDimension": "Уточните, разрешено ли трогать модель.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем can be touched.",
+              "uk": "Тут використовуємо can be touched."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-37:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-37:i09:r1",
+          "text": "The model was repaired yesterday."
+        },
+        {
+          "responseId": "en:lesson-28:session-37:i09:r2",
+          "text": "The model will be repaired tomorrow."
+        },
+        {
+          "responseId": "en:lesson-28:session-37:i09:r3",
+          "text": "The model was repaired last week."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-37:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-37:i09:audio",
+          "transcript": "The model was repaired yesterday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-37:i09:r1",
+            "targetText": "The model was repaired yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-37:i09:r2",
+            "targetText": "The model will be repaired tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-37:i09:r3",
+            "targetText": "The model was repaired last week.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-37:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The model was repaired yesterday.",
+              "uk": "У записі звучить The model was repaired yesterday."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-37:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The model was repaired yesterday.",
+              "uk": "У записі звучить The model was repaired yesterday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-37:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — exhibit",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-37:i10:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — exhibit",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-37:i10:audio",
+          "transcript": "exhibit"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-37:i10:r1",
+            "targetText": "exhibit",
+            "meaningByLocale": {
+              "ru": "Экспонат. Предмет, выставленный для посетителей, например в музее.",
+              "uk": "Експонат. Предмет, виставлений для відвідувачів, наприклад у музеї."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "exhibit",
+          "definitionByLocale": {
+            "ru": "Экспонат. Предмет, выставленный для посетителей, например в музее.",
+            "uk": "Експонат. Предмет, виставлений для відвідувачів, наприклад у музеї."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-37:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите, сколько лет этому экспонату.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-37:i11:audio"
+      ],
+      "accessibilityLabel": "Спросите, сколько лет этому экспонату.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-37:i11:audio",
+          "transcript": "How old is this exhibit?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "How old is this exhibit?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-37:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вам хочется, чтобы музей работал дольше.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-37:i12:r1",
+          "text": "stayed"
+        },
+        {
+          "responseId": "en:lesson-28:session-37:i12:r2",
+          "text": "stays"
+        },
+        {
+          "responseId": "en:lesson-28:session-37:i12:r3",
+          "text": "will stay"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вам хочется, чтобы музей работал дольше.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вам хочется, чтобы музей работал дольше.",
+          "uk": "Вам хочеться, щоб музей працював довше."
+        },
+        "gappedTargetPhrase": "I wish the museum ___ open longer.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-37:i12:r1",
+            "text": "stayed"
+          },
+          {
+            "responseId": "en:lesson-28:session-37:i12:r2",
+            "text": "stays"
+          },
+          {
+            "responseId": "en:lesson-28:session-37:i12:r3",
+            "text": "will stay"
+          }
+        ],
+        "testedDimension": "Вам хочется, чтобы музей работал дольше.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-37:i12:r2",
+            "correct": false,
+            "testedDimension": "Вам хочется, чтобы музей работал дольше.",
+            "feedbackByLocale": {
+              "ru": "После wish здесь нужна stayed.",
+              "uk": "Після wish тут потрібна stayed."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-37:i12:r3",
+            "correct": false,
+            "testedDimension": "Вам хочется, чтобы музей работал дольше.",
+            "feedbackByLocale": {
+              "ru": "Желаемое сейчас: stayed open longer.",
+              "uk": "Бажане зараз: stayed open longer."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-37:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что экскурсия началась до вашего прихода.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что экскурсия началась до вашего прихода.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The tour had started by the time I arrived.",
+        "localizedMeaning": {
+          "ru": "Скажите, что экскурсия началась до вашего прихода.",
+          "uk": "Скажіть, що екскурсія почалася до вашого приходу."
+        },
+        "orderedTokens": [
+          "The",
+          "tour",
+          "had",
+          "started",
+          "by",
+          "the",
+          "time",
+          "I",
+          "arrived"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-37:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — interactive",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-37:i14:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — interactive",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-37:i14:audio",
+          "transcript": "interactive"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-37:i14:r1",
+            "targetText": "interactive",
+            "meaningByLocale": {
+              "ru": "Интерактивный. Позволяет посетителю участвовать: например, нажать кнопку и увидеть, как движется модель.",
+              "uk": "Інтерактивний. Дає відвідувачеві змогу брати участь: наприклад, натиснути кнопку й побачити, як рухається модель."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "interactive",
+          "definitionByLocale": {
+            "ru": "Интерактивный. Позволяет посетителю участвовать: например, нажать кнопку и увидеть, как движется модель.",
+            "uk": "Інтерактивний. Дає відвідувачеві змогу брати участь: наприклад, натиснути кнопку й побачити, як рухається модель."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-37:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-37:i15:r1",
+          "text": "This exhibit is interactive."
+        },
+        {
+          "responseId": "en:lesson-28:session-37:i15:r2",
+          "text": "This exhibit is broken."
+        },
+        {
+          "responseId": "en:lesson-28:session-37:i15:r3",
+          "text": "This exhibit is new."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-37:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-37:i15:audio",
+          "transcript": "This exhibit is interactive."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-37:i15:r1",
+            "targetText": "This exhibit is interactive.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-37:i15:r2",
+            "targetText": "This exhibit is broken.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-37:i15:r3",
+            "targetText": "This exhibit is new.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-37:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This exhibit is interactive.",
+              "uk": "У записі звучить This exhibit is interactive."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-37:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This exhibit is interactive.",
+              "uk": "У записі звучить This exhibit is interactive."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-37:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводами.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводами.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-28:session-37:i16:p1",
+            "target": "inventor",
+            "meaningByLocale": {
+              "ru": "изобретатель",
+              "uk": "винахідник"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-37:i16:p2",
+            "target": "invention",
+            "meaningByLocale": {
+              "ru": "изобретение",
+              "uk": "винахід"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-37:i16:p3",
+            "target": "exhibit",
+            "meaningByLocale": {
+              "ru": "экспонат",
+              "uk": "експонат"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-37:i16:p4",
+            "target": "interactive",
+            "meaningByLocale": {
+              "ru": "интерактивный",
+              "uk": "інтерактивний"
+            }
+          }
+        ],
+        "leftColumn": [
+          "inventor",
+          "invention",
+          "exhibit",
+          "interactive"
+        ],
+        "rightColumn": [
+          "изобретатель",
+          "изобретение",
+          "экспонат",
+          "интерактивный"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-37:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Посетители могут видеть модели наверху: их хранят там.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-37:i17:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-28:session-37:i17:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-28:session-37:i17:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Посетители могут видеть модели наверху: их хранят там.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Посетители могут видеть модели наверху: их хранят там.",
+          "uk": "Відвідувачі можуть бачити моделі нагорі: їх зберігають там."
+        },
+        "gappedTargetPhrase": "The models ___ kept upstairs.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-37:i17:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-28:session-37:i17:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-28:session-37:i17:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Посетители могут видеть модели наверху: их хранят там.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-37:i17:r2",
+            "correct": false,
+            "testedDimension": "Посетители могут видеть модели наверху: их хранят там.",
+            "feedbackByLocale": {
+              "ru": "Models — несколько: are.",
+              "uk": "Models — кілька: are."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-37:i17:r3",
+            "correct": false,
+            "testedDimension": "Посетители могут видеть модели наверху: их хранят там.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна are kept.",
+              "uk": "Тут потрібна are kept."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-37:i18",
+      "ordinal": 21,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточните, разрешены ли фотографии в этом зале.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-37:i18:audio"
+      ],
+      "accessibilityLabel": "Уточните, разрешены ли фотографии в этом зале.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-37:i18:audio",
+          "transcript": "Can I take photos in this room?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Can I take photos in this room?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-37:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте правило возле стеклянного шкафа.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-37:i19:audio"
+      ],
+      "accessibilityLabel": "Послушайте правило возле стеклянного шкафа.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-37:i19:audio",
+          "transcript": "This door must be kept closed."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This door must be kept closed.",
+        "orderedTokens": [
+          "This",
+          "door",
+          "must",
+          "be",
+          "kept",
+          "closed"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-37:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Музей закрылся до вашего прихода.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-37:i20:r1",
+          "text": "closed"
+        },
+        {
+          "responseId": "en:lesson-28:session-37:i20:r2",
+          "text": "close"
+        },
+        {
+          "responseId": "en:lesson-28:session-37:i20:r3",
+          "text": "closing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Музей закрылся до вашего прихода.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Музей закрылся до вашего прихода.",
+          "uk": "Музей зачинився до вашого приходу."
+        },
+        "gappedTargetPhrase": "The museum had ___ by the time I arrived.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-37:i20:r1",
+            "text": "closed"
+          },
+          {
+            "responseId": "en:lesson-28:session-37:i20:r2",
+            "text": "close"
+          },
+          {
+            "responseId": "en:lesson-28:session-37:i20:r3",
+            "text": "closing"
+          }
+        ],
+        "testedDimension": "Музей закрылся до вашего прихода.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-37:i20:r2",
+            "correct": false,
+            "testedDimension": "Музей закрылся до вашего прихода.",
+            "feedbackByLocale": {
+              "ru": "После had нужна closed.",
+              "uk": "Після had потрібна closed."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-37:i20:r3",
+            "correct": false,
+            "testedDimension": "Музей закрылся до вашего прихода.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем had closed.",
+              "uk": "Тут використовуємо had closed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-37:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточните время закрытия.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-37:i21:audio"
+      ],
+      "accessibilityLabel": "Уточните время закрытия.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-37:i21:audio",
+          "transcript": "What time does the museum close?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "What time does the museum close?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "9ded1298f39d6a1e93d40c118e354685f1f765f8e8c616cb9854869b079658b2"
+}

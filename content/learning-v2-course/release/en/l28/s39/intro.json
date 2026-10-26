@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-28:session-39",
+  "learningOutcomeByLocale": {
+    "ru": "как обсудить снимки и заказать печать.",
+    "uk": "як обговорити знімки й замовити друк."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-28:session-39:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Кто сделал снимок",
+        "uk": "Хто зробив знімок"
+      },
+      "bodyByLocale": {
+        "ru": "Вы показываете семейную фотографию. Вас спрашивают, кто её сделал. Ответьте: The photo was taken by my dad — фотографию сделал мой папа. Соберите The photo + was taken + by + my dad. Для фотографии используем take a photo; taken — третья форма take. Was taken сообщает о сделанном снимке, а by my dad называет человека, который его сделал.",
+        "uk": "Ви показуєте сімейну фотографію. Вас запитують, хто її зробив. Дайте відповідь: The photo was taken by my dad — фотографію зробив мій тато. Складіть The photo + was taken + by + my dad. Для фотографії використовуємо take a photo; taken — третя форма take. Was taken повідомляє про зроблений знімок, а by my dad називає людину, яка його зробила."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-39:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-39:intro1:r1",
+              "text": "The photo was taken by my dad."
+            },
+            {
+              "responseId": "en:lesson-28:session-39:intro1:r2",
+              "text": "The photo was took by my dad."
+            },
+            {
+              "responseId": "en:lesson-28:session-39:intro1:r3",
+              "text": "The photo was taken my dad."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-39:intro1:r1",
+              "text": "The photo was taken by my dad."
+            },
+            {
+              "responseId": "en:lesson-28:session-39:intro1:r2",
+              "text": "The photo was took by my dad."
+            },
+            {
+              "responseId": "en:lesson-28:session-39:intro1:r3",
+              "text": "The photo was taken my dad."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-28:session-39:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Можно ли напечатать",
+        "uk": "Чи можна надрукувати"
+      },
+      "bodyByLocale": {
+        "ru": "В фотоателье вы показываете снимок на телефоне и уточняете, можно ли его напечатать: Can this photo be printed? — можно напечатать эту фотографию? Соберите Can + this photo + be + printed? Вынесите Can перед this photo. После названия снимка нужны be и printed: вопрос касается возможного действия над фотографией.",
+        "uk": "У фотоательє ви показуєте знімок на телефоні й уточнюєте, чи можна його надрукувати: Can this photo be printed? — чи можна надрукувати цю фотографію? Складіть Can + this photo + be + printed? Поставте Can перед this photo. Після назви знімка потрібні be та printed: запитання стосується можливої дії з фотографією."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-39:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-39:intro2:r1",
+              "text": "Can this photo be printed?"
+            },
+            {
+              "responseId": "en:lesson-28:session-39:intro2:r2",
+              "text": "Can this photo printed?"
+            },
+            {
+              "responseId": "en:lesson-28:session-39:intro2:r3",
+              "text": "Can this photo be print?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-39:intro2:r1",
+              "text": "Can this photo be printed?"
+            },
+            {
+              "responseId": "en:lesson-28:session-39:intro2:r2",
+              "text": "Can this photo printed?"
+            },
+            {
+              "responseId": "en:lesson-28:session-39:intro2:r3",
+              "text": "Can this photo be print?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-28:session-39:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Когда напечатают заказ",
+        "uk": "Коли надрукують замовлення"
+      },
+      "bodyByLocale": {
+        "ru": "Сотрудник фотоателье сообщает день печати вашего заказа: The photos will be printed on Friday — фотографии напечатают в пятницу. Соберите The photos + will + be + printed + on Friday. Начните с фотографий. Will be printed обозначает будущее действие над ними: после will нужна be, затем printed. В конце добавьте день — on Friday.",
+        "uk": "Працівник фотоательє повідомляє день друку вашого замовлення: The photos will be printed on Friday — фотографії надрукують у п’ятницю. Складіть The photos + will + be + printed + on Friday. Почніть із фотографій. Will be printed позначає майбутню дію з ними: після will потрібна be, потім printed. Наприкінці додайте день — on Friday."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-39:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-39:intro3:r1",
+              "text": "The photos will be printed on Friday."
+            },
+            {
+              "responseId": "en:lesson-28:session-39:intro3:r2",
+              "text": "The photos will printed on Friday."
+            },
+            {
+              "responseId": "en:lesson-28:session-39:intro3:r3",
+              "text": "The photos will be print on Friday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-39:intro3:r1",
+              "text": "The photos will be printed on Friday."
+            },
+            {
+              "responseId": "en:lesson-28:session-39:intro3:r2",
+              "text": "The photos will printed on Friday."
+            },
+            {
+              "responseId": "en:lesson-28:session-39:intro3:r3",
+              "text": "The photos will be print on Friday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "54202c2205295194e0084fcdc10939be2048fdc1dda717aa5355f4153bc7747e"
+}

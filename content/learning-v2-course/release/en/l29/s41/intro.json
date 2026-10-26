@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-29:session-41",
+  "learningOutcomeByLocale": {
+    "ru": "как различить растерянность от спешки, панику, непонимание и нервное напряжение, уточнить билет, человека и место.",
+    "uk": "як розрізнити розгубленість від поспіху, паніку, нерозуміння й нервове напруження, уточнити квиток, людину та місце."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-29:session-41:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Нашёлся потерянный билет",
+        "uk": "Знайшовся загублений квиток"
+      },
+      "bodyByLocale": {
+        "ru": "Перед поездкой вы находите билет, который считали потерянным. Скажите: The ticket I lost was in my bag — билет, который я потерял, был в моей сумке. Соберите The ticket + I lost + was in my bag. В уточнении действие выполняет I, а ticket называет потерянную вещь. Поэтому that перед I можно опустить; it после lost не добавляем.",
+        "uk": "Перед поїздкою ви знаходите квиток, який вважали загубленим. Скажіть: The ticket I lost was in my bag — квиток, який я загубив, був у моїй сумці. Складіть The ticket + I lost + was in my bag. В уточненні дію виконує I, а ticket називає загублену річ. Тому that перед I можна пропустити; it після lost не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-41:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-41:intro1:r1",
+              "text": "The ticket I lost was in my bag."
+            },
+            {
+              "responseId": "en:lesson-29:session-41:intro1:r2",
+              "text": "The ticket I lost it was in my bag."
+            },
+            {
+              "responseId": "en:lesson-29:session-41:intro1:r3",
+              "text": "The ticket me lost was in my bag."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-41:intro1:r1",
+              "text": "The ticket I lost was in my bag."
+            },
+            {
+              "responseId": "en:lesson-29:session-41:intro1:r2",
+              "text": "The ticket I lost it was in my bag."
+            },
+            {
+              "responseId": "en:lesson-29:session-41:intro1:r3",
+              "text": "The ticket me lost was in my bag."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-29:session-41:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Друг задержался",
+        "uk": "Друг затримався"
+      },
+      "bodyByLocale": {
+        "ru": "Вы объясняете сестре, кого ждёте на вокзале. Скажите: I am waiting for a friend whose train is late — я жду друга, чей поезд опаздывает. Соберите I am waiting for a friend + whose train + is late. Whose train связывает поезд с другом: поезд, на котором он едет. После whose не добавляем his.",
+        "uk": "Ви пояснюєте сестрі, на кого чекаєте на вокзалі. Скажіть: I am waiting for a friend whose train is late — я чекаю на друга, чий потяг запізнюється. Складіть I am waiting for a friend + whose train + is late. Whose train пов’язує потяг із другом: потяг, яким він їде. Після whose не додаємо his."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-41:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-41:intro2:r1",
+              "text": "I am waiting for a friend whose train is late."
+            },
+            {
+              "responseId": "en:lesson-29:session-41:intro2:r2",
+              "text": "I am waiting for a friend who train is late."
+            },
+            {
+              "responseId": "en:lesson-29:session-41:intro2:r3",
+              "text": "I am waiting for a friend whose his train is late."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-41:intro2:r1",
+              "text": "I am waiting for a friend whose train is late."
+            },
+            {
+              "responseId": "en:lesson-29:session-41:intro2:r2",
+              "text": "I am waiting for a friend who train is late."
+            },
+            {
+              "responseId": "en:lesson-29:session-41:intro2:r3",
+              "text": "I am waiting for a friend whose his train is late."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-29:session-41:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Вокзал, где вы встретились",
+        "uk": "Вокзал, де ви зустрілися"
+      },
+      "bodyByLocale": {
+        "ru": "После поездки вы показываете сестре вокзал, где встретились с другом. Скажите: This is the station where we met — это вокзал, где мы встретились. Соберите This is the station + where + we met. Where связывает встречу с местом. После where сохраняем порядок we met, без вопросительного did.",
+        "uk": "Після поїздки ви показуєте сестрі вокзал, де зустрілися з другом. Скажіть: This is the station where we met — це вокзал, де ми зустрілися. Складіть This is the station + where + we met. Where пов’язує зустріч із місцем. Після where зберігаємо порядок we met, без питального did."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-41:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-41:intro3:r1",
+              "text": "This is the station where we met."
+            },
+            {
+              "responseId": "en:lesson-29:session-41:intro3:r2",
+              "text": "This is the station where did we meet."
+            },
+            {
+              "responseId": "en:lesson-29:session-41:intro3:r3",
+              "text": "This is the station who we met."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-41:intro3:r1",
+              "text": "This is the station where we met."
+            },
+            {
+              "responseId": "en:lesson-29:session-41:intro3:r2",
+              "text": "This is the station where did we meet."
+            },
+            {
+              "responseId": "en:lesson-29:session-41:intro3:r3",
+              "text": "This is the station who we met."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "18e70697759a470b58f52ffb44dba4514bd1833414369b1a88b1e9fcfe177c46"
+}

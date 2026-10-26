@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-29:session-26",
+  "entries": [
+    {
+      "interactionId": "en:lesson-29:session-26:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-26:intro1:r2": {
+          "ru": "Who уже обозначает игрока, he лишнее.",
+          "uk": "Who вже позначає гравця, he зайве."
+        },
+        "en:lesson-29:session-26:intro1:r3": {
+          "ru": "Для человека здесь используем who.",
+          "uk": "Для людини тут використовуємо who."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-26:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-26:intro2:r2": {
+          "ru": "Who уже обозначает знакомого игрока, him лишнее.",
+          "uk": "Who вже позначає знайомого гравця, him зайве."
+        },
+        "en:lesson-29:session-26:intro2:r3": {
+          "ru": "Тот, кто знает игрока, — I, а не me.",
+          "uk": "Той, хто знає гравця, — I, а не me."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-26:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-26:intro3:r2": {
+          "ru": "Принадлежность сумки показывает whose.",
+          "uk": "Належність сумки показує whose."
+        },
+        "en:lesson-29:session-26:intro3:r3": {
+          "ru": "His после whose не нужно.",
+          "uk": "His після whose не потрібне."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "caae0921c06ecee795b6a4b5938d9fde980d8021b23346c292414d4aa589f674"
+}

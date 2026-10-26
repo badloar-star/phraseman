@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-28:session-42:i01",
+    "correctText": "This plant needs a bigger pot.",
+    "correctResponseId": "en:lesson-28:session-42:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-42:i02",
+    "correctText": "shrub",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-42:i03",
+    "correctText": "How big will this shrub grow?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-42:i04",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-28:session-42:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-42:i05",
+    "correctText": "Your order will be delivered tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-42:i06",
+    "correctText": "evergreen",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-42:i07",
+    "correctText": "Is this plant evergreen?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-42:i08",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-28:session-42:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-42:i09",
+    "correctText": "Could you show me a smaller plant?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-42:i10",
+    "correctText": "lavender",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-42:i11",
+    "correctText": "The lavender is near the door.",
+    "correctResponseId": "en:lesson-28:session-42:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-42:i12",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-28:session-42:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-42:i13",
+    "correctText": "Orders can be collected on Saturday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-42:i14",
+    "correctText": "geranium",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-42:i15",
+    "correctText": "Could I see the red geranium, please?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-42:i16",
+    "correctText": "en:lesson-28:session-42:i16:p1=shrub\nen:lesson-28:session-42:i16:p2=evergreen\nen:lesson-28:session-42:i16:p3=lavender\nen:lesson-28:session-42:i16:p4=geranium",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-42:i17",
+    "correctText": "closed",
+    "correctResponseId": "en:lesson-28:session-42:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-42:i18",
+    "correctText": "These plants are watered every morning.",
+    "correctResponseId": "en:lesson-28:session-42:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-42:i19",
+    "correctText": "These plants were grown by my father.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-42:i20",
+    "correctText": "delivered",
+    "correctResponseId": "en:lesson-28:session-42:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-42:i21",
+    "correctText": "How often should I water this plant?",
+    "correctResponseId": null
+  }
+]

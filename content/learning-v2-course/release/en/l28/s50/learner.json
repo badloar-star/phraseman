@@ -1,0 +1,1030 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-28:session-50",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-28:session-50:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите, включены ли крючки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите, включены ли крючки.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Are the hooks included?",
+        "localizedMeaning": {
+          "ru": "Спросите, включены ли крючки.",
+          "uk": "Запитайте, чи включено гачки."
+        },
+        "orderedTokens": [
+          "Are",
+          "the",
+          "hooks",
+          "included"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-50:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — blackout",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-50:i02:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — blackout",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-50:i02:audio",
+          "transcript": "blackout"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-50:i02:r1",
+            "targetText": "blackout",
+            "meaningByLocale": {
+              "ru": "Светонепроницаемый, затемняющий. Здесь определение к шторам: они предназначены для затемнения комнаты.",
+              "uk": "Світлонепроникний, затемнювальний. Тут означення до штор: вони призначені для затемнення кімнати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "blackout",
+          "definitionByLocale": {
+            "ru": "Светонепроницаемый, затемняющий. Здесь определение к шторам: они предназначены для затемнения комнаты.",
+            "uk": "Світлонепроникний, затемнювальний. Тут означення до штор: вони призначені для затемнення кімнати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-50:i03",
+      "ordinal": 6,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите затемняющие шторы.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-50:i03:audio"
+      ],
+      "accessibilityLabel": "Попросите затемняющие шторы.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-50:i03:audio",
+          "transcript": "I would like blackout curtains."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I would like blackout curtains.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-50:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-50:i04:r1",
+          "text": "The blinds will be delivered next week."
+        },
+        {
+          "responseId": "en:lesson-28:session-50:i04:r2",
+          "text": "The blinds will be fitted next week."
+        },
+        {
+          "responseId": "en:lesson-28:session-50:i04:r3",
+          "text": "The curtains will be delivered next week."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-50:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-50:i04:audio",
+          "transcript": "The blinds will be delivered next week."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-50:i04:r1",
+            "targetText": "The blinds will be delivered next week.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-50:i04:r2",
+            "targetText": "The blinds will be fitted next week.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-50:i04:r3",
+            "targetText": "The curtains will be delivered next week.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-50:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The blinds will be delivered next week.",
+              "uk": "У записі звучить The blinds will be delivered next week."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-50:i04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The blinds will be delivered next week.",
+              "uk": "У записі звучить The blinds will be delivered next week."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-50:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Спросите, можно ли укоротить эти шторы.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-50:i05:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-28:session-50:i05:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-28:session-50:i05:r3",
+          "text": "were"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите, можно ли укоротить эти шторы.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите, можно ли укоротить эти шторы.",
+          "uk": "Запитайте, чи можна вкоротити ці штори."
+        },
+        "gappedTargetPhrase": "Can these curtains ___ shortened?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-50:i05:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-28:session-50:i05:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-28:session-50:i05:r3",
+            "text": "were"
+          }
+        ],
+        "testedDimension": "Спросите, можно ли укоротить эти шторы.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-50:i05:r2",
+            "correct": false,
+            "testedDimension": "Спросите, можно ли укоротить эти шторы.",
+            "feedbackByLocale": {
+              "ru": "После can нужна be.",
+              "uk": "Після can потрібна be."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-50:i05:r3",
+            "correct": false,
+            "testedDimension": "Спросите, можно ли укоротить эти шторы.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем can be shortened.",
+              "uk": "Тут використовуємо can be shortened."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-50:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sheer",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-50:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sheer",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-50:i06:audio",
+          "transcript": "sheer"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-50:i06:r1",
+            "targetText": "sheer",
+            "meaningByLocale": {
+              "ru": "Тонкий, просвечивающий. Здесь о ткани для лёгких штор, через которую проходит свет.",
+              "uk": "Тонкий, напівпрозорий. Тут про тканину для легких штор, крізь яку проходить світло."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sheer",
+          "definitionByLocale": {
+            "ru": "Тонкий, просвечивающий. Здесь о ткани для лёгких штор, через которую проходит свет.",
+            "uk": "Тонкий, напівпрозорий. Тут про тканину для легких штор, крізь яку проходить світло."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-50:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что эта ткань слишком прозрачная для вас.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что эта ткань слишком прозрачная для вас.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This fabric is too sheer.",
+        "localizedMeaning": {
+          "ru": "Скажите, что эта ткань слишком прозрачная для вас.",
+          "uk": "Скажіть, що ця тканина надто прозора для вас."
+        },
+        "orderedTokens": [
+          "This",
+          "fabric",
+          "is",
+          "too",
+          "sheer"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-50:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите, есть ли эта ткань синего цвета.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-50:i08:audio"
+      ],
+      "accessibilityLabel": "Спросите, есть ли эта ткань синего цвета.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-50:i08:audio",
+          "transcript": "Do you have this in blue?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Do you have this in blue?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-50:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточните, входят ли несколько крючков в комплект.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-50:i09:r1",
+          "text": "Are"
+        },
+        {
+          "responseId": "en:lesson-28:session-50:i09:r2",
+          "text": "Is"
+        },
+        {
+          "responseId": "en:lesson-28:session-50:i09:r3",
+          "text": "Am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточните, входят ли несколько крючков в комплект.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните, входят ли несколько крючков в комплект.",
+          "uk": "Уточніть, чи входять кілька гачків у комплект."
+        },
+        "gappedTargetPhrase": "___ the hooks included?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-50:i09:r1",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-28:session-50:i09:r2",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-28:session-50:i09:r3",
+            "text": "Am"
+          }
+        ],
+        "testedDimension": "Уточните, входят ли несколько крючков в комплект.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-50:i09:r2",
+            "correct": false,
+            "testedDimension": "Уточните, входят ли несколько крючков в комплект.",
+            "feedbackByLocale": {
+              "ru": "Hooks — несколько: are.",
+              "uk": "Hooks — кілька: are."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-50:i09:r3",
+            "correct": false,
+            "testedDimension": "Уточните, входят ли несколько крючков в комплект.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна are.",
+              "uk": "Тут потрібна are."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-50:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — slat",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-50:i10:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — slat",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-50:i10:audio",
+          "transcript": "slat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-50:i10:r1",
+            "targetText": "slat",
+            "meaningByLocale": {
+              "ru": "Узкая планка. Здесь одна из планок жалюзи, которые закрывают окно.",
+              "uk": "Вузька планка. Тут одна з планок жалюзі, які закривають вікно."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "slat",
+          "definitionByLocale": {
+            "ru": "Узкая планка. Здесь одна из планок жалюзи, которые закрывают окно.",
+            "uk": "Вузька планка. Тут одна з планок жалюзі, які закривають вікно."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-50:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Укажите на сломанную планку жалюзи.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-50:i11:audio"
+      ],
+      "accessibilityLabel": "Укажите на сломанную планку жалюзи.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-50:i11:audio",
+          "transcript": "This slat is broken."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This slat is broken.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-50:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, кто сшил шторы.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-50:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте, кто сшил шторы.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-50:i12:audio",
+          "transcript": "The curtains were made by my aunt."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The curtains were made by my aunt.",
+        "orderedTokens": [
+          "The",
+          "curtains",
+          "were",
+          "made",
+          "by",
+          "my",
+          "aunt"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-50:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы хотели бы иметь больше времени на выбор ткани.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-50:i13:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-28:session-50:i13:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-28:session-50:i13:r3",
+          "text": "will have"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы хотели бы иметь больше времени на выбор ткани.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы хотели бы иметь больше времени на выбор ткани.",
+          "uk": "Ви хотіли б мати більше часу на вибір тканини."
+        },
+        "gappedTargetPhrase": "I wish I ___ more time.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-50:i13:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-28:session-50:i13:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-28:session-50:i13:r3",
+            "text": "will have"
+          }
+        ],
+        "testedDimension": "Вы хотели бы иметь больше времени на выбор ткани.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-50:i13:r2",
+            "correct": false,
+            "testedDimension": "Вы хотели бы иметь больше времени на выбор ткани.",
+            "feedbackByLocale": {
+              "ru": "Желание о настоящем: wish I had.",
+              "uk": "Бажання щодо теперішнього: wish I had."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-50:i13:r3",
+            "correct": false,
+            "testedDimension": "Вы хотели бы иметь больше времени на выбор ткани.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна had.",
+              "uk": "Тут потрібна had."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-50:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — eyelet",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-50:i14:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — eyelet",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-50:i14:audio",
+          "transcript": "eyelet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-50:i14:r1",
+            "targetText": "eyelet",
+            "meaningByLocale": {
+              "ru": "Укреплённое отверстие для крепления. Здесь люверс — отверстие с кольцом в верхней части шторы, через которое проходит карниз.",
+              "uk": "Укріплений отвір для кріплення. Тут люверс — отвір із кільцем у верхній частині штори, крізь який проходить карниз."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "eyelet",
+          "definitionByLocale": {
+            "ru": "Укреплённое отверстие для крепления. Здесь люверс — отверстие с кольцом в верхней части шторы, через которое проходит карниз.",
+            "uk": "Укріплений отвір для кріплення. Тут люверс — отвір із кільцем у верхній частині штори, крізь який проходить карниз."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-50:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Покажите повреждённый люверс на шторе.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Покажите повреждённый люверс на шторе.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This eyelet is damaged.",
+        "localizedMeaning": {
+          "ru": "Покажите повреждённый люверс на шторе.",
+          "uk": "Покажіть пошкоджений люверс на шторі."
+        },
+        "orderedTokens": [
+          "This",
+          "eyelet",
+          "is",
+          "damaged"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-50:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с их значениями.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с их значениями.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-28:session-50:i16:p1",
+            "target": "blackout",
+            "meaningByLocale": {
+              "ru": "затемняющий, о шторах",
+              "uk": "затемнювальний, про штори"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-50:i16:p2",
+            "target": "sheer",
+            "meaningByLocale": {
+              "ru": "тонкий и просвечивающий, о ткани",
+              "uk": "тонкий і напівпрозорий, про тканину"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-50:i16:p3",
+            "target": "slat",
+            "meaningByLocale": {
+              "ru": "планка жалюзи",
+              "uk": "планка жалюзі"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-50:i16:p4",
+            "target": "eyelet",
+            "meaningByLocale": {
+              "ru": "укреплённое отверстие-люверс",
+              "uk": "укріплений отвір-люверс"
+            }
+          }
+        ],
+        "leftColumn": [
+          "blackout",
+          "sheer",
+          "slat",
+          "eyelet"
+        ],
+        "rightColumn": [
+          "затемняющий, о шторах",
+          "тонкий и просвечивающий, о ткани",
+          "планка жалюзи",
+          "укреплённое отверстие-люверс"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-50:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-50:i17:r1",
+          "text": "These curtains are sold in pairs."
+        },
+        {
+          "responseId": "en:lesson-28:session-50:i17:r2",
+          "text": "These curtains are sold separately."
+        },
+        {
+          "responseId": "en:lesson-28:session-50:i17:r3",
+          "text": "These cushions are sold in pairs."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-50:i17:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-50:i17:audio",
+          "transcript": "These curtains are sold in pairs."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-50:i17:r1",
+            "targetText": "These curtains are sold in pairs.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-50:i17:r2",
+            "targetText": "These curtains are sold separately.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-50:i17:r3",
+            "targetText": "These cushions are sold in pairs.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-50:i17:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит These curtains are sold in pairs.",
+              "uk": "У записі звучить These curtains are sold in pairs."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-50:i17:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит These curtains are sold in pairs.",
+              "uk": "У записі звучить These curtains are sold in pairs."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-50:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Мастер повесил шторы до вашего возвращения.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-50:i18:r1",
+          "text": "hung"
+        },
+        {
+          "responseId": "en:lesson-28:session-50:i18:r2",
+          "text": "hang"
+        },
+        {
+          "responseId": "en:lesson-28:session-50:i18:r3",
+          "text": "hanging"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Мастер повесил шторы до вашего возвращения.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Мастер повесил шторы до вашего возвращения.",
+          "uk": "Майстер повісив штори до вашого повернення."
+        },
+        "gappedTargetPhrase": "He had ___ the curtains by the time I returned.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-50:i18:r1",
+            "text": "hung"
+          },
+          {
+            "responseId": "en:lesson-28:session-50:i18:r2",
+            "text": "hang"
+          },
+          {
+            "responseId": "en:lesson-28:session-50:i18:r3",
+            "text": "hanging"
+          }
+        ],
+        "testedDimension": "Мастер повесил шторы до вашего возвращения.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-50:i18:r2",
+            "correct": false,
+            "testedDimension": "Мастер повесил шторы до вашего возвращения.",
+            "feedbackByLocale": {
+              "ru": "После had нужна hung.",
+              "uk": "Після had потрібна hung."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-50:i18:r3",
+            "correct": false,
+            "testedDimension": "Мастер повесил шторы до вашего возвращения.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем had hung.",
+              "uk": "Тут використовуємо had hung."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-50:i19",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите, можно ли взять образец домой.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-50:i19:audio"
+      ],
+      "accessibilityLabel": "Спросите, можно ли взять образец домой.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-50:i19:audio",
+          "transcript": "Can I take a sample home?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Can I take a sample home?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-50:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте обещание о ремонте жалюзи.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-50:i20:audio"
+      ],
+      "accessibilityLabel": "Послушайте обещание о ремонте жалюзи.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-50:i20:audio",
+          "transcript": "The blinds will be repaired on Friday."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The blinds will be repaired on Friday.",
+        "orderedTokens": [
+          "The",
+          "blinds",
+          "will",
+          "be",
+          "repaired",
+          "on",
+          "Friday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-50:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите записать длину штор.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-50:i21:audio"
+      ],
+      "accessibilityLabel": "Попросите записать длину штор.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-50:i21:audio",
+          "transcript": "Could you write down the length?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you write down the length?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "9dc9daea31904415bd462285128cea8d0892203e1a52c4f0ef6b87197703a74b"
+}

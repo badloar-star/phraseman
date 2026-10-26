@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-28:session-23",
+  "learningOutcomeByLocale": {
+    "ru": "как описать выдачу пробников, состояние заказа и действия с упаковкой, выразить желание и связать прошлые события.",
+    "uk": "як описати видачу пробників, стан замовлення й дії з пакованням, висловити бажання та пов’язати минулі події."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-28:session-23:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Где выдают пробники",
+        "uk": "Де видають пробники"
+      },
+      "bodyByLocale": {
+        "ru": "Вы хотите сначала попробовать средство и спрашиваете о пробнике. Продавец отвечает: Samples are given at the counter — пробники выдают у прилавка. Соберите Samples + are given + at the counter. Samples — несколько пробников, поэтому are. Given — нужная здесь форма give. Are given описывает, что делают с пробниками, а последняя часть называет место.",
+        "uk": "Ви хочете спочатку спробувати засіб і запитуєте про пробник. Продавець відповідає: Samples are given at the counter — пробники видають біля прилавка. Складіть Samples + are given + at the counter. Samples — кілька пробників, тому are. Given — потрібна тут форма give. Are given описує, що роблять із пробниками, а остання частина називає місце."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-23:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-23:intro1:r1",
+              "text": "Samples are given at the counter."
+            },
+            {
+              "responseId": "en:lesson-28:session-23:intro1:r2",
+              "text": "Samples is given at the counter."
+            },
+            {
+              "responseId": "en:lesson-28:session-23:intro1:r3",
+              "text": "Samples are give at the counter."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-23:intro1:r1",
+              "text": "Samples are given at the counter."
+            },
+            {
+              "responseId": "en:lesson-28:session-23:intro1:r2",
+              "text": "Samples is given at the counter."
+            },
+            {
+              "responseId": "en:lesson-28:session-23:intro1:r3",
+              "text": "Samples are give at the counter."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-28:session-23:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Упаковку уже открывали",
+        "uk": "Паковання вже відкривали"
+      },
+      "bodyByLocale": {
+        "ru": "Вы заметили повреждённую пломбу на коробке и спрашиваете продавца, что случилось. Он объясняет: This box was opened yesterday — эту коробку открыли вчера. Соберите This box + was opened + yesterday. Одна коробка и прошлое действие: was. Opened после was сообщает, что сделали с коробкой. Yesterday называет время.",
+        "uk": "Ви помітили пошкоджену пломбу на коробці й запитуєте продавця, що сталося. Він пояснює: This box was opened yesterday — цю коробку відкрили вчора. Складіть This box + was opened + yesterday. Одна коробка й минула дія: was. Opened після was повідомляє, що зробили з коробкою. Yesterday називає час."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-23:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-23:intro2:r1",
+              "text": "This box was opened yesterday."
+            },
+            {
+              "responseId": "en:lesson-28:session-23:intro2:r2",
+              "text": "This box were opened yesterday."
+            },
+            {
+              "responseId": "en:lesson-28:session-23:intro2:r3",
+              "text": "This box was opening yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-23:intro2:r1",
+              "text": "This box was opened yesterday."
+            },
+            {
+              "responseId": "en:lesson-28:session-23:intro2:r2",
+              "text": "This box were opened yesterday."
+            },
+            {
+              "responseId": "en:lesson-28:session-23:intro2:r3",
+              "text": "This box was opening yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-28:session-23:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Нужный оттенок доставят",
+        "uk": "Потрібний відтінок доставлять"
+      },
+      "bodyByLocale": {
+        "ru": "Нужного оттенка нет в магазине, и продавец оформляет заказ. Он обещает: Your order will be delivered on Monday — ваш заказ доставят в понедельник. Соберите Your order + will be + delivered + on Monday. Will be delivered описывает будущее действие над заказом. После will нужна be, затем delivered. On Monday указывает день доставки.",
+        "uk": "Потрібного відтінку немає в крамниці, і продавець оформлює замовлення. Він обіцяє: Your order will be delivered on Monday — ваше замовлення доставлять у понеділок. Складіть Your order + will be + delivered + on Monday. Will be delivered описує майбутню дію над замовленням. Після will потрібна be, потім delivered. On Monday указує день доставки."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-23:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-23:intro3:r1",
+              "text": "Your order will be delivered on Monday."
+            },
+            {
+              "responseId": "en:lesson-28:session-23:intro3:r2",
+              "text": "Your order will delivered on Monday."
+            },
+            {
+              "responseId": "en:lesson-28:session-23:intro3:r3",
+              "text": "Your order will be deliver on Monday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-23:intro3:r1",
+              "text": "Your order will be delivered on Monday."
+            },
+            {
+              "responseId": "en:lesson-28:session-23:intro3:r2",
+              "text": "Your order will delivered on Monday."
+            },
+            {
+              "responseId": "en:lesson-28:session-23:intro3:r3",
+              "text": "Your order will be deliver on Monday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "dea5a902f2079a2a83d38b37467b04d314a4ff60c5413df55c46975fa14bd926"
+}

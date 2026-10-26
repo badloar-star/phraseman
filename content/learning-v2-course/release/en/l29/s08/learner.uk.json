@@ -1,0 +1,1054 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-29:session-08",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-29:session-08:i01",
+      "ordinal": 4,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запропонуйте ненадовго зупинитися й послухати.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-08:i01:audio"
+      ],
+      "accessibilityLabel": "Запропонуйте ненадовго зупинитися й послухати.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-08:i01:audio",
+          "transcript": "Let us stop and listen for a moment."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Let us stop and listen for a moment.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-08:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — chirp",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-08:i02:audio"
+      ],
+      "accessibilityLabel": "Картка слова — chirp",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-08:i02:audio",
+          "transcript": "chirp"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-08:i02:r1",
+            "targetText": "chirp",
+            "meaningByLocale": {
+              "ru": "Чирикать. Издавать короткие высокие звуки, как небольшие птицы.",
+              "uk": "Цвірінькати. Видавати короткі високі звуки, як невеликі птахи."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "chirp",
+          "definitionByLocale": {
+            "ru": "Чирикать. Издавать короткие высокие звуки, как небольшие птицы.",
+            "uk": "Цвірінькати. Видавати короткі високі звуки, як невеликі птахи."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-08:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть опис звичного ранкового звуку птахів.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-08:i03:r1",
+          "text": "chirp"
+        },
+        {
+          "responseId": "en:lesson-29:session-08:i03:r2",
+          "text": "chirps"
+        },
+        {
+          "responseId": "en:lesson-29:session-08:i03:r3",
+          "text": "chirping"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть опис звичного ранкового звуку птахів.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните описание привычного утреннего звука птиц.",
+          "uk": "Доповніть опис звичного ранкового звуку птахів."
+        },
+        "gappedTargetPhrase": "The birds ___ every morning.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-08:i03:r1",
+            "text": "chirp"
+          },
+          {
+            "responseId": "en:lesson-29:session-08:i03:r2",
+            "text": "chirps"
+          },
+          {
+            "responseId": "en:lesson-29:session-08:i03:r3",
+            "text": "chirping"
+          }
+        ],
+        "testedDimension": "Доповніть опис звичного ранкового звуку птахів.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-08:i03:r2",
+            "correct": false,
+            "testedDimension": "Доповніть опис звичного ранкового звуку птахів.",
+            "feedbackByLocale": {
+              "ru": "С множественным birds используем chirp без окончания s.",
+              "uk": "Із множиною birds використовуємо chirp без закінчення s."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-08:i03:r3",
+            "correct": false,
+            "testedDimension": "Доповніть опис звичного ранкового звуку птахів.",
+            "feedbackByLocale": {
+              "ru": "Для привычного действия здесь нужна chirp.",
+              "uk": "Для звичної дії тут потрібна chirp."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-08:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-08:i04:r1",
+          "text": "The man who looks after the birds is here."
+        },
+        {
+          "responseId": "en:lesson-29:session-08:i04:r2",
+          "text": "The man who looks after the birds is away."
+        },
+        {
+          "responseId": "en:lesson-29:session-08:i04:r3",
+          "text": "The woman who looks after the birds is here."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-08:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-08:i04:audio",
+          "transcript": "The man who looks after the birds is here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-08:i04:r1",
+            "targetText": "The man who looks after the birds is here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-08:i04:r2",
+            "targetText": "The man who looks after the birds is away.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-08:i04:r3",
+            "targetText": "The woman who looks after the birds is here.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-08:i04:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The man who looks after the birds is here.",
+              "uk": "У записі звучить The man who looks after the birds is here."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-08:i04:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The man who looks after the birds is here.",
+              "uk": "У записі звучить The man who looks after the birds is here."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-08:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що це чоловік, який доглядає птахів.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що це чоловік, який доглядає птахів.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He is the man who looks after the birds.",
+        "localizedMeaning": {
+          "ru": "Скажите, что это мужчина, который ухаживает за птицами.",
+          "uk": "Скажіть, що це чоловік, який доглядає птахів."
+        },
+        "orderedTokens": [
+          "He",
+          "is",
+          "the",
+          "man",
+          "who",
+          "looks",
+          "after",
+          "the",
+          "birds"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-08:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — hoot",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-08:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — hoot",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-08:i06:audio",
+          "transcript": "hoot"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-08:i06:r1",
+            "targetText": "hoot",
+            "meaningByLocale": {
+              "ru": "Ухать. Издавать низкий протяжный крик, как сова.",
+              "uk": "Ухати. Видавати низький протяжний крик, як сова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hoot",
+          "definitionByLocale": {
+            "ru": "Ухать. Издавать низкий протяжный крик, как сова.",
+            "uk": "Ухати. Видавати низький протяжний крик, як сова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-08:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що іноді чуєте, як ухає сова.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-08:i07:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що іноді чуєте, як ухає сова.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-08:i07:audio",
+          "transcript": "I sometimes hear an owl hoot."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I sometimes hear an owl hoot.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-08:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назвіть тих, хто очистив ставок.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-08:i08:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-29:session-08:i08:r2",
+          "text": "of"
+        },
+        {
+          "responseId": "en:lesson-29:session-08:i08:r3",
+          "text": "from"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назвіть тих, хто очистив ставок.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите тех, кто очистил пруд.",
+          "uk": "Назвіть тих, хто очистив ставок."
+        },
+        "gappedTargetPhrase": "The pond was cleaned ___ volunteers.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-08:i08:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-29:session-08:i08:r2",
+            "text": "of"
+          },
+          {
+            "responseId": "en:lesson-29:session-08:i08:r3",
+            "text": "from"
+          }
+        ],
+        "testedDimension": "Назвіть тих, хто очистив ставок.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-08:i08:r2",
+            "correct": false,
+            "testedDimension": "Назвіть тих, хто очистив ставок.",
+            "feedbackByLocale": {
+              "ru": "Исполнителей вводит by, не of.",
+              "uk": "Виконавців позначає by, не of."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-08:i08:r3",
+            "correct": false,
+            "testedDimension": "Назвіть тих, хто очистив ставок.",
+            "feedbackByLocale": {
+              "ru": "Для исполнителей здесь нужна by.",
+              "uk": "Для виконавців тут потрібна by."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-08:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, хто полагодив паркан.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-08:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте, хто полагодив паркан.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-08:i09:audio",
+          "transcript": "The fence was repaired by my neighbour."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The fence was repaired by my neighbour.",
+        "orderedTokens": [
+          "The",
+          "fence",
+          "was",
+          "repaired",
+          "by",
+          "my",
+          "neighbour"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-08:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — quack",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-08:i10:audio"
+      ],
+      "accessibilityLabel": "Картка слова — quack",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-08:i10:audio",
+          "transcript": "quack"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-08:i10:r1",
+            "targetText": "quack",
+            "meaningByLocale": {
+              "ru": "Крякать. Издавать характерный крик утки.",
+              "uk": "Крякати. Видавати характерний крик качки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "quack",
+          "definitionByLocale": {
+            "ru": "Крякать. Издавать характерный крик утки.",
+            "uk": "Крякати. Видавати характерний крик качки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-08:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Розкажіть, що качки голосно крякають, коли голодні.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-08:i11:audio"
+      ],
+      "accessibilityLabel": "Розкажіть, що качки голосно крякають, коли голодні.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-08:i11:audio",
+          "transcript": "The ducks quack loudly when they are hungry."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The ducks quack loudly when they are hungry.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-08:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-08:i12:r1",
+          "text": "We will go home if it gets dark."
+        },
+        {
+          "responseId": "en:lesson-29:session-08:i12:r2",
+          "text": "We will go home if it gets cold."
+        },
+        {
+          "responseId": "en:lesson-29:session-08:i12:r3",
+          "text": "We will go inside if it gets dark."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-08:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-08:i12:audio",
+          "transcript": "We will go home if it gets dark."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-08:i12:r1",
+            "targetText": "We will go home if it gets dark.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-08:i12:r2",
+            "targetText": "We will go home if it gets cold.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-08:i12:r3",
+            "targetText": "We will go inside if it gets dark.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-08:i12:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We will go home if it gets dark.",
+              "uk": "У записі звучить We will go home if it gets dark."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-08:i12:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We will go home if it gets dark.",
+              "uk": "У записі звучить We will go home if it gets dark."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-08:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви підете, якщо стемніє.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-08:i13:r1",
+          "text": "gets"
+        },
+        {
+          "responseId": "en:lesson-29:session-08:i13:r2",
+          "text": "will get"
+        },
+        {
+          "responseId": "en:lesson-29:session-08:i13:r3",
+          "text": "getting"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви підете, якщо стемніє.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы уйдёте, если стемнеет.",
+          "uk": "Ви підете, якщо стемніє."
+        },
+        "gappedTargetPhrase": "We will leave if it ___ dark.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-08:i13:r1",
+            "text": "gets"
+          },
+          {
+            "responseId": "en:lesson-29:session-08:i13:r2",
+            "text": "will get"
+          },
+          {
+            "responseId": "en:lesson-29:session-08:i13:r3",
+            "text": "getting"
+          }
+        ],
+        "testedDimension": "Ви підете, якщо стемніє.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-08:i13:r2",
+            "correct": false,
+            "testedDimension": "Ви підете, якщо стемніє.",
+            "feedbackByLocale": {
+              "ru": "В этом условии после if используем gets без will.",
+              "uk": "У цій умові після if використовуємо gets без will."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-08:i13:r3",
+            "correct": false,
+            "testedDimension": "Ви підете, якщо стемніє.",
+            "feedbackByLocale": {
+              "ru": "Для условия здесь нужна gets.",
+              "uk": "Для умови тут потрібна gets."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-08:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — croak",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-08:i14:audio"
+      ],
+      "accessibilityLabel": "Картка слова — croak",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-08:i14:audio",
+          "transcript": "croak"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-08:i14:r1",
+            "targetText": "croak",
+            "meaningByLocale": {
+              "ru": "Квакать. Издавать низкий хрипловатый звук, как лягушка.",
+              "uk": "Квакати. Видавати низький хриплуватий звук, як жаба."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "croak",
+          "definitionByLocale": {
+            "ru": "Квакать. Издавать низкий хрипловатый звук, как лягушка.",
+            "uk": "Квакати. Видавати низький хриплуватий звук, як жаба."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-08:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що чуєте квакання жаб.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що чуєте квакання жаб.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I can hear the frogs croak.",
+        "localizedMeaning": {
+          "ru": "Скажите, что слышите кваканье лягушек.",
+          "uk": "Скажіть, що чуєте квакання жаб."
+        },
+        "orderedTokens": [
+          "I",
+          "can",
+          "hear",
+          "the",
+          "frogs",
+          "croak"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-08:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте дії з перекладом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте дії з перекладом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-29:session-08:i16:p1",
+            "target": "chirp",
+            "meaningByLocale": {
+              "ru": "чирикать",
+              "uk": "цвірінькати"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-08:i16:p2",
+            "target": "hoot",
+            "meaningByLocale": {
+              "ru": "ухать",
+              "uk": "ухати"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-08:i16:p3",
+            "target": "quack",
+            "meaningByLocale": {
+              "ru": "крякать",
+              "uk": "крякати"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-08:i16:p4",
+            "target": "croak",
+            "meaningByLocale": {
+              "ru": "квакать",
+              "uk": "квакати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "chirp",
+          "hoot",
+          "quack",
+          "croak"
+        ],
+        "rightColumn": [
+          "цвірінькати",
+          "ухати",
+          "крякати",
+          "квакати"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-08:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть: качки чи жаби?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-08:i17:r1",
+          "text": "I can hear the ducks."
+        },
+        {
+          "responseId": "en:lesson-29:session-08:i17:r2",
+          "text": "I can hear the frogs."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-08:i17:audioA",
+        "en:lesson-29:session-08:i17:audioB"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть: качки чи жаби?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "I can hear the ducks.",
+        "contrastB": "I can hear the frogs.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-29:session-08:i17:audioA",
+          "transcript": "I can hear the ducks."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-29:session-08:i17:audioB",
+          "transcript": "I can hear the frogs."
+        },
+        "testedPhoneticContrast": "Послухайте й виберіть: качки чи жаби?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-08:i17:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть: качки чи жаби?",
+            "feedbackByLocale": {
+              "ru": "В записи ducks — утки.",
+              "uk": "У записі ducks — качки."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-08:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Укажіть лавку: потрібна та, що стоїть обличчям до ставка.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-08:i18:r1",
+          "text": "that"
+        },
+        {
+          "responseId": "en:lesson-29:session-08:i18:r2",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-08:i18:r3",
+          "text": "what"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Укажіть лавку: потрібна та, що стоїть обличчям до ставка.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Укажите скамейку: нужна та, которая стоит лицом к пруду.",
+          "uk": "Укажіть лавку: потрібна та, що стоїть обличчям до ставка."
+        },
+        "gappedTargetPhrase": "Let us sit on the bench ___ faces the pond.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-08:i18:r1",
+            "text": "that"
+          },
+          {
+            "responseId": "en:lesson-29:session-08:i18:r2",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-08:i18:r3",
+            "text": "what"
+          }
+        ],
+        "testedDimension": "Укажіть лавку: потрібна та, що стоїть обличчям до ставка.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-08:i18:r2",
+            "correct": false,
+            "testedDimension": "Укажіть лавку: потрібна та, що стоїть обличчям до ставка.",
+            "feedbackByLocale": {
+              "ru": "Скамейка — предмет, для него здесь используем that.",
+              "uk": "Лавка — предмет, для неї тут використовуємо that."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-08:i18:r3",
+            "correct": false,
+            "testedDimension": "Укажіть лавку: потрібна та, що стоїть обличчям до ставка.",
+            "feedbackByLocale": {
+              "ru": "После the bench уточнение здесь вводит that.",
+              "uk": "Після the bench уточнення тут вводить that."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-08:i19",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть дитину говорити тихіше, щоб послухати птахів.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-08:i19:audio"
+      ],
+      "accessibilityLabel": "Попросіть дитину говорити тихіше, щоб послухати птахів.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-08:i19:audio",
+          "transcript": "Please be quiet so we can hear the birds."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Please be quiet so we can hear the birds.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-08:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте попередження біля води.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-08:i20:audio"
+      ],
+      "accessibilityLabel": "Послухайте попередження біля води.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-08:i20:audio",
+          "transcript": "Please stay away from the edge."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Please stay away from the edge.",
+        "orderedTokens": [
+          "Please",
+          "stay",
+          "away",
+          "from",
+          "the",
+          "edge"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-08:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запропонуйте повернутися сюди завтра.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-08:i21:audio"
+      ],
+      "accessibilityLabel": "Запропонуйте повернутися сюди завтра.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-08:i21:audio",
+          "transcript": "Shall we come back tomorrow?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Shall we come back tomorrow?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "1bd59757a6cfb87fb0298e2822215d906127a773fa2a39af5be302ee0aacb9ab"
+}

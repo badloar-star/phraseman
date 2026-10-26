@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-28:session-05:i01",
+    "correctText": "bauble",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-05:i02",
+    "correctText": "This bauble is made of glass.",
+    "correctResponseId": "en:lesson-28:session-05:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-05:i03",
+    "correctText": "Could you wrap this separately?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-05:i04",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-28:session-05:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-05:i05",
+    "correctText": "tinsel",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-05:i06",
+    "correctText": "We need some tinsel for the tree.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-05:i07",
+    "correctText": "The lights are kept in this box.",
+    "correctResponseId": "en:lesson-28:session-05:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-05:i08",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-28:session-05:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-05:i09",
+    "correctText": "streamer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-05:i10",
+    "correctText": "This streamer is too short.",
+    "correctResponseId": "en:lesson-28:session-05:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-05:i11",
+    "correctText": "Could you hold this end?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-05:i12",
+    "correctText": "I think that is enough.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-05:i13",
+    "correctText": "tealight",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-05:i14",
+    "correctText": "This tealight is for the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-05:i15",
+    "correctText": "The candles are sold in packs of six.",
+    "correctResponseId": "en:lesson-28:session-05:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-05:i16",
+    "correctText": "prepared",
+    "correctResponseId": "en:lesson-28:session-05:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-05:i17",
+    "correctText": "The plates are kept in the kitchen.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-05:i18",
+    "correctText": "You can sit next to me.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-05:i19",
+    "correctText": "I wish we had a bigger table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-05:i20",
+    "correctText": "wrapped",
+    "correctResponseId": "en:lesson-28:session-05:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-05:i21",
+    "correctText": "Thank you for your help.",
+    "correctResponseId": null
+  }
+]

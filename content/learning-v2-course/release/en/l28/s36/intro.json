@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-28:session-36",
+  "learningOutcomeByLocale": {
+    "ru": "как уточнить сведения о книге и условия её выдачи.",
+    "uk": "як уточнити відомості про книжку й умови її видачі."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-28:session-36:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Кто нарисовал картинки",
+        "uk": "Хто намалював малюнки"
+      },
+      "bodyByLocale": {
+        "ru": "Вы листаете детскую книгу. Библиотекарь поясняет: The pictures were drawn by a local artist — картинки нарисовал местный художник. Соберите The pictures + were drawn + by + a local artist. Картинок несколько, поэтому нужна were. Drawn — третья форма draw. После by назовите художника, который выполнил работу.",
+        "uk": "Ви гортаєте дитячу книжку. Бібліотекар пояснює: The pictures were drawn by a local artist — малюнки намалював місцевий художник. Складіть The pictures + were drawn + by + a local artist. Малюнків кілька, тому потрібна were. Drawn — третя форма draw. Після by назвіть художника, який виконав роботу."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-36:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-36:intro1:r1",
+              "text": "The pictures were drawn by a local artist."
+            },
+            {
+              "responseId": "en:lesson-28:session-36:intro1:r2",
+              "text": "The pictures was drawn by a local artist."
+            },
+            {
+              "responseId": "en:lesson-28:session-36:intro1:r3",
+              "text": "The pictures were drew by a local artist."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-36:intro1:r1",
+              "text": "The pictures were drawn by a local artist."
+            },
+            {
+              "responseId": "en:lesson-28:session-36:intro1:r2",
+              "text": "The pictures was drawn by a local artist."
+            },
+            {
+              "responseId": "en:lesson-28:session-36:intro1:r3",
+              "text": "The pictures were drew by a local artist."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-28:session-36:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Срок возврата",
+        "uk": "Строк повернення"
+      },
+      "bodyByLocale": {
+        "ru": "Вы берёте книгу домой. Библиотекарь напоминает: The book must be returned by Friday — книгу нужно вернуть не позднее пятницы. Соберите The book + must be returned + by Friday. Must be returned означает обязательное действие над книгой. После be нужна returned. By Friday указывает крайний срок возврата.",
+        "uk": "Ви берете книжку додому. Бібліотекар нагадує: The book must be returned by Friday — книжку потрібно повернути не пізніше п’ятниці. Складіть The book + must be returned + by Friday. Must be returned означає обов’язкову дію над книжкою. Після be потрібна returned. By Friday вказує кінцевий строк повернення."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-36:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-36:intro2:r1",
+              "text": "The book must be returned by Friday."
+            },
+            {
+              "responseId": "en:lesson-28:session-36:intro2:r2",
+              "text": "The book must returned by Friday."
+            },
+            {
+              "responseId": "en:lesson-28:session-36:intro2:r3",
+              "text": "The book must be return by Friday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-36:intro2:r1",
+              "text": "The book must be returned by Friday."
+            },
+            {
+              "responseId": "en:lesson-28:session-36:intro2:r2",
+              "text": "The book must returned by Friday."
+            },
+            {
+              "responseId": "en:lesson-28:session-36:intro2:r3",
+              "text": "The book must be return by Friday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-28:session-36:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Не хватает времени",
+        "uk": "Бракує часу"
+      },
+      "bodyByLocale": {
+        "ru": "Вы нашли интересную книгу, но почти не успеваете читать. Скажите: I wish I had more time to read — жаль, что у меня нет больше времени на чтение. Соберите I wish + I + had + more time to read. После I wish назовите себя: I. Had здесь выражает желание изменить положение сейчас, а не рассказывает о прошлом.",
+        "uk": "Ви знайшли цікаву книжку, але майже не встигаєте читати. Скажіть: I wish I had more time to read — шкода, що в мене немає більше часу на читання. Складіть I wish + I + had + more time to read. Після I wish назвіть себе: I. Had тут виражає бажання змінити становище зараз, а не розповідає про минуле."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-36:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-36:intro3:r1",
+              "text": "I wish I had more time to read."
+            },
+            {
+              "responseId": "en:lesson-28:session-36:intro3:r2",
+              "text": "I wish I have more time to read."
+            },
+            {
+              "responseId": "en:lesson-28:session-36:intro3:r3",
+              "text": "I wish I will have more time to read."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-36:intro3:r1",
+              "text": "I wish I had more time to read."
+            },
+            {
+              "responseId": "en:lesson-28:session-36:intro3:r2",
+              "text": "I wish I have more time to read."
+            },
+            {
+              "responseId": "en:lesson-28:session-36:intro3:r3",
+              "text": "I wish I will have more time to read."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "cc1c5cd5e002d0c689bc6b4c1481c5c1eba45bda040c9c0a5d9906b8f69cfbaa"
+}

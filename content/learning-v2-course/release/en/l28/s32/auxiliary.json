@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-28:session-32",
+  "entries": [
+    {
+      "interactionId": "en:lesson-28:session-32:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-32:intro1:r2": {
+          "ru": "Перед repaired нужна be.",
+          "uk": "Перед repaired потрібна be."
+        },
+        "en:lesson-28:session-32:intro1:r3": {
+          "ru": "Здесь нужна repaired.",
+          "uk": "Тут потрібна repaired."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-32:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-32:intro2:r2": {
+          "ru": "С одним appointment нужна was.",
+          "uk": "З одним appointment потрібна was."
+        },
+        "en:lesson-28:session-32:intro2:r3": {
+          "ru": "Здесь нужна changed.",
+          "uk": "Тут потрібна changed."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-32:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-32:intro3:r2": {
+          "ru": "После will нужна be.",
+          "uk": "Після will потрібна be."
+        },
+        "en:lesson-28:session-32:intro3:r3": {
+          "ru": "Здесь нужна sent.",
+          "uk": "Тут потрібна sent."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ec9ef1dbb9a113271e76544f6a173b0952f09dc8197c0dcd34fab7044863971d"
+}

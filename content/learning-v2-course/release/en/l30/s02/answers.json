@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-30:session-02:i01",
+    "correctText": "letdown",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-02:i02",
+    "correctText": "The match was a letdown.",
+    "correctResponseId": "en:lesson-30:session-02:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-02:i03",
+    "correctText": "He said he was disappointed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-02:i04",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-30:session-02:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-02:i05",
+    "correctText": "disheartened",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-02:i06",
+    "correctText": "He said he felt disheartened.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-02:i07",
+    "correctText": "watched",
+    "correctResponseId": "en:lesson-30:session-02:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-02:i08",
+    "correctText": "I wish I had more time.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-02:i09",
+    "correctText": "resilient",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-02:i10",
+    "correctText": "She said he was resilient.",
+    "correctResponseId": "en:lesson-30:session-02:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-02:i11",
+    "correctText": "The match we watched was disappointing.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-02:i12",
+    "correctText": "comeback",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-02:i13",
+    "correctText": "The team made a comeback.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-02:i14",
+    "correctText": "en:lesson-30:session-02:i14:p1=letdown\nen:lesson-30:session-02:i14:p2=disheartened\nen:lesson-30:session-02:i14:p3=resilient\nen:lesson-30:session-02:i14:p4=comeback",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-02:i15",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-30:session-02:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-02:i16",
+    "correctText": "He said he needed help.",
+    "correctResponseId": "en:lesson-30:session-02:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-02:i17",
+    "correctText": "The match was a letdown.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-02:i18",
+    "correctText": "He said he felt disheartened.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-02:i19",
+    "correctText": "said",
+    "correctResponseId": "en:lesson-30:session-02:i19:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-02:i20",
+    "correctText": "The team made a comeback.",
+    "correctResponseId": "en:lesson-30:session-02:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-02:i21",
+    "correctText": "I wish I were calmer.",
+    "correctResponseId": null
+  }
+]

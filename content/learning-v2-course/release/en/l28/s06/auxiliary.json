@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-28:session-06",
+  "entries": [
+    {
+      "interactionId": "en:lesson-28:session-06:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-06:intro1:r2": {
+          "ru": "После had используем finished.",
+          "uk": "Після had використовуємо finished."
+        },
+        "en:lesson-28:session-06:intro1:r3": {
+          "ru": "Для вчерашнего прихода нужна arrived.",
+          "uk": "Для вчорашнього приходу потрібна arrived."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-06:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-06:intro2:r2": {
+          "ru": "В таком желании используем were.",
+          "uk": "У такому бажанні використовуємо were."
+        },
+        "en:lesson-28:session-06:intro2:r3": {
+          "ru": "Здесь нужна were bigger.",
+          "uk": "Тут потрібна were bigger."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-06:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-06:intro3:r2": {
+          "ru": "С This top используем is.",
+          "uk": "З This top використовуємо is."
+        },
+        "en:lesson-28:session-06:intro3:r3": {
+          "ru": "Здесь нужна форма made.",
+          "uk": "Тут потрібна форма made."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "10b53a7a66bbc6e7a399de361f81eeed85dc7ce49337555b88c3ba76905e5032"
+}

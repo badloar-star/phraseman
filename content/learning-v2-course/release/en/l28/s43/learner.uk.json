@@ -1,0 +1,1066 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-28:session-43",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-28:session-43:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте, скільки коштують ягоди.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, скільки коштують ягоди.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "How much are these berries?",
+        "localizedMeaning": {
+          "ru": "Спросите, сколько стоят ягоды.",
+          "uk": "Запитайте, скільки коштують ягоди."
+        },
+        "orderedTokens": [
+          "How",
+          "much",
+          "are",
+          "these",
+          "berries"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-43:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — punnet",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-43:i02:audio"
+      ],
+      "accessibilityLabel": "Картка слова — punnet",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-43:i02:audio",
+          "transcript": "punnet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-43:i02:r1",
+            "targetText": "punnet",
+            "meaningByLocale": {
+              "ru": "Небольшой лоток для ягод или фруктов. Британское слово; лотки бывают разного веса и из разных материалов.",
+              "uk": "Невеликий лоток для ягід або фруктів. Британське слово; лотки бувають різної ваги й із різних матеріалів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "punnet",
+          "definitionByLocale": {
+            "ru": "Небольшой лоток для ягод или фруктов. Британское слово; лотки бывают разного веса и из разных материалов.",
+            "uk": "Невеликий лоток для ягід або фруктів. Британське слово; лотки бувають різної ваги й із різних матеріалів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-43:i03",
+      "ordinal": 6,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть лоток полуниці.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-43:i03:audio"
+      ],
+      "accessibilityLabel": "Попросіть лоток полуниці.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-43:i03:audio",
+          "transcript": "Can I have a punnet of strawberries?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Can I have a punnet of strawberries?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-43:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви поспішаєте й хотіли б мати більше часу.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-43:i04:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-28:session-43:i04:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-28:session-43:i04:r3",
+          "text": "will have"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви поспішаєте й хотіли б мати більше часу.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы торопитесь и хотели бы иметь больше времени.",
+          "uk": "Ви поспішаєте й хотіли б мати більше часу."
+        },
+        "gappedTargetPhrase": "I wish I ___ more time.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-43:i04:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-28:session-43:i04:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-28:session-43:i04:r3",
+            "text": "will have"
+          }
+        ],
+        "testedDimension": "Ви поспішаєте й хотіли б мати більше часу.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-43:i04:r2",
+            "correct": false,
+            "testedDimension": "Ви поспішаєте й хотіли б мати більше часу.",
+            "feedbackByLocale": {
+              "ru": "После wish здесь нужна had.",
+              "uk": "Після wish тут потрібна had."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-43:i04:r3",
+            "correct": false,
+            "testedDimension": "Ви поспішаєте й хотіли б мати більше часу.",
+            "feedbackByLocale": {
+              "ru": "Желание о настоящем: had more time.",
+              "uk": "Бажання щодо теперішнього: had more time."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-43:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-43:i05:r1",
+          "text": "The vegetables were grown by a local farmer."
+        },
+        {
+          "responseId": "en:lesson-28:session-43:i05:r2",
+          "text": "The vegetables were grown by my neighbour."
+        },
+        {
+          "responseId": "en:lesson-28:session-43:i05:r3",
+          "text": "The flowers were grown by a local farmer."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-43:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-43:i05:audio",
+          "transcript": "The vegetables were grown by a local farmer."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-43:i05:r1",
+            "targetText": "The vegetables were grown by a local farmer.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-43:i05:r2",
+            "targetText": "The vegetables were grown by my neighbour.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-43:i05:r3",
+            "targetText": "The flowers were grown by a local farmer.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-43:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The vegetables were grown by a local farmer.",
+              "uk": "У записі звучить The vegetables were grown by a local farmer."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-43:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The vegetables were grown by a local farmer.",
+              "uk": "У записі звучить The vegetables were grown by a local farmer."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-43:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — sultana",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-43:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — sultana",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-43:i06:audio",
+          "transcript": "sultana"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-43:i06:r1",
+            "targetText": "sultana",
+            "meaningByLocale": {
+              "ru": "Светлая изюмина. Сушёная виноградина; такие сухофрукты часто добавляют в выпечку.",
+              "uk": "Світла родзинка. Сушена виноградина; такі сухофрукти часто додають до випічки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sultana",
+          "definitionByLocale": {
+            "ru": "Светлая изюмина. Сушёная виноградина; такие сухофрукты часто добавляют в выпечку.",
+            "uk": "Світла родзинка. Сушена виноградина; такі сухофрукти часто додають до випічки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-43:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Укажіть на одну світлу родзинку й назвіть її.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Укажіть на одну світлу родзинку й назвіть її.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is a sultana.",
+        "localizedMeaning": {
+          "ru": "Укажите на одну светлую изюмину и назовите её.",
+          "uk": "Укажіть на одну світлу родзинку й назвіть її."
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "a",
+          "sultana"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-43:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Продавець каже, що приправу приготувала його мама.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-43:i08:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-28:session-43:i08:r2",
+          "text": "of"
+        },
+        {
+          "responseId": "en:lesson-28:session-43:i08:r3",
+          "text": "at"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Продавець каже, що приправу приготувала його мама.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Продавец говорит, что приправу приготовила его мама.",
+          "uk": "Продавець каже, що приправу приготувала його мама."
+        },
+        "gappedTargetPhrase": "This was made ___ my mother.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-43:i08:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-28:session-43:i08:r2",
+            "text": "of"
+          },
+          {
+            "responseId": "en:lesson-28:session-43:i08:r3",
+            "text": "at"
+          }
+        ],
+        "testedDimension": "Продавець каже, що приправу приготувала його мама.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-43:i08:r2",
+            "correct": false,
+            "testedDimension": "Продавець каже, що приправу приготувала його мама.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя вводит by.",
+              "uk": "Виконавця вводить by."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-43:i08:r3",
+            "correct": false,
+            "testedDimension": "Продавець каже, що приправу приготувала його мама.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна by my mother.",
+              "uk": "Тут потрібна by my mother."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-43:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте обіцянку щодо доставки замовлення.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-43:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте обіцянку щодо доставки замовлення.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-43:i09:audio",
+          "transcript": "Your order will be delivered tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Your order will be delivered tomorrow.",
+        "orderedTokens": [
+          "Your",
+          "order",
+          "will",
+          "be",
+          "delivered",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-43:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — chutney",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-43:i10:audio"
+      ],
+      "accessibilityLabel": "Картка слова — chutney",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-43:i10:audio",
+          "transcript": "chutney"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-43:i10:r1",
+            "targetText": "chutney",
+            "meaningByLocale": {
+              "ru": "Чатни. Густая приправа из фруктов или овощей со специями.",
+              "uk": "Чатні. Густа приправа з фруктів або овочів зі спеціями."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "chutney",
+          "definitionByLocale": {
+            "ru": "Чатни. Густая приправа из фруктов или овощей со специями.",
+            "uk": "Чатні. Густа приправа з фруктів або овочів зі спеціями."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-43:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте, чи цей чатні гострий.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-43:i11:audio"
+      ],
+      "accessibilityLabel": "Запитайте, чи цей чатні гострий.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-43:i11:audio",
+          "transcript": "Is this chutney spicy?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is this chutney spicy?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-43:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточніть, чи можна забрати покупку пізніше.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-43:i12:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-28:session-43:i12:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-28:session-43:i12:r3",
+          "text": "was"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточніть, чи можна забрати покупку пізніше.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните, можно ли забрать покупку позже.",
+          "uk": "Уточніть, чи можна забрати покупку пізніше."
+        },
+        "gappedTargetPhrase": "Can this ___ collected later?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-43:i12:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-28:session-43:i12:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-28:session-43:i12:r3",
+            "text": "was"
+          }
+        ],
+        "testedDimension": "Уточніть, чи можна забрати покупку пізніше.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-43:i12:r2",
+            "correct": false,
+            "testedDimension": "Уточніть, чи можна забрати покупку пізніше.",
+            "feedbackByLocale": {
+              "ru": "После can нужна be.",
+              "uk": "Після can потрібна be."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-43:i12:r3",
+            "correct": false,
+            "testedDimension": "Уточніть, чи можна забрати покупку пізніше.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем can be collected.",
+              "uk": "Тут використовуємо can be collected."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-43:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-43:i13:r1",
+          "text": "These jars are kept on the top shelf."
+        },
+        {
+          "responseId": "en:lesson-28:session-43:i13:r2",
+          "text": "These jars are kept on the bottom shelf."
+        },
+        {
+          "responseId": "en:lesson-28:session-43:i13:r3",
+          "text": "These bags are kept on the top shelf."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-43:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-43:i13:audio",
+          "transcript": "These jars are kept on the top shelf."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-43:i13:r1",
+            "targetText": "These jars are kept on the top shelf.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-43:i13:r2",
+            "targetText": "These jars are kept on the bottom shelf.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-43:i13:r3",
+            "targetText": "These bags are kept on the top shelf.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-43:i13:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит These jars are kept on the top shelf.",
+              "uk": "У записі звучить These jars are kept on the top shelf."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-43:i13:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит These jars are kept on the top shelf.",
+              "uk": "У записі звучить These jars are kept on the top shelf."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-43:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — relish",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-43:i14:audio"
+      ],
+      "accessibilityLabel": "Картка слова — relish",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-43:i14:audio",
+          "transcript": "relish"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-43:i14:r1",
+            "targetText": "relish",
+            "meaningByLocale": {
+              "ru": "Приправа из мелко нарезанных овощей или фруктов. Здесь существительное: добавка к еде, например к сэндвичу.",
+              "uk": "Приправа з дрібно нарізаних овочів або фруктів. Тут іменник: додаток до їжі, наприклад до сендвіча."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "relish",
+          "definitionByLocale": {
+            "ru": "Приправа из мелко нарезанных овощей или фруктов. Здесь существительное: добавка к еде, например к сэндвичу.",
+            "uk": "Приправа з дрібно нарізаних овочів або фруктів. Тут іменник: додаток до їжі, наприклад до сендвіча."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-43:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросіть трохи томатної приправи.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросіть трохи томатної приправи.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I would like some tomato relish.",
+        "localizedMeaning": {
+          "ru": "Попросите немного томатной приправы.",
+          "uk": "Попросіть трохи томатної приправи."
+        },
+        "orderedTokens": [
+          "I",
+          "would",
+          "like",
+          "some",
+          "tomato",
+          "relish"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-43:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладами.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладами.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-28:session-43:i16:p1",
+            "target": "punnet",
+            "meaningByLocale": {
+              "ru": "лоток для ягод",
+              "uk": "лоток для ягід"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-43:i16:p2",
+            "target": "sultana",
+            "meaningByLocale": {
+              "ru": "светлая изюмина",
+              "uk": "світла родзинка"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-43:i16:p3",
+            "target": "chutney",
+            "meaningByLocale": {
+              "ru": "чатни",
+              "uk": "чатні"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-43:i16:p4",
+            "target": "relish",
+            "meaningByLocale": {
+              "ru": "приправа из нарезанных овощей или фруктов",
+              "uk": "приправа з нарізаних овочів або фруктів"
+            }
+          }
+        ],
+        "leftColumn": [
+          "punnet",
+          "sultana",
+          "chutney",
+          "relish"
+        ],
+        "rightColumn": [
+          "лоток для ягід",
+          "світла родзинка",
+          "чатні",
+          "приправа з нарізаних овочів або фруктів"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-43:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Магазин зачинився до вашого приїзду.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-43:i17:r1",
+          "text": "closed"
+        },
+        {
+          "responseId": "en:lesson-28:session-43:i17:r2",
+          "text": "close"
+        },
+        {
+          "responseId": "en:lesson-28:session-43:i17:r3",
+          "text": "closing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Магазин зачинився до вашого приїзду.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Магазин закрылся до вашего приезда.",
+          "uk": "Магазин зачинився до вашого приїзду."
+        },
+        "gappedTargetPhrase": "The shop had ___ by the time I arrived.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-43:i17:r1",
+            "text": "closed"
+          },
+          {
+            "responseId": "en:lesson-28:session-43:i17:r2",
+            "text": "close"
+          },
+          {
+            "responseId": "en:lesson-28:session-43:i17:r3",
+            "text": "closing"
+          }
+        ],
+        "testedDimension": "Магазин зачинився до вашого приїзду.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-43:i17:r2",
+            "correct": false,
+            "testedDimension": "Магазин зачинився до вашого приїзду.",
+            "feedbackByLocale": {
+              "ru": "После had нужна closed.",
+              "uk": "Після had потрібна closed."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-43:i17:r3",
+            "correct": false,
+            "testedDimension": "Магазин зачинився до вашого приїзду.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем had closed.",
+              "uk": "Тут використовуємо had closed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-43:i18",
+      "ordinal": 21,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте, чи є менший пакет.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-43:i18:audio"
+      ],
+      "accessibilityLabel": "Запитайте, чи є менший пакет.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-43:i18:audio",
+          "transcript": "Do you have a smaller bag?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Do you have a smaller bag?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-43:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, коли спакували кошик.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-43:i19:audio"
+      ],
+      "accessibilityLabel": "Послухайте, коли спакували кошик.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-43:i19:audio",
+          "transcript": "The basket was packed this morning."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The basket was packed this morning.",
+        "orderedTokens": [
+          "The",
+          "basket",
+          "was",
+          "packed",
+          "this",
+          "morning"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-43:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви говорите про кілька банок, які наповнюють вручну.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-43:i20:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-28:session-43:i20:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-28:session-43:i20:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви говорите про кілька банок, які наповнюють вручну.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы говорите о нескольких банках, которые наполняют вручную.",
+          "uk": "Ви говорите про кілька банок, які наповнюють вручну."
+        },
+        "gappedTargetPhrase": "The jars ___ filled by hand.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-43:i20:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-28:session-43:i20:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-28:session-43:i20:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Ви говорите про кілька банок, які наповнюють вручну.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-43:i20:r2",
+            "correct": false,
+            "testedDimension": "Ви говорите про кілька банок, які наповнюють вручну.",
+            "feedbackByLocale": {
+              "ru": "Jars — несколько: are.",
+              "uk": "Jars — кілька: are."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-43:i20:r3",
+            "correct": false,
+            "testedDimension": "Ви говорите про кілька банок, які наповнюють вручну.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна are filled.",
+              "uk": "Тут потрібна are filled."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-43:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточніть час закриття магазину.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-43:i21:audio"
+      ],
+      "accessibilityLabel": "Уточніть час закриття магазину.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-43:i21:audio",
+          "transcript": "What time do you close today?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "What time do you close today?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "8cc0dfcc9f9ea98b6911eaa4021781de394058e5f7197987b88771a012411fe7"
+}

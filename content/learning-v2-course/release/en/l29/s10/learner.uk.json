@@ -1,0 +1,1048 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-29:session-10",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-29:session-10:i01",
+      "ordinal": 4,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте гостя, чи готовий він до сніданку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-10:i01:audio"
+      ],
+      "accessibilityLabel": "Запитайте гостя, чи готовий він до сніданку.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-10:i01:audio",
+          "transcript": "Are you ready for breakfast?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Are you ready for breakfast?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-10:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — flaky",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-10:i02:audio"
+      ],
+      "accessibilityLabel": "Картка слова — flaky",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-10:i02:audio",
+          "transcript": "flaky"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-10:i02:r1",
+            "targetText": "flaky",
+            "meaningByLocale": {
+              "ru": "Слоистый, рассыпающийся тонкими слоями. Так можно описать слоёную выпечку.",
+              "uk": "Шаруватий, що розсипається тонкими шарами. Так можна описати листкову випічку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "flaky",
+          "definitionByLocale": {
+            "ru": "Слоистый, рассыпающийся тонкими слоями. Так можно описать слоёную выпечку.",
+            "uk": "Шаруватий, що розсипається тонкими шарами. Так можна описати листкову випічку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-10:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що випічка легка й шарувата.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що випічка легка й шарувата.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The pastry is light and flaky.",
+        "localizedMeaning": {
+          "ru": "Скажите, что выпечка лёгкая и слоистая.",
+          "uk": "Скажіть, що випічка легка й шарувата."
+        },
+        "orderedTokens": [
+          "The",
+          "pastry",
+          "is",
+          "light and flaky"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-10:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Укажіть чоловіка, чий сніданок готовий.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-10:i04:r1",
+          "text": "whose"
+        },
+        {
+          "responseId": "en:lesson-29:session-10:i04:r2",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-10:i04:r3",
+          "text": "which"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Укажіть чоловіка, чий сніданок готовий.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Укажите мужчину, чей завтрак готов.",
+          "uk": "Укажіть чоловіка, чий сніданок готовий."
+        },
+        "gappedTargetPhrase": "That is the man ___ breakfast is ready.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-10:i04:r1",
+            "text": "whose"
+          },
+          {
+            "responseId": "en:lesson-29:session-10:i04:r2",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-10:i04:r3",
+            "text": "which"
+          }
+        ],
+        "testedDimension": "Укажіть чоловіка, чий сніданок готовий.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-10:i04:r2",
+            "correct": false,
+            "testedDimension": "Укажіть чоловіка, чий сніданок готовий.",
+            "feedbackByLocale": {
+              "ru": "Принадлежность завтрака показывает whose.",
+              "uk": "Належність сніданку показує whose."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-10:i04:r3",
+            "correct": false,
+            "testedDimension": "Укажіть чоловіка, чий сніданок готовий.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужно whose breakfast — чей завтрак.",
+              "uk": "Тут потрібно whose breakfast — чий сніданок."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-10:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-10:i05:r1",
+          "text": "The bread was baked by my sister."
+        },
+        {
+          "responseId": "en:lesson-29:session-10:i05:r2",
+          "text": "The bread was baked by my brother."
+        },
+        {
+          "responseId": "en:lesson-29:session-10:i05:r3",
+          "text": "The cake was baked by my sister."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-10:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-10:i05:audio",
+          "transcript": "The bread was baked by my sister."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-10:i05:r1",
+            "targetText": "The bread was baked by my sister.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-10:i05:r2",
+            "targetText": "The bread was baked by my brother.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-10:i05:r3",
+            "targetText": "The cake was baked by my sister.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-10:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The bread was baked by my sister.",
+              "uk": "У записі звучить The bread was baked by my sister."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-10:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The bread was baked by my sister.",
+              "uk": "У записі звучить The bread was baked by my sister."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-10:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — frothy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-10:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — frothy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-10:i06:audio",
+          "transcript": "frothy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-10:i06:r1",
+            "targetText": "frothy",
+            "meaningByLocale": {
+              "ru": "Пенистый. Покрытый лёгкой пеной из мелких пузырьков.",
+              "uk": "Пінистий. Покритий легкою піною з дрібних бульбашок."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "frothy",
+          "definitionByLocale": {
+            "ru": "Пенистый. Покрытый лёгкой пеной из мелких пузырьков.",
+            "uk": "Пінистий. Покритий легкою піною з дрібних бульбашок."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-10:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що віддаєте перевагу пінистому молоку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-10:i07:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що віддаєте перевагу пінистому молоку.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-10:i07:audio",
+          "transcript": "I prefer frothy milk."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I prefer frothy milk.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-10:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, який гість ще чекає.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-10:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте, який гість ще чекає.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-10:i08:audio",
+          "transcript": "The guest whose coffee is cold is waiting."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The guest whose coffee is cold is waiting.",
+        "orderedTokens": [
+          "The",
+          "guest",
+          "whose",
+          "coffee",
+          "is",
+          "cold",
+          "is",
+          "waiting"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-10:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть, хто спік хліб.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-10:i09:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-29:session-10:i09:r2",
+          "text": "of"
+        },
+        {
+          "responseId": "en:lesson-29:session-10:i09:r3",
+          "text": "from"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, хто спік хліб.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите, кто испёк хлеб.",
+          "uk": "Скажіть, хто спік хліб."
+        },
+        "gappedTargetPhrase": "The bread was baked ___ my sister.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-10:i09:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-29:session-10:i09:r2",
+            "text": "of"
+          },
+          {
+            "responseId": "en:lesson-29:session-10:i09:r3",
+            "text": "from"
+          }
+        ],
+        "testedDimension": "Скажіть, хто спік хліб.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-10:i09:r2",
+            "correct": false,
+            "testedDimension": "Скажіть, хто спік хліб.",
+            "feedbackByLocale": {
+              "ru": "Для исполнителя нужна by, не of.",
+              "uk": "Для виконавця потрібна by, не of."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-10:i09:r3",
+            "correct": false,
+            "testedDimension": "Скажіть, хто спік хліб.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя действия здесь вводит by.",
+              "uk": "Виконавця дії тут позначає by."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-10:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — pulp",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-10:i10:audio"
+      ],
+      "accessibilityLabel": "Картка слова — pulp",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-10:i10:audio",
+          "transcript": "pulp"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-10:i10:r1",
+            "targetText": "pulp",
+            "meaningByLocale": {
+              "ru": "Мякоть. Мягкая часть фрукта; в соке так называют мелкие частицы этой мякоти.",
+              "uk": "М’якоть. М’яка частина фрукта; у соку так називають дрібні частинки цієї м’якоті."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pulp",
+          "definitionByLocale": {
+            "ru": "Мякоть. Мягкая часть фрукта; в соке так называют мелкие частицы этой мякоти.",
+            "uk": "М’якоть. М’яка частина фрукта; у соку так називають дрібні частинки цієї м’якоті."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-10:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть апельсиновий сік без м’якоті.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-10:i11:audio"
+      ],
+      "accessibilityLabel": "Попросіть апельсиновий сік без м’якоті.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-10:i11:audio",
+          "transcript": "Could I have orange juice without pulp?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could I have orange juice without pulp?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-10:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-10:i12:r1",
+          "text": "I will buy more juice if we need it."
+        },
+        {
+          "responseId": "en:lesson-29:session-10:i12:r2",
+          "text": "I will buy more milk if we need it."
+        },
+        {
+          "responseId": "en:lesson-29:session-10:i12:r3",
+          "text": "I will bring more juice if we need it."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-10:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-10:i12:audio",
+          "transcript": "I will buy more juice if we need it."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-10:i12:r1",
+            "targetText": "I will buy more juice if we need it.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-10:i12:r2",
+            "targetText": "I will buy more milk if we need it.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-10:i12:r3",
+            "targetText": "I will bring more juice if we need it.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-10:i12:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I will buy more juice if we need it.",
+              "uk": "У записі звучить I will buy more juice if we need it."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-10:i12:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I will buy more juice if we need it.",
+              "uk": "У записі звучить I will buy more juice if we need it."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-10:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви купите ще соку, якщо він знадобиться.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-10:i13:r1",
+          "text": "need"
+        },
+        {
+          "responseId": "en:lesson-29:session-10:i13:r2",
+          "text": "will need"
+        },
+        {
+          "responseId": "en:lesson-29:session-10:i13:r3",
+          "text": "needing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви купите ще соку, якщо він знадобиться.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы купите ещё сока, если он понадобится.",
+          "uk": "Ви купите ще соку, якщо він знадобиться."
+        },
+        "gappedTargetPhrase": "I will buy more juice if we ___ it.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-10:i13:r1",
+            "text": "need"
+          },
+          {
+            "responseId": "en:lesson-29:session-10:i13:r2",
+            "text": "will need"
+          },
+          {
+            "responseId": "en:lesson-29:session-10:i13:r3",
+            "text": "needing"
+          }
+        ],
+        "testedDimension": "Ви купите ще соку, якщо він знадобиться.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-10:i13:r2",
+            "correct": false,
+            "testedDimension": "Ви купите ще соку, якщо він знадобиться.",
+            "feedbackByLocale": {
+              "ru": "После if в этом условии need без will.",
+              "uk": "Після if у цій умові need без will."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-10:i13:r3",
+            "correct": false,
+            "testedDimension": "Ви купите ще соку, якщо він знадобиться.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна личная форма need.",
+              "uk": "Тут потрібна особова форма need."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-10:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — underripe",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-10:i14:audio"
+      ],
+      "accessibilityLabel": "Картка слова — underripe",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-10:i14:audio",
+          "transcript": "underripe"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-10:i14:r1",
+            "targetText": "underripe",
+            "meaningByLocale": {
+              "ru": "Недозрелый. Ещё не достигший нужной спелости.",
+              "uk": "Недозрілий. Такий, що ще не досяг потрібної стиглості."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "underripe",
+          "definitionByLocale": {
+            "ru": "Недозрелый. Ещё не достигший нужной спелости.",
+            "uk": "Недозрілий. Такий, що ще не досяг потрібної стиглості."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-10:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що банани ще недозрілі.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що банани ще недозрілі.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "These bananas are still underripe.",
+        "localizedMeaning": {
+          "ru": "Скажите, что бананы ещё недозрелые.",
+          "uk": "Скажіть, що банани ще недозрілі."
+        },
+        "orderedTokens": [
+          "These",
+          "bananas",
+          "are",
+          "still",
+          "underripe"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-10:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-29:session-10:i16:p1",
+            "target": "flaky",
+            "meaningByLocale": {
+              "ru": "слоистый",
+              "uk": "шаруватий"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-10:i16:p2",
+            "target": "frothy",
+            "meaningByLocale": {
+              "ru": "пенистый",
+              "uk": "пінистий"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-10:i16:p3",
+            "target": "pulp",
+            "meaningByLocale": {
+              "ru": "мякоть",
+              "uk": "м’якоть"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-10:i16:p4",
+            "target": "underripe",
+            "meaningByLocale": {
+              "ru": "недозрелый",
+              "uk": "недозрілий"
+            }
+          }
+        ],
+        "leftColumn": [
+          "flaky",
+          "frothy",
+          "pulp",
+          "underripe"
+        ],
+        "rightColumn": [
+          "шаруватий",
+          "пінистий",
+          "м’якоть",
+          "недозрілий"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-10:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: потрібен сік із м’якоттю чи без?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-10:i17:r1",
+          "text": "I prefer juice without pulp."
+        },
+        {
+          "responseId": "en:lesson-29:session-10:i17:r2",
+          "text": "I prefer juice with pulp."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-10:i17:audioA",
+        "en:lesson-29:session-10:i17:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: потрібен сік із м’якоттю чи без?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "I prefer juice without pulp.",
+        "contrastB": "I prefer juice with pulp.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-29:session-10:i17:audioA",
+          "transcript": "I prefer juice without pulp."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-29:session-10:i17:audioB",
+          "transcript": "I prefer juice with pulp."
+        },
+        "testedPhoneticContrast": "Послухайте: потрібен сік із м’якоттю чи без?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-10:i17:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: потрібен сік із м’якоттю чи без?",
+            "feedbackByLocale": {
+              "ru": "В записи without pulp — без мякоти.",
+              "uk": "У записі without pulp — без м’якоті."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-10:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточніть: потрібен хліб, який спекла ваша сестра.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-10:i18:r1",
+          "text": "that"
+        },
+        {
+          "responseId": "en:lesson-29:session-10:i18:r2",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-10:i18:r3",
+          "text": "what"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточніть: потрібен хліб, який спекла ваша сестра.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните: нужен хлеб, который испекла ваша сестра.",
+          "uk": "Уточніть: потрібен хліб, який спекла ваша сестра."
+        },
+        "gappedTargetPhrase": "I want the bread ___ was baked by my sister.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-10:i18:r1",
+            "text": "that"
+          },
+          {
+            "responseId": "en:lesson-29:session-10:i18:r2",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-10:i18:r3",
+            "text": "what"
+          }
+        ],
+        "testedDimension": "Уточніть: потрібен хліб, який спекла ваша сестра.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-10:i18:r2",
+            "correct": false,
+            "testedDimension": "Уточніть: потрібен хліб, який спекла ваша сестра.",
+            "feedbackByLocale": {
+              "ru": "Для хлеба как предмета подходит that.",
+              "uk": "Для хліба як предмета підходить that."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-10:i18:r3",
+            "correct": false,
+            "testedDimension": "Уточніть: потрібен хліб, який спекла ваша сестра.",
+            "feedbackByLocale": {
+              "ru": "После the bread это уточнение вводит that.",
+              "uk": "Після the bread це уточнення вводить that."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-10:i19",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запропонуйте гостеві інший банан.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-10:i19:audio"
+      ],
+      "accessibilityLabel": "Запропонуйте гостеві інший банан.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-10:i19:audio",
+          "transcript": "Would you like a different banana?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Would you like a different banana?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-10:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте прохання передати молоко.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-10:i20:audio"
+      ],
+      "accessibilityLabel": "Послухайте прохання передати молоко.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-10:i20:audio",
+          "transcript": "Could you pass the milk?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could you pass the milk?",
+        "orderedTokens": [
+          "Could",
+          "you",
+          "pass",
+          "the",
+          "milk"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-10:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запропонуйте підігріти каву.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-10:i21:audio"
+      ],
+      "accessibilityLabel": "Запропонуйте підігріти каву.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-10:i21:audio",
+          "transcript": "Shall I warm up your coffee?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Shall I warm up your coffee?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "c1da701786a3a0048b1607050cb5d8009253ff29ed4a5e2019ef07d2973c6333"
+}

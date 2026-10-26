@@ -1,0 +1,1043 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-28:session-23",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-28:session-23:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — moisturiser",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-23:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — moisturiser",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-23:i01:audio",
+          "transcript": "moisturiser"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-23:i01:r1",
+            "targetText": "moisturiser",
+            "meaningByLocale": {
+              "ru": "Увлажняющее средство для кожи, например крем.",
+              "uk": "Зволожувальний засіб для шкіри, наприклад крем."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "moisturiser",
+          "definitionByLocale": {
+            "ru": "Увлажняющее средство для кожи, например крем.",
+            "uk": "Зволожувальний засіб для шкіри, наприклад крем."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-23:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите, есть ли у этого увлажняющего средства пробник.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите, есть ли у этого увлажняющего средства пробник.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you have a sample of this moisturiser?",
+        "localizedMeaning": {
+          "ru": "Спросите, есть ли у этого увлажняющего средства пробник.",
+          "uk": "Запитайте, чи є у цього зволожувального засобу пробник."
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "have",
+          "a",
+          "sample",
+          "of",
+          "this",
+          "moisturiser"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-23:i03",
+      "ordinal": 6,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите маленькую упаковку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-23:i03:audio"
+      ],
+      "accessibilityLabel": "Попросите маленькую упаковку.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-23:i03:audio",
+          "transcript": "Do you have a smaller size?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Do you have a smaller size?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-23:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-23:i04:r1",
+          "text": "Samples are given at the counter."
+        },
+        {
+          "responseId": "en:lesson-28:session-23:i04:r2",
+          "text": "Samples are given at the entrance."
+        },
+        {
+          "responseId": "en:lesson-28:session-23:i04:r3",
+          "text": "Receipts are given at the counter."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-23:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-23:i04:audio",
+          "transcript": "Samples are given at the counter."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-23:i04:r1",
+            "targetText": "Samples are given at the counter.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-23:i04:r2",
+            "targetText": "Samples are given at the entrance.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-23:i04:r3",
+            "targetText": "Receipts are given at the counter.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-23:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Samples are given at the counter.",
+              "uk": "У записі звучить Samples are given at the counter."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-23:i04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Samples are given at the counter.",
+              "uk": "У записі звучить Samples are given at the counter."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-23:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cleanser",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-23:i05:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cleanser",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-23:i05:audio",
+          "transcript": "cleanser"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-23:i05:r1",
+            "targetText": "cleanser",
+            "meaningByLocale": {
+              "ru": "Средство для очищения кожи.",
+              "uk": "Засіб для очищення шкіри."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cleanser",
+          "definitionByLocale": {
+            "ru": "Средство для очищения кожи.",
+            "uk": "Засіб для очищення шкіри."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-23:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите маленький флакон очищающего средства.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-23:i06:audio"
+      ],
+      "accessibilityLabel": "Попросите маленький флакон очищающего средства.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-23:i06:audio",
+          "transcript": "A small bottle of cleanser, please."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "A small bottle of cleanser, please.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-23:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Эту коробку открыли вчера.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-23:i07:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-28:session-23:i07:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-28:session-23:i07:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Эту коробку открыли вчера.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Эту коробку открыли вчера.",
+          "uk": "Цю коробку відкрили вчора."
+        },
+        "gappedTargetPhrase": "This box ___ opened yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-23:i07:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-28:session-23:i07:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-28:session-23:i07:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Эту коробку открыли вчера.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-23:i07:r2",
+            "correct": false,
+            "testedDimension": "Эту коробку открыли вчера.",
+            "feedbackByLocale": {
+              "ru": "Одна коробка в прошлом: was.",
+              "uk": "Одна коробка в минулому: was."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-23:i07:r3",
+            "correct": false,
+            "testedDimension": "Эту коробку открыли вчера.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем was opened.",
+              "uk": "Тут використовуємо was opened."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-23:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы хотели бы менее сильный запах средства.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы хотели бы менее сильный запах средства.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I wish the smell were weaker.",
+        "localizedMeaning": {
+          "ru": "Вы хотели бы менее сильный запах средства.",
+          "uk": "Ви хотіли б менш сильний запах засобу."
+        },
+        "orderedTokens": [
+          "I",
+          "wish",
+          "the",
+          "smell",
+          "were",
+          "weaker"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-23:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — mascara",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-23:i09:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — mascara",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-23:i09:audio",
+          "transcript": "mascara"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-23:i09:r1",
+            "targetText": "mascara",
+            "meaningByLocale": {
+              "ru": "Тушь для ресниц.",
+              "uk": "Туш для вій."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "mascara",
+          "definitionByLocale": {
+            "ru": "Тушь для ресниц.",
+            "uk": "Туш для вій."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-23:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-23:i10:r1",
+          "text": "The mascara will be delivered tomorrow."
+        },
+        {
+          "responseId": "en:lesson-28:session-23:i10:r2",
+          "text": "The mascara will be delivered on Friday."
+        },
+        {
+          "responseId": "en:lesson-28:session-23:i10:r3",
+          "text": "The shampoo will be delivered tomorrow."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-23:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-23:i10:audio",
+          "transcript": "The mascara will be delivered tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-23:i10:r1",
+            "targetText": "The mascara will be delivered tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-23:i10:r2",
+            "targetText": "The mascara will be delivered on Friday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-23:i10:r3",
+            "targetText": "The shampoo will be delivered tomorrow.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-23:i10:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The mascara will be delivered tomorrow.",
+              "uk": "У записі звучить The mascara will be delivered tomorrow."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-23:i10:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The mascara will be delivered tomorrow.",
+              "uk": "У записі звучить The mascara will be delivered tomorrow."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-23:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Пробники включены в заказ.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-23:i11:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-28:session-23:i11:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-28:session-23:i11:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Пробники включены в заказ.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Пробники включены в заказ.",
+          "uk": "Пробники включені в замовлення."
+        },
+        "gappedTargetPhrase": "Samples ___ included in the order.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-23:i11:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-28:session-23:i11:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-28:session-23:i11:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Пробники включены в заказ.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-23:i11:r2",
+            "correct": false,
+            "testedDimension": "Пробники включены в заказ.",
+            "feedbackByLocale": {
+              "ru": "Samples — несколько: are.",
+              "uk": "Samples — кілька: are."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-23:i11:r3",
+            "correct": false,
+            "testedDimension": "Пробники включены в заказ.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем are included.",
+              "uk": "Тут використовуємо are included."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-23:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите запечатанную упаковку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-23:i12:audio"
+      ],
+      "accessibilityLabel": "Попросите запечатанную упаковку.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-23:i12:audio",
+          "transcript": "Could I have a sealed one, please?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could I have a sealed one, please?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-23:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — eyeliner",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-23:i13:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — eyeliner",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-23:i13:audio",
+          "transcript": "eyeliner"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-23:i13:r1",
+            "targetText": "eyeliner",
+            "meaningByLocale": {
+              "ru": "Подводка или карандаш для контура глаз.",
+              "uk": "Підводка або олівець для контуру очей."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "eyeliner",
+          "definitionByLocale": {
+            "ru": "Подводка или карандаш для контура глаз.",
+            "uk": "Підводка або олівець для контуру очей."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-23:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Уточните, есть ли эта подводка коричневого цвета.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточните, есть ли эта подводка коричневого цвета.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you have this eyeliner in brown?",
+        "localizedMeaning": {
+          "ru": "Уточните, есть ли эта подводка коричневого цвета.",
+          "uk": "Уточніть, чи є ця підводка коричневого кольору."
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "have",
+          "this",
+          "eyeliner",
+          "in",
+          "brown"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-23:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-23:i15:r1",
+          "text": "The display was changed this morning."
+        },
+        {
+          "responseId": "en:lesson-28:session-23:i15:r2",
+          "text": "The display was changed yesterday."
+        },
+        {
+          "responseId": "en:lesson-28:session-23:i15:r3",
+          "text": "The price was changed this morning."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-23:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-23:i15:audio",
+          "transcript": "The display was changed this morning."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-23:i15:r1",
+            "targetText": "The display was changed this morning.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-23:i15:r2",
+            "targetText": "The display was changed yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-23:i15:r3",
+            "targetText": "The price was changed this morning.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-23:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The display was changed this morning.",
+              "uk": "У записі звучить The display was changed this morning."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-23:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The display was changed this morning.",
+              "uk": "У записі звучить The display was changed this morning."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-23:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вчера магазин уже закрылся к вашему приходу. Завершите более раннее событие.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-23:i16:r1",
+          "text": "closed"
+        },
+        {
+          "responseId": "en:lesson-28:session-23:i16:r2",
+          "text": "close"
+        },
+        {
+          "responseId": "en:lesson-28:session-23:i16:r3",
+          "text": "closing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вчера магазин уже закрылся к вашему приходу. Завершите более раннее событие.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера магазин уже закрылся к вашему приходу. Завершите более раннее событие.",
+          "uk": "Учора крамниця вже зачинилася до вашого приходу. Завершіть ранішу подію."
+        },
+        "gappedTargetPhrase": "The shop had ___ by the time I arrived.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-23:i16:r1",
+            "text": "closed"
+          },
+          {
+            "responseId": "en:lesson-28:session-23:i16:r2",
+            "text": "close"
+          },
+          {
+            "responseId": "en:lesson-28:session-23:i16:r3",
+            "text": "closing"
+          }
+        ],
+        "testedDimension": "Вчера магазин уже закрылся к вашему приходу. Завершите более раннее событие.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-23:i16:r2",
+            "correct": false,
+            "testedDimension": "Вчера магазин уже закрылся к вашему приходу. Завершите более раннее событие.",
+            "feedbackByLocale": {
+              "ru": "После had нужна closed.",
+              "uk": "Після had потрібна closed."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-23:i16:r3",
+            "correct": false,
+            "testedDimension": "Вчера магазин уже закрылся к вашему приходу. Завершите более раннее событие.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем had closed.",
+              "uk": "Тут використовуємо had closed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-23:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, как упакуют подарок.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-23:i17:audio"
+      ],
+      "accessibilityLabel": "Послушайте, как упакуют подарок.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-23:i17:audio",
+          "transcript": "The gift will be put in a small bag."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The gift will be put in a small bag.",
+        "orderedTokens": [
+          "The",
+          "gift",
+          "will",
+          "be",
+          "put",
+          "in",
+          "a",
+          "small",
+          "bag"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-23:i18",
+      "ordinal": 21,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите более светлый оттенок.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-23:i18:audio"
+      ],
+      "accessibilityLabel": "Попросите более светлый оттенок.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-23:i18:audio",
+          "transcript": "Do you have a lighter shade?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Do you have a lighter shade?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-23:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Заказ отправят завтра. Вставьте недостающую часть.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-23:i19:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-28:session-23:i19:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-28:session-23:i19:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Заказ отправят завтра. Вставьте недостающую часть.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Заказ отправят завтра. Вставьте недостающую часть.",
+          "uk": "Замовлення надішлють завтра. Вставте пропущену частину."
+        },
+        "gappedTargetPhrase": "The order will ___ sent tomorrow.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-23:i19:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-28:session-23:i19:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-28:session-23:i19:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Заказ отправят завтра. Вставьте недостающую часть.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-23:i19:r2",
+            "correct": false,
+            "testedDimension": "Заказ отправят завтра. Вставьте недостающую часть.",
+            "feedbackByLocale": {
+              "ru": "После will нужна be.",
+              "uk": "Після will потрібна be."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-23:i19:r3",
+            "correct": false,
+            "testedDimension": "Заказ отправят завтра. Вставьте недостающую часть.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна will be sent.",
+              "uk": "Тут потрібна will be sent."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-23:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, где упаковывают заказы.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-23:i20:audio"
+      ],
+      "accessibilityLabel": "Послушайте, где упаковывают заказы.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-23:i20:audio",
+          "transcript": "Orders are packed in the back room."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Orders are packed in the back room.",
+        "orderedTokens": [
+          "Orders",
+          "are",
+          "packed",
+          "in",
+          "the",
+          "back",
+          "room"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-23:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что пока хотите только посмотреть.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-23:i21:audio"
+      ],
+      "accessibilityLabel": "Скажите, что пока хотите только посмотреть.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-23:i21:audio",
+          "transcript": "I am just looking, thank you."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am just looking, thank you.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "0ae04aa3f8b65b16d9270b5c3803b81491a7dbb9c2071668ce17a8f8ef2b8001"
+}

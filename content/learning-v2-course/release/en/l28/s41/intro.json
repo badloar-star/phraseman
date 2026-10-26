@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-28:session-41",
+  "learningOutcomeByLocale": {
+    "ru": "как назвать эти семейные отношения и рассказать о встрече.",
+    "uk": "як назвати ці сімейні стосунки й розповісти про зустріч."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-28:session-41:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Жаль, что её нет",
+        "uk": "Шкода, що її немає"
+      },
+      "bodyByLocale": {
+        "ru": "Ваша сестра не смогла приехать на семейную встречу. Вам её не хватает: I wish she were here — жаль, что её здесь нет. Соберите I wish + she + were + here. После I wish назовите того, кого хотели бы видеть рядом: she. Were here описывает желаемое положение сейчас. Это не рассказ о том, где сестра была раньше.",
+        "uk": "Ваша сестра не змогла приїхати на сімейну зустріч. Вам її бракує: I wish she were here — шкода, що її тут немає. Складіть I wish + she + were + here. Після I wish назвіть ту людину, яку хотіли б бачити поруч: she. Were here описує бажане становище зараз. Це не розповідь про те, де сестра була раніше."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-41:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-41:intro1:r1",
+              "text": "I wish she were here."
+            },
+            {
+              "responseId": "en:lesson-28:session-41:intro1:r2",
+              "text": "I wish she is here."
+            },
+            {
+              "responseId": "en:lesson-28:session-41:intro1:r3",
+              "text": "I wish she will be here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-41:intro1:r1",
+              "text": "I wish she were here."
+            },
+            {
+              "responseId": "en:lesson-28:session-41:intro1:r2",
+              "text": "I wish she is here."
+            },
+            {
+              "responseId": "en:lesson-28:session-41:intro1:r3",
+              "text": "I wish she will be here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-28:session-41:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Кто испёк торт",
+        "uk": "Хто спік торт"
+      },
+      "bodyByLocale": {
+        "ru": "Вы показываете гостям торт. Они спрашивают, кто его приготовил. Ответьте: The cake was made by my aunt — торт приготовила моя тётя. Соберите The cake + was made + by + my aunt. Was made сообщает о действии над тортом; made — третья форма make. После by назовите того, кто его приготовил.",
+        "uk": "Ви показуєте гостям торт. Вони запитують, хто його приготував. Дайте відповідь: The cake was made by my aunt — торт приготувала моя тітка. Складіть The cake + was made + by + my aunt. Was made повідомляє про дію з тортом; made — третя форма make. Після by назвіть того, хто його приготував."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-41:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-41:intro2:r1",
+              "text": "The cake was made by my aunt."
+            },
+            {
+              "responseId": "en:lesson-28:session-41:intro2:r2",
+              "text": "The cake was made of my aunt."
+            },
+            {
+              "responseId": "en:lesson-28:session-41:intro2:r3",
+              "text": "The cake was made my aunt."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-41:intro2:r1",
+              "text": "The cake was made by my aunt."
+            },
+            {
+              "responseId": "en:lesson-28:session-41:intro2:r2",
+              "text": "The cake was made of my aunt."
+            },
+            {
+              "responseId": "en:lesson-28:session-41:intro2:r3",
+              "text": "The cake was made my aunt."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-28:session-41:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Не успели встретиться",
+        "uk": "Не встигли зустрітися"
+      },
+      "bodyByLocale": {
+        "ru": "Вы приехали на семейную встречу после ухода брата. Объясните: He had left by the time I arrived — к моему приезду он уже ушёл. Соберите He + had left + by the time + I arrived. Had left обозначает более ранний уход; left — третья форма leave. После by the time назовите более поздний приезд: I arrived.",
+        "uk": "Ви приїхали на сімейну зустріч після відходу брата. Поясніть: He had left by the time I arrived — до мого приїзду він уже пішов. Складіть He + had left + by the time + I arrived. Had left позначає раніший відхід; left — третя форма leave. Після by the time назвіть пізніший приїзд: I arrived."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-41:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-41:intro3:r1",
+              "text": "He had left by the time I arrived."
+            },
+            {
+              "responseId": "en:lesson-28:session-41:intro3:r2",
+              "text": "He had leave by the time I arrived."
+            },
+            {
+              "responseId": "en:lesson-28:session-41:intro3:r3",
+              "text": "He had left by the time I arrive."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-41:intro3:r1",
+              "text": "He had left by the time I arrived."
+            },
+            {
+              "responseId": "en:lesson-28:session-41:intro3:r2",
+              "text": "He had leave by the time I arrived."
+            },
+            {
+              "responseId": "en:lesson-28:session-41:intro3:r3",
+              "text": "He had left by the time I arrive."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "0c7a2aadeaf68468e127a6b65d6075444b5e2c0065c65b465b569c202282a491"
+}

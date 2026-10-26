@@ -1,0 +1,1068 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-28:session-30",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-28:session-30:i01",
+      "ordinal": 4,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть допомогти прочитати напис.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-30:i01:audio"
+      ],
+      "accessibilityLabel": "Попросіть допомогти прочитати напис.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-30:i01:audio",
+          "transcript": "Could you help me read this label?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you help me read this label?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-30:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — multigrain",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-30:i02:audio"
+      ],
+      "accessibilityLabel": "Картка слова — multigrain",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-30:i02:audio",
+          "transcript": "multigrain"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-30:i02:r1",
+            "targetText": "multigrain",
+            "meaningByLocale": {
+              "ru": "Мультизлаковый. Сделанный из нескольких видов злаков. Это слово само по себе не означает цельнозерновой.",
+              "uk": "Мультизлаковий. Зроблений із кількох видів злаків. Це слово саме по собі не означає цільнозерновий."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "multigrain",
+          "definitionByLocale": {
+            "ru": "Мультизлаковый. Сделанный из нескольких видов злаков. Это слово само по себе не означает цельнозерновой.",
+            "uk": "Мультизлаковий. Зроблений із кількох видів злаків. Це слово саме по собі не означає цільнозерновий."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-30:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-30:i03:r1",
+          "text": "I would like some multigrain bread."
+        },
+        {
+          "responseId": "en:lesson-28:session-30:i03:r2",
+          "text": "I would like some white bread."
+        },
+        {
+          "responseId": "en:lesson-28:session-30:i03:r3",
+          "text": "I would like some rye bread."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-30:i03:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-30:i03:audio",
+          "transcript": "I would like some multigrain bread."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-30:i03:r1",
+            "targetText": "I would like some multigrain bread.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-30:i03:r2",
+            "targetText": "I would like some white bread.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-30:i03:r3",
+            "targetText": "I would like some rye bread.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-30:i03:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I would like some multigrain bread.",
+              "uk": "У записі звучить I would like some multigrain bread."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-30:i03:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I would like some multigrain bread.",
+              "uk": "У записі звучить I would like some multigrain bread."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-30:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Продавець повідомляє, що хліб спекли сьогодні вранці.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-30:i04:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-28:session-30:i04:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-28:session-30:i04:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Продавець повідомляє, що хліб спекли сьогодні вранці.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Продавец сообщает, что хлеб испекли сегодня утром.",
+          "uk": "Продавець повідомляє, що хліб спекли сьогодні вранці."
+        },
+        "gappedTargetPhrase": "This bread ___ baked this morning.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-30:i04:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-28:session-30:i04:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-28:session-30:i04:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Продавець повідомляє, що хліб спекли сьогодні вранці.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-30:i04:r2",
+            "correct": false,
+            "testedDimension": "Продавець повідомляє, що хліб спекли сьогодні вранці.",
+            "feedbackByLocale": {
+              "ru": "С bread здесь нужна was.",
+              "uk": "Із bread тут потрібна was."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-30:i04:r3",
+            "correct": false,
+            "testedDimension": "Продавець повідомляє, що хліб спекли сьогодні вранці.",
+            "feedbackByLocale": {
+              "ru": "Прошедшее действие: was baked.",
+              "uk": "Минула дія: was baked."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-30:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, коли доставлять покупки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-30:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте, коли доставлять покупки.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-30:i05:audio",
+          "transcript": "Your shopping will be delivered today."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Your shopping will be delivered today.",
+        "orderedTokens": [
+          "Your",
+          "shopping",
+          "will",
+          "be",
+          "delivered",
+          "today"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-30:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — pasteurised",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-30:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — pasteurised",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-30:i06:audio",
+          "transcript": "pasteurised"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-30:i06:r1",
+            "targetText": "pasteurised",
+            "meaningByLocale": {
+              "ru": "Пастеризованный. Обработанный контролируемым нагреванием, например о молоке.",
+              "uk": "Пастеризований. Оброблений контрольованим нагріванням, наприклад про молоко."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pasteurised",
+          "definitionByLocale": {
+            "ru": "Пастеризованный. Обработанный контролируемым нагреванием, например о молоке.",
+            "uk": "Пастеризований. Оброблений контрольованим нагріванням, наприклад про молоко."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-30:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточніть, чи пастеризоване це молоко.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-30:i07:audio"
+      ],
+      "accessibilityLabel": "Уточніть, чи пастеризоване це молоко.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-30:i07:audio",
+          "transcript": "Is this milk pasteurised?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is this milk pasteurised?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-30:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви прочитали на цій пляшці вимогу зберігати молоко в холоді.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-30:i08:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-28:session-30:i08:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-28:session-30:i08:r3",
+          "text": "was"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви прочитали на цій пляшці вимогу зберігати молоко в холоді.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы прочитали на этой бутылке требование хранить молоко в холоде.",
+          "uk": "Ви прочитали на цій пляшці вимогу зберігати молоко в холоді."
+        },
+        "gappedTargetPhrase": "This milk must ___ kept cold.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-30:i08:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-28:session-30:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-28:session-30:i08:r3",
+            "text": "was"
+          }
+        ],
+        "testedDimension": "Ви прочитали на цій пляшці вимогу зберігати молоко в холоді.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-30:i08:r2",
+            "correct": false,
+            "testedDimension": "Ви прочитали на цій пляшці вимогу зберігати молоко в холоді.",
+            "feedbackByLocale": {
+              "ru": "После must нужна be.",
+              "uk": "Після must потрібна be."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-30:i08:r3",
+            "correct": false,
+            "testedDimension": "Ви прочитали на цій пляшці вимогу зберігати молоко в холоді.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем must be kept.",
+              "uk": "Тут використовуємо must be kept."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-30:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-30:i09:r1",
+          "text": "The bags are checked at the door."
+        },
+        {
+          "responseId": "en:lesson-28:session-30:i09:r2",
+          "text": "The bags were checked at the door."
+        },
+        {
+          "responseId": "en:lesson-28:session-30:i09:r3",
+          "text": "The bags will be checked at the door."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-30:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-30:i09:audio",
+          "transcript": "The bags are checked at the door."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-30:i09:r1",
+            "targetText": "The bags are checked at the door.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-30:i09:r2",
+            "targetText": "The bags were checked at the door.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-30:i09:r3",
+            "targetText": "The bags will be checked at the door.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-30:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The bags are checked at the door.",
+              "uk": "У записі звучить The bags are checked at the door."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-30:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The bags are checked at the door.",
+              "uk": "У записі звучить The bags are checked at the door."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-30:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — fortified",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-30:i10:audio"
+      ],
+      "accessibilityLabel": "Картка слова — fortified",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-30:i10:audio",
+          "transcript": "fortified"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-30:i10:r1",
+            "targetText": "fortified",
+            "meaningByLocale": {
+              "ru": "Обогащённый. О продукте, в который добавлены витамины или минералы.",
+              "uk": "Збагачений. Про продукт, до якого додано вітаміни або мінерали."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fortified",
+          "definitionByLocale": {
+            "ru": "Обогащённый. О продукте, в который добавлены витамины или минералы.",
+            "uk": "Збагачений. Про продукт, до якого додано вітаміни або мінерали."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-30:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте, чи збагачені ці пластівці.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи збагачені ці пластівці.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Is this cereal fortified?",
+        "localizedMeaning": {
+          "ru": "Спросите, обогащены ли эти хлопья.",
+          "uk": "Запитайте, чи збагачені ці пластівці."
+        },
+        "orderedTokens": [
+          "Is",
+          "this",
+          "cereal",
+          "fortified"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-30:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що шукаєте меншу упаковку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-30:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що шукаєте меншу упаковку.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-30:i12:audio",
+          "transcript": "I am looking for a smaller packet."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am looking for a smaller packet.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-30:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви хотіли б, щоб ця упаковка коштувала менше.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-30:i13:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-28:session-30:i13:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-28:session-30:i13:r3",
+          "text": "will be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви хотіли б, щоб ця упаковка коштувала менше.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы хотели бы, чтобы эта упаковка стоила меньше.",
+          "uk": "Ви хотіли б, щоб ця упаковка коштувала менше."
+        },
+        "gappedTargetPhrase": "I wish it ___ cheaper.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-30:i13:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-28:session-30:i13:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-28:session-30:i13:r3",
+            "text": "will be"
+          }
+        ],
+        "testedDimension": "Ви хотіли б, щоб ця упаковка коштувала менше.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-30:i13:r2",
+            "correct": false,
+            "testedDimension": "Ви хотіли б, щоб ця упаковка коштувала менше.",
+            "feedbackByLocale": {
+              "ru": "После wish о желаемой ситуации сейчас нужна were.",
+              "uk": "Після wish про бажану ситуацію зараз потрібна were."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-30:i13:r3",
+            "correct": false,
+            "testedDimension": "Ви хотіли б, щоб ця упаковка коштувала менше.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужно were cheaper.",
+              "uk": "Тут потрібно were cheaper."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-30:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — refrigerate",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-30:i14:audio"
+      ],
+      "accessibilityLabel": "Картка слова — refrigerate",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-30:i14:audio",
+          "transcript": "refrigerate"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-30:i14:r1",
+            "targetText": "refrigerate",
+            "meaningByLocale": {
+              "ru": "Хранить в холодильнике или поместить в холодильник. Глагол часто встречается в указаниях на упаковке.",
+              "uk": "Зберігати в холодильнику або помістити в холодильник. Дієслово часто трапляється у вказівках на упаковці."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "refrigerate",
+          "definitionByLocale": {
+            "ru": "Хранить в холодильнике или поместить в холодильник. Глагол часто встречается в указаниях на упаковке.",
+            "uk": "Зберігати в холодильнику або помістити в холодильник. Дієслово часто трапляється у вказівках на упаковці."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-30:i15",
+      "ordinal": 18,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточніть, чи потрібно поставити цей продукт у холодильник.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-30:i15:audio"
+      ],
+      "accessibilityLabel": "Уточніть, чи потрібно поставити цей продукт у холодильник.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-30:i15:audio",
+          "transcript": "Should I refrigerate this?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Should I refrigerate this?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-30:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладами.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладами.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-28:session-30:i16:p1",
+            "target": "multigrain",
+            "meaningByLocale": {
+              "ru": "мультизлаковый",
+              "uk": "мультизлаковий"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-30:i16:p2",
+            "target": "pasteurised",
+            "meaningByLocale": {
+              "ru": "пастеризованный",
+              "uk": "пастеризований"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-30:i16:p3",
+            "target": "fortified",
+            "meaningByLocale": {
+              "ru": "обогащённый",
+              "uk": "збагачений"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-30:i16:p4",
+            "target": "refrigerate",
+            "meaningByLocale": {
+              "ru": "хранить в холодильнике",
+              "uk": "зберігати в холодильнику"
+            }
+          }
+        ],
+        "leftColumn": [
+          "multigrain",
+          "pasteurised",
+          "fortified",
+          "refrigerate"
+        ],
+        "rightColumn": [
+          "мультизлаковий",
+          "пастеризований",
+          "збагачений",
+          "зберігати в холодильнику"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-30:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "До вашого приїзду крамниця вже зачинилася.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-30:i17:r1",
+          "text": "closed"
+        },
+        {
+          "responseId": "en:lesson-28:session-30:i17:r2",
+          "text": "close"
+        },
+        {
+          "responseId": "en:lesson-28:session-30:i17:r3",
+          "text": "closing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "До вашого приїзду крамниця вже зачинилася.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "К вашему приезду магазин уже закрылся.",
+          "uk": "До вашого приїзду крамниця вже зачинилася."
+        },
+        "gappedTargetPhrase": "The shop had ___ by the time I arrived.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-30:i17:r1",
+            "text": "closed"
+          },
+          {
+            "responseId": "en:lesson-28:session-30:i17:r2",
+            "text": "close"
+          },
+          {
+            "responseId": "en:lesson-28:session-30:i17:r3",
+            "text": "closing"
+          }
+        ],
+        "testedDimension": "До вашого приїзду крамниця вже зачинилася.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-30:i17:r2",
+            "correct": false,
+            "testedDimension": "До вашого приїзду крамниця вже зачинилася.",
+            "feedbackByLocale": {
+              "ru": "После had нужна closed.",
+              "uk": "Після had потрібна closed."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-30:i17:r3",
+            "correct": false,
+            "testedDimension": "До вашого приїзду крамниця вже зачинилася.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем had closed.",
+              "uk": "Тут використовуємо had closed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-30:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-30:i18:r1",
+          "text": "This can be delivered."
+        },
+        {
+          "responseId": "en:lesson-28:session-30:i18:r2",
+          "text": "This must be delivered."
+        },
+        {
+          "responseId": "en:lesson-28:session-30:i18:r3",
+          "text": "This was delivered."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-30:i18:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-30:i18:audio",
+          "transcript": "This can be delivered."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-30:i18:r1",
+            "targetText": "This can be delivered.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-30:i18:r2",
+            "targetText": "This must be delivered.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-30:i18:r3",
+            "targetText": "This was delivered.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-30:i18:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This can be delivered.",
+              "uk": "У записі звучить This can be delivered."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-30:i18:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This can be delivered.",
+              "uk": "У записі звучить This can be delivered."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-30:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, що зробили з розбитою пляшкою.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-30:i19:audio"
+      ],
+      "accessibilityLabel": "Послухайте, що зробили з розбитою пляшкою.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-30:i19:audio",
+          "transcript": "The bottle was replaced."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The bottle was replaced.",
+        "orderedTokens": [
+          "The",
+          "bottle",
+          "was",
+          "replaced"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-30:i20",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть окремий пакет для хліба.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-30:i20:audio"
+      ],
+      "accessibilityLabel": "Попросіть окремий пакет для хліба.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-30:i20:audio",
+          "transcript": "Could I have a separate bag for the bread?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could I have a separate bag for the bread?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-30:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточніть вартість доставки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-30:i21:audio"
+      ],
+      "accessibilityLabel": "Уточніть вартість доставки.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-30:i21:audio",
+          "transcript": "How much is delivery?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "How much is delivery?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "86f279cbb8d7168f8430ddcf0024ebf3e18609c50a8165d2dde71be68d7703c7"
+}

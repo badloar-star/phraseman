@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-29:session-45:i01",
+    "correctText": "Is this class suitable for beginners?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-45:i02",
+    "correctText": "endurance",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-45:i03",
+    "correctText": "I want to improve my endurance.",
+    "correctResponseId": "en:lesson-29:session-45:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-45:i04",
+    "correctText": "The class I tried was tiring.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-45:i05",
+    "correctText": "I tried",
+    "correctResponseId": "en:lesson-29:session-45:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-45:i06",
+    "correctText": "stride",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-45:i07",
+    "correctText": "Is my stride too long?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-45:i08",
+    "correctText": "This is the trainer who helped me.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-45:i09",
+    "correctText": "who",
+    "correctResponseId": "en:lesson-29:session-45:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-45:i10",
+    "correctText": "agility",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-45:i11",
+    "correctText": "Does this exercise improve agility?",
+    "correctResponseId": "en:lesson-29:session-45:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-45:i12",
+    "correctText": "Could you show me the movement slowly?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-45:i13",
+    "correctText": "cardio",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-45:i14",
+    "correctText": "Does this class include cardio?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-45:i15",
+    "correctText": "en:lesson-29:session-45:i15:p1=endurance\nen:lesson-29:session-45:i15:p2=stride\nen:lesson-29:session-45:i15:p3=agility\nen:lesson-29:session-45:i15:p4=cardio",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-45:i16",
+    "correctText": "where",
+    "correctResponseId": "en:lesson-29:session-45:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-45:i17",
+    "correctText": "Does this exercise improve agility?",
+    "correctResponseId": "en:lesson-29:session-45:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-45:i18",
+    "correctText": "Is my stride too long?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-45:i19",
+    "correctText": "I need a short break.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-45:i20",
+    "correctText": "you showed me",
+    "correctResponseId": "en:lesson-29:session-45:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-45:i21",
+    "correctText": "Thank you for helping me.",
+    "correctResponseId": null
+  }
+]

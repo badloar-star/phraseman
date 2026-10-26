@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-29:session-29",
+  "learningOutcomeByLocale": {
+    "ru": "как назвать участников и розыгрыши, уточнить человека и место.",
+    "uk": "як назвати учасників і розіграші, уточнити людину й місце."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-29:session-29:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Кто принёс книги",
+        "uk": "Хто приніс книжки"
+      },
+      "bodyByLocale": {
+        "ru": "На благотворительной ярмарке вы показываете другу женщину, которая принесла книги. Скажите: The woman who brought the books is here — женщина, которая принесла книги, здесь. Соберите The woman + who brought the books + is here. Книги принесла женщина: who обозначает исполнителя внутри уточнения. После who сразу ставим brought the books, без she.",
+        "uk": "На благодійному ярмарку ви показуєте другові жінку, яка принесла книжки. Скажіть: The woman who brought the books is here — жінка, яка принесла книжки, тут. Складіть The woman + who brought the books + is here. Книжки принесла жінка: who позначає виконавця всередині уточнення. Після who відразу ставимо brought the books, без she."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-29:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-29:intro1:r1",
+              "text": "The woman who brought the books is here."
+            },
+            {
+              "responseId": "en:lesson-29:session-29:intro1:r2",
+              "text": "The woman who she brought the books is here."
+            },
+            {
+              "responseId": "en:lesson-29:session-29:intro1:r3",
+              "text": "The woman which brought the books is here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-29:intro1:r1",
+              "text": "The woman who brought the books is here."
+            },
+            {
+              "responseId": "en:lesson-29:session-29:intro1:r2",
+              "text": "The woman who she brought the books is here."
+            },
+            {
+              "responseId": "en:lesson-29:session-29:intro1:r3",
+              "text": "The woman which brought the books is here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-29:session-29:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Кому вы помогли",
+        "uk": "Кому ви допомогли"
+      },
+      "bodyByLocale": {
+        "ru": "Вы рассказываете о человеке, которому помогли расставить вещи на ярмарке. Скажите: The person who I helped was grateful — человек, которому я помог, был благодарен. Соберите The person + who I helped + was grateful. Помогали вы: после who ставим I helped. Who обозначает получателя помощи; him после helped не добавляем.",
+        "uk": "Ви розповідаєте про людину, якій допомогли розставити речі на ярмарку. Скажіть: The person who I helped was grateful — людина, якій я допоміг, була вдячна. Складіть The person + who I helped + was grateful. Допомагали ви: після who ставимо I helped. Who позначає отримувача допомоги; him після helped не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-29:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-29:intro2:r1",
+              "text": "The person who I helped was grateful."
+            },
+            {
+              "responseId": "en:lesson-29:session-29:intro2:r2",
+              "text": "The person who I helped him was grateful."
+            },
+            {
+              "responseId": "en:lesson-29:session-29:intro2:r3",
+              "text": "The person who me helped was grateful."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-29:intro2:r1",
+              "text": "The person who I helped was grateful."
+            },
+            {
+              "responseId": "en:lesson-29:session-29:intro2:r2",
+              "text": "The person who I helped him was grateful."
+            },
+            {
+              "responseId": "en:lesson-29:session-29:intro2:r3",
+              "text": "The person who me helped was grateful."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-29:session-29:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Куда отнести коробку",
+        "uk": "Куди віднести коробку"
+      },
+      "bodyByLocale": {
+        "ru": "Волонтёр показывает место, где принимают книги для ярмарки. Передайте его слова: This is the table where we collect books — это стол, где мы собираем книги. Соберите This is the table + where + we collect books. Where связывает сбор книг с этим столом. После where ставим we collect books; there в конце не добавляем.",
+        "uk": "Волонтер показує місце, де приймають книжки для ярмарку. Передайте його слова: This is the table where we collect books — це стіл, де ми збираємо книжки. Складіть This is the table + where + we collect books. Where пов’язує збір книжок із цим столом. Після where ставимо we collect books; there наприкінці не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-29:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-29:intro3:r1",
+              "text": "This is the table where we collect books."
+            },
+            {
+              "responseId": "en:lesson-29:session-29:intro3:r2",
+              "text": "This is the table where we collect books there."
+            },
+            {
+              "responseId": "en:lesson-29:session-29:intro3:r3",
+              "text": "This is the table who we collect books."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-29:intro3:r1",
+              "text": "This is the table where we collect books."
+            },
+            {
+              "responseId": "en:lesson-29:session-29:intro3:r2",
+              "text": "This is the table where we collect books there."
+            },
+            {
+              "responseId": "en:lesson-29:session-29:intro3:r3",
+              "text": "This is the table who we collect books."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "9c3658483edc47c7248f0021102bf2dbbe318b3bbba4406ff7193574c344b774"
+}

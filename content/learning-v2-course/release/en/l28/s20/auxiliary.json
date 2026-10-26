@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-28:session-20",
+  "entries": [
+    {
+      "interactionId": "en:lesson-28:session-20:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-20:intro1:r2": {
+          "ru": "Несколько кистей: are.",
+          "uk": "Кілька пензлів: are."
+        },
+        "en:lesson-28:session-20:intro1:r3": {
+          "ru": "Здесь нужна are provided.",
+          "uk": "Тут потрібна are provided."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-20:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-20:intro2:r2": {
+          "ru": "После will нужно be.",
+          "uk": "Після will потрібне be."
+        },
+        "en:lesson-28:session-20:intro2:r3": {
+          "ru": "Здесь нужна форма kept.",
+          "uk": "Тут потрібна форма kept."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-20:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-20:intro3:r2": {
+          "ru": "Для желания о настоящем здесь had.",
+          "uk": "Для бажання про теперішнє тут had."
+        },
+        "en:lesson-28:session-20:intro3:r3": {
+          "ru": "После I wish we здесь had.",
+          "uk": "Після I wish we тут had."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f8396df511d28b504c94771157c0a2b67e4ba1e6b6f69c1b69dd4aecd41f7627"
+}

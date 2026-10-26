@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-29:session-38",
+  "learningOutcomeByLocale": {
+    "ru": "как сказать о сходстве родственников, воспитании, короткой истории и важном событии в жизни.",
+    "uk": "як сказати про схожість родичів, виховання, коротку історію та важливу подію в житті."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-29:session-38:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Впечатление от воспоминаний",
+        "uk": "Враження від спогадів"
+      },
+      "bodyByLocale": {
+        "ru": "Вы возвращаете сестре книгу воспоминаний, которая вас тронула. Скажите: The memoir I borrowed was moving — книга воспоминаний, которую я одолжил, была трогательной. Соберите The memoir + I borrowed + was moving. В уточнении действие выполняет I, а memoir называет прочитанную книгу. Поэтому that перед I можно опустить. It после borrowed не добавляем.",
+        "uk": "Ви повертаєте сестрі книжку спогадів, яка вас зворушила. Скажіть: The memoir I borrowed was moving — книжка спогадів, яку я позичив, була зворушливою. Складіть The memoir + I borrowed + was moving. В уточненні дію виконує I, а memoir називає прочитану книжку. Тому that перед I можна пропустити. It після borrowed не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-38:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-38:intro1:r1",
+              "text": "The memoir I borrowed was moving."
+            },
+            {
+              "responseId": "en:lesson-29:session-38:intro1:r2",
+              "text": "The memoir I borrowed it was moving."
+            },
+            {
+              "responseId": "en:lesson-29:session-38:intro1:r3",
+              "text": "The memoir me borrowed was moving."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-38:intro1:r1",
+              "text": "The memoir I borrowed was moving."
+            },
+            {
+              "responseId": "en:lesson-29:session-38:intro1:r2",
+              "text": "The memoir I borrowed it was moving."
+            },
+            {
+              "responseId": "en:lesson-29:session-38:intro1:r3",
+              "text": "The memoir me borrowed was moving."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-29:session-38:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Чью историю вы прочли",
+        "uk": "Чию історію ви прочитали"
+      },
+      "bodyByLocale": {
+        "ru": "Вы показываете сестре фотографию женщины, о жизни которой прочли. Скажите: This is the woman whose story I read — это женщина, чью историю я прочёл. Соберите This is the woman + whose story + I read. Whose story связывает историю с женщиной: чья история. После whose не ставим her.",
+        "uk": "Ви показуєте сестрі фотографію жінки, про життя якої прочитали. Скажіть: This is the woman whose story I read — це жінка, чию історію я прочитав. Складіть This is the woman + whose story + I read. Whose story пов’язує історію з жінкою: чия історія. Після whose не ставимо her."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-38:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-38:intro2:r1",
+              "text": "This is the woman whose story I read."
+            },
+            {
+              "responseId": "en:lesson-29:session-38:intro2:r2",
+              "text": "This is the woman who story I read."
+            },
+            {
+              "responseId": "en:lesson-29:session-38:intro2:r3",
+              "text": "This is the woman whose her story I read."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-38:intro2:r1",
+              "text": "This is the woman whose story I read."
+            },
+            {
+              "responseId": "en:lesson-29:session-38:intro2:r2",
+              "text": "This is the woman who story I read."
+            },
+            {
+              "responseId": "en:lesson-29:session-38:intro2:r3",
+              "text": "This is the woman whose her story I read."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-29:session-38:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Кто написал воспоминания",
+        "uk": "Хто написав спогади"
+      },
+      "bodyByLocale": {
+        "ru": "На встрече читателей вам показывают автора воспоминаний. Скажите: This is the person who wrote the memoir — это человек, который написал книгу воспоминаний. Соберите This is the person + who wrote the memoir. Здесь who само обозначает того, кто написал книгу. Поэтому who перед wrote оставляем, а he после него не добавляем.",
+        "uk": "На зустрічі читачів вам показують автора спогадів. Скажіть: This is the person who wrote the memoir — це людина, яка написала книжку спогадів. Складіть This is the person + who wrote the memoir. Тут who саме позначає того, хто написав книжку. Тому who перед wrote залишаємо, а he після нього не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-38:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-38:intro3:r1",
+              "text": "This is the person who wrote the memoir."
+            },
+            {
+              "responseId": "en:lesson-29:session-38:intro3:r2",
+              "text": "This is the person wrote the memoir."
+            },
+            {
+              "responseId": "en:lesson-29:session-38:intro3:r3",
+              "text": "This is the person who he wrote the memoir."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-38:intro3:r1",
+              "text": "This is the person who wrote the memoir."
+            },
+            {
+              "responseId": "en:lesson-29:session-38:intro3:r2",
+              "text": "This is the person wrote the memoir."
+            },
+            {
+              "responseId": "en:lesson-29:session-38:intro3:r3",
+              "text": "This is the person who he wrote the memoir."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "fd266a411a9f2fab64a8568572785cc046da3c4e4a74de754940aac18a950731"
+}

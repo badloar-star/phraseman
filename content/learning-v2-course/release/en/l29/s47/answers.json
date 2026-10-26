@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-29:session-47:i01",
+    "correctText": "Let us check the list.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-47:i02",
+    "correctText": "foresight",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-47:i03",
+    "correctText": "You had the foresight to bring extra water.",
+    "correctResponseId": "en:lesson-29:session-47:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-47:i04",
+    "correctText": "The bag I packed is ready.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-47:i05",
+    "correctText": "I packed",
+    "correctResponseId": "en:lesson-29:session-47:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-47:i06",
+    "correctText": "precaution",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-47:i07",
+    "correctText": "I am taking extra water as a precaution.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-47:i08",
+    "correctText": "This is the café where we will meet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-47:i09",
+    "correctText": "where",
+    "correctResponseId": "en:lesson-29:session-47:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-47:i10",
+    "correctText": "headlamp",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-47:i11",
+    "correctText": "Does your headlamp work?",
+    "correctResponseId": "en:lesson-29:session-47:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-47:i12",
+    "correctText": "Could you check the batteries?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-47:i13",
+    "correctText": "perishable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-47:i14",
+    "correctText": "This food is perishable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-47:i15",
+    "correctText": "en:lesson-29:session-47:i15:p1=foresight\nen:lesson-29:session-47:i15:p2=precaution\nen:lesson-29:session-47:i15:p3=headlamp\nen:lesson-29:session-47:i15:p4=perishable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-47:i16",
+    "correctText": "rains",
+    "correctResponseId": "en:lesson-29:session-47:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-47:i17",
+    "correctText": "Does your headlamp work?",
+    "correctResponseId": "en:lesson-29:session-47:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-47:i18",
+    "correctText": "We will stay home if it rains.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-47:i19",
+    "correctText": "Let us put the food in the cool bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-47:i20",
+    "correctText": "you",
+    "correctResponseId": "en:lesson-29:session-47:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-47:i21",
+    "correctText": "Thank you for helping me pack.",
+    "correctResponseId": null
+  }
+]

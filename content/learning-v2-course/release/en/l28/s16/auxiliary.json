@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-28:session-16",
+  "entries": [
+    {
+      "interactionId": "en:lesson-28:session-16:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-16:intro1:r2": {
+          "ru": "Ingredients — несколько: are.",
+          "uk": "Ingredients — кілька: are."
+        },
+        "en:lesson-28:session-16:intro1:r3": {
+          "ru": "Здесь нужна are listed.",
+          "uk": "Тут потрібна are listed."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-16:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-16:intro2:r2": {
+          "ru": "С soup здесь was.",
+          "uk": "Із soup тут was."
+        },
+        "en:lesson-28:session-16:intro2:r3": {
+          "ru": "После was используем prepared.",
+          "uk": "Після was використовуємо prepared."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-16:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-16:intro3:r2": {
+          "ru": "Для этого желания используем were.",
+          "uk": "Для цього бажання використовуємо were."
+        },
+        "en:lesson-28:session-16:intro3:r3": {
+          "ru": "Нужна форма were.",
+          "uk": "Потрібна форма were."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "39d4b541242754679da553df7dd7e851878efbb8edb124caac154a73a91a4819"
+}

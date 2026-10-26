@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-30:session-11",
+  "learningOutcomeByLocale": {
+    "ru": "как передать вопросы о предпочтениях, уточнить подарок и выразить желание.",
+    "uk": "як передати запитання про вподобання, уточнити подарунок і висловити бажання."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-30:session-11:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Что я предпочитал",
+        "uk": "Що я волів"
+      },
+      "bodyByLocale": {
+        "ru": "Вчера сестра выбирала для вас сладости и спросила, что вы предпочитаете. Вы передаёте её вопрос другу: She asked what I preferred — она спросила, что я предпочитал. Соберите She + asked + what + I preferred. После what идут I и preferred: внутри пересказа сохраняем обычный порядок слов, без did перед I.",
+        "uk": "Учора сестра вибирала для вас солодощі й запитала, чому ви віддаєте перевагу. Ви передаєте її запитання другові: She asked what I preferred — вона запитала, чому я віддавав перевагу. Складіть She + asked + what + I preferred. Після what йдуть I та preferred: усередині переказу зберігаємо звичайний порядок слів, без did перед I."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-11:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-11:intro1:r1",
+              "text": "She asked what I preferred."
+            },
+            {
+              "responseId": "en:lesson-30:session-11:intro1:r2",
+              "text": "She asked what did I prefer."
+            },
+            {
+              "responseId": "en:lesson-30:session-11:intro1:r3",
+              "text": "She asked what I preferring."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-11:intro1:r1",
+              "text": "She asked what I preferred."
+            },
+            {
+              "responseId": "en:lesson-30:session-11:intro1:r2",
+              "text": "She asked what did I prefer."
+            },
+            {
+              "responseId": "en:lesson-30:session-11:intro1:r3",
+              "text": "She asked what I preferring."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-30:session-11:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Люблю ли я шоколад",
+        "uk": "Чи люблю я шоколад"
+      },
+      "bodyByLocale": {
+        "ru": "Вчера друг спросил, любите ли вы шоколад. Вы рассказываете об этом сестре: He asked if I liked chocolate — он спросил, люблю ли я шоколад. Соберите He + asked + if + I liked chocolate. If здесь передаёт «ли», потому что исходный вопрос допускает да или нет. После if идут I и liked.",
+        "uk": "Учора друг запитав, чи любите ви шоколад. Ви розповідаєте про це сестрі: He asked if I liked chocolate — він запитав, чи люблю я шоколад. Складіть He + asked + if + I liked chocolate. If тут передає «чи», бо початкове запитання допускає так або ні. Після if йдуть I та liked."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-11:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-11:intro2:r1",
+              "text": "He asked if I liked chocolate."
+            },
+            {
+              "responseId": "en:lesson-30:session-11:intro2:r2",
+              "text": "He asked if did I like chocolate."
+            },
+            {
+              "responseId": "en:lesson-30:session-11:intro2:r3",
+              "text": "He asked if I liking chocolate."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-11:intro2:r1",
+              "text": "He asked if I liked chocolate."
+            },
+            {
+              "responseId": "en:lesson-30:session-11:intro2:r2",
+              "text": "He asked if did I like chocolate."
+            },
+            {
+              "responseId": "en:lesson-30:session-11:intro2:r3",
+              "text": "He asked if I liking chocolate."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-30:session-11:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Подаренная коробка",
+        "uk": "Подарована коробка"
+      },
+      "bodyByLocale": {
+        "ru": "Сестра подарила вам коробку конфет. Вы говорите другу, какую коробку имеете в виду: The box she gave me is on the table — коробка, которую она мне подарила, на столе. Соберите The box + she gave me + is on the table. She gave me уточняет коробку. Перед she можно опустить that: she — тот, кто подарил, а box — то, что подарили.",
+        "uk": "Сестра подарувала вам коробку цукерок. Ви кажете другові, яку коробку маєте на увазі: The box she gave me is on the table — коробка, яку вона мені подарувала, на столі. Складіть The box + she gave me + is on the table. She gave me уточнює коробку. Перед she можна пропустити that: she — та, хто подарувала, а box — те, що подарували."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-11:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-11:intro3:r1",
+              "text": "The box she gave me is on the table."
+            },
+            {
+              "responseId": "en:lesson-30:session-11:intro3:r2",
+              "text": "The box she giving me is on the table."
+            },
+            {
+              "responseId": "en:lesson-30:session-11:intro3:r3",
+              "text": "The box she gave me are on the table."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-11:intro3:r1",
+              "text": "The box she gave me is on the table."
+            },
+            {
+              "responseId": "en:lesson-30:session-11:intro3:r2",
+              "text": "The box she giving me is on the table."
+            },
+            {
+              "responseId": "en:lesson-30:session-11:intro3:r3",
+              "text": "The box she gave me are on the table."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "42796e5528678e25e0bdb0a4295fc23276e318f73fe111d56bcb2aba811e0d92"
+}

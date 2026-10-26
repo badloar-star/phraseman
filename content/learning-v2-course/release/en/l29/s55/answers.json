@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-29:session-55:i01",
+    "correctText": "May I have a closer look?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-55:i02",
+    "correctText": "shoddy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-55:i03",
+    "correctText": "This stitching looks shoddy.",
+    "correctResponseId": "en:lesson-29:session-55:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-55:i04",
+    "correctText": "you showed me",
+    "correctResponseId": "en:lesson-29:session-55:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-55:i05",
+    "correctText": "The bag you showed me is too small.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-55:i06",
+    "correctText": "counterfeit",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-55:i07",
+    "correctText": "Is this a counterfeit?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-55:i08",
+    "correctText": "This bag was made by a local artist.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-55:i09",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-29:session-55:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-55:i10",
+    "correctText": "authentic",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-55:i11",
+    "correctText": "How do you know it is authentic?",
+    "correctResponseId": "en:lesson-29:session-55:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-55:i12",
+    "correctText": "Where was this bag made?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-55:i13",
+    "correctText": "craftsmanship",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-55:i14",
+    "correctText": "The craftsmanship is excellent.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-55:i15",
+    "correctText": "en:lesson-29:session-55:i15:p1=shoddy\nen:lesson-29:session-55:i15:p2=counterfeit\nen:lesson-29:session-55:i15:p3=authentic\nen:lesson-29:session-55:i15:p4=craftsmanship",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-55:i16",
+    "correctText": "This stitching looks shoddy.",
+    "correctResponseId": "en:lesson-29:session-55:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-55:i17",
+    "correctText": "breaks",
+    "correctResponseId": "en:lesson-29:session-55:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-55:i18",
+    "correctText": "I will return it if the strap breaks.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-55:i19",
+    "correctText": "Could you explain the return policy?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-55:i20",
+    "correctText": "you",
+    "correctResponseId": "en:lesson-29:session-55:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-55:i21",
+    "correctText": "I need some time to think.",
+    "correctResponseId": null
+  }
+]

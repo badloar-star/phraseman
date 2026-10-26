@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-28:session-33:i01",
+    "correctText": "sculptor",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-33:i02",
+    "correctText": "The statue was made by a sculptor.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-33:i03",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-28:session-33:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-33:i04",
+    "correctText": "The pictures were drawn by her.",
+    "correctResponseId": "en:lesson-28:session-33:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-33:i05",
+    "correctText": "illustrator",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-33:i06",
+    "correctText": "The pictures were drawn by an illustrator.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-33:i07",
+    "correctText": "her",
+    "correctResponseId": "en:lesson-28:session-33:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-33:i08",
+    "correctText": "The book was written by my friend.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-33:i09",
+    "correctText": "Who made this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-33:i10",
+    "correctText": "cartoonist",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-33:i11",
+    "correctText": "This was drawn by a cartoonist.",
+    "correctResponseId": "en:lesson-28:session-33:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-33:i12",
+    "correctText": "with",
+    "correctResponseId": "en:lesson-28:session-33:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-33:i13",
+    "correctText": "This was drawn by my sister.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-33:i14",
+    "correctText": "animator",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-33:i15",
+    "correctText": "The film was made by one animator.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-33:i16",
+    "correctText": "en:lesson-28:session-33:i16:p1=sculptor\nen:lesson-28:session-33:i16:p2=illustrator\nen:lesson-28:session-33:i16:p3=cartoonist\nen:lesson-28:session-33:i16:p4=animator",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-33:i17",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-28:session-33:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-33:i18",
+    "correctText": "The exhibition was opened by the mayor.",
+    "correctResponseId": "en:lesson-28:session-33:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-33:i19",
+    "correctText": "The photos were taken by my brother.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-33:i20",
+    "correctText": "them",
+    "correctResponseId": "en:lesson-28:session-33:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-33:i21",
+    "correctText": "This was made by my friend.",
+    "correctResponseId": null
+  }
+]

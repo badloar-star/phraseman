@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-29:session-49",
+  "learningOutcomeByLocale": {
+    "ru": "как описать растерянность, тревожное ожидание, сильное расстройство и измотанность.",
+    "uk": "як описати розгубленість, тривожне очікування, сильне засмучення та виснаженість."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-29:session-49:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сообщение, которое расстроило",
+        "uk": "Повідомлення, яке засмутило"
+      },
+      "bodyByLocale": {
+        "ru": "Вы рассказываете сестре о сообщении, которое прочитали сегодня. Скажите: The message I read was upsetting — сообщение, которое я прочитал, было огорчительным. Соберите The message + I read + was upsetting. В уточнении I называет читателя, а message — прочитанное сообщение. Поэтому that перед I можно опустить; it после read не добавляем.",
+        "uk": "Ви розповідаєте сестрі про повідомлення, яке прочитали сьогодні. Скажіть: The message I read was upsetting — повідомлення, яке я прочитав, було прикрим. Складіть The message + I read + was upsetting. В уточненні I називає читача, а message — прочитане повідомлення. Тому that перед I можна пропустити; it після read не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-49:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-49:intro1:r1",
+              "text": "The message I read was upsetting."
+            },
+            {
+              "responseId": "en:lesson-29:session-49:intro1:r2",
+              "text": "The message I read it was upsetting."
+            },
+            {
+              "responseId": "en:lesson-29:session-49:intro1:r3",
+              "text": "The message me read was upsetting."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-49:intro1:r1",
+              "text": "The message I read was upsetting."
+            },
+            {
+              "responseId": "en:lesson-29:session-49:intro1:r2",
+              "text": "The message I read it was upsetting."
+            },
+            {
+              "responseId": "en:lesson-29:session-49:intro1:r3",
+              "text": "The message me read was upsetting."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-29:session-49:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Человек, который выслушал",
+        "uk": "Людина, яка вислухала"
+      },
+      "bodyByLocale": {
+        "ru": "Вы показываете сестре соседку, которая вас выслушала. Скажите: She is the neighbour who listened to me — это соседка, которая меня выслушала. Соберите She is the neighbour + who listened to me. Who само обозначает исполнителя действия listened. Поэтому who оставляем, а she после него не добавляем.",
+        "uk": "Ви показуєте сестрі сусідку, яка вас вислухала. Скажіть: She is the neighbour who listened to me — це сусідка, яка мене вислухала. Складіть She is the neighbour + who listened to me. Who саме позначає виконавця дії listened. Тому who залишаємо, а she після нього не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-49:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-49:intro2:r1",
+              "text": "She is the neighbour who listened to me."
+            },
+            {
+              "responseId": "en:lesson-29:session-49:intro2:r2",
+              "text": "She is the neighbour listened to me."
+            },
+            {
+              "responseId": "en:lesson-29:session-49:intro2:r3",
+              "text": "She is the neighbour who she listened to me."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-49:intro2:r1",
+              "text": "She is the neighbour who listened to me."
+            },
+            {
+              "responseId": "en:lesson-29:session-49:intro2:r2",
+              "text": "She is the neighbour listened to me."
+            },
+            {
+              "responseId": "en:lesson-29:session-49:intro2:r3",
+              "text": "She is the neighbour who she listened to me."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-29:session-49:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Место для спокойного разговора",
+        "uk": "Місце для спокійної розмови"
+      },
+      "bodyByLocale": {
+        "ru": "Вы предлагаете сестре кафе, где сможете спокойно поговорить. Скажите: I know a café where we can talk — я знаю кафе, где мы можем поговорить. Соберите I know a café + where + we can talk. Where связывает разговор с местом. После where сохраняем обычный порядок we can talk, не вопросительный can we talk.",
+        "uk": "Ви пропонуєте сестрі кафе, де зможете спокійно поговорити. Скажіть: I know a café where we can talk — я знаю кафе, де ми можемо поговорити. Складіть I know a café + where + we can talk. Where пов’язує розмову з місцем. Після where зберігаємо звичайний порядок we can talk, не питальний can we talk."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-49:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-49:intro3:r1",
+              "text": "I know a café where we can talk."
+            },
+            {
+              "responseId": "en:lesson-29:session-49:intro3:r2",
+              "text": "I know a café where can we talk."
+            },
+            {
+              "responseId": "en:lesson-29:session-49:intro3:r3",
+              "text": "I know a café who we can talk."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-49:intro3:r1",
+              "text": "I know a café where we can talk."
+            },
+            {
+              "responseId": "en:lesson-29:session-49:intro3:r2",
+              "text": "I know a café where can we talk."
+            },
+            {
+              "responseId": "en:lesson-29:session-49:intro3:r3",
+              "text": "I know a café who we can talk."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "676610f5527243666bcef69523eabccbeef5ee60b1504c4d44fa212b3cdaadc9"
+}

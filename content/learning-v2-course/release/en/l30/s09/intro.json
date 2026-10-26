@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-30:session-09",
+  "learningOutcomeByLocale": {
+    "ru": "как передать вопрос через asked, where и if с обычным порядком слов внутри пересказа.",
+    "uk": "як передати запитання через asked, where та if зі звичайним порядком слів усередині переказу."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-30:session-09:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Она спросила, где я жил",
+        "uk": "Вона запитала, де я жив"
+      },
+      "bodyByLocale": {
+        "ru": "Вчера знакомая спросила, где вы жили в детстве. Теперь вы передаёте её вопрос другу: She asked where I lived — она спросила, где я жил. Соберите She + asked + where + I lived. После where идут I и lived: вы пересказываете вопрос, а не задаёте его заново. Did в эту часть не добавляем.",
+        "uk": "Учора знайома запитала, де ви жили в дитинстві. Тепер ви передаєте її запитання другові: She asked where I lived — вона запитала, де я жив. Складіть She + asked + where + I lived. Після where йдуть I та lived: ви переказуєте запитання, а не ставите його знову. Did у цю частину не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-09:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-09:intro1:r1",
+              "text": "She asked where I lived."
+            },
+            {
+              "responseId": "en:lesson-30:session-09:intro1:r2",
+              "text": "She asked where did I live."
+            },
+            {
+              "responseId": "en:lesson-30:session-09:intro1:r3",
+              "text": "She asked where I living."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-09:intro1:r1",
+              "text": "She asked where I lived."
+            },
+            {
+              "responseId": "en:lesson-30:session-09:intro1:r2",
+              "text": "She asked where did I live."
+            },
+            {
+              "responseId": "en:lesson-30:session-09:intro1:r3",
+              "text": "She asked where I living."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-30:session-09:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Был ли я готов",
+        "uk": "Чи був я готовий"
+      },
+      "bodyByLocale": {
+        "ru": "Вчера перед прогулкой друг спросил, готовы ли вы. Вы рассказываете об этом сестре: He asked if I was ready — он спросил, готов ли я был. Соберите He + asked + if + I was ready. If здесь значит «ли»: оно вводит пересказ вопроса, на который можно ответить да или нет. После if сохраняем порядок I was.",
+        "uk": "Учора перед прогулянкою друг запитав, чи готові ви. Ви розповідаєте про це сестрі: He asked if I was ready — він запитав, чи був я готовий. Складіть He + asked + if + I was ready. If тут означає «чи»: воно вводить переказ запитання, на яке можна відповісти так або ні. Після if зберігаємо порядок I was."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-09:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-09:intro2:r1",
+              "text": "He asked if I was ready."
+            },
+            {
+              "responseId": "en:lesson-30:session-09:intro2:r2",
+              "text": "He asked if was I ready."
+            },
+            {
+              "responseId": "en:lesson-30:session-09:intro2:r3",
+              "text": "He asked if I were ready."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-09:intro2:r1",
+              "text": "He asked if I was ready."
+            },
+            {
+              "responseId": "en:lesson-30:session-09:intro2:r2",
+              "text": "He asked if was I ready."
+            },
+            {
+              "responseId": "en:lesson-30:session-09:intro2:r3",
+              "text": "He asked if I were ready."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-30:session-09:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Где находится станция",
+        "uk": "Де розташована станція"
+      },
+      "bodyByLocale": {
+        "ru": "Вчера турист спросил у вас, где станция. Вы передаёте его вопрос другу: He asked where the station was — он спросил, где находится станция. Соберите He + asked + where + the station + was. После where сначала назовите предмет вопроса — the station, затем поставьте was. В пересказе не меняем их местами.",
+        "uk": "Учора турист запитав у вас, де станція. Ви передаєте його запитання другові: He asked where the station was — він запитав, де розташована станція. Складіть He + asked + where + the station + was. Після where спочатку назвіть предмет запитання — the station, потім поставте was. У переказі не міняємо їх місцями."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-09:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-09:intro3:r1",
+              "text": "He asked where the station was."
+            },
+            {
+              "responseId": "en:lesson-30:session-09:intro3:r2",
+              "text": "He asked where was the station."
+            },
+            {
+              "responseId": "en:lesson-30:session-09:intro3:r3",
+              "text": "He asked where the station were."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-09:intro3:r1",
+              "text": "He asked where the station was."
+            },
+            {
+              "responseId": "en:lesson-30:session-09:intro3:r2",
+              "text": "He asked where was the station."
+            },
+            {
+              "responseId": "en:lesson-30:session-09:intro3:r3",
+              "text": "He asked where the station were."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d5f3bae4eaff6fb5381448e702174d74cd22f0cf61b243fffccc0f064b3f984e"
+}

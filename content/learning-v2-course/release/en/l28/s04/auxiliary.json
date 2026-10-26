@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-28:session-04",
+  "entries": [
+    {
+      "interactionId": "en:lesson-28:session-04:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-04:intro1:r2": {
+          "ru": "С soup здесь используем is.",
+          "uk": "З soup тут використовуємо is."
+        },
+        "en:lesson-28:session-04:intro1:r3": {
+          "ru": "После is для этой модели нужна prepared.",
+          "uk": "Після is для цієї моделі потрібна prepared."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-04:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-04:intro2:r2": {
+          "ru": "После I wish о желаемом сейчас нужна were.",
+          "uk": "Після I wish про бажане зараз потрібна were."
+        },
+        "en:lesson-28:session-04:intro2:r3": {
+          "ru": "Здесь используем were milder.",
+          "uk": "Тут використовуємо were milder."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-04:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-04:intro3:r2": {
+          "ru": "После had нужна found.",
+          "uk": "Після had потрібна found."
+        },
+        "en:lesson-28:session-04:intro3:r3": {
+          "ru": "Речь о вчерашнем приходе: arrived.",
+          "uk": "Ідеться про вчорашній прихід: arrived."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "26ca7a551074e0ed446a58abcf64c4b21720b58396bd2e3ce8b5aa7ced52f555"
+}

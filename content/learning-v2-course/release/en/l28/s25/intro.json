@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-28:session-25",
+  "learningOutcomeByLocale": {
+    "ru": "действие над предметом после can, must, should: модальный глагол + be + третья форма.",
+    "uk": "дію над предметом після can, must, should: модальне дієслово + be + третя форма."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-28:session-25:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Можно использовать снова",
+        "uk": "Можна використати знову"
+      },
+      "bodyByLocale": {
+        "ru": "Вы принесли чистую стеклянную банку и спрашиваете, пригодится ли она ещё. Сотрудник отвечает: This jar can be reused — эту банку можно использовать снова. Соберите This jar + can + be + reused. Can означает возможность. Be reused показывает действие над банкой. После can нужна начальная форма be, а после неё reused — форма reuse с окончанием -d.",
+        "uk": "Ви принесли чисту скляну банку й запитуєте, чи знадобиться вона ще. Працівник відповідає: This jar can be reused — цю банку можна використати знову. Складіть This jar + can + be + reused. Can означає можливість. Be reused показує дію над банкою. Після can потрібна початкова форма be, а після неї reused — форма reuse із закінченням -d."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-25:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-25:intro1:r1",
+              "text": "This jar can be reused."
+            },
+            {
+              "responseId": "en:lesson-28:session-25:intro1:r2",
+              "text": "This jar can reused."
+            },
+            {
+              "responseId": "en:lesson-28:session-25:intro1:r3",
+              "text": "This jar can be reuse."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-25:intro1:r1",
+              "text": "This jar can be reused."
+            },
+            {
+              "responseId": "en:lesson-28:session-25:intro1:r2",
+              "text": "This jar can reused."
+            },
+            {
+              "responseId": "en:lesson-28:session-25:intro1:r3",
+              "text": "This jar can be reuse."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-28:session-25:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Правило этого пункта",
+        "uk": "Правило цього пункту"
+      },
+      "bodyByLocale": {
+        "ru": "В этом пункте приёма посетителей просят сортировать вещи до сдачи. Сотрудник объясняет обязательное правило: Items must be sorted first — вещи необходимо сначала рассортировать. Соберите Items + must + be + sorted + first. Must выражает требование, а be sorted — действие над вещами. После must используем be даже для нескольких предметов.",
+        "uk": "У цьому пункті приймання відвідувачів просять сортувати речі до здавання. Працівник пояснює обов’язкове правило: Items must be sorted first — речі необхідно спочатку розсортувати. Складіть Items + must + be + sorted + first. Must виражає вимогу, а be sorted — дію над речами. Після must використовуємо be навіть для кількох предметів."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-25:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-25:intro2:r1",
+              "text": "Items must be sorted first."
+            },
+            {
+              "responseId": "en:lesson-28:session-25:intro2:r2",
+              "text": "Items must are sorted first."
+            },
+            {
+              "responseId": "en:lesson-28:session-25:intro2:r3",
+              "text": "Items must be sort first."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-25:intro2:r1",
+              "text": "Items must be sorted first."
+            },
+            {
+              "responseId": "en:lesson-28:session-25:intro2:r2",
+              "text": "Items must are sorted first."
+            },
+            {
+              "responseId": "en:lesson-28:session-25:intro2:r3",
+              "text": "Items must be sort first."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-28:session-25:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Совет перед дарением",
+        "uk": "Порада перед даруванням"
+      },
+      "bodyByLocale": {
+        "ru": "Вы хотите отдать кому-нибудь запылившуюся чашку. Друг советует сначала её вымыть: The cup should be washed first — чашку стоит сначала вымыть. Соберите The cup + should + be + washed + first. Should выражает совет, а be washed — действие над чашкой. После should нужна be, затем washed. First показывает порядок действий.",
+        "uk": "Ви хочете віддати комусь запилену чашку. Друг радить спочатку її вимити: The cup should be washed first — чашку варто спочатку вимити. Складіть The cup + should + be + washed + first. Should виражає пораду, а be washed — дію над чашкою. Після should потрібна be, потім washed. First показує порядок дій."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-25:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-25:intro3:r1",
+              "text": "The cup should be washed first."
+            },
+            {
+              "responseId": "en:lesson-28:session-25:intro3:r2",
+              "text": "The cup should washed first."
+            },
+            {
+              "responseId": "en:lesson-28:session-25:intro3:r3",
+              "text": "The cup should be wash first."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-25:intro3:r1",
+              "text": "The cup should be washed first."
+            },
+            {
+              "responseId": "en:lesson-28:session-25:intro3:r2",
+              "text": "The cup should washed first."
+            },
+            {
+              "responseId": "en:lesson-28:session-25:intro3:r3",
+              "text": "The cup should be wash first."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d563fcf7ce38df003355f74066c107b21aae33732e610704791640690898993f"
+}

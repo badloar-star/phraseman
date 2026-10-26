@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-27:session-54",
+  "learningOutcomeByLocale": {
+    "ru": "вспомнить законченное событие; выразить желание о настоящем; поставить результат перед воображаемым условием.",
+    "uk": "згадати завершену подію; висловити бажання про теперішнє; поставити результат перед уявною умовою."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-27:session-54:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Когда мы виделись?",
+        "uk": "Коли ми бачилися?"
+      },
+      "bodyByLocale": {
+        "ru": "В кафе вы узнаёте бывшего одноклассника. Вы вспоминаете последнюю встречу: это было в прошлом году. We met last year — мы встречались в прошлом году. Соберите фразу: We — мы, затем met — прошедшая форма meet, в конце last year — когда. Указан законченный прошлый период, поэтому здесь Past Simple.",
+        "uk": "У кафе ви впізнаєте колишнього однокласника. Ви згадуєте останню зустріч: це було торік. We met last year — ми зустрічалися торік. Складіть фразу: We — ми, потім met — минула форма meet, наприкінці last year — коли. Названо завершений минулий період, тому тут Past Simple."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-54:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-54:intro1:r1",
+              "text": "We met last year."
+            },
+            {
+              "responseId": "en:lesson-27:session-54:intro1:r2",
+              "text": "We have met last year."
+            },
+            {
+              "responseId": "en:lesson-27:session-54:intro1:r3",
+              "text": "We meet last year."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-54:intro1:r1",
+              "text": "We met last year."
+            },
+            {
+              "responseId": "en:lesson-27:session-54:intro1:r2",
+              "text": "We have met last year."
+            },
+            {
+              "responseId": "en:lesson-27:session-54:intro1:r3",
+              "text": "We meet last year."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-27:session-54:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Жаль, что мало времени",
+        "uk": "Шкода, що мало часу"
+      },
+      "bodyByLocale": {
+        "ru": "Разговор интересный, но вам скоро уходить. Хотелось бы остаться дольше. I wish I had more time — жаль, что у меня нет больше времени. Сначала I wish — выражаем желание, затем I had — желаемое положение сейчас, потом more time — чего хотелось бы больше. Had здесь не рассказ о прошлом: после wish эта форма показывает, что нынешнее положение не такое, как хочется.",
+        "uk": "Розмова цікава, але вам скоро йти. Хотілося б залишитися довше. I wish I had more time — шкода, що я не маю більше часу. Спочатку I wish — виражаємо бажання, потім I had — бажане становище зараз, далі more time — чого хотілося б більше. Had тут не розповідь про минуле: після wish ця форма показує, що нинішнє становище не таке, як хочеться."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-54:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-54:intro2:r1",
+              "text": "I wish I had more time."
+            },
+            {
+              "responseId": "en:lesson-27:session-54:intro2:r2",
+              "text": "I wish I have more time."
+            },
+            {
+              "responseId": "en:lesson-27:session-54:intro2:r3",
+              "text": "I wish I having more time."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-54:intro2:r1",
+              "text": "I wish I had more time."
+            },
+            {
+              "responseId": "en:lesson-27:session-54:intro2:r2",
+              "text": "I wish I have more time."
+            },
+            {
+              "responseId": "en:lesson-27:session-54:intro2:r3",
+              "text": "I wish I having more time."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-27:session-54:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Встретиться ближе к дому",
+        "uk": "Зустрітися ближче до дому"
+      },
+      "bodyByLocale": {
+        "ru": "Друг живёт далеко, поэтому вы редко видитесь. Представьте, что он жил бы ближе: We would meet more often if you lived nearby — мы бы встречались чаще, если бы ты жил рядом. Начните с результата: We + would + meet + more often. Затем добавьте условие: if + you + lived + nearby. После would нужна начальная форма meet; lived после if обозначает воображаемое условие сейчас. При таком порядке запятая между частями не нужна.",
+        "uk": "Друг живе далеко, тому ви рідко бачитеся. Уявіть, що він жив би ближче: We would meet more often if you lived nearby — ми б зустрічалися частіше, якби ти жив поруч. Почніть із результату: We + would + meet + more often. Потім додайте умову: if + you + lived + nearby. Після would потрібна початкова форма meet; lived після if позначає уявну умову зараз. За такого порядку кома між частинами не потрібна."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-54:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-54:intro3:r1",
+              "text": "We would meet more often if you lived nearby."
+            },
+            {
+              "responseId": "en:lesson-27:session-54:intro3:r2",
+              "text": "We would met more often if you lived nearby."
+            },
+            {
+              "responseId": "en:lesson-27:session-54:intro3:r3",
+              "text": "We would meet more often if you living nearby."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-54:intro3:r1",
+              "text": "We would meet more often if you lived nearby."
+            },
+            {
+              "responseId": "en:lesson-27:session-54:intro3:r2",
+              "text": "We would met more often if you lived nearby."
+            },
+            {
+              "responseId": "en:lesson-27:session-54:intro3:r3",
+              "text": "We would meet more often if you living nearby."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "0ca3b5e2e174b2ac7bb6835d892413c395546036f4c83de6ccf7dd9ce6e6b246"
+}

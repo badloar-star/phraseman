@@ -1,0 +1,1050 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-29:session-24",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-29:session-24:i01",
+      "ordinal": 4,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть показати примірювальну.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-24:i01:audio"
+      ],
+      "accessibilityLabel": "Попросіть показати примірювальну.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-24:i01:audio",
+          "transcript": "Could you show me the fitting room?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you show me the fitting room?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-24:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — headscarf",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-24:i02:audio"
+      ],
+      "accessibilityLabel": "Картка слова — headscarf",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-24:i02:audio",
+          "transcript": "headscarf"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-24:i02:r1",
+            "targetText": "headscarf",
+            "meaningByLocale": {
+              "ru": "Головной платок. Платок, который носят на голове.",
+              "uk": "Хустка на голову. Хустка, яку носять на голові."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "headscarf",
+          "definitionByLocale": {
+            "ru": "Головной платок. Платок, который носят на голове.",
+            "uk": "Хустка на голову. Хустка, яку носять на голові."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-24:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-24:i03:r1",
+          "text": "She is wearing a blue headscarf."
+        },
+        {
+          "responseId": "en:lesson-29:session-24:i03:r2",
+          "text": "She is wearing a green headscarf."
+        },
+        {
+          "responseId": "en:lesson-29:session-24:i03:r3",
+          "text": "She is wearing a blue hat."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-24:i03:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-24:i03:audio",
+          "transcript": "She is wearing a blue headscarf."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-24:i03:r1",
+            "targetText": "She is wearing a blue headscarf.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-24:i03:r2",
+            "targetText": "She is wearing a green headscarf.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-24:i03:r3",
+            "targetText": "She is wearing a blue hat.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-24:i03:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She is wearing a blue headscarf.",
+              "uk": "У записі звучить She is wearing a blue headscarf."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-24:i03:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She is wearing a blue headscarf.",
+              "uk": "У записі звучить She is wearing a blue headscarf."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-24:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що вам подобається сукня з кишенями.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що вам подобається сукня з кишенями.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I like the dress that has pockets.",
+        "localizedMeaning": {
+          "ru": "Скажите, что вам нравится платье с карманами.",
+          "uk": "Скажіть, що вам подобається сукня з кишенями."
+        },
+        "orderedTokens": [
+          "I",
+          "like",
+          "the",
+          "dress",
+          "that",
+          "has",
+          "pockets"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-24:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — turtleneck",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-24:i05:audio"
+      ],
+      "accessibilityLabel": "Картка слова — turtleneck",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-24:i05:audio",
+          "transcript": "turtleneck"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-24:i05:r1",
+            "targetText": "turtleneck",
+            "meaningByLocale": {
+              "ru": "Водолазка. Одежда для верхней части тела с высоким прилегающим воротником.",
+              "uk": "Гольф. Одяг для верхньої частини тіла з високим прилеглим коміром."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "turtleneck",
+          "definitionByLocale": {
+            "ru": "Водолазка. Одежда для верхней части тела с высоким прилегающим воротником.",
+            "uk": "Гольф. Одяг для верхньої частини тіла з високим прилеглим коміром."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-24:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте, чи можна приміряти гольф.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи можна приміряти гольф.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Can I try on this turtleneck?",
+        "localizedMeaning": {
+          "ru": "Спросите, можно ли примерить водолазку.",
+          "uk": "Запитайте, чи можна приміряти гольф."
+        },
+        "orderedTokens": [
+          "Can",
+          "I",
+          "try on",
+          "this turtleneck"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-24:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточніть кімнату через можливість примірки.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-24:i07:r1",
+          "text": "where"
+        },
+        {
+          "responseId": "en:lesson-29:session-24:i07:r2",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-24:i07:r3",
+          "text": "whose"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточніть кімнату через можливість примірки.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните комнату через возможность примерки.",
+          "uk": "Уточніть кімнату через можливість примірки."
+        },
+        "gappedTargetPhrase": "This is the room ___ you can try it on.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-24:i07:r1",
+            "text": "where"
+          },
+          {
+            "responseId": "en:lesson-29:session-24:i07:r2",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-24:i07:r3",
+            "text": "whose"
+          }
+        ],
+        "testedDimension": "Уточніть кімнату через можливість примірки.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-24:i07:r2",
+            "correct": false,
+            "testedDimension": "Уточніть кімнату через можливість примірки.",
+            "feedbackByLocale": {
+              "ru": "Для места примерки нужно where.",
+              "uk": "Для місця примірки потрібне where."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-24:i07:r3",
+            "correct": false,
+            "testedDimension": "Уточніть кімнату через можливість примірки.",
+            "feedbackByLocale": {
+              "ru": "Здесь место, а не принадлежность: where.",
+              "uk": "Тут місце, а не належність: where."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-24:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть більший розмір.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-24:i08:audio"
+      ],
+      "accessibilityLabel": "Попросіть більший розмір.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-24:i08:audio",
+          "transcript": "Do you have a larger size?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Do you have a larger size?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-24:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — pinafore",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-24:i09:audio"
+      ],
+      "accessibilityLabel": "Картка слова — pinafore",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-24:i09:audio",
+          "transcript": "pinafore"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-24:i09:r1",
+            "targetText": "pinafore",
+            "meaningByLocale": {
+              "ru": "Платье без рукавов для ношения поверх другой одежды. Например, поверх рубашки или водолазки.",
+              "uk": "Сукня без рукавів для носіння поверх іншого одягу. Наприклад, поверх сорочки або гольфа."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pinafore",
+          "definitionByLocale": {
+            "ru": "Платье без рукавов для ношения поверх другой одежды. Например, поверх рубашки или водолазки.",
+            "uk": "Сукня без рукавів для носіння поверх іншого одягу. Наприклад, поверх сорочки або гольфа."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-24:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-24:i10:r1",
+          "text": "This pinafore has two pockets."
+        },
+        {
+          "responseId": "en:lesson-29:session-24:i10:r2",
+          "text": "This pinafore has no pockets."
+        },
+        {
+          "responseId": "en:lesson-29:session-24:i10:r3",
+          "text": "This jacket has two pockets."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-24:i10:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-24:i10:audio",
+          "transcript": "This pinafore has two pockets."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-24:i10:r1",
+            "targetText": "This pinafore has two pockets.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-24:i10:r2",
+            "targetText": "This pinafore has no pockets.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-24:i10:r3",
+            "targetText": "This jacket has two pockets.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-24:i10:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This pinafore has two pockets.",
+              "uk": "У записі звучить This pinafore has two pockets."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-24:i10:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This pinafore has two pockets.",
+              "uk": "У записі звучить This pinafore has two pockets."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-24:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточніть сукню через наявність кишень.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-24:i11:r1",
+          "text": "that"
+        },
+        {
+          "responseId": "en:lesson-29:session-24:i11:r2",
+          "text": "that it"
+        },
+        {
+          "responseId": "en:lesson-29:session-24:i11:r3",
+          "text": "who"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточніть сукню через наявність кишень.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните платье через наличие карманов.",
+          "uk": "Уточніть сукню через наявність кишень."
+        },
+        "gappedTargetPhrase": "I like the dress ___ has pockets.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-24:i11:r1",
+            "text": "that"
+          },
+          {
+            "responseId": "en:lesson-29:session-24:i11:r2",
+            "text": "that it"
+          },
+          {
+            "responseId": "en:lesson-29:session-24:i11:r3",
+            "text": "who"
+          }
+        ],
+        "testedDimension": "Уточніть сукню через наявність кишень.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-24:i11:r2",
+            "correct": false,
+            "testedDimension": "Уточніть сукню через наявність кишень.",
+            "feedbackByLocale": {
+              "ru": "That уже обозначает платье, it лишнее.",
+              "uk": "That вже позначає сукню, it зайве."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-24:i11:r3",
+            "correct": false,
+            "testedDimension": "Уточніть сукню через наявність кишень.",
+            "feedbackByLocale": {
+              "ru": "Для предмета здесь нужно that.",
+              "uk": "Для предмета тут потрібне that."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-24:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, де розташоване дзеркало.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-24:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте, де розташоване дзеркало.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-24:i12:audio",
+          "transcript": "The mirror is behind you."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The mirror is behind you.",
+        "orderedTokens": [
+          "The",
+          "mirror",
+          "is",
+          "behind",
+          "you"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-24:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — playsuit",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-24:i13:audio"
+      ],
+      "accessibilityLabel": "Картка слова — playsuit",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-24:i13:audio",
+          "transcript": "playsuit"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-24:i13:r1",
+            "targetText": "playsuit",
+            "meaningByLocale": {
+              "ru": "Короткий комбинезон. Цельная одежда с шортами вместо длинных брюк.",
+              "uk": "Короткий комбінезон. Суцільний одяг із шортами замість довгих штанів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "playsuit",
+          "definitionByLocale": {
+            "ru": "Короткий комбинезон. Цельная одежда с шортами вместо длинных брюк.",
+            "uk": "Короткий комбінезон. Суцільний одяг із шортами замість довгих штанів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-24:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть показати короткий комбінезон.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-24:i14:audio"
+      ],
+      "accessibilityLabel": "Попросіть показати короткий комбінезон.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-24:i14:audio",
+          "transcript": "Could I see that playsuit?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could I see that playsuit?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-24:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте одяг із перекладом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте одяг із перекладом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-29:session-24:i15:p1",
+            "target": "headscarf",
+            "meaningByLocale": {
+              "ru": "головной платок",
+              "uk": "хустка на голову"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-24:i15:p2",
+            "target": "turtleneck",
+            "meaningByLocale": {
+              "ru": "водолазка",
+              "uk": "гольф"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-24:i15:p3",
+            "target": "pinafore",
+            "meaningByLocale": {
+              "ru": "платье поверх другой одежды",
+              "uk": "сукня поверх іншого одягу"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-24:i15:p4",
+            "target": "playsuit",
+            "meaningByLocale": {
+              "ru": "короткий комбинезон",
+              "uk": "короткий комбінезон"
+            }
+          }
+        ],
+        "leftColumn": [
+          "headscarf",
+          "turtleneck",
+          "pinafore",
+          "playsuit"
+        ],
+        "rightColumn": [
+          "хустка на голову",
+          "гольф",
+          "сукня поверх іншого одягу",
+          "короткий комбінезон"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-24:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви купите річ, якщо вона підійде за розміром.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-24:i16:r1",
+          "text": "fits"
+        },
+        {
+          "responseId": "en:lesson-29:session-24:i16:r2",
+          "text": "will fit"
+        },
+        {
+          "responseId": "en:lesson-29:session-24:i16:r3",
+          "text": "fit"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви купите річ, якщо вона підійде за розміром.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы купите вещь, если она подойдёт по размеру.",
+          "uk": "Ви купите річ, якщо вона підійде за розміром."
+        },
+        "gappedTargetPhrase": "I will buy it if it ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-24:i16:r1",
+            "text": "fits"
+          },
+          {
+            "responseId": "en:lesson-29:session-24:i16:r2",
+            "text": "will fit"
+          },
+          {
+            "responseId": "en:lesson-29:session-24:i16:r3",
+            "text": "fit"
+          }
+        ],
+        "testedDimension": "Ви купите річ, якщо вона підійде за розміром.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-24:i16:r2",
+            "correct": false,
+            "testedDimension": "Ви купите річ, якщо вона підійде за розміром.",
+            "feedbackByLocale": {
+              "ru": "После if здесь используем fits без will.",
+              "uk": "Після if тут використовуємо fits без will."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-24:i16:r3",
+            "correct": false,
+            "testedDimension": "Ви купите річ, якщо вона підійде за розміром.",
+            "feedbackByLocale": {
+              "ru": "С it нужна форма fits.",
+              "uk": "З it потрібна форма fits."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-24:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: розмір замалий чи завеликий?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-24:i17:r1",
+          "text": "It is too small."
+        },
+        {
+          "responseId": "en:lesson-29:session-24:i17:r2",
+          "text": "It is too large."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-24:i17:audioA",
+        "en:lesson-29:session-24:i17:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: розмір замалий чи завеликий?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "It is too small.",
+        "contrastB": "It is too large.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-29:session-24:i17:audioA",
+          "transcript": "It is too small."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-29:session-24:i17:audioB",
+          "transcript": "It is too large."
+        },
+        "testedPhoneticContrast": "Послухайте: розмір замалий чи завеликий?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-24:i17:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: розмір замалий чи завеликий?",
+            "feedbackByLocale": {
+              "ru": "Звучит too small — слишком маленький.",
+              "uk": "Звучить too small — замалий."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-24:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, хто пошив сукню.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-24:i18:audio"
+      ],
+      "accessibilityLabel": "Послухайте, хто пошив сукню.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-24:i18:audio",
+          "transcript": "The dress was made by my aunt."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The dress was made by my aunt.",
+        "orderedTokens": [
+          "The",
+          "dress",
+          "was",
+          "made",
+          "by",
+          "my",
+          "aunt"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-24:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сукню пошила ваша тітка.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-24:i19:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-29:session-24:i19:r2",
+          "text": "of"
+        },
+        {
+          "responseId": "en:lesson-29:session-24:i19:r3",
+          "text": "from"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сукню пошила ваша тітка.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Платье сшила ваша тётя.",
+          "uk": "Сукню пошила ваша тітка."
+        },
+        "gappedTargetPhrase": "The dress was made ___ my aunt.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-24:i19:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-29:session-24:i19:r2",
+            "text": "of"
+          },
+          {
+            "responseId": "en:lesson-29:session-24:i19:r3",
+            "text": "from"
+          }
+        ],
+        "testedDimension": "Сукню пошила ваша тітка.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-24:i19:r2",
+            "correct": false,
+            "testedDimension": "Сукню пошила ваша тітка.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя действия вводит by.",
+              "uk": "Виконавця дії позначає by."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-24:i19:r3",
+            "correct": false,
+            "testedDimension": "Сукню пошила ваша тітка.",
+            "feedbackByLocale": {
+              "ru": "Человека, сшившего платье, называем после by.",
+              "uk": "Людину, яка пошила сукню, називаємо після by."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-24:i20",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що вам зручно в цій речі.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-24:i20:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що вам зручно в цій речі.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-24:i20:audio",
+          "transcript": "It feels comfortable."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It feels comfortable.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-24:i21",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що візьмете цю річ.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що візьмете цю річ.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I will take this one.",
+        "localizedMeaning": {
+          "ru": "Скажите, что возьмёте эту вещь.",
+          "uk": "Скажіть, що візьмете цю річ."
+        },
+        "orderedTokens": [
+          "I",
+          "will",
+          "take",
+          "this",
+          "one"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "235cffee3259b26c4192201071f2e4b002a8b09798cac460ff7b8c0939ac31cd"
+}

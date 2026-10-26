@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-29:session-02",
+  "entries": [
+    {
+      "interactionId": "en:lesson-29:session-02:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-02:intro1:r2": {
+          "ru": "После that не добавляем it.",
+          "uk": "Після that не додаємо it."
+        },
+        "en:lesson-29:session-02:intro1:r3": {
+          "ru": "Об одном блюде говорим contains.",
+          "uk": "Про одну страву кажемо contains."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-02:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-02:intro2:r2": {
+          "ru": "Исполнителя действия здесь вводит by.",
+          "uk": "Виконавця дії тут позначає by."
+        },
+        "en:lesson-29:session-02:intro2:r3": {
+          "ru": "После was нужна made.",
+          "uk": "Після was потрібна made."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-02:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-02:intro3:r2": {
+          "ru": "В этом условии после if используем are, без will.",
+          "uk": "У цій умові після if використовуємо are, без will."
+        },
+        "en:lesson-29:session-02:intro3:r3": {
+          "ru": "После will нужна начальная форма order.",
+          "uk": "Після will потрібна початкова форма order."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "8cddb783a0d12f9eac993a9645e401cfc257eef79dcf3bd8a920343f86510367"
+}

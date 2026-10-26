@@ -1,0 +1,1033 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-28:session-47",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-28:session-47:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте, чи включено доставку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи включено доставку.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Is delivery included?",
+        "localizedMeaning": {
+          "ru": "Спросите, включена ли доставка.",
+          "uk": "Запитайте, чи включено доставку."
+        },
+        "orderedTokens": [
+          "Is",
+          "delivery",
+          "included"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-47:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — futon",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-47:i02:audio"
+      ],
+      "accessibilityLabel": "Картка слова — futon",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-47:i02:audio",
+          "transcript": "futon"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-47:i02:r1",
+            "targetText": "futon",
+            "meaningByLocale": {
+              "ru": "Футон. Матрас для сна; в магазинах так также называют диван-кровать с таким матрасом. Здесь речь о самом матрасе.",
+              "uk": "Футон. Матрац для сну; у магазинах так також називають диван-ліжко з таким матрацом. Тут ідеться про сам матрац."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "futon",
+          "definitionByLocale": {
+            "ru": "Футон. Матрас для сна; в магазинах так также называют диван-кровать с таким матрасом. Здесь речь о самом матрасе.",
+            "uk": "Футон. Матрац для сну; у магазинах так також називають диван-ліжко з таким матрацом. Тут ідеться про сам матрац."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-47:i03",
+      "ordinal": 6,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточніть товщину цього матраца-футона.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-47:i03:audio"
+      ],
+      "accessibilityLabel": "Уточніть товщину цього матраца-футона.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-47:i03:audio",
+          "transcript": "How thick is this futon?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "How thick is this futon?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-47:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви хочете дізнатися, чи знімається чохол.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-47:i04:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-28:session-47:i04:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-28:session-47:i04:r3",
+          "text": "was"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви хочете дізнатися, чи знімається чохол.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы хотите узнать, снимается ли чехол.",
+          "uk": "Ви хочете дізнатися, чи знімається чохол."
+        },
+        "gappedTargetPhrase": "Can the cover ___ removed?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-47:i04:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-28:session-47:i04:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-28:session-47:i04:r3",
+            "text": "was"
+          }
+        ],
+        "testedDimension": "Ви хочете дізнатися, чи знімається чохол.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-47:i04:r2",
+            "correct": false,
+            "testedDimension": "Ви хочете дізнатися, чи знімається чохол.",
+            "feedbackByLocale": {
+              "ru": "После can нужна be.",
+              "uk": "Після can потрібна be."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-47:i04:r3",
+            "correct": false,
+            "testedDimension": "Ви хочете дізнатися, чи знімається чохол.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем can be removed.",
+              "uk": "Тут використовуємо can be removed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-47:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-47:i05:r1",
+          "text": "The bed will be assembled in your room."
+        },
+        {
+          "responseId": "en:lesson-28:session-47:i05:r2",
+          "text": "The bed will be assembled in the shop."
+        },
+        {
+          "responseId": "en:lesson-28:session-47:i05:r3",
+          "text": "The desk will be assembled in your room."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-47:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-47:i05:audio",
+          "transcript": "The bed will be assembled in your room."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-47:i05:r1",
+            "targetText": "The bed will be assembled in your room.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-47:i05:r2",
+            "targetText": "The bed will be assembled in the shop.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-47:i05:r3",
+            "targetText": "The desk will be assembled in your room.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-47:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The bed will be assembled in your room.",
+              "uk": "У записі звучить The bed will be assembled in your room."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-47:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The bed will be assembled in your room.",
+              "uk": "У записі звучить The bed will be assembled in your room."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-47:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — divan",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-47:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — divan",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-47:i06:audio",
+          "transcript": "divan"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-47:i06:r1",
+            "targetText": "divan",
+            "meaningByLocale": {
+              "ru": "Кровать с обитым основанием. В британском магазине кроватей это обычно не диван для гостиной; матрас лежит на основании.",
+              "uk": "Ліжко з оббитою основою. У британському магазині ліжок це зазвичай не диван для вітальні; матрац лежить на основі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "divan",
+          "definitionByLocale": {
+            "ru": "Кровать с обитым основанием. В британском магазине кроватей это обычно не диван для гостиной; матрас лежит на основании.",
+            "uk": "Ліжко з оббитою основою. У британському магазині ліжок це зазвичай не диван для вітальні; матрац лежить на основі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-47:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросіть показати це ліжко з оббитою основою.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросіть показати це ліжко з оббитою основою.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Can you show me this divan?",
+        "localizedMeaning": {
+          "ru": "Попросите показать эту кровать с обитым основанием.",
+          "uk": "Попросіть показати це ліжко з оббитою основою."
+        },
+        "orderedTokens": [
+          "Can",
+          "you",
+          "show",
+          "me",
+          "this",
+          "divan"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-47:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточніть, чи входить матрац у ціну.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-47:i08:audio"
+      ],
+      "accessibilityLabel": "Уточніть, чи входить матрац у ціну.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-47:i08:audio",
+          "transcript": "Is the mattress included?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is the mattress included?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-47:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Продавець обіцяє зібрати ліжко в кімнаті.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-47:i09:r1",
+          "text": "assembled"
+        },
+        {
+          "responseId": "en:lesson-28:session-47:i09:r2",
+          "text": "assemble"
+        },
+        {
+          "responseId": "en:lesson-28:session-47:i09:r3",
+          "text": "assembling"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Продавець обіцяє зібрати ліжко в кімнаті.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Продавец обещает собрать кровать в комнате.",
+          "uk": "Продавець обіцяє зібрати ліжко в кімнаті."
+        },
+        "gappedTargetPhrase": "The bed will be ___ in your room.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-47:i09:r1",
+            "text": "assembled"
+          },
+          {
+            "responseId": "en:lesson-28:session-47:i09:r2",
+            "text": "assemble"
+          },
+          {
+            "responseId": "en:lesson-28:session-47:i09:r3",
+            "text": "assembling"
+          }
+        ],
+        "testedDimension": "Продавець обіцяє зібрати ліжко в кімнаті.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-47:i09:r2",
+            "correct": false,
+            "testedDimension": "Продавець обіцяє зібрати ліжко в кімнаті.",
+            "feedbackByLocale": {
+              "ru": "После will be нужна assembled.",
+              "uk": "Після will be потрібна assembled."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-47:i09:r3",
+            "correct": false,
+            "testedDimension": "Продавець обіцяє зібрати ліжко в кімнаті.",
+            "feedbackByLocale": {
+              "ru": "Здесь действие над кроватью: be assembled.",
+              "uk": "Тут дія з ліжком: be assembled."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-47:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — daybed",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-47:i10:audio"
+      ],
+      "accessibilityLabel": "Картка слова — daybed",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-47:i10:audio",
+          "transcript": "daybed"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-47:i10:r1",
+            "targetText": "daybed",
+            "meaningByLocale": {
+              "ru": "Кушетка для сидения и сна. Днём на ней можно сидеть, а ночью спать; она не обязательно раскладывается.",
+              "uk": "Кушетка для сидіння та сну. Удень на ній можна сидіти, а вночі спати; вона не обов’язково розкладається."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "daybed",
+          "definitionByLocale": {
+            "ru": "Кушетка для сидения и сна. Днём на ней можно сидеть, а ночью спать; она не обязательно раскладывается.",
+            "uk": "Кушетка для сидіння та сну. Удень на ній можна сидіти, а вночі спати; вона не обов’язково розкладається."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-47:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте ширину кушетки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-47:i11:audio"
+      ],
+      "accessibilityLabel": "Запитайте ширину кушетки.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-47:i11:audio",
+          "transcript": "How wide is this daybed?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "How wide is this daybed?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-47:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, хто виготовив каркас.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-47:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте, хто виготовив каркас.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-47:i12:audio",
+          "transcript": "The frame was made by a local carpenter."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The frame was made by a local carpenter.",
+        "orderedTokens": [
+          "The",
+          "frame",
+          "was",
+          "made",
+          "by",
+          "a",
+          "local",
+          "carpenter"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-47:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Кімната тісна, і ви хотіли б мати більше місця.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-47:i13:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-28:session-47:i13:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-28:session-47:i13:r3",
+          "text": "will have"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Кімната тісна, і ви хотіли б мати більше місця.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Комната тесная, и вы хотели бы иметь больше места.",
+          "uk": "Кімната тісна, і ви хотіли б мати більше місця."
+        },
+        "gappedTargetPhrase": "I wish I ___ more space.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-47:i13:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-28:session-47:i13:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-28:session-47:i13:r3",
+            "text": "will have"
+          }
+        ],
+        "testedDimension": "Кімната тісна, і ви хотіли б мати більше місця.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-47:i13:r2",
+            "correct": false,
+            "testedDimension": "Кімната тісна, і ви хотіли б мати більше місця.",
+            "feedbackByLocale": {
+              "ru": "Желание о настоящем: wish I had.",
+              "uk": "Бажання щодо теперішнього: wish I had."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-47:i13:r3",
+            "correct": false,
+            "testedDimension": "Кімната тісна, і ви хотіли б мати більше місця.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна had.",
+              "uk": "Тут потрібна had."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-47:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bolster",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-47:i14:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bolster",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-47:i14:audio",
+          "transcript": "bolster"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-47:i14:r1",
+            "targetText": "bolster",
+            "meaningByLocale": {
+              "ru": "Длинная плотная подушка-валик. Её кладут на кровать или кушетку для опоры.",
+              "uk": "Довга щільна подушка-валик. Її кладуть на ліжко або кушетку для опори."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bolster",
+          "definitionByLocale": {
+            "ru": "Длинная плотная подушка-валик. Её кладут на кровать или кушетку для опоры.",
+            "uk": "Довга щільна подушка-валик. Її кладуть на ліжко або кушетку для опори."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-47:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросіть м’якшу подушку-валик.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросіть м’якшу подушку-валик.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you have a softer bolster?",
+        "localizedMeaning": {
+          "ru": "Попросите подушку-валик помягче.",
+          "uk": "Попросіть м’якшу подушку-валик."
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "have",
+          "a",
+          "softer",
+          "bolster"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-47:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте назви з описами.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте назви з описами.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-28:session-47:i16:p1",
+            "target": "futon",
+            "meaningByLocale": {
+              "ru": "матрас-футон",
+              "uk": "матрац-футон"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-47:i16:p2",
+            "target": "divan",
+            "meaningByLocale": {
+              "ru": "кровать с обитым основанием",
+              "uk": "ліжко з оббитою основою"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-47:i16:p3",
+            "target": "daybed",
+            "meaningByLocale": {
+              "ru": "кушетка для сидения и сна",
+              "uk": "кушетка для сидіння та сну"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-47:i16:p4",
+            "target": "bolster",
+            "meaningByLocale": {
+              "ru": "подушка-валик",
+              "uk": "подушка-валик"
+            }
+          }
+        ],
+        "leftColumn": [
+          "futon",
+          "divan",
+          "daybed",
+          "bolster"
+        ],
+        "rightColumn": [
+          "матрац-футон",
+          "ліжко з оббитою основою",
+          "кушетка для сидіння та сну",
+          "подушка-валик"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-47:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-47:i17:r1",
+          "text": "The covers are washed separately."
+        },
+        {
+          "responseId": "en:lesson-28:session-47:i17:r2",
+          "text": "The covers are sold separately."
+        },
+        {
+          "responseId": "en:lesson-28:session-47:i17:r3",
+          "text": "The cushions are washed separately."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-47:i17:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-47:i17:audio",
+          "transcript": "The covers are washed separately."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-47:i17:r1",
+            "targetText": "The covers are washed separately.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-47:i17:r2",
+            "targetText": "The covers are sold separately.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-47:i17:r3",
+            "targetText": "The cushions are washed separately.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-47:i17:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The covers are washed separately.",
+              "uk": "У записі звучить The covers are washed separately."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-47:i17:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The covers are washed separately.",
+              "uk": "У записі звучить The covers are washed separately."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-47:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Майстер уже зібрав ліжко на момент вашого повернення.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-47:i18:r1",
+          "text": "assembled"
+        },
+        {
+          "responseId": "en:lesson-28:session-47:i18:r2",
+          "text": "assemble"
+        },
+        {
+          "responseId": "en:lesson-28:session-47:i18:r3",
+          "text": "assembling"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Майстер уже зібрав ліжко на момент вашого повернення.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Мастер уже собрал кровать к вашему возвращению.",
+          "uk": "Майстер уже зібрав ліжко на момент вашого повернення."
+        },
+        "gappedTargetPhrase": "He had ___ the bed by the time I returned.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-47:i18:r1",
+            "text": "assembled"
+          },
+          {
+            "responseId": "en:lesson-28:session-47:i18:r2",
+            "text": "assemble"
+          },
+          {
+            "responseId": "en:lesson-28:session-47:i18:r3",
+            "text": "assembling"
+          }
+        ],
+        "testedDimension": "Майстер уже зібрав ліжко на момент вашого повернення.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-47:i18:r2",
+            "correct": false,
+            "testedDimension": "Майстер уже зібрав ліжко на момент вашого повернення.",
+            "feedbackByLocale": {
+              "ru": "После had нужна assembled.",
+              "uk": "Після had потрібна assembled."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-47:i18:r3",
+            "correct": false,
+            "testedDimension": "Майстер уже зібрав ліжко на момент вашого повернення.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем had assembled.",
+              "uk": "Тут використовуємо had assembled."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-47:i19",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточніть, чи пройде ліжко у дверний отвір.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-47:i19:audio"
+      ],
+      "accessibilityLabel": "Уточніть, чи пройде ліжко у дверний отвір.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-47:i19:audio",
+          "transcript": "Will it fit through the door?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Will it fit through the door?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-47:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, коли доставлять покупку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-47:i20:audio"
+      ],
+      "accessibilityLabel": "Послухайте, коли доставлять покупку.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-47:i20:audio",
+          "transcript": "Your order will be delivered on Tuesday."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Your order will be delivered on Tuesday.",
+        "orderedTokens": [
+          "Your",
+          "order",
+          "will",
+          "be",
+          "delivered",
+          "on",
+          "Tuesday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-47:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть записати розміри.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-47:i21:audio"
+      ],
+      "accessibilityLabel": "Попросіть записати розміри.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-47:i21:audio",
+          "transcript": "Could you write down the measurements?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you write down the measurements?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "da9cb03095c7ee3478e5b40a00b8f7d670cc05cc5e436b9f4e6d6745a55a8545"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-29:session-12",
+  "entries": [
+    {
+      "interactionId": "en:lesson-29:session-12:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-12:intro1:r2": {
+          "ru": "Перед названием принадлежащей ей вещи нужно whose.",
+          "uk": "Перед назвою належної їй речі потрібне whose."
+        },
+        "en:lesson-29:session-12:intro1:r3": {
+          "ru": "После whose не добавляем her.",
+          "uk": "Після whose не додаємо her."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-12:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-12:intro2:r2": {
+          "ru": "Исполнителя действия вводит by.",
+          "uk": "Виконавця дії позначає by."
+        },
+        "en:lesson-29:session-12:intro2:r3": {
+          "ru": "Для этого действия нужна was made.",
+          "uk": "Для цієї дії потрібна was made."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-12:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-12:intro3:r2": {
+          "ru": "После if в этом условии нужна need без will.",
+          "uk": "Після if у цій умові потрібна need без will."
+        },
+        "en:lesson-29:session-12:intro3:r3": {
+          "ru": "После will нужна начальная форма bring.",
+          "uk": "Після will потрібна початкова форма bring."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "cf4baf8f0fc5e21f29b72aaa62b18f08e521e3d8864a5fecf0ff3ff9a35e0d5d"
+}

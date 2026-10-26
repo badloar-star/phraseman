@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-28:session-43",
+  "entries": [
+    {
+      "interactionId": "en:lesson-28:session-43:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-43:intro1:r2": {
+          "ru": "После wish здесь нужна had.",
+          "uk": "Після wish тут потрібна had."
+        },
+        "en:lesson-28:session-43:intro1:r3": {
+          "ru": "Для желания о настоящем используем had.",
+          "uk": "Для бажання щодо теперішнього використовуємо had."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-43:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-43:intro2:r2": {
+          "ru": "Исполнителя вводит by.",
+          "uk": "Виконавця вводить by."
+        },
+        "en:lesson-28:session-43:intro2:r3": {
+          "ru": "Перед my mother нужна by.",
+          "uk": "Перед my mother потрібна by."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-43:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-43:intro3:r2": {
+          "ru": "Перед collected нужна be.",
+          "uk": "Перед collected потрібна be."
+        },
+        "en:lesson-28:session-43:intro3:r3": {
+          "ru": "После be нужна collected.",
+          "uk": "Після be потрібна collected."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "3c5acf7d5dbc76fe593a353246a0b60dcf5947c723869dc4744d95b1f14aa2c7"
+}

@@ -1,0 +1,1069 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-28:session-51",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-28:session-51:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-51:i01:r1",
+          "text": "Your hair will be washed first."
+        },
+        {
+          "responseId": "en:lesson-28:session-51:i01:r2",
+          "text": "Your hair will be dried first."
+        },
+        {
+          "responseId": "en:lesson-28:session-51:i01:r3",
+          "text": "Your beard will be washed first."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-51:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-51:i01:audio",
+          "transcript": "Your hair will be washed first."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-51:i01:r1",
+            "targetText": "Your hair will be washed first.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-51:i01:r2",
+            "targetText": "Your hair will be dried first.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-51:i01:r3",
+            "targetText": "Your beard will be washed first.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-51:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Your hair will be washed first.",
+              "uk": "У записі звучить Your hair will be washed first."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-51:i01:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Your hair will be washed first.",
+              "uk": "У записі звучить Your hair will be washed first."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-51:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — goatee",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-51:i02:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — goatee",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-51:i02:audio",
+          "transcript": "goatee"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-51:i02:r1",
+            "targetText": "goatee",
+            "meaningByLocale": {
+              "ru": "Бородка на подбородке. Может сочетаться с усами; слово называет форму бороды.",
+              "uk": "Борідка на підборідді. Може поєднуватися з вусами; слово називає форму бороди."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "goatee",
+          "definitionByLocale": {
+            "ru": "Бородка на подбородке. Может сочетаться с усами; слово называет форму бороды.",
+            "uk": "Борідка на підборідді. Може поєднуватися з вусами; слово називає форму бороди."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-51:i03",
+      "ordinal": 6,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите мастера сохранить вашу бородку на подбородке.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-51:i03:audio"
+      ],
+      "accessibilityLabel": "Попросите мастера сохранить вашу бородку на подбородке.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-51:i03:audio",
+          "transcript": "Please keep my goatee."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Please keep my goatee.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-51:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточните, можно ли подровнять бороду.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-51:i04:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-28:session-51:i04:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-28:session-51:i04:r3",
+          "text": "was"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточните, можно ли подровнять бороду.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните, можно ли подровнять бороду.",
+          "uk": "Уточніть, чи можна підрівняти бороду."
+        },
+        "gappedTargetPhrase": "Can my beard ___ trimmed?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-51:i04:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-28:session-51:i04:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-28:session-51:i04:r3",
+            "text": "was"
+          }
+        ],
+        "testedDimension": "Уточните, можно ли подровнять бороду.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-51:i04:r2",
+            "correct": false,
+            "testedDimension": "Уточните, можно ли подровнять бороду.",
+            "feedbackByLocale": {
+              "ru": "После can нужна be.",
+              "uk": "Після can потрібна be."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-51:i04:r3",
+            "correct": false,
+            "testedDimension": "Уточните, можно ли подровнять бороду.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем can be trimmed.",
+              "uk": "Тут використовуємо can be trimmed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-51:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросите оставить волосы сверху длиннее.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросите оставить волосы сверху длиннее.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Please leave the top longer.",
+        "localizedMeaning": {
+          "ru": "Попросите оставить волосы сверху длиннее.",
+          "uk": "Попросіть залишити волосся зверху довшим."
+        },
+        "orderedTokens": [
+          "Please",
+          "leave",
+          "the",
+          "top",
+          "longer"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-51:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — perm",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-51:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — perm",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-51:i06:audio",
+          "transcript": "perm"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-51:i06:r1",
+            "targetText": "perm",
+            "meaningByLocale": {
+              "ru": "Химическая завивка. Здесь название салонной процедуры для создания локонов.",
+              "uk": "Хімічна завивка. Тут назва салонної процедури для створення локонів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "perm",
+          "definitionByLocale": {
+            "ru": "Химическая завивка. Здесь название салонной процедуры для создания локонов.",
+            "uk": "Хімічна завивка. Тут назва салонної процедури для створення локонів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-51:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточните стоимость завивки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-51:i07:audio"
+      ],
+      "accessibilityLabel": "Уточните стоимость завивки.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-51:i07:audio",
+          "transcript": "How much is a perm?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "How much is a perm?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-51:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Спросите, включено ли мытьё головы в цену.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-51:i08:r1",
+          "text": "included"
+        },
+        {
+          "responseId": "en:lesson-28:session-51:i08:r2",
+          "text": "include"
+        },
+        {
+          "responseId": "en:lesson-28:session-51:i08:r3",
+          "text": "including"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите, включено ли мытьё головы в цену.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите, включено ли мытьё головы в цену.",
+          "uk": "Запитайте, чи включено миття голови в ціну."
+        },
+        "gappedTargetPhrase": "Is a hair wash ___?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-51:i08:r1",
+            "text": "included"
+          },
+          {
+            "responseId": "en:lesson-28:session-51:i08:r2",
+            "text": "include"
+          },
+          {
+            "responseId": "en:lesson-28:session-51:i08:r3",
+            "text": "including"
+          }
+        ],
+        "testedDimension": "Спросите, включено ли мытьё головы в цену.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-51:i08:r2",
+            "correct": false,
+            "testedDimension": "Спросите, включено ли мытьё головы в цену.",
+            "feedbackByLocale": {
+              "ru": "После is нужна included.",
+              "uk": "Після is потрібна included."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-51:i08:r3",
+            "correct": false,
+            "testedDimension": "Спросите, включено ли мытьё головы в цену.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем is included.",
+              "uk": "Тут використовуємо is included."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-51:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, кто подровнял бороду.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-51:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте, кто подровнял бороду.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-51:i09:audio",
+          "transcript": "My beard was trimmed by my brother."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "My beard was trimmed by my brother.",
+        "orderedTokens": [
+          "My",
+          "beard",
+          "was",
+          "trimmed",
+          "by",
+          "my",
+          "brother"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-51:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — undercut",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-51:i10:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — undercut",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-51:i10:audio",
+          "transcript": "undercut"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-51:i10:r1",
+            "targetText": "undercut",
+            "meaningByLocale": {
+              "ru": "Стрижка с короткими боками и затылком при более длинном верхе. Здесь существительное, название причёски.",
+              "uk": "Стрижка з короткими боками й потилицею та довшим верхом. Тут іменник, назва зачіски."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "undercut",
+          "definitionByLocale": {
+            "ru": "Стрижка с короткими боками и затылком при более длинном верхе. Здесь существительное, название причёски.",
+            "uk": "Стрижка з короткими боками й потилицею та довшим верхом. Тут іменник, назва зачіски."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-51:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросите показать пример такой стрижки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросите показать пример такой стрижки.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Can you show me an undercut?",
+        "localizedMeaning": {
+          "ru": "Попросите показать пример такой стрижки.",
+          "uk": "Попросіть показати приклад такої стрижки."
+        },
+        "orderedTokens": [
+          "Can",
+          "you",
+          "show",
+          "me",
+          "an",
+          "undercut"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-51:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-51:i12:r1",
+          "text": "The towels are washed after each use."
+        },
+        {
+          "responseId": "en:lesson-28:session-51:i12:r2",
+          "text": "The towels are dried after each use."
+        },
+        {
+          "responseId": "en:lesson-28:session-51:i12:r3",
+          "text": "The brushes are washed after each use."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-51:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-51:i12:audio",
+          "transcript": "The towels are washed after each use."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-51:i12:r1",
+            "targetText": "The towels are washed after each use.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-51:i12:r2",
+            "targetText": "The towels are dried after each use.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-51:i12:r3",
+            "targetText": "The brushes are washed after each use.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-51:i12:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The towels are washed after each use.",
+              "uk": "У записі звучить The towels are washed after each use."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-51:i12:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The towels are washed after each use.",
+              "uk": "У записі звучить The towels are washed after each use."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-51:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы хотели бы более длинные волосы для выбранной причёски.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-51:i13:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-28:session-51:i13:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-28:session-51:i13:r3",
+          "text": "will have"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы хотели бы более длинные волосы для выбранной причёски.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы хотели бы более длинные волосы для выбранной причёски.",
+          "uk": "Ви хотіли б довше волосся для вибраної зачіски."
+        },
+        "gappedTargetPhrase": "I wish I ___ longer hair.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-51:i13:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-28:session-51:i13:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-28:session-51:i13:r3",
+            "text": "will have"
+          }
+        ],
+        "testedDimension": "Вы хотели бы более длинные волосы для выбранной причёски.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-51:i13:r2",
+            "correct": false,
+            "testedDimension": "Вы хотели бы более длинные волосы для выбранной причёски.",
+            "feedbackByLocale": {
+              "ru": "Желание о настоящем: wish I had.",
+              "uk": "Бажання щодо теперішнього: wish I had."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-51:i13:r3",
+            "correct": false,
+            "testedDimension": "Вы хотели бы более длинные волосы для выбранной причёски.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна had.",
+              "uk": "Тут потрібна had."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-51:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — plait",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-51:i14:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — plait",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-51:i14:audio",
+          "transcript": "plait"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-51:i14:r1",
+            "targetText": "plait",
+            "meaningByLocale": {
+              "ru": "Коса из волос. Британское слово для косы; знакомое слово braid также называет косу.",
+              "uk": "Коса з волосся. Британське слово для коси; знайоме слово braid також називає косу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "plait",
+          "definitionByLocale": {
+            "ru": "Коса из волос. Британское слово для косы; знакомое слово braid также называет косу.",
+            "uk": "Коса з волосся. Британське слово для коси; знайоме слово braid також називає косу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-51:i15",
+      "ordinal": 18,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите заплести волосы в одну косу.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-51:i15:audio"
+      ],
+      "accessibilityLabel": "Попросите заплести волосы в одну косу.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-51:i15:audio",
+          "transcript": "Could you put my hair in a plait?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you put my hair in a plait?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-51:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините названия с описаниями.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините названия с описаниями.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-28:session-51:i16:p1",
+            "target": "goatee",
+            "meaningByLocale": {
+              "ru": "бородка на подбородке",
+              "uk": "борідка на підборідді"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-51:i16:p2",
+            "target": "perm",
+            "meaningByLocale": {
+              "ru": "завивка",
+              "uk": "завивка"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-51:i16:p3",
+            "target": "undercut",
+            "meaningByLocale": {
+              "ru": "стрижка с короткими боками и более длинным верхом",
+              "uk": "стрижка з короткими боками й довшим верхом"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-51:i16:p4",
+            "target": "plait",
+            "meaningByLocale": {
+              "ru": "коса из волос",
+              "uk": "коса з волосся"
+            }
+          }
+        ],
+        "leftColumn": [
+          "goatee",
+          "perm",
+          "undercut",
+          "plait"
+        ],
+        "rightColumn": [
+          "бородка на подбородке",
+          "завивка",
+          "стрижка с короткими боками и более длинным верхом",
+          "коса из волос"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-51:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Мастер уже закончил стрижку к вашему возвращению.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-51:i17:r1",
+          "text": "finished"
+        },
+        {
+          "responseId": "en:lesson-28:session-51:i17:r2",
+          "text": "finish"
+        },
+        {
+          "responseId": "en:lesson-28:session-51:i17:r3",
+          "text": "finishing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Мастер уже закончил стрижку к вашему возвращению.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Мастер уже закончил стрижку к вашему возвращению.",
+          "uk": "Майстер уже закінчив стрижку на момент вашого повернення."
+        },
+        "gappedTargetPhrase": "He had ___ the haircut by the time I returned.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-51:i17:r1",
+            "text": "finished"
+          },
+          {
+            "responseId": "en:lesson-28:session-51:i17:r2",
+            "text": "finish"
+          },
+          {
+            "responseId": "en:lesson-28:session-51:i17:r3",
+            "text": "finishing"
+          }
+        ],
+        "testedDimension": "Мастер уже закончил стрижку к вашему возвращению.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-51:i17:r2",
+            "correct": false,
+            "testedDimension": "Мастер уже закончил стрижку к вашему возвращению.",
+            "feedbackByLocale": {
+              "ru": "После had нужна finished.",
+              "uk": "Після had потрібна finished."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-51:i17:r3",
+            "correct": false,
+            "testedDimension": "Мастер уже закончил стрижку к вашему возвращению.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем had finished.",
+              "uk": "Тут використовуємо had finished."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-51:i18",
+      "ordinal": 21,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите не стричь слишком коротко.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-51:i18:audio"
+      ],
+      "accessibilityLabel": "Попросите не стричь слишком коротко.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-51:i18:audio",
+          "transcript": "Please do not cut it too short."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Please do not cut it too short.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-51:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, как высушат волосы.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-51:i19:audio"
+      ],
+      "accessibilityLabel": "Послушайте, как высушат волосы.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-51:i19:audio",
+          "transcript": "Your hair will be dried with a towel."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Your hair will be dried with a towel.",
+        "orderedTokens": [
+          "Your",
+          "hair",
+          "will",
+          "be",
+          "dried",
+          "with",
+          "a",
+          "towel"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-51:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Мастер говорит о нескольких вымытых расчёсках.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-51:i20:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-28:session-51:i20:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-28:session-51:i20:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Мастер говорит о нескольких вымытых расчёсках.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Мастер говорит о нескольких вымытых расчёсках.",
+          "uk": "Майстер говорить про кілька вимитих гребінців."
+        },
+        "gappedTargetPhrase": "The combs ___ washed this morning.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-51:i20:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-28:session-51:i20:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-28:session-51:i20:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Мастер говорит о нескольких вымытых расчёсках.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-51:i20:r2",
+            "correct": false,
+            "testedDimension": "Мастер говорит о нескольких вымытых расчёсках.",
+            "feedbackByLocale": {
+              "ru": "Combs — несколько: were.",
+              "uk": "Combs — кілька: were."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-51:i20:r3",
+            "correct": false,
+            "testedDimension": "Мастер говорит о нескольких вымытых расчёсках.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна were washed.",
+              "uk": "Тут потрібна were washed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-51:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите показать стрижку сзади в зеркале.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-51:i21:audio"
+      ],
+      "accessibilityLabel": "Попросите показать стрижку сзади в зеркале.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-51:i21:audio",
+          "transcript": "Could you show me the back?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you show me the back?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "b2d343a6549109662219f2c3cd5e9878d9f9abc8be8c864c3735f8837cf9bda4"
+}

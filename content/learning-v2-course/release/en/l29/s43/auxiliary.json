@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-29:session-43",
+  "entries": [
+    {
+      "interactionId": "en:lesson-29:session-43:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-43:intro1:r2": {
+          "ru": "It повторяет уже названную сковороду.",
+          "uk": "It повторює вже названу сковороду."
+        },
+        "en:lesson-29:session-43:intro1:r3": {
+          "ru": "Купили вы: I bought, не me bought.",
+          "uk": "Купили ви: I bought, не me bought."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-43:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-43:intro2:r2": {
+          "ru": "В уточнении нужен порядок I bought.",
+          "uk": "В уточненні потрібен порядок I bought."
+        },
+        "en:lesson-29:session-43:intro2:r3": {
+          "ru": "Для места покупки используем where.",
+          "uk": "Для місця покупки використовуємо where."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-43:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-43:intro3:r2": {
+          "ru": "После was для действия нужна форма repaired.",
+          "uk": "Після was для дії потрібна форма repaired."
+        },
+        "en:lesson-29:session-43:intro3:r3": {
+          "ru": "Исполнителя действия вводит by.",
+          "uk": "Виконавця дії вводить by."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "af5942d8941031da31bc242021bf695a9b7dd18f2f016dc3d9460f2f5c5ae9ea"
+}

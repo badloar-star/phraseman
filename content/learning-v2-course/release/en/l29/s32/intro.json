@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-29:session-32",
+  "learningOutcomeByLocale": {
+    "ru": "как назвать временный уход, опознавательный чип и процедуры в документах, уточнить человека и кабинет.",
+    "uk": "як назвати тимчасовий догляд, ідентифікаційний чип і процедури в документах, уточнити людину й кабінет."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-29:session-32:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Кого вы встретили в приюте",
+        "uk": "Кого ви зустріли в притулку"
+      },
+      "bodyByLocale": {
+        "ru": "После посещения приюта вы рассказываете другу о приветливом волонтёре. Скажите: The volunteer who I met was helpful — волонтёр, которого я встретил, охотно помогал. Соберите The volunteer + who I met + was helpful. Встретили его вы, поэтому после who нужно I met. Who обозначает встреченного волонтёра; him после met не добавляем.",
+        "uk": "Після відвідин притулку ви розповідаєте другові про привітного волонтера. Скажіть: The volunteer who I met was helpful — волонтер, якого я зустрів, охоче допомагав. Складіть The volunteer + who I met + was helpful. Зустріли його ви, тому після who потрібне I met. Who позначає зустрінутого волонтера; him після met не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-32:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-32:intro1:r1",
+              "text": "The volunteer who I met was helpful."
+            },
+            {
+              "responseId": "en:lesson-29:session-32:intro1:r2",
+              "text": "The volunteer who I met him was helpful."
+            },
+            {
+              "responseId": "en:lesson-29:session-32:intro1:r3",
+              "text": "The volunteer who me met was helpful."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-32:intro1:r1",
+              "text": "The volunteer who I met was helpful."
+            },
+            {
+              "responseId": "en:lesson-29:session-32:intro1:r2",
+              "text": "The volunteer who I met him was helpful."
+            },
+            {
+              "responseId": "en:lesson-29:session-32:intro1:r3",
+              "text": "The volunteer who me met was helpful."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-29:session-32:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Кто заботился о собаке",
+        "uk": "Хто піклувався про собаку"
+      },
+      "bodyByLocale": {
+        "ru": "В приюте вам показывают человека, который заботился о собаке. Скажите: This is the person who looked after the dog — это человек, который заботился о собаке. Соберите This is the person + who looked after the dog. Заботился этот человек: who обозначает его внутри уточнения. Поэтому сразу после who ставим looked after the dog, без he.",
+        "uk": "У притулку вам показують людину, яка піклувалася про собаку. Скажіть: This is the person who looked after the dog — це людина, яка піклувалася про собаку. Складіть This is the person + who looked after the dog. Піклувалася ця людина: who позначає її всередині уточнення. Тому відразу після who ставимо looked after the dog, без he."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-32:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-32:intro2:r1",
+              "text": "This is the person who looked after the dog."
+            },
+            {
+              "responseId": "en:lesson-29:session-32:intro2:r2",
+              "text": "This is the person who he looked after the dog."
+            },
+            {
+              "responseId": "en:lesson-29:session-32:intro2:r3",
+              "text": "This is the person which looked after the dog."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-32:intro2:r1",
+              "text": "This is the person who looked after the dog."
+            },
+            {
+              "responseId": "en:lesson-29:session-32:intro2:r2",
+              "text": "This is the person who he looked after the dog."
+            },
+            {
+              "responseId": "en:lesson-29:session-32:intro2:r3",
+              "text": "This is the person which looked after the dog."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-29:session-32:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Куда обратиться с вопросами",
+        "uk": "Куди звернутися із запитаннями"
+      },
+      "bodyByLocale": {
+        "ru": "Волонтёр показывает кабинет, где вы можете поговорить с ветеринаром. Передайте его слова: This is the room where you can speak to the vet — это кабинет, где вы можете поговорить с ветеринаром. Соберите This is the room + where + you can speak to the vet. Where связывает разговор с кабинетом. После where ставим обычный порядок you can speak, а не can you speak.",
+        "uk": "Волонтер показує кабінет, де ви можете поговорити з ветеринаром. Передайте його слова: This is the room where you can speak to the vet — це кабінет, де ви можете поговорити з ветеринаром. Складіть This is the room + where + you can speak to the vet. Where пов’язує розмову з кабінетом. Після where ставимо звичайний порядок you can speak, а не can you speak."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-32:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-32:intro3:r1",
+              "text": "This is the room where you can speak to the vet."
+            },
+            {
+              "responseId": "en:lesson-29:session-32:intro3:r2",
+              "text": "This is the room where can you speak to the vet."
+            },
+            {
+              "responseId": "en:lesson-29:session-32:intro3:r3",
+              "text": "This is the room who you can speak to the vet."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-32:intro3:r1",
+              "text": "This is the room where you can speak to the vet."
+            },
+            {
+              "responseId": "en:lesson-29:session-32:intro3:r2",
+              "text": "This is the room where can you speak to the vet."
+            },
+            {
+              "responseId": "en:lesson-29:session-32:intro3:r3",
+              "text": "This is the room who you can speak to the vet."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "14d3909207185b3df504ef78036b56aecff95a5704523fc8b495ab5d696f801a"
+}

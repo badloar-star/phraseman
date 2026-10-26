@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-28:session-26",
+  "learningOutcomeByLocale": {
+    "ru": "как описать замену деталей, хранение и доставку, выразить желание и связать прошлые события.",
+    "uk": "як описати заміну деталей, зберігання й доставку, висловити бажання та пов’язати минулі події."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-28:session-26:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ремень можно заменить",
+        "uk": "Ремінь можна замінити"
+      },
+      "bodyByLocale": {
+        "ru": "Вам нравится сумка, но её ремень повреждён. Продавец объясняет: The strap can be replaced — ремень можно заменить. Соберите The strap + can + be + replaced. Can выражает возможность, а be replaced — действие над ремнём. После can нужна be, затем replaced — форма replace с окончанием -d.",
+        "uk": "Вам подобається сумка, але її ремінь пошкоджений. Продавець пояснює: The strap can be replaced — ремінь можна замінити. Складіть The strap + can + be + replaced. Can виражає можливість, а be replaced — дію над ременем. Після can потрібна be, потім replaced — форма replace із закінченням -d."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-26:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-26:intro1:r1",
+              "text": "The strap can be replaced."
+            },
+            {
+              "responseId": "en:lesson-28:session-26:intro1:r2",
+              "text": "The strap can replaced."
+            },
+            {
+              "responseId": "en:lesson-28:session-26:intro1:r3",
+              "text": "The strap can be replace."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-26:intro1:r1",
+              "text": "The strap can be replaced."
+            },
+            {
+              "responseId": "en:lesson-28:session-26:intro1:r2",
+              "text": "The strap can replaced."
+            },
+            {
+              "responseId": "en:lesson-28:session-26:intro1:r3",
+              "text": "The strap can be replace."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-28:session-26:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Доставка сумки",
+        "uk": "Доставка сумки"
+      },
+      "bodyByLocale": {
+        "ru": "Вы заказали большую сумку, которую не хотите нести домой. Продавец обещает: Your bag will be delivered tomorrow — вашу сумку доставят завтра. Соберите Your bag + will be + delivered + tomorrow. Will be delivered описывает будущее действие над сумкой. После will нужна be. Tomorrow указывает день доставки.",
+        "uk": "Ви замовили велику сумку, яку не хочете нести додому. Продавець обіцяє: Your bag will be delivered tomorrow — вашу сумку доставлять завтра. Складіть Your bag + will be + delivered + tomorrow. Will be delivered описує майбутню дію над сумкою. Після will потрібна be. Tomorrow указує день доставки."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-26:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-26:intro2:r1",
+              "text": "Your bag will be delivered tomorrow."
+            },
+            {
+              "responseId": "en:lesson-28:session-26:intro2:r2",
+              "text": "Your bag will delivered tomorrow."
+            },
+            {
+              "responseId": "en:lesson-28:session-26:intro2:r3",
+              "text": "Your bag will be deliver tomorrow."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-26:intro2:r1",
+              "text": "Your bag will be delivered tomorrow."
+            },
+            {
+              "responseId": "en:lesson-28:session-26:intro2:r2",
+              "text": "Your bag will delivered tomorrow."
+            },
+            {
+              "responseId": "en:lesson-28:session-26:intro2:r3",
+              "text": "Your bag will be deliver tomorrow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-28:session-26:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Совет о хранении",
+        "uk": "Порада про зберігання"
+      },
+      "bodyByLocale": {
+        "ru": "Вы собираетесь убрать кожаную сумку в сырой подвал. Продавец советует выбрать сухое место: The bag should be kept dry — сумку стоит хранить в сухом месте. Соберите The bag + should + be + kept + dry. Should выражает совет. Be kept описывает хранение сумки; kept — форма keep для этой конструкции. Dry означает «сухой».",
+        "uk": "Ви збираєтеся прибрати шкіряну сумку у вогкий підвал. Продавець радить вибрати сухе місце: The bag should be kept dry — сумку варто зберігати в сухому місці. Складіть The bag + should + be + kept + dry. Should виражає пораду. Be kept описує зберігання сумки; kept — форма keep для цієї конструкції. Dry означає «сухий»."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-26:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-26:intro3:r1",
+              "text": "The bag should be kept dry."
+            },
+            {
+              "responseId": "en:lesson-28:session-26:intro3:r2",
+              "text": "The bag should kept dry."
+            },
+            {
+              "responseId": "en:lesson-28:session-26:intro3:r3",
+              "text": "The bag should be keep dry."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-26:intro3:r1",
+              "text": "The bag should be kept dry."
+            },
+            {
+              "responseId": "en:lesson-28:session-26:intro3:r2",
+              "text": "The bag should kept dry."
+            },
+            {
+              "responseId": "en:lesson-28:session-26:intro3:r3",
+              "text": "The bag should be keep dry."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "7efb529315b74bda67af67d724915886005e1642b4af3fb7d62ce19e7fb8bb32"
+}

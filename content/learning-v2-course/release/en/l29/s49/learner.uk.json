@@ -1,0 +1,1053 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-29:session-49",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-29:session-49:i01",
+      "ordinal": 4,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте сестру, чи має вона час поговорити.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-49:i01:audio"
+      ],
+      "accessibilityLabel": "Запитайте сестру, чи має вона час поговорити.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-49:i01:audio",
+          "transcript": "Do you have time to talk?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Do you have time to talk?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-49:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bewildered",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-49:i02:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bewildered",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-49:i02:audio",
+          "transcript": "bewildered"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-49:i02:r1",
+            "targetText": "bewildered",
+            "meaningByLocale": {
+              "ru": "Растерянный, ничего не понимающий. Так можно описать себя, когда трудно разобраться в происходящем.",
+              "uk": "Розгублений, спантеличений. Так можна описати себе, коли важко розібратися в тому, що відбувається."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bewildered",
+          "definitionByLocale": {
+            "ru": "Растерянный, ничего не понимающий. Так можно описать себя, когда трудно разобраться в происходящем.",
+            "uk": "Розгублений, спантеличений. Так можна описати себе, коли важко розібратися в тому, що відбувається."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-49:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-49:i03:r1",
+          "text": "I feel bewildered by all these changes."
+        },
+        {
+          "responseId": "en:lesson-29:session-49:i03:r2",
+          "text": "I feel excited by all these changes."
+        },
+        {
+          "responseId": "en:lesson-29:session-49:i03:r3",
+          "text": "I feel encouraged by all these changes."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-49:i03:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-49:i03:audio",
+          "transcript": "I feel bewildered by all these changes."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-49:i03:r1",
+            "targetText": "I feel bewildered by all these changes.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-49:i03:r2",
+            "targetText": "I feel excited by all these changes.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-49:i03:r3",
+            "targetText": "I feel encouraged by all these changes.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-49:i03:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I feel bewildered by all these changes.",
+              "uk": "У записі звучить I feel bewildered by all these changes."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-49:i03:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I feel bewildered by all these changes.",
+              "uk": "У записі звучить I feel bewildered by all these changes."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-49:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що прочитане повідомлення було прикрим.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що прочитане повідомлення було прикрим.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The message I read was upsetting.",
+        "localizedMeaning": {
+          "ru": "Скажите, что прочитанное сообщение было огорчительным.",
+          "uk": "Скажіть, що прочитане повідомлення було прикрим."
+        },
+        "orderedTokens": [
+          "The",
+          "message",
+          "I",
+          "read",
+          "was",
+          "upsetting"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-49:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви прочитали повідомлення, яке вас засмутило.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-49:i05:r1",
+          "text": "I read"
+        },
+        {
+          "responseId": "en:lesson-29:session-49:i05:r2",
+          "text": "I read it"
+        },
+        {
+          "responseId": "en:lesson-29:session-49:i05:r3",
+          "text": "me read"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви прочитали повідомлення, яке вас засмутило.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы прочитали сообщение, которое вас расстроило.",
+          "uk": "Ви прочитали повідомлення, яке вас засмутило."
+        },
+        "gappedTargetPhrase": "The message ___ was upsetting.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-49:i05:r1",
+            "text": "I read"
+          },
+          {
+            "responseId": "en:lesson-29:session-49:i05:r2",
+            "text": "I read it"
+          },
+          {
+            "responseId": "en:lesson-29:session-49:i05:r3",
+            "text": "me read"
+          }
+        ],
+        "testedDimension": "Ви прочитали повідомлення, яке вас засмутило.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-49:i05:r2",
+            "correct": false,
+            "testedDimension": "Ви прочитали повідомлення, яке вас засмутило.",
+            "feedbackByLocale": {
+              "ru": "It повторяет сообщение.",
+              "uk": "It повторює повідомлення."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-49:i05:r3",
+            "correct": false,
+            "testedDimension": "Ви прочитали повідомлення, яке вас засмутило.",
+            "feedbackByLocale": {
+              "ru": "Нужен исполнитель I.",
+              "uk": "Потрібен виконавець I."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-49:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — apprehensive",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-49:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — apprehensive",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-49:i06:audio",
+          "transcript": "apprehensive"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-49:i06:r1",
+            "targetText": "apprehensive",
+            "meaningByLocale": {
+              "ru": "Тревожащийся о предстоящем. Когда вы опасаетесь, что ожидающее вас событие может пройти плохо.",
+              "uk": "Стривожений через майбутнє. Коли ви побоюєтеся, що подія, яка на вас чекає, може пройти погано."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "apprehensive",
+          "definitionByLocale": {
+            "ru": "Тревожащийся о предстоящем. Когда вы опасаетесь, что ожидающее вас событие может пройти плохо.",
+            "uk": "Стривожений через майбутнє. Коли ви побоюєтеся, що подія, яка на вас чекає, може пройти погано."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-49:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що тривожитеся через завтрашній день.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-49:i07:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що тривожитеся через завтрашній день.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-49:i07:audio",
+          "transcript": "I feel apprehensive about tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I feel apprehensive about tomorrow.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-49:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, хто вас вислухав.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-49:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте, хто вас вислухав.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-49:i08:audio",
+          "transcript": "She is the neighbour who listened to me."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She is the neighbour who listened to me.",
+        "orderedTokens": [
+          "She",
+          "is",
+          "the",
+          "neighbour",
+          "who",
+          "listened",
+          "to",
+          "me"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-49:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сусідка вас вислухала.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-49:i09:r1",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-49:i09:r2",
+          "text": "who she"
+        },
+        {
+          "responseId": "en:lesson-29:session-49:i09:r3",
+          "text": "where"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сусідка вас вислухала.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Соседка вас выслушала.",
+          "uk": "Сусідка вас вислухала."
+        },
+        "gappedTargetPhrase": "She is the neighbour ___ listened to me.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-49:i09:r1",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-49:i09:r2",
+            "text": "who she"
+          },
+          {
+            "responseId": "en:lesson-29:session-49:i09:r3",
+            "text": "where"
+          }
+        ],
+        "testedDimension": "Сусідка вас вислухала.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-49:i09:r2",
+            "correct": false,
+            "testedDimension": "Сусідка вас вислухала.",
+            "feedbackByLocale": {
+              "ru": "Who уже называет исполнителя; she лишнее.",
+              "uk": "Who вже називає виконавця; she зайве."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-49:i09:r3",
+            "correct": false,
+            "testedDimension": "Сусідка вас вислухала.",
+            "feedbackByLocale": {
+              "ru": "Для человека здесь нужно who.",
+              "uk": "Для людини тут потрібне who."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-49:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — distraught",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-49:i10:audio"
+      ],
+      "accessibilityLabel": "Картка слова — distraught",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-49:i10:audio",
+          "transcript": "distraught"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-49:i10:r1",
+            "targetText": "distraught",
+            "meaningByLocale": {
+              "ru": "Глубоко расстроенный, не находящий себе места. Сильное переживание, при котором трудно спокойно думать или действовать.",
+              "uk": "Глибоко засмучений, той, хто не знаходить собі місця. Сильне переживання, за якого важко спокійно думати чи діяти."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "distraught",
+          "definitionByLocale": {
+            "ru": "Глубоко расстроенный, не находящий себе места. Сильное переживание, при котором трудно спокойно думать или действовать.",
+            "uk": "Глибоко засмучений, той, хто не знаходить собі місця. Сильне переживання, за якого важко спокійно думати чи діяти."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-49:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-49:i11:r1",
+          "text": "I was distraught when my dog went missing."
+        },
+        {
+          "responseId": "en:lesson-29:session-49:i11:r2",
+          "text": "I was angry when my dog went missing."
+        },
+        {
+          "responseId": "en:lesson-29:session-49:i11:r3",
+          "text": "I was surprised when my dog went missing."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-49:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-49:i11:audio",
+          "transcript": "I was distraught when my dog went missing."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-49:i11:r1",
+            "targetText": "I was distraught when my dog went missing.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-49:i11:r2",
+            "targetText": "I was angry when my dog went missing.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-49:i11:r3",
+            "targetText": "I was surprised when my dog went missing.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-49:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I was distraught when my dog went missing.",
+              "uk": "У записі звучить I was distraught when my dog went missing."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-49:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I was distraught when my dog went missing.",
+              "uk": "У записі звучить I was distraught when my dog went missing."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-49:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросіть сестру просто вас вислухати.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросіть сестру просто вас вислухати.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could you just listen for a moment?",
+        "localizedMeaning": {
+          "ru": "Попросите сестру просто вас выслушать.",
+          "uk": "Попросіть сестру просто вас вислухати."
+        },
+        "orderedTokens": [
+          "Could",
+          "you",
+          "just listen for a moment"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-49:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — frazzled",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-49:i13:audio"
+      ],
+      "accessibilityLabel": "Картка слова — frazzled",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-49:i13:audio",
+          "transcript": "frazzled"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-49:i13:r1",
+            "targetText": "frazzled",
+            "meaningByLocale": {
+              "ru": "Измотанный и нервничающий. Разговорное слово о состоянии после спешки, множества дел или напряжённого дня.",
+              "uk": "Виснажений і знервований. Розмовне слово про стан після поспіху, безлічі справ або напруженого дня."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "frazzled",
+          "definitionByLocale": {
+            "ru": "Измотанный и нервничающий. Разговорное слово о состоянии после спешки, множества дел или напряжённого дня.",
+            "uk": "Виснажений і знервований. Розмовне слово про стан після поспіху, безлічі справ або напруженого дня."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-49:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що надвечір почуваєтеся виснаженим.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-49:i14:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що надвечір почуваєтеся виснаженим.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-49:i14:audio",
+          "transcript": "I feel frazzled after such a busy day."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I feel frazzled after such a busy day.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-49:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-29:session-49:i15:p1",
+            "target": "bewildered",
+            "meaningByLocale": {
+              "ru": "растерянный",
+              "uk": "розгублений"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-49:i15:p2",
+            "target": "apprehensive",
+            "meaningByLocale": {
+              "ru": "тревожащийся о предстоящем",
+              "uk": "стривожений через майбутнє"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-49:i15:p3",
+            "target": "distraught",
+            "meaningByLocale": {
+              "ru": "глубоко расстроенный",
+              "uk": "глибоко засмучений"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-49:i15:p4",
+            "target": "frazzled",
+            "meaningByLocale": {
+              "ru": "измотанный и нервничающий",
+              "uk": "виснажений і знервований"
+            }
+          }
+        ],
+        "leftColumn": [
+          "bewildered",
+          "apprehensive",
+          "distraught",
+          "frazzled"
+        ],
+        "rightColumn": [
+          "розгублений",
+          "стривожений через майбутнє",
+          "глибоко засмучений",
+          "виснажений і знервований"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-49:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви знаєте кафе для спокійної розмови.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-49:i16:r1",
+          "text": "where"
+        },
+        {
+          "responseId": "en:lesson-29:session-49:i16:r2",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-49:i16:r3",
+          "text": "whose"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви знаєте кафе для спокійної розмови.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы знаете кафе для спокойного разговора.",
+          "uk": "Ви знаєте кафе для спокійної розмови."
+        },
+        "gappedTargetPhrase": "I know a café ___ we can talk.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-49:i16:r1",
+            "text": "where"
+          },
+          {
+            "responseId": "en:lesson-29:session-49:i16:r2",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-49:i16:r3",
+            "text": "whose"
+          }
+        ],
+        "testedDimension": "Ви знаєте кафе для спокійної розмови.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-49:i16:r2",
+            "correct": false,
+            "testedDimension": "Ви знаєте кафе для спокійної розмови.",
+            "feedbackByLocale": {
+              "ru": "Для места разговора нужно where.",
+              "uk": "Для місця розмови потрібне where."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-49:i16:r3",
+            "correct": false,
+            "testedDimension": "Ви знаєте кафе для спокійної розмови.",
+            "feedbackByLocale": {
+              "ru": "Здесь место, не принадлежность.",
+              "uk": "Тут місце, не належність."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-49:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: ви тривожитеся чи радієте завтрашньому дню?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-49:i17:r1",
+          "text": "I feel apprehensive about tomorrow."
+        },
+        {
+          "responseId": "en:lesson-29:session-49:i17:r2",
+          "text": "I feel excited about tomorrow."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-49:i17:audioA",
+        "en:lesson-29:session-49:i17:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: ви тривожитеся чи радієте завтрашньому дню?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "I feel apprehensive about tomorrow.",
+        "contrastB": "I feel excited about tomorrow.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-29:session-49:i17:audioA",
+          "transcript": "I feel apprehensive about tomorrow."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-29:session-49:i17:audioB",
+          "transcript": "I feel excited about tomorrow."
+        },
+        "testedPhoneticContrast": "Послухайте: ви тривожитеся чи радієте завтрашньому дню?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-49:i17:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: ви тривожитеся чи радієте завтрашньому дню?",
+            "feedbackByLocale": {
+              "ru": "Звучит apprehensive — тревожащийся.",
+              "uk": "Звучить apprehensive — стривожений."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-49:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте пропозицію щодо місця розмови.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-49:i18:audio"
+      ],
+      "accessibilityLabel": "Послухайте пропозицію щодо місця розмови.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-49:i18:audio",
+          "transcript": "I know a café where we can talk."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I know a café where we can talk.",
+        "orderedTokens": [
+          "I",
+          "know",
+          "a",
+          "café",
+          "where",
+          "we",
+          "can",
+          "talk"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-49:i19",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що зараз вам не потрібна порада.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-49:i19:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що зараз вам не потрібна порада.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-49:i19:audio",
+          "transcript": "I do not need advice right now."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I do not need advice right now.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-49:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Розмова із сестрою допомогла вам.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-49:i20:r1",
+          "text": "we had"
+        },
+        {
+          "responseId": "en:lesson-29:session-49:i20:r2",
+          "text": "we had it"
+        },
+        {
+          "responseId": "en:lesson-29:session-49:i20:r3",
+          "text": "us had"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Розмова із сестрою допомогла вам.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Разговор с сестрой помог вам.",
+          "uk": "Розмова із сестрою допомогла вам."
+        },
+        "gappedTargetPhrase": "The conversation ___ helped me.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-49:i20:r1",
+            "text": "we had"
+          },
+          {
+            "responseId": "en:lesson-29:session-49:i20:r2",
+            "text": "we had it"
+          },
+          {
+            "responseId": "en:lesson-29:session-49:i20:r3",
+            "text": "us had"
+          }
+        ],
+        "testedDimension": "Розмова із сестрою допомогла вам.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-49:i20:r2",
+            "correct": false,
+            "testedDimension": "Розмова із сестрою допомогла вам.",
+            "feedbackByLocale": {
+              "ru": "It повторяет разговор.",
+              "uk": "It повторює розмову."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-49:i20:r3",
+            "correct": false,
+            "testedDimension": "Розмова із сестрою допомогла вам.",
+            "feedbackByLocale": {
+              "ru": "Участники обозначаются через we, не us.",
+              "uk": "Учасників позначаємо через we, не us."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-49:i21",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Подякуйте сестрі за те, що вона вас вислухала.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подякуйте сестрі за те, що вона вас вислухала.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Thank you for listening to me.",
+        "localizedMeaning": {
+          "ru": "Поблагодарите сестру за то, что она вас выслушала.",
+          "uk": "Подякуйте сестрі за те, що вона вас вислухала."
+        },
+        "orderedTokens": [
+          "Thank",
+          "you",
+          "for",
+          "listening",
+          "to",
+          "me"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "d95e71c38c78154684c6496d98a8579f7197bfe8a6159642c386cb908647b13d"
+}

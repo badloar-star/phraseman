@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-29:session-48",
+  "learningOutcomeByLocale": {
+    "ru": "как назвать объёмную резинку и заколку с застёжкой, попросить распутать волосы и описать выбивающиеся пряди.",
+    "uk": "як назвати об’ємну гумку й шпильку із застібкою, попросити розплутати волосся та описати пасма, що вибиваються."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-29:session-48:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Подходящая заколка",
+        "uk": "Відповідна шпилька"
+      },
+      "bodyByLocale": {
+        "ru": "Вы примерили купленную заколку и показываете её сестре. Скажите: The clip I bought is too small — заколка, которую я купил, слишком маленькая. Соберите The clip + I bought + is too small. В уточнении I называет покупателя, а clip — купленную вещь. Поэтому that перед I можно опустить; it после bought не добавляем.",
+        "uk": "Ви приміряли куплену шпильку й показуєте її сестрі. Скажіть: The clip I bought is too small — шпилька, яку я купив, надто маленька. Складіть The clip + I bought + is too small. В уточненні I називає покупця, а clip — куплену річ. Тому that перед I можна пропустити; it після bought не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-48:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-48:intro1:r1",
+              "text": "The clip I bought is too small."
+            },
+            {
+              "responseId": "en:lesson-29:session-48:intro1:r2",
+              "text": "The clip I bought it is too small."
+            },
+            {
+              "responseId": "en:lesson-29:session-48:intro1:r3",
+              "text": "The clip me bought is too small."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-48:intro1:r1",
+              "text": "The clip I bought is too small."
+            },
+            {
+              "responseId": "en:lesson-29:session-48:intro1:r2",
+              "text": "The clip I bought it is too small."
+            },
+            {
+              "responseId": "en:lesson-29:session-48:intro1:r3",
+              "text": "The clip me bought is too small."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-29:session-48:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Чья расчёска",
+        "uk": "Чий гребінець"
+      },
+      "bodyByLocale": {
+        "ru": "Вы показываете сестре женщину, у которой одолжили расчёску. Скажите: This is the woman whose comb I borrowed — это женщина, чью расчёску я одолжил. Соберите This is the woman + whose comb + I borrowed. Whose прямо перед comb связывает расчёску с владелицей; her перед comb уже не нужно.",
+        "uk": "Ви показуєте сестрі жінку, у якої позичили гребінець. Скажіть: This is the woman whose comb I borrowed — це жінка, чий гребінець я позичив. Складіть This is the woman + whose comb + I borrowed. Whose прямо перед comb пов’язує гребінець із власницею; her перед comb вже не потрібне."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-48:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-48:intro2:r1",
+              "text": "This is the woman whose comb I borrowed."
+            },
+            {
+              "responseId": "en:lesson-29:session-48:intro2:r2",
+              "text": "This is the woman who comb I borrowed."
+            },
+            {
+              "responseId": "en:lesson-29:session-48:intro2:r3",
+              "text": "This is the woman whose her comb I borrowed."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-48:intro2:r1",
+              "text": "This is the woman whose comb I borrowed."
+            },
+            {
+              "responseId": "en:lesson-29:session-48:intro2:r2",
+              "text": "This is the woman who comb I borrowed."
+            },
+            {
+              "responseId": "en:lesson-29:session-48:intro2:r3",
+              "text": "This is the woman whose her comb I borrowed."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-29:session-48:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Где вы купили заколку",
+        "uk": "Де ви купили шпильку"
+      },
+      "bodyByLocale": {
+        "ru": "Сестра ищет такую же заколку, и вы показываете ей магазин. Скажите: This is the shop where I bought it — это магазин, где я её купил. Соберите This is the shop + where + I bought it. Where связывает покупку с местом. После where используем обычный порядок I bought it, без did.",
+        "uk": "Сестра шукає таку саму шпильку, і ви показуєте їй магазин. Скажіть: This is the shop where I bought it — це магазин, де я її купив. Складіть This is the shop + where + I bought it. Where пов’язує купівлю з місцем. Після where використовуємо звичайний порядок I bought it, без did."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-48:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-48:intro3:r1",
+              "text": "This is the shop where I bought it."
+            },
+            {
+              "responseId": "en:lesson-29:session-48:intro3:r2",
+              "text": "This is the shop where did I buy it."
+            },
+            {
+              "responseId": "en:lesson-29:session-48:intro3:r3",
+              "text": "This is the shop who I bought it."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-48:intro3:r1",
+              "text": "This is the shop where I bought it."
+            },
+            {
+              "responseId": "en:lesson-29:session-48:intro3:r2",
+              "text": "This is the shop where did I buy it."
+            },
+            {
+              "responseId": "en:lesson-29:session-48:intro3:r3",
+              "text": "This is the shop who I bought it."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2b8b486c1afe3374bd3b692925c9bbbe61f4d73be4f31b0b74c0623350b1fc09"
+}

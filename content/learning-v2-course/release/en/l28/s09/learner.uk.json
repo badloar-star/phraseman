@@ -1,0 +1,1074 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-28:session-09",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-28:session-09:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-09:i01:r1",
+          "text": "The wall was painted yesterday."
+        },
+        {
+          "responseId": "en:lesson-28:session-09:i01:r2",
+          "text": "The door was painted yesterday."
+        },
+        {
+          "responseId": "en:lesson-28:session-09:i01:r3",
+          "text": "The wall was painted last week."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-09:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-09:i01:audio",
+          "transcript": "The wall was painted yesterday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-09:i01:r1",
+            "targetText": "The wall was painted yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-09:i01:r2",
+            "targetText": "The door was painted yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-09:i01:r3",
+            "targetText": "The wall was painted last week.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-09:i01:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The wall was painted yesterday.",
+              "uk": "У записі звучить The wall was painted yesterday."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-09:i01:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The wall was painted yesterday.",
+              "uk": "У записі звучить The wall was painted yesterday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-09:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — spanner",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-09:i02:audio"
+      ],
+      "accessibilityLabel": "Картка слова — spanner",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-09:i02:audio",
+          "transcript": "spanner"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-09:i02:r1",
+            "targetText": "spanner",
+            "meaningByLocale": {
+              "ru": "Гаечный ключ; обычное британское название инструмента для гаек и болтов.",
+              "uk": "Гайковий ключ; звична британська назва інструмента для гайок і болтів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "spanner",
+          "definitionByLocale": {
+            "ru": "Гаечный ключ; обычное британское название инструмента для гаек и болтов.",
+            "uk": "Гайковий ключ; звична британська назва інструмента для гайок і болтів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-09:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що гайковий ключ залишили на столі. Left — форма leave.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що гайковий ключ залишили на столі. Left — форма leave.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The spanner was left on the table.",
+        "localizedMeaning": {
+          "ru": "Скажите, что гаечный ключ оставили на столе. Left — форма leave.",
+          "uk": "Скажіть, що гайковий ключ залишили на столі. Left — форма leave."
+        },
+        "orderedTokens": [
+          "The",
+          "spanner",
+          "was",
+          "left",
+          "on",
+          "the",
+          "table"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-09:i04",
+      "ordinal": 7,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть показати старі ручки від шафи.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-09:i04:audio"
+      ],
+      "accessibilityLabel": "Попросіть показати старі ручки від шафи.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-09:i04:audio",
+          "transcript": "Could you show me the old handles?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you show me the old handles?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-09:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дві полиці полагодили в понеділок. Виберіть форму для кількох предметів.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-09:i05:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-28:session-09:i05:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-28:session-09:i05:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дві полиці полагодили в понеділок. Виберіть форму для кількох предметів.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Две полки починили в понедельник. Выберите форму для нескольких предметов.",
+          "uk": "Дві полиці полагодили в понеділок. Виберіть форму для кількох предметів."
+        },
+        "gappedTargetPhrase": "The shelves ___ repaired on Monday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-09:i05:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-28:session-09:i05:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-28:session-09:i05:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Дві полиці полагодили в понеділок. Виберіть форму для кількох предметів.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-09:i05:r2",
+            "correct": false,
+            "testedDimension": "Дві полиці полагодили в понеділок. Виберіть форму для кількох предметів.",
+            "feedbackByLocale": {
+              "ru": "Shelves — несколько: were.",
+              "uk": "Shelves — кілька: were."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-09:i05:r3",
+            "correct": false,
+            "testedDimension": "Дві полиці полагодили в понеділок. Виберіть форму для кількох предметів.",
+            "feedbackByLocale": {
+              "ru": "Говорим о прошлом: were repaired.",
+              "uk": "Говоримо про минуле: were repaired."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-09:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — varnish",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-09:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — varnish",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-09:i06:audio",
+          "transcript": "varnish"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-09:i06:r1",
+            "targetText": "varnish",
+            "meaningByLocale": {
+              "ru": "Лак: покрытие, например, для деревянной мебели.",
+              "uk": "Лак: покриття, наприклад, для дерев’яних меблів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "varnish",
+          "definitionByLocale": {
+            "ru": "Лак: покрытие, например, для деревянной мебели.",
+            "uk": "Лак: покриття, наприклад, для дерев’яних меблів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-09:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-09:i07:r1",
+          "text": "The varnish was bought yesterday."
+        },
+        {
+          "responseId": "en:lesson-28:session-09:i07:r2",
+          "text": "The varnish was bought last week."
+        },
+        {
+          "responseId": "en:lesson-28:session-09:i07:r3",
+          "text": "The paint was bought yesterday."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-09:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-09:i07:audio",
+          "transcript": "The varnish was bought yesterday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-09:i07:r1",
+            "targetText": "The varnish was bought yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-09:i07:r2",
+            "targetText": "The varnish was bought last week.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-09:i07:r3",
+            "targetText": "The paint was bought yesterday.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-09:i07:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The varnish was bought yesterday.",
+              "uk": "У записі звучить The varnish was bought yesterday."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-09:i07:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The varnish was bought yesterday.",
+              "uk": "У записі звучить The varnish was bought yesterday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-09:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що стіл відремонтували минулого тижня.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що стіл відремонтували минулого тижня.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The table was repaired last week.",
+        "localizedMeaning": {
+          "ru": "Скажите, что стол отремонтировали на прошлой неделе.",
+          "uk": "Скажіть, що стіл відремонтували минулого тижня."
+        },
+        "orderedTokens": [
+          "The",
+          "table",
+          "was",
+          "repaired",
+          "last",
+          "week"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-09:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточніть, чи можна вже користуватися столом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-09:i09:audio"
+      ],
+      "accessibilityLabel": "Уточніть, чи можна вже користуватися столом.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-09:i09:audio",
+          "transcript": "Can we use the table now?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Can we use the table now?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-09:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — primer",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-09:i10:audio"
+      ],
+      "accessibilityLabel": "Картка слова — primer",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-09:i10:audio",
+          "transcript": "primer"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-09:i10:r1",
+            "targetText": "primer",
+            "meaningByLocale": {
+              "ru": "Грунтовка: подготовительное покрытие под краску.",
+              "uk": "Ґрунтовка: підготовче покриття під фарбу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "primer",
+          "definitionByLocale": {
+            "ru": "Грунтовка: подготовительное покрытие под краску.",
+            "uk": "Ґрунтовка: підготовче покриття під фарбу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-09:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ґрунтовку доставили вранці. Завершіть фразу про минулу доставку.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-09:i11:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-28:session-09:i11:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-28:session-09:i11:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ґрунтовку доставили вранці. Завершіть фразу про минулу доставку.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Грунтовку доставили утром. Завершите фразу о прошедшей доставке.",
+          "uk": "Ґрунтовку доставили вранці. Завершіть фразу про минулу доставку."
+        },
+        "gappedTargetPhrase": "The primer ___ delivered this morning.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-09:i11:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-28:session-09:i11:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-28:session-09:i11:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Ґрунтовку доставили вранці. Завершіть фразу про минулу доставку.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-09:i11:r2",
+            "correct": false,
+            "testedDimension": "Ґрунтовку доставили вранці. Завершіть фразу про минулу доставку.",
+            "feedbackByLocale": {
+              "ru": "Primer здесь сочетается с was.",
+              "uk": "Primer тут поєднується з was."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-09:i11:r3",
+            "correct": false,
+            "testedDimension": "Ґрунтовку доставили вранці. Завершіть фразу про минулу доставку.",
+            "feedbackByLocale": {
+              "ru": "В этой фразе нужна was delivered.",
+              "uk": "У цій фразі потрібна was delivered."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-09:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-09:i12:r1",
+          "text": "The brushes were washed after use."
+        },
+        {
+          "responseId": "en:lesson-28:session-09:i12:r2",
+          "text": "The brushes were replaced after use."
+        },
+        {
+          "responseId": "en:lesson-28:session-09:i12:r3",
+          "text": "The bowls were washed after use."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-09:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-09:i12:audio",
+          "transcript": "The brushes were washed after use."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-09:i12:r1",
+            "targetText": "The brushes were washed after use.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-09:i12:r2",
+            "targetText": "The brushes were replaced after use.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-09:i12:r3",
+            "targetText": "The bowls were washed after use.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-09:i12:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The brushes were washed after use.",
+              "uk": "У записі звучить The brushes were washed after use."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-09:i12:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The brushes were washed after use.",
+              "uk": "У записі звучить The brushes were washed after use."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-09:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — matte",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-09:i13:audio"
+      ],
+      "accessibilityLabel": "Картка слова — matte",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-09:i13:audio",
+          "transcript": "matte"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-09:i13:r1",
+            "targetText": "matte",
+            "meaningByLocale": {
+              "ru": "Матовый, без блеска; также пишется matt. Здесь описываем поверхность краски.",
+              "uk": "Матовий, без блиску; також пишеться matt. Тут описуємо поверхню фарби."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "matte",
+          "definitionByLocale": {
+            "ru": "Матовый, без блеска; также пишется matt. Здесь описываем поверхность краски.",
+            "uk": "Матовий, без блиску; також пишеться matt. Тут описуємо поверхню фарби."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-09:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Поясніть, що вибрали матову фарбу.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поясніть, що вибрали матову фарбу.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We chose matte paint.",
+        "localizedMeaning": {
+          "ru": "Объясните, что выбрали матовую краску.",
+          "uk": "Поясніть, що вибрали матову фарбу."
+        },
+        "orderedTokens": [
+          "We",
+          "chose",
+          "matte",
+          "paint"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-09:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, коли пофарбували стелю.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-09:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте, коли пофарбували стелю.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-09:i15:audio",
+          "transcript": "The ceiling was painted on Tuesday."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The ceiling was painted on Tuesday.",
+        "orderedTokens": [
+          "The",
+          "ceiling",
+          "was",
+          "painted",
+          "on",
+          "Tuesday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-09:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "У кімнаті замінили лампу вчора. Завершіть форму після was.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-09:i16:r1",
+          "text": "replaced"
+        },
+        {
+          "responseId": "en:lesson-28:session-09:i16:r2",
+          "text": "replace"
+        },
+        {
+          "responseId": "en:lesson-28:session-09:i16:r3",
+          "text": "replaces"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У кімнаті замінили лампу вчора. Завершіть форму після was.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В комнате заменили лампу вчера. Завершите форму после was.",
+          "uk": "У кімнаті замінили лампу вчора. Завершіть форму після was."
+        },
+        "gappedTargetPhrase": "The lamp was ___ yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-09:i16:r1",
+            "text": "replaced"
+          },
+          {
+            "responseId": "en:lesson-28:session-09:i16:r2",
+            "text": "replace"
+          },
+          {
+            "responseId": "en:lesson-28:session-09:i16:r3",
+            "text": "replaces"
+          }
+        ],
+        "testedDimension": "У кімнаті замінили лампу вчора. Завершіть форму після was.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-09:i16:r2",
+            "correct": false,
+            "testedDimension": "У кімнаті замінили лампу вчора. Завершіть форму після was.",
+            "feedbackByLocale": {
+              "ru": "После was здесь нужна replaced.",
+              "uk": "Після was тут потрібна replaced."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-09:i16:r3",
+            "correct": false,
+            "testedDimension": "У кімнаті замінили лампу вчора. Завершіть форму після was.",
+            "feedbackByLocale": {
+              "ru": "Для действия над лампой: was replaced.",
+              "uk": "Для дії над лампою: was replaced."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-09:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Стілець більше не хитається. Скажіть, що тепер він зручний. Нарешті сидимо, а не балансуємо.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-09:i17:audio"
+      ],
+      "accessibilityLabel": "Стілець більше не хитається. Скажіть, що тепер він зручний. Нарешті сидимо, а не балансуємо.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-09:i17:audio",
+          "transcript": "It is comfortable now."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It is comfortable now.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-09:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-09:i18:r1",
+          "text": "The curtains were cleaned last week."
+        },
+        {
+          "responseId": "en:lesson-28:session-09:i18:r2",
+          "text": "The curtains were bought last week."
+        },
+        {
+          "responseId": "en:lesson-28:session-09:i18:r3",
+          "text": "The carpets were cleaned last week."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-09:i18:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-09:i18:audio",
+          "transcript": "The curtains were cleaned last week."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-09:i18:r1",
+            "targetText": "The curtains were cleaned last week.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-09:i18:r2",
+            "targetText": "The curtains were bought last week.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-09:i18:r3",
+            "targetText": "The carpets were cleaned last week.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-09:i18:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The curtains were cleaned last week.",
+              "uk": "У записі звучить The curtains were cleaned last week."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-09:i18:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The curtains were cleaned last week.",
+              "uk": "У записі звучить The curtains were cleaned last week."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-09:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що вікно полагодили вчора.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що вікно полагодили вчора.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The window was repaired yesterday.",
+        "localizedMeaning": {
+          "ru": "Скажите, что окно починили вчера.",
+          "uk": "Скажіть, що вікно полагодили вчора."
+        },
+        "orderedTokens": [
+          "The",
+          "window",
+          "was",
+          "repaired",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-09:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Коробки прибрали з кімнати вранці. Виберіть форму для кількох коробок.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-09:i20:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-28:session-09:i20:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-28:session-09:i20:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Коробки прибрали з кімнати вранці. Виберіть форму для кількох коробок.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Коробки убрали из комнаты утром. Выберите форму для нескольких коробок.",
+          "uk": "Коробки прибрали з кімнати вранці. Виберіть форму для кількох коробок."
+        },
+        "gappedTargetPhrase": "The boxes ___ removed this morning.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-09:i20:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-28:session-09:i20:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-28:session-09:i20:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Коробки прибрали з кімнати вранці. Виберіть форму для кількох коробок.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-09:i20:r2",
+            "correct": false,
+            "testedDimension": "Коробки прибрали з кімнати вранці. Виберіть форму для кількох коробок.",
+            "feedbackByLocale": {
+              "ru": "Boxes — несколько: were.",
+              "uk": "Boxes — кілька: were."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-09:i20:r3",
+            "correct": false,
+            "testedDimension": "Коробки прибрали з кімнати вранці. Виберіть форму для кількох коробок.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна were removed.",
+              "uk": "Тут потрібна were removed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-09:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Подякуйте майстрові за зроблену роботу.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-09:i21:audio"
+      ],
+      "accessibilityLabel": "Подякуйте майстрові за зроблену роботу.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-09:i21:audio",
+          "transcript": "Thank you for your work."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Thank you for your work.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "5793f9087a5bdaea41125edb9193532c7fd90e1388992167fc76d137cc20a77a"
+}

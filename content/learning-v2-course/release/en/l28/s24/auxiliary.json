@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-28:session-24",
+  "entries": [
+    {
+      "interactionId": "en:lesson-28:session-24:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-24:intro1:r2": {
+          "ru": "После will используем be, не are.",
+          "uk": "Після will використовуємо be, не are."
+        },
+        "en:lesson-28:session-24:intro1:r3": {
+          "ru": "Здесь нужна ironed.",
+          "uk": "Тут потрібна ironed."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-24:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-24:intro2:r2": {
+          "ru": "С clothes нужна are.",
+          "uk": "З clothes потрібна are."
+        },
+        "en:lesson-28:session-24:intro2:r3": {
+          "ru": "Здесь нужна washed.",
+          "uk": "Тут потрібна washed."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-24:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-24:intro3:r2": {
+          "ru": "Один свитер: was.",
+          "uk": "Один светр: was."
+        },
+        "en:lesson-28:session-24:intro3:r3": {
+          "ru": "Здесь нужна was washed.",
+          "uk": "Тут потрібна was washed."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "3313b29b4b5456c9a5b3eac72c44eb032c8d23b3366b4d911dc390e272f5ea67"
+}

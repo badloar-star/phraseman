@@ -1,0 +1,1039 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-28:session-24",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-28:session-24:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — delicates",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-24:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — delicates",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-24:i01:audio",
+          "transcript": "delicates"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-24:i01:r1",
+            "targetText": "delicates",
+            "meaningByLocale": {
+              "ru": "Деликатные вещи, которым нужна бережная стирка.",
+              "uk": "Делікатні речі, яким потрібне дбайливе прання."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "delicates",
+          "definitionByLocale": {
+            "ru": "Деликатные вещи, которым нужна бережная стирка.",
+            "uk": "Делікатні речі, яким потрібне дбайливе прання."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-24:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите, где оставить деликатные вещи.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите, где оставить деликатные вещи.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Where should I put the delicates?",
+        "localizedMeaning": {
+          "ru": "Спросите, где оставить деликатные вещи.",
+          "uk": "Запитайте, де залишити делікатні речі."
+        },
+        "orderedTokens": [
+          "Where",
+          "should",
+          "I",
+          "put",
+          "the",
+          "delicates"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-24:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-24:i03:r1",
+          "text": "The shirts will be ironed tomorrow."
+        },
+        {
+          "responseId": "en:lesson-28:session-24:i03:r2",
+          "text": "The shirts will be ironed on Friday."
+        },
+        {
+          "responseId": "en:lesson-28:session-24:i03:r3",
+          "text": "The trousers will be ironed tomorrow."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-24:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-24:i03:audio",
+          "transcript": "The shirts will be ironed tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-24:i03:r1",
+            "targetText": "The shirts will be ironed tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-24:i03:r2",
+            "targetText": "The shirts will be ironed on Friday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-24:i03:r3",
+            "targetText": "The trousers will be ironed tomorrow.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-24:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The shirts will be ironed tomorrow.",
+              "uk": "У записі звучить The shirts will be ironed tomorrow."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-24:i03:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The shirts will be ironed tomorrow.",
+              "uk": "У записі звучить The shirts will be ironed tomorrow."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-24:i04",
+      "ordinal": 7,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите выдать вещи в пятницу.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-24:i04:audio"
+      ],
+      "accessibilityLabel": "Попросите выдать вещи в пятницу.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-24:i04:audio",
+          "transcript": "Could I collect them on Friday?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could I collect them on Friday?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-24:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — shrinkage",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-24:i05:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — shrinkage",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-24:i05:audio",
+          "transcript": "shrinkage"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-24:i05:r1",
+            "targetText": "shrinkage",
+            "meaningByLocale": {
+              "ru": "Усадка: уменьшение размера ткани или одежды, например после стирки.",
+              "uk": "Усадка: зменшення розміру тканини або одягу, наприклад після прання."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "shrinkage",
+          "definitionByLocale": {
+            "ru": "Усадка: уменьшение размера ткани или одежды, например после стирки.",
+            "uk": "Усадка: зменшення розміру тканини або одягу, наприклад після прання."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-24:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что беспокоитесь об усадке.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-24:i06:audio"
+      ],
+      "accessibilityLabel": "Скажите, что беспокоитесь об усадке.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-24:i06:audio",
+          "transcript": "I am worried about shrinkage."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am worried about shrinkage.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-24:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Белые вещи стирают отдельно.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-24:i07:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-28:session-24:i07:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-28:session-24:i07:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Белые вещи стирают отдельно.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Белые вещи стирают отдельно.",
+          "uk": "Білі речі перуть окремо."
+        },
+        "gappedTargetPhrase": "White clothes ___ washed separately.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-24:i07:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-28:session-24:i07:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-28:session-24:i07:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Белые вещи стирают отдельно.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-24:i07:r2",
+            "correct": false,
+            "testedDimension": "Белые вещи стирают отдельно.",
+            "feedbackByLocale": {
+              "ru": "Clothes — несколько вещей: are.",
+              "uk": "Clothes — кілька речей: are."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-24:i07:r3",
+            "correct": false,
+            "testedDimension": "Белые вещи стирают отдельно.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем are washed.",
+              "uk": "Тут використовуємо are washed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-24:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы хотели бы, чтобы услуга стоила дешевле.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы хотели бы, чтобы услуга стоила дешевле.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I wish it were cheaper.",
+        "localizedMeaning": {
+          "ru": "Вы хотели бы, чтобы услуга стоила дешевле.",
+          "uk": "Ви хотіли б, щоб послуга коштувала дешевше."
+        },
+        "orderedTokens": [
+          "I",
+          "wish",
+          "it",
+          "were",
+          "cheaper"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-24:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — colourfast",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-24:i09:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — colourfast",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-24:i09:audio",
+          "transcript": "colourfast"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-24:i09:r1",
+            "targetText": "colourfast",
+            "meaningByLocale": {
+              "ru": "Не линяющий: сохраняющий цвет при стирке; о ткани.",
+              "uk": "Такий, що не линяє: зберігає колір під час прання; про тканину."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "colourfast",
+          "definitionByLocale": {
+            "ru": "Не линяющий: сохраняющий цвет при стирке; о ткани.",
+            "uk": "Такий, що не линяє: зберігає колір під час прання; про тканину."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-24:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-24:i10:r1",
+          "text": "The label says the fabric is colourfast."
+        },
+        {
+          "responseId": "en:lesson-28:session-24:i10:r2",
+          "text": "The label says the fabric is waterproof."
+        },
+        {
+          "responseId": "en:lesson-28:session-24:i10:r3",
+          "text": "The label says the fabric is soft."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-24:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-24:i10:audio",
+          "transcript": "The label says the fabric is colourfast."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-24:i10:r1",
+            "targetText": "The label says the fabric is colourfast.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-24:i10:r2",
+            "targetText": "The label says the fabric is waterproof.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-24:i10:r3",
+            "targetText": "The label says the fabric is soft.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-24:i10:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The label says the fabric is colourfast.",
+              "uk": "У записі звучить The label says the fabric is colourfast."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-24:i10:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The label says the fabric is colourfast.",
+              "uk": "У записі звучить The label says the fabric is colourfast."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-24:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Свитер постирали вчера.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-24:i11:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-28:session-24:i11:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-28:session-24:i11:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Свитер постирали вчера.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Свитер постирали вчера.",
+          "uk": "Светр випрали вчора."
+        },
+        "gappedTargetPhrase": "The jumper ___ washed yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-24:i11:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-28:session-24:i11:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-28:session-24:i11:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Свитер постирали вчера.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-24:i11:r2",
+            "correct": false,
+            "testedDimension": "Свитер постирали вчера.",
+            "feedbackByLocale": {
+              "ru": "Один свитер в прошлом: was.",
+              "uk": "Один светр у минулому: was."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-24:i11:r3",
+            "correct": false,
+            "testedDimension": "Свитер постирали вчера.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна was washed.",
+              "uk": "Тут потрібна was washed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-24:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите прочитать ярлык перед стиркой.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-24:i12:audio"
+      ],
+      "accessibilityLabel": "Попросите прочитать ярлык перед стиркой.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-24:i12:audio",
+          "transcript": "Please check the label first."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Please check the label first.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-24:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — starch",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-24:i13:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — starch",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-24:i13:audio",
+          "transcript": "starch"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-24:i13:r1",
+            "targetText": "starch",
+            "meaningByLocale": {
+              "ru": "Крахмал; в прачечной его могут использовать, чтобы ткань держала форму.",
+              "uk": "Крохмаль; у пральні його можуть використовувати, щоб тканина тримала форму."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "starch",
+          "definitionByLocale": {
+            "ru": "Крахмал; в прачечной его могут использовать, чтобы ткань держала форму.",
+            "uk": "Крохмаль; у пральні його можуть використовувати, щоб тканина тримала форму."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-24:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросите не использовать крахмал для рубашек.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросите не использовать крахмал для рубашек.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Please do not use starch on the shirts.",
+        "localizedMeaning": {
+          "ru": "Попросите не использовать крахмал для рубашек.",
+          "uk": "Попросіть не використовувати крохмаль для сорочок."
+        },
+        "orderedTokens": [
+          "Please",
+          "do",
+          "not",
+          "use",
+          "starch",
+          "on",
+          "the",
+          "shirts"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-24:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-24:i15:r1",
+          "text": "The stain was removed this morning."
+        },
+        {
+          "responseId": "en:lesson-28:session-24:i15:r2",
+          "text": "The stain was removed yesterday."
+        },
+        {
+          "responseId": "en:lesson-28:session-24:i15:r3",
+          "text": "The label was removed this morning."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-24:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-24:i15:audio",
+          "transcript": "The stain was removed this morning."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-24:i15:r1",
+            "targetText": "The stain was removed this morning.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-24:i15:r2",
+            "targetText": "The stain was removed yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-24:i15:r3",
+            "targetText": "The label was removed this morning.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-24:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The stain was removed this morning.",
+              "uk": "У записі звучить The stain was removed this morning."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-24:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The stain was removed this morning.",
+              "uk": "У записі звучить The stain was removed this morning."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-24:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вчера прачечная уже закрылась к вашему приходу. Завершите более раннее событие.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-24:i16:r1",
+          "text": "closed"
+        },
+        {
+          "responseId": "en:lesson-28:session-24:i16:r2",
+          "text": "close"
+        },
+        {
+          "responseId": "en:lesson-28:session-24:i16:r3",
+          "text": "closing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вчера прачечная уже закрылась к вашему приходу. Завершите более раннее событие.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера прачечная уже закрылась к вашему приходу. Завершите более раннее событие.",
+          "uk": "Учора пральня вже зачинилася до вашого приходу. Завершіть ранішу подію."
+        },
+        "gappedTargetPhrase": "The laundry had ___ by the time I arrived.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-24:i16:r1",
+            "text": "closed"
+          },
+          {
+            "responseId": "en:lesson-28:session-24:i16:r2",
+            "text": "close"
+          },
+          {
+            "responseId": "en:lesson-28:session-24:i16:r3",
+            "text": "closing"
+          }
+        ],
+        "testedDimension": "Вчера прачечная уже закрылась к вашему приходу. Завершите более раннее событие.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-24:i16:r2",
+            "correct": false,
+            "testedDimension": "Вчера прачечная уже закрылась к вашему приходу. Завершите более раннее событие.",
+            "feedbackByLocale": {
+              "ru": "После had нужна closed.",
+              "uk": "Після had потрібна closed."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-24:i16:r3",
+            "correct": false,
+            "testedDimension": "Вчера прачечная уже закрылась к вашему приходу. Завершите более раннее событие.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем had closed.",
+              "uk": "Тут використовуємо had closed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-24:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, как вернут рубашки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-24:i17:audio"
+      ],
+      "accessibilityLabel": "Послушайте, как вернут рубашки.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-24:i17:audio",
+          "transcript": "The shirts will be put on hangers."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The shirts will be put on hangers.",
+        "orderedTokens": [
+          "The",
+          "shirts",
+          "will",
+          "be",
+          "put",
+          "on",
+          "hangers"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-24:i18",
+      "ordinal": 21,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите оценить стоимость.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-24:i18:audio"
+      ],
+      "accessibilityLabel": "Попросите оценить стоимость.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-24:i18:audio",
+          "transcript": "How much will it cost?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "How much will it cost?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-24:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вещи упакуют отдельно. Вставьте недостающую часть.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-24:i19:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-28:session-24:i19:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-28:session-24:i19:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вещи упакуют отдельно. Вставьте недостающую часть.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вещи упакуют отдельно. Вставьте недостающую часть.",
+          "uk": "Речі запакують окремо. Вставте пропущену частину."
+        },
+        "gappedTargetPhrase": "The clothes will ___ packed separately.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-24:i19:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-28:session-24:i19:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-28:session-24:i19:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Вещи упакуют отдельно. Вставьте недостающую часть.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-24:i19:r2",
+            "correct": false,
+            "testedDimension": "Вещи упакуют отдельно. Вставьте недостающую часть.",
+            "feedbackByLocale": {
+              "ru": "После will нужна be.",
+              "uk": "Після will потрібна be."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-24:i19:r3",
+            "correct": false,
+            "testedDimension": "Вещи упакуют отдельно. Вставьте недостающую часть.",
+            "feedbackByLocale": {
+              "ru": "Даже с несколькими вещами: will be.",
+              "uk": "Навіть із кількома речами: will be."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-24:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, где хранится ваш заказ.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-24:i20:audio"
+      ],
+      "accessibilityLabel": "Послушайте, где хранится ваш заказ.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-24:i20:audio",
+          "transcript": "Your order is kept behind the counter."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Your order is kept behind the counter.",
+        "orderedTokens": [
+          "Your",
+          "order",
+          "is",
+          "kept",
+          "behind",
+          "the",
+          "counter"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-24:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что пришли забрать вещи.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-24:i21:audio"
+      ],
+      "accessibilityLabel": "Скажите, что пришли забрать вещи.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-24:i21:audio",
+          "transcript": "I am here to collect my clothes."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am here to collect my clothes.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "089a4dfd6aefb5a6c5a84e26dfb5e9b2cf6e36e7f460a95c9563bae0a26c50a0"
+}

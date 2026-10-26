@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-29:session-37",
+  "learningOutcomeByLocale": {
+    "ru": "как не раскрыть сюжет, назвать предисловие и сокращённую версию, уточнить книгу и автора.",
+    "uk": "як не розкрити сюжет, назвати передмову й скорочену версію, уточнити книжку та автора."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-29:session-37:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Книга, которую вы взяли",
+        "uk": "Книжка, яку ви взяли"
+      },
+      "bodyByLocale": {
+        "ru": "Вы возвращаете другу книгу и делитесь впечатлением. Скажите: The book I borrowed was exciting — книга, которую я одолжил, была захватывающей. Соберите The book + I borrowed + was exciting. В уточнении действие выполняет I, а book называет то, что одолжили. Поэтому that перед I можно опустить. It после borrowed не нужно.",
+        "uk": "Ви повертаєте другові книжку й ділитеся враженням. Скажіть: The book I borrowed was exciting — книжка, яку я позичив, була захопливою. Складіть The book + I borrowed + was exciting. В уточненні дію виконує I, а book називає те, що позичили. Тому that перед I можна пропустити. It після borrowed не потрібне."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-37:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-37:intro1:r1",
+              "text": "The book I borrowed was exciting."
+            },
+            {
+              "responseId": "en:lesson-29:session-37:intro1:r2",
+              "text": "The book I borrowed it was exciting."
+            },
+            {
+              "responseId": "en:lesson-29:session-37:intro1:r3",
+              "text": "The book me borrowed was exciting."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-37:intro1:r1",
+              "text": "The book I borrowed was exciting."
+            },
+            {
+              "responseId": "en:lesson-29:session-37:intro1:r2",
+              "text": "The book I borrowed it was exciting."
+            },
+            {
+              "responseId": "en:lesson-29:session-37:intro1:r3",
+              "text": "The book me borrowed was exciting."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-29:session-37:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Автор понравившейся книги",
+        "uk": "Автор книжки, що сподобалася"
+      },
+      "bodyByLocale": {
+        "ru": "Вы показываете сестре автора книги, которая вам понравилась. Скажите: This is the author whose book I enjoyed — это автор, чья книга мне понравилась. Соберите This is the author + whose book + I enjoyed. Whose book связывает книгу с автором: чья книга. После whose сразу ставим book, без his.",
+        "uk": "Ви показуєте сестрі автора книжки, яка вам сподобалася. Скажіть: This is the author whose book I enjoyed — це автор, чия книжка мені сподобалася. Складіть This is the author + whose book + I enjoyed. Whose book пов’язує книжку з автором: чия книжка. Після whose відразу ставимо book, без his."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-37:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-37:intro2:r1",
+              "text": "This is the author whose book I enjoyed."
+            },
+            {
+              "responseId": "en:lesson-29:session-37:intro2:r2",
+              "text": "This is the author who book I enjoyed."
+            },
+            {
+              "responseId": "en:lesson-29:session-37:intro2:r3",
+              "text": "This is the author whose his book I enjoyed."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-37:intro2:r1",
+              "text": "This is the author whose book I enjoyed."
+            },
+            {
+              "responseId": "en:lesson-29:session-37:intro2:r2",
+              "text": "This is the author who book I enjoyed."
+            },
+            {
+              "responseId": "en:lesson-29:session-37:intro2:r3",
+              "text": "This is the author whose his book I enjoyed."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-29:session-37:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Не раскрыть конец",
+        "uk": "Не розкрити кінець"
+      },
+      "bodyByLocale": {
+        "ru": "Друг ещё не дочитал книгу, поэтому вы обещаете не рассказывать конец книги. Скажите: If you have not finished the book, I will not tell you the ending — если ты ещё не дочитал книгу, я не расскажу тебе конец. Соберите If + you have not finished the book, затем I will not tell you the ending. В части с if назовите условие, а обещание с will not поставьте после запятой.",
+        "uk": "Друг ще не дочитав книжку, тому ви обіцяєте не розповідати кінець книжки. Скажіть: If you have not finished the book, I will not tell you the ending — якщо ти ще не дочитав книжку, я не розповім тобі кінець. Складіть If + you have not finished the book, потім I will not tell you the ending. У частині з if назвіть умову, а обіцянку з will not поставте після коми."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-37:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-37:intro3:r1",
+              "text": "If you have not finished the book, I will not tell you the ending."
+            },
+            {
+              "responseId": "en:lesson-29:session-37:intro3:r2",
+              "text": "If you have not finished the book, I will not to tell you the ending."
+            },
+            {
+              "responseId": "en:lesson-29:session-37:intro3:r3",
+              "text": "If you have not finished the book, I will not telling you the ending."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-37:intro3:r1",
+              "text": "If you have not finished the book, I will not tell you the ending."
+            },
+            {
+              "responseId": "en:lesson-29:session-37:intro3:r2",
+              "text": "If you have not finished the book, I will not to tell you the ending."
+            },
+            {
+              "responseId": "en:lesson-29:session-37:intro3:r3",
+              "text": "If you have not finished the book, I will not telling you the ending."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "c5a2c447fdfc5fd5eae0d2c2c986c417af0069183dba651a3c8f88d7d4b25e4f"
+}

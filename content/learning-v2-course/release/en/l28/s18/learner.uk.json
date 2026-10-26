@@ -1,0 +1,1039 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-28:session-18",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-28:session-18:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — jewellery",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-18:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — jewellery",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-18:i01:audio",
+          "transcript": "jewellery"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-18:i01:r1",
+            "targetText": "jewellery",
+            "meaningByLocale": {
+              "ru": "Украшения, ювелирные изделия. В английском это неисчисляемое слово: jewellery is.",
+              "uk": "Прикраси, ювелірні вироби. В англійській це незлічуване слово: jewellery is."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "jewellery",
+          "definitionByLocale": {
+            "ru": "Украшения, ювелирные изделия. В английском это неисчисляемое слово: jewellery is.",
+            "uk": "Прикраси, ювелірні вироби. В англійській це незлічуване слово: jewellery is."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-18:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-18:i02:r1",
+          "text": "The jewellery is displayed in the window."
+        },
+        {
+          "responseId": "en:lesson-28:session-18:i02:r2",
+          "text": "The jewellery is displayed near the door."
+        },
+        {
+          "responseId": "en:lesson-28:session-18:i02:r3",
+          "text": "The watches are displayed in the window."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-18:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-18:i02:audio",
+          "transcript": "The jewellery is displayed in the window."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-18:i02:r1",
+            "targetText": "The jewellery is displayed in the window.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-18:i02:r2",
+            "targetText": "The jewellery is displayed near the door.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-18:i02:r3",
+            "targetText": "The watches are displayed in the window.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-18:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The jewellery is displayed in the window.",
+              "uk": "У записі звучить The jewellery is displayed in the window."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-18:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The jewellery is displayed in the window.",
+              "uk": "У записі звучить The jewellery is displayed in the window."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-18:i03",
+      "ordinal": 6,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що шукаєте подарунок.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-18:i03:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що шукаєте подарунок.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-18:i03:audio",
+          "transcript": "I am looking for a gift."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am looking for a gift.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-18:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте, чи можна подивитися на каблучку ближче.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи можна подивитися на каблучку ближче.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I have a closer look at this ring?",
+        "localizedMeaning": {
+          "ru": "Спросите, можно ли посмотреть кольцо поближе.",
+          "uk": "Запитайте, чи можна подивитися на каблучку ближче."
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "have",
+          "a",
+          "closer",
+          "look",
+          "at",
+          "this",
+          "ring"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-18:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bangle",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-18:i05:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bangle",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-18:i05:audio",
+          "transcript": "bangle"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-18:i05:r1",
+            "targetText": "bangle",
+            "meaningByLocale": {
+              "ru": "Жёсткий браслет в форме кольца.",
+              "uk": "Жорсткий браслет у формі кільця."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bangle",
+          "definitionByLocale": {
+            "ru": "Жёсткий браслет в форме кольца.",
+            "uk": "Жорсткий браслет у формі кільця."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-18:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Цей браслет відполірують завтра. Вставте пропущену частину.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-18:i06:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-28:session-18:i06:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-28:session-18:i06:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Цей браслет відполірують завтра. Вставте пропущену частину.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Этот браслет отполируют завтра. Вставьте недостающую часть.",
+          "uk": "Цей браслет відполірують завтра. Вставте пропущену частину."
+        },
+        "gappedTargetPhrase": "This bangle will ___ polished tomorrow.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-18:i06:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-28:session-18:i06:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-28:session-18:i06:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Цей браслет відполірують завтра. Вставте пропущену частину.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-18:i06:r2",
+            "correct": false,
+            "testedDimension": "Цей браслет відполірують завтра. Вставте пропущену частину.",
+            "feedbackByLocale": {
+              "ru": "После will нужна be.",
+              "uk": "Після will потрібна be."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-18:i06:r3",
+            "correct": false,
+            "testedDimension": "Цей браслет відполірують завтра. Вставте пропущену частину.",
+            "feedbackByLocale": {
+              "ru": "Будущее действие над предметом: will be polished.",
+              "uk": "Майбутня дія над предметом: will be polished."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-18:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточніть, чи можна приміряти браслет.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-18:i07:audio"
+      ],
+      "accessibilityLabel": "Уточніть, чи можна приміряти браслет.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-18:i07:audio",
+          "transcript": "May I try it on?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "May I try it on?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-18:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-18:i08:r1",
+          "text": "The bracelet was repaired yesterday."
+        },
+        {
+          "responseId": "en:lesson-28:session-18:i08:r2",
+          "text": "The bracelet was repaired last week."
+        },
+        {
+          "responseId": "en:lesson-28:session-18:i08:r3",
+          "text": "The necklace was repaired yesterday."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-18:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-18:i08:audio",
+          "transcript": "The bracelet was repaired yesterday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-18:i08:r1",
+            "targetText": "The bracelet was repaired yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-18:i08:r2",
+            "targetText": "The bracelet was repaired last week.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-18:i08:r3",
+            "targetText": "The necklace was repaired yesterday.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-18:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The bracelet was repaired yesterday.",
+              "uk": "У записі звучить The bracelet was repaired yesterday."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-18:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The bracelet was repaired yesterday.",
+              "uk": "У записі звучить The bracelet was repaired yesterday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-18:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — diamond",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-18:i09:audio"
+      ],
+      "accessibilityLabel": "Картка слова — diamond",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-18:i09:audio",
+          "transcript": "diamond"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-18:i09:r1",
+            "targetText": "diamond",
+            "meaningByLocale": {
+              "ru": "Бриллиант в украшении; также алмаз.",
+              "uk": "Діамант у прикрасі; також алмаз."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "diamond",
+          "definitionByLocale": {
+            "ru": "Бриллиант в украшении; также алмаз.",
+            "uk": "Діамант у прикрасі; також алмаз."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-18:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте, чи справжній це діамант.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи справжній це діамант.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Is this a real diamond?",
+        "localizedMeaning": {
+          "ru": "Спросите, настоящий ли это бриллиант.",
+          "uk": "Запитайте, чи справжній це діамант."
+        },
+        "orderedTokens": [
+          "Is",
+          "this",
+          "a",
+          "real",
+          "diamond"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-18:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сережки почистили вранці. Виберіть форму для кількох предметів.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-18:i11:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-28:session-18:i11:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-28:session-18:i11:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сережки почистили вранці. Виберіть форму для кількох предметів.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Серьги почистили утром. Выберите форму для нескольких предметов.",
+          "uk": "Сережки почистили вранці. Виберіть форму для кількох предметів."
+        },
+        "gappedTargetPhrase": "The earrings ___ cleaned this morning.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-18:i11:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-28:session-18:i11:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-28:session-18:i11:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Сережки почистили вранці. Виберіть форму для кількох предметів.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-18:i11:r2",
+            "correct": false,
+            "testedDimension": "Сережки почистили вранці. Виберіть форму для кількох предметів.",
+            "feedbackByLocale": {
+              "ru": "Earrings — несколько: were.",
+              "uk": "Earrings — кілька: were."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-18:i11:r3",
+            "correct": false,
+            "testedDimension": "Сережки почистили вранці. Виберіть форму для кількох предметів.",
+            "feedbackByLocale": {
+              "ru": "Прошлое действие: were cleaned.",
+              "uk": "Минула дія: were cleaned."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-18:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Каблучка, яка сподобалася, дорога. Висловіть бажання щодо нижчої ціни.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Каблучка, яка сподобалася, дорога. Висловіть бажання щодо нижчої ціни.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I wish this ring were cheaper.",
+        "localizedMeaning": {
+          "ru": "Понравившееся кольцо дорогое. Выразите желание о более низкой цене.",
+          "uk": "Каблучка, яка сподобалася, дорога. Висловіть бажання щодо нижчої ціни."
+        },
+        "orderedTokens": [
+          "I",
+          "wish",
+          "this",
+          "ring",
+          "were",
+          "cheaper"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-18:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — engrave",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-18:i13:audio"
+      ],
+      "accessibilityLabel": "Картка слова — engrave",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-18:i13:audio",
+          "transcript": "engrave"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-18:i13:r1",
+            "targetText": "engrave",
+            "meaningByLocale": {
+              "ru": "Гравировать: вырезать надпись или рисунок на твёрдой поверхности.",
+              "uk": "Гравіювати: вирізати напис або малюнок на твердій поверхні."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "engrave",
+          "definitionByLocale": {
+            "ru": "Гравировать: вырезать надпись или рисунок на твёрдой поверхности.",
+            "uk": "Гравіювати: вирізати напис або малюнок на твердій поверхні."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-18:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть вигравіювати ім’я на каблучці.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-18:i14:audio"
+      ],
+      "accessibilityLabel": "Попросіть вигравіювати ім’я на каблучці.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-18:i14:audio",
+          "transcript": "Could you engrave a name on this ring?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you engrave a name on this ring?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-18:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-18:i15:r1",
+          "text": "The name will be engraved inside the ring."
+        },
+        {
+          "responseId": "en:lesson-28:session-18:i15:r2",
+          "text": "The name will be engraved outside the ring."
+        },
+        {
+          "responseId": "en:lesson-28:session-18:i15:r3",
+          "text": "The date will be engraved inside the ring."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-18:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-18:i15:audio",
+          "transcript": "The name will be engraved inside the ring."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-18:i15:r1",
+            "targetText": "The name will be engraved inside the ring.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-18:i15:r2",
+            "targetText": "The name will be engraved outside the ring.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-18:i15:r3",
+            "targetText": "The date will be engraved inside the ring.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-18:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The name will be engraved inside the ring.",
+              "uk": "У записі звучить The name will be engraved inside the ring."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-18:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The name will be engraved inside the ring.",
+              "uk": "У записі звучить The name will be engraved inside the ring."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-18:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора майстер уже закінчив роботу до вашого приходу. Завершіть ранішу подію.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-18:i16:r1",
+          "text": "finished"
+        },
+        {
+          "responseId": "en:lesson-28:session-18:i16:r2",
+          "text": "finish"
+        },
+        {
+          "responseId": "en:lesson-28:session-18:i16:r3",
+          "text": "finishing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора майстер уже закінчив роботу до вашого приходу. Завершіть ранішу подію.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера мастер уже закончил работу к вашему приходу. Завершите более раннее событие.",
+          "uk": "Учора майстер уже закінчив роботу до вашого приходу. Завершіть ранішу подію."
+        },
+        "gappedTargetPhrase": "He had ___ by the time I arrived.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-18:i16:r1",
+            "text": "finished"
+          },
+          {
+            "responseId": "en:lesson-28:session-18:i16:r2",
+            "text": "finish"
+          },
+          {
+            "responseId": "en:lesson-28:session-18:i16:r3",
+            "text": "finishing"
+          }
+        ],
+        "testedDimension": "Учора майстер уже закінчив роботу до вашого приходу. Завершіть ранішу подію.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-18:i16:r2",
+            "correct": false,
+            "testedDimension": "Учора майстер уже закінчив роботу до вашого приходу. Завершіть ранішу подію.",
+            "feedbackByLocale": {
+              "ru": "После had нужна finished.",
+              "uk": "Після had потрібна finished."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-18:i16:r3",
+            "correct": false,
+            "testedDimension": "Учора майстер уже закінчив роботу до вашого приходу. Завершіть ранішу подію.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем had finished.",
+              "uk": "Тут використовуємо had finished."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-18:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, як запакують подарунок.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-18:i17:audio"
+      ],
+      "accessibilityLabel": "Послухайте, як запакують подарунок.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-18:i17:audio",
+          "transcript": "The gift will be wrapped in paper."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The gift will be wrapped in paper.",
+        "orderedTokens": [
+          "The",
+          "gift",
+          "will",
+          "be",
+          "wrapped",
+          "in",
+          "paper"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-18:i18",
+      "ordinal": 21,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте, коли можна забрати замовлення.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-18:i18:audio"
+      ],
+      "accessibilityLabel": "Запитайте, коли можна забрати замовлення.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-18:i18:audio",
+          "transcript": "When can I collect it?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "When can I collect it?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-18:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Тут перевіряють каблучки перед ремонтом.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-18:i19:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-28:session-18:i19:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-28:session-18:i19:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Тут перевіряють каблучки перед ремонтом.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Здесь проверяют кольца перед ремонтом.",
+          "uk": "Тут перевіряють каблучки перед ремонтом."
+        },
+        "gappedTargetPhrase": "Rings ___ checked before repair.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-18:i19:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-28:session-18:i19:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-28:session-18:i19:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Тут перевіряють каблучки перед ремонтом.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-18:i19:r2",
+            "correct": false,
+            "testedDimension": "Тут перевіряють каблучки перед ремонтом.",
+            "feedbackByLocale": {
+              "ru": "Rings — несколько: are.",
+              "uk": "Rings — кілька: are."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-18:i19:r3",
+            "correct": false,
+            "testedDimension": "Тут перевіряють каблучки перед ремонтом.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем are checked.",
+              "uk": "Тут використовуємо are checked."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-18:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, коли надішлють чек.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-18:i20:audio"
+      ],
+      "accessibilityLabel": "Послухайте, коли надішлють чек.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-18:i20:audio",
+          "transcript": "The receipt will be sent today."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The receipt will be sent today.",
+        "orderedTokens": [
+          "The",
+          "receipt",
+          "will",
+          "be",
+          "sent",
+          "today"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-18:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть ще раз перевірити написання імені.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-18:i21:audio"
+      ],
+      "accessibilityLabel": "Попросіть ще раз перевірити написання імені.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-18:i21:audio",
+          "transcript": "Please check the spelling of the name."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Please check the spelling of the name.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "9e2a79444a3ecacee059a6a88d7ae7ff6287fbe14a7a0c283a1ecfb6e24438d1"
+}

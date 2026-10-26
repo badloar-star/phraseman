@@ -1,0 +1,1055 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-29:session-18",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-29:session-18:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — inn",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-18:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — inn",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-18:i01:audio",
+          "transcript": "inn"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-18:i01:r1",
+            "targetText": "inn",
+            "meaningByLocale": {
+              "ru": "Небольшая гостиница. Часто с местом, где гостям подают еду и напитки.",
+              "uk": "Невеликий готель. Часто з місцем, де гостям подають їжу та напої."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "inn",
+          "definitionByLocale": {
+            "ru": "Небольшая гостиница. Часто с местом, где гостям подают еду и напитки.",
+            "uk": "Невеликий готель. Часто з місцем, де гостям подають їжу та напої."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-18:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что в деревне есть небольшая гостиница.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что в деревне есть небольшая гостиница.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There is an inn in the village.",
+        "localizedMeaning": {
+          "ru": "Скажите, что в деревне есть небольшая гостиница.",
+          "uk": "Скажіть, що в селі є невеликий готель."
+        },
+        "orderedTokens": [
+          "There",
+          "is",
+          "an",
+          "inn",
+          "in",
+          "the",
+          "village"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-18:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-18:i03:r1",
+          "text": "This is the village where we stayed."
+        },
+        {
+          "responseId": "en:lesson-29:session-18:i03:r2",
+          "text": "This is the village where we worked."
+        },
+        {
+          "responseId": "en:lesson-29:session-18:i03:r3",
+          "text": "This is the town where we stayed."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-18:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-18:i03:audio",
+          "transcript": "This is the village where we stayed."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-18:i03:r1",
+            "targetText": "This is the village where we stayed.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-18:i03:r2",
+            "targetText": "This is the village where we worked.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-18:i03:r3",
+            "targetText": "This is the town where we stayed.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-18:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This is the village where we stayed.",
+              "uk": "У записі звучить This is the village where we stayed."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-18:i03:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This is the village where we stayed.",
+              "uk": "У записі звучить This is the village where we stayed."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-18:i04",
+      "ordinal": 7,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите, включён ли завтрак.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-18:i04:audio"
+      ],
+      "accessibilityLabel": "Спросите, включён ли завтрак.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-18:i04:audio",
+          "transcript": "Is breakfast included?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is breakfast included?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-18:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — chalet",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-18:i05:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — chalet",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-18:i05:audio",
+          "transcript": "chalet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-18:i05:r1",
+            "targetText": "chalet",
+            "meaningByLocale": {
+              "ru": "Шале. Небольшой дом для отдыха, часто деревянный и расположенный в горах.",
+              "uk": "Шале. Невеликий будинок для відпочинку, часто дерев’яний і розташований у горах."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "chalet",
+          "definitionByLocale": {
+            "ru": "Шале. Небольшой дом для отдыха, часто деревянный и расположенный в горах.",
+            "uk": "Шале. Невеликий будинок для відпочинку, часто дерев’яний і розташований у горах."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-18:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что хотели бы остановиться в шале.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-18:i06:audio"
+      ],
+      "accessibilityLabel": "Скажите, что хотели бы остановиться в шале.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-18:i06:audio",
+          "transcript": "I would like to stay in a chalet."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I would like to stay in a chalet.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-18:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточните деревню через ваше проживание в ней.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-18:i07:r1",
+          "text": "where"
+        },
+        {
+          "responseId": "en:lesson-29:session-18:i07:r2",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-18:i07:r3",
+          "text": "whose"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточните деревню через ваше проживание в ней.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните деревню через ваше проживание в ней.",
+          "uk": "Уточніть село через ваше проживання в ньому."
+        },
+        "gappedTargetPhrase": "This is the village ___ we stayed.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-18:i07:r1",
+            "text": "where"
+          },
+          {
+            "responseId": "en:lesson-29:session-18:i07:r2",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-18:i07:r3",
+            "text": "whose"
+          }
+        ],
+        "testedDimension": "Уточните деревню через ваше проживание в ней.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-18:i07:r2",
+            "correct": false,
+            "testedDimension": "Уточните деревню через ваше проживание в ней.",
+            "feedbackByLocale": {
+              "ru": "Для места проживания нужна where.",
+              "uk": "Для місця проживання потрібна where."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-18:i07:r3",
+            "correct": false,
+            "testedDimension": "Уточните деревню через ваше проживание в ней.",
+            "feedbackByLocale": {
+              "ru": "Здесь указываем место, а не принадлежность: where.",
+              "uk": "Тут указуємо місце, а не належність: where."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-18:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, кто подготовил комнату.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-18:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте, кто подготовил комнату.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-18:i08:audio",
+          "transcript": "The room was prepared by the owner."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The room was prepared by the owner.",
+        "orderedTokens": [
+          "The",
+          "room",
+          "was",
+          "prepared",
+          "by",
+          "the",
+          "owner"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-18:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — villa",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-18:i09:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — villa",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-18:i09:audio",
+          "transcript": "villa"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-18:i09:r1",
+            "targetText": "villa",
+            "meaningByLocale": {
+              "ru": "Вилла. Отдельный дом, часто с садом, который может использоваться для отдыха.",
+              "uk": "Вілла. Окремий будинок, часто із садом, який може використовуватися для відпочинку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "villa",
+          "definitionByLocale": {
+            "ru": "Вилла. Отдельный дом, часто с садом, который может использоваться для отдыха.",
+            "uk": "Вілла. Окремий будинок, часто із садом, який може використовуватися для відпочинку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-18:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-18:i10:r1",
+          "text": "The villa has a small garden."
+        },
+        {
+          "responseId": "en:lesson-29:session-18:i10:r2",
+          "text": "The villa has a large garden."
+        },
+        {
+          "responseId": "en:lesson-29:session-18:i10:r3",
+          "text": "The hotel has a small garden."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-18:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-18:i10:audio",
+          "transcript": "The villa has a small garden."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-18:i10:r1",
+            "targetText": "The villa has a small garden.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-18:i10:r2",
+            "targetText": "The villa has a large garden.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-18:i10:r3",
+            "targetText": "The hotel has a small garden.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-18:i10:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The villa has a small garden.",
+              "uk": "У записі звучить The villa has a small garden."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-18:i10:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The villa has a small garden.",
+              "uk": "У записі звучить The villa has a small garden."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-18:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Найдите гостя, чья машина стоит снаружи.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-18:i11:r1",
+          "text": "whose"
+        },
+        {
+          "responseId": "en:lesson-29:session-18:i11:r2",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-18:i11:r3",
+          "text": "whose his"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Найдите гостя, чья машина стоит снаружи.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Найдите гостя, чья машина стоит снаружи.",
+          "uk": "Знайдіть гостя, чия машина стоїть надворі."
+        },
+        "gappedTargetPhrase": "Where is the guest ___ car is outside?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-18:i11:r1",
+            "text": "whose"
+          },
+          {
+            "responseId": "en:lesson-29:session-18:i11:r2",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-18:i11:r3",
+            "text": "whose his"
+          }
+        ],
+        "testedDimension": "Найдите гостя, чья машина стоит снаружи.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-18:i11:r2",
+            "correct": false,
+            "testedDimension": "Найдите гостя, чья машина стоит снаружи.",
+            "feedbackByLocale": {
+              "ru": "Для связи владельца с car используем whose.",
+              "uk": "Для зв’язку власника з car використовуємо whose."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-18:i11:r3",
+            "correct": false,
+            "testedDimension": "Найдите гостя, чья машина стоит снаружи.",
+            "feedbackByLocale": {
+              "ru": "После whose не добавляем his.",
+              "uk": "Після whose не додаємо his."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-18:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите, можно ли оставить машину здесь.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-18:i12:audio"
+      ],
+      "accessibilityLabel": "Спросите, можно ли оставить машину здесь.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-18:i12:audio",
+          "transcript": "Can we park here?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Can we park here?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-18:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — caravan",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-18:i13:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — caravan",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-18:i13:audio",
+          "transcript": "caravan"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-18:i13:r1",
+            "targetText": "caravan",
+            "meaningByLocale": {
+              "ru": "Жилой прицеп. Прицеп с местом для сна, который автомобиль тянет за собой.",
+              "uk": "Житловий причіп. Причіп із місцем для сну, який автомобіль тягне за собою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "caravan",
+          "definitionByLocale": {
+            "ru": "Жилой прицеп. Прицеп с местом для сна, который автомобиль тянет за собой.",
+            "uk": "Житловий причіп. Причіп із місцем для сну, який автомобіль тягне за собою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-18:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что вы спали в жилом прицепе.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что вы спали в жилом прицепе.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We slept in a caravan.",
+        "localizedMeaning": {
+          "ru": "Скажите, что вы спали в жилом прицепе.",
+          "uk": "Скажіть, що ви спали в житловому причепі."
+        },
+        "orderedTokens": [
+          "We",
+          "slept",
+          "in",
+          "a",
+          "caravan"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-18:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините жильё с переводом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините жильё с переводом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-29:session-18:i15:p1",
+            "target": "inn",
+            "meaningByLocale": {
+              "ru": "небольшая гостиница",
+              "uk": "невеликий готель"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-18:i15:p2",
+            "target": "chalet",
+            "meaningByLocale": {
+              "ru": "шале",
+              "uk": "шале"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-18:i15:p3",
+            "target": "villa",
+            "meaningByLocale": {
+              "ru": "вилла",
+              "uk": "вілла"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-18:i15:p4",
+            "target": "caravan",
+            "meaningByLocale": {
+              "ru": "жилой прицеп",
+              "uk": "житловий причіп"
+            }
+          }
+        ],
+        "leftColumn": [
+          "inn",
+          "chalet",
+          "villa",
+          "caravan"
+        ],
+        "rightColumn": [
+          "небольшая гостиница",
+          "шале",
+          "вилла",
+          "жилой прицеп"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-18:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Если пойдёт дождь, вы останетесь внутри.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-18:i16:r1",
+          "text": "rains"
+        },
+        {
+          "responseId": "en:lesson-29:session-18:i16:r2",
+          "text": "will rain"
+        },
+        {
+          "responseId": "en:lesson-29:session-18:i16:r3",
+          "text": "raining"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Если пойдёт дождь, вы останетесь внутри.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Если пойдёт дождь, вы останетесь внутри.",
+          "uk": "Якщо піде дощ, ви залишитеся всередині."
+        },
+        "gappedTargetPhrase": "We will stay inside if it ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-18:i16:r1",
+            "text": "rains"
+          },
+          {
+            "responseId": "en:lesson-29:session-18:i16:r2",
+            "text": "will rain"
+          },
+          {
+            "responseId": "en:lesson-29:session-18:i16:r3",
+            "text": "raining"
+          }
+        ],
+        "testedDimension": "Если пойдёт дождь, вы останетесь внутри.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-18:i16:r2",
+            "correct": false,
+            "testedDimension": "Если пойдёт дождь, вы останетесь внутри.",
+            "feedbackByLocale": {
+              "ru": "В этом условии после if нужна rains без will.",
+              "uk": "У цій умові після if потрібна rains без will."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-18:i16:r3",
+            "correct": false,
+            "testedDimension": "Если пойдёт дождь, вы останетесь внутри.",
+            "feedbackByLocale": {
+              "ru": "Для условия здесь используем rains.",
+              "uk": "Для умови тут використовуємо rains."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-18:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: в доме есть сад или балкон?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-18:i17:r1",
+          "text": "The villa has a garden."
+        },
+        {
+          "responseId": "en:lesson-29:session-18:i17:r2",
+          "text": "The villa has a balcony."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-18:i17:audioA",
+        "en:lesson-29:session-18:i17:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: в доме есть сад или балкон?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "The villa has a garden.",
+        "contrastB": "The villa has a balcony.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-29:session-18:i17:audioA",
+          "transcript": "The villa has a garden."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-29:session-18:i17:audioB",
+          "transcript": "The villa has a balcony."
+        },
+        "testedPhoneticContrast": "Послушайте: в доме есть сад или балкон?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-18:i17:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: в доме есть сад или балкон?",
+            "feedbackByLocale": {
+              "ru": "В записи garden — сад.",
+              "uk": "У записі garden — сад."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-18:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что знаете место, где можно позавтракать.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что знаете место, где можно позавтракать.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I know a place where we can have breakfast.",
+        "localizedMeaning": {
+          "ru": "Скажите, что знаете место, где можно позавтракать.",
+          "uk": "Скажіть, що знаєте місце, де можна поснідати."
+        },
+        "orderedTokens": [
+          "I",
+          "know",
+          "a",
+          "place",
+          "where",
+          "we",
+          "can",
+          "have",
+          "breakfast"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-18:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Комнату подготовил хозяин.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-18:i19:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-29:session-18:i19:r2",
+          "text": "of"
+        },
+        {
+          "responseId": "en:lesson-29:session-18:i19:r3",
+          "text": "from"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Комнату подготовил хозяин.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Комнату подготовил хозяин.",
+          "uk": "Кімнату підготував господар."
+        },
+        "gappedTargetPhrase": "The room was prepared ___ the owner.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-18:i19:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-29:session-18:i19:r2",
+            "text": "of"
+          },
+          {
+            "responseId": "en:lesson-29:session-18:i19:r3",
+            "text": "from"
+          }
+        ],
+        "testedDimension": "Комнату подготовил хозяин.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-18:i19:r2",
+            "correct": false,
+            "testedDimension": "Комнату подготовил хозяин.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя действия вводит by.",
+              "uk": "Виконавця дії позначає by."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-18:i19:r3",
+            "correct": false,
+            "testedDimension": "Комнату подготовил хозяин.",
+            "feedbackByLocale": {
+              "ru": "Для человека, подготовившего комнату, нужна by.",
+              "uk": "Для людини, яка підготувала кімнату, потрібна by."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-18:i20",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите показать комнату.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-18:i20:audio"
+      ],
+      "accessibilityLabel": "Попросите показать комнату.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-18:i20:audio",
+          "transcript": "Could you show us the room?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you show us the room?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-18:i21",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, какой номер комнаты вам дали.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-18:i21:audio"
+      ],
+      "accessibilityLabel": "Послушайте, какой номер комнаты вам дали.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-18:i21:audio",
+          "transcript": "Our room is number six."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Our room is number six.",
+        "orderedTokens": [
+          "Our",
+          "room",
+          "is",
+          "number",
+          "six"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "701b26b0e023a0168be40d5e0a111cf9388d42e3de6b22cde0ed0405b3677801"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-29:session-45",
+  "entries": [
+    {
+      "interactionId": "en:lesson-29:session-45:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-45:intro1:r2": {
+          "ru": "It повторяет уже названное занятие.",
+          "uk": "It повторює вже назване заняття."
+        },
+        "en:lesson-29:session-45:intro1:r3": {
+          "ru": "Попробовали вы: I tried, не me tried.",
+          "uk": "Спробували ви: I tried, не me tried."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-45:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-45:intro2:r2": {
+          "ru": "Who обозначает исполнителя внутри уточнения; его нельзя убрать.",
+          "uk": "Who позначає виконавця всередині уточнення; його не можна прибрати."
+        },
+        "en:lesson-29:session-45:intro2:r3": {
+          "ru": "He повторяет исполнителя, уже обозначенного who.",
+          "uk": "He повторює виконавця, уже позначеного who."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-45:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-45:intro3:r2": {
+          "ru": "В уточнении нужен порядок we met.",
+          "uk": "В уточненні потрібен порядок we met."
+        },
+        "en:lesson-29:session-45:intro3:r3": {
+          "ru": "Для места встречи используем where.",
+          "uk": "Для місця зустрічі використовуємо where."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a40a20ff1cadfc8f15a6ff9cb9129b8adf37e97d74560072f15fe4662e840aff"
+}

@@ -1,0 +1,1035 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-28:session-14",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-28:session-14:i01",
+      "ordinal": 4,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть допомогти знайти засоби для чищення.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-14:i01:audio"
+      ],
+      "accessibilityLabel": "Попросіть допомогти знайти засоби для чищення.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-14:i01:audio",
+          "transcript": "Where are the cleaning products?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Where are the cleaning products?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-14:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — descaler",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-14:i02:audio"
+      ],
+      "accessibilityLabel": "Картка слова — descaler",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-14:i02:audio",
+          "transcript": "descaler"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-14:i02:r1",
+            "targetText": "descaler",
+            "meaningByLocale": {
+              "ru": "Средство для удаления накипи.",
+              "uk": "Засіб для видалення накипу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "descaler",
+          "definitionByLocale": {
+            "ru": "Средство для удаления накипи.",
+            "uk": "Засіб для видалення накипу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-14:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Покажіть засіб і запитайте, чи підходить він для чайників.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Покажіть засіб і запитайте, чи підходить він для чайників.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Is this descaler suitable for kettles?",
+        "localizedMeaning": {
+          "ru": "Покажите средство и спросите, подходит ли оно для чайников.",
+          "uk": "Покажіть засіб і запитайте, чи підходить він для чайників."
+        },
+        "orderedTokens": [
+          "Is",
+          "this",
+          "descaler",
+          "suitable",
+          "for",
+          "kettles"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-14:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-14:i04:r1",
+          "text": "The filter was cleaned yesterday."
+        },
+        {
+          "responseId": "en:lesson-28:session-14:i04:r2",
+          "text": "The filter was cleaned last week."
+        },
+        {
+          "responseId": "en:lesson-28:session-14:i04:r3",
+          "text": "The window was cleaned yesterday."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-14:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-14:i04:audio",
+          "transcript": "The filter was cleaned yesterday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-14:i04:r1",
+            "targetText": "The filter was cleaned yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-14:i04:r2",
+            "targetText": "The filter was cleaned last week.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-14:i04:r3",
+            "targetText": "The window was cleaned yesterday.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-14:i04:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The filter was cleaned yesterday.",
+              "uk": "У записі звучить The filter was cleaned yesterday."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-14:i04:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The filter was cleaned yesterday.",
+              "uk": "У записі звучить The filter was cleaned yesterday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-14:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — sanitiser",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-14:i05:audio"
+      ],
+      "accessibilityLabel": "Картка слова — sanitiser",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-14:i05:audio",
+          "transcript": "sanitiser"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-14:i05:r1",
+            "targetText": "sanitiser",
+            "meaningByLocale": {
+              "ru": "Дезинфицирующее средство; hand sanitiser — средство для обработки рук.",
+              "uk": "Дезінфекційний засіб; hand sanitiser — засіб для обробки рук."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sanitiser",
+          "definitionByLocale": {
+            "ru": "Дезинфицирующее средство; hand sanitiser — средство для обработки рук.",
+            "uk": "Дезінфекційний засіб; hand sanitiser — засіб для обробки рук."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-14:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть маленький флакон засобу для рук.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-14:i06:audio"
+      ],
+      "accessibilityLabel": "Попросіть маленький флакон засобу для рук.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-14:i06:audio",
+          "transcript": "A small bottle of hand sanitiser, please."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "A small bottle of hand sanitiser, please.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-14:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ці засоби зберігають на нижній полиці.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-14:i07:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-28:session-14:i07:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-28:session-14:i07:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ці засоби зберігають на нижній полиці.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Эти средства хранят на нижней полке.",
+          "uk": "Ці засоби зберігають на нижній полиці."
+        },
+        "gappedTargetPhrase": "These products ___ kept on the bottom shelf.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-14:i07:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-28:session-14:i07:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-28:session-14:i07:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Ці засоби зберігають на нижній полиці.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-14:i07:r2",
+            "correct": false,
+            "testedDimension": "Ці засоби зберігають на нижній полиці.",
+            "feedbackByLocale": {
+              "ru": "Products — несколько: are.",
+              "uk": "Products — кілька: are."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-14:i07:r3",
+            "correct": false,
+            "testedDimension": "Ці засоби зберігають на нижній полиці.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем are kept.",
+              "uk": "Тут використовуємо are kept."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-14:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "У квартирі вогко. Ви хотіли б, щоб вона була сухішою.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У квартирі вогко. Ви хотіли б, щоб вона була сухішою.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I wish my flat were drier.",
+        "localizedMeaning": {
+          "ru": "В квартире сыро. Вы хотели бы, чтобы она была суше.",
+          "uk": "У квартирі вогко. Ви хотіли б, щоб вона була сухішою."
+        },
+        "orderedTokens": [
+          "I",
+          "wish",
+          "my",
+          "flat",
+          "were",
+          "drier"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-14:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — microfibre",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-14:i09:audio"
+      ],
+      "accessibilityLabel": "Картка слова — microfibre",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-14:i09:audio",
+          "transcript": "microfibre"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-14:i09:r1",
+            "targetText": "microfibre",
+            "meaningByLocale": {
+              "ru": "Микрофибра: материал из очень тонких волокон, из которого делают салфетки для уборки.",
+              "uk": "Мікрофібра: матеріал із дуже тонких волокон, з якого роблять серветки для прибирання."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "microfibre",
+          "definitionByLocale": {
+            "ru": "Микрофибра: материал из очень тонких волокон, из которого делают салфетки для уборки.",
+            "uk": "Мікрофібра: матеріал із дуже тонких волокон, з якого роблять серветки для прибирання."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-14:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-14:i10:r1",
+          "text": "This cloth is made of microfibre."
+        },
+        {
+          "responseId": "en:lesson-28:session-14:i10:r2",
+          "text": "This cloth is made of cotton."
+        },
+        {
+          "responseId": "en:lesson-28:session-14:i10:r3",
+          "text": "This towel is made of microfibre."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-14:i10:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-14:i10:audio",
+          "transcript": "This cloth is made of microfibre."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-14:i10:r1",
+            "targetText": "This cloth is made of microfibre.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-14:i10:r2",
+            "targetText": "This cloth is made of cotton.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-14:i10:r3",
+            "targetText": "This towel is made of microfibre.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-14:i10:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This cloth is made of microfibre.",
+              "uk": "У записі звучить This cloth is made of microfibre."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-14:i10:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This cloth is made of microfibre.",
+              "uk": "У записі звучить This cloth is made of microfibre."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-14:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви повідомляєте, що полиці почистили вчора.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-14:i11:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-28:session-14:i11:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-28:session-14:i11:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви повідомляєте, що полиці почистили вчора.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы сообщаете, что полки почистили вчера.",
+          "uk": "Ви повідомляєте, що полиці почистили вчора."
+        },
+        "gappedTargetPhrase": "The shelves ___ cleaned yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-14:i11:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-28:session-14:i11:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-28:session-14:i11:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Ви повідомляєте, що полиці почистили вчора.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-14:i11:r2",
+            "correct": false,
+            "testedDimension": "Ви повідомляєте, що полиці почистили вчора.",
+            "feedbackByLocale": {
+              "ru": "Shelves — несколько полок: were.",
+              "uk": "Shelves — кілька полиць: were."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-14:i11:r3",
+            "correct": false,
+            "testedDimension": "Ви повідомляєте, що полиці почистили вчора.",
+            "feedbackByLocale": {
+              "ru": "Прошлое действие: were cleaned.",
+              "uk": "Минула дія: were cleaned."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-14:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте, чи можна прати серветку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-14:i12:audio"
+      ],
+      "accessibilityLabel": "Запитайте, чи можна прати серветку.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-14:i12:audio",
+          "transcript": "Can I wash this cloth?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Can I wash this cloth?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-14:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — dehumidifier",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-14:i13:audio"
+      ],
+      "accessibilityLabel": "Картка слова — dehumidifier",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-14:i13:audio",
+          "transcript": "dehumidifier"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-14:i13:r1",
+            "targetText": "dehumidifier",
+            "meaningByLocale": {
+              "ru": "Осушитель воздуха: прибор, который убирает лишнюю влагу из воздуха.",
+              "uk": "Осушувач повітря: прилад, який прибирає зайву вологу з повітря."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dehumidifier",
+          "definitionByLocale": {
+            "ru": "Осушитель воздуха: прибор, который убирает лишнюю влагу из воздуха.",
+            "uk": "Осушувач повітря: прилад, який прибирає зайву вологу з повітря."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-14:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте, як працює цей осушувач.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, як працює цей осушувач.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "How does this dehumidifier work?",
+        "localizedMeaning": {
+          "ru": "Спросите, как работает этот осушитель.",
+          "uk": "Запитайте, як працює цей осушувач."
+        },
+        "orderedTokens": [
+          "How",
+          "does",
+          "this",
+          "dehumidifier",
+          "work"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-14:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-14:i15:r1",
+          "text": "The tank is emptied every morning."
+        },
+        {
+          "responseId": "en:lesson-28:session-14:i15:r2",
+          "text": "The tank is emptied every evening."
+        },
+        {
+          "responseId": "en:lesson-28:session-14:i15:r3",
+          "text": "The bin is emptied every morning."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-14:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-14:i15:audio",
+          "transcript": "The tank is emptied every morning."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-14:i15:r1",
+            "targetText": "The tank is emptied every morning.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-14:i15:r2",
+            "targetText": "The tank is emptied every evening.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-14:i15:r3",
+            "targetText": "The bin is emptied every morning.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-14:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The tank is emptied every morning.",
+              "uk": "У записі звучить The tank is emptied every morning."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-14:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The tank is emptied every morning.",
+              "uk": "У записі звучить The tank is emptied every morning."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-14:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора крамниця вже зачинилася до вашого приходу. Завершіть ранішу подію.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-14:i16:r1",
+          "text": "closed"
+        },
+        {
+          "responseId": "en:lesson-28:session-14:i16:r2",
+          "text": "close"
+        },
+        {
+          "responseId": "en:lesson-28:session-14:i16:r3",
+          "text": "closing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора крамниця вже зачинилася до вашого приходу. Завершіть ранішу подію.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера магазин уже закрылся к вашему приходу. Завершите более раннее событие.",
+          "uk": "Учора крамниця вже зачинилася до вашого приходу. Завершіть ранішу подію."
+        },
+        "gappedTargetPhrase": "The shop had ___ by the time I arrived.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-14:i16:r1",
+            "text": "closed"
+          },
+          {
+            "responseId": "en:lesson-28:session-14:i16:r2",
+            "text": "close"
+          },
+          {
+            "responseId": "en:lesson-28:session-14:i16:r3",
+            "text": "closing"
+          }
+        ],
+        "testedDimension": "Учора крамниця вже зачинилася до вашого приходу. Завершіть ранішу подію.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-14:i16:r2",
+            "correct": false,
+            "testedDimension": "Учора крамниця вже зачинилася до вашого приходу. Завершіть ранішу подію.",
+            "feedbackByLocale": {
+              "ru": "После had нужна closed.",
+              "uk": "Після had потрібна closed."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-14:i16:r3",
+            "correct": false,
+            "testedDimension": "Учора крамниця вже зачинилася до вашого приходу. Завершіть ранішу подію.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем had closed.",
+              "uk": "Тут використовуємо had closed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-14:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, куди поклали інструкцію.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-14:i17:audio"
+      ],
+      "accessibilityLabel": "Послухайте, куди поклали інструкцію.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-14:i17:audio",
+          "transcript": "The instructions were put inside the box."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The instructions were put inside the box.",
+        "orderedTokens": [
+          "The",
+          "instructions",
+          "were",
+          "put",
+          "inside",
+          "the",
+          "box"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-14:i18",
+      "ordinal": 21,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте, скільки електроенергії використовує прилад.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-14:i18:audio"
+      ],
+      "accessibilityLabel": "Запитайте, скільки електроенергії використовує прилад.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-14:i18:audio",
+          "transcript": "How much electricity does it use?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "How much electricity does it use?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-14:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Прилад шумний. Вам хотілося б тихішого.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-14:i19:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-28:session-14:i19:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-28:session-14:i19:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Прилад шумний. Вам хотілося б тихішого.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Прибор шумный. Вам хотелось бы более тихого.",
+          "uk": "Прилад шумний. Вам хотілося б тихішого."
+        },
+        "gappedTargetPhrase": "I wish it ___ quieter.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-14:i19:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-28:session-14:i19:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-28:session-14:i19:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Прилад шумний. Вам хотілося б тихішого.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-14:i19:r2",
+            "correct": false,
+            "testedDimension": "Прилад шумний. Вам хотілося б тихішого.",
+            "feedbackByLocale": {
+              "ru": "Желание о настоящем: were после wish.",
+              "uk": "Бажання про теперішнє: were після wish."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-14:i19:r3",
+            "correct": false,
+            "testedDimension": "Прилад шумний. Вам хотілося б тихішого.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма were.",
+              "uk": "Потрібна форма were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-14:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, коли доставили прилад.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-14:i20:audio"
+      ],
+      "accessibilityLabel": "Послухайте, коли доставили прилад.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-14:i20:audio",
+          "transcript": "It was delivered this morning."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "It was delivered this morning.",
+        "orderedTokens": [
+          "It",
+          "was",
+          "delivered",
+          "this",
+          "morning"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-14:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть покласти чек разом із покупкою.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-14:i21:audio"
+      ],
+      "accessibilityLabel": "Попросіть покласти чек разом із покупкою.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-14:i21:audio",
+          "transcript": "Could you put the receipt in the bag?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you put the receipt in the bag?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "34f39a0275d9d8e4f663b79800561e32edbb4de00f538e614775dc4b2d0943fd"
+}

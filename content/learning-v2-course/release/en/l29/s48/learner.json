@@ -1,0 +1,1052 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-29:session-48",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-29:session-48:i01",
+      "ordinal": 4,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите сестре, что вам нужна ещё минута.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-48:i01:audio"
+      ],
+      "accessibilityLabel": "Скажите сестре, что вам нужна ещё минута.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-48:i01:audio",
+          "transcript": "I need one more minute."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I need one more minute.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-48:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — scrunchie",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-48:i02:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — scrunchie",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-48:i02:audio",
+          "transcript": "scrunchie"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-48:i02:r1",
+            "targetText": "scrunchie",
+            "meaningByLocale": {
+              "ru": "Объёмная резинка для волос. Резинка, обтянутая собранной в складки тканью.",
+              "uk": "Об’ємна гумка для волосся. Гумка, обтягнута зібраною в складки тканиною."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "scrunchie",
+          "definitionByLocale": {
+            "ru": "Объёмная резинка для волос. Резинка, обтянутая собранной в складки тканью.",
+            "uk": "Об’ємна гумка для волосся. Гумка, обтягнута зібраною в складки тканиною."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-48:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-48:i03:r1",
+          "text": "Could you pass me the scrunchie?"
+        },
+        {
+          "responseId": "en:lesson-29:session-48:i03:r2",
+          "text": "Could you pass me the comb?"
+        },
+        {
+          "responseId": "en:lesson-29:session-48:i03:r3",
+          "text": "Could you pass me the mirror?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-48:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-48:i03:audio",
+          "transcript": "Could you pass me the scrunchie?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-48:i03:r1",
+            "targetText": "Could you pass me the scrunchie?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-48:i03:r2",
+            "targetText": "Could you pass me the comb?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-48:i03:r3",
+            "targetText": "Could you pass me the mirror?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-48:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could you pass me the scrunchie?",
+              "uk": "У записі звучить Could you pass me the scrunchie?"
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-48:i03:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could you pass me the scrunchie?",
+              "uk": "У записі звучить Could you pass me the scrunchie?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-48:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что купленная заколка слишком маленькая.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что купленная заколка слишком маленькая.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The clip I bought is too small.",
+        "localizedMeaning": {
+          "ru": "Скажите, что купленная заколка слишком маленькая.",
+          "uk": "Скажіть, що куплена шпилька надто маленька."
+        },
+        "orderedTokens": [
+          "The",
+          "clip",
+          "I",
+          "bought",
+          "is",
+          "too",
+          "small"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-48:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы описываете заколку, которую купили.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-48:i05:r1",
+          "text": "I bought"
+        },
+        {
+          "responseId": "en:lesson-29:session-48:i05:r2",
+          "text": "I bought it"
+        },
+        {
+          "responseId": "en:lesson-29:session-48:i05:r3",
+          "text": "me bought"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы описываете заколку, которую купили.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы описываете заколку, которую купили.",
+          "uk": "Ви описуєте шпильку, яку купили."
+        },
+        "gappedTargetPhrase": "The clip ___ is too small.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-48:i05:r1",
+            "text": "I bought"
+          },
+          {
+            "responseId": "en:lesson-29:session-48:i05:r2",
+            "text": "I bought it"
+          },
+          {
+            "responseId": "en:lesson-29:session-48:i05:r3",
+            "text": "me bought"
+          }
+        ],
+        "testedDimension": "Вы описываете заколку, которую купили.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-48:i05:r2",
+            "correct": false,
+            "testedDimension": "Вы описываете заколку, которую купили.",
+            "feedbackByLocale": {
+              "ru": "It повторяет заколку.",
+              "uk": "It повторює шпильку."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-48:i05:r3",
+            "correct": false,
+            "testedDimension": "Вы описываете заколку, которую купили.",
+            "feedbackByLocale": {
+              "ru": "Нужен исполнитель I.",
+              "uk": "Потрібен виконавець I."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-48:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — barrette",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-48:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — barrette",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-48:i06:audio",
+          "transcript": "barrette"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-48:i06:r1",
+            "targetText": "barrette",
+            "meaningByLocale": {
+              "ru": "Заколка с застёжкой. Обычно плоская заколка, которая удерживает прядь волос.",
+              "uk": "Шпилька із застібкою. Зазвичай пласка шпилька, яка утримує пасмо волосся."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "barrette",
+          "definitionByLocale": {
+            "ru": "Заколка с застёжкой. Обычно плоская заколка, которая удерживает прядь волос.",
+            "uk": "Шпилька із застібкою. Зазвичай пласка шпилька, яка утримує пасмо волосся."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-48:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите сестру, держится ли эта заколка.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-48:i07:audio"
+      ],
+      "accessibilityLabel": "Спросите сестру, держится ли эта заколка.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-48:i07:audio",
+          "transcript": "Does this barrette stay in place?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Does this barrette stay in place?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-48:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, кому принадлежит расчёска.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-48:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте, кому принадлежит расчёска.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-48:i08:audio",
+          "transcript": "This is the woman whose comb I borrowed."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This is the woman whose comb I borrowed.",
+        "orderedTokens": [
+          "This",
+          "is",
+          "the",
+          "woman",
+          "whose",
+          "comb",
+          "I",
+          "borrowed"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-48:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы называете владелицу одолженной расчёски.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-48:i09:r1",
+          "text": "whose"
+        },
+        {
+          "responseId": "en:lesson-29:session-48:i09:r2",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-48:i09:r3",
+          "text": "whose her"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы называете владелицу одолженной расчёски.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы называете владелицу одолженной расчёски.",
+          "uk": "Ви називаєте власницю позиченого гребінця."
+        },
+        "gappedTargetPhrase": "This is the woman ___ comb I borrowed.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-48:i09:r1",
+            "text": "whose"
+          },
+          {
+            "responseId": "en:lesson-29:session-48:i09:r2",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-48:i09:r3",
+            "text": "whose her"
+          }
+        ],
+        "testedDimension": "Вы называете владелицу одолженной расчёски.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-48:i09:r2",
+            "correct": false,
+            "testedDimension": "Вы называете владелицу одолженной расчёски.",
+            "feedbackByLocale": {
+              "ru": "Принадлежность обозначаем словом whose.",
+              "uk": "Належність позначаємо словом whose."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-48:i09:r3",
+            "correct": false,
+            "testedDimension": "Вы называете владелицу одолженной расчёски.",
+            "feedbackByLocale": {
+              "ru": "Her после whose не нужно.",
+              "uk": "Her після whose не потрібне."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-48:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — detangle",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-48:i10:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — detangle",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-48:i10:audio",
+          "transcript": "detangle"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-48:i10:r1",
+            "targetText": "detangle",
+            "meaningByLocale": {
+              "ru": "Распутывать. Аккуратно разделять спутанные волосы, нити или похожие тонкие предметы.",
+              "uk": "Розплутувати. Обережно розділяти сплутане волосся, нитки або схожі тонкі предмети."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "detangle",
+          "definitionByLocale": {
+            "ru": "Распутывать. Аккуратно разделять спутанные волосы, нити или похожие тонкие предметы.",
+            "uk": "Розплутувати. Обережно розділяти сплутане волосся, нитки або схожі тонкі предмети."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-48:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-48:i11:r1",
+          "text": "Can you help me detangle my hair?"
+        },
+        {
+          "responseId": "en:lesson-29:session-48:i11:r2",
+          "text": "Can you help me dry my hair?"
+        },
+        {
+          "responseId": "en:lesson-29:session-48:i11:r3",
+          "text": "Can you help me wash my hair?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-48:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-48:i11:audio",
+          "transcript": "Can you help me detangle my hair?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-48:i11:r1",
+            "targetText": "Can you help me detangle my hair?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-48:i11:r2",
+            "targetText": "Can you help me dry my hair?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-48:i11:r3",
+            "targetText": "Can you help me wash my hair?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-48:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Can you help me detangle my hair?",
+              "uk": "У записі звучить Can you help me detangle my hair?"
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-48:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Can you help me detangle my hair?",
+              "uk": "У записі звучить Can you help me detangle my hair?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-48:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросите сестру не тянуть слишком сильно.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросите сестру не тянуть слишком сильно.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Please do not pull too hard.",
+        "localizedMeaning": {
+          "ru": "Попросите сестру не тянуть слишком сильно.",
+          "uk": "Попросіть сестру не тягнути надто сильно."
+        },
+        "orderedTokens": [
+          "Please do not",
+          "pull",
+          "too hard"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-48:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — flyaway",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-48:i13:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — flyaway",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-48:i13:audio",
+          "transcript": "flyaway"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-48:i13:r1",
+            "targetText": "flyaway",
+            "meaningByLocale": {
+              "ru": "Выбивающийся из причёски. О тонких волосках, которые торчат или разлетаются и плохо лежат вместе.",
+              "uk": "Такий, що вибивається із зачіски. Про тонкі волосинки, які стирчать або розлітаються й погано лежать разом."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "flyaway",
+          "definitionByLocale": {
+            "ru": "Выбивающийся из причёски. О тонких волосках, которые торчат или разлетаются и плохо лежат вместе.",
+            "uk": "Такий, що вибивається із зачіски. Про тонкі волосинки, які стирчать або розлітаються й погано лежать разом."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-48:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что у вас есть несколько выбивающихся волосков.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-48:i14:audio"
+      ],
+      "accessibilityLabel": "Скажите, что у вас есть несколько выбивающихся волосков.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-48:i14:audio",
+          "transcript": "I have a few flyaway hairs."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have a few flyaway hairs.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-48:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-29:session-48:i15:p1",
+            "target": "scrunchie",
+            "meaningByLocale": {
+              "ru": "объёмная резинка для волос",
+              "uk": "об’ємна гумка для волосся"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-48:i15:p2",
+            "target": "barrette",
+            "meaningByLocale": {
+              "ru": "заколка с застёжкой",
+              "uk": "шпилька із застібкою"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-48:i15:p3",
+            "target": "detangle",
+            "meaningByLocale": {
+              "ru": "распутывать",
+              "uk": "розплутувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-48:i15:p4",
+            "target": "flyaway",
+            "meaningByLocale": {
+              "ru": "выбивающийся из причёски",
+              "uk": "такий, що вибивається із зачіски"
+            }
+          }
+        ],
+        "leftColumn": [
+          "scrunchie",
+          "barrette",
+          "detangle",
+          "flyaway"
+        ],
+        "rightColumn": [
+          "объёмная резинка для волос",
+          "заколка с застёжкой",
+          "распутывать",
+          "выбивающийся из причёски"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-48:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы показываете магазин, где купили заколку.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-48:i16:r1",
+          "text": "where"
+        },
+        {
+          "responseId": "en:lesson-29:session-48:i16:r2",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-48:i16:r3",
+          "text": "whose"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы показываете магазин, где купили заколку.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы показываете магазин, где купили заколку.",
+          "uk": "Ви показуєте магазин, де купили шпильку."
+        },
+        "gappedTargetPhrase": "This is the shop ___ I bought it.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-48:i16:r1",
+            "text": "where"
+          },
+          {
+            "responseId": "en:lesson-29:session-48:i16:r2",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-48:i16:r3",
+            "text": "whose"
+          }
+        ],
+        "testedDimension": "Вы показываете магазин, где купили заколку.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-48:i16:r2",
+            "correct": false,
+            "testedDimension": "Вы показываете магазин, где купили заколку.",
+            "feedbackByLocale": {
+              "ru": "Для места покупки используем where.",
+              "uk": "Для місця купівлі використовуємо where."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-48:i16:r3",
+            "correct": false,
+            "testedDimension": "Вы показываете магазин, где купили заколку.",
+            "feedbackByLocale": {
+              "ru": "Это место покупки, не принадлежность.",
+              "uk": "Це місце купівлі, не належність."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-48:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: волосы нужно распутать или высушить?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-48:i17:r1",
+          "text": "Can you help me detangle my hair?"
+        },
+        {
+          "responseId": "en:lesson-29:session-48:i17:r2",
+          "text": "Can you help me dry my hair?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-48:i17:audioA",
+        "en:lesson-29:session-48:i17:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: волосы нужно распутать или высушить?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "Can you help me detangle my hair?",
+        "contrastB": "Can you help me dry my hair?",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-29:session-48:i17:audioA",
+          "transcript": "Can you help me detangle my hair?"
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-29:session-48:i17:audioB",
+          "transcript": "Can you help me dry my hair?"
+        },
+        "testedPhoneticContrast": "Послушайте: волосы нужно распутать или высушить?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-48:i17:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: волосы нужно распутать или высушить?",
+            "feedbackByLocale": {
+              "ru": "Звучит detangle — распутать.",
+              "uk": "Звучить detangle — розплутати."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-48:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, где вы купили заколку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-48:i18:audio"
+      ],
+      "accessibilityLabel": "Послушайте, где вы купили заколку.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-48:i18:audio",
+          "transcript": "This is the shop where I bought it."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This is the shop where I bought it.",
+        "orderedTokens": [
+          "This",
+          "is",
+          "the",
+          "shop",
+          "where",
+          "I",
+          "bought",
+          "it"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-48:i19",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите сестру проверить волосы сзади.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-48:i19:audio"
+      ],
+      "accessibilityLabel": "Попросите сестру проверить волосы сзади.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-48:i19:audio",
+          "transcript": "Does my hair look all right at the back?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Does my hair look all right at the back?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-48:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сестра дала вам резинку для волос.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-48:i20:r1",
+          "text": "you gave me"
+        },
+        {
+          "responseId": "en:lesson-29:session-48:i20:r2",
+          "text": "you gave me it"
+        },
+        {
+          "responseId": "en:lesson-29:session-48:i20:r3",
+          "text": "you giving me"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сестра дала вам резинку для волос.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сестра дала вам резинку для волос.",
+          "uk": "Сестра дала вам гумку для волосся."
+        },
+        "gappedTargetPhrase": "The scrunchie ___ is soft.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-48:i20:r1",
+            "text": "you gave me"
+          },
+          {
+            "responseId": "en:lesson-29:session-48:i20:r2",
+            "text": "you gave me it"
+          },
+          {
+            "responseId": "en:lesson-29:session-48:i20:r3",
+            "text": "you giving me"
+          }
+        ],
+        "testedDimension": "Сестра дала вам резинку для волос.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-48:i20:r2",
+            "correct": false,
+            "testedDimension": "Сестра дала вам резинку для волос.",
+            "feedbackByLocale": {
+              "ru": "It повторяет резинку.",
+              "uk": "It повторює гумку."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-48:i20:r3",
+            "correct": false,
+            "testedDimension": "Сестра дала вам резинку для волос.",
+            "feedbackByLocale": {
+              "ru": "Для полученной резинки нужно gave.",
+              "uk": "Для отриманої гумки потрібне gave."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-48:i21",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите сестре, что теперь готовы выходить.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите сестре, что теперь готовы выходить.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am ready to go now.",
+        "localizedMeaning": {
+          "ru": "Скажите сестре, что теперь готовы выходить.",
+          "uk": "Скажіть сестрі, що тепер готові виходити."
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "ready",
+          "to go now"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "9cf76cb5fd887df21fecfa893b39ac908f11ca74f7e5c25a4ac2559170c57b97"
+}

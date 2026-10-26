@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-29:session-38",
+  "entries": [
+    {
+      "interactionId": "en:lesson-29:session-38:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-38:intro1:r2": {
+          "ru": "It повторяет уже названную книгу.",
+          "uk": "It повторює вже названу книжку."
+        },
+        "en:lesson-29:session-38:intro1:r3": {
+          "ru": "Нужно I borrowed: одолжили вы.",
+          "uk": "Потрібно I borrowed: позичили ви."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-38:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-38:intro2:r2": {
+          "ru": "Чья история — whose story.",
+          "uk": "Чия історія — whose story."
+        },
+        "en:lesson-29:session-38:intro2:r3": {
+          "ru": "Whose уже выражает принадлежность; her лишнее.",
+          "uk": "Whose вже виражає належність; her зайве."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-38:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-38:intro3:r2": {
+          "ru": "Who здесь обозначает исполнителя, его нельзя убрать.",
+          "uk": "Who тут позначає виконавця, його не можна прибрати."
+        },
+        "en:lesson-29:session-38:intro3:r3": {
+          "ru": "He повторяет исполнителя, уже обозначенного who.",
+          "uk": "He повторює виконавця, уже позначеного who."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "3a1214719418606a89cffadce683f29f5b823ae76531f2798dac3d67546bedf9"
+}

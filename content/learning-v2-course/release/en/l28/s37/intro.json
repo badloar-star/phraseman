@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-28:session-37",
+  "learningOutcomeByLocale": {
+    "ru": "как говорить о музейных предметах, уточнять разрешения и часы работы.",
+    "uk": "як говорити про музейні предмети, уточнювати дозволи й години роботи."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-28:session-37:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Кто придумал машину",
+        "uk": "Хто вигадав машину"
+      },
+      "bodyByLocale": {
+        "ru": "Вы рассматриваете старую машину в музее. Экскурсовод называет её создателя: The machine was invented by a local teacher — машину изобрёл местный учитель. Соберите The machine + was invented + by + a local teacher. Начните с машины, о которой говорите. Was invented сообщает, что её изобрели. После by назовите человека, который это сделал.",
+        "uk": "Ви розглядаєте стару машину в музеї. Екскурсовод називає її творця: The machine was invented by a local teacher — машину винайшов місцевий учитель. Складіть The machine + was invented + by + a local teacher. Почніть із машини, про яку говорите. Was invented повідомляє, що її винайшли. Після by назвіть людину, яка це зробила."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-37:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-37:intro1:r1",
+              "text": "The machine was invented by a local teacher."
+            },
+            {
+              "responseId": "en:lesson-28:session-37:intro1:r2",
+              "text": "The machine was invented of a local teacher."
+            },
+            {
+              "responseId": "en:lesson-28:session-37:intro1:r3",
+              "text": "The machine was invented a local teacher."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-37:intro1:r1",
+              "text": "The machine was invented by a local teacher."
+            },
+            {
+              "responseId": "en:lesson-28:session-37:intro1:r2",
+              "text": "The machine was invented of a local teacher."
+            },
+            {
+              "responseId": "en:lesson-28:session-37:intro1:r3",
+              "text": "The machine was invented a local teacher."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-28:session-37:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Можно ли потрогать",
+        "uk": "Чи можна торкнутися"
+      },
+      "bodyByLocale": {
+        "ru": "Перед вами музейная модель. Вы не знаете, разрешено ли её трогать, и спрашиваете: Can this model be touched? — можно трогать эту модель? Соберите Can + this model + be + touched? Поставьте Can перед this model, затем be и touched. Такая форма позволяет спросить о разрешённом действии над моделью.",
+        "uk": "Перед вами музейна модель. Ви не знаєте, чи дозволено її торкатися, і запитуєте: Can this model be touched? — чи можна торкатися цієї моделі? Складіть Can + this model + be + touched? Поставте Can перед this model, потім be та touched. Така форма дає змогу запитати про дозволену дію з моделлю."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-37:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-37:intro2:r1",
+              "text": "Can this model be touched?"
+            },
+            {
+              "responseId": "en:lesson-28:session-37:intro2:r2",
+              "text": "Can this model touched?"
+            },
+            {
+              "responseId": "en:lesson-28:session-37:intro2:r3",
+              "text": "Can this model be touch?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-37:intro2:r1",
+              "text": "Can this model be touched?"
+            },
+            {
+              "responseId": "en:lesson-28:session-37:intro2:r2",
+              "text": "Can this model touched?"
+            },
+            {
+              "responseId": "en:lesson-28:session-37:intro2:r3",
+              "text": "Can this model be touch?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-28:session-37:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Хотелось бы остаться",
+        "uk": "Хотілося б залишитися"
+      },
+      "bodyByLocale": {
+        "ru": "Музей скоро закрывается, а вам хочется ещё погулять по залам. Скажите: I wish the museum stayed open longer — жаль, что музей не работает дольше. Соберите I wish + the museum + stayed open + longer. После I wish назовите музей. Stayed open здесь описывает желаемые часы работы сейчас; прошедшая форма stayed не означает, что вы рассказываете о вчерашнем посещении.",
+        "uk": "Музей скоро зачиняється, а вам хочеться ще погуляти залами. Скажіть: I wish the museum stayed open longer — шкода, що музей не працює довше. Складіть I wish + the museum + stayed open + longer. Після I wish назвіть музей. Stayed open тут описує бажані години роботи зараз; минула форма stayed не означає, що ви розповідаєте про вчорашнє відвідування."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-37:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-37:intro3:r1",
+              "text": "I wish the museum stayed open longer."
+            },
+            {
+              "responseId": "en:lesson-28:session-37:intro3:r2",
+              "text": "I wish the museum stays open longer."
+            },
+            {
+              "responseId": "en:lesson-28:session-37:intro3:r3",
+              "text": "I wish the museum will stay open longer."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-37:intro3:r1",
+              "text": "I wish the museum stayed open longer."
+            },
+            {
+              "responseId": "en:lesson-28:session-37:intro3:r2",
+              "text": "I wish the museum stays open longer."
+            },
+            {
+              "responseId": "en:lesson-28:session-37:intro3:r3",
+              "text": "I wish the museum will stay open longer."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "bebdc19461795a3af0d89bf45dff5f126944f64d5a897bdc3b16384cef87818b"
+}

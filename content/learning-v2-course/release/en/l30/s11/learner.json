@@ -1,0 +1,1090 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-30:session-11",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-30:session-11:i01",
+      "ordinal": 4,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Передайте вопрос сестры о том, что вы предпочитали.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-11:i01:audio"
+      ],
+      "accessibilityLabel": "Передайте вопрос сестры о том, что вы предпочитали.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-11:i01:audio",
+          "transcript": "She asked what I preferred."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She asked what I preferred.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-11:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — marshmallow",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-11:i02:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — marshmallow",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-11:i02:audio",
+          "transcript": "marshmallow"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-11:i02:r1",
+            "targetText": "marshmallow",
+            "meaningByLocale": {
+              "ru": "Маршмеллоу. Мягкая воздушная сладость, которую можно есть отдельно или добавлять в горячий шоколад.",
+              "uk": "Маршмелоу. М’які повітряні солодощі, які можна їсти окремо або додавати в гарячий шоколад."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "marshmallow",
+          "definitionByLocale": {
+            "ru": "Маршмеллоу. Мягкая воздушная сладость, которую можно есть отдельно или добавлять в горячий шоколад.",
+            "uk": "Маршмелоу. М’які повітряні солодощі, які можна їсти окремо або додавати в гарячий шоколад."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-11:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-11:i03:r1",
+          "text": "There is a marshmallow in my hot chocolate."
+        },
+        {
+          "responseId": "en:lesson-30:session-11:i03:r2",
+          "text": "There is a biscuit in my hot chocolate."
+        },
+        {
+          "responseId": "en:lesson-30:session-11:i03:r3",
+          "text": "There is a strawberry in my hot chocolate."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-11:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-11:i03:audio",
+          "transcript": "There is a marshmallow in my hot chocolate."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-11:i03:r1",
+            "targetText": "There is a marshmallow in my hot chocolate.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-11:i03:r2",
+            "targetText": "There is a biscuit in my hot chocolate.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-11:i03:r3",
+            "targetText": "There is a strawberry in my hot chocolate.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-11:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There is a marshmallow in my hot chocolate.",
+              "uk": "У записі звучить There is a marshmallow in my hot chocolate."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-11:i03:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There is a marshmallow in my hot chocolate.",
+              "uk": "У записі звучить There is a marshmallow in my hot chocolate."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-11:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сестра спросила, что вы предпочитали.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-11:i04:r1",
+          "text": "I preferred"
+        },
+        {
+          "responseId": "en:lesson-30:session-11:i04:r2",
+          "text": "did I prefer"
+        },
+        {
+          "responseId": "en:lesson-30:session-11:i04:r3",
+          "text": "I preferring"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сестра спросила, что вы предпочитали.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сестра спросила, что вы предпочитали.",
+          "uk": "Сестра запитала, чому ви віддавали перевагу."
+        },
+        "gappedTargetPhrase": "She asked what ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-11:i04:r1",
+            "text": "I preferred"
+          },
+          {
+            "responseId": "en:lesson-30:session-11:i04:r2",
+            "text": "did I prefer"
+          },
+          {
+            "responseId": "en:lesson-30:session-11:i04:r3",
+            "text": "I preferring"
+          }
+        ],
+        "testedDimension": "Сестра спросила, что вы предпочитали.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-11:i04:r2",
+            "correct": false,
+            "testedDimension": "Сестра спросила, что вы предпочитали.",
+            "feedbackByLocale": {
+              "ru": "В пересказе используем I preferred без did.",
+              "uk": "У переказі використовуємо I preferred без did."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-11:i04:r3",
+            "correct": false,
+            "testedDimension": "Сестра спросила, что вы предпочитали.",
+            "feedbackByLocale": {
+              "ru": "Нужно I preferred, не I preferring.",
+              "uk": "Потрібне I preferred, не I preferring."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-11:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Передайте вопрос друга о том, любите ли вы шоколад.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Передайте вопрос друга о том, любите ли вы шоколад.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He asked if I liked chocolate.",
+        "localizedMeaning": {
+          "ru": "Передайте вопрос друга о том, любите ли вы шоколад.",
+          "uk": "Передайте запитання друга про те, чи любите ви шоколад."
+        },
+        "orderedTokens": [
+          "He",
+          "asked",
+          "if",
+          "I",
+          "liked",
+          "chocolate"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-11:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — toffee",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-11:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — toffee",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-11:i06:audio",
+          "transcript": "toffee"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-11:i06:r1",
+            "targetText": "toffee",
+            "meaningByLocale": {
+              "ru": "Ирис, ириска. Твёрдая или тягучая сладость из сахара и сливочного масла.",
+              "uk": "Ірис, іриска. Тверді або тягучі солодощі із цукру та вершкового масла."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "toffee",
+          "definitionByLocale": {
+            "ru": "Ирис, ириска. Твёрдая или тягучая сладость из сахара и сливочного масла.",
+            "uk": "Ірис, іриска. Тверді або тягучі солодощі із цукру та вершкового масла."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-11:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Передайте вопрос друга о том, любите ли вы ирис.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-11:i07:audio"
+      ],
+      "accessibilityLabel": "Передайте вопрос друга о том, любите ли вы ирис.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-11:i07:audio",
+          "transcript": "He asked if I liked toffee."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He asked if I liked toffee.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-11:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте пересказ вопроса о предпочтениях.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-11:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте пересказ вопроса о предпочтениях.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-11:i08:audio",
+          "transcript": "She asked what I preferred."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She asked what I preferred.",
+        "orderedTokens": [
+          "She",
+          "asked",
+          "what",
+          "I",
+          "preferred"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-11:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сестра подарила вам коробку. Уточните, о какой коробке речь.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-11:i09:r1",
+          "text": "gave"
+        },
+        {
+          "responseId": "en:lesson-30:session-11:i09:r2",
+          "text": "giving"
+        },
+        {
+          "responseId": "en:lesson-30:session-11:i09:r3",
+          "text": "give"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сестра подарила вам коробку. Уточните, о какой коробке речь.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сестра подарила вам коробку. Уточните, о какой коробке речь.",
+          "uk": "Сестра подарувала вам коробку. Уточніть, про яку коробку йдеться."
+        },
+        "gappedTargetPhrase": "The box she ___ me is on the table.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-11:i09:r1",
+            "text": "gave"
+          },
+          {
+            "responseId": "en:lesson-30:session-11:i09:r2",
+            "text": "giving"
+          },
+          {
+            "responseId": "en:lesson-30:session-11:i09:r3",
+            "text": "give"
+          }
+        ],
+        "testedDimension": "Сестра подарила вам коробку. Уточните, о какой коробке речь.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-11:i09:r2",
+            "correct": false,
+            "testedDimension": "Сестра подарила вам коробку. Уточните, о какой коробке речь.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна форма gave.",
+              "uk": "Тут потрібна форма gave."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-11:i09:r3",
+            "correct": false,
+            "testedDimension": "Сестра подарила вам коробку. Уточните, о какой коробке речь.",
+            "feedbackByLocale": {
+              "ru": "Give не сочетается с she; о подаренной коробке здесь говорим gave.",
+              "uk": "Give не поєднується з she; про подаровану коробку тут кажемо gave."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-11:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — liquorice",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-11:i10:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — liquorice",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-11:i10:audio",
+          "transcript": "liquorice"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-11:i10:r1",
+            "targetText": "liquorice",
+            "meaningByLocale": {
+              "ru": "Лакрица, лакричные сладости. Сладости с характерным вкусом корня солодки, часто чёрного цвета.",
+              "uk": "Лакриця, лакричні солодощі. Солодощі з характерним смаком кореня солодки, часто чорного кольору."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "liquorice",
+          "definitionByLocale": {
+            "ru": "Лакрица, лакричные сладости. Сладости с характерным вкусом корня солодки, часто чёрного цвета.",
+            "uk": "Лакриця, лакричні солодощі. Солодощі з характерним смаком кореня солодки, часто чорного кольору."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-11:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-11:i11:r1",
+          "text": "She said she liked liquorice."
+        },
+        {
+          "responseId": "en:lesson-30:session-11:i11:r2",
+          "text": "She said she liked chocolate."
+        },
+        {
+          "responseId": "en:lesson-30:session-11:i11:r3",
+          "text": "She said she liked caramel."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-11:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-11:i11:audio",
+          "transcript": "She said she liked liquorice."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-11:i11:r1",
+            "targetText": "She said she liked liquorice.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-11:i11:r2",
+            "targetText": "She said she liked chocolate.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-11:i11:r3",
+            "targetText": "She said she liked caramel.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-11:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She said she liked liquorice.",
+              "uk": "У записі звучить She said she liked liquorice."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-11:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She said she liked liquorice.",
+              "uk": "У записі звучить She said she liked liquorice."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-11:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы хотели бы, чтобы у вас сейчас была коробка побольше для подарка.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-11:i12:audio"
+      ],
+      "accessibilityLabel": "Вы хотели бы, чтобы у вас сейчас была коробка побольше для подарка.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-11:i12:audio",
+          "transcript": "I wish I had a bigger box."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I wish I had a bigger box.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-11:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — marzipan",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-11:i13:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — marzipan",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-11:i13:audio",
+          "transcript": "marzipan"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-11:i13:r1",
+            "targetText": "marzipan",
+            "meaningByLocale": {
+              "ru": "Марципан. Сладкая масса из измельчённого миндаля и сахара, из которой делают конфеты и украшения для тортов.",
+              "uk": "Марципан. Солодка маса з подрібненого мигдалю й цукру, з якої роблять цукерки та прикраси для тортів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "marzipan",
+          "definitionByLocale": {
+            "ru": "Марципан. Сладкая масса из измельчённого миндаля и сахара, из которой делают конфеты и украшения для тортов.",
+            "uk": "Марципан. Солодка маса з подрібненого мигдалю й цукру, з якої роблять цукерки та прикраси для тортів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-11:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-11:i14:r1",
+          "text": "He asked if I liked marzipan."
+        },
+        {
+          "responseId": "en:lesson-30:session-11:i14:r2",
+          "text": "He asked if I liked honey."
+        },
+        {
+          "responseId": "en:lesson-30:session-11:i14:r3",
+          "text": "He asked if I liked jam."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-11:i14:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-11:i14:audio",
+          "transcript": "He asked if I liked marzipan."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-11:i14:r1",
+            "targetText": "He asked if I liked marzipan.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-11:i14:r2",
+            "targetText": "He asked if I liked honey.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-11:i14:r3",
+            "targetText": "He asked if I liked jam.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-11:i14:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He asked if I liked marzipan.",
+              "uk": "У записі звучить He asked if I liked marzipan."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-11:i14:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He asked if I liked marzipan.",
+              "uk": "У записі звучить He asked if I liked marzipan."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-11:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-30:session-11:i15:p1",
+            "target": "marshmallow",
+            "meaningByLocale": {
+              "ru": "маршмеллоу",
+              "uk": "маршмелоу"
+            }
+          },
+          {
+            "pairId": "en:lesson-30:session-11:i15:p2",
+            "target": "toffee",
+            "meaningByLocale": {
+              "ru": "ирис",
+              "uk": "ірис"
+            }
+          },
+          {
+            "pairId": "en:lesson-30:session-11:i15:p3",
+            "target": "liquorice",
+            "meaningByLocale": {
+              "ru": "лакрица",
+              "uk": "лакриця"
+            }
+          },
+          {
+            "pairId": "en:lesson-30:session-11:i15:p4",
+            "target": "marzipan",
+            "meaningByLocale": {
+              "ru": "марципан",
+              "uk": "марципан"
+            }
+          }
+        ],
+        "leftColumn": [
+          "marshmallow",
+          "toffee",
+          "liquorice",
+          "marzipan"
+        ],
+        "rightColumn": [
+          "маршмеллоу",
+          "ирис",
+          "лакрица",
+          "марципан"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-11:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг спросил, любите ли вы шоколад.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-11:i16:r1",
+          "text": "if"
+        },
+        {
+          "responseId": "en:lesson-30:session-11:i16:r2",
+          "text": "what"
+        },
+        {
+          "responseId": "en:lesson-30:session-11:i16:r3",
+          "text": "where"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг спросил, любите ли вы шоколад.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг спросил, любите ли вы шоколад.",
+          "uk": "Друг запитав, чи любите ви шоколад."
+        },
+        "gappedTargetPhrase": "He asked ___ I liked chocolate.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-11:i16:r1",
+            "text": "if"
+          },
+          {
+            "responseId": "en:lesson-30:session-11:i16:r2",
+            "text": "what"
+          },
+          {
+            "responseId": "en:lesson-30:session-11:i16:r3",
+            "text": "where"
+          }
+        ],
+        "testedDimension": "Друг спросил, любите ли вы шоколад.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-11:i16:r2",
+            "correct": false,
+            "testedDimension": "Друг спросил, любите ли вы шоколад.",
+            "feedbackByLocale": {
+              "ru": "What означает что; вопрос да или нет передаём через if.",
+              "uk": "What означає що; запитання так або ні передаємо через if."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-11:i16:r3",
+            "correct": false,
+            "testedDimension": "Друг спросил, любите ли вы шоколад.",
+            "feedbackByLocale": {
+              "ru": "Where спрашивает о месте, а здесь речь о ваших вкусах.",
+              "uk": "Where запитує про місце, а тут ідеться про ваші смаки."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-11:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте вопрос о марципане.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-11:i17:audio"
+      ],
+      "accessibilityLabel": "Послушайте вопрос о марципане.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-11:i17:audio",
+          "transcript": "He asked if I liked marzipan."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "He asked if I liked marzipan.",
+        "orderedTokens": [
+          "He",
+          "asked",
+          "if",
+          "I",
+          "liked",
+          "marzipan"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-11:i18",
+      "ordinal": 21,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Брат выбирал конфеты вам в подарок, но спросил только про свои любимые. Передайте его вопрос: любите ли вы ирис?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-11:i18:audio"
+      ],
+      "accessibilityLabel": "Брат выбирал конфеты вам в подарок, но спросил только про свои любимые. Передайте его вопрос: любите ли вы ирис?",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-11:i18:audio",
+          "transcript": "He asked if I liked toffee."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He asked if I liked toffee.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-11:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: сестра сказала, что любит лакрицу или шоколад?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-11:i19:r1",
+          "text": "She said she liked liquorice."
+        },
+        {
+          "responseId": "en:lesson-30:session-11:i19:r2",
+          "text": "She said she liked chocolate."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-11:i19:audioA",
+        "en:lesson-30:session-11:i19:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: сестра сказала, что любит лакрицу или шоколад?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "She said she liked liquorice.",
+        "contrastB": "She said she liked chocolate.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-30:session-11:i19:audioA",
+          "transcript": "She said she liked liquorice."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-30:session-11:i19:audioB",
+          "transcript": "She said she liked chocolate."
+        },
+        "testedPhoneticContrast": "Послушайте: сестра сказала, что любит лакрицу или шоколад?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-11:i19:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: сестра сказала, что любит лакрицу или шоколад?",
+            "feedbackByLocale": {
+              "ru": "Звучит liquorice — лакрица.",
+              "uk": "Звучить liquorice — лакриця."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-11:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Коробка сейчас мала для подарка, а вам нужна побольше.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-11:i20:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-30:session-11:i20:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-30:session-11:i20:r3",
+          "text": "having"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Коробка сейчас мала для подарка, а вам нужна побольше.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Коробка сейчас мала для подарка, а вам нужна побольше.",
+          "uk": "Коробка зараз замала для подарунка, а вам потрібна більша."
+        },
+        "gappedTargetPhrase": "I wish I ___ a bigger box.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-11:i20:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-30:session-11:i20:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-30:session-11:i20:r3",
+            "text": "having"
+          }
+        ],
+        "testedDimension": "Коробка сейчас мала для подарка, а вам нужна побольше.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-11:i20:r2",
+            "correct": false,
+            "testedDimension": "Коробка сейчас мала для подарка, а вам нужна побольше.",
+            "feedbackByLocale": {
+              "ru": "Для такого желания после wish используем had.",
+              "uk": "Для такого бажання після wish використовуємо had."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-11:i20:r3",
+            "correct": false,
+            "testedDimension": "Коробка сейчас мала для подарка, а вам нужна побольше.",
+            "feedbackByLocale": {
+              "ru": "Нужно I had, не I having.",
+              "uk": "Потрібне I had, не I having."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-11:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите другу, что подаренная сестрой коробка на столе.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-11:i21:audio"
+      ],
+      "accessibilityLabel": "Скажите другу, что подаренная сестрой коробка на столе.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-11:i21:audio",
+          "transcript": "The box she gave me is on the table."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The box she gave me is on the table.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "0c59b1b5b1f04ea7d364fea12d1ba5c61059afbee0f86eafd369d15a11466f90"
+}

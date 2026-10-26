@@ -1,0 +1,1050 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-29:session-45",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-29:session-45:i01",
+      "ordinal": 4,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите, подходит ли занятие новичкам.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-45:i01:audio"
+      ],
+      "accessibilityLabel": "Спросите, подходит ли занятие новичкам.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-45:i01:audio",
+          "transcript": "Is this class suitable for beginners?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is this class suitable for beginners?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-45:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — endurance",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-45:i02:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — endurance",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-45:i02:audio",
+          "transcript": "endurance"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-45:i02:r1",
+            "targetText": "endurance",
+            "meaningByLocale": {
+              "ru": "Выносливость. Способность долго продолжать физическую или другую трудную деятельность.",
+              "uk": "Витривалість. Здатність довго продовжувати фізичну чи іншу складну діяльність."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "endurance",
+          "definitionByLocale": {
+            "ru": "Выносливость. Способность долго продолжать физическую или другую трудную деятельность.",
+            "uk": "Витривалість. Здатність довго продовжувати фізичну чи іншу складну діяльність."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-45:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-45:i03:r1",
+          "text": "I want to improve my endurance."
+        },
+        {
+          "responseId": "en:lesson-29:session-45:i03:r2",
+          "text": "I want to improve my balance."
+        },
+        {
+          "responseId": "en:lesson-29:session-45:i03:r3",
+          "text": "I want to improve my posture."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-45:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-45:i03:audio",
+          "transcript": "I want to improve my endurance."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-45:i03:r1",
+            "targetText": "I want to improve my endurance.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-45:i03:r2",
+            "targetText": "I want to improve my balance.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-45:i03:r3",
+            "targetText": "I want to improve my posture.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-45:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want to improve my endurance.",
+              "uk": "У записі звучить I want to improve my endurance."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-45:i03:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want to improve my endurance.",
+              "uk": "У записі звучить I want to improve my endurance."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-45:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что пробное занятие оказалось утомительным.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что пробное занятие оказалось утомительным.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The class I tried was tiring.",
+        "localizedMeaning": {
+          "ru": "Скажите, что пробное занятие оказалось утомительным.",
+          "uk": "Скажіть, що пробне заняття виявилося виснажливим."
+        },
+        "orderedTokens": [
+          "The",
+          "class",
+          "I",
+          "tried",
+          "was",
+          "tiring"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-45:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы рассказываете о занятии, которое попробовали.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-45:i05:r1",
+          "text": "I tried"
+        },
+        {
+          "responseId": "en:lesson-29:session-45:i05:r2",
+          "text": "I tried it"
+        },
+        {
+          "responseId": "en:lesson-29:session-45:i05:r3",
+          "text": "me tried"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы рассказываете о занятии, которое попробовали.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы рассказываете о занятии, которое попробовали.",
+          "uk": "Ви розповідаєте про заняття, яке спробували."
+        },
+        "gappedTargetPhrase": "The class ___ was tiring.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-45:i05:r1",
+            "text": "I tried"
+          },
+          {
+            "responseId": "en:lesson-29:session-45:i05:r2",
+            "text": "I tried it"
+          },
+          {
+            "responseId": "en:lesson-29:session-45:i05:r3",
+            "text": "me tried"
+          }
+        ],
+        "testedDimension": "Вы рассказываете о занятии, которое попробовали.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-45:i05:r2",
+            "correct": false,
+            "testedDimension": "Вы рассказываете о занятии, которое попробовали.",
+            "feedbackByLocale": {
+              "ru": "It лишнее: занятие уже названо.",
+              "uk": "It зайве: заняття вже названо."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-45:i05:r3",
+            "correct": false,
+            "testedDimension": "Вы рассказываете о занятии, которое попробовали.",
+            "feedbackByLocale": {
+              "ru": "Нужен исполнитель I, не me.",
+              "uk": "Потрібен виконавець I, не me."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-45:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — stride",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-45:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — stride",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-45:i06:audio",
+          "transcript": "stride"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-45:i06:r1",
+            "targetText": "stride",
+            "meaningByLocale": {
+              "ru": "Шаг при ходьбе или беге. Часто речь о длине или уверенном размахе шага.",
+              "uk": "Крок під час ходьби або бігу. Часто йдеться про довжину чи впевнений розмах кроку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "stride",
+          "definitionByLocale": {
+            "ru": "Шаг при ходьбе или беге. Часто речь о длине или уверенном размахе шага.",
+            "uk": "Крок під час ходьби або бігу. Часто йдеться про довжину чи впевнений розмах кроку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-45:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите, не слишком ли длинный у вас шаг.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-45:i07:audio"
+      ],
+      "accessibilityLabel": "Спросите, не слишком ли длинный у вас шаг.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-45:i07:audio",
+          "transcript": "Is my stride too long?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is my stride too long?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-45:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, кто вам помог.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-45:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте, кто вам помог.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-45:i08:audio",
+          "transcript": "This is the trainer who helped me."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This is the trainer who helped me.",
+        "orderedTokens": [
+          "This",
+          "is",
+          "the",
+          "trainer",
+          "who",
+          "helped",
+          "me"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-45:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Этот тренер помог вам с упражнением.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-45:i09:r1",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-45:i09:r2",
+          "text": "who he"
+        },
+        {
+          "responseId": "en:lesson-29:session-45:i09:r3",
+          "text": "where"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Этот тренер помог вам с упражнением.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Этот тренер помог вам с упражнением.",
+          "uk": "Цей тренер допоміг вам із вправою."
+        },
+        "gappedTargetPhrase": "This is the trainer ___ helped me.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-45:i09:r1",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-45:i09:r2",
+            "text": "who he"
+          },
+          {
+            "responseId": "en:lesson-29:session-45:i09:r3",
+            "text": "where"
+          }
+        ],
+        "testedDimension": "Этот тренер помог вам с упражнением.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-45:i09:r2",
+            "correct": false,
+            "testedDimension": "Этот тренер помог вам с упражнением.",
+            "feedbackByLocale": {
+              "ru": "Who уже обозначает исполнителя; he лишнее.",
+              "uk": "Who вже позначає виконавця; he зайве."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-45:i09:r3",
+            "correct": false,
+            "testedDimension": "Этот тренер помог вам с упражнением.",
+            "feedbackByLocale": {
+              "ru": "Для человека здесь нужно who.",
+              "uk": "Для людини тут потрібне who."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-45:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — agility",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-45:i10:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — agility",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-45:i10:audio",
+          "transcript": "agility"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-45:i10:r1",
+            "targetText": "agility",
+            "meaningByLocale": {
+              "ru": "Ловкость и подвижность. Способность быстро и легко менять положение тела или направление движения.",
+              "uk": "Спритність і рухливість. Здатність швидко й легко змінювати положення тіла або напрямок руху."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "agility",
+          "definitionByLocale": {
+            "ru": "Ловкость и подвижность. Способность быстро и легко менять положение тела или направление движения.",
+            "uk": "Спритність і рухливість. Здатність швидко й легко змінювати положення тіла або напрямок руху."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-45:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-45:i11:r1",
+          "text": "Does this exercise improve agility?"
+        },
+        {
+          "responseId": "en:lesson-29:session-45:i11:r2",
+          "text": "Does this exercise improve balance?"
+        },
+        {
+          "responseId": "en:lesson-29:session-45:i11:r3",
+          "text": "Does this exercise improve endurance?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-45:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-45:i11:audio",
+          "transcript": "Does this exercise improve agility?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-45:i11:r1",
+            "targetText": "Does this exercise improve agility?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-45:i11:r2",
+            "targetText": "Does this exercise improve balance?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-45:i11:r3",
+            "targetText": "Does this exercise improve endurance?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-45:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Does this exercise improve agility?",
+              "uk": "У записі звучить Does this exercise improve agility?"
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-45:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Does this exercise improve agility?",
+              "uk": "У записі звучить Does this exercise improve agility?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-45:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросите показать движение медленно.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросите показать движение медленно.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could you show me the movement slowly?",
+        "localizedMeaning": {
+          "ru": "Попросите показать движение медленно.",
+          "uk": "Попросіть показати рух повільно."
+        },
+        "orderedTokens": [
+          "Could",
+          "you",
+          "show",
+          "me",
+          "the movement slowly"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-45:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cardio",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-45:i13:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cardio",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-45:i13:audio",
+          "transcript": "cardio"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-45:i13:r1",
+            "targetText": "cardio",
+            "meaningByLocale": {
+              "ru": "Кардиотренировка. Общее название физической нагрузки, при которой учащаются дыхание и сердцебиение, например бега или езды на велосипеде.",
+              "uk": "Кардіотренування. Загальна назва фізичного навантаження, під час якого частішають дихання й серцебиття, наприклад бігу чи їзди на велосипеді."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cardio",
+          "definitionByLocale": {
+            "ru": "Кардиотренировка. Общее название физической нагрузки, при которой учащаются дыхание и сердцебиение, например бега или езды на велосипеде.",
+            "uk": "Кардіотренування. Загальна назва фізичного навантаження, під час якого частішають дихання й серцебиття, наприклад бігу чи їзди на велосипеді."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-45:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите, есть ли в занятии кардионагрузка.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-45:i14:audio"
+      ],
+      "accessibilityLabel": "Спросите, есть ли в занятии кардионагрузка.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-45:i14:audio",
+          "transcript": "Does this class include cardio?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Does this class include cardio?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-45:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-29:session-45:i15:p1",
+            "target": "endurance",
+            "meaningByLocale": {
+              "ru": "выносливость",
+              "uk": "витривалість"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-45:i15:p2",
+            "target": "stride",
+            "meaningByLocale": {
+              "ru": "шаг при ходьбе или беге",
+              "uk": "крок під час ходьби або бігу"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-45:i15:p3",
+            "target": "agility",
+            "meaningByLocale": {
+              "ru": "ловкость",
+              "uk": "спритність"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-45:i15:p4",
+            "target": "cardio",
+            "meaningByLocale": {
+              "ru": "кардиотренировка",
+              "uk": "кардіотренування"
+            }
+          }
+        ],
+        "leftColumn": [
+          "endurance",
+          "stride",
+          "agility",
+          "cardio"
+        ],
+        "rightColumn": [
+          "выносливость",
+          "шаг при ходьбе или беге",
+          "ловкость",
+          "кардиотренировка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-45:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Это спортзал, где вы познакомились.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-45:i16:r1",
+          "text": "where"
+        },
+        {
+          "responseId": "en:lesson-29:session-45:i16:r2",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-45:i16:r3",
+          "text": "whose"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Это спортзал, где вы познакомились.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Это спортзал, где вы познакомились.",
+          "uk": "Це спортзал, де ви познайомилися."
+        },
+        "gappedTargetPhrase": "This is the gym ___ we met.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-45:i16:r1",
+            "text": "where"
+          },
+          {
+            "responseId": "en:lesson-29:session-45:i16:r2",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-45:i16:r3",
+            "text": "whose"
+          }
+        ],
+        "testedDimension": "Это спортзал, где вы познакомились.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-45:i16:r2",
+            "correct": false,
+            "testedDimension": "Это спортзал, где вы познакомились.",
+            "feedbackByLocale": {
+              "ru": "Для места встречи нужно where.",
+              "uk": "Для місця зустрічі потрібне where."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-45:i16:r3",
+            "correct": false,
+            "testedDimension": "Это спортзал, где вы познакомились.",
+            "feedbackByLocale": {
+              "ru": "Здесь место, не принадлежность: where.",
+              "uk": "Тут місце, не належність: where."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-45:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: речь о ловкости или равновесии?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-45:i17:r1",
+          "text": "Does this exercise improve agility?"
+        },
+        {
+          "responseId": "en:lesson-29:session-45:i17:r2",
+          "text": "Does this exercise improve balance?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-45:i17:audioA",
+        "en:lesson-29:session-45:i17:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: речь о ловкости или равновесии?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "Does this exercise improve agility?",
+        "contrastB": "Does this exercise improve balance?",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-29:session-45:i17:audioA",
+          "transcript": "Does this exercise improve agility?"
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-29:session-45:i17:audioB",
+          "transcript": "Does this exercise improve balance?"
+        },
+        "testedPhoneticContrast": "Послушайте: речь о ловкости или равновесии?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-45:i17:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: речь о ловкости или равновесии?",
+            "feedbackByLocale": {
+              "ru": "Звучит agility — ловкость.",
+              "uk": "Звучить agility — спритність."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-45:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте вопрос о длине шага.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-45:i18:audio"
+      ],
+      "accessibilityLabel": "Послушайте вопрос о длине шага.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-45:i18:audio",
+          "transcript": "Is my stride too long?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Is my stride too long?",
+        "orderedTokens": [
+          "Is",
+          "my",
+          "stride",
+          "too",
+          "long"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-45:i19",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что вам нужен небольшой перерыв.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-45:i19:audio"
+      ],
+      "accessibilityLabel": "Скажите, что вам нужен небольшой перерыв.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-45:i19:audio",
+          "transcript": "I need a short break."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I need a short break.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-45:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Тренер показал вам полезное упражнение.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-45:i20:r1",
+          "text": "you showed me"
+        },
+        {
+          "responseId": "en:lesson-29:session-45:i20:r2",
+          "text": "you showed me it"
+        },
+        {
+          "responseId": "en:lesson-29:session-45:i20:r3",
+          "text": "you showing me"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Тренер показал вам полезное упражнение.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Тренер показал вам полезное упражнение.",
+          "uk": "Тренер показав вам корисну вправу."
+        },
+        "gappedTargetPhrase": "The exercise ___ was useful.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-45:i20:r1",
+            "text": "you showed me"
+          },
+          {
+            "responseId": "en:lesson-29:session-45:i20:r2",
+            "text": "you showed me it"
+          },
+          {
+            "responseId": "en:lesson-29:session-45:i20:r3",
+            "text": "you showing me"
+          }
+        ],
+        "testedDimension": "Тренер показал вам полезное упражнение.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-45:i20:r2",
+            "correct": false,
+            "testedDimension": "Тренер показал вам полезное упражнение.",
+            "feedbackByLocale": {
+              "ru": "It повторяет уже названное упражнение.",
+              "uk": "It повторює вже названу вправу."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-45:i20:r3",
+            "correct": false,
+            "testedDimension": "Тренер показал вам полезное упражнение.",
+            "feedbackByLocale": {
+              "ru": "Для показанного упражнения нужно showed.",
+              "uk": "Для показаної вправи потрібне showed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-45:i21",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Поблагодарите тренера за помощь.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поблагодарите тренера за помощь.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Thank you for helping me.",
+        "localizedMeaning": {
+          "ru": "Поблагодарите тренера за помощь.",
+          "uk": "Подякуйте тренерові за допомогу."
+        },
+        "orderedTokens": [
+          "Thank",
+          "you",
+          "for",
+          "helping",
+          "me"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "34034c62514b3c4826bfd1f388aa7057432456830f85a88efdeaacf0fbc18b7d"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-28:session-48",
+  "entries": [
+    {
+      "interactionId": "en:lesson-28:session-48:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-48:intro1:r2": {
+          "ru": "These — несколько: are.",
+          "uk": "These — кілька: are."
+        },
+        "en:lesson-28:session-48:intro1:r3": {
+          "ru": "После are нужна sold.",
+          "uk": "Після are потрібна sold."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-48:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-48:intro2:r2": {
+          "ru": "Между will и packed нужна be.",
+          "uk": "Між will та packed потрібна be."
+        },
+        "en:lesson-28:session-48:intro2:r3": {
+          "ru": "После will be нужна packed.",
+          "uk": "Після will be потрібна packed."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-48:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-48:intro3:r2": {
+          "ru": "После had нужна sold.",
+          "uk": "Після had потрібна sold."
+        },
+        "en:lesson-28:session-48:intro3:r3": {
+          "ru": "Здесь используем had sold.",
+          "uk": "Тут використовуємо had sold."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "92a3baf580d58a8ecc2b2e6902c46798ad6f91014d996869312b97e557bc8b6e"
+}

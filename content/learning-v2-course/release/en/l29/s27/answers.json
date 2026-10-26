@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-29:session-27:i01",
+    "correctText": "May we look around?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-27:i02",
+    "correctText": "pastel",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-27:i03",
+    "correctText": "This picture was done in pastel.",
+    "correctResponseId": "en:lesson-29:session-27:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-27:i04",
+    "correctText": "The woman who painted this picture is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-27:i05",
+    "correctText": "mosaic",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-27:i06",
+    "correctText": "I like this mosaic.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-27:i07",
+    "correctText": "I chose",
+    "correctResponseId": "en:lesson-29:session-27:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-27:i08",
+    "correctText": "How much does this cost?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-27:i09",
+    "correctText": "abstract",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-27:i10",
+    "correctText": "I like abstract art.",
+    "correctResponseId": "en:lesson-29:session-27:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-27:i11",
+    "correctText": "painted",
+    "correctResponseId": "en:lesson-29:session-27:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-27:i12",
+    "correctText": "The price is on the label.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-27:i13",
+    "correctText": "figurine",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-27:i14",
+    "correctText": "Could I see that figurine?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-27:i15",
+    "correctText": "en:lesson-29:session-27:i15:p1=pastel\nen:lesson-29:session-27:i15:p2=mosaic\nen:lesson-29:session-27:i15:p3=abstract\nen:lesson-29:session-27:i15:p4=figurine",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-27:i16",
+    "correctText": "where",
+    "correctResponseId": "en:lesson-29:session-27:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-27:i17",
+    "correctText": "The picture which I chose is small.",
+    "correctResponseId": "en:lesson-29:session-27:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-27:i18",
+    "correctText": "The mosaic was made by my neighbour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-27:i19",
+    "correctText": "Could you wrap it carefully?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-27:i20",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-29:session-27:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-27:i21",
+    "correctText": "I will put it on the shelf.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-28:session-37",
+  "entries": [
+    {
+      "interactionId": "en:lesson-28:session-37:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-37:intro1:r2": {
+          "ru": "Создателя вводит by.",
+          "uk": "Творця вводить by."
+        },
+        "en:lesson-28:session-37:intro1:r3": {
+          "ru": "Перед a local teacher нужна by.",
+          "uk": "Перед a local teacher потрібна by."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-37:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-37:intro2:r2": {
+          "ru": "После this model нужна be.",
+          "uk": "Після this model потрібна be."
+        },
+        "en:lesson-28:session-37:intro2:r3": {
+          "ru": "После be нужна touched.",
+          "uk": "Після be потрібна touched."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-37:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-37:intro3:r2": {
+          "ru": "После wish здесь нужна stayed.",
+          "uk": "Після wish тут потрібна stayed."
+        },
+        "en:lesson-28:session-37:intro3:r3": {
+          "ru": "Для этого желания используем stayed open.",
+          "uk": "Для цього бажання використовуємо stayed open."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "af39aa15f124cce275a8b70c187e7342bad11eb24af3028d1905574c190f8511"
+}

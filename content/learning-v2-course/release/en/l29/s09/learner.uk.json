@@ -1,0 +1,1055 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-29:session-09",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-29:session-09:i01",
+      "ordinal": 4,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте, хто залишив куртку на стільці.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-09:i01:audio"
+      ],
+      "accessibilityLabel": "Запитайте, хто залишив куртку на стільці.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-09:i01:audio",
+          "transcript": "Who left this jacket on the chair?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Who left this jacket on the chair?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-09:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — snag",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-09:i02:audio"
+      ],
+      "accessibilityLabel": "Картка слова — snag",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-09:i02:audio",
+          "transcript": "snag"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-09:i02:r1",
+            "targetText": "snag",
+            "meaningByLocale": {
+              "ru": "Зацепка на ткани. Вытянутая нить, появившаяся, когда ткань за что-то зацепилась.",
+              "uk": "Зачіпка на тканині. Витягнута нитка, що з’явилася, коли тканина за щось зачепилася."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "snag",
+          "definitionByLocale": {
+            "ru": "Зацепка на ткани. Вытянутая нить, появившаяся, когда ткань за что-то зацепилась.",
+            "uk": "Зачіпка на тканині. Витягнута нитка, що з’явилася, коли тканина за щось зачепилася."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-09:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повідомте про зачіпку на рукаві.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Повідомте про зачіпку на рукаві.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There is a snag on the sleeve.",
+        "localizedMeaning": {
+          "ru": "Сообщите о зацепке на рукаве.",
+          "uk": "Повідомте про зачіпку на рукаві."
+        },
+        "orderedTokens": [
+          "There",
+          "is",
+          "a",
+          "snag",
+          "on",
+          "the",
+          "sleeve"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-09:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви шукаєте жінку, у якої брудна куртка.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-09:i04:r1",
+          "text": "whose"
+        },
+        {
+          "responseId": "en:lesson-29:session-09:i04:r2",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-09:i04:r3",
+          "text": "which"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви шукаєте жінку, у якої брудна куртка.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы ищете женщину, у которой грязная куртка.",
+          "uk": "Ви шукаєте жінку, у якої брудна куртка."
+        },
+        "gappedTargetPhrase": "Where is the woman ___ jacket is dirty?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-09:i04:r1",
+            "text": "whose"
+          },
+          {
+            "responseId": "en:lesson-29:session-09:i04:r2",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-09:i04:r3",
+            "text": "which"
+          }
+        ],
+        "testedDimension": "Ви шукаєте жінку, у якої брудна куртка.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-09:i04:r2",
+            "correct": false,
+            "testedDimension": "Ви шукаєте жінку, у якої брудна куртка.",
+            "feedbackByLocale": {
+              "ru": "Принадлежность куртки показывает whose.",
+              "uk": "Належність куртки показує whose."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-09:i04:r3",
+            "correct": false,
+            "testedDimension": "Ви шукаєте жінку, у якої брудна куртка.",
+            "feedbackByLocale": {
+              "ru": "Для связи женщины с её курткой нужна whose.",
+              "uk": "Для зв’язку жінки з її курткою потрібна whose."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-09:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-09:i05:r1",
+          "text": "I helped the boy whose shoe was wet."
+        },
+        {
+          "responseId": "en:lesson-29:session-09:i05:r2",
+          "text": "I helped the boy whose coat was wet."
+        },
+        {
+          "responseId": "en:lesson-29:session-09:i05:r3",
+          "text": "I helped the girl whose shoe was wet."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-09:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-09:i05:audio",
+          "transcript": "I helped the boy whose shoe was wet."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-09:i05:r1",
+            "targetText": "I helped the boy whose shoe was wet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-09:i05:r2",
+            "targetText": "I helped the boy whose coat was wet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-09:i05:r3",
+            "targetText": "I helped the girl whose shoe was wet.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-09:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I helped the boy whose shoe was wet.",
+              "uk": "У записі звучить I helped the boy whose shoe was wet."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-09:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I helped the boy whose shoe was wet.",
+              "uk": "У записі звучить I helped the boy whose shoe was wet."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-09:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — dampen",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-09:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — dampen",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-09:i06:audio",
+          "transcript": "dampen"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-09:i06:r1",
+            "targetText": "dampen",
+            "meaningByLocale": {
+              "ru": "Слегка смочить. Сделать немного влажным, не пропитывая насквозь.",
+              "uk": "Злегка змочити. Зробити трохи вологим, не просочуючи наскрізь."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dampen",
+          "definitionByLocale": {
+            "ru": "Слегка смочить. Сделать немного влажным, не пропитывая насквозь.",
+            "uk": "Злегка змочити. Зробити трохи вологим, не просочуючи наскрізь."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-09:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть злегка змочити тканину.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-09:i07:audio"
+      ],
+      "accessibilityLabel": "Попросіть злегка змочити тканину.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-09:i07:audio",
+          "transcript": "Could you dampen the cloth?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you dampen the cloth?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-09:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, хто чекає всередині.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-09:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте, хто чекає всередині.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-09:i08:audio",
+          "transcript": "The man whose bag is missing is waiting inside."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The man whose bag is missing is waiting inside.",
+        "orderedTokens": [
+          "The",
+          "man",
+          "whose",
+          "bag",
+          "is",
+          "missing",
+          "is",
+          "waiting",
+          "inside"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-09:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточніть: ви допомогли хлопчикові з мокрим черевиком.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-09:i09:r1",
+          "text": "whose"
+        },
+        {
+          "responseId": "en:lesson-29:session-09:i09:r2",
+          "text": "whose his"
+        },
+        {
+          "responseId": "en:lesson-29:session-09:i09:r3",
+          "text": "who his"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточніть: ви допомогли хлопчикові з мокрим черевиком.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните: вы помогли мальчику с мокрым ботинком.",
+          "uk": "Уточніть: ви допомогли хлопчикові з мокрим черевиком."
+        },
+        "gappedTargetPhrase": "I helped the boy ___ shoe was wet.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-09:i09:r1",
+            "text": "whose"
+          },
+          {
+            "responseId": "en:lesson-29:session-09:i09:r2",
+            "text": "whose his"
+          },
+          {
+            "responseId": "en:lesson-29:session-09:i09:r3",
+            "text": "who his"
+          }
+        ],
+        "testedDimension": "Уточніть: ви допомогли хлопчикові з мокрим черевиком.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-09:i09:r2",
+            "correct": false,
+            "testedDimension": "Уточніть: ви допомогли хлопчикові з мокрим черевиком.",
+            "feedbackByLocale": {
+              "ru": "Whose уже обозначает принадлежность, his лишнее.",
+              "uk": "Whose вже позначає належність, his зайве."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-09:i09:r3",
+            "correct": false,
+            "testedDimension": "Уточніть: ви допомогли хлопчикові з мокрим черевиком.",
+            "feedbackByLocale": {
+              "ru": "Для этой связи используем одно слово whose.",
+              "uk": "Для цього зв’язку використовуємо одне слово whose."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-09:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — dab",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-09:i10:audio"
+      ],
+      "accessibilityLabel": "Картка слова — dab",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-09:i10:audio",
+          "transcript": "dab"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-09:i10:r1",
+            "targetText": "dab",
+            "meaningByLocale": {
+              "ru": "Промокнуть лёгкими прикосновениями. Прижимать ткань или салфетку к поверхности, не растирая.",
+              "uk": "Промокнути легкими дотиками. Притискати тканину або серветку до поверхні, не розтираючи."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dab",
+          "definitionByLocale": {
+            "ru": "Промокнуть лёгкими прикосновениями. Прижимать ткань или салфетку к поверхности, не растирая.",
+            "uk": "Промокнути легкими дотиками. Притискати тканину або серветку до поверхні, не розтираючи."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-09:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть обережно промокнути мокре місце.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-09:i11:audio"
+      ],
+      "accessibilityLabel": "Попросіть обережно промокнути мокре місце.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-09:i11:audio",
+          "transcript": "Please dab the wet patch gently."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Please dab the wet patch gently.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-09:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-09:i12:r1",
+          "text": "The woman whose coat is on the chair is outside."
+        },
+        {
+          "responseId": "en:lesson-29:session-09:i12:r2",
+          "text": "The woman whose coat is on the chair is inside."
+        },
+        {
+          "responseId": "en:lesson-29:session-09:i12:r3",
+          "text": "The woman whose bag is on the chair is outside."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-09:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-09:i12:audio",
+          "transcript": "The woman whose coat is on the chair is outside."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-09:i12:r1",
+            "targetText": "The woman whose coat is on the chair is outside.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-09:i12:r2",
+            "targetText": "The woman whose coat is on the chair is inside.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-09:i12:r3",
+            "targetText": "The woman whose bag is on the chair is outside.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-09:i12:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The woman whose coat is on the chair is outside.",
+              "uk": "У записі звучить The woman whose coat is on the chair is outside."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-09:i12:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The woman whose coat is on the chair is outside.",
+              "uk": "У записі звучить The woman whose coat is on the chair is outside."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-09:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "У жінки на стільці лежить пальто.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-09:i13:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-29:session-09:i13:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-29:session-09:i13:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У жінки на стільці лежить пальто.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "У женщины на стуле лежит пальто.",
+          "uk": "У жінки на стільці лежить пальто."
+        },
+        "gappedTargetPhrase": "The woman whose coat ___ on the chair is outside.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-09:i13:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-29:session-09:i13:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-29:session-09:i13:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "У жінки на стільці лежить пальто.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-09:i13:r2",
+            "correct": false,
+            "testedDimension": "У жінки на стільці лежить пальто.",
+            "feedbackByLocale": {
+              "ru": "Одно coat требует is.",
+              "uk": "Одне coat потребує is."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-09:i13:r3",
+            "correct": false,
+            "testedDimension": "У жінки на стільці лежить пальто.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна личная форма is.",
+              "uk": "Тут потрібна особова форма is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-09:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — buff",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-09:i14:audio"
+      ],
+      "accessibilityLabel": "Картка слова — buff",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-09:i14:audio",
+          "transcript": "buff"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-09:i14:r1",
+            "targetText": "buff",
+            "meaningByLocale": {
+              "ru": "Натереть до блеска. Растирать поверхность мягкой тканью, чтобы она блестела.",
+              "uk": "Натерти до блиску. Розтирати поверхню м’якою тканиною, щоб вона блищала."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "buff",
+          "definitionByLocale": {
+            "ru": "Натереть до блеска. Растирать поверхность мягкой тканью, чтобы она блестела.",
+            "uk": "Натерти до блиску. Розтирати поверхню м’якою тканиною, щоб вона блищала."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-09:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросіть натерти взуття м’якою тканиною.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросіть натерти взуття м’якою тканиною.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Please buff the shoes with a soft cloth.",
+        "localizedMeaning": {
+          "ru": "Попросите натереть обувь мягкой тканью.",
+          "uk": "Попросіть натерти взуття м’якою тканиною."
+        },
+        "orderedTokens": [
+          "Please",
+          "buff",
+          "the",
+          "shoes",
+          "with",
+          "a",
+          "soft",
+          "cloth"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-09:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-29:session-09:i16:p1",
+            "target": "snag",
+            "meaningByLocale": {
+              "ru": "зацепка на ткани",
+              "uk": "зачіпка на тканині"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-09:i16:p2",
+            "target": "dampen",
+            "meaningByLocale": {
+              "ru": "слегка смочить",
+              "uk": "злегка змочити"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-09:i16:p3",
+            "target": "dab",
+            "meaningByLocale": {
+              "ru": "промокнуть лёгкими прикосновениями",
+              "uk": "промокнути легкими дотиками"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-09:i16:p4",
+            "target": "buff",
+            "meaningByLocale": {
+              "ru": "натереть до блеска",
+              "uk": "натерти до блиску"
+            }
+          }
+        ],
+        "leftColumn": [
+          "snag",
+          "dampen",
+          "dab",
+          "buff"
+        ],
+        "rightColumn": [
+          "зачіпка на тканині",
+          "злегка змочити",
+          "промокнути легкими дотиками",
+          "натерти до блиску"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-09:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: загубилася сумка чи куртка?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-09:i17:r1",
+          "text": "The man whose bag is missing is here."
+        },
+        {
+          "responseId": "en:lesson-29:session-09:i17:r2",
+          "text": "The man whose jacket is missing is here."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-09:i17:audioA",
+        "en:lesson-29:session-09:i17:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: загубилася сумка чи куртка?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "The man whose bag is missing is here.",
+        "contrastB": "The man whose jacket is missing is here.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-29:session-09:i17:audioA",
+          "transcript": "The man whose bag is missing is here."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-29:session-09:i17:audioB",
+          "transcript": "The man whose jacket is missing is here."
+        },
+        "testedPhoneticContrast": "Послухайте: загубилася сумка чи куртка?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-09:i17:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: загубилася сумка чи куртка?",
+            "feedbackByLocale": {
+              "ru": "В записи bag — сумка.",
+              "uk": "У записі bag — сумка."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-09:i18",
+      "ordinal": 21,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте, чи можна спочатку прочитати ярлик з інструкцією з догляду.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-09:i18:audio"
+      ],
+      "accessibilityLabel": "Запитайте, чи можна спочатку прочитати ярлик з інструкцією з догляду.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-09:i18:audio",
+          "transcript": "Can I read the care label first?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Can I read the care label first?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-09:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назвіть дівчину, чия сумка тут.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-09:i19:r1",
+          "text": "whose"
+        },
+        {
+          "responseId": "en:lesson-29:session-09:i19:r2",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-09:i19:r3",
+          "text": "what"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назвіть дівчину, чия сумка тут.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите девушку, чья сумка здесь.",
+          "uk": "Назвіть дівчину, чия сумка тут."
+        },
+        "gappedTargetPhrase": "She is the girl ___ bag is here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-09:i19:r1",
+            "text": "whose"
+          },
+          {
+            "responseId": "en:lesson-29:session-09:i19:r2",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-09:i19:r3",
+            "text": "what"
+          }
+        ],
+        "testedDimension": "Назвіть дівчину, чия сумка тут.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-09:i19:r2",
+            "correct": false,
+            "testedDimension": "Назвіть дівчину, чия сумка тут.",
+            "feedbackByLocale": {
+              "ru": "Перед bag ставим whose, чтобы показать принадлежность.",
+              "uk": "Перед bag ставимо whose, щоб показати належність."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-09:i19:r3",
+            "correct": false,
+            "testedDimension": "Назвіть дівчину, чия сумка тут.",
+            "feedbackByLocale": {
+              "ru": "Чья сумка — whose bag.",
+              "uk": "Чия сумка — whose bag."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-09:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте прохання перевірити кишені.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-09:i20:audio"
+      ],
+      "accessibilityLabel": "Послухайте прохання перевірити кишені.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-09:i20:audio",
+          "transcript": "Please check the pockets first."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Please check the pockets first.",
+        "orderedTokens": [
+          "Please",
+          "check",
+          "the",
+          "pockets",
+          "first"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-09:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запропонуйте принести суху тканину.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-09:i21:audio"
+      ],
+      "accessibilityLabel": "Запропонуйте принести суху тканину.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-09:i21:audio",
+          "transcript": "Shall I bring a dry cloth?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Shall I bring a dry cloth?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "cb07bf6d371cc60a9f74d4c6542972f6f4e86fdab1d26189a84dcba64423140f"
+}

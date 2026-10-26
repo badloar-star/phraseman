@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-28:session-07",
+  "entries": [
+    {
+      "interactionId": "en:lesson-28:session-07:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-07:intro1:r2": {
+          "ru": "С bowls нужна are.",
+          "uk": "З bowls потрібна are."
+        },
+        "en:lesson-28:session-07:intro1:r3": {
+          "ru": "В этой конструкции нужна sold.",
+          "uk": "У цій конструкції потрібна sold."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-07:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-07:intro2:r2": {
+          "ru": "Для такого желания нужна were.",
+          "uk": "Для такого бажання потрібна were."
+        },
+        "en:lesson-28:session-07:intro2:r3": {
+          "ru": "Здесь используем were wider.",
+          "uk": "Тут використовуємо were wider."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-07:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-07:intro3:r2": {
+          "ru": "После had нужна arrived.",
+          "uk": "Після had потрібна arrived."
+        },
+        "en:lesson-28:session-07:intro3:r3": {
+          "ru": "Вчерашнее возвращение: got home.",
+          "uk": "Учорашнє повернення: got home."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e82fe85d94fb8c0e537a0280bf369af056a3610d91b4e6bbc86d234b83dd036a"
+}

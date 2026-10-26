@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-28:session-35",
+  "entries": [
+    {
+      "interactionId": "en:lesson-28:session-35:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-35:intro1:r2": {
+          "ru": "После was здесь нужна written.",
+          "uk": "Після was тут потрібна written."
+        },
+        "en:lesson-28:session-35:intro1:r3": {
+          "ru": "Перед автором нужна by.",
+          "uk": "Перед автором потрібна by."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-35:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-35:intro2:r2": {
+          "ru": "После the concert нужна be.",
+          "uk": "Після the concert потрібна be."
+        },
+        "en:lesson-28:session-35:intro2:r3": {
+          "ru": "После be нужна recorded.",
+          "uk": "Після be потрібна recorded."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-35:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-35:intro3:r2": {
+          "ru": "После had нужна ended.",
+          "uk": "Після had потрібна ended."
+        },
+        "en:lesson-28:session-35:intro3:r3": {
+          "ru": "Приход тоже был в прошлом: arrived.",
+          "uk": "Прихід теж був у минулому: arrived."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "db231d26dfd74840a34660e710dc524d89b0f7cc8c5c5bd2f7e3afd7fadcb5cf"
+}

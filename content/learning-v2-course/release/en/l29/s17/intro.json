@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-29:session-17",
+  "learningOutcomeByLocale": {
+    "ru": "как уточнить место через действие в нём с помощью where.",
+    "uk": "як уточнити місце через дію в ньому за допомогою where."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-29:session-17:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Кафе, в котором вы встретились",
+        "uk": "Кафе, у якому ви зустрілися"
+      },
+      "bodyByLocale": {
+        "ru": "Во время прогулки вы показываете другу кафе вашей первой встречи. Скажите: This is the café where we met — это кафе, в котором мы встретились. Соберите This is the café + where + we met. После названия места the café поставьте where: оно связывает место с действием, которое там произошло. Затем добавьте we met. Отдельное there в конце не нужно: where уже означает «в котором месте».",
+        "uk": "Під час прогулянки ви показуєте другові кафе вашої першої зустрічі. Скажіть: This is the café where we met — це кафе, у якому ми зустрілися. Складіть This is the café + where + we met. Після назви місця the café поставте where: воно пов’язує місце з дією, яка там відбулася. Потім додайте we met. Окреме there наприкінці не потрібне: where вже означає «у якому місці»."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-17:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-17:intro1:r1",
+              "text": "This is the café where we met."
+            },
+            {
+              "responseId": "en:lesson-29:session-17:intro1:r2",
+              "text": "This is the café where we met there."
+            },
+            {
+              "responseId": "en:lesson-29:session-17:intro1:r3",
+              "text": "This is the café who we met."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-17:intro1:r1",
+              "text": "This is the café where we met."
+            },
+            {
+              "responseId": "en:lesson-29:session-17:intro1:r2",
+              "text": "This is the café where we met there."
+            },
+            {
+              "responseId": "en:lesson-29:session-17:intro1:r3",
+              "text": "This is the café who we met."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-29:session-17:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Где можно заплатить картой",
+        "uk": "Де можна заплатити карткою"
+      },
+      "bodyByLocale": {
+        "ru": "Другу нужен магазин, который принимает карты. Скажите: I know a shop where you can pay by card — я знаю магазин, в котором можно заплатить картой. Соберите I know a shop + where + you can pay by card. После a shop поставьте where, чтобы уточнить, что можно делать в этом месте. Затем идут you can pay by card в обычном порядке: сначала you, затем can pay.",
+        "uk": "Другові потрібен магазин, який приймає картки. Скажіть: I know a shop where you can pay by card — я знаю магазин, у якому можна заплатити карткою. Складіть I know a shop + where + you can pay by card. Після a shop поставте where, щоб уточнити, що можна робити в цьому місці. Потім ідуть you can pay by card у звичайному порядку: спочатку you, потім can pay."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-17:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-17:intro2:r1",
+              "text": "I know a shop where you can pay by card."
+            },
+            {
+              "responseId": "en:lesson-29:session-17:intro2:r2",
+              "text": "I know a shop where can you pay by card."
+            },
+            {
+              "responseId": "en:lesson-29:session-17:intro2:r3",
+              "text": "I know a shop who you can pay by card."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-17:intro2:r1",
+              "text": "I know a shop where you can pay by card."
+            },
+            {
+              "responseId": "en:lesson-29:session-17:intro2:r2",
+              "text": "I know a shop where can you pay by card."
+            },
+            {
+              "responseId": "en:lesson-29:session-17:intro2:r3",
+              "text": "I know a shop who you can pay by card."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-29:session-17:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Тот ли это отель",
+        "uk": "Чи це той готель"
+      },
+      "bodyByLocale": {
+        "ru": "Вы проходите мимо отеля и уточняете, останавливался ли друг именно здесь. Спросите: Is this the hotel where you stayed? — это отель, в котором ты останавливался? Соберите Is this the hotel + where + you stayed? Вопрос начинается с Is this the hotel. После where добавьте обычный порядок you stayed, чтобы уточнить место проживания. Это часть большого вопроса, поэтому did перед you здесь не добавляем.",
+        "uk": "Ви проходите повз готель і уточнюєте, чи зупинявся друг саме тут. Запитайте: Is this the hotel where you stayed? — це готель, у якому ти зупинявся? Складіть Is this the hotel + where + you stayed? Запитання починається з Is this the hotel. Після where додайте звичайний порядок you stayed, щоб уточнити місце проживання. Це частина великого запитання, тому did перед you тут не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-17:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-17:intro3:r1",
+              "text": "Is this the hotel where you stayed?"
+            },
+            {
+              "responseId": "en:lesson-29:session-17:intro3:r2",
+              "text": "Is this the hotel where did you stay?"
+            },
+            {
+              "responseId": "en:lesson-29:session-17:intro3:r3",
+              "text": "Is this the hotel where you stayed there?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-17:intro3:r1",
+              "text": "Is this the hotel where you stayed?"
+            },
+            {
+              "responseId": "en:lesson-29:session-17:intro3:r2",
+              "text": "Is this the hotel where did you stay?"
+            },
+            {
+              "responseId": "en:lesson-29:session-17:intro3:r3",
+              "text": "Is this the hotel where you stayed there?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "10befdcc5c036a1465c2850ff6dedd7f0bea4c6627b189eb266736f0d52e8025"
+}

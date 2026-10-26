@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-29:session-26",
+  "learningOutcomeByLocale": {
+    "ru": "как назвать роли игроков и уточнить, кто сделал действие или кого вы знаете.",
+    "uk": "як назвати ролі гравців і уточнити, хто виконав дію або кого ви знаєте."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-29:session-26:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Кто забил гол",
+        "uk": "Хто забив гол"
+      },
+      "bodyByLocale": {
+        "ru": "Вы смотрите футбол с другом и указываете на игрока, который забил гол. Скажите: The player who scored the goal is over there — игрок, который забил гол, вон там. Соберите The player + who scored the goal + is over there. В уточнении действие выполняет игрок, поэтому who сразу соединяется со scored the goal. He после who не добавляем.",
+        "uk": "Ви дивитеся футбол із другом і показуєте на гравця, який забив гол. Скажіть: The player who scored the goal is over there — гравець, який забив гол, он там. Складіть The player + who scored the goal + is over there. В уточненні дію виконує гравець, тому who відразу поєднується зі scored the goal. He після who не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-26:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-26:intro1:r1",
+              "text": "The player who scored the goal is over there."
+            },
+            {
+              "responseId": "en:lesson-29:session-26:intro1:r2",
+              "text": "The player who he scored the goal is over there."
+            },
+            {
+              "responseId": "en:lesson-29:session-26:intro1:r3",
+              "text": "The player which scored the goal is over there."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-26:intro1:r1",
+              "text": "The player who scored the goal is over there."
+            },
+            {
+              "responseId": "en:lesson-29:session-26:intro1:r2",
+              "text": "The player who he scored the goal is over there."
+            },
+            {
+              "responseId": "en:lesson-29:session-26:intro1:r3",
+              "text": "The player which scored the goal is over there."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-29:session-26:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Игрок, которого вы знаете",
+        "uk": "Гравець, якого ви знаєте"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает, знакомы ли вы с кем-то из игроков, и вы показываете на соседа. Скажите: The player who I know lives nearby — игрок, которого я знаю, живёт рядом. Соберите The player + who I know + lives nearby. Знаете этого человека вы, поэтому после who нужно I know. Who обозначает знакомого игрока; him после know не добавляем.",
+        "uk": "Друг запитує, чи знайомі ви з кимось із гравців, і ви показуєте на сусіда. Скажіть: The player who I know lives nearby — гравець, якого я знаю, живе поруч. Складіть The player + who I know + lives nearby. Знаєте цю людину ви, тому після who потрібне I know. Who позначає знайомого гравця; him після know не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-26:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-26:intro2:r1",
+              "text": "The player who I know lives nearby."
+            },
+            {
+              "responseId": "en:lesson-29:session-26:intro2:r2",
+              "text": "The player who I know him lives nearby."
+            },
+            {
+              "responseId": "en:lesson-29:session-26:intro2:r3",
+              "text": "The player who me know lives nearby."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-26:intro2:r1",
+              "text": "The player who I know lives nearby."
+            },
+            {
+              "responseId": "en:lesson-29:session-26:intro2:r2",
+              "text": "The player who I know him lives nearby."
+            },
+            {
+              "responseId": "en:lesson-29:session-26:intro2:r3",
+              "text": "The player who me know lives nearby."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-29:session-26:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Кому принадлежит сумка",
+        "uk": "Кому належить сумка"
+      },
+      "bodyByLocale": {
+        "ru": "У скамейки осталась сумка, и вы показываете другу её владельца. Скажите: That is the player whose bag is on the bench — это игрок, чья сумка на скамейке. Соберите That is the player + whose bag + is on the bench. Whose bag связывает сумку с игроком. После whose сразу ставим bag, без his.",
+        "uk": "Біля лавки залишилася сумка, і ви показуєте другові її власника. Скажіть: That is the player whose bag is on the bench — це гравець, чия сумка на лавці. Складіть That is the player + whose bag + is on the bench. Whose bag пов’язує сумку з гравцем. Після whose відразу ставимо bag, без his."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-26:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-26:intro3:r1",
+              "text": "That is the player whose bag is on the bench."
+            },
+            {
+              "responseId": "en:lesson-29:session-26:intro3:r2",
+              "text": "That is the player who bag is on the bench."
+            },
+            {
+              "responseId": "en:lesson-29:session-26:intro3:r3",
+              "text": "That is the player whose his bag is on the bench."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-26:intro3:r1",
+              "text": "That is the player whose bag is on the bench."
+            },
+            {
+              "responseId": "en:lesson-29:session-26:intro3:r2",
+              "text": "That is the player who bag is on the bench."
+            },
+            {
+              "responseId": "en:lesson-29:session-26:intro3:r3",
+              "text": "That is the player whose his bag is on the bench."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "bd2867a1e5481a492079d2dc30f740df452a9d8137d0a21e355b78dda3842d73"
+}

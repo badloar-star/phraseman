@@ -1,0 +1,1053 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-29:session-37",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-29:session-37:i01",
+      "ordinal": 4,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите, дочитал ли друг книгу.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-37:i01:audio"
+      ],
+      "accessibilityLabel": "Спросите, дочитал ли друг книгу.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-37:i01:audio",
+          "transcript": "Have you finished the book?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Have you finished the book?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-37:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — spoiler",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-37:i02:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — spoiler",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-37:i02:audio",
+          "transcript": "spoiler"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-37:i02:r1",
+            "targetText": "spoiler",
+            "meaningByLocale": {
+              "ru": "Спойлер. Сведения о важных событиях или конце истории, которые раскрывают их человеку раньше чтения или просмотра.",
+              "uk": "Спойлер. Відомості про важливі події чи кінець історії, які розкривають їх людині раніше читання або перегляду."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "spoiler",
+          "definitionByLocale": {
+            "ru": "Спойлер. Сведения о важных событиях или конце истории, которые раскрывают их человеку раньше чтения или просмотра.",
+            "uk": "Спойлер. Відомості про важливі події чи кінець історії, які розкривають їх людині раніше читання або перегляду."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-37:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-37:i03:r1",
+          "text": "Does this review contain a spoiler?"
+        },
+        {
+          "responseId": "en:lesson-29:session-37:i03:r2",
+          "text": "Does this review contain a mistake?"
+        },
+        {
+          "responseId": "en:lesson-29:session-37:i03:r3",
+          "text": "Does this review contain a question?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-37:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-37:i03:audio",
+          "transcript": "Does this review contain a spoiler?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-37:i03:r1",
+            "targetText": "Does this review contain a spoiler?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-37:i03:r2",
+            "targetText": "Does this review contain a mistake?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-37:i03:r3",
+            "targetText": "Does this review contain a question?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-37:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Does this review contain a spoiler?",
+              "uk": "У записі звучить Does this review contain a spoiler?"
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-37:i03:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Does this review contain a spoiler?",
+              "uk": "У записі звучить Does this review contain a spoiler?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-37:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что одолженная книга была захватывающей.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что одолженная книга была захватывающей.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The book I borrowed was exciting.",
+        "localizedMeaning": {
+          "ru": "Скажите, что одолженная книга была захватывающей.",
+          "uk": "Скажіть, що позичена книжка була захопливою."
+        },
+        "orderedTokens": [
+          "The",
+          "book",
+          "I",
+          "borrowed",
+          "was",
+          "exciting"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-37:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы рассказываете об одолженной книге.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-37:i05:r1",
+          "text": "I borrowed"
+        },
+        {
+          "responseId": "en:lesson-29:session-37:i05:r2",
+          "text": "I borrowed it"
+        },
+        {
+          "responseId": "en:lesson-29:session-37:i05:r3",
+          "text": "me borrowed"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы рассказываете об одолженной книге.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы рассказываете об одолженной книге.",
+          "uk": "Ви розповідаєте про позичену книжку."
+        },
+        "gappedTargetPhrase": "The book ___ was exciting.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-37:i05:r1",
+            "text": "I borrowed"
+          },
+          {
+            "responseId": "en:lesson-29:session-37:i05:r2",
+            "text": "I borrowed it"
+          },
+          {
+            "responseId": "en:lesson-29:session-37:i05:r3",
+            "text": "me borrowed"
+          }
+        ],
+        "testedDimension": "Вы рассказываете об одолженной книге.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-37:i05:r2",
+            "correct": false,
+            "testedDimension": "Вы рассказываете об одолженной книге.",
+            "feedbackByLocale": {
+              "ru": "It лишнее: книга уже названа.",
+              "uk": "It зайве: книжку вже названо."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-37:i05:r3",
+            "correct": false,
+            "testedDimension": "Вы рассказываете об одолженной книге.",
+            "feedbackByLocale": {
+              "ru": "Исполнитель — I, не me.",
+              "uk": "Виконавець — I, не me."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-37:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cliffhanger",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-37:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cliffhanger",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-37:i06:audio",
+          "transcript": "cliffhanger"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-37:i06:r1",
+            "targetText": "cliffhanger",
+            "meaningByLocale": {
+              "ru": "Обрыв истории на напряжённом моменте. Конец главы или серии, после которого хочется узнать, что случится дальше.",
+              "uk": "Обрив історії на напруженому моменті. Кінець розділу чи серії, після якого хочеться дізнатися, що станеться далі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cliffhanger",
+          "definitionByLocale": {
+            "ru": "Обрыв истории на напряжённом моменте. Конец главы или серии, после которого хочется узнать, что случится дальше.",
+            "uk": "Обрив історії на напруженому моменті. Кінець розділу чи серії, після якого хочеться дізнатися, що станеться далі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-37:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что глава заканчивается на напряжённом моменте.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-37:i07:audio"
+      ],
+      "accessibilityLabel": "Скажите, что глава заканчивается на напряжённом моменте.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-37:i07:audio",
+          "transcript": "The chapter ends on a cliffhanger."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The chapter ends on a cliffhanger.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-37:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, что понравилось читателю.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-37:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте, что понравилось читателю.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-37:i08:audio",
+          "transcript": "This is the author whose book I enjoyed."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This is the author whose book I enjoyed.",
+        "orderedTokens": [
+          "This",
+          "is",
+          "the",
+          "author",
+          "whose",
+          "book",
+          "I",
+          "enjoyed"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-37:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Это автор книги, которая вам понравилась.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-37:i09:r1",
+          "text": "whose"
+        },
+        {
+          "responseId": "en:lesson-29:session-37:i09:r2",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-37:i09:r3",
+          "text": "whose his"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Это автор книги, которая вам понравилась.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Это автор книги, которая вам понравилась.",
+          "uk": "Це автор книжки, яка вам сподобалася."
+        },
+        "gappedTargetPhrase": "This is the author ___ book I enjoyed.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-37:i09:r1",
+            "text": "whose"
+          },
+          {
+            "responseId": "en:lesson-29:session-37:i09:r2",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-37:i09:r3",
+            "text": "whose his"
+          }
+        ],
+        "testedDimension": "Это автор книги, которая вам понравилась.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-37:i09:r2",
+            "correct": false,
+            "testedDimension": "Это автор книги, которая вам понравилась.",
+            "feedbackByLocale": {
+              "ru": "Чья книга — whose book.",
+              "uk": "Чия книжка — whose book."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-37:i09:r3",
+            "correct": false,
+            "testedDimension": "Это автор книги, которая вам понравилась.",
+            "feedbackByLocale": {
+              "ru": "His лишнее после whose.",
+              "uk": "His зайве після whose."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-37:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — foreword",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-37:i10:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — foreword",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-37:i10:audio",
+          "transcript": "foreword"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-37:i10:r1",
+            "targetText": "foreword",
+            "meaningByLocale": {
+              "ru": "Предисловие. Вступительный текст перед основным содержанием книги, нередко написанный другим человеком.",
+              "uk": "Передмова. Вступний текст перед основним змістом книжки, нерідко написаний іншою людиною."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "foreword",
+          "definitionByLocale": {
+            "ru": "Предисловие. Вступительный текст перед основным содержанием книги, нередко написанный другим человеком.",
+            "uk": "Передмова. Вступний текст перед основним змістом книжки, нерідко написаний іншою людиною."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-37:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-37:i11:r1",
+          "text": "Who wrote the foreword?"
+        },
+        {
+          "responseId": "en:lesson-29:session-37:i11:r2",
+          "text": "Who wrote the letter?"
+        },
+        {
+          "responseId": "en:lesson-29:session-37:i11:r3",
+          "text": "Who wrote the review?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-37:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-37:i11:audio",
+          "transcript": "Who wrote the foreword?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-37:i11:r1",
+            "targetText": "Who wrote the foreword?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-37:i11:r2",
+            "targetText": "Who wrote the letter?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-37:i11:r3",
+            "targetText": "Who wrote the review?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-37:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Who wrote the foreword?",
+              "uk": "У записі звучить Who wrote the foreword?"
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-37:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Who wrote the foreword?",
+              "uk": "У записі звучить Who wrote the foreword?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-37:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите, можно ли оставить книгу до завтра.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите, можно ли оставить книгу до завтра.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Can I keep the book until tomorrow?",
+        "localizedMeaning": {
+          "ru": "Спросите, можно ли оставить книгу до завтра.",
+          "uk": "Запитайте, чи можна залишити книжку до завтра."
+        },
+        "orderedTokens": [
+          "Can",
+          "I",
+          "keep",
+          "the",
+          "book",
+          "until",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-37:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — abridged",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-37:i13:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — abridged",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-37:i13:audio",
+          "transcript": "abridged"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-37:i13:r1",
+            "targetText": "abridged",
+            "meaningByLocale": {
+              "ru": "Сокращённый. О версии книги или записи, из которой убрали часть исходного текста, чтобы сделать её короче.",
+              "uk": "Скорочений. Про версію книжки або запису, з якої прибрали частину початкового тексту, щоб зробити її коротшою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "abridged",
+          "definitionByLocale": {
+            "ru": "Сокращённый. О версии книги или записи, из которой убрали часть исходного текста, чтобы сделать её короче.",
+            "uk": "Скорочений. Про версію книжки або запису, з якої прибрали частину початкового тексту, щоб зробити її коротшою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-37:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите, сокращённая ли это версия.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-37:i14:audio"
+      ],
+      "accessibilityLabel": "Спросите, сокращённая ли это версия.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-37:i14:audio",
+          "transcript": "Is this an abridged version?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is this an abridged version?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-37:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-29:session-37:i15:p1",
+            "target": "spoiler",
+            "meaningByLocale": {
+              "ru": "спойлер",
+              "uk": "спойлер"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-37:i15:p2",
+            "target": "cliffhanger",
+            "meaningByLocale": {
+              "ru": "обрыв на напряжённом моменте",
+              "uk": "обрив на напруженому моменті"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-37:i15:p3",
+            "target": "foreword",
+            "meaningByLocale": {
+              "ru": "предисловие",
+              "uk": "передмова"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-37:i15:p4",
+            "target": "abridged",
+            "meaningByLocale": {
+              "ru": "сокращённый",
+              "uk": "скорочений"
+            }
+          }
+        ],
+        "leftColumn": [
+          "spoiler",
+          "cliffhanger",
+          "foreword",
+          "abridged"
+        ],
+        "rightColumn": [
+          "спойлер",
+          "обрыв на напряжённом моменте",
+          "предисловие",
+          "сокращённый"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-37:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Пообещайте не раскрывать конец, если друг ещё не дочитал книгу.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-37:i16:r1",
+          "text": "tell"
+        },
+        {
+          "responseId": "en:lesson-29:session-37:i16:r2",
+          "text": "to tell"
+        },
+        {
+          "responseId": "en:lesson-29:session-37:i16:r3",
+          "text": "telling"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Пообещайте не раскрывать конец, если друг ещё не дочитал книгу.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Пообещайте не раскрывать конец, если друг ещё не дочитал книгу.",
+          "uk": "Пообіцяйте не розкривати кінець, якщо друг ще не дочитав книжку."
+        },
+        "gappedTargetPhrase": "I will not ___ you the ending if you have not finished the book.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-37:i16:r1",
+            "text": "tell"
+          },
+          {
+            "responseId": "en:lesson-29:session-37:i16:r2",
+            "text": "to tell"
+          },
+          {
+            "responseId": "en:lesson-29:session-37:i16:r3",
+            "text": "telling"
+          }
+        ],
+        "testedDimension": "Пообещайте не раскрывать конец, если друг ещё не дочитал книгу.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-37:i16:r2",
+            "correct": false,
+            "testedDimension": "Пообещайте не раскрывать конец, если друг ещё не дочитал книгу.",
+            "feedbackByLocale": {
+              "ru": "После will not не нужно to.",
+              "uk": "Після will not не потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-37:i16:r3",
+            "correct": false,
+            "testedDimension": "Пообещайте не раскрывать конец, если друг ещё не дочитал книгу.",
+            "feedbackByLocale": {
+              "ru": "После will not нужна форма tell.",
+              "uk": "Після will not потрібна форма tell."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-37:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте вопрос друга: он хочет узнать автора предисловия или рецензии?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-37:i17:r1",
+          "text": "Who wrote the foreword?"
+        },
+        {
+          "responseId": "en:lesson-29:session-37:i17:r2",
+          "text": "Who wrote the review?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-37:i17:audioA",
+        "en:lesson-29:session-37:i17:audioB"
+      ],
+      "accessibilityLabel": "Послушайте вопрос друга: он хочет узнать автора предисловия или рецензии?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "Who wrote the foreword?",
+        "contrastB": "Who wrote the review?",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-29:session-37:i17:audioA",
+          "transcript": "Who wrote the foreword?"
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-29:session-37:i17:audioB",
+          "transcript": "Who wrote the review?"
+        },
+        "testedPhoneticContrast": "Послушайте вопрос друга: он хочет узнать автора предисловия или рецензии?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-37:i17:r2",
+            "correct": false,
+            "testedDimension": "Послушайте вопрос друга: он хочет узнать автора предисловия или рецензии?",
+            "feedbackByLocale": {
+              "ru": "Звучит foreword — предисловие.",
+              "uk": "Звучить foreword — передмова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-37:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте вопрос о версии книги.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-37:i18:audio"
+      ],
+      "accessibilityLabel": "Послушайте вопрос о версии книги.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-37:i18:audio",
+          "transcript": "Is this an abridged version?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Is this an abridged version?",
+        "orderedTokens": [
+          "Is",
+          "this",
+          "an",
+          "abridged",
+          "version"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-37:i19",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите не рассказывать, что произойдёт.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-37:i19:audio"
+      ],
+      "accessibilityLabel": "Попросите не рассказывать, что произойдёт.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-37:i19:audio",
+          "transcript": "Please do not tell me what happens."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Please do not tell me what happens.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-37:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг посоветовал вам хорошую книгу.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-37:i20:r1",
+          "text": "you recommended"
+        },
+        {
+          "responseId": "en:lesson-29:session-37:i20:r2",
+          "text": "you recommended it"
+        },
+        {
+          "responseId": "en:lesson-29:session-37:i20:r3",
+          "text": "you recommending"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг посоветовал вам хорошую книгу.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг посоветовал вам хорошую книгу.",
+          "uk": "Друг порадив вам хорошу книжку."
+        },
+        "gappedTargetPhrase": "The book ___ was good.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-37:i20:r1",
+            "text": "you recommended"
+          },
+          {
+            "responseId": "en:lesson-29:session-37:i20:r2",
+            "text": "you recommended it"
+          },
+          {
+            "responseId": "en:lesson-29:session-37:i20:r3",
+            "text": "you recommending"
+          }
+        ],
+        "testedDimension": "Друг посоветовал вам хорошую книгу.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-37:i20:r2",
+            "correct": false,
+            "testedDimension": "Друг посоветовал вам хорошую книгу.",
+            "feedbackByLocale": {
+              "ru": "It повторяет уже названную книгу.",
+              "uk": "It повторює вже названу книжку."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-37:i20:r3",
+            "correct": false,
+            "testedDimension": "Друг посоветовал вам хорошую книгу.",
+            "feedbackByLocale": {
+              "ru": "Для завершённого совета нужно recommended.",
+              "uk": "Для завершеної поради потрібне recommended."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-37:i21",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Поблагодарите за рекомендацию.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поблагодарите за рекомендацию.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Thank you for the recommendation.",
+        "localizedMeaning": {
+          "ru": "Поблагодарите за рекомендацию.",
+          "uk": "Подякуйте за рекомендацію."
+        },
+        "orderedTokens": [
+          "Thank",
+          "you",
+          "for",
+          "the",
+          "recommendation"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "37350ce62d3c8934e80377f5be9a99b6a7d11e69e6c30b009e5c46a7eb40ace2"
+}

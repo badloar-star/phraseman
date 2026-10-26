@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-29:session-13",
+  "learningOutcomeByLocale": {
+    "ru": "как назвать вещи, уточнить, кому они нужны, и договориться о возврате.",
+    "uk": "як назвати речі, уточнити, кому вони потрібні, та домовитися про повернення."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-29:session-13:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Кому нужна одежда для ребёнка",
+        "uk": "Кому потрібен одяг для дитини"
+      },
+      "bodyByLocale": {
+        "ru": "На обмене одеждой вы ищете женщину, чьей дочери нужна куртка. Спросите: Where is the woman whose daughter needs a jacket? — где женщина, чьей дочери нужна куртка? Соберите Where is the woman + whose daughter + needs a jacket? После the woman поставьте whose daughter: так вы связываете дочь с её матерью. Затем needs a jacket объясняет, что нужно дочери. После whose не добавляем her.",
+        "uk": "На обміні одягом ви шукаєте жінку, чиїй доньці потрібна куртка. Запитайте: Where is the woman whose daughter needs a jacket? — де жінка, чиїй доньці потрібна куртка? Складіть Where is the woman + whose daughter + needs a jacket? Після the woman поставте whose daughter: так ви пов’язуєте доньку з її матір’ю. Потім needs a jacket пояснює, що потрібно доньці. Після whose не додаємо her."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-13:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-13:intro1:r1",
+              "text": "Where is the woman whose daughter needs a jacket?"
+            },
+            {
+              "responseId": "en:lesson-29:session-13:intro1:r2",
+              "text": "Where is the woman who daughter needs a jacket?"
+            },
+            {
+              "responseId": "en:lesson-29:session-13:intro1:r3",
+              "text": "Where is the woman whose her daughter needs a jacket?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-13:intro1:r1",
+              "text": "Where is the woman whose daughter needs a jacket?"
+            },
+            {
+              "responseId": "en:lesson-29:session-13:intro1:r2",
+              "text": "Where is the woman who daughter needs a jacket?"
+            },
+            {
+              "responseId": "en:lesson-29:session-13:intro1:r3",
+              "text": "Where is the woman whose her daughter needs a jacket?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-29:session-13:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Кто починил пальто",
+        "uk": "Хто полагодив пальто"
+      },
+      "bodyByLocale": {
+        "ru": "Друг замечает аккуратно починенное пальто и спрашивает, кто его ремонтировал. Ответьте: The coat was repaired by my sister — пальто починила моя сестра. Соберите The coat + was repaired + by my sister. После названия вещи поставьте was repaired: ремонт уже выполнен. Часть by my sister называет исполнителя ремонта.",
+        "uk": "Друг помічає акуратно полагоджене пальто й запитує, хто його ремонтував. Дайте відповідь: The coat was repaired by my sister — пальто полагодила моя сестра. Складіть The coat + was repaired + by my sister. Після назви речі поставте was repaired: ремонт уже виконано. Частина by my sister називає виконавицю ремонту."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-13:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-13:intro2:r1",
+              "text": "The coat was repaired by my sister."
+            },
+            {
+              "responseId": "en:lesson-29:session-13:intro2:r2",
+              "text": "The coat was repaired from my sister."
+            },
+            {
+              "responseId": "en:lesson-29:session-13:intro2:r3",
+              "text": "The coat was repair by my sister."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-13:intro2:r1",
+              "text": "The coat was repaired by my sister."
+            },
+            {
+              "responseId": "en:lesson-29:session-13:intro2:r2",
+              "text": "The coat was repaired from my sister."
+            },
+            {
+              "responseId": "en:lesson-29:session-13:intro2:r3",
+              "text": "The coat was repair by my sister."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-29:session-13:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Если вещь не подойдёт",
+        "uk": "Якщо річ не підійде"
+      },
+      "bodyByLocale": {
+        "ru": "Вы берёте куртку для сестры и договариваетесь вернуть её, если размер не подойдёт. Скажите: I will return it if it does not fit — я верну её, если она не подойдёт по размеру. Соберите I will return it + if it does not fit. Сначала назовите действие с will return. Затем добавьте условие: после if it используйте does not fit. В этом условии will не нужен; после does not глагол fit остаётся без окончания s.",
+        "uk": "Ви берете куртку для сестри й домовляєтеся повернути її, якщо розмір не підійде. Скажіть: I will return it if it does not fit — я поверну її, якщо вона не підійде за розміром. Складіть I will return it + if it does not fit. Спочатку назвіть дію з will return. Потім додайте умову: після if it використайте does not fit. У цій умові will не потрібне; після does not дієслово fit залишається без закінчення s."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-13:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-13:intro3:r1",
+              "text": "I will return it if it does not fit."
+            },
+            {
+              "responseId": "en:lesson-29:session-13:intro3:r2",
+              "text": "I will return it if it will not fit."
+            },
+            {
+              "responseId": "en:lesson-29:session-13:intro3:r3",
+              "text": "I will return it if it does not fits."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-13:intro3:r1",
+              "text": "I will return it if it does not fit."
+            },
+            {
+              "responseId": "en:lesson-29:session-13:intro3:r2",
+              "text": "I will return it if it will not fit."
+            },
+            {
+              "responseId": "en:lesson-29:session-13:intro3:r3",
+              "text": "I will return it if it does not fits."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "0d8dc07cf9b922bffac3ebb2fac0449e492635b1a7567945c0f8ebf465b4c505"
+}

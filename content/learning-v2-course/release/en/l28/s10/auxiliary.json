@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-28:session-10",
+  "entries": [
+    {
+      "interactionId": "en:lesson-28:session-10:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-10:intro1:r2": {
+          "ru": "С одним treadmill нужна was.",
+          "uk": "З одним treadmill потрібна was."
+        },
+        "en:lesson-28:session-10:intro1:r3": {
+          "ru": "После was здесь нужна repaired.",
+          "uk": "Після was тут потрібна repaired."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-10:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-10:intro2:r2": {
+          "ru": "Towels — несколько: are.",
+          "uk": "Towels — кілька: are."
+        },
+        "en:lesson-28:session-10:intro2:r3": {
+          "ru": "Здесь нужна washed после are.",
+          "uk": "Тут потрібна washed після are."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-10:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-10:intro3:r2": {
+          "ru": "В таком желании используем had.",
+          "uk": "У такому бажанні використовуємо had."
+        },
+        "en:lesson-28:session-10:intro3:r3": {
+          "ru": "После I здесь нужна had, не having.",
+          "uk": "Після I тут потрібна had, не having."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5b82d8c91875dd2d6271d036333efabb026a42cb02b597fc81747e46d369c702"
+}

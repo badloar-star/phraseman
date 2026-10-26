@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-29:session-34",
+  "entries": [
+    {
+      "interactionId": "en:lesson-29:session-34:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-34:intro1:r2": {
+          "ru": "It лишнее: фильм уже назван.",
+          "uk": "It зайве: фільм уже названо."
+        },
+        "en:lesson-29:session-34:intro1:r3": {
+          "ru": "Действие выполняет we, а не us.",
+          "uk": "Дію виконує we, а не us."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-34:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-34:intro2:r2": {
+          "ru": "Who обозначает исполнителя внутри уточнения; его нельзя убрать.",
+          "uk": "Who позначає виконавця всередині уточнення; його не можна прибрати."
+        },
+        "en:lesson-29:session-34:intro2:r3": {
+          "ru": "He повторяет исполнителя, уже обозначенного who.",
+          "uk": "He повторює виконавця, уже позначеного who."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-34:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-34:intro3:r2": {
+          "ru": "Это уточнение, а не вопрос: they met.",
+          "uk": "Це уточнення, а не запитання: they met."
+        },
+        "en:lesson-29:session-34:intro3:r3": {
+          "ru": "Место встречи связываем словом where.",
+          "uk": "Місце зустрічі пов’язуємо словом where."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c8bda33711c4bb9e82a26c6342f63af1e7ed66af803eea84d6b1a4659b3a78b6"
+}

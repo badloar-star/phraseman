@@ -1,0 +1,1113 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-28:session-35",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-28:session-35:i01",
+      "ordinal": 4,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточніть час початку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-35:i01:audio"
+      ],
+      "accessibilityLabel": "Уточніть час початку.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-35:i01:audio",
+          "transcript": "What time does the concert start?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "What time does the concert start?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-35:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — composer",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-35:i02:audio"
+      ],
+      "accessibilityLabel": "Картка слова — composer",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-35:i02:audio",
+          "transcript": "composer"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-35:i02:r1",
+            "targetText": "composer",
+            "meaningByLocale": {
+              "ru": "Композитор. Человек, который сочиняет музыку.",
+              "uk": "Композитор. Людина, яка створює музику."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "composer",
+          "definitionByLocale": {
+            "ru": "Композитор. Человек, который сочиняет музыку.",
+            "uk": "Композитор. Людина, яка створює музику."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-35:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-35:i03:r1",
+          "text": "The composer is here tonight."
+        },
+        {
+          "responseId": "en:lesson-28:session-35:i03:r2",
+          "text": "The composer was here yesterday."
+        },
+        {
+          "responseId": "en:lesson-28:session-35:i03:r3",
+          "text": "The composer will be here tomorrow."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-35:i03:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-35:i03:audio",
+          "transcript": "The composer is here tonight."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-35:i03:r1",
+            "targetText": "The composer is here tonight.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-35:i03:r2",
+            "targetText": "The composer was here yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-35:i03:r3",
+            "targetText": "The composer will be here tomorrow.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-35:i03:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The composer is here tonight.",
+              "uk": "У записі звучить The composer is here tonight."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-35:i03:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The composer is here tonight.",
+              "uk": "У записі звучить The composer is here tonight."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-35:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви називаєте автора музики.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-35:i04:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-28:session-35:i04:r2",
+          "text": "at"
+        },
+        {
+          "responseId": "en:lesson-28:session-35:i04:r3",
+          "text": "of"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви називаєте автора музики.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы называете автора музыки.",
+          "uk": "Ви називаєте автора музики."
+        },
+        "gappedTargetPhrase": "The music was written ___ my sister.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-35:i04:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-28:session-35:i04:r2",
+            "text": "at"
+          },
+          {
+            "responseId": "en:lesson-28:session-35:i04:r3",
+            "text": "of"
+          }
+        ],
+        "testedDimension": "Ви називаєте автора музики.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-35:i04:r2",
+            "correct": false,
+            "testedDimension": "Ви називаєте автора музики.",
+            "feedbackByLocale": {
+              "ru": "Автора вводит by.",
+              "uk": "Автора вводить by."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-35:i04:r3",
+            "correct": false,
+            "testedDimension": "Ви називаєте автора музики.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна by my sister.",
+              "uk": "Тут потрібна by my sister."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-35:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте оголошення про квитки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-35:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте оголошення про квитки.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-35:i05:audio",
+          "transcript": "Tickets are sold at the door."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Tickets are sold at the door.",
+        "orderedTokens": [
+          "Tickets",
+          "are",
+          "sold",
+          "at",
+          "the",
+          "door"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-35:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — songwriter",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-35:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — songwriter",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-35:i06:audio",
+          "transcript": "songwriter"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-35:i06:r1",
+            "targetText": "songwriter",
+            "meaningByLocale": {
+              "ru": "Автор песен. Человек, который пишет слова или музыку для песен либо и то и другое.",
+              "uk": "Автор пісень. Людина, яка пише слова або музику для пісень чи і те й інше."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "songwriter",
+          "definitionByLocale": {
+            "ru": "Автор песен. Человек, который пишет слова или музыку для песен либо и то и другое.",
+            "uk": "Автор пісень. Людина, яка пише слова або музику для пісень чи і те й інше."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-35:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що ваша сестра пише пісні.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що ваша сестра пише пісні.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "My sister is a songwriter.",
+        "localizedMeaning": {
+          "ru": "Скажите, что ваша сестра пишет песни.",
+          "uk": "Скажіть, що ваша сестра пише пісні."
+        },
+        "orderedTokens": [
+          "My",
+          "sister",
+          "is",
+          "a",
+          "songwriter"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-35:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточніть, чи дозволено записувати концерт.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-35:i08:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-28:session-35:i08:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-28:session-35:i08:r3",
+          "text": "was"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточніть, чи дозволено записувати концерт.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните, разрешена ли запись концерта.",
+          "uk": "Уточніть, чи дозволено записувати концерт."
+        },
+        "gappedTargetPhrase": "Can the concert ___ recorded?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-35:i08:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-28:session-35:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-28:session-35:i08:r3",
+            "text": "was"
+          }
+        ],
+        "testedDimension": "Уточніть, чи дозволено записувати концерт.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-35:i08:r2",
+            "correct": false,
+            "testedDimension": "Уточніть, чи дозволено записувати концерт.",
+            "feedbackByLocale": {
+              "ru": "После can нужна be.",
+              "uk": "Після can потрібна be."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-35:i08:r3",
+            "correct": false,
+            "testedDimension": "Уточніть, чи дозволено записувати концерт.",
+            "feedbackByLocale": {
+              "ru": "Вопрос: Can the concert be recorded?",
+              "uk": "Запитання: Can the concert be recorded?"
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-35:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-35:i09:r1",
+          "text": "The concert will be recorded tonight."
+        },
+        {
+          "responseId": "en:lesson-28:session-35:i09:r2",
+          "text": "The concert was recorded last night."
+        },
+        {
+          "responseId": "en:lesson-28:session-35:i09:r3",
+          "text": "The concert will be recorded next week."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-35:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-35:i09:audio",
+          "transcript": "The concert will be recorded tonight."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-35:i09:r1",
+            "targetText": "The concert will be recorded tonight.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-35:i09:r2",
+            "targetText": "The concert was recorded last night.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-35:i09:r3",
+            "targetText": "The concert will be recorded next week.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-35:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The concert will be recorded tonight.",
+              "uk": "У записі звучить The concert will be recorded tonight."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-35:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The concert will be recorded tonight.",
+              "uk": "У записі звучить The concert will be recorded tonight."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-35:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — pianist",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-35:i10:audio"
+      ],
+      "accessibilityLabel": "Картка слова — pianist",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-35:i10:audio",
+          "transcript": "pianist"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-35:i10:r1",
+            "targetText": "pianist",
+            "meaningByLocale": {
+              "ru": "Пианист, пианистка. Человек, который играет на фортепиано.",
+              "uk": "Піаніст, піаністка. Людина, яка грає на фортепіано."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pianist",
+          "definitionByLocale": {
+            "ru": "Пианист, пианистка. Человек, который играет на фортепиано.",
+            "uk": "Піаніст, піаністка. Людина, яка грає на фортепіано."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-35:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Похваліть піаніста після виступу.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-35:i11:audio"
+      ],
+      "accessibilityLabel": "Похваліть піаніста після виступу.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-35:i11:audio",
+          "transcript": "The pianist was wonderful."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The pianist was wonderful.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-35:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Музика надто гучна; ви хотіли б, щоб вона була тихішою.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-35:i12:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-28:session-35:i12:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-28:session-35:i12:r3",
+          "text": "will be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Музика надто гучна; ви хотіли б, щоб вона була тихішою.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Музыка слишком громкая; вы хотели бы, чтобы она была тише.",
+          "uk": "Музика надто гучна; ви хотіли б, щоб вона була тихішою."
+        },
+        "gappedTargetPhrase": "I wish the music ___ quieter.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-35:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-28:session-35:i12:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-28:session-35:i12:r3",
+            "text": "will be"
+          }
+        ],
+        "testedDimension": "Музика надто гучна; ви хотіли б, щоб вона була тихішою.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-35:i12:r2",
+            "correct": false,
+            "testedDimension": "Музика надто гучна; ви хотіли б, щоб вона була тихішою.",
+            "feedbackByLocale": {
+              "ru": "После wish здесь нужна were.",
+              "uk": "Після wish тут потрібна were."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-35:i12:r3",
+            "correct": false,
+            "testedDimension": "Музика надто гучна; ви хотіли б, щоб вона була тихішою.",
+            "feedbackByLocale": {
+              "ru": "Желание о настоящем: were quieter.",
+              "uk": "Бажання щодо теперішнього: were quieter."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-35:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що піаніст пішов до вашого приходу.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що піаніст пішов до вашого приходу.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The pianist had left by the time I arrived.",
+        "localizedMeaning": {
+          "ru": "Скажите, что пианист ушёл до вашего прихода.",
+          "uk": "Скажіть, що піаніст пішов до вашого приходу."
+        },
+        "orderedTokens": [
+          "The",
+          "pianist",
+          "had",
+          "left",
+          "by",
+          "the",
+          "time",
+          "I",
+          "arrived"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-35:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — guitarist",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-35:i14:audio"
+      ],
+      "accessibilityLabel": "Картка слова — guitarist",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-35:i14:audio",
+          "transcript": "guitarist"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-35:i14:r1",
+            "targetText": "guitarist",
+            "meaningByLocale": {
+              "ru": "Гитарист, гитаристка. Человек, который играет на гитаре.",
+              "uk": "Гітарист, гітаристка. Людина, яка грає на гітарі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "guitarist",
+          "definitionByLocale": {
+            "ru": "Гитарист, гитаристка. Человек, который играет на гитаре.",
+            "uk": "Гітарист, гітаристка. Людина, яка грає на гітарі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-35:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-35:i15:r1",
+          "text": "The guitarist is my neighbour."
+        },
+        {
+          "responseId": "en:lesson-28:session-35:i15:r2",
+          "text": "The pianist is my neighbour."
+        },
+        {
+          "responseId": "en:lesson-28:session-35:i15:r3",
+          "text": "The guitarist is my brother."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-35:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-35:i15:audio",
+          "transcript": "The guitarist is my neighbour."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-35:i15:r1",
+            "targetText": "The guitarist is my neighbour.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-35:i15:r2",
+            "targetText": "The pianist is my neighbour.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-35:i15:r3",
+            "targetText": "The guitarist is my brother.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-35:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The guitarist is my neighbour.",
+              "uk": "У записі звучить The guitarist is my neighbour."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-35:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The guitarist is my neighbour.",
+              "uk": "У записі звучить The guitarist is my neighbour."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-35:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладами.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладами.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-28:session-35:i16:p1",
+            "target": "composer",
+            "meaningByLocale": {
+              "ru": "композитор",
+              "uk": "композитор"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-35:i16:p2",
+            "target": "songwriter",
+            "meaningByLocale": {
+              "ru": "автор песен",
+              "uk": "автор пісень"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-35:i16:p3",
+            "target": "pianist",
+            "meaningByLocale": {
+              "ru": "пианист",
+              "uk": "піаніст"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-35:i16:p4",
+            "target": "guitarist",
+            "meaningByLocale": {
+              "ru": "гитарист",
+              "uk": "гітарист"
+            }
+          }
+        ],
+        "leftColumn": [
+          "composer",
+          "songwriter",
+          "pianist",
+          "guitarist"
+        ],
+        "rightColumn": [
+          "композитор",
+          "автор пісень",
+          "піаніст",
+          "гітарист"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-35:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Концерт закінчився раніше, ніж ви прийшли.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-35:i17:r1",
+          "text": "ended"
+        },
+        {
+          "responseId": "en:lesson-28:session-35:i17:r2",
+          "text": "end"
+        },
+        {
+          "responseId": "en:lesson-28:session-35:i17:r3",
+          "text": "ending"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Концерт закінчився раніше, ніж ви прийшли.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Концерт закончился раньше, чем вы пришли.",
+          "uk": "Концерт закінчився раніше, ніж ви прийшли."
+        },
+        "gappedTargetPhrase": "The concert had ___ by the time I arrived.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-35:i17:r1",
+            "text": "ended"
+          },
+          {
+            "responseId": "en:lesson-28:session-35:i17:r2",
+            "text": "end"
+          },
+          {
+            "responseId": "en:lesson-28:session-35:i17:r3",
+            "text": "ending"
+          }
+        ],
+        "testedDimension": "Концерт закінчився раніше, ніж ви прийшли.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-35:i17:r2",
+            "correct": false,
+            "testedDimension": "Концерт закінчився раніше, ніж ви прийшли.",
+            "feedbackByLocale": {
+              "ru": "После had нужна ended.",
+              "uk": "Після had потрібна ended."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-35:i17:r3",
+            "correct": false,
+            "testedDimension": "Концерт закінчився раніше, ніж ви прийшли.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем had ended.",
+              "uk": "Тут використовуємо had ended."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-35:i18",
+      "ordinal": 21,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть програму концерту.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-35:i18:audio"
+      ],
+      "accessibilityLabel": "Попросіть програму концерту.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-35:i18:audio",
+          "transcript": "Could I have a programme, please?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could I have a programme, please?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-35:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, хто виконав пісню.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-35:i19:audio"
+      ],
+      "accessibilityLabel": "Послухайте, хто виконав пісню.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-35:i19:audio",
+          "transcript": "The song was performed by my friend."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The song was performed by my friend.",
+        "orderedTokens": [
+          "The",
+          "song",
+          "was",
+          "performed",
+          "by",
+          "my",
+          "friend"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-35:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Щонеділі в цій залі проводять концерти.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-35:i20:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-28:session-35:i20:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-28:session-35:i20:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Щонеділі в цій залі проводять концерти.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "По воскресеньям в этом зале проводят концерты.",
+          "uk": "Щонеділі в цій залі проводять концерти."
+        },
+        "gappedTargetPhrase": "Concerts ___ held here on Sundays.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-35:i20:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-28:session-35:i20:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-28:session-35:i20:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Щонеділі в цій залі проводять концерти.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-35:i20:r2",
+            "correct": false,
+            "testedDimension": "Щонеділі в цій залі проводять концерти.",
+            "feedbackByLocale": {
+              "ru": "Concerts — несколько: are.",
+              "uk": "Concerts — кілька: are."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-35:i20:r3",
+            "correct": false,
+            "testedDimension": "Щонеділі в цій залі проводять концерти.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна are held.",
+              "uk": "Тут потрібна are held."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-35:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте, де наступний концерт.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-35:i21:audio"
+      ],
+      "accessibilityLabel": "Запитайте, де наступний концерт.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-35:i21:audio",
+          "transcript": "Where is the next concert?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Where is the next concert?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "7043f4cac009145ea766f53de512e774651d301494cb32ef5fe7b09138cb4bb2"
+}

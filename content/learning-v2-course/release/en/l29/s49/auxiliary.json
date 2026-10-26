@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-29:session-49",
+  "entries": [
+    {
+      "interactionId": "en:lesson-29:session-49:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-49:intro1:r2": {
+          "ru": "It повторяет уже названное сообщение.",
+          "uk": "It повторює вже назване повідомлення."
+        },
+        "en:lesson-29:session-49:intro1:r3": {
+          "ru": "Читатель обозначается словом I, не me.",
+          "uk": "Читача позначаємо словом I, не me."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-49:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-49:intro2:r2": {
+          "ru": "Нужен who — исполнитель внутри уточнения.",
+          "uk": "Потрібне who — виконавець усередині уточнення."
+        },
+        "en:lesson-29:session-49:intro2:r3": {
+          "ru": "She повторяет исполнителя, уже обозначенного who.",
+          "uk": "She повторює виконавця, уже позначеного who."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-49:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-49:intro3:r2": {
+          "ru": "В уточнении нужен порядок we can talk.",
+          "uk": "В уточненні потрібен порядок we can talk."
+        },
+        "en:lesson-29:session-49:intro3:r3": {
+          "ru": "Для места разговора используем where.",
+          "uk": "Для місця розмови використовуємо where."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "b02f3e96f0ab41c72e720519d63f4cdd0e4044f7c8510cdcfc30b8511d0a80d7"
+}

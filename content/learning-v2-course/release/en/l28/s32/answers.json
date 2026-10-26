@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-28:session-32:i01",
+    "correctText": "Your appointment was changed yesterday.",
+    "correctResponseId": "en:lesson-28:session-32:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-32:i02",
+    "correctText": "mouthguard",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-32:i03",
+    "correctText": "I have lost my mouthguard.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-32:i04",
+    "correctText": "Can it be repaired?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-32:i05",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-28:session-32:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-32:i06",
+    "correctText": "dentures",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-32:i07",
+    "correctText": "My dentures are uncomfortable.",
+    "correctResponseId": "en:lesson-28:session-32:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-32:i08",
+    "correctText": "It hurts here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-32:i09",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-28:session-32:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-32:i10",
+    "correctText": "retainer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-32:i11",
+    "correctText": "I have brought my retainer.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-32:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-28:session-32:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-32:i13",
+    "correctText": "The case was replaced.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-32:i14",
+    "correctText": "aligner",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-32:i15",
+    "correctText": "I have brought my aligner.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-32:i16",
+    "correctText": "en:lesson-28:session-32:i16:p1=mouthguard\nen:lesson-28:session-32:i16:p2=dentures\nen:lesson-28:session-32:i16:p3=retainer\nen:lesson-28:session-32:i16:p4=aligner",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-32:i17",
+    "correctText": "prepared",
+    "correctResponseId": "en:lesson-28:session-32:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-32:i18",
+    "correctText": "Could you write that down, please?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-32:i19",
+    "correctText": "The form must be signed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-32:i20",
+    "correctText": "This can be replaced.",
+    "correctResponseId": "en:lesson-28:session-32:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-32:i21",
+    "correctText": "When can I collect it?",
+    "correctResponseId": null
+  }
+]

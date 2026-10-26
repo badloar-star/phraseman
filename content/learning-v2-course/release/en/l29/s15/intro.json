@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-29:session-15",
+  "learningOutcomeByLocale": {
+    "ru": "как назвать цветы, уточнить получателя подарка и узнать, кто подготовил букет.",
+    "uk": "як назвати квіти, уточнити одержувачку подарунка й дізнатися, хто підготував букет."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-29:session-15:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "У кого сегодня день рождения",
+        "uk": "У кого сьогодні день народження"
+      },
+      "bodyByLocale": {
+        "ru": "Вы показываете другу на женщину, у которой сегодня день рождения. Скажите: That is the woman whose birthday is today — вот женщина, у которой сегодня день рождения. Соберите That is the woman + whose birthday + is today. После the woman поставьте whose birthday: день рождения относится к этой женщине. Затем is today сообщает дату. Her после whose не добавляем.",
+        "uk": "Ви показуєте другові на жінку, у якої сьогодні день народження. Скажіть: That is the woman whose birthday is today — ось жінка, у якої сьогодні день народження. Складіть That is the woman + whose birthday + is today. Після the woman поставте whose birthday: день народження стосується цієї жінки. Потім is today повідомляє дату. Her після whose не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-15:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-15:intro1:r1",
+              "text": "That is the woman whose birthday is today."
+            },
+            {
+              "responseId": "en:lesson-29:session-15:intro1:r2",
+              "text": "That is the woman who birthday is today."
+            },
+            {
+              "responseId": "en:lesson-29:session-15:intro1:r3",
+              "text": "That is the woman whose her birthday is today."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-15:intro1:r1",
+              "text": "That is the woman whose birthday is today."
+            },
+            {
+              "responseId": "en:lesson-29:session-15:intro1:r2",
+              "text": "That is the woman who birthday is today."
+            },
+            {
+              "responseId": "en:lesson-29:session-15:intro1:r3",
+              "text": "That is the woman whose her birthday is today."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-29:session-15:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Кто подготовил букет",
+        "uk": "Хто підготував букет"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает, кто подготовил подарочный букет. Ответьте: The bouquet was prepared by the florist — букет подготовил флорист. Соберите The bouquet + was prepared + by the florist. После названия букета поставьте was prepared: действие уже выполнено. Через by the florist назовите человека, который его выполнил.",
+        "uk": "Друг запитує, хто підготував подарунковий букет. Дайте відповідь: The bouquet was prepared by the florist — букет підготував флорист. Складіть The bouquet + was prepared + by the florist. Після назви букета поставте was prepared: дію вже виконано. Через by the florist назвіть людину, яка її виконала."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-15:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-15:intro2:r1",
+              "text": "The bouquet was prepared by the florist."
+            },
+            {
+              "responseId": "en:lesson-29:session-15:intro2:r2",
+              "text": "The bouquet was prepared from the florist."
+            },
+            {
+              "responseId": "en:lesson-29:session-15:intro2:r3",
+              "text": "The bouquet was prepare by the florist."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-15:intro2:r1",
+              "text": "The bouquet was prepared by the florist."
+            },
+            {
+              "responseId": "en:lesson-29:session-15:intro2:r2",
+              "text": "The bouquet was prepared from the florist."
+            },
+            {
+              "responseId": "en:lesson-29:session-15:intro2:r3",
+              "text": "The bouquet was prepare by the florist."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-29:session-15:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Если магазин открыт",
+        "uk": "Якщо магазин відчинений"
+      },
+      "bodyByLocale": {
+        "ru": "По дороге в гости вы решаете купить цветы, если магазин ещё открыт. Скажите: I will buy flowers if the shop is open — я куплю цветы, если магазин открыт. Соберите I will buy flowers + if the shop is open. Сначала назовите будущее действие с will buy. Затем добавьте условие if the shop is open: после if здесь используем is без will. Условие стоит в конце, поэтому запятая не нужна.",
+        "uk": "Дорогою в гості ви вирішуєте купити квіти, якщо магазин ще відчинений. Скажіть: I will buy flowers if the shop is open — я куплю квіти, якщо магазин відчинений. Складіть I will buy flowers + if the shop is open. Спочатку назвіть майбутню дію з will buy. Потім додайте умову if the shop is open: після if тут використовуємо is без will. Умова стоїть наприкінці, тому кома не потрібна."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-15:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-15:intro3:r1",
+              "text": "I will buy flowers if the shop is open."
+            },
+            {
+              "responseId": "en:lesson-29:session-15:intro3:r2",
+              "text": "I will buy flowers if the shop will be open."
+            },
+            {
+              "responseId": "en:lesson-29:session-15:intro3:r3",
+              "text": "I will buy flowers if the shop be open."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-15:intro3:r1",
+              "text": "I will buy flowers if the shop is open."
+            },
+            {
+              "responseId": "en:lesson-29:session-15:intro3:r2",
+              "text": "I will buy flowers if the shop will be open."
+            },
+            {
+              "responseId": "en:lesson-29:session-15:intro3:r3",
+              "text": "I will buy flowers if the shop be open."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e49fe0bca3084b132455953ed548362fb90e7e7b4b63f2298acb1d9997b66044"
+}

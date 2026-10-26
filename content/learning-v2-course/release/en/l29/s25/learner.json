@@ -1,0 +1,1060 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-29:session-25",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-29:session-25:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — dependable",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-25:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — dependable",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-25:i01:audio",
+          "transcript": "dependable"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-25:i01:r1",
+            "targetText": "dependable",
+            "meaningByLocale": {
+              "ru": "Надёжный. На такого человека можно положиться.",
+              "uk": "Надійний. На таку людину можна покластися."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dependable",
+          "definitionByLocale": {
+            "ru": "Надёжный. На такого человека можно положиться.",
+            "uk": "Надійний. На таку людину можна покластися."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-25:i02",
+      "ordinal": 5,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что ваша сестра надёжная.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-25:i02:audio"
+      ],
+      "accessibilityLabel": "Скажите, что ваша сестра надёжная.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-25:i02:audio",
+          "transcript": "My sister is dependable."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "My sister is dependable.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-25:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-25:i03:r1",
+          "text": "The person who helped me was kind."
+        },
+        {
+          "responseId": "en:lesson-29:session-25:i03:r2",
+          "text": "The person who I helped was kind."
+        },
+        {
+          "responseId": "en:lesson-29:session-25:i03:r3",
+          "text": "The person who helped me was tired."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-25:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-25:i03:audio",
+          "transcript": "The person who helped me was kind."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-25:i03:r1",
+            "targetText": "The person who helped me was kind.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-25:i03:r2",
+            "targetText": "The person who I helped was kind.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-25:i03:r3",
+            "targetText": "The person who helped me was tired.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-25:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The person who helped me was kind.",
+              "uk": "У записі звучить The person who helped me was kind."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-25:i03:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The person who helped me was kind.",
+              "uk": "У записі звучить The person who helped me was kind."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-25:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что человек, которому вы позвонили, был занят.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что человек, которому вы позвонили, был занят.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The person who I called was busy.",
+        "localizedMeaning": {
+          "ru": "Скажите, что человек, которому вы позвонили, был занят.",
+          "uk": "Скажіть, що людина, якій ви зателефонували, була зайнята."
+        },
+        "orderedTokens": [
+          "The",
+          "person",
+          "who",
+          "I",
+          "called",
+          "was",
+          "busy"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-25:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — approachable",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-25:i05:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — approachable",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-25:i05:audio",
+          "transcript": "approachable"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-25:i05:r1",
+            "targetText": "approachable",
+            "meaningByLocale": {
+              "ru": "Располагающий к общению. К такому человеку легко обратиться с вопросом или просьбой.",
+              "uk": "Привітний у спілкуванні. До такої людини легко звернутися із запитанням чи проханням."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "approachable",
+          "definitionByLocale": {
+            "ru": "Располагающий к общению. К такому человеку легко обратиться с вопросом или просьбой.",
+            "uk": "Привітний у спілкуванні. До такої людини легко звернутися із запитанням чи проханням."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-25:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-25:i06:r1",
+          "text": "My neighbour is approachable."
+        },
+        {
+          "responseId": "en:lesson-29:session-25:i06:r2",
+          "text": "My neighbour is quiet."
+        },
+        {
+          "responseId": "en:lesson-29:session-25:i06:r3",
+          "text": "My brother is approachable."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-25:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-25:i06:audio",
+          "transcript": "My neighbour is approachable."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-25:i06:r1",
+            "targetText": "My neighbour is approachable.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-25:i06:r2",
+            "targetText": "My neighbour is quiet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-25:i06:r3",
+            "targetText": "My brother is approachable.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-25:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My neighbour is approachable.",
+              "uk": "У записі звучить My neighbour is approachable."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-25:i06:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My neighbour is approachable.",
+              "uk": "У записі звучить My neighbour is approachable."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-25:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вам помог этот человек; кто выполнял действие?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-25:i07:r1",
+          "text": "helped"
+        },
+        {
+          "responseId": "en:lesson-29:session-25:i07:r2",
+          "text": "he helped"
+        },
+        {
+          "responseId": "en:lesson-29:session-25:i07:r3",
+          "text": "help"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вам помог этот человек; кто выполнял действие?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вам помог этот человек; кто выполнял действие?",
+          "uk": "Вам допомогла ця людина; хто виконував дію?"
+        },
+        "gappedTargetPhrase": "The person who ___ me was kind.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-25:i07:r1",
+            "text": "helped"
+          },
+          {
+            "responseId": "en:lesson-29:session-25:i07:r2",
+            "text": "he helped"
+          },
+          {
+            "responseId": "en:lesson-29:session-25:i07:r3",
+            "text": "help"
+          }
+        ],
+        "testedDimension": "Вам помог этот человек; кто выполнял действие?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-25:i07:r2",
+            "correct": false,
+            "testedDimension": "Вам помог этот человек; кто выполнял действие?",
+            "feedbackByLocale": {
+              "ru": "Who уже обозначает исполнителя, he не нужно.",
+              "uk": "Who вже позначає виконавця, he не потрібне."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-25:i07:r3",
+            "correct": false,
+            "testedDimension": "Вам помог этот человек; кто выполнял действие?",
+            "feedbackByLocale": {
+              "ru": "О завершённой помощи здесь говорим helped.",
+              "uk": "Про завершену допомогу тут кажемо helped."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-25:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Поблагодарите за помощь с коробками.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-25:i08:audio"
+      ],
+      "accessibilityLabel": "Поблагодарите за помощь с коробками.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-25:i08:audio",
+          "transcript": "Thank you for helping with the boxes."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Thank you for helping with the boxes.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-25:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — compassionate",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-25:i09:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — compassionate",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-25:i09:audio",
+          "transcript": "compassionate"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-25:i09:r1",
+            "targetText": "compassionate",
+            "meaningByLocale": {
+              "ru": "Сочувствующий. Замечает чужие трудности и относится к людям с заботой.",
+              "uk": "Співчутливий. Помічає чужі труднощі й ставиться до людей із турботою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "compassionate",
+          "definitionByLocale": {
+            "ru": "Сочувствующий. Замечает чужие трудности и относится к людям с заботой.",
+            "uk": "Співчутливий. Помічає чужі труднощі й ставиться до людей із турботою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-25:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что ваша подруга очень сочувствующая.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что ваша подруга очень сочувствующая.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "My friend is very compassionate.",
+        "localizedMeaning": {
+          "ru": "Скажите, что ваша подруга очень сочувствующая.",
+          "uk": "Скажіть, що ваша подруга дуже співчутлива."
+        },
+        "orderedTokens": [
+          "My",
+          "friend",
+          "is",
+          "very",
+          "compassionate"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-25:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы позвонили этому человеку, а он был занят.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-25:i11:r1",
+          "text": "I called"
+        },
+        {
+          "responseId": "en:lesson-29:session-25:i11:r2",
+          "text": "I called him"
+        },
+        {
+          "responseId": "en:lesson-29:session-25:i11:r3",
+          "text": "me called"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы позвонили этому человеку, а он был занят.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы позвонили этому человеку, а он был занят.",
+          "uk": "Ви зателефонували цій людині, а вона була зайнята."
+        },
+        "gappedTargetPhrase": "The person who ___ was busy.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-25:i11:r1",
+            "text": "I called"
+          },
+          {
+            "responseId": "en:lesson-29:session-25:i11:r2",
+            "text": "I called him"
+          },
+          {
+            "responseId": "en:lesson-29:session-25:i11:r3",
+            "text": "me called"
+          }
+        ],
+        "testedDimension": "Вы позвонили этому человеку, а он был занят.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-25:i11:r2",
+            "correct": false,
+            "testedDimension": "Вы позвонили этому человеку, а он был занят.",
+            "feedbackByLocale": {
+              "ru": "Who уже обозначает получателя звонка, him лишнее.",
+              "uk": "Who вже позначає отримувача дзвінка, him зайве."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-25:i11:r3",
+            "correct": false,
+            "testedDimension": "Вы позвонили этому человеку, а он был занят.",
+            "feedbackByLocale": {
+              "ru": "Звонили вы: нужен исполнитель I.",
+              "uk": "Телефонували ви: потрібен виконавець I."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-25:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте просьбу помочь со столом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-25:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте просьбу помочь со столом.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-25:i12:audio",
+          "transcript": "Could you help me with this table?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could you help me with this table?",
+        "orderedTokens": [
+          "Could",
+          "you",
+          "help",
+          "me",
+          "with",
+          "this",
+          "table"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-25:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — impulsive",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-25:i13:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — impulsive",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-25:i13:audio",
+          "transcript": "impulsive"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-25:i13:r1",
+            "targetText": "impulsive",
+            "meaningByLocale": {
+              "ru": "Импульсивный. Часто действует сразу, не обдумав последствия.",
+              "uk": "Імпульсивний. Часто діє відразу, не обміркувавши наслідків."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "impulsive",
+          "definitionByLocale": {
+            "ru": "Импульсивный. Часто действует сразу, не обдумав последствия.",
+            "uk": "Імпульсивний. Часто діє відразу, не обміркувавши наслідків."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-25:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что ваш брат бывает импульсивным.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-25:i14:audio"
+      ],
+      "accessibilityLabel": "Скажите, что ваш брат бывает импульсивным.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-25:i14:audio",
+          "transcript": "My brother can be impulsive."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "My brother can be impulsive.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-25:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините описание человека с переводом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините описание человека с переводом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-29:session-25:i15:p1",
+            "target": "dependable",
+            "meaningByLocale": {
+              "ru": "надёжный",
+              "uk": "надійний"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-25:i15:p2",
+            "target": "approachable",
+            "meaningByLocale": {
+              "ru": "располагающий к общению",
+              "uk": "привітний у спілкуванні"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-25:i15:p3",
+            "target": "compassionate",
+            "meaningByLocale": {
+              "ru": "сочувствующий",
+              "uk": "співчутливий"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-25:i15:p4",
+            "target": "impulsive",
+            "meaningByLocale": {
+              "ru": "импульсивный",
+              "uk": "імпульсивний"
+            }
+          }
+        ],
+        "leftColumn": [
+          "dependable",
+          "approachable",
+          "compassionate",
+          "impulsive"
+        ],
+        "rightColumn": [
+          "надёжный",
+          "располагающий к общению",
+          "сочувствующий",
+          "импульсивный"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-25:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-25:i16:r1",
+          "text": "The table which I bought is heavy."
+        },
+        {
+          "responseId": "en:lesson-29:session-25:i16:r2",
+          "text": "The table which I bought is small."
+        },
+        {
+          "responseId": "en:lesson-29:session-25:i16:r3",
+          "text": "The chair which I bought is heavy."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-25:i16:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-25:i16:audio",
+          "transcript": "The table which I bought is heavy."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-25:i16:r1",
+            "targetText": "The table which I bought is heavy.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-25:i16:r2",
+            "targetText": "The table which I bought is small.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-25:i16:r3",
+            "targetText": "The chair which I bought is heavy.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-25:i16:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The table which I bought is heavy.",
+              "uk": "У записі звучить The table which I bought is heavy."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-25:i16:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The table which I bought is heavy.",
+              "uk": "У записі звучить The table which I bought is heavy."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-25:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Стол купили вы; уточните его через вашу покупку.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-25:i17:r1",
+          "text": "I bought"
+        },
+        {
+          "responseId": "en:lesson-29:session-25:i17:r2",
+          "text": "I bought it"
+        },
+        {
+          "responseId": "en:lesson-29:session-25:i17:r3",
+          "text": "me bought"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Стол купили вы; уточните его через вашу покупку.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Стол купили вы; уточните его через вашу покупку.",
+          "uk": "Стіл купили ви; уточніть його через вашу покупку."
+        },
+        "gappedTargetPhrase": "The table which ___ is heavy.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-25:i17:r1",
+            "text": "I bought"
+          },
+          {
+            "responseId": "en:lesson-29:session-25:i17:r2",
+            "text": "I bought it"
+          },
+          {
+            "responseId": "en:lesson-29:session-25:i17:r3",
+            "text": "me bought"
+          }
+        ],
+        "testedDimension": "Стол купили вы; уточните его через вашу покупку.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-25:i17:r2",
+            "correct": false,
+            "testedDimension": "Стол купили вы; уточните его через вашу покупку.",
+            "feedbackByLocale": {
+              "ru": "Which уже обозначает стол, it лишнее.",
+              "uk": "Which вже позначає стіл, it зайве."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-25:i17:r3",
+            "correct": false,
+            "testedDimension": "Стол купили вы; уточните его через вашу покупку.",
+            "feedbackByLocale": {
+              "ru": "Покупатель — I, а не me.",
+              "uk": "Покупець — I, а не me."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-25:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: вы позвонили человеку или человек позвонил вам?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-25:i18:r1",
+          "text": "The person who I called was busy."
+        },
+        {
+          "responseId": "en:lesson-29:session-25:i18:r2",
+          "text": "The person who called me was busy."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-25:i18:audioA",
+        "en:lesson-29:session-25:i18:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: вы позвонили человеку или человек позвонил вам?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "The person who I called was busy.",
+        "contrastB": "The person who called me was busy.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-29:session-25:i18:audioA",
+          "transcript": "The person who I called was busy."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-29:session-25:i18:audioB",
+          "transcript": "The person who called me was busy."
+        },
+        "testedPhoneticContrast": "Послушайте: вы позвонили человеку или человек позвонил вам?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-25:i18:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: вы позвонили человеку или человек позвонил вам?",
+            "feedbackByLocale": {
+              "ru": "Звучит who I called: звонили вы.",
+              "uk": "Звучить who I called: телефонували ви."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-25:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что женщина, которая вам помогла, живёт рядом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что женщина, которая вам помогла, живёт рядом.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The woman who helped me lives nearby.",
+        "localizedMeaning": {
+          "ru": "Скажите, что женщина, которая вам помогла, живёт рядом.",
+          "uk": "Скажіть, що жінка, яка вам допомогла, живе поруч."
+        },
+        "orderedTokens": [
+          "The",
+          "woman",
+          "who",
+          "helped",
+          "me",
+          "lives",
+          "nearby"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-25:i20",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что все коробки теперь внутри.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-25:i20:audio"
+      ],
+      "accessibilityLabel": "Скажите, что все коробки теперь внутри.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-25:i20:audio",
+          "transcript": "All the boxes are inside now."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "All the boxes are inside now.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-25:i21",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте предложение выпить чаю.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-25:i21:audio"
+      ],
+      "accessibilityLabel": "Послушайте предложение выпить чаю.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-25:i21:audio",
+          "transcript": "Would you like some tea?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Would you like some tea?",
+        "orderedTokens": [
+          "Would",
+          "you",
+          "like",
+          "some",
+          "tea"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "ae53b9fcde09f69f2d09fc3278d5050ac01986380e425673185089f80c9858bc"
+}

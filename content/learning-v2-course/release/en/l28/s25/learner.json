@@ -1,0 +1,1035 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-28:session-25",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-28:session-25:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — aluminium",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-25:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — aluminium",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-25:i01:audio",
+          "transcript": "aluminium"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-25:i01:r1",
+            "targetText": "aluminium",
+            "meaningByLocale": {
+              "ru": "Алюминий: лёгкий металл, из которого делают, например, некоторые банки и фольгу.",
+              "uk": "Алюміній: легкий метал, із якого роблять, наприклад, деякі банки та фольгу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "aluminium",
+          "definitionByLocale": {
+            "ru": "Алюминий: лёгкий металл, из которого делают, например, некоторые банки и фольгу.",
+            "uk": "Алюміній: легкий метал, із якого роблять, наприклад, деякі банки та фольгу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-25:i02",
+      "ordinal": 5,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите, принимают ли здесь алюминий.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-25:i02:audio"
+      ],
+      "accessibilityLabel": "Спросите, принимают ли здесь алюминий.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-25:i02:audio",
+          "transcript": "Do you accept aluminium here?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Do you accept aluminium here?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-25:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-25:i03:r1",
+          "text": "This jar can be reused."
+        },
+        {
+          "responseId": "en:lesson-28:session-25:i03:r2",
+          "text": "This box can be reused."
+        },
+        {
+          "responseId": "en:lesson-28:session-25:i03:r3",
+          "text": "This jar can be repaired."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-25:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-25:i03:audio",
+          "transcript": "This jar can be reused."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-25:i03:r1",
+            "targetText": "This jar can be reused.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-25:i03:r2",
+            "targetText": "This box can be reused.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-25:i03:r3",
+            "targetText": "This jar can be repaired.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-25:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This jar can be reused.",
+              "uk": "У записі звучить This jar can be reused."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-25:i03:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This jar can be reused.",
+              "uk": "У записі звучить This jar can be reused."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-25:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сотрудник объясняет правило этого пункта: вещи необходимо рассортировать.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-25:i04:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-28:session-25:i04:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-28:session-25:i04:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сотрудник объясняет правило этого пункта: вещи необходимо рассортировать.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сотрудник объясняет правило этого пункта: вещи необходимо рассортировать.",
+          "uk": "Працівник пояснює правило цього пункту: речі необхідно розсортувати."
+        },
+        "gappedTargetPhrase": "Items must ___ sorted first.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-25:i04:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-28:session-25:i04:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-28:session-25:i04:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Сотрудник объясняет правило этого пункта: вещи необходимо рассортировать.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-25:i04:r2",
+            "correct": false,
+            "testedDimension": "Сотрудник объясняет правило этого пункта: вещи необходимо рассортировать.",
+            "feedbackByLocale": {
+              "ru": "После must нужна be.",
+              "uk": "Після must потрібна be."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-25:i04:r3",
+            "correct": false,
+            "testedDimension": "Сотрудник объясняет правило этого пункта: вещи необходимо рассортировать.",
+            "feedbackByLocale": {
+              "ru": "Для нескольких вещей тоже must be.",
+              "uk": "Для кількох речей також must be."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-25:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — ceramic",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-25:i05:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — ceramic",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-25:i05:audio",
+          "transcript": "ceramic"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-25:i05:r1",
+            "targetText": "ceramic",
+            "meaningByLocale": {
+              "ru": "Керамический: сделанный из глины, затвердевшей после обжига.",
+              "uk": "Керамічний: зроблений із глини, яка затверділа після випалювання."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ceramic",
+          "definitionByLocale": {
+            "ru": "Керамический: сделанный из глины, затвердевшей после обжига.",
+            "uk": "Керамічний: зроблений із глини, яка затверділа після випалювання."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-25:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Уточните, куда положить керамическую миску.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточните, куда положить керамическую миску.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Where should I put this ceramic bowl?",
+        "localizedMeaning": {
+          "ru": "Уточните, куда положить керамическую миску.",
+          "uk": "Уточніть, куди покласти керамічну миску."
+        },
+        "orderedTokens": [
+          "Where",
+          "should",
+          "I",
+          "put",
+          "this",
+          "ceramic",
+          "bowl"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-25:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что чашка всё ещё пригодна к использованию.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-25:i07:audio"
+      ],
+      "accessibilityLabel": "Скажите, что чашка всё ещё пригодна к использованию.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-25:i07:audio",
+          "transcript": "This cup can still be used."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This cup can still be used.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-25:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте совет вымыть чашку перед дарением.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-25:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте совет вымыть чашку перед дарением.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-25:i08:audio",
+          "transcript": "The cup should be washed first."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The cup should be washed first.",
+        "orderedTokens": [
+          "The",
+          "cup",
+          "should",
+          "be",
+          "washed",
+          "first"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-25:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — porcelain",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-25:i09:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — porcelain",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-25:i09:audio",
+          "transcript": "porcelain"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-25:i09:r1",
+            "targetText": "porcelain",
+            "meaningByLocale": {
+              "ru": "Фарфор: тонкая твёрдая керамика, из которой делают посуду и другие изделия.",
+              "uk": "Порцеляна: тонка тверда кераміка, з якої роблять посуд та інші вироби."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "porcelain",
+          "definitionByLocale": {
+            "ru": "Фарфор: тонкая твёрдая керамика, из которой делают посуду и другие изделия.",
+            "uk": "Порцеляна: тонка тверда кераміка, з якої роблять посуд та інші вироби."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-25:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-25:i10:r1",
+          "text": "This plate is made of porcelain."
+        },
+        {
+          "responseId": "en:lesson-28:session-25:i10:r2",
+          "text": "This plate is made of glass."
+        },
+        {
+          "responseId": "en:lesson-28:session-25:i10:r3",
+          "text": "This cup is made of porcelain."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-25:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-25:i10:audio",
+          "transcript": "This plate is made of porcelain."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-25:i10:r1",
+            "targetText": "This plate is made of porcelain.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-25:i10:r2",
+            "targetText": "This plate is made of glass.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-25:i10:r3",
+            "targetText": "This cup is made of porcelain.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-25:i10:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This plate is made of porcelain.",
+              "uk": "У записі звучить This plate is made of porcelain."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-25:i10:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This plate is made of porcelain.",
+              "uk": "У записі звучить This plate is made of porcelain."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-25:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Эту коробку можно использовать снова.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-25:i11:r1",
+          "text": "reused"
+        },
+        {
+          "responseId": "en:lesson-28:session-25:i11:r2",
+          "text": "reuse"
+        },
+        {
+          "responseId": "en:lesson-28:session-25:i11:r3",
+          "text": "reusing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Эту коробку можно использовать снова.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Эту коробку можно использовать снова.",
+          "uk": "Цю коробку можна використати знову."
+        },
+        "gappedTargetPhrase": "This box can be ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-25:i11:r1",
+            "text": "reused"
+          },
+          {
+            "responseId": "en:lesson-28:session-25:i11:r2",
+            "text": "reuse"
+          },
+          {
+            "responseId": "en:lesson-28:session-25:i11:r3",
+            "text": "reusing"
+          }
+        ],
+        "testedDimension": "Эту коробку можно использовать снова.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-25:i11:r2",
+            "correct": false,
+            "testedDimension": "Эту коробку можно использовать снова.",
+            "feedbackByLocale": {
+              "ru": "После can be здесь reused.",
+              "uk": "Після can be тут reused."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-25:i11:r3",
+            "correct": false,
+            "testedDimension": "Эту коробку можно использовать снова.",
+            "feedbackByLocale": {
+              "ru": "Действие над коробкой: can be reused.",
+              "uk": "Дія над коробкою: can be reused."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-25:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточните, принимают ли разбитые вещи.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-25:i12:audio"
+      ],
+      "accessibilityLabel": "Уточните, принимают ли разбитые вещи.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-25:i12:audio",
+          "transcript": "Do you accept broken items?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Do you accept broken items?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-25:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — landfill",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-25:i13:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — landfill",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-25:i13:audio",
+          "transcript": "landfill"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-25:i13:r1",
+            "targetText": "landfill",
+            "meaningByLocale": {
+              "ru": "Мусорный полигон: место, где отходы размещают и засыпают землёй.",
+              "uk": "Сміттєвий полігон: місце, де відходи розміщують і засипають землею."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "landfill",
+          "definitionByLocale": {
+            "ru": "Мусорный полигон: место, где отходы размещают и засыпают землёй.",
+            "uk": "Сміттєвий полігон: місце, де відходи розміщують і засипають землею."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-25:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите, отправится ли эта вещь на полигон.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите, отправится ли эта вещь на полигон.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Will this go to landfill?",
+        "localizedMeaning": {
+          "ru": "Спросите, отправится ли эта вещь на полигон.",
+          "uk": "Запитайте, чи потрапить ця річ на полігон."
+        },
+        "orderedTokens": [
+          "Will",
+          "this",
+          "go",
+          "to",
+          "landfill"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-25:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-25:i15:r1",
+          "text": "The bag should be kept dry."
+        },
+        {
+          "responseId": "en:lesson-28:session-25:i15:r2",
+          "text": "The bag should be kept clean."
+        },
+        {
+          "responseId": "en:lesson-28:session-25:i15:r3",
+          "text": "The box should be kept dry."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-25:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-25:i15:audio",
+          "transcript": "The bag should be kept dry."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-25:i15:r1",
+            "targetText": "The bag should be kept dry.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-25:i15:r2",
+            "targetText": "The bag should be kept clean.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-25:i15:r3",
+            "targetText": "The box should be kept dry.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-25:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The bag should be kept dry.",
+              "uk": "У записі звучить The bag should be kept dry."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-25:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The bag should be kept dry.",
+              "uk": "У записі звучить The bag should be kept dry."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-25:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сотрудник говорит, что вашу сломанную полку можно починить.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-25:i16:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-28:session-25:i16:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-28:session-25:i16:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сотрудник говорит, что вашу сломанную полку можно починить.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сотрудник говорит, что вашу сломанную полку можно починить.",
+          "uk": "Працівник каже, що вашу зламану полицю можна полагодити."
+        },
+        "gappedTargetPhrase": "This shelf can ___ repaired.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-25:i16:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-28:session-25:i16:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-28:session-25:i16:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Сотрудник говорит, что вашу сломанную полку можно починить.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-25:i16:r2",
+            "correct": false,
+            "testedDimension": "Сотрудник говорит, что вашу сломанную полку можно починить.",
+            "feedbackByLocale": {
+              "ru": "После can нужна be.",
+              "uk": "Після can потрібна be."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-25:i16:r3",
+            "correct": false,
+            "testedDimension": "Сотрудник говорит, что вашу сломанную полку можно починить.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна can be repaired.",
+              "uk": "Тут потрібна can be repaired."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-25:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте правило: эту крышку необходимо снять.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-25:i17:audio"
+      ],
+      "accessibilityLabel": "Послушайте правило: эту крышку необходимо снять.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-25:i17:audio",
+          "transcript": "This lid must be removed."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This lid must be removed.",
+        "orderedTokens": [
+          "This",
+          "lid",
+          "must",
+          "be",
+          "removed"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-25:i18",
+      "ordinal": 21,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточните, можно ли оставить пакет здесь.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-25:i18:audio"
+      ],
+      "accessibilityLabel": "Уточните, можно ли оставить пакет здесь.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-25:i18:audio",
+          "transcript": "Can I leave this bag here?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Can I leave this bag here?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-25:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг советует завернуть хрупкую тарелку. Выберите нужную форму глагола.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-25:i19:r1",
+          "text": "wrapped"
+        },
+        {
+          "responseId": "en:lesson-28:session-25:i19:r2",
+          "text": "wrap"
+        },
+        {
+          "responseId": "en:lesson-28:session-25:i19:r3",
+          "text": "wrapping"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг советует завернуть хрупкую тарелку. Выберите нужную форму глагола.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг советует завернуть хрупкую тарелку. Выберите нужную форму глагола.",
+          "uk": "Друг радить загорнути крихку тарілку. Виберіть потрібну форму дієслова."
+        },
+        "gappedTargetPhrase": "The plate should be ___ in paper.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-25:i19:r1",
+            "text": "wrapped"
+          },
+          {
+            "responseId": "en:lesson-28:session-25:i19:r2",
+            "text": "wrap"
+          },
+          {
+            "responseId": "en:lesson-28:session-25:i19:r3",
+            "text": "wrapping"
+          }
+        ],
+        "testedDimension": "Друг советует завернуть хрупкую тарелку. Выберите нужную форму глагола.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-25:i19:r2",
+            "correct": false,
+            "testedDimension": "Друг советует завернуть хрупкую тарелку. Выберите нужную форму глагола.",
+            "feedbackByLocale": {
+              "ru": "После should be здесь wrapped.",
+              "uk": "Після should be тут wrapped."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-25:i19:r3",
+            "correct": false,
+            "testedDimension": "Друг советует завернуть хрупкую тарелку. Выберите нужную форму глагола.",
+            "feedbackByLocale": {
+              "ru": "О действии над тарелкой: should be wrapped.",
+              "uk": "Про дію над тарілкою: should be wrapped."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-25:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сотрудник просит не перекрывать вход. Передайте его правило.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сотрудник просит не перекрывать вход. Передайте его правило.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The entrance must be kept clear.",
+        "localizedMeaning": {
+          "ru": "Сотрудник просит не перекрывать вход. Передайте его правило.",
+          "uk": "Працівник просить не перекривати вхід. Передайте його правило."
+        },
+        "orderedTokens": [
+          "The",
+          "entrance",
+          "must",
+          "be",
+          "kept",
+          "clear"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-25:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Поблагодарите за помощь с сортировкой.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-25:i21:audio"
+      ],
+      "accessibilityLabel": "Поблагодарите за помощь с сортировкой.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-25:i21:audio",
+          "transcript": "Thank you for your help."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Thank you for your help.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "e192d70544a158c081b250759523c23b5068d060d465b9d9313fe9a342e276bc"
+}

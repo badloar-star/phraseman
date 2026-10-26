@@ -1,0 +1,1031 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-28:session-16",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-28:session-16:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — vegan",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-16:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — vegan",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-16:i01:audio",
+          "transcript": "vegan"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-16:i01:r1",
+            "targetText": "vegan",
+            "meaningByLocale": {
+              "ru": "Веганский: о еде без ингредиентов животного происхождения.",
+              "uk": "Веганський: про їжу без інгредієнтів тваринного походження."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "vegan",
+          "definitionByLocale": {
+            "ru": "Веганский: о еде без ингредиентов животного происхождения.",
+            "uk": "Веганський: про їжу без інгредієнтів тваринного походження."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-16:i02",
+      "ordinal": 5,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточните, веганский ли этот суп.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-16:i02:audio"
+      ],
+      "accessibilityLabel": "Уточните, веганский ли этот суп.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-16:i02:audio",
+          "transcript": "Is this soup vegan?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is this soup vegan?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-16:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-16:i03:r1",
+          "text": "The soup was prepared this morning."
+        },
+        {
+          "responseId": "en:lesson-28:session-16:i03:r2",
+          "text": "The soup was prepared yesterday."
+        },
+        {
+          "responseId": "en:lesson-28:session-16:i03:r3",
+          "text": "The salad was prepared this morning."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-16:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-16:i03:audio",
+          "transcript": "The soup was prepared this morning."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-16:i03:r1",
+            "targetText": "The soup was prepared this morning.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-16:i03:r2",
+            "targetText": "The soup was prepared yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-16:i03:r3",
+            "targetText": "The salad was prepared this morning.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-16:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The soup was prepared this morning.",
+              "uk": "У записі звучить The soup was prepared this morning."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-16:i03:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The soup was prepared this morning.",
+              "uk": "У записі звучить The soup was prepared this morning."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-16:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите, можно ли посмотреть меню.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите, можно ли посмотреть меню.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I see the menu?",
+        "localizedMeaning": {
+          "ru": "Спросите, можно ли посмотреть меню.",
+          "uk": "Запитайте, чи можна подивитися меню."
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "see",
+          "the",
+          "menu"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-16:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sweetener",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-16:i05:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sweetener",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-16:i05:audio",
+          "transcript": "sweetener"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-16:i05:r1",
+            "targetText": "sweetener",
+            "meaningByLocale": {
+              "ru": "Подсластитель: вещество, которое добавляют для сладкого вкуса, часто вместо сахара.",
+              "uk": "Підсолоджувач: речовина, яку додають для солодкого смаку, часто замість цукру."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sweetener",
+          "definitionByLocale": {
+            "ru": "Подсластитель: вещество, которое добавляют для сладкого вкуса, часто вместо сахара.",
+            "uk": "Підсолоджувач: речовина, яку додають для солодкого смаку, часто замість цукру."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-16:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сотрудник объясняет обычный способ приготовления напитка: в него добавляют подсластитель.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-16:i06:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-28:session-16:i06:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-28:session-16:i06:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сотрудник объясняет обычный способ приготовления напитка: в него добавляют подсластитель.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сотрудник объясняет обычный способ приготовления напитка: в него добавляют подсластитель.",
+          "uk": "Працівник пояснює звичайний спосіб приготування напою: до нього додають підсолоджувач."
+        },
+        "gappedTargetPhrase": "A sweetener ___ added to this drink.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-16:i06:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-28:session-16:i06:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-28:session-16:i06:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Сотрудник объясняет обычный способ приготовления напитка: в него добавляют подсластитель.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-16:i06:r2",
+            "correct": false,
+            "testedDimension": "Сотрудник объясняет обычный способ приготовления напитка: в него добавляют подсластитель.",
+            "feedbackByLocale": {
+              "ru": "Один подсластитель: is.",
+              "uk": "Один підсолоджувач: is."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-16:i06:r3",
+            "correct": false,
+            "testedDimension": "Сотрудник объясняет обычный способ приготовления напитка: в него добавляют подсластитель.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем is added.",
+              "uk": "Тут використовуємо is added."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-16:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите напиток без сахара.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-16:i07:audio"
+      ],
+      "accessibilityLabel": "Попросите напиток без сахара.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-16:i07:audio",
+          "transcript": "No sugar, please."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No sugar, please.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-16:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Хотелось бы, чтобы музыка была тише.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Хотелось бы, чтобы музыка была тише.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I wish the music were quieter.",
+        "localizedMeaning": {
+          "ru": "Хотелось бы, чтобы музыка была тише.",
+          "uk": "Хотілося б, щоб музика була тихішою."
+        },
+        "orderedTokens": [
+          "I",
+          "wish",
+          "the",
+          "music",
+          "were",
+          "quieter"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-16:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — allergen",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-16:i09:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — allergen",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-16:i09:audio",
+          "transcript": "allergen"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-16:i09:r1",
+            "targetText": "allergen",
+            "meaningByLocale": {
+              "ru": "Аллерген: вещество, способное вызвать аллергическую реакцию.",
+              "uk": "Алерген: речовина, здатна викликати алергічну реакцію."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "allergen",
+          "definitionByLocale": {
+            "ru": "Аллерген: вещество, способное вызвать аллергическую реакцию.",
+            "uk": "Алерген: речовина, здатна викликати алергічну реакцію."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-16:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Прочитайте сообщение об одном отмеченном аллергене.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Прочитайте сообщение об одном отмеченном аллергене.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This allergen is marked in bold.",
+        "localizedMeaning": {
+          "ru": "Прочитайте сообщение об одном отмеченном аллергене.",
+          "uk": "Прочитайте повідомлення про один позначений алерген."
+        },
+        "orderedTokens": [
+          "This",
+          "allergen",
+          "is",
+          "marked",
+          "in",
+          "bold"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-16:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-16:i11:r1",
+          "text": "The ingredients are listed on the menu."
+        },
+        {
+          "responseId": "en:lesson-28:session-16:i11:r2",
+          "text": "The ingredients are listed on the label."
+        },
+        {
+          "responseId": "en:lesson-28:session-16:i11:r3",
+          "text": "The prices are listed on the menu."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-16:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-16:i11:audio",
+          "transcript": "The ingredients are listed on the menu."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-16:i11:r1",
+            "targetText": "The ingredients are listed on the menu.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-16:i11:r2",
+            "targetText": "The ingredients are listed on the label.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-16:i11:r3",
+            "targetText": "The prices are listed on the menu.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-16:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The ingredients are listed on the menu.",
+              "uk": "У записі звучить The ingredients are listed on the menu."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-16:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The ingredients are listed on the menu.",
+              "uk": "У записі звучить The ingredients are listed on the menu."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-16:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сэндвичи приготовили час назад.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-16:i12:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-28:session-16:i12:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-28:session-16:i12:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сэндвичи приготовили час назад.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сэндвичи приготовили час назад.",
+          "uk": "Сендвічі приготували годину тому."
+        },
+        "gappedTargetPhrase": "The sandwiches ___ made an hour ago.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-16:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-28:session-16:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-28:session-16:i12:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Сэндвичи приготовили час назад.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-16:i12:r2",
+            "correct": false,
+            "testedDimension": "Сэндвичи приготовили час назад.",
+            "feedbackByLocale": {
+              "ru": "Sandwiches — несколько: were.",
+              "uk": "Sandwiches — кілька: were."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-16:i12:r3",
+            "correct": false,
+            "testedDimension": "Сэндвичи приготовили час назад.",
+            "feedbackByLocale": {
+              "ru": "Прошлое действие: were made.",
+              "uk": "Минула дія: were made."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-16:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — calories",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-16:i13:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — calories",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-16:i13:audio",
+          "transcript": "calories"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-16:i13:r1",
+            "targetText": "calories",
+            "meaningByLocale": {
+              "ru": "Калории: единицы, которыми обозначают энергетическую ценность еды; одна — a calorie.",
+              "uk": "Калорії: одиниці, якими позначають енергетичну цінність їжі; одна — a calorie."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "calories",
+          "definitionByLocale": {
+            "ru": "Калории: единицы, которыми обозначают энергетическую ценность еды; одна — a calorie.",
+            "uk": "Калорії: одиниці, якими позначають енергетичну цінність їжі; одна — a calorie."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-16:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите, сколько калорий в порции.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-16:i14:audio"
+      ],
+      "accessibilityLabel": "Спросите, сколько калорий в порции.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-16:i14:audio",
+          "transcript": "How many calories are in one portion?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "How many calories are in one portion?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-16:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, как подают суп.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-16:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте, как подают суп.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-16:i15:audio",
+          "transcript": "The soup is served with bread."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The soup is served with bread.",
+        "orderedTokens": [
+          "The",
+          "soup",
+          "is",
+          "served",
+          "with",
+          "bread"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-16:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вчера друг уже поел к вашему приходу. Завершите более раннее действие.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-16:i16:r1",
+          "text": "eaten"
+        },
+        {
+          "responseId": "en:lesson-28:session-16:i16:r2",
+          "text": "eat"
+        },
+        {
+          "responseId": "en:lesson-28:session-16:i16:r3",
+          "text": "eating"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вчера друг уже поел к вашему приходу. Завершите более раннее действие.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера друг уже поел к вашему приходу. Завершите более раннее действие.",
+          "uk": "Учора друг уже поїв до вашого приходу. Завершіть ранішу дію."
+        },
+        "gappedTargetPhrase": "My friend had ___ by the time I arrived.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-16:i16:r1",
+            "text": "eaten"
+          },
+          {
+            "responseId": "en:lesson-28:session-16:i16:r2",
+            "text": "eat"
+          },
+          {
+            "responseId": "en:lesson-28:session-16:i16:r3",
+            "text": "eating"
+          }
+        ],
+        "testedDimension": "Вчера друг уже поел к вашему приходу. Завершите более раннее действие.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-16:i16:r2",
+            "correct": false,
+            "testedDimension": "Вчера друг уже поел к вашему приходу. Завершите более раннее действие.",
+            "feedbackByLocale": {
+              "ru": "После had нужна eaten.",
+              "uk": "Після had потрібна eaten."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-16:i16:r3",
+            "correct": false,
+            "testedDimension": "Вчера друг уже поел к вашему приходу. Завершите более раннее действие.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем had eaten.",
+              "uk": "Тут використовуємо had eaten."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-16:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите сотруднику, что у вас аллергия на орехи.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-16:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите сотруднику, что у вас аллергия на орехи.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-16:i17:audio",
+          "transcript": "I am allergic to nuts."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am allergic to nuts.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-16:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-16:i18:r1",
+          "text": "The tables were cleaned before lunch."
+        },
+        {
+          "responseId": "en:lesson-28:session-16:i18:r2",
+          "text": "The tables were cleaned after lunch."
+        },
+        {
+          "responseId": "en:lesson-28:session-16:i18:r3",
+          "text": "The chairs were cleaned before lunch."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-16:i18:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-16:i18:audio",
+          "transcript": "The tables were cleaned before lunch."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-16:i18:r1",
+            "targetText": "The tables were cleaned before lunch.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-16:i18:r2",
+            "targetText": "The tables were cleaned after lunch.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-16:i18:r3",
+            "targetText": "The chairs were cleaned before lunch.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-16:i18:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The tables were cleaned before lunch.",
+              "uk": "У записі звучить The tables were cleaned before lunch."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-16:i18:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The tables were cleaned before lunch.",
+              "uk": "У записі звучить The tables were cleaned before lunch."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-16:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Десерт дорогой. Вы хотели бы более низкую цену.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Десерт дорогой. Вы хотели бы более низкую цену.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I wish it were cheaper.",
+        "localizedMeaning": {
+          "ru": "Десерт дорогой. Вы хотели бы более низкую цену.",
+          "uk": "Десерт дорогий. Ви хотіли б нижчу ціну."
+        },
+        "orderedTokens": [
+          "I",
+          "wish",
+          "it",
+          "were",
+          "cheaper"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-16:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В этом кафе напитки включены в стоимость обеда.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-16:i20:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-28:session-16:i20:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-28:session-16:i20:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В этом кафе напитки включены в стоимость обеда.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В этом кафе напитки включены в стоимость обеда.",
+          "uk": "У цьому кафе напої включені у вартість обіду."
+        },
+        "gappedTargetPhrase": "Drinks ___ included in the price.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-16:i20:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-28:session-16:i20:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-28:session-16:i20:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "В этом кафе напитки включены в стоимость обеда.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-16:i20:r2",
+            "correct": false,
+            "testedDimension": "В этом кафе напитки включены в стоимость обеда.",
+            "feedbackByLocale": {
+              "ru": "Drinks — несколько: are.",
+              "uk": "Drinks — кілька: are."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-16:i20:r3",
+            "correct": false,
+            "testedDimension": "В этом кафе напитки включены в стоимость обеда.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем are included.",
+              "uk": "Тут використовуємо are included."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-16:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что готовы заказать.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-16:i21:audio"
+      ],
+      "accessibilityLabel": "Скажите, что готовы заказать.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-16:i21:audio",
+          "transcript": "We are ready to order."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are ready to order.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "28b8d0e52ac674a26de02998f49871f0e0a0ede9b4e74ecd3547391f25eb943a"
+}

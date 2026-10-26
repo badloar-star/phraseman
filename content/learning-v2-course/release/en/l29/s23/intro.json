@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-29:session-23",
+  "learningOutcomeByLocale": {
+    "ru": "как назвать листовую зелень, уточнить место выращивания и владельца растений.",
+    "uk": "як назвати листову зелень, уточнити місце вирощування й власника рослин."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-29:session-23:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Место для посадки",
+        "uk": "Місце для садіння"
+      },
+      "bodyByLocale": {
+        "ru": "Вы показываете другу часть сада, где выращиваете зелень. Скажите: This is the garden where we grow herbs — это сад, где мы выращиваем зелень. Соберите This is the garden + where + we grow herbs. После названия места поставьте where, затем обычное предложение we grow herbs. В конце не добавляйте there: where уже связывает выращивание с этим садом.",
+        "uk": "Ви показуєте другові частину саду, де вирощуєте зелень. Скажіть: This is the garden where we grow herbs — це сад, де ми вирощуємо зелень. Складіть This is the garden + where + we grow herbs. Після назви місця поставте where, потім звичайне речення we grow herbs. Наприкінці не додавайте there: where вже пов’язує вирощування із цим садом."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-23:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-23:intro1:r1",
+              "text": "This is the garden where we grow herbs."
+            },
+            {
+              "responseId": "en:lesson-29:session-23:intro1:r2",
+              "text": "This is the garden where we grow herbs there."
+            },
+            {
+              "responseId": "en:lesson-29:session-23:intro1:r3",
+              "text": "This is the garden who we grow herbs."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-23:intro1:r1",
+              "text": "This is the garden where we grow herbs."
+            },
+            {
+              "responseId": "en:lesson-29:session-23:intro1:r2",
+              "text": "This is the garden where we grow herbs there."
+            },
+            {
+              "responseId": "en:lesson-29:session-23:intro1:r3",
+              "text": "This is the garden who we grow herbs."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-29:session-23:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Кто посадил зелень",
+        "uk": "Хто посадив зелень"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает о посадках, и вы объясняете, что их сделала ваша мать. Скажите: These herbs were planted by my mother — эту зелень посадила моя мать. Соберите These herbs + were planted + by my mother. Начните с растений во множественном числе, поэтому выберите were planted. После by назовите человека, который их посадил.",
+        "uk": "Друг запитує про насадження, і ви пояснюєте, що їх зробила ваша мати. Скажіть: These herbs were planted by my mother — цю зелень посадила моя мати. Складіть These herbs + were planted + by my mother. Почніть із рослин у множині, тому виберіть were planted. Після by назвіть людину, яка їх посадила."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-23:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-23:intro2:r1",
+              "text": "These herbs were planted by my mother."
+            },
+            {
+              "responseId": "en:lesson-29:session-23:intro2:r2",
+              "text": "These herbs was planted by my mother."
+            },
+            {
+              "responseId": "en:lesson-29:session-23:intro2:r3",
+              "text": "These herbs were planted of my mother."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-23:intro2:r1",
+              "text": "These herbs were planted by my mother."
+            },
+            {
+              "responseId": "en:lesson-29:session-23:intro2:r2",
+              "text": "These herbs was planted by my mother."
+            },
+            {
+              "responseId": "en:lesson-29:session-23:intro2:r3",
+              "text": "These herbs were planted of my mother."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-29:session-23:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Чьи растения на подоконнике",
+        "uk": "Чиї рослини на підвіконні"
+      },
+      "bodyByLocale": {
+        "ru": "Вы показываете другу соседку, чьи растения видны на подоконнике. Скажите: That is the woman whose plants are on the windowsill — это женщина, чьи растения на подоконнике. Соберите That is the woman + whose plants + are on the windowsill. Whose связывает растения с женщиной. После plants используем are, потому что растений несколько.",
+        "uk": "Ви показуєте другові сусідку, чиї рослини видно на підвіконні. Скажіть: That is the woman whose plants are on the windowsill — це жінка, чиї рослини на підвіконні. Складіть That is the woman + whose plants + are on the windowsill. Whose пов’язує рослини із жінкою. Після plants використовуємо are, тому що рослин декілька."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-23:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-23:intro3:r1",
+              "text": "That is the woman whose plants are on the windowsill."
+            },
+            {
+              "responseId": "en:lesson-29:session-23:intro3:r2",
+              "text": "That is the woman who plants are on the windowsill."
+            },
+            {
+              "responseId": "en:lesson-29:session-23:intro3:r3",
+              "text": "That is the woman whose her plants are on the windowsill."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-23:intro3:r1",
+              "text": "That is the woman whose plants are on the windowsill."
+            },
+            {
+              "responseId": "en:lesson-29:session-23:intro3:r2",
+              "text": "That is the woman who plants are on the windowsill."
+            },
+            {
+              "responseId": "en:lesson-29:session-23:intro3:r3",
+              "text": "That is the woman whose her plants are on the windowsill."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f64cba3d161e5b2e82cfe836bfe207a62b5c2bed0a2be5011358cd851a51a176"
+}

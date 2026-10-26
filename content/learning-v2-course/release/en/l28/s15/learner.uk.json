@@ -1,0 +1,1038 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-28:session-15",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-28:session-15:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — sender",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-15:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — sender",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-15:i01:audio",
+          "transcript": "sender"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-15:i01:r1",
+            "targetText": "sender",
+            "meaningByLocale": {
+              "ru": "Отправитель: тот, кто отправляет письмо или посылку.",
+              "uk": "Відправник: той, хто надсилає лист або посилку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sender",
+          "definitionByLocale": {
+            "ru": "Отправитель: тот, кто отправляет письмо или посылку.",
+            "uk": "Відправник: той, хто надсилає лист або посилку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-15:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте, де написати ім’я відправника.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, де написати ім’я відправника.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Where do I write the sender's name?",
+        "localizedMeaning": {
+          "ru": "Спросите, где написать имя отправителя.",
+          "uk": "Запитайте, де написати ім’я відправника."
+        },
+        "orderedTokens": [
+          "Where",
+          "do",
+          "I",
+          "write",
+          "the",
+          "sender's",
+          "name"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-15:i03",
+      "ordinal": 6,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що хочете надіслати посилку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-15:i03:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що хочете надіслати посилку.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-15:i03:audio",
+          "transcript": "I would like to send this parcel."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I would like to send this parcel.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-15:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-15:i04:r1",
+          "text": "The parcel was weighed this morning."
+        },
+        {
+          "responseId": "en:lesson-28:session-15:i04:r2",
+          "text": "The parcel was weighed yesterday."
+        },
+        {
+          "responseId": "en:lesson-28:session-15:i04:r3",
+          "text": "The suitcase was weighed this morning."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-15:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-15:i04:audio",
+          "transcript": "The parcel was weighed this morning."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-15:i04:r1",
+            "targetText": "The parcel was weighed this morning.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-15:i04:r2",
+            "targetText": "The parcel was weighed yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-15:i04:r3",
+            "targetText": "The suitcase was weighed this morning.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-15:i04:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The parcel was weighed this morning.",
+              "uk": "У записі звучить The parcel was weighed this morning."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-15:i04:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The parcel was weighed this morning.",
+              "uk": "У записі звучить The parcel was weighed this morning."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-15:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — recipient",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-15:i05:audio"
+      ],
+      "accessibilityLabel": "Картка слова — recipient",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-15:i05:audio",
+          "transcript": "recipient"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-15:i05:r1",
+            "targetText": "recipient",
+            "meaningByLocale": {
+              "ru": "Получатель: тот, кому адресовано письмо или посылка.",
+              "uk": "Одержувач: той, кому адресовано лист або посилку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "recipient",
+          "definitionByLocale": {
+            "ru": "Получатель: тот, кому адресовано письмо или посылка.",
+            "uk": "Одержувач: той, кому адресовано лист або посилку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-15:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточніть, чи має одержувач розписатися.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-15:i06:audio"
+      ],
+      "accessibilityLabel": "Уточніть, чи має одержувач розписатися.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-15:i06:audio",
+          "transcript": "Does the recipient need to sign?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Does the recipient need to sign?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-15:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "На цій пошті листи сортують щодня.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-15:i07:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-28:session-15:i07:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-28:session-15:i07:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На цій пошті листи сортують щодня.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "На этой почте письма сортируют каждый день.",
+          "uk": "На цій пошті листи сортують щодня."
+        },
+        "gappedTargetPhrase": "Letters ___ sorted every day.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-15:i07:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-28:session-15:i07:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-28:session-15:i07:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "На цій пошті листи сортують щодня.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-15:i07:r2",
+            "correct": false,
+            "testedDimension": "На цій пошті листи сортують щодня.",
+            "feedbackByLocale": {
+              "ru": "Letters — несколько: are.",
+              "uk": "Letters — кілька: are."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-15:i07:r3",
+            "correct": false,
+            "testedDimension": "На цій пошті листи сортують щодня.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем are sorted.",
+              "uk": "Тут використовуємо are sorted."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-15:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "У черзі багато людей. Ви хотіли б коротшу чергу.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У черзі багато людей. Ви хотіли б коротшу чергу.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I wish the queue were shorter.",
+        "localizedMeaning": {
+          "ru": "В очереди много людей. Вы хотели бы более короткую очередь.",
+          "uk": "У черзі багато людей. Ви хотіли б коротшу чергу."
+        },
+        "orderedTokens": [
+          "I",
+          "wish",
+          "the",
+          "queue",
+          "were",
+          "shorter"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-15:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — postmark",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-15:i09:audio"
+      ],
+      "accessibilityLabel": "Картка слова — postmark",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-15:i09:audio",
+          "transcript": "postmark"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-15:i09:r1",
+            "targetText": "postmark",
+            "meaningByLocale": {
+              "ru": "Почтовый штемпель: отметка на письме с местом и датой обработки.",
+              "uk": "Поштовий штемпель: позначка на листі з місцем і датою обробки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "postmark",
+          "definitionByLocale": {
+            "ru": "Почтовый штемпель: отметка на письме с местом и датой обработки.",
+            "uk": "Поштовий штемпель: позначка на листі з місцем і датою обробки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-15:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-15:i10:r1",
+          "text": "The date on the postmark is clear."
+        },
+        {
+          "responseId": "en:lesson-28:session-15:i10:r2",
+          "text": "The date on the receipt is clear."
+        },
+        {
+          "responseId": "en:lesson-28:session-15:i10:r3",
+          "text": "The date on the postmark is wrong."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-15:i10:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-15:i10:audio",
+          "transcript": "The date on the postmark is clear."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-15:i10:r1",
+            "targetText": "The date on the postmark is clear.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-15:i10:r2",
+            "targetText": "The date on the receipt is clear.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-15:i10:r3",
+            "targetText": "The date on the postmark is wrong.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-15:i10:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The date on the postmark is clear.",
+              "uk": "У записі звучить The date on the postmark is clear."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-15:i10:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The date on the postmark is clear.",
+              "uk": "У записі звучить The date on the postmark is clear."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-15:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ці посилки відправили вчора.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-15:i11:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-28:session-15:i11:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-28:session-15:i11:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ці посилки відправили вчора.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Эти посылки отправили вчера.",
+          "uk": "Ці посилки відправили вчора."
+        },
+        "gappedTargetPhrase": "These parcels ___ sent yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-15:i11:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-28:session-15:i11:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-28:session-15:i11:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Ці посилки відправили вчора.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-15:i11:r2",
+            "correct": false,
+            "testedDimension": "Ці посилки відправили вчора.",
+            "feedbackByLocale": {
+              "ru": "Parcels — несколько: were.",
+              "uk": "Parcels — кілька: were."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-15:i11:r3",
+            "correct": false,
+            "testedDimension": "Ці посилки відправили вчора.",
+            "feedbackByLocale": {
+              "ru": "Прошлое действие: were sent.",
+              "uk": "Минула дія: were sent."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-15:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте, скільки часу займе доставка.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-15:i12:audio"
+      ],
+      "accessibilityLabel": "Запитайте, скільки часу займе доставка.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-15:i12:audio",
+          "transcript": "How long will delivery take?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "How long will delivery take?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-15:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — airmail",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-15:i13:audio"
+      ],
+      "accessibilityLabel": "Картка слова — airmail",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-15:i13:audio",
+          "transcript": "airmail"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-15:i13:r1",
+            "targetText": "airmail",
+            "meaningByLocale": {
+              "ru": "Авиапочта: почта, которую перевозят самолётом.",
+              "uk": "Авіапошта: пошта, яку перевозять літаком."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "airmail",
+          "definitionByLocale": {
+            "ru": "Авиапочта: почта, которую перевозят самолётом.",
+            "uk": "Авіапошта: пошта, яку перевозять літаком."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-15:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте, чи можна надіслати лист авіапоштою.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи можна надіслати лист авіапоштою.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Can I send this letter by airmail?",
+        "localizedMeaning": {
+          "ru": "Спросите, можно ли отправить письмо авиапочтой.",
+          "uk": "Запитайте, чи можна надіслати лист авіапоштою."
+        },
+        "orderedTokens": [
+          "Can",
+          "I",
+          "send",
+          "this",
+          "letter",
+          "by",
+          "airmail"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-15:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Пошта вже зачинилася до вашого приходу вчора. Завершіть ранішу подію.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-15:i15:r1",
+          "text": "closed"
+        },
+        {
+          "responseId": "en:lesson-28:session-15:i15:r2",
+          "text": "close"
+        },
+        {
+          "responseId": "en:lesson-28:session-15:i15:r3",
+          "text": "closing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Пошта вже зачинилася до вашого приходу вчора. Завершіть ранішу подію.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Почта уже закрылась к вашему приходу вчера. Завершите более раннее событие.",
+          "uk": "Пошта вже зачинилася до вашого приходу вчора. Завершіть ранішу подію."
+        },
+        "gappedTargetPhrase": "The post office had ___ by the time I arrived.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-15:i15:r1",
+            "text": "closed"
+          },
+          {
+            "responseId": "en:lesson-28:session-15:i15:r2",
+            "text": "close"
+          },
+          {
+            "responseId": "en:lesson-28:session-15:i15:r3",
+            "text": "closing"
+          }
+        ],
+        "testedDimension": "Пошта вже зачинилася до вашого приходу вчора. Завершіть ранішу подію.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-15:i15:r2",
+            "correct": false,
+            "testedDimension": "Пошта вже зачинилася до вашого приходу вчора. Завершіть ранішу подію.",
+            "feedbackByLocale": {
+              "ru": "После had нужна closed.",
+              "uk": "Після had потрібна closed."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-15:i15:r3",
+            "correct": false,
+            "testedDimension": "Пошта вже зачинилася до вашого приходу вчора. Завершіть ранішу подію.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем had closed.",
+              "uk": "Тут використовуємо had closed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-15:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-15:i16:r1",
+          "text": "The address was checked at the counter."
+        },
+        {
+          "responseId": "en:lesson-28:session-15:i16:r2",
+          "text": "The address was checked at home."
+        },
+        {
+          "responseId": "en:lesson-28:session-15:i16:r3",
+          "text": "The weight was checked at the counter."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-15:i16:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-15:i16:audio",
+          "transcript": "The address was checked at the counter."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-15:i16:r1",
+            "targetText": "The address was checked at the counter.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-15:i16:r2",
+            "targetText": "The address was checked at home.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-15:i16:r3",
+            "targetText": "The weight was checked at the counter.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-15:i16:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The address was checked at the counter.",
+              "uk": "У записі звучить The address was checked at the counter."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-15:i16:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The address was checked at the counter.",
+              "uk": "У записі звучить The address was checked at the counter."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-15:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, де продають марки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-15:i17:audio"
+      ],
+      "accessibilityLabel": "Послухайте, де продають марки.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-15:i17:audio",
+          "transcript": "Stamps are sold at this counter."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Stamps are sold at this counter.",
+        "orderedTokens": [
+          "Stamps",
+          "are",
+          "sold",
+          "at",
+          "this",
+          "counter"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-15:i18",
+      "ordinal": 21,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть чек.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-15:i18:audio"
+      ],
+      "accessibilityLabel": "Попросіть чек.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-15:i18:audio",
+          "transcript": "Could I have a receipt, please?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could I have a receipt, please?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-15:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Відправлення дороге. Вам хотілося б, щоб воно коштувало дешевше.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-15:i19:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-28:session-15:i19:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-28:session-15:i19:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Відправлення дороге. Вам хотілося б, щоб воно коштувало дешевше.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Отправка дорогая. Вам хотелось бы, чтобы она стоила дешевле.",
+          "uk": "Відправлення дороге. Вам хотілося б, щоб воно коштувало дешевше."
+        },
+        "gappedTargetPhrase": "I wish it ___ cheaper.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-15:i19:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-28:session-15:i19:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-28:session-15:i19:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Відправлення дороге. Вам хотілося б, щоб воно коштувало дешевше.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-15:i19:r2",
+            "correct": false,
+            "testedDimension": "Відправлення дороге. Вам хотілося б, щоб воно коштувало дешевше.",
+            "feedbackByLocale": {
+              "ru": "После wish здесь were.",
+              "uk": "Після wish тут were."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-15:i19:r3",
+            "correct": false,
+            "testedDimension": "Відправлення дороге. Вам хотілося б, щоб воно коштувало дешевше.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма were.",
+              "uk": "Потрібна форма were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-15:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, що зробили з коробкою.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-15:i20:audio"
+      ],
+      "accessibilityLabel": "Послухайте, що зробили з коробкою.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-15:i20:audio",
+          "transcript": "The box was sealed with tape."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The box was sealed with tape.",
+        "orderedTokens": [
+          "The",
+          "box",
+          "was",
+          "sealed",
+          "with",
+          "tape"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-15:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточніть, чи можете ви відстежувати посилку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-15:i21:audio"
+      ],
+      "accessibilityLabel": "Уточніть, чи можете ви відстежувати посилку.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-15:i21:audio",
+          "transcript": "Can I track the parcel?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Can I track the parcel?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "38963cf022693509a1d6f8c91f4d435acce4e2cb0e89652103470df55403f6c5"
+}

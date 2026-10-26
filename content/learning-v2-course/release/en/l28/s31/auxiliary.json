@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-28:session-31",
+  "entries": [
+    {
+      "interactionId": "en:lesson-28:session-31:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-31:intro1:r2": {
+          "ru": "Перед replaced нужна be.",
+          "uk": "Перед replaced потрібна be."
+        },
+        "en:lesson-28:session-31:intro1:r3": {
+          "ru": "Здесь нужна replaced.",
+          "uk": "Тут потрібна replaced."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-31:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-31:intro2:r2": {
+          "ru": "После must not нужна be.",
+          "uk": "Після must not потрібна be."
+        },
+        "en:lesson-28:session-31:intro2:r3": {
+          "ru": "Здесь нужна removed.",
+          "uk": "Тут потрібна removed."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-31:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-31:intro3:r2": {
+          "ru": "После had нужна arrived.",
+          "uk": "Після had потрібна arrived."
+        },
+        "en:lesson-28:session-31:intro3:r3": {
+          "ru": "Здесь нужно had arrived.",
+          "uk": "Тут потрібно had arrived."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f150f8b4d466961bcf4ddbab8534541edcf4f4c1160e80916f833d057fa28dcc"
+}

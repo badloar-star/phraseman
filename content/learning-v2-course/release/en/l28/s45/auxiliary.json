@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-28:session-45",
+  "entries": [
+    {
+      "interactionId": "en:lesson-28:session-45:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-45:intro1:r2": {
+          "ru": "Перед prepared нужна be.",
+          "uk": "Перед prepared потрібна be."
+        },
+        "en:lesson-28:session-45:intro1:r3": {
+          "ru": "После be нужна prepared.",
+          "uk": "Після be потрібна prepared."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-45:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-45:intro2:r2": {
+          "ru": "После had нужна chopped.",
+          "uk": "Після had потрібна chopped."
+        },
+        "en:lesson-28:session-45:intro2:r3": {
+          "ru": "Более раннее действие: had chopped.",
+          "uk": "Раніше виконана дія: had chopped."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-45:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-45:intro3:r2": {
+          "ru": "Исполнителя вводит by.",
+          "uk": "Виконавця вводить by."
+        },
+        "en:lesson-28:session-45:intro3:r3": {
+          "ru": "Перед my brother нужна by.",
+          "uk": "Перед my brother потрібна by."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ffca39aefe4b40b45b72ae4918432d24d21a486dcff6331ad8c8f5afd1677ad4"
+}

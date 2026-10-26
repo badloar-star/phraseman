@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-29:session-25",
+  "learningOutcomeByLocale": {
+    "ru": "как различать того, кто действует, и того, на кого направлено действие, в уточнении с who или which.",
+    "uk": "як розрізняти того, хто діє, і того, на кого спрямована дія, в уточненні з who або which."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-29:session-25:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Кто вам помог",
+        "uk": "Хто вам допоміг"
+      },
+      "bodyByLocale": {
+        "ru": "После переезда вы рассказываете о человеке, который вам помог. Скажите: The person who helped me was kind — человек, который мне помог, был добрым. Соберите The person + who helped me + was kind. В части who helped me действие выполняет сам этот человек: who стоит на месте того, кто помог. Поэтому после who сразу идёт helped; me обозначает получателя помощи.",
+        "uk": "Після переїзду ви розповідаєте про людину, яка вам допомогла. Скажіть: The person who helped me was kind — людина, яка мені допомогла, була доброю. Складіть The person + who helped me + was kind. У частині who helped me дію виконує сама ця людина: who стоїть на місці того, хто допоміг. Тому після who відразу йде helped; me позначає отримувача допомоги."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-25:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-25:intro1:r1",
+              "text": "The person who helped me was kind."
+            },
+            {
+              "responseId": "en:lesson-29:session-25:intro1:r2",
+              "text": "The person who he helped me was kind."
+            },
+            {
+              "responseId": "en:lesson-29:session-25:intro1:r3",
+              "text": "The person who helped I was kind."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-25:intro1:r1",
+              "text": "The person who helped me was kind."
+            },
+            {
+              "responseId": "en:lesson-29:session-25:intro1:r2",
+              "text": "The person who he helped me was kind."
+            },
+            {
+              "responseId": "en:lesson-29:session-25:intro1:r3",
+              "text": "The person who helped I was kind."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-29:session-25:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Кому вы позвонили",
+        "uk": "Кому ви зателефонували"
+      },
+      "bodyByLocale": {
+        "ru": "Вы объясняете, почему знакомый не смог помочь с переездом: вы позвонили ему, но он был занят. Скажите: The person who I called was busy — человек, которому я позвонил, был занят. Соберите The person + who I called + was busy. Звонили вы, поэтому после who нужно I called. Who здесь обозначает человека, которому звонили; him после called не добавляем.",
+        "uk": "Ви пояснюєте, чому знайомий не зміг допомогти з переїздом: ви зателефонували йому, але він був зайнятий. Скажіть: The person who I called was busy — людина, якій я зателефонував, була зайнята. Складіть The person + who I called + was busy. Телефонували ви, тому після who потрібне I called. Who тут позначає людину, якій телефонували; him після called не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-25:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-25:intro2:r1",
+              "text": "The person who I called was busy."
+            },
+            {
+              "responseId": "en:lesson-29:session-25:intro2:r2",
+              "text": "The person who I called him was busy."
+            },
+            {
+              "responseId": "en:lesson-29:session-25:intro2:r3",
+              "text": "The person who me called was busy."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-25:intro2:r1",
+              "text": "The person who I called was busy."
+            },
+            {
+              "responseId": "en:lesson-29:session-25:intro2:r2",
+              "text": "The person who I called him was busy."
+            },
+            {
+              "responseId": "en:lesson-29:session-25:intro2:r3",
+              "text": "The person who me called was busy."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-29:session-25:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Купленная мебель",
+        "uk": "Куплені меблі"
+      },
+      "bodyByLocale": {
+        "ru": "Вы просите помочь перенести стол, который купили для новой комнаты. Скажите: The table which I bought is heavy — стол, который я купил, тяжёлый. Соберите The table + which I bought + is heavy. Покупку сделали вы: после which ставим I bought. Which обозначает купленный стол, поэтому it после bought не добавляем.",
+        "uk": "Ви просите допомогти перенести стіл, який купили для нової кімнати. Скажіть: The table which I bought is heavy — стіл, який я купив, важкий. Складіть The table + which I bought + is heavy. Покупку зробили ви: після which ставимо I bought. Which позначає куплений стіл, тому it після bought не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-25:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-25:intro3:r1",
+              "text": "The table which I bought is heavy."
+            },
+            {
+              "responseId": "en:lesson-29:session-25:intro3:r2",
+              "text": "The table which I bought it is heavy."
+            },
+            {
+              "responseId": "en:lesson-29:session-25:intro3:r3",
+              "text": "The table which me bought is heavy."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-25:intro3:r1",
+              "text": "The table which I bought is heavy."
+            },
+            {
+              "responseId": "en:lesson-29:session-25:intro3:r2",
+              "text": "The table which I bought it is heavy."
+            },
+            {
+              "responseId": "en:lesson-29:session-25:intro3:r3",
+              "text": "The table which me bought is heavy."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d9d6448ee803990081c28eb0232436d135593a22293b14bb597a3981e17eef0f"
+}

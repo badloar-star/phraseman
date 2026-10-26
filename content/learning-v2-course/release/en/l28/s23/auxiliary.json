@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-28:session-23",
+  "entries": [
+    {
+      "interactionId": "en:lesson-28:session-23:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-23:intro1:r2": {
+          "ru": "Несколько пробников: are.",
+          "uk": "Кілька пробників: are."
+        },
+        "en:lesson-28:session-23:intro1:r3": {
+          "ru": "Здесь нужна форма given.",
+          "uk": "Тут потрібна форма given."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-23:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-23:intro2:r2": {
+          "ru": "Одна коробка: was.",
+          "uk": "Одна коробка: was."
+        },
+        "en:lesson-28:session-23:intro2:r3": {
+          "ru": "О выполненном действии над коробкой говорим was opened.",
+          "uk": "Про виконану дію над коробкою говоримо was opened."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-23:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-23:intro3:r2": {
+          "ru": "Между will и delivered нужно be.",
+          "uk": "Між will і delivered потрібне be."
+        },
+        "en:lesson-28:session-23:intro3:r3": {
+          "ru": "Здесь нужна delivered.",
+          "uk": "Тут потрібна delivered."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "0f4f0ef6b15eacceb3ef02bfe868ec6c3181e5701b109318c9a677339192f0dd"
+}

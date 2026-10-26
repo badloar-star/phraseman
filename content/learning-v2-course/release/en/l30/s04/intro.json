@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-30:session-04",
+  "learningOutcomeByLocale": {
+    "ru": "как передать чужие слова об удивлении, выразить желание жить ближе и уточнить фотографию.",
+    "uk": "як передати чужі слова про здивування, висловити бажання жити ближче й уточнити фотографію."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-30:session-04:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Неожиданная встреча",
+        "uk": "Несподівана зустріч"
+      },
+      "bodyByLocale": {
+        "ru": "Вчера брат неожиданно встретил школьного друга и сказал вам, что был поражён. Сегодня вы передаёте его слова маме: He said he was astonished — он сказал, что был поражён. Соберите He + said + he was astonished. После said передайте состояние брата в момент встречи: he was astonished. Оба he обозначают брата.",
+        "uk": "Учора брат несподівано зустрів шкільного друга й сказав вам, що був вражений. Сьогодні ви передаєте його слова мамі: He said he was astonished — він сказав, що був вражений. Складіть He + said + he was astonished. Після said передайте стан брата в момент зустрічі: he was astonished. Обидва he позначають брата."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-04:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-04:intro1:r1",
+              "text": "He said he was astonished."
+            },
+            {
+              "responseId": "en:lesson-30:session-04:intro1:r2",
+              "text": "He said he were astonished."
+            },
+            {
+              "responseId": "en:lesson-30:session-04:intro1:r3",
+              "text": "He said he being astonished."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-04:intro1:r1",
+              "text": "He said he was astonished."
+            },
+            {
+              "responseId": "en:lesson-30:session-04:intro1:r2",
+              "text": "He said he were astonished."
+            },
+            {
+              "responseId": "en:lesson-30:session-04:intro1:r3",
+              "text": "He said he being astonished."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-30:session-04:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Хотелось бы жить поближе",
+        "uk": "Хотілося б жити ближче"
+      },
+      "bodyByLocale": {
+        "ru": "Ваш старый друг живёт далеко, а вам хочется чаще видеться: I wish we lived closer — хотелось бы, чтобы мы жили ближе друг к другу. Соберите I wish + we lived + closer. Lived после wish описывает желаемое положение сейчас, а не прежнее место жительства.",
+        "uk": "Ваш давній друг живе далеко, а вам хочеться частіше бачитися: I wish we lived closer — хотілося б, щоб ми жили ближче одне до одного. Складіть I wish + we lived + closer. Lived після wish описує бажане становище зараз, а не колишнє місце проживання."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-04:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-04:intro2:r1",
+              "text": "I wish we lived closer."
+            },
+            {
+              "responseId": "en:lesson-30:session-04:intro2:r2",
+              "text": "I wish we live closer."
+            },
+            {
+              "responseId": "en:lesson-30:session-04:intro2:r3",
+              "text": "I wish we living closer."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-04:intro2:r1",
+              "text": "I wish we lived closer."
+            },
+            {
+              "responseId": "en:lesson-30:session-04:intro2:r2",
+              "text": "I wish we live closer."
+            },
+            {
+              "responseId": "en:lesson-30:session-04:intro2:r3",
+              "text": "I wish we living closer."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-30:session-04:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Какую фотографию показать",
+        "uk": "Яку фотографію показати"
+      },
+      "bodyByLocale": {
+        "ru": "После встречи брат сделал фотографию. Вы объясняете маме, какой снимок хотите показать: The photo he took is lovely — фотография, которую он сделал, чудесная. Соберите The photo + he took + is lovely. He took уточняет снимок; перед he можно опустить that, потому что he называет того, кто снимал, а photo — то, что он снял.",
+        "uk": "Після зустрічі брат зробив фотографію. Ви пояснюєте мамі, який знімок хочете показати: The photo he took is lovely — фотографія, яку він зробив, чудова. Складіть The photo + he took + is lovely. He took уточнює знімок; перед he можна пропустити that, тому що he називає того, хто знімав, а photo — те, що він зняв."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-04:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-04:intro3:r1",
+              "text": "The photo he took is lovely."
+            },
+            {
+              "responseId": "en:lesson-30:session-04:intro3:r2",
+              "text": "The photo he taking is lovely."
+            },
+            {
+              "responseId": "en:lesson-30:session-04:intro3:r3",
+              "text": "The photo he took are lovely."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-04:intro3:r1",
+              "text": "The photo he took is lovely."
+            },
+            {
+              "responseId": "en:lesson-30:session-04:intro3:r2",
+              "text": "The photo he taking is lovely."
+            },
+            {
+              "responseId": "en:lesson-30:session-04:intro3:r3",
+              "text": "The photo he took are lovely."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b62eb95785036ce48a51bb6e3c7cf7bb153186a4c427ccfc0d55f45c599d8b02"
+}

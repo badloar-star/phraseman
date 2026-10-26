@@ -1,0 +1,1041 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-28:session-20",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-28:session-20:i01",
+      "ordinal": 4,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточніть, де проходить дитяче заняття.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-20:i01:audio"
+      ],
+      "accessibilityLabel": "Уточніть, де проходить дитяче заняття.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-20:i01:audio",
+          "transcript": "Where is the class for children?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Where is the class for children?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-20:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — playdough",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-20:i02:audio"
+      ],
+      "accessibilityLabel": "Картка слова — playdough",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-20:i02:audio",
+          "transcript": "playdough"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-20:i02:r1",
+            "targetText": "playdough",
+            "meaningByLocale": {
+              "ru": "Мягкая масса для лепки, похожая на тесто.",
+              "uk": "М’яка маса для ліплення, схожа на тісто."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "playdough",
+          "definitionByLocale": {
+            "ru": "Мягкая масса для лепки, похожая на тесто.",
+            "uk": "М’яка маса для ліплення, схожа на тісто."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-20:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-20:i03:r1",
+          "text": "The playdough is kept in a box."
+        },
+        {
+          "responseId": "en:lesson-28:session-20:i03:r2",
+          "text": "The playdough is kept in a bag."
+        },
+        {
+          "responseId": "en:lesson-28:session-20:i03:r3",
+          "text": "The chalk is kept in a box."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-20:i03:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-20:i03:audio",
+          "transcript": "The playdough is kept in a box."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-20:i03:r1",
+            "targetText": "The playdough is kept in a box.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-20:i03:r2",
+            "targetText": "The playdough is kept in a bag.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-20:i03:r3",
+            "targetText": "The chalk is kept in a box.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-20:i03:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The playdough is kept in a box.",
+              "uk": "У записі звучить The playdough is kept in a box."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-20:i03:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The playdough is kept in a box.",
+              "uk": "У записі звучить The playdough is kept in a box."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-20:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте, чи потрібно приносити свої пензлі.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи потрібно приносити свої пензлі.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do we need to bring our own brushes?",
+        "localizedMeaning": {
+          "ru": "Спросите, нужно ли приносить свои кисти.",
+          "uk": "Запитайте, чи потрібно приносити свої пензлі."
+        },
+        "orderedTokens": [
+          "Do",
+          "we",
+          "need",
+          "to",
+          "bring",
+          "our",
+          "own",
+          "brushes"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-20:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — glitter",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-20:i05:audio"
+      ],
+      "accessibilityLabel": "Картка слова — glitter",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-20:i05:audio",
+          "transcript": "glitter"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-20:i05:r1",
+            "targetText": "glitter",
+            "meaningByLocale": {
+              "ru": "Блёстки для украшения поделок.",
+              "uk": "Блискітки для прикрашання поробок."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "glitter",
+          "definitionByLocale": {
+            "ru": "Блёстки для украшения поделок.",
+            "uk": "Блискітки для прикрашання поробок."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-20:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте, чи можна використовувати блискітки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-20:i06:audio"
+      ],
+      "accessibilityLabel": "Запитайте, чи можна використовувати блискітки.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-20:i06:audio",
+          "transcript": "Can we use glitter?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Can we use glitter?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-20:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Столи накриють папером перед заняттям.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-20:i07:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-28:session-20:i07:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-28:session-20:i07:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Столи накриють папером перед заняттям.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Столы накроют бумагой перед занятием.",
+          "uk": "Столи накриють папером перед заняттям."
+        },
+        "gappedTargetPhrase": "The tables will ___ covered with paper.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-20:i07:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-28:session-20:i07:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-28:session-20:i07:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Столи накриють папером перед заняттям.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-20:i07:r2",
+            "correct": false,
+            "testedDimension": "Столи накриють папером перед заняттям.",
+            "feedbackByLocale": {
+              "ru": "После will нужна be.",
+              "uk": "Після will потрібна be."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-20:i07:r3",
+            "correct": false,
+            "testedDimension": "Столи накриють папером перед заняттям.",
+            "feedbackByLocale": {
+              "ru": "Для нескольких столов тоже will be.",
+              "uk": "Для кількох столів також will be."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-20:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви хотіли б більше часу для роботи.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви хотіли б більше часу для роботи.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I wish we had more time.",
+        "localizedMeaning": {
+          "ru": "Вы хотели бы больше времени для работы.",
+          "uk": "Ви хотіли б більше часу для роботи."
+        },
+        "orderedTokens": [
+          "I",
+          "wish",
+          "we",
+          "had",
+          "more",
+          "time"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-20:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — stencil",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-20:i09:audio"
+      ],
+      "accessibilityLabel": "Картка слова — stencil",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-20:i09:audio",
+          "transcript": "stencil"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-20:i09:r1",
+            "targetText": "stencil",
+            "meaningByLocale": {
+              "ru": "Трафарет: шаблон с вырезанным рисунком для переноса на поверхность.",
+              "uk": "Трафарет: шаблон із вирізаним малюнком для перенесення на поверхню."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "stencil",
+          "definitionByLocale": {
+            "ru": "Трафарет: шаблон с вырезанным рисунком для переноса на поверхность.",
+            "uk": "Трафарет: шаблон із вирізаним малюнком для перенесення на поверхню."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-20:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросіть трафарет у формі зірки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросіть трафарет у формі зірки.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I have a star stencil?",
+        "localizedMeaning": {
+          "ru": "Попросите трафарет в форме звезды.",
+          "uk": "Попросіть трафарет у формі зірки."
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "have",
+          "a",
+          "star",
+          "stencil"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-20:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-20:i11:r1",
+          "text": "The paper was cut before the class."
+        },
+        {
+          "responseId": "en:lesson-28:session-20:i11:r2",
+          "text": "The paper was cut after the class."
+        },
+        {
+          "responseId": "en:lesson-28:session-20:i11:r3",
+          "text": "The fabric was cut before the class."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-20:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-20:i11:audio",
+          "transcript": "The paper was cut before the class."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-20:i11:r1",
+            "targetText": "The paper was cut before the class.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-20:i11:r2",
+            "targetText": "The paper was cut after the class.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-20:i11:r3",
+            "targetText": "The fabric was cut before the class.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-20:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The paper was cut before the class.",
+              "uk": "У записі звучить The paper was cut before the class."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-20:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The paper was cut before the class.",
+              "uk": "У записі звучить The paper was cut before the class."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-20:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Пензлі надають усім учасникам.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-20:i12:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-28:session-20:i12:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-28:session-20:i12:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Пензлі надають усім учасникам.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Кисти предоставляют всем участникам.",
+          "uk": "Пензлі надають усім учасникам."
+        },
+        "gappedTargetPhrase": "Brushes ___ provided for everyone.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-20:i12:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-28:session-20:i12:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-28:session-20:i12:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Пензлі надають усім учасникам.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-20:i12:r2",
+            "correct": false,
+            "testedDimension": "Пензлі надають усім учасникам.",
+            "feedbackByLocale": {
+              "ru": "Brushes — несколько: are.",
+              "uk": "Brushes — кілька: are."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-20:i12:r3",
+            "correct": false,
+            "testedDimension": "Пензлі надають усім учасникам.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем are provided.",
+              "uk": "Тут використовуємо are provided."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-20:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — watercolours",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-20:i13:audio"
+      ],
+      "accessibilityLabel": "Картка слова — watercolours",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-20:i13:audio",
+          "transcript": "watercolours"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-20:i13:r1",
+            "targetText": "watercolours",
+            "meaningByLocale": {
+              "ru": "Акварельные краски.",
+              "uk": "Акварельні фарби."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "watercolours",
+          "definitionByLocale": {
+            "ru": "Акварельные краски.",
+            "uk": "Акварельні фарби."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-20:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточніть, чи підходять ці акварельні фарби для початківців.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-20:i14:audio"
+      ],
+      "accessibilityLabel": "Уточніть, чи підходять ці акварельні фарби для початківців.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-20:i14:audio",
+          "transcript": "Are these watercolours suitable for beginners?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Are these watercolours suitable for beginners?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-20:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, де залишать картину.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-20:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте, де залишать картину.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-20:i15:audio",
+          "transcript": "The painting will be kept here overnight."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The painting will be kept here overnight.",
+        "orderedTokens": [
+          "The",
+          "painting",
+          "will",
+          "be",
+          "kept",
+          "here",
+          "overnight"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-20:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора заняття вже почалося до вашого приходу. Завершіть ранішу подію.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-20:i16:r1",
+          "text": "started"
+        },
+        {
+          "responseId": "en:lesson-28:session-20:i16:r2",
+          "text": "start"
+        },
+        {
+          "responseId": "en:lesson-28:session-20:i16:r3",
+          "text": "starting"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора заняття вже почалося до вашого приходу. Завершіть ранішу подію.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера занятие уже началось к вашему приходу. Завершите более раннее событие.",
+          "uk": "Учора заняття вже почалося до вашого приходу. Завершіть ранішу подію."
+        },
+        "gappedTargetPhrase": "The class had ___ by the time we arrived.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-20:i16:r1",
+            "text": "started"
+          },
+          {
+            "responseId": "en:lesson-28:session-20:i16:r2",
+            "text": "start"
+          },
+          {
+            "responseId": "en:lesson-28:session-20:i16:r3",
+            "text": "starting"
+          }
+        ],
+        "testedDimension": "Учора заняття вже почалося до вашого приходу. Завершіть ранішу подію.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-20:i16:r2",
+            "correct": false,
+            "testedDimension": "Учора заняття вже почалося до вашого приходу. Завершіть ранішу подію.",
+            "feedbackByLocale": {
+              "ru": "После had нужна started.",
+              "uk": "Після had потрібна started."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-20:i16:r3",
+            "correct": false,
+            "testedDimension": "Учора заняття вже почалося до вашого приходу. Завершіть ранішу подію.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем had started.",
+              "uk": "Тут використовуємо had started."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-20:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть фартух для дитини.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-20:i17:audio"
+      ],
+      "accessibilityLabel": "Попросіть фартух для дитини.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-20:i17:audio",
+          "transcript": "Could we have an apron, please?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could we have an apron, please?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-20:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-20:i18:r1",
+          "text": "The brushes were washed after the class."
+        },
+        {
+          "responseId": "en:lesson-28:session-20:i18:r2",
+          "text": "The brushes were washed before the class."
+        },
+        {
+          "responseId": "en:lesson-28:session-20:i18:r3",
+          "text": "The cups were washed after the class."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-20:i18:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-20:i18:audio",
+          "transcript": "The brushes were washed after the class."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-20:i18:r1",
+            "targetText": "The brushes were washed after the class.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-20:i18:r2",
+            "targetText": "The brushes were washed before the class.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-20:i18:r3",
+            "targetText": "The cups were washed after the class.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-20:i18:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The brushes were washed after the class.",
+              "uk": "У записі звучить The brushes were washed after the class."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-20:i18:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The brushes were washed after the class.",
+              "uk": "У записі звучить The brushes were washed after the class."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-20:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, що зроблять із малюнками.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-20:i19:audio"
+      ],
+      "accessibilityLabel": "Послухайте, що зроблять із малюнками.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-20:i19:audio",
+          "transcript": "The pictures will be displayed on the wall."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The pictures will be displayed on the wall.",
+        "orderedTokens": [
+          "The",
+          "pictures",
+          "will",
+          "be",
+          "displayed",
+          "on",
+          "the",
+          "wall"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-20:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Роботи покладуть на полицю. Виберіть потрібну форму put.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-20:i20:r1",
+          "text": "put"
+        },
+        {
+          "responseId": "en:lesson-28:session-20:i20:r2",
+          "text": "putting"
+        },
+        {
+          "responseId": "en:lesson-28:session-20:i20:r3",
+          "text": "puts"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Роботи покладуть на полицю. Виберіть потрібну форму put.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Работы положат на полку. Выберите нужную форму put.",
+          "uk": "Роботи покладуть на полицю. Виберіть потрібну форму put."
+        },
+        "gappedTargetPhrase": "The paintings will be ___ on the shelf.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-20:i20:r1",
+            "text": "put"
+          },
+          {
+            "responseId": "en:lesson-28:session-20:i20:r2",
+            "text": "putting"
+          },
+          {
+            "responseId": "en:lesson-28:session-20:i20:r3",
+            "text": "puts"
+          }
+        ],
+        "testedDimension": "Роботи покладуть на полицю. Виберіть потрібну форму put.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-20:i20:r2",
+            "correct": false,
+            "testedDimension": "Роботи покладуть на полицю. Виберіть потрібну форму put.",
+            "feedbackByLocale": {
+              "ru": "Здесь третья форма — put.",
+              "uk": "Тут третя форма — put."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-20:i20:r3",
+            "correct": false,
+            "testedDimension": "Роботи покладуть на полицю. Виберіть потрібну форму put.",
+            "feedbackByLocale": {
+              "ru": "После will be здесь put, без -s.",
+              "uk": "Після will be тут put, без -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-20:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте, коли можна забрати картину.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-20:i21:audio"
+      ],
+      "accessibilityLabel": "Запитайте, коли можна забрати картину.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-20:i21:audio",
+          "transcript": "When can we collect the painting?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "When can we collect the painting?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "764776e09c43366ae3525f56ea65c9645bf395252453fbfcff5c05b80b7e5170"
+}

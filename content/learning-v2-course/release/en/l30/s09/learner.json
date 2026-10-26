@@ -1,0 +1,1092 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-30:session-09",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-30:session-09:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Передайте вопрос знакомой о том, где вы жили в детстве.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Передайте вопрос знакомой о том, где вы жили в детстве.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She asked where I lived.",
+        "localizedMeaning": {
+          "ru": "Передайте вопрос знакомой о том, где вы жили в детстве.",
+          "uk": "Передайте запитання знайомої про те, де ви жили в дитинстві."
+        },
+        "orderedTokens": [
+          "She",
+          "asked",
+          "where",
+          "I",
+          "lived"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-09:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — origin",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-09:i02:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — origin",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-09:i02:audio",
+          "transcript": "origin"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-09:i02:r1",
+            "targetText": "origin",
+            "meaningByLocale": {
+              "ru": "Происхождение, источник. То, откуда что-то появилось, например название места.",
+              "uk": "Походження, джерело. Те, звідки щось виникло, наприклад назва місця."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "origin",
+          "definitionByLocale": {
+            "ru": "Происхождение, источник. То, откуда что-то появилось, например название места.",
+            "uk": "Походження, джерело. Те, звідки щось виникло, наприклад назва місця."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-09:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-09:i03:r1",
+          "text": "She asked about the origin of the name."
+        },
+        {
+          "responseId": "en:lesson-30:session-09:i03:r2",
+          "text": "She asked about the meaning of the name."
+        },
+        {
+          "responseId": "en:lesson-30:session-09:i03:r3",
+          "text": "She asked about the spelling of the name."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-09:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-09:i03:audio",
+          "transcript": "She asked about the origin of the name."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-09:i03:r1",
+            "targetText": "She asked about the origin of the name.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-09:i03:r2",
+            "targetText": "She asked about the meaning of the name.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-09:i03:r3",
+            "targetText": "She asked about the spelling of the name.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-09:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She asked about the origin of the name.",
+              "uk": "У записі звучить She asked about the origin of the name."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-09:i03:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She asked about the origin of the name.",
+              "uk": "У записі звучить She asked about the origin of the name."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-09:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг спросил, были ли вы готовы к прогулке.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-09:i04:r1",
+          "text": "if"
+        },
+        {
+          "responseId": "en:lesson-30:session-09:i04:r2",
+          "text": "what"
+        },
+        {
+          "responseId": "en:lesson-30:session-09:i04:r3",
+          "text": "where"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг спросил, были ли вы готовы к прогулке.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг спросил, были ли вы готовы к прогулке.",
+          "uk": "Друг запитав, чи були ви готові до прогулянки."
+        },
+        "gappedTargetPhrase": "He asked ___ I was ready.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-09:i04:r1",
+            "text": "if"
+          },
+          {
+            "responseId": "en:lesson-30:session-09:i04:r2",
+            "text": "what"
+          },
+          {
+            "responseId": "en:lesson-30:session-09:i04:r3",
+            "text": "where"
+          }
+        ],
+        "testedDimension": "Друг спросил, были ли вы готовы к прогулке.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-09:i04:r2",
+            "correct": false,
+            "testedDimension": "Друг спросил, были ли вы готовы к прогулке.",
+            "feedbackByLocale": {
+              "ru": "What означает что; здесь передаём вопрос да или нет через if.",
+              "uk": "What означає що; тут передаємо запитання так або ні через if."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-09:i04:r3",
+            "correct": false,
+            "testedDimension": "Друг спросил, были ли вы готовы к прогулке.",
+            "feedbackByLocale": {
+              "ru": "Where спрашивает о месте; здесь нужна готовность: if.",
+              "uk": "Where запитує про місце; тут потрібна готовність: if."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-09:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Передайте вопрос туриста о расположении станции.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-09:i05:audio"
+      ],
+      "accessibilityLabel": "Передайте вопрос туриста о расположении станции.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-09:i05:audio",
+          "transcript": "He asked where the station was."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He asked where the station was.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-09:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — via",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-09:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — via",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-09:i06:audio",
+          "transcript": "via"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-09:i06:r1",
+            "targetText": "via",
+            "meaningByLocale": {
+              "ru": "Через, по пути через. Указывает промежуточное место на маршруте.",
+              "uk": "Через, дорогою через. Указує проміжне місце на маршруті."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "via",
+          "definitionByLocale": {
+            "ru": "Через, по пути через. Указывает промежуточное место на маршруте.",
+            "uk": "Через, дорогою через. Указує проміжне місце на маршруті."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-09:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-09:i07:r1",
+          "text": "The bus goes via the station."
+        },
+        {
+          "responseId": "en:lesson-30:session-09:i07:r2",
+          "text": "The bus goes past the station."
+        },
+        {
+          "responseId": "en:lesson-30:session-09:i07:r3",
+          "text": "The bus stops at the station."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-09:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-09:i07:audio",
+          "transcript": "The bus goes via the station."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-09:i07:r1",
+            "targetText": "The bus goes via the station.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-09:i07:r2",
+            "targetText": "The bus goes past the station.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-09:i07:r3",
+            "targetText": "The bus stops at the station.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-09:i07:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The bus goes via the station.",
+              "uk": "У записі звучить The bus goes via the station."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-09:i07:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The bus goes via the station.",
+              "uk": "У записі звучить The bus goes via the station."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-09:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте пересказ вопроса о готовности.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-09:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте пересказ вопроса о готовности.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-09:i08:audio",
+          "transcript": "He asked if I was ready."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "He asked if I was ready.",
+        "orderedTokens": [
+          "He",
+          "asked",
+          "if",
+          "I",
+          "was",
+          "ready"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-09:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Перескажите вопрос туриста о станции.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-09:i09:r1",
+          "text": "the station was"
+        },
+        {
+          "responseId": "en:lesson-30:session-09:i09:r2",
+          "text": "was the station"
+        },
+        {
+          "responseId": "en:lesson-30:session-09:i09:r3",
+          "text": "the station were"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Перескажите вопрос туриста о станции.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Перескажите вопрос туриста о станции.",
+          "uk": "Перекажіть запитання туриста про станцію."
+        },
+        "gappedTargetPhrase": "He asked where ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-09:i09:r1",
+            "text": "the station was"
+          },
+          {
+            "responseId": "en:lesson-30:session-09:i09:r2",
+            "text": "was the station"
+          },
+          {
+            "responseId": "en:lesson-30:session-09:i09:r3",
+            "text": "the station were"
+          }
+        ],
+        "testedDimension": "Перескажите вопрос туриста о станции.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-09:i09:r2",
+            "correct": false,
+            "testedDimension": "Перескажите вопрос туриста о станции.",
+            "feedbackByLocale": {
+              "ru": "В пересказе после where сначала идёт the station, затем was.",
+              "uk": "У переказі після where спочатку йде the station, потім was."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-09:i09:r3",
+            "correct": false,
+            "testedDimension": "Перескажите вопрос туриста о станции.",
+            "feedbackByLocale": {
+              "ru": "С the station здесь используем was.",
+              "uk": "Із the station тут використовуємо was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-09:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — promenade",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-09:i10:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — promenade",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-09:i10:audio",
+          "transcript": "promenade"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-09:i10:r1",
+            "targetText": "promenade",
+            "meaningByLocale": {
+              "ru": "Набережная для прогулок. Широкая прогулочная дорожка, особенно вдоль моря.",
+              "uk": "Набережна для прогулянок. Широка прогулянкова доріжка, особливо вздовж моря."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "promenade",
+          "definitionByLocale": {
+            "ru": "Набережная для прогулок. Широкая прогулочная дорожка, особенно вдоль моря.",
+            "uk": "Набережна для прогулянок. Широка прогулянкова доріжка, особливо вздовж моря."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-09:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Передайте вопрос туриста о том, где прогулочная набережная.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-09:i11:audio"
+      ],
+      "accessibilityLabel": "Передайте вопрос туриста о том, где прогулочная набережная.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-09:i11:audio",
+          "transcript": "He asked where the promenade was."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He asked where the promenade was.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-09:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, о чём спросила знакомая.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-09:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте, о чём спросила знакомая.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-09:i12:audio",
+          "transcript": "She asked where I lived."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She asked where I lived.",
+        "orderedTokens": [
+          "She",
+          "asked",
+          "where",
+          "I",
+          "lived"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-09:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — boardwalk",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-09:i13:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — boardwalk",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-09:i13:audio",
+          "transcript": "boardwalk"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-09:i13:r1",
+            "targetText": "boardwalk",
+            "meaningByLocale": {
+              "ru": "Деревянная прогулочная дорожка. Настил из досок, часто вдоль пляжа или над влажной землёй.",
+              "uk": "Дерев’яна прогулянкова доріжка. Настил із дощок, часто вздовж пляжу або над вологою землею."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "boardwalk",
+          "definitionByLocale": {
+            "ru": "Деревянная прогулочная дорожка. Настил из досок, часто вдоль пляжа или над влажной землёй.",
+            "uk": "Дерев’яна прогулянкова доріжка. Настил із дощок, часто вздовж пляжу або над вологою землею."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-09:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-09:i14:r1",
+          "text": "He asked if the boardwalk was open."
+        },
+        {
+          "responseId": "en:lesson-30:session-09:i14:r2",
+          "text": "He asked if the beach was open."
+        },
+        {
+          "responseId": "en:lesson-30:session-09:i14:r3",
+          "text": "He asked if the café was open."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-09:i14:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-09:i14:audio",
+          "transcript": "He asked if the boardwalk was open."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-09:i14:r1",
+            "targetText": "He asked if the boardwalk was open.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-09:i14:r2",
+            "targetText": "He asked if the beach was open.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-09:i14:r3",
+            "targetText": "He asked if the café was open.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-09:i14:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He asked if the boardwalk was open.",
+              "uk": "У записі звучить He asked if the boardwalk was open."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-09:i14:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He asked if the boardwalk was open.",
+              "uk": "У записі звучить He asked if the boardwalk was open."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-09:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-30:session-09:i15:p1",
+            "target": "origin",
+            "meaningByLocale": {
+              "ru": "происхождение",
+              "uk": "походження"
+            }
+          },
+          {
+            "pairId": "en:lesson-30:session-09:i15:p2",
+            "target": "via",
+            "meaningByLocale": {
+              "ru": "через",
+              "uk": "через"
+            }
+          },
+          {
+            "pairId": "en:lesson-30:session-09:i15:p3",
+            "target": "promenade",
+            "meaningByLocale": {
+              "ru": "прогулочная набережная",
+              "uk": "прогулянкова набережна"
+            }
+          },
+          {
+            "pairId": "en:lesson-30:session-09:i15:p4",
+            "target": "boardwalk",
+            "meaningByLocale": {
+              "ru": "деревянная прогулочная дорожка",
+              "uk": "дерев’яна прогулянкова доріжка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "origin",
+          "via",
+          "promenade",
+          "boardwalk"
+        ],
+        "rightColumn": [
+          "происхождение",
+          "через",
+          "прогулочная набережная",
+          "деревянная прогулочная дорожка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-09:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Передайте вопрос знакомой о месте, где вы жили в детстве.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-09:i16:r1",
+          "text": "I lived"
+        },
+        {
+          "responseId": "en:lesson-30:session-09:i16:r2",
+          "text": "did I live"
+        },
+        {
+          "responseId": "en:lesson-30:session-09:i16:r3",
+          "text": "I living"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Передайте вопрос знакомой о месте, где вы жили в детстве.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Передайте вопрос знакомой о месте, где вы жили в детстве.",
+          "uk": "Передайте запитання знайомої про місце, де ви жили в дитинстві."
+        },
+        "gappedTargetPhrase": "She asked where ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-09:i16:r1",
+            "text": "I lived"
+          },
+          {
+            "responseId": "en:lesson-30:session-09:i16:r2",
+            "text": "did I live"
+          },
+          {
+            "responseId": "en:lesson-30:session-09:i16:r3",
+            "text": "I living"
+          }
+        ],
+        "testedDimension": "Передайте вопрос знакомой о месте, где вы жили в детстве.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-09:i16:r2",
+            "correct": false,
+            "testedDimension": "Передайте вопрос знакомой о месте, где вы жили в детстве.",
+            "feedbackByLocale": {
+              "ru": "Это пересказ: I lived без did.",
+              "uk": "Це переказ: I lived без did."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-09:i16:r3",
+            "correct": false,
+            "testedDimension": "Передайте вопрос знакомой о месте, где вы жили в детстве.",
+            "feedbackByLocale": {
+              "ru": "Нужно I lived, не I living.",
+              "uk": "Потрібне I lived, не I living."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-09:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг уже надел куртку, а вы всё ещё ищете второй носок. Передайте его вопрос о вашей готовности.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-09:i17:audio"
+      ],
+      "accessibilityLabel": "Друг уже надел куртку, а вы всё ещё ищете второй носок. Передайте его вопрос о вашей готовности.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-09:i17:audio",
+          "transcript": "He asked if I was ready."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He asked if I was ready.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-09:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Передайте вопрос о том, открыта ли деревянная дорожка.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Передайте вопрос о том, открыта ли деревянная дорожка.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He asked if the boardwalk was open.",
+        "localizedMeaning": {
+          "ru": "Передайте вопрос о том, открыта ли деревянная дорожка.",
+          "uk": "Передайте запитання про те, чи відкрита дерев’яна доріжка."
+        },
+        "orderedTokens": [
+          "He",
+          "asked",
+          "if",
+          "the",
+          "boardwalk",
+          "was",
+          "open"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-09:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: турист спросил о набережной или о станции?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-09:i19:r1",
+          "text": "He asked where the promenade was."
+        },
+        {
+          "responseId": "en:lesson-30:session-09:i19:r2",
+          "text": "He asked where the station was."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-09:i19:audioA",
+        "en:lesson-30:session-09:i19:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: турист спросил о набережной или о станции?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "He asked where the promenade was.",
+        "contrastB": "He asked where the station was.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-30:session-09:i19:audioA",
+          "transcript": "He asked where the promenade was."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-30:session-09:i19:audioB",
+          "transcript": "He asked where the station was."
+        },
+        "testedPhoneticContrast": "Послушайте: турист спросил о набережной или о станции?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-09:i19:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: турист спросил о набережной или о станции?",
+            "feedbackByLocale": {
+              "ru": "Звучит promenade — прогулочная набережная.",
+              "uk": "Звучить promenade — прогулянкова набережна."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-09:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг спросил, были ли вы готовы в тот момент.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-09:i20:r1",
+          "text": "I was ready"
+        },
+        {
+          "responseId": "en:lesson-30:session-09:i20:r2",
+          "text": "was I ready"
+        },
+        {
+          "responseId": "en:lesson-30:session-09:i20:r3",
+          "text": "I were ready"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг спросил, были ли вы готовы в тот момент.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг спросил, были ли вы готовы в тот момент.",
+          "uk": "Друг запитав, чи були ви готові тієї миті."
+        },
+        "gappedTargetPhrase": "He asked if ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-09:i20:r1",
+            "text": "I was ready"
+          },
+          {
+            "responseId": "en:lesson-30:session-09:i20:r2",
+            "text": "was I ready"
+          },
+          {
+            "responseId": "en:lesson-30:session-09:i20:r3",
+            "text": "I were ready"
+          }
+        ],
+        "testedDimension": "Друг спросил, были ли вы готовы в тот момент.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-09:i20:r2",
+            "correct": false,
+            "testedDimension": "Друг спросил, были ли вы готовы в тот момент.",
+            "feedbackByLocale": {
+              "ru": "После if внутри пересказа нужен порядок I was.",
+              "uk": "Після if усередині переказу потрібен порядок I was."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-09:i20:r3",
+            "correct": false,
+            "testedDimension": "Друг спросил, были ли вы готовы в тот момент.",
+            "feedbackByLocale": {
+              "ru": "Здесь описываем I was, не желание с wish.",
+              "uk": "Тут описуємо I was, не бажання з wish."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-09:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Знакомая спросила, где вы жили. Передайте её вопрос.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-09:i21:audio"
+      ],
+      "accessibilityLabel": "Знакомая спросила, где вы жили. Передайте её вопрос.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-09:i21:audio",
+          "transcript": "She asked where I lived."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She asked where I lived.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "4a09df729306c0a899f9afc3f35cf7a8ff96cded9056a68ca622f43eabf44ea6"
+}

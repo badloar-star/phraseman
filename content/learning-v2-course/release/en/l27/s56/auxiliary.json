@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-27:session-56",
+  "entries": [
+    {
+      "interactionId": "en:lesson-27:session-56:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-56:intro1:r2": {
+          "ru": "После have нужна третья форма put, не putting.",
+          "uk": "Після have потрібна третя форма put, не putting."
+        },
+        "en:lesson-27:session-56:intro1:r3": {
+          "ru": "С I используем have.",
+          "uk": "З I використовуємо have."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-56:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-56:intro2:r2": {
+          "ru": "В этой модели желания о настоящем используем were.",
+          "uk": "У цій моделі бажання про теперішнє використовуємо were."
+        },
+        "en:lesson-27:session-56:intro2:r3": {
+          "ru": "Нужна личная форма were, не being.",
+          "uk": "Потрібна особова форма were, не being."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-56:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-56:intro3:r2": {
+          "ru": "После would нужна начальная форма go.",
+          "uk": "Після would потрібна початкова форма go."
+        },
+        "en:lesson-27:session-56:intro3:r3": {
+          "ru": "В условии нужна форма had, не having.",
+          "uk": "В умові потрібна форма had, не having."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f4387eed0aee8f91d346fa1b20db8c22437d79663b0f7507a6369b12a7ace094"
+}

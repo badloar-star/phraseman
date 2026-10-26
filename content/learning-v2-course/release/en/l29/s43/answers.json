@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-29:session-43:i01",
+    "correctText": "Could you show me something lighter?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-43:i02",
+    "correctText": "ramekin",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-43:i03",
+    "correctText": "Is this ramekin ovenproof?",
+    "correctResponseId": "en:lesson-29:session-43:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-43:i04",
+    "correctText": "The pan I bought is too heavy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-43:i05",
+    "correctText": "I bought",
+    "correctResponseId": "en:lesson-29:session-43:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-43:i06",
+    "correctText": "griddle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-43:i07",
+    "correctText": "Can I cook pancakes on this griddle?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-43:i08",
+    "correctText": "This is the shop where I bought the pan.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-43:i09",
+    "correctText": "where",
+    "correctResponseId": "en:lesson-29:session-43:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-43:i10",
+    "correctText": "skillet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-43:i11",
+    "correctText": "This skillet is too heavy.",
+    "correctResponseId": "en:lesson-29:session-43:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-43:i12",
+    "correctText": "Does it come with a lid?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-43:i13",
+    "correctText": "steamer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-43:i14",
+    "correctText": "Can I use this steamer for vegetables?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-43:i15",
+    "correctText": "en:lesson-29:session-43:i15:p1=ramekin\nen:lesson-29:session-43:i15:p2=griddle\nen:lesson-29:session-43:i15:p3=skillet\nen:lesson-29:session-43:i15:p4=steamer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-43:i16",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-29:session-43:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-43:i17",
+    "correctText": "This skillet is too heavy.",
+    "correctResponseId": "en:lesson-29:session-43:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-43:i18",
+    "correctText": "The handle was repaired by my father.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-43:i19",
+    "correctText": "Could you show me how to use it?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-43:i20",
+    "correctText": "you recommended",
+    "correctResponseId": "en:lesson-29:session-43:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-43:i21",
+    "correctText": "I will take the lighter one.",
+    "correctResponseId": null
+  }
+]

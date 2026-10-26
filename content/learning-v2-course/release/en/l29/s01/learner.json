@@ -1,0 +1,1054 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-29:session-01",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-29:session-01:i01",
+      "ordinal": 4,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточните, что ищете женщину, которая здесь работает.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-01:i01:audio"
+      ],
+      "accessibilityLabel": "Уточните, что ищете женщину, которая здесь работает.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-01:i01:audio",
+          "transcript": "I am looking for the woman who works here."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am looking for the woman who works here.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-01:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — vendor",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-01:i02:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — vendor",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-01:i02:audio",
+          "transcript": "vendor"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-01:i02:r1",
+            "targetText": "vendor",
+            "meaningByLocale": {
+              "ru": "Продавец. Здесь человек, который продаёт товары на рынке или с уличного прилавка.",
+              "uk": "Продавець. Тут людина, яка продає товари на ринку або з вуличного прилавка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "vendor",
+          "definitionByLocale": {
+            "ru": "Продавец. Здесь человек, который продаёт товары на рынке или с уличного прилавка.",
+            "uk": "Продавець. Тут людина, яка продає товари на ринку або з вуличного прилавка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-01:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Укажите на продавца, который торгует фруктами.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Укажите на продавца, который торгует фруктами.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "That is the vendor who sells fruit.",
+        "localizedMeaning": {
+          "ru": "Укажите на продавца, который торгует фруктами.",
+          "uk": "Укажіть на продавця, який торгує фруктами."
+        },
+        "orderedTokens": [
+          "That",
+          "is",
+          "the",
+          "vendor",
+          "who",
+          "sells",
+          "fruit"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-01:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Женщина, которая здесь работает, стоит на улице. Выберите связующее слово.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-01:i04:r1",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-01:i04:r2",
+          "text": "which"
+        },
+        {
+          "responseId": "en:lesson-29:session-01:i04:r3",
+          "text": "what"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Женщина, которая здесь работает, стоит на улице. Выберите связующее слово.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Женщина, которая здесь работает, стоит на улице. Выберите связующее слово.",
+          "uk": "Жінка, яка тут працює, стоїть надворі. Виберіть сполучне слово."
+        },
+        "gappedTargetPhrase": "The woman ___ works here is outside.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-01:i04:r1",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-01:i04:r2",
+            "text": "which"
+          },
+          {
+            "responseId": "en:lesson-29:session-01:i04:r3",
+            "text": "what"
+          }
+        ],
+        "testedDimension": "Женщина, которая здесь работает, стоит на улице. Выберите связующее слово.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-01:i04:r2",
+            "correct": false,
+            "testedDimension": "Женщина, которая здесь работает, стоит на улице. Выберите связующее слово.",
+            "feedbackByLocale": {
+              "ru": "Для уточнения человека используем who.",
+              "uk": "Для уточнення людини використовуємо who."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-01:i04:r3",
+            "correct": false,
+            "testedDimension": "Женщина, которая здесь работает, стоит на улице. Выберите связующее слово.",
+            "feedbackByLocale": {
+              "ru": "После the woman здесь нужна who, а не what.",
+              "uk": "Після the woman тут потрібна who, а не what."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-01:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-01:i05:r1",
+          "text": "The bag which has a red handle is mine."
+        },
+        {
+          "responseId": "en:lesson-29:session-01:i05:r2",
+          "text": "The bag which has a blue handle is mine."
+        },
+        {
+          "responseId": "en:lesson-29:session-01:i05:r3",
+          "text": "The bag which has a red handle is hers."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-01:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-01:i05:audio",
+          "transcript": "The bag which has a red handle is mine."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-01:i05:r1",
+            "targetText": "The bag which has a red handle is mine.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-01:i05:r2",
+            "targetText": "The bag which has a blue handle is mine.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-01:i05:r3",
+            "targetText": "The bag which has a red handle is hers.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-01:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The bag which has a red handle is mine.",
+              "uk": "У записі звучить The bag which has a red handle is mine."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-01:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The bag which has a red handle is mine.",
+              "uk": "У записі звучить The bag which has a red handle is mine."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-01:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — fishmonger",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-01:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — fishmonger",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-01:i06:audio",
+          "transcript": "fishmonger"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-01:i06:r1",
+            "targetText": "fishmonger",
+            "meaningByLocale": {
+              "ru": "Продавец рыбы. Человек, который продаёт рыбу в магазине или на рынке.",
+              "uk": "Продавець риби. Людина, яка продає рибу в магазині або на ринку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fishmonger",
+          "definitionByLocale": {
+            "ru": "Продавец рыбы. Человек, который продаёт рыбу в магазине или на рынке.",
+            "uk": "Продавець риби. Людина, яка продає рибу в магазині або на ринку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-01:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что хотите поговорить с продавцом рыбы.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-01:i07:audio"
+      ],
+      "accessibilityLabel": "Скажите, что хотите поговорить с продавцом рыбы.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-01:i07:audio",
+          "transcript": "Could I speak to the fishmonger?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could I speak to the fishmonger?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-01:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, какой ключ нужен.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-01:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте, какой ключ нужен.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-01:i08:audio",
+          "transcript": "I need a key that opens this door."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I need a key that opens this door.",
+        "orderedTokens": [
+          "I",
+          "need",
+          "a",
+          "key",
+          "that",
+          "opens",
+          "this",
+          "door"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-01:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму глагола: речь об одной сумке с красной ручкой.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-01:i09:r1",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-29:session-01:i09:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-29:session-01:i09:r3",
+          "text": "having"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму глагола: речь об одной сумке с красной ручкой.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму глагола: речь об одной сумке с красной ручкой.",
+          "uk": "Виберіть форму дієслова: йдеться про одну сумку з червоною ручкою."
+        },
+        "gappedTargetPhrase": "The bag which ___ a red handle is mine.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-01:i09:r1",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-29:session-01:i09:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-29:session-01:i09:r3",
+            "text": "having"
+          }
+        ],
+        "testedDimension": "Выберите форму глагола: речь об одной сумке с красной ручкой.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-01:i09:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму глагола: речь об одной сумке с красной ручкой.",
+            "feedbackByLocale": {
+              "ru": "Об одной сумке говорим has.",
+              "uk": "Про одну сумку кажемо has."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-01:i09:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму глагола: речь об одной сумке с красной ручкой.",
+            "feedbackByLocale": {
+              "ru": "После which здесь нужен глагол has.",
+              "uk": "Після which тут потрібне дієслово has."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-01:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — barista",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-01:i10:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — barista",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-01:i10:audio",
+          "transcript": "barista"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-01:i10:r1",
+            "targetText": "barista",
+            "meaningByLocale": {
+              "ru": "Бариста. Работник кафе, который готовит кофе.",
+              "uk": "Бариста. Працівник кафе, який готує каву."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "barista",
+          "definitionByLocale": {
+            "ru": "Бариста. Работник кафе, который готовит кофе.",
+            "uk": "Бариста. Працівник кафе, який готує каву."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-01:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что бариста, приготовивший ваш кофе, уже здесь.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-01:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите, что бариста, приготовивший ваш кофе, уже здесь.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-01:i11:audio",
+          "transcript": "The barista who made my coffee is here."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The barista who made my coffee is here.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-01:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-01:i12:r1",
+          "text": "The man who lives upstairs is my neighbour."
+        },
+        {
+          "responseId": "en:lesson-29:session-01:i12:r2",
+          "text": "The man who lives downstairs is my neighbour."
+        },
+        {
+          "responseId": "en:lesson-29:session-01:i12:r3",
+          "text": "The woman who lives upstairs is my neighbour."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-01:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-01:i12:audio",
+          "transcript": "The man who lives upstairs is my neighbour."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-01:i12:r1",
+            "targetText": "The man who lives upstairs is my neighbour.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-01:i12:r2",
+            "targetText": "The man who lives downstairs is my neighbour.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-01:i12:r3",
+            "targetText": "The woman who lives upstairs is my neighbour.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-01:i12:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The man who lives upstairs is my neighbour.",
+              "uk": "У записі звучить The man who lives upstairs is my neighbour."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-01:i12:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The man who lives upstairs is my neighbour.",
+              "uk": "У записі звучить The man who lives upstairs is my neighbour."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-01:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточните, какая кружка ваша: у неё жёлтая ручка.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-01:i13:r1",
+          "text": "which"
+        },
+        {
+          "responseId": "en:lesson-29:session-01:i13:r2",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-01:i13:r3",
+          "text": "what"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточните, какая кружка ваша: у неё жёлтая ручка.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните, какая кружка ваша: у неё жёлтая ручка.",
+          "uk": "Уточніть, яка чашка ваша: у неї жовта ручка."
+        },
+        "gappedTargetPhrase": "The mug ___ has a yellow handle is mine.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-01:i13:r1",
+            "text": "which"
+          },
+          {
+            "responseId": "en:lesson-29:session-01:i13:r2",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-01:i13:r3",
+            "text": "what"
+          }
+        ],
+        "testedDimension": "Уточните, какая кружка ваша: у неё жёлтая ручка.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-01:i13:r2",
+            "correct": false,
+            "testedDimension": "Уточните, какая кружка ваша: у неё жёлтая ручка.",
+            "feedbackByLocale": {
+              "ru": "К предмету mug подходит which.",
+              "uk": "До предмета mug підходить which."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-01:i13:r3",
+            "correct": false,
+            "testedDimension": "Уточните, какая кружка ваша: у неё жёлтая ручка.",
+            "feedbackByLocale": {
+              "ru": "После названия предмета здесь нужна which, а не what.",
+              "uk": "Після назви предмета тут потрібна which, а не what."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-01:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bookseller",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-01:i14:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bookseller",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-01:i14:audio",
+          "transcript": "bookseller"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-01:i14:r1",
+            "targetText": "bookseller",
+            "meaningByLocale": {
+              "ru": "Продавец книг. Человек, который продаёт книги в магазине или за книжным прилавком.",
+              "uk": "Продавець книжок. Людина, яка продає книжки в магазині або за книжковим прилавком."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bookseller",
+          "definitionByLocale": {
+            "ru": "Продавец книг. Человек, который продаёт книги в магазине или за книжным прилавком.",
+            "uk": "Продавець книжок. Людина, яка продає книжки в магазині або за книжковим прилавком."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-01:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что продавец книг, который вам помог, был доброжелательным.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что продавец книг, который вам помог, был доброжелательным.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The bookseller who helped me was friendly.",
+        "localizedMeaning": {
+          "ru": "Скажите, что продавец книг, который вам помог, был доброжелательным.",
+          "uk": "Скажіть, що продавець книжок, який вам допоміг, був доброзичливим."
+        },
+        "orderedTokens": [
+          "The",
+          "bookseller",
+          "who",
+          "helped",
+          "me",
+          "was",
+          "friendly"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-01:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините профессии с переводом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините профессии с переводом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-29:session-01:i16:p1",
+            "target": "vendor",
+            "meaningByLocale": {
+              "ru": "продавец",
+              "uk": "продавець"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-01:i16:p2",
+            "target": "fishmonger",
+            "meaningByLocale": {
+              "ru": "продавец рыбы",
+              "uk": "продавець риби"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-01:i16:p3",
+            "target": "barista",
+            "meaningByLocale": {
+              "ru": "бариста",
+              "uk": "бариста"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-01:i16:p4",
+            "target": "bookseller",
+            "meaningByLocale": {
+              "ru": "продавец книг",
+              "uk": "продавець книжок"
+            }
+          }
+        ],
+        "leftColumn": [
+          "vendor",
+          "fishmonger",
+          "barista",
+          "bookseller"
+        ],
+        "rightColumn": [
+          "продавец",
+          "продавец рыбы",
+          "бариста",
+          "продавец книг"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-01:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: человек открывает или закрывает магазин?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-01:i17:r1",
+          "text": "The man who opens the shop is here."
+        },
+        {
+          "responseId": "en:lesson-29:session-01:i17:r2",
+          "text": "The man who closes the shop is here."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-01:i17:audioA",
+        "en:lesson-29:session-01:i17:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: человек открывает или закрывает магазин?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "The man who opens the shop is here.",
+        "contrastB": "The man who closes the shop is here.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-29:session-01:i17:audioA",
+          "transcript": "The man who opens the shop is here."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-29:session-01:i17:audioB",
+          "transcript": "The man who closes the shop is here."
+        },
+        "testedPhoneticContrast": "Послушайте: человек открывает или закрывает магазин?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-01:i17:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: человек открывает или закрывает магазин?",
+            "feedbackByLocale": {
+              "ru": "В записи opens — открывает.",
+              "uk": "У записі opens — відчиняє."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-01:i18",
+      "ordinal": 21,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите, который из двух мужчин работает здесь.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-01:i18:audio"
+      ],
+      "accessibilityLabel": "Спросите, который из двух мужчин работает здесь.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-01:i18:audio",
+          "transcript": "Which man works here?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Which man works here?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-01:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму глагола в уточнении одного ключа.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-01:i19:r1",
+          "text": "opens"
+        },
+        {
+          "responseId": "en:lesson-29:session-01:i19:r2",
+          "text": "open"
+        },
+        {
+          "responseId": "en:lesson-29:session-01:i19:r3",
+          "text": "opening"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму глагола в уточнении одного ключа.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму глагола в уточнении одного ключа.",
+          "uk": "Виберіть форму дієслова в уточненні одного ключа."
+        },
+        "gappedTargetPhrase": "I need a key that ___ this door.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-01:i19:r1",
+            "text": "opens"
+          },
+          {
+            "responseId": "en:lesson-29:session-01:i19:r2",
+            "text": "open"
+          },
+          {
+            "responseId": "en:lesson-29:session-01:i19:r3",
+            "text": "opening"
+          }
+        ],
+        "testedDimension": "Выберите форму глагола в уточнении одного ключа.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-01:i19:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму глагола в уточнении одного ключа.",
+            "feedbackByLocale": {
+              "ru": "К одному key относится opens.",
+              "uk": "До одного key належить opens."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-01:i19:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму глагола в уточнении одного ключа.",
+            "feedbackByLocale": {
+              "ru": "После that здесь нужна opens.",
+              "uk": "Після that тут потрібна opens."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-01:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте описание женщины.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-01:i20:audio"
+      ],
+      "accessibilityLabel": "Послушайте описание женщины.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-01:i20:audio",
+          "transcript": "The woman who called is waiting."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The woman who called is waiting.",
+        "orderedTokens": [
+          "The",
+          "woman",
+          "who",
+          "called",
+          "is",
+          "waiting"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-01:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточните, что вам нужна сумка с карманом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-01:i21:audio"
+      ],
+      "accessibilityLabel": "Уточните, что вам нужна сумка с карманом.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-01:i21:audio",
+          "transcript": "I need a bag that has a pocket."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I need a bag that has a pocket.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "2aac80137afe57d76efb2a360714b0ca95c24a62799effeca24fbdc3521cabb8"
+}

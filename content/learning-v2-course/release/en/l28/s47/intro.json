@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-28:session-47",
+  "learningOutcomeByLocale": {
+    "ru": "как сравнить варианты и понять, что входит в покупку.",
+    "uk": "як порівняти варіанти й зрозуміти, що входить у покупку."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-28:session-47:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Входит ли доставка в цену",
+        "uk": "Чи входить доставка в ціну"
+      },
+      "bodyByLocale": {
+        "ru": "Вы выбрали кровать, но на ценнике ничего не сказано о доставке. Спросите: Is delivery included? — доставка включена? Соберите Is + delivery + included? В вопросе поставьте Is перед delivery. После названия услуги добавьте included, третью форму include. Вы спрашиваете, включили ли доставку в предложение продавца.",
+        "uk": "Ви вибрали ліжко, але на ціннику нічого не сказано про доставку. Запитайте: Is delivery included? — доставку включено? Складіть Is + delivery + included? У запитанні поставте Is перед delivery. Після назви послуги додайте included, третю форму include. Ви запитуєте, чи включили доставку в пропозицію продавця."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-47:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-47:intro1:r1",
+              "text": "Is delivery included?"
+            },
+            {
+              "responseId": "en:lesson-28:session-47:intro1:r2",
+              "text": "Are delivery included?"
+            },
+            {
+              "responseId": "en:lesson-28:session-47:intro1:r3",
+              "text": "Is delivery include?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-47:intro1:r1",
+              "text": "Is delivery included?"
+            },
+            {
+              "responseId": "en:lesson-28:session-47:intro1:r2",
+              "text": "Are delivery included?"
+            },
+            {
+              "responseId": "en:lesson-28:session-47:intro1:r3",
+              "text": "Is delivery include?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-28:session-47:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Снять чехол",
+        "uk": "Зняти чохол"
+      },
+      "bodyByLocale": {
+        "ru": "Вы хотите отдельно почистить чехол матраса. Спросите продавца: Can the cover be removed? — можно снять чехол? Соберите Can + the cover + be removed? Can ставится перед названием чехла. Затем нужны be и removed, третья форма remove. Чехол не снимает сам: вопрос касается действия над ним.",
+        "uk": "Ви хочете окремо почистити чохол матраца. Запитайте продавця: Can the cover be removed? — чи можна зняти чохол? Складіть Can + the cover + be removed? Can ставиться перед назвою чохла. Потім потрібні be та removed, третя форма remove. Чохол не знімає сам: запитання стосується дії з ним."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-47:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-47:intro2:r1",
+              "text": "Can the cover be removed?"
+            },
+            {
+              "responseId": "en:lesson-28:session-47:intro2:r2",
+              "text": "Can the cover removed?"
+            },
+            {
+              "responseId": "en:lesson-28:session-47:intro2:r3",
+              "text": "Can the cover be remove?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-47:intro2:r1",
+              "text": "Can the cover be removed?"
+            },
+            {
+              "responseId": "en:lesson-28:session-47:intro2:r2",
+              "text": "Can the cover removed?"
+            },
+            {
+              "responseId": "en:lesson-28:session-47:intro2:r3",
+              "text": "Can the cover be remove?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-28:session-47:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Сборка дома",
+        "uk": "Збирання вдома"
+      },
+      "bodyByLocale": {
+        "ru": "Вы не умеете собирать мебель и уточняете условия покупки. Продавец обещает: The bed will be assembled in your room — кровать соберут в вашей комнате. Соберите The bed + will be + assembled + in your room. Сначала назовите кровать, затем добавьте will be и assembled, третью форму assemble. Так вы передаёте будущее действие над предметом. В конце укажите место сборки.",
+        "uk": "Ви не вмієте збирати меблі й уточнюєте умови купівлі. Продавець обіцяє: The bed will be assembled in your room — ліжко зберуть у вашій кімнаті. Складіть The bed + will be + assembled + in your room. Спочатку назвіть ліжко, потім додайте will be та assembled, третю форму assemble. Так ви передаєте майбутню дію з предметом. Наприкінці вкажіть місце збирання."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-47:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-47:intro3:r1",
+              "text": "The bed will be assembled in your room."
+            },
+            {
+              "responseId": "en:lesson-28:session-47:intro3:r2",
+              "text": "The bed will assembled in your room."
+            },
+            {
+              "responseId": "en:lesson-28:session-47:intro3:r3",
+              "text": "The bed will be assemble in your room."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-47:intro3:r1",
+              "text": "The bed will be assembled in your room."
+            },
+            {
+              "responseId": "en:lesson-28:session-47:intro3:r2",
+              "text": "The bed will assembled in your room."
+            },
+            {
+              "responseId": "en:lesson-28:session-47:intro3:r3",
+              "text": "The bed will be assemble in your room."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ebee22898f5db98613097797281073a7d4b3ccbbde6086b2541deb49c7822812"
+}

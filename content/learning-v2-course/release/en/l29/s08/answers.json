@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-29:session-08:i01",
+    "correctText": "Let us stop and listen for a moment.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-08:i02",
+    "correctText": "chirp",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-08:i03",
+    "correctText": "chirp",
+    "correctResponseId": "en:lesson-29:session-08:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-08:i04",
+    "correctText": "The man who looks after the birds is here.",
+    "correctResponseId": "en:lesson-29:session-08:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-08:i05",
+    "correctText": "He is the man who looks after the birds.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-08:i06",
+    "correctText": "hoot",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-08:i07",
+    "correctText": "I sometimes hear an owl hoot.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-08:i08",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-29:session-08:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-08:i09",
+    "correctText": "The fence was repaired by my neighbour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-08:i10",
+    "correctText": "quack",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-08:i11",
+    "correctText": "The ducks quack loudly when they are hungry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-08:i12",
+    "correctText": "We will go home if it gets dark.",
+    "correctResponseId": "en:lesson-29:session-08:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-08:i13",
+    "correctText": "gets",
+    "correctResponseId": "en:lesson-29:session-08:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-08:i14",
+    "correctText": "croak",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-08:i15",
+    "correctText": "I can hear the frogs croak.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-08:i16",
+    "correctText": "en:lesson-29:session-08:i16:p1=chirp\nen:lesson-29:session-08:i16:p2=hoot\nen:lesson-29:session-08:i16:p3=quack\nen:lesson-29:session-08:i16:p4=croak",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-08:i17",
+    "correctText": "I can hear the ducks.",
+    "correctResponseId": "en:lesson-29:session-08:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-08:i18",
+    "correctText": "that",
+    "correctResponseId": "en:lesson-29:session-08:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-08:i19",
+    "correctText": "Please be quiet so we can hear the birds.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-08:i20",
+    "correctText": "Please stay away from the edge.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-08:i21",
+    "correctText": "Shall we come back tomorrow?",
+    "correctResponseId": null
+  }
+]

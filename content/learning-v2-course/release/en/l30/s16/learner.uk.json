@@ -1,0 +1,1046 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-30:session-16",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-30:session-16:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — huddle",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-16:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — huddle",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-16:i01:audio",
+          "transcript": "huddle"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-16:i01:r1",
+            "targetText": "huddle",
+            "meaningByLocale": {
+              "ru": "Сбиваться в тесную группу, жаться друг к другу, например от холода.",
+              "uk": "Збиватися в тісну групу, тулитися одне до одного, наприклад від холоду."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "huddle",
+          "definitionByLocale": {
+            "ru": "Сбиваться в тесную группу, жаться друг к другу, например от холода.",
+            "uk": "Збиватися в тісну групу, тулитися одне до одного, наприклад від холоду."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-16:i02",
+      "ordinal": 5,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Коли холодно, ви з друзями зазвичай тулитеся одне до одного.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-16:i02:audio"
+      ],
+      "accessibilityLabel": "Коли холодно, ви з друзями зазвичай тулитеся одне до одного.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-16:i02:audio",
+          "transcript": "We huddle together when it is cold."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We huddle together when it is cold.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-16:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-16:i03:r1",
+          "text": "He asked where the bus was."
+        },
+        {
+          "responseId": "en:lesson-30:session-16:i03:r2",
+          "text": "He asked where the car was."
+        },
+        {
+          "responseId": "en:lesson-30:session-16:i03:r3",
+          "text": "He asked where the train was."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-16:i03:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-16:i03:audio",
+          "transcript": "He asked where the bus was."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-16:i03:r1",
+            "targetText": "He asked where the bus was.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-16:i03:r2",
+            "targetText": "He asked where the car was.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-16:i03:r3",
+            "targetText": "He asked where the train was.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-16:i03:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He asked where the bus was.",
+              "uk": "У записі звучить He asked where the bus was."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-16:i03:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He asked where the bus was.",
+              "uk": "У записі звучить He asked where the bus was."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-16:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Перекажіть запитання друга про місце автобуса.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-16:i04:r1",
+          "text": "the bus was"
+        },
+        {
+          "responseId": "en:lesson-30:session-16:i04:r2",
+          "text": "was the bus"
+        },
+        {
+          "responseId": "en:lesson-30:session-16:i04:r3",
+          "text": "the bus were"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Перекажіть запитання друга про місце автобуса.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Перескажите вопрос друга о местонахождении автобуса.",
+          "uk": "Перекажіть запитання друга про місце автобуса."
+        },
+        "gappedTargetPhrase": "He asked where ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-16:i04:r1",
+            "text": "the bus was"
+          },
+          {
+            "responseId": "en:lesson-30:session-16:i04:r2",
+            "text": "was the bus"
+          },
+          {
+            "responseId": "en:lesson-30:session-16:i04:r3",
+            "text": "the bus were"
+          }
+        ],
+        "testedDimension": "Перекажіть запитання друга про місце автобуса.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-16:i04:r2",
+            "correct": false,
+            "testedDimension": "Перекажіть запитання друга про місце автобуса.",
+            "feedbackByLocale": {
+              "ru": "В пересказе сначала the bus, затем was.",
+              "uk": "У переказі спочатку the bus, потім was."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-16:i04:r3",
+            "correct": false,
+            "testedDimension": "Перекажіть запитання друга про місце автобуса.",
+            "feedbackByLocale": {
+              "ru": "С одним автобусом используем was.",
+              "uk": "З одним автобусом використовуємо was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-16:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — fumble",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-16:i05:audio"
+      ],
+      "accessibilityLabel": "Картка слова — fumble",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-16:i05:audio",
+          "transcript": "fumble"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-16:i05:r1",
+            "targetText": "fumble",
+            "meaningByLocale": {
+              "ru": "Неуклюже возиться с чем-то, неловко перебирать или пытаться взять предмет.",
+              "uk": "Незграбно вовтузитися з чимось, невміло перебирати або намагатися взяти предмет."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fumble",
+          "definitionByLocale": {
+            "ru": "Неуклюже возиться с чем-то, неловко перебирать или пытаться взять предмет.",
+            "uk": "Незграбно вовтузитися з чимось, невміло перебирати або намагатися взяти предмет."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-16:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Замерзлими руками ви зазвичай незграбно вовтузитеся з квитком.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-16:i06:audio"
+      ],
+      "accessibilityLabel": "Замерзлими руками ви зазвичай незграбно вовтузитеся з квитком.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-16:i06:audio",
+          "transcript": "I fumble with my ticket when my hands are cold."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I fumble with my ticket when my hands are cold.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-16:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Передайте слова подруги: їй було холодно.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Передайте слова подруги: їй було холодно.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She said she was cold.",
+        "localizedMeaning": {
+          "ru": "Передайте слова подруги: ей было холодно.",
+          "uk": "Передайте слова подруги: їй було холодно."
+        },
+        "orderedTokens": [
+          "She",
+          "said",
+          "she",
+          "was",
+          "cold"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-16:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточніть, що важкою була сумка, яку друг вам позичив.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-16:i08:r1",
+          "text": "lent"
+        },
+        {
+          "responseId": "en:lesson-30:session-16:i08:r2",
+          "text": "lending"
+        },
+        {
+          "responseId": "en:lesson-30:session-16:i08:r3",
+          "text": "lends"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточніть, що важкою була сумка, яку друг вам позичив.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните, что тяжёлой была сумка, которую друг вам одолжил.",
+          "uk": "Уточніть, що важкою була сумка, яку друг вам позичив."
+        },
+        "gappedTargetPhrase": "The bag you ___ me was heavy.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-16:i08:r1",
+            "text": "lent"
+          },
+          {
+            "responseId": "en:lesson-30:session-16:i08:r2",
+            "text": "lending"
+          },
+          {
+            "responseId": "en:lesson-30:session-16:i08:r3",
+            "text": "lends"
+          }
+        ],
+        "testedDimension": "Уточніть, що важкою була сумка, яку друг вам позичив.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-16:i08:r2",
+            "correct": false,
+            "testedDimension": "Уточніть, що важкою була сумка, яку друг вам позичив.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма lent для одолженной сумки.",
+              "uk": "Потрібна форма lent для позиченої сумки."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-16:i08:r3",
+            "correct": false,
+            "testedDimension": "Уточніть, що важкою була сумка, яку друг вам позичив.",
+            "feedbackByLocale": {
+              "ru": "Lends не сочетается с you; здесь нужна форма lent.",
+              "uk": "Lends не поєднується з you; тут потрібна форма lent."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-16:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — slouch",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-16:i09:audio"
+      ],
+      "accessibilityLabel": "Картка слова — slouch",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-16:i09:audio",
+          "transcript": "slouch"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-16:i09:r1",
+            "targetText": "slouch",
+            "meaningByLocale": {
+              "ru": "Сутулиться, сидеть или стоять с опущенными плечами и согнутой спиной.",
+              "uk": "Сутулитися, сидіти або стояти з опущеними плечима й зігнутою спиною."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "slouch",
+          "definitionByLocale": {
+            "ru": "Сутулиться, сидеть или стоять с опущенными плечами и согнутой спиной.",
+            "uk": "Сутулитися, сидіти або стояти з опущеними плечима й зігнутою спиною."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-16:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Розкажіть про звичку: ви сутулитеся, коли втомлюєтеся.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-16:i10:audio"
+      ],
+      "accessibilityLabel": "Розкажіть про звичку: ви сутулитеся, коли втомлюєтеся.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-16:i10:audio",
+          "transcript": "I slouch when I am tired."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I slouch when I am tired.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-16:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте переказ запитання про автобус.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-16:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте переказ запитання про автобус.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-16:i11:audio",
+          "transcript": "He asked where the bus was."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "He asked where the bus was.",
+        "orderedTokens": [
+          "He",
+          "asked",
+          "where",
+          "the",
+          "bus",
+          "was"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-16:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — stagger",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-16:i12:audio"
+      ],
+      "accessibilityLabel": "Картка слова — stagger",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-16:i12:audio",
+          "transcript": "stagger"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-16:i12:r1",
+            "targetText": "stagger",
+            "meaningByLocale": {
+              "ru": "Шататься, идти нетвёрдой походкой, например под тяжестью груза.",
+              "uk": "Хитатися, йти непевною ходою, наприклад під вагою вантажу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "stagger",
+          "definitionByLocale": {
+            "ru": "Шататься, идти нетвёрдой походкой, например под тяжестью груза.",
+            "uk": "Хитатися, йти непевною ходою, наприклад під вагою вантажу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-16:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви часто берете таку важку сумку, що йдете з нею хитаючись. Опишіть це.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-16:i13:audio"
+      ],
+      "accessibilityLabel": "Ви часто берете таку важку сумку, що йдете з нею хитаючись. Опишіть це.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-16:i13:audio",
+          "transcript": "I stagger under the weight of my bag."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I stagger under the weight of my bag.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-16:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-30:session-16:i14:p1",
+            "target": "huddle",
+            "meaningByLocale": {
+              "ru": "жаться друг к другу",
+              "uk": "тулитися одне до одного"
+            }
+          },
+          {
+            "pairId": "en:lesson-30:session-16:i14:p2",
+            "target": "fumble",
+            "meaningByLocale": {
+              "ru": "неловко возиться",
+              "uk": "незграбно вовтузитися"
+            }
+          },
+          {
+            "pairId": "en:lesson-30:session-16:i14:p3",
+            "target": "slouch",
+            "meaningByLocale": {
+              "ru": "сутулиться",
+              "uk": "сутулитися"
+            }
+          },
+          {
+            "pairId": "en:lesson-30:session-16:i14:p4",
+            "target": "stagger",
+            "meaningByLocale": {
+              "ru": "идти шатаясь",
+              "uk": "йти хитаючись"
+            }
+          }
+        ],
+        "leftColumn": [
+          "huddle",
+          "fumble",
+          "slouch",
+          "stagger"
+        ],
+        "rightColumn": [
+          "тулитися одне до одного",
+          "незграбно вовтузитися",
+          "сутулитися",
+          "йти хитаючись"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-16:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-16:i15:r1",
+          "text": "She said she was cold."
+        },
+        {
+          "responseId": "en:lesson-30:session-16:i15:r2",
+          "text": "She said she was tired."
+        },
+        {
+          "responseId": "en:lesson-30:session-16:i15:r3",
+          "text": "She said she was hungry."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-16:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-16:i15:audio",
+          "transcript": "She said she was cold."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-16:i15:r1",
+            "targetText": "She said she was cold.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-16:i15:r2",
+            "targetText": "She said she was tired.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-16:i15:r3",
+            "targetText": "She said she was hungry.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-16:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She said she was cold.",
+              "uk": "У записі звучить She said she was cold."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-16:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She said she was cold.",
+              "uk": "У записі звучить She said she was cold."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-16:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви хочете теплішої погоди зараз.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-16:i16:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-30:session-16:i16:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-30:session-16:i16:r3",
+          "text": "being"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви хочете теплішої погоди зараз.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы хотите более тёплой погоды сейчас.",
+          "uk": "Ви хочете теплішої погоди зараз."
+        },
+        "gappedTargetPhrase": "I wish it ___ warmer.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-16:i16:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-30:session-16:i16:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-30:session-16:i16:r3",
+            "text": "being"
+          }
+        ],
+        "testedDimension": "Ви хочете теплішої погоди зараз.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-16:i16:r2",
+            "correct": false,
+            "testedDimension": "Ви хочете теплішої погоди зараз.",
+            "feedbackByLocale": {
+              "ru": "Для такого желания ставим were.",
+              "uk": "Для такого бажання ставимо were."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-16:i16:r3",
+            "correct": false,
+            "testedDimension": "Ви хочете теплішої погоди зараз.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма were после it.",
+              "uk": "Потрібна форма were після it."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-16:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг запитав, чи втомилися ви. Перекажіть його запитання.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-16:i17:audio"
+      ],
+      "accessibilityLabel": "Друг запитав, чи втомилися ви. Перекажіть його запитання.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-16:i17:audio",
+          "transcript": "He asked if I was tired."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He asked if I was tired.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-16:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте переказ слів про холод.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-16:i18:audio"
+      ],
+      "accessibilityLabel": "Послухайте переказ слів про холод.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-16:i18:audio",
+          "transcript": "She said she was cold."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She said she was cold.",
+        "orderedTokens": [
+          "She",
+          "said",
+          "she",
+          "was",
+          "cold"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-16:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: вона говорила про холод чи втому?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-16:i19:r1",
+          "text": "She said she was cold."
+        },
+        {
+          "responseId": "en:lesson-30:session-16:i19:r2",
+          "text": "She said she was tired."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-16:i19:audioA",
+        "en:lesson-30:session-16:i19:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: вона говорила про холод чи втому?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "She said she was cold.",
+        "contrastB": "She said she was tired.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-30:session-16:i19:audioA",
+          "transcript": "She said she was cold."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-30:session-16:i19:audioB",
+          "transcript": "She said she was tired."
+        },
+        "testedPhoneticContrast": "Послухайте: вона говорила про холод чи втому?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-16:i19:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: вона говорила про холод чи втому?",
+            "feedbackByLocale": {
+              "ru": "Звучит cold — холодно.",
+              "uk": "Звучить cold — холодно."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-16:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг запитав, чи втомилися ви.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-16:i20:r1",
+          "text": "if"
+        },
+        {
+          "responseId": "en:lesson-30:session-16:i20:r2",
+          "text": "what"
+        },
+        {
+          "responseId": "en:lesson-30:session-16:i20:r3",
+          "text": "where"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг запитав, чи втомилися ви.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг спросил, устали ли вы.",
+          "uk": "Друг запитав, чи втомилися ви."
+        },
+        "gappedTargetPhrase": "He asked ___ I was tired.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-16:i20:r1",
+            "text": "if"
+          },
+          {
+            "responseId": "en:lesson-30:session-16:i20:r2",
+            "text": "what"
+          },
+          {
+            "responseId": "en:lesson-30:session-16:i20:r3",
+            "text": "where"
+          }
+        ],
+        "testedDimension": "Друг запитав, чи втомилися ви.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-16:i20:r2",
+            "correct": false,
+            "testedDimension": "Друг запитав, чи втомилися ви.",
+            "feedbackByLocale": {
+              "ru": "Вопрос да или нет передаём через if.",
+              "uk": "Запитання так або ні передаємо через if."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-16:i20:r3",
+            "correct": false,
+            "testedDimension": "Друг запитав, чи втомилися ви.",
+            "feedbackByLocale": {
+              "ru": "Where спрашивает о месте, а здесь спрашивали об усталости.",
+              "uk": "Where запитує про місце, а тут запитували про втому."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-16:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Сумка виявилася важчою за плани на вихідні. Скажіть другові, що позичена ним сумка була важкою.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-16:i21:audio"
+      ],
+      "accessibilityLabel": "Сумка виявилася важчою за плани на вихідні. Скажіть другові, що позичена ним сумка була важкою.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-16:i21:audio",
+          "transcript": "The bag you lent me was heavy."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The bag you lent me was heavy.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "b1edbf05c3a4d84bc9391c7b982f154d7255dc99a371f86621de7c65842caa70"
+}

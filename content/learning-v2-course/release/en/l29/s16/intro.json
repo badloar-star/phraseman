@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-29:session-16",
+  "learningOutcomeByLocale": {
+    "ru": "как описать манеру общения, узнать нужного гостя и договориться об уходе.",
+    "uk": "як описати манеру спілкування, впізнати потрібного гостя й домовитися про повернення додому."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-29:session-16:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Кто пришёл с собакой",
+        "uk": "Хто прийшов із собакою"
+      },
+      "bodyByLocale": {
+        "ru": "Вы хотите познакомиться с гостем, чья собака сидит у двери. Спросите: Who is the man whose dog is by the door? — кто мужчина, чья собака у двери? Соберите Who is the man + whose dog + is by the door? После the man добавьте whose dog: собака принадлежит этому мужчине. Затем is by the door указывает её место. После whose не добавляем his.",
+        "uk": "Ви хочете познайомитися з гостем, чий собака сидить біля дверей. Запитайте: Who is the man whose dog is by the door? — хто чоловік, чий собака біля дверей? Складіть Who is the man + whose dog + is by the door? Після the man додайте whose dog: собака належить цьому чоловікові. Потім is by the door указує його місце. Після whose не додаємо his."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-16:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-16:intro1:r1",
+              "text": "Who is the man whose dog is by the door?"
+            },
+            {
+              "responseId": "en:lesson-29:session-16:intro1:r2",
+              "text": "Who is the man who dog is by the door?"
+            },
+            {
+              "responseId": "en:lesson-29:session-16:intro1:r3",
+              "text": "Who is the man whose his dog is by the door?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-16:intro1:r1",
+              "text": "Who is the man whose dog is by the door?"
+            },
+            {
+              "responseId": "en:lesson-29:session-16:intro1:r2",
+              "text": "Who is the man who dog is by the door?"
+            },
+            {
+              "responseId": "en:lesson-29:session-16:intro1:r3",
+              "text": "Who is the man whose his dog is by the door?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-29:session-16:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Кто устроил встречу",
+        "uk": "Хто влаштував зустріч"
+      },
+      "bodyByLocale": {
+        "ru": "Новый знакомый спрашивает, кто организовал вечеринку. Ответьте: The party was organised by my friend — вечеринку организовал мой друг. Соберите The party + was organised + by my friend. После названия события поставьте was organised: его организовали. Через by my friend назовите человека, который это сделал.",
+        "uk": "Новий знайомий запитує, хто організував вечірку. Дайте відповідь: The party was organised by my friend — вечірку організував мій друг. Складіть The party + was organised + by my friend. Після назви події поставте was organised: її організували. Через by my friend назвіть людину, яка це зробила."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-16:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-16:intro2:r1",
+              "text": "The party was organised by my friend."
+            },
+            {
+              "responseId": "en:lesson-29:session-16:intro2:r2",
+              "text": "The party was organised from my friend."
+            },
+            {
+              "responseId": "en:lesson-29:session-16:intro2:r3",
+              "text": "The party was organise by my friend."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-16:intro2:r1",
+              "text": "The party was organised by my friend."
+            },
+            {
+              "responseId": "en:lesson-29:session-16:intro2:r2",
+              "text": "The party was organised from my friend."
+            },
+            {
+              "responseId": "en:lesson-29:session-16:intro2:r3",
+              "text": "The party was organise by my friend."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-29:session-16:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Когда пойти домой",
+        "uk": "Коли піти додому"
+      },
+      "bodyByLocale": {
+        "ru": "Перед встречей вы договариваетесь с другом уйти, если устанете. Скажите: If I get tired, we will go home — если я устану, мы пойдём домой. Соберите If I get tired + we will go home. В условии после If I используйте get без will. Затем поставьте we will go home: это действие при выполнении условия. Между частями нужна запятая, потому что условие стоит первым.",
+        "uk": "Перед зустріччю ви домовляєтеся з другом піти, якщо втомитеся. Скажіть: If I get tired, we will go home — якщо я втомлюся, ми підемо додому. Складіть If I get tired + we will go home. В умові після If I використайте get без will. Потім поставте we will go home: це дія за виконання умови. Між частинами потрібна кома, тому що умова стоїть першою."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-16:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-16:intro3:r1",
+              "text": "If I get tired, we will go home."
+            },
+            {
+              "responseId": "en:lesson-29:session-16:intro3:r2",
+              "text": "If I will get tired, we will go home."
+            },
+            {
+              "responseId": "en:lesson-29:session-16:intro3:r3",
+              "text": "If I get tired, we will went home."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-16:intro3:r1",
+              "text": "If I get tired, we will go home."
+            },
+            {
+              "responseId": "en:lesson-29:session-16:intro3:r2",
+              "text": "If I will get tired, we will go home."
+            },
+            {
+              "responseId": "en:lesson-29:session-16:intro3:r3",
+              "text": "If I get tired, we will went home."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e9cd5cd78e1e417463d2567d5ba12648c55126424d0ebcfe69016caf038d71d6"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-29:session-35",
+  "entries": [
+    {
+      "interactionId": "en:lesson-29:session-35:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-35:intro1:r2": {
+          "ru": "It лишнее: рецепт уже назван.",
+          "uk": "It зайве: рецепт уже названо."
+        },
+        "en:lesson-29:session-35:intro1:r3": {
+          "ru": "Действие выполняет we, а не us.",
+          "uk": "Дію виконує we, а не us."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-35:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-35:intro2:r2": {
+          "ru": "Чей рецепт — whose recipe, не who recipe.",
+          "uk": "Чий рецепт — whose recipe, не who recipe."
+        },
+        "en:lesson-29:session-35:intro2:r3": {
+          "ru": "Whose уже выражает принадлежность; his лишнее.",
+          "uk": "Whose вже виражає належність; his зайве."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-35:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-35:intro3:r2": {
+          "ru": "После was нужна форма made.",
+          "uk": "Після was потрібна форма made."
+        },
+        "en:lesson-29:session-35:intro3:r3": {
+          "ru": "Человека, приготовившего соус, вводит by.",
+          "uk": "Людину, яка приготувала соус, вводить by."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e35a53566f84b0e558cf0e88817297acafcb811cdb8547c0870ab6427724f7b7"
+}

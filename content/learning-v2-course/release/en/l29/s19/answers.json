@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-29:session-19:i01",
+    "correctText": "I know a café where we can eat.",
+    "correctResponseId": "en:lesson-29:session-19:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-19:i02",
+    "correctText": "peckish",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-19:i03",
+    "correctText": "I am feeling peckish.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-19:i04",
+    "correctText": "where",
+    "correctResponseId": "en:lesson-29:session-19:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-19:i05",
+    "correctText": "famished",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-19:i06",
+    "correctText": "I am famished.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-19:i07",
+    "correctText": "I am famished.",
+    "correctResponseId": "en:lesson-29:session-19:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-19:i08",
+    "correctText": "Could we have the menus, please?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-19:i09",
+    "correctText": "parched",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-19:i10",
+    "correctText": "I am parched.",
+    "correctResponseId": "en:lesson-29:session-19:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-19:i11",
+    "correctText": "who",
+    "correctResponseId": "en:lesson-29:session-19:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-19:i12",
+    "correctText": "Could I have a glass of water?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-19:i13",
+    "correctText": "tipsy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-19:i14",
+    "correctText": "My friend is tipsy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-19:i15",
+    "correctText": "en:lesson-29:session-19:i15:p1=peckish\nen:lesson-29:session-19:i15:p2=famished\nen:lesson-29:session-19:i15:p3=parched\nen:lesson-29:session-19:i15:p4=tipsy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-19:i16",
+    "correctText": "The soup was made by the chef.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-19:i17",
+    "correctText": "whose",
+    "correctResponseId": "en:lesson-29:session-19:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-19:i18",
+    "correctText": "I will take the bus home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-19:i19",
+    "correctText": "The jacket is on the chair.",
+    "correctResponseId": "en:lesson-29:session-19:i19:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-19:i20",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-29:session-19:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-19:i21",
+    "correctText": "Could we have the bill, please?",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-28:session-17",
+  "entries": [
+    {
+      "interactionId": "en:lesson-28:session-17:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-17:intro1:r2": {
+          "ru": "Между will и delivered нужно be.",
+          "uk": "Між will і delivered потрібне be."
+        },
+        "en:lesson-28:session-17:intro1:r3": {
+          "ru": "После will be нужна delivered.",
+          "uk": "Після will be потрібна delivered."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-17:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-17:intro2:r2": {
+          "ru": "После will нужна be, даже с chairs.",
+          "uk": "Після will потрібна be, навіть із chairs."
+        },
+        "en:lesson-28:session-17:intro2:r3": {
+          "ru": "Здесь нужна форма put, не putting.",
+          "uk": "Тут потрібна форма put, не putting."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-17:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-17:intro3:r2": {
+          "ru": "Нужна полная конструкция will be assembled.",
+          "uk": "Потрібна повна конструкція will be assembled."
+        },
+        "en:lesson-28:session-17:intro3:r3": {
+          "ru": "Здесь нужна assembled.",
+          "uk": "Тут потрібна assembled."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c2cf2d71882b635ba8666a7502477550482cfc15e730b48008703d5997b4f396"
+}

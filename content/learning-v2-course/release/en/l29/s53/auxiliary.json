@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-29:session-53",
+  "entries": [
+    {
+      "interactionId": "en:lesson-29:session-53:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-53:intro1:r2": {
+          "ru": "It повторяет правило.",
+          "uk": "It повторює правило."
+        },
+        "en:lesson-29:session-53:intro1:r3": {
+          "ru": "Договорились мы: we agreed, не us agreed.",
+          "uk": "Домовилися ми: we agreed, не us agreed."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-53:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-53:intro2:r2": {
+          "ru": "Для связи с родителями нужно whose parents.",
+          "uk": "Для зв’язку з батьками потрібне whose parents."
+        },
+        "en:lesson-29:session-53:intro2:r3": {
+          "ru": "Her после whose лишнее.",
+          "uk": "Her після whose зайве."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-53:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-53:intro3:r2": {
+          "ru": "В этом условии после if нужно are, без will.",
+          "uk": "У цій умові після if потрібне are, без will."
+        },
+        "en:lesson-29:session-53:intro3:r3": {
+          "ru": "Перед late нужен глагол are.",
+          "uk": "Перед late потрібне дієслово are."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "0ef499fed615b4dae5d4e4e274a9ad8e74c6ec6269a8a53b89492e3e25e55e6e"
+}

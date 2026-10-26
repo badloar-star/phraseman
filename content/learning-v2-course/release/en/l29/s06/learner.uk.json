@@ -1,0 +1,1054 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-29:session-06",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-29:session-06:i01",
+      "ordinal": 4,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть розклад занять.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-06:i01:audio"
+      ],
+      "accessibilityLabel": "Попросіть розклад занять.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-06:i01:audio",
+          "transcript": "Could I see the class timetable?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could I see the class timetable?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-06:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — aerobics",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-06:i02:audio"
+      ],
+      "accessibilityLabel": "Картка слова — aerobics",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-06:i02:audio",
+          "transcript": "aerobics"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-06:i02:r1",
+            "targetText": "aerobics",
+            "meaningByLocale": {
+              "ru": "Аэробика. Занятия с ритмичными физическими упражнениями, часто под музыку.",
+              "uk": "Аеробіка. Заняття з ритмічними фізичними вправами, часто під музику."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "aerobics",
+          "definitionByLocale": {
+            "ru": "Аэробика. Занятия с ритмичными физическими упражнениями, часто под музыку.",
+            "uk": "Аеробіка. Заняття з ритмічними фізичними вправами, часто під музику."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-06:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте, чи можна спробувати заняття аеробікою.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи можна спробувати заняття аеробікою.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Can I try an aerobics class?",
+        "localizedMeaning": {
+          "ru": "Спросите, можно ли попробовать занятие аэробикой.",
+          "uk": "Запитайте, чи можна спробувати заняття аеробікою."
+        },
+        "orderedTokens": [
+          "Can",
+          "I",
+          "try",
+          "an",
+          "aerobics",
+          "class"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-06:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточніть, що чекаєте тренера, який вам зателефонував.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-06:i04:r1",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-06:i04:r2",
+          "text": "which"
+        },
+        {
+          "responseId": "en:lesson-29:session-06:i04:r3",
+          "text": "what"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточніть, що чекаєте тренера, який вам зателефонував.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните, что ждёте тренера, который вам позвонил.",
+          "uk": "Уточніть, що чекаєте тренера, який вам зателефонував."
+        },
+        "gappedTargetPhrase": "I am waiting for the coach ___ called me.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-06:i04:r1",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-06:i04:r2",
+            "text": "which"
+          },
+          {
+            "responseId": "en:lesson-29:session-06:i04:r3",
+            "text": "what"
+          }
+        ],
+        "testedDimension": "Уточніть, що чекаєте тренера, який вам зателефонував.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-06:i04:r2",
+            "correct": false,
+            "testedDimension": "Уточніть, що чекаєте тренера, який вам зателефонував.",
+            "feedbackByLocale": {
+              "ru": "О человеке coach говорим who.",
+              "uk": "Про людину coach кажемо who."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-06:i04:r3",
+            "correct": false,
+            "testedDimension": "Уточніть, що чекаєте тренера, який вам зателефонував.",
+            "feedbackByLocale": {
+              "ru": "После the coach здесь нужна who.",
+              "uk": "Після the coach тут потрібна who."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-06:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-06:i05:r1",
+          "text": "The class is taught by a local coach."
+        },
+        {
+          "responseId": "en:lesson-29:session-06:i05:r2",
+          "text": "The class is taught by my neighbour."
+        },
+        {
+          "responseId": "en:lesson-29:session-06:i05:r3",
+          "text": "The class is taught by my sister."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-06:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-06:i05:audio",
+          "transcript": "The class is taught by a local coach."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-06:i05:r1",
+            "targetText": "The class is taught by a local coach.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-06:i05:r2",
+            "targetText": "The class is taught by my neighbour.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-06:i05:r3",
+            "targetText": "The class is taught by my sister.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-06:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The class is taught by a local coach.",
+              "uk": "У записі звучить The class is taught by a local coach."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-06:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The class is taught by a local coach.",
+              "uk": "У записі звучить The class is taught by a local coach."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-06:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — Pilates",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-06:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — Pilates",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-06:i06:audio",
+          "transcript": "Pilates"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-06:i06:r1",
+            "targetText": "Pilates",
+            "meaningByLocale": {
+              "ru": "Пилатес. Система физических упражнений с вниманием к контролю движений и положению тела.",
+              "uk": "Пілатес. Система фізичних вправ з увагою до контролю рухів і положення тіла."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "Pilates",
+          "definitionByLocale": {
+            "ru": "Пилатес. Система физических упражнений с вниманием к контролю движений и положению тела.",
+            "uk": "Пілатес. Система фізичних вправ з увагою до контролю рухів і положення тіла."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-06:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте, хто веде пілатес.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-06:i07:audio"
+      ],
+      "accessibilityLabel": "Запитайте, хто веде пілатес.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-06:i07:audio",
+          "transcript": "Who teaches Pilates?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Who teaches Pilates?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-06:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, яке заняття шукає відвідувач.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-06:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте, яке заняття шукає відвідувач.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-06:i08:audio",
+          "transcript": "I need a class that starts after six."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I need a class that starts after six.",
+        "orderedTokens": [
+          "I",
+          "need",
+          "a",
+          "class",
+          "that",
+          "starts",
+          "after",
+          "six"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-06:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть, що заняття проводить місцевий тренер.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-06:i09:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-29:session-06:i09:r2",
+          "text": "from"
+        },
+        {
+          "responseId": "en:lesson-29:session-06:i09:r3",
+          "text": "of"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що заняття проводить місцевий тренер.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите, что занятие проводит местный тренер.",
+          "uk": "Скажіть, що заняття проводить місцевий тренер."
+        },
+        "gappedTargetPhrase": "The class is taught ___ a local coach.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-06:i09:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-29:session-06:i09:r2",
+            "text": "from"
+          },
+          {
+            "responseId": "en:lesson-29:session-06:i09:r3",
+            "text": "of"
+          }
+        ],
+        "testedDimension": "Скажіть, що заняття проводить місцевий тренер.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-06:i09:r2",
+            "correct": false,
+            "testedDimension": "Скажіть, що заняття проводить місцевий тренер.",
+            "feedbackByLocale": {
+              "ru": "Человека, выполняющего действие, вводит by.",
+              "uk": "Людину, яка виконує дію, позначає by."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-06:i09:r3",
+            "correct": false,
+            "testedDimension": "Скажіть, що заняття проводить місцевий тренер.",
+            "feedbackByLocale": {
+              "ru": "Для исполнителя здесь нужна by.",
+              "uk": "Для виконавця тут потрібна by."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-06:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — netball",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-06:i10:audio"
+      ],
+      "accessibilityLabel": "Картка слова — netball",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-06:i10:audio",
+          "transcript": "netball"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-06:i10:r1",
+            "targetText": "netball",
+            "meaningByLocale": {
+              "ru": "Нетбол. Командная игра с мячом, в которой стараются забросить мяч в высокое кольцо без щита.",
+              "uk": "Нетбол. Командна гра з м’ячем, у якій намагаються закинути м’яч у високе кільце без щита."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "netball",
+          "definitionByLocale": {
+            "ru": "Нетбол. Командная игра с мячом, в которой стараются забросить мяч в высокое кольцо без щита.",
+            "uk": "Нетбол. Командна гра з м’ячем, у якій намагаються закинути м’яч у високе кільце без щита."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-06:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте, коли проходять тренування з нетболу.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-06:i11:audio"
+      ],
+      "accessibilityLabel": "Запитайте, коли проходять тренування з нетболу.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-06:i11:audio",
+          "transcript": "When is netball practice?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "When is netball practice?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-06:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-06:i12:r1",
+          "text": "The woman who runs the club is upstairs."
+        },
+        {
+          "responseId": "en:lesson-29:session-06:i12:r2",
+          "text": "The woman who runs the club is outside."
+        },
+        {
+          "responseId": "en:lesson-29:session-06:i12:r3",
+          "text": "The man who runs the club is upstairs."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-06:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-06:i12:audio",
+          "transcript": "The woman who runs the club is upstairs."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-06:i12:r1",
+            "targetText": "The woman who runs the club is upstairs.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-06:i12:r2",
+            "targetText": "The woman who runs the club is outside.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-06:i12:r3",
+            "targetText": "The man who runs the club is upstairs.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-06:i12:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The woman who runs the club is upstairs.",
+              "uk": "У записі звучить The woman who runs the club is upstairs."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-06:i12:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The woman who runs the club is upstairs.",
+              "uk": "У записі звучить The woman who runs the club is upstairs."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-06:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Якщо група заповнена, ви виберете іншу.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-06:i13:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-29:session-06:i13:r2",
+          "text": "will be"
+        },
+        {
+          "responseId": "en:lesson-29:session-06:i13:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Якщо група заповнена, ви виберете іншу.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Если группа заполнена, вы выберете другую.",
+          "uk": "Якщо група заповнена, ви виберете іншу."
+        },
+        "gappedTargetPhrase": "If the class ___ full, I will choose another one.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-06:i13:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-29:session-06:i13:r2",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-29:session-06:i13:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Якщо група заповнена, ви виберете іншу.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-06:i13:r2",
+            "correct": false,
+            "testedDimension": "Якщо група заповнена, ви виберете іншу.",
+            "feedbackByLocale": {
+              "ru": "В этом условии после if используем is, без will.",
+              "uk": "У цій умові після if використовуємо is, без will."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-06:i13:r3",
+            "correct": false,
+            "testedDimension": "Якщо група заповнена, ви виберете іншу.",
+            "feedbackByLocale": {
+              "ru": "С the class здесь нужна is.",
+              "uk": "З the class тут потрібна is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-06:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — dodgeball",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-06:i14:audio"
+      ],
+      "accessibilityLabel": "Картка слова — dodgeball",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-06:i14:audio",
+          "transcript": "dodgeball"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-06:i14:r1",
+            "targetText": "dodgeball",
+            "meaningByLocale": {
+              "ru": "Вышибалы. Игра, в которой участники стараются попасть мячом в соперников, а те уклоняются от мяча.",
+              "uk": "Вибивний. Гра, у якій учасники намагаються влучити м’ячем у суперників, а ті ухиляються від м’яча."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dodgeball",
+          "definitionByLocale": {
+            "ru": "Вышибалы. Игра, в которой участники стараются попасть мячом в соперников, а те уклоняются от мяча.",
+            "uk": "Вибивний. Гра, у якій учасники намагаються влучити м’ячем у суперників, а ті ухиляються від м’яча."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-06:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте, чи можна приєднатися до гри у вибивного.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи можна приєднатися до гри у вибивного.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Can I join the dodgeball game?",
+        "localizedMeaning": {
+          "ru": "Спросите, можно ли присоединиться к игре в вышибалы.",
+          "uk": "Запитайте, чи можна приєднатися до гри у вибивного."
+        },
+        "orderedTokens": [
+          "Can",
+          "I",
+          "join",
+          "the",
+          "dodgeball",
+          "game"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-06:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте заняття з перекладом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте заняття з перекладом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-29:session-06:i16:p1",
+            "target": "aerobics",
+            "meaningByLocale": {
+              "ru": "аэробика",
+              "uk": "аеробіка"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-06:i16:p2",
+            "target": "Pilates",
+            "meaningByLocale": {
+              "ru": "пилатес",
+              "uk": "пілатес"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-06:i16:p3",
+            "target": "netball",
+            "meaningByLocale": {
+              "ru": "нетбол",
+              "uk": "нетбол"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-06:i16:p4",
+            "target": "dodgeball",
+            "meaningByLocale": {
+              "ru": "вышибалы",
+              "uk": "вибивний"
+            }
+          }
+        ],
+        "leftColumn": [
+          "aerobics",
+          "Pilates",
+          "netball",
+          "dodgeball"
+        ],
+        "rightColumn": [
+          "аеробіка",
+          "пілатес",
+          "нетбол",
+          "вибивний"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-06:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: група заповнена чи ще є місця?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-06:i17:r1",
+          "text": "The class is not full."
+        },
+        {
+          "responseId": "en:lesson-29:session-06:i17:r2",
+          "text": "The class is full."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-06:i17:audioA",
+        "en:lesson-29:session-06:i17:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: група заповнена чи ще є місця?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "The class is not full.",
+        "contrastB": "The class is full.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-29:session-06:i17:audioA",
+          "transcript": "The class is not full."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-29:session-06:i17:audioB",
+          "transcript": "The class is full."
+        },
+        "testedPhoneticContrast": "Послухайте: група заповнена чи ще є місця?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-06:i17:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: група заповнена чи ще є місця?",
+            "feedbackByLocale": {
+              "ru": "В записи not full — не заполнена.",
+              "uk": "У записі not full — не заповнена."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-06:i18",
+      "ordinal": 21,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте, що потрібно принести.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-06:i18:audio"
+      ],
+      "accessibilityLabel": "Запитайте, що потрібно принести.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-06:i18:audio",
+          "transcript": "What do I need to bring?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "What do I need to bring?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-06:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточніть, що потрібне заняття, яке починається після шостої.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-06:i19:r1",
+          "text": "starts"
+        },
+        {
+          "responseId": "en:lesson-29:session-06:i19:r2",
+          "text": "start"
+        },
+        {
+          "responseId": "en:lesson-29:session-06:i19:r3",
+          "text": "starting"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточніть, що потрібне заняття, яке починається після шостої.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните, что нужно занятие, которое начинается после шести.",
+          "uk": "Уточніть, що потрібне заняття, яке починається після шостої."
+        },
+        "gappedTargetPhrase": "I need a class that ___ after six.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-06:i19:r1",
+            "text": "starts"
+          },
+          {
+            "responseId": "en:lesson-29:session-06:i19:r2",
+            "text": "start"
+          },
+          {
+            "responseId": "en:lesson-29:session-06:i19:r3",
+            "text": "starting"
+          }
+        ],
+        "testedDimension": "Уточніть, що потрібне заняття, яке починається після шостої.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-06:i19:r2",
+            "correct": false,
+            "testedDimension": "Уточніть, що потрібне заняття, яке починається після шостої.",
+            "feedbackByLocale": {
+              "ru": "К одному class относится starts.",
+              "uk": "До одного class належить starts."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-06:i19:r3",
+            "correct": false,
+            "testedDimension": "Уточніть, що потрібне заняття, яке починається після шостої.",
+            "feedbackByLocale": {
+              "ru": "После that здесь нужна starts.",
+              "uk": "Після that тут потрібна starts."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-06:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте умову участі.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-06:i20:audio"
+      ],
+      "accessibilityLabel": "Послухайте умову участі.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-06:i20:audio",
+          "transcript": "I will join if there is a place."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I will join if there is a place.",
+        "orderedTokens": [
+          "I",
+          "will",
+          "join",
+          "if",
+          "there",
+          "is",
+          "a",
+          "place"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-06:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте, чи можна оплатити одне заняття.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-06:i21:audio"
+      ],
+      "accessibilityLabel": "Запитайте, чи можна оплатити одне заняття.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-06:i21:audio",
+          "transcript": "Can I pay for one class?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Can I pay for one class?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "d70d838d9e8b72b305f98597d605677cb548bcda29beda8a376d3bb2a9026390"
+}

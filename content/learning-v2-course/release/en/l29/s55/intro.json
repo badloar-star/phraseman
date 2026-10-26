@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-29:session-55",
+  "learningOutcomeByLocale": {
+    "ru": "как обсудить плохое изготовление, подделку, подлинность и мастерство исполнения.",
+    "uk": "як обговорити неякісне виготовлення, підробку, справжність і майстерність виконання."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-29:session-55:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сумка, которую показали",
+        "uk": "Сумка, яку показали"
+      },
+      "bodyByLocale": {
+        "ru": "Вы говорите продавцу, что показанная им сумка вам не подходит по размеру. Скажите: The bag you showed me is too small — сумка, которую вы мне показали, слишком маленькая. Соберите The bag + you showed me + is too small. You обозначает продавца, к которому вы обращаетесь. Bag называет показанную вещь, поэтому that перед you можно опустить; it после me не добавляем.",
+        "uk": "Ви кажете продавцеві, що показана ним сумка не підходить вам за розміром. Скажіть: The bag you showed me is too small — сумка, яку ви мені показали, надто маленька. Складіть The bag + you showed me + is too small. You позначає продавця, до якого ви звертаєтеся. Bag називає показану річ, тому that перед you можна пропустити; it після me не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-55:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-55:intro1:r1",
+              "text": "The bag you showed me is too small."
+            },
+            {
+              "responseId": "en:lesson-29:session-55:intro1:r2",
+              "text": "The bag you showed me it is too small."
+            },
+            {
+              "responseId": "en:lesson-29:session-55:intro1:r3",
+              "text": "The bag your showed me is too small."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-55:intro1:r1",
+              "text": "The bag you showed me is too small."
+            },
+            {
+              "responseId": "en:lesson-29:session-55:intro1:r2",
+              "text": "The bag you showed me it is too small."
+            },
+            {
+              "responseId": "en:lesson-29:session-55:intro1:r3",
+              "text": "The bag your showed me is too small."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-29:session-55:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Кем сделана сумка",
+        "uk": "Ким зроблена сумка"
+      },
+      "bodyByLocale": {
+        "ru": "Продавец объясняет, что сумку сделал местный мастер. Повторите: This bag was made by a local artist — эту сумку сделал местный мастер. Соберите This bag + was made + by a local artist. После was используем made; после by называем того, кто сделал вещь.",
+        "uk": "Продавець пояснює, що сумку зробив місцевий майстер. Повторіть: This bag was made by a local artist — цю сумку зробив місцевий майстер. Складіть This bag + was made + by a local artist. Після was використовуємо made; після by називаємо того, хто зробив річ."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-55:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-55:intro2:r1",
+              "text": "This bag was made by a local artist."
+            },
+            {
+              "responseId": "en:lesson-29:session-55:intro2:r2",
+              "text": "This bag was made a local artist."
+            },
+            {
+              "responseId": "en:lesson-29:session-55:intro2:r3",
+              "text": "This bag was make by a local artist."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-55:intro2:r1",
+              "text": "This bag was made by a local artist."
+            },
+            {
+              "responseId": "en:lesson-29:session-55:intro2:r2",
+              "text": "This bag was made a local artist."
+            },
+            {
+              "responseId": "en:lesson-29:session-55:intro2:r3",
+              "text": "This bag was make by a local artist."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-29:session-55:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Если ремень порвётся",
+        "uk": "Якщо ремінець порветься"
+      },
+      "bodyByLocale": {
+        "ru": "Вы объясняете другу, что вернёте сумку, если её ремень порвётся. Скажите: I will return it if the strap breaks — я верну её, если ремень порвётся. Соберите I will return it + if + the strap breaks. В главной части используем will return, а после if для будущего условия — breaks, без will.",
+        "uk": "Ви пояснюєте другові, що повернете сумку, якщо її ремінець порветься. Скажіть: I will return it if the strap breaks — я поверну її, якщо ремінець порветься. Складіть I will return it + if + the strap breaks. У головній частині використовуємо will return, а після if для майбутньої умови — breaks, без will."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-55:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-55:intro3:r1",
+              "text": "I will return it if the strap breaks."
+            },
+            {
+              "responseId": "en:lesson-29:session-55:intro3:r2",
+              "text": "I will return it if the strap will break."
+            },
+            {
+              "responseId": "en:lesson-29:session-55:intro3:r3",
+              "text": "I will return it if the strap breaking."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-55:intro3:r1",
+              "text": "I will return it if the strap breaks."
+            },
+            {
+              "responseId": "en:lesson-29:session-55:intro3:r2",
+              "text": "I will return it if the strap will break."
+            },
+            {
+              "responseId": "en:lesson-29:session-55:intro3:r3",
+              "text": "I will return it if the strap breaking."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a65c8dc51143b1f7affe103d825add46e7f6ba3d14d948b9206c2e25b6d46770"
+}

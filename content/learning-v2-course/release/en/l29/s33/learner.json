@@ -1,0 +1,1054 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-29:session-33",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-29:session-33:i01",
+      "ordinal": 4,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Предложите вместе посмотреть фотографии.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-33:i01:audio"
+      ],
+      "accessibilityLabel": "Предложите вместе посмотреть фотографии.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-33:i01:audio",
+          "transcript": "Shall we look at the photos together?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Shall we look at the photos together?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-33:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — nostalgic",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-33:i02:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — nostalgic",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-33:i02:audio",
+          "transcript": "nostalgic"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-33:i02:r1",
+            "targetText": "nostalgic",
+            "meaningByLocale": {
+              "ru": "Испытывающий ностальгию. Так говорят о тёплой грусти по прошлому.",
+              "uk": "Сповнений ностальгії. Так кажуть про теплий сум за минулим."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "nostalgic",
+          "definitionByLocale": {
+            "ru": "Испытывающий ностальгию. Так говорят о тёплой грусти по прошлому.",
+            "uk": "Сповнений ностальгії. Так кажуть про теплий сум за минулим."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-33:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что эти фотографии вызывают у вас ностальгию.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что эти фотографии вызывают у вас ностальгию.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "These photos make me feel nostalgic.",
+        "localizedMeaning": {
+          "ru": "Скажите, что эти фотографии вызывают у вас ностальгию.",
+          "uk": "Скажіть, що ці фотографії викликають у вас ностальгію."
+        },
+        "orderedTokens": [
+          "These",
+          "photos",
+          "make",
+          "me",
+          "feel",
+          "nostalgic"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-33:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-33:i04:r1",
+          "text": "The photo I found is in this album."
+        },
+        {
+          "responseId": "en:lesson-29:session-33:i04:r2",
+          "text": "The photo I found is in that box."
+        },
+        {
+          "responseId": "en:lesson-29:session-33:i04:r3",
+          "text": "The letter I found is in this album."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-33:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-33:i04:audio",
+          "transcript": "The photo I found is in this album."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-33:i04:r1",
+            "targetText": "The photo I found is in this album.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-33:i04:r2",
+            "targetText": "The photo I found is in that box.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-33:i04:r3",
+            "targetText": "The letter I found is in this album.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-33:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The photo I found is in this album.",
+              "uk": "У записі звучить The photo I found is in this album."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-33:i04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The photo I found is in this album.",
+              "uk": "У записі звучить The photo I found is in this album."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-33:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточните, что в альбоме именно найденная вами фотография.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-33:i05:r1",
+          "text": "I found"
+        },
+        {
+          "responseId": "en:lesson-29:session-33:i05:r2",
+          "text": "I found it"
+        },
+        {
+          "responseId": "en:lesson-29:session-33:i05:r3",
+          "text": "me found"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточните, что в альбоме именно найденная вами фотография.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните, что в альбоме именно найденная вами фотография.",
+          "uk": "Уточніть, що в альбомі саме знайдена вами фотографія."
+        },
+        "gappedTargetPhrase": "The photo ___ is in this album.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-33:i05:r1",
+            "text": "I found"
+          },
+          {
+            "responseId": "en:lesson-29:session-33:i05:r2",
+            "text": "I found it"
+          },
+          {
+            "responseId": "en:lesson-29:session-33:i05:r3",
+            "text": "me found"
+          }
+        ],
+        "testedDimension": "Уточните, что в альбоме именно найденная вами фотография.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-33:i05:r2",
+            "correct": false,
+            "testedDimension": "Уточните, что в альбоме именно найденная вами фотография.",
+            "feedbackByLocale": {
+              "ru": "Photo уже называет то, что вы нашли; it лишнее.",
+              "uk": "Photo вже називає те, що ви знайшли; it зайве."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-33:i05:r3",
+            "correct": false,
+            "testedDimension": "Уточните, что в альбоме именно найденная вами фотография.",
+            "feedbackByLocale": {
+              "ru": "Исполнитель — I, а не me.",
+              "uk": "Виконавець — I, а не me."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-33:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sentimental",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-33:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sentimental",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-33:i06:audio",
+          "transcript": "sentimental"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-33:i06:r1",
+            "targetText": "sentimental",
+            "meaningByLocale": {
+              "ru": "Сентиментальный. Связанный с чувствами и личными воспоминаниями; sentimental value — ценность вещи как памяти о ком-то или чём-то.",
+              "uk": "Сентиментальний. Пов’язаний із почуттями та особистими спогадами; sentimental value — цінність речі як пам’яті про когось або щось."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sentimental",
+          "definitionByLocale": {
+            "ru": "Сентиментальный. Связанный с чувствами и личными воспоминаниями; sentimental value — ценность вещи как памяти о ком-то или чём-то.",
+            "uk": "Сентиментальний. Пов’язаний із почуттями та особистими спогадами; sentimental value — цінність речі як пам’яті про когось або щось."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-33:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Объясните, что кольцо дорого вам как память.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-33:i07:audio"
+      ],
+      "accessibilityLabel": "Объясните, что кольцо дорого вам как память.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-33:i07:audio",
+          "transcript": "This ring has sentimental value."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This ring has sentimental value.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-33:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, кто женщина на снимке.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-33:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте, кто женщина на снимке.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-33:i08:audio",
+          "transcript": "The woman I met yesterday is my aunt."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The woman I met yesterday is my aunt.",
+        "orderedTokens": [
+          "The",
+          "woman",
+          "I",
+          "met",
+          "yesterday",
+          "is",
+          "my",
+          "aunt"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-33:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cherish",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-33:i09:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cherish",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-33:i09:audio",
+          "transcript": "cherish"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-33:i09:r1",
+            "targetText": "cherish",
+            "meaningByLocale": {
+              "ru": "Дорожить. Бережно хранить в сердце человека, вещь или воспоминание, потому что они очень важны.",
+              "uk": "Дорожити. Берегти в серці людину, річ або спогад, тому що вони дуже важливі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cherish",
+          "definitionByLocale": {
+            "ru": "Дорожить. Бережно хранить в сердце человека, вещь или воспоминание, потому что они очень важны.",
+            "uk": "Дорожити. Берегти в серці людину, річ або спогад, тому що вони дуже важливі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-33:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-33:i10:r1",
+          "text": "I cherish these memories."
+        },
+        {
+          "responseId": "en:lesson-29:session-33:i10:r2",
+          "text": "I cherish these letters."
+        },
+        {
+          "responseId": "en:lesson-29:session-33:i10:r3",
+          "text": "We cherish these memories."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-33:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-33:i10:audio",
+          "transcript": "I cherish these memories."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-33:i10:r1",
+            "targetText": "I cherish these memories.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-33:i10:r2",
+            "targetText": "I cherish these letters.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-33:i10:r3",
+            "targetText": "We cherish these memories.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-33:i10:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I cherish these memories.",
+              "uk": "У записі звучить I cherish these memories."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-33:i10:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I cherish these memories.",
+              "uk": "У записі звучить I cherish these memories."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-33:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Женщина, с которой вы познакомились вчера, — ваша тётя.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-33:i11:r1",
+          "text": "I met"
+        },
+        {
+          "responseId": "en:lesson-29:session-33:i11:r2",
+          "text": "I met her"
+        },
+        {
+          "responseId": "en:lesson-29:session-33:i11:r3",
+          "text": "me met"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Женщина, с которой вы познакомились вчера, — ваша тётя.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Женщина, с которой вы познакомились вчера, — ваша тётя.",
+          "uk": "Жінка, з якою ви познайомилися вчора, — ваша тітка."
+        },
+        "gappedTargetPhrase": "The woman ___ yesterday is my aunt.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-33:i11:r1",
+            "text": "I met"
+          },
+          {
+            "responseId": "en:lesson-29:session-33:i11:r2",
+            "text": "I met her"
+          },
+          {
+            "responseId": "en:lesson-29:session-33:i11:r3",
+            "text": "me met"
+          }
+        ],
+        "testedDimension": "Женщина, с которой вы познакомились вчера, — ваша тётя.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-33:i11:r2",
+            "correct": false,
+            "testedDimension": "Женщина, с которой вы познакомились вчера, — ваша тётя.",
+            "feedbackByLocale": {
+              "ru": "Her лишнее: женщина уже названа.",
+              "uk": "Her зайве: жінку вже названо."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-33:i11:r3",
+            "correct": false,
+            "testedDimension": "Женщина, с которой вы познакомились вчера, — ваша тётя.",
+            "feedbackByLocale": {
+              "ru": "Нужно I met, потому что встретили её вы.",
+              "uk": "Потрібно I met, тому що зустріли її ви."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-33:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите, когда сделали эту фотографию.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите, когда сделали эту фотографию.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "When was this photo taken?",
+        "localizedMeaning": {
+          "ru": "Спросите, когда сделали эту фотографию.",
+          "uk": "Запитайте, коли зробили цю фотографію."
+        },
+        "orderedTokens": [
+          "When",
+          "was",
+          "this",
+          "photo",
+          "taken"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-33:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — heirloom",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-33:i13:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — heirloom",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-33:i13:audio",
+          "transcript": "heirloom"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-33:i13:r1",
+            "targetText": "heirloom",
+            "meaningByLocale": {
+              "ru": "Семейная реликвия. Вещь, которую передают от старших родственников младшим и сохраняют в семье.",
+              "uk": "Сімейна реліквія. Річ, яку передають від старших родичів молодшим і зберігають у сім’ї."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "heirloom",
+          "definitionByLocale": {
+            "ru": "Семейная реликвия. Вещь, которую передают от старших родственников младшим и сохраняют в семье.",
+            "uk": "Сімейна реліквія. Річ, яку передають від старших родичів молодшим і зберігають у сім’ї."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-33:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Назовите кольцо семейной реликвией.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-33:i14:audio"
+      ],
+      "accessibilityLabel": "Назовите кольцо семейной реликвией.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-33:i14:audio",
+          "transcript": "This ring is a family heirloom."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This ring is a family heirloom.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-33:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-29:session-33:i15:p1",
+            "target": "nostalgic",
+            "meaningByLocale": {
+              "ru": "испытывающий ностальгию",
+              "uk": "сповнений ностальгії"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-33:i15:p2",
+            "target": "sentimental",
+            "meaningByLocale": {
+              "ru": "сентиментальный",
+              "uk": "сентиментальний"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-33:i15:p3",
+            "target": "cherish",
+            "meaningByLocale": {
+              "ru": "дорожить",
+              "uk": "дорожити"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-33:i15:p4",
+            "target": "heirloom",
+            "meaningByLocale": {
+              "ru": "семейная реликвия",
+              "uk": "сімейна реліквія"
+            }
+          }
+        ],
+        "leftColumn": [
+          "nostalgic",
+          "sentimental",
+          "cherish",
+          "heirloom"
+        ],
+        "rightColumn": [
+          "испытывающий ностальгию",
+          "сентиментальный",
+          "дорожить",
+          "семейная реликвия"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-33:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Бабушка подарила вам золотое кольцо.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-33:i16:r1",
+          "text": "gave"
+        },
+        {
+          "responseId": "en:lesson-29:session-33:i16:r2",
+          "text": "gave it"
+        },
+        {
+          "responseId": "en:lesson-29:session-33:i16:r3",
+          "text": "give"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Бабушка подарила вам золотое кольцо.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Бабушка подарила вам золотое кольцо.",
+          "uk": "Бабуся подарувала вам золоту каблучку."
+        },
+        "gappedTargetPhrase": "The ring Grandma ___ me is gold.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-33:i16:r1",
+            "text": "gave"
+          },
+          {
+            "responseId": "en:lesson-29:session-33:i16:r2",
+            "text": "gave it"
+          },
+          {
+            "responseId": "en:lesson-29:session-33:i16:r3",
+            "text": "give"
+          }
+        ],
+        "testedDimension": "Бабушка подарила вам золотое кольцо.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-33:i16:r2",
+            "correct": false,
+            "testedDimension": "Бабушка подарила вам золотое кольцо.",
+            "feedbackByLocale": {
+              "ru": "Подаренная вещь — ring; it не добавляем.",
+              "uk": "Подарована річ — ring; it не додаємо."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-33:i16:r3",
+            "correct": false,
+            "testedDimension": "Бабушка подарила вам золотое кольцо.",
+            "feedbackByLocale": {
+              "ru": "Подарила в прошлом — gave.",
+              "uk": "Подарувала в минулому — gave."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-33:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: речь о воспоминаниях или письмах?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-33:i17:r1",
+          "text": "I cherish these memories."
+        },
+        {
+          "responseId": "en:lesson-29:session-33:i17:r2",
+          "text": "I cherish these letters."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-33:i17:audioA",
+        "en:lesson-29:session-33:i17:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: речь о воспоминаниях или письмах?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "I cherish these memories.",
+        "contrastB": "I cherish these letters.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-29:session-33:i17:audioA",
+          "transcript": "I cherish these memories."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-29:session-33:i17:audioB",
+          "transcript": "I cherish these letters."
+        },
+        "testedPhoneticContrast": "Послушайте: речь о воспоминаниях или письмах?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-33:i17:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: речь о воспоминаниях или письмах?",
+            "feedbackByLocale": {
+              "ru": "Звучит memories — воспоминания.",
+              "uk": "Звучить memories — спогади."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-33:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте описание бабушкиного подарка.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-33:i18:audio"
+      ],
+      "accessibilityLabel": "Послушайте описание бабушкиного подарка.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-33:i18:audio",
+          "transcript": "The ring Grandma gave me is gold."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The ring Grandma gave me is gold.",
+        "orderedTokens": [
+          "The",
+          "ring",
+          "Grandma",
+          "gave",
+          "me",
+          "is",
+          "gold"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-33:i19",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите сестру рассказать об этой фотографии.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-33:i19:audio"
+      ],
+      "accessibilityLabel": "Попросите сестру рассказать об этой фотографии.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-33:i19:audio",
+          "transcript": "Could you tell me about this photo?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you tell me about this photo?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-33:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вам понравилась книга, которую вы прочли.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-33:i20:r1",
+          "text": "I read"
+        },
+        {
+          "responseId": "en:lesson-29:session-33:i20:r2",
+          "text": "I read it"
+        },
+        {
+          "responseId": "en:lesson-29:session-33:i20:r3",
+          "text": "me read"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вам понравилась книга, которую вы прочли.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вам понравилась книга, которую вы прочли.",
+          "uk": "Вам сподобалася книжка, яку ви прочитали."
+        },
+        "gappedTargetPhrase": "The book ___ was interesting.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-33:i20:r1",
+            "text": "I read"
+          },
+          {
+            "responseId": "en:lesson-29:session-33:i20:r2",
+            "text": "I read it"
+          },
+          {
+            "responseId": "en:lesson-29:session-33:i20:r3",
+            "text": "me read"
+          }
+        ],
+        "testedDimension": "Вам понравилась книга, которую вы прочли.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-33:i20:r2",
+            "correct": false,
+            "testedDimension": "Вам понравилась книга, которую вы прочли.",
+            "feedbackByLocale": {
+              "ru": "Book уже называет прочитанную вещь, it лишнее.",
+              "uk": "Book уже називає прочитану річ, it зайве."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-33:i20:r3",
+            "correct": false,
+            "testedDimension": "Вам понравилась книга, которую вы прочли.",
+            "feedbackByLocale": {
+              "ru": "Читали вы: I read.",
+              "uk": "Читали ви: I read."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-33:i21",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что хотите сохранить эти фотографии.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что хотите сохранить эти фотографии.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I want to keep these photos.",
+        "localizedMeaning": {
+          "ru": "Скажите, что хотите сохранить эти фотографии.",
+          "uk": "Скажіть, що хочете зберегти ці фотографії."
+        },
+        "orderedTokens": [
+          "I",
+          "want",
+          "to",
+          "keep",
+          "these",
+          "photos"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "65e3c1d9c6fa554b6e0cd302864de0f4ea4832cfa593e311544b3cb5a4f4cba9"
+}

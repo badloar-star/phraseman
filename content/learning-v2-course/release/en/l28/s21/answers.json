@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-28:session-21:i01",
+    "correctText": "viscose",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-21:i02",
+    "correctText": "This dress is made of viscose.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-21:i03",
+    "correctText": "Could you show me the label?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-21:i04",
+    "correctText": "Your order will be sent tomorrow.",
+    "correctResponseId": "en:lesson-28:session-21:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-21:i05",
+    "correctText": "acrylic",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-21:i06",
+    "correctText": "Does this jumper contain acrylic?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-21:i07",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-28:session-21:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-21:i08",
+    "correctText": "I wish this fabric were softer.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-21:i09",
+    "correctText": "satin",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-21:i10",
+    "correctText": "The satin skirt was displayed in the window.",
+    "correctResponseId": "en:lesson-28:session-21:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-21:i11",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-28:session-21:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-21:i12",
+    "correctText": "Do you have this in another colour?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-21:i13",
+    "correctText": "cashmere",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-21:i14",
+    "correctText": "Is this scarf made of cashmere?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-21:i15",
+    "correctText": "The clothes were checked before delivery.",
+    "correctResponseId": "en:lesson-28:session-21:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-21:i16",
+    "correctText": "sold",
+    "correctResponseId": "en:lesson-28:session-21:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-21:i17",
+    "correctText": "The order will be packed in the shop.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-21:i18",
+    "correctText": "Can I wash this in the machine?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-21:i19",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-28:session-21:i19:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-21:i20",
+    "correctText": "It was returned yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-21:i21",
+    "correctText": "Please keep the receipt.",
+    "correctResponseId": null
+  }
+]

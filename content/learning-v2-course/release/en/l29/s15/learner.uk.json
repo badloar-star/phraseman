@@ -1,0 +1,1056 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-29:session-15",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-29:session-15:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-15:i01:r1",
+          "text": "I need flowers for my aunt."
+        },
+        {
+          "responseId": "en:lesson-29:session-15:i01:r2",
+          "text": "I need flowers for my sister."
+        },
+        {
+          "responseId": "en:lesson-29:session-15:i01:r3",
+          "text": "I need a card for my aunt."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-15:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-15:i01:audio",
+          "transcript": "I need flowers for my aunt."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-15:i01:r1",
+            "targetText": "I need flowers for my aunt.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-15:i01:r2",
+            "targetText": "I need flowers for my sister.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-15:i01:r3",
+            "targetText": "I need a card for my aunt.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-15:i01:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I need flowers for my aunt.",
+              "uk": "У записі звучить I need flowers for my aunt."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-15:i01:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I need flowers for my aunt.",
+              "uk": "У записі звучить I need flowers for my aunt."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-15:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — lily",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-15:i02:audio"
+      ],
+      "accessibilityLabel": "Картка слова — lily",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-15:i02:audio",
+          "transcript": "lily"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-15:i02:r1",
+            "targetText": "lily",
+            "meaningByLocale": {
+              "ru": "Лилия. Цветок с крупными заметными лепестками; его часто добавляют в букеты.",
+              "uk": "Лілія. Квітка з великими помітними пелюстками; її часто додають до букетів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lily",
+          "definitionByLocale": {
+            "ru": "Лилия. Цветок с крупными заметными лепестками; его часто добавляют в букеты.",
+            "uk": "Лілія. Квітка з великими помітними пелюстками; її часто додають до букетів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-15:i03",
+      "ordinal": 6,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть додати одну білу лілію.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-15:i03:audio"
+      ],
+      "accessibilityLabel": "Попросіть додати одну білу лілію.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-15:i03:audio",
+          "transcript": "Could you add one white lily?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you add one white lily?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-15:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Укажіть жінку, у якої сьогодні день народження.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Укажіть жінку, у якої сьогодні день народження.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "That is the woman whose birthday is today.",
+        "localizedMeaning": {
+          "ru": "Укажите женщину, у которой сегодня день рождения.",
+          "uk": "Укажіть жінку, у якої сьогодні день народження."
+        },
+        "orderedTokens": [
+          "That",
+          "is",
+          "the",
+          "woman",
+          "whose",
+          "birthday",
+          "is",
+          "today"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-15:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточніть, що букет підготував флорист.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-15:i05:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-29:session-15:i05:r2",
+          "text": "of"
+        },
+        {
+          "responseId": "en:lesson-29:session-15:i05:r3",
+          "text": "from"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточніть, що букет підготував флорист.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните, что букет подготовил флорист.",
+          "uk": "Уточніть, що букет підготував флорист."
+        },
+        "gappedTargetPhrase": "The bouquet was prepared ___ the florist.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-15:i05:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-29:session-15:i05:r2",
+            "text": "of"
+          },
+          {
+            "responseId": "en:lesson-29:session-15:i05:r3",
+            "text": "from"
+          }
+        ],
+        "testedDimension": "Уточніть, що букет підготував флорист.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-15:i05:r2",
+            "correct": false,
+            "testedDimension": "Уточніть, що букет підготував флорист.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя действия вводит by.",
+              "uk": "Виконавця дії позначає by."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-15:i05:r3",
+            "correct": false,
+            "testedDimension": "Уточніть, що букет підготував флорист.",
+            "feedbackByLocale": {
+              "ru": "Для того, кто подготовил букет, нужна by.",
+              "uk": "Для того, хто підготував букет, потрібна by."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-15:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — orchid",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-15:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — orchid",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-15:i06:audio",
+          "transcript": "orchid"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-15:i06:r1",
+            "targetText": "orchid",
+            "meaningByLocale": {
+              "ru": "Орхидея. Цветущее растение, которое часто продают в горшке как подарок.",
+              "uk": "Орхідея. Квітуча рослина, яку часто продають у горщику як подарунок."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "orchid",
+          "definitionByLocale": {
+            "ru": "Орхидея. Цветущее растение, которое часто продают в горшке как подарок.",
+            "uk": "Орхідея. Квітуча рослина, яку часто продають у горщику як подарунок."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-15:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-15:i07:r1",
+          "text": "Do you have an orchid in a pot?"
+        },
+        {
+          "responseId": "en:lesson-29:session-15:i07:r2",
+          "text": "Do you have a rose in a pot?"
+        },
+        {
+          "responseId": "en:lesson-29:session-15:i07:r3",
+          "text": "Do you have an orchid in a vase?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-15:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-15:i07:audio",
+          "transcript": "Do you have an orchid in a pot?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-15:i07:r1",
+            "targetText": "Do you have an orchid in a pot?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-15:i07:r2",
+            "targetText": "Do you have a rose in a pot?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-15:i07:r3",
+            "targetText": "Do you have an orchid in a vase?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-15:i07:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Do you have an orchid in a pot?",
+              "uk": "У записі звучить Do you have an orchid in a pot?"
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-15:i07:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Do you have an orchid in a pot?",
+              "uk": "У записі звучить Do you have an orchid in a pot?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-15:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте, скільки коштує рослина.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-15:i08:audio"
+      ],
+      "accessibilityLabel": "Запитайте, скільки коштує рослина.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-15:i08:audio",
+          "transcript": "How much is this plant?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "How much is this plant?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-15:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назвіть жінку, у якої сьогодні день народження.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-15:i09:r1",
+          "text": "whose"
+        },
+        {
+          "responseId": "en:lesson-29:session-15:i09:r2",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-15:i09:r3",
+          "text": "whose her"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назвіть жінку, у якої сьогодні день народження.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите женщину, у которой сегодня день рождения.",
+          "uk": "Назвіть жінку, у якої сьогодні день народження."
+        },
+        "gappedTargetPhrase": "That is the woman ___ birthday is today.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-15:i09:r1",
+            "text": "whose"
+          },
+          {
+            "responseId": "en:lesson-29:session-15:i09:r2",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-15:i09:r3",
+            "text": "whose her"
+          }
+        ],
+        "testedDimension": "Назвіть жінку, у якої сьогодні день народження.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-15:i09:r2",
+            "correct": false,
+            "testedDimension": "Назвіть жінку, у якої сьогодні день народження.",
+            "feedbackByLocale": {
+              "ru": "Для связи с birthday нужна whose.",
+              "uk": "Для зв’язку з birthday потрібна whose."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-15:i09:r3",
+            "correct": false,
+            "testedDimension": "Назвіть жінку, у якої сьогодні день народження.",
+            "feedbackByLocale": {
+              "ru": "Her после whose не добавляем.",
+              "uk": "Her після whose не додаємо."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-15:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — carnation",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-15:i10:audio"
+      ],
+      "accessibilityLabel": "Картка слова — carnation",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-15:i10:audio",
+          "transcript": "carnation"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-15:i10:r1",
+            "targetText": "carnation",
+            "meaningByLocale": {
+              "ru": "Гвоздика. Цветок с множеством лепестков с неровными краями; здесь не пряность.",
+              "uk": "Гвоздика. Квітка з багатьма пелюстками з нерівними краями; тут не пряність."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "carnation",
+          "definitionByLocale": {
+            "ru": "Гвоздика. Цветок с множеством лепестков с неровными краями; здесь не пряность.",
+            "uk": "Гвоздика. Квітка з багатьма пелюстками з нерівними краями; тут не пряність."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-15:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросіть одну рожеву гвоздику.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросіть одну рожеву гвоздику.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I would like one pink carnation.",
+        "localizedMeaning": {
+          "ru": "Попросите одну розовую гвоздику.",
+          "uk": "Попросіть одну рожеву гвоздику."
+        },
+        "orderedTokens": [
+          "I",
+          "would",
+          "like",
+          "one",
+          "pink",
+          "carnation"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-15:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, хто підготував букет.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-15:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте, хто підготував букет.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-15:i12:audio",
+          "transcript": "The bouquet was prepared by the florist."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The bouquet was prepared by the florist.",
+        "orderedTokens": [
+          "The",
+          "bouquet",
+          "was",
+          "prepared",
+          "by",
+          "the",
+          "florist"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-15:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: день народження сьогодні чи завтра?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-15:i13:r1",
+          "text": "Her birthday is today."
+        },
+        {
+          "responseId": "en:lesson-29:session-15:i13:r2",
+          "text": "Her birthday is tomorrow."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-15:i13:audioA",
+        "en:lesson-29:session-15:i13:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: день народження сьогодні чи завтра?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "Her birthday is today.",
+        "contrastB": "Her birthday is tomorrow.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-29:session-15:i13:audioA",
+          "transcript": "Her birthday is today."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-29:session-15:i13:audioB",
+          "transcript": "Her birthday is tomorrow."
+        },
+        "testedPhoneticContrast": "Послухайте: день народження сьогодні чи завтра?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-15:i13:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: день народження сьогодні чи завтра?",
+            "feedbackByLocale": {
+              "ru": "В записи today — сегодня.",
+              "uk": "У записі today — сьогодні."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-15:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — peony",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-15:i14:audio"
+      ],
+      "accessibilityLabel": "Картка слова — peony",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-15:i14:audio",
+          "transcript": "peony"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-15:i14:r1",
+            "targetText": "peony",
+            "meaningByLocale": {
+              "ru": "Пион. Садовый цветок с крупным пышным бутоном.",
+              "uk": "Півонія. Садова квітка з великим пишним бутоном."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "peony",
+          "definitionByLocale": {
+            "ru": "Пион. Садовый цветок с крупным пышным бутоном.",
+            "uk": "Півонія. Садова квітка з великим пишним бутоном."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-15:i15",
+      "ordinal": 18,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть додати одну півонію.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-15:i15:audio"
+      ],
+      "accessibilityLabel": "Попросіть додати одну півонію.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-15:i15:audio",
+          "transcript": "Could you add a peony?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you add a peony?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-15:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви купите квіти, якщо магазин відчинений.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-15:i16:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-29:session-15:i16:r2",
+          "text": "will be"
+        },
+        {
+          "responseId": "en:lesson-29:session-15:i16:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви купите квіти, якщо магазин відчинений.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы купите цветы, если магазин открыт.",
+          "uk": "Ви купите квіти, якщо магазин відчинений."
+        },
+        "gappedTargetPhrase": "I will buy flowers if the shop ___ open.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-15:i16:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-29:session-15:i16:r2",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-29:session-15:i16:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Ви купите квіти, якщо магазин відчинений.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-15:i16:r2",
+            "correct": false,
+            "testedDimension": "Ви купите квіти, якщо магазин відчинений.",
+            "feedbackByLocale": {
+              "ru": "В этом условии нужна is без will.",
+              "uk": "У цій умові потрібна is без will."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-15:i16:r3",
+            "correct": false,
+            "testedDimension": "Ви купите квіти, якщо магазин відчинений.",
+            "feedbackByLocale": {
+              "ru": "После the shop здесь используем is.",
+              "uk": "Після the shop тут використовуємо is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-15:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте квіти з перекладом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте квіти з перекладом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-29:session-15:i17:p1",
+            "target": "lily",
+            "meaningByLocale": {
+              "ru": "лилия",
+              "uk": "лілія"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-15:i17:p2",
+            "target": "orchid",
+            "meaningByLocale": {
+              "ru": "орхидея",
+              "uk": "орхідея"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-15:i17:p3",
+            "target": "carnation",
+            "meaningByLocale": {
+              "ru": "гвоздика",
+              "uk": "гвоздика"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-15:i17:p4",
+            "target": "peony",
+            "meaningByLocale": {
+              "ru": "пион",
+              "uk": "півонія"
+            }
+          }
+        ],
+        "leftColumn": [
+          "lily",
+          "orchid",
+          "carnation",
+          "peony"
+        ],
+        "rightColumn": [
+          "лілія",
+          "орхідея",
+          "гвоздика",
+          "півонія"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-15:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросіть картку до букета.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросіть картку до букета.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could you add a card to the bouquet?",
+        "localizedMeaning": {
+          "ru": "Попросите карточку к букету.",
+          "uk": "Попросіть картку до букета."
+        },
+        "orderedTokens": [
+          "Could",
+          "you",
+          "add",
+          "a",
+          "card",
+          "to",
+          "the",
+          "bouquet"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-15:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Укажіть рослину, яка стоїть біля вікна.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-15:i19:r1",
+          "text": "that"
+        },
+        {
+          "responseId": "en:lesson-29:session-15:i19:r2",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-15:i19:r3",
+          "text": "what"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Укажіть рослину, яка стоїть біля вікна.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Укажите растение, которое стоит у окна.",
+          "uk": "Укажіть рослину, яка стоїть біля вікна."
+        },
+        "gappedTargetPhrase": "I like the plant ___ stands by the window.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-15:i19:r1",
+            "text": "that"
+          },
+          {
+            "responseId": "en:lesson-29:session-15:i19:r2",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-15:i19:r3",
+            "text": "what"
+          }
+        ],
+        "testedDimension": "Укажіть рослину, яка стоїть біля вікна.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-15:i19:r2",
+            "correct": false,
+            "testedDimension": "Укажіть рослину, яка стоїть біля вікна.",
+            "feedbackByLocale": {
+              "ru": "Для растения здесь используем that.",
+              "uk": "Для рослини тут використовуємо that."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-15:i19:r3",
+            "correct": false,
+            "testedDimension": "Укажіть рослину, яка стоїть біля вікна.",
+            "feedbackByLocale": {
+              "ru": "Это уточнение после the plant вводит that.",
+              "uk": "Це уточнення після the plant вводить that."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-15:i20",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть загорнути букет.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-15:i20:audio"
+      ],
+      "accessibilityLabel": "Попросіть загорнути букет.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-15:i20:audio",
+          "transcript": "Could you wrap the bouquet, please?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you wrap the bouquet, please?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-15:i21",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, кому призначені квіти.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-15:i21:audio"
+      ],
+      "accessibilityLabel": "Послухайте, кому призначені квіти.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-15:i21:audio",
+          "transcript": "These flowers are for you."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "These flowers are for you.",
+        "orderedTokens": [
+          "These",
+          "flowers",
+          "are",
+          "for",
+          "you"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "7910ad883309771708c21988049664896ad92dc474ce589d18d36e762d71e96a"
+}

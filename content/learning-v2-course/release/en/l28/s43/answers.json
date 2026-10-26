@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-28:session-43:i01",
+    "correctText": "How much are these berries?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-43:i02",
+    "correctText": "punnet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-43:i03",
+    "correctText": "Can I have a punnet of strawberries?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-43:i04",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-28:session-43:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-43:i05",
+    "correctText": "The vegetables were grown by a local farmer.",
+    "correctResponseId": "en:lesson-28:session-43:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-43:i06",
+    "correctText": "sultana",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-43:i07",
+    "correctText": "This is a sultana.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-43:i08",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-28:session-43:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-43:i09",
+    "correctText": "Your order will be delivered tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-43:i10",
+    "correctText": "chutney",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-43:i11",
+    "correctText": "Is this chutney spicy?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-43:i12",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-28:session-43:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-43:i13",
+    "correctText": "These jars are kept on the top shelf.",
+    "correctResponseId": "en:lesson-28:session-43:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-43:i14",
+    "correctText": "relish",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-43:i15",
+    "correctText": "I would like some tomato relish.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-43:i16",
+    "correctText": "en:lesson-28:session-43:i16:p1=punnet\nen:lesson-28:session-43:i16:p2=sultana\nen:lesson-28:session-43:i16:p3=chutney\nen:lesson-28:session-43:i16:p4=relish",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-43:i17",
+    "correctText": "closed",
+    "correctResponseId": "en:lesson-28:session-43:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-43:i18",
+    "correctText": "Do you have a smaller bag?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-43:i19",
+    "correctText": "The basket was packed this morning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-43:i20",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-28:session-43:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-43:i21",
+    "correctText": "What time do you close today?",
+    "correctResponseId": null
+  }
+]

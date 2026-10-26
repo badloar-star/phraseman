@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-28:session-46",
+  "entries": [
+    {
+      "interactionId": "en:lesson-28:session-46:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-46:intro1:r2": {
+          "ru": "Перед repaired нужна be.",
+          "uk": "Перед repaired потрібна be."
+        },
+        "en:lesson-28:session-46:intro1:r3": {
+          "ru": "После be нужна repaired.",
+          "uk": "Після be потрібна repaired."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-46:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-46:intro2:r2": {
+          "ru": "Исполнителя вводит by.",
+          "uk": "Виконавця вводить by."
+        },
+        "en:lesson-28:session-46:intro2:r3": {
+          "ru": "Перед my sister нужна by.",
+          "uk": "Перед my sister потрібна by."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-46:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-46:intro3:r2": {
+          "ru": "Между will и wrapped нужна be.",
+          "uk": "Між will та wrapped потрібна be."
+        },
+        "en:lesson-28:session-46:intro3:r3": {
+          "ru": "После will be нужна wrapped.",
+          "uk": "Після will be потрібна wrapped."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "37a4d2addb1465e66adf069e9a1bc490a61f217771695c962931464a180765bf"
+}

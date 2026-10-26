@@ -1,0 +1,1052 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-29:session-32",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-29:session-32:i01",
+      "ordinal": 4,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите поговорить с волонтёром.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-32:i01:audio"
+      ],
+      "accessibilityLabel": "Попросите поговорить с волонтёром.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-32:i01:audio",
+          "transcript": "Could I speak to a volunteer?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could I speak to a volunteer?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-32:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — foster",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-32:i02:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — foster",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-32:i02:audio",
+          "transcript": "foster"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-32:i02:r1",
+            "targetText": "foster",
+            "meaningByLocale": {
+              "ru": "Временно заботиться о животном. Брать питомца к себе до появления постоянного дома.",
+              "uk": "Тимчасово піклуватися про тварину. Брати улюбленця до себе до появи постійного дому."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "foster",
+          "definitionByLocale": {
+            "ru": "Временно заботиться о животном. Брать питомца к себе до появления постоянного дома.",
+            "uk": "Тимчасово піклуватися про тварину. Брати улюбленця до себе до появи постійного дому."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-32:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что хотите временно взять собаку к себе.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что хотите временно взять собаку к себе.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I would like to foster a dog.",
+        "localizedMeaning": {
+          "ru": "Скажите, что хотите временно взять собаку к себе.",
+          "uk": "Скажіть, що хочете тимчасово взяти собаку до себе."
+        },
+        "orderedTokens": [
+          "I",
+          "would",
+          "like",
+          "to",
+          "foster",
+          "a",
+          "dog"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-32:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-32:i04:r1",
+          "text": "The volunteer who I met was helpful."
+        },
+        {
+          "responseId": "en:lesson-29:session-32:i04:r2",
+          "text": "The volunteer who I met was busy."
+        },
+        {
+          "responseId": "en:lesson-29:session-32:i04:r3",
+          "text": "The neighbour who I met was helpful."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-32:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-32:i04:audio",
+          "transcript": "The volunteer who I met was helpful."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-32:i04:r1",
+            "targetText": "The volunteer who I met was helpful.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-32:i04:r2",
+            "targetText": "The volunteer who I met was busy.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-32:i04:r3",
+            "targetText": "The neighbour who I met was helpful.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-32:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The volunteer who I met was helpful.",
+              "uk": "У записі звучить The volunteer who I met was helpful."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-32:i04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The volunteer who I met was helpful.",
+              "uk": "У записі звучить The volunteer who I met was helpful."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-32:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы встретили волонтёра, который охотно помогал.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-32:i05:r1",
+          "text": "I met"
+        },
+        {
+          "responseId": "en:lesson-29:session-32:i05:r2",
+          "text": "I met him"
+        },
+        {
+          "responseId": "en:lesson-29:session-32:i05:r3",
+          "text": "me met"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы встретили волонтёра, который охотно помогал.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы встретили волонтёра, который охотно помогал.",
+          "uk": "Ви зустріли волонтера, який охоче допомагав."
+        },
+        "gappedTargetPhrase": "The volunteer who ___ was helpful.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-32:i05:r1",
+            "text": "I met"
+          },
+          {
+            "responseId": "en:lesson-29:session-32:i05:r2",
+            "text": "I met him"
+          },
+          {
+            "responseId": "en:lesson-29:session-32:i05:r3",
+            "text": "me met"
+          }
+        ],
+        "testedDimension": "Вы встретили волонтёра, который охотно помогал.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-32:i05:r2",
+            "correct": false,
+            "testedDimension": "Вы встретили волонтёра, который охотно помогал.",
+            "feedbackByLocale": {
+              "ru": "Who уже обозначает волонтёра, him лишнее.",
+              "uk": "Who вже позначає волонтера, him зайве."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-32:i05:r3",
+            "correct": false,
+            "testedDimension": "Вы встретили волонтёра, который охотно помогал.",
+            "feedbackByLocale": {
+              "ru": "Нужен исполнитель I: I met.",
+              "uk": "Потрібен виконавець I: I met."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-32:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — microchip",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-32:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — microchip",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-32:i06:audio",
+          "transcript": "microchip"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-32:i06:r1",
+            "targetText": "microchip",
+            "meaningByLocale": {
+              "ru": "Микрочип. Маленький чип под кожей животного с номером для его идентификации.",
+              "uk": "Мікрочип. Маленький чип під шкірою тварини з номером для її ідентифікації."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "microchip",
+          "definitionByLocale": {
+            "ru": "Микрочип. Маленький чип под кожей животного с номером для его идентификации.",
+            "uk": "Мікрочип. Маленький чип під шкірою тварини з номером для її ідентифікації."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-32:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите, есть ли у собаки микрочип.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-32:i07:audio"
+      ],
+      "accessibilityLabel": "Спросите, есть ли у собаки микрочип.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-32:i07:audio",
+          "transcript": "Does the dog have a microchip?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Does the dog have a microchip?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-32:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, где лежат документы.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-32:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте, где лежат документы.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-32:i08:audio",
+          "transcript": "The papers are in this folder."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The papers are in this folder.",
+        "orderedTokens": [
+          "The",
+          "papers",
+          "are",
+          "in",
+          "this",
+          "folder"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-32:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — neuter",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-32:i09:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — neuter",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-32:i09:audio",
+          "transcript": "neuter"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-32:i09:r1",
+            "targetText": "neuter",
+            "meaningByLocale": {
+              "ru": "Кастрировать животное. Глагол о процедуре, после которой животное не может иметь потомство; часто употребляется о самцах.",
+              "uk": "Каструвати тварину. Дієслово про процедуру, після якої тварина не може мати потомства; часто вживається щодо самців."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "neuter",
+          "definitionByLocale": {
+            "ru": "Кастрировать животное. Глагол о процедуре, после которой животное не может иметь потомство; часто употребляется о самцах.",
+            "uk": "Каструвати тварину. Дієслово про процедуру, після якої тварина не може мати потомства; часто вживається щодо самців."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-32:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-32:i10:r1",
+          "text": "Does the shelter neuter male cats?"
+        },
+        {
+          "responseId": "en:lesson-29:session-32:i10:r2",
+          "text": "Does the shelter neuter male dogs?"
+        },
+        {
+          "responseId": "en:lesson-29:session-32:i10:r3",
+          "text": "Does the vet neuter male cats?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-32:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-32:i10:audio",
+          "transcript": "Does the shelter neuter male cats?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-32:i10:r1",
+            "targetText": "Does the shelter neuter male cats?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-32:i10:r2",
+            "targetText": "Does the shelter neuter male dogs?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-32:i10:r3",
+            "targetText": "Does the vet neuter male cats?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-32:i10:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Does the shelter neuter male cats?",
+              "uk": "У записі звучить Does the shelter neuter male cats?"
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-32:i10:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Does the shelter neuter male cats?",
+              "uk": "У записі звучить Does the shelter neuter male cats?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-32:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Этот человек заботился о собаке.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-32:i11:r1",
+          "text": "looked"
+        },
+        {
+          "responseId": "en:lesson-29:session-32:i11:r2",
+          "text": "he looked"
+        },
+        {
+          "responseId": "en:lesson-29:session-32:i11:r3",
+          "text": "look"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Этот человек заботился о собаке.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Этот человек заботился о собаке.",
+          "uk": "Ця людина піклувалася про собаку."
+        },
+        "gappedTargetPhrase": "This is the person who ___ after the dog.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-32:i11:r1",
+            "text": "looked"
+          },
+          {
+            "responseId": "en:lesson-29:session-32:i11:r2",
+            "text": "he looked"
+          },
+          {
+            "responseId": "en:lesson-29:session-32:i11:r3",
+            "text": "look"
+          }
+        ],
+        "testedDimension": "Этот человек заботился о собаке.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-32:i11:r2",
+            "correct": false,
+            "testedDimension": "Этот человек заботился о собаке.",
+            "feedbackByLocale": {
+              "ru": "Who уже обозначает человека, he лишнее.",
+              "uk": "Who вже позначає людину, he зайве."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-32:i11:r3",
+            "correct": false,
+            "testedDimension": "Этот человек заботился о собаке.",
+            "feedbackByLocale": {
+              "ru": "О завершённом действии здесь говорим looked.",
+              "uk": "Про завершену дію тут кажемо looked."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-32:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите, что означает это слово.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите, что означает это слово.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "What does this word mean?",
+        "localizedMeaning": {
+          "ru": "Спросите, что означает это слово.",
+          "uk": "Запитайте, що означає це слово."
+        },
+        "orderedTokens": [
+          "What",
+          "does",
+          "this",
+          "word",
+          "mean"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-32:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — spay",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-32:i13:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — spay",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-32:i13:audio",
+          "transcript": "spay"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-32:i13:r1",
+            "targetText": "spay",
+            "meaningByLocale": {
+              "ru": "Стерилизовать самку животного. Глагол о ветеринарной операции, после которой самка не может иметь потомство.",
+              "uk": "Стерилізувати самку тварини. Дієслово про ветеринарну операцію, після якої самка не може мати потомства."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "spay",
+          "definitionByLocale": {
+            "ru": "Стерилизовать самку животного. Глагол о ветеринарной операции, после которой самка не может иметь потомство.",
+            "uk": "Стерилізувати самку тварини. Дієслово про ветеринарну операцію, після якої самка не може мати потомства."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-32:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите, стерилизуют ли в приюте кошек-самок.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-32:i14:audio"
+      ],
+      "accessibilityLabel": "Спросите, стерилизуют ли в приюте кошек-самок.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-32:i14:audio",
+          "transcript": "Does the shelter spay female cats?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Does the shelter spay female cats?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-32:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-29:session-32:i15:p1",
+            "target": "foster",
+            "meaningByLocale": {
+              "ru": "временно заботиться о животном",
+              "uk": "тимчасово піклуватися про тварину"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-32:i15:p2",
+            "target": "microchip",
+            "meaningByLocale": {
+              "ru": "микрочип",
+              "uk": "мікрочип"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-32:i15:p3",
+            "target": "neuter",
+            "meaningByLocale": {
+              "ru": "кастрировать животное",
+              "uk": "каструвати тварину"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-32:i15:p4",
+            "target": "spay",
+            "meaningByLocale": {
+              "ru": "стерилизовать самку",
+              "uk": "стерилізувати самку"
+            }
+          }
+        ],
+        "leftColumn": [
+          "foster",
+          "microchip",
+          "neuter",
+          "spay"
+        ],
+        "rightColumn": [
+          "временно заботиться о животном",
+          "микрочип",
+          "кастрировать животное",
+          "стерилизовать самку"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-32:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В этом кабинете можно поговорить с ветеринаром.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-32:i16:r1",
+          "text": "where"
+        },
+        {
+          "responseId": "en:lesson-29:session-32:i16:r2",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-32:i16:r3",
+          "text": "whose"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В этом кабинете можно поговорить с ветеринаром.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В этом кабинете можно поговорить с ветеринаром.",
+          "uk": "У цьому кабінеті можна поговорити з ветеринаром."
+        },
+        "gappedTargetPhrase": "This is the room ___ you can speak to the vet.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-32:i16:r1",
+            "text": "where"
+          },
+          {
+            "responseId": "en:lesson-29:session-32:i16:r2",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-32:i16:r3",
+            "text": "whose"
+          }
+        ],
+        "testedDimension": "В этом кабинете можно поговорить с ветеринаром.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-32:i16:r2",
+            "correct": false,
+            "testedDimension": "В этом кабинете можно поговорить с ветеринаром.",
+            "feedbackByLocale": {
+              "ru": "Для места разговора нужно where.",
+              "uk": "Для місця розмови потрібне where."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-32:i16:r3",
+            "correct": false,
+            "testedDimension": "В этом кабинете можно поговорить с ветеринаром.",
+            "feedbackByLocale": {
+              "ru": "Здесь место, а не принадлежность: where.",
+              "uk": "Тут місце, а не належність: where."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-32:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: вопрос о котах или о кобелях?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-32:i17:r1",
+          "text": "Does the shelter neuter male cats?"
+        },
+        {
+          "responseId": "en:lesson-29:session-32:i17:r2",
+          "text": "Does the shelter neuter male dogs?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-32:i17:audioA",
+        "en:lesson-29:session-32:i17:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: вопрос о котах или о кобелях?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "Does the shelter neuter male cats?",
+        "contrastB": "Does the shelter neuter male dogs?",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-29:session-32:i17:audioA",
+          "transcript": "Does the shelter neuter male cats?"
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-29:session-32:i17:audioB",
+          "transcript": "Does the shelter neuter male dogs?"
+        },
+        "testedPhoneticContrast": "Послушайте: вопрос о котах или о кобелях?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-32:i17:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: вопрос о котах или о кобелях?",
+            "feedbackByLocale": {
+              "ru": "Звучит male cats — коты.",
+              "uk": "Звучить male cats — коти."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-32:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, кто подготовил документы.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-32:i18:audio"
+      ],
+      "accessibilityLabel": "Послушайте, кто подготовил документы.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-32:i18:audio",
+          "transcript": "The papers were prepared by a volunteer."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The papers were prepared by a volunteer.",
+        "orderedTokens": [
+          "The",
+          "papers",
+          "were",
+          "prepared",
+          "by",
+          "a",
+          "volunteer"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-32:i19",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите записать номер.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-32:i19:audio"
+      ],
+      "accessibilityLabel": "Попросите записать номер.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-32:i19:audio",
+          "transcript": "Could you write down the number?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you write down the number?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-32:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Документы подготовил волонтёр.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-32:i20:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-29:session-32:i20:r2",
+          "text": "of"
+        },
+        {
+          "responseId": "en:lesson-29:session-32:i20:r3",
+          "text": "from"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Документы подготовил волонтёр.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Документы подготовил волонтёр.",
+          "uk": "Документи підготував волонтер."
+        },
+        "gappedTargetPhrase": "The papers were prepared ___ a volunteer.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-32:i20:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-29:session-32:i20:r2",
+            "text": "of"
+          },
+          {
+            "responseId": "en:lesson-29:session-32:i20:r3",
+            "text": "from"
+          }
+        ],
+        "testedDimension": "Документы подготовил волонтёр.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-32:i20:r2",
+            "correct": false,
+            "testedDimension": "Документы подготовил волонтёр.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя действия вводит by.",
+              "uk": "Виконавця дії позначає by."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-32:i20:r3",
+            "correct": false,
+            "testedDimension": "Документы подготовил волонтёр.",
+            "feedbackByLocale": {
+              "ru": "Для человека, подготовившего документы, нужна by.",
+              "uk": "Для людини, яка підготувала документи, потрібна by."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-32:i21",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Поблагодарите за информацию.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поблагодарите за информацию.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Thank you for the information.",
+        "localizedMeaning": {
+          "ru": "Поблагодарите за информацию.",
+          "uk": "Подякуйте за інформацію."
+        },
+        "orderedTokens": [
+          "Thank",
+          "you",
+          "for",
+          "the",
+          "information"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "80c7cf550d60f140689d4b29321a17d947b655d0dcbeb9fbb34eb1ed146475d6"
+}

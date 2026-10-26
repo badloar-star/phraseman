@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-29:session-44",
+  "learningOutcomeByLocale": {
+    "ru": "как назвать четыре десерта, спросить о порции и вкусе, уточнить совет друга и место.",
+    "uk": "як назвати чотири десерти, запитати про порцію та смак, уточнити пораду друга й місце."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-29:session-44:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Десерт по совету друга",
+        "uk": "Десерт за порадою друга"
+      },
+      "bodyByLocale": {
+        "ru": "Вы пробуете десерт, который посоветовал друг, и хвалите его. Скажите: The dessert you recommended is delicious — десерт, который ты посоветовал, вкусный. Соберите The dessert + you recommended + is delicious. В уточнении действие выполняет you, а dessert называет то, что посоветовали. Поэтому that перед you можно опустить; it после recommended не добавляем.",
+        "uk": "Ви куштуєте десерт, який порадив друг, і хвалите його. Скажіть: The dessert you recommended is delicious — десерт, який ти порадив, смачний. Складіть The dessert + you recommended + is delicious. В уточненні дію виконує you, а dessert називає те, що порадили. Тому that перед you можна пропустити; it після recommended не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-44:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-44:intro1:r1",
+              "text": "The dessert you recommended is delicious."
+            },
+            {
+              "responseId": "en:lesson-29:session-44:intro1:r2",
+              "text": "The dessert you recommended it is delicious."
+            },
+            {
+              "responseId": "en:lesson-29:session-44:intro1:r3",
+              "text": "The dessert you recommending is delicious."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-44:intro1:r1",
+              "text": "The dessert you recommended is delicious."
+            },
+            {
+              "responseId": "en:lesson-29:session-44:intro1:r2",
+              "text": "The dessert you recommended it is delicious."
+            },
+            {
+              "responseId": "en:lesson-29:session-44:intro1:r3",
+              "text": "The dessert you recommending is delicious."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-29:session-44:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Кафе, где вы попробовали десерт",
+        "uk": "Кафе, де ви скуштували десерт"
+      },
+      "bodyByLocale": {
+        "ru": "Вы показываете сестре кафе, в котором впервые попробовали понравившийся десерт. Скажите: This is the café where I tried it — это кафе, где я его попробовал. Соберите This is the café + where + I tried it. Where связывает событие с местом. После where сохраняем порядок I tried it, без вопросительного did.",
+        "uk": "Ви показуєте сестрі кафе, у якому вперше скуштували десерт, що сподобався. Скажіть: This is the café where I tried it — це кафе, де я його скуштував. Складіть This is the café + where + I tried it. Where пов’язує подію з місцем. Після where зберігаємо порядок I tried it, без питального did."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-44:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-44:intro2:r1",
+              "text": "This is the café where I tried it."
+            },
+            {
+              "responseId": "en:lesson-29:session-44:intro2:r2",
+              "text": "This is the café where did I try it."
+            },
+            {
+              "responseId": "en:lesson-29:session-44:intro2:r3",
+              "text": "This is the café who I tried it."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-44:intro2:r1",
+              "text": "This is the café where I tried it."
+            },
+            {
+              "responseId": "en:lesson-29:session-44:intro2:r2",
+              "text": "This is the café where did I try it."
+            },
+            {
+              "responseId": "en:lesson-29:session-44:intro2:r3",
+              "text": "This is the café who I tried it."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-29:session-44:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Официант, который помог",
+        "uk": "Офіціант, який допоміг"
+      },
+      "bodyByLocale": {
+        "ru": "Вы показываете другу официанта, который помог выбрать десерт. Скажите: This is the waiter who helped me — это официант, который мне помог. Соберите This is the waiter + who helped me. Who здесь обозначает того, кто помог. Поэтому who оставляем, а he после него не добавляем.",
+        "uk": "Ви показуєте другові офіціанта, який допоміг вибрати десерт. Скажіть: This is the waiter who helped me — це офіціант, який мені допоміг. Складіть This is the waiter + who helped me. Who тут позначає того, хто допоміг. Тому who залишаємо, а he після нього не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-44:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-44:intro3:r1",
+              "text": "This is the waiter who helped me."
+            },
+            {
+              "responseId": "en:lesson-29:session-44:intro3:r2",
+              "text": "This is the waiter helped me."
+            },
+            {
+              "responseId": "en:lesson-29:session-44:intro3:r3",
+              "text": "This is the waiter who he helped me."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-44:intro3:r1",
+              "text": "This is the waiter who helped me."
+            },
+            {
+              "responseId": "en:lesson-29:session-44:intro3:r2",
+              "text": "This is the waiter helped me."
+            },
+            {
+              "responseId": "en:lesson-29:session-44:intro3:r3",
+              "text": "This is the waiter who he helped me."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "fa113527bab251a9174d4b398f72da1a721dada01fafdc4762f1586e55d18f82"
+}

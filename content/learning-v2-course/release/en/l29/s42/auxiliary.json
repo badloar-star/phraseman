@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-29:session-42",
+  "entries": [
+    {
+      "interactionId": "en:lesson-29:session-42:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-42:intro1:r2": {
+          "ru": "It лишнее: история уже названа словом story.",
+          "uk": "It зайве: історію вже названо словом story."
+        },
+        "en:lesson-29:session-42:intro1:r3": {
+          "ru": "Для рассказа в прошлом нужно told.",
+          "uk": "Для розповіді в минулому потрібне told."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-42:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-42:intro2:r2": {
+          "ru": "Чей малыш — whose baby.",
+          "uk": "Чиє маля — whose baby."
+        },
+        "en:lesson-29:session-42:intro2:r3": {
+          "ru": "Whose уже показывает связь; her лишнее.",
+          "uk": "Whose вже показує зв’язок; her зайве."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-42:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-42:intro3:r2": {
+          "ru": "Who обозначает исполнителя внутри уточнения, его нельзя убрать.",
+          "uk": "Who позначає виконавця всередині уточнення, його не можна прибрати."
+        },
+        "en:lesson-29:session-42:intro3:r3": {
+          "ru": "She повторяет исполнителя, уже обозначенного who.",
+          "uk": "She повторює виконавця, уже позначеного who."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "2f30c817240b4226d50c00c5152849cc97b49097a60bd4819ce7d678e0f36e55"
+}

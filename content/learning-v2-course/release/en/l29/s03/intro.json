@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-29:session-03",
+  "learningOutcomeByLocale": {
+    "ru": "как уточнить нужный товар, обратиться к знакомому сотруднику и обсудить покупку.",
+    "uk": "як уточнити потрібний товар, звернутися до знайомого працівника й обговорити покупку."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-29:session-03:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Вернуться к тому же продавцу",
+        "uk": "Повернутися до того самого продавця"
+      },
+      "bodyByLocale": {
+        "ru": "Вы вернулись в магазин и узнали сотрудника, который помог вам вчера. Скажите другу: The assistant that helped me is here — продавец, который мне помог, здесь. Соберите The assistant + that helped me + is here. Сразу после The assistant добавьте that helped me: уточните, какого сотрудника вы имеете в виду. Затем закончите основную мысль словами is here. В таком уточнении человека that можно заменить на who; оба варианта подходят.",
+        "uk": "Ви повернулися до магазину й упізнали працівника, який допоміг вам учора. Скажіть другові: The assistant that helped me is here — продавець, який мені допоміг, тут. Складіть The assistant + that helped me + is here. Одразу після The assistant додайте that helped me: уточніть, якого працівника ви маєте на увазі. Потім завершіть основну думку словами is here. У такому уточненні людини that можна замінити на who; обидва варіанти підходять."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-03:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-03:intro1:r1",
+              "text": "The assistant that helped me is here."
+            },
+            {
+              "responseId": "en:lesson-29:session-03:intro1:r2",
+              "text": "The assistant that he helped me is here."
+            },
+            {
+              "responseId": "en:lesson-29:session-03:intro1:r3",
+              "text": "The assistant that helped me are here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-03:intro1:r1",
+              "text": "The assistant that helped me is here."
+            },
+            {
+              "responseId": "en:lesson-29:session-03:intro1:r2",
+              "text": "The assistant that he helped me is here."
+            },
+            {
+              "responseId": "en:lesson-29:session-03:intro1:r3",
+              "text": "The assistant that helped me are here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-29:session-03:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Кто упаковал подарок",
+        "uk": "Хто запакував подарунок"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает, кто красиво упаковал купленный набор. Ответьте: The gift was wrapped by the assistant — подарок упаковал продавец. Соберите The gift + was wrapped + by the assistant. Начните с подарка, затем поставьте was и wrapped, третью форму wrap. После by назовите человека, который выполнил упаковку.",
+        "uk": "Друг запитує, хто гарно запакував придбаний набір. Дайте відповідь: The gift was wrapped by the assistant — подарунок запакував продавець. Складіть The gift + was wrapped + by the assistant. Почніть із подарунка, потім поставте was та wrapped, третю форму wrap. Після by назвіть людину, яка виконала пакування."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-03:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-03:intro2:r1",
+              "text": "The gift was wrapped by the assistant."
+            },
+            {
+              "responseId": "en:lesson-29:session-03:intro2:r2",
+              "text": "The gift was wrapped from the assistant."
+            },
+            {
+              "responseId": "en:lesson-29:session-03:intro2:r3",
+              "text": "The gift was wrap by the assistant."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-03:intro2:r1",
+              "text": "The gift was wrapped by the assistant."
+            },
+            {
+              "responseId": "en:lesson-29:session-03:intro2:r2",
+              "text": "The gift was wrapped from the assistant."
+            },
+            {
+              "responseId": "en:lesson-29:session-03:intro2:r3",
+              "text": "The gift was wrap by the assistant."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-29:session-03:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Выбрать меньший флакон",
+        "uk": "Вибрати менший флакон"
+      },
+      "bodyByLocale": {
+        "ru": "Цена большого флакона ещё неизвестна, и вы решаете, что купить. Скажите: If it is expensive, I will buy a smaller bottle — если он дорогой, я куплю флакон поменьше. Соберите If it is expensive + I will buy a smaller bottle. В условии после If используйте it is. Во второй части поставьте I will buy: это ваше будущее решение. Между частями нужна запятая, потому что условие стоит первым.",
+        "uk": "Ціна великого флакона ще невідома, і ви вирішуєте, що купити. Скажіть: If it is expensive, I will buy a smaller bottle — якщо він дорогий, я куплю менший флакон. Складіть If it is expensive + I will buy a smaller bottle. В умові після If використайте it is. У другій частині поставте I will buy: це ваше майбутнє рішення. Між частинами потрібна кома, бо умова стоїть першою."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-03:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-03:intro3:r1",
+              "text": "If it is expensive, I will buy a smaller bottle."
+            },
+            {
+              "responseId": "en:lesson-29:session-03:intro3:r2",
+              "text": "If it will be expensive, I will buy a smaller bottle."
+            },
+            {
+              "responseId": "en:lesson-29:session-03:intro3:r3",
+              "text": "If it is expensive, I will bought a smaller bottle."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-03:intro3:r1",
+              "text": "If it is expensive, I will buy a smaller bottle."
+            },
+            {
+              "responseId": "en:lesson-29:session-03:intro3:r2",
+              "text": "If it will be expensive, I will buy a smaller bottle."
+            },
+            {
+              "responseId": "en:lesson-29:session-03:intro3:r3",
+              "text": "If it is expensive, I will bought a smaller bottle."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ee5df822ec65efe4e17f22c558489496ec6201c3e8b9b8caf4f810332c39bad0"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-28:session-19:i01",
+    "correctText": "I have an appointment at ten.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-19:i02",
+    "correctText": "parting",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-19:i03",
+    "correctText": "Could you put the parting on the left?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-19:i04",
+    "correctText": "Your hair will be washed first.",
+    "correctResponseId": "en:lesson-28:session-19:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-19:i05",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-28:session-19:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-19:i06",
+    "correctText": "hairspray",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-19:i07",
+    "correctText": "No hairspray, please.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-19:i08",
+    "correctText": "I wish my hair were longer.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-19:i09",
+    "correctText": "The towels were washed this morning.",
+    "correctResponseId": "en:lesson-28:session-19:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-19:i10",
+    "correctText": "dandruff",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-19:i11",
+    "correctText": "I am looking for a shampoo for dandruff.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-19:i12",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-28:session-19:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-19:i13",
+    "correctText": "Your jacket will be kept in the cupboard.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-19:i14",
+    "correctText": "bristles",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-19:i15",
+    "correctText": "These bristles are soft.",
+    "correctResponseId": "en:lesson-28:session-19:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-19:i16",
+    "correctText": "Could you show me the back?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-19:i17",
+    "correctText": "finished",
+    "correctResponseId": "en:lesson-28:session-19:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-19:i18",
+    "correctText": "The scissors were cleaned before use.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-19:i19",
+    "correctText": "Just the ends, please.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-19:i20",
+    "correctText": "cut",
+    "correctResponseId": "en:lesson-28:session-19:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-19:i21",
+    "correctText": "That looks great, thank you.",
+    "correctResponseId": null
+  }
+]

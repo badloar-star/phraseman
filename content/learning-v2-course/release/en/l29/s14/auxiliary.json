@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-29:session-14",
+  "entries": [
+    {
+      "interactionId": "en:lesson-29:session-14:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-14:intro1:r2": {
+          "ru": "Для связи отца и сына нужна whose son.",
+          "uk": "Для зв’язку батька й сина потрібна whose son."
+        },
+        "en:lesson-29:session-14:intro1:r3": {
+          "ru": "His после whose лишнее.",
+          "uk": "His після whose зайве."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-14:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-14:intro2:r2": {
+          "ru": "Того, кто пригласил, обозначает by.",
+          "uk": "Того, хто запросив, позначає by."
+        },
+        "en:lesson-29:session-14:intro2:r3": {
+          "ru": "После was здесь нужна invited.",
+          "uk": "Після was тут потрібна invited."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-14:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-14:intro3:r2": {
+          "ru": "В этом условии нужна rains без will.",
+          "uk": "У цій умові потрібна rains без will."
+        },
+        "en:lesson-29:session-14:intro3:r3": {
+          "ru": "После will нужна начальная форма play.",
+          "uk": "Після will потрібна початкова форма play."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "6a36a7aa5efdcd738c5b8a99dcb496b5d89aba482d1e73effd88529a787bea3e"
+}

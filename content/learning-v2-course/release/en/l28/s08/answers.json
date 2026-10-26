@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-28:session-08:i01",
+    "correctText": "cordial",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-08:i02",
+    "correctText": "This cordial is mixed with water.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-08:i03",
+    "correctText": "How much water do I need?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-08:i04",
+    "correctText": "The instructions are on the label.",
+    "correctResponseId": "en:lesson-28:session-08:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-08:i05",
+    "correctText": "carbonated",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-08:i06",
+    "correctText": "Is",
+    "correctResponseId": "en:lesson-28:session-08:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-08:i07",
+    "correctText": "I would prefer still water.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-08:i08",
+    "correctText": "I wish the drinks were colder.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-08:i09",
+    "correctText": "tumbler",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-08:i10",
+    "correctText": "This tumbler is made of glass.",
+    "correctResponseId": "en:lesson-28:session-08:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-08:i11",
+    "correctText": "sold",
+    "correctResponseId": "en:lesson-28:session-08:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-08:i12",
+    "correctText": "carafe",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-08:i13",
+    "correctText": "Could we have a carafe of water?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-08:i14",
+    "correctText": "There are six glasses on the table.",
+    "correctResponseId": "en:lesson-28:session-08:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-08:i15",
+    "correctText": "Would you like some more?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-08:i16",
+    "correctText": "washed",
+    "correctResponseId": "en:lesson-28:session-08:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-08:i17",
+    "correctText": "The juice is kept in the fridge.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-08:i18",
+    "correctText": "That is enough ice, thanks.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-08:i19",
+    "correctText": "I wish we had a bigger fridge.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-08:i20",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-28:session-08:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-08:i21",
+    "correctText": "Shall we start?",
+    "correctResponseId": null
+  }
+]

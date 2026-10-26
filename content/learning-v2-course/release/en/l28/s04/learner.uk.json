@@ -1,0 +1,1072 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-28:session-04",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-28:session-04:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — ciabatta",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-04:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — ciabatta",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-04:i01:audio",
+          "transcript": "ciabatta"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-04:i01:r1",
+            "targetText": "ciabatta",
+            "meaningByLocale": {
+              "ru": "Чиабатта: хлеб с хрустящей корочкой и крупными отверстиями внутри.",
+              "uk": "Чіабата: хліб із хрусткою скоринкою та великими отворами всередині."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ciabatta",
+          "definitionByLocale": {
+            "ru": "Чиабатта: хлеб с хрустящей корочкой и крупными отверстиями внутри.",
+            "uk": "Чіабата: хліб із хрусткою скоринкою та великими отворами всередині."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-04:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-04:i02:r1",
+          "text": "The ciabatta is baked here."
+        },
+        {
+          "responseId": "en:lesson-28:session-04:i02:r2",
+          "text": "The ciabatta is baked next door."
+        },
+        {
+          "responseId": "en:lesson-28:session-04:i02:r3",
+          "text": "The cake is baked here."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-04:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-04:i02:audio",
+          "transcript": "The ciabatta is baked here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-04:i02:r1",
+            "targetText": "The ciabatta is baked here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-04:i02:r2",
+            "targetText": "The ciabatta is baked next door.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-04:i02:r3",
+            "targetText": "The cake is baked here.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-04:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The ciabatta is baked here.",
+              "uk": "У записі звучить The ciabatta is baked here."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-04:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The ciabatta is baked here.",
+              "uk": "У записі звучить The ciabatta is baked here."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-04:i03",
+      "ordinal": 6,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть принести меню.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-04:i03:audio"
+      ],
+      "accessibilityLabel": "Попросіть принести меню.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-04:i03:audio",
+          "transcript": "Could we see the menu, please?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could we see the menu, please?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-04:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сендвічі роблять після замовлення. Доповніть фразу.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-04:i04:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-28:session-04:i04:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-28:session-04:i04:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сендвічі роблять після замовлення. Доповніть фразу.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сэндвичи делают после заказа. Дополните фразу.",
+          "uk": "Сендвічі роблять після замовлення. Доповніть фразу."
+        },
+        "gappedTargetPhrase": "The sandwiches ___ made to order.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-04:i04:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-28:session-04:i04:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-28:session-04:i04:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Сендвічі роблять після замовлення. Доповніть фразу.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-04:i04:r2",
+            "correct": false,
+            "testedDimension": "Сендвічі роблять після замовлення. Доповніть фразу.",
+            "feedbackByLocale": {
+              "ru": "Sandwiches — несколько: are.",
+              "uk": "Sandwiches — кілька: are."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-04:i04:r3",
+            "correct": false,
+            "testedDimension": "Сендвічі роблять після замовлення. Доповніть фразу.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна are, не am.",
+              "uk": "Тут потрібна are, не am."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-04:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — naan",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-04:i05:audio"
+      ],
+      "accessibilityLabel": "Картка слова — naan",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-04:i05:audio",
+          "transcript": "naan"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-04:i05:r1",
+            "targetText": "naan",
+            "meaningByLocale": {
+              "ru": "Наан: мягкая плоская лепёшка, которую часто подают к горячим блюдам.",
+              "uk": "Наан: м’який плаский корж, який часто подають до гарячих страв."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "naan",
+          "definitionByLocale": {
+            "ru": "Наан: мягкая плоская лепёшка, которую часто подают к горячим блюдам.",
+            "uk": "Наан: м’який плаский корж, який часто подають до гарячих страв."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-04:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте, чи подають цю страву з нааном.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи подають цю страву з нааном.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Is it served with naan?",
+        "localizedMeaning": {
+          "ru": "Спросите, подают ли это блюдо с нааном.",
+          "uk": "Запитайте, чи подають цю страву з нааном."
+        },
+        "orderedTokens": [
+          "Is",
+          "it",
+          "served",
+          "with",
+          "naan"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-04:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-04:i07:r1",
+          "text": "The soup is served with bread."
+        },
+        {
+          "responseId": "en:lesson-28:session-04:i07:r2",
+          "text": "The soup is served with rice."
+        },
+        {
+          "responseId": "en:lesson-28:session-04:i07:r3",
+          "text": "The salad is served with bread."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-04:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-04:i07:audio",
+          "transcript": "The soup is served with bread."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-04:i07:r1",
+            "targetText": "The soup is served with bread.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-04:i07:r2",
+            "targetText": "The soup is served with rice.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-04:i07:r3",
+            "targetText": "The salad is served with bread.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-04:i07:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The soup is served with bread.",
+              "uk": "У записі звучить The soup is served with bread."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-04:i07:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The soup is served with bread.",
+              "uk": "У записі звучить The soup is served with bread."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-04:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросіть дві тарілки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросіть дві тарілки.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could we have two plates?",
+        "localizedMeaning": {
+          "ru": "Попросите две тарелки.",
+          "uk": "Попросіть дві тарілки."
+        },
+        "orderedTokens": [
+          "Could",
+          "we",
+          "have",
+          "two",
+          "plates"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-04:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — guacamole",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-04:i09:audio"
+      ],
+      "accessibilityLabel": "Картка слова — guacamole",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-04:i09:audio",
+          "transcript": "guacamole"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-04:i09:r1",
+            "targetText": "guacamole",
+            "meaningByLocale": {
+              "ru": "Гуакамоле: густой соус на основе размятого авокадо.",
+              "uk": "Гуакамоле: густий соус на основі розім’ятого авокадо."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "guacamole",
+          "definitionByLocale": {
+            "ru": "Гуакамоле: густой соус на основе размятого авокадо.",
+            "uk": "Гуакамоле: густий соус на основі розім’ятого авокадо."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-04:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-04:i10:r1",
+          "text": "The guacamole is made fresh every day."
+        },
+        {
+          "responseId": "en:lesson-28:session-04:i10:r2",
+          "text": "The guacamole is made fresh every week."
+        },
+        {
+          "responseId": "en:lesson-28:session-04:i10:r3",
+          "text": "The soup is made fresh every day."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-04:i10:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-04:i10:audio",
+          "transcript": "The guacamole is made fresh every day."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-04:i10:r1",
+            "targetText": "The guacamole is made fresh every day.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-04:i10:r2",
+            "targetText": "The guacamole is made fresh every week.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-04:i10:r3",
+            "targetText": "The soup is made fresh every day.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-04:i10:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The guacamole is made fresh every day.",
+              "uk": "У записі звучить The guacamole is made fresh every day."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-04:i10:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The guacamole is made fresh every day.",
+              "uk": "У записі звучить The guacamole is made fresh every day."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-04:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви хотіли б більший столик зараз.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-04:i11:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-28:session-04:i11:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-28:session-04:i11:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви хотіли б більший столик зараз.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы хотели бы столик побольше сейчас.",
+          "uk": "Ви хотіли б більший столик зараз."
+        },
+        "gappedTargetPhrase": "I wish our table ___ bigger.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-04:i11:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-28:session-04:i11:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-28:session-04:i11:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Ви хотіли б більший столик зараз.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-04:i11:r2",
+            "correct": false,
+            "testedDimension": "Ви хотіли б більший столик зараз.",
+            "feedbackByLocale": {
+              "ru": "Для этого желания после I wish используем were.",
+              "uk": "Для цього бажання після I wish використовуємо were."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-04:i11:r3",
+            "correct": false,
+            "testedDimension": "Ви хотіли б більший столик зараз.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна were bigger.",
+              "uk": "Тут потрібна were bigger."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-04:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть поставити воду між вами.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-04:i12:audio"
+      ],
+      "accessibilityLabel": "Попросіть поставити воду між вами.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-04:i12:audio",
+          "transcript": "Could you put the water in the middle?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you put the water in the middle?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-04:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — salsa",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-04:i13:audio"
+      ],
+      "accessibilityLabel": "Картка слова — salsa",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-04:i13:audio",
+          "transcript": "salsa"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-04:i13:r1",
+            "targetText": "salsa",
+            "meaningByLocale": {
+              "ru": "Сальса: соус, часто из измельчённых помидоров, лука и перца. Он не всегда острый — можно уточнить.",
+              "uk": "Сальса: соус, часто з подрібнених помідорів, цибулі та перцю. Він не завжди гострий — можна уточнити."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "salsa",
+          "definitionByLocale": {
+            "ru": "Сальса: соус, часто из измельчённых помидоров, лука и перца. Он не всегда острый — можно уточнить.",
+            "uk": "Сальса: соус, часто з подрібнених помідорів, цибулі та перцю. Він не завжди гострий — можна уточнити."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-04:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте, чи гострий соус сальса.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи гострий соус сальса.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Is the salsa spicy?",
+        "localizedMeaning": {
+          "ru": "Спросите, острый ли соус сальса.",
+          "uk": "Запитайте, чи гострий соус сальса."
+        },
+        "orderedTokens": [
+          "Is",
+          "the",
+          "salsa",
+          "spicy"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-04:i15",
+      "ordinal": 18,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть соус окремо. Тоді ступінь сміливості можна вибирати по ложці.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-04:i15:audio"
+      ],
+      "accessibilityLabel": "Попросіть соус окремо. Тоді ступінь сміливості можна вибирати по ложці.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-04:i15:audio",
+          "transcript": "Could I have the sauce on the side?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could I have the sauce on the side?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-04:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Подруга знайшла столик до вашого приходу вчора. Завершіть ранішу дію.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-04:i16:r1",
+          "text": "found"
+        },
+        {
+          "responseId": "en:lesson-28:session-04:i16:r2",
+          "text": "find"
+        },
+        {
+          "responseId": "en:lesson-28:session-04:i16:r3",
+          "text": "finding"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подруга знайшла столик до вашого приходу вчора. Завершіть ранішу дію.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подруга нашла столик до вашего прихода вчера. Завершите раннее действие.",
+          "uk": "Подруга знайшла столик до вашого приходу вчора. Завершіть ранішу дію."
+        },
+        "gappedTargetPhrase": "She had ___ a table by the time I arrived.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-04:i16:r1",
+            "text": "found"
+          },
+          {
+            "responseId": "en:lesson-28:session-04:i16:r2",
+            "text": "find"
+          },
+          {
+            "responseId": "en:lesson-28:session-04:i16:r3",
+            "text": "finding"
+          }
+        ],
+        "testedDimension": "Подруга знайшла столик до вашого приходу вчора. Завершіть ранішу дію.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-04:i16:r2",
+            "correct": false,
+            "testedDimension": "Подруга знайшла столик до вашого приходу вчора. Завершіть ранішу дію.",
+            "feedbackByLocale": {
+              "ru": "После had нужна found.",
+              "uk": "Після had потрібна found."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-04:i16:r3",
+            "correct": false,
+            "testedDimension": "Подруга знайшла столик до вашого приходу вчора. Завершіть ранішу дію.",
+            "feedbackByLocale": {
+              "ru": "Используем had found: столик нашли раньше.",
+              "uk": "Використовуємо had found: столик знайшли раніше."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-04:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, коли готують рис.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-04:i17:audio"
+      ],
+      "accessibilityLabel": "Послухайте, коли готують рис.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-04:i17:audio",
+          "transcript": "The rice is cooked every morning."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The rice is cooked every morning.",
+        "orderedTokens": [
+          "The",
+          "rice",
+          "is",
+          "cooked",
+          "every",
+          "morning"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-04:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-04:i18:r1",
+          "text": "I ordered the chicken, not the fish."
+        },
+        {
+          "responseId": "en:lesson-28:session-04:i18:r2",
+          "text": "I ordered the fish, not the chicken."
+        },
+        {
+          "responseId": "en:lesson-28:session-04:i18:r3",
+          "text": "I ordered the soup, not the chicken."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-04:i18:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-04:i18:audio",
+          "transcript": "I ordered the chicken, not the fish."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-04:i18:r1",
+            "targetText": "I ordered the chicken, not the fish.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-04:i18:r2",
+            "targetText": "I ordered the fish, not the chicken.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-04:i18:r3",
+            "targetText": "I ordered the soup, not the chicken.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-04:i18:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I ordered the chicken, not the fish.",
+              "uk": "У записі звучить I ordered the chicken, not the fish."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-04:i18:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I ordered the chicken, not the fish.",
+              "uk": "У записі звучить I ordered the chicken, not the fish."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-04:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Музика гучна. Ви хотіли б, щоб тут було тихіше.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Музика гучна. Ви хотіли б, щоб тут було тихіше.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I wish it were quieter here.",
+        "localizedMeaning": {
+          "ru": "Музыка громкая. Вы хотели бы, чтобы здесь было тише.",
+          "uk": "Музика гучна. Ви хотіли б, щоб тут було тихіше."
+        },
+        "orderedTokens": [
+          "I",
+          "wish",
+          "it",
+          "were",
+          "quieter",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-04:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Овочі подають гарячими. Завершіть опис подачі.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-04:i20:r1",
+          "text": "served"
+        },
+        {
+          "responseId": "en:lesson-28:session-04:i20:r2",
+          "text": "serve"
+        },
+        {
+          "responseId": "en:lesson-28:session-04:i20:r3",
+          "text": "serves"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Овочі подають гарячими. Завершіть опис подачі.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Овощи подают горячими. Завершите описание подачи.",
+          "uk": "Овочі подають гарячими. Завершіть опис подачі."
+        },
+        "gappedTargetPhrase": "The vegetables are ___ hot.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-04:i20:r1",
+            "text": "served"
+          },
+          {
+            "responseId": "en:lesson-28:session-04:i20:r2",
+            "text": "serve"
+          },
+          {
+            "responseId": "en:lesson-28:session-04:i20:r3",
+            "text": "serves"
+          }
+        ],
+        "testedDimension": "Овочі подають гарячими. Завершіть опис подачі.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-04:i20:r2",
+            "correct": false,
+            "testedDimension": "Овочі подають гарячими. Завершіть опис подачі.",
+            "feedbackByLocale": {
+              "ru": "Для «их подают» нужны are served.",
+              "uk": "Для «їх подають» потрібні are served."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-04:i20:r3",
+            "correct": false,
+            "testedDimension": "Овочі подають гарячими. Завершіть опис подачі.",
+            "feedbackByLocale": {
+              "ru": "После are здесь нужна served.",
+              "uk": "Після are тут потрібна served."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-04:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть рахунок після обіду.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-04:i21:audio"
+      ],
+      "accessibilityLabel": "Попросіть рахунок після обіду.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-04:i21:audio",
+          "transcript": "Could we have the bill, please?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could we have the bill, please?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "08338ab971c468cce70b676a2d2a4e8f127d19d90253cbb3d2bab270cea35d35"
+}

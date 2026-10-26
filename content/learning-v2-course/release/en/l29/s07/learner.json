@@ -1,0 +1,1057 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-29:session-07",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-29:session-07:i01",
+      "ordinal": 4,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите, слышит ли сосед этот звук.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-07:i01:audio"
+      ],
+      "accessibilityLabel": "Спросите, слышит ли сосед этот звук.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-07:i01:audio",
+          "transcript": "Can you hear that noise?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Can you hear that noise?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-07:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — creak",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-07:i02:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — creak",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-07:i02:audio",
+          "transcript": "creak"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-07:i02:r1",
+            "targetText": "creak",
+            "meaningByLocale": {
+              "ru": "Скрип. Протяжный звук, который может издавать движущаяся дверь или старая мебель.",
+              "uk": "Скрип. Протяжний звук, який можуть видавати двері під час руху або старі меблі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "creak",
+          "definitionByLocale": {
+            "ru": "Скрип. Протяжный звук, который может издавать движущаяся дверь или старая мебель.",
+            "uk": "Скрип. Протяжний звук, який можуть видавати двері під час руху або старі меблі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-07:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что скрип доносится от двери.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что скрип доносится от двери.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "That creak is coming from the door.",
+        "localizedMeaning": {
+          "ru": "Скажите, что скрип доносится от двери.",
+          "uk": "Скажіть, що скрип долинає від дверей."
+        },
+        "orderedTokens": [
+          "That",
+          "creak",
+          "is",
+          "coming",
+          "from",
+          "the",
+          "door"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-07:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточните, что шумит именно ваш стул.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-07:i04:r1",
+          "text": "makes"
+        },
+        {
+          "responseId": "en:lesson-29:session-07:i04:r2",
+          "text": "make"
+        },
+        {
+          "responseId": "en:lesson-29:session-07:i04:r3",
+          "text": "making"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточните, что шумит именно ваш стул.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните, что шумит именно ваш стул.",
+          "uk": "Уточніть, що шумить саме ваш стілець."
+        },
+        "gappedTargetPhrase": "The chair that ___ that noise is mine.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-07:i04:r1",
+            "text": "makes"
+          },
+          {
+            "responseId": "en:lesson-29:session-07:i04:r2",
+            "text": "make"
+          },
+          {
+            "responseId": "en:lesson-29:session-07:i04:r3",
+            "text": "making"
+          }
+        ],
+        "testedDimension": "Уточните, что шумит именно ваш стул.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-07:i04:r2",
+            "correct": false,
+            "testedDimension": "Уточните, что шумит именно ваш стул.",
+            "feedbackByLocale": {
+              "ru": "К одному chair относится makes.",
+              "uk": "До одного chair належить makes."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-07:i04:r3",
+            "correct": false,
+            "testedDimension": "Уточните, что шумит именно ваш стул.",
+            "feedbackByLocale": {
+              "ru": "После that здесь нужна makes.",
+              "uk": "Після that тут потрібна makes."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-07:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-07:i05:r1",
+          "text": "The shelf was repaired by my neighbour."
+        },
+        {
+          "responseId": "en:lesson-29:session-07:i05:r2",
+          "text": "The shelf was repaired by my brother."
+        },
+        {
+          "responseId": "en:lesson-29:session-07:i05:r3",
+          "text": "The chair was repaired by my neighbour."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-07:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-07:i05:audio",
+          "transcript": "The shelf was repaired by my neighbour."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-07:i05:r1",
+            "targetText": "The shelf was repaired by my neighbour.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-07:i05:r2",
+            "targetText": "The shelf was repaired by my brother.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-07:i05:r3",
+            "targetText": "The chair was repaired by my neighbour.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-07:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The shelf was repaired by my neighbour.",
+              "uk": "У записі звучить The shelf was repaired by my neighbour."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-07:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The shelf was repaired by my neighbour.",
+              "uk": "У записі звучить The shelf was repaired by my neighbour."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-07:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — buzz",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-07:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — buzz",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-07:i06:audio",
+          "transcript": "buzz"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-07:i06:r1",
+            "targetText": "buzz",
+            "meaningByLocale": {
+              "ru": "Жужжание. Непрерывный звук, похожий на звук летящего насекомого или вибрирующего прибора.",
+              "uk": "Дзижчання. Безперервний звук, схожий на звук комахи в польоті або приладу, що вібрує."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "buzz",
+          "definitionByLocale": {
+            "ru": "Жужжание. Непрерывный звук, похожий на звук летящего насекомого или вибрирующего прибора.",
+            "uk": "Дзижчання. Безперервний звук, схожий на звук комахи в польоті або приладу, що вібрує."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-07:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что слышите жужжание возле окна.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-07:i07:audio"
+      ],
+      "accessibilityLabel": "Скажите, что слышите жужжание возле окна.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-07:i07:audio",
+          "transcript": "I can hear a buzz near the window."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I can hear a buzz near the window.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-07:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, какая дверь открыта.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-07:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте, какая дверь открыта.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-07:i08:audio",
+          "transcript": "The door that leads to the kitchen is open."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The door that leads to the kitchen is open.",
+        "orderedTokens": [
+          "The",
+          "door",
+          "that",
+          "leads",
+          "to",
+          "the",
+          "kitchen",
+          "is",
+          "open"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-07:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите, что полку починил сосед.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-07:i09:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-29:session-07:i09:r2",
+          "text": "from"
+        },
+        {
+          "responseId": "en:lesson-29:session-07:i09:r3",
+          "text": "of"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что полку починил сосед.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите, что полку починил сосед.",
+          "uk": "Скажіть, що полицю полагодив сусід."
+        },
+        "gappedTargetPhrase": "The shelf was repaired ___ my neighbour.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-07:i09:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-29:session-07:i09:r2",
+            "text": "from"
+          },
+          {
+            "responseId": "en:lesson-29:session-07:i09:r3",
+            "text": "of"
+          }
+        ],
+        "testedDimension": "Скажите, что полку починил сосед.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-07:i09:r2",
+            "correct": false,
+            "testedDimension": "Скажите, что полку починил сосед.",
+            "feedbackByLocale": {
+              "ru": "Человека, выполнившего ремонт, вводит by.",
+              "uk": "Людину, яка виконала ремонт, позначає by."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-07:i09:r3",
+            "correct": false,
+            "testedDimension": "Скажите, что полку починил сосед.",
+            "feedbackByLocale": {
+              "ru": "Для исполнителя здесь нужна by.",
+              "uk": "Для виконавця тут потрібна by."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-07:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — thud",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-07:i10:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — thud",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-07:i10:audio",
+          "transcript": "thud"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-07:i10:r1",
+            "targetText": "thud",
+            "meaningByLocale": {
+              "ru": "Глухой удар. Низкий короткий звук, например от падения тяжёлого предмета.",
+              "uk": "Глухий удар. Низький короткий звук, наприклад від падіння важкого предмета."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "thud",
+          "definitionByLocale": {
+            "ru": "Глухой удар. Низкий короткий звук, например от падения тяжёлого предмета.",
+            "uk": "Глухий удар. Низький короткий звук, наприклад від падіння важкого предмета."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-07:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что услышали глухой удар наверху.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-07:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите, что услышали глухой удар наверху.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-07:i11:audio",
+          "transcript": "I heard a thud upstairs."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I heard a thud upstairs.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-07:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-07:i12:r1",
+          "text": "The neighbour who called is downstairs."
+        },
+        {
+          "responseId": "en:lesson-29:session-07:i12:r2",
+          "text": "The neighbour who called is upstairs."
+        },
+        {
+          "responseId": "en:lesson-29:session-07:i12:r3",
+          "text": "The neighbour who called is outside."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-07:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-07:i12:audio",
+          "transcript": "The neighbour who called is downstairs."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-07:i12:r1",
+            "targetText": "The neighbour who called is downstairs.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-07:i12:r2",
+            "targetText": "The neighbour who called is upstairs.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-07:i12:r3",
+            "targetText": "The neighbour who called is outside.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-07:i12:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The neighbour who called is downstairs.",
+              "uk": "У записі звучить The neighbour who called is downstairs."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-07:i12:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The neighbour who called is downstairs.",
+              "uk": "У записі звучить The neighbour who called is downstairs."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-07:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Если шум продолжится, вы позвоните хозяину.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-07:i13:r1",
+          "text": "continues"
+        },
+        {
+          "responseId": "en:lesson-29:session-07:i13:r2",
+          "text": "will continue"
+        },
+        {
+          "responseId": "en:lesson-29:session-07:i13:r3",
+          "text": "continuing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Если шум продолжится, вы позвоните хозяину.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Если шум продолжится, вы позвоните хозяину.",
+          "uk": "Якщо шум триватиме, ви зателефонуєте господареві."
+        },
+        "gappedTargetPhrase": "If the noise ___, I will call the owner.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-07:i13:r1",
+            "text": "continues"
+          },
+          {
+            "responseId": "en:lesson-29:session-07:i13:r2",
+            "text": "will continue"
+          },
+          {
+            "responseId": "en:lesson-29:session-07:i13:r3",
+            "text": "continuing"
+          }
+        ],
+        "testedDimension": "Если шум продолжится, вы позвоните хозяину.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-07:i13:r2",
+            "correct": false,
+            "testedDimension": "Если шум продолжится, вы позвоните хозяину.",
+            "feedbackByLocale": {
+              "ru": "В этом условии после if используем continues, без will.",
+              "uk": "У цій умові після if використовуємо continues, без will."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-07:i13:r3",
+            "correct": false,
+            "testedDimension": "Если шум продолжится, вы позвоните хозяину.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна continues.",
+              "uk": "Тут потрібна continues."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-07:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — clatter",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-07:i14:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — clatter",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-07:i14:audio",
+          "transcript": "clatter"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-07:i14:r1",
+            "targetText": "clatter",
+            "meaningByLocale": {
+              "ru": "Грохот, громкий стук. Серия резких звуков от столкновения твёрдых предметов, например посуды.",
+              "uk": "Гуркіт, гучний стукіт. Низка різких звуків від зіткнення твердих предметів, наприклад посуду."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "clatter",
+          "definitionByLocale": {
+            "ru": "Грохот, громкий стук. Серия резких звуков от столкновения твёрдых предметов, например посуды.",
+            "uk": "Гуркіт, гучний стукіт. Низка різких звуків від зіткнення твердих предметів, наприклад посуду."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-07:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что грохот доносится из кухни.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что грохот доносится из кухни.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "That clatter is coming from the kitchen.",
+        "localizedMeaning": {
+          "ru": "Скажите, что грохот доносится из кухни.",
+          "uk": "Скажіть, що гуркіт долинає з кухні."
+        },
+        "orderedTokens": [
+          "That",
+          "clatter",
+          "is",
+          "coming",
+          "from",
+          "the",
+          "kitchen"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-07:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините звуки с переводом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините звуки с переводом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-29:session-07:i16:p1",
+            "target": "creak",
+            "meaningByLocale": {
+              "ru": "скрип",
+              "uk": "скрип"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-07:i16:p2",
+            "target": "buzz",
+            "meaningByLocale": {
+              "ru": "жужжание",
+              "uk": "дзижчання"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-07:i16:p3",
+            "target": "thud",
+            "meaningByLocale": {
+              "ru": "глухой удар",
+              "uk": "глухий удар"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-07:i16:p4",
+            "target": "clatter",
+            "meaningByLocale": {
+              "ru": "грохот",
+              "uk": "гуркіт"
+            }
+          }
+        ],
+        "leftColumn": [
+          "creak",
+          "buzz",
+          "thud",
+          "clatter"
+        ],
+        "rightColumn": [
+          "скрип",
+          "жужжание",
+          "глухой удар",
+          "грохот"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-07:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: звук доносится сверху или снизу?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-07:i17:r1",
+          "text": "The noise is coming from downstairs."
+        },
+        {
+          "responseId": "en:lesson-29:session-07:i17:r2",
+          "text": "The noise is coming from upstairs."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-07:i17:audioA",
+        "en:lesson-29:session-07:i17:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: звук доносится сверху или снизу?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "The noise is coming from downstairs.",
+        "contrastB": "The noise is coming from upstairs.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-29:session-07:i17:audioA",
+          "transcript": "The noise is coming from downstairs."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-29:session-07:i17:audioB",
+          "transcript": "The noise is coming from upstairs."
+        },
+        "testedPhoneticContrast": "Послушайте: звук доносится сверху или снизу?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-07:i17:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: звук доносится сверху или снизу?",
+            "feedbackByLocale": {
+              "ru": "В записи downstairs — снизу.",
+              "uk": "У записі downstairs — знизу."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-07:i18",
+      "ordinal": 21,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите сделать телевизор тише.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-07:i18:audio"
+      ],
+      "accessibilityLabel": "Попросите сделать телевизор тише.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-07:i18:audio",
+          "transcript": "Could you turn the TV down?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you turn the TV down?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-07:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточните, какой сосед внизу: тот, который звонил.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-07:i19:r1",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-07:i19:r2",
+          "text": "which"
+        },
+        {
+          "responseId": "en:lesson-29:session-07:i19:r3",
+          "text": "what"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточните, какой сосед внизу: тот, который звонил.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните, какой сосед внизу: тот, который звонил.",
+          "uk": "Уточніть, який сусід унизу: той, який телефонував."
+        },
+        "gappedTargetPhrase": "The neighbour ___ called is downstairs.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-07:i19:r1",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-07:i19:r2",
+            "text": "which"
+          },
+          {
+            "responseId": "en:lesson-29:session-07:i19:r3",
+            "text": "what"
+          }
+        ],
+        "testedDimension": "Уточните, какой сосед внизу: тот, который звонил.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-07:i19:r2",
+            "correct": false,
+            "testedDimension": "Уточните, какой сосед внизу: тот, который звонил.",
+            "feedbackByLocale": {
+              "ru": "Для уточнения человека используем who.",
+              "uk": "Для уточнення людини використовуємо who."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-07:i19:r3",
+            "correct": false,
+            "testedDimension": "Уточните, какой сосед внизу: тот, который звонил.",
+            "feedbackByLocale": {
+              "ru": "После the neighbour здесь нужна who.",
+              "uk": "Після the neighbour тут потрібна who."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-07:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте обещание проверить шум.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-07:i20:audio"
+      ],
+      "accessibilityLabel": "Послушайте обещание проверить шум.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-07:i20:audio",
+          "transcript": "I will check if I hear it again."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I will check if I hear it again.",
+        "orderedTokens": [
+          "I",
+          "will",
+          "check",
+          "if",
+          "I",
+          "hear",
+          "it",
+          "again"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-07:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Объясните, что случайно уронили коробку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-07:i21:audio"
+      ],
+      "accessibilityLabel": "Объясните, что случайно уронили коробку.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-07:i21:audio",
+          "transcript": "Sorry, I dropped a box."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Sorry, I dropped a box.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "9559294cec813aec70d2cf9419b9f2475f94f0f08172f6ae0bc9af2c81afd665"
+}

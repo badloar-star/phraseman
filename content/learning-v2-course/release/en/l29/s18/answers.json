@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-29:session-18:i01",
+    "correctText": "inn",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-18:i02",
+    "correctText": "There is an inn in the village.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-18:i03",
+    "correctText": "This is the village where we stayed.",
+    "correctResponseId": "en:lesson-29:session-18:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-18:i04",
+    "correctText": "Is breakfast included?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-18:i05",
+    "correctText": "chalet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-18:i06",
+    "correctText": "I would like to stay in a chalet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-18:i07",
+    "correctText": "where",
+    "correctResponseId": "en:lesson-29:session-18:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-18:i08",
+    "correctText": "The room was prepared by the owner.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-18:i09",
+    "correctText": "villa",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-18:i10",
+    "correctText": "The villa has a small garden.",
+    "correctResponseId": "en:lesson-29:session-18:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-18:i11",
+    "correctText": "whose",
+    "correctResponseId": "en:lesson-29:session-18:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-18:i12",
+    "correctText": "Can we park here?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-18:i13",
+    "correctText": "caravan",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-18:i14",
+    "correctText": "We slept in a caravan.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-18:i15",
+    "correctText": "en:lesson-29:session-18:i15:p1=inn\nen:lesson-29:session-18:i15:p2=chalet\nen:lesson-29:session-18:i15:p3=villa\nen:lesson-29:session-18:i15:p4=caravan",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-18:i16",
+    "correctText": "rains",
+    "correctResponseId": "en:lesson-29:session-18:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-18:i17",
+    "correctText": "The villa has a garden.",
+    "correctResponseId": "en:lesson-29:session-18:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-18:i18",
+    "correctText": "I know a place where we can have breakfast.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-18:i19",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-29:session-18:i19:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-18:i20",
+    "correctText": "Could you show us the room?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-18:i21",
+    "correctText": "Our room is number six.",
+    "correctResponseId": null
+  }
+]

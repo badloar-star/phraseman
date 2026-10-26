@@ -1,0 +1,1070 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-28:session-28",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-28:session-28:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-28:i01:r1",
+          "text": "The lesson will be held upstairs."
+        },
+        {
+          "responseId": "en:lesson-28:session-28:i01:r2",
+          "text": "The lesson was held upstairs."
+        },
+        {
+          "responseId": "en:lesson-28:session-28:i01:r3",
+          "text": "The lesson will be held downstairs."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-28:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-28:i01:audio",
+          "transcript": "The lesson will be held upstairs."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-28:i01:r1",
+            "targetText": "The lesson will be held upstairs.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-28:i01:r2",
+            "targetText": "The lesson was held upstairs.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-28:i01:r3",
+            "targetText": "The lesson will be held downstairs.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-28:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The lesson will be held upstairs.",
+              "uk": "У записі звучить The lesson will be held upstairs."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-28:i01:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The lesson will be held upstairs.",
+              "uk": "У записі звучить The lesson will be held upstairs."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-28:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — clarinet",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-28:i02:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — clarinet",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-28:i02:audio",
+          "transcript": "clarinet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-28:i02:r1",
+            "targetText": "clarinet",
+            "meaningByLocale": {
+              "ru": "Кларнет. Духовой музыкальный инструмент в форме трубки с отверстиями и клапанами.",
+              "uk": "Кларнет. Духовий музичний інструмент у формі трубки з отворами й клапанами."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "clarinet",
+          "definitionByLocale": {
+            "ru": "Кларнет. Духовой музыкальный инструмент в форме трубки с отверстиями и клапанами.",
+            "uk": "Кларнет. Духовий музичний інструмент у формі трубки з отворами й клапанами."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-28:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите, можно ли взять этот кларнет напрокат.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите, можно ли взять этот кларнет напрокат.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Can this clarinet be rented?",
+        "localizedMeaning": {
+          "ru": "Спросите, можно ли взять этот кларнет напрокат.",
+          "uk": "Запитайте, чи можна взяти цей кларнет напрокат."
+        },
+        "orderedTokens": [
+          "Can",
+          "this",
+          "clarinet",
+          "be",
+          "rented"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-28:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Школьные инструменты запрещено выносить на улицу.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-28:i04:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-28:session-28:i04:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-28:session-28:i04:r3",
+          "text": "were"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Школьные инструменты запрещено выносить на улицу.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Школьные инструменты запрещено выносить на улицу.",
+          "uk": "Шкільні інструменти заборонено виносити надвір."
+        },
+        "gappedTargetPhrase": "Instruments must not ___ taken outside.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-28:i04:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-28:session-28:i04:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-28:session-28:i04:r3",
+            "text": "were"
+          }
+        ],
+        "testedDimension": "Школьные инструменты запрещено выносить на улицу.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-28:i04:r2",
+            "correct": false,
+            "testedDimension": "Школьные инструменты запрещено выносить на улицу.",
+            "feedbackByLocale": {
+              "ru": "После must not нужна be.",
+              "uk": "Після must not потрібна be."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-28:i04:r3",
+            "correct": false,
+            "testedDimension": "Школьные инструменты запрещено выносить на улицу.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем must not be taken.",
+              "uk": "Тут використовуємо must not be taken."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-28:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы никогда не играли. Скажите, что вы начинающий.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-28:i05:audio"
+      ],
+      "accessibilityLabel": "Вы никогда не играли. Скажите, что вы начинающий.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-28:i05:audio",
+          "transcript": "I am a beginner."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am a beginner.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-28:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — trombone",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-28:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — trombone",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-28:i06:audio",
+          "transcript": "trombone"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-28:i06:r1",
+            "targetText": "trombone",
+            "meaningByLocale": {
+              "ru": "Тромбон. Медный духовой инструмент с выдвижной частью, которую двигают во время игры.",
+              "uk": "Тромбон. Мідний духовий інструмент із висувною частиною, яку рухають під час гри."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "trombone",
+          "definitionByLocale": {
+            "ru": "Тромбон. Медный духовой инструмент с выдвижной частью, которую двигают во время игры.",
+            "uk": "Тромбон. Мідний духовий інструмент із висувною частиною, яку рухають під час гри."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-28:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-28:i07:r1",
+          "text": "The trombone was repaired yesterday."
+        },
+        {
+          "responseId": "en:lesson-28:session-28:i07:r2",
+          "text": "The trombone will be repaired tomorrow."
+        },
+        {
+          "responseId": "en:lesson-28:session-28:i07:r3",
+          "text": "The clarinet was repaired yesterday."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-28:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-28:i07:audio",
+          "transcript": "The trombone was repaired yesterday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-28:i07:r1",
+            "targetText": "The trombone was repaired yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-28:i07:r2",
+            "targetText": "The trombone will be repaired tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-28:i07:r3",
+            "targetText": "The clarinet was repaired yesterday.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-28:i07:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The trombone was repaired yesterday.",
+              "uk": "У записі звучить The trombone was repaired yesterday."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-28:i07:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The trombone was repaired yesterday.",
+              "uk": "У записі звучить The trombone was repaired yesterday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-28:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы хотели бы платить за занятия меньше.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-28:i08:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-28:session-28:i08:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-28:session-28:i08:r3",
+          "text": "will be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы хотели бы платить за занятия меньше.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы хотели бы платить за занятия меньше.",
+          "uk": "Ви хотіли б платити за заняття менше."
+        },
+        "gappedTargetPhrase": "I wish lessons ___ cheaper.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-28:i08:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-28:session-28:i08:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-28:session-28:i08:r3",
+            "text": "will be"
+          }
+        ],
+        "testedDimension": "Вы хотели бы платить за занятия меньше.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-28:i08:r2",
+            "correct": false,
+            "testedDimension": "Вы хотели бы платить за занятия меньше.",
+            "feedbackByLocale": {
+              "ru": "После wish здесь нужна were.",
+              "uk": "Після wish тут потрібна were."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-28:i08:r3",
+            "correct": false,
+            "testedDimension": "Вы хотели бы платить за занятия меньше.",
+            "feedbackByLocale": {
+              "ru": "Желаемую ситуацию сейчас передаёт were cheaper.",
+              "uk": "Бажану ситуацію зараз передає were cheaper."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-28:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточните, сколько длится один урок.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-28:i09:audio"
+      ],
+      "accessibilityLabel": "Уточните, сколько длится один урок.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-28:i09:audio",
+          "transcript": "How long is each lesson?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "How long is each lesson?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-28:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — acoustic",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-28:i10:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — acoustic",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-28:i10:audio",
+          "transcript": "acoustic"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-28:i10:r1",
+            "targetText": "acoustic",
+            "meaningByLocale": {
+              "ru": "Акустический. Например, об обычной гитаре, которой не нужен электрический усилитель, чтобы звучать.",
+              "uk": "Акустичний. Наприклад, про звичайну гітару, якій не потрібен електричний підсилювач, щоб звучати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "acoustic",
+          "definitionByLocale": {
+            "ru": "Акустический. Например, об обычной гитаре, которой не нужен электрический усилитель, чтобы звучать.",
+            "uk": "Акустичний. Наприклад, про звичайну гітару, якій не потрібен електричний підсилювач, щоб звучати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-28:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, какая у вас гитара.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-28:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите, какая у вас гитара.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-28:i11:audio",
+          "transcript": "I have an acoustic guitar."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have an acoustic guitar.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-28:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, что подготовят для вас.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-28:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте, что подготовят для вас.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-28:i12:audio",
+          "transcript": "A room will be prepared."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "A room will be prepared.",
+        "orderedTokens": [
+          "A",
+          "room",
+          "will",
+          "be",
+          "prepared"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-28:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В школе инструменты чистят после использования.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-28:i13:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-28:session-28:i13:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-28:session-28:i13:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В школе инструменты чистят после использования.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В школе инструменты чистят после использования.",
+          "uk": "У школі інструменти чистять після використання."
+        },
+        "gappedTargetPhrase": "Instruments ___ cleaned after use.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-28:i13:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-28:session-28:i13:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-28:session-28:i13:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "В школе инструменты чистят после использования.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-28:i13:r2",
+            "correct": false,
+            "testedDimension": "В школе инструменты чистят после использования.",
+            "feedbackByLocale": {
+              "ru": "Instruments — несколько: are.",
+              "uk": "Instruments — кілька: are."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-28:i13:r3",
+            "correct": false,
+            "testedDimension": "В школе инструменты чистят после использования.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна are cleaned.",
+              "uk": "Тут потрібна are cleaned."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-28:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — percussion",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-28:i14:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — percussion",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-28:i14:audio",
+          "transcript": "percussion"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-28:i14:r1",
+            "targetText": "percussion",
+            "meaningByLocale": {
+              "ru": "Ударные инструменты как группа. В эту группу входят, например, барабаны и бубны.",
+              "uk": "Ударні інструменти як група. До цієї групи належать, наприклад, барабани й бубни."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "percussion",
+          "definitionByLocale": {
+            "ru": "Ударные инструменты как группа. В эту группу входят, например, барабаны и бубны.",
+            "uk": "Ударні інструменти як група. До цієї групи належать, наприклад, барабани й бубни."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-28:i15",
+      "ordinal": 18,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите, преподают ли здесь игру на ударных инструментах.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-28:i15:audio"
+      ],
+      "accessibilityLabel": "Спросите, преподают ли здесь игру на ударных инструментах.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-28:i15:audio",
+          "transcript": "Do you offer percussion lessons?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Do you offer percussion lessons?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-28:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводами.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводами.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-28:session-28:i16:p1",
+            "target": "clarinet",
+            "meaningByLocale": {
+              "ru": "кларнет",
+              "uk": "кларнет"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-28:i16:p2",
+            "target": "trombone",
+            "meaningByLocale": {
+              "ru": "тромбон",
+              "uk": "тромбон"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-28:i16:p3",
+            "target": "acoustic",
+            "meaningByLocale": {
+              "ru": "акустический",
+              "uk": "акустичний"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-28:i16:p4",
+            "target": "percussion",
+            "meaningByLocale": {
+              "ru": "ударные инструменты",
+              "uk": "ударні інструменти"
+            }
+          }
+        ],
+        "leftColumn": [
+          "clarinet",
+          "trombone",
+          "acoustic",
+          "percussion"
+        ],
+        "rightColumn": [
+          "кларнет",
+          "тромбон",
+          "акустический",
+          "ударные инструменты"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-28:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "К вашему приезду преподаватель уже начал урок. Завершите более раннее действие.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-28:i17:r1",
+          "text": "started"
+        },
+        {
+          "responseId": "en:lesson-28:session-28:i17:r2",
+          "text": "start"
+        },
+        {
+          "responseId": "en:lesson-28:session-28:i17:r3",
+          "text": "starting"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "К вашему приезду преподаватель уже начал урок. Завершите более раннее действие.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "К вашему приезду преподаватель уже начал урок. Завершите более раннее действие.",
+          "uk": "До вашого приїзду викладач уже почав урок. Завершіть ранішу дію."
+        },
+        "gappedTargetPhrase": "The teacher had ___ by the time I arrived.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-28:i17:r1",
+            "text": "started"
+          },
+          {
+            "responseId": "en:lesson-28:session-28:i17:r2",
+            "text": "start"
+          },
+          {
+            "responseId": "en:lesson-28:session-28:i17:r3",
+            "text": "starting"
+          }
+        ],
+        "testedDimension": "К вашему приезду преподаватель уже начал урок. Завершите более раннее действие.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-28:i17:r2",
+            "correct": false,
+            "testedDimension": "К вашему приезду преподаватель уже начал урок. Завершите более раннее действие.",
+            "feedbackByLocale": {
+              "ru": "После had нужна started.",
+              "uk": "Після had потрібна started."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-28:i17:r3",
+            "correct": false,
+            "testedDimension": "К вашему приезду преподаватель уже начал урок. Завершите более раннее действие.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужно had started.",
+              "uk": "Тут потрібно had started."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-28:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-28:i18:r1",
+          "text": "The case can be left here."
+        },
+        {
+          "responseId": "en:lesson-28:session-28:i18:r2",
+          "text": "The case must be left here."
+        },
+        {
+          "responseId": "en:lesson-28:session-28:i18:r3",
+          "text": "The case was left here."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-28:i18:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-28:i18:audio",
+          "transcript": "The case can be left here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-28:i18:r1",
+            "targetText": "The case can be left here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-28:i18:r2",
+            "targetText": "The case must be left here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-28:i18:r3",
+            "targetText": "The case was left here.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-28:i18:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The case can be left here.",
+              "uk": "У записі звучить The case can be left here."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-28:i18:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The case can be left here.",
+              "uk": "У записі звучить The case can be left here."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-28:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте правило о дверях.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-28:i19:audio"
+      ],
+      "accessibilityLabel": "Послушайте правило о дверях.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-28:i19:audio",
+          "transcript": "The door must be kept closed."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The door must be kept closed.",
+        "orderedTokens": [
+          "The",
+          "door",
+          "must",
+          "be",
+          "kept",
+          "closed"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-28:i20",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите показать, как держать инструмент.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-28:i20:audio"
+      ],
+      "accessibilityLabel": "Попросите показать, как держать инструмент.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-28:i20:audio",
+          "transcript": "Could you show me how to hold it?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you show me how to hold it?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-28:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите повторить медленнее.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-28:i21:audio"
+      ],
+      "accessibilityLabel": "Попросите повторить медленнее.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-28:i21:audio",
+          "transcript": "Could you play that more slowly?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you play that more slowly?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "b5cdb34b1a51de7613d02c575fabf51a415a92fc011f0bacbac63039c9fa825b"
+}

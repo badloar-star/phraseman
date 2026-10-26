@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-28:session-54",
+  "learningOutcomeByLocale": {
+    "ru": "как заказать десерты, уточнить подачу и упаковку.",
+    "uk": "як замовити десерти, уточнити подачу й упаковку."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-28:session-54:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Тёплый десерт",
+        "uk": "Теплий десерт"
+      },
+      "bodyByLocale": {
+        "ru": "В кафе вы выбираете десерт и хотите узнать, подают ли его тёплым. Спросите: Is this dessert served warm? — этот десерт подают тёплым? Соберите Is + this dessert + served + warm? Вынесите Is перед названием десерта, затем добавьте served, третью форму serve. Warm в конце уточняет, каким десерт подают.",
+        "uk": "У кафе ви вибираєте десерт і хочете дізнатися, чи подають його теплим. Запитайте: Is this dessert served warm? — цей десерт подають теплим? Складіть Is + this dessert + served + warm? Поставте Is перед назвою десерту, потім додайте served, третю форму serve. Warm наприкінці уточнює, яким десерт подають."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-54:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-54:intro1:r1",
+              "text": "Is this dessert served warm?"
+            },
+            {
+              "responseId": "en:lesson-28:session-54:intro1:r2",
+              "text": "Does this dessert served warm?"
+            },
+            {
+              "responseId": "en:lesson-28:session-54:intro1:r3",
+              "text": "Is this dessert serve warm?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-54:intro1:r1",
+              "text": "Is this dessert served warm?"
+            },
+            {
+              "responseId": "en:lesson-28:session-54:intro1:r2",
+              "text": "Does this dessert served warm?"
+            },
+            {
+              "responseId": "en:lesson-28:session-54:intro1:r3",
+              "text": "Is this dessert serve warm?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-28:session-54:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Две коробки",
+        "uk": "Дві коробки"
+      },
+      "bodyByLocale": {
+        "ru": "Вы покупаете два пирожных для разных людей. Спросите: Can they be packed separately? — можно упаковать их отдельно? Соберите Can + they + be packed + separately? Начните с Can, затем поставьте they вместо названий пирожных. Добавьте be и packed, третью форму pack. Separately означает, что нужна отдельная упаковка для каждого.",
+        "uk": "Ви купуєте два тістечка для різних людей. Запитайте: Can they be packed separately? — чи можна запакувати їх окремо? Складіть Can + they + be packed + separately? Почніть із Can, потім поставте they замість назв тістечок. Додайте be та packed, третю форму pack. Separately означає, що потрібна окрема упаковка для кожного."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-54:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-54:intro2:r1",
+              "text": "Can they be packed separately?"
+            },
+            {
+              "responseId": "en:lesson-28:session-54:intro2:r2",
+              "text": "Can they packed separately?"
+            },
+            {
+              "responseId": "en:lesson-28:session-54:intro2:r3",
+              "text": "Can they be pack separately?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-54:intro2:r1",
+              "text": "Can they be packed separately?"
+            },
+            {
+              "responseId": "en:lesson-28:session-54:intro2:r2",
+              "text": "Can they packed separately?"
+            },
+            {
+              "responseId": "en:lesson-28:session-54:intro2:r3",
+              "text": "Can they be pack separately?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-28:session-54:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Когда приготовили пирожные",
+        "uk": "Коли приготували тістечка"
+      },
+      "bodyByLocale": {
+        "ru": "Вы спрашиваете о свежести пирожных на витрине. Продавец отвечает: These cakes were made this morning — эти пирожные приготовили сегодня утром. Соберите These cakes + were made + this morning. После These cakes поставьте were: пирожных несколько. Затем добавьте made, третью форму make, и время приготовления в конце.",
+        "uk": "Ви запитуєте про свіжість тістечок на вітрині. Продавець відповідає: These cakes were made this morning — ці тістечка приготували сьогодні вранці. Складіть These cakes + were made + this morning. Після These cakes поставте were: тістечок кілька. Потім додайте made, третю форму make, і час приготування наприкінці."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-54:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-54:intro3:r1",
+              "text": "These cakes were made this morning."
+            },
+            {
+              "responseId": "en:lesson-28:session-54:intro3:r2",
+              "text": "These cakes was made this morning."
+            },
+            {
+              "responseId": "en:lesson-28:session-54:intro3:r3",
+              "text": "These cakes were make this morning."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-54:intro3:r1",
+              "text": "These cakes were made this morning."
+            },
+            {
+              "responseId": "en:lesson-28:session-54:intro3:r2",
+              "text": "These cakes was made this morning."
+            },
+            {
+              "responseId": "en:lesson-28:session-54:intro3:r3",
+              "text": "These cakes were make this morning."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e77f532e34c911b51da04f14bcad9d20d421a7e4f3687896bc23a61fa0dcd668"
+}

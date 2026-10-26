@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-28:session-39",
+  "entries": [
+    {
+      "interactionId": "en:lesson-28:session-39:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-39:intro1:r2": {
+          "ru": "После was здесь нужна taken.",
+          "uk": "Після was тут потрібна taken."
+        },
+        "en:lesson-28:session-39:intro1:r3": {
+          "ru": "Перед my dad нужна by.",
+          "uk": "Перед my dad потрібна by."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-39:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-39:intro2:r2": {
+          "ru": "Перед printed нужна be.",
+          "uk": "Перед printed потрібна be."
+        },
+        "en:lesson-28:session-39:intro2:r3": {
+          "ru": "После be нужна printed.",
+          "uk": "Після be потрібна printed."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-39:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-39:intro3:r2": {
+          "ru": "После will нужна be.",
+          "uk": "Після will потрібна be."
+        },
+        "en:lesson-28:session-39:intro3:r3": {
+          "ru": "После be нужна printed.",
+          "uk": "Після be потрібна printed."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "916de37301b9a94106b30fc319c0d3fbe210e3ea5bdf70b07c34b72e82baa227"
+}

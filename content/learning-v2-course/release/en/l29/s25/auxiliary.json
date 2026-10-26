@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-29:session-25",
+  "entries": [
+    {
+      "interactionId": "en:lesson-29:session-25:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-25:intro1:r2": {
+          "ru": "Who уже называет исполнителя, he лишнее.",
+          "uk": "Who вже називає виконавця, he зайве."
+        },
+        "en:lesson-29:session-25:intro1:r3": {
+          "ru": "Получателя помощи обозначаем me, а не I.",
+          "uk": "Отримувача допомоги позначаємо me, а не I."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-25:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-25:intro2:r2": {
+          "ru": "Who уже обозначает того, кому звонили; him лишнее.",
+          "uk": "Who вже позначає того, кому телефонували; him зайве."
+        },
+        "en:lesson-29:session-25:intro2:r3": {
+          "ru": "Исполнитель звонка — I, а не me.",
+          "uk": "Виконавець дзвінка — I, а не me."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-25:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-25:intro3:r2": {
+          "ru": "Which уже обозначает купленный стол, it лишнее.",
+          "uk": "Which вже позначає куплений стіл, it зайве."
+        },
+        "en:lesson-29:session-25:intro3:r3": {
+          "ru": "Покупатель здесь I, а не me.",
+          "uk": "Покупець тут I, а не me."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "8ae0302375b9f2d0c48f07830e6b5c09c5f453500532b48ac9d714b47f5cb853"
+}

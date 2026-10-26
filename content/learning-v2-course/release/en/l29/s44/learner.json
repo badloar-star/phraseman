@@ -1,0 +1,1052 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-29:session-44",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-29:session-44:i01",
+      "ordinal": 4,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите меню десертов.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-44:i01:audio"
+      ],
+      "accessibilityLabel": "Попросите меню десертов.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-44:i01:audio",
+          "transcript": "Could we see the dessert menu?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could we see the dessert menu?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-44:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — churro",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-44:i02:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — churro",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-44:i02:audio",
+          "transcript": "churro"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-44:i02:r1",
+            "targetText": "churro",
+            "meaningByLocale": {
+              "ru": "Чуррос, жареная палочка из теста. Часто подаётся с сахаром или соусом; churro обозначает одну палочку.",
+              "uk": "Чурос, смажена паличка з тіста. Часто подається із цукром або соусом; churro позначає одну паличку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "churro",
+          "definitionByLocale": {
+            "ru": "Чуррос, жареная палочка из теста. Часто подаётся с сахаром или соусом; churro обозначает одну палочку.",
+            "uk": "Чурос, смажена паличка з тіста. Часто подається із цукром або соусом; churro позначає одну паличку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-44:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-44:i03:r1",
+          "text": "Could I have one churro?"
+        },
+        {
+          "responseId": "en:lesson-29:session-44:i03:r2",
+          "text": "Could I have one biscuit?"
+        },
+        {
+          "responseId": "en:lesson-29:session-44:i03:r3",
+          "text": "Could I have two churros?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-44:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-44:i03:audio",
+          "transcript": "Could I have one churro?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-44:i03:r1",
+            "targetText": "Could I have one churro?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-44:i03:r2",
+            "targetText": "Could I have one biscuit?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-44:i03:r3",
+            "targetText": "Could I have two churros?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-44:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I have one churro?",
+              "uk": "У записі звучить Could I have one churro?"
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-44:i03:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I have one churro?",
+              "uk": "У записі звучить Could I have one churro?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-44:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Похвалите десерт, который посоветовал друг.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Похвалите десерт, который посоветовал друг.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The dessert you recommended is delicious.",
+        "localizedMeaning": {
+          "ru": "Похвалите десерт, который посоветовал друг.",
+          "uk": "Похваліть десерт, який порадив друг."
+        },
+        "orderedTokens": [
+          "The",
+          "dessert",
+          "you",
+          "recommended",
+          "is",
+          "delicious"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-44:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вам понравился десерт по совету друга.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-44:i05:r1",
+          "text": "you recommended"
+        },
+        {
+          "responseId": "en:lesson-29:session-44:i05:r2",
+          "text": "you recommended it"
+        },
+        {
+          "responseId": "en:lesson-29:session-44:i05:r3",
+          "text": "you recommending"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вам понравился десерт по совету друга.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вам понравился десерт по совету друга.",
+          "uk": "Вам сподобався десерт за порадою друга."
+        },
+        "gappedTargetPhrase": "The dessert ___ is delicious.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-44:i05:r1",
+            "text": "you recommended"
+          },
+          {
+            "responseId": "en:lesson-29:session-44:i05:r2",
+            "text": "you recommended it"
+          },
+          {
+            "responseId": "en:lesson-29:session-44:i05:r3",
+            "text": "you recommending"
+          }
+        ],
+        "testedDimension": "Вам понравился десерт по совету друга.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-44:i05:r2",
+            "correct": false,
+            "testedDimension": "Вам понравился десерт по совету друга.",
+            "feedbackByLocale": {
+              "ru": "It лишнее: десерт уже назван.",
+              "uk": "It зайве: десерт уже названо."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-44:i05:r3",
+            "correct": false,
+            "testedDimension": "Вам понравился десерт по совету друга.",
+            "feedbackByLocale": {
+              "ru": "Для сделанного совета нужно recommended.",
+              "uk": "Для вже даної поради потрібне recommended."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-44:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — macaron",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-44:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — macaron",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-44:i06:audio",
+          "transcript": "macaron"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-44:i06:r1",
+            "targetText": "macaron",
+            "meaningByLocale": {
+              "ru": "Макарон, небольшое миндальное пирожное. Две круглые половинки из миндальной массы с прослойкой начинки.",
+              "uk": "Макарон, невелике мигдальне тістечко. Дві круглі половинки з мигдальної маси з прошарком начинки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "macaron",
+          "definitionByLocale": {
+            "ru": "Макарон, небольшое миндальное пирожное. Две круглые половинки из миндальной массы с прослойкой начинки.",
+            "uk": "Макарон, невелике мигдальне тістечко. Дві круглі половинки з мигдальної маси з прошарком начинки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-44:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите, какой вкус у этого пирожного.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-44:i07:audio"
+      ],
+      "accessibilityLabel": "Спросите, какой вкус у этого пирожного.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-44:i07:audio",
+          "transcript": "What flavour is this macaron?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "What flavour is this macaron?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-44:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, где попробовали десерт.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-44:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте, где попробовали десерт.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-44:i08:audio",
+          "transcript": "This is the café where I tried it."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This is the café where I tried it.",
+        "orderedTokens": [
+          "This",
+          "is",
+          "the",
+          "café",
+          "where",
+          "I",
+          "tried",
+          "it"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-44:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Это кафе, в котором вы попробовали десерт.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-44:i09:r1",
+          "text": "where"
+        },
+        {
+          "responseId": "en:lesson-29:session-44:i09:r2",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-44:i09:r3",
+          "text": "whose"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Это кафе, в котором вы попробовали десерт.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Это кафе, в котором вы попробовали десерт.",
+          "uk": "Це кафе, у якому ви скуштували десерт."
+        },
+        "gappedTargetPhrase": "This is the café ___ I tried it.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-44:i09:r1",
+            "text": "where"
+          },
+          {
+            "responseId": "en:lesson-29:session-44:i09:r2",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-44:i09:r3",
+            "text": "whose"
+          }
+        ],
+        "testedDimension": "Это кафе, в котором вы попробовали десерт.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-44:i09:r2",
+            "correct": false,
+            "testedDimension": "Это кафе, в котором вы попробовали десерт.",
+            "feedbackByLocale": {
+              "ru": "Для места нужно where.",
+              "uk": "Для місця потрібне where."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-44:i09:r3",
+            "correct": false,
+            "testedDimension": "Это кафе, в котором вы попробовали десерт.",
+            "feedbackByLocale": {
+              "ru": "Здесь место, не принадлежность: where.",
+              "uk": "Тут місце, не належність: where."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-44:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sorbet",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-44:i10:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sorbet",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-44:i10:audio",
+          "transcript": "sorbet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-44:i10:r1",
+            "targetText": "sorbet",
+            "meaningByLocale": {
+              "ru": "Сорбет. Замороженный десерт, обычно из фруктового сока или пюре, воды и сахара.",
+              "uk": "Сорбет. Заморожений десерт, зазвичай із фруктового соку або пюре, води й цукру."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sorbet",
+          "definitionByLocale": {
+            "ru": "Сорбет. Замороженный десерт, обычно из фруктового сока или пюре, воды и сахара.",
+            "uk": "Сорбет. Заморожений десерт, зазвичай із фруктового соку або пюре, води й цукру."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-44:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-44:i11:r1",
+          "text": "Do you have lemon sorbet?"
+        },
+        {
+          "responseId": "en:lesson-29:session-44:i11:r2",
+          "text": "Do you have mango sorbet?"
+        },
+        {
+          "responseId": "en:lesson-29:session-44:i11:r3",
+          "text": "Do you have lemon cake?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-44:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-44:i11:audio",
+          "transcript": "Do you have lemon sorbet?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-44:i11:r1",
+            "targetText": "Do you have lemon sorbet?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-44:i11:r2",
+            "targetText": "Do you have mango sorbet?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-44:i11:r3",
+            "targetText": "Do you have lemon cake?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-44:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Do you have lemon sorbet?",
+              "uk": "У записі звучить Do you have lemon sorbet?"
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-44:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Do you have lemon sorbet?",
+              "uk": "У записі звучить Do you have lemon sorbet?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-44:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите, можно ли разделить одну порцию.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите, можно ли разделить одну порцию.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could we share one portion?",
+        "localizedMeaning": {
+          "ru": "Спросите, можно ли разделить одну порцию.",
+          "uk": "Запитайте, чи можна поділити одну порцію."
+        },
+        "orderedTokens": [
+          "Could",
+          "we",
+          "share",
+          "one",
+          "portion"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-44:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — gelato",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-44:i13:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — gelato",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-44:i13:audio",
+          "transcript": "gelato"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-44:i13:r1",
+            "targetText": "gelato",
+            "meaningByLocale": {
+              "ru": "Джелато. Разновидность мороженого с плотной и мягкой текстурой.",
+              "uk": "Джелато. Різновид морозива зі щільною та м’якою текстурою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "gelato",
+          "definitionByLocale": {
+            "ru": "Джелато. Разновидность мороженого с плотной и мягкой текстурой.",
+            "uk": "Джелато. Різновид морозива зі щільною та м’якою текстурою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-44:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите один шарик шоколадного джелато.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-44:i14:audio"
+      ],
+      "accessibilityLabel": "Попросите один шарик шоколадного джелато.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-44:i14:audio",
+          "transcript": "Could I have one scoop of chocolate gelato?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could I have one scoop of chocolate gelato?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-44:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините названия с описаниями.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините названия с описаниями.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-29:session-44:i15:p1",
+            "target": "churro",
+            "meaningByLocale": {
+              "ru": "жареная палочка из теста",
+              "uk": "смажена паличка з тіста"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-44:i15:p2",
+            "target": "macaron",
+            "meaningByLocale": {
+              "ru": "миндальное пирожное с начинкой",
+              "uk": "мигдальне тістечко з начинкою"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-44:i15:p3",
+            "target": "sorbet",
+            "meaningByLocale": {
+              "ru": "замороженный фруктовый десерт",
+              "uk": "заморожений фруктовий десерт"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-44:i15:p4",
+            "target": "gelato",
+            "meaningByLocale": {
+              "ru": "джелато",
+              "uk": "джелато"
+            }
+          }
+        ],
+        "leftColumn": [
+          "churro",
+          "macaron",
+          "sorbet",
+          "gelato"
+        ],
+        "rightColumn": [
+          "жареная палочка из теста",
+          "миндальное пирожное с начинкой",
+          "замороженный фруктовый десерт",
+          "джелато"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-44:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Этот официант помог вам выбрать десерт.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-44:i16:r1",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-44:i16:r2",
+          "text": "who he"
+        },
+        {
+          "responseId": "en:lesson-29:session-44:i16:r3",
+          "text": "where"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Этот официант помог вам выбрать десерт.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Этот официант помог вам выбрать десерт.",
+          "uk": "Цей офіціант допоміг вам вибрати десерт."
+        },
+        "gappedTargetPhrase": "This is the waiter ___ helped me.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-44:i16:r1",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-44:i16:r2",
+            "text": "who he"
+          },
+          {
+            "responseId": "en:lesson-29:session-44:i16:r3",
+            "text": "where"
+          }
+        ],
+        "testedDimension": "Этот официант помог вам выбрать десерт.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-44:i16:r2",
+            "correct": false,
+            "testedDimension": "Этот официант помог вам выбрать десерт.",
+            "feedbackByLocale": {
+              "ru": "Who уже обозначает исполнителя; he лишнее.",
+              "uk": "Who вже позначає виконавця; he зайве."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-44:i16:r3",
+            "correct": false,
+            "testedDimension": "Этот официант помог вам выбрать десерт.",
+            "feedbackByLocale": {
+              "ru": "Для человека здесь нужно who.",
+              "uk": "Для людини тут потрібне who."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-44:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: сорбет лимонный или манговый?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-44:i17:r1",
+          "text": "Do you have lemon sorbet?"
+        },
+        {
+          "responseId": "en:lesson-29:session-44:i17:r2",
+          "text": "Do you have mango sorbet?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-44:i17:audioA",
+        "en:lesson-29:session-44:i17:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: сорбет лимонный или манговый?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "Do you have lemon sorbet?",
+        "contrastB": "Do you have mango sorbet?",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-29:session-44:i17:audioA",
+          "transcript": "Do you have lemon sorbet?"
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-29:session-44:i17:audioB",
+          "transcript": "Do you have mango sorbet?"
+        },
+        "testedPhoneticContrast": "Послушайте: сорбет лимонный или манговый?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-44:i17:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: сорбет лимонный или манговый?",
+            "feedbackByLocale": {
+              "ru": "Звучит lemon — лимонный.",
+              "uk": "Звучить lemon — лимонний."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-44:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, какой вкус у пирожного.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-44:i18:audio"
+      ],
+      "accessibilityLabel": "Послушайте, какой вкус у пирожного.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-44:i18:audio",
+          "transcript": "This macaron has a lemon filling."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This macaron has a lemon filling.",
+        "orderedTokens": [
+          "This",
+          "macaron",
+          "has",
+          "a",
+          "lemon",
+          "filling"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-44:i19",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите ещё одну ложку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-44:i19:audio"
+      ],
+      "accessibilityLabel": "Попросите ещё одну ложку.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-44:i19:audio",
+          "transcript": "Could we have another spoon?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could we have another spoon?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-44:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы с другом попробовали сладкий десерт.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-44:i20:r1",
+          "text": "we tried"
+        },
+        {
+          "responseId": "en:lesson-29:session-44:i20:r2",
+          "text": "we tried it"
+        },
+        {
+          "responseId": "en:lesson-29:session-44:i20:r3",
+          "text": "us tried"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы с другом попробовали сладкий десерт.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы с другом попробовали сладкий десерт.",
+          "uk": "Ви з другом скуштували солодкий десерт."
+        },
+        "gappedTargetPhrase": "The dessert ___ was sweet.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-44:i20:r1",
+            "text": "we tried"
+          },
+          {
+            "responseId": "en:lesson-29:session-44:i20:r2",
+            "text": "we tried it"
+          },
+          {
+            "responseId": "en:lesson-29:session-44:i20:r3",
+            "text": "us tried"
+          }
+        ],
+        "testedDimension": "Вы с другом попробовали сладкий десерт.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-44:i20:r2",
+            "correct": false,
+            "testedDimension": "Вы с другом попробовали сладкий десерт.",
+            "feedbackByLocale": {
+              "ru": "It повторяет уже названный десерт.",
+              "uk": "It повторює вже названий десерт."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-44:i20:r3",
+            "correct": false,
+            "testedDimension": "Вы с другом попробовали сладкий десерт.",
+            "feedbackByLocale": {
+              "ru": "Попробовали мы: we tried.",
+              "uk": "Скуштували ми: we tried."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-44:i21",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Поблагодарите за помощь.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поблагодарите за помощь.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Thank you for your help.",
+        "localizedMeaning": {
+          "ru": "Поблагодарите за помощь.",
+          "uk": "Подякуйте за допомогу."
+        },
+        "orderedTokens": [
+          "Thank",
+          "you",
+          "for",
+          "your",
+          "help"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "0a1c7233348e445b85d17d1460b96fa33a6b5696439a4321fb9447133b2ef7a2"
+}

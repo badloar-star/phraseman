@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-29:session-49:i01",
+    "correctText": "Do you have time to talk?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-49:i02",
+    "correctText": "bewildered",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-49:i03",
+    "correctText": "I feel bewildered by all these changes.",
+    "correctResponseId": "en:lesson-29:session-49:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-49:i04",
+    "correctText": "The message I read was upsetting.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-49:i05",
+    "correctText": "I read",
+    "correctResponseId": "en:lesson-29:session-49:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-49:i06",
+    "correctText": "apprehensive",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-49:i07",
+    "correctText": "I feel apprehensive about tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-49:i08",
+    "correctText": "She is the neighbour who listened to me.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-49:i09",
+    "correctText": "who",
+    "correctResponseId": "en:lesson-29:session-49:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-49:i10",
+    "correctText": "distraught",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-49:i11",
+    "correctText": "I was distraught when my dog went missing.",
+    "correctResponseId": "en:lesson-29:session-49:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-49:i12",
+    "correctText": "Could you just listen for a moment?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-49:i13",
+    "correctText": "frazzled",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-49:i14",
+    "correctText": "I feel frazzled after such a busy day.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-49:i15",
+    "correctText": "en:lesson-29:session-49:i15:p1=bewildered\nen:lesson-29:session-49:i15:p2=apprehensive\nen:lesson-29:session-49:i15:p3=distraught\nen:lesson-29:session-49:i15:p4=frazzled",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-49:i16",
+    "correctText": "where",
+    "correctResponseId": "en:lesson-29:session-49:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-49:i17",
+    "correctText": "I feel apprehensive about tomorrow.",
+    "correctResponseId": "en:lesson-29:session-49:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-49:i18",
+    "correctText": "I know a café where we can talk.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-49:i19",
+    "correctText": "I do not need advice right now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-49:i20",
+    "correctText": "we had",
+    "correctResponseId": "en:lesson-29:session-49:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-49:i21",
+    "correctText": "Thank you for listening to me.",
+    "correctResponseId": null
+  }
+]

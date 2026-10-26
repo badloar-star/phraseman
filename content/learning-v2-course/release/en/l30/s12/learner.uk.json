@@ -1,0 +1,1051 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-30:session-12",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-30:session-12:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Передайте запитання друга про те, де ресторан.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Передайте запитання друга про те, де ресторан.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He asked where the restaurant was.",
+        "localizedMeaning": {
+          "ru": "Передайте вопрос друга о том, где ресторан.",
+          "uk": "Передайте запитання друга про те, де ресторан."
+        },
+        "orderedTokens": [
+          "He",
+          "asked",
+          "where",
+          "the",
+          "restaurant",
+          "was"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-12:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — location",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-12:i02:audio"
+      ],
+      "accessibilityLabel": "Картка слова — location",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-12:i02:audio",
+          "transcript": "location"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-12:i02:r1",
+            "targetText": "location",
+            "meaningByLocale": {
+              "ru": "Местоположение, расположение. Место, где что-то находится.",
+              "uk": "Місцеположення, розташування. Місце, де щось розташоване."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "location",
+          "definitionByLocale": {
+            "ru": "Местоположение, расположение. Место, где что-то находится.",
+            "uk": "Місцеположення, розташування. Місце, де щось розташоване."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-12:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-12:i03:r1",
+          "text": "The location is convenient."
+        },
+        {
+          "responseId": "en:lesson-30:session-12:i03:r2",
+          "text": "The price is low."
+        },
+        {
+          "responseId": "en:lesson-30:session-12:i03:r3",
+          "text": "The time is convenient."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-12:i03:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-12:i03:audio",
+          "transcript": "The location is convenient."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-12:i03:r1",
+            "targetText": "The location is convenient.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-12:i03:r2",
+            "targetText": "The price is low.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-12:i03:r3",
+            "targetText": "The time is convenient.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-12:i03:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The location is convenient.",
+              "uk": "У записі звучить The location is convenient."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-12:i03:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The location is convenient.",
+              "uk": "У записі звучить The location is convenient."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-12:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сестра запитала, чи відчинений ресторан.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-12:i04:r1",
+          "text": "if"
+        },
+        {
+          "responseId": "en:lesson-30:session-12:i04:r2",
+          "text": "what"
+        },
+        {
+          "responseId": "en:lesson-30:session-12:i04:r3",
+          "text": "where"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сестра запитала, чи відчинений ресторан.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сестра спросила, открыт ли ресторан.",
+          "uk": "Сестра запитала, чи відчинений ресторан."
+        },
+        "gappedTargetPhrase": "She asked ___ the restaurant was open.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-12:i04:r1",
+            "text": "if"
+          },
+          {
+            "responseId": "en:lesson-30:session-12:i04:r2",
+            "text": "what"
+          },
+          {
+            "responseId": "en:lesson-30:session-12:i04:r3",
+            "text": "where"
+          }
+        ],
+        "testedDimension": "Сестра запитала, чи відчинений ресторан.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-12:i04:r2",
+            "correct": false,
+            "testedDimension": "Сестра запитала, чи відчинений ресторан.",
+            "feedbackByLocale": {
+              "ru": "What означает что; здесь вопрос да или нет передаём через if.",
+              "uk": "What означає що; тут запитання так або ні передаємо через if."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-12:i04:r3",
+            "correct": false,
+            "testedDimension": "Сестра запитала, чи відчинений ресторан.",
+            "feedbackByLocale": {
+              "ru": "Where спрашивает о месте; здесь спрашивали, открыт ли ресторан.",
+              "uk": "Where запитує про місце; тут запитували, чи відчинений ресторан."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-12:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — pizzeria",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-12:i05:audio"
+      ],
+      "accessibilityLabel": "Картка слова — pizzeria",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-12:i05:audio",
+          "transcript": "pizzeria"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-12:i05:r1",
+            "targetText": "pizzeria",
+            "meaningByLocale": {
+              "ru": "Пиццерия. Заведение, где главным блюдом является пицца.",
+              "uk": "Піцерія. Заклад, де головною стравою є піца."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pizzeria",
+          "definitionByLocale": {
+            "ru": "Пиццерия. Заведение, где главным блюдом является пицца.",
+            "uk": "Піцерія. Заклад, де головною стравою є піца."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-12:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Передайте запитання друга про те, де піцерія.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-12:i06:audio"
+      ],
+      "accessibilityLabel": "Передайте запитання друга про те, де піцерія.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-12:i06:audio",
+          "transcript": "He asked where the pizzeria was."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He asked where the pizzeria was.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-12:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте переказ запитання про відчинений ресторан.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-12:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте переказ запитання про відчинений ресторан.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-12:i07:audio",
+          "transcript": "She asked if the restaurant was open."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She asked if the restaurant was open.",
+        "orderedTokens": [
+          "She",
+          "asked",
+          "if",
+          "the",
+          "restaurant",
+          "was",
+          "open"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-12:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви зараз не знаєте адресу, але хотіли б її знати.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-12:i08:r1",
+          "text": "knew"
+        },
+        {
+          "responseId": "en:lesson-30:session-12:i08:r2",
+          "text": "know"
+        },
+        {
+          "responseId": "en:lesson-30:session-12:i08:r3",
+          "text": "knowing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви зараз не знаєте адресу, але хотіли б її знати.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы сейчас не знаете адрес, но хотели бы его знать.",
+          "uk": "Ви зараз не знаєте адресу, але хотіли б її знати."
+        },
+        "gappedTargetPhrase": "I wish I ___ the address.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-12:i08:r1",
+            "text": "knew"
+          },
+          {
+            "responseId": "en:lesson-30:session-12:i08:r2",
+            "text": "know"
+          },
+          {
+            "responseId": "en:lesson-30:session-12:i08:r3",
+            "text": "knowing"
+          }
+        ],
+        "testedDimension": "Ви зараз не знаєте адресу, але хотіли б її знати.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-12:i08:r2",
+            "correct": false,
+            "testedDimension": "Ви зараз не знаєте адресу, але хотіли б її знати.",
+            "feedbackByLocale": {
+              "ru": "Для такого желания используем knew после wish.",
+              "uk": "Для такого бажання використовуємо knew після wish."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-12:i08:r3",
+            "correct": false,
+            "testedDimension": "Ви зараз не знаєте адресу, але хотіли б її знати.",
+            "feedbackByLocale": {
+              "ru": "Нужно I knew, не I knowing.",
+              "uk": "Потрібне I knew, не I knowing."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-12:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — steakhouse",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-12:i09:audio"
+      ],
+      "accessibilityLabel": "Картка слова — steakhouse",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-12:i09:audio",
+          "transcript": "steakhouse"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-12:i09:r1",
+            "targetText": "steakhouse",
+            "meaningByLocale": {
+              "ru": "Стейк-хаус, мясной ресторан. Ресторан, который специализируется на стейках.",
+              "uk": "Стейк-хаус, м’ясний ресторан. Ресторан, що спеціалізується на стейках."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "steakhouse",
+          "definitionByLocale": {
+            "ru": "Стейк-хаус, мясной ресторан. Ресторан, который специализируется на стейках.",
+            "uk": "Стейк-хаус, м’ясний ресторан. Ресторан, що спеціалізується на стейках."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-12:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-12:i10:r1",
+          "text": "She asked if the steakhouse was open."
+        },
+        {
+          "responseId": "en:lesson-30:session-12:i10:r2",
+          "text": "She asked if the bakery was open."
+        },
+        {
+          "responseId": "en:lesson-30:session-12:i10:r3",
+          "text": "She asked if the café was open."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-12:i10:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-12:i10:audio",
+          "transcript": "She asked if the steakhouse was open."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-12:i10:r1",
+            "targetText": "She asked if the steakhouse was open.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-12:i10:r2",
+            "targetText": "She asked if the bakery was open.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-12:i10:r3",
+            "targetText": "She asked if the café was open.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-12:i10:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She asked if the steakhouse was open.",
+              "uk": "У записі звучить She asked if the steakhouse was open."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-12:i10:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She asked if the steakhouse was open.",
+              "uk": "У записі звучить She asked if the steakhouse was open."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-12:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть другові, що ресторан, який він вибрав, поруч.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-12:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть другові, що ресторан, який він вибрав, поруч.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-12:i11:audio",
+          "transcript": "The restaurant you chose is nearby."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The restaurant you chose is nearby.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-12:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — tearoom",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-12:i12:audio"
+      ],
+      "accessibilityLabel": "Картка слова — tearoom",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-12:i12:audio",
+          "transcript": "tearoom"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-12:i12:r1",
+            "targetText": "tearoom",
+            "meaningByLocale": {
+              "ru": "Чайная. Небольшое кафе, где подают чай, выпечку и лёгкие закуски.",
+              "uk": "Чайна. Невелике кафе, де подають чай, випічку й легкі закуски."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tearoom",
+          "definitionByLocale": {
+            "ru": "Чайная. Небольшое кафе, где подают чай, выпечку и лёгкие закуски.",
+            "uk": "Чайна. Невелике кафе, де подають чай, випічку й легкі закуски."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-12:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Передайте запитання сестри про те, де чайна.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-12:i13:audio"
+      ],
+      "accessibilityLabel": "Передайте запитання сестри про те, де чайна.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-12:i13:audio",
+          "transcript": "She asked where the tearoom was."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She asked where the tearoom was.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-12:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-30:session-12:i14:p1",
+            "target": "location",
+            "meaningByLocale": {
+              "ru": "расположение",
+              "uk": "розташування"
+            }
+          },
+          {
+            "pairId": "en:lesson-30:session-12:i14:p2",
+            "target": "pizzeria",
+            "meaningByLocale": {
+              "ru": "пиццерия",
+              "uk": "піцерія"
+            }
+          },
+          {
+            "pairId": "en:lesson-30:session-12:i14:p3",
+            "target": "steakhouse",
+            "meaningByLocale": {
+              "ru": "ресторан стейков",
+              "uk": "ресторан стейків"
+            }
+          },
+          {
+            "pairId": "en:lesson-30:session-12:i14:p4",
+            "target": "tearoom",
+            "meaningByLocale": {
+              "ru": "чайная",
+              "uk": "чайна"
+            }
+          }
+        ],
+        "leftColumn": [
+          "location",
+          "pizzeria",
+          "steakhouse",
+          "tearoom"
+        ],
+        "rightColumn": [
+          "розташування",
+          "піцерія",
+          "ресторан стейків",
+          "чайна"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-12:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви хотіли б знати адресу зараз.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви хотіли б знати адресу зараз.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I wish I knew the address.",
+        "localizedMeaning": {
+          "ru": "Вы хотели бы знать адрес сейчас.",
+          "uk": "Ви хотіли б знати адресу зараз."
+        },
+        "orderedTokens": [
+          "I",
+          "wish",
+          "I",
+          "knew",
+          "the",
+          "address"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-12:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Передайте запитання друга про піцерію.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-12:i16:r1",
+          "text": "the pizzeria was"
+        },
+        {
+          "responseId": "en:lesson-30:session-12:i16:r2",
+          "text": "was the pizzeria"
+        },
+        {
+          "responseId": "en:lesson-30:session-12:i16:r3",
+          "text": "the pizzeria were"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Передайте запитання друга про піцерію.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Передайте вопрос друга о пиццерии.",
+          "uk": "Передайте запитання друга про піцерію."
+        },
+        "gappedTargetPhrase": "He asked where ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-12:i16:r1",
+            "text": "the pizzeria was"
+          },
+          {
+            "responseId": "en:lesson-30:session-12:i16:r2",
+            "text": "was the pizzeria"
+          },
+          {
+            "responseId": "en:lesson-30:session-12:i16:r3",
+            "text": "the pizzeria were"
+          }
+        ],
+        "testedDimension": "Передайте запитання друга про піцерію.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-12:i16:r2",
+            "correct": false,
+            "testedDimension": "Передайте запитання друга про піцерію.",
+            "feedbackByLocale": {
+              "ru": "В пересказе нужен порядок the pizzeria was.",
+              "uk": "У переказі потрібен порядок the pizzeria was."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-12:i16:r3",
+            "correct": false,
+            "testedDimension": "Передайте запитання друга про піцерію.",
+            "feedbackByLocale": {
+              "ru": "С одной пиццерией здесь нужно was.",
+              "uk": "З однією піцерією тут потрібне was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-12:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг упевнено вибрав піцу, але забув з’ясувати, куди йти. Передайте його запитання про розташування піцерії.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-12:i17:audio"
+      ],
+      "accessibilityLabel": "Друг упевнено вибрав піцу, але забув з’ясувати, куди йти. Передайте його запитання про розташування піцерії.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-12:i17:audio",
+          "transcript": "He asked where the pizzeria was."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He asked where the pizzeria was.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-12:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте запитання про чайну.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-12:i18:audio"
+      ],
+      "accessibilityLabel": "Послухайте запитання про чайну.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-12:i18:audio",
+          "transcript": "She asked where the tearoom was."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She asked where the tearoom was.",
+        "orderedTokens": [
+          "She",
+          "asked",
+          "where",
+          "the",
+          "tearoom",
+          "was"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-12:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: сестра запитала, чи відчинений м’ясний ресторан, чи кафе?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-12:i19:r1",
+          "text": "She asked if the steakhouse was open."
+        },
+        {
+          "responseId": "en:lesson-30:session-12:i19:r2",
+          "text": "She asked if the café was open."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-12:i19:audioA",
+        "en:lesson-30:session-12:i19:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: сестра запитала, чи відчинений м’ясний ресторан, чи кафе?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "She asked if the steakhouse was open.",
+        "contrastB": "She asked if the café was open.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-30:session-12:i19:audioA",
+          "transcript": "She asked if the steakhouse was open."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-30:session-12:i19:audioB",
+          "transcript": "She asked if the café was open."
+        },
+        "testedPhoneticContrast": "Послухайте: сестра запитала, чи відчинений м’ясний ресторан, чи кафе?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-12:i19:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: сестра запитала, чи відчинений м’ясний ресторан, чи кафе?",
+            "feedbackByLocale": {
+              "ru": "Звучит steakhouse — ресторан стейков.",
+              "uk": "Звучить steakhouse — ресторан стейків."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-12:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточніть ресторан, який вибрав ваш друг.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-12:i20:r1",
+          "text": "chose"
+        },
+        {
+          "responseId": "en:lesson-30:session-12:i20:r2",
+          "text": "choosing"
+        },
+        {
+          "responseId": "en:lesson-30:session-12:i20:r3",
+          "text": "chooses"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточніть ресторан, який вибрав ваш друг.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните ресторан, который выбрал ваш друг.",
+          "uk": "Уточніть ресторан, який вибрав ваш друг."
+        },
+        "gappedTargetPhrase": "The restaurant you ___ is nearby.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-12:i20:r1",
+            "text": "chose"
+          },
+          {
+            "responseId": "en:lesson-30:session-12:i20:r2",
+            "text": "choosing"
+          },
+          {
+            "responseId": "en:lesson-30:session-12:i20:r3",
+            "text": "chooses"
+          }
+        ],
+        "testedDimension": "Уточніть ресторан, який вибрав ваш друг.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-12:i20:r2",
+            "correct": false,
+            "testedDimension": "Уточніть ресторан, який вибрав ваш друг.",
+            "feedbackByLocale": {
+              "ru": "В уточнении нужна форма chose.",
+              "uk": "В уточненні потрібна форма chose."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-12:i20:r3",
+            "correct": false,
+            "testedDimension": "Уточніть ресторан, який вибрав ваш друг.",
+            "feedbackByLocale": {
+              "ru": "Chooses не сочетается с you; о сделанном выборе говорим chose.",
+              "uk": "Chooses не поєднується з you; про зроблений вибір кажемо chose."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-12:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Після обіду друг сказав, що йому сподобалася їжа. Передайте його слова.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-12:i21:audio"
+      ],
+      "accessibilityLabel": "Після обіду друг сказав, що йому сподобалася їжа. Передайте його слова.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-12:i21:audio",
+          "transcript": "He said he enjoyed the food."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He said he enjoyed the food.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "94fd3564f4180b88e1c78ad68734a058c8d25205a95523fa7195ee99701b7c97"
+}

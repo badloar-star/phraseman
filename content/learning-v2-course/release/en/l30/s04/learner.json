@@ -1,0 +1,1090 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-30:session-04",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-30:session-04:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Передайте слова брата: он сказал, что был поражён.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Передайте слова брата: он сказал, что был поражён.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He said he was astonished.",
+        "localizedMeaning": {
+          "ru": "Передайте слова брата: он сказал, что был поражён.",
+          "uk": "Передайте слова брата: він сказав, що був вражений."
+        },
+        "orderedTokens": [
+          "He",
+          "said",
+          "he",
+          "was",
+          "astonished"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-04:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — coincidence",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-04:i02:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — coincidence",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-04:i02:audio",
+          "transcript": "coincidence"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-04:i02:r1",
+            "targetText": "coincidence",
+            "meaningByLocale": {
+              "ru": "Совпадение. Когда события случайно происходят вместе или оказываются похожими.",
+              "uk": "Збіг. Коли події випадково стаються разом або виявляються схожими."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "coincidence",
+          "definitionByLocale": {
+            "ru": "Совпадение. Когда события случайно происходят вместе или оказываются похожими.",
+            "uk": "Збіг. Коли події випадково стаються разом або виявляються схожими."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-04:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-04:i03:r1",
+          "text": "It was a coincidence."
+        },
+        {
+          "responseId": "en:lesson-30:session-04:i03:r2",
+          "text": "It was a mistake."
+        },
+        {
+          "responseId": "en:lesson-30:session-04:i03:r3",
+          "text": "It was a problem."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-04:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-04:i03:audio",
+          "transcript": "It was a coincidence."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-04:i03:r1",
+            "targetText": "It was a coincidence.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-04:i03:r2",
+            "targetText": "It was a mistake.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-04:i03:r3",
+            "targetText": "It was a problem.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-04:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит It was a coincidence.",
+              "uk": "У записі звучить It was a coincidence."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-04:i03:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит It was a coincidence.",
+              "uk": "У записі звучить It was a coincidence."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-04:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы хотели бы жить ближе к другу сейчас.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-04:i04:r1",
+          "text": "lived"
+        },
+        {
+          "responseId": "en:lesson-30:session-04:i04:r2",
+          "text": "live"
+        },
+        {
+          "responseId": "en:lesson-30:session-04:i04:r3",
+          "text": "living"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы хотели бы жить ближе к другу сейчас.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы хотели бы жить ближе к другу сейчас.",
+          "uk": "Ви хотіли б жити ближче до друга зараз."
+        },
+        "gappedTargetPhrase": "I wish we ___ closer.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-04:i04:r1",
+            "text": "lived"
+          },
+          {
+            "responseId": "en:lesson-30:session-04:i04:r2",
+            "text": "live"
+          },
+          {
+            "responseId": "en:lesson-30:session-04:i04:r3",
+            "text": "living"
+          }
+        ],
+        "testedDimension": "Вы хотели бы жить ближе к другу сейчас.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-04:i04:r2",
+            "correct": false,
+            "testedDimension": "Вы хотели бы жить ближе к другу сейчас.",
+            "feedbackByLocale": {
+              "ru": "Для такого желания после wish нужна форма lived.",
+              "uk": "Для такого бажання після wish потрібна форма lived."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-04:i04:r3",
+            "correct": false,
+            "testedDimension": "Вы хотели бы жить ближе к другу сейчас.",
+            "feedbackByLocale": {
+              "ru": "Нужно we lived, не we living.",
+              "uk": "Потрібне we lived, не we living."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-04:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Похвалите фотографию, которую сделал брат.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-04:i05:audio"
+      ],
+      "accessibilityLabel": "Похвалите фотографию, которую сделал брат.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-04:i05:audio",
+          "transcript": "The photo he took is lovely."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The photo he took is lovely.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-04:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — overjoyed",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-04:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — overjoyed",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-04:i06:audio",
+          "transcript": "overjoyed"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-04:i06:r1",
+            "targetText": "overjoyed",
+            "meaningByLocale": {
+              "ru": "Очень обрадованный, вне себя от радости. О сильной радости, например при долгожданной встрече.",
+              "uk": "Дуже зраділий, нестямний від радості. Про сильну радість, наприклад під час довгоочікуваної зустрічі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "overjoyed",
+          "definitionByLocale": {
+            "ru": "Очень обрадованный, вне себя от радости. О сильной радости, например при долгожданной встрече.",
+            "uk": "Дуже зраділий, нестямний від радості. Про сильну радість, наприклад під час довгоочікуваної зустрічі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-04:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Передайте слова брата: он сказал, что был очень рад.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Передайте слова брата: он сказал, что был очень рад.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He said he was overjoyed.",
+        "localizedMeaning": {
+          "ru": "Передайте слова брата: он сказал, что был очень рад.",
+          "uk": "Передайте слова брата: він сказав, що дуже зрадів."
+        },
+        "orderedTokens": [
+          "He",
+          "said",
+          "he",
+          "was",
+          "overjoyed"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-04:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-04:i08:r1",
+          "text": "I wish we lived closer."
+        },
+        {
+          "responseId": "en:lesson-30:session-04:i08:r2",
+          "text": "I wish we lived together."
+        },
+        {
+          "responseId": "en:lesson-30:session-04:i08:r3",
+          "text": "I wish we lived nearby."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-04:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-04:i08:audio",
+          "transcript": "I wish we lived closer."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-04:i08:r1",
+            "targetText": "I wish we lived closer.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-04:i08:r2",
+            "targetText": "I wish we lived together.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-04:i08:r3",
+            "targetText": "I wish we lived nearby.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-04:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I wish we lived closer.",
+              "uk": "У записі звучить I wish we lived closer."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-04:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I wish we lived closer.",
+              "uk": "У записі звучить I wish we lived closer."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-04:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточните фотографию, которую сделал брат.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-04:i09:r1",
+          "text": "took"
+        },
+        {
+          "responseId": "en:lesson-30:session-04:i09:r2",
+          "text": "taking"
+        },
+        {
+          "responseId": "en:lesson-30:session-04:i09:r3",
+          "text": "take"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточните фотографию, которую сделал брат.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните фотографию, которую сделал брат.",
+          "uk": "Уточніть фотографію, яку зробив брат."
+        },
+        "gappedTargetPhrase": "The photo he ___ is lovely.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-04:i09:r1",
+            "text": "took"
+          },
+          {
+            "responseId": "en:lesson-30:session-04:i09:r2",
+            "text": "taking"
+          },
+          {
+            "responseId": "en:lesson-30:session-04:i09:r3",
+            "text": "take"
+          }
+        ],
+        "testedDimension": "Уточните фотографию, которую сделал брат.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-04:i09:r2",
+            "correct": false,
+            "testedDimension": "Уточните фотографию, которую сделал брат.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма took, не taking.",
+              "uk": "Потрібна форма took, не taking."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-04:i09:r3",
+            "correct": false,
+            "testedDimension": "Уточните фотографию, которую сделал брат.",
+            "feedbackByLocale": {
+              "ru": "Take не сочетается с he; о сделанном снимке здесь говорим took.",
+              "uk": "Take не поєднується з he; про зроблений знімок тут кажемо took."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-04:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — awe",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-04:i10:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — awe",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-04:i10:audio",
+          "transcript": "awe"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-04:i10:r1",
+            "targetText": "awe",
+            "meaningByLocale": {
+              "ru": "Благоговейное восхищение. Сильное чувство удивления и уважения перед чем-то впечатляющим.",
+              "uk": "Благоговійне захоплення. Сильне почуття подиву й поваги перед чимось вражаючим."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "awe",
+          "definitionByLocale": {
+            "ru": "Благоговейное восхищение. Сильное чувство удивления и уважения перед чем-то впечатляющим.",
+            "uk": "Благоговійне захоплення. Сильне почуття подиву й поваги перед чимось вражаючим."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-04:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Во время прогулки вы залюбовались огромным водопадом. Скажите, что смотрели на него с восхищением.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-04:i11:audio"
+      ],
+      "accessibilityLabel": "Во время прогулки вы залюбовались огромным водопадом. Скажите, что смотрели на него с восхищением.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-04:i11:audio",
+          "transcript": "We watched the waterfall in awe."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We watched the waterfall in awe.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-04:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, что брат сказал о своей радости.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-04:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте, что брат сказал о своей радости.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-04:i12:audio",
+          "transcript": "He said he was overjoyed."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "He said he was overjoyed.",
+        "orderedTokens": [
+          "He",
+          "said",
+          "he",
+          "was",
+          "overjoyed"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-04:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — surreal",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-04:i13:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — surreal",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-04:i13:audio",
+          "transcript": "surreal"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-04:i13:r1",
+            "targetText": "surreal",
+            "meaningByLocale": {
+              "ru": "Нереальный, словно во сне. Так описывают настоящие события, которые кажутся настолько необычными, что в них трудно поверить.",
+              "uk": "Нереальний, наче уві сні. Так описують справжні події, що здаються настільки незвичайними, що в них важко повірити."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "surreal",
+          "definitionByLocale": {
+            "ru": "Нереальный, словно во сне. Так описывают настоящие события, которые кажутся настолько необычными, что в них трудно поверить.",
+            "uk": "Нереальний, наче уві сні. Так описують справжні події, що здаються настільки незвичайними, що в них важко повірити."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-04:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-04:i14:r1",
+          "text": "The whole day felt surreal."
+        },
+        {
+          "responseId": "en:lesson-30:session-04:i14:r2",
+          "text": "The whole day felt ordinary."
+        },
+        {
+          "responseId": "en:lesson-30:session-04:i14:r3",
+          "text": "The whole day felt stressful."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-04:i14:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-04:i14:audio",
+          "transcript": "The whole day felt surreal."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-04:i14:r1",
+            "targetText": "The whole day felt surreal.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-04:i14:r2",
+            "targetText": "The whole day felt ordinary.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-04:i14:r3",
+            "targetText": "The whole day felt stressful.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-04:i14:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The whole day felt surreal.",
+              "uk": "У записі звучить The whole day felt surreal."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-04:i14:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The whole day felt surreal.",
+              "uk": "У записі звучить The whole day felt surreal."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-04:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-30:session-04:i15:p1",
+            "target": "coincidence",
+            "meaningByLocale": {
+              "ru": "совпадение",
+              "uk": "збіг"
+            }
+          },
+          {
+            "pairId": "en:lesson-30:session-04:i15:p2",
+            "target": "overjoyed",
+            "meaningByLocale": {
+              "ru": "очень обрадованный",
+              "uk": "дуже зраділий"
+            }
+          },
+          {
+            "pairId": "en:lesson-30:session-04:i15:p3",
+            "target": "awe",
+            "meaningByLocale": {
+              "ru": "благоговейное восхищение",
+              "uk": "благоговійне захоплення"
+            }
+          },
+          {
+            "pairId": "en:lesson-30:session-04:i15:p4",
+            "target": "surreal",
+            "meaningByLocale": {
+              "ru": "словно во сне",
+              "uk": "наче уві сні"
+            }
+          }
+        ],
+        "leftColumn": [
+          "coincidence",
+          "overjoyed",
+          "awe",
+          "surreal"
+        ],
+        "rightColumn": [
+          "совпадение",
+          "очень обрадованный",
+          "благоговейное восхищение",
+          "словно во сне"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-04:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Передайте слова брата о его удивлении во время встречи.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-04:i16:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-30:session-04:i16:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-30:session-04:i16:r3",
+          "text": "being"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Передайте слова брата о его удивлении во время встречи.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Передайте слова брата о его удивлении во время встречи.",
+          "uk": "Передайте слова брата про його здивування під час зустрічі."
+        },
+        "gappedTargetPhrase": "He said he ___ astonished.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-04:i16:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-30:session-04:i16:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-30:session-04:i16:r3",
+            "text": "being"
+          }
+        ],
+        "testedDimension": "Передайте слова брата о его удивлении во время встречи.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-04:i16:r2",
+            "correct": false,
+            "testedDimension": "Передайте слова брата о его удивлении во время встречи.",
+            "feedbackByLocale": {
+              "ru": "С he здесь используем was.",
+              "uk": "Із he тут використовуємо was."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-04:i16:r3",
+            "correct": false,
+            "testedDimension": "Передайте слова брата о его удивлении во время встречи.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма was, не being.",
+              "uk": "Потрібна форма was, не being."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-04:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы случайно встретились и обнаружили одинаковые куртки. Хорошо, что хотя бы обувь разная. Скажите, что это было совпадение.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-04:i17:audio"
+      ],
+      "accessibilityLabel": "Вы случайно встретились и обнаружили одинаковые куртки. Хорошо, что хотя бы обувь разная. Скажите, что это было совпадение.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-04:i17:audio",
+          "transcript": "It was a coincidence."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It was a coincidence.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-04:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте отзыв о фотографии брата.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-04:i18:audio"
+      ],
+      "accessibilityLabel": "Послушайте отзыв о фотографии брата.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-04:i18:audio",
+          "transcript": "The photo he took is lovely."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The photo he took is lovely.",
+        "orderedTokens": [
+          "The",
+          "photo",
+          "he",
+          "took",
+          "is",
+          "lovely"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-04:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: день казался необычным, словно во сне, или обычным?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-04:i19:r1",
+          "text": "The whole day felt surreal."
+        },
+        {
+          "responseId": "en:lesson-30:session-04:i19:r2",
+          "text": "The whole day felt ordinary."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-04:i19:audioA",
+        "en:lesson-30:session-04:i19:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: день казался необычным, словно во сне, или обычным?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "The whole day felt surreal.",
+        "contrastB": "The whole day felt ordinary.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-30:session-04:i19:audioA",
+          "transcript": "The whole day felt surreal."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-30:session-04:i19:audioB",
+          "transcript": "The whole day felt ordinary."
+        },
+        "testedPhoneticContrast": "Послушайте: день казался необычным, словно во сне, или обычным?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-04:i19:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: день казался необычным, словно во сне, или обычным?",
+            "feedbackByLocale": {
+              "ru": "Звучит surreal — словно во сне.",
+              "uk": "Звучить surreal — наче уві сні."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-04:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы хотите, чтобы сейчас у вас было больше времени для встречи.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-04:i20:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-30:session-04:i20:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-30:session-04:i20:r3",
+          "text": "having"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы хотите, чтобы сейчас у вас было больше времени для встречи.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы хотите, чтобы сейчас у вас было больше времени для встречи.",
+          "uk": "Ви хочете, щоб зараз у вас було більше часу для зустрічі."
+        },
+        "gappedTargetPhrase": "I wish I ___ more time.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-04:i20:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-30:session-04:i20:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-30:session-04:i20:r3",
+            "text": "having"
+          }
+        ],
+        "testedDimension": "Вы хотите, чтобы сейчас у вас было больше времени для встречи.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-04:i20:r2",
+            "correct": false,
+            "testedDimension": "Вы хотите, чтобы сейчас у вас было больше времени для встречи.",
+            "feedbackByLocale": {
+              "ru": "Для такого желания о настоящем нужна форма had.",
+              "uk": "Для такого бажання про теперішнє потрібна форма had."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-04:i20:r3",
+            "correct": false,
+            "testedDimension": "Вы хотите, чтобы сейчас у вас было больше времени для встречи.",
+            "feedbackByLocale": {
+              "ru": "Нужно I had, не I having.",
+              "uk": "Потрібне I had, не I having."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-04:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Передайте слова друга о поездке: он сказал, что ему понравилась прогулка.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-04:i21:audio"
+      ],
+      "accessibilityLabel": "Передайте слова друга о поездке: он сказал, что ему понравилась прогулка.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-04:i21:audio",
+          "transcript": "He said he enjoyed the walk."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He said he enjoyed the walk.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "23cf06b20e6c85f4aedadce22879ba44991b075aa496a2101ba8f1870962a125"
+}

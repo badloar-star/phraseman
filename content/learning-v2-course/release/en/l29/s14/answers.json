@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-29:session-14:i01",
+    "correctText": "What would you like to play?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-14:i02",
+    "correctText": "backgammon",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-14:i03",
+    "correctText": "Would you like to play backgammon?",
+    "correctResponseId": "en:lesson-29:session-14:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-14:i04",
+    "correctText": "whose",
+    "correctResponseId": "en:lesson-29:session-14:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-14:i05",
+    "correctText": "I was invited by my neighbour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-14:i06",
+    "correctText": "bingo",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-14:i07",
+    "correctText": "Could I have a bingo card?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-14:i08",
+    "correctText": "I was invited by my neighbour.",
+    "correctResponseId": "en:lesson-29:session-14:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-14:i09",
+    "correctText": "rains",
+    "correctResponseId": "en:lesson-29:session-14:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-14:i10",
+    "correctText": "charades",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-14:i11",
+    "correctText": "Shall we play charades?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-14:i12",
+    "correctText": "The woman whose bag is on the sofa is here.",
+    "correctResponseId": "en:lesson-29:session-14:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-14:i13",
+    "correctText": "Could you explain the rules?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-14:i14",
+    "correctText": "solitaire",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-14:i15",
+    "correctText": "I sometimes play solitaire at home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-14:i16",
+    "correctText": "It is your turn next.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-14:i17",
+    "correctText": "en:lesson-29:session-14:i17:p1=backgammon\nen:lesson-29:session-14:i17:p2=bingo\nen:lesson-29:session-14:i17:p3=charades\nen:lesson-29:session-14:i17:p4=solitaire",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-14:i18",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-29:session-14:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-14:i19",
+    "correctText": "I want a game that is easy to learn.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-14:i20",
+    "correctText": "whose",
+    "correctResponseId": "en:lesson-29:session-14:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-14:i21",
+    "correctText": "Shall we play one more game?",
+    "correctResponseId": null
+  }
+]

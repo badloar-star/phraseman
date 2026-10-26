@@ -1,0 +1,1091 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-30:session-02",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-30:session-02:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — letdown",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-02:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — letdown",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-02:i01:audio",
+          "transcript": "letdown"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-02:i01:r1",
+            "targetText": "letdown",
+            "meaningByLocale": {
+              "ru": "Разочарование. Событие или результат, который оказался хуже ожиданий.",
+              "uk": "Розчарування. Подія або результат, що виявився гіршим за очікування."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "letdown",
+          "definitionByLocale": {
+            "ru": "Разочарование. Событие или результат, который оказался хуже ожиданий.",
+            "uk": "Розчарування. Подія або результат, що виявився гіршим за очікування."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-02:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-02:i02:r1",
+          "text": "The match was a letdown."
+        },
+        {
+          "responseId": "en:lesson-30:session-02:i02:r2",
+          "text": "The match was a success."
+        },
+        {
+          "responseId": "en:lesson-30:session-02:i02:r3",
+          "text": "The match was a surprise."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-02:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-02:i02:audio",
+          "transcript": "The match was a letdown."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-02:i02:r1",
+            "targetText": "The match was a letdown.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-02:i02:r2",
+            "targetText": "The match was a success.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-02:i02:r3",
+            "targetText": "The match was a surprise.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-02:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The match was a letdown.",
+              "uk": "У записі звучить The match was a letdown."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-02:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The match was a letdown.",
+              "uk": "У записі звучить The match was a letdown."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-02:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Передайте слова друга: він сказав, що був розчарований.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Передайте слова друга: він сказав, що був розчарований.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He said he was disappointed.",
+        "localizedMeaning": {
+          "ru": "Передайте слова друга: он сказал, что был разочарован.",
+          "uk": "Передайте слова друга: він сказав, що був розчарований."
+        },
+        "orderedTokens": [
+          "He",
+          "said",
+          "he",
+          "was",
+          "disappointed"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-02:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вам зараз бракує часу для тренувань.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-02:i04:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-30:session-02:i04:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-30:session-02:i04:r3",
+          "text": "having"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вам зараз бракує часу для тренувань.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вам сейчас не хватает времени для тренировок.",
+          "uk": "Вам зараз бракує часу для тренувань."
+        },
+        "gappedTargetPhrase": "I wish I ___ more time.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-02:i04:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-30:session-02:i04:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-30:session-02:i04:r3",
+            "text": "having"
+          }
+        ],
+        "testedDimension": "Вам зараз бракує часу для тренувань.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-02:i04:r2",
+            "correct": false,
+            "testedDimension": "Вам зараз бракує часу для тренувань.",
+            "feedbackByLocale": {
+              "ru": "В таком желании о настоящем используем had.",
+              "uk": "У такому бажанні про теперішнє використовуємо had."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-02:i04:r3",
+            "correct": false,
+            "testedDimension": "Вам зараз бракує часу для тренувань.",
+            "feedbackByLocale": {
+              "ru": "После I нужна форма had, не having.",
+              "uk": "Після I потрібна форма had, не having."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-02:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — disheartened",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-02:i05:audio"
+      ],
+      "accessibilityLabel": "Картка слова — disheartened",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-02:i05:audio",
+          "transcript": "disheartened"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-02:i05:r1",
+            "targetText": "disheartened",
+            "meaningByLocale": {
+              "ru": "Потерявший уверенность, упавший духом. Так чувствует себя человек, которому после неудачи трудно верить в успех.",
+              "uk": "Зневірений, занепалий духом. Так почувається людина, якій після невдачі важко вірити в успіх."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "disheartened",
+          "definitionByLocale": {
+            "ru": "Потерявший уверенность, упавший духом. Так чувствует себя человек, которому после неудачи трудно верить в успех.",
+            "uk": "Зневірений, занепалий духом. Так почувається людина, якій після невдачі важко вірити в успіх."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-02:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Передайте слова друга: він сказав, що занепав духом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-02:i06:audio"
+      ],
+      "accessibilityLabel": "Передайте слова друга: він сказав, що занепав духом.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-02:i06:audio",
+          "transcript": "He said he felt disheartened."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He said he felt disheartened.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-02:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточніть: ви говорите про матч, який дивилися.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-02:i07:r1",
+          "text": "watched"
+        },
+        {
+          "responseId": "en:lesson-30:session-02:i07:r2",
+          "text": "watching"
+        },
+        {
+          "responseId": "en:lesson-30:session-02:i07:r3",
+          "text": "watches"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточніть: ви говорите про матч, який дивилися.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните: вы говорите о матче, который смотрели.",
+          "uk": "Уточніть: ви говорите про матч, який дивилися."
+        },
+        "gappedTargetPhrase": "The match we ___ was disappointing.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-02:i07:r1",
+            "text": "watched"
+          },
+          {
+            "responseId": "en:lesson-30:session-02:i07:r2",
+            "text": "watching"
+          },
+          {
+            "responseId": "en:lesson-30:session-02:i07:r3",
+            "text": "watches"
+          }
+        ],
+        "testedDimension": "Уточніть: ви говорите про матч, який дивилися.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-02:i07:r2",
+            "correct": false,
+            "testedDimension": "Уточніть: ви говорите про матч, який дивилися.",
+            "feedbackByLocale": {
+              "ru": "Для законченного просмотра нужна форма watched.",
+              "uk": "Для завершеного перегляду потрібна форма watched."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-02:i07:r3",
+            "correct": false,
+            "testedDimension": "Уточніть: ви говорите про матч, який дивилися.",
+            "feedbackByLocale": {
+              "ru": "Watches не сочетается с we; здесь нужен прошедший просмотр watched.",
+              "uk": "Watches не поєднується з we; тут потрібен минулий перегляд watched."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-02:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте бажання друга про час.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-02:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте бажання друга про час.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-02:i08:audio",
+          "transcript": "I wish I had more time."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I wish I had more time.",
+        "orderedTokens": [
+          "I",
+          "wish",
+          "I",
+          "had",
+          "more",
+          "time"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-02:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — resilient",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-02:i09:audio"
+      ],
+      "accessibilityLabel": "Картка слова — resilient",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-02:i09:audio",
+          "transcript": "resilient"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-02:i09:r1",
+            "targetText": "resilient",
+            "meaningByLocale": {
+              "ru": "Стойкий. Способный оправиться после трудностей и продолжить действовать.",
+              "uk": "Стійкий. Здатний оговтатися після труднощів і продовжити діяти."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "resilient",
+          "definitionByLocale": {
+            "ru": "Стойкий. Способный оправиться после трудностей и продолжить действовать.",
+            "uk": "Стійкий. Здатний оговтатися після труднощів і продовжити діяти."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-02:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-02:i10:r1",
+          "text": "She said he was resilient."
+        },
+        {
+          "responseId": "en:lesson-30:session-02:i10:r2",
+          "text": "She said he was impatient."
+        },
+        {
+          "responseId": "en:lesson-30:session-02:i10:r3",
+          "text": "She said he was careless."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-02:i10:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-02:i10:audio",
+          "transcript": "She said he was resilient."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-02:i10:r1",
+            "targetText": "She said he was resilient.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-02:i10:r2",
+            "targetText": "She said he was impatient.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-02:i10:r3",
+            "targetText": "She said he was careless.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-02:i10:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She said he was resilient.",
+              "uk": "У записі звучить She said he was resilient."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-02:i10:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She said he was resilient.",
+              "uk": "У записі звучить She said he was resilient."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-02:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що розчарував саме переглянутий вами матч.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-02:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що розчарував саме переглянутий вами матч.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-02:i11:audio",
+          "transcript": "The match we watched was disappointing."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The match we watched was disappointing.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-02:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — comeback",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-02:i12:audio"
+      ],
+      "accessibilityLabel": "Картка слова — comeback",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-02:i12:audio",
+          "transcript": "comeback"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-02:i12:r1",
+            "targetText": "comeback",
+            "meaningByLocale": {
+              "ru": "Возвращение к успеху. В спорте — когда после отставания или неудач игрок или команда снова выступает успешно.",
+              "uk": "Повернення до успіху. У спорті — коли після відставання чи невдач гравець або команда знову виступає успішно."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "comeback",
+          "definitionByLocale": {
+            "ru": "Возвращение к успеху. В спорте — когда после отставания или неудач игрок или команда снова выступает успешно.",
+            "uk": "Повернення до успіху. У спорті — коли після відставання чи невдач гравець або команда знову виступає успішно."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-02:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Команда зуміла повернутися в боротьбу після відставання.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Команда зуміла повернутися в боротьбу після відставання.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The team made a comeback.",
+        "localizedMeaning": {
+          "ru": "Команда сумела вернуться в борьбу после отставания.",
+          "uk": "Команда зуміла повернутися в боротьбу після відставання."
+        },
+        "orderedTokens": [
+          "The",
+          "team",
+          "made",
+          "a",
+          "comeback"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-02:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-30:session-02:i14:p1",
+            "target": "letdown",
+            "meaningByLocale": {
+              "ru": "разочарование",
+              "uk": "розчарування"
+            }
+          },
+          {
+            "pairId": "en:lesson-30:session-02:i14:p2",
+            "target": "disheartened",
+            "meaningByLocale": {
+              "ru": "упавший духом",
+              "uk": "занепалий духом"
+            }
+          },
+          {
+            "pairId": "en:lesson-30:session-02:i14:p3",
+            "target": "resilient",
+            "meaningByLocale": {
+              "ru": "стойкий",
+              "uk": "стійкий"
+            }
+          },
+          {
+            "pairId": "en:lesson-30:session-02:i14:p4",
+            "target": "comeback",
+            "meaningByLocale": {
+              "ru": "возвращение к успеху",
+              "uk": "повернення до успіху"
+            }
+          }
+        ],
+        "leftColumn": [
+          "letdown",
+          "disheartened",
+          "resilient",
+          "comeback"
+        ],
+        "rightColumn": [
+          "розчарування",
+          "занепалий духом",
+          "стійкий",
+          "повернення до успіху"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-02:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Передайте слова сестри про стійкість друга в той період.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-02:i15:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-30:session-02:i15:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-30:session-02:i15:r3",
+          "text": "being"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Передайте слова сестри про стійкість друга в той період.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Передайте слова сестры о стойкости друга в тот период.",
+          "uk": "Передайте слова сестри про стійкість друга в той період."
+        },
+        "gappedTargetPhrase": "She said he ___ resilient.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-02:i15:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-30:session-02:i15:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-30:session-02:i15:r3",
+            "text": "being"
+          }
+        ],
+        "testedDimension": "Передайте слова сестри про стійкість друга в той період.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-02:i15:r2",
+            "correct": false,
+            "testedDimension": "Передайте слова сестри про стійкість друга в той період.",
+            "feedbackByLocale": {
+              "ru": "С he здесь нужна форма was.",
+              "uk": "Із he тут потрібна форма was."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-02:i15:r3",
+            "correct": false,
+            "testedDimension": "Передайте слова сестри про стійкість друга в той період.",
+            "feedbackByLocale": {
+              "ru": "Нужно he was, одного being недостаточно.",
+              "uk": "Потрібне he was, самого being недостатньо."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-02:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-02:i16:r1",
+          "text": "He said he needed help."
+        },
+        {
+          "responseId": "en:lesson-30:session-02:i16:r2",
+          "text": "He said he needed sleep."
+        },
+        {
+          "responseId": "en:lesson-30:session-02:i16:r3",
+          "text": "He said he needed money."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-02:i16:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-02:i16:audio",
+          "transcript": "He said he needed help."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-02:i16:r1",
+            "targetText": "He said he needed help.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-02:i16:r2",
+            "targetText": "He said he needed sleep.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-02:i16:r3",
+            "targetText": "He said he needed money.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-02:i16:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He said he needed help.",
+              "uk": "У записі звучить He said he needed help."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-02:i16:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He said he needed help.",
+              "uk": "У записі звучить He said he needed help."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-02:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви обіцяли другові захопливий матч, а він занудьгував: скажіть, що матч розчарував. Добре хоч чай його не розчарував.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-02:i17:audio"
+      ],
+      "accessibilityLabel": "Ви обіцяли другові захопливий матч, а він занудьгував: скажіть, що матч розчарував. Добре хоч чай його не розчарував.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-02:i17:audio",
+          "transcript": "The match was a letdown."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The match was a letdown.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-02:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, як друг описав свій стан.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-02:i18:audio"
+      ],
+      "accessibilityLabel": "Послухайте, як друг описав свій стан.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-02:i18:audio",
+          "transcript": "He said he felt disheartened."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "He said he felt disheartened.",
+        "orderedTokens": [
+          "He",
+          "said",
+          "he",
+          "felt",
+          "disheartened"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-02:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг сказав учора, що йому потрібна допомога.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-02:i19:r1",
+          "text": "said"
+        },
+        {
+          "responseId": "en:lesson-30:session-02:i19:r2",
+          "text": "say"
+        },
+        {
+          "responseId": "en:lesson-30:session-02:i19:r3",
+          "text": "saying"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг сказав учора, що йому потрібна допомога.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг сказал вчера, что ему нужна помощь.",
+          "uk": "Друг сказав учора, що йому потрібна допомога."
+        },
+        "gappedTargetPhrase": "He ___ he needed help.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-02:i19:r1",
+            "text": "said"
+          },
+          {
+            "responseId": "en:lesson-30:session-02:i19:r2",
+            "text": "say"
+          },
+          {
+            "responseId": "en:lesson-30:session-02:i19:r3",
+            "text": "saying"
+          }
+        ],
+        "testedDimension": "Друг сказав учора, що йому потрібна допомога.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-02:i19:r2",
+            "correct": false,
+            "testedDimension": "Друг сказав учора, що йому потрібна допомога.",
+            "feedbackByLocale": {
+              "ru": "О состоявшемся разговоре говорим said.",
+              "uk": "Про розмову, що відбулася, кажемо said."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-02:i19:r3",
+            "correct": false,
+            "testedDimension": "Друг сказав учора, що йому потрібна допомога.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужно said, не saying.",
+              "uk": "Тут потрібне said, не saying."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-02:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: команда повернулася в боротьбу чи помилилася?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-02:i20:r1",
+          "text": "The team made a comeback."
+        },
+        {
+          "responseId": "en:lesson-30:session-02:i20:r2",
+          "text": "The team made a mistake."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-02:i20:audioA",
+        "en:lesson-30:session-02:i20:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: команда повернулася в боротьбу чи помилилася?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "The team made a comeback.",
+        "contrastB": "The team made a mistake.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-30:session-02:i20:audioA",
+          "transcript": "The team made a comeback."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-30:session-02:i20:audioB",
+          "transcript": "The team made a mistake."
+        },
+        "testedPhoneticContrast": "Послухайте: команда повернулася в боротьбу чи помилилася?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-02:i20:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: команда повернулася в боротьбу чи помилилася?",
+            "feedbackByLocale": {
+              "ru": "Звучит a comeback — возвращение к успеху.",
+              "uk": "Звучить a comeback — повернення до успіху."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-02:i21",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви хотіли б бути спокійнішими зараз.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви хотіли б бути спокійнішими зараз.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I wish I were calmer.",
+        "localizedMeaning": {
+          "ru": "Вы хотели бы быть спокойнее сейчас.",
+          "uk": "Ви хотіли б бути спокійнішими зараз."
+        },
+        "orderedTokens": [
+          "I",
+          "wish",
+          "I",
+          "were",
+          "calmer"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "5896dc9d24a7862208b881987bdfdabd37175ce0055f6d3da24ce6e39014c83b"
+}

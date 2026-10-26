@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-29:session-23:i01",
+    "correctText": "This is the garden where we grow herbs.",
+    "correctResponseId": "en:lesson-29:session-23:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-23:i02",
+    "correctText": "chives",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-23:i03",
+    "correctText": "We can add chives to the salad.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-23:i04",
+    "correctText": "Can I taste a leaf?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-23:i05",
+    "correctText": "where",
+    "correctResponseId": "en:lesson-29:session-23:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-23:i06",
+    "correctText": "cress",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-23:i07",
+    "correctText": "The cress is on the windowsill.",
+    "correctResponseId": "en:lesson-29:session-23:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-23:i08",
+    "correctText": "These herbs were planted by my mother.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-23:i09",
+    "correctText": "watercress",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-23:i10",
+    "correctText": "I like watercress in soup.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-23:i11",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-29:session-23:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-23:i12",
+    "correctText": "Could you pass me the bowl?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-23:i13",
+    "correctText": "chard",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-23:i14",
+    "correctText": "We will cook the chard tonight.",
+    "correctResponseId": "en:lesson-29:session-23:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-23:i15",
+    "correctText": "en:lesson-29:session-23:i15:p1=chives\nen:lesson-29:session-23:i15:p2=cress\nen:lesson-29:session-23:i15:p3=watercress\nen:lesson-29:session-23:i15:p4=chard",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-23:i16",
+    "correctText": "whose",
+    "correctResponseId": "en:lesson-29:session-23:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-23:i17",
+    "correctText": "The plants are on the windowsill.",
+    "correctResponseId": "en:lesson-29:session-23:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-23:i18",
+    "correctText": "Let us wash the leaves first.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-23:i19",
+    "correctText": "My neighbour brought the bowl.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-23:i20",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-29:session-23:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-23:i21",
+    "correctText": "The salad is ready.",
+    "correctResponseId": null
+  }
+]

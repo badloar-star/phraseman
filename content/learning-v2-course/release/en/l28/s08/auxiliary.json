@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-28:session-08",
+  "entries": [
+    {
+      "interactionId": "en:lesson-28:session-08:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-08:intro1:r2": {
+          "ru": "С water здесь используем is.",
+          "uk": "З water тут використовуємо is."
+        },
+        "en:lesson-28:session-08:intro1:r3": {
+          "ru": "После is здесь нужна served.",
+          "uk": "Після is тут потрібна served."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-08:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-08:intro2:r2": {
+          "ru": "Для желания об изменении сейчас нужна were.",
+          "uk": "Для бажання про зміну зараз потрібна were."
+        },
+        "en:lesson-28:session-08:intro2:r3": {
+          "ru": "Здесь используем were colder.",
+          "uk": "Тут використовуємо were colder."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-08:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-08:intro3:r2": {
+          "ru": "После had используем washed.",
+          "uk": "Після had використовуємо washed."
+        },
+        "en:lesson-28:session-08:intro3:r3": {
+          "ru": "Вчерашний приход: arrived.",
+          "uk": "Учорашній прихід: arrived."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9549536f45f2af54e35658ce5099d81e62070465a284256309cc228d70b222a9"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-28:session-49",
+  "entries": [
+    {
+      "interactionId": "en:lesson-28:session-49:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-49:intro1:r2": {
+          "ru": "С fitting здесь нужна is.",
+          "uk": "З fitting тут потрібна is."
+        },
+        "en:lesson-28:session-49:intro1:r3": {
+          "ru": "После is нужна included.",
+          "uk": "Після is потрібна included."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-49:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-49:intro2:r2": {
+          "ru": "Перед removed нужна be.",
+          "uk": "Перед removed потрібна be."
+        },
+        "en:lesson-28:session-49:intro2:r3": {
+          "ru": "После be нужна removed.",
+          "uk": "Після be потрібна removed."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-49:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-49:intro3:r2": {
+          "ru": "Между will и finished нужна be.",
+          "uk": "Між will та finished потрібна be."
+        },
+        "en:lesson-28:session-49:intro3:r3": {
+          "ru": "После will be нужна finished.",
+          "uk": "Після will be потрібна finished."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "93433435a0788a70a2ed8cc1255f3ebb7c67c079484ea2ead3f1ecce5851b80d"
+}

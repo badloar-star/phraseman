@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-27:session-55",
+  "learningOutcomeByLocale": {
+    "ru": "сообщить о результате покупки; представить другое условие; выразить желание о нынешнем положении.",
+    "uk": "повідомити про результат покупки; уявити іншу умову; висловити бажання про нинішнє становище."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-27:session-55:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Покупка уже сделана",
+        "uk": "Покупку вже зроблено"
+      },
+      "bodyByLocale": {
+        "ru": "Перед ужином сестра собирается в магазин за хлебом. Вы уже купили хлеб, и он лежит на кухне. I have already bought some bread — я уже купил хлеб. Соберите сообщение о результате сейчас: I + have + already + bought + some bread. Bought — третья форма buy; already стоит между have и bought.",
+        "uk": "Перед вечерею сестра збирається до крамниці по хліб. Ви вже купили хліб, і він лежить на кухні. I have already bought some bread — я вже купив хліб. Складіть повідомлення про результат зараз: I + have + already + bought + some bread. Bought — третя форма buy; already стоїть між have та bought."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-55:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-55:intro1:r1",
+              "text": "I have already bought some bread."
+            },
+            {
+              "responseId": "en:lesson-27:session-55:intro1:r2",
+              "text": "I have already buy some bread."
+            },
+            {
+              "responseId": "en:lesson-27:session-55:intro1:r3",
+              "text": "I have already buying some bread."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-55:intro1:r1",
+              "text": "I have already bought some bread."
+            },
+            {
+              "responseId": "en:lesson-27:session-55:intro1:r2",
+              "text": "I have already buy some bread."
+            },
+            {
+              "responseId": "en:lesson-27:session-55:intro1:r3",
+              "text": "I have already buying some bread."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-27:session-55:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Духовка занята",
+        "uk": "Духовка зайнята"
+      },
+      "bodyByLocale": {
+        "ru": "Вы хотели испечь пирог к ужину, но духовка занята. Представьте свободную духовку: If the oven were free, I would bake a pie — если бы духовка была свободна, я бы испёк пирог. Сначала условие: If + the oven + were + free. После запятой результат: I + would + bake + a pie. В этом воображаемом условии используем were; после would — начальную форму bake.",
+        "uk": "Ви хотіли спекти пиріг до вечері, але духовка зайнята. Уявіть вільну духовку: If the oven were free, I would bake a pie — якби духовка була вільна, я б спік пиріг. Спочатку умова: If + the oven + were + free. Після коми результат: I + would + bake + a pie. У цій уявній умові використовуємо were; після would — початкову форму bake."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-55:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-55:intro2:r1",
+              "text": "If the oven were free, I would bake a pie."
+            },
+            {
+              "responseId": "en:lesson-27:session-55:intro2:r2",
+              "text": "If the oven were free, I would baked a pie."
+            },
+            {
+              "responseId": "en:lesson-27:session-55:intro2:r3",
+              "text": "If the oven were free, I would baking a pie."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-55:intro2:r1",
+              "text": "If the oven were free, I would bake a pie."
+            },
+            {
+              "responseId": "en:lesson-27:session-55:intro2:r2",
+              "text": "If the oven were free, I would baked a pie."
+            },
+            {
+              "responseId": "en:lesson-27:session-55:intro2:r3",
+              "text": "If the oven were free, I would baking a pie."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-27:session-55:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Жаль, что кухня маленькая",
+        "uk": "Шкода, що кухня маленька"
+      },
+      "bodyByLocale": {
+        "ru": "На кухне тесно, и вам неудобно готовить вдвоём. I wish our kitchen were bigger — жаль, что наша кухня не больше. Начните с I wish, затем назовите то, что хотелось бы изменить: our kitchen. После него поставьте were + bigger — желаемое состояние сейчас. Were здесь относится к воображаемому настоящему, а bigger означает «больше».",
+        "uk": "На кухні тісно, і вам незручно готувати вдвох. I wish our kitchen were bigger — шкода, що наша кухня не більша. Почніть з I wish, потім назвіть те, що хотілося б змінити: our kitchen. Після нього поставте were + bigger — бажаний стан зараз. Were тут стосується уявного теперішнього, а bigger означає «більша»."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-55:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-55:intro3:r1",
+              "text": "I wish our kitchen were bigger."
+            },
+            {
+              "responseId": "en:lesson-27:session-55:intro3:r2",
+              "text": "I wish our kitchen is bigger."
+            },
+            {
+              "responseId": "en:lesson-27:session-55:intro3:r3",
+              "text": "I wish our kitchen being bigger."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-55:intro3:r1",
+              "text": "I wish our kitchen were bigger."
+            },
+            {
+              "responseId": "en:lesson-27:session-55:intro3:r2",
+              "text": "I wish our kitchen is bigger."
+            },
+            {
+              "responseId": "en:lesson-27:session-55:intro3:r3",
+              "text": "I wish our kitchen being bigger."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "53e984025b4c658ac941c65cd6c47b7a402b53e8754e9614a8280d8ef574f0a6"
+}

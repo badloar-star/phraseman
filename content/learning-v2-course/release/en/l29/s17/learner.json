@@ -1,0 +1,1023 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-29:session-17",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-29:session-17:i01",
+      "ordinal": 4,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Покажите кафе, в котором вы встретились.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-17:i01:audio"
+      ],
+      "accessibilityLabel": "Покажите кафе, в котором вы встретились.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-17:i01:audio",
+          "transcript": "This is the café where we met."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This is the café where we met.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-17:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — deli",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-17:i02:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — deli",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-17:i02:audio",
+          "transcript": "deli"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-17:i02:r1",
+            "targetText": "deli",
+            "meaningByLocale": {
+              "ru": "Магазин деликатесов и готовой еды. Там можно купить, например, сыр, мясные нарезки или готовый бутерброд.",
+              "uk": "Магазин делікатесів і готової їжі. Там можна купити, наприклад, сир, м’ясні нарізки або готовий бутерброд."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "deli",
+          "definitionByLocale": {
+            "ru": "Магазин деликатесов и готовой еды. Там можно купить, например, сыр, мясные нарезки или готовый бутерброд.",
+            "uk": "Магазин делікатесів і готової їжі. Там можна купити, наприклад, сир, м’ясні нарізки або готовий бутерброд."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-17:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-17:i03:r1",
+          "text": "There is a deli near the station."
+        },
+        {
+          "responseId": "en:lesson-29:session-17:i03:r2",
+          "text": "There is a bakery near the station."
+        },
+        {
+          "responseId": "en:lesson-29:session-17:i03:r3",
+          "text": "There is a deli near the school."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-17:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-17:i03:audio",
+          "transcript": "There is a deli near the station."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-17:i03:r1",
+            "targetText": "There is a deli near the station.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-17:i03:r2",
+            "targetText": "There is a bakery near the station.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-17:i03:r3",
+            "targetText": "There is a deli near the school.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-17:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There is a deli near the station.",
+              "uk": "У записі звучить There is a deli near the station."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-17:i03:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There is a deli near the station.",
+              "uk": "У записі звучить There is a deli near the station."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-17:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточните кафе через вашу встречу в нём.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-17:i04:r1",
+          "text": "where"
+        },
+        {
+          "responseId": "en:lesson-29:session-17:i04:r2",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-17:i04:r3",
+          "text": "whose"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточните кафе через вашу встречу в нём.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните кафе через вашу встречу в нём.",
+          "uk": "Уточніть кафе через вашу зустріч у ньому."
+        },
+        "gappedTargetPhrase": "This is the café ___ we met.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-17:i04:r1",
+            "text": "where"
+          },
+          {
+            "responseId": "en:lesson-29:session-17:i04:r2",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-17:i04:r3",
+            "text": "whose"
+          }
+        ],
+        "testedDimension": "Уточните кафе через вашу встречу в нём.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-17:i04:r2",
+            "correct": false,
+            "testedDimension": "Уточните кафе через вашу встречу в нём.",
+            "feedbackByLocale": {
+              "ru": "Кафе — место встречи, здесь нужна where.",
+              "uk": "Кафе — місце зустрічі, тут потрібна where."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-17:i04:r3",
+            "correct": false,
+            "testedDimension": "Уточните кафе через вашу встречу в нём.",
+            "feedbackByLocale": {
+              "ru": "Принадлежность здесь не выражаем: нужно where.",
+              "uk": "Належність тут не виражаємо: потрібне where."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-17:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что знаете магазин, в котором можно заплатить картой.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что знаете магазин, в котором можно заплатить картой.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I know a shop where you can pay by card.",
+        "localizedMeaning": {
+          "ru": "Скажите, что знаете магазин, в котором можно заплатить картой.",
+          "uk": "Скажіть, що знаєте магазин, у якому можна заплатити карткою."
+        },
+        "orderedTokens": [
+          "I",
+          "know",
+          "a",
+          "shop",
+          "where",
+          "you",
+          "can",
+          "pay",
+          "by",
+          "card"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-17:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bistro",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-17:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bistro",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-17:i06:audio",
+          "transcript": "bistro"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-17:i06:r1",
+            "targetText": "bistro",
+            "meaningByLocale": {
+              "ru": "Небольшой ресторан. Обычно с непринуждённой обстановкой и простыми блюдами.",
+              "uk": "Невеликий ресторан. Зазвичай із невимушеною атмосферою та простими стравами."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bistro",
+          "definitionByLocale": {
+            "ru": "Небольшой ресторан. Обычно с непринуждённой обстановкой и простыми блюдами.",
+            "uk": "Невеликий ресторан. Зазвичай із невимушеною атмосферою та простими стравами."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-17:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Предложите пообедать в бистро.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-17:i07:audio"
+      ],
+      "accessibilityLabel": "Предложите пообедать в бистро.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-17:i07:audio",
+          "transcript": "Shall we have lunch at the bistro?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Shall we have lunch at the bistro?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-17:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте уточнение об отеле.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-17:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте уточнение об отеле.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-17:i08:audio",
+          "transcript": "Is this the hotel where you stayed?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Is this the hotel where you stayed?",
+        "orderedTokens": [
+          "Is",
+          "this",
+          "the",
+          "hotel",
+          "where",
+          "you",
+          "stayed"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-17:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточните, что в знакомом магазине можно платить картой.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-17:i09:r1",
+          "text": "you can pay"
+        },
+        {
+          "responseId": "en:lesson-29:session-17:i09:r2",
+          "text": "can you pay"
+        },
+        {
+          "responseId": "en:lesson-29:session-17:i09:r3",
+          "text": "you can pays"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточните, что в знакомом магазине можно платить картой.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните, что в знакомом магазине можно платить картой.",
+          "uk": "Уточніть, що у знайомому магазині можна платити карткою."
+        },
+        "gappedTargetPhrase": "I know a shop where ___ by card.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-17:i09:r1",
+            "text": "you can pay"
+          },
+          {
+            "responseId": "en:lesson-29:session-17:i09:r2",
+            "text": "can you pay"
+          },
+          {
+            "responseId": "en:lesson-29:session-17:i09:r3",
+            "text": "you can pays"
+          }
+        ],
+        "testedDimension": "Уточните, что в знакомом магазине можно платить картой.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-17:i09:r2",
+            "correct": false,
+            "testedDimension": "Уточните, что в знакомом магазине можно платить картой.",
+            "feedbackByLocale": {
+              "ru": "Внутри уточнения нужен обычный порядок you can pay.",
+              "uk": "Усередині уточнення потрібен звичайний порядок you can pay."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-17:i09:r3",
+            "correct": false,
+            "testedDimension": "Уточните, что в знакомом магазине можно платить картой.",
+            "feedbackByLocale": {
+              "ru": "После can глагол pay идёт без s.",
+              "uk": "Після can дієслово pay стоїть без s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-17:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — motel",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-17:i10:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — motel",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-17:i10:audio",
+          "transcript": "motel"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-17:i10:r1",
+            "targetText": "motel",
+            "meaningByLocale": {
+              "ru": "Мотель. Гостиница у дороги, обычно с парковкой для гостей.",
+              "uk": "Мотель. Готель біля дороги, зазвичай із паркуванням для гостей."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "motel",
+          "definitionByLocale": {
+            "ru": "Мотель. Гостиница у дороги, обычно с парковкой для гостей.",
+            "uk": "Мотель. Готель біля дороги, зазвичай із паркуванням для гостей."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-17:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Укажите мотель, в котором вы остановились.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Укажите мотель, в котором вы остановились.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is the motel where we stayed.",
+        "localizedMeaning": {
+          "ru": "Укажите мотель, в котором вы остановились.",
+          "uk": "Укажіть мотель, у якому ви зупинилися."
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "the",
+          "motel",
+          "where",
+          "we",
+          "stayed"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-17:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-17:i12:r1",
+          "text": "The café where we met is closed."
+        },
+        {
+          "responseId": "en:lesson-29:session-17:i12:r2",
+          "text": "The café where we met is open."
+        },
+        {
+          "responseId": "en:lesson-29:session-17:i12:r3",
+          "text": "The shop where we met is closed."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-17:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-17:i12:audio",
+          "transcript": "The café where we met is closed."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-17:i12:r1",
+            "targetText": "The café where we met is closed.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-17:i12:r2",
+            "targetText": "The café where we met is open.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-17:i12:r3",
+            "targetText": "The shop where we met is closed.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-17:i12:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The café where we met is closed.",
+              "uk": "У записі звучить The café where we met is closed."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-17:i12:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The café where we met is closed.",
+              "uk": "У записі звучить The café where we met is closed."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-17:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите друга показать вам вход.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-17:i13:audio"
+      ],
+      "accessibilityLabel": "Попросите друга показать вам вход.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-17:i13:audio",
+          "transcript": "Could you show me the entrance?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you show me the entrance?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-17:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — boutique",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-17:i14:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — boutique",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-17:i14:audio",
+          "transcript": "boutique"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-17:i14:r1",
+            "targetText": "boutique",
+            "meaningByLocale": {
+              "ru": "Бутик. Небольшой магазин одежды или аксессуаров с подобранным ассортиментом.",
+              "uk": "Бутик. Невеликий магазин одягу або аксесуарів із дібраним асортиментом."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "boutique",
+          "definitionByLocale": {
+            "ru": "Бутик. Небольшой магазин одежды или аксессуаров с подобранным ассортиментом.",
+            "uk": "Бутик. Невеликий магазин одягу або аксесуарів із дібраним асортиментом."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-17:i15",
+      "ordinal": 18,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что бутик расположен на следующей улице.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-17:i15:audio"
+      ],
+      "accessibilityLabel": "Скажите, что бутик расположен на следующей улице.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-17:i15:audio",
+          "transcript": "The boutique is on the next street."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The boutique is on the next street.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-17:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините места с переводом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините места с переводом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-29:session-17:i16:p1",
+            "target": "deli",
+            "meaningByLocale": {
+              "ru": "магазин деликатесов и готовой еды",
+              "uk": "магазин делікатесів і готової їжі"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-17:i16:p2",
+            "target": "bistro",
+            "meaningByLocale": {
+              "ru": "небольшой ресторан",
+              "uk": "невеликий ресторан"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-17:i16:p3",
+            "target": "motel",
+            "meaningByLocale": {
+              "ru": "мотель",
+              "uk": "мотель"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-17:i16:p4",
+            "target": "boutique",
+            "meaningByLocale": {
+              "ru": "бутик",
+              "uk": "бутик"
+            }
+          }
+        ],
+        "leftColumn": [
+          "deli",
+          "bistro",
+          "motel",
+          "boutique"
+        ],
+        "rightColumn": [
+          "магазин деликатесов и готовой еды",
+          "небольшой ресторан",
+          "мотель",
+          "бутик"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-17:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Спросите об отеле, в котором друг останавливался.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-17:i17:r1",
+          "text": "you stayed"
+        },
+        {
+          "responseId": "en:lesson-29:session-17:i17:r2",
+          "text": "did you stay"
+        },
+        {
+          "responseId": "en:lesson-29:session-17:i17:r3",
+          "text": "you stayed there"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите об отеле, в котором друг останавливался.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите об отеле, в котором друг останавливался.",
+          "uk": "Запитайте про готель, у якому друг зупинявся."
+        },
+        "gappedTargetPhrase": "Is this the hotel where ___?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-17:i17:r1",
+            "text": "you stayed"
+          },
+          {
+            "responseId": "en:lesson-29:session-17:i17:r2",
+            "text": "did you stay"
+          },
+          {
+            "responseId": "en:lesson-29:session-17:i17:r3",
+            "text": "you stayed there"
+          }
+        ],
+        "testedDimension": "Спросите об отеле, в котором друг останавливался.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-17:i17:r2",
+            "correct": false,
+            "testedDimension": "Спросите об отеле, в котором друг останавливался.",
+            "feedbackByLocale": {
+              "ru": "Здесь часть предложения после where имеет порядок you stayed.",
+              "uk": "Тут частина речення після where має порядок you stayed."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-17:i17:r3",
+            "correct": false,
+            "testedDimension": "Спросите об отеле, в котором друг останавливался.",
+            "feedbackByLocale": {
+              "ru": "Where уже обозначает место, there лишнее.",
+              "uk": "Where вже позначає місце, there зайве."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-17:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: кафе открыто или закрыто?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-17:i18:r1",
+          "text": "The café where we met is open."
+        },
+        {
+          "responseId": "en:lesson-29:session-17:i18:r2",
+          "text": "The café where we met is closed."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-17:i18:audioA",
+        "en:lesson-29:session-17:i18:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: кафе открыто или закрыто?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "The café where we met is open.",
+        "contrastB": "The café where we met is closed.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-29:session-17:i18:audioA",
+          "transcript": "The café where we met is open."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-29:session-17:i18:audioB",
+          "transcript": "The café where we met is closed."
+        },
+        "testedPhoneticContrast": "Послушайте: кафе открыто или закрыто?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-17:i18:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: кафе открыто или закрыто?",
+            "feedbackByLocale": {
+              "ru": "В записи open — открыто.",
+              "uk": "У записі open — відчинене."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-17:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что знаете место, где можно присесть.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что знаете место, где можно присесть.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I know a place where we can sit.",
+        "localizedMeaning": {
+          "ru": "Скажите, что знаете место, где можно присесть.",
+          "uk": "Скажіть, що знаєте місце, де можна сісти."
+        },
+        "orderedTokens": [
+          "I",
+          "know",
+          "a",
+          "place",
+          "where",
+          "we",
+          "can",
+          "sit"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-17:i20",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Предложите зайти внутрь.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-17:i20:audio"
+      ],
+      "accessibilityLabel": "Предложите зайти внутрь.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-17:i20:audio",
+          "transcript": "Shall we go inside?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Shall we go inside?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-17:i21",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте просьбу подождать у двери.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-17:i21:audio"
+      ],
+      "accessibilityLabel": "Послушайте просьбу подождать у двери.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-17:i21:audio",
+          "transcript": "Please wait by the door."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Please wait by the door.",
+        "orderedTokens": [
+          "Please",
+          "wait",
+          "by",
+          "the",
+          "door"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "aba2a31fde5b3cbd796d58122d59d6465c394837d80acefce16b5e7f094aa554"
+}

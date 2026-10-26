@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-29:session-25:i01",
+    "correctText": "dependable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-25:i02",
+    "correctText": "My sister is dependable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-25:i03",
+    "correctText": "The person who helped me was kind.",
+    "correctResponseId": "en:lesson-29:session-25:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-25:i04",
+    "correctText": "The person who I called was busy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-25:i05",
+    "correctText": "approachable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-25:i06",
+    "correctText": "My neighbour is approachable.",
+    "correctResponseId": "en:lesson-29:session-25:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-25:i07",
+    "correctText": "helped",
+    "correctResponseId": "en:lesson-29:session-25:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-25:i08",
+    "correctText": "Thank you for helping with the boxes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-25:i09",
+    "correctText": "compassionate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-25:i10",
+    "correctText": "My friend is very compassionate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-25:i11",
+    "correctText": "I called",
+    "correctResponseId": "en:lesson-29:session-25:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-25:i12",
+    "correctText": "Could you help me with this table?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-25:i13",
+    "correctText": "impulsive",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-25:i14",
+    "correctText": "My brother can be impulsive.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-25:i15",
+    "correctText": "en:lesson-29:session-25:i15:p1=dependable\nen:lesson-29:session-25:i15:p2=approachable\nen:lesson-29:session-25:i15:p3=compassionate\nen:lesson-29:session-25:i15:p4=impulsive",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-25:i16",
+    "correctText": "The table which I bought is heavy.",
+    "correctResponseId": "en:lesson-29:session-25:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-25:i17",
+    "correctText": "I bought",
+    "correctResponseId": "en:lesson-29:session-25:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-25:i18",
+    "correctText": "The person who I called was busy.",
+    "correctResponseId": "en:lesson-29:session-25:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-25:i19",
+    "correctText": "The woman who helped me lives nearby.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-25:i20",
+    "correctText": "All the boxes are inside now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-25:i21",
+    "correctText": "Would you like some tea?",
+    "correctResponseId": null
+  }
+]

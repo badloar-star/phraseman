@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-29:session-29",
+  "entries": [
+    {
+      "interactionId": "en:lesson-29:session-29:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-29:intro1:r2": {
+          "ru": "Who уже обозначает женщину, she лишнее.",
+          "uk": "Who вже позначає жінку, she зайве."
+        },
+        "en:lesson-29:session-29:intro1:r3": {
+          "ru": "Для человека здесь используем who.",
+          "uk": "Для людини тут використовуємо who."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-29:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-29:intro2:r2": {
+          "ru": "Who уже обозначает получателя помощи, him лишнее.",
+          "uk": "Who вже позначає отримувача допомоги, him зайве."
+        },
+        "en:lesson-29:session-29:intro2:r3": {
+          "ru": "Тот, кто помогал, — I, а не me.",
+          "uk": "Той, хто допомагав, — I, а не me."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-29:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-29:intro3:r2": {
+          "ru": "Where уже обозначает место, there лишнее.",
+          "uk": "Where вже позначає місце, there зайве."
+        },
+        "en:lesson-29:session-29:intro3:r3": {
+          "ru": "Для места сбора нужно where.",
+          "uk": "Для місця збору потрібне where."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "666f0dfb29458987eb1a2fecaaaf7574cb2e439c915984ddf04cf116bfd870ca"
+}

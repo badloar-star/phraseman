@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-28:session-09",
+  "entries": [
+    {
+      "interactionId": "en:lesson-28:session-09:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-09:intro1:r2": {
+          "ru": "Door здесь один предмет: was.",
+          "uk": "Door тут один предмет: was."
+        },
+        "en:lesson-28:session-09:intro1:r3": {
+          "ru": "После was в этой конструкции нужна painted.",
+          "uk": "Після was у цій конструкції потрібна painted."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-09:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-09:intro2:r2": {
+          "ru": "С handles во множественном числе используем were.",
+          "uk": "З handles у множині використовуємо were."
+        },
+        "en:lesson-28:session-09:intro2:r3": {
+          "ru": "Для «заменили ручки» нужна were replaced.",
+          "uk": "Для «замінили ручки» потрібна were replaced."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-09:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-09:intro3:r2": {
+          "ru": "С одним chair нужна was.",
+          "uk": "З одним chair потрібна was."
+        },
+        "en:lesson-28:session-09:intro3:r3": {
+          "ru": "Здесь нужна repaired после was.",
+          "uk": "Тут потрібна repaired після was."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a464d037f9db869588fb3c286f96e864d3608ddf39dbd39c45f9bddd3354d33e"
+}

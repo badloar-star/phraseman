@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-29:session-42:i01",
+    "correctText": "The story Grandad told us was funny.",
+    "correctResponseId": "en:lesson-29:session-42:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-42:i02",
+    "correctText": "ramble",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-42:i03",
+    "correctText": "I ramble when I am nervous.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-42:i04",
+    "correctText": "told us",
+    "correctResponseId": "en:lesson-29:session-42:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-42:i05",
+    "correctText": "What happened next?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-42:i06",
+    "correctText": "babble",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-42:i07",
+    "correctText": "I can hear the baby babble.",
+    "correctResponseId": "en:lesson-29:session-42:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-42:i08",
+    "correctText": "This is the woman whose baby is asleep.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-42:i09",
+    "correctText": "whose",
+    "correctResponseId": "en:lesson-29:session-42:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-42:i10",
+    "correctText": "chatter",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-42:i11",
+    "correctText": "The children chatter at the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-42:i12",
+    "correctText": "Could you speak a little more quietly?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-42:i13",
+    "correctText": "blurt",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-42:i14",
+    "correctText": "Do not blurt out the surprise.",
+    "correctResponseId": "en:lesson-29:session-42:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-42:i15",
+    "correctText": "en:lesson-29:session-42:i15:p1=ramble\nen:lesson-29:session-42:i15:p2=babble\nen:lesson-29:session-42:i15:p3=chatter\nen:lesson-29:session-42:i15:p4=blurt",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-42:i16",
+    "correctText": "who",
+    "correctResponseId": "en:lesson-29:session-42:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-42:i17",
+    "correctText": "I can hear the baby babble.",
+    "correctResponseId": "en:lesson-29:session-42:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-42:i18",
+    "correctText": "This is the woman who brought the cake.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-42:i19",
+    "correctText": "I want to keep it a secret.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-42:i20",
+    "correctText": "we tried",
+    "correctResponseId": "en:lesson-29:session-42:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-42:i21",
+    "correctText": "Thank you for inviting me.",
+    "correctResponseId": null
+  }
+]

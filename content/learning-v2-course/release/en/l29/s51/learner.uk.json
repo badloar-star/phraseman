@@ -1,0 +1,1052 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-29:session-51",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-29:session-51:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — knack",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-51:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — knack",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-51:i01:audio",
+          "transcript": "knack"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-51:i01:r1",
+            "targetText": "knack",
+            "meaningByLocale": {
+              "ru": "Сноровка, особое умение. Практическое понимание того, как сделать что-то удачно; get the knack — наловчиться.",
+              "uk": "Практична вправність у конкретній дії. Розуміння того, як зробити щось вдало; get the knack — призвичаїтися, навчитися вправно робити."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "knack",
+          "definitionByLocale": {
+            "ru": "Сноровка, особое умение. Практическое понимание того, как сделать что-то удачно; get the knack — наловчиться.",
+            "uk": "Практична вправність у конкретній дії. Розуміння того, як зробити щось вдало; get the knack — призвичаїтися, навчитися вправно робити."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-51:i02",
+      "ordinal": 5,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що поки не можете призвичаїтися.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-51:i02:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що поки не можете призвичаїтися.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-51:i02:audio",
+          "transcript": "I cannot get the knack of this."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I cannot get the knack of this.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-51:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросіть викладача показати прийом ще раз.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросіть викладача показати прийом ще раз.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could you show me that again?",
+        "localizedMeaning": {
+          "ru": "Попросите преподавателя показать приём ещё раз.",
+          "uk": "Попросіть викладача показати прийом ще раз."
+        },
+        "orderedTokens": [
+          "Could",
+          "you",
+          "show",
+          "me",
+          "that again"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-51:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви кажете викладачеві про показаний ним спосіб.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-51:i04:r1",
+          "text": "you showed me"
+        },
+        {
+          "responseId": "en:lesson-29:session-51:i04:r2",
+          "text": "you showed me it"
+        },
+        {
+          "responseId": "en:lesson-29:session-51:i04:r3",
+          "text": "your showed me"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви кажете викладачеві про показаний ним спосіб.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы говорите преподавателю о показанном им способе.",
+          "uk": "Ви кажете викладачеві про показаний ним спосіб."
+        },
+        "gappedTargetPhrase": "The method ___ was helpful.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-51:i04:r1",
+            "text": "you showed me"
+          },
+          {
+            "responseId": "en:lesson-29:session-51:i04:r2",
+            "text": "you showed me it"
+          },
+          {
+            "responseId": "en:lesson-29:session-51:i04:r3",
+            "text": "your showed me"
+          }
+        ],
+        "testedDimension": "Ви кажете викладачеві про показаний ним спосіб.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-51:i04:r2",
+            "correct": false,
+            "testedDimension": "Ви кажете викладачеві про показаний ним спосіб.",
+            "feedbackByLocale": {
+              "ru": "It повторяет способ.",
+              "uk": "It повторює спосіб."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-51:i04:r3",
+            "correct": false,
+            "testedDimension": "Ви кажете викладачеві про показаний ним спосіб.",
+            "feedbackByLocale": {
+              "ru": "Нужно you — исполнитель действия.",
+              "uk": "Потрібне you — виконавець дії."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-51:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — dexterity",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-51:i05:audio"
+      ],
+      "accessibilityLabel": "Картка слова — dexterity",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-51:i05:audio",
+          "transcript": "dexterity"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-51:i05:r1",
+            "targetText": "dexterity",
+            "meaningByLocale": {
+              "ru": "Ловкость рук. Умение точно и умело двигать руками и пальцами, особенно при мелкой работе.",
+              "uk": "Вправність рук. Уміння точно й уміло рухати руками та пальцями, особливо під час дрібної роботи."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dexterity",
+          "definitionByLocale": {
+            "ru": "Ловкость рук. Умение точно и умело двигать руками и пальцами, особенно при мелкой работе.",
+            "uk": "Вправність рук. Уміння точно й уміло рухати руками та пальцями, особливо під час дрібної роботи."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-51:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-51:i06:r1",
+          "text": "This task needs dexterity."
+        },
+        {
+          "responseId": "en:lesson-29:session-51:i06:r2",
+          "text": "This task needs patience."
+        },
+        {
+          "responseId": "en:lesson-29:session-51:i06:r3",
+          "text": "This task needs practice."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-51:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-51:i06:audio",
+          "transcript": "This task needs dexterity."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-51:i06:r1",
+            "targetText": "This task needs dexterity.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-51:i06:r2",
+            "targetText": "This task needs patience.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-51:i06:r3",
+            "targetText": "This task needs practice.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-51:i06:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This task needs dexterity.",
+              "uk": "У записі звучить This task needs dexterity."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-51:i06:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This task needs dexterity.",
+              "uk": "У записі звучить This task needs dexterity."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-51:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, хто зробив сумку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-51:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте, хто зробив сумку.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-51:i07:audio",
+          "transcript": "This bag was made by my sister."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This bag was made by my sister.",
+        "orderedTokens": [
+          "This",
+          "bag",
+          "was",
+          "made",
+          "by",
+          "my",
+          "sister"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-51:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть викладача перевірити ваш шов.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-51:i08:audio"
+      ],
+      "accessibilityLabel": "Попросіть викладача перевірити ваш шов.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-51:i08:audio",
+          "transcript": "Could you check my seam?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you check my seam?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-51:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — aptitude",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-51:i09:audio"
+      ],
+      "accessibilityLabel": "Картка слова — aptitude",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-51:i09:audio",
+          "transcript": "aptitude"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-51:i09:r1",
+            "targetText": "aptitude",
+            "meaningByLocale": {
+              "ru": "Способности к определённому делу. Когда человеку сравнительно легко даётся освоение какого-то занятия.",
+              "uk": "Здібності до певної справи. Коли людині порівняно легко дається опанування якогось заняття."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "aptitude",
+          "definitionByLocale": {
+            "ru": "Способности к определённому делу. Когда человеку сравнительно легко даётся освоение какого-то занятия.",
+            "uk": "Здібності до певної справи. Коли людині порівняно легко дається опанування якогось заняття."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-51:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-51:i10:r1",
+          "text": "You have an aptitude for sewing."
+        },
+        {
+          "responseId": "en:lesson-29:session-51:i10:r2",
+          "text": "You have a passion for sewing."
+        },
+        {
+          "responseId": "en:lesson-29:session-51:i10:r3",
+          "text": "You have time for sewing."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-51:i10:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-51:i10:audio",
+          "transcript": "You have an aptitude for sewing."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-51:i10:r1",
+            "targetText": "You have an aptitude for sewing.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-51:i10:r2",
+            "targetText": "You have a passion for sewing.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-51:i10:r3",
+            "targetText": "You have time for sewing.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-51:i10:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You have an aptitude for sewing.",
+              "uk": "У записі звучить You have an aptitude for sewing."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-51:i10:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You have an aptitude for sewing.",
+              "uk": "У записі звучить You have an aptitude for sewing."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-51:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви показуєте жінку, якій належить полагоджена сумка.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-51:i11:r1",
+          "text": "whose"
+        },
+        {
+          "responseId": "en:lesson-29:session-51:i11:r2",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-51:i11:r3",
+          "text": "whose her"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви показуєте жінку, якій належить полагоджена сумка.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы показываете женщину, которой принадлежит починенная сумка.",
+          "uk": "Ви показуєте жінку, якій належить полагоджена сумка."
+        },
+        "gappedTargetPhrase": "That is the woman ___ bag I repaired.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-51:i11:r1",
+            "text": "whose"
+          },
+          {
+            "responseId": "en:lesson-29:session-51:i11:r2",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-51:i11:r3",
+            "text": "whose her"
+          }
+        ],
+        "testedDimension": "Ви показуєте жінку, якій належить полагоджена сумка.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-51:i11:r2",
+            "correct": false,
+            "testedDimension": "Ви показуєте жінку, якій належить полагоджена сумка.",
+            "feedbackByLocale": {
+              "ru": "Принадлежность обозначаем через whose.",
+              "uk": "Належність позначаємо через whose."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-51:i11:r3",
+            "correct": false,
+            "testedDimension": "Ви показуєте жінку, якій належить полагоджена сумка.",
+            "feedbackByLocale": {
+              "ru": "Her после whose лишнее.",
+              "uk": "Her після whose зайве."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-51:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть викладачеві, що показаний спосіб вам допоміг.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть викладачеві, що показаний спосіб вам допоміг.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The method you showed me was helpful.",
+        "localizedMeaning": {
+          "ru": "Скажите преподавателю, что показанный способ вам помог.",
+          "uk": "Скажіть викладачеві, що показаний спосіб вам допоміг."
+        },
+        "orderedTokens": [
+          "The",
+          "method",
+          "you",
+          "showed",
+          "me",
+          "was",
+          "helpful"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-51:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — perseverance",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-51:i13:audio"
+      ],
+      "accessibilityLabel": "Картка слова — perseverance",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-51:i13:audio",
+          "transcript": "perseverance"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-51:i13:r1",
+            "targetText": "perseverance",
+            "meaningByLocale": {
+              "ru": "Настойчивость. Продолжение усилий, даже когда что-то трудно или не получается с первого раза.",
+              "uk": "Наполегливість. Продовження зусиль, навіть коли щось важко чи не виходить із першого разу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "perseverance",
+          "definitionByLocale": {
+            "ru": "Настойчивость. Продолжение усилий, даже когда что-то трудно или не получается с первого раза.",
+            "uk": "Наполегливість. Продовження зусиль, навіть коли щось важко чи не виходить із першого разу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-51:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть другові, що для цього потрібна наполегливість.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-51:i14:audio"
+      ],
+      "accessibilityLabel": "Скажіть другові, що для цього потрібна наполегливість.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-51:i14:audio",
+          "transcript": "It takes perseverance."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It takes perseverance.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-51:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-29:session-51:i15:p1",
+            "target": "aptitude",
+            "meaningByLocale": {
+              "ru": "способности к делу",
+              "uk": "здібності до справи"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-51:i15:p2",
+            "target": "dexterity",
+            "meaningByLocale": {
+              "ru": "ловкость рук",
+              "uk": "вправність рук"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-51:i15:p3",
+            "target": "knack",
+            "meaningByLocale": {
+              "ru": "сноровка",
+              "uk": "практична вправність у конкретній дії"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-51:i15:p4",
+            "target": "perseverance",
+            "meaningByLocale": {
+              "ru": "настойчивость",
+              "uk": "наполегливість"
+            }
+          }
+        ],
+        "leftColumn": [
+          "aptitude",
+          "dexterity",
+          "knack",
+          "perseverance"
+        ],
+        "rightColumn": [
+          "здібності до справи",
+          "вправність рук",
+          "практична вправність у конкретній дії",
+          "наполегливість"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-51:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: йдеться про вправність рук чи терпіння?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-51:i16:r1",
+          "text": "This task needs dexterity."
+        },
+        {
+          "responseId": "en:lesson-29:session-51:i16:r2",
+          "text": "This task needs patience."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-51:i16:audioA",
+        "en:lesson-29:session-51:i16:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: йдеться про вправність рук чи терпіння?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "This task needs dexterity.",
+        "contrastB": "This task needs patience.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-29:session-51:i16:audioA",
+          "transcript": "This task needs dexterity."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-29:session-51:i16:audioB",
+          "transcript": "This task needs patience."
+        },
+        "testedPhoneticContrast": "Послухайте: йдеться про вправність рук чи терпіння?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-51:i16:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: йдеться про вправність рук чи терпіння?",
+            "feedbackByLocale": {
+              "ru": "Звучит dexterity — ловкость рук.",
+              "uk": "Звучить dexterity — вправність рук."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-51:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сумку зробила ваша сестра.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-51:i17:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-29:session-51:i17:r2",
+          "text": "whose"
+        },
+        {
+          "responseId": "en:lesson-29:session-51:i17:r3",
+          "text": "who"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сумку зробила ваша сестра.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сумку сделала ваша сестра.",
+          "uk": "Сумку зробила ваша сестра."
+        },
+        "gappedTargetPhrase": "This bag was made ___ my sister.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-51:i17:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-29:session-51:i17:r2",
+            "text": "whose"
+          },
+          {
+            "responseId": "en:lesson-29:session-51:i17:r3",
+            "text": "who"
+          }
+        ],
+        "testedDimension": "Сумку зробила ваша сестра.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-51:i17:r2",
+            "correct": false,
+            "testedDimension": "Сумку зробила ваша сестра.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя после was made вводим через by.",
+              "uk": "Виконавця після was made вводимо через by."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-51:i17:r3",
+            "correct": false,
+            "testedDimension": "Сумку зробила ваша сестра.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна связка by, а не who.",
+              "uk": "Тут потрібна зв’язка by, а не who."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-51:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, чию сумку ви полагодили.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-51:i18:audio"
+      ],
+      "accessibilityLabel": "Послухайте, чию сумку ви полагодили.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-51:i18:audio",
+          "transcript": "That is the woman whose bag I repaired."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "That is the woman whose bag I repaired.",
+        "orderedTokens": [
+          "That",
+          "is",
+          "the",
+          "woman",
+          "whose",
+          "bag",
+          "I",
+          "repaired"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-51:i19",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Підтримайте друга: щоразу виходить краще.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-51:i19:audio"
+      ],
+      "accessibilityLabel": "Підтримайте друга: щоразу виходить краще.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-51:i19:audio",
+          "transcript": "You are getting better at this."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "You are getting better at this.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-51:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запропонуйте спробувати ще раз.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запропонуйте спробувати ще раз.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Let us try again.",
+        "localizedMeaning": {
+          "ru": "Предложите попробовать ещё раз.",
+          "uk": "Запропонуйте спробувати ще раз."
+        },
+        "orderedTokens": [
+          "Let",
+          "us",
+          "try again"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-51:i21",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви говорите про заняття, яке відвідали.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-51:i21:r1",
+          "text": "we attended"
+        },
+        {
+          "responseId": "en:lesson-29:session-51:i21:r2",
+          "text": "we attended it"
+        },
+        {
+          "responseId": "en:lesson-29:session-51:i21:r3",
+          "text": "us attended"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви говорите про заняття, яке відвідали.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы говорите о занятии, которое посетили.",
+          "uk": "Ви говорите про заняття, яке відвідали."
+        },
+        "gappedTargetPhrase": "The class ___ was useful.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-51:i21:r1",
+            "text": "we attended"
+          },
+          {
+            "responseId": "en:lesson-29:session-51:i21:r2",
+            "text": "we attended it"
+          },
+          {
+            "responseId": "en:lesson-29:session-51:i21:r3",
+            "text": "us attended"
+          }
+        ],
+        "testedDimension": "Ви говорите про заняття, яке відвідали.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-51:i21:r2",
+            "correct": false,
+            "testedDimension": "Ви говорите про заняття, яке відвідали.",
+            "feedbackByLocale": {
+              "ru": "It повторяет занятие.",
+              "uk": "It повторює заняття."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-51:i21:r3",
+            "correct": false,
+            "testedDimension": "Ви говорите про заняття, яке відвідали.",
+            "feedbackByLocale": {
+              "ru": "Нужен исполнитель we, не us.",
+              "uk": "Потрібен виконавець we, не us."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "6b6831223dac073444389afe5cf1af3d8200e0e8636d539477d0a8bcd6e6f3c7"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-29:session-50",
+  "entries": [
+    {
+      "interactionId": "en:lesson-29:session-50:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-50:intro1:r2": {
+          "ru": "It повторяет сообщение.",
+          "uk": "It повторює повідомлення."
+        },
+        "en:lesson-29:session-50:intro1:r3": {
+          "ru": "Отправитель обозначается через you, не your.",
+          "uk": "Відправника позначаємо через you, не your."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-50:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-50:intro2:r2": {
+          "ru": "Who нужен как исполнитель внутри уточнения.",
+          "uk": "Who потрібне як виконавець усередині уточнення."
+        },
+        "en:lesson-29:session-50:intro2:r3": {
+          "ru": "Who уже обозначает исполнителя; you лишнее.",
+          "uk": "Who вже позначає виконавця; you зайве."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-50:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-50:intro3:r2": {
+          "ru": "Это уточнение, поэтому we can talk.",
+          "uk": "Це уточнення, тому we can talk."
+        },
+        "en:lesson-29:session-50:intro3:r3": {
+          "ru": "Для места используем where.",
+          "uk": "Для місця використовуємо where."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "b29afe1862c06c53b82aa4733452e9059a8fdf01e2e99ad07538e3a4bf2438f0"
+}

@@ -1,0 +1,1112 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-28:session-40",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-28:session-40:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросите показать размер побольше.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросите показать размер побольше.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could you show me a larger size?",
+        "localizedMeaning": {
+          "ru": "Попросите показать размер побольше.",
+          "uk": "Попросіть показати більший розмір."
+        },
+        "orderedTokens": [
+          "Could",
+          "you",
+          "show",
+          "me",
+          "a",
+          "larger",
+          "size"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-40:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — crochet",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-40:i02:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — crochet",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-40:i02:audio",
+          "transcript": "crochet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-40:i02:r1",
+            "targetText": "crochet",
+            "meaningByLocale": {
+              "ru": "Вязать крючком. Создавать петли из нити с помощью крючка.",
+              "uk": "В’язати гачком. Створювати петлі з нитки за допомогою гачка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "crochet",
+          "definitionByLocale": {
+            "ru": "Вязать крючком. Создавать петли из нити с помощью крючка.",
+            "uk": "В’язати гачком. Створювати петлі з нитки за допомогою гачка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-40:i03",
+      "ordinal": 6,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что ваша сестра умеет вязать крючком.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-40:i03:audio"
+      ],
+      "accessibilityLabel": "Скажите, что ваша сестра умеет вязать крючком.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-40:i03:audio",
+          "transcript": "My sister can crochet."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "My sister can crochet.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-40:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-40:i04:r1",
+          "text": "The scarf was made by my aunt."
+        },
+        {
+          "responseId": "en:lesson-28:session-40:i04:r2",
+          "text": "The scarf was made by my sister."
+        },
+        {
+          "responseId": "en:lesson-28:session-40:i04:r3",
+          "text": "The hat was made by my aunt."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-40:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-40:i04:audio",
+          "transcript": "The scarf was made by my aunt."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-40:i04:r1",
+            "targetText": "The scarf was made by my aunt.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-40:i04:r2",
+            "targetText": "The scarf was made by my sister.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-40:i04:r3",
+            "targetText": "The hat was made by my aunt.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-40:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The scarf was made by my aunt.",
+              "uk": "У записі звучить The scarf was made by my aunt."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-40:i04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The scarf was made by my aunt.",
+              "uk": "У записі звучить The scarf was made by my aunt."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-40:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Спросите, можно ли укоротить юбку.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-40:i05:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-28:session-40:i05:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-28:session-40:i05:r3",
+          "text": "was"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите, можно ли укоротить юбку.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите, можно ли укоротить юбку.",
+          "uk": "Запитайте, чи можна вкоротити спідницю."
+        },
+        "gappedTargetPhrase": "Can this skirt ___ shortened?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-40:i05:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-28:session-40:i05:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-28:session-40:i05:r3",
+            "text": "was"
+          }
+        ],
+        "testedDimension": "Спросите, можно ли укоротить юбку.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-40:i05:r2",
+            "correct": false,
+            "testedDimension": "Спросите, можно ли укоротить юбку.",
+            "feedbackByLocale": {
+              "ru": "После can нужна be.",
+              "uk": "Після can потрібна be."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-40:i05:r3",
+            "correct": false,
+            "testedDimension": "Спросите, можно ли укоротить юбку.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем can be shortened.",
+              "uk": "Тут використовуємо can be shortened."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-40:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — embroidery",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-40:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — embroidery",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-40:i06:audio",
+          "transcript": "embroidery"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-40:i06:r1",
+            "targetText": "embroidery",
+            "meaningByLocale": {
+              "ru": "Вышивка. Узор из нитей на ткани. Это существительное; знакомый глагол embroider означает «вышивать».",
+              "uk": "Вишивка. Візерунок із ниток на тканині. Це іменник; знайоме дієслово embroider означає «вишивати»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "embroidery",
+          "definitionByLocale": {
+            "ru": "Вышивка. Узор из нитей на ткани. Это существительное; знакомый глагол embroider означает «вышивать».",
+            "uk": "Вишивка. Візерунок із ниток на тканині. Це іменник; знайоме дієслово embroider означає «вишивати»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-40:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что вам нравится вышивка на этой рубашке.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что вам нравится вышивка на этой рубашке.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I like the embroidery on this shirt.",
+        "localizedMeaning": {
+          "ru": "Скажите, что вам нравится вышивка на этой рубашке.",
+          "uk": "Скажіть, що вам подобається вишивка на цій сорочці."
+        },
+        "orderedTokens": [
+          "I",
+          "like",
+          "the",
+          "embroidery",
+          "on",
+          "this",
+          "shirt"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-40:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте указание на ярлыке.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-40:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте указание на ярлыке.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-40:i08:audio",
+          "transcript": "This jumper must be washed by hand."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This jumper must be washed by hand.",
+        "orderedTokens": [
+          "This",
+          "jumper",
+          "must",
+          "be",
+          "washed",
+          "by",
+          "hand"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-40:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Юбка дорогая; вы хотели бы, чтобы она стоила дешевле.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-40:i09:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-28:session-40:i09:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-28:session-40:i09:r3",
+          "text": "will be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Юбка дорогая; вы хотели бы, чтобы она стоила дешевле.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Юбка дорогая; вы хотели бы, чтобы она стоила дешевле.",
+          "uk": "Спідниця дорога; ви хотіли б, щоб вона коштувала дешевше."
+        },
+        "gappedTargetPhrase": "I wish this skirt ___ cheaper.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-40:i09:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-28:session-40:i09:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-28:session-40:i09:r3",
+            "text": "will be"
+          }
+        ],
+        "testedDimension": "Юбка дорогая; вы хотели бы, чтобы она стоила дешевле.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-40:i09:r2",
+            "correct": false,
+            "testedDimension": "Юбка дорогая; вы хотели бы, чтобы она стоила дешевле.",
+            "feedbackByLocale": {
+              "ru": "После wish здесь нужна were.",
+              "uk": "Після wish тут потрібна were."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-40:i09:r3",
+            "correct": false,
+            "testedDimension": "Юбка дорогая; вы хотели бы, чтобы она стоила дешевле.",
+            "feedbackByLocale": {
+              "ru": "Желаемое сейчас: were cheaper.",
+              "uk": "Бажане зараз: were cheaper."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-40:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — ribbed",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-40:i10:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — ribbed",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-40:i10:audio",
+          "transcript": "ribbed"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-40:i10:r1",
+            "targetText": "ribbed",
+            "meaningByLocale": {
+              "ru": "В рубчик. С рядами выпуклых полос, например о вязаной ткани.",
+              "uk": "У рубчик. Із рядами опуклих смуг, наприклад про в’язану тканину."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ribbed",
+          "definitionByLocale": {
+            "ru": "В рубчик. С рядами выпуклых полос, например о вязаной ткани.",
+            "uk": "У рубчик. Із рядами опуклих смуг, наприклад про в’язану тканину."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-40:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-40:i11:r1",
+          "text": "I prefer the ribbed jumper."
+        },
+        {
+          "responseId": "en:lesson-28:session-40:i11:r2",
+          "text": "I prefer the striped jumper."
+        },
+        {
+          "responseId": "en:lesson-28:session-40:i11:r3",
+          "text": "I prefer the ribbed hat."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-40:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-40:i11:audio",
+          "transcript": "I prefer the ribbed jumper."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-40:i11:r1",
+            "targetText": "I prefer the ribbed jumper.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-40:i11:r2",
+            "targetText": "I prefer the striped jumper.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-40:i11:r3",
+            "targetText": "I prefer the ribbed hat.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-40:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I prefer the ribbed jumper.",
+              "uk": "У записі звучить I prefer the ribbed jumper."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-40:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I prefer the ribbed jumper.",
+              "uk": "У записі звучить I prefer the ribbed jumper."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-40:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите, можно ли примерить свитер.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-40:i12:audio"
+      ],
+      "accessibilityLabel": "Спросите, можно ли примерить свитер.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-40:i12:audio",
+          "transcript": "Can I try this jumper on?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Can I try this jumper on?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-40:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Продавец называет мастера, который сделал шарф.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-40:i13:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-28:session-40:i13:r2",
+          "text": "of"
+        },
+        {
+          "responseId": "en:lesson-28:session-40:i13:r3",
+          "text": "at"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Продавец называет мастера, который сделал шарф.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Продавец называет мастера, который сделал шарф.",
+          "uk": "Продавець називає майстра, який зробив шарф."
+        },
+        "gappedTargetPhrase": "This scarf was made ___ a local artist.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-40:i13:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-28:session-40:i13:r2",
+            "text": "of"
+          },
+          {
+            "responseId": "en:lesson-28:session-40:i13:r3",
+            "text": "at"
+          }
+        ],
+        "testedDimension": "Продавец называет мастера, который сделал шарф.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-40:i13:r2",
+            "correct": false,
+            "testedDimension": "Продавец называет мастера, который сделал шарф.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя вводит by.",
+              "uk": "Виконавця вводить by."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-40:i13:r3",
+            "correct": false,
+            "testedDimension": "Продавец называет мастера, который сделал шарф.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна by a local artist.",
+              "uk": "Тут потрібна by a local artist."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-40:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — pleated",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-40:i14:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — pleated",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-40:i14:audio",
+          "transcript": "pleated"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-40:i14:r1",
+            "targetText": "pleated",
+            "meaningByLocale": {
+              "ru": "Со складками. О ткани или одежде с заложенными складками, например о юбке.",
+              "uk": "Зі складками. Про тканину або одяг із закладеними складками, наприклад про спідницю."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pleated",
+          "definitionByLocale": {
+            "ru": "Со складками. О ткани или одежде с заложенными складками, например о юбке.",
+            "uk": "Зі складками. Про тканину або одяг із закладеними складками, наприклад про спідницю."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-40:i15",
+      "ordinal": 18,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите показать юбку со складками.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-40:i15:audio"
+      ],
+      "accessibilityLabel": "Попросите показать юбку со складками.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-40:i15:audio",
+          "transcript": "Could I see the pleated skirt, please?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could I see the pleated skirt, please?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-40:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводами.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводами.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-28:session-40:i16:p1",
+            "target": "crochet",
+            "meaningByLocale": {
+              "ru": "вязать крючком",
+              "uk": "в’язати гачком"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-40:i16:p2",
+            "target": "embroidery",
+            "meaningByLocale": {
+              "ru": "вышивка",
+              "uk": "вишивка"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-40:i16:p3",
+            "target": "ribbed",
+            "meaningByLocale": {
+              "ru": "в рубчик",
+              "uk": "у рубчик"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-40:i16:p4",
+            "target": "pleated",
+            "meaningByLocale": {
+              "ru": "со складками",
+              "uk": "зі складками"
+            }
+          }
+        ],
+        "leftColumn": [
+          "crochet",
+          "embroidery",
+          "ribbed",
+          "pleated"
+        ],
+        "rightColumn": [
+          "вязать крючком",
+          "вышивка",
+          "в рубчик",
+          "со складками"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-40:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-40:i17:r1",
+          "text": "Your order will be delivered tomorrow."
+        },
+        {
+          "responseId": "en:lesson-28:session-40:i17:r2",
+          "text": "Your order was delivered yesterday."
+        },
+        {
+          "responseId": "en:lesson-28:session-40:i17:r3",
+          "text": "Your order will be delivered next week."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-40:i17:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-40:i17:audio",
+          "transcript": "Your order will be delivered tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-40:i17:r1",
+            "targetText": "Your order will be delivered tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-40:i17:r2",
+            "targetText": "Your order was delivered yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-40:i17:r3",
+            "targetText": "Your order will be delivered next week.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-40:i17:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Your order will be delivered tomorrow.",
+              "uk": "У записі звучить Your order will be delivered tomorrow."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-40:i17:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Your order will be delivered tomorrow.",
+              "uk": "У записі звучить Your order will be delivered tomorrow."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-40:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Магазин закрылся раньше, чем вы пришли.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-40:i18:r1",
+          "text": "closed"
+        },
+        {
+          "responseId": "en:lesson-28:session-40:i18:r2",
+          "text": "close"
+        },
+        {
+          "responseId": "en:lesson-28:session-40:i18:r3",
+          "text": "closing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Магазин закрылся раньше, чем вы пришли.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Магазин закрылся раньше, чем вы пришли.",
+          "uk": "Магазин зачинився раніше, ніж ви прийшли."
+        },
+        "gappedTargetPhrase": "The shop had ___ by the time I arrived.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-40:i18:r1",
+            "text": "closed"
+          },
+          {
+            "responseId": "en:lesson-28:session-40:i18:r2",
+            "text": "close"
+          },
+          {
+            "responseId": "en:lesson-28:session-40:i18:r3",
+            "text": "closing"
+          }
+        ],
+        "testedDimension": "Магазин закрылся раньше, чем вы пришли.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-40:i18:r2",
+            "correct": false,
+            "testedDimension": "Магазин закрылся раньше, чем вы пришли.",
+            "feedbackByLocale": {
+              "ru": "После had нужна closed.",
+              "uk": "Після had потрібна closed."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-40:i18:r3",
+            "correct": false,
+            "testedDimension": "Магазин закрылся раньше, чем вы пришли.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем had closed.",
+              "uk": "Тут використовуємо had closed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-40:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, где делают эти шарфы.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-40:i19:audio"
+      ],
+      "accessibilityLabel": "Послушайте, где делают эти шарфы.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-40:i19:audio",
+          "transcript": "These scarves are made here."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "These scarves are made here.",
+        "orderedTokens": [
+          "These",
+          "scarves",
+          "are",
+          "made",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-40:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ярлык требует ручной стирки свитера.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-40:i20:r1",
+          "text": "washed"
+        },
+        {
+          "responseId": "en:lesson-28:session-40:i20:r2",
+          "text": "wash"
+        },
+        {
+          "responseId": "en:lesson-28:session-40:i20:r3",
+          "text": "washing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ярлык требует ручной стирки свитера.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Ярлык требует ручной стирки свитера.",
+          "uk": "Ярлик вимагає ручного прання светра."
+        },
+        "gappedTargetPhrase": "This jumper must be ___ by hand.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-40:i20:r1",
+            "text": "washed"
+          },
+          {
+            "responseId": "en:lesson-28:session-40:i20:r2",
+            "text": "wash"
+          },
+          {
+            "responseId": "en:lesson-28:session-40:i20:r3",
+            "text": "washing"
+          }
+        ],
+        "testedDimension": "Ярлык требует ручной стирки свитера.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-40:i20:r2",
+            "correct": false,
+            "testedDimension": "Ярлык требует ручной стирки свитера.",
+            "feedbackByLocale": {
+              "ru": "После must be здесь нужна washed.",
+              "uk": "Після must be тут потрібна washed."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-40:i20:r3",
+            "correct": false,
+            "testedDimension": "Ярлык требует ручной стирки свитера.",
+            "feedbackByLocale": {
+              "ru": "Нужная форма: must be washed.",
+              "uk": "Потрібна форма: must be washed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-40:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточните срок подгонки юбки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-40:i21:audio"
+      ],
+      "accessibilityLabel": "Уточните срок подгонки юбки.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-40:i21:audio",
+          "transcript": "When will the skirt be ready?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "When will the skirt be ready?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "2d09006592c4bb54c647f6976babf936cb9035793d4baaf90be548a49ee6ed6f"
+}

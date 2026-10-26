@@ -1,0 +1,1047 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-30:session-07",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-30:session-07:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора сестра сказала, що відчувала образу.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-07:i01:r1",
+          "text": "said"
+        },
+        {
+          "responseId": "en:lesson-30:session-07:i01:r2",
+          "text": "say"
+        },
+        {
+          "responseId": "en:lesson-30:session-07:i01:r3",
+          "text": "saying"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора сестра сказала, що відчувала образу.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера сестра сказала, что чувствовала обиду.",
+          "uk": "Учора сестра сказала, що відчувала образу."
+        },
+        "gappedTargetPhrase": "She ___ that she was resentful.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-07:i01:r1",
+            "text": "said"
+          },
+          {
+            "responseId": "en:lesson-30:session-07:i01:r2",
+            "text": "say"
+          },
+          {
+            "responseId": "en:lesson-30:session-07:i01:r3",
+            "text": "saying"
+          }
+        ],
+        "testedDimension": "Учора сестра сказала, що відчувала образу.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-07:i01:r2",
+            "correct": false,
+            "testedDimension": "Учора сестра сказала, що відчувала образу.",
+            "feedbackByLocale": {
+              "ru": "О вчерашнем разговоре говорим said.",
+              "uk": "Про вчорашню розмову кажемо said."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-07:i01:r3",
+            "correct": false,
+            "testedDimension": "Учора сестра сказала, що відчувала образу.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма said, не saying.",
+              "uk": "Потрібна форма said, не saying."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-07:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — spite",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-07:i02:audio"
+      ],
+      "accessibilityLabel": "Картка слова — spite",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-07:i02:audio",
+          "transcript": "spite"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-07:i02:r1",
+            "targetText": "spite",
+            "meaningByLocale": {
+              "ru": "Злоба, желание сделать назло. Намерение обидеть или досадить кому-то.",
+              "uk": "Злість, бажання зробити назло. Намір образити когось або дошкулити комусь."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "spite",
+          "definitionByLocale": {
+            "ru": "Злоба, желание сделать назло. Намерение обидеть или досадить кому-то.",
+            "uk": "Злість, бажання зробити назло. Намір образити когось або дошкулити комусь."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-07:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-07:i03:r1",
+          "text": "He did it out of spite."
+        },
+        {
+          "responseId": "en:lesson-30:session-07:i03:r2",
+          "text": "He did it out of fear."
+        },
+        {
+          "responseId": "en:lesson-30:session-07:i03:r3",
+          "text": "He did it out of habit."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-07:i03:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-07:i03:audio",
+          "transcript": "He did it out of spite."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-07:i03:r1",
+            "targetText": "He did it out of spite.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-07:i03:r2",
+            "targetText": "He did it out of fear.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-07:i03:r3",
+            "targetText": "He did it out of habit.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-07:i03:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He did it out of spite.",
+              "uk": "У записі звучить He did it out of spite."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-07:i03:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He did it out of spite.",
+              "uk": "У записі звучить He did it out of spite."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-07:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви хотіли б, щоб ви з братом менше сперечалися.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви хотіли б, щоб ви з братом менше сперечалися.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I wish we argued less.",
+        "localizedMeaning": {
+          "ru": "Вы хотели бы, чтобы вы с братом меньше спорили.",
+          "uk": "Ви хотіли б, щоб ви з братом менше сперечалися."
+        },
+        "orderedTokens": [
+          "I",
+          "wish",
+          "we",
+          "argued",
+          "less"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-07:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — reconcile",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-07:i05:audio"
+      ],
+      "accessibilityLabel": "Картка слова — reconcile",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-07:i05:audio",
+          "transcript": "reconcile"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-07:i05:r1",
+            "targetText": "reconcile",
+            "meaningByLocale": {
+              "ru": "Помириться, восстановить хорошие отношения. Снова наладить отношения после ссоры или разрыва.",
+              "uk": "Помиритися, відновити добрі стосунки. Знову налагодити стосунки після сварки або розриву."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "reconcile",
+          "definitionByLocale": {
+            "ru": "Помириться, восстановить хорошие отношения. Снова наладить отношения после ссоры или разрыва.",
+            "uk": "Помиритися, відновити добрі стосунки. Знову налагодити стосунки після сварки або розриву."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-07:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що хочете помиритися із сестрою.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-07:i06:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що хочете помиритися із сестрою.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-07:i06:audio",
+          "transcript": "I want to reconcile with my sister."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I want to reconcile with my sister.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-07:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Подякуйте братові за повідомлення, яке допомогло вам.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-07:i07:r1",
+          "text": "sent"
+        },
+        {
+          "responseId": "en:lesson-30:session-07:i07:r2",
+          "text": "sending"
+        },
+        {
+          "responseId": "en:lesson-30:session-07:i07:r3",
+          "text": "sends"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подякуйте братові за повідомлення, яке допомогло вам.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Поблагодарите брата за сообщение, которое помогло вам.",
+          "uk": "Подякуйте братові за повідомлення, яке допомогло вам."
+        },
+        "gappedTargetPhrase": "The message you ___ helped.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-07:i07:r1",
+            "text": "sent"
+          },
+          {
+            "responseId": "en:lesson-30:session-07:i07:r2",
+            "text": "sending"
+          },
+          {
+            "responseId": "en:lesson-30:session-07:i07:r3",
+            "text": "sends"
+          }
+        ],
+        "testedDimension": "Подякуйте братові за повідомлення, яке допомогло вам.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-07:i07:r2",
+            "correct": false,
+            "testedDimension": "Подякуйте братові за повідомлення, яке допомогло вам.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна форма sent.",
+              "uk": "Тут потрібна форма sent."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-07:i07:r3",
+            "correct": false,
+            "testedDimension": "Подякуйте братові за повідомлення, яке допомогло вам.",
+            "feedbackByLocale": {
+              "ru": "Sends не сочетается с you; об отправленном сообщении говорим sent.",
+              "uk": "Sends не поєднується з you; про надіслане повідомлення кажемо sent."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-07:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, що сестра сказала про свою образу.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-07:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте, що сестра сказала про свою образу.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-07:i08:audio",
+          "transcript": "She said that she was resentful."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She said that she was resentful.",
+        "orderedTokens": [
+          "She",
+          "said",
+          "that",
+          "she",
+          "was",
+          "resentful"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-07:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — amends",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-07:i09:audio"
+      ],
+      "accessibilityLabel": "Картка слова — amends",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-07:i09:audio",
+          "transcript": "amends"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-07:i09:r1",
+            "targetText": "amends",
+            "meaningByLocale": {
+              "ru": "Заглаживание вины, возмещение причинённого вреда. Употребляется в выражении о попытке исправить то, чем вы обидели человека.",
+              "uk": "Загладжування провини, відшкодування завданої шкоди. Уживається у вислові про спробу виправити те, чим ви образили людину."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "amends",
+          "definitionByLocale": {
+            "ru": "Заглаживание вины, возмещение причинённого вреда. Употребляется в выражении о попытке исправить то, чем вы обидели человека.",
+            "uk": "Загладжування провини, відшкодування завданої шкоди. Уживається у вислові про спробу виправити те, чим ви образили людину."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-07:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-07:i10:r1",
+          "text": "I want to make amends."
+        },
+        {
+          "responseId": "en:lesson-30:session-07:i10:r2",
+          "text": "I want to make dinner."
+        },
+        {
+          "responseId": "en:lesson-30:session-07:i10:r3",
+          "text": "I want to make plans."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-07:i10:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-07:i10:audio",
+          "transcript": "I want to make amends."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-07:i10:r1",
+            "targetText": "I want to make amends.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-07:i10:r2",
+            "targetText": "I want to make dinner.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-07:i10:r3",
+            "targetText": "I want to make plans.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-07:i10:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want to make amends.",
+              "uk": "У записі звучить I want to make amends."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-07:i10:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want to make amends.",
+              "uk": "У записі звучить I want to make amends."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-07:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть братові, що його повідомлення допомогло.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-07:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть братові, що його повідомлення допомогло.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-07:i11:audio",
+          "transcript": "The message you sent helped."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The message you sent helped.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-07:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — rivalry",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-07:i12:audio"
+      ],
+      "accessibilityLabel": "Картка слова — rivalry",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-07:i12:audio",
+          "transcript": "rivalry"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-07:i12:r1",
+            "targetText": "rivalry",
+            "meaningByLocale": {
+              "ru": "Соперничество. Продолжающееся стремление людей превзойти друг друга.",
+              "uk": "Суперництво. Тривале прагнення людей перевершити одне одного."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rivalry",
+          "definitionByLocale": {
+            "ru": "Соперничество. Продолжающееся стремление людей превзойти друг друга.",
+            "uk": "Суперництво. Тривале прагнення людей перевершити одне одного."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-07:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що між двома братами є суперництво.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-07:i13:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що між двома братами є суперництво.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-07:i13:audio",
+          "transcript": "There is rivalry between the two brothers."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "There is rivalry between the two brothers.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-07:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-30:session-07:i14:p1",
+            "target": "spite",
+            "meaningByLocale": {
+              "ru": "желание сделать назло",
+              "uk": "бажання зробити назло"
+            }
+          },
+          {
+            "pairId": "en:lesson-30:session-07:i14:p2",
+            "target": "reconcile",
+            "meaningByLocale": {
+              "ru": "помириться",
+              "uk": "помиритися"
+            }
+          },
+          {
+            "pairId": "en:lesson-30:session-07:i14:p3",
+            "target": "amends",
+            "meaningByLocale": {
+              "ru": "заглаживание вины",
+              "uk": "загладжування провини"
+            }
+          },
+          {
+            "pairId": "en:lesson-30:session-07:i14:p4",
+            "target": "rivalry",
+            "meaningByLocale": {
+              "ru": "соперничество",
+              "uk": "суперництво"
+            }
+          }
+        ],
+        "leftColumn": [
+          "spite",
+          "reconcile",
+          "amends",
+          "rivalry"
+        ],
+        "rightColumn": [
+          "бажання зробити назло",
+          "помиритися",
+          "загладжування провини",
+          "суперництво"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-07:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви хочете загладити провину.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви хочете загладити провину.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I want to make amends.",
+        "localizedMeaning": {
+          "ru": "Вы хотите загладить вину.",
+          "uk": "Ви хочете загладити провину."
+        },
+        "orderedTokens": [
+          "I",
+          "want",
+          "to",
+          "make",
+          "amends"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-07:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви хочете, щоб ваші нинішні суперечки з братом стали рідшими.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-07:i16:r1",
+          "text": "argued"
+        },
+        {
+          "responseId": "en:lesson-30:session-07:i16:r2",
+          "text": "argue"
+        },
+        {
+          "responseId": "en:lesson-30:session-07:i16:r3",
+          "text": "arguing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви хочете, щоб ваші нинішні суперечки з братом стали рідшими.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы хотите, чтобы ваши нынешние споры с братом стали реже.",
+          "uk": "Ви хочете, щоб ваші нинішні суперечки з братом стали рідшими."
+        },
+        "gappedTargetPhrase": "I wish we ___ less.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-07:i16:r1",
+            "text": "argued"
+          },
+          {
+            "responseId": "en:lesson-30:session-07:i16:r2",
+            "text": "argue"
+          },
+          {
+            "responseId": "en:lesson-30:session-07:i16:r3",
+            "text": "arguing"
+          }
+        ],
+        "testedDimension": "Ви хочете, щоб ваші нинішні суперечки з братом стали рідшими.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-07:i16:r2",
+            "correct": false,
+            "testedDimension": "Ви хочете, щоб ваші нинішні суперечки з братом стали рідшими.",
+            "feedbackByLocale": {
+              "ru": "Для такого желания после wish используем argued.",
+              "uk": "Для такого бажання після wish використовуємо argued."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-07:i16:r3",
+            "correct": false,
+            "testedDimension": "Ви хочете, щоб ваші нинішні суперечки з братом стали рідшими.",
+            "feedbackByLocale": {
+              "ru": "Нужно we argued, не we arguing.",
+              "uk": "Потрібне we argued, не we arguing."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-07:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви з’їли останній шматок сестриного пирога й вирішили спекти новий. Цього разу — не для себе. Скажіть, що хочете загладити провину.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-07:i17:audio"
+      ],
+      "accessibilityLabel": "Ви з’їли останній шматок сестриного пирога й вирішили спекти новий. Цього разу — не для себе. Скажіть, що хочете загладити провину.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-07:i17:audio",
+          "transcript": "I want to make amends."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I want to make amends.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-07:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте слова про бажання менше сперечатися.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-07:i18:audio"
+      ],
+      "accessibilityLabel": "Послухайте слова про бажання менше сперечатися.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-07:i18:audio",
+          "transcript": "I wish we argued less."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I wish we argued less.",
+        "orderedTokens": [
+          "I",
+          "wish",
+          "we",
+          "argued",
+          "less"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-07:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: він зробив це назло чи за звичкою?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-07:i19:r1",
+          "text": "He did it out of spite."
+        },
+        {
+          "responseId": "en:lesson-30:session-07:i19:r2",
+          "text": "He did it out of habit."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-07:i19:audioA",
+        "en:lesson-30:session-07:i19:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: він зробив це назло чи за звичкою?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "He did it out of spite.",
+        "contrastB": "He did it out of habit.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-30:session-07:i19:audioA",
+          "transcript": "He did it out of spite."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-30:session-07:i19:audioB",
+          "transcript": "He did it out of habit."
+        },
+        "testedPhoneticContrast": "Послухайте: він зробив це назло чи за звичкою?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-07:i19:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: він зробив це назло чи за звичкою?",
+            "feedbackByLocale": {
+              "ru": "Звучит out of spite — назло.",
+              "uk": "Звучить out of spite — назло."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-07:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Передайте слова сестри про її образу під час розмови.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-07:i20:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-30:session-07:i20:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-30:session-07:i20:r3",
+          "text": "being"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Передайте слова сестри про її образу під час розмови.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Передайте слова сестры о её обиде во время разговора.",
+          "uk": "Передайте слова сестри про її образу під час розмови."
+        },
+        "gappedTargetPhrase": "She said she ___ resentful.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-07:i20:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-30:session-07:i20:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-30:session-07:i20:r3",
+            "text": "being"
+          }
+        ],
+        "testedDimension": "Передайте слова сестри про її образу під час розмови.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-07:i20:r2",
+            "correct": false,
+            "testedDimension": "Передайте слова сестри про її образу під час розмови.",
+            "feedbackByLocale": {
+              "ru": "С she здесь нужна форма was.",
+              "uk": "Із she тут потрібна форма was."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-07:i20:r3",
+            "correct": false,
+            "testedDimension": "Передайте слова сестри про її образу під час розмови.",
+            "feedbackByLocale": {
+              "ru": "Нужно she was, не she being.",
+              "uk": "Потрібне she was, не she being."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-07:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Передайте слова брата: він сказав, що хотів допомогти.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-07:i21:audio"
+      ],
+      "accessibilityLabel": "Передайте слова брата: він сказав, що хотів допомогти.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-07:i21:audio",
+          "transcript": "He said he wanted to help."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He said he wanted to help.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "8039cfcb3cbb03724097621e08f2986fa9970a349593ce987bcff2c8dfba239e"
+}

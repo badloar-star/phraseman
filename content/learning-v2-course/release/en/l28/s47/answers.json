@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-28:session-47:i01",
+    "correctText": "Is delivery included?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-47:i02",
+    "correctText": "futon",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-47:i03",
+    "correctText": "How thick is this futon?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-47:i04",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-28:session-47:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-47:i05",
+    "correctText": "The bed will be assembled in your room.",
+    "correctResponseId": "en:lesson-28:session-47:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-47:i06",
+    "correctText": "divan",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-47:i07",
+    "correctText": "Can you show me this divan?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-47:i08",
+    "correctText": "Is the mattress included?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-47:i09",
+    "correctText": "assembled",
+    "correctResponseId": "en:lesson-28:session-47:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-47:i10",
+    "correctText": "daybed",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-47:i11",
+    "correctText": "How wide is this daybed?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-47:i12",
+    "correctText": "The frame was made by a local carpenter.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-47:i13",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-28:session-47:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-47:i14",
+    "correctText": "bolster",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-47:i15",
+    "correctText": "Do you have a softer bolster?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-47:i16",
+    "correctText": "en:lesson-28:session-47:i16:p1=futon\nen:lesson-28:session-47:i16:p2=divan\nen:lesson-28:session-47:i16:p3=daybed\nen:lesson-28:session-47:i16:p4=bolster",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-47:i17",
+    "correctText": "The covers are washed separately.",
+    "correctResponseId": "en:lesson-28:session-47:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-47:i18",
+    "correctText": "assembled",
+    "correctResponseId": "en:lesson-28:session-47:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-47:i19",
+    "correctText": "Will it fit through the door?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-47:i20",
+    "correctText": "Your order will be delivered on Tuesday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-47:i21",
+    "correctText": "Could you write down the measurements?",
+    "correctResponseId": null
+  }
+]

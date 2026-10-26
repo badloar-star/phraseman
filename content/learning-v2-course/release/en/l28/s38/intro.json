@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-28:session-38",
+  "learningOutcomeByLocale": {
+    "ru": "как обсудить уборку, назвать нужные вещи и рассказать о результате.",
+    "uk": "як обговорити прибирання, назвати потрібні речі й розповісти про результат."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-28:session-38:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Кто вымыл пол",
+        "uk": "Хто вимив підлогу"
+      },
+      "bodyByLocale": {
+        "ru": "Вы возвращаетесь домой и видите чистый пол. Сестра объясняет: The floor was cleaned by my brother — пол вымыл мой брат. Соберите The floor + was cleaned + by + my brother. Начните с пола. Was cleaned сообщает, что его уже вымыли. После by назовите того, кто выполнил работу: my brother.",
+        "uk": "Ви повертаєтеся додому й бачите чисту підлогу. Сестра пояснює: The floor was cleaned by my brother — підлогу вимив мій брат. Складіть The floor + was cleaned + by + my brother. Почніть із підлоги. Was cleaned повідомляє, що її вже вимили. Після by назвіть того, хто виконав роботу: my brother."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-38:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-38:intro1:r1",
+              "text": "The floor was cleaned by my brother."
+            },
+            {
+              "responseId": "en:lesson-28:session-38:intro1:r2",
+              "text": "The floor was cleaned of my brother."
+            },
+            {
+              "responseId": "en:lesson-28:session-38:intro1:r3",
+              "text": "The floor was cleaned my brother."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-38:intro1:r1",
+              "text": "The floor was cleaned by my brother."
+            },
+            {
+              "responseId": "en:lesson-28:session-38:intro1:r2",
+              "text": "The floor was cleaned of my brother."
+            },
+            {
+              "responseId": "en:lesson-28:session-38:intro1:r3",
+              "text": "The floor was cleaned my brother."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-28:session-38:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Нужно вымыть тряпки",
+        "uk": "Потрібно випрати ганчірки"
+      },
+      "bodyByLocale": {
+        "ru": "Вы закончили уборку и собрали грязные тряпки. Скажите: These cloths must be washed — эти тряпки нужно вымыть. Соберите These cloths + must + be + washed. Must передаёт необходимость. После него нужны be и washed: вы говорите о действии над тряпками, не называя того, кто их вымоет.",
+        "uk": "Ви закінчили прибирання й зібрали брудні ганчірки. Скажіть: These cloths must be washed — ці ганчірки потрібно випрати. Складіть These cloths + must + be + washed. Must передає необхідність. Після нього потрібні be та washed: ви говорите про дію з ганчірками, не називаючи того, хто їх випере."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-38:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-38:intro2:r1",
+              "text": "These cloths must be washed."
+            },
+            {
+              "responseId": "en:lesson-28:session-38:intro2:r2",
+              "text": "These cloths must washed."
+            },
+            {
+              "responseId": "en:lesson-28:session-38:intro2:r3",
+              "text": "These cloths must be wash."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-38:intro2:r1",
+              "text": "These cloths must be washed."
+            },
+            {
+              "responseId": "en:lesson-28:session-38:intro2:r2",
+              "text": "These cloths must washed."
+            },
+            {
+              "responseId": "en:lesson-28:session-38:intro2:r3",
+              "text": "These cloths must be wash."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-28:session-38:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Хотелось бы чище",
+        "uk": "Хотілося б чистіше"
+      },
+      "bodyByLocale": {
+        "ru": "Сквозь грязные окна плохо видно сад. Вы говорите: I wish the windows were cleaner — жаль, что окна не чище. Соберите I wish + the windows + were + cleaner. После I wish назовите окна, затем поставьте were cleaner. Это желание изменить их состояние сейчас, а не рассказ о том, какими окна были раньше.",
+        "uk": "Крізь брудні вікна погано видно сад. Ви кажете: I wish the windows were cleaner — шкода, що вікна не чистіші. Складіть I wish + the windows + were + cleaner. Після I wish назвіть вікна, потім поставте were cleaner. Це бажання змінити їхній стан зараз, а не розповідь про те, якими вікна були раніше."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-38:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-38:intro3:r1",
+              "text": "I wish the windows were cleaner."
+            },
+            {
+              "responseId": "en:lesson-28:session-38:intro3:r2",
+              "text": "I wish the windows are cleaner."
+            },
+            {
+              "responseId": "en:lesson-28:session-38:intro3:r3",
+              "text": "I wish the windows will be cleaner."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-38:intro3:r1",
+              "text": "I wish the windows were cleaner."
+            },
+            {
+              "responseId": "en:lesson-28:session-38:intro3:r2",
+              "text": "I wish the windows are cleaner."
+            },
+            {
+              "responseId": "en:lesson-28:session-38:intro3:r3",
+              "text": "I wish the windows will be cleaner."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "0f69bc564f564242b4f7145a794fc679dd67f4369a51a818337e8dbf754b55c7"
+}

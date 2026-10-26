@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-29:session-48:i01",
+    "correctText": "I need one more minute.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-48:i02",
+    "correctText": "scrunchie",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-48:i03",
+    "correctText": "Could you pass me the scrunchie?",
+    "correctResponseId": "en:lesson-29:session-48:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-48:i04",
+    "correctText": "The clip I bought is too small.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-48:i05",
+    "correctText": "I bought",
+    "correctResponseId": "en:lesson-29:session-48:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-48:i06",
+    "correctText": "barrette",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-48:i07",
+    "correctText": "Does this barrette stay in place?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-48:i08",
+    "correctText": "This is the woman whose comb I borrowed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-48:i09",
+    "correctText": "whose",
+    "correctResponseId": "en:lesson-29:session-48:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-48:i10",
+    "correctText": "detangle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-48:i11",
+    "correctText": "Can you help me detangle my hair?",
+    "correctResponseId": "en:lesson-29:session-48:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-48:i12",
+    "correctText": "Please do not pull too hard.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-48:i13",
+    "correctText": "flyaway",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-48:i14",
+    "correctText": "I have a few flyaway hairs.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-48:i15",
+    "correctText": "en:lesson-29:session-48:i15:p1=scrunchie\nen:lesson-29:session-48:i15:p2=barrette\nen:lesson-29:session-48:i15:p3=detangle\nen:lesson-29:session-48:i15:p4=flyaway",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-48:i16",
+    "correctText": "where",
+    "correctResponseId": "en:lesson-29:session-48:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-48:i17",
+    "correctText": "Can you help me detangle my hair?",
+    "correctResponseId": "en:lesson-29:session-48:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-48:i18",
+    "correctText": "This is the shop where I bought it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-48:i19",
+    "correctText": "Does my hair look all right at the back?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-48:i20",
+    "correctText": "you gave me",
+    "correctResponseId": "en:lesson-29:session-48:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-48:i21",
+    "correctText": "I am ready to go now.",
+    "correctResponseId": null
+  }
+]

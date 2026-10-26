@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-29:session-28:i01",
+    "correctText": "sudoku",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-28:i02",
+    "correctText": "I do sudoku on the train.",
+    "correctResponseId": "en:lesson-29:session-28:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-28:i03",
+    "correctText": "Could you explain the rules?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-28:i04",
+    "correctText": "taught",
+    "correctResponseId": "en:lesson-29:session-28:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-28:i05",
+    "correctText": "rummy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-28:i06",
+    "correctText": "Shall we play rummy?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-28:i07",
+    "correctText": "The cards are in the drawer.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-28:i08",
+    "correctText": "The friend who I taught often wins.",
+    "correctResponseId": "en:lesson-29:session-28:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-28:i09",
+    "correctText": "poker",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-28:i10",
+    "correctText": "My brother can play poker.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-28:i11",
+    "correctText": "I taught",
+    "correctResponseId": "en:lesson-29:session-28:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-28:i12",
+    "correctText": "Whose turn is it?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-28:i13",
+    "correctText": "snooker",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-28:i14",
+    "correctText": "There is a snooker table upstairs.",
+    "correctResponseId": "en:lesson-29:session-28:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-28:i15",
+    "correctText": "en:lesson-29:session-28:i15:p1=sudoku\nen:lesson-29:session-28:i15:p2=rummy\nen:lesson-29:session-28:i15:p3=poker\nen:lesson-29:session-28:i15:p4=snooker",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-28:i16",
+    "correctText": "rains",
+    "correctResponseId": "en:lesson-29:session-28:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-28:i17",
+    "correctText": "The friend who I taught often wins.",
+    "correctResponseId": "en:lesson-29:session-28:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-28:i18",
+    "correctText": "Can we start again?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-28:i19",
+    "correctText": "I am still learning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-28:i20",
+    "correctText": "where",
+    "correctResponseId": "en:lesson-29:session-28:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-28:i21",
+    "correctText": "Thank you for the game.",
+    "correctResponseId": null
+  }
+]

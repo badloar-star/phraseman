@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-29:session-03",
+  "entries": [
+    {
+      "interactionId": "en:lesson-29:session-03:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-03:intro1:r2": {
+          "ru": "That уже называет того, кто помог; he не добавляем.",
+          "uk": "That вже називає того, хто допоміг; he не додаємо."
+        },
+        "en:lesson-29:session-03:intro1:r3": {
+          "ru": "Об одном сотруднике говорим is here.",
+          "uk": "Про одного працівника кажемо is here."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-03:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-03:intro2:r2": {
+          "ru": "Исполнителя действия здесь вводит by.",
+          "uk": "Виконавця дії тут позначає by."
+        },
+        "en:lesson-29:session-03:intro2:r3": {
+          "ru": "После was нужна wrapped.",
+          "uk": "Після was потрібна wrapped."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-03:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-03:intro3:r2": {
+          "ru": "В этом условии после if ставим is, без will.",
+          "uk": "У цій умові після if ставимо is, без will."
+        },
+        "en:lesson-29:session-03:intro3:r3": {
+          "ru": "После will нужна начальная форма buy.",
+          "uk": "Після will потрібна початкова форма buy."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "6559911400d2d7742563950b39f48e9436d9f69ab116b9b7384326cc7037db0d"
+}

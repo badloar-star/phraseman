@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-27:session-55:i01",
+    "correctText": "There are six people coming tonight.",
+    "correctResponseId": "en:lesson-27:session-55:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-55:i02",
+    "correctText": "spaghetti",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-55:i03",
+    "correctText": "Please boil some water for the spaghetti.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-55:i04",
+    "correctText": "bought",
+    "correctResponseId": "en:lesson-27:session-55:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-55:i05",
+    "correctText": "Could you chop the tomatoes?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-55:i06",
+    "correctText": "ravioli",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-55:i07",
+    "correctText": "These ravioli have cheese inside.",
+    "correctResponseId": "en:lesson-27:session-55:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-55:i08",
+    "correctText": "Let’s read the instructions on the packet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-55:i09",
+    "correctText": "pesto",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-55:i10",
+    "correctText": "opened",
+    "correctResponseId": "en:lesson-27:session-55:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-55:i11",
+    "correctText": "Could you put some pesto in a separate bowl?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-55:i12",
+    "correctText": "Our friends will arrive at seven.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-55:i13",
+    "correctText": "pitta",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-55:i14",
+    "correctText": "We can serve the pitta with salad.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-55:i15",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-27:session-55:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-55:i16",
+    "correctText": "I have already washed the plates.",
+    "correctResponseId": "en:lesson-27:session-55:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-55:i17",
+    "correctText": "Please put the plates on the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-55:i18",
+    "correctText": "Everyone would sit together if we had a bigger table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-55:i19",
+    "correctText": "could",
+    "correctResponseId": "en:lesson-27:session-55:i19:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-55:i20",
+    "correctText": "Could you pass me the salad?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-55:i21",
+    "correctText": "Thank you for cooking with me.",
+    "correctResponseId": null
+  }
+]

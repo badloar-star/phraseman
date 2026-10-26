@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-28:session-44:i01",
+    "correctText": "Can I have a look at that bowl?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-44:i02",
+    "correctText": "tableware",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-44:i03",
+    "correctText": "I am looking for tableware.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-44:i04",
+    "correctText": "The plates will be delivered on Friday.",
+    "correctResponseId": "en:lesson-28:session-44:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-44:i05",
+    "correctText": "washed",
+    "correctResponseId": "en:lesson-28:session-44:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-44:i06",
+    "correctText": "glassware",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-44:i07",
+    "correctText": "Where is the glassware?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-44:i08",
+    "correctText": "These glasses must be packed carefully.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-44:i09",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-28:session-44:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-44:i10",
+    "correctText": "enamel",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-44:i11",
+    "correctText": "The enamel is damaged.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-44:i12",
+    "correctText": "These cups were made by a local artist.",
+    "correctResponseId": "en:lesson-28:session-44:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-44:i13",
+    "correctText": "Could you wrap each cup separately?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-44:i14",
+    "correctText": "stoneware",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-44:i15",
+    "correctText": "Is this bowl made of stoneware?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-44:i16",
+    "correctText": "en:lesson-28:session-44:i16:p1=tableware\nen:lesson-28:session-44:i16:p2=glassware\nen:lesson-28:session-44:i16:p3=enamel\nen:lesson-28:session-44:i16:p4=stoneware",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-44:i17",
+    "correctText": "sold",
+    "correctResponseId": "en:lesson-28:session-44:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-44:i18",
+    "correctText": "The cups are kept in boxes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-44:i19",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-28:session-44:i19:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-44:i20",
+    "correctText": "How much is the total?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-44:i21",
+    "correctText": "Thank you for your help.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-28:session-28:i01",
+    "correctText": "The lesson will be held upstairs.",
+    "correctResponseId": "en:lesson-28:session-28:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-28:i02",
+    "correctText": "clarinet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-28:i03",
+    "correctText": "Can this clarinet be rented?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-28:i04",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-28:session-28:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-28:i05",
+    "correctText": "I am a beginner.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-28:i06",
+    "correctText": "trombone",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-28:i07",
+    "correctText": "The trombone was repaired yesterday.",
+    "correctResponseId": "en:lesson-28:session-28:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-28:i08",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-28:session-28:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-28:i09",
+    "correctText": "How long is each lesson?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-28:i10",
+    "correctText": "acoustic",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-28:i11",
+    "correctText": "I have an acoustic guitar.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-28:i12",
+    "correctText": "A room will be prepared.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-28:i13",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-28:session-28:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-28:i14",
+    "correctText": "percussion",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-28:i15",
+    "correctText": "Do you offer percussion lessons?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-28:i16",
+    "correctText": "en:lesson-28:session-28:i16:p1=clarinet\nen:lesson-28:session-28:i16:p2=trombone\nen:lesson-28:session-28:i16:p3=acoustic\nen:lesson-28:session-28:i16:p4=percussion",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-28:i17",
+    "correctText": "started",
+    "correctResponseId": "en:lesson-28:session-28:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-28:i18",
+    "correctText": "The case can be left here.",
+    "correctResponseId": "en:lesson-28:session-28:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-28:i19",
+    "correctText": "The door must be kept closed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-28:i20",
+    "correctText": "Could you show me how to hold it?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-28:i21",
+    "correctText": "Could you play that more slowly?",
+    "correctResponseId": null
+  }
+]

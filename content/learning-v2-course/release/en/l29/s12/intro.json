@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-29:session-12",
+  "learningOutcomeByLocale": {
+    "ru": "как назвать добавки к еде, найти владельца посуды и договориться о помощи.",
+    "uk": "як назвати додатки до їжі, знайти власника посуду й домовитися про допомогу."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-29:session-12:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Чья миска на столе",
+        "uk": "Чия миска на столі"
+      },
+      "bodyByLocale": {
+        "ru": "На общем обеде вы хотите вернуть миску её владелице. Спросите: Who is the woman whose bowl is on the table? — кто та женщина, чья миска на столе? Соберите Who is the woman + whose bowl + is on the table? После the woman добавьте whose bowl: миска принадлежит этой женщине. Затем is on the table указывает, где миска. Her после whose не нужно, иначе принадлежность повторяется.",
+        "uk": "На спільному обіді ви хочете повернути миску її власниці. Запитайте: Who is the woman whose bowl is on the table? — хто та жінка, чия миска на столі? Складіть Who is the woman + whose bowl + is on the table? Після the woman додайте whose bowl: миска належить цій жінці. Потім is on the table указує, де миска. Her після whose не потрібне, інакше належність повторюється."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-12:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-12:intro1:r1",
+              "text": "Who is the woman whose bowl is on the table?"
+            },
+            {
+              "responseId": "en:lesson-29:session-12:intro1:r2",
+              "text": "Who is the woman who bowl is on the table?"
+            },
+            {
+              "responseId": "en:lesson-29:session-12:intro1:r3",
+              "text": "Who is the woman whose her bowl is on the table?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-12:intro1:r1",
+              "text": "Who is the woman whose bowl is on the table?"
+            },
+            {
+              "responseId": "en:lesson-29:session-12:intro1:r2",
+              "text": "Who is the woman who bowl is on the table?"
+            },
+            {
+              "responseId": "en:lesson-29:session-12:intro1:r3",
+              "text": "Who is the woman whose her bowl is on the table?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-29:session-12:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Кто приготовил салат",
+        "uk": "Хто приготував салат"
+      },
+      "bodyByLocale": {
+        "ru": "Гость спрашивает, кто приготовил салат. Ответьте: The salad was made by my friend — салат приготовил мой друг. Соберите The salad + was made + by my friend. Was made сообщает о выполненном действии над салатом. Через by my friend назовите того, кто его приготовил. Made — третья форма make; после was здесь не ставим make.",
+        "uk": "Гість запитує, хто приготував салат. Дайте відповідь: The salad was made by my friend — салат приготував мій друг. Складіть The salad + was made + by my friend. Was made повідомляє про виконану дію над салатом. Через by my friend назвіть того, хто його приготував. Made — третя форма make; після was тут не ставимо make."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-12:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-12:intro2:r1",
+              "text": "The salad was made by my friend."
+            },
+            {
+              "responseId": "en:lesson-29:session-12:intro2:r2",
+              "text": "The salad was made from my friend."
+            },
+            {
+              "responseId": "en:lesson-29:session-12:intro2:r3",
+              "text": "The salad was make by my friend."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-12:intro2:r1",
+              "text": "The salad was made by my friend."
+            },
+            {
+              "responseId": "en:lesson-29:session-12:intro2:r2",
+              "text": "The salad was made from my friend."
+            },
+            {
+              "responseId": "en:lesson-29:session-12:intro2:r3",
+              "text": "The salad was make by my friend."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-29:session-12:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Если понадобится ещё хлеб",
+        "uk": "Якщо знадобиться ще хліб"
+      },
+      "bodyByLocale": {
+        "ru": "Вы договариваетесь принести хлеб, если его не хватит за обедом. Скажите: If we need more bread, I will bring some — если нам понадобится ещё хлеб, я принесу немного. Соберите If we need more bread + I will bring some. В условии после If поставьте need без will. Во второй части используйте will bring: это ваше будущее действие. Когда условие стоит первым, отделите его запятой.",
+        "uk": "Ви домовляєтеся принести хліб, якщо його не вистачить за обідом. Скажіть: If we need more bread, I will bring some — якщо нам знадобиться ще хліб, я принесу трохи. Складіть If we need more bread + I will bring some. В умові після If поставте need без will. У другій частині використайте will bring: це ваша майбутня дія. Коли умова стоїть першою, відокремте її комою."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-12:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-12:intro3:r1",
+              "text": "If we need more bread, I will bring some."
+            },
+            {
+              "responseId": "en:lesson-29:session-12:intro3:r2",
+              "text": "If we will need more bread, I will bring some."
+            },
+            {
+              "responseId": "en:lesson-29:session-12:intro3:r3",
+              "text": "If we need more bread, I will brought some."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-12:intro3:r1",
+              "text": "If we need more bread, I will bring some."
+            },
+            {
+              "responseId": "en:lesson-29:session-12:intro3:r2",
+              "text": "If we will need more bread, I will bring some."
+            },
+            {
+              "responseId": "en:lesson-29:session-12:intro3:r3",
+              "text": "If we need more bread, I will brought some."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "3b783b4066ebfdde27283bf70b12f51bd6ff20c61d5e70a63068b5f14d30bdc2"
+}

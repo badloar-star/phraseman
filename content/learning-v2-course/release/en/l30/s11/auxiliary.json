@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-30:session-11",
+  "entries": [
+    {
+      "interactionId": "en:lesson-30:session-11:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-11:intro1:r2": {
+          "ru": "В пересказе нужен порядок I preferred без did.",
+          "uk": "У переказі потрібен порядок I preferred без did."
+        },
+        "en:lesson-30:session-11:intro1:r3": {
+          "ru": "Нужна форма preferred, не preferring.",
+          "uk": "Потрібна форма preferred, не preferring."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-11:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-11:intro2:r2": {
+          "ru": "Внутри пересказа нужно I liked без did.",
+          "uk": "Усередині переказу потрібне I liked без did."
+        },
+        "en:lesson-30:session-11:intro2:r3": {
+          "ru": "Нужно I liked, не I liking.",
+          "uk": "Потрібне I liked, не I liking."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-11:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-11:intro3:r2": {
+          "ru": "В уточнении нужна форма gave.",
+          "uk": "В уточненні потрібна форма gave."
+        },
+        "en:lesson-30:session-11:intro3:r3": {
+          "ru": "Одна коробка: the box is.",
+          "uk": "Одна коробка: the box is."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "d6c5b6006a82628c961a1b62930c64110c81c1edd5c5b269ec0d6283716fa9a0"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-29:session-10",
+  "learningOutcomeByLocale": {
+    "ru": "как описать текстуру еды и напитков, узнать владельца заказа и предложить помощь.",
+    "uk": "як описати текстуру їжі та напоїв, упізнати власника замовлення й запропонувати допомогу."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-29:session-10:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Чей завтрак готов",
+        "uk": "Чий сніданок готовий"
+      },
+      "bodyByLocale": {
+        "ru": "Официант ищет гостя, чей завтрак готов. Покажите на мужчину: That is the man whose breakfast is ready — вот мужчина, чей завтрак готов. Соберите That is the man + whose breakfast + is ready. После the man добавьте whose breakfast: завтрак принадлежит этому мужчине. Затем is ready сообщает о готовности. После whose не ставим his: связь с владельцем уже выражена.",
+        "uk": "Офіціант шукає гостя, чий сніданок готовий. Покажіть на чоловіка: That is the man whose breakfast is ready — ось чоловік, чий сніданок готовий. Складіть That is the man + whose breakfast + is ready. Після the man додайте whose breakfast: сніданок належить цьому чоловікові. Потім is ready повідомляє про готовність. Після whose не ставимо his: зв’язок із власником уже виражений."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-10:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-10:intro1:r1",
+              "text": "That is the man whose breakfast is ready."
+            },
+            {
+              "responseId": "en:lesson-29:session-10:intro1:r2",
+              "text": "That is the man who breakfast is ready."
+            },
+            {
+              "responseId": "en:lesson-29:session-10:intro1:r3",
+              "text": "That is the man whose his breakfast is ready."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-10:intro1:r1",
+              "text": "That is the man whose breakfast is ready."
+            },
+            {
+              "responseId": "en:lesson-29:session-10:intro1:r2",
+              "text": "That is the man who breakfast is ready."
+            },
+            {
+              "responseId": "en:lesson-29:session-10:intro1:r3",
+              "text": "That is the man whose his breakfast is ready."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-29:session-10:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Кто испёк хлеб",
+        "uk": "Хто спік хліб"
+      },
+      "bodyByLocale": {
+        "ru": "Гость спрашивает, кто испёк хлеб к завтраку. Ответьте: The bread was baked by my sister — хлеб испекла моя сестра. Соберите The bread + was baked + by my sister. Начните с хлеба, затем поставьте was baked, чтобы назвать выполненное с ним действие. Через by my sister укажите, кто его выполнил.",
+        "uk": "Гість запитує, хто спік хліб до сніданку. Дайте відповідь: The bread was baked by my sister — хліб спекла моя сестра. Складіть The bread + was baked + by my sister. Почніть із хліба, потім поставте was baked, щоб назвати виконану з ним дію. Через by my sister укажіть, хто її виконав."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-10:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-10:intro2:r1",
+              "text": "The bread was baked by my sister."
+            },
+            {
+              "responseId": "en:lesson-29:session-10:intro2:r2",
+              "text": "The bread was baked from my sister."
+            },
+            {
+              "responseId": "en:lesson-29:session-10:intro2:r3",
+              "text": "The bread was bake by my sister."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-10:intro2:r1",
+              "text": "The bread was baked by my sister."
+            },
+            {
+              "responseId": "en:lesson-29:session-10:intro2:r2",
+              "text": "The bread was baked from my sister."
+            },
+            {
+              "responseId": "en:lesson-29:session-10:intro2:r3",
+              "text": "The bread was bake by my sister."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-29:session-10:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Если сока не хватит",
+        "uk": "Якщо соку не вистачить"
+      },
+      "bodyByLocale": {
+        "ru": "Вы собираете завтрак и обещаете купить сок, если он понадобится. Скажите: I will buy more juice if we need it — я куплю ещё сока, если он нам понадобится. Соберите I will buy more juice + if we need it. Сначала поставьте I will buy: ваше будущее действие. Затем добавьте условие if we need it; после if здесь используйте need без will. Условие стоит в конце, поэтому запятая не нужна.",
+        "uk": "Ви готуєте сніданок і обіцяєте купити сік, якщо він знадобиться. Скажіть: I will buy more juice if we need it — я куплю ще соку, якщо він нам знадобиться. Складіть I will buy more juice + if we need it. Спочатку поставте I will buy: ваша майбутня дія. Потім додайте умову if we need it; після if тут використайте need без will. Умова стоїть наприкінці, тому кома не потрібна."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-10:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-10:intro3:r1",
+              "text": "I will buy more juice if we need it."
+            },
+            {
+              "responseId": "en:lesson-29:session-10:intro3:r2",
+              "text": "I will buy more juice if we will need it."
+            },
+            {
+              "responseId": "en:lesson-29:session-10:intro3:r3",
+              "text": "I will buy more juice if we needing it."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-10:intro3:r1",
+              "text": "I will buy more juice if we need it."
+            },
+            {
+              "responseId": "en:lesson-29:session-10:intro3:r2",
+              "text": "I will buy more juice if we will need it."
+            },
+            {
+              "responseId": "en:lesson-29:session-10:intro3:r3",
+              "text": "I will buy more juice if we needing it."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "5b2ad788fe7280980845b8d2f0771f77ea04963d0c7646793287f1d4c0bede35"
+}

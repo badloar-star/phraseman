@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-28:session-02",
+  "entries": [
+    {
+      "interactionId": "en:lesson-28:session-02:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-02:intro1:r2": {
+          "ru": "С clothes используем are.",
+          "uk": "З clothes використовуємо are."
+        },
+        "en:lesson-28:session-02:intro1:r3": {
+          "ru": "После are здесь нужна washed: одежду стирают.",
+          "uk": "Після are тут потрібна washed: одяг перуть."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-02:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-02:intro2:r2": {
+          "ru": "Для желания изменить нынешнюю ситуацию используем were.",
+          "uk": "Для бажання змінити теперішню ситуацію використовуємо were."
+        },
+        "en:lesson-28:session-02:intro2:r3": {
+          "ru": "Здесь нужна were bigger; be не подходит.",
+          "uk": "Тут потрібна were bigger; be не підходить."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-02:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-02:intro3:r2": {
+          "ru": "После had нужна closed.",
+          "uk": "Після had потрібна closed."
+        },
+        "en:lesson-28:session-02:intro3:r3": {
+          "ru": "Речь о вчерашнем приходе: arrived.",
+          "uk": "Ідеться про вчорашній прихід: arrived."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c5262a915d5127baff48b1459a3b8c675b825a3ec7e431e265f8b590dca103d1"
+}

@@ -1,0 +1,1052 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-29:session-52",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-29:session-52:i01",
+      "ordinal": 4,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите сестру, можно ли это починить.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-52:i01:audio"
+      ],
+      "accessibilityLabel": "Спросите сестру, можно ли это починить.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-52:i01:audio",
+          "transcript": "Can this be repaired?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Can this be repaired?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-52:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — darn",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-52:i02:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — darn",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-52:i02:audio",
+          "transcript": "darn"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-52:i02:r1",
+            "targetText": "darn",
+            "meaningByLocale": {
+              "ru": "Штопать. Закрывать дырку в ткани или вязании переплетением ниток.",
+              "uk": "Штопати. Закривати дірку в тканині чи в’язаному виробі переплетенням ниток."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "darn",
+          "definitionByLocale": {
+            "ru": "Штопать. Закрывать дырку в ткани или вязании переплетением ниток.",
+            "uk": "Штопати. Закривати дірку в тканині чи в’язаному виробі переплетенням ниток."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-52:i03",
+      "ordinal": 6,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите сестру заштопать этот носок.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-52:i03:audio"
+      ],
+      "accessibilityLabel": "Попросите сестру заштопать этот носок.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-52:i03:audio",
+          "transcript": "Could you darn this sock?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you darn this sock?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-52:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы сами починили носок.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-52:i04:r1",
+          "text": "I repaired"
+        },
+        {
+          "responseId": "en:lesson-29:session-52:i04:r2",
+          "text": "I repaired it"
+        },
+        {
+          "responseId": "en:lesson-29:session-52:i04:r3",
+          "text": "me repaired"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы сами починили носок.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы сами починили носок.",
+          "uk": "Ви самі полагодили шкарпетку."
+        },
+        "gappedTargetPhrase": "The sock ___ is ready.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-52:i04:r1",
+            "text": "I repaired"
+          },
+          {
+            "responseId": "en:lesson-29:session-52:i04:r2",
+            "text": "I repaired it"
+          },
+          {
+            "responseId": "en:lesson-29:session-52:i04:r3",
+            "text": "me repaired"
+          }
+        ],
+        "testedDimension": "Вы сами починили носок.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-52:i04:r2",
+            "correct": false,
+            "testedDimension": "Вы сами починили носок.",
+            "feedbackByLocale": {
+              "ru": "It повторяет носок.",
+              "uk": "It повторює шкарпетку."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-52:i04:r3",
+            "correct": false,
+            "testedDimension": "Вы сами починили носок.",
+            "feedbackByLocale": {
+              "ru": "Нужен исполнитель I.",
+              "uk": "Потрібен виконавець I."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-52:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что починенный вами носок готов.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что починенный вами носок готов.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The sock I repaired is ready.",
+        "localizedMeaning": {
+          "ru": "Скажите, что починенный вами носок готов.",
+          "uk": "Скажіть, що полагоджена вами шкарпетка готова."
+        },
+        "orderedTokens": [
+          "The",
+          "sock",
+          "I",
+          "repaired",
+          "is",
+          "ready"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-52:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bobbin",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-52:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bobbin",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-52:i06:audio",
+          "transcript": "bobbin"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-52:i06:r1",
+            "targetText": "bobbin",
+            "meaningByLocale": {
+              "ru": "Шпулька. Небольшая катушка с нитью, которую используют в швейной машине.",
+              "uk": "Шпулька. Невелика котушка з ниткою, яку використовують у швейній машині."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bobbin",
+          "definitionByLocale": {
+            "ru": "Шпулька. Небольшая катушка с нитью, которую используют в швейной машине.",
+            "uk": "Шпулька. Невелика котушка з ниткою, яку використовують у швейній машині."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-52:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-52:i07:r1",
+          "text": "Where is the bobbin?"
+        },
+        {
+          "responseId": "en:lesson-29:session-52:i07:r2",
+          "text": "Where is the needle?"
+        },
+        {
+          "responseId": "en:lesson-29:session-52:i07:r3",
+          "text": "Where is the thread?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-52:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-52:i07:audio",
+          "transcript": "Where is the bobbin?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-52:i07:r1",
+            "targetText": "Where is the bobbin?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-52:i07:r2",
+            "targetText": "Where is the needle?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-52:i07:r3",
+            "targetText": "Where is the thread?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-52:i07:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Where is the bobbin?",
+              "uk": "У записі звучить Where is the bobbin?"
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-52:i07:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Where is the bobbin?",
+              "uk": "У записі звучить Where is the bobbin?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-52:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, кто укоротил рукава.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-52:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте, кто укоротил рукава.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-52:i08:audio",
+          "transcript": "She is the woman who shortened my sleeves."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She is the woman who shortened my sleeves.",
+        "orderedTokens": [
+          "She",
+          "is",
+          "the",
+          "woman",
+          "who",
+          "shortened",
+          "my",
+          "sleeves"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-52:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Эта женщина укоротила вам рукава.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-52:i09:r1",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-52:i09:r2",
+          "text": "who she"
+        },
+        {
+          "responseId": "en:lesson-29:session-52:i09:r3",
+          "text": "where"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Эта женщина укоротила вам рукава.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Эта женщина укоротила вам рукава.",
+          "uk": "Ця жінка вкоротила вам рукави."
+        },
+        "gappedTargetPhrase": "She is the woman ___ shortened my sleeves.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-52:i09:r1",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-52:i09:r2",
+            "text": "who she"
+          },
+          {
+            "responseId": "en:lesson-29:session-52:i09:r3",
+            "text": "where"
+          }
+        ],
+        "testedDimension": "Эта женщина укоротила вам рукава.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-52:i09:r2",
+            "correct": false,
+            "testedDimension": "Эта женщина укоротила вам рукава.",
+            "feedbackByLocale": {
+              "ru": "Who уже называет исполнителя; she лишнее.",
+              "uk": "Who вже називає виконавця; she зайве."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-52:i09:r3",
+            "correct": false,
+            "testedDimension": "Эта женщина укоротила вам рукава.",
+            "feedbackByLocale": {
+              "ru": "Для человека здесь нужно who.",
+              "uk": "Для людини тут потрібне who."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-52:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — tack",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-52:i10:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — tack",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-52:i10:audio",
+          "transcript": "tack"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-52:i10:r1",
+            "targetText": "tack",
+            "meaningByLocale": {
+              "ru": "Смётывать ткань. Временно скреплять её длинными свободными стежками перед окончательным швом.",
+              "uk": "Зметувати тканину. Тимчасово скріплювати її довгими вільними стібками перед остаточним швом."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tack",
+          "definitionByLocale": {
+            "ru": "Смётывать ткань. Временно скреплять её длинными свободными стежками перед окончательным швом.",
+            "uk": "Зметувати тканину. Тимчасово скріплювати її довгими вільними стібками перед остаточним швом."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-52:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите сестру сначала сметать ткань.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-52:i11:audio"
+      ],
+      "accessibilityLabel": "Попросите сестру сначала сметать ткань.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-52:i11:audio",
+          "transcript": "Could you tack the fabric first?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you tack the fabric first?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-52:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что цвет нитки подходит.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что цвет нитки подходит.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This thread is the right colour.",
+        "localizedMeaning": {
+          "ru": "Скажите, что цвет нитки подходит.",
+          "uk": "Скажіть, що колір нитки підходить."
+        },
+        "orderedTokens": [
+          "This thread",
+          "is",
+          "the right colour"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-52:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — seamstress",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-52:i13:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — seamstress",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-52:i13:audio",
+          "transcript": "seamstress"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-52:i13:r1",
+            "targetText": "seamstress",
+            "meaningByLocale": {
+              "ru": "Швея. Женщина, которая профессионально шьёт или чинит одежду.",
+              "uk": "Швачка. Жінка, яка професійно шиє або лагодить одяг."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "seamstress",
+          "definitionByLocale": {
+            "ru": "Швея. Женщина, которая профессионально шьёт или чинит одежду.",
+            "uk": "Швачка. Жінка, яка професійно шиє або лагодить одяг."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-52:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-52:i14:r1",
+          "text": "The seamstress shortened my sleeves."
+        },
+        {
+          "responseId": "en:lesson-29:session-52:i14:r2",
+          "text": "My sister shortened my sleeves."
+        },
+        {
+          "responseId": "en:lesson-29:session-52:i14:r3",
+          "text": "My neighbour shortened my sleeves."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-52:i14:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-52:i14:audio",
+          "transcript": "The seamstress shortened my sleeves."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-52:i14:r1",
+            "targetText": "The seamstress shortened my sleeves.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-52:i14:r2",
+            "targetText": "My sister shortened my sleeves.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-52:i14:r3",
+            "targetText": "My neighbour shortened my sleeves.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-52:i14:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The seamstress shortened my sleeves.",
+              "uk": "У записі звучить The seamstress shortened my sleeves."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-52:i14:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The seamstress shortened my sleeves.",
+              "uk": "У записі звучить The seamstress shortened my sleeves."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-52:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-29:session-52:i15:p1",
+            "target": "darn",
+            "meaningByLocale": {
+              "ru": "штопать",
+              "uk": "штопати"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-52:i15:p2",
+            "target": "tack",
+            "meaningByLocale": {
+              "ru": "смётывать ткань",
+              "uk": "зметувати тканину"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-52:i15:p3",
+            "target": "bobbin",
+            "meaningByLocale": {
+              "ru": "шпулька",
+              "uk": "шпулька"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-52:i15:p4",
+            "target": "seamstress",
+            "meaningByLocale": {
+              "ru": "швея",
+              "uk": "швачка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "darn",
+          "tack",
+          "bobbin",
+          "seamstress"
+        ],
+        "rightColumn": [
+          "штопать",
+          "смётывать ткань",
+          "шпулька",
+          "швея"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-52:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: вы ищете шпульку или иглу?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-52:i16:r1",
+          "text": "Where is the bobbin?"
+        },
+        {
+          "responseId": "en:lesson-29:session-52:i16:r2",
+          "text": "Where is the needle?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-52:i16:audioA",
+        "en:lesson-29:session-52:i16:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: вы ищете шпульку или иглу?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "Where is the bobbin?",
+        "contrastB": "Where is the needle?",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-29:session-52:i16:audioA",
+          "transcript": "Where is the bobbin?"
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-29:session-52:i16:audioB",
+          "transcript": "Where is the needle?"
+        },
+        "testedPhoneticContrast": "Послушайте: вы ищете шпульку или иглу?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-52:i16:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: вы ищете шпульку или иглу?",
+            "feedbackByLocale": {
+              "ru": "Звучит bobbin — шпулька.",
+              "uk": "Звучить bobbin — шпулька."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-52:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы показываете мастерскую по ремонту одежды.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-52:i17:r1",
+          "text": "where"
+        },
+        {
+          "responseId": "en:lesson-29:session-52:i17:r2",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-52:i17:r3",
+          "text": "whose"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы показываете мастерскую по ремонту одежды.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы показываете мастерскую по ремонту одежды.",
+          "uk": "Ви показуєте майстерню з ремонту одягу."
+        },
+        "gappedTargetPhrase": "This is the shop ___ they repair clothes.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-52:i17:r1",
+            "text": "where"
+          },
+          {
+            "responseId": "en:lesson-29:session-52:i17:r2",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-52:i17:r3",
+            "text": "whose"
+          }
+        ],
+        "testedDimension": "Вы показываете мастерскую по ремонту одежды.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-52:i17:r2",
+            "correct": false,
+            "testedDimension": "Вы показываете мастерскую по ремонту одежды.",
+            "feedbackByLocale": {
+              "ru": "Для места используем where.",
+              "uk": "Для місця використовуємо where."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-52:i17:r3",
+            "correct": false,
+            "testedDimension": "Вы показываете мастерскую по ремонту одежды.",
+            "feedbackByLocale": {
+              "ru": "Whose обозначает принадлежность; здесь место.",
+              "uk": "Whose позначає належність; тут місце."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-52:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, где чинят одежду.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-52:i18:audio"
+      ],
+      "accessibilityLabel": "Послушайте, где чинят одежду.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-52:i18:audio",
+          "transcript": "This is the shop where they repair clothes."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This is the shop where they repair clothes.",
+        "orderedTokens": [
+          "This",
+          "is",
+          "the",
+          "shop",
+          "where",
+          "they",
+          "repair",
+          "clothes"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-52:i19",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите швее, что рукава слишком длинные.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-52:i19:audio"
+      ],
+      "accessibilityLabel": "Скажите швее, что рукава слишком длинные.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-52:i19:audio",
+          "transcript": "These sleeves are too long."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "These sleeves are too long.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-52:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите, когда можно забрать одежду.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите, когда можно забрать одежду.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "When can I collect it?",
+        "localizedMeaning": {
+          "ru": "Спросите, когда можно забрать одежду.",
+          "uk": "Запитайте, коли можна забрати одяг."
+        },
+        "orderedTokens": [
+          "When",
+          "can",
+          "I",
+          "collect",
+          "it"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-52:i21",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Швея починила вашу куртку.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-52:i21:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-29:session-52:i21:r2",
+          "text": "whose"
+        },
+        {
+          "responseId": "en:lesson-29:session-52:i21:r3",
+          "text": "who"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Швея починила вашу куртку.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Швея починила вашу куртку.",
+          "uk": "Швачка полагодила вашу куртку."
+        },
+        "gappedTargetPhrase": "My jacket was repaired ___ the seamstress.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-52:i21:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-29:session-52:i21:r2",
+            "text": "whose"
+          },
+          {
+            "responseId": "en:lesson-29:session-52:i21:r3",
+            "text": "who"
+          }
+        ],
+        "testedDimension": "Швея починила вашу куртку.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-52:i21:r2",
+            "correct": false,
+            "testedDimension": "Швея починила вашу куртку.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя после was repaired вводим через by.",
+              "uk": "Виконавця після was repaired вводимо через by."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-52:i21:r3",
+            "correct": false,
+            "testedDimension": "Швея починила вашу куртку.",
+            "feedbackByLocale": {
+              "ru": "Нужна связка by, а не who.",
+              "uk": "Потрібна зв’язка by, а не who."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "6837caa0c35780404485b57e152305e46a62bdb34b0b3e6e1d2335505f7854a4"
+}

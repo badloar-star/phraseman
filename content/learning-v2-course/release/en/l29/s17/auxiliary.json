@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-29:session-17",
+  "entries": [
+    {
+      "interactionId": "en:lesson-29:session-17:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-17:intro1:r2": {
+          "ru": "There повторяет место, уже обозначенное where.",
+          "uk": "There повторює місце, уже позначене where."
+        },
+        "en:lesson-29:session-17:intro1:r3": {
+          "ru": "Для места встречи используем where.",
+          "uk": "Для місця зустрічі використовуємо where."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-17:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-17:intro2:r2": {
+          "ru": "Внутри уточнения нужен порядок you can pay.",
+          "uk": "Усередині уточнення потрібен порядок you can pay."
+        },
+        "en:lesson-29:session-17:intro2:r3": {
+          "ru": "Для места здесь нужна where.",
+          "uk": "Для місця тут потрібна where."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-17:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-17:intro3:r2": {
+          "ru": "После where в этом уточнении нужен порядок you stayed.",
+          "uk": "Після where в цьому уточненні потрібен порядок you stayed."
+        },
+        "en:lesson-29:session-17:intro3:r3": {
+          "ru": "Where уже связывает действие с отелем, there не нужно.",
+          "uk": "Where вже пов’язує дію з готелем, there не потрібне."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "4a4c8af7676b67dafb33dc38e180cfac1ce88f19c27193757612c9b484dde628"
+}

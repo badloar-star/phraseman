@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-28:session-27",
+  "learningOutcomeByLocale": {
+    "ru": "как понять условия выдачи, обсудить состояние машины и рассказать о получении заказа.",
+    "uk": "як зрозуміти умови видачі, обговорити стан машини й розповісти про отримання замовлення."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-28:session-27:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Подпись перед выдачей",
+        "uk": "Підпис перед видачею"
+      },
+      "bodyByLocale": {
+        "ru": "Вы забираете машину напрокат. Сотрудник показывает место для вашей подписи: The form must be signed — бланк необходимо подписать. Соберите The form + must + be + signed. Must передаёт обязательное условие. После него поставьте be, затем signed — форму sign с окончанием -ed. Бланк сам ничего не делает: действие выполняют над ним.",
+        "uk": "Ви забираєте машину напрокат. Працівник показує місце для вашого підпису: The form must be signed — бланк необхідно підписати. Складіть The form + must + be + signed. Must передає обов’язкову умову. Після нього поставте be, потім signed — форму sign із закінченням -ed. Бланк сам нічого не робить: дію виконують над ним."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-27:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-27:intro1:r1",
+              "text": "The form must be signed."
+            },
+            {
+              "responseId": "en:lesson-28:session-27:intro1:r2",
+              "text": "The form must signed."
+            },
+            {
+              "responseId": "en:lesson-28:session-27:intro1:r3",
+              "text": "The form must be sign."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-27:intro1:r1",
+              "text": "The form must be signed."
+            },
+            {
+              "responseId": "en:lesson-28:session-27:intro1:r2",
+              "text": "The form must signed."
+            },
+            {
+              "responseId": "en:lesson-28:session-27:intro1:r3",
+              "text": "The form must be sign."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-28:session-27:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Машину ещё готовят",
+        "uk": "Машину ще готують"
+      },
+      "bodyByLocale": {
+        "ru": "Ваша машина пока грязная. Сотрудник обещает помыть её перед выдачей: The car will be washed — машину помоют. Начните с The car, добавьте will be, затем washed — форму wash с окончанием -ed. Will be washed показывает будущее действие над машиной. В этой конструкции нельзя пропускать be.",
+        "uk": "Ваша машина поки що брудна. Працівник обіцяє помити її перед видачею: The car will be washed — машину помиють. Почніть із The car, додайте will be, потім washed — форму wash із закінченням -ed. Will be washed показує майбутню дію над машиною. У цій конструкції не можна пропускати be."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-27:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-27:intro2:r1",
+              "text": "The car will be washed."
+            },
+            {
+              "responseId": "en:lesson-28:session-27:intro2:r2",
+              "text": "The car will washed."
+            },
+            {
+              "responseId": "en:lesson-28:session-27:intro2:r3",
+              "text": "The car will be wash."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-27:intro2:r1",
+              "text": "The car will be washed."
+            },
+            {
+              "responseId": "en:lesson-28:session-27:intro2:r2",
+              "text": "The car will washed."
+            },
+            {
+              "responseId": "en:lesson-28:session-27:intro2:r3",
+              "text": "The car will be wash."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-28:session-27:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Повреждение уже было",
+        "uk": "Пошкодження вже було"
+      },
+      "bodyByLocale": {
+        "ru": "При осмотре вы замечаете трещину в зеркале. Сотрудник объясняет, что зеркало повредили вчера: The mirror was damaged yesterday — зеркало повредили вчера. Соберите The mirror + was + damaged + yesterday. Для одного зеркала в прошедшем времени нужна was. Затем поставьте damaged — форму damage с окончанием -d. Yesterday указывает, когда это произошло.",
+        "uk": "Під час огляду ви помічаєте тріщину в дзеркалі. Працівник пояснює, що дзеркало пошкодили вчора: The mirror was damaged yesterday — дзеркало пошкодили вчора. Складіть The mirror + was + damaged + yesterday. Для одного дзеркала в минулому часі потрібна was. Потім поставте damaged — форму damage із закінченням -d. Yesterday указує, коли це сталося."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-27:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-27:intro3:r1",
+              "text": "The mirror was damaged yesterday."
+            },
+            {
+              "responseId": "en:lesson-28:session-27:intro3:r2",
+              "text": "The mirror were damaged yesterday."
+            },
+            {
+              "responseId": "en:lesson-28:session-27:intro3:r3",
+              "text": "The mirror was damage yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-27:intro3:r1",
+              "text": "The mirror was damaged yesterday."
+            },
+            {
+              "responseId": "en:lesson-28:session-27:intro3:r2",
+              "text": "The mirror were damaged yesterday."
+            },
+            {
+              "responseId": "en:lesson-28:session-27:intro3:r3",
+              "text": "The mirror was damage yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ff07e889817fa7148d37028d81740725a13211c7ff36b5f39bcceee7c5f93e10"
+}

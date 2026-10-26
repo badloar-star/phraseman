@@ -1,0 +1,1112 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-28:session-39",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-28:session-39:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-39:i01:r1",
+          "text": "The photos are ready to collect."
+        },
+        {
+          "responseId": "en:lesson-28:session-39:i01:r2",
+          "text": "The photos will be ready tomorrow."
+        },
+        {
+          "responseId": "en:lesson-28:session-39:i01:r3",
+          "text": "The frames are ready to collect."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-39:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-39:i01:audio",
+          "transcript": "The photos are ready to collect."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-39:i01:r1",
+            "targetText": "The photos are ready to collect.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-39:i01:r2",
+            "targetText": "The photos will be ready tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-39:i01:r3",
+            "targetText": "The frames are ready to collect.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-39:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The photos are ready to collect.",
+              "uk": "У записі звучить The photos are ready to collect."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-39:i01:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The photos are ready to collect.",
+              "uk": "У записі звучить The photos are ready to collect."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-39:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — selfie",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-39:i02:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — selfie",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-39:i02:audio",
+          "transcript": "selfie"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-39:i02:r1",
+            "targetText": "selfie",
+            "meaningByLocale": {
+              "ru": "Селфи. Фотография самого себя, обычно сделанная на телефон; на ней могут быть и другие люди.",
+              "uk": "Селфі. Фотографія самого себе, зазвичай зроблена на телефон; на ній можуть бути й інші люди."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "selfie",
+          "definitionByLocale": {
+            "ru": "Селфи. Фотография самого себя, обычно сделанная на телефон; на ней могут быть и другие люди.",
+            "uk": "Селфі. Фотографія самого себе, зазвичай зроблена на телефон; на ній можуть бути й інші люди."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-39:i03",
+      "ordinal": 6,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Предложите сделать совместное селфи.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-39:i03:audio"
+      ],
+      "accessibilityLabel": "Предложите сделать совместное селфи.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-39:i03:audio",
+          "transcript": "Shall we take a selfie together?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Shall we take a selfie together?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-39:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы называете папу, который сделал снимок.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-39:i04:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-28:session-39:i04:r2",
+          "text": "of"
+        },
+        {
+          "responseId": "en:lesson-28:session-39:i04:r3",
+          "text": "at"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы называете папу, который сделал снимок.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы называете папу, который сделал снимок.",
+          "uk": "Ви називаєте тата, який зробив знімок."
+        },
+        "gappedTargetPhrase": "The photo was taken ___ my dad.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-39:i04:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-28:session-39:i04:r2",
+            "text": "of"
+          },
+          {
+            "responseId": "en:lesson-28:session-39:i04:r3",
+            "text": "at"
+          }
+        ],
+        "testedDimension": "Вы называете папу, который сделал снимок.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-39:i04:r2",
+            "correct": false,
+            "testedDimension": "Вы называете папу, который сделал снимок.",
+            "feedbackByLocale": {
+              "ru": "Автора снимка вводит by.",
+              "uk": "Автора знімка вводить by."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-39:i04:r3",
+            "correct": false,
+            "testedDimension": "Вы называете папу, который сделал снимок.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна by my dad.",
+              "uk": "Тут потрібна by my dad."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-39:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте день выдачи заказа.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-39:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте день выдачи заказа.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-39:i05:audio",
+          "transcript": "The photos can be collected on Friday."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The photos can be collected on Friday.",
+        "orderedTokens": [
+          "The",
+          "photos",
+          "can",
+          "be",
+          "collected",
+          "on",
+          "Friday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-39:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — snapshot",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-39:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — snapshot",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-39:i06:audio",
+          "transcript": "snapshot"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-39:i06:r1",
+            "targetText": "snapshot",
+            "meaningByLocale": {
+              "ru": "Снимок. Быстрая фотография, часто сделанная без специальной подготовки.",
+              "uk": "Знімок. Швидка фотографія, часто зроблена без спеціальної підготовки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "snapshot",
+          "definitionByLocale": {
+            "ru": "Снимок. Быстрая фотография, часто сделанная без специальной подготовки.",
+            "uk": "Знімок. Швидка фотографія, часто зроблена без спеціальної підготовки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-39:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-39:i07:r1",
+          "text": "This is a snapshot of my family."
+        },
+        {
+          "responseId": "en:lesson-28:session-39:i07:r2",
+          "text": "This is a snapshot of my garden."
+        },
+        {
+          "responseId": "en:lesson-28:session-39:i07:r3",
+          "text": "This is a drawing of my family."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-39:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-39:i07:audio",
+          "transcript": "This is a snapshot of my family."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-39:i07:r1",
+            "targetText": "This is a snapshot of my family.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-39:i07:r2",
+            "targetText": "This is a snapshot of my garden.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-39:i07:r3",
+            "targetText": "This is a drawing of my family.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-39:i07:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This is a snapshot of my family.",
+              "uk": "У записі звучить This is a snapshot of my family."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-39:i07:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This is a snapshot of my family.",
+              "uk": "У записі звучить This is a snapshot of my family."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-39:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Спросите, можно ли напечатать выбранную фотографию.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-39:i08:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-28:session-39:i08:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-28:session-39:i08:r3",
+          "text": "was"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите, можно ли напечатать выбранную фотографию.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите, можно ли напечатать выбранную фотографию.",
+          "uk": "Запитайте, чи можна надрукувати вибрану фотографію."
+        },
+        "gappedTargetPhrase": "Can this photo ___ printed?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-39:i08:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-28:session-39:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-28:session-39:i08:r3",
+            "text": "was"
+          }
+        ],
+        "testedDimension": "Спросите, можно ли напечатать выбранную фотографию.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-39:i08:r2",
+            "correct": false,
+            "testedDimension": "Спросите, можно ли напечатать выбранную фотографию.",
+            "feedbackByLocale": {
+              "ru": "После can нужна be.",
+              "uk": "Після can потрібна be."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-39:i08:r3",
+            "correct": false,
+            "testedDimension": "Спросите, можно ли напечатать выбранную фотографию.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем can be printed.",
+              "uk": "Тут використовуємо can be printed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-39:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточните цену печати.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-39:i09:audio"
+      ],
+      "accessibilityLabel": "Уточните цену печати.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-39:i09:audio",
+          "transcript": "How much does it cost to print this?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "How much does it cost to print this?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-39:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — collage",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-39:i10:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — collage",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-39:i10:audio",
+          "transcript": "collage"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-39:i10:r1",
+            "targetText": "collage",
+            "meaningByLocale": {
+              "ru": "Коллаж. Изображение из нескольких объединённых фотографий или других изображений.",
+              "uk": "Колаж. Зображення з кількох поєднаних фотографій або інших зображень."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "collage",
+          "definitionByLocale": {
+            "ru": "Коллаж. Изображение из нескольких объединённых фотографий или других изображений.",
+            "uk": "Колаж. Зображення з кількох поєднаних фотографій або інших зображень."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-39:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что коллаж — подарок вашей маме.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что коллаж — подарок вашей маме.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The collage is a gift for my mum.",
+        "localizedMeaning": {
+          "ru": "Скажите, что коллаж — подарок вашей маме.",
+          "uk": "Скажіть, що колаж — подарунок вашій мамі."
+        },
+        "orderedTokens": [
+          "The",
+          "collage",
+          "is",
+          "a",
+          "gift",
+          "for",
+          "my",
+          "mum"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-39:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы хотели бы, чтобы снимок был чётче.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-39:i12:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-28:session-39:i12:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-28:session-39:i12:r3",
+          "text": "will be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы хотели бы, чтобы снимок был чётче.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы хотели бы, чтобы снимок был чётче.",
+          "uk": "Ви хотіли б, щоб знімок був чіткішим."
+        },
+        "gappedTargetPhrase": "I wish the photo ___ clearer.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-39:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-28:session-39:i12:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-28:session-39:i12:r3",
+            "text": "will be"
+          }
+        ],
+        "testedDimension": "Вы хотели бы, чтобы снимок был чётче.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-39:i12:r2",
+            "correct": false,
+            "testedDimension": "Вы хотели бы, чтобы снимок был чётче.",
+            "feedbackByLocale": {
+              "ru": "После wish здесь нужна were.",
+              "uk": "Після wish тут потрібна were."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-39:i12:r3",
+            "correct": false,
+            "testedDimension": "Вы хотели бы, чтобы снимок был чётче.",
+            "feedbackByLocale": {
+              "ru": "Желаемое сейчас: were clearer.",
+              "uk": "Бажане зараз: were clearer."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-39:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-39:i13:r1",
+          "text": "The photo was taken in our garden."
+        },
+        {
+          "responseId": "en:lesson-28:session-39:i13:r2",
+          "text": "The photo was taken in our kitchen."
+        },
+        {
+          "responseId": "en:lesson-28:session-39:i13:r3",
+          "text": "The photo was taken in our street."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-39:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-39:i13:audio",
+          "transcript": "The photo was taken in our garden."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-39:i13:r1",
+            "targetText": "The photo was taken in our garden.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-39:i13:r2",
+            "targetText": "The photo was taken in our kitchen.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-39:i13:r3",
+            "targetText": "The photo was taken in our street.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-39:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The photo was taken in our garden.",
+              "uk": "У записі звучить The photo was taken in our garden."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-39:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The photo was taken in our garden.",
+              "uk": "У записі звучить The photo was taken in our garden."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-39:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — enlargement",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-39:i14:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — enlargement",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-39:i14:audio",
+          "transcript": "enlargement"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-39:i14:r1",
+            "targetText": "enlargement",
+            "meaningByLocale": {
+              "ru": "Увеличенная копия фотографии. Отпечаток большего размера.",
+              "uk": "Збільшена копія фотографії. Відбиток більшого розміру."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "enlargement",
+          "definitionByLocale": {
+            "ru": "Увеличенная копия фотографии. Отпечаток большего размера.",
+            "uk": "Збільшена копія фотографії. Відбиток більшого розміру."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-39:i15",
+      "ordinal": 18,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите увеличенную копию.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-39:i15:audio"
+      ],
+      "accessibilityLabel": "Попросите увеличенную копию.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-39:i15:audio",
+          "transcript": "Could I have an enlargement, please?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could I have an enlargement, please?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-39:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводами.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводами.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-28:session-39:i16:p1",
+            "target": "selfie",
+            "meaningByLocale": {
+              "ru": "селфи",
+              "uk": "селфі"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-39:i16:p2",
+            "target": "snapshot",
+            "meaningByLocale": {
+              "ru": "быстрый снимок",
+              "uk": "швидкий знімок"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-39:i16:p3",
+            "target": "collage",
+            "meaningByLocale": {
+              "ru": "коллаж",
+              "uk": "колаж"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-39:i16:p4",
+            "target": "enlargement",
+            "meaningByLocale": {
+              "ru": "увеличенная копия фотографии",
+              "uk": "збільшена копія фотографії"
+            }
+          }
+        ],
+        "leftColumn": [
+          "selfie",
+          "snapshot",
+          "collage",
+          "enlargement"
+        ],
+        "rightColumn": [
+          "селфи",
+          "быстрый снимок",
+          "коллаж",
+          "увеличенная копия фотографии"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-39:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Магазин закрылся до вашего прихода.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-39:i17:r1",
+          "text": "closed"
+        },
+        {
+          "responseId": "en:lesson-28:session-39:i17:r2",
+          "text": "close"
+        },
+        {
+          "responseId": "en:lesson-28:session-39:i17:r3",
+          "text": "closing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Магазин закрылся до вашего прихода.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Магазин закрылся до вашего прихода.",
+          "uk": "Магазин зачинився до вашого приходу."
+        },
+        "gappedTargetPhrase": "The shop had ___ by the time I arrived.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-39:i17:r1",
+            "text": "closed"
+          },
+          {
+            "responseId": "en:lesson-28:session-39:i17:r2",
+            "text": "close"
+          },
+          {
+            "responseId": "en:lesson-28:session-39:i17:r3",
+            "text": "closing"
+          }
+        ],
+        "testedDimension": "Магазин закрылся до вашего прихода.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-39:i17:r2",
+            "correct": false,
+            "testedDimension": "Магазин закрылся до вашего прихода.",
+            "feedbackByLocale": {
+              "ru": "После had нужна closed.",
+              "uk": "Після had потрібна closed."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-39:i17:r3",
+            "correct": false,
+            "testedDimension": "Магазин закрылся до вашего прихода.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем had closed.",
+              "uk": "Тут використовуємо had closed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-39:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что фотографии здесь печатают ежедневно.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что фотографии здесь печатают ежедневно.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Photos are printed here every day.",
+        "localizedMeaning": {
+          "ru": "Скажите, что фотографии здесь печатают ежедневно.",
+          "uk": "Скажіть, що фотографії тут друкують щодня."
+        },
+        "orderedTokens": [
+          "Photos",
+          "are",
+          "printed",
+          "here every day"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-39:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, кто выбрал фотографии.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-39:i19:audio"
+      ],
+      "accessibilityLabel": "Послушайте, кто выбрал фотографии.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-39:i19:audio",
+          "transcript": "The photos were chosen by my sister."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The photos were chosen by my sister.",
+        "orderedTokens": [
+          "The",
+          "photos",
+          "were",
+          "chosen",
+          "by",
+          "my",
+          "sister"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-39:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сотрудник сообщает, что заказ напечатают в пятницу.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-39:i20:r1",
+          "text": "printed"
+        },
+        {
+          "responseId": "en:lesson-28:session-39:i20:r2",
+          "text": "print"
+        },
+        {
+          "responseId": "en:lesson-28:session-39:i20:r3",
+          "text": "printing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сотрудник сообщает, что заказ напечатают в пятницу.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сотрудник сообщает, что заказ напечатают в пятницу.",
+          "uk": "Працівник повідомляє, що замовлення надрукують у п’ятницю."
+        },
+        "gappedTargetPhrase": "The photos will be ___ on Friday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-39:i20:r1",
+            "text": "printed"
+          },
+          {
+            "responseId": "en:lesson-28:session-39:i20:r2",
+            "text": "print"
+          },
+          {
+            "responseId": "en:lesson-28:session-39:i20:r3",
+            "text": "printing"
+          }
+        ],
+        "testedDimension": "Сотрудник сообщает, что заказ напечатают в пятницу.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-39:i20:r2",
+            "correct": false,
+            "testedDimension": "Сотрудник сообщает, что заказ напечатают в пятницу.",
+            "feedbackByLocale": {
+              "ru": "После will be здесь нужна printed.",
+              "uk": "Після will be тут потрібна printed."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-39:i20:r3",
+            "correct": false,
+            "testedDimension": "Сотрудник сообщает, что заказ напечатают в пятницу.",
+            "feedbackByLocale": {
+              "ru": "Будущее действие над снимками: will be printed.",
+              "uk": "Майбутня дія зі знімками: will be printed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-39:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите показать рамку большего размера.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-39:i21:audio"
+      ],
+      "accessibilityLabel": "Попросите показать рамку большего размера.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-39:i21:audio",
+          "transcript": "Could you show me a bigger frame?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you show me a bigger frame?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "a963802aa947014c16ecedb595bcba09230f336ea0a39cd843e2743e2e59b41e"
+}

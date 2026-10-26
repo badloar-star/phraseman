@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-29:session-50",
+  "learningOutcomeByLocale": {
+    "ru": "как спросить об оттенке смысла, буквальном значении, неоднозначности и иронии.",
+    "uk": "як запитати про відтінок змісту, буквальне значення, неоднозначність та іронію."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-29:session-50:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Какое сообщение",
+        "uk": "Яке повідомлення"
+      },
+      "bodyByLocale": {
+        "ru": "Вы говорите сестре, что не поняли присланное ею сообщение. Скажите: The message you sent was unclear — сообщение, которое ты отправила, было непонятным. Соберите The message + you sent + was unclear. В уточнении you называет сестру, к которой вы обращаетесь, а message — отправленную вещь. Поэтому that перед you можно опустить; it после sent не добавляем.",
+        "uk": "Ви кажете сестрі, що не зрозуміли надіслане нею повідомлення. Скажіть: The message you sent was unclear — повідомлення, яке ти надіслала, було незрозумілим. Складіть The message + you sent + was unclear. В уточненні you називає сестру, до якої ви звертаєтеся, а message — надіслану річ. Тому that перед you можна пропустити; it після sent не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-50:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-50:intro1:r1",
+              "text": "The message you sent was unclear."
+            },
+            {
+              "responseId": "en:lesson-29:session-50:intro1:r2",
+              "text": "The message you sent it was unclear."
+            },
+            {
+              "responseId": "en:lesson-29:session-50:intro1:r3",
+              "text": "The message your sent was unclear."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-50:intro1:r1",
+              "text": "The message you sent was unclear."
+            },
+            {
+              "responseId": "en:lesson-29:session-50:intro1:r2",
+              "text": "The message you sent it was unclear."
+            },
+            {
+              "responseId": "en:lesson-29:session-50:intro1:r3",
+              "text": "The message your sent was unclear."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-29:session-50:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Кто может объяснить",
+        "uk": "Хто може пояснити"
+      },
+      "bodyByLocale": {
+        "ru": "Вы просите сестру объяснить её сообщение: именно она знает, что хотела сказать. Скажите: You are the person who can explain it — ты тот человек, который может это объяснить. Соберите You are the person + who can explain it. Who обозначает исполнителя действия внутри уточнения. Поэтому who не убираем и второе you после него не добавляем.",
+        "uk": "Ви просите сестру пояснити її повідомлення: саме вона знає, що хотіла сказати. Скажіть: You are the person who can explain it — ти та людина, яка може це пояснити. Складіть You are the person + who can explain it. Who позначає виконавця дії всередині уточнення. Тому who не прибираємо й друге you після нього не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-50:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-50:intro2:r1",
+              "text": "You are the person who can explain it."
+            },
+            {
+              "responseId": "en:lesson-29:session-50:intro2:r2",
+              "text": "You are the person can explain it."
+            },
+            {
+              "responseId": "en:lesson-29:session-50:intro2:r3",
+              "text": "You are the person who you can explain it."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-50:intro2:r1",
+              "text": "You are the person who can explain it."
+            },
+            {
+              "responseId": "en:lesson-29:session-50:intro2:r2",
+              "text": "You are the person can explain it."
+            },
+            {
+              "responseId": "en:lesson-29:session-50:intro2:r3",
+              "text": "You are the person who you can explain it."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-29:session-50:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Где поговорить",
+        "uk": "Де поговорити"
+      },
+      "bodyByLocale": {
+        "ru": "На шумной улице вы предлагаете сестре тихое место для разговора. Скажите: I know a place where we can talk — я знаю место, где мы можем поговорить. Соберите I know a place + where + we can talk. Where связывает разговор с местом. В уточнении сохраняем прямой порядок we can talk, без перестановки can перед we.",
+        "uk": "На галасливій вулиці ви пропонуєте сестрі тихе місце для розмови. Скажіть: I know a place where we can talk — я знаю місце, де ми можемо поговорити. Складіть I know a place + where + we can talk. Where пов’язує розмову з місцем. В уточненні зберігаємо прямий порядок we can talk, без перестановки can перед we."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-50:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-50:intro3:r1",
+              "text": "I know a place where we can talk."
+            },
+            {
+              "responseId": "en:lesson-29:session-50:intro3:r2",
+              "text": "I know a place where can we talk."
+            },
+            {
+              "responseId": "en:lesson-29:session-50:intro3:r3",
+              "text": "I know a place who we can talk."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-50:intro3:r1",
+              "text": "I know a place where we can talk."
+            },
+            {
+              "responseId": "en:lesson-29:session-50:intro3:r2",
+              "text": "I know a place where can we talk."
+            },
+            {
+              "responseId": "en:lesson-29:session-50:intro3:r3",
+              "text": "I know a place who we can talk."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "6a018abed2e9272e9ca1b72ac0cc9e9f361bea076bd35f13e08a6098e112f0e1"
+}

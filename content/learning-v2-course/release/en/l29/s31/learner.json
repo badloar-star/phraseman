@@ -1,0 +1,1050 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-29:session-31",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-29:session-31:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — beanbag",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-31:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — beanbag",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-31:i01:audio",
+          "transcript": "beanbag"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-31:i01:r1",
+            "targetText": "beanbag",
+            "meaningByLocale": {
+              "ru": "Кресло-мешок. Мягкое сиденье с сыпучим наполнителем, которое принимает форму тела.",
+              "uk": "Крісло-мішок. М’яке сидіння із сипким наповнювачем, яке набуває форми тіла."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "beanbag",
+          "definitionByLocale": {
+            "ru": "Кресло-мешок. Мягкое сиденье с сыпучим наполнителем, которое принимает форму тела.",
+            "uk": "Крісло-мішок. М’яке сидіння із сипким наповнювачем, яке набуває форми тіла."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-31:i02",
+      "ordinal": 5,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите, можно ли сесть на кресло-мешок.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-31:i02:audio"
+      ],
+      "accessibilityLabel": "Спросите, можно ли сесть на кресло-мешок.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-31:i02:audio",
+          "transcript": "May I sit on the beanbag?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "May I sit on the beanbag?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-31:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-31:i03:r1",
+          "text": "The visitor who I met was friendly."
+        },
+        {
+          "responseId": "en:lesson-29:session-31:i03:r2",
+          "text": "The visitor who I met was quiet."
+        },
+        {
+          "responseId": "en:lesson-29:session-31:i03:r3",
+          "text": "The neighbour who I met was friendly."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-31:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-31:i03:audio",
+          "transcript": "The visitor who I met was friendly."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-31:i03:r1",
+            "targetText": "The visitor who I met was friendly.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-31:i03:r2",
+            "targetText": "The visitor who I met was quiet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-31:i03:r3",
+            "targetText": "The neighbour who I met was friendly.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-31:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The visitor who I met was friendly.",
+              "uk": "У записі звучить The visitor who I met was friendly."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-31:i03:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The visitor who I met was friendly.",
+              "uk": "У записі звучить The visitor who I met was friendly."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-31:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы познакомились с этим гостем.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-31:i04:r1",
+          "text": "I met"
+        },
+        {
+          "responseId": "en:lesson-29:session-31:i04:r2",
+          "text": "I met him"
+        },
+        {
+          "responseId": "en:lesson-29:session-31:i04:r3",
+          "text": "me met"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы познакомились с этим гостем.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы познакомились с этим гостем.",
+          "uk": "Ви познайомилися із цим гостем."
+        },
+        "gappedTargetPhrase": "The visitor who ___ was friendly.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-31:i04:r1",
+            "text": "I met"
+          },
+          {
+            "responseId": "en:lesson-29:session-31:i04:r2",
+            "text": "I met him"
+          },
+          {
+            "responseId": "en:lesson-29:session-31:i04:r3",
+            "text": "me met"
+          }
+        ],
+        "testedDimension": "Вы познакомились с этим гостем.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-31:i04:r2",
+            "correct": false,
+            "testedDimension": "Вы познакомились с этим гостем.",
+            "feedbackByLocale": {
+              "ru": "Who уже обозначает гостя, him лишнее.",
+              "uk": "Who вже позначає гостя, him зайве."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-31:i04:r3",
+            "correct": false,
+            "testedDimension": "Вы познакомились с этим гостем.",
+            "feedbackByLocale": {
+              "ru": "Нужен исполнитель I: I met.",
+              "uk": "Потрібен виконавець I: I met."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-31:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — ornament",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-31:i05:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — ornament",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-31:i05:audio",
+          "transcript": "ornament"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-31:i05:r1",
+            "targetText": "ornament",
+            "meaningByLocale": {
+              "ru": "Декоративное украшение. Предмет, который ставят или вешают для красоты.",
+              "uk": "Декоративна прикраса. Предмет, який ставлять або вішають для краси."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ornament",
+          "definitionByLocale": {
+            "ru": "Декоративное украшение. Предмет, который ставят или вешают для красоты.",
+            "uk": "Декоративна прикраса. Предмет, який ставлять або вішають для краси."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-31:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что вам нравится это украшение.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что вам нравится это украшение.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I like this ornament.",
+        "localizedMeaning": {
+          "ru": "Скажите, что вам нравится это украшение.",
+          "uk": "Скажіть, що вам подобається ця прикраса."
+        },
+        "orderedTokens": [
+          "I",
+          "like",
+          "this",
+          "ornament"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-31:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте вопрос о том, кто сам изготовил подарок.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-31:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте вопрос о том, кто сам изготовил подарок.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-31:i07:audio",
+          "transcript": "Who made this gift?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Who made this gift?",
+        "orderedTokens": [
+          "Who",
+          "made",
+          "this",
+          "gift"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-31:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Похвалите комнату.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-31:i08:audio"
+      ],
+      "accessibilityLabel": "Похвалите комнату.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-31:i08:audio",
+          "transcript": "Your room looks lovely."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Your room looks lovely.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-31:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — keepsake",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-31:i09:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — keepsake",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-31:i09:audio",
+          "transcript": "keepsake"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-31:i09:r1",
+            "targetText": "keepsake",
+            "meaningByLocale": {
+              "ru": "Памятная вещь. Предмет, который хранят как напоминание о человеке или событии.",
+              "uk": "Пам’ятна річ. Предмет, який зберігають як нагадування про людину або подію."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "keepsake",
+          "definitionByLocale": {
+            "ru": "Памятная вещь. Предмет, который хранят как напоминание о человеке или событии.",
+            "uk": "Пам’ятна річ. Предмет, який зберігають як нагадування про людину або подію."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-31:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-31:i10:r1",
+          "text": "This is a keepsake from my grandmother."
+        },
+        {
+          "responseId": "en:lesson-29:session-31:i10:r2",
+          "text": "This is a keepsake from my grandfather."
+        },
+        {
+          "responseId": "en:lesson-29:session-31:i10:r3",
+          "text": "That is a present from my grandmother."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-31:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-31:i10:audio",
+          "transcript": "This is a keepsake from my grandmother."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-31:i10:r1",
+            "targetText": "This is a keepsake from my grandmother.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-31:i10:r2",
+            "targetText": "This is a keepsake from my grandfather.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-31:i10:r3",
+            "targetText": "That is a present from my grandmother.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-31:i10:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This is a keepsake from my grandmother.",
+              "uk": "У записі звучить This is a keepsake from my grandmother."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-31:i10:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This is a keepsake from my grandmother.",
+              "uk": "У записі звучить This is a keepsake from my grandmother."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-31:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Именно этот друг сам изготовил подарок.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-31:i11:r1",
+          "text": "made"
+        },
+        {
+          "responseId": "en:lesson-29:session-31:i11:r2",
+          "text": "he made"
+        },
+        {
+          "responseId": "en:lesson-29:session-31:i11:r3",
+          "text": "make"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Именно этот друг сам изготовил подарок.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Именно этот друг сам изготовил подарок.",
+          "uk": "Саме цей друг власноруч виготовив подарунок."
+        },
+        "gappedTargetPhrase": "That is the friend who ___ this gift.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-31:i11:r1",
+            "text": "made"
+          },
+          {
+            "responseId": "en:lesson-29:session-31:i11:r2",
+            "text": "he made"
+          },
+          {
+            "responseId": "en:lesson-29:session-31:i11:r3",
+            "text": "make"
+          }
+        ],
+        "testedDimension": "Именно этот друг сам изготовил подарок.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-31:i11:r2",
+            "correct": false,
+            "testedDimension": "Именно этот друг сам изготовил подарок.",
+            "feedbackByLocale": {
+              "ru": "Who уже обозначает друга, he лишнее.",
+              "uk": "Who вже позначає друга, he зайве."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-31:i11:r3",
+            "correct": false,
+            "testedDimension": "Именно этот друг сам изготовил подарок.",
+            "feedbackByLocale": {
+              "ru": "О завершённом действии здесь говорим made.",
+              "uk": "Про завершену дію тут кажемо made."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-31:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что в этой комнате можно отдохнуть.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что в этой комнате можно отдохнуть.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is the room where we can relax.",
+        "localizedMeaning": {
+          "ru": "Скажите, что в этой комнате можно отдохнуть.",
+          "uk": "Скажіть, що в цій кімнаті можна відпочити."
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "the",
+          "room",
+          "where",
+          "we",
+          "can",
+          "relax"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-31:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — trinket",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-31:i13:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — trinket",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-31:i13:audio",
+          "transcript": "trinket"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-31:i13:r1",
+            "targetText": "trinket",
+            "meaningByLocale": {
+              "ru": "Безделушка. Небольшая декоративная вещица, обычно недорогая.",
+              "uk": "Дрібничка. Невелика декоративна річ, зазвичай недорога."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "trinket",
+          "definitionByLocale": {
+            "ru": "Безделушка. Небольшая декоративная вещица, обычно недорогая.",
+            "uk": "Дрібничка. Невелика декоративна річ, зазвичай недорога."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-31:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что вы храните эту безделушку в коробке.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-31:i14:audio"
+      ],
+      "accessibilityLabel": "Скажите, что вы храните эту безделушку в коробке.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-31:i14:audio",
+          "transcript": "I keep this trinket in a box."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I keep this trinket in a box.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-31:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините вещи с переводом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините вещи с переводом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-29:session-31:i15:p1",
+            "target": "beanbag",
+            "meaningByLocale": {
+              "ru": "кресло-мешок",
+              "uk": "крісло-мішок"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-31:i15:p2",
+            "target": "ornament",
+            "meaningByLocale": {
+              "ru": "декоративное украшение",
+              "uk": "декоративна прикраса"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-31:i15:p3",
+            "target": "keepsake",
+            "meaningByLocale": {
+              "ru": "памятная вещь",
+              "uk": "пам’ятна річ"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-31:i15:p4",
+            "target": "trinket",
+            "meaningByLocale": {
+              "ru": "безделушка",
+              "uk": "дрібничка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "beanbag",
+          "ornament",
+          "keepsake",
+          "trinket"
+        ],
+        "rightColumn": [
+          "кресло-мешок",
+          "декоративное украшение",
+          "памятная вещь",
+          "безделушка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-31:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточните комнату через возможность отдохнуть в ней.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-31:i16:r1",
+          "text": "where"
+        },
+        {
+          "responseId": "en:lesson-29:session-31:i16:r2",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-31:i16:r3",
+          "text": "whose"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточните комнату через возможность отдохнуть в ней.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните комнату через возможность отдохнуть в ней.",
+          "uk": "Уточніть кімнату через можливість відпочити в ній."
+        },
+        "gappedTargetPhrase": "This is the room ___ we can relax.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-31:i16:r1",
+            "text": "where"
+          },
+          {
+            "responseId": "en:lesson-29:session-31:i16:r2",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-31:i16:r3",
+            "text": "whose"
+          }
+        ],
+        "testedDimension": "Уточните комнату через возможность отдохнуть в ней.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-31:i16:r2",
+            "correct": false,
+            "testedDimension": "Уточните комнату через возможность отдохнуть в ней.",
+            "feedbackByLocale": {
+              "ru": "Для места отдыха нужно where.",
+              "uk": "Для місця відпочинку потрібне where."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-31:i16:r3",
+            "correct": false,
+            "testedDimension": "Уточните комнату через возможность отдохнуть в ней.",
+            "feedbackByLocale": {
+              "ru": "Здесь место, а не принадлежность: where.",
+              "uk": "Тут місце, а не належність: where."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-31:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: памятная вещь от бабушки или от дедушки?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-31:i17:r1",
+          "text": "This is a keepsake from my grandmother."
+        },
+        {
+          "responseId": "en:lesson-29:session-31:i17:r2",
+          "text": "This is a keepsake from my grandfather."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-31:i17:audioA",
+        "en:lesson-29:session-31:i17:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: памятная вещь от бабушки или от дедушки?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "This is a keepsake from my grandmother.",
+        "contrastB": "This is a keepsake from my grandfather.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-29:session-31:i17:audioA",
+          "transcript": "This is a keepsake from my grandmother."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-29:session-31:i17:audioB",
+          "transcript": "This is a keepsake from my grandfather."
+        },
+        "testedPhoneticContrast": "Послушайте: памятная вещь от бабушки или от дедушки?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-31:i17:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: памятная вещь от бабушки или от дедушки?",
+            "feedbackByLocale": {
+              "ru": "Звучит grandmother — бабушка.",
+              "uk": "Звучить grandmother — бабуся."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-31:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, кто сделал украшение.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-31:i18:audio"
+      ],
+      "accessibilityLabel": "Послушайте, кто сделал украшение.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-31:i18:audio",
+          "transcript": "The ornament was made by my friend."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The ornament was made by my friend.",
+        "orderedTokens": [
+          "The",
+          "ornament",
+          "was",
+          "made",
+          "by",
+          "my",
+          "friend"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-31:i19",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите, можно ли рассмотреть вещь поближе.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-31:i19:audio"
+      ],
+      "accessibilityLabel": "Спросите, можно ли рассмотреть вещь поближе.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-31:i19:audio",
+          "transcript": "May I have a closer look?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "May I have a closer look?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-31:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Украшение сделал ваш друг.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-31:i20:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-29:session-31:i20:r2",
+          "text": "of"
+        },
+        {
+          "responseId": "en:lesson-29:session-31:i20:r3",
+          "text": "from"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Украшение сделал ваш друг.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Украшение сделал ваш друг.",
+          "uk": "Прикрасу зробив ваш друг."
+        },
+        "gappedTargetPhrase": "The ornament was made ___ my friend.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-31:i20:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-29:session-31:i20:r2",
+            "text": "of"
+          },
+          {
+            "responseId": "en:lesson-29:session-31:i20:r3",
+            "text": "from"
+          }
+        ],
+        "testedDimension": "Украшение сделал ваш друг.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-31:i20:r2",
+            "correct": false,
+            "testedDimension": "Украшение сделал ваш друг.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя действия вводит by.",
+              "uk": "Виконавця дії позначає by."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-31:i20:r3",
+            "correct": false,
+            "testedDimension": "Украшение сделал ваш друг.",
+            "feedbackByLocale": {
+              "ru": "Для человека, сделавшего вещь, нужна by.",
+              "uk": "Для людини, яка зробила річ, потрібна by."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-31:i21",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Поблагодарите за приглашение.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поблагодарите за приглашение.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Thank you for inviting me.",
+        "localizedMeaning": {
+          "ru": "Поблагодарите за приглашение.",
+          "uk": "Подякуйте за запрошення."
+        },
+        "orderedTokens": [
+          "Thank",
+          "you",
+          "for",
+          "inviting",
+          "me"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "dd13eaf15bc2968362267fbc43f53fb3a109398163ea0b0773fdf9ba1663e5e9"
+}

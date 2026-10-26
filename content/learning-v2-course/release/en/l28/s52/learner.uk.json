@@ -1,0 +1,1067 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-28:session-52",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-28:session-52:i01",
+      "ordinal": 4,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть приміряти більший розмір.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-52:i01:audio"
+      ],
+      "accessibilityLabel": "Попросіть приміряти більший розмір.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-52:i01:audio",
+          "transcript": "Could I try a larger size?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could I try a larger size?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-52:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — loafers",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-52:i02:audio"
+      ],
+      "accessibilityLabel": "Картка слова — loafers",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-52:i02:audio",
+          "transcript": "loafers"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-52:i02:r1",
+            "targetText": "loafers",
+            "meaningByLocale": {
+              "ru": "Лоферы. Закрытые туфли без шнурков, которые легко надеть; здесь название пары обуви во множественном числе.",
+              "uk": "Лофери. Закриті туфлі без шнурків, які легко взути; тут назва пари взуття в множині."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "loafers",
+          "definitionByLocale": {
+            "ru": "Лоферы. Закрытые туфли без шнурков, которые легко надеть; здесь название пары обуви во множественном числе.",
+            "uk": "Лофери. Закриті туфлі без шнурків, які легко взути; тут назва пари взуття в множині."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-52:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що ці лофери затісні.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що ці лофери затісні.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "These loafers are too tight.",
+        "localizedMeaning": {
+          "ru": "Скажите, что эти лоферы слишком тесные.",
+          "uk": "Скажіть, що ці лофери затісні."
+        },
+        "orderedTokens": [
+          "These",
+          "loafers",
+          "are",
+          "too",
+          "tight"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-52:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитайте, чи можна замовити взуття вашого розміру.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-52:i04:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-28:session-52:i04:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-28:session-52:i04:r3",
+          "text": "were"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи можна замовити взуття вашого розміру.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите, можно ли заказать обувь вашего размера.",
+          "uk": "Запитайте, чи можна замовити взуття вашого розміру."
+        },
+        "gappedTargetPhrase": "Can these shoes ___ ordered in my size?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-52:i04:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-28:session-52:i04:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-28:session-52:i04:r3",
+            "text": "were"
+          }
+        ],
+        "testedDimension": "Запитайте, чи можна замовити взуття вашого розміру.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-52:i04:r2",
+            "correct": false,
+            "testedDimension": "Запитайте, чи можна замовити взуття вашого розміру.",
+            "feedbackByLocale": {
+              "ru": "После can нужна be.",
+              "uk": "Після can потрібна be."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-52:i04:r3",
+            "correct": false,
+            "testedDimension": "Запитайте, чи можна замовити взуття вашого розміру.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем can be ordered.",
+              "uk": "Тут використовуємо can be ordered."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-52:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-52:i05:r1",
+          "text": "Your shoes will be delivered on Thursday."
+        },
+        {
+          "responseId": "en:lesson-28:session-52:i05:r2",
+          "text": "Your shoes will be delivered on Tuesday."
+        },
+        {
+          "responseId": "en:lesson-28:session-52:i05:r3",
+          "text": "Your boots will be delivered on Thursday."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-52:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-52:i05:audio",
+          "transcript": "Your shoes will be delivered on Thursday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-52:i05:r1",
+            "targetText": "Your shoes will be delivered on Thursday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-52:i05:r2",
+            "targetText": "Your shoes will be delivered on Tuesday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-52:i05:r3",
+            "targetText": "Your boots will be delivered on Thursday.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-52:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Your shoes will be delivered on Thursday.",
+              "uk": "У записі звучить Your shoes will be delivered on Thursday."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-52:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Your shoes will be delivered on Thursday.",
+              "uk": "У записі звучить Your shoes will be delivered on Thursday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-52:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — mules",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-52:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — mules",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-52:i06:audio",
+          "transcript": "mules"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-52:i06:r1",
+            "targetText": "mules",
+            "meaningByLocale": {
+              "ru": "Мюли, обувь без задника. Пятка остаётся открытой; такая обувь бывает на каблуке или без него.",
+              "uk": "Мюлі, взуття без задника. П’ята залишається відкритою; таке взуття буває на підборах або без них."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "mules",
+          "definitionByLocale": {
+            "ru": "Мюли, обувь без задника. Пятка остаётся открытой; такая обувь бывает на каблуке или без него.",
+            "uk": "Мюлі, взуття без задника. П’ята залишається відкритою; таке взуття буває на підборах або без них."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-52:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть приміряти ці мюлі.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-52:i07:audio"
+      ],
+      "accessibilityLabel": "Попросіть приміряти ці мюлі.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-52:i07:audio",
+          "transcript": "Can I try on these mules?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Can I try on these mules?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-52:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, як виготовили взуття.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-52:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте, як виготовили взуття.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-52:i08:audio",
+          "transcript": "These shoes were made by hand."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "These shoes were made by hand.",
+        "orderedTokens": [
+          "These",
+          "shoes",
+          "were",
+          "made",
+          "by",
+          "hand"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-52:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточніть, чи включено доставку в ціну.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-52:i09:r1",
+          "text": "included"
+        },
+        {
+          "responseId": "en:lesson-28:session-52:i09:r2",
+          "text": "include"
+        },
+        {
+          "responseId": "en:lesson-28:session-52:i09:r3",
+          "text": "including"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточніть, чи включено доставку в ціну.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните, включена ли доставка в цену.",
+          "uk": "Уточніть, чи включено доставку в ціну."
+        },
+        "gappedTargetPhrase": "Is delivery ___ in the price?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-52:i09:r1",
+            "text": "included"
+          },
+          {
+            "responseId": "en:lesson-28:session-52:i09:r2",
+            "text": "include"
+          },
+          {
+            "responseId": "en:lesson-28:session-52:i09:r3",
+            "text": "including"
+          }
+        ],
+        "testedDimension": "Уточніть, чи включено доставку в ціну.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-52:i09:r2",
+            "correct": false,
+            "testedDimension": "Уточніть, чи включено доставку в ціну.",
+            "feedbackByLocale": {
+              "ru": "После is нужна included.",
+              "uk": "Після is потрібна included."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-52:i09:r3",
+            "correct": false,
+            "testedDimension": "Уточніть, чи включено доставку в ціну.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем is included.",
+              "uk": "Тут використовуємо is included."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-52:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — wedges",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-52:i10:audio"
+      ],
+      "accessibilityLabel": "Картка слова — wedges",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-52:i10:audio",
+          "transcript": "wedges"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-52:i10:r1",
+            "targetText": "wedges",
+            "meaningByLocale": {
+              "ru": "Обувь на танкетке. Подошва поднимается к пятке и образует сплошную опору вместо отдельного каблука.",
+              "uk": "Взуття на танкетці. Підошва піднімається до п’яти й утворює суцільну опору замість окремого підбора."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "wedges",
+          "definitionByLocale": {
+            "ru": "Обувь на танкетке. Подошва поднимается к пятке и образует сплошную опору вместо отдельного каблука.",
+            "uk": "Взуття на танкетці. Підошва піднімається до п’яти й утворює суцільну опору замість окремого підбора."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-52:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте, чи є взуття на танкетці чорного кольору.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-52:i11:audio"
+      ],
+      "accessibilityLabel": "Запитайте, чи є взуття на танкетці чорного кольору.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-52:i11:audio",
+          "transcript": "Do you have wedges in black?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Do you have wedges in black?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-52:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-52:i12:r1",
+          "text": "These shoes are sold in pairs."
+        },
+        {
+          "responseId": "en:lesson-28:session-52:i12:r2",
+          "text": "These shoes are sold separately."
+        },
+        {
+          "responseId": "en:lesson-28:session-52:i12:r3",
+          "text": "These socks are sold in pairs."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-52:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-52:i12:audio",
+          "transcript": "These shoes are sold in pairs."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-52:i12:r1",
+            "targetText": "These shoes are sold in pairs.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-52:i12:r2",
+            "targetText": "These shoes are sold separately.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-52:i12:r3",
+            "targetText": "These socks are sold in pairs.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-52:i12:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит These shoes are sold in pairs.",
+              "uk": "У записі звучить These shoes are sold in pairs."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-52:i12:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит These shoes are sold in pairs.",
+              "uk": "У записі звучить These shoes are sold in pairs."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-52:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви хотіли б більше часу на примірку.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-52:i13:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-28:session-52:i13:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-28:session-52:i13:r3",
+          "text": "will have"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви хотіли б більше часу на примірку.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы хотели бы больше времени на примерку.",
+          "uk": "Ви хотіли б більше часу на примірку."
+        },
+        "gappedTargetPhrase": "I wish I ___ more time.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-52:i13:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-28:session-52:i13:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-28:session-52:i13:r3",
+            "text": "will have"
+          }
+        ],
+        "testedDimension": "Ви хотіли б більше часу на примірку.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-52:i13:r2",
+            "correct": false,
+            "testedDimension": "Ви хотіли б більше часу на примірку.",
+            "feedbackByLocale": {
+              "ru": "Желание о настоящем: wish I had.",
+              "uk": "Бажання щодо теперішнього: wish I had."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-52:i13:r3",
+            "correct": false,
+            "testedDimension": "Ви хотіли б більше часу на примірку.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна had.",
+              "uk": "Тут потрібна had."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-52:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — stilettos",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-52:i14:audio"
+      ],
+      "accessibilityLabel": "Картка слова — stilettos",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-52:i14:audio",
+          "transcript": "stilettos"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-52:i14:r1",
+            "targetText": "stilettos",
+            "meaningByLocale": {
+              "ru": "Туфли на шпильках. Здесь обувь с тонкими высокими каблуками.",
+              "uk": "Туфлі на шпильках. Тут взуття з тонкими високими підборами."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "stilettos",
+          "definitionByLocale": {
+            "ru": "Туфли на шпильках. Здесь обувь с тонкими высокими каблуками.",
+            "uk": "Туфлі на шпильках. Тут взуття з тонкими високими підборами."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-52:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Укажіть на туфлі на шпильках і запитайте ціну.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Укажіть на туфлі на шпильках і запитайте ціну.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "How much are these stilettos?",
+        "localizedMeaning": {
+          "ru": "Укажите на туфли на шпильках и спросите цену.",
+          "uk": "Укажіть на туфлі на шпильках і запитайте ціну."
+        },
+        "orderedTokens": [
+          "How",
+          "much",
+          "are",
+          "these",
+          "stilettos"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-52:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте назви взуття з описами.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте назви взуття з описами.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-28:session-52:i16:p1",
+            "target": "loafers",
+            "meaningByLocale": {
+              "ru": "закрытые туфли без шнурков",
+              "uk": "закриті туфлі без шнурків"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-52:i16:p2",
+            "target": "mules",
+            "meaningByLocale": {
+              "ru": "обувь без задника",
+              "uk": "взуття без задника"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-52:i16:p3",
+            "target": "wedges",
+            "meaningByLocale": {
+              "ru": "обувь на танкетке",
+              "uk": "взуття на танкетці"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-52:i16:p4",
+            "target": "stilettos",
+            "meaningByLocale": {
+              "ru": "туфли на шпильках",
+              "uk": "туфлі на шпильках"
+            }
+          }
+        ],
+        "leftColumn": [
+          "loafers",
+          "mules",
+          "wedges",
+          "stilettos"
+        ],
+        "rightColumn": [
+          "закриті туфлі без шнурків",
+          "взуття без задника",
+          "взуття на танкетці",
+          "туфлі на шпильках"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-52:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Продавець уже замовив потрібний розмір на момент вашого дзвінка.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-52:i17:r1",
+          "text": "ordered"
+        },
+        {
+          "responseId": "en:lesson-28:session-52:i17:r2",
+          "text": "order"
+        },
+        {
+          "responseId": "en:lesson-28:session-52:i17:r3",
+          "text": "ordering"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Продавець уже замовив потрібний розмір на момент вашого дзвінка.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Продавец уже заказал нужный размер к вашему звонку.",
+          "uk": "Продавець уже замовив потрібний розмір на момент вашого дзвінка."
+        },
+        "gappedTargetPhrase": "He had ___ my size by the time I called.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-52:i17:r1",
+            "text": "ordered"
+          },
+          {
+            "responseId": "en:lesson-28:session-52:i17:r2",
+            "text": "order"
+          },
+          {
+            "responseId": "en:lesson-28:session-52:i17:r3",
+            "text": "ordering"
+          }
+        ],
+        "testedDimension": "Продавець уже замовив потрібний розмір на момент вашого дзвінка.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-52:i17:r2",
+            "correct": false,
+            "testedDimension": "Продавець уже замовив потрібний розмір на момент вашого дзвінка.",
+            "feedbackByLocale": {
+              "ru": "После had нужна ordered.",
+              "uk": "Після had потрібна ordered."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-52:i17:r3",
+            "correct": false,
+            "testedDimension": "Продавець уже замовив потрібний розмір на момент вашого дзвінка.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем had ordered.",
+              "uk": "Тут використовуємо had ordered."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-52:i18",
+      "ordinal": 21,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте, чи можна трохи пройтися в цьому взутті магазином.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-52:i18:audio"
+      ],
+      "accessibilityLabel": "Запитайте, чи можна трохи пройтися в цьому взутті магазином.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-52:i18:audio",
+          "transcript": "Can I walk around in these?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Can I walk around in these?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-52:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, хто полагодив черевики.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-52:i19:audio"
+      ],
+      "accessibilityLabel": "Послухайте, хто полагодив черевики.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-52:i19:audio",
+          "transcript": "My boots were repaired by a local shoemaker."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "My boots were repaired by a local shoemaker.",
+        "orderedTokens": [
+          "My",
+          "boots",
+          "were",
+          "repaired",
+          "by",
+          "a",
+          "local",
+          "shoemaker"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-52:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Продавець обіцяє доставити ваше взуття в четвер.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-52:i20:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-28:session-52:i20:r2",
+          "text": "been"
+        },
+        {
+          "responseId": "en:lesson-28:session-52:i20:r3",
+          "text": "being"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Продавець обіцяє доставити ваше взуття в четвер.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Продавец обещает доставить вашу обувь в четверг.",
+          "uk": "Продавець обіцяє доставити ваше взуття в четвер."
+        },
+        "gappedTargetPhrase": "Your shoes will ___ delivered on Thursday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-52:i20:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-28:session-52:i20:r2",
+            "text": "been"
+          },
+          {
+            "responseId": "en:lesson-28:session-52:i20:r3",
+            "text": "being"
+          }
+        ],
+        "testedDimension": "Продавець обіцяє доставити ваше взуття в четвер.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-52:i20:r2",
+            "correct": false,
+            "testedDimension": "Продавець обіцяє доставити ваше взуття в четвер.",
+            "feedbackByLocale": {
+              "ru": "После will нужна be.",
+              "uk": "Після will потрібна be."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-52:i20:r3",
+            "correct": false,
+            "testedDimension": "Продавець обіцяє доставити ваше взуття в четвер.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем will be delivered.",
+              "uk": "Тут використовуємо will be delivered."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-52:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть залишити коробку разом із взуттям.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-52:i21:audio"
+      ],
+      "accessibilityLabel": "Попросіть залишити коробку разом із взуттям.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-52:i21:audio",
+          "transcript": "Could I keep the box?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could I keep the box?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "17b2c5a7f3ac8df3258fd2fa8e22bcae017255621566d2c344d90291ff52cbe7"
+}

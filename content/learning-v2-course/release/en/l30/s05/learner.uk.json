@@ -1,0 +1,1091 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-30:session-05",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-30:session-05:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — devastated",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-05:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — devastated",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-05:i01:audio",
+          "transcript": "devastated"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-05:i01:r1",
+            "targetText": "devastated",
+            "meaningByLocale": {
+              "ru": "Убитый горем, потрясённый. О состоянии после тяжёлой потери или очень плохой новости.",
+              "uk": "Убитий горем, приголомшений. Про стан після тяжкої втрати або дуже поганої новини."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "devastated",
+          "definitionByLocale": {
+            "ru": "Убитый горем, потрясённый. О состоянии после тяжёлой потери или очень плохой новости.",
+            "uk": "Убитий горем, приголомшений. Про стан після тяжкої втрати або дуже поганої новини."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-05:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-05:i02:r1",
+          "text": "She said she was devastated."
+        },
+        {
+          "responseId": "en:lesson-30:session-05:i02:r2",
+          "text": "She said she was tired."
+        },
+        {
+          "responseId": "en:lesson-30:session-05:i02:r3",
+          "text": "She said she was worried."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-05:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-05:i02:audio",
+          "transcript": "She said she was devastated."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-05:i02:r1",
+            "targetText": "She said she was devastated.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-05:i02:r2",
+            "targetText": "She said she was tired.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-05:i02:r3",
+            "targetText": "She said she was worried.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-05:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She said she was devastated.",
+              "uk": "У записі звучить She said she was devastated."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-05:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She said she was devastated.",
+              "uk": "У записі звучить She said she was devastated."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-05:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви хотіли б жити ближче до подруги зараз.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви хотіли б жити ближче до подруги зараз.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I wish I lived closer.",
+        "localizedMeaning": {
+          "ru": "Вы хотели бы жить ближе к подруге сейчас.",
+          "uk": "Ви хотіли б жити ближче до подруги зараз."
+        },
+        "orderedTokens": [
+          "I",
+          "wish",
+          "I",
+          "lived",
+          "closer"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-05:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сестра надіслала повідомлення. Уточніть, про яке повідомлення ви говорите.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-05:i04:r1",
+          "text": "sent"
+        },
+        {
+          "responseId": "en:lesson-30:session-05:i04:r2",
+          "text": "sending"
+        },
+        {
+          "responseId": "en:lesson-30:session-05:i04:r3",
+          "text": "sends"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сестра надіслала повідомлення. Уточніть, про яке повідомлення ви говорите.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сестра отправила сообщение. Уточните, о каком сообщении вы говорите.",
+          "uk": "Сестра надіслала повідомлення. Уточніть, про яке повідомлення ви говорите."
+        },
+        "gappedTargetPhrase": "The message you ___ was kind.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-05:i04:r1",
+            "text": "sent"
+          },
+          {
+            "responseId": "en:lesson-30:session-05:i04:r2",
+            "text": "sending"
+          },
+          {
+            "responseId": "en:lesson-30:session-05:i04:r3",
+            "text": "sends"
+          }
+        ],
+        "testedDimension": "Сестра надіслала повідомлення. Уточніть, про яке повідомлення ви говорите.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-05:i04:r2",
+            "correct": false,
+            "testedDimension": "Сестра надіслала повідомлення. Уточніть, про яке повідомлення ви говорите.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма sent, не sending.",
+              "uk": "Потрібна форма sent, не sending."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-05:i04:r3",
+            "correct": false,
+            "testedDimension": "Сестра надіслала повідомлення. Уточніть, про яке повідомлення ви говорите.",
+            "feedbackByLocale": {
+              "ru": "Sends не сочетается с you; о том сообщении здесь говорим sent.",
+              "uk": "Sends не поєднується з you; про те повідомлення тут кажемо sent."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-05:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — grief",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-05:i05:audio"
+      ],
+      "accessibilityLabel": "Картка слова — grief",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-05:i05:audio",
+          "transcript": "grief"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-05:i05:r1",
+            "targetText": "grief",
+            "meaningByLocale": {
+              "ru": "Горе, глубокая скорбь. Сильная печаль после утраты, особенно смерти близкого человека.",
+              "uk": "Горе, глибока скорбота. Сильний смуток після втрати, особливо смерті близької людини."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "grief",
+          "definitionByLocale": {
+            "ru": "Горе, глубокая скорбь. Сильная печаль после утраты, особенно смерти близкого человека.",
+            "uk": "Горе, глибока скорбота. Сильний смуток після втрати, особливо смерті близької людини."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-05:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Подруга сказала, що її переповнювало горе. Передайте це сестрі.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-05:i06:audio"
+      ],
+      "accessibilityLabel": "Подруга сказала, що її переповнювало горе. Передайте це сестрі.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-05:i06:audio",
+          "transcript": "She said she was overwhelmed with grief."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She said she was overwhelmed with grief.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-05:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-05:i07:r1",
+          "text": "The message you sent was kind."
+        },
+        {
+          "responseId": "en:lesson-30:session-05:i07:r2",
+          "text": "The message you sent was short."
+        },
+        {
+          "responseId": "en:lesson-30:session-05:i07:r3",
+          "text": "The message you sent was clear."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-05:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-05:i07:audio",
+          "transcript": "The message you sent was kind."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-05:i07:r1",
+            "targetText": "The message you sent was kind.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-05:i07:r2",
+            "targetText": "The message you sent was short.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-05:i07:r3",
+            "targetText": "The message you sent was clear.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-05:i07:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The message you sent was kind.",
+              "uk": "У записі звучить The message you sent was kind."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-05:i07:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The message you sent was kind.",
+              "uk": "У записі звучить The message you sent was kind."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-05:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте слова про бажання жити ближче.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-05:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте слова про бажання жити ближче.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-05:i08:audio",
+          "transcript": "I wish I lived closer."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I wish I lived closer.",
+        "orderedTokens": [
+          "I",
+          "wish",
+          "I",
+          "lived",
+          "closer"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-05:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — mourn",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-05:i09:audio"
+      ],
+      "accessibilityLabel": "Картка слова — mourn",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-05:i09:audio",
+          "transcript": "mourn"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-05:i09:r1",
+            "targetText": "mourn",
+            "meaningByLocale": {
+              "ru": "Оплакивать, скорбеть. Переживать печаль из-за смерти человека или другой тяжёлой утраты.",
+              "uk": "Оплакувати, сумувати за померлим. Переживати скорботу через смерть людини або іншу тяжку втрату."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "mourn",
+          "definitionByLocale": {
+            "ru": "Оплакивать, скорбеть. Переживать печаль из-за смерти человека или другой тяжёлой утраты.",
+            "uk": "Оплакувати, сумувати за померлим. Переживати скорботу через смерть людини або іншу тяжку втрату."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-05:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що люди сумують за померлими по-різному.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-05:i10:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що люди сумують за померлими по-різному.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-05:i10:audio",
+          "transcript": "People mourn in different ways."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "People mourn in different ways.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-05:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Передайте слова подруги про її стан тієї миті.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-05:i11:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-30:session-05:i11:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-30:session-05:i11:r3",
+          "text": "being"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Передайте слова подруги про її стан тієї миті.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Передайте слова подруги о её состоянии в тот момент.",
+          "uk": "Передайте слова подруги про її стан тієї миті."
+        },
+        "gappedTargetPhrase": "She said she ___ devastated.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-05:i11:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-30:session-05:i11:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-30:session-05:i11:r3",
+            "text": "being"
+          }
+        ],
+        "testedDimension": "Передайте слова подруги про її стан тієї миті.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-05:i11:r2",
+            "correct": false,
+            "testedDimension": "Передайте слова подруги про її стан тієї миті.",
+            "feedbackByLocale": {
+              "ru": "С she здесь используем was.",
+              "uk": "Із she тут використовуємо was."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-05:i11:r3",
+            "correct": false,
+            "testedDimension": "Передайте слова подруги про її стан тієї миті.",
+            "feedbackByLocale": {
+              "ru": "Нужно she was, не отдельное being.",
+              "uk": "Потрібне she was, не окреме being."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-05:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — condolences",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-05:i12:audio"
+      ],
+      "accessibilityLabel": "Картка слова — condolences",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-05:i12:audio",
+          "transcript": "condolences"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-05:i12:r1",
+            "targetText": "condolences",
+            "meaningByLocale": {
+              "ru": "Соболезнования. Слова сочувствия человеку, у которого умер кто-то близкий. Обычно используется во множественном числе.",
+              "uk": "Співчуття. Слова підтримки людині, у якої помер хтось близький. Зазвичай уживається у множині."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "condolences",
+          "definitionByLocale": {
+            "ru": "Соболезнования. Слова сочувствия человеку, у которого умер кто-то близкий. Обычно используется во множественном числе.",
+            "uk": "Співчуття. Слова підтримки людині, у якої помер хтось близький. Зазвичай уживається у множині."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-05:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-05:i13:r1",
+          "text": "Please accept my condolences."
+        },
+        {
+          "responseId": "en:lesson-30:session-05:i13:r2",
+          "text": "Please accept my apology."
+        },
+        {
+          "responseId": "en:lesson-30:session-05:i13:r3",
+          "text": "Please accept my invitation."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-05:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-05:i13:audio",
+          "transcript": "Please accept my condolences."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-05:i13:r1",
+            "targetText": "Please accept my condolences.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-05:i13:r2",
+            "targetText": "Please accept my apology.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-05:i13:r3",
+            "targetText": "Please accept my invitation.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-05:i13:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Please accept my condolences.",
+              "uk": "У записі звучить Please accept my condolences."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-05:i13:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Please accept my condolences.",
+              "uk": "У записі звучить Please accept my condolences."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-05:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-30:session-05:i14:p1",
+            "target": "devastated",
+            "meaningByLocale": {
+              "ru": "убитый горем",
+              "uk": "убитий горем"
+            }
+          },
+          {
+            "pairId": "en:lesson-30:session-05:i14:p2",
+            "target": "grief",
+            "meaningByLocale": {
+              "ru": "глубокая скорбь",
+              "uk": "глибока скорбота"
+            }
+          },
+          {
+            "pairId": "en:lesson-30:session-05:i14:p3",
+            "target": "mourn",
+            "meaningByLocale": {
+              "ru": "оплакивать",
+              "uk": "оплакувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-30:session-05:i14:p4",
+            "target": "condolences",
+            "meaningByLocale": {
+              "ru": "соболезнования",
+              "uk": "співчуття"
+            }
+          }
+        ],
+        "leftColumn": [
+          "devastated",
+          "grief",
+          "mourn",
+          "condolences"
+        ],
+        "rightColumn": [
+          "убитий горем",
+          "глибока скорбота",
+          "оплакувати",
+          "співчуття"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-05:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Передайте слова подруги: вона сказала, що їй потрібна допомога.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Передайте слова подруги: вона сказала, що їй потрібна допомога.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She said she needed help.",
+        "localizedMeaning": {
+          "ru": "Передайте слова подруги: она сказала, что ей нужна помощь.",
+          "uk": "Передайте слова подруги: вона сказала, що їй потрібна допомога."
+        },
+        "orderedTokens": [
+          "She",
+          "said",
+          "she",
+          "needed",
+          "help"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-05:i16",
+      "ordinal": 19,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ввічливо висловіть співчуття.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-05:i16:audio"
+      ],
+      "accessibilityLabel": "Ввічливо висловіть співчуття.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-05:i16:audio",
+          "transcript": "Please accept my condolences."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Please accept my condolences.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-05:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви живете далеко й хотіли б змінити це зараз.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-05:i17:r1",
+          "text": "lived"
+        },
+        {
+          "responseId": "en:lesson-30:session-05:i17:r2",
+          "text": "live"
+        },
+        {
+          "responseId": "en:lesson-30:session-05:i17:r3",
+          "text": "living"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви живете далеко й хотіли б змінити це зараз.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы живёте далеко и хотели бы изменить это сейчас.",
+          "uk": "Ви живете далеко й хотіли б змінити це зараз."
+        },
+        "gappedTargetPhrase": "I wish I ___ closer.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-05:i17:r1",
+            "text": "lived"
+          },
+          {
+            "responseId": "en:lesson-30:session-05:i17:r2",
+            "text": "live"
+          },
+          {
+            "responseId": "en:lesson-30:session-05:i17:r3",
+            "text": "living"
+          }
+        ],
+        "testedDimension": "Ви живете далеко й хотіли б змінити це зараз.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-05:i17:r2",
+            "correct": false,
+            "testedDimension": "Ви живете далеко й хотіли б змінити це зараз.",
+            "feedbackByLocale": {
+              "ru": "После wish для такого желания используем lived.",
+              "uk": "Після wish для такого бажання використовуємо lived."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-05:i17:r3",
+            "correct": false,
+            "testedDimension": "Ви живете далеко й хотіли б змінити це зараз.",
+            "feedbackByLocale": {
+              "ru": "Нужно I lived, не I living.",
+              "uk": "Потрібне I lived, не I living."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-05:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, що подруга сказала про горе.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-05:i18:audio"
+      ],
+      "accessibilityLabel": "Послухайте, що подруга сказала про горе.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-05:i18:audio",
+          "transcript": "She said she was overwhelmed with grief."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She said she was overwhelmed with grief.",
+        "orderedTokens": [
+          "She",
+          "said",
+          "she",
+          "was",
+          "overwhelmed",
+          "with",
+          "grief"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-05:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: подруга сказала, що була приголомшена чи втомилася?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-05:i19:r1",
+          "text": "She said she was devastated."
+        },
+        {
+          "responseId": "en:lesson-30:session-05:i19:r2",
+          "text": "She said she was tired."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-05:i19:audioA",
+        "en:lesson-30:session-05:i19:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: подруга сказала, що була приголомшена чи втомилася?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "She said she was devastated.",
+        "contrastB": "She said she was tired.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-30:session-05:i19:audioA",
+          "transcript": "She said she was devastated."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-30:session-05:i19:audioB",
+          "transcript": "She said she was tired."
+        },
+        "testedPhoneticContrast": "Послухайте: подруга сказала, що була приголомшена чи втомилася?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-05:i19:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: подруга сказала, що була приголомшена чи втомилася?",
+            "feedbackByLocale": {
+              "ru": "Звучит devastated — потрясена, убита горем.",
+              "uk": "Звучить devastated — приголомшена, вбита горем."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-05:i20",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть сестрі, що в надісланому нею повідомленні були добрі слова.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-05:i20:audio"
+      ],
+      "accessibilityLabel": "Скажіть сестрі, що в надісланому нею повідомленні були добрі слова.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-05:i20:audio",
+          "transcript": "The message you sent was kind."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The message you sent was kind.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-05:i21",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Подруга говорила вчора про те, що їй потрібна допомога.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-05:i21:r1",
+          "text": "said"
+        },
+        {
+          "responseId": "en:lesson-30:session-05:i21:r2",
+          "text": "say"
+        },
+        {
+          "responseId": "en:lesson-30:session-05:i21:r3",
+          "text": "saying"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подруга говорила вчора про те, що їй потрібна допомога.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подруга говорила вчера о том, что ей нужна помощь.",
+          "uk": "Подруга говорила вчора про те, що їй потрібна допомога."
+        },
+        "gappedTargetPhrase": "She ___ she needed help.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-05:i21:r1",
+            "text": "said"
+          },
+          {
+            "responseId": "en:lesson-30:session-05:i21:r2",
+            "text": "say"
+          },
+          {
+            "responseId": "en:lesson-30:session-05:i21:r3",
+            "text": "saying"
+          }
+        ],
+        "testedDimension": "Подруга говорила вчора про те, що їй потрібна допомога.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-05:i21:r2",
+            "correct": false,
+            "testedDimension": "Подруга говорила вчора про те, що їй потрібна допомога.",
+            "feedbackByLocale": {
+              "ru": "О вчерашнем разговоре говорим said.",
+              "uk": "Про вчорашню розмову кажемо said."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-05:i21:r3",
+            "correct": false,
+            "testedDimension": "Подруга говорила вчора про те, що їй потрібна допомога.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужно said, не saying.",
+              "uk": "Тут потрібне said, не saying."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "4ddaa3e5b30782a6808cf222533f1626fcd60fcd83222160ac2b4645cc464f11"
+}

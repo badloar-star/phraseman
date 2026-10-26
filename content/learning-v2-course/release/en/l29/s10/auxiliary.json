@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-29:session-10",
+  "entries": [
+    {
+      "interactionId": "en:lesson-29:session-10:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-10:intro1:r2": {
+          "ru": "Перед принадлежащим ему завтраком нужна whose.",
+          "uk": "Перед належним йому сніданком потрібна whose."
+        },
+        "en:lesson-29:session-10:intro1:r3": {
+          "ru": "His после whose лишнее.",
+          "uk": "His після whose зайве."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-10:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-10:intro2:r2": {
+          "ru": "Исполнителя действия вводит by.",
+          "uk": "Виконавця дії позначає by."
+        },
+        "en:lesson-29:session-10:intro2:r3": {
+          "ru": "После was для этого действия нужна baked.",
+          "uk": "Після was для цієї дії потрібна baked."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-10:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-10:intro3:r2": {
+          "ru": "В этом условии после if нужна need без will.",
+          "uk": "У цій умові після if потрібна need без will."
+        },
+        "en:lesson-29:session-10:intro3:r3": {
+          "ru": "Здесь нужна форма need.",
+          "uk": "Тут потрібна форма need."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9e643acad982231a38be2702570b27fc44d1257c1e343ebbd1c4964daca99f2f"
+}

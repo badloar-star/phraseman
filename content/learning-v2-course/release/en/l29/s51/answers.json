@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-29:session-51:i01",
+    "correctText": "knack",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-51:i02",
+    "correctText": "I cannot get the knack of this.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-51:i03",
+    "correctText": "Could you show me that again?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-51:i04",
+    "correctText": "you showed me",
+    "correctResponseId": "en:lesson-29:session-51:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-51:i05",
+    "correctText": "dexterity",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-51:i06",
+    "correctText": "This task needs dexterity.",
+    "correctResponseId": "en:lesson-29:session-51:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-51:i07",
+    "correctText": "This bag was made by my sister.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-51:i08",
+    "correctText": "Could you check my seam?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-51:i09",
+    "correctText": "aptitude",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-51:i10",
+    "correctText": "You have an aptitude for sewing.",
+    "correctResponseId": "en:lesson-29:session-51:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-51:i11",
+    "correctText": "whose",
+    "correctResponseId": "en:lesson-29:session-51:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-51:i12",
+    "correctText": "The method you showed me was helpful.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-51:i13",
+    "correctText": "perseverance",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-51:i14",
+    "correctText": "It takes perseverance.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-51:i15",
+    "correctText": "en:lesson-29:session-51:i15:p1=aptitude\nen:lesson-29:session-51:i15:p2=dexterity\nen:lesson-29:session-51:i15:p3=knack\nen:lesson-29:session-51:i15:p4=perseverance",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-51:i16",
+    "correctText": "This task needs dexterity.",
+    "correctResponseId": "en:lesson-29:session-51:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-51:i17",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-29:session-51:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-51:i18",
+    "correctText": "That is the woman whose bag I repaired.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-51:i19",
+    "correctText": "You are getting better at this.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-51:i20",
+    "correctText": "Let us try again.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-51:i21",
+    "correctText": "we attended",
+    "correctResponseId": "en:lesson-29:session-51:i21:r1"
+  }
+]

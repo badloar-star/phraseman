@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-28:session-12:i01",
+    "correctText": "I am here to collect my order.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-12:i02",
+    "correctText": "audiobook",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-12:i03",
+    "correctText": "The audiobook was recorded last year.",
+    "correctResponseId": "en:lesson-28:session-12:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-12:i04",
+    "correctText": "How long is the recording?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-12:i05",
+    "correctText": "memoir",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-12:i06",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-28:session-12:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-12:i07",
+    "correctText": "May I have a look?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-12:i08",
+    "correctText": "I wish I had more time to read.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-12:i09",
+    "correctText": "bestseller",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-12:i10",
+    "correctText": "This bestseller is displayed near the entrance.",
+    "correctResponseId": "en:lesson-28:session-12:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-12:i11",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-28:session-12:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-12:i12",
+    "correctText": "prequel",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-12:i13",
+    "correctText": "Is this book a prequel?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-12:i14",
+    "correctText": "Which book should I read first?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-12:i15",
+    "correctText": "The author was interviewed yesterday.",
+    "correctResponseId": "en:lesson-28:session-12:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-12:i16",
+    "correctText": "arrived",
+    "correctResponseId": "en:lesson-28:session-12:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-12:i17",
+    "correctText": "Gifts are wrapped at the back of the shop.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-12:i18",
+    "correctText": "Could you wrap this as a gift?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-12:i19",
+    "correctText": "I wish it were cheaper.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-12:i20",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-28:session-12:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-12:i21",
+    "correctText": "I will take this one, please.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-30:session-13",
+  "entries": [
+    {
+      "interactionId": "en:lesson-30:session-13:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-13:intro1:r2": {
+          "ru": "В пересказе нужно the play lasted без did.",
+          "uk": "У переказі потрібне the play lasted без did."
+        },
+        "en:lesson-30:session-13:intro1:r3": {
+          "ru": "Нужна форма lasted, не lasting.",
+          "uk": "Потрібна форма lasted, не lasting."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-13:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-13:intro2:r2": {
+          "ru": "После if в пересказе нужно the play ended, без did.",
+          "uk": "Після if у переказі потрібне the play ended, без did."
+        },
+        "en:lesson-30:session-13:intro2:r3": {
+          "ru": "Нужна форма ended, не ending.",
+          "uk": "Потрібна форма ended, не ending."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-13:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-13:intro3:r2": {
+          "ru": "В уточнении нужна форма saw.",
+          "uk": "В уточненні потрібна форма saw."
+        },
+        "en:lesson-30:session-13:intro3:r3": {
+          "ru": "Один актёр: the actor was.",
+          "uk": "Один актор: the actor was."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9f31d006b1c61fc84e01422f844527e7bb1d0b8e5c09a6c8e1dc06959473ac2e"
+}

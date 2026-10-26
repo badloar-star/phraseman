@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-30:session-04:i01",
+    "correctText": "He said he was astonished.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-04:i02",
+    "correctText": "coincidence",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-04:i03",
+    "correctText": "It was a coincidence.",
+    "correctResponseId": "en:lesson-30:session-04:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-04:i04",
+    "correctText": "lived",
+    "correctResponseId": "en:lesson-30:session-04:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-04:i05",
+    "correctText": "The photo he took is lovely.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-04:i06",
+    "correctText": "overjoyed",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-04:i07",
+    "correctText": "He said he was overjoyed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-04:i08",
+    "correctText": "I wish we lived closer.",
+    "correctResponseId": "en:lesson-30:session-04:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-04:i09",
+    "correctText": "took",
+    "correctResponseId": "en:lesson-30:session-04:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-04:i10",
+    "correctText": "awe",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-04:i11",
+    "correctText": "We watched the waterfall in awe.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-04:i12",
+    "correctText": "He said he was overjoyed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-04:i13",
+    "correctText": "surreal",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-04:i14",
+    "correctText": "The whole day felt surreal.",
+    "correctResponseId": "en:lesson-30:session-04:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-04:i15",
+    "correctText": "en:lesson-30:session-04:i15:p1=coincidence\nen:lesson-30:session-04:i15:p2=overjoyed\nen:lesson-30:session-04:i15:p3=awe\nen:lesson-30:session-04:i15:p4=surreal",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-04:i16",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-30:session-04:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-04:i17",
+    "correctText": "It was a coincidence.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-04:i18",
+    "correctText": "The photo he took is lovely.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-04:i19",
+    "correctText": "The whole day felt surreal.",
+    "correctResponseId": "en:lesson-30:session-04:i19:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-04:i20",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-30:session-04:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-04:i21",
+    "correctText": "He said he enjoyed the walk.",
+    "correctResponseId": null
+  }
+]

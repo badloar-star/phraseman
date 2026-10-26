@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-29:session-04",
+  "entries": [
+    {
+      "interactionId": "en:lesson-29:session-04:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-04:intro1:r2": {
+          "ru": "После that не добавляем it.",
+          "uk": "Після that не додаємо it."
+        },
+        "en:lesson-29:session-04:intro1:r3": {
+          "ru": "Об одном meal говорим includes.",
+          "uk": "Про один meal кажемо includes."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-04:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-04:intro2:r2": {
+          "ru": "Исполнителя действия здесь вводит by.",
+          "uk": "Виконавця дії тут позначає by."
+        },
+        "en:lesson-29:session-04:intro2:r3": {
+          "ru": "После was нужна delivered.",
+          "uk": "Після was потрібна delivered."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-04:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-04:intro3:r2": {
+          "ru": "В этом условии после if используем costs, без will.",
+          "uk": "У цій умові після if використовуємо costs, без will."
+        },
+        "en:lesson-29:session-04:intro3:r3": {
+          "ru": "После will нужна начальная форма collect.",
+          "uk": "Після will потрібна початкова форма collect."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "4dcf155eabd3a6014936ea060612ade10fb0560870ac8b3313d3389417983984"
+}

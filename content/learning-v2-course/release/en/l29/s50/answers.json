@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-29:session-50:i01",
+    "correctText": "What do you mean?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-50:i02",
+    "correctText": "nuance",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-50:i03",
+    "correctText": "Could you explain that nuance?",
+    "correctResponseId": "en:lesson-29:session-50:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-50:i04",
+    "correctText": "The message you sent was unclear.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-50:i05",
+    "correctText": "you sent",
+    "correctResponseId": "en:lesson-29:session-50:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-50:i06",
+    "correctText": "literal",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-50:i07",
+    "correctText": "What is the literal meaning of that phrase?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-50:i08",
+    "correctText": "You are the person who can explain it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-50:i09",
+    "correctText": "who",
+    "correctResponseId": "en:lesson-29:session-50:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-50:i10",
+    "correctText": "ambiguous",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-50:i11",
+    "correctText": "That message is ambiguous.",
+    "correctResponseId": "en:lesson-29:session-50:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-50:i12",
+    "correctText": "Could you give me an example?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-50:i13",
+    "correctText": "ironic",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-50:i14",
+    "correctText": "Are you being ironic?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-50:i15",
+    "correctText": "en:lesson-29:session-50:i15:p1=nuance\nen:lesson-29:session-50:i15:p2=literal\nen:lesson-29:session-50:i15:p3=ambiguous\nen:lesson-29:session-50:i15:p4=ironic",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-50:i16",
+    "correctText": "where",
+    "correctResponseId": "en:lesson-29:session-50:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-50:i17",
+    "correctText": "That message is ambiguous.",
+    "correctResponseId": "en:lesson-29:session-50:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-50:i18",
+    "correctText": "I know a place where we can talk.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-50:i19",
+    "correctText": "I do not want to misunderstand you.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-50:i20",
+    "correctText": "you gave",
+    "correctResponseId": "en:lesson-29:session-50:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-50:i21",
+    "correctText": "Thank you for explaining that.",
+    "correctResponseId": null
+  }
+]

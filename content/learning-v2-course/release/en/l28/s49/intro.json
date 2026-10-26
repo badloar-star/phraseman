@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-28:session-49",
+  "learningOutcomeByLocale": {
+    "ru": "как назвать покрытие, уточнить цену работы и срок её завершения.",
+    "uk": "як назвати покриття, уточнити ціну роботи й строк її завершення."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-28:session-49:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Уточнить стоимость укладки",
+        "uk": "Уточнити вартість укладання"
+      },
+      "bodyByLocale": {
+        "ru": "Вы выбрали напольное покрытие и хотите понять, входит ли работа мастера в цену. Спросите: Is fitting included? — укладка включена? Соберите Is + fitting + included? В вопросе поставьте Is перед названием услуги fitting. После него добавьте included, третью форму include. Вы уточняете, включена ли эта услуга в предложение.",
+        "uk": "Ви вибрали покриття для підлоги й хочете зрозуміти, чи входить робота майстра в ціну. Запитайте: Is fitting included? — укладання включено? Складіть Is + fitting + included? У запитанні поставте Is перед назвою послуги fitting. Після неї додайте included, третю форму include. Ви уточнюєте, чи включена ця послуга в пропозицію."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-49:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-49:intro1:r1",
+              "text": "Is fitting included?"
+            },
+            {
+              "responseId": "en:lesson-28:session-49:intro1:r2",
+              "text": "Are fitting included?"
+            },
+            {
+              "responseId": "en:lesson-28:session-49:intro1:r3",
+              "text": "Is fitting include?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-49:intro1:r1",
+              "text": "Is fitting included?"
+            },
+            {
+              "responseId": "en:lesson-28:session-49:intro1:r2",
+              "text": "Are fitting included?"
+            },
+            {
+              "responseId": "en:lesson-28:session-49:intro1:r3",
+              "text": "Is fitting include?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-28:session-49:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Убрать старый ковролин",
+        "uk": "Прибрати старий ковролін"
+      },
+      "bodyByLocale": {
+        "ru": "Перед укладкой нового пола нужно убрать старый ковролин. Уточните у мастера: Can the old carpet be removed? — можно убрать старый ковролин? Соберите Can + the old carpet + be removed? Can поставьте перед названием покрытия. Затем добавьте be и removed, третью форму remove: вопрос касается возможного действия над ковролином.",
+        "uk": "Перед укладанням нової підлоги потрібно прибрати старий ковролін. Уточніть у майстра: Can the old carpet be removed? — чи можна прибрати старий ковролін? Складіть Can + the old carpet + be removed? Can поставте перед назвою покриття. Потім додайте be та removed, третю форму remove: запитання стосується можливої дії з ковроліном."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-49:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-49:intro2:r1",
+              "text": "Can the old carpet be removed?"
+            },
+            {
+              "responseId": "en:lesson-28:session-49:intro2:r2",
+              "text": "Can the old carpet removed?"
+            },
+            {
+              "responseId": "en:lesson-28:session-49:intro2:r3",
+              "text": "Can the old carpet be remove?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-49:intro2:r1",
+              "text": "Can the old carpet be removed?"
+            },
+            {
+              "responseId": "en:lesson-28:session-49:intro2:r2",
+              "text": "Can the old carpet removed?"
+            },
+            {
+              "responseId": "en:lesson-28:session-49:intro2:r3",
+              "text": "Can the old carpet be remove?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-28:session-49:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Когда закончат работу",
+        "uk": "Коли закінчать роботу"
+      },
+      "bodyByLocale": {
+        "ru": "Вы спрашиваете, когда мастер закончит укладку пола. Он обещает: The work will be finished tomorrow — работу закончат завтра. Соберите The work + will be + finished + tomorrow. Сначала назовите работу, затем поставьте will be и finished, третью форму finish. Эта конструкция сообщает о будущем действии над работой. Tomorrow указывает срок — завтра.",
+        "uk": "Ви запитуєте, коли майстер закінчить укладання підлоги. Він обіцяє: The work will be finished tomorrow — роботу закінчать завтра. Складіть The work + will be + finished + tomorrow. Спочатку назвіть роботу, потім поставте will be та finished, третю форму finish. Ця конструкція повідомляє, що роботу буде завершено в майбутньому. Tomorrow указує строк — завтра."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-49:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-49:intro3:r1",
+              "text": "The work will be finished tomorrow."
+            },
+            {
+              "responseId": "en:lesson-28:session-49:intro3:r2",
+              "text": "The work will finished tomorrow."
+            },
+            {
+              "responseId": "en:lesson-28:session-49:intro3:r3",
+              "text": "The work will be finish tomorrow."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-49:intro3:r1",
+              "text": "The work will be finished tomorrow."
+            },
+            {
+              "responseId": "en:lesson-28:session-49:intro3:r2",
+              "text": "The work will finished tomorrow."
+            },
+            {
+              "responseId": "en:lesson-28:session-49:intro3:r3",
+              "text": "The work will be finish tomorrow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e3843dc79375d7230697fcfcf081dbc29214ad7b264c76010a605faa6b3b61cd"
+}

@@ -1,0 +1,1049 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-30:session-06",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-30:session-06:i01",
+      "ordinal": 4,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Передайте слова друга: он сказал, что сомневался.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-06:i01:audio"
+      ],
+      "accessibilityLabel": "Передайте слова друга: он сказал, что сомневался.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-06:i01:audio",
+          "transcript": "He said he was hesitant."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He said he was hesitant.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-06:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — dilemma",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-06:i02:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — dilemma",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-06:i02:audio",
+          "transcript": "dilemma"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-06:i02:r1",
+            "targetText": "dilemma",
+            "meaningByLocale": {
+              "ru": "Дилемма, трудный выбор. Ситуация, когда нужно выбрать между вариантами и решить непросто.",
+              "uk": "Дилема, складний вибір. Ситуація, коли потрібно вибрати між варіантами й вирішити непросто."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dilemma",
+          "definitionByLocale": {
+            "ru": "Дилемма, трудный выбор. Ситуация, когда нужно выбрать между вариантами и решить непросто.",
+            "uk": "Дилема, складний вибір. Ситуація, коли потрібно вибрати між варіантами й вирішити непросто."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-06:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-06:i03:r1",
+          "text": "We faced a dilemma."
+        },
+        {
+          "responseId": "en:lesson-30:session-06:i03:r2",
+          "text": "We faced a delay."
+        },
+        {
+          "responseId": "en:lesson-30:session-06:i03:r3",
+          "text": "We faced a problem."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-06:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-06:i03:audio",
+          "transcript": "We faced a dilemma."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-06:i03:r1",
+            "targetText": "We faced a dilemma.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-06:i03:r2",
+            "targetText": "We faced a delay.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-06:i03:r3",
+            "targetText": "We faced a problem.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-06:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We faced a dilemma.",
+              "uk": "У записі звучить We faced a dilemma."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-06:i03:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We faced a dilemma.",
+              "uk": "У записі звучить We faced a dilemma."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-06:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы пока не знаете цену и хотели бы её знать сейчас.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-06:i04:r1",
+          "text": "knew"
+        },
+        {
+          "responseId": "en:lesson-30:session-06:i04:r2",
+          "text": "know"
+        },
+        {
+          "responseId": "en:lesson-30:session-06:i04:r3",
+          "text": "knowing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы пока не знаете цену и хотели бы её знать сейчас.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы пока не знаете цену и хотели бы её знать сейчас.",
+          "uk": "Ви поки не знаєте ціну й хотіли б її знати зараз."
+        },
+        "gappedTargetPhrase": "I wish I ___ the price.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-06:i04:r1",
+            "text": "knew"
+          },
+          {
+            "responseId": "en:lesson-30:session-06:i04:r2",
+            "text": "know"
+          },
+          {
+            "responseId": "en:lesson-30:session-06:i04:r3",
+            "text": "knowing"
+          }
+        ],
+        "testedDimension": "Вы пока не знаете цену и хотели бы её знать сейчас.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-06:i04:r2",
+            "correct": false,
+            "testedDimension": "Вы пока не знаете цену и хотели бы её знать сейчас.",
+            "feedbackByLocale": {
+              "ru": "После wish для такого желания нужна форма knew.",
+              "uk": "Після wish для такого бажання потрібна форма knew."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-06:i04:r3",
+            "correct": false,
+            "testedDimension": "Вы пока не знаете цену и хотели бы её знать сейчас.",
+            "feedbackByLocale": {
+              "ru": "Нужно I knew, не I knowing.",
+              "uk": "Потрібне I knew, не I knowing."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-06:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Уточните: маленьким был домик, который вы осмотрели.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточните: маленьким был домик, который вы осмотрели.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The cottage we visited was small.",
+        "localizedMeaning": {
+          "ru": "Уточните: маленьким был домик, который вы осмотрели.",
+          "uk": "Уточніть: маленьким був будиночок, який ви оглянули."
+        },
+        "orderedTokens": [
+          "The",
+          "cottage",
+          "we",
+          "visited",
+          "was",
+          "small"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-06:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — hunch",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-06:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — hunch",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-06:i06:audio",
+          "transcript": "hunch"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-06:i06:r1",
+            "targetText": "hunch",
+            "meaningByLocale": {
+              "ru": "Догадка, предчувствие. Ощущение, что что-то верно, хотя явных доказательств пока нет.",
+              "uk": "Здогад, передчуття. Відчуття, що щось правильне, хоча явних доказів поки немає."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hunch",
+          "definitionByLocale": {
+            "ru": "Догадка, предчувствие. Ощущение, что что-то верно, хотя явных доказательств пока нет.",
+            "uk": "Здогад, передчуття. Відчуття, що щось правильне, хоча явних доказів поки немає."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-06:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вам казалось, что домик будет маленьким, ещё до осмотра. Скажите, что у вас было предчувствие.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-06:i07:audio"
+      ],
+      "accessibilityLabel": "Вам казалось, что домик будет маленьким, ещё до осмотра. Скажите, что у вас было предчувствие.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-06:i07:audio",
+          "transcript": "I had a hunch."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I had a hunch.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-06:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, что друг сказал о сомнениях.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-06:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте, что друг сказал о сомнениях.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-06:i08:audio",
+          "transcript": "He said he was hesitant."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "He said he was hesitant.",
+        "orderedTokens": [
+          "He",
+          "said",
+          "he",
+          "was",
+          "hesitant"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-06:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — tentative",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-06:i09:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — tentative",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-06:i09:audio",
+          "transcript": "tentative"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-06:i09:r1",
+            "targetText": "tentative",
+            "meaningByLocale": {
+              "ru": "Предварительный, пока не окончательный. О плане или договорённости, которые ещё могут измениться.",
+              "uk": "Попередній, поки не остаточний. Про план або домовленість, які ще можуть змінитися."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tentative",
+          "definitionByLocale": {
+            "ru": "Предварительный, пока не окончательный. О плане или договорённости, которые ещё могут измениться.",
+            "uk": "Попередній, поки не остаточний. Про план або домовленість, які ще можуть змінитися."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-06:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-06:i10:r1",
+          "text": "Our plans are tentative."
+        },
+        {
+          "responseId": "en:lesson-30:session-06:i10:r2",
+          "text": "Our plans are final."
+        },
+        {
+          "responseId": "en:lesson-30:session-06:i10:r3",
+          "text": "Our plans are simple."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-06:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-06:i10:audio",
+          "transcript": "Our plans are tentative."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-06:i10:r1",
+            "targetText": "Our plans are tentative.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-06:i10:r2",
+            "targetText": "Our plans are final.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-06:i10:r3",
+            "targetText": "Our plans are simple.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-06:i10:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Our plans are tentative.",
+              "uk": "У записі звучить Our plans are tentative."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-06:i10:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Our plans are tentative.",
+              "uk": "У записі звучить Our plans are tentative."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-06:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Расскажите о домике, который вы осмотрели.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-06:i11:r1",
+          "text": "visited"
+        },
+        {
+          "responseId": "en:lesson-30:session-06:i11:r2",
+          "text": "visiting"
+        },
+        {
+          "responseId": "en:lesson-30:session-06:i11:r3",
+          "text": "visits"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите о домике, который вы осмотрели.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Расскажите о домике, который вы осмотрели.",
+          "uk": "Розкажіть про будиночок, який ви оглянули."
+        },
+        "gappedTargetPhrase": "The cottage we ___ was small.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-06:i11:r1",
+            "text": "visited"
+          },
+          {
+            "responseId": "en:lesson-30:session-06:i11:r2",
+            "text": "visiting"
+          },
+          {
+            "responseId": "en:lesson-30:session-06:i11:r3",
+            "text": "visits"
+          }
+        ],
+        "testedDimension": "Расскажите о домике, который вы осмотрели.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-06:i11:r2",
+            "correct": false,
+            "testedDimension": "Расскажите о домике, который вы осмотрели.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна форма visited.",
+              "uk": "Тут потрібна форма visited."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-06:i11:r3",
+            "correct": false,
+            "testedDimension": "Расскажите о домике, который вы осмотрели.",
+            "feedbackByLocale": {
+              "ru": "Visits не сочетается с we; о состоявшемся осмотре здесь говорим visited.",
+              "uk": "Visits не поєднується з we; про завершений огляд тут кажемо visited."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-06:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — misgiving",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-06:i12:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — misgiving",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-06:i12:audio",
+          "transcript": "misgiving"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-06:i12:r1",
+            "targetText": "misgiving",
+            "meaningByLocale": {
+              "ru": "Сомнение, опасение. Чувство, что решение или план может оказаться неудачным. Часто употребляется во множественном числе.",
+              "uk": "Сумнів, побоювання. Відчуття, що рішення або план може виявитися невдалим. Часто вживається у множині."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "misgiving",
+          "definitionByLocale": {
+            "ru": "Сомнение, опасение. Чувство, что решение или план может оказаться неудачным. Часто употребляется во множественном числе.",
+            "uk": "Сумнів, побоювання. Відчуття, що рішення або план може виявитися невдалим. Часто вживається у множині."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-06:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите другу, что у вас есть одно опасение насчёт этой поездки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-06:i13:audio"
+      ],
+      "accessibilityLabel": "Скажите другу, что у вас есть одно опасение насчёт этой поездки.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-06:i13:audio",
+          "transcript": "I have one misgiving about this trip."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have one misgiving about this trip.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-06:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-30:session-06:i14:p1",
+            "target": "dilemma",
+            "meaningByLocale": {
+              "ru": "трудный выбор",
+              "uk": "складний вибір"
+            }
+          },
+          {
+            "pairId": "en:lesson-30:session-06:i14:p2",
+            "target": "hunch",
+            "meaningByLocale": {
+              "ru": "предчувствие",
+              "uk": "передчуття"
+            }
+          },
+          {
+            "pairId": "en:lesson-30:session-06:i14:p3",
+            "target": "tentative",
+            "meaningByLocale": {
+              "ru": "предварительный",
+              "uk": "попередній"
+            }
+          },
+          {
+            "pairId": "en:lesson-30:session-06:i14:p4",
+            "target": "misgiving",
+            "meaningByLocale": {
+              "ru": "опасение",
+              "uk": "побоювання"
+            }
+          }
+        ],
+        "leftColumn": [
+          "dilemma",
+          "hunch",
+          "tentative",
+          "misgiving"
+        ],
+        "rightColumn": [
+          "трудный выбор",
+          "предчувствие",
+          "предварительный",
+          "опасение"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-06:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы хотели бы знать цену сейчас.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы хотели бы знать цену сейчас.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I wish I knew the price.",
+        "localizedMeaning": {
+          "ru": "Вы хотели бы знать цену сейчас.",
+          "uk": "Ви хотіли б знати ціну зараз."
+        },
+        "orderedTokens": [
+          "I",
+          "wish",
+          "I",
+          "knew",
+          "the",
+          "price"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-06:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг сказал, что во время разговора сомневался.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-06:i16:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-30:session-06:i16:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-30:session-06:i16:r3",
+          "text": "being"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг сказал, что во время разговора сомневался.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг сказал, что во время разговора сомневался.",
+          "uk": "Друг сказав, що під час розмови вагався."
+        },
+        "gappedTargetPhrase": "He said he ___ hesitant.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-06:i16:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-30:session-06:i16:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-30:session-06:i16:r3",
+            "text": "being"
+          }
+        ],
+        "testedDimension": "Друг сказал, что во время разговора сомневался.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-06:i16:r2",
+            "correct": false,
+            "testedDimension": "Друг сказал, что во время разговора сомневался.",
+            "feedbackByLocale": {
+              "ru": "С he нужна форма was.",
+              "uk": "Із he потрібна форма was."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-06:i16:r3",
+            "correct": false,
+            "testedDimension": "Друг сказал, что во время разговора сомневался.",
+            "feedbackByLocale": {
+              "ru": "Нужно he was, не he being.",
+              "uk": "Потрібне he was, не he being."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-06:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг уже выбрал десерт в кафе рядом с домиком, а сам домик вы ещё не забронировали. Скажите, что ваши планы пока предварительные.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-06:i17:audio"
+      ],
+      "accessibilityLabel": "Друг уже выбрал десерт в кафе рядом с домиком, а сам домик вы ещё не забронировали. Скажите, что ваши планы пока предварительные.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-06:i17:audio",
+          "transcript": "Our plans are tentative."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Our plans are tentative.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-06:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте описание осмотренного домика.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-06:i18:audio"
+      ],
+      "accessibilityLabel": "Послушайте описание осмотренного домика.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-06:i18:audio",
+          "transcript": "The cottage we visited was small."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The cottage we visited was small.",
+        "orderedTokens": [
+          "The",
+          "cottage",
+          "we",
+          "visited",
+          "was",
+          "small"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-06:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: планы ещё предварительные или уже окончательные?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-06:i19:r1",
+          "text": "Our plans are tentative."
+        },
+        {
+          "responseId": "en:lesson-30:session-06:i19:r2",
+          "text": "Our plans are final."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-06:i19:audioA",
+        "en:lesson-30:session-06:i19:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: планы ещё предварительные или уже окончательные?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "Our plans are tentative.",
+        "contrastB": "Our plans are final.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-30:session-06:i19:audioA",
+          "transcript": "Our plans are tentative."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-30:session-06:i19:audioB",
+          "transcript": "Our plans are final."
+        },
+        "testedPhoneticContrast": "Послушайте: планы ещё предварительные или уже окончательные?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-06:i19:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: планы ещё предварительные или уже окончательные?",
+            "feedbackByLocale": {
+              "ru": "Звучит tentative — предварительные.",
+              "uk": "Звучить tentative — попередні."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-06:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг сказал вчера, что ему нужно больше времени на решение.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-06:i20:r1",
+          "text": "said"
+        },
+        {
+          "responseId": "en:lesson-30:session-06:i20:r2",
+          "text": "say"
+        },
+        {
+          "responseId": "en:lesson-30:session-06:i20:r3",
+          "text": "saying"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг сказал вчера, что ему нужно больше времени на решение.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг сказал вчера, что ему нужно больше времени на решение.",
+          "uk": "Друг сказав учора, що йому потрібно більше часу на рішення."
+        },
+        "gappedTargetPhrase": "He ___ he needed more time.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-06:i20:r1",
+            "text": "said"
+          },
+          {
+            "responseId": "en:lesson-30:session-06:i20:r2",
+            "text": "say"
+          },
+          {
+            "responseId": "en:lesson-30:session-06:i20:r3",
+            "text": "saying"
+          }
+        ],
+        "testedDimension": "Друг сказал вчера, что ему нужно больше времени на решение.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-06:i20:r2",
+            "correct": false,
+            "testedDimension": "Друг сказал вчера, что ему нужно больше времени на решение.",
+            "feedbackByLocale": {
+              "ru": "О вчерашнем разговоре говорим said.",
+              "uk": "Про вчорашню розмову кажемо said."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-06:i20:r3",
+            "correct": false,
+            "testedDimension": "Друг сказал вчера, что ему нужно больше времени на решение.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужен said, не saying.",
+              "uk": "Тут потрібне said, не saying."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-06:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Передайте слова друга о том, что ему нужно больше времени.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-06:i21:audio"
+      ],
+      "accessibilityLabel": "Передайте слова друга о том, что ему нужно больше времени.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-06:i21:audio",
+          "transcript": "He said he needed more time."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He said he needed more time.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "9d5596a58b92fd30c151d31b70ea7004db8ed8a628b5e5a484f7a129d24ea7a0"
+}

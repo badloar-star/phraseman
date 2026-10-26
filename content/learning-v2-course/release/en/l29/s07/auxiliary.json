@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-29:session-07",
+  "entries": [
+    {
+      "interactionId": "en:lesson-29:session-07:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-07:intro1:r2": {
+          "ru": "После that не добавляем it.",
+          "uk": "Після that не додаємо it."
+        },
+        "en:lesson-29:session-07:intro1:r3": {
+          "ru": "Об одном стуле говорим makes.",
+          "uk": "Про один стілець кажемо makes."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-07:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-07:intro2:r2": {
+          "ru": "Исполнителя ремонта здесь вводит by.",
+          "uk": "Виконавця ремонту тут позначає by."
+        },
+        "en:lesson-29:session-07:intro2:r3": {
+          "ru": "После was нужна repaired.",
+          "uk": "Після was потрібна repaired."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-07:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-07:intro3:r2": {
+          "ru": "В этом условии после if нужна continues, без will.",
+          "uk": "У цій умові після if потрібна continues, без will."
+        },
+        "en:lesson-29:session-07:intro3:r3": {
+          "ru": "После will нужна начальная форма call.",
+          "uk": "Після will потрібна початкова форма call."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "40a77f6e89c51e2e3e826c0cc09db2a79cdd286f07b4544f7cd292d730e3201b"
+}

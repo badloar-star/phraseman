@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-27:session-55",
+  "entries": [
+    {
+      "interactionId": "en:lesson-27:session-55:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-55:intro1:r2": {
+          "ru": "После have нужна третья форма bought.",
+          "uk": "Після have потрібна третя форма bought."
+        },
+        "en:lesson-27:session-55:intro1:r3": {
+          "ru": "Здесь have bought; buying не подходит.",
+          "uk": "Тут have bought; buying не підходить."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-55:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-55:intro2:r2": {
+          "ru": "После would не добавляем -ed: bake.",
+          "uk": "Після would не додаємо -ed: bake."
+        },
+        "en:lesson-27:session-55:intro2:r3": {
+          "ru": "После would нужна начальная форма bake.",
+          "uk": "Після would потрібна початкова форма bake."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-55:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-55:intro3:r2": {
+          "ru": "После wish о желаемом положении сейчас используем were.",
+          "uk": "Після wish про бажане становище зараз використовуємо were."
+        },
+        "en:lesson-27:session-55:intro3:r3": {
+          "ru": "Being не образует здесь сказуемое; нужна were.",
+          "uk": "Being не утворює тут присудка; потрібна were."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "155d5856ee424a8c291b1d7e9a3036ef7a44e50d492848633cf16f022a967979"
+}

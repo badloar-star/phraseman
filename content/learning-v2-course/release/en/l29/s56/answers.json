@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-29:session-56:i01",
+    "correctText": "No, thank you.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-56:i02",
+    "correctText": "pushy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-56:i03",
+    "correctText": "That seller is very pushy.",
+    "correctResponseId": "en:lesson-29:session-56:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-56:i04",
+    "correctText": "The offer I received seems strange.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-56:i05",
+    "correctText": "I received",
+    "correctResponseId": "en:lesson-29:session-56:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-56:i06",
+    "correctText": "scam",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-56:i07",
+    "correctText": "This sounds like a scam.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-56:i08",
+    "correctText": "That is the man who offered me a ticket.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-56:i09",
+    "correctText": "who",
+    "correctResponseId": "en:lesson-29:session-56:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-56:i10",
+    "correctText": "bogus",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-56:i11",
+    "correctText": "The ticket might be bogus.",
+    "correctResponseId": "en:lesson-29:session-56:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-56:i12",
+    "correctText": "I am not interested.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-56:i13",
+    "correctText": "deceive",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-56:i14",
+    "correctText": "Is he trying to deceive us?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-56:i15",
+    "correctText": "en:lesson-29:session-56:i15:p1=scam\nen:lesson-29:session-56:i15:p2=bogus\nen:lesson-29:session-56:i15:p3=pushy\nen:lesson-29:session-56:i15:p4=deceive",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-56:i16",
+    "correctText": "where",
+    "correctResponseId": "en:lesson-29:session-56:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-56:i17",
+    "correctText": "That seller is very pushy.",
+    "correctResponseId": "en:lesson-29:session-56:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-56:i18",
+    "correctText": "This is the office where they sell tickets.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-56:i19",
+    "correctText": "Let us ask at the ticket office.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-56:i20",
+    "correctText": "you gave me",
+    "correctResponseId": "en:lesson-29:session-56:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-56:i21",
+    "correctText": "Thank you for warning me.",
+    "correctResponseId": null
+  }
+]

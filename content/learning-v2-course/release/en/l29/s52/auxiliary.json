@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-29:session-52",
+  "entries": [
+    {
+      "interactionId": "en:lesson-29:session-52:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-52:intro1:r2": {
+          "ru": "It повторяет носок.",
+          "uk": "It повторює шкарпетку."
+        },
+        "en:lesson-29:session-52:intro1:r3": {
+          "ru": "Нужен исполнитель I, не me.",
+          "uk": "Потрібен виконавець I, не me."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-52:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-52:intro2:r2": {
+          "ru": "Who нужен как исполнитель внутри уточнения.",
+          "uk": "Who потрібне як виконавець усередині уточнення."
+        },
+        "en:lesson-29:session-52:intro2:r3": {
+          "ru": "She повторяет исполнителя.",
+          "uk": "She повторює виконавця."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-52:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-52:intro3:r2": {
+          "ru": "В уточнении нужен порядок they repair clothes.",
+          "uk": "В уточненні потрібен порядок they repair clothes."
+        },
+        "en:lesson-29:session-52:intro3:r3": {
+          "ru": "Для места ремонта используем where.",
+          "uk": "Для місця ремонту використовуємо where."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "2e81aab31f66de6e5b052f35dbba4c5e69701bf671fd32517d5ed59cf13e1249"
+}

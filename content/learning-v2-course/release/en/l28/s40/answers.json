@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-28:session-40:i01",
+    "correctText": "Could you show me a larger size?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-40:i02",
+    "correctText": "crochet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-40:i03",
+    "correctText": "My sister can crochet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-40:i04",
+    "correctText": "The scarf was made by my aunt.",
+    "correctResponseId": "en:lesson-28:session-40:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-40:i05",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-28:session-40:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-40:i06",
+    "correctText": "embroidery",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-40:i07",
+    "correctText": "I like the embroidery on this shirt.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-40:i08",
+    "correctText": "This jumper must be washed by hand.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-40:i09",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-28:session-40:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-40:i10",
+    "correctText": "ribbed",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-40:i11",
+    "correctText": "I prefer the ribbed jumper.",
+    "correctResponseId": "en:lesson-28:session-40:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-40:i12",
+    "correctText": "Can I try this jumper on?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-40:i13",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-28:session-40:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-40:i14",
+    "correctText": "pleated",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-40:i15",
+    "correctText": "Could I see the pleated skirt, please?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-40:i16",
+    "correctText": "en:lesson-28:session-40:i16:p1=crochet\nen:lesson-28:session-40:i16:p2=embroidery\nen:lesson-28:session-40:i16:p3=ribbed\nen:lesson-28:session-40:i16:p4=pleated",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-40:i17",
+    "correctText": "Your order will be delivered tomorrow.",
+    "correctResponseId": "en:lesson-28:session-40:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-40:i18",
+    "correctText": "closed",
+    "correctResponseId": "en:lesson-28:session-40:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-40:i19",
+    "correctText": "These scarves are made here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-40:i20",
+    "correctText": "washed",
+    "correctResponseId": "en:lesson-28:session-40:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-40:i21",
+    "correctText": "When will the skirt be ready?",
+    "correctResponseId": null
+  }
+]

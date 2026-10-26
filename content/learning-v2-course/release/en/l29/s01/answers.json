@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-29:session-01:i01",
+    "correctText": "I am looking for the woman who works here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-01:i02",
+    "correctText": "vendor",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-01:i03",
+    "correctText": "That is the vendor who sells fruit.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-01:i04",
+    "correctText": "who",
+    "correctResponseId": "en:lesson-29:session-01:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-01:i05",
+    "correctText": "The bag which has a red handle is mine.",
+    "correctResponseId": "en:lesson-29:session-01:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-01:i06",
+    "correctText": "fishmonger",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-01:i07",
+    "correctText": "Could I speak to the fishmonger?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-01:i08",
+    "correctText": "I need a key that opens this door.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-01:i09",
+    "correctText": "has",
+    "correctResponseId": "en:lesson-29:session-01:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-01:i10",
+    "correctText": "barista",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-01:i11",
+    "correctText": "The barista who made my coffee is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-01:i12",
+    "correctText": "The man who lives upstairs is my neighbour.",
+    "correctResponseId": "en:lesson-29:session-01:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-01:i13",
+    "correctText": "which",
+    "correctResponseId": "en:lesson-29:session-01:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-01:i14",
+    "correctText": "bookseller",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-01:i15",
+    "correctText": "The bookseller who helped me was friendly.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-01:i16",
+    "correctText": "en:lesson-29:session-01:i16:p1=vendor\nen:lesson-29:session-01:i16:p2=fishmonger\nen:lesson-29:session-01:i16:p3=barista\nen:lesson-29:session-01:i16:p4=bookseller",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-01:i17",
+    "correctText": "The man who opens the shop is here.",
+    "correctResponseId": "en:lesson-29:session-01:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-01:i18",
+    "correctText": "Which man works here?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-01:i19",
+    "correctText": "opens",
+    "correctResponseId": "en:lesson-29:session-01:i19:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-01:i20",
+    "correctText": "The woman who called is waiting.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-01:i21",
+    "correctText": "I need a bag that has a pocket.",
+    "correctResponseId": null
+  }
+]

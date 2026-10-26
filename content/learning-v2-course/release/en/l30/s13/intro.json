@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-30:session-13",
+  "learningOutcomeByLocale": {
+    "ru": "как пересказать вопрос о длительности, уточнить актёра и выразить желание.",
+    "uk": "як переказати запитання про тривалість, уточнити актора й висловити бажання."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-30:session-13:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сколько длился спектакль",
+        "uk": "Скільки тривала вистава"
+      },
+      "bodyByLocale": {
+        "ru": "Вчера сестра спросила, сколько длился спектакль, который вы посмотрели. Вы передаёте её вопрос другу: She asked how long the play lasted — она спросила, сколько длился спектакль. Соберите She + asked + how long + the play lasted. How long спрашивает о длительности; после него внутри пересказа идут the play и lasted, без did.",
+        "uk": "Учора сестра запитала, скільки тривала вистава, яку ви подивилися. Ви передаєте її запитання другові: She asked how long the play lasted — вона запитала, скільки тривала вистава. Складіть She + asked + how long + the play lasted. How long запитує про тривалість; після нього всередині переказу йдуть the play та lasted, без did."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-13:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-13:intro1:r1",
+              "text": "She asked how long the play lasted."
+            },
+            {
+              "responseId": "en:lesson-30:session-13:intro1:r2",
+              "text": "She asked how long did the play last."
+            },
+            {
+              "responseId": "en:lesson-30:session-13:intro1:r3",
+              "text": "She asked how long the play lasting."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-13:intro1:r1",
+              "text": "She asked how long the play lasted."
+            },
+            {
+              "responseId": "en:lesson-30:session-13:intro1:r2",
+              "text": "She asked how long did the play last."
+            },
+            {
+              "responseId": "en:lesson-30:session-13:intro1:r3",
+              "text": "She asked how long the play lasting."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-30:session-13:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Спектакль закончился поздно",
+        "uk": "Вистава закінчилася пізно"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спросил, поздно ли закончился вчерашний спектакль. Вы пересказываете это сестре: He asked if the play ended late — он спросил, поздно ли закончился спектакль. Соберите He + asked + if + the play ended late. If передаёт «ли»; внутри пересказа сначала называем the play, затем действие ended.",
+        "uk": "Друг запитав, чи пізно закінчилася вчорашня вистава. Ви переказуєте це сестрі: He asked if the play ended late — він запитав, чи пізно закінчилася вистава. Складіть He + asked + if + the play ended late. If передає «чи»; усередині переказу спочатку називаємо the play, потім дію ended."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-13:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-13:intro2:r1",
+              "text": "He asked if the play ended late."
+            },
+            {
+              "responseId": "en:lesson-30:session-13:intro2:r2",
+              "text": "He asked if did the play end late."
+            },
+            {
+              "responseId": "en:lesson-30:session-13:intro2:r3",
+              "text": "He asked if the play ending late."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-13:intro2:r1",
+              "text": "He asked if the play ended late."
+            },
+            {
+              "responseId": "en:lesson-30:session-13:intro2:r2",
+              "text": "He asked if did the play end late."
+            },
+            {
+              "responseId": "en:lesson-30:session-13:intro2:r3",
+              "text": "He asked if the play ending late."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-30:session-13:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Какой актёр понравился",
+        "uk": "Який актор сподобався"
+      },
+      "bodyByLocale": {
+        "ru": "Вы с другом обсуждаете актёра, которого видели вчера: The actor we saw was excellent — актёр, которого мы видели, был превосходен. Соберите The actor + we saw + was excellent. We saw уточняет актёра. Перед we можно опустить that: we — те, кто смотрел, а actor — тот, кого видели.",
+        "uk": "Ви з другом обговорюєте актора, якого бачили вчора: The actor we saw was excellent — актор, якого ми бачили, був чудовий. Складіть The actor + we saw + was excellent. We saw уточнює актора. Перед we можна пропустити that: we — ті, хто дивився, а actor — той, кого бачили."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-13:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-13:intro3:r1",
+              "text": "The actor we saw was excellent."
+            },
+            {
+              "responseId": "en:lesson-30:session-13:intro3:r2",
+              "text": "The actor we seeing was excellent."
+            },
+            {
+              "responseId": "en:lesson-30:session-13:intro3:r3",
+              "text": "The actor we saw were excellent."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-13:intro3:r1",
+              "text": "The actor we saw was excellent."
+            },
+            {
+              "responseId": "en:lesson-30:session-13:intro3:r2",
+              "text": "The actor we seeing was excellent."
+            },
+            {
+              "responseId": "en:lesson-30:session-13:intro3:r3",
+              "text": "The actor we saw were excellent."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "750936f0506bd5fa21f905107ce9f83d6125c6c97cda0af319c32984987ef605"
+}

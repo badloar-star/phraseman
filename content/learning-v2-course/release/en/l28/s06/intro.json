@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-28:session-06",
+  "learningOutcomeByLocale": {
+    "ru": "как назвать более раннее действие, пожелать изменения сейчас и описать материал вещи.",
+    "uk": "як назвати ранішу дію, побажати зміни зараз і описати матеріал речі."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-28:session-06:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Покупки до поездки",
+        "uk": "Покупки до поїздки"
+      },
+      "bodyByLocale": {
+        "ru": "Вчера вы закончили покупки до прихода сестры. I had finished shopping by the time my sister arrived — к приходу сестры я уже закончил покупки. Соберите I + had finished shopping: что завершилось раньше. Затем добавьте by the time + my sister arrived: более поздний момент. После finished shopping означает «делать покупки»; had finished показывает, что вы уже закончили.",
+        "uk": "Учора ви закінчили покупки до приходу сестри. I had finished shopping by the time my sister arrived — до приходу сестри я вже закінчив покупки. Складіть I + had finished shopping: що завершилося раніше. Потім додайте by the time + my sister arrived: пізніший момент. Після finished shopping означає «робити покупки»; had finished показує, що ви вже закінчили."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-06:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-06:intro1:r1",
+              "text": "I had finished shopping by the time my sister arrived."
+            },
+            {
+              "responseId": "en:lesson-28:session-06:intro1:r2",
+              "text": "I had finish shopping by the time my sister arrived."
+            },
+            {
+              "responseId": "en:lesson-28:session-06:intro1:r3",
+              "text": "I had finished shopping by the time my sister arrive."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-06:intro1:r1",
+              "text": "I had finished shopping by the time my sister arrived."
+            },
+            {
+              "responseId": "en:lesson-28:session-06:intro1:r2",
+              "text": "I had finish shopping by the time my sister arrived."
+            },
+            {
+              "responseId": "en:lesson-28:session-06:intro1:r3",
+              "text": "I had finished shopping by the time my sister arrive."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-28:session-06:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Тесная сумка",
+        "uk": "Тісна сумка"
+      },
+      "bodyByLocale": {
+        "ru": "Вещи не помещаются в дорожную сумку. I wish my bag were bigger — хотелось бы, чтобы моя сумка была больше. Сначала I wish, затем my bag, затем were bigger. Were после I wish здесь показывает желание изменить то, что есть сейчас: сумка пока мала.",
+        "uk": "Речі не вміщуються в дорожню сумку. I wish my bag were bigger — хотілося б, щоб моя сумка була більшою. Спочатку I wish, потім my bag, потім were bigger. Were після I wish тут показує бажання змінити те, що є зараз: сумка поки замала."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-06:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-06:intro2:r1",
+              "text": "I wish my bag were bigger."
+            },
+            {
+              "responseId": "en:lesson-28:session-06:intro2:r2",
+              "text": "I wish my bag is bigger."
+            },
+            {
+              "responseId": "en:lesson-28:session-06:intro2:r3",
+              "text": "I wish my bag be bigger."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-06:intro2:r1",
+              "text": "I wish my bag were bigger."
+            },
+            {
+              "responseId": "en:lesson-28:session-06:intro2:r2",
+              "text": "I wish my bag is bigger."
+            },
+            {
+              "responseId": "en:lesson-28:session-06:intro2:r3",
+              "text": "I wish my bag be bigger."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-28:session-06:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Из чего сделана вещь",
+        "uk": "З чого зроблено річ"
+      },
+      "bodyByLocale": {
+        "ru": "Продавец показывает вам мягкую майку из хлопка. This top is made of cotton — эта майка сделана из хлопка. Назовите вещь: This top. Затем поставьте is made, а после of — материал: cotton. Top здесь один, поэтому is. Made — форма make, которая нужна после is, когда говорим, из чего сделана вещь.",
+        "uk": "Продавець показує вам м’яку майку з бавовни. This top is made of cotton — ця майка зроблена з бавовни. Назвіть річ: This top. Потім поставте is made, а після of — матеріал: cotton. Top тут один, тому is. Made — форма make, потрібна після is, коли говоримо, з чого зроблена річ."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-06:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-06:intro3:r1",
+              "text": "This top is made of cotton."
+            },
+            {
+              "responseId": "en:lesson-28:session-06:intro3:r2",
+              "text": "This top are made of cotton."
+            },
+            {
+              "responseId": "en:lesson-28:session-06:intro3:r3",
+              "text": "This top is make of cotton."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-06:intro3:r1",
+              "text": "This top is made of cotton."
+            },
+            {
+              "responseId": "en:lesson-28:session-06:intro3:r2",
+              "text": "This top are made of cotton."
+            },
+            {
+              "responseId": "en:lesson-28:session-06:intro3:r3",
+              "text": "This top is make of cotton."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "239ac1cde4c642f7285c7d5fb77750f4ba7b43fc34f4cbcfa0c4276b4df03697"
+}

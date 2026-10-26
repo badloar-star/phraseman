@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-28:session-52:i01",
+    "correctText": "Could I try a larger size?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-52:i02",
+    "correctText": "loafers",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-52:i03",
+    "correctText": "These loafers are too tight.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-52:i04",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-28:session-52:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-52:i05",
+    "correctText": "Your shoes will be delivered on Thursday.",
+    "correctResponseId": "en:lesson-28:session-52:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-52:i06",
+    "correctText": "mules",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-52:i07",
+    "correctText": "Can I try on these mules?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-52:i08",
+    "correctText": "These shoes were made by hand.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-52:i09",
+    "correctText": "included",
+    "correctResponseId": "en:lesson-28:session-52:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-52:i10",
+    "correctText": "wedges",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-52:i11",
+    "correctText": "Do you have wedges in black?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-52:i12",
+    "correctText": "These shoes are sold in pairs.",
+    "correctResponseId": "en:lesson-28:session-52:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-52:i13",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-28:session-52:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-52:i14",
+    "correctText": "stilettos",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-52:i15",
+    "correctText": "How much are these stilettos?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-52:i16",
+    "correctText": "en:lesson-28:session-52:i16:p1=loafers\nen:lesson-28:session-52:i16:p2=mules\nen:lesson-28:session-52:i16:p3=wedges\nen:lesson-28:session-52:i16:p4=stilettos",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-52:i17",
+    "correctText": "ordered",
+    "correctResponseId": "en:lesson-28:session-52:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-52:i18",
+    "correctText": "Can I walk around in these?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-52:i19",
+    "correctText": "My boots were repaired by a local shoemaker.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-52:i20",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-28:session-52:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-52:i21",
+    "correctText": "Could I keep the box?",
+    "correctResponseId": null
+  }
+]

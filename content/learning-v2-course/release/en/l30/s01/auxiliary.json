@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-30:session-01",
+  "entries": [
+    {
+      "interactionId": "en:lesson-30:session-01:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-01:intro1:r2": {
+          "ru": "О вчерашнем разговоре говорим said.",
+          "uk": "Про вчорашню розмову кажемо said."
+        },
+        "en:lesson-30:session-01:intro1:r3": {
+          "ru": "С he здесь нужно was, не were.",
+          "uk": "Із he тут потрібне was, не were."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-01:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-01:intro2:r2": {
+          "ru": "Нужно назвать человека: she needed help.",
+          "uk": "Потрібно назвати людину: she needed help."
+        },
+        "en:lesson-30:session-01:intro2:r3": {
+          "ru": "Здесь нужна форма needed, не needing.",
+          "uk": "Тут потрібна форма needed, не needing."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-01:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-01:intro3:r2": {
+          "ru": "Нужен порядок was not ready.",
+          "uk": "Потрібен порядок was not ready."
+        },
+        "en:lesson-30:session-01:intro3:r3": {
+          "ru": "С he здесь используем was.",
+          "uk": "Із he тут використовуємо was."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "64558adf1f7cc704e594a012b7114d140310cb3d37265de8ea6d6f4fb7f6a431"
+}

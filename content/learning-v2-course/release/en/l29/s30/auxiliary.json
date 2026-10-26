@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-29:session-30",
+  "entries": [
+    {
+      "interactionId": "en:lesson-29:session-30:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-30:intro1:r2": {
+          "ru": "Which уже обозначает фильм, it лишнее.",
+          "uk": "Which вже позначає фільм, it зайве."
+        },
+        "en:lesson-29:session-30:intro1:r3": {
+          "ru": "Исполнители действия — we, а не us.",
+          "uk": "Виконавці дії — we, а не us."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-30:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-30:intro2:r2": {
+          "ru": "Who уже обозначает актёра, he лишнее.",
+          "uk": "Who вже позначає актора, he зайве."
+        },
+        "en:lesson-29:session-30:intro2:r3": {
+          "ru": "Для человека здесь используем who.",
+          "uk": "Для людини тут використовуємо who."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-30:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-30:intro3:r2": {
+          "ru": "В этом условии после if нужно like без will.",
+          "uk": "У цій умові після if потрібне like без will."
+        },
+        "en:lesson-29:session-30:intro3:r3": {
+          "ru": "После will нужна начальная форма watch.",
+          "uk": "Після will потрібна початкова форма watch."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "736b7bc184f72aa6e2126c1694c598d93ee35f13ea879533ab40f29dd4ce3940"
+}

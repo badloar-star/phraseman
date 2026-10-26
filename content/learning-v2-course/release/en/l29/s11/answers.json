@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-29:session-11:i01",
+    "correctText": "I am looking for something warm.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-11:i02",
+    "correctText": "parka",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-11:i03",
+    "correctText": "Could I try on the blue parka?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-11:i04",
+    "correctText": "whose",
+    "correctResponseId": "en:lesson-29:session-11:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-11:i05",
+    "correctText": "The scarf was made by my aunt.",
+    "correctResponseId": "en:lesson-29:session-11:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-11:i06",
+    "correctText": "shawl",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-11:i07",
+    "correctText": "You can wear the shawl over your coat.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-11:i08",
+    "correctText": "I like the scarf that matches my coat.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-11:i09",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-29:session-11:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-11:i10",
+    "correctText": "scratchy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-11:i11",
+    "correctText": "This scarf feels scratchy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-11:i12",
+    "correctText": "I will buy it if it fits.",
+    "correctResponseId": "en:lesson-29:session-11:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-11:i13",
+    "correctText": "fits",
+    "correctResponseId": "en:lesson-29:session-11:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-11:i14",
+    "correctText": "bobble",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-11:i15",
+    "correctText": "I would like the hat with the red bobble.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-11:i16",
+    "correctText": "en:lesson-29:session-11:i16:p1=parka\nen:lesson-29:session-11:i16:p2=shawl\nen:lesson-29:session-11:i16:p3=scratchy\nen:lesson-29:session-11:i16:p4=bobble",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-11:i17",
+    "correctText": "The shawl feels soft.",
+    "correctResponseId": "en:lesson-29:session-11:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-11:i18",
+    "correctText": "whose",
+    "correctResponseId": "en:lesson-29:session-11:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-11:i19",
+    "correctText": "Do you have a softer shawl?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-11:i20",
+    "correctText": "Could you bring a larger size?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-11:i21",
+    "correctText": "I will take the parka.",
+    "correctResponseId": null
+  }
+]

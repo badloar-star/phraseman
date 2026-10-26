@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-30:session-14",
+  "learningOutcomeByLocale": {
+    "ru": "как передать вопросы о причине поступка и известном ответе, уточнить книгу и выразить желание.",
+    "uk": "як передати запитання про причину вчинку й відому відповідь, уточнити книжку та висловити бажання."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-30:session-14:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Зачем герой это сделал",
+        "uk": "Навіщо герой це зробив"
+      },
+      "bodyByLocale": {
+        "ru": "Вчера вы с другом обсуждали кражу в фильме. Он спросил о мотиве героя — причине его поступка. Передайте вопрос: He asked what the motive was — он спросил, каков был мотив. Соберите He + asked + what + the motive + was. После what внутри пересказа сначала идёт the motive, затем was.",
+        "uk": "Учора ви з другом обговорювали крадіжку у фільмі. Він запитав про мотив героя — причину його вчинку. Передайте запитання: He asked what the motive was — він запитав, яким був мотив. Складіть He + asked + what + the motive + was. Після what усередині переказу спочатку йде the motive, потім was."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-14:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-14:intro1:r1",
+              "text": "He asked what the motive was."
+            },
+            {
+              "responseId": "en:lesson-30:session-14:intro1:r2",
+              "text": "He asked what was the motive."
+            },
+            {
+              "responseId": "en:lesson-30:session-14:intro1:r3",
+              "text": "He asked what the motive were."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-14:intro1:r1",
+              "text": "He asked what the motive was."
+            },
+            {
+              "responseId": "en:lesson-30:session-14:intro1:r2",
+              "text": "He asked what was the motive."
+            },
+            {
+              "responseId": "en:lesson-30:session-14:intro1:r3",
+              "text": "He asked what the motive were."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-30:session-14:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Знал ли я ответ",
+        "uk": "Чи знав я відповідь"
+      },
+      "bodyByLocale": {
+        "ru": "Во время обсуждения фильма сестра спросила, знаете ли вы ответ на загадку. Вы пересказываете её вопрос другу: She asked if I knew the answer — она спросила, знал ли я ответ. Соберите She + asked + if + I knew the answer. If передаёт «ли»; после него идут I и knew, без did.",
+        "uk": "Під час обговорення фільму сестра запитала, чи знаєте ви відповідь на загадку. Ви переказуєте її запитання другові: She asked if I knew the answer — вона запитала, чи знав я відповідь. Складіть She + asked + if + I knew the answer. If передає «чи»; після нього йдуть I та knew, без did."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-14:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-14:intro2:r1",
+              "text": "She asked if I knew the answer."
+            },
+            {
+              "responseId": "en:lesson-30:session-14:intro2:r2",
+              "text": "She asked if did I know the answer."
+            },
+            {
+              "responseId": "en:lesson-30:session-14:intro2:r3",
+              "text": "She asked if I knowing the answer."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-14:intro2:r1",
+              "text": "She asked if I knew the answer."
+            },
+            {
+              "responseId": "en:lesson-30:session-14:intro2:r2",
+              "text": "She asked if did I know the answer."
+            },
+            {
+              "responseId": "en:lesson-30:session-14:intro2:r3",
+              "text": "She asked if I knowing the answer."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-30:session-14:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Книга, которую вы одолжили",
+        "uk": "Книжка, яку ви позичили"
+      },
+      "bodyByLocale": {
+        "ru": "Вы прочли книгу, которую дал вам друг, и хвалите её: The book you lent me was exciting — книга, которую ты мне одолжил, была захватывающей. Соберите The book + you lent me + was exciting. You lent me уточняет книгу. Перед you можно опустить that: you — тот, кто одолжил, а book — то, что одолжили.",
+        "uk": "Ви прочитали книжку, яку дав вам друг, і хвалите її: The book you lent me was exciting — книжка, яку ти мені позичив, була захопливою. Складіть The book + you lent me + was exciting. You lent me уточнює книжку. Перед you можна пропустити that: you — той, хто позичив, а book — те, що позичили."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-14:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-14:intro3:r1",
+              "text": "The book you lent me was exciting."
+            },
+            {
+              "responseId": "en:lesson-30:session-14:intro3:r2",
+              "text": "The book you lending me was exciting."
+            },
+            {
+              "responseId": "en:lesson-30:session-14:intro3:r3",
+              "text": "The book you lent me were exciting."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-14:intro3:r1",
+              "text": "The book you lent me was exciting."
+            },
+            {
+              "responseId": "en:lesson-30:session-14:intro3:r2",
+              "text": "The book you lending me was exciting."
+            },
+            {
+              "responseId": "en:lesson-30:session-14:intro3:r3",
+              "text": "The book you lent me were exciting."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "6150f8a500dd97b0c918783e4436698247fab2ceef6615af9f1894108b092afa"
+}

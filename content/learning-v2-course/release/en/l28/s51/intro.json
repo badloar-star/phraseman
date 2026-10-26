@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-28:session-51",
+  "learningOutcomeByLocale": {
+    "ru": "как назвать желаемый вариант и попросить сохранить нужную длину.",
+    "uk": "як назвати бажаний варіант і попросити зберегти потрібну довжину."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-28:session-51:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Подровнять бороду",
+        "uk": "Підрівняти бороду"
+      },
+      "bodyByLocale": {
+        "ru": "Вы хотите сохранить бороду, но сделать её аккуратнее. Спросите мастера: Can my beard be trimmed? — можно подровнять мою бороду? Соберите Can + my beard + be trimmed? Начните с Can, затем назовите бороду: my beard. После неё нужны be и trimmed, третья форма trim. Вы спрашиваете о действии над бородой; кто его выполнит, понятно из разговора с мастером.",
+        "uk": "Ви хочете зберегти бороду, але зробити її охайнішою. Запитайте майстра: Can my beard be trimmed? — чи можна підрівняти мою бороду? Складіть Can + my beard + be trimmed? Почніть із Can, потім назвіть бороду: my beard. Після неї потрібні be та trimmed, третя форма trim. Ви запитуєте про дію з бородою; хто її виконає, зрозуміло з розмови з майстром."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-51:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-51:intro1:r1",
+              "text": "Can my beard be trimmed?"
+            },
+            {
+              "responseId": "en:lesson-28:session-51:intro1:r2",
+              "text": "Can my beard trimmed?"
+            },
+            {
+              "responseId": "en:lesson-28:session-51:intro1:r3",
+              "text": "Can my beard be trim?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-51:intro1:r1",
+              "text": "Can my beard be trimmed?"
+            },
+            {
+              "responseId": "en:lesson-28:session-51:intro1:r2",
+              "text": "Can my beard trimmed?"
+            },
+            {
+              "responseId": "en:lesson-28:session-51:intro1:r3",
+              "text": "Can my beard be trim?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-28:session-51:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Что входит в услугу",
+        "uk": "Що входить у послугу"
+      },
+      "bodyByLocale": {
+        "ru": "Вы видите цену стрижки и хотите узнать, включено ли мытьё головы. Спросите: Is a hair wash included? — мытьё головы включено? Соберите Is + a hair wash + included? Сначала поставьте Is, затем назовите одну услугу: a hair wash. В конце добавьте included, третью форму include. Так вы уточняете состав услуги за указанную цену.",
+        "uk": "Ви бачите ціну стрижки й хочете дізнатися, чи включено миття голови. Запитайте: Is a hair wash included? — миття голови включено? Складіть Is + a hair wash + included? Спочатку поставте Is, потім назвіть одну послугу: a hair wash. Наприкінці додайте included, третю форму include. Так ви уточнюєте склад послуги за вказану ціну."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-51:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-51:intro2:r1",
+              "text": "Is a hair wash included?"
+            },
+            {
+              "responseId": "en:lesson-28:session-51:intro2:r2",
+              "text": "Are a hair wash included?"
+            },
+            {
+              "responseId": "en:lesson-28:session-51:intro2:r3",
+              "text": "Is a hair wash include?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-51:intro2:r1",
+              "text": "Is a hair wash included?"
+            },
+            {
+              "responseId": "en:lesson-28:session-51:intro2:r2",
+              "text": "Are a hair wash included?"
+            },
+            {
+              "responseId": "en:lesson-28:session-51:intro2:r3",
+              "text": "Is a hair wash include?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-28:session-51:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Сначала вымыть волосы",
+        "uk": "Спочатку вимити волосся"
+      },
+      "bodyByLocale": {
+        "ru": "Вы садитесь в кресло и спрашиваете, с чего начнут. Мастер объясняет: Your hair will be washed first — сначала вам вымоют волосы. Соберите Your hair + will be + washed + first. Назовите волосы, затем поставьте will be и washed, третью форму wash. Так вы сообщаете о будущем действии над волосами. First означает «сначала».",
+        "uk": "Ви сідаєте в крісло й запитуєте, з чого почнуть. Майстер пояснює: Your hair will be washed first — спочатку вам вимиють волосся. Складіть Your hair + will be + washed + first. Назвіть волосся, потім поставте will be та washed, третю форму wash. Так ви повідомляєте про майбутню дію з волоссям. First означає «спочатку»."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-51:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-51:intro3:r1",
+              "text": "Your hair will be washed first."
+            },
+            {
+              "responseId": "en:lesson-28:session-51:intro3:r2",
+              "text": "Your hair will washed first."
+            },
+            {
+              "responseId": "en:lesson-28:session-51:intro3:r3",
+              "text": "Your hair will be wash first."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-51:intro3:r1",
+              "text": "Your hair will be washed first."
+            },
+            {
+              "responseId": "en:lesson-28:session-51:intro3:r2",
+              "text": "Your hair will washed first."
+            },
+            {
+              "responseId": "en:lesson-28:session-51:intro3:r3",
+              "text": "Your hair will be wash first."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "344a12abb415d69bdfd3ab049cd71e429c4794407e8f358f2634a66295d62edc"
+}

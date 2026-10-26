@@ -1,0 +1,1054 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-29:session-27",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-29:session-27:i01",
+      "ordinal": 4,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте, чи можна оглянути виставку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-27:i01:audio"
+      ],
+      "accessibilityLabel": "Запитайте, чи можна оглянути виставку.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-27:i01:audio",
+          "transcript": "May we look around?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "May we look around?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-27:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — pastel",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-27:i02:audio"
+      ],
+      "accessibilityLabel": "Картка слова — pastel",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-27:i02:audio",
+          "transcript": "pastel"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-27:i02:r1",
+            "targetText": "pastel",
+            "meaningByLocale": {
+              "ru": "Пастель. Цветной материал для рисования, часто в виде мелка.",
+              "uk": "Пастель. Кольоровий матеріал для малювання, часто у вигляді крейди."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pastel",
+          "definitionByLocale": {
+            "ru": "Пастель. Цветной материал для рисования, часто в виде мелка.",
+            "uk": "Пастель. Кольоровий матеріал для малювання, часто у вигляді крейди."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-27:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-27:i03:r1",
+          "text": "This picture was done in pastel."
+        },
+        {
+          "responseId": "en:lesson-29:session-27:i03:r2",
+          "text": "This picture was done in pencil."
+        },
+        {
+          "responseId": "en:lesson-29:session-27:i03:r3",
+          "text": "That picture was done in pastel."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-27:i03:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-27:i03:audio",
+          "transcript": "This picture was done in pastel."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-27:i03:r1",
+            "targetText": "This picture was done in pastel.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-27:i03:r2",
+            "targetText": "This picture was done in pencil.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-27:i03:r3",
+            "targetText": "That picture was done in pastel.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-27:i03:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This picture was done in pastel.",
+              "uk": "У записі звучить This picture was done in pastel."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-27:i03:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This picture was done in pastel.",
+              "uk": "У записі звучить This picture was done in pastel."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-27:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що жінка, яка намалювала картину, тут.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що жінка, яка намалювала картину, тут.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The woman who painted this picture is here.",
+        "localizedMeaning": {
+          "ru": "Скажите, что женщина, нарисовавшая картину, здесь.",
+          "uk": "Скажіть, що жінка, яка намалювала картину, тут."
+        },
+        "orderedTokens": [
+          "The",
+          "woman",
+          "who",
+          "painted",
+          "this",
+          "picture",
+          "is",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-27:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — mosaic",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-27:i05:audio"
+      ],
+      "accessibilityLabel": "Картка слова — mosaic",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-27:i05:audio",
+          "transcript": "mosaic"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-27:i05:r1",
+            "targetText": "mosaic",
+            "meaningByLocale": {
+              "ru": "Мозаика. Изображение или узор из маленьких кусочков материала.",
+              "uk": "Мозаїка. Зображення або візерунок із маленьких шматочків матеріалу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "mosaic",
+          "definitionByLocale": {
+            "ru": "Мозаика. Изображение или узор из маленьких кусочков материала.",
+            "uk": "Мозаїка. Зображення або візерунок із маленьких шматочків матеріалу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-27:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що вам подобається ця мозаїка.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що вам подобається ця мозаїка.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I like this mosaic.",
+        "localizedMeaning": {
+          "ru": "Скажите, что вам нравится эта мозаика.",
+          "uk": "Скажіть, що вам подобається ця мозаїка."
+        },
+        "orderedTokens": [
+          "I",
+          "like",
+          "this",
+          "mosaic"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-27:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви вибрали картину; вона маленька.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-27:i07:r1",
+          "text": "I chose"
+        },
+        {
+          "responseId": "en:lesson-29:session-27:i07:r2",
+          "text": "I chose it"
+        },
+        {
+          "responseId": "en:lesson-29:session-27:i07:r3",
+          "text": "me chose"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви вибрали картину; вона маленька.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы выбрали картину; она маленькая.",
+          "uk": "Ви вибрали картину; вона маленька."
+        },
+        "gappedTargetPhrase": "The picture which ___ is small.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-27:i07:r1",
+            "text": "I chose"
+          },
+          {
+            "responseId": "en:lesson-29:session-27:i07:r2",
+            "text": "I chose it"
+          },
+          {
+            "responseId": "en:lesson-29:session-27:i07:r3",
+            "text": "me chose"
+          }
+        ],
+        "testedDimension": "Ви вибрали картину; вона маленька.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-27:i07:r2",
+            "correct": false,
+            "testedDimension": "Ви вибрали картину; вона маленька.",
+            "feedbackByLocale": {
+              "ru": "Which уже обозначает выбранную вещь, it лишнее.",
+              "uk": "Which вже позначає вибрану річ, it зайве."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-27:i07:r3",
+            "correct": false,
+            "testedDimension": "Ви вибрали картину; вона маленька.",
+            "feedbackByLocale": {
+              "ru": "Исполнитель выбора — I, а не me.",
+              "uk": "Виконавець вибору — I, а не me."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-27:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте, скільки коштує ця робота.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-27:i08:audio"
+      ],
+      "accessibilityLabel": "Запитайте, скільки коштує ця робота.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-27:i08:audio",
+          "transcript": "How much does this cost?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "How much does this cost?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-27:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — abstract",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-27:i09:audio"
+      ],
+      "accessibilityLabel": "Картка слова — abstract",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-27:i09:audio",
+          "transcript": "abstract"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-27:i09:r1",
+            "targetText": "abstract",
+            "meaningByLocale": {
+              "ru": "Абстрактный. В искусстве передаёт идею через формы и цвета, а не точное изображение предметов.",
+              "uk": "Абстрактний. У мистецтві передає ідею через форми й кольори, а не точне зображення предметів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "abstract",
+          "definitionByLocale": {
+            "ru": "Абстрактный. В искусстве передаёт идею через формы и цвета, а не точное изображение предметов.",
+            "uk": "Абстрактний. У мистецтві передає ідею через форми й кольори, а не точне зображення предметів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-27:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-27:i10:r1",
+          "text": "I like abstract art."
+        },
+        {
+          "responseId": "en:lesson-29:session-27:i10:r2",
+          "text": "I like modern art."
+        },
+        {
+          "responseId": "en:lesson-29:session-27:i10:r3",
+          "text": "She likes abstract art."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-27:i10:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-27:i10:audio",
+          "transcript": "I like abstract art."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-27:i10:r1",
+            "targetText": "I like abstract art.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-27:i10:r2",
+            "targetText": "I like modern art.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-27:i10:r3",
+            "targetText": "She likes abstract art.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-27:i10:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I like abstract art.",
+              "uk": "У записі звучить I like abstract art."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-27:i10:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I like abstract art.",
+              "uk": "У записі звучить I like abstract art."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-27:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Саме ця жінка намалювала картину.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-27:i11:r1",
+          "text": "painted"
+        },
+        {
+          "responseId": "en:lesson-29:session-27:i11:r2",
+          "text": "she painted"
+        },
+        {
+          "responseId": "en:lesson-29:session-27:i11:r3",
+          "text": "paint"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Саме ця жінка намалювала картину.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Именно эта женщина нарисовала картину.",
+          "uk": "Саме ця жінка намалювала картину."
+        },
+        "gappedTargetPhrase": "The woman who ___ this picture is here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-27:i11:r1",
+            "text": "painted"
+          },
+          {
+            "responseId": "en:lesson-29:session-27:i11:r2",
+            "text": "she painted"
+          },
+          {
+            "responseId": "en:lesson-29:session-27:i11:r3",
+            "text": "paint"
+          }
+        ],
+        "testedDimension": "Саме ця жінка намалювала картину.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-27:i11:r2",
+            "correct": false,
+            "testedDimension": "Саме ця жінка намалювала картину.",
+            "feedbackByLocale": {
+              "ru": "Who уже обозначает художницу, she лишнее.",
+              "uk": "Who вже позначає художницю, she зайве."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-27:i11:r3",
+            "correct": false,
+            "testedDimension": "Саме ця жінка намалювала картину.",
+            "feedbackByLocale": {
+              "ru": "О завершённом действии здесь говорим painted.",
+              "uk": "Про завершену дію тут кажемо painted."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-27:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, де зазначена ціна.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-27:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте, де зазначена ціна.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-27:i12:audio",
+          "transcript": "The price is on the label."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The price is on the label.",
+        "orderedTokens": [
+          "The",
+          "price",
+          "is",
+          "on",
+          "the",
+          "label"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-27:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — figurine",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-27:i13:audio"
+      ],
+      "accessibilityLabel": "Картка слова — figurine",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-27:i13:audio",
+          "transcript": "figurine"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-27:i13:r1",
+            "targetText": "figurine",
+            "meaningByLocale": {
+              "ru": "Статуэтка. Небольшая фигурка человека или животного для украшения.",
+              "uk": "Статуетка. Невелика фігурка людини або тварини для оздоблення."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "figurine",
+          "definitionByLocale": {
+            "ru": "Статуэтка. Небольшая фигурка человека или животного для украшения.",
+            "uk": "Статуетка. Невелика фігурка людини або тварини для оздоблення."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-27:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть показати статуетку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-27:i14:audio"
+      ],
+      "accessibilityLabel": "Попросіть показати статуетку.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-27:i14:audio",
+          "transcript": "Could I see that figurine?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could I see that figurine?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-27:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-29:session-27:i15:p1",
+            "target": "pastel",
+            "meaningByLocale": {
+              "ru": "пастель",
+              "uk": "пастель"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-27:i15:p2",
+            "target": "mosaic",
+            "meaningByLocale": {
+              "ru": "мозаика",
+              "uk": "мозаїка"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-27:i15:p3",
+            "target": "abstract",
+            "meaningByLocale": {
+              "ru": "абстрактный",
+              "uk": "абстрактний"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-27:i15:p4",
+            "target": "figurine",
+            "meaningByLocale": {
+              "ru": "статуэтка",
+              "uk": "статуетка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "pastel",
+          "mosaic",
+          "abstract",
+          "figurine"
+        ],
+        "rightColumn": [
+          "пастель",
+          "мозаїка",
+          "абстрактний",
+          "статуетка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-27:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Художниця показує кімнату, де вона малює.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-27:i16:r1",
+          "text": "where"
+        },
+        {
+          "responseId": "en:lesson-29:session-27:i16:r2",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-27:i16:r3",
+          "text": "whose"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Художниця показує кімнату, де вона малює.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Художница показывает комнату, где она рисует.",
+          "uk": "Художниця показує кімнату, де вона малює."
+        },
+        "gappedTargetPhrase": "This is the room ___ I paint.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-27:i16:r1",
+            "text": "where"
+          },
+          {
+            "responseId": "en:lesson-29:session-27:i16:r2",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-27:i16:r3",
+            "text": "whose"
+          }
+        ],
+        "testedDimension": "Художниця показує кімнату, де вона малює.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-27:i16:r2",
+            "correct": false,
+            "testedDimension": "Художниця показує кімнату, де вона малює.",
+            "feedbackByLocale": {
+              "ru": "Для места действия нужно where.",
+              "uk": "Для місця дії потрібне where."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-27:i16:r3",
+            "correct": false,
+            "testedDimension": "Художниця показує кімнату, де вона малює.",
+            "feedbackByLocale": {
+              "ru": "Здесь место, а не принадлежность: where.",
+              "uk": "Тут місце, а не належність: where."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-27:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: вибрана картина маленька чи велика?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-27:i17:r1",
+          "text": "The picture which I chose is small."
+        },
+        {
+          "responseId": "en:lesson-29:session-27:i17:r2",
+          "text": "The picture which I chose is large."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-27:i17:audioA",
+        "en:lesson-29:session-27:i17:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: вибрана картина маленька чи велика?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "The picture which I chose is small.",
+        "contrastB": "The picture which I chose is large.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-29:session-27:i17:audioA",
+          "transcript": "The picture which I chose is small."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-29:session-27:i17:audioB",
+          "transcript": "The picture which I chose is large."
+        },
+        "testedPhoneticContrast": "Послухайте: вибрана картина маленька чи велика?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-27:i17:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: вибрана картина маленька чи велика?",
+            "feedbackByLocale": {
+              "ru": "Звучит small — маленькая.",
+              "uk": "Звучить small — маленька."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-27:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, хто зробив мозаїку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-27:i18:audio"
+      ],
+      "accessibilityLabel": "Послухайте, хто зробив мозаїку.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-27:i18:audio",
+          "transcript": "The mosaic was made by my neighbour."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The mosaic was made by my neighbour.",
+        "orderedTokens": [
+          "The",
+          "mosaic",
+          "was",
+          "made",
+          "by",
+          "my",
+          "neighbour"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-27:i19",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть обережно загорнути покупку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-27:i19:audio"
+      ],
+      "accessibilityLabel": "Попросіть обережно загорнути покупку.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-27:i19:audio",
+          "transcript": "Could you wrap it carefully?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you wrap it carefully?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-27:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Мозаїку зробив ваш сусід.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-27:i20:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-29:session-27:i20:r2",
+          "text": "of"
+        },
+        {
+          "responseId": "en:lesson-29:session-27:i20:r3",
+          "text": "from"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Мозаїку зробив ваш сусід.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Мозаику сделал ваш сосед.",
+          "uk": "Мозаїку зробив ваш сусід."
+        },
+        "gappedTargetPhrase": "The mosaic was made ___ my neighbour.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-27:i20:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-29:session-27:i20:r2",
+            "text": "of"
+          },
+          {
+            "responseId": "en:lesson-29:session-27:i20:r3",
+            "text": "from"
+          }
+        ],
+        "testedDimension": "Мозаїку зробив ваш сусід.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-27:i20:r2",
+            "correct": false,
+            "testedDimension": "Мозаїку зробив ваш сусід.",
+            "feedbackByLocale": {
+              "ru": "Человека, выполнившего действие, вводит by.",
+              "uk": "Людину, яка виконала дію, позначає by."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-27:i20:r3",
+            "correct": false,
+            "testedDimension": "Мозаїку зробив ваш сусід.",
+            "feedbackByLocale": {
+              "ru": "Для автора мозаики здесь нужна by.",
+              "uk": "Для автора мозаїки тут потрібна by."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-27:i21",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що поставите покупку на полицю.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що поставите покупку на полицю.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I will put it on the shelf.",
+        "localizedMeaning": {
+          "ru": "Скажите, что поставите покупку на полку.",
+          "uk": "Скажіть, що поставите покупку на полицю."
+        },
+        "orderedTokens": [
+          "I",
+          "will",
+          "put",
+          "it",
+          "on",
+          "the",
+          "shelf"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "cadd852dc3322b83e6f7298e7935d7943eb34030daec1c34f062bc4cec8b34cd"
+}

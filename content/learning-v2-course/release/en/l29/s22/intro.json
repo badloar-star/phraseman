@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-29:session-22",
+  "learningOutcomeByLocale": {
+    "ru": "как узнать ингредиенты, уточнить заказ и договориться разделить порцию.",
+    "uk": "як дізнатися про складники, уточнити замовлення й домовитися поділити порцію."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-29:session-22:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Столик снаружи",
+        "uk": "Столик надворі"
+      },
+      "bodyByLocale": {
+        "ru": "Вы выбираете место для ужина и предлагаете кафе со столиками на улице. Скажите: I know a café where we can sit outside — я знаю кафе, где мы можем сесть снаружи. Соберите I know a café + where + we can sit outside. После места a café добавьте where, затем назовите людей we и действие can sit outside. Where уже связывает действие с кафе; there в конце не нужно.",
+        "uk": "Ви обираєте місце для вечері й пропонуєте кафе зі столиками надворі. Скажіть: I know a café where we can sit outside — я знаю кафе, де ми можемо сісти надворі. Складіть I know a café + where + we can sit outside. Після місця a café додайте where, потім назвіть людей we і дію can sit outside. Where вже пов’язує дію з кафе; there наприкінці не потрібне."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-22:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-22:intro1:r1",
+              "text": "I know a café where we can sit outside."
+            },
+            {
+              "responseId": "en:lesson-29:session-22:intro1:r2",
+              "text": "I know a café where we can sit outside there."
+            },
+            {
+              "responseId": "en:lesson-29:session-22:intro1:r3",
+              "text": "I know a café who we can sit outside."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-22:intro1:r1",
+              "text": "I know a café where we can sit outside."
+            },
+            {
+              "responseId": "en:lesson-29:session-22:intro1:r2",
+              "text": "I know a café where we can sit outside there."
+            },
+            {
+              "responseId": "en:lesson-29:session-22:intro1:r3",
+              "text": "I know a café who we can sit outside."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-29:session-22:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Кто ждёт заказ",
+        "uk": "Хто чекає на замовлення"
+      },
+      "bodyByLocale": {
+        "ru": "Официант спрашивает, кому принести готовую пиццу, и вы указываете на мужчину у двери. Скажите: That is the man whose pizza is ready — это мужчина, чья пицца готова. Соберите That is the man + whose pizza + is ready. Whose pizza связывает заказ с мужчиной. После whose ставьте сразу pizza; дополнительное his не нужно.",
+        "uk": "Офіціант запитує, кому принести готову піцу, і ви показуєте на чоловіка біля дверей. Скажіть: That is the man whose pizza is ready — це чоловік, чия піца готова. Складіть That is the man + whose pizza + is ready. Whose pizza пов’язує замовлення із чоловіком. Після whose ставте відразу pizza; додаткове his не потрібне."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-22:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-22:intro2:r1",
+              "text": "That is the man whose pizza is ready."
+            },
+            {
+              "responseId": "en:lesson-29:session-22:intro2:r2",
+              "text": "That is the man who pizza is ready."
+            },
+            {
+              "responseId": "en:lesson-29:session-22:intro2:r3",
+              "text": "That is the man whose his pizza is ready."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-22:intro2:r1",
+              "text": "That is the man whose pizza is ready."
+            },
+            {
+              "responseId": "en:lesson-29:session-22:intro2:r2",
+              "text": "That is the man who pizza is ready."
+            },
+            {
+              "responseId": "en:lesson-29:session-22:intro2:r3",
+              "text": "That is the man whose his pizza is ready."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-29:session-22:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Если порция большая",
+        "uk": "Якщо порція велика"
+      },
+      "bodyByLocale": {
+        "ru": "Вы с другом решаете взять одну пиццу на двоих, если она окажется большой. Скажите: If it is large, we will share it — если она большая, мы разделим её. Соберите If it is large + we will share it. Сначала назовите условие с is без will. После запятой поставьте будущее решение we will share it.",
+        "uk": "Ви з другом вирішуєте взяти одну піцу на двох, якщо вона виявиться великою. Скажіть: If it is large, we will share it — якщо вона велика, ми поділимо її. Складіть If it is large + we will share it. Спочатку назвіть умову з is без will. Після коми поставте майбутнє рішення we will share it."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-22:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-22:intro3:r1",
+              "text": "If it is large, we will share it."
+            },
+            {
+              "responseId": "en:lesson-29:session-22:intro3:r2",
+              "text": "If it will be large, we will share it."
+            },
+            {
+              "responseId": "en:lesson-29:session-22:intro3:r3",
+              "text": "If it is large, we will shared it."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-22:intro3:r1",
+              "text": "If it is large, we will share it."
+            },
+            {
+              "responseId": "en:lesson-29:session-22:intro3:r2",
+              "text": "If it will be large, we will share it."
+            },
+            {
+              "responseId": "en:lesson-29:session-22:intro3:r3",
+              "text": "If it is large, we will shared it."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "456717e26d9a44757bfb6286d0767d9c2665d487bec02472d39f9e104dcbca36"
+}

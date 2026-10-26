@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-28:session-25:i01",
+    "correctText": "aluminium",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-25:i02",
+    "correctText": "Do you accept aluminium here?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-25:i03",
+    "correctText": "This jar can be reused.",
+    "correctResponseId": "en:lesson-28:session-25:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-25:i04",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-28:session-25:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-25:i05",
+    "correctText": "ceramic",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-25:i06",
+    "correctText": "Where should I put this ceramic bowl?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-25:i07",
+    "correctText": "This cup can still be used.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-25:i08",
+    "correctText": "The cup should be washed first.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-25:i09",
+    "correctText": "porcelain",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-25:i10",
+    "correctText": "This plate is made of porcelain.",
+    "correctResponseId": "en:lesson-28:session-25:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-25:i11",
+    "correctText": "reused",
+    "correctResponseId": "en:lesson-28:session-25:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-25:i12",
+    "correctText": "Do you accept broken items?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-25:i13",
+    "correctText": "landfill",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-25:i14",
+    "correctText": "Will this go to landfill?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-25:i15",
+    "correctText": "The bag should be kept dry.",
+    "correctResponseId": "en:lesson-28:session-25:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-25:i16",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-28:session-25:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-25:i17",
+    "correctText": "This lid must be removed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-25:i18",
+    "correctText": "Can I leave this bag here?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-25:i19",
+    "correctText": "wrapped",
+    "correctResponseId": "en:lesson-28:session-25:i19:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-25:i20",
+    "correctText": "The entrance must be kept clear.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-25:i21",
+    "correctText": "Thank you for your help.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-30:session-03",
+  "entries": [
+    {
+      "interactionId": "en:lesson-30:session-03:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-03:intro1:r2": {
+          "ru": "С she здесь нужно was.",
+          "uk": "Із she тут потрібне was."
+        },
+        "en:lesson-30:session-03:intro1:r3": {
+          "ru": "Для описанного состояния нужна форма was, не be.",
+          "uk": "Для описаного стану потрібна форма was, не be."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-03:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-03:intro2:r2": {
+          "ru": "Для этого желания о настоящем используем I were.",
+          "uk": "Для цього бажання про теперішнє використовуємо I were."
+        },
+        "en:lesson-30:session-03:intro2:r3": {
+          "ru": "Здесь нужно I were, не I being.",
+          "uk": "Тут потрібне I were, не I being."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-03:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-03:intro3:r2": {
+          "ru": "Нужна форма had, не having.",
+          "uk": "Потрібна форма had, не having."
+        },
+        "en:lesson-30:session-03:intro3:r3": {
+          "ru": "Одна беседа: the conversation was.",
+          "uk": "Одна розмова: the conversation was."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ae4b1f1c48bef29719ca94fc6013332e22a9b622e204e09b5133fe7924cacd76"
+}

@@ -1,0 +1,1052 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-29:session-36",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-29:session-36:i01",
+      "ordinal": 4,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите, можно ли одолжить гитару.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-36:i01:audio"
+      ],
+      "accessibilityLabel": "Спросите, можно ли одолжить гитару.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-36:i01:audio",
+          "transcript": "Could I borrow your guitar?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could I borrow your guitar?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-36:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — strum",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-36:i02:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — strum",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-36:i02:audio",
+          "transcript": "strum"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-36:i02:r1",
+            "targetText": "strum",
+            "meaningByLocale": {
+              "ru": "Играть по струнам аккордами. Проводить пальцами или медиатором сразу по нескольким струнам гитары или похожего инструмента.",
+              "uk": "Грати по струнах акордами. Проводити пальцями або медіатором відразу по кількох струнах гітари чи схожого інструмента."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "strum",
+          "definitionByLocale": {
+            "ru": "Играть по струнам аккордами. Проводить пальцами или медиатором сразу по нескольким струнам гитары или похожего инструмента.",
+            "uk": "Грати по струнах акордами. Проводити пальцями або медіатором відразу по кількох струнах гітари чи схожого інструмента."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-36:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросите показать, как играть аккордами по струнам.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросите показать, как играть аккордами по струнам.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Can you show me how to strum?",
+        "localizedMeaning": {
+          "ru": "Попросите показать, как играть аккордами по струнам.",
+          "uk": "Попросіть показати, як грати акордами по струнах."
+        },
+        "orderedTokens": [
+          "Can",
+          "you",
+          "show",
+          "me",
+          "how",
+          "to",
+          "strum"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-36:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-36:i04:r1",
+          "text": "The guitar I borrowed was old."
+        },
+        {
+          "responseId": "en:lesson-29:session-36:i04:r2",
+          "text": "The guitar I borrowed was new."
+        },
+        {
+          "responseId": "en:lesson-29:session-36:i04:r3",
+          "text": "The violin I borrowed was old."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-36:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-36:i04:audio",
+          "transcript": "The guitar I borrowed was old."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-36:i04:r1",
+            "targetText": "The guitar I borrowed was old.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-36:i04:r2",
+            "targetText": "The guitar I borrowed was new.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-36:i04:r3",
+            "targetText": "The violin I borrowed was old.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-36:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The guitar I borrowed was old.",
+              "uk": "У записі звучить The guitar I borrowed was old."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-36:i04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The guitar I borrowed was old.",
+              "uk": "У записі звучить The guitar I borrowed was old."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-36:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы рассказываете о старой гитаре, которую одолжили.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-36:i05:r1",
+          "text": "I borrowed"
+        },
+        {
+          "responseId": "en:lesson-29:session-36:i05:r2",
+          "text": "I borrowed it"
+        },
+        {
+          "responseId": "en:lesson-29:session-36:i05:r3",
+          "text": "me borrowed"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы рассказываете о старой гитаре, которую одолжили.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы рассказываете о старой гитаре, которую одолжили.",
+          "uk": "Ви розповідаєте про стару гітару, яку позичили."
+        },
+        "gappedTargetPhrase": "The guitar ___ was old.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-36:i05:r1",
+            "text": "I borrowed"
+          },
+          {
+            "responseId": "en:lesson-29:session-36:i05:r2",
+            "text": "I borrowed it"
+          },
+          {
+            "responseId": "en:lesson-29:session-36:i05:r3",
+            "text": "me borrowed"
+          }
+        ],
+        "testedDimension": "Вы рассказываете о старой гитаре, которую одолжили.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-36:i05:r2",
+            "correct": false,
+            "testedDimension": "Вы рассказываете о старой гитаре, которую одолжили.",
+            "feedbackByLocale": {
+              "ru": "It повторяет уже названную гитару.",
+              "uk": "It повторює вже названу гітару."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-36:i05:r3",
+            "correct": false,
+            "testedDimension": "Вы рассказываете о старой гитаре, которую одолжили.",
+            "feedbackByLocale": {
+              "ru": "Нужен исполнитель I, не me.",
+              "uk": "Потрібен виконавець I, не me."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-36:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — duet",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-36:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — duet",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-36:i06:audio",
+          "transcript": "duet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-36:i06:r1",
+            "targetText": "duet",
+            "meaningByLocale": {
+              "ru": "Дуэт. Музыкальное произведение или исполнение для двух певцов или музыкантов.",
+              "uk": "Дует. Музичний твір або виконання для двох співаків чи музикантів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "duet",
+          "definitionByLocale": {
+            "ru": "Дуэт. Музыкальное произведение или исполнение для двух певцов или музыкантов.",
+            "uk": "Дует. Музичний твір або виконання для двох співаків чи музикантів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-36:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Предложите спеть дуэтом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-36:i07:audio"
+      ],
+      "accessibilityLabel": "Предложите спеть дуэтом.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-36:i07:audio",
+          "transcript": "Shall we sing a duet?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Shall we sing a duet?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-36:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, кто дал вам гитару.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-36:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте, кто дал вам гитару.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-36:i08:audio",
+          "transcript": "This is the friend whose guitar I borrowed."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This is the friend whose guitar I borrowed.",
+        "orderedTokens": [
+          "This",
+          "is",
+          "the",
+          "friend",
+          "whose",
+          "guitar",
+          "I",
+          "borrowed"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-36:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Это друг, чью гитару вы одолжили.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-36:i09:r1",
+          "text": "whose"
+        },
+        {
+          "responseId": "en:lesson-29:session-36:i09:r2",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-36:i09:r3",
+          "text": "whose his"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Это друг, чью гитару вы одолжили.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Это друг, чью гитару вы одолжили.",
+          "uk": "Це друг, чию гітару ви позичили."
+        },
+        "gappedTargetPhrase": "This is the friend ___ guitar I borrowed.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-36:i09:r1",
+            "text": "whose"
+          },
+          {
+            "responseId": "en:lesson-29:session-36:i09:r2",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-36:i09:r3",
+            "text": "whose his"
+          }
+        ],
+        "testedDimension": "Это друг, чью гитару вы одолжили.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-36:i09:r2",
+            "correct": false,
+            "testedDimension": "Это друг, чью гитару вы одолжили.",
+            "feedbackByLocale": {
+              "ru": "Whose guitar означает чья гитара.",
+              "uk": "Whose guitar означає чия гітара."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-36:i09:r3",
+            "correct": false,
+            "testedDimension": "Это друг, чью гитару вы одолжили.",
+            "feedbackByLocale": {
+              "ru": "His лишнее после whose.",
+              "uk": "His зайве після whose."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-36:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — chorus",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-36:i10:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — chorus",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-36:i10:audio",
+          "transcript": "chorus"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-36:i10:r1",
+            "targetText": "chorus",
+            "meaningByLocale": {
+              "ru": "Припев. Повторяющаяся часть песни, обычно с одними и теми же словами и мелодией.",
+              "uk": "Приспів. Повторювана частина пісні, зазвичай з одними й тими самими словами та мелодією."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "chorus",
+          "definitionByLocale": {
+            "ru": "Припев. Повторяющаяся часть песни, обычно с одними и теми же словами и мелодией.",
+            "uk": "Приспів. Повторювана частина пісні, зазвичай з одними й тими самими словами та мелодією."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-36:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-36:i11:r1",
+          "text": "Everyone joined in the chorus."
+        },
+        {
+          "responseId": "en:lesson-29:session-36:i11:r2",
+          "text": "Everyone joined in the dance."
+        },
+        {
+          "responseId": "en:lesson-29:session-36:i11:r3",
+          "text": "Everyone joined in the game."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-36:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-36:i11:audio",
+          "transcript": "Everyone joined in the chorus."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-36:i11:r1",
+            "targetText": "Everyone joined in the chorus.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-36:i11:r2",
+            "targetText": "Everyone joined in the dance.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-36:i11:r3",
+            "targetText": "Everyone joined in the game.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-36:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Everyone joined in the chorus.",
+              "uk": "У записі звучить Everyone joined in the chorus."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-36:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Everyone joined in the chorus.",
+              "uk": "У записі звучить Everyone joined in the chorus."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-36:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что знаете слова.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что знаете слова.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I know the words.",
+        "localizedMeaning": {
+          "ru": "Скажите, что знаете слова.",
+          "uk": "Скажіть, що знаєте слова."
+        },
+        "orderedTokens": [
+          "I",
+          "know",
+          "the",
+          "words"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-36:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — encore",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-36:i13:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — encore",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-36:i13:audio",
+          "transcript": "encore"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-36:i13:r1",
+            "targetText": "encore",
+            "meaningByLocale": {
+              "ru": "Выступление на бис. Дополнительный номер после окончания выступления, которого просят слушатели.",
+              "uk": "Виступ на біс. Додатковий номер після завершення виступу, якого просять слухачі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "encore",
+          "definitionByLocale": {
+            "ru": "Выступление на бис. Дополнительный номер после окончания выступления, которого просят слушатели.",
+            "uk": "Виступ на біс. Додатковий номер після завершення виступу, якого просять слухачі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-36:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что слушатели попросили выступить на бис.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-36:i14:audio"
+      ],
+      "accessibilityLabel": "Скажите, что слушатели попросили выступить на бис.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-36:i14:audio",
+          "transcript": "The audience asked for an encore."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The audience asked for an encore.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-36:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-29:session-36:i15:p1",
+            "target": "strum",
+            "meaningByLocale": {
+              "ru": "играть по струнам аккордами",
+              "uk": "грати по струнах акордами"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-36:i15:p2",
+            "target": "duet",
+            "meaningByLocale": {
+              "ru": "дуэт",
+              "uk": "дует"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-36:i15:p3",
+            "target": "chorus",
+            "meaningByLocale": {
+              "ru": "припев",
+              "uk": "приспів"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-36:i15:p4",
+            "target": "encore",
+            "meaningByLocale": {
+              "ru": "выступление на бис",
+              "uk": "виступ на біс"
+            }
+          }
+        ],
+        "leftColumn": [
+          "strum",
+          "duet",
+          "chorus",
+          "encore"
+        ],
+        "rightColumn": [
+          "играть по струнам аккордами",
+          "дуэт",
+          "припев",
+          "выступление на бис"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-36:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Это зал, в котором вы выступали.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-36:i16:r1",
+          "text": "where"
+        },
+        {
+          "responseId": "en:lesson-29:session-36:i16:r2",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-36:i16:r3",
+          "text": "whose"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Это зал, в котором вы выступали.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Это зал, в котором вы выступали.",
+          "uk": "Це зал, у якому ви виступали."
+        },
+        "gappedTargetPhrase": "This is the hall ___ we played.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-36:i16:r1",
+            "text": "where"
+          },
+          {
+            "responseId": "en:lesson-29:session-36:i16:r2",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-36:i16:r3",
+            "text": "whose"
+          }
+        ],
+        "testedDimension": "Это зал, в котором вы выступали.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-36:i16:r2",
+            "correct": false,
+            "testedDimension": "Это зал, в котором вы выступали.",
+            "feedbackByLocale": {
+              "ru": "Нужно слово места where.",
+              "uk": "Потрібне слово місця where."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-36:i16:r3",
+            "correct": false,
+            "testedDimension": "Это зал, в котором вы выступали.",
+            "feedbackByLocale": {
+              "ru": "Здесь уточняем место, не принадлежность.",
+              "uk": "Тут уточнюємо місце, не належність."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-36:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: гитара старая или новая?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-36:i17:r1",
+          "text": "The guitar I borrowed was old."
+        },
+        {
+          "responseId": "en:lesson-29:session-36:i17:r2",
+          "text": "The guitar I borrowed was new."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-36:i17:audioA",
+        "en:lesson-29:session-36:i17:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: гитара старая или новая?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "The guitar I borrowed was old.",
+        "contrastB": "The guitar I borrowed was new.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-29:session-36:i17:audioA",
+          "transcript": "The guitar I borrowed was old."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-29:session-36:i17:audioB",
+          "transcript": "The guitar I borrowed was new."
+        },
+        "testedPhoneticContrast": "Послушайте: гитара старая или новая?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-36:i17:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: гитара старая или новая?",
+            "feedbackByLocale": {
+              "ru": "Звучит old — старая.",
+              "uk": "Звучить old — стара."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-36:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, что попросили слушатели.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-36:i18:audio"
+      ],
+      "accessibilityLabel": "Послушайте, что попросили слушатели.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-36:i18:audio",
+          "transcript": "The audience asked for an encore."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The audience asked for an encore.",
+        "orderedTokens": [
+          "The",
+          "audience",
+          "asked",
+          "for",
+          "an",
+          "encore"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-36:i19",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Поблагодарите друга за гитару.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-36:i19:audio"
+      ],
+      "accessibilityLabel": "Поблагодарите друга за гитару.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-36:i19:audio",
+          "transcript": "Thank you for lending me your guitar."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Thank you for lending me your guitar.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-36:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Песня, которую вы спели, была короткой.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-36:i20:r1",
+          "text": "we sang"
+        },
+        {
+          "responseId": "en:lesson-29:session-36:i20:r2",
+          "text": "we sang it"
+        },
+        {
+          "responseId": "en:lesson-29:session-36:i20:r3",
+          "text": "us sang"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Песня, которую вы спели, была короткой.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Песня, которую вы спели, была короткой.",
+          "uk": "Пісня, яку ви заспівали, була короткою."
+        },
+        "gappedTargetPhrase": "The song ___ was short.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-36:i20:r1",
+            "text": "we sang"
+          },
+          {
+            "responseId": "en:lesson-29:session-36:i20:r2",
+            "text": "we sang it"
+          },
+          {
+            "responseId": "en:lesson-29:session-36:i20:r3",
+            "text": "us sang"
+          }
+        ],
+        "testedDimension": "Песня, которую вы спели, была короткой.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-36:i20:r2",
+            "correct": false,
+            "testedDimension": "Песня, которую вы спели, была короткой.",
+            "feedbackByLocale": {
+              "ru": "It лишнее: песня уже названа.",
+              "uk": "It зайве: пісню вже названо."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-36:i20:r3",
+            "correct": false,
+            "testedDimension": "Песня, которую вы спели, была короткой.",
+            "feedbackByLocale": {
+              "ru": "Пели мы: we sang.",
+              "uk": "Співали ми: we sang."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-36:i21",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что вам понравилось играть вместе.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что вам понравилось играть вместе.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I enjoyed playing with you.",
+        "localizedMeaning": {
+          "ru": "Скажите, что вам понравилось играть вместе.",
+          "uk": "Скажіть, що вам сподобалося грати разом."
+        },
+        "orderedTokens": [
+          "I",
+          "enjoyed",
+          "playing",
+          "with",
+          "you"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "c3c4ce11212ee80b28fef84044680b577e7d935b93511d8957beb4efa046b01f"
+}

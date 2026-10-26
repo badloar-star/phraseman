@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-28:session-32",
+  "learningOutcomeByLocale": {
+    "ru": "как назвать стоматологические изделия, спросить о ремонте и понять сообщение о готовности.",
+    "uk": "як назвати стоматологічні вироби, запитати про ремонт і зрозуміти повідомлення про готовність."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-28:session-32:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Спросить о ремонте",
+        "uk": "Запитати про ремонт"
+      },
+      "bodyByLocale": {
+        "ru": "На приёме вы показываете стоматологу повреждённый съёмный аппарат. Спросите: Can it be repaired? — его можно отремонтировать? Поставьте Can в начало вопроса, затем it — предмет, который вы показываете. После it добавьте be repaired. Соберите Can + it + be + repaired? Repaired — форма repair с окончанием -ed; действие выполняют над предметом.",
+        "uk": "На прийомі ви показуєте стоматологові пошкоджений знімний апарат. Запитайте: Can it be repaired? — чи можна його відремонтувати? Поставте Can на початок запитання, потім it — предмет, який ви показуєте. Після it додайте be repaired. Складіть Can + it + be + repaired? Repaired — форма repair із закінченням -ed; дію виконують над предметом."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-32:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-32:intro1:r1",
+              "text": "Can it be repaired?"
+            },
+            {
+              "responseId": "en:lesson-28:session-32:intro1:r2",
+              "text": "Can it repaired?"
+            },
+            {
+              "responseId": "en:lesson-28:session-32:intro1:r3",
+              "text": "Can it be repair?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-32:intro1:r1",
+              "text": "Can it be repaired?"
+            },
+            {
+              "responseId": "en:lesson-28:session-32:intro1:r2",
+              "text": "Can it repaired?"
+            },
+            {
+              "responseId": "en:lesson-28:session-32:intro1:r3",
+              "text": "Can it be repair?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-28:session-32:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Время приёма изменили",
+        "uk": "Час прийому змінили"
+      },
+      "bodyByLocale": {
+        "ru": "Вы видите в напоминании новое время визита. Администратор объясняет: Your appointment was changed yesterday — время вашего приёма изменили вчера. Соберите Your appointment + was + changed + yesterday. Appointment — один приём, поэтому нужна was. Changed — форма change с окончанием -d. Yesterday показывает, когда внесли изменение.",
+        "uk": "Ви бачите в нагадуванні новий час візиту. Адміністратор пояснює: Your appointment was changed yesterday — час вашого прийому змінили вчора. Складіть Your appointment + was + changed + yesterday. Appointment — один прийом, тому потрібна was. Changed — форма change із закінченням -d. Yesterday показує, коли внесли зміну."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-32:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-32:intro2:r1",
+              "text": "Your appointment was changed yesterday."
+            },
+            {
+              "responseId": "en:lesson-28:session-32:intro2:r2",
+              "text": "Your appointment were changed yesterday."
+            },
+            {
+              "responseId": "en:lesson-28:session-32:intro2:r3",
+              "text": "Your appointment was change yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-32:intro2:r1",
+              "text": "Your appointment was changed yesterday."
+            },
+            {
+              "responseId": "en:lesson-28:session-32:intro2:r2",
+              "text": "Your appointment were changed yesterday."
+            },
+            {
+              "responseId": "en:lesson-28:session-32:intro2:r3",
+              "text": "Your appointment was change yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-28:session-32:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Получить сообщение",
+        "uk": "Отримати повідомлення"
+      },
+      "bodyByLocale": {
+        "ru": "Вы ждёте, когда можно будет забрать заказ. Администратор обещает: A message will be sent — вам отправят сообщение. Начните с A message, затем поставьте will be sent. Will показывает будущее действие, be sent — что сообщение отправят. Sent — форма send для этой конструкции. Соберите A message + will + be + sent.",
+        "uk": "Ви чекаєте, коли можна буде забрати замовлення. Адміністратор обіцяє: A message will be sent — вам надішлють повідомлення. Почніть із A message, потім поставте will be sent. Will показує майбутню дію, be sent — що повідомлення надішлють. Sent — форма send для цієї конструкції. Складіть A message + will + be + sent."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-32:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-32:intro3:r1",
+              "text": "A message will be sent."
+            },
+            {
+              "responseId": "en:lesson-28:session-32:intro3:r2",
+              "text": "A message will sent."
+            },
+            {
+              "responseId": "en:lesson-28:session-32:intro3:r3",
+              "text": "A message will be send."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-32:intro3:r1",
+              "text": "A message will be sent."
+            },
+            {
+              "responseId": "en:lesson-28:session-32:intro3:r2",
+              "text": "A message will sent."
+            },
+            {
+              "responseId": "en:lesson-28:session-32:intro3:r3",
+              "text": "A message will be send."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "46df0fd2a7ec6850f2d61e3bd56353e6e5f4a8f196f1efefcb02f1c2796f9060"
+}

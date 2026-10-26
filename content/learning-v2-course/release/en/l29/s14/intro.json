@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-29:session-14",
+  "learningOutcomeByLocale": {
+    "ru": "как предложить игру, найти нужного гостя и договориться о месте.",
+    "uk": "як запропонувати гру, знайти потрібного гостя й домовитися про місце."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-29:session-14:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Кто принёс карты",
+        "uk": "Хто приніс карти"
+      },
+      "bodyByLocale": {
+        "ru": "Вы ищете гостя, чей сын принёс карты. Спросите: Where is the man whose son brought the cards? — где мужчина, чей сын принёс карты? Соберите Where is the man + whose son + brought the cards? После the man добавьте whose son: это сын того мужчины. Затем brought the cards сообщает, что сделал сын. После whose не добавляем his.",
+        "uk": "Ви шукаєте гостя, чий син приніс карти. Запитайте: Where is the man whose son brought the cards? — де чоловік, чий син приніс карти? Складіть Where is the man + whose son + brought the cards? Після the man додайте whose son: це син того чоловіка. Потім brought the cards повідомляє, що зробив син. Після whose не додаємо his."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-14:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-14:intro1:r1",
+              "text": "Where is the man whose son brought the cards?"
+            },
+            {
+              "responseId": "en:lesson-29:session-14:intro1:r2",
+              "text": "Where is the man who son brought the cards?"
+            },
+            {
+              "responseId": "en:lesson-29:session-14:intro1:r3",
+              "text": "Where is the man whose his son brought the cards?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-14:intro1:r1",
+              "text": "Where is the man whose son brought the cards?"
+            },
+            {
+              "responseId": "en:lesson-29:session-14:intro1:r2",
+              "text": "Where is the man who son brought the cards?"
+            },
+            {
+              "responseId": "en:lesson-29:session-14:intro1:r3",
+              "text": "Where is the man whose his son brought the cards?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-29:session-14:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Кто вас пригласил",
+        "uk": "Хто вас запросив"
+      },
+      "bodyByLocale": {
+        "ru": "На вечере игр новый знакомый спрашивает, кто вас пригласил. Ответьте: I was invited by my neighbour — меня пригласил мой сосед. Соберите I + was invited + by my neighbour. После I поставьте was invited: приглашение получили вы. Через by my neighbour назовите человека, который пригласил.",
+        "uk": "На вечорі ігор новий знайомий запитує, хто вас запросив. Дайте відповідь: I was invited by my neighbour — мене запросив мій сусід. Складіть I + was invited + by my neighbour. Після I поставте was invited: запрошення отримали ви. Через by my neighbour назвіть людину, яка запросила."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-14:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-14:intro2:r1",
+              "text": "I was invited by my neighbour."
+            },
+            {
+              "responseId": "en:lesson-29:session-14:intro2:r2",
+              "text": "I was invited from my neighbour."
+            },
+            {
+              "responseId": "en:lesson-29:session-14:intro2:r3",
+              "text": "I was invite by my neighbour."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-14:intro2:r1",
+              "text": "I was invited by my neighbour."
+            },
+            {
+              "responseId": "en:lesson-29:session-14:intro2:r2",
+              "text": "I was invited from my neighbour."
+            },
+            {
+              "responseId": "en:lesson-29:session-14:intro2:r3",
+              "text": "I was invite by my neighbour."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-29:session-14:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Если пойдёт дождь",
+        "uk": "Якщо піде дощ"
+      },
+      "bodyByLocale": {
+        "ru": "Вы хотите играть во дворе, но договариваетесь остаться в доме в случае дождя. Скажите: If it rains, we will play inside — если пойдёт дождь, мы будем играть внутри. Соберите If it rains + we will play inside. В условии после If it используйте rains без will. Во второй части поставьте will play: это ваше будущее действие. Условие стоит первым, поэтому между частями нужна запятая.",
+        "uk": "Ви хочете грати на подвір’ї, але домовляєтеся залишитися в будинку в разі дощу. Скажіть: If it rains, we will play inside — якщо піде дощ, ми гратимемо всередині. Складіть If it rains + we will play inside. В умові після If it використайте rains без will. У другій частині поставте will play: це ваша майбутня дія. Умова стоїть першою, тому між частинами потрібна кома."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-14:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-14:intro3:r1",
+              "text": "If it rains, we will play inside."
+            },
+            {
+              "responseId": "en:lesson-29:session-14:intro3:r2",
+              "text": "If it will rain, we will play inside."
+            },
+            {
+              "responseId": "en:lesson-29:session-14:intro3:r3",
+              "text": "If it rains, we will played inside."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-14:intro3:r1",
+              "text": "If it rains, we will play inside."
+            },
+            {
+              "responseId": "en:lesson-29:session-14:intro3:r2",
+              "text": "If it will rain, we will play inside."
+            },
+            {
+              "responseId": "en:lesson-29:session-14:intro3:r3",
+              "text": "If it rains, we will played inside."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a8655874e159099a78b2491f2414ee58494be84d8554ee570d35895fa0f2b20e"
+}

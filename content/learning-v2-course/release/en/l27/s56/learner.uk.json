@@ -1,0 +1,1047 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-27:session-56",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-27:session-56:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — windbreaker",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-56:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — windbreaker",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-56:i01:audio",
+          "transcript": "windbreaker"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-56:i01:r1",
+            "targetText": "windbreaker",
+            "meaningByLocale": {
+              "ru": "Ветровка: лёгкая куртка для защиты от ветра.",
+              "uk": "Вітрівка: легка куртка для захисту від вітру."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "windbreaker",
+          "definitionByLocale": {
+            "ru": "Ветровка: лёгкая куртка для защиты от ветра.",
+            "uk": "Вітрівка: легка куртка для захисту від вітру."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-56:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-56:i02:r1",
+          "text": "My windbreaker is in the wardrobe."
+        },
+        {
+          "responseId": "en:lesson-27:session-56:i02:r2",
+          "text": "My windbreaker is in the car."
+        },
+        {
+          "responseId": "en:lesson-27:session-56:i02:r3",
+          "text": "My coat is in the wardrobe."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-56:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-56:i02:audio",
+          "transcript": "My windbreaker is in the wardrobe."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-56:i02:r1",
+            "targetText": "My windbreaker is in the wardrobe.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-56:i02:r2",
+            "targetText": "My windbreaker is in the car.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-56:i02:r3",
+            "targetText": "My coat is in the wardrobe.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-56:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My windbreaker is in the wardrobe.",
+              "uk": "У записі звучить My windbreaker is in the wardrobe."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-56:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My windbreaker is in the wardrobe.",
+              "uk": "У записі звучить My windbreaker is in the wardrobe."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-56:i03",
+      "ordinal": 6,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть сестру принести вашу вітрівку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-56:i03:audio"
+      ],
+      "accessibilityLabel": "Попросіть сестру принести вашу вітрівку.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-56:i03:audio",
+          "transcript": "Could you bring me my windbreaker?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you bring me my windbreaker?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-56:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви купили цю куртку минулої весни.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-56:i04:r1",
+          "text": "bought"
+        },
+        {
+          "responseId": "en:lesson-27:session-56:i04:r2",
+          "text": "have bought"
+        },
+        {
+          "responseId": "en:lesson-27:session-56:i04:r3",
+          "text": "buying"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви купили цю куртку минулої весни.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы купили эту куртку прошлой весной.",
+          "uk": "Ви купили цю куртку минулої весни."
+        },
+        "gappedTargetPhrase": "I ___ this jacket last spring.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-56:i04:r1",
+            "text": "bought"
+          },
+          {
+            "responseId": "en:lesson-27:session-56:i04:r2",
+            "text": "have bought"
+          },
+          {
+            "responseId": "en:lesson-27:session-56:i04:r3",
+            "text": "buying"
+          }
+        ],
+        "testedDimension": "Ви купили цю куртку минулої весни.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-56:i04:r2",
+            "correct": false,
+            "testedDimension": "Ви купили цю куртку минулої весни.",
+            "feedbackByLocale": {
+              "ru": "Last spring — законченный прошлый период: bought.",
+              "uk": "Last spring — завершений минулий період: bought."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-56:i04:r3",
+            "correct": false,
+            "testedDimension": "Ви купили цю куртку минулої весни.",
+            "feedbackByLocale": {
+              "ru": "Нужна прошедшая форма bought.",
+              "uk": "Потрібна минула форма bought."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-56:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — beanie",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-56:i05:audio"
+      ],
+      "accessibilityLabel": "Картка слова — beanie",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-56:i05:audio",
+          "transcript": "beanie"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-56:i05:r1",
+            "targetText": "beanie",
+            "meaningByLocale": {
+              "ru": "Вязаная шапка без полей, плотно прилегающая к голове.",
+              "uk": "В’язана шапка без крисів, яка щільно прилягає до голови."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "beanie",
+          "definitionByLocale": {
+            "ru": "Вязаная шапка без полей, плотно прилегающая к голове.",
+            "uk": "В’язана шапка без крисів, яка щільно прилягає до голови."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-56:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "У сестри немає теплої шапки. Запропонуйте їй свою.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У сестри немає теплої шапки. Запропонуйте їй свою.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You can borrow my beanie.",
+        "localizedMeaning": {
+          "ru": "У сестры нет тёплой шапки. Предложите ей свою.",
+          "uk": "У сестри немає теплої шапки. Запропонуйте їй свою."
+        },
+        "orderedTokens": [
+          "You",
+          "can",
+          "borrow",
+          "my",
+          "beanie"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-56:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Почуйте прогноз на ранок.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-56:i07:audio"
+      ],
+      "accessibilityLabel": "Почуйте прогноз на ранок.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-56:i07:audio",
+          "transcript": "It will be cold in the morning."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "It will be cold in the morning.",
+        "orderedTokens": [
+          "It",
+          "will",
+          "be",
+          "cold",
+          "in",
+          "the",
+          "morning"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-56:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Порадьте сестрі взяти теплі шкарпетки.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-56:i08:r1",
+          "text": "pack"
+        },
+        {
+          "responseId": "en:lesson-27:session-56:i08:r2",
+          "text": "packed"
+        },
+        {
+          "responseId": "en:lesson-27:session-56:i08:r3",
+          "text": "packing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Порадьте сестрі взяти теплі шкарпетки.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Посоветуйте сестре взять тёплые носки.",
+          "uk": "Порадьте сестрі взяти теплі шкарпетки."
+        },
+        "gappedTargetPhrase": "If I were you, I would ___ some warm socks.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-56:i08:r1",
+            "text": "pack"
+          },
+          {
+            "responseId": "en:lesson-27:session-56:i08:r2",
+            "text": "packed"
+          },
+          {
+            "responseId": "en:lesson-27:session-56:i08:r3",
+            "text": "packing"
+          }
+        ],
+        "testedDimension": "Порадьте сестрі взяти теплі шкарпетки.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-56:i08:r2",
+            "correct": false,
+            "testedDimension": "Порадьте сестрі взяти теплі шкарпетки.",
+            "feedbackByLocale": {
+              "ru": "После would нужна начальная форма pack.",
+              "uk": "Після would потрібна початкова форма pack."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-56:i08:r3",
+            "correct": false,
+            "testedDimension": "Порадьте сестрі взяти теплі шкарпетки.",
+            "feedbackByLocale": {
+              "ru": "После would не используем форму на -ing.",
+              "uk": "Після would не використовуємо форму на -ing."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-56:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bikini",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-56:i09:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bikini",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-56:i09:audio",
+          "transcript": "bikini"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-56:i09:r1",
+            "targetText": "bikini",
+            "meaningByLocale": {
+              "ru": "Бикини: раздельный купальник из двух частей.",
+              "uk": "Бікіні: роздільний купальник із двох частин."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bikini",
+          "definitionByLocale": {
+            "ru": "Бикини: раздельный купальник из двух частей.",
+            "uk": "Бікіні: роздільний купальник із двох частин."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-56:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-56:i10:r1",
+          "text": "I have packed my bikini and a towel."
+        },
+        {
+          "responseId": "en:lesson-27:session-56:i10:r2",
+          "text": "I have packed my bikini and a hat."
+        },
+        {
+          "responseId": "en:lesson-27:session-56:i10:r3",
+          "text": "I have packed my swimsuit and a towel."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-56:i10:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-56:i10:audio",
+          "transcript": "I have packed my bikini and a towel."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-56:i10:r1",
+            "targetText": "I have packed my bikini and a towel.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-56:i10:r2",
+            "targetText": "I have packed my bikini and a hat.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-56:i10:r3",
+            "targetText": "I have packed my swimsuit and a towel.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-56:i10:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have packed my bikini and a towel.",
+              "uk": "У записі звучить I have packed my bikini and a towel."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-56:i10:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have packed my bikini and a towel.",
+              "uk": "У записі звучить I have packed my bikini and a towel."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-56:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте сестру, чи поклала вона крем від сонця.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте сестру, чи поклала вона крем від сонця.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Have you packed the sunscreen?",
+        "localizedMeaning": {
+          "ru": "Спросите сестру, положила ли она крем от солнца.",
+          "uk": "Запитайте сестру, чи поклала вона крем від сонця."
+        },
+        "orderedTokens": [
+          "Have",
+          "you",
+          "packed",
+          "the",
+          "sunscreen"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-56:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Сестра питає, чи все готово. Скажіть, що ви ще не знайшли окуляри.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-56:i12:audio"
+      ],
+      "accessibilityLabel": "Сестра питає, чи все готово. Скажіть, що ви ще не знайшли окуляри.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-56:i12:audio",
+          "transcript": "I have not found my sunglasses yet."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have not found my sunglasses yet.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-56:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — sundress",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-56:i13:audio"
+      ],
+      "accessibilityLabel": "Картка слова — sundress",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-56:i13:audio",
+          "transcript": "sundress"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-56:i13:r1",
+            "targetText": "sundress",
+            "meaningByLocale": {
+              "ru": "Лёгкое летнее платье, обычно без рукавов.",
+              "uk": "Легка літня сукня, зазвичай без рукавів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sundress",
+          "definitionByLocale": {
+            "ru": "Лёгкое летнее платье, обычно без рукавов.",
+            "uk": "Легка літня сукня, зазвичай без рукавів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-56:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вирішіть узяти синю літню сукню на теплий день.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вирішіть узяти синю літню сукню на теплий день.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I will take my blue sundress.",
+        "localizedMeaning": {
+          "ru": "Решите взять синее летнее платье на тёплый день.",
+          "uk": "Вирішіть узяти синю літню сукню на теплий день."
+        },
+        "orderedTokens": [
+          "I",
+          "will",
+          "take",
+          "my",
+          "blue",
+          "sundress"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-56:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви вже на відпочинку, але маєте лише два вільні дні. Хотілося б більше.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-56:i15:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-27:session-56:i15:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-27:session-56:i15:r3",
+          "text": "having"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви вже на відпочинку, але маєте лише два вільні дні. Хотілося б більше.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы уже на отдыхе, но у вас только два свободных дня. Хотелось бы больше.",
+          "uk": "Ви вже на відпочинку, але маєте лише два вільні дні. Хотілося б більше."
+        },
+        "gappedTargetPhrase": "I wish we ___ a longer holiday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-56:i15:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-27:session-56:i15:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-27:session-56:i15:r3",
+            "text": "having"
+          }
+        ],
+        "testedDimension": "Ви вже на відпочинку, але маєте лише два вільні дні. Хотілося б більше.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-56:i15:r2",
+            "correct": false,
+            "testedDimension": "Ви вже на відпочинку, але маєте лише два вільні дні. Хотілося б більше.",
+            "feedbackByLocale": {
+              "ru": "После wish о желаемой ситуации сейчас используем had.",
+              "uk": "Після wish про бажану ситуацію зараз використовуємо had."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-56:i15:r3",
+            "correct": false,
+            "testedDimension": "Ви вже на відпочинку, але маєте лише два вільні дні. Хотілося б більше.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма had после we.",
+              "uk": "Потрібна форма had після we."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-56:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-56:i16:r1",
+          "text": "The café closes at six today."
+        },
+        {
+          "responseId": "en:lesson-27:session-56:i16:r2",
+          "text": "The café closes at seven today."
+        },
+        {
+          "responseId": "en:lesson-27:session-56:i16:r3",
+          "text": "The café opens at six today."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-56:i16:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-56:i16:audio",
+          "transcript": "The café closes at six today."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-56:i16:r1",
+            "targetText": "The café closes at six today.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-56:i16:r2",
+            "targetText": "The café closes at seven today.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-56:i16:r3",
+            "targetText": "The café opens at six today.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-56:i16:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The café closes at six today.",
+              "uk": "У записі звучить The café closes at six today."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-56:i16:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The café closes at six today.",
+              "uk": "У записі звучить The café closes at six today."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-56:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запропонуйте спочатку поїсти, а потім прогулятися.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запропонуйте спочатку поїсти, а потім прогулятися.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Let’s eat first and go for a walk later.",
+        "localizedMeaning": {
+          "ru": "Предложите сначала поесть, а затем погулять.",
+          "uk": "Запропонуйте спочатку поїсти, а потім прогулятися."
+        },
+        "orderedTokens": [
+          "Let’s",
+          "eat",
+          "first",
+          "and",
+          "go",
+          "for",
+          "a",
+          "walk",
+          "later"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-56:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Якщо дощ закінчиться, ви підете на пляж. Це можливий план на сьогодні.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-56:i18:r1",
+          "text": "stops"
+        },
+        {
+          "responseId": "en:lesson-27:session-56:i18:r2",
+          "text": "will stop"
+        },
+        {
+          "responseId": "en:lesson-27:session-56:i18:r3",
+          "text": "stopping"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Якщо дощ закінчиться, ви підете на пляж. Це можливий план на сьогодні.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Если дождь закончится, вы пойдёте на пляж. Это возможный план на сегодня.",
+          "uk": "Якщо дощ закінчиться, ви підете на пляж. Це можливий план на сьогодні."
+        },
+        "gappedTargetPhrase": "We will go to the beach if the rain ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-56:i18:r1",
+            "text": "stops"
+          },
+          {
+            "responseId": "en:lesson-27:session-56:i18:r2",
+            "text": "will stop"
+          },
+          {
+            "responseId": "en:lesson-27:session-56:i18:r3",
+            "text": "stopping"
+          }
+        ],
+        "testedDimension": "Якщо дощ закінчиться, ви підете на пляж. Це можливий план на сьогодні.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-56:i18:r2",
+            "correct": false,
+            "testedDimension": "Якщо дощ закінчиться, ви підете на пляж. Це можливий план на сьогодні.",
+            "feedbackByLocale": {
+              "ru": "В таком условии после if ставим Present Simple: stops.",
+              "uk": "У такій умові після if ставимо Present Simple: stops."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-56:i18:r3",
+            "correct": false,
+            "testedDimension": "Якщо дощ закінчиться, ви підете на пляж. Це можливий план на сьогодні.",
+            "feedbackByLocale": {
+              "ru": "С the rain нужна личная форма stops.",
+              "uk": "З the rain потрібна особова форма stops."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-56:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "У вас немає машини. Уявіть, що вона є. Почніть із результату: If we had a car, we would visit the harbour.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У вас немає машини. Уявіть, що вона є. Почніть із результату: If we had a car, we would visit the harbour.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We would visit the harbour if we had a car.",
+        "localizedMeaning": {
+          "ru": "У вас нет машины. Представьте, что она есть. Начните с результата: If we had a car, we would visit the harbour.",
+          "uk": "У вас немає машини. Уявіть, що вона є. Почніть із результату: If we had a car, we would visit the harbour."
+        },
+        "orderedTokens": [
+          "We",
+          "would",
+          "visit",
+          "the",
+          "harbour",
+          "if",
+          "we",
+          "had",
+          "a",
+          "car"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-56:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Почуйте, де зустрінетеся із сестрою.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-56:i20:audio"
+      ],
+      "accessibilityLabel": "Почуйте, де зустрінетеся із сестрою.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-56:i20:audio",
+          "transcript": "I will meet you outside the café."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I will meet you outside the café.",
+        "orderedTokens": [
+          "I",
+          "will",
+          "meet",
+          "you",
+          "outside",
+          "the",
+          "café"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-56:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Наприкінці дня скажіть сестрі, що вам сподобалася прогулянка.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-56:i21:audio"
+      ],
+      "accessibilityLabel": "Наприкінці дня скажіть сестрі, що вам сподобалася прогулянка.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-56:i21:audio",
+          "transcript": "I really enjoyed our walk."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I really enjoyed our walk.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "3d72ae3529443bdbc5e75d306fedc99581f8176e9c9aae1245e429fd7fc44843"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-29:session-05",
+  "entries": [
+    {
+      "interactionId": "en:lesson-29:session-05:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-05:intro1:r2": {
+          "ru": "Who уже называет исполнителя ремонта; he не добавляем.",
+          "uk": "Who вже називає виконавця ремонту; he не додаємо."
+        },
+        "en:lesson-29:session-05:intro1:r3": {
+          "ru": "Об одном человеке говорим is here.",
+          "uk": "Про одну людину кажемо is here."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-05:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-05:intro2:r2": {
+          "ru": "Исполнителя работы здесь вводит by.",
+          "uk": "Виконавця роботи тут позначає by."
+        },
+        "en:lesson-29:session-05:intro2:r3": {
+          "ru": "С несколькими tiles нужна were.",
+          "uk": "З кількома tiles потрібна were."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-05:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-05:intro3:r2": {
+          "ru": "В этом условии после if используем takes, без will.",
+          "uk": "У цій умові після if використовуємо takes, без will."
+        },
+        "en:lesson-29:session-05:intro3:r3": {
+          "ru": "После will нужна начальная форма call.",
+          "uk": "Після will потрібна початкова форма call."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e961c0a0543f53d74162c9b324e0512f50b82c5d42cd5edf83f38860454dedaa"
+}

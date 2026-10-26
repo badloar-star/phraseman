@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-29:session-08",
+  "entries": [
+    {
+      "interactionId": "en:lesson-29:session-08:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-08:intro1:r2": {
+          "ru": "Who уже обозначает мужчину, he не добавляем.",
+          "uk": "Who вже позначає чоловіка, he не додаємо."
+        },
+        "en:lesson-29:session-08:intro1:r3": {
+          "ru": "Для одного мужчины нужна форма looks.",
+          "uk": "Для одного чоловіка потрібна форма looks."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-08:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-08:intro2:r2": {
+          "ru": "Исполнителей действия вводит by.",
+          "uk": "Виконавців дії позначає by."
+        },
+        "en:lesson-29:session-08:intro2:r3": {
+          "ru": "Для выполненного действия нужна cleaned.",
+          "uk": "Для виконаної дії потрібна cleaned."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-08:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-08:intro3:r2": {
+          "ru": "В этом условии после if нужна gets, без will.",
+          "uk": "У цій умові після if потрібна gets, без will."
+        },
+        "en:lesson-29:session-08:intro3:r3": {
+          "ru": "Здесь нужна личная форма gets.",
+          "uk": "Тут потрібна особова форма gets."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "492e40fbaecccec5baefb3cae130a621850fb2f0749568384c5da9f7efb6352d"
+}

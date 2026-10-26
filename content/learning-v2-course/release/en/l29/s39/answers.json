@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-29:session-39:i01",
+    "correctText": "The cloth I used is still wet.",
+    "correctResponseId": "en:lesson-29:session-39:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-39:i02",
+    "correctText": "tarnish",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-39:i03",
+    "correctText": "There is tarnish on this spoon.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-39:i04",
+    "correctText": "I used",
+    "correctResponseId": "en:lesson-29:session-39:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-39:i05",
+    "correctText": "Could you show me the label?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-39:i06",
+    "correctText": "degrease",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-39:i07",
+    "correctText": "We need to degrease the cooker.",
+    "correctResponseId": "en:lesson-29:session-39:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-39:i08",
+    "correctText": "This is the brush whose handle broke.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-39:i09",
+    "correctText": "whose",
+    "correctResponseId": "en:lesson-29:session-39:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-39:i10",
+    "correctText": "residue",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-39:i11",
+    "correctText": "There is soap residue on this plate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-39:i12",
+    "correctText": "Could I have another clean cloth?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-39:i13",
+    "correctText": "lather",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-39:i14",
+    "correctText": "This soap makes a thick lather.",
+    "correctResponseId": "en:lesson-29:session-39:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-39:i15",
+    "correctText": "en:lesson-29:session-39:i15:p1=tarnish\nen:lesson-29:session-39:i15:p2=degrease\nen:lesson-29:session-39:i15:p3=residue\nen:lesson-29:session-39:i15:p4=lather",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-39:i16",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-29:session-39:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-39:i17",
+    "correctText": "This soap makes a thick lather.",
+    "correctResponseId": "en:lesson-29:session-39:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-39:i18",
+    "correctText": "The sink was cleaned by my brother.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-39:i19",
+    "correctText": "Let us read the instructions first.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-39:i20",
+    "correctText": "we used",
+    "correctResponseId": "en:lesson-29:session-39:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-39:i21",
+    "correctText": "Thank you for helping me.",
+    "correctResponseId": null
+  }
+]

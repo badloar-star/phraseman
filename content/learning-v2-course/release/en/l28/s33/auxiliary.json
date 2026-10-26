@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-28:session-33",
+  "entries": [
+    {
+      "interactionId": "en:lesson-28:session-33:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-33:intro1:r2": {
+          "ru": "Of называет материал, а здесь нужен исполнитель: by.",
+          "uk": "Of називає матеріал, а тут потрібен виконавець: by."
+        },
+        "en:lesson-28:session-33:intro1:r3": {
+          "ru": "Перед исполнителем нужна by.",
+          "uk": "Перед виконавцем потрібна by."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-33:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-33:intro2:r2": {
+          "ru": "После by нужна форма her.",
+          "uk": "Після by потрібна форма her."
+        },
+        "en:lesson-28:session-33:intro2:r3": {
+          "ru": "Перед her нужна by.",
+          "uk": "Перед her потрібна by."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-33:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-33:intro3:r2": {
+          "ru": "Исполнитель — by my sister; инструмент — with a brush.",
+          "uk": "Виконавець — by my sister; інструмент — with a brush."
+        },
+        "en:lesson-28:session-33:intro3:r3": {
+          "ru": "Перед my sister нужна by.",
+          "uk": "Перед my sister потрібна by."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "226526e0ca5ae4657fa3216fe73a9a9757f358ca3ac74a629cac55abbc8f2881"
+}

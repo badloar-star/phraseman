@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-29:session-47",
+  "learningOutcomeByLocale": {
+    "ru": "как говорить о предусмотрительности, мере предосторожности, налобном фонаре и скоропортящейся еде.",
+    "uk": "як говорити про передбачливість, запобіжний захід, налобний ліхтар і швидкопсувну їжу."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-29:session-47:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сумка для еды",
+        "uk": "Сумка для їжі"
+      },
+      "bodyByLocale": {
+        "ru": "Перед прогулкой вы показываете другу сумку, которую упаковали. Скажите: The bag I packed is ready — сумка, которую я упаковал, готова. Соберите The bag + I packed + is ready. В уточнении I выполняет действие, а bag называет упакованную вещь. Поэтому that перед I можно опустить; it после packed не нужно.",
+        "uk": "Перед прогулянкою ви показуєте другові сумку, яку спакували. Скажіть: The bag I packed is ready — сумка, яку я спакував, готова. Складіть The bag + I packed + is ready. В уточненні I виконує дію, а bag називає спаковану річ. Тому that перед I можна пропустити; it після packed не потрібне."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-47:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-47:intro1:r1",
+              "text": "The bag I packed is ready."
+            },
+            {
+              "responseId": "en:lesson-29:session-47:intro1:r2",
+              "text": "The bag I packed it is ready."
+            },
+            {
+              "responseId": "en:lesson-29:session-47:intro1:r3",
+              "text": "The bag me packed is ready."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-47:intro1:r1",
+              "text": "The bag I packed is ready."
+            },
+            {
+              "responseId": "en:lesson-29:session-47:intro1:r2",
+              "text": "The bag I packed it is ready."
+            },
+            {
+              "responseId": "en:lesson-29:session-47:intro1:r3",
+              "text": "The bag me packed is ready."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-29:session-47:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Место встречи",
+        "uk": "Місце зустрічі"
+      },
+      "bodyByLocale": {
+        "ru": "Вы показываете другу кафе, где встретитесь перед прогулкой. Скажите: This is the café where we will meet — это кафе, где мы встретимся. Соберите This is the café + where + we will meet. После where идёт обычный порядок we will meet: сначала кто, затем will и действие.",
+        "uk": "Ви показуєте другові кафе, де зустрінетеся перед прогулянкою. Скажіть: This is the café where we will meet — це кафе, де ми зустрінемося. Складіть This is the café + where + we will meet. Після where йде звичайний порядок we will meet: спочатку хто, потім will і дія."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-47:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-47:intro2:r1",
+              "text": "This is the café where we will meet."
+            },
+            {
+              "responseId": "en:lesson-29:session-47:intro2:r2",
+              "text": "This is the café where will we meet."
+            },
+            {
+              "responseId": "en:lesson-29:session-47:intro2:r3",
+              "text": "This is the café who we will meet."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-47:intro2:r1",
+              "text": "This is the café where we will meet."
+            },
+            {
+              "responseId": "en:lesson-29:session-47:intro2:r2",
+              "text": "This is the café where will we meet."
+            },
+            {
+              "responseId": "en:lesson-29:session-47:intro2:r3",
+              "text": "This is the café who we will meet."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-29:session-47:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "План на случай дождя",
+        "uk": "План на випадок дощу"
+      },
+      "bodyByLocale": {
+        "ru": "Вы договариваетесь с другом остаться дома, если пойдёт дождь. Скажите: We will stay home if it rains — мы останемся дома, если пойдёт дождь. Соберите We will stay home + if + it rains. Результат выражаем через will stay; после if для будущего условия используем rains, без will.",
+        "uk": "Ви домовляєтеся з другом залишитися вдома, якщо піде дощ. Скажіть: We will stay home if it rains — ми залишимося вдома, якщо піде дощ. Складіть We will stay home + if + it rains. Результат виражаємо через will stay; після if для майбутньої умови використовуємо rains, без will."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-47:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-47:intro3:r1",
+              "text": "We will stay home if it rains."
+            },
+            {
+              "responseId": "en:lesson-29:session-47:intro3:r2",
+              "text": "We will stay home if it will rain."
+            },
+            {
+              "responseId": "en:lesson-29:session-47:intro3:r3",
+              "text": "We will stay home if it raining."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-47:intro3:r1",
+              "text": "We will stay home if it rains."
+            },
+            {
+              "responseId": "en:lesson-29:session-47:intro3:r2",
+              "text": "We will stay home if it will rain."
+            },
+            {
+              "responseId": "en:lesson-29:session-47:intro3:r3",
+              "text": "We will stay home if it raining."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "73fe597223d6d8b3fa9f96d9c0c2f3c79df8b83d91029dc4df61c833cfeaf7d2"
+}

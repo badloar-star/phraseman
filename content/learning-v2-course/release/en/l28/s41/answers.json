@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-28:session-41:i01",
+    "correctText": "It is lovely to see you again.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-41:i02",
+    "correctText": "godmother",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-41:i03",
+    "correctText": "This is my godmother.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-41:i04",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-28:session-41:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-41:i05",
+    "correctText": "The invitations were sent last week.",
+    "correctResponseId": "en:lesson-28:session-41:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-41:i06",
+    "correctText": "godfather",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-41:i07",
+    "correctText": "My godfather lives nearby.",
+    "correctResponseId": "en:lesson-28:session-41:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-41:i08",
+    "correctText": "The cake was made by my aunt.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-41:i09",
+    "correctText": "left",
+    "correctResponseId": "en:lesson-28:session-41:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-41:i10",
+    "correctText": "godson",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-41:i11",
+    "correctText": "This gift is for my godson.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-41:i12",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-28:session-41:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-41:i13",
+    "correctText": "The photos will be printed tomorrow.",
+    "correctResponseId": "en:lesson-28:session-41:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-41:i14",
+    "correctText": "goddaughter",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-41:i15",
+    "correctText": "My goddaughter loves drawing.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-41:i16",
+    "correctText": "en:lesson-28:session-41:i16:p1=godmother\nen:lesson-28:session-41:i16:p2=godfather\nen:lesson-28:session-41:i16:p3=godson\nen:lesson-28:session-41:i16:p4=goddaughter",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-41:i17",
+    "correctText": "Would you like some tea?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-41:i18",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-28:session-41:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-41:i19",
+    "correctText": "The family photos are kept in this album.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-41:i20",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-28:session-41:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-41:i21",
+    "correctText": "Shall we meet again soon?",
+    "correctResponseId": null
+  }
+]

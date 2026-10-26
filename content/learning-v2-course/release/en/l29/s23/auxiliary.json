@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-29:session-23",
+  "entries": [
+    {
+      "interactionId": "en:lesson-29:session-23:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-23:intro1:r2": {
+          "ru": "Where уже обозначает место, there лишнее.",
+          "uk": "Where вже позначає місце, there зайве."
+        },
+        "en:lesson-29:session-23:intro1:r3": {
+          "ru": "Для места выращивания нужно where.",
+          "uk": "Для місця вирощування потрібне where."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-23:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-23:intro2:r2": {
+          "ru": "С herbs во множественном числе нужно were.",
+          "uk": "З herbs у множині потрібне were."
+        },
+        "en:lesson-29:session-23:intro2:r3": {
+          "ru": "Человека, выполнившего действие, вводит by.",
+          "uk": "Людину, яка виконала дію, позначає by."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-23:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-23:intro3:r2": {
+          "ru": "Для принадлежности растений нужно whose.",
+          "uk": "Для належності рослин потрібне whose."
+        },
+        "en:lesson-29:session-23:intro3:r3": {
+          "ru": "Her после whose не добавляем.",
+          "uk": "Her після whose не додаємо."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "8453229f7704879baa772fd8ed256fda0e11ab527ff208fa05375cbd1760adb8"
+}

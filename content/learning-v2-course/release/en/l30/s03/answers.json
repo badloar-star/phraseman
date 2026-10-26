@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-30:session-03:i01",
+    "correctText": "said",
+    "correctResponseId": "en:lesson-30:session-03:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-03:i02",
+    "correctText": "bicker",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-03:i03",
+    "correctText": "They bicker about the washing-up.",
+    "correctResponseId": "en:lesson-30:session-03:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-03:i04",
+    "correctText": "I wish I were more patient.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-03:i05",
+    "correctText": "petty",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-03:i06",
+    "correctText": "She said she was being petty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-03:i07",
+    "correctText": "She said that she was frustrated.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-03:i08",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-30:session-03:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-03:i09",
+    "correctText": "grudge",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-03:i10",
+    "correctText": "He still holds a grudge.",
+    "correctResponseId": "en:lesson-30:session-03:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-03:i11",
+    "correctText": "The conversation we had was useful.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-03:i12",
+    "correctText": "exasperated",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-03:i13",
+    "correctText": "She said she felt exasperated.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-03:i14",
+    "correctText": "en:lesson-30:session-03:i14:p1=bicker\nen:lesson-30:session-03:i14:p2=petty\nen:lesson-30:session-03:i14:p3=grudge\nen:lesson-30:session-03:i14:p4=exasperated",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-03:i15",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-30:session-03:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-03:i16",
+    "correctText": "They bicker about the washing-up.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-03:i17",
+    "correctText": "I wish I had more patience.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-03:i18",
+    "correctText": "She said she was being petty.",
+    "correctResponseId": "en:lesson-30:session-03:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-03:i19",
+    "correctText": "felt",
+    "correctResponseId": "en:lesson-30:session-03:i19:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-03:i20",
+    "correctText": "He said he needed help.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-03:i21",
+    "correctText": "I do not hold a grudge against you.",
+    "correctResponseId": null
+  }
+]

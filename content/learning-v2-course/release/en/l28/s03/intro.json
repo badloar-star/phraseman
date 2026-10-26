@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-28:session-03",
+  "learningOutcomeByLocale": {
+    "ru": "как описать приготовление продукта, выразить желание о нынешней ситуации и назвать действие, законченное до вашего прихода.",
+    "uk": "як описати приготування продукту, висловити бажання щодо теперішньої ситуації та назвати дію, завершену до вашого приходу."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-28:session-03:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Что готовят здесь",
+        "uk": "Що готують тут"
+      },
+      "bodyByLocale": {
+        "ru": "В кондитерской вы узнаёте, что все торты делают на месте. The cakes are made here — торты делают здесь. Сначала назовите торты: The cakes. Затем добавьте are made — что с ними делают, и here — где. Cakes означает несколько тортов, поэтому are. Made — форма make для этой конструкции; её запоминаем целиком.",
+        "uk": "У кондитерській ви дізнаєтеся, що всі торти роблять на місці. The cakes are made here — торти роблять тут. Спочатку назвіть торти: The cakes. Потім додайте are made — що з ними роблять, і here — де. Cakes означає кілька тортів, тому are. Made — форма make для цієї конструкції; її запам’ятовуємо цілком."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-03:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-03:intro1:r1",
+              "text": "The cakes are made here."
+            },
+            {
+              "responseId": "en:lesson-28:session-03:intro1:r2",
+              "text": "The cakes is made here."
+            },
+            {
+              "responseId": "en:lesson-28:session-03:intro1:r3",
+              "text": "The cakes are make here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-03:intro1:r1",
+              "text": "The cakes are made here."
+            },
+            {
+              "responseId": "en:lesson-28:session-03:intro1:r2",
+              "text": "The cakes is made here."
+            },
+            {
+              "responseId": "en:lesson-28:session-03:intro1:r3",
+              "text": "The cakes are make here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-28:session-03:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Цена целого торта",
+        "uk": "Ціна цілого торта"
+      },
+      "bodyByLocale": {
+        "ru": "Вы выбираете торт, но целый стоит слишком дорого. I wish this cake were cheaper — жаль, что этот торт не дешевле. Соберите: I wish + this cake + were cheaper. После I wish форма were cheaper показывает желаемую цену сейчас. Вы не рассказываете, сколько торт стоил раньше.",
+        "uk": "Ви вибираєте торт, але цілий коштує задорого. I wish this cake were cheaper — шкода, що цей торт не дешевший. Складіть: I wish + this cake + were cheaper. Після I wish форма were cheaper показує бажану ціну зараз. Ви не розповідаєте, скільки торт коштував раніше."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-03:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-03:intro2:r1",
+              "text": "I wish this cake were cheaper."
+            },
+            {
+              "responseId": "en:lesson-28:session-03:intro2:r2",
+              "text": "I wish this cake is cheaper."
+            },
+            {
+              "responseId": "en:lesson-28:session-03:intro2:r3",
+              "text": "I wish this cake be cheaper."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-03:intro2:r1",
+              "text": "I wish this cake were cheaper."
+            },
+            {
+              "responseId": "en:lesson-28:session-03:intro2:r2",
+              "text": "I wish this cake is cheaper."
+            },
+            {
+              "responseId": "en:lesson-28:session-03:intro2:r3",
+              "text": "I wish this cake be cheaper."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-28:session-03:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Заказ уже готов",
+        "uk": "Замовлення вже готове"
+      },
+      "bodyByLocale": {
+        "ru": "Вчера вы пришли за заказом: пекарь закончил торт ещё до вашего прихода. The baker had finished the cake by the time I arrived — к тому времени, как я пришёл, пекарь уже закончил торт. Сначала назовите более раннее действие: The baker + had finished + the cake. Затем укажите момент: by the time + I arrived. Had finished связывает готовый торт с вашим более поздним приходом.",
+        "uk": "Учора ви прийшли по замовлення: пекар закінчив торт ще до вашого приходу. The baker had finished the cake by the time I arrived — до того часу, як я прийшов, пекар уже закінчив торт. Спочатку назвіть ранішу дію: The baker + had finished + the cake. Потім укажіть момент: by the time + I arrived. Had finished пов’язує готовий торт із вашим пізнішим приходом."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-03:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-03:intro3:r1",
+              "text": "The baker had finished the cake by the time I arrived."
+            },
+            {
+              "responseId": "en:lesson-28:session-03:intro3:r2",
+              "text": "The baker had finish the cake by the time I arrived."
+            },
+            {
+              "responseId": "en:lesson-28:session-03:intro3:r3",
+              "text": "The baker had finished the cake by the time I arrive."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-03:intro3:r1",
+              "text": "The baker had finished the cake by the time I arrived."
+            },
+            {
+              "responseId": "en:lesson-28:session-03:intro3:r2",
+              "text": "The baker had finish the cake by the time I arrived."
+            },
+            {
+              "responseId": "en:lesson-28:session-03:intro3:r3",
+              "text": "The baker had finished the cake by the time I arrive."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "dace67ea153342494754e2e6afdc5b1c43820db6f80d13525b19da75ce225bfb"
+}

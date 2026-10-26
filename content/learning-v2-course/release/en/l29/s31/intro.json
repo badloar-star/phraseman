@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-29:session-31",
+  "learningOutcomeByLocale": {
+    "ru": "как назвать вещи для дома, уточнить знакомого человека и место отдыха.",
+    "uk": "як назвати речі для дому, уточнити знайому людину й місце відпочинку."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-29:session-31:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Гость, с которым вы познакомились",
+        "uk": "Гість, із яким ви познайомилися"
+      },
+      "bodyByLocale": {
+        "ru": "После визита к подруге вы рассказываете о госте, с которым там познакомились. Скажите: The visitor who I met was friendly — гость, с которым я познакомился, был дружелюбным. Соберите The visitor + who I met + was friendly. Встретили гостя вы, поэтому после who ставим I met. Who обозначает этого гостя; him после met не добавляем.",
+        "uk": "Після візиту до подруги ви розповідаєте про гостя, з яким там познайомилися. Скажіть: The visitor who I met was friendly — гість, із яким я познайомився, був приязним. Складіть The visitor + who I met + was friendly. Зустріли гостя ви, тому після who ставимо I met. Who позначає цього гостя; him після met не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-31:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-31:intro1:r1",
+              "text": "The visitor who I met was friendly."
+            },
+            {
+              "responseId": "en:lesson-29:session-31:intro1:r2",
+              "text": "The visitor who I met him was friendly."
+            },
+            {
+              "responseId": "en:lesson-29:session-31:intro1:r3",
+              "text": "The visitor who me met was friendly."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-31:intro1:r1",
+              "text": "The visitor who I met was friendly."
+            },
+            {
+              "responseId": "en:lesson-29:session-31:intro1:r2",
+              "text": "The visitor who I met him was friendly."
+            },
+            {
+              "responseId": "en:lesson-29:session-31:intro1:r3",
+              "text": "The visitor who me met was friendly."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-29:session-31:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Кто изготовил подарок",
+        "uk": "Хто виготовив подарунок"
+      },
+      "bodyByLocale": {
+        "ru": "Подруга показывает подарок, а вы указываете на человека, который сам его изготовил. Скажите: That is the friend who made this gift — это друг, который сам изготовил этот подарок. Соберите That is the friend + who made this gift. Действие выполняет друг: who заменяет его в уточнении. После who сразу ставим made this gift, без he.",
+        "uk": "Подруга показує подарунок, а ви показуєте на людину, яка власноруч його виготовила. Скажіть: That is the friend who made this gift — це друг, який власноруч виготовив цей подарунок. Складіть That is the friend + who made this gift. Дію виконує друг: who замінює його в уточненні. Після who відразу ставимо made this gift, без he."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-31:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-31:intro2:r1",
+              "text": "That is the friend who made this gift."
+            },
+            {
+              "responseId": "en:lesson-29:session-31:intro2:r2",
+              "text": "That is the friend who he made this gift."
+            },
+            {
+              "responseId": "en:lesson-29:session-31:intro2:r3",
+              "text": "That is the friend which made this gift."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-31:intro2:r1",
+              "text": "That is the friend who made this gift."
+            },
+            {
+              "responseId": "en:lesson-29:session-31:intro2:r2",
+              "text": "That is the friend who he made this gift."
+            },
+            {
+              "responseId": "en:lesson-29:session-31:intro2:r3",
+              "text": "That is the friend which made this gift."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-29:session-31:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Где можно посидеть",
+        "uk": "Де можна посидіти"
+      },
+      "bodyByLocale": {
+        "ru": "Подруга показывает вам комнату для отдыха. Передайте её слова: This is the room where we can relax — это комната, где мы можем отдохнуть. Соберите This is the room + where + we can relax. После названия места добавьте where, затем we can relax в обычном порядке. Can перед we не переносим: внутри уточнения это не вопрос.",
+        "uk": "Подруга показує вам кімнату для відпочинку. Передайте її слова: This is the room where we can relax — це кімната, де ми можемо відпочити. Складіть This is the room + where + we can relax. Після назви місця додайте where, потім we can relax у звичайному порядку. Can перед we не переносимо: усередині уточнення це не запитання."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-31:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-31:intro3:r1",
+              "text": "This is the room where we can relax."
+            },
+            {
+              "responseId": "en:lesson-29:session-31:intro3:r2",
+              "text": "This is the room where can we relax."
+            },
+            {
+              "responseId": "en:lesson-29:session-31:intro3:r3",
+              "text": "This is the room who we can relax."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-31:intro3:r1",
+              "text": "This is the room where we can relax."
+            },
+            {
+              "responseId": "en:lesson-29:session-31:intro3:r2",
+              "text": "This is the room where can we relax."
+            },
+            {
+              "responseId": "en:lesson-29:session-31:intro3:r3",
+              "text": "This is the room who we can relax."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2f24b7e0734b3f7b5a6d9ba4e1c41b8d865a2f2cef23d59ee26a15d5a7261290"
+}

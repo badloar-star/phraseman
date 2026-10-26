@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-29:session-09",
+  "learningOutcomeByLocale": {
+    "ru": "как уточнить человека по принадлежащей ему вещи с помощью whose.",
+    "uk": "як уточнити людину за належною їй річчю за допомогою whose."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-29:session-09:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Чья куртка испачкана",
+        "uk": "Чия куртка забруднена"
+      },
+      "bodyByLocale": {
+        "ru": "В гардеробе вы ищете женщину, у которой испачкана куртка. Спросите: Where is the woman whose jacket is dirty? — где женщина, у которой грязная куртка? Соберите Where is the woman + whose jacket is dirty? После the woman поставьте whose jacket: это связывает куртку с её владелицей. Затем добавьте is dirty. Whose означает «чей»; после него сразу называем вещь, без her.",
+        "uk": "У гардеробі ви шукаєте жінку, у якої забруднена куртка. Запитайте: Where is the woman whose jacket is dirty? — де жінка, у якої брудна куртка? Складіть Where is the woman + whose jacket is dirty? Після the woman поставте whose jacket: це пов’язує куртку з її власницею. Потім додайте is dirty. Whose означає «чий»; після нього відразу називаємо річ, без her."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-09:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-09:intro1:r1",
+              "text": "Where is the woman whose jacket is dirty?"
+            },
+            {
+              "responseId": "en:lesson-29:session-09:intro1:r2",
+              "text": "Where is the woman who jacket is dirty?"
+            },
+            {
+              "responseId": "en:lesson-29:session-09:intro1:r3",
+              "text": "Where is the woman whose her jacket is dirty?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-09:intro1:r1",
+              "text": "Where is the woman whose jacket is dirty?"
+            },
+            {
+              "responseId": "en:lesson-29:session-09:intro1:r2",
+              "text": "Where is the woman who jacket is dirty?"
+            },
+            {
+              "responseId": "en:lesson-29:session-09:intro1:r3",
+              "text": "Where is the woman whose her jacket is dirty?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-29:session-09:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Кому вы помогли",
+        "uk": "Кому ви допомогли"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает, какому мальчику вы помогли в гардеробе. Скажите: I helped the boy whose shoe was wet — я помог мальчику, у которого промок ботинок. Соберите I helped the boy + whose shoe + was wet. После the boy добавьте whose shoe, чтобы назвать вещь этого мальчика. Затем was wet описывает её состояние. Whose связывает shoe с boy; his перед shoe не нужно.",
+        "uk": "Друг запитує, якому хлопчикові ви допомогли в гардеробі. Скажіть: I helped the boy whose shoe was wet — я допоміг хлопчикові, у якого промок черевик. Складіть I helped the boy + whose shoe + was wet. Після the boy додайте whose shoe, щоб назвати річ цього хлопчика. Потім was wet описує її стан. Whose пов’язує shoe з boy; his перед shoe не потрібне."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-09:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-09:intro2:r1",
+              "text": "I helped the boy whose shoe was wet."
+            },
+            {
+              "responseId": "en:lesson-29:session-09:intro2:r2",
+              "text": "I helped the boy who shoe was wet."
+            },
+            {
+              "responseId": "en:lesson-29:session-09:intro2:r3",
+              "text": "I helped the boy whose his shoe was wet."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-09:intro2:r1",
+              "text": "I helped the boy whose shoe was wet."
+            },
+            {
+              "responseId": "en:lesson-29:session-09:intro2:r2",
+              "text": "I helped the boy who shoe was wet."
+            },
+            {
+              "responseId": "en:lesson-29:session-09:intro2:r3",
+              "text": "I helped the boy whose his shoe was wet."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-29:session-09:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Владелица пальто",
+        "uk": "Власниця пальта"
+      },
+      "bodyByLocale": {
+        "ru": "Коллега ищет владелицу пальто на стуле. Скажите: The woman whose coat is on the chair is outside — женщина, чьё пальто лежит на стуле, на улице. Соберите The woman + whose coat is on the chair + is outside. Сразу после The woman вставьте уточнение whose coat is on the chair: оно помогает узнать нужную женщину по её вещи. Затем завершите основную мысль словами is outside.",
+        "uk": "Колега шукає власницю пальта на стільці. Скажіть: The woman whose coat is on the chair is outside — жінка, чиє пальто лежить на стільці, надворі. Складіть The woman + whose coat is on the chair + is outside. Відразу після The woman вставте уточнення whose coat is on the chair: воно допомагає впізнати потрібну жінку за її річчю. Потім завершіть основну думку словами is outside."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-09:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-09:intro3:r1",
+              "text": "The woman whose coat is on the chair is outside."
+            },
+            {
+              "responseId": "en:lesson-29:session-09:intro3:r2",
+              "text": "The woman who coat is on the chair is outside."
+            },
+            {
+              "responseId": "en:lesson-29:session-09:intro3:r3",
+              "text": "The woman whose coat on the chair is outside."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-09:intro3:r1",
+              "text": "The woman whose coat is on the chair is outside."
+            },
+            {
+              "responseId": "en:lesson-29:session-09:intro3:r2",
+              "text": "The woman who coat is on the chair is outside."
+            },
+            {
+              "responseId": "en:lesson-29:session-09:intro3:r3",
+              "text": "The woman whose coat on the chair is outside."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a1e0628982eebd613e0796f09adbbf3b6521f2a27ef734993c214bb3499468a0"
+}

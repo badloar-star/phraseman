@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-28:session-46",
+  "learningOutcomeByLocale": {
+    "ru": "как назвать небольшие украшения и спросить об их ремонте.",
+    "uk": "як назвати невеликі прикраси й запитати про їх ремонт."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-28:session-46:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Починить браслет",
+        "uk": "Полагодити браслет"
+      },
+      "bodyByLocale": {
+        "ru": "У вашего браслета сломалась застёжка. Покажите его мастеру и спросите: Can this bracelet be repaired? — можно починить этот браслет? Соберите Can + this bracelet + be repaired? Начните с Can, затем назовите предмет: this bracelet. После него нужны be и repaired, третья форма repair. Вы спрашиваете, возможно ли выполнить действие над браслетом.",
+        "uk": "У вашого браслета зламалася застібка. Покажіть його майстру й запитайте: Can this bracelet be repaired? — чи можна полагодити цей браслет? Складіть Can + this bracelet + be repaired? Почніть із Can, потім назвіть предмет: this bracelet. Після нього потрібні be та repaired, третя форма repair. Ви запитуєте, чи можливо виконати дію з браслетом."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-46:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-46:intro1:r1",
+              "text": "Can this bracelet be repaired?"
+            },
+            {
+              "responseId": "en:lesson-28:session-46:intro1:r2",
+              "text": "Can this bracelet repaired?"
+            },
+            {
+              "responseId": "en:lesson-28:session-46:intro1:r3",
+              "text": "Can this bracelet be repair?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-46:intro1:r1",
+              "text": "Can this bracelet be repaired?"
+            },
+            {
+              "responseId": "en:lesson-28:session-46:intro1:r2",
+              "text": "Can this bracelet repaired?"
+            },
+            {
+              "responseId": "en:lesson-28:session-46:intro1:r3",
+              "text": "Can this bracelet be repair?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-28:session-46:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Кто сделал украшение",
+        "uk": "Хто зробив прикрасу"
+      },
+      "bodyByLocale": {
+        "ru": "Подруга спрашивает о вашем кольце. Вы рассказываете: This ring was made by my sister — это кольцо сделала моя сестра. Соберите This ring + was made + by my sister. Начните с кольца; was made сообщает о его изготовлении в прошлом. Made — третья форма make. После by назовите того, кто его сделал: my sister.",
+        "uk": "Подруга запитує про вашу каблучку. Ви розповідаєте: This ring was made by my sister — цю каблучку зробила моя сестра. Складіть This ring + was made + by my sister. Почніть із каблучки; was made повідомляє про її виготовлення в минулому. Made — третя форма make. Після by назвіть того, хто її зробив: my sister."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-46:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-46:intro2:r1",
+              "text": "This ring was made by my sister."
+            },
+            {
+              "responseId": "en:lesson-28:session-46:intro2:r2",
+              "text": "This ring was made of my sister."
+            },
+            {
+              "responseId": "en:lesson-28:session-46:intro2:r3",
+              "text": "This ring was made my sister."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-46:intro2:r1",
+              "text": "This ring was made by my sister."
+            },
+            {
+              "responseId": "en:lesson-28:session-46:intro2:r2",
+              "text": "This ring was made of my sister."
+            },
+            {
+              "responseId": "en:lesson-28:session-46:intro2:r3",
+              "text": "This ring was made my sister."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-28:session-46:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Упаковать подарок",
+        "uk": "Спакувати подарунок"
+      },
+      "bodyByLocale": {
+        "ru": "Вы покупаете серьги в подарок. Продавец обещает: The earrings will be wrapped for you — серьги вам упакуют. Соберите The earrings + will be + wrapped + for you. Сначала назовите серьги, затем добавьте will be и wrapped, третью форму wrap. Эта связка сообщает о будущем действии над покупкой. For you означает «для вас».",
+        "uk": "Ви купуєте сережки на подарунок. Продавець обіцяє: The earrings will be wrapped for you — сережки вам спакують. Складіть The earrings + will be + wrapped + for you. Спочатку назвіть сережки, потім додайте will be та wrapped, третю форму wrap. Ця конструкція повідомляє про майбутню дію з покупкою. For you означає «для вас»."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-46:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-46:intro3:r1",
+              "text": "The earrings will be wrapped for you."
+            },
+            {
+              "responseId": "en:lesson-28:session-46:intro3:r2",
+              "text": "The earrings will wrapped for you."
+            },
+            {
+              "responseId": "en:lesson-28:session-46:intro3:r3",
+              "text": "The earrings will be wrap for you."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-46:intro3:r1",
+              "text": "The earrings will be wrapped for you."
+            },
+            {
+              "responseId": "en:lesson-28:session-46:intro3:r2",
+              "text": "The earrings will wrapped for you."
+            },
+            {
+              "responseId": "en:lesson-28:session-46:intro3:r3",
+              "text": "The earrings will be wrap for you."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f8df199599856c6bd870ea37b88f27c233a54dea477ed8bf60c23658711279b4"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-29:session-13:i01",
+    "correctText": "Is anyone looking for a jacket?",
+    "correctResponseId": "en:lesson-29:session-13:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-13:i02",
+    "correctText": "anorak",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-13:i03",
+    "correctText": "Would you like my anorak?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-13:i04",
+    "correctText": "The coat was repaired by my sister.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-13:i05",
+    "correctText": "whose",
+    "correctResponseId": "en:lesson-29:session-13:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-13:i06",
+    "correctText": "tunic",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-13:i07",
+    "correctText": "You can wear the tunic with leggings.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-13:i08",
+    "correctText": "The coat was repaired by my sister.",
+    "correctResponseId": "en:lesson-29:session-13:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-13:i09",
+    "correctText": "Do you need a different size?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-13:i10",
+    "correctText": "chinos",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-13:i11",
+    "correctText": "These chinos are too small for me.",
+    "correctResponseId": "en:lesson-29:session-13:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-13:i12",
+    "correctText": "does not",
+    "correctResponseId": "en:lesson-29:session-13:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-13:i13",
+    "correctText": "The man whose son needs trousers is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-13:i14",
+    "correctText": "gilet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-13:i15",
+    "correctText": "You can wear the gilet over a jumper.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-13:i16",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-29:session-13:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-13:i17",
+    "correctText": "en:lesson-29:session-13:i17:p1=anorak\nen:lesson-29:session-13:i17:p2=tunic\nen:lesson-29:session-13:i17:p3=chinos\nen:lesson-29:session-13:i17:p4=gilet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-13:i18",
+    "correctText": "Could you keep the tunic for my sister?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-13:i19",
+    "correctText": "that",
+    "correctResponseId": "en:lesson-29:session-13:i19:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-13:i20",
+    "correctText": "I can return it tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-13:i21",
+    "correctText": "Thank you for the clothes.",
+    "correctResponseId": null
+  }
+]

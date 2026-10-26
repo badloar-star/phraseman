@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-29:session-07:i01",
+    "correctText": "Can you hear that noise?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-07:i02",
+    "correctText": "creak",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-07:i03",
+    "correctText": "That creak is coming from the door.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-07:i04",
+    "correctText": "makes",
+    "correctResponseId": "en:lesson-29:session-07:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-07:i05",
+    "correctText": "The shelf was repaired by my neighbour.",
+    "correctResponseId": "en:lesson-29:session-07:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-07:i06",
+    "correctText": "buzz",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-07:i07",
+    "correctText": "I can hear a buzz near the window.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-07:i08",
+    "correctText": "The door that leads to the kitchen is open.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-07:i09",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-29:session-07:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-07:i10",
+    "correctText": "thud",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-07:i11",
+    "correctText": "I heard a thud upstairs.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-07:i12",
+    "correctText": "The neighbour who called is downstairs.",
+    "correctResponseId": "en:lesson-29:session-07:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-07:i13",
+    "correctText": "continues",
+    "correctResponseId": "en:lesson-29:session-07:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-07:i14",
+    "correctText": "clatter",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-07:i15",
+    "correctText": "That clatter is coming from the kitchen.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-07:i16",
+    "correctText": "en:lesson-29:session-07:i16:p1=creak\nen:lesson-29:session-07:i16:p2=buzz\nen:lesson-29:session-07:i16:p3=thud\nen:lesson-29:session-07:i16:p4=clatter",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-07:i17",
+    "correctText": "The noise is coming from downstairs.",
+    "correctResponseId": "en:lesson-29:session-07:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-07:i18",
+    "correctText": "Could you turn the TV down?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-07:i19",
+    "correctText": "who",
+    "correctResponseId": "en:lesson-29:session-07:i19:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-07:i20",
+    "correctText": "I will check if I hear it again.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-07:i21",
+    "correctText": "Sorry, I dropped a box.",
+    "correctResponseId": null
+  }
+]

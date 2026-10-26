@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-30:session-10",
+  "entries": [
+    {
+      "interactionId": "en:lesson-30:session-10:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-10:intro1:r2": {
+          "ru": "В пересказе нужен порядок the entrance was.",
+          "uk": "У переказі потрібен порядок the entrance was."
+        },
+        "en:lesson-30:session-10:intro1:r3": {
+          "ru": "С одним входом здесь нужна форма was.",
+          "uk": "З одним входом тут потрібна форма was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-10:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-10:intro2:r2": {
+          "ru": "Для такого желания после wish используем had.",
+          "uk": "Для такого бажання після wish використовуємо had."
+        },
+        "en:lesson-30:session-10:intro2:r3": {
+          "ru": "Нужно we had, не we having.",
+          "uk": "Потрібне we had, не we having."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-10:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-10:intro3:r2": {
+          "ru": "В уточнении нужна форма gave.",
+          "uk": "В уточненні потрібна форма gave."
+        },
+        "en:lesson-30:session-10:intro3:r3": {
+          "ru": "Главное действие — helped; одного helping недостаточно.",
+          "uk": "Головна дія — helped; самого helping недостатньо."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f6b3465d8a485bebe0dda54b6009af7f4f6729dd22be27a5ee90b44457e075ed"
+}

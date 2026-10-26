@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-29:session-34",
+  "learningOutcomeByLocale": {
+    "ru": "как описать выражение лица и реакцию, уточнить фильм, актёра и место действия.",
+    "uk": "як описати вираз обличчя й реакцію, уточнити фільм, актора та місце дії."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-29:session-34:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Какой фильм вы обсуждаете",
+        "uk": "Який фільм ви обговорюєте"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает о вчерашнем просмотре. Скажите: The film we watched was funny — фильм, который мы посмотрели, был смешным. Соберите The film + we watched + was funny. В уточнении уже есть исполнитель we, а фильм — то, что смотрели. Поэтому that перед we можно опустить; it после watched не добавляем.",
+        "uk": "Друг запитує про вчорашній перегляд. Скажіть: The film we watched was funny — фільм, який ми подивилися, був смішним. Складіть The film + we watched + was funny. В уточненні вже є виконавець we, а фільм — те, що дивилися. Тому that перед we можна пропустити; it після watched не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-34:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-34:intro1:r1",
+              "text": "The film we watched was funny."
+            },
+            {
+              "responseId": "en:lesson-29:session-34:intro1:r2",
+              "text": "The film we watched it was funny."
+            },
+            {
+              "responseId": "en:lesson-29:session-34:intro1:r3",
+              "text": "The film us watched was funny."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-34:intro1:r1",
+              "text": "The film we watched was funny."
+            },
+            {
+              "responseId": "en:lesson-29:session-34:intro1:r2",
+              "text": "The film we watched it was funny."
+            },
+            {
+              "responseId": "en:lesson-29:session-34:intro1:r3",
+              "text": "The film us watched was funny."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-29:session-34:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Кто играет соседа",
+        "uk": "Хто грає сусіда"
+      },
+      "bodyByLocale": {
+        "ru": "Друг не узнал актёра в роли соседа. Скажите: This is the actor who plays the neighbour — это актёр, который играет соседа. Соберите This is the actor + who plays the neighbour. Здесь who само обозначает исполнителя plays. Перед plays другого исполнителя нет, поэтому who оставляем.",
+        "uk": "Друг не впізнав актора в ролі сусіда. Скажіть: This is the actor who plays the neighbour — це актор, який грає сусіда. Складіть This is the actor + who plays the neighbour. Тут who саме позначає виконавця plays. Перед plays іншого виконавця немає, тому who залишаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-34:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-34:intro2:r1",
+              "text": "This is the actor who plays the neighbour."
+            },
+            {
+              "responseId": "en:lesson-29:session-34:intro2:r2",
+              "text": "This is the actor plays the neighbour."
+            },
+            {
+              "responseId": "en:lesson-29:session-34:intro2:r3",
+              "text": "This is the actor who he plays the neighbour."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-34:intro2:r1",
+              "text": "This is the actor who plays the neighbour."
+            },
+            {
+              "responseId": "en:lesson-29:session-34:intro2:r2",
+              "text": "This is the actor plays the neighbour."
+            },
+            {
+              "responseId": "en:lesson-29:session-34:intro2:r3",
+              "text": "This is the actor who he plays the neighbour."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-29:session-34:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Сцена в кафе",
+        "uk": "Сцена в кафе"
+      },
+      "bodyByLocale": {
+        "ru": "В фильме вы узнаёте кафе, где герои впервые встретились. Скажите: This is the café where they met — это кафе, где они встретились. Соберите This is the café + where + they met. Where связывает встречу с местом. Внутри уточнения сохраняем порядок they met, без вопросительного did.",
+        "uk": "У фільмі ви впізнаєте кафе, де герої вперше зустрілися. Скажіть: This is the café where they met — це кафе, де вони зустрілися. Складіть This is the café + where + they met. Where пов’язує зустріч із місцем. Усередині уточнення зберігаємо порядок they met, без питального did."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-34:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-34:intro3:r1",
+              "text": "This is the café where they met."
+            },
+            {
+              "responseId": "en:lesson-29:session-34:intro3:r2",
+              "text": "This is the café where did they meet."
+            },
+            {
+              "responseId": "en:lesson-29:session-34:intro3:r3",
+              "text": "This is the café who they met."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-34:intro3:r1",
+              "text": "This is the café where they met."
+            },
+            {
+              "responseId": "en:lesson-29:session-34:intro3:r2",
+              "text": "This is the café where did they meet."
+            },
+            {
+              "responseId": "en:lesson-29:session-34:intro3:r3",
+              "text": "This is the café who they met."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d4dd06660e12d037faeff4f913f9dcb8055e0e017f3be2b53a3da360fdc4839b"
+}

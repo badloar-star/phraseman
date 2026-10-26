@@ -1,0 +1,1057 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-29:session-55",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-29:session-55:i01",
+      "ordinal": 4,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите разрешения осмотреть сумку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-55:i01:audio"
+      ],
+      "accessibilityLabel": "Попросите разрешения осмотреть сумку.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-55:i01:audio",
+          "transcript": "May I have a closer look?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "May I have a closer look?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-55:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — shoddy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-55:i02:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — shoddy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-55:i02:audio",
+          "transcript": "shoddy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-55:i02:r1",
+            "targetText": "shoddy",
+            "meaningByLocale": {
+              "ru": "Некачественно сделанный. О вещи или работе, выполненной небрежно и плохо.",
+              "uk": "Неякісно зроблений. Про річ або роботу, виконану недбало й погано."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "shoddy",
+          "definitionByLocale": {
+            "ru": "Некачественно сделанный. О вещи или работе, выполненной небрежно и плохо.",
+            "uk": "Неякісно зроблений. Про річ або роботу, виконану недбало й погано."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-55:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-55:i03:r1",
+          "text": "This stitching looks shoddy."
+        },
+        {
+          "responseId": "en:lesson-29:session-55:i03:r2",
+          "text": "This stitching looks neat."
+        },
+        {
+          "responseId": "en:lesson-29:session-55:i03:r3",
+          "text": "This stitching looks strong."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-55:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-55:i03:audio",
+          "transcript": "This stitching looks shoddy."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-55:i03:r1",
+            "targetText": "This stitching looks shoddy.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-55:i03:r2",
+            "targetText": "This stitching looks neat.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-55:i03:r3",
+            "targetText": "This stitching looks strong.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-55:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This stitching looks shoddy.",
+              "uk": "У записі звучить This stitching looks shoddy."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-55:i03:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This stitching looks shoddy.",
+              "uk": "У записі звучить This stitching looks shoddy."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-55:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Продавец показал вам слишком маленькую сумку.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-55:i04:r1",
+          "text": "you showed me"
+        },
+        {
+          "responseId": "en:lesson-29:session-55:i04:r2",
+          "text": "you showed me it"
+        },
+        {
+          "responseId": "en:lesson-29:session-55:i04:r3",
+          "text": "your showed me"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Продавец показал вам слишком маленькую сумку.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Продавец показал вам слишком маленькую сумку.",
+          "uk": "Продавець показав вам надто маленьку сумку."
+        },
+        "gappedTargetPhrase": "The bag ___ is too small.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-55:i04:r1",
+            "text": "you showed me"
+          },
+          {
+            "responseId": "en:lesson-29:session-55:i04:r2",
+            "text": "you showed me it"
+          },
+          {
+            "responseId": "en:lesson-29:session-55:i04:r3",
+            "text": "your showed me"
+          }
+        ],
+        "testedDimension": "Продавец показал вам слишком маленькую сумку.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-55:i04:r2",
+            "correct": false,
+            "testedDimension": "Продавец показал вам слишком маленькую сумку.",
+            "feedbackByLocale": {
+              "ru": "It повторяет сумку.",
+              "uk": "It повторює сумку."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-55:i04:r3",
+            "correct": false,
+            "testedDimension": "Продавец показал вам слишком маленькую сумку.",
+            "feedbackByLocale": {
+              "ru": "Нужен исполнитель you.",
+              "uk": "Потрібен виконавець you."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-55:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите продавцу, что показанная сумка слишком маленькая.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите продавцу, что показанная сумка слишком маленькая.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The bag you showed me is too small.",
+        "localizedMeaning": {
+          "ru": "Скажите продавцу, что показанная сумка слишком маленькая.",
+          "uk": "Скажіть продавцеві, що показана сумка надто маленька."
+        },
+        "orderedTokens": [
+          "The",
+          "bag",
+          "you",
+          "showed",
+          "me",
+          "is",
+          "too",
+          "small"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-55:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — counterfeit",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-55:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — counterfeit",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-55:i06:audio",
+          "transcript": "counterfeit"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-55:i06:r1",
+            "targetText": "counterfeit",
+            "meaningByLocale": {
+              "ru": "Подделка. Вещь, которую изготовили так, чтобы выдать за настоящий товар определённого производителя.",
+              "uk": "Підробка. Річ, яку виготовили так, щоб видати за справжній товар певного виробника."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "counterfeit",
+          "definitionByLocale": {
+            "ru": "Подделка. Вещь, которую изготовили так, чтобы выдать за настоящий товар определённого производителя.",
+            "uk": "Підробка. Річ, яку виготовили так, щоб видати за справжній товар певного виробника."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-55:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите продавца, не подделка ли это.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-55:i07:audio"
+      ],
+      "accessibilityLabel": "Спросите продавца, не подделка ли это.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-55:i07:audio",
+          "transcript": "Is this a counterfeit?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is this a counterfeit?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-55:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, кто сделал сумку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-55:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте, кто сделал сумку.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-55:i08:audio",
+          "transcript": "This bag was made by a local artist."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This bag was made by a local artist.",
+        "orderedTokens": [
+          "This",
+          "bag",
+          "was",
+          "made",
+          "by",
+          "a",
+          "local",
+          "artist"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-55:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сумку сделал местный мастер.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-55:i09:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-29:session-55:i09:r2",
+          "text": "whose"
+        },
+        {
+          "responseId": "en:lesson-29:session-55:i09:r3",
+          "text": "who"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сумку сделал местный мастер.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сумку сделал местный мастер.",
+          "uk": "Сумку зробив місцевий майстер."
+        },
+        "gappedTargetPhrase": "This bag was made ___ a local artist.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-55:i09:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-29:session-55:i09:r2",
+            "text": "whose"
+          },
+          {
+            "responseId": "en:lesson-29:session-55:i09:r3",
+            "text": "who"
+          }
+        ],
+        "testedDimension": "Сумку сделал местный мастер.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-55:i09:r2",
+            "correct": false,
+            "testedDimension": "Сумку сделал местный мастер.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя после was made вводим через by.",
+              "uk": "Виконавця після was made вводимо через by."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-55:i09:r3",
+            "correct": false,
+            "testedDimension": "Сумку сделал местный мастер.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна связка by.",
+              "uk": "Тут потрібна зв’язка by."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-55:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — authentic",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-55:i10:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — authentic",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-55:i10:audio",
+          "transcript": "authentic"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-55:i10:r1",
+            "targetText": "authentic",
+            "meaningByLocale": {
+              "ru": "Подлинный. Настоящий предмет заявленного происхождения, а не подделка.",
+              "uk": "Справжній, автентичний. Справжній предмет заявленого походження, а не підробка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "authentic",
+          "definitionByLocale": {
+            "ru": "Подлинный. Настоящий предмет заявленного происхождения, а не подделка.",
+            "uk": "Справжній, автентичний. Справжній предмет заявленого походження, а не підробка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-55:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-55:i11:r1",
+          "text": "How do you know it is authentic?"
+        },
+        {
+          "responseId": "en:lesson-29:session-55:i11:r2",
+          "text": "How do you know it is expensive?"
+        },
+        {
+          "responseId": "en:lesson-29:session-55:i11:r3",
+          "text": "How do you know it is waterproof?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-55:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-55:i11:audio",
+          "transcript": "How do you know it is authentic?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-55:i11:r1",
+            "targetText": "How do you know it is authentic?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-55:i11:r2",
+            "targetText": "How do you know it is expensive?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-55:i11:r3",
+            "targetText": "How do you know it is waterproof?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-55:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How do you know it is authentic?",
+              "uk": "У записі звучить How do you know it is authentic?"
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-55:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How do you know it is authentic?",
+              "uk": "У записі звучить How do you know it is authentic?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-55:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите, где изготовили сумку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите, где изготовили сумку.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Where was this bag made?",
+        "localizedMeaning": {
+          "ru": "Спросите, где изготовили сумку.",
+          "uk": "Запитайте, де виготовили сумку."
+        },
+        "orderedTokens": [
+          "Where",
+          "was",
+          "this",
+          "bag",
+          "made"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-55:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — craftsmanship",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-55:i13:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — craftsmanship",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-55:i13:audio",
+          "transcript": "craftsmanship"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-55:i13:r1",
+            "targetText": "craftsmanship",
+            "meaningByLocale": {
+              "ru": "Мастерство исполнения. Умение хорошо изготовить вещь, заметное в качестве её деталей и работы.",
+              "uk": "Майстерність виконання. Уміння добре виготовити річ, помітне в якості її деталей і роботи."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "craftsmanship",
+          "definitionByLocale": {
+            "ru": "Мастерство исполнения. Умение хорошо изготовить вещь, заметное в качестве её деталей и работы.",
+            "uk": "Майстерність виконання. Уміння добре виготовити річ, помітне в якості її деталей і роботи."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-55:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Похвалите мастерство исполнения сумки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-55:i14:audio"
+      ],
+      "accessibilityLabel": "Похвалите мастерство исполнения сумки.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-55:i14:audio",
+          "transcript": "The craftsmanship is excellent."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The craftsmanship is excellent.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-55:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-29:session-55:i15:p1",
+            "target": "shoddy",
+            "meaningByLocale": {
+              "ru": "некачественно сделанный",
+              "uk": "неякісно зроблений"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-55:i15:p2",
+            "target": "counterfeit",
+            "meaningByLocale": {
+              "ru": "подделка",
+              "uk": "підробка"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-55:i15:p3",
+            "target": "authentic",
+            "meaningByLocale": {
+              "ru": "подлинный",
+              "uk": "справжній"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-55:i15:p4",
+            "target": "craftsmanship",
+            "meaningByLocale": {
+              "ru": "мастерство исполнения",
+              "uk": "майстерність виконання"
+            }
+          }
+        ],
+        "leftColumn": [
+          "shoddy",
+          "counterfeit",
+          "authentic",
+          "craftsmanship"
+        ],
+        "rightColumn": [
+          "некачественно сделанный",
+          "подделка",
+          "подлинный",
+          "мастерство исполнения"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-55:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: шов выглядит некачественным или аккуратным?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-55:i16:r1",
+          "text": "This stitching looks shoddy."
+        },
+        {
+          "responseId": "en:lesson-29:session-55:i16:r2",
+          "text": "This stitching looks neat."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-55:i16:audioA",
+        "en:lesson-29:session-55:i16:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: шов выглядит некачественным или аккуратным?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "This stitching looks shoddy.",
+        "contrastB": "This stitching looks neat.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-29:session-55:i16:audioA",
+          "transcript": "This stitching looks shoddy."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-29:session-55:i16:audioB",
+          "transcript": "This stitching looks neat."
+        },
+        "testedPhoneticContrast": "Послушайте: шов выглядит некачественным или аккуратным?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-55:i16:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: шов выглядит некачественным или аккуратным?",
+            "feedbackByLocale": {
+              "ru": "Звучит shoddy — некачественный.",
+              "uk": "Звучить shoddy — неякісний."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-55:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы вернёте сумку, если ремень порвётся.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-55:i17:r1",
+          "text": "breaks"
+        },
+        {
+          "responseId": "en:lesson-29:session-55:i17:r2",
+          "text": "will break"
+        },
+        {
+          "responseId": "en:lesson-29:session-55:i17:r3",
+          "text": "breaking"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы вернёте сумку, если ремень порвётся.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы вернёте сумку, если ремень порвётся.",
+          "uk": "Ви повернете сумку, якщо ремінець порветься."
+        },
+        "gappedTargetPhrase": "I will return it if the strap ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-55:i17:r1",
+            "text": "breaks"
+          },
+          {
+            "responseId": "en:lesson-29:session-55:i17:r2",
+            "text": "will break"
+          },
+          {
+            "responseId": "en:lesson-29:session-55:i17:r3",
+            "text": "breaking"
+          }
+        ],
+        "testedDimension": "Вы вернёте сумку, если ремень порвётся.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-55:i17:r2",
+            "correct": false,
+            "testedDimension": "Вы вернёте сумку, если ремень порвётся.",
+            "feedbackByLocale": {
+              "ru": "После if здесь не используем will.",
+              "uk": "Після if тут не використовуємо will."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-55:i17:r3",
+            "correct": false,
+            "testedDimension": "Вы вернёте сумку, если ремень порвётся.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма breaks.",
+              "uk": "Потрібна форма breaks."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-55:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте ваш план на случай порванного ремня.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-55:i18:audio"
+      ],
+      "accessibilityLabel": "Послушайте ваш план на случай порванного ремня.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-55:i18:audio",
+          "transcript": "I will return it if the strap breaks."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I will return it if the strap breaks.",
+        "orderedTokens": [
+          "I",
+          "will",
+          "return",
+          "it",
+          "if",
+          "the",
+          "strap",
+          "breaks"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-55:i19",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите продавца объяснить условия возврата.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-55:i19:audio"
+      ],
+      "accessibilityLabel": "Попросите продавца объяснить условия возврата.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-55:i19:audio",
+          "transcript": "Could you explain the return policy?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you explain the return policy?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-55:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг порекомендовал вам этот магазин.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-55:i20:r1",
+          "text": "you"
+        },
+        {
+          "responseId": "en:lesson-29:session-55:i20:r2",
+          "text": "you it"
+        },
+        {
+          "responseId": "en:lesson-29:session-55:i20:r3",
+          "text": "your"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг порекомендовал вам этот магазин.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг порекомендовал вам этот магазин.",
+          "uk": "Друг порекомендував вам цей магазин."
+        },
+        "gappedTargetPhrase": "This is the shop ___ recommended.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-55:i20:r1",
+            "text": "you"
+          },
+          {
+            "responseId": "en:lesson-29:session-55:i20:r2",
+            "text": "you it"
+          },
+          {
+            "responseId": "en:lesson-29:session-55:i20:r3",
+            "text": "your"
+          }
+        ],
+        "testedDimension": "Друг порекомендовал вам этот магазин.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-55:i20:r2",
+            "correct": false,
+            "testedDimension": "Друг порекомендовал вам этот магазин.",
+            "feedbackByLocale": {
+              "ru": "It повторяет магазин.",
+              "uk": "It повторює магазин."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-55:i20:r3",
+            "correct": false,
+            "testedDimension": "Друг порекомендовал вам этот магазин.",
+            "feedbackByLocale": {
+              "ru": "Нужен исполнитель you, не your.",
+              "uk": "Потрібен виконавець you, не your."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-55:i21",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите продавцу, что вам нужно подумать.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите продавцу, что вам нужно подумать.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I need some time to think.",
+        "localizedMeaning": {
+          "ru": "Скажите продавцу, что вам нужно подумать.",
+          "uk": "Скажіть продавцеві, що вам потрібно подумати."
+        },
+        "orderedTokens": [
+          "I",
+          "need",
+          "some",
+          "time",
+          "to",
+          "think"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "138246822355da960d5b37b2fa6cda887dabaddd25ea5a67ebeaede72795eaab"
+}

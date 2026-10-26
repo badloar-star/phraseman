@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-29:session-32",
+  "entries": [
+    {
+      "interactionId": "en:lesson-29:session-32:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-32:intro1:r2": {
+          "ru": "Who уже обозначает волонтёра, him лишнее.",
+          "uk": "Who вже позначає волонтера, him зайве."
+        },
+        "en:lesson-29:session-32:intro1:r3": {
+          "ru": "Исполнитель встречи — I, а не me.",
+          "uk": "Виконавець зустрічі — I, а не me."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-32:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-32:intro2:r2": {
+          "ru": "Who уже обозначает человека, he лишнее.",
+          "uk": "Who вже позначає людину, he зайве."
+        },
+        "en:lesson-29:session-32:intro2:r3": {
+          "ru": "Для человека здесь используем who.",
+          "uk": "Для людини тут використовуємо who."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-32:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-32:intro3:r2": {
+          "ru": "В уточнении нужен порядок you can speak.",
+          "uk": "В уточненні потрібен порядок you can speak."
+        },
+        "en:lesson-29:session-32:intro3:r3": {
+          "ru": "Для места разговора нужно where.",
+          "uk": "Для місця розмови потрібне where."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "7ac8c564b23f43557a87dc7a1eaf9f33b3bf1ba9feb3107f2c8251fbf1f6354e"
+}

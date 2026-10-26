@@ -1,0 +1,1043 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-28:session-07",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-28:session-07:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — ovenproof",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-07:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — ovenproof",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-07:i01:audio",
+          "transcript": "ovenproof"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-07:i01:r1",
+            "targetText": "ovenproof",
+            "meaningByLocale": {
+              "ru": "Пригодный для использования в духовке; конкретные условия смотрят в инструкции к вещи.",
+              "uk": "Придатний для використання в духовці; конкретні умови дивляться в інструкції до речі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ovenproof",
+          "definitionByLocale": {
+            "ru": "Пригодный для использования в духовке; конкретные условия смотрят в инструкции к вещи.",
+            "uk": "Придатний для використання в духовці; конкретні умови дивляться в інструкції до речі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-07:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Уточніть, чи підходить ця форма для духовки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточніть, чи підходить ця форма для духовки.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Is this dish ovenproof?",
+        "localizedMeaning": {
+          "ru": "Уточните, подходит ли эта форма для духовки.",
+          "uk": "Уточніть, чи підходить ця форма для духовки."
+        },
+        "orderedTokens": [
+          "Is",
+          "this",
+          "dish",
+          "ovenproof"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-07:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-07:i03:r1",
+          "text": "The instructions are printed on the box."
+        },
+        {
+          "responseId": "en:lesson-28:session-07:i03:r2",
+          "text": "The instructions are printed on the lid."
+        },
+        {
+          "responseId": "en:lesson-28:session-07:i03:r3",
+          "text": "The price is printed on the box."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-07:i03:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-07:i03:audio",
+          "transcript": "The instructions are printed on the box."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-07:i03:r1",
+            "targetText": "The instructions are printed on the box.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-07:i03:r2",
+            "targetText": "The instructions are printed on the lid.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-07:i03:r3",
+            "targetText": "The price is printed on the box.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-07:i03:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The instructions are printed on the box.",
+              "uk": "У записі звучить The instructions are printed on the box."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-07:i03:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The instructions are printed on the box.",
+              "uk": "У записі звучить The instructions are printed on the box."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-07:i04",
+      "ordinal": 7,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть показати меншу форму.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-07:i04:audio"
+      ],
+      "accessibilityLabel": "Попросіть показати меншу форму.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-07:i04:audio",
+          "transcript": "Could you show me a smaller one?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you show me a smaller one?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-07:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — heatproof",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-07:i05:audio"
+      ],
+      "accessibilityLabel": "Картка слова — heatproof",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-07:i05:audio",
+          "transcript": "heatproof"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-07:i05:r1",
+            "targetText": "heatproof",
+            "meaningByLocale": {
+              "ru": "Жаростойкий: выдерживающий нагрев в предусмотренных для вещи условиях.",
+              "uk": "Жаростійкий: такий, що витримує нагрівання в передбачених для речі умовах."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "heatproof",
+          "definitionByLocale": {
+            "ru": "Жаростойкий: выдерживающий нагрев в предусмотренных для вещи условиях.",
+            "uk": "Жаростійкий: такий, що витримує нагрівання в передбачених для речі умовах."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-07:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-07:i06:r1",
+          "text": "Is the handle heatproof?"
+        },
+        {
+          "responseId": "en:lesson-28:session-07:i06:r2",
+          "text": "Is the handle removable?"
+        },
+        {
+          "responseId": "en:lesson-28:session-07:i06:r3",
+          "text": "Is the lid heatproof?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-07:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-07:i06:audio",
+          "transcript": "Is the handle heatproof?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-07:i06:r1",
+            "targetText": "Is the handle heatproof?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-07:i06:r2",
+            "targetText": "Is the handle removable?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-07:i06:r3",
+            "targetText": "Is the lid heatproof?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-07:i06:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Is the handle heatproof?",
+              "uk": "У записі звучить Is the handle heatproof?"
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-07:i06:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Is the handle heatproof?",
+              "uk": "У записі звучить Is the handle heatproof?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-07:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ручку роблять із дерева. Завершіть опис матеріалу.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-07:i07:r1",
+          "text": "made"
+        },
+        {
+          "responseId": "en:lesson-28:session-07:i07:r2",
+          "text": "make"
+        },
+        {
+          "responseId": "en:lesson-28:session-07:i07:r3",
+          "text": "makes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ручку роблять із дерева. Завершіть опис матеріалу.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Ручку делают из дерева. Завершите описание материала.",
+          "uk": "Ручку роблять із дерева. Завершіть опис матеріалу."
+        },
+        "gappedTargetPhrase": "The handle is ___ of wood.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-07:i07:r1",
+            "text": "made"
+          },
+          {
+            "responseId": "en:lesson-28:session-07:i07:r2",
+            "text": "make"
+          },
+          {
+            "responseId": "en:lesson-28:session-07:i07:r3",
+            "text": "makes"
+          }
+        ],
+        "testedDimension": "Ручку роблять із дерева. Завершіть опис матеріалу.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-07:i07:r2",
+            "correct": false,
+            "testedDimension": "Ручку роблять із дерева. Завершіть опис матеріалу.",
+            "feedbackByLocale": {
+              "ru": "Используем is made of.",
+              "uk": "Використовуємо is made of."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-07:i07:r3",
+            "correct": false,
+            "testedDimension": "Ручку роблять із дерева. Завершіть опис матеріалу.",
+            "feedbackByLocale": {
+              "ru": "После is здесь нужна made.",
+              "uk": "Після is тут потрібна made."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-07:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви хотіли б легшу сковороду зараз.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви хотіли б легшу сковороду зараз.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I wish this pan were lighter.",
+        "localizedMeaning": {
+          "ru": "Вы хотели бы более лёгкую сковороду сейчас.",
+          "uk": "Ви хотіли б легшу сковороду зараз."
+        },
+        "orderedTokens": [
+          "I",
+          "wish",
+          "this",
+          "pan",
+          "were",
+          "lighter"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-07:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — stackable",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-07:i09:audio"
+      ],
+      "accessibilityLabel": "Картка слова — stackable",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-07:i09:audio",
+          "transcript": "stackable"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-07:i09:r1",
+            "targetText": "stackable",
+            "meaningByLocale": {
+              "ru": "Такой, который удобно складывать с другими такими же вещами в стопку.",
+              "uk": "Такий, який зручно складати з іншими такими самими речами у стос."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "stackable",
+          "definitionByLocale": {
+            "ru": "Такой, который удобно складывать с другими такими же вещами в стопку.",
+            "uk": "Такий, який зручно складати з іншими такими самими речами у стос."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-07:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ці миски можна складати стосом. Виберіть форму для кількох мисок.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-07:i10:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-28:session-07:i10:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-28:session-07:i10:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ці миски можна складати стосом. Виберіть форму для кількох мисок.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Эти миски можно складывать стопкой. Выберите форму для нескольких мисок.",
+          "uk": "Ці миски можна складати стосом. Виберіть форму для кількох мисок."
+        },
+        "gappedTargetPhrase": "These bowls ___ stackable.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-07:i10:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-28:session-07:i10:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-28:session-07:i10:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Ці миски можна складати стосом. Виберіть форму для кількох мисок.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-07:i10:r2",
+            "correct": false,
+            "testedDimension": "Ці миски можна складати стосом. Виберіть форму для кількох мисок.",
+            "feedbackByLocale": {
+              "ru": "Bowls — несколько: are.",
+              "uk": "Bowls — кілька: are."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-07:i10:r3",
+            "correct": false,
+            "testedDimension": "Ці миски можна складати стосом. Виберіть форму для кількох мисок.",
+            "feedbackByLocale": {
+              "ru": "Am подходит к I, здесь are.",
+              "uk": "Am підходить до I, тут are."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-07:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросіть три миски: шафа не стала більшою, але стос займе менше місця.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросіть три миски: шафа не стала більшою, але стос займе менше місця.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I would like three bowls, please.",
+        "localizedMeaning": {
+          "ru": "Попросите три миски: шкаф не стал больше, но стопка займёт меньше места.",
+          "uk": "Попросіть три миски: шафа не стала більшою, але стос займе менше місця."
+        },
+        "orderedTokens": [
+          "I",
+          "would",
+          "like",
+          "three",
+          "bowls,",
+          "please"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-07:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-07:i12:r1",
+          "text": "The lids are sold separately."
+        },
+        {
+          "responseId": "en:lesson-28:session-07:i12:r2",
+          "text": "The lids are included in the price."
+        },
+        {
+          "responseId": "en:lesson-28:session-07:i12:r3",
+          "text": "The bowls are sold separately."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-07:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-07:i12:audio",
+          "transcript": "The lids are sold separately."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-07:i12:r1",
+            "targetText": "The lids are sold separately.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-07:i12:r2",
+            "targetText": "The lids are included in the price.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-07:i12:r3",
+            "targetText": "The bowls are sold separately.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-07:i12:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The lids are sold separately.",
+              "uk": "У записі звучить The lids are sold separately."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-07:i12:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The lids are sold separately.",
+              "uk": "У записі звучить The lids are sold separately."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-07:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — stainless",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-07:i13:audio"
+      ],
+      "accessibilityLabel": "Картка слова — stainless",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-07:i13:audio",
+          "transcript": "stainless"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-07:i13:r1",
+            "targetText": "stainless",
+            "meaningByLocale": {
+              "ru": "Нержавеющий; stainless steel — нержавеющая сталь, обычный материал для столовых приборов.",
+              "uk": "Нержавіючий; stainless steel — нержавіюча сталь, звичайний матеріал для столових приборів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "stainless",
+          "definitionByLocale": {
+            "ru": "Нержавеющий; stainless steel — нержавеющая сталь, обычный материал для столовых приборов.",
+            "uk": "Нержавіючий; stainless steel — нержавіюча сталь, звичайний матеріал для столових приборів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-07:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що ложки зроблені з нержавіючої сталі.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що ложки зроблені з нержавіючої сталі.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The spoons are made of stainless steel.",
+        "localizedMeaning": {
+          "ru": "Скажите, что ложки сделаны из нержавеющей стали.",
+          "uk": "Скажіть, що ложки зроблені з нержавіючої сталі."
+        },
+        "orderedTokens": [
+          "The",
+          "spoons",
+          "are",
+          "made",
+          "of",
+          "stainless",
+          "steel"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-07:i15",
+      "ordinal": 18,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточніть, чи можна мити ці речі в посудомийній машині.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-07:i15:audio"
+      ],
+      "accessibilityLabel": "Уточніть, чи можна мити ці речі в посудомийній машині.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-07:i15:audio",
+          "transcript": "Can these go in the dishwasher?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Can these go in the dishwasher?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-07:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Посилка вже прибула до вашого повернення вчора. Доповніть ранішу подію.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-07:i16:r1",
+          "text": "arrived"
+        },
+        {
+          "responseId": "en:lesson-28:session-07:i16:r2",
+          "text": "arrive"
+        },
+        {
+          "responseId": "en:lesson-28:session-07:i16:r3",
+          "text": "arriving"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Посилка вже прибула до вашого повернення вчора. Доповніть ранішу подію.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Посылка уже прибыла к вашему возвращению вчера. Дополните раннее событие.",
+          "uk": "Посилка вже прибула до вашого повернення вчора. Доповніть ранішу подію."
+        },
+        "gappedTargetPhrase": "The parcel had ___ by the time I got home.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-07:i16:r1",
+            "text": "arrived"
+          },
+          {
+            "responseId": "en:lesson-28:session-07:i16:r2",
+            "text": "arrive"
+          },
+          {
+            "responseId": "en:lesson-28:session-07:i16:r3",
+            "text": "arriving"
+          }
+        ],
+        "testedDimension": "Посилка вже прибула до вашого повернення вчора. Доповніть ранішу подію.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-07:i16:r2",
+            "correct": false,
+            "testedDimension": "Посилка вже прибула до вашого повернення вчора. Доповніть ранішу подію.",
+            "feedbackByLocale": {
+              "ru": "После had нужна arrived.",
+              "uk": "Після had потрібна arrived."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-07:i16:r3",
+            "correct": false,
+            "testedDimension": "Посилка вже прибула до вашого повернення вчора. Доповніть ранішу подію.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем had arrived.",
+              "uk": "Тут використовуємо had arrived."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-07:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, де зберігається посуд.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-07:i17:audio"
+      ],
+      "accessibilityLabel": "Послухайте, де зберігається посуд.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-07:i17:audio",
+          "transcript": "The dishes are kept on the top shelf."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The dishes are kept on the top shelf.",
+        "orderedTokens": [
+          "The",
+          "dishes",
+          "are",
+          "kept",
+          "on",
+          "the",
+          "top",
+          "shelf"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-07:i18",
+      "ordinal": 21,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть сестру потримати дверцята шафи.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-07:i18:audio"
+      ],
+      "accessibilityLabel": "Попросіть сестру потримати дверцята шафи.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-07:i18:audio",
+          "transcript": "Could you hold the door open?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you hold the door open?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-07:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вам хотілося б більше полиць.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вам хотілося б більше полиць.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I wish we had more shelves.",
+        "localizedMeaning": {
+          "ru": "Вам хотелось бы больше полок.",
+          "uk": "Вам хотілося б більше полиць."
+        },
+        "orderedTokens": [
+          "I",
+          "wish",
+          "we",
+          "had",
+          "more",
+          "shelves"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-07:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-07:i20:r1",
+          "text": "The plates are made of glass."
+        },
+        {
+          "responseId": "en:lesson-28:session-07:i20:r2",
+          "text": "The plates are made of plastic."
+        },
+        {
+          "responseId": "en:lesson-28:session-07:i20:r3",
+          "text": "The cups are made of glass."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-07:i20:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-07:i20:audio",
+          "transcript": "The plates are made of glass."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-07:i20:r1",
+            "targetText": "The plates are made of glass.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-07:i20:r2",
+            "targetText": "The plates are made of plastic.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-07:i20:r3",
+            "targetText": "The cups are made of glass.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-07:i20:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The plates are made of glass.",
+              "uk": "У записі звучить The plates are made of glass."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-07:i20:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The plates are made of glass.",
+              "uk": "У записі звучить The plates are made of glass."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-07:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Тепер усе вмістилося. Подякуйте за допомогу.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-07:i21:audio"
+      ],
+      "accessibilityLabel": "Тепер усе вмістилося. Подякуйте за допомогу.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-07:i21:audio",
+          "transcript": "Thanks for helping me."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Thanks for helping me.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "d18b0767dc207ebf8fd452fed2a42b87b7ddbd937c5b5a7311a0b1fc1da783ca"
+}

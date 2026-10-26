@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-28:session-17:i01",
+    "correctText": "Is delivery included?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-17:i02",
+    "correctText": "sideboard",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-17:i03",
+    "correctText": "The sideboard will be delivered on Friday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-17:i04",
+    "correctText": "The chairs will be put in the kitchen.",
+    "correctResponseId": "en:lesson-28:session-17:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-17:i05",
+    "correctText": "dresser",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-17:i06",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-28:session-17:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-17:i07",
+    "correctText": "Do I need to be at home?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-17:i08",
+    "correctText": "The old sofa will be collected tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-17:i09",
+    "correctText": "upholstery",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-17:i10",
+    "correctText": "The upholstery will be cleaned before delivery.",
+    "correctResponseId": "en:lesson-28:session-17:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-17:i11",
+    "correctText": "delivered",
+    "correctResponseId": "en:lesson-28:session-17:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-17:i12",
+    "correctText": "oak",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-17:i13",
+    "correctText": "Is this table made of oak?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-17:i14",
+    "correctText": "The floor will be protected.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-17:i15",
+    "correctText": "Please call me before you arrive.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-17:i16",
+    "correctText": "put",
+    "correctResponseId": "en:lesson-28:session-17:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-17:i17",
+    "correctText": "The packaging will be taken away.",
+    "correctResponseId": "en:lesson-28:session-17:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-17:i18",
+    "correctText": "The door will be adjusted after assembly.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-17:i19",
+    "correctText": "The lift is not working.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-17:i20",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-28:session-17:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-17:i21",
+    "correctText": "Could you confirm the delivery time?",
+    "correctResponseId": null
+  }
+]

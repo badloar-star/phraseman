@@ -1,0 +1,1075 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-28:session-01",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-28:session-01:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — locally",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-01:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — locally",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-01:i01:audio",
+          "transcript": "locally"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-01:i01:r1",
+            "targetText": "locally",
+            "meaningByLocale": {
+              "ru": "На месте, в этой местности. Grown locally — выращено поблизости.",
+              "uk": "На місці, у цій місцевості. Grown locally — вирощено поблизу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "locally",
+          "definitionByLocale": {
+            "ru": "На месте, в этой местности. Grown locally — выращено поблизости.",
+            "uk": "На місці, у цій місцевості. Grown locally — вирощено поблизу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-01:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-01:i02:r1",
+          "text": "The apples are grown locally."
+        },
+        {
+          "responseId": "en:lesson-28:session-01:i02:r2",
+          "text": "The pears are grown locally."
+        },
+        {
+          "responseId": "en:lesson-28:session-01:i02:r3",
+          "text": "The apples are sold locally."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-01:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-01:i02:audio",
+          "transcript": "The apples are grown locally."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-01:i02:r1",
+            "targetText": "The apples are grown locally.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-01:i02:r2",
+            "targetText": "The pears are grown locally.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-01:i02:r3",
+            "targetText": "The apples are sold locally.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-01:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The apples are grown locally.",
+              "uk": "У записі звучить The apples are grown locally."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-01:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The apples are grown locally.",
+              "uk": "У записі звучить The apples are grown locally."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-01:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "На ферме выращивают клубнику. Назовите ягоды в начале фразы.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-01:i03:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-28:session-01:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-28:session-01:i03:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На ферме выращивают клубнику. Назовите ягоды в начале фразы.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "На ферме выращивают клубнику. Назовите ягоды в начале фразы.",
+          "uk": "На фермі вирощують полуницю. Назвіть ягоди на початку фрази."
+        },
+        "gappedTargetPhrase": "The strawberries ___ grown here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-01:i03:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-28:session-01:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-28:session-01:i03:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "На ферме выращивают клубнику. Назовите ягоды в начале фразы.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-01:i03:r2",
+            "correct": false,
+            "testedDimension": "На ферме выращивают клубнику. Назовите ягоды в начале фразы.",
+            "feedbackByLocale": {
+              "ru": "Strawberries — множественное число, поэтому are.",
+              "uk": "Strawberries — множина, тому are."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-01:i03:r3",
+            "correct": false,
+            "testedDimension": "На ферме выращивают клубнику. Назовите ягоды в начале фразы.",
+            "feedbackByLocale": {
+              "ru": "Am сочетается с I; здесь нужны are grown.",
+              "uk": "Am поєднується з I; тут потрібні are grown."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-01:i04",
+      "ordinal": 7,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите килограмм яблок.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-01:i04:audio"
+      ],
+      "accessibilityLabel": "Попросите килограмм яблок.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-01:i04:audio",
+          "transcript": "A kilo of apples, please."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "A kilo of apples, please.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-01:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — produce",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-01:i05:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — produce",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-01:i05:audio",
+          "transcript": "produce"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-01:i05:r1",
+            "targetText": "produce",
+            "meaningByLocale": {
+              "ru": "Производить, изготавливать. Здесь глагол: produce cheese — производить сыр.",
+              "uk": "Виробляти, виготовляти. Тут дієслово: produce cheese — виробляти сир."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "produce",
+          "definitionByLocale": {
+            "ru": "Производить, изготавливать. Здесь глагол: produce cheese — производить сыр.",
+            "uk": "Виробляти, виготовляти. Тут дієслово: produce cheese — виробляти сир."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-01:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Фермер говорит: «Мы производим мёд на этой ферме». Соберите его слова.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Фермер говорит: «Мы производим мёд на этой ферме». Соберите его слова.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We produce honey on this farm.",
+        "localizedMeaning": {
+          "ru": "Фермер говорит: «Мы производим мёд на этой ферме». Соберите его слова.",
+          "uk": "Фермер каже: «Ми виробляємо мед на цій фермі». Складіть його слова."
+        },
+        "orderedTokens": [
+          "We",
+          "produce",
+          "honey",
+          "on",
+          "this",
+          "farm"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-01:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-01:i07:r1",
+          "text": "The cheese is made from goat’s milk."
+        },
+        {
+          "responseId": "en:lesson-28:session-01:i07:r2",
+          "text": "The cheese is made from cow’s milk."
+        },
+        {
+          "responseId": "en:lesson-28:session-01:i07:r3",
+          "text": "The cheese is made from sheep’s milk."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-01:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-01:i07:audio",
+          "transcript": "The cheese is made from goat’s milk."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-01:i07:r1",
+            "targetText": "The cheese is made from goat’s milk.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-01:i07:r2",
+            "targetText": "The cheese is made from cow’s milk.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-01:i07:r3",
+            "targetText": "The cheese is made from sheep’s milk.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-01:i07:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The cheese is made from goat’s milk.",
+              "uk": "У записі звучить The cheese is made from goat’s milk."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-01:i07:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The cheese is made from goat’s milk.",
+              "uk": "У записі звучить The cheese is made from goat’s milk."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-01:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Масло делают здесь. Made — третья форма make. Дополните пассивную форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-01:i08:r1",
+          "text": "made"
+        },
+        {
+          "responseId": "en:lesson-28:session-01:i08:r2",
+          "text": "make"
+        },
+        {
+          "responseId": "en:lesson-28:session-01:i08:r3",
+          "text": "making"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Масло делают здесь. Made — третья форма make. Дополните пассивную форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Масло делают здесь. Made — третья форма make. Дополните пассивную форму.",
+          "uk": "Масло роблять тут. Made — третя форма make. Доповніть пасивну форму."
+        },
+        "gappedTargetPhrase": "The butter is ___ here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-01:i08:r1",
+            "text": "made"
+          },
+          {
+            "responseId": "en:lesson-28:session-01:i08:r2",
+            "text": "make"
+          },
+          {
+            "responseId": "en:lesson-28:session-01:i08:r3",
+            "text": "making"
+          }
+        ],
+        "testedDimension": "Масло делают здесь. Made — третья форма make. Дополните пассивную форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-01:i08:r2",
+            "correct": false,
+            "testedDimension": "Масло делают здесь. Made — третья форма make. Дополните пассивную форму.",
+            "feedbackByLocale": {
+              "ru": "В пассивной форме после is нужна made.",
+              "uk": "У пасивній формі після is потрібна made."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-01:i08:r3",
+            "correct": false,
+            "testedDimension": "Масло делают здесь. Made — третья форма make. Дополните пассивную форму.",
+            "feedbackByLocale": {
+              "ru": "Для пассивной формы здесь используем is made.",
+              "uk": "Для пасивної форми тут використовуємо is made."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-01:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — organic",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-01:i09:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — organic",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-01:i09:audio",
+          "transcript": "organic"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-01:i09:r1",
+            "targetText": "organic",
+            "meaningByLocale": {
+              "ru": "Органический: слово на маркировке продуктов, произведённых по стандартам органического хозяйства.",
+              "uk": "Органічний: слово на маркуванні продуктів, вироблених за стандартами органічного господарства."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "organic",
+          "definitionByLocale": {
+            "ru": "Органический: слово на маркировке продуктов, произведённых по стандартам органического хозяйства.",
+            "uk": "Органічний: слово на маркуванні продуктів, вироблених за стандартами органічного господарства."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-01:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите, органические ли эти овощи.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите, органические ли эти овощи.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Are these vegetables organic?",
+        "localizedMeaning": {
+          "ru": "Спросите, органические ли эти овощи.",
+          "uk": "Запитайте, чи органічні ці овочі."
+        },
+        "orderedTokens": [
+          "Are",
+          "these",
+          "vegetables",
+          "organic"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-01:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Продавец предлагает пакет. Скажите, что у вас есть свой.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-01:i11:audio"
+      ],
+      "accessibilityLabel": "Продавец предлагает пакет. Скажите, что у вас есть свой.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-01:i11:audio",
+          "transcript": "I have brought my own bag."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have brought my own bag.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-01:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте, когда доставляют молоко.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-01:i12:audio"
+      ],
+      "accessibilityLabel": "Услышьте, когда доставляют молоко.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-01:i12:audio",
+          "transcript": "The milk is delivered every morning."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The milk is delivered every morning.",
+        "orderedTokens": [
+          "The",
+          "milk",
+          "is",
+          "delivered",
+          "every",
+          "morning"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-01:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sourdough",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-01:i13:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sourdough",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-01:i13:audio",
+          "transcript": "sourdough"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-01:i13:r1",
+            "targetText": "sourdough",
+            "meaningByLocale": {
+              "ru": "Хлеб на закваске; также сама закваска. Здесь покупаем хлеб.",
+              "uk": "Хліб на заквасці; також сама закваска. Тут купуємо хліб."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sourdough",
+          "definitionByLocale": {
+            "ru": "Хлеб на закваске; также сама закваска. Здесь покупаем хлеб.",
+            "uk": "Хліб на заквасці; також сама закваска. Тут купуємо хліб."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-01:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-01:i14:r1",
+          "text": "This sourdough is baked here."
+        },
+        {
+          "responseId": "en:lesson-28:session-01:i14:r2",
+          "text": "This sourdough is baked in another town."
+        },
+        {
+          "responseId": "en:lesson-28:session-01:i14:r3",
+          "text": "This bread is sold in another shop."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-01:i14:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-01:i14:audio",
+          "transcript": "This sourdough is baked here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-01:i14:r1",
+            "targetText": "This sourdough is baked here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-01:i14:r2",
+            "targetText": "This sourdough is baked in another town.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-01:i14:r3",
+            "targetText": "This bread is sold in another shop.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-01:i14:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This sourdough is baked here.",
+              "uk": "У записі звучить This sourdough is baked here."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-01:i14:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This sourdough is baked here.",
+              "uk": "У записі звучить This sourdough is baked here."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-01:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросите одну буханку хлеба на закваске.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросите одну буханку хлеба на закваске.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I have a loaf of sourdough?",
+        "localizedMeaning": {
+          "ru": "Попросите одну буханку хлеба на закваске.",
+          "uk": "Попросіть одну буханку хліба на заквасці."
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "have",
+          "a",
+          "loaf",
+          "of",
+          "sourdough"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-01:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "На прилавке лежат булочки, которые пекут ежедневно.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-01:i16:r1",
+          "text": "baked"
+        },
+        {
+          "responseId": "en:lesson-28:session-01:i16:r2",
+          "text": "bake"
+        },
+        {
+          "responseId": "en:lesson-28:session-01:i16:r3",
+          "text": "bakes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На прилавке лежат булочки, которые пекут ежедневно.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "На прилавке лежат булочки, которые пекут ежедневно.",
+          "uk": "На прилавку лежать булочки, які печуть щодня."
+        },
+        "gappedTargetPhrase": "The rolls are ___ every day.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-01:i16:r1",
+            "text": "baked"
+          },
+          {
+            "responseId": "en:lesson-28:session-01:i16:r2",
+            "text": "bake"
+          },
+          {
+            "responseId": "en:lesson-28:session-01:i16:r3",
+            "text": "bakes"
+          }
+        ],
+        "testedDimension": "На прилавке лежат булочки, которые пекут ежедневно.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-01:i16:r2",
+            "correct": false,
+            "testedDimension": "На прилавке лежат булочки, которые пекут ежедневно.",
+            "feedbackByLocale": {
+              "ru": "После are в пассивной форме нужна baked.",
+              "uk": "Після are у пасивній формі потрібна baked."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-01:i16:r3",
+            "correct": false,
+            "testedDimension": "На прилавке лежат булочки, которые пекут ежедневно.",
+            "feedbackByLocale": {
+              "ru": "Bakes — личная форма; после are в этой пассивной модели нужна третья форма baked.",
+              "uk": "Bakes — особова форма; після are у цій пасивній моделі потрібна третя форма baked."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-01:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите разрезать хлеб пополам.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-01:i17:audio"
+      ],
+      "accessibilityLabel": "Попросите разрезать хлеб пополам.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-01:i17:audio",
+          "transcript": "Could you cut it in half, please?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you cut it in half, please?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-01:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Яйца собирают каждое утро. Начните сообщение с яиц.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Яйца собирают каждое утро. Начните сообщение с яиц.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The eggs are collected every morning.",
+        "localizedMeaning": {
+          "ru": "Яйца собирают каждое утро. Начните сообщение с яиц.",
+          "uk": "Яйця збирають щоранку. Почніть повідомлення з яєць."
+        },
+        "orderedTokens": [
+          "The",
+          "eggs",
+          "are",
+          "collected",
+          "every",
+          "morning"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-01:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-01:i19:r1",
+          "text": "The shop closes at five."
+        },
+        {
+          "responseId": "en:lesson-28:session-01:i19:r2",
+          "text": "The shop closes at four."
+        },
+        {
+          "responseId": "en:lesson-28:session-01:i19:r3",
+          "text": "The shop opens at five."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-01:i19:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-01:i19:audio",
+          "transcript": "The shop closes at five."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-01:i19:r1",
+            "targetText": "The shop closes at five.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-01:i19:r2",
+            "targetText": "The shop closes at four.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-01:i19:r3",
+            "targetText": "The shop opens at five.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-01:i19:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The shop closes at five.",
+              "uk": "У записі звучить The shop closes at five."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-01:i19:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The shop closes at five.",
+              "uk": "У записі звучить The shop closes at five."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-01:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Магазин убирают каждый вечер. Выберите форму перед cleaned.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-01:i20:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-28:session-01:i20:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-28:session-01:i20:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Магазин убирают каждый вечер. Выберите форму перед cleaned.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Магазин убирают каждый вечер. Выберите форму перед cleaned.",
+          "uk": "Крамницю прибирають щовечора. Виберіть форму перед cleaned."
+        },
+        "gappedTargetPhrase": "The shop ___ cleaned every evening.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-01:i20:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-28:session-01:i20:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-28:session-01:i20:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Магазин убирают каждый вечер. Выберите форму перед cleaned.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-01:i20:r2",
+            "correct": false,
+            "testedDimension": "Магазин убирают каждый вечер. Выберите форму перед cleaned.",
+            "feedbackByLocale": {
+              "ru": "The shop — единственное число, поэтому is.",
+              "uk": "The shop — однина, тому is."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-01:i20:r3",
+            "correct": false,
+            "testedDimension": "Магазин убирают каждый вечер. Выберите форму перед cleaned.",
+            "feedbackByLocale": {
+              "ru": "Am используется с I; здесь нужно is.",
+              "uk": "Am використовується з I; тут потрібне is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-01:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите чек за покупки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-01:i21:audio"
+      ],
+      "accessibilityLabel": "Попросите чек за покупки.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-01:i21:audio",
+          "transcript": "Could I have a receipt, please?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could I have a receipt, please?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "2108a6139dc3e0de0b51ff5cf6e3c279ae347119a1c98a200efa86b2beae74f7"
+}

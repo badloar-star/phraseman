@@ -1,0 +1,1036 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-28:session-17",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-28:session-17:i01",
+      "ordinal": 4,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточніть, чи включена доставка.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-17:i01:audio"
+      ],
+      "accessibilityLabel": "Уточніть, чи включена доставка.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-17:i01:audio",
+          "transcript": "Is delivery included?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is delivery included?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-17:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — sideboard",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-17:i02:audio"
+      ],
+      "accessibilityLabel": "Картка слова — sideboard",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-17:i02:audio",
+          "transcript": "sideboard"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-17:i02:r1",
+            "targetText": "sideboard",
+            "meaningByLocale": {
+              "ru": "Невысокий шкаф для посуды и других вещей, часто в столовой.",
+              "uk": "Невисока шафа для посуду та інших речей, часто в їдальні."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sideboard",
+          "definitionByLocale": {
+            "ru": "Невысокий шкаф для посуды и других вещей, часто в столовой.",
+            "uk": "Невисока шафа для посуду та інших речей, часто в їдальні."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-17:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Продавець обіцяє доставити цю шафу в п’ятницю. Складіть його відповідь.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Продавець обіцяє доставити цю шафу в п’ятницю. Складіть його відповідь.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The sideboard will be delivered on Friday.",
+        "localizedMeaning": {
+          "ru": "Продавец обещает доставить этот шкаф в пятницу. Соберите его ответ.",
+          "uk": "Продавець обіцяє доставити цю шафу в п’ятницю. Складіть його відповідь."
+        },
+        "orderedTokens": [
+          "The",
+          "sideboard",
+          "will",
+          "be",
+          "delivered",
+          "on",
+          "Friday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-17:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-17:i04:r1",
+          "text": "The chairs will be put in the kitchen."
+        },
+        {
+          "responseId": "en:lesson-28:session-17:i04:r2",
+          "text": "The chairs will be put in the bedroom."
+        },
+        {
+          "responseId": "en:lesson-28:session-17:i04:r3",
+          "text": "The boxes will be put in the kitchen."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-17:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-17:i04:audio",
+          "transcript": "The chairs will be put in the kitchen."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-17:i04:r1",
+            "targetText": "The chairs will be put in the kitchen.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-17:i04:r2",
+            "targetText": "The chairs will be put in the bedroom.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-17:i04:r3",
+            "targetText": "The boxes will be put in the kitchen.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-17:i04:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The chairs will be put in the kitchen.",
+              "uk": "У записі звучить The chairs will be put in the kitchen."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-17:i04:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The chairs will be put in the kitchen.",
+              "uk": "У записі звучить The chairs will be put in the kitchen."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-17:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — dresser",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-17:i05:audio"
+      ],
+      "accessibilityLabel": "Картка слова — dresser",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-17:i05:audio",
+          "transcript": "dresser"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-17:i05:r1",
+            "targetText": "dresser",
+            "meaningByLocale": {
+              "ru": "Комод: предмет мебели с ящиками, например для одежды.",
+              "uk": "Комод: предмет меблів із шухлядами, наприклад для одягу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dresser",
+          "definitionByLocale": {
+            "ru": "Комод: предмет мебели с ящиками, например для одежды.",
+            "uk": "Комод: предмет меблів із шухлядами, наприклад для одягу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-17:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Комод складуть удома. Вставте пропущену частину.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-17:i06:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-28:session-17:i06:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-28:session-17:i06:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Комод складуть удома. Вставте пропущену частину.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Комод соберут дома. Вставьте недостающую часть.",
+          "uk": "Комод складуть удома. Вставте пропущену частину."
+        },
+        "gappedTargetPhrase": "The dresser will ___ assembled at home.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-17:i06:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-28:session-17:i06:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-28:session-17:i06:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Комод складуть удома. Вставте пропущену частину.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-17:i06:r2",
+            "correct": false,
+            "testedDimension": "Комод складуть удома. Вставте пропущену частину.",
+            "feedbackByLocale": {
+              "ru": "После will нужна be.",
+              "uk": "Після will потрібна be."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-17:i06:r3",
+            "correct": false,
+            "testedDimension": "Комод складуть удома. Вставте пропущену частину.",
+            "feedbackByLocale": {
+              "ru": "Will be не меняется по числу.",
+              "uk": "Will be не змінюється за числом."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-17:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте, чи потрібно вам бути вдома.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-17:i07:audio"
+      ],
+      "accessibilityLabel": "Запитайте, чи потрібно вам бути вдома.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-17:i07:audio",
+          "transcript": "Do I need to be at home?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Do I need to be at home?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-17:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, коли заберуть старий диван.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-17:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте, коли заберуть старий диван.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-17:i08:audio",
+          "transcript": "The old sofa will be collected tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The old sofa will be collected tomorrow.",
+        "orderedTokens": [
+          "The",
+          "old",
+          "sofa",
+          "will",
+          "be",
+          "collected",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-17:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — upholstery",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-17:i09:audio"
+      ],
+      "accessibilityLabel": "Картка слова — upholstery",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-17:i09:audio",
+          "transcript": "upholstery"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-17:i09:r1",
+            "targetText": "upholstery",
+            "meaningByLocale": {
+              "ru": "Обивка мягкой мебели: покрытие и мягкая набивка.",
+              "uk": "Оббивка м’яких меблів: покриття та м’яке наповнення."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "upholstery",
+          "definitionByLocale": {
+            "ru": "Обивка мягкой мебели: покрытие и мягкая набивка.",
+            "uk": "Оббивка м’яких меблів: покриття та м’яке наповнення."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-17:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-17:i10:r1",
+          "text": "The upholstery will be cleaned before delivery."
+        },
+        {
+          "responseId": "en:lesson-28:session-17:i10:r2",
+          "text": "The upholstery will be cleaned after delivery."
+        },
+        {
+          "responseId": "en:lesson-28:session-17:i10:r3",
+          "text": "The carpet will be cleaned before delivery."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-17:i10:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-17:i10:audio",
+          "transcript": "The upholstery will be cleaned before delivery."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-17:i10:r1",
+            "targetText": "The upholstery will be cleaned before delivery.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-17:i10:r2",
+            "targetText": "The upholstery will be cleaned after delivery.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-17:i10:r3",
+            "targetText": "The carpet will be cleaned before delivery.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-17:i10:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The upholstery will be cleaned before delivery.",
+              "uk": "У записі звучить The upholstery will be cleaned before delivery."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-17:i10:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The upholstery will be cleaned before delivery.",
+              "uk": "У записі звучить The upholstery will be cleaned before delivery."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-17:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Стіл доставлять уранці. Завершіть конструкцію.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-17:i11:r1",
+          "text": "delivered"
+        },
+        {
+          "responseId": "en:lesson-28:session-17:i11:r2",
+          "text": "deliver"
+        },
+        {
+          "responseId": "en:lesson-28:session-17:i11:r3",
+          "text": "delivering"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Стіл доставлять уранці. Завершіть конструкцію.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Стол доставят утром. Завершите конструкцию.",
+          "uk": "Стіл доставлять уранці. Завершіть конструкцію."
+        },
+        "gappedTargetPhrase": "The table will be ___ in the morning.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-17:i11:r1",
+            "text": "delivered"
+          },
+          {
+            "responseId": "en:lesson-28:session-17:i11:r2",
+            "text": "deliver"
+          },
+          {
+            "responseId": "en:lesson-28:session-17:i11:r3",
+            "text": "delivering"
+          }
+        ],
+        "testedDimension": "Стіл доставлять уранці. Завершіть конструкцію.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-17:i11:r2",
+            "correct": false,
+            "testedDimension": "Стіл доставлять уранці. Завершіть конструкцію.",
+            "feedbackByLocale": {
+              "ru": "После will be здесь delivered.",
+              "uk": "Після will be тут delivered."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-17:i11:r3",
+            "correct": false,
+            "testedDimension": "Стіл доставлять уранці. Завершіть конструкцію.",
+            "feedbackByLocale": {
+              "ru": "О действии над столом: will be delivered.",
+              "uk": "Про дію над столом: will be delivered."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-17:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — oak",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-17:i12:audio"
+      ],
+      "accessibilityLabel": "Картка слова — oak",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-17:i12:audio",
+          "transcript": "oak"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-17:i12:r1",
+            "targetText": "oak",
+            "meaningByLocale": {
+              "ru": "Дуб; также дубовая древесина.",
+              "uk": "Дуб; також дубова деревина."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "oak",
+          "definitionByLocale": {
+            "ru": "Дуб; также дубовая древесина.",
+            "uk": "Дуб; також дубова деревина."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-17:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточніть, чи зроблений стіл із дуба.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-17:i13:audio"
+      ],
+      "accessibilityLabel": "Уточніть, чи зроблений стіл із дуба.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-17:i13:audio",
+          "transcript": "Is this table made of oak?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is this table made of oak?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-17:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Працівник обіцяє захистити підлогу під час роботи. Складіть його відповідь.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Працівник обіцяє захистити підлогу під час роботи. Складіть його відповідь.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The floor will be protected.",
+        "localizedMeaning": {
+          "ru": "Сотрудник обещает защитить пол во время работы. Соберите его ответ.",
+          "uk": "Працівник обіцяє захистити підлогу під час роботи. Складіть його відповідь."
+        },
+        "orderedTokens": [
+          "The",
+          "floor",
+          "will",
+          "be",
+          "protected"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-17:i15",
+      "ordinal": 18,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть зателефонувати вам перед приїздом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-17:i15:audio"
+      ],
+      "accessibilityLabel": "Попросіть зателефонувати вам перед приїздом.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-17:i15:audio",
+          "transcript": "Please call me before you arrive."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Please call me before you arrive.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-17:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Коробки поставлять у коридорі. Виберіть потрібну форму put.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-17:i16:r1",
+          "text": "put"
+        },
+        {
+          "responseId": "en:lesson-28:session-17:i16:r2",
+          "text": "putting"
+        },
+        {
+          "responseId": "en:lesson-28:session-17:i16:r3",
+          "text": "puts"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Коробки поставлять у коридорі. Виберіть потрібну форму put.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Коробки поставят в коридоре. Выберите нужную форму put.",
+          "uk": "Коробки поставлять у коридорі. Виберіть потрібну форму put."
+        },
+        "gappedTargetPhrase": "The boxes will be ___ in the hall.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-17:i16:r1",
+            "text": "put"
+          },
+          {
+            "responseId": "en:lesson-28:session-17:i16:r2",
+            "text": "putting"
+          },
+          {
+            "responseId": "en:lesson-28:session-17:i16:r3",
+            "text": "puts"
+          }
+        ],
+        "testedDimension": "Коробки поставлять у коридорі. Виберіть потрібну форму put.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-17:i16:r2",
+            "correct": false,
+            "testedDimension": "Коробки поставлять у коридорі. Виберіть потрібну форму put.",
+            "feedbackByLocale": {
+              "ru": "Здесь форма put, без -ing.",
+              "uk": "Тут форма put, без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-17:i16:r3",
+            "correct": false,
+            "testedDimension": "Коробки поставлять у коридорі. Виберіть потрібну форму put.",
+            "feedbackByLocale": {
+              "ru": "После will be здесь put, без -s.",
+              "uk": "Після will be тут put, без -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-17:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-17:i17:r1",
+          "text": "The packaging will be taken away."
+        },
+        {
+          "responseId": "en:lesson-28:session-17:i17:r2",
+          "text": "The packaging will be left outside."
+        },
+        {
+          "responseId": "en:lesson-28:session-17:i17:r3",
+          "text": "The furniture will be taken away."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-17:i17:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-17:i17:audio",
+          "transcript": "The packaging will be taken away."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-17:i17:r1",
+            "targetText": "The packaging will be taken away.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-17:i17:r2",
+            "targetText": "The packaging will be left outside.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-17:i17:r3",
+            "targetText": "The furniture will be taken away.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-17:i17:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The packaging will be taken away.",
+              "uk": "У записі звучить The packaging will be taken away."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-17:i17:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The packaging will be taken away.",
+              "uk": "У записі звучить The packaging will be taken away."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-17:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, що зроблять із дверцятами шафи.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-17:i18:audio"
+      ],
+      "accessibilityLabel": "Послухайте, що зроблять із дверцятами шафи.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-17:i18:audio",
+          "transcript": "The door will be adjusted after assembly."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The door will be adjusted after assembly.",
+        "orderedTokens": [
+          "The",
+          "door",
+          "will",
+          "be",
+          "adjusted",
+          "after",
+          "assembly"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-17:i19",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попередьте, що ліфт не працює.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-17:i19:audio"
+      ],
+      "accessibilityLabel": "Попередьте, що ліфт не працює.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-17:i19:audio",
+          "transcript": "The lift is not working."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The lift is not working.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-17:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Стільці перевірять перед доставкою. Вставте пропущену частину.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-17:i20:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-28:session-17:i20:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-28:session-17:i20:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Стільці перевірять перед доставкою. Вставте пропущену частину.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Стулья проверят перед доставкой. Вставьте недостающую часть.",
+          "uk": "Стільці перевірять перед доставкою. Вставте пропущену частину."
+        },
+        "gappedTargetPhrase": "The chairs will ___ checked before delivery.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-17:i20:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-28:session-17:i20:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-28:session-17:i20:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Стільці перевірять перед доставкою. Вставте пропущену частину.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-17:i20:r2",
+            "correct": false,
+            "testedDimension": "Стільці перевірять перед доставкою. Вставте пропущену частину.",
+            "feedbackByLocale": {
+              "ru": "После will всегда be в этой конструкции.",
+              "uk": "Після will завжди be в цій конструкції."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-17:i20:r3",
+            "correct": false,
+            "testedDimension": "Стільці перевірять перед доставкою. Вставте пропущену частину.",
+            "feedbackByLocale": {
+              "ru": "Даже с несколькими предметами: will be.",
+              "uk": "Навіть із кількома предметами: will be."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-17:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть підтвердити час доставки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-17:i21:audio"
+      ],
+      "accessibilityLabel": "Попросіть підтвердити час доставки.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-17:i21:audio",
+          "transcript": "Could you confirm the delivery time?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you confirm the delivery time?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "4bf4f08ebb8d66a2d3afd2f4e5a40e4fef3e75871f1c6a91f6143aab54e6fc7f"
+}

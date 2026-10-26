@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-29:session-05:i01",
+    "correctText": "glazier",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-05:i02",
+    "correctText": "I need a glazier.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-05:i03",
+    "correctText": "The man who repaired the window is here.",
+    "correctResponseId": "en:lesson-29:session-05:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-05:i04",
+    "correctText": "who",
+    "correctResponseId": "en:lesson-29:session-05:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-05:i05",
+    "correctText": "Could you look at the cracked window?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-05:i06",
+    "correctText": "tiler",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-05:i07",
+    "correctText": "When can the tiler come?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-05:i08",
+    "correctText": "Could you tell me the price before you start?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-05:i09",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-29:session-05:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-05:i10",
+    "correctText": "The tool that fits is in the bag.",
+    "correctResponseId": "en:lesson-29:session-05:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-05:i11",
+    "correctText": "plasterer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-05:i12",
+    "correctText": "The plasterer who called is waiting.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-05:i13",
+    "correctText": "The door was painted by my brother.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-05:i14",
+    "correctText": "takes",
+    "correctResponseId": "en:lesson-29:session-05:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-05:i15",
+    "correctText": "handyman",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-05:i16",
+    "correctText": "Can the handyman fix the handle?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-05:i17",
+    "correctText": "en:lesson-29:session-05:i17:p1=glazier\nen:lesson-29:session-05:i17:p2=tiler\nen:lesson-29:session-05:i17:p3=plasterer\nen:lesson-29:session-05:i17:p4=handyman",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-05:i18",
+    "correctText": "The window needs to be replaced.",
+    "correctResponseId": "en:lesson-29:session-05:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-05:i19",
+    "correctText": "fits",
+    "correctResponseId": "en:lesson-29:session-05:i19:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-05:i20",
+    "correctText": "I will be at home if you come tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-05:i21",
+    "correctText": "Please call before you come.",
+    "correctResponseId": null
+  }
+]

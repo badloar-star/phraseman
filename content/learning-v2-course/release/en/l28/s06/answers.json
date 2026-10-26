@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-28:session-06:i01",
+    "correctText": "Could you help me, please?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-06:i02",
+    "correctText": "nightwear",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-06:i03",
+    "correctText": "Where is the nightwear section?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-06:i04",
+    "correctText": "It is next to the socks.",
+    "correctResponseId": "en:lesson-28:session-06:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-06:i05",
+    "correctText": "camisole",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-06:i06",
+    "correctText": "made",
+    "correctResponseId": "en:lesson-28:session-06:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-06:i07",
+    "correctText": "I will wait here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-06:i08",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-28:session-06:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-06:i09",
+    "correctText": "knickers",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-06:i10",
+    "correctText": "These knickers are sold in packs of three.",
+    "correctResponseId": "en:lesson-28:session-06:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-06:i11",
+    "correctText": "Do you have these in black?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-06:i12",
+    "correctText": "boxers",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-06:i13",
+    "correctText": "These boxers are too big.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-06:i14",
+    "correctText": "The smaller size is on the top shelf.",
+    "correctResponseId": "en:lesson-28:session-06:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-06:i15",
+    "correctText": "paid",
+    "correctResponseId": "en:lesson-28:session-06:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-06:i16",
+    "correctText": "Shall we go home?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-06:i17",
+    "correctText": "The bag is kept under the bed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-06:i18",
+    "correctText": "I wish I had more space.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-06:i19",
+    "correctText": "I have already packed my slippers.",
+    "correctResponseId": "en:lesson-28:session-06:i19:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-06:i20",
+    "correctText": "I do not need anything else.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-06:i21",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-28:session-06:i21:r1"
+  }
+]

@@ -1,0 +1,1109 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-28:session-42",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-28:session-42:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-42:i01:r1",
+          "text": "This plant needs a bigger pot."
+        },
+        {
+          "responseId": "en:lesson-28:session-42:i01:r2",
+          "text": "This plant needs a smaller pot."
+        },
+        {
+          "responseId": "en:lesson-28:session-42:i01:r3",
+          "text": "This plant needs more water."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-42:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-42:i01:audio",
+          "transcript": "This plant needs a bigger pot."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-42:i01:r1",
+            "targetText": "This plant needs a bigger pot.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-42:i01:r2",
+            "targetText": "This plant needs a smaller pot.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-42:i01:r3",
+            "targetText": "This plant needs more water.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-42:i01:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This plant needs a bigger pot.",
+              "uk": "У записі звучить This plant needs a bigger pot."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-42:i01:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This plant needs a bigger pot.",
+              "uk": "У записі звучить This plant needs a bigger pot."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-42:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — shrub",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-42:i02:audio"
+      ],
+      "accessibilityLabel": "Картка слова — shrub",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-42:i02:audio",
+          "transcript": "shrub"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-42:i02:r1",
+            "targetText": "shrub",
+            "meaningByLocale": {
+              "ru": "Куст, кустарник. Растение с несколькими древесными стеблями от основания.",
+              "uk": "Кущ. Рослина з кількома дерев’янистими стеблами від основи."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "shrub",
+          "definitionByLocale": {
+            "ru": "Куст, кустарник. Растение с несколькими древесными стеблями от основания.",
+            "uk": "Кущ. Рослина з кількома дерев’янистими стеблами від основи."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-42:i03",
+      "ordinal": 6,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточніть, яким великим виросте цей кущ.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-42:i03:audio"
+      ],
+      "accessibilityLabel": "Уточніть, яким великим виросте цей кущ.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-42:i03:audio",
+          "transcript": "How big will this shrub grow?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "How big will this shrub grow?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-42:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви хотіли б мати більший сад.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-42:i04:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-28:session-42:i04:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-28:session-42:i04:r3",
+          "text": "will have"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви хотіли б мати більший сад.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы хотели бы иметь сад побольше.",
+          "uk": "Ви хотіли б мати більший сад."
+        },
+        "gappedTargetPhrase": "I wish I ___ a bigger garden.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-42:i04:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-28:session-42:i04:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-28:session-42:i04:r3",
+            "text": "will have"
+          }
+        ],
+        "testedDimension": "Ви хотіли б мати більший сад.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-42:i04:r2",
+            "correct": false,
+            "testedDimension": "Ви хотіли б мати більший сад.",
+            "feedbackByLocale": {
+              "ru": "После wish здесь нужна had.",
+              "uk": "Після wish тут потрібна had."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-42:i04:r3",
+            "correct": false,
+            "testedDimension": "Ви хотіли б мати більший сад.",
+            "feedbackByLocale": {
+              "ru": "Желаемое сейчас: had a bigger garden.",
+              "uk": "Бажане зараз: had a bigger garden."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-42:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, коли доставлять замовлення.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-42:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте, коли доставлять замовлення.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-42:i05:audio",
+          "transcript": "Your order will be delivered tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Your order will be delivered tomorrow.",
+        "orderedTokens": [
+          "Your",
+          "order",
+          "will",
+          "be",
+          "delivered",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-42:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — evergreen",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-42:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — evergreen",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-42:i06:audio",
+          "transcript": "evergreen"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-42:i06:r1",
+            "targetText": "evergreen",
+            "meaningByLocale": {
+              "ru": "Вечнозелёный. Сохраняющий зелёную листву круглый год.",
+              "uk": "Вічнозелений. Який зберігає зелене листя цілий рік."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "evergreen",
+          "definitionByLocale": {
+            "ru": "Вечнозелёный. Сохраняющий зелёную листву круглый год.",
+            "uk": "Вічнозелений. Який зберігає зелене листя цілий рік."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-42:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте, чи ця рослина вічнозелена.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи ця рослина вічнозелена.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Is this plant evergreen?",
+        "localizedMeaning": {
+          "ru": "Спросите, вечнозелёное ли это растение.",
+          "uk": "Запитайте, чи ця рослина вічнозелена."
+        },
+        "orderedTokens": [
+          "Is",
+          "this",
+          "plant",
+          "evergreen"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-42:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитайте, чи можлива доставка рослини.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-42:i08:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-28:session-42:i08:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-28:session-42:i08:r3",
+          "text": "was"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи можлива доставка рослини.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите, возможна ли доставка растения.",
+          "uk": "Запитайте, чи можлива доставка рослини."
+        },
+        "gappedTargetPhrase": "Can this plant ___ delivered?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-42:i08:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-28:session-42:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-28:session-42:i08:r3",
+            "text": "was"
+          }
+        ],
+        "testedDimension": "Запитайте, чи можлива доставка рослини.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-42:i08:r2",
+            "correct": false,
+            "testedDimension": "Запитайте, чи можлива доставка рослини.",
+            "feedbackByLocale": {
+              "ru": "После can нужна be.",
+              "uk": "Після can потрібна be."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-42:i08:r3",
+            "correct": false,
+            "testedDimension": "Запитайте, чи можлива доставка рослини.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем can be delivered.",
+              "uk": "Тут використовуємо can be delivered."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-42:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть показати меншу рослину.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-42:i09:audio"
+      ],
+      "accessibilityLabel": "Попросіть показати меншу рослину.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-42:i09:audio",
+          "transcript": "Could you show me a smaller plant?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you show me a smaller plant?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-42:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — lavender",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-42:i10:audio"
+      ],
+      "accessibilityLabel": "Картка слова — lavender",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-42:i10:audio",
+          "transcript": "lavender"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-42:i10:r1",
+            "targetText": "lavender",
+            "meaningByLocale": {
+              "ru": "Лаванда. Душистое растение, обычно с фиолетовыми цветками.",
+              "uk": "Лаванда. Запашна рослина, зазвичай із фіолетовими квітками."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lavender",
+          "definitionByLocale": {
+            "ru": "Лаванда. Душистое растение, обычно с фиолетовыми цветками.",
+            "uk": "Лаванда. Запашна рослина, зазвичай із фіолетовими квітками."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-42:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-42:i11:r1",
+          "text": "The lavender is near the door."
+        },
+        {
+          "responseId": "en:lesson-28:session-42:i11:r2",
+          "text": "The lavender is near the window."
+        },
+        {
+          "responseId": "en:lesson-28:session-42:i11:r3",
+          "text": "The roses are near the door."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-42:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-42:i11:audio",
+          "transcript": "The lavender is near the door."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-42:i11:r1",
+            "targetText": "The lavender is near the door.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-42:i11:r2",
+            "targetText": "The lavender is near the window.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-42:i11:r3",
+            "targetText": "The roses are near the door.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-42:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The lavender is near the door.",
+              "uk": "У записі звучить The lavender is near the door."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-42:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The lavender is near the door.",
+              "uk": "У записі звучить The lavender is near the door."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-42:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Продавець називає батька, який виростив рослини.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-42:i12:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-28:session-42:i12:r2",
+          "text": "of"
+        },
+        {
+          "responseId": "en:lesson-28:session-42:i12:r3",
+          "text": "at"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Продавець називає батька, який виростив рослини.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Продавец называет отца, вырастившего растения.",
+          "uk": "Продавець називає батька, який виростив рослини."
+        },
+        "gappedTargetPhrase": "These plants were grown ___ my father.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-42:i12:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-28:session-42:i12:r2",
+            "text": "of"
+          },
+          {
+            "responseId": "en:lesson-28:session-42:i12:r3",
+            "text": "at"
+          }
+        ],
+        "testedDimension": "Продавець називає батька, який виростив рослини.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-42:i12:r2",
+            "correct": false,
+            "testedDimension": "Продавець називає батька, який виростив рослини.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя вводит by.",
+              "uk": "Виконавця вводить by."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-42:i12:r3",
+            "correct": false,
+            "testedDimension": "Продавець називає батька, який виростив рослини.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна by my father.",
+              "uk": "Тут потрібна by my father."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-42:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте правило магазину про видачу замовлень.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-42:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте правило магазину про видачу замовлень.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-42:i13:audio",
+          "transcript": "Orders can be collected on Saturday."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Orders can be collected on Saturday.",
+        "orderedTokens": [
+          "Orders",
+          "can",
+          "be",
+          "collected",
+          "on",
+          "Saturday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-42:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — geranium",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-42:i14:audio"
+      ],
+      "accessibilityLabel": "Картка слова — geranium",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-42:i14:audio",
+          "transcript": "geranium"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-42:i14:r1",
+            "targetText": "geranium",
+            "meaningByLocale": {
+              "ru": "Герань. Цветущее растение, которое часто выращивают в горшках.",
+              "uk": "Герань. Квітуча рослина, яку часто вирощують у горщиках."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "geranium",
+          "definitionByLocale": {
+            "ru": "Герань. Цветущее растение, которое часто выращивают в горшках.",
+            "uk": "Герань. Квітуча рослина, яку часто вирощують у горщиках."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-42:i15",
+      "ordinal": 18,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть показати червону герань.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-42:i15:audio"
+      ],
+      "accessibilityLabel": "Попросіть показати червону герань.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-42:i15:audio",
+          "transcript": "Could I see the red geranium, please?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could I see the red geranium, please?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-42:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладами.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладами.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-28:session-42:i16:p1",
+            "target": "shrub",
+            "meaningByLocale": {
+              "ru": "кустарник",
+              "uk": "кущ"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-42:i16:p2",
+            "target": "evergreen",
+            "meaningByLocale": {
+              "ru": "вечнозелёный",
+              "uk": "вічнозелений"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-42:i16:p3",
+            "target": "lavender",
+            "meaningByLocale": {
+              "ru": "лаванда",
+              "uk": "лаванда"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-42:i16:p4",
+            "target": "geranium",
+            "meaningByLocale": {
+              "ru": "герань",
+              "uk": "герань"
+            }
+          }
+        ],
+        "leftColumn": [
+          "shrub",
+          "evergreen",
+          "lavender",
+          "geranium"
+        ],
+        "rightColumn": [
+          "кущ",
+          "вічнозелений",
+          "лаванда",
+          "герань"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-42:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Магазин зачинився до вашого приїзду.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-42:i17:r1",
+          "text": "closed"
+        },
+        {
+          "responseId": "en:lesson-28:session-42:i17:r2",
+          "text": "close"
+        },
+        {
+          "responseId": "en:lesson-28:session-42:i17:r3",
+          "text": "closing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Магазин зачинився до вашого приїзду.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Магазин закрылся до вашего приезда.",
+          "uk": "Магазин зачинився до вашого приїзду."
+        },
+        "gappedTargetPhrase": "The shop had ___ by the time I arrived.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-42:i17:r1",
+            "text": "closed"
+          },
+          {
+            "responseId": "en:lesson-28:session-42:i17:r2",
+            "text": "close"
+          },
+          {
+            "responseId": "en:lesson-28:session-42:i17:r3",
+            "text": "closing"
+          }
+        ],
+        "testedDimension": "Магазин зачинився до вашого приїзду.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-42:i17:r2",
+            "correct": false,
+            "testedDimension": "Магазин зачинився до вашого приїзду.",
+            "feedbackByLocale": {
+              "ru": "После had нужна closed.",
+              "uk": "Після had потрібна closed."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-42:i17:r3",
+            "correct": false,
+            "testedDimension": "Магазин зачинився до вашого приїзду.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем had closed.",
+              "uk": "Тут використовуємо had closed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-42:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-42:i18:r1",
+          "text": "These plants are watered every morning."
+        },
+        {
+          "responseId": "en:lesson-28:session-42:i18:r2",
+          "text": "These plants are watered every evening."
+        },
+        {
+          "responseId": "en:lesson-28:session-42:i18:r3",
+          "text": "These plants are watered every week."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-42:i18:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-42:i18:audio",
+          "transcript": "These plants are watered every morning."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-42:i18:r1",
+            "targetText": "These plants are watered every morning.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-42:i18:r2",
+            "targetText": "These plants are watered every evening.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-42:i18:r3",
+            "targetText": "These plants are watered every week.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-42:i18:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит These plants are watered every morning.",
+              "uk": "У записі звучить These plants are watered every morning."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-42:i18:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит These plants are watered every morning.",
+              "uk": "У записі звучить These plants are watered every morning."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-42:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, хто виростив рослини.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, хто виростив рослини.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "These plants were grown by my father.",
+        "localizedMeaning": {
+          "ru": "Скажите, кто вырастил растения.",
+          "uk": "Скажіть, хто виростив рослини."
+        },
+        "orderedTokens": [
+          "These",
+          "plants",
+          "were",
+          "grown",
+          "by",
+          "my",
+          "father"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-42:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Працівник повідомляє про доставку замовлення завтра.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-42:i20:r1",
+          "text": "delivered"
+        },
+        {
+          "responseId": "en:lesson-28:session-42:i20:r2",
+          "text": "deliver"
+        },
+        {
+          "responseId": "en:lesson-28:session-42:i20:r3",
+          "text": "delivering"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Працівник повідомляє про доставку замовлення завтра.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сотрудник сообщает о доставке заказа завтра.",
+          "uk": "Працівник повідомляє про доставку замовлення завтра."
+        },
+        "gappedTargetPhrase": "Your order will be ___ tomorrow.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-42:i20:r1",
+            "text": "delivered"
+          },
+          {
+            "responseId": "en:lesson-28:session-42:i20:r2",
+            "text": "deliver"
+          },
+          {
+            "responseId": "en:lesson-28:session-42:i20:r3",
+            "text": "delivering"
+          }
+        ],
+        "testedDimension": "Працівник повідомляє про доставку замовлення завтра.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-42:i20:r2",
+            "correct": false,
+            "testedDimension": "Працівник повідомляє про доставку замовлення завтра.",
+            "feedbackByLocale": {
+              "ru": "После will be здесь нужна delivered.",
+              "uk": "Після will be тут потрібна delivered."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-42:i20:r3",
+            "correct": false,
+            "testedDimension": "Працівник повідомляє про доставку замовлення завтра.",
+            "feedbackByLocale": {
+              "ru": "Будущее действие над заказом: will be delivered.",
+              "uk": "Майбутня дія із замовленням: will be delivered."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-42:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте, як часто поливати вибрану рослину.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-42:i21:audio"
+      ],
+      "accessibilityLabel": "Запитайте, як часто поливати вибрану рослину.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-42:i21:audio",
+          "transcript": "How often should I water this plant?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "How often should I water this plant?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "15811d44be8edb98e1f15003453f63640e8b40e5b174e1d2a08cd474173cfe9a"
+}

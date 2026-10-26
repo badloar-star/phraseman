@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-28:session-36",
+  "entries": [
+    {
+      "interactionId": "en:lesson-28:session-36:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-36:intro1:r2": {
+          "ru": "Pictures — несколько: were.",
+          "uk": "Pictures — кілька: were."
+        },
+        "en:lesson-28:session-36:intro1:r3": {
+          "ru": "После were здесь нужна drawn.",
+          "uk": "Після were тут потрібна drawn."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-36:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-36:intro2:r2": {
+          "ru": "После must нужна be.",
+          "uk": "Після must потрібна be."
+        },
+        "en:lesson-28:session-36:intro2:r3": {
+          "ru": "После be нужна returned.",
+          "uk": "Після be потрібна returned."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-36:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-36:intro3:r2": {
+          "ru": "После wish здесь нужна had.",
+          "uk": "Після wish тут потрібна had."
+        },
+        "en:lesson-28:session-36:intro3:r3": {
+          "ru": "Для этого желания используем had.",
+          "uk": "Для цього бажання використовуємо had."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e776dd6f58432ee32c9b8c2f414a3d46ca6364c0ed0219f76fb0ce0fc041ee14"
+}

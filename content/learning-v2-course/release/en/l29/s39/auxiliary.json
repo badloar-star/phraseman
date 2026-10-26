@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-29:session-39",
+  "entries": [
+    {
+      "interactionId": "en:lesson-29:session-39:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-39:intro1:r2": {
+          "ru": "It повторяет уже названную тряпку.",
+          "uk": "It повторює вже названу ганчірку."
+        },
+        "en:lesson-29:session-39:intro1:r3": {
+          "ru": "Пользовались вы: I used, не me used.",
+          "uk": "Користувалися ви: I used, не me used."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-39:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-39:intro2:r2": {
+          "ru": "Для связи ручки со щёткой нужно whose handle.",
+          "uk": "Для зв’язку ручки зі щіткою потрібне whose handle."
+        },
+        "en:lesson-29:session-39:intro2:r3": {
+          "ru": "Whose уже показывает принадлежность; its лишнее.",
+          "uk": "Whose вже показує належність; its зайве."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-39:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-39:intro3:r2": {
+          "ru": "Для действия после was нужна форма cleaned.",
+          "uk": "Для дії після was потрібна форма cleaned."
+        },
+        "en:lesson-29:session-39:intro3:r3": {
+          "ru": "Исполнителя действия вводит by.",
+          "uk": "Виконавця дії вводить by."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "74e7e72cf695b2ca6a02a69bd9f83c328e36af0d2202a435d80dce1561fe7e59"
+}

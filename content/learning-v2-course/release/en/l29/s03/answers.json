@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-29:session-03:i01",
+    "correctText": "Where is the skincare section?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-03:i02",
+    "correctText": "antiperspirant",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-03:i03",
+    "correctText": "Do you have a small antiperspirant?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-03:i04",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-29:session-03:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-03:i05",
+    "correctText": "The gift was wrapped by the assistant.",
+    "correctResponseId": "en:lesson-29:session-03:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-03:i06",
+    "correctText": "exfoliator",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-03:i07",
+    "correctText": "How much is this exfoliator?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-03:i08",
+    "correctText": "I need a product that contains no perfume.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-03:i09",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-29:session-03:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-03:i10",
+    "correctText": "toner",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-03:i11",
+    "correctText": "Could I have a small bottle of toner?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-03:i12",
+    "correctText": "The bottle which has a blue lid is mine.",
+    "correctResponseId": "en:lesson-29:session-03:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-03:i13",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-29:session-03:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-03:i14",
+    "correctText": "serum",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-03:i15",
+    "correctText": "Is the serum sold separately?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-03:i16",
+    "correctText": "en:lesson-29:session-03:i16:p1=antiperspirant\nen:lesson-29:session-03:i16:p2=exfoliator\nen:lesson-29:session-03:i16:p3=toner\nen:lesson-29:session-03:i16:p4=serum",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-03:i17",
+    "correctText": "I do not need gift wrapping.",
+    "correctResponseId": "en:lesson-29:session-03:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-03:i18",
+    "correctText": "Could you show me the ingredients?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-03:i19",
+    "correctText": "has",
+    "correctResponseId": "en:lesson-29:session-03:i19:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-03:i20",
+    "correctText": "I will buy the set if it costs less.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-03:i21",
+    "correctText": "I will just take the small bottle.",
+    "correctResponseId": null
+  }
+]

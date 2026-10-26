@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-29:session-35:i01",
+    "correctText": "The recipe we tried was simple.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-35:i02",
+    "correctText": "rind",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-35:i03",
+    "correctText": "This lemon has a thick rind.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-35:i04",
+    "correctText": "we tried",
+    "correctResponseId": "en:lesson-29:session-35:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-35:i05",
+    "correctText": "This is the friend whose recipe we used.",
+    "correctResponseId": "en:lesson-29:session-35:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-35:i06",
+    "correctText": "zest",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-35:i07",
+    "correctText": "Please add some lemon zest.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-35:i08",
+    "correctText": "How much lemon juice do we need?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-35:i09",
+    "correctText": "whose",
+    "correctResponseId": "en:lesson-29:session-35:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-35:i10",
+    "correctText": "baste",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-35:i11",
+    "correctText": "Could you baste the chicken?",
+    "correctResponseId": "en:lesson-29:session-35:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-35:i12",
+    "correctText": "The sauce was made by my brother.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-35:i13",
+    "correctText": "blanch",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-35:i14",
+    "correctText": "Do we need to blanch the beans?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-35:i15",
+    "correctText": "en:lesson-29:session-35:i15:p1=rind\nen:lesson-29:session-35:i15:p2=zest\nen:lesson-29:session-35:i15:p3=baste\nen:lesson-29:session-35:i15:p4=blanch",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-35:i16",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-29:session-35:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-35:i17",
+    "correctText": "Please add some lemon zest.",
+    "correctResponseId": "en:lesson-29:session-35:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-35:i18",
+    "correctText": "We need to blanch the beans.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-35:i19",
+    "correctText": "Could you send me the recipe?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-35:i20",
+    "correctText": "you made",
+    "correctResponseId": "en:lesson-29:session-35:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-35:i21",
+    "correctText": "Thank you for the recipe.",
+    "correctResponseId": null
+  }
+]

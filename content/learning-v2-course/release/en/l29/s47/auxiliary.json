@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-29:session-47",
+  "entries": [
+    {
+      "interactionId": "en:lesson-29:session-47:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-47:intro1:r2": {
+          "ru": "It повторяет сумку.",
+          "uk": "It повторює сумку."
+        },
+        "en:lesson-29:session-47:intro1:r3": {
+          "ru": "Действие выполняет I, не me.",
+          "uk": "Дію виконує I, не me."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-47:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-47:intro2:r2": {
+          "ru": "Это уточнение, поэтому we will meet.",
+          "uk": "Це уточнення, тому we will meet."
+        },
+        "en:lesson-29:session-47:intro2:r3": {
+          "ru": "Место связываем через where.",
+          "uk": "Місце пов’язуємо через where."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-47:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-47:intro3:r2": {
+          "ru": "В этом условии после if нужно rains, без will.",
+          "uk": "У цій умові після if потрібне rains, без will."
+        },
+        "en:lesson-29:session-47:intro3:r3": {
+          "ru": "Одного raining недостаточно; здесь нужно rains.",
+          "uk": "Самого raining недостатньо; тут потрібне rains."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "444450fbaad4a5e1463b60eb67b897a272be446059cd20126c8dc56695118bac"
+}

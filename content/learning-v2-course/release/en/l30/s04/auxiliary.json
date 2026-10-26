@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-30:session-04",
+  "entries": [
+    {
+      "interactionId": "en:lesson-30:session-04:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-04:intro1:r2": {
+          "ru": "С he здесь нужна форма was.",
+          "uk": "Із he тут потрібна форма was."
+        },
+        "en:lesson-30:session-04:intro1:r3": {
+          "ru": "Нужна форма was, а не отдельное being.",
+          "uk": "Потрібна форма was, а не окреме being."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-04:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-04:intro2:r2": {
+          "ru": "Для такого желания о настоящем после wish нужна форма lived.",
+          "uk": "Для такого бажання про теперішнє після wish потрібна форма lived."
+        },
+        "en:lesson-30:session-04:intro2:r3": {
+          "ru": "Нужно we lived, не we living.",
+          "uk": "Потрібне we lived, не we living."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-04:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-04:intro3:r2": {
+          "ru": "В уточнении нужна форма took.",
+          "uk": "В уточненні потрібна форма took."
+        },
+        "en:lesson-30:session-04:intro3:r3": {
+          "ru": "Одна фотография: the photo is.",
+          "uk": "Одна фотографія: the photo is."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "6fd49074b1de066da565514d28b8dc7778f86beb8b461217d3aca497750081ce"
+}

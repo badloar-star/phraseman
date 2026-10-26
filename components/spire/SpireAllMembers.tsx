@@ -10,7 +10,7 @@
 // Пакет B (30.09): строки — живая комната недели (живые + боты формулой + свои локальные
 // ступени); шапка своя, без обрезки текста в одну строку (подпись «камень · N человек»).
 // ═══════════════════════════════════════════════════════════════════════════
-import React, { memo, useMemo } from 'react';
+import React, { memo, useMemo, useState } from 'react';
 import { Modal, ScrollView, StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import type { Lang } from '../../constants/i18n';
@@ -19,6 +19,9 @@ import { spireZonesFor, type SpireZone } from './spire_zones';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 import { useSpirePalette } from './useSpirePalette';
 import SpireRankCoin from './SpireRankCoin';
+import V2Pressable from '../v2/V2Pressable';
+import type { PlayerInfo } from '../PlayerProfileModal';
+import SpirePlayerCard from './scene/SpirePlayerCard';
 import { spireText } from './spire_strings';
 import { spireCoinsCount, spireGroupThousands, spireStepsCount, spireStepsShort } from './spire_plurals';
 import { spireSortMembers, type SpireMemberRow, type SpireRankByView } from './spire_room_types';
@@ -35,6 +38,8 @@ type Props = Readonly<{ lang: Lang; members: readonly SpireMemberRow[]; subtitle
 function SpireAllMembers({ lang, members, subtitle, onBack, rankBy = 'steps' }: Props) {
   const p = useSpirePalette();
   const insets = useStableSafeAreaInsets();
+  const [player, setPlayer] = useState<PlayerInfo | null>(null);
+  const myName = members.find((member) => member.isMe)?.name ?? '';
   const { rows, zones } = useMemo(() => {
     const sorted = spireSortMembers(members, rankBy);
     return { rows: sorted, zones: spireZonesFor(sorted, rankBy) };
@@ -50,8 +55,15 @@ function SpireAllMembers({ lang, members, subtitle, onBack, rankBy = 'steps' }: 
           <View style={[s.zoneLine, { backgroundColor: p.hairline }]} />
         </View>
         {items.map(({ m, i }) => (
-          <View
+          <V2Pressable
             key={m.uid}
+            testID={`spire-all-member-${m.uid}`}
+            accessibilityRole="button"
+            onPress={() => setPlayer({
+              uid: m.uid, name: m.name, isMe: m.isMe,
+              points: rankBy === 'coins' ? (m.weekCoins ?? 0) : m.steps,
+              coinRank: m.coinRank ?? null, isPremium: m.isPremium === true,
+            })}
             style={[s.row, m.isMe ? { backgroundColor: p.cardRaised } : null]}
             accessible
             accessibilityLabel={`${i + 1}. ${m.name}${m.isMe ? `, ${spireText(lang, 'you')}` : ''}, ${rankBy === 'coins' ? spireCoinsCount(lang, m.weekCoins ?? 0) : spireStepsCount(lang, m.steps)}`}
@@ -65,7 +77,7 @@ function SpireAllMembers({ lang, members, subtitle, onBack, rankBy = 'steps' }: 
             {zone === 'up' ? <Ionicons name="arrow-up" size={16} color={p.correct} /> : null}
             {zone === 'down' ? <Ionicons name="arrow-down" size={16} color={p.wrong} /> : null}
             <Text style={[s.steps, { color: p.text }]}>{rankBy === 'coins' ? spireGroupThousands(m.weekCoins ?? 0) : m.steps}<Text style={[s.stepsUnit, { color: p.textSecondary }]}> {rankBy === 'coins' ? runeWord(lang, m.weekCoins ?? 0) : spireStepsShort(lang, m.steps)}</Text></Text>
-          </View>
+          </V2Pressable>
         ))}
       </View>
     );
@@ -88,6 +100,8 @@ function SpireAllMembers({ lang, members, subtitle, onBack, rankBy = 'steps' }: 
         {renderZone('down', spireText(lang, 'zoneDown'), p.wrong)}
       </ScrollView>
       <ScreenBackButton screen="spire_all" testID="spire-all-back" accessibilityLabel={spireText(lang, 'back')} onPress={onBack} />
+      {/* Визитка внутри окна списка: поверх него и с возвратом к тем же участникам. */}
+      <SpirePlayerCard player={player} myName={myName} onClose={() => setPlayer(null)} />
     </View>
     </ScreenOriginReset>
     </Modal>

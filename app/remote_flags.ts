@@ -269,7 +269,7 @@ const DEFAULT_NUMBERS: Record<RemoteNumberKey, number> = {
 
 const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   learning_cant_speak_enabled: false,
-  learning_chapter_exam_v2_enabled: true,
+  learning_chapter_exam_v2_enabled: false, // зачем (координатор + Ревизор 26.10, d34be664d): без склейки экрана с макетом — выкл; после склейки Сверки владелец включает из Пульта без новой OTA
   dialogue_freeform_translate_enabled: false,
   account_delete_variant_b_ui_enabled: false,
   spire_streak_heart: false,

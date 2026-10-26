@@ -15,7 +15,8 @@ jest.mock('@react-native-async-storage/async-storage', () => ({
   },
 }));
 jest.mock('../app/account_owner_change', () => ({ onAccountOwnerChanged: () => undefined }));
-jest.mock('../app/remote_flags', () => ({ getRemoteBool: () => undefined, hasRemoteBoolOverride: () => false }));
+// экзамен v2 включён удалённо (по умолчанию выкл до склейки с макетом, d34be664d) — здесь проверяется зачёт главы, когда он включён
+jest.mock('../app/remote_flags', () => ({ getRemoteBool: () => true, hasRemoteBoolOverride: () => true }));
 jest.mock('../app/premium_theme_progress', () => ({ notePremiumThemeProgress: () => undefined }));
 
 import AsyncStorage from '@react-native-async-storage/async-storage';

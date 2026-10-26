@@ -19,7 +19,8 @@ jest.mock('@react-native-async-storage/async-storage', () => ({
 jest.mock('../app/account_owner_change', () => ({ onAccountOwnerChanged: () => undefined }));
 let mockFlag: boolean | undefined;
 jest.mock('../app/remote_flags', () => ({
-  getRemoteBool: () => mockFlag,
+  // как в приложении: без значения из «Пульта» — значение по умолчанию (выкл до склейки с макетом, d34be664d)
+  getRemoteBool: () => mockFlag ?? false,
   hasRemoteBoolOverride: () => mockFlag !== undefined,
 }));
 jest.mock('../app/premium_theme_progress', () => ({ notePremiumThemeProgress: () => undefined }));
@@ -45,8 +46,11 @@ beforeEach(() => {
 afterEach(() => jest.restoreAllMocks());
 
 describe('выбор экзамена', () => {
-  it('глава с банком и переключатель по умолчанию — v2; без банка или выключено — прежний', () => {
-    // главы 1–3 урока 1 подключены (владелец 25.10); глава 4 — без банка, прежний экзамен
+  it('по умолчанию — прежний экзамен; включён из «Пульта» и глава с банком — v2; без банка — прежний', () => {
+    // по умолчанию выключен (нет склейки с макетом) — все главы на прежнем экзамене
+    expect([1, 2, 3, 4].map((c) => isChapterExamV2EnabledFor(1, c))).toEqual([false, false, false, false]);
+    // включён удалённо: главы 1–3 урока 1 подключены (владелец 25.10); глава 4 — без банка, прежний экзамен
+    mockFlag = true;
     expect(isChapterExamV2EnabledFor(1, 1)).toBe(true);
     expect(isChapterExamV2EnabledFor(1, 2)).toBe(true);
     expect(isChapterExamV2EnabledFor(1, 3)).toBe(true);
@@ -124,10 +128,10 @@ describe('подключение', () => {
     expect(route).toContain('<ChapterExamV2Run');
     expect(route).toContain('return <ChapterExamRun />;');
   });
-  it('плеер отмечает пройденный эпизод для повтора тем; переключатель «Пульта» по умолчанию включён и принимается из Пульта', () => {
+  it('плеер отмечает пройденный эпизод для повтора тем; переключатель «Пульта» по умолчанию выключен и включается из Пульта', () => {
     expect(read('app/learning_v2_direct_session_player_v1.tsx')).toContain('noteChapterExamV2EpisodeFinishedV1(accountScopeHash, runSummary.courseSessionId)');
     const flags = read('app/remote_flags.ts');
-    expect(flags).toContain('learning_chapter_exam_v2_enabled: true,');
+    expect(flags).toContain('learning_chapter_exam_v2_enabled: false,');
     // в списке ключей, которые Пульт может менять (соседние ключи других сессий не мешают)
     expect(flags).toMatch(/allowedBools = new Set<RemoteBoolKey>\(\[[\s\S]{0,1200}'learning_chapter_exam_v2_enabled'/);
   });

@@ -1,0 +1,72 @@
+[
+  {
+    "interactionId": "es:lesson-02:session-49:i01",
+    "correctText": "sombrero",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-49:i02",
+    "correctText": "sombrero",
+    "correctResponseId": "es:lesson-02:session-49:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-49:i03",
+    "correctText": "bolso",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-49:i04",
+    "correctText": "bolso",
+    "correctResponseId": "es:lesson-02:session-49:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-49:i05",
+    "correctText": "Es un sombrero.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-49:i06",
+    "correctText": "el",
+    "correctResponseId": "es:lesson-02:session-49:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-49:i07",
+    "correctText": "Es el sombrero de Ana.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-49:i08",
+    "correctText": "de",
+    "correctResponseId": "es:lesson-02:session-49:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-49:i09",
+    "correctText": "Es un bolso.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-49:i10",
+    "correctText": "un",
+    "correctResponseId": "es:lesson-02:session-49:i10:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-49:i11",
+    "correctText": "Es el sombrero de Ana.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-49:i12",
+    "correctText": "Es el sombrero de Ana.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-49:i13",
+    "correctText": "Es el bolso de Ana.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-49:i14",
+    "correctText": "Es un bolso.",
+    "correctResponseId": null
+  }
+]

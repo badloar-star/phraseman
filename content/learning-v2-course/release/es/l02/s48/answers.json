@@ -1,0 +1,92 @@
+[
+  {
+    "interactionId": "es:lesson-02:session-48:i01",
+    "correctText": "paraguas",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-48:i02",
+    "correctText": "paraguas",
+    "correctResponseId": "es:lesson-02:session-48:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-48:i03",
+    "correctText": "Es un paraguas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-48:i04",
+    "correctText": "paraguas",
+    "correctResponseId": "es:lesson-02:session-48:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-48:i05",
+    "correctText": "Son unos paraguas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-48:i06",
+    "correctText": "son",
+    "correctResponseId": "es:lesson-02:session-48:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-48:i07",
+    "correctText": "Son los paraguas de Luis.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-48:i08",
+    "correctText": "los",
+    "correctResponseId": "es:lesson-02:session-48:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-48:i09",
+    "correctText": "Es un paraguas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-48:i10",
+    "correctText": "Son unos paraguas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-48:i11",
+    "correctText": "Es una bolsa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-48:i12",
+    "correctText": "los",
+    "correctResponseId": "es:lesson-02:session-48:i12:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-48:i13",
+    "correctText": "No son míos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-48:i14",
+    "correctText": "¿De quién es?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-48:i15",
+    "correctText": "Es de Ana.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-48:i16",
+    "correctText": "el",
+    "correctResponseId": "es:lesson-02:session-48:i16:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-48:i17",
+    "correctText": "Es el paraguas de Luis.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-48:i18",
+    "correctText": "Son los paraguas de Luis.",
+    "correctResponseId": null
+  }
+]

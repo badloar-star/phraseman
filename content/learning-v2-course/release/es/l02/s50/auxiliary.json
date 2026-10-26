@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-02:session-50",
+  "entries": [
+    {
+      "interactionId": "es:lesson-02:session-50:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-50:intro1:r2": {
+          "ru": "Для vestido нужен un.",
+          "uk": "Для vestido потрібен un."
+        },
+        "es:lesson-02:session-50:intro1:r3": {
+          "ru": "Платье одно: es.",
+          "uk": "Сукня одна: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-50:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-50:intro2:r2": {
+          "ru": "Без no вы подтверждаете неверное название.",
+          "uk": "Без no ви підтверджуєте хибну назву."
+        },
+        "es:lesson-02:session-50:intro2:r3": {
+          "ru": "Falda женского рода: una.",
+          "uk": "Falda жіночого роду: una."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-50:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-50:intro3:r2": {
+          "ru": "Для vestido нужна форма mío.",
+          "uk": "Для vestido потрібна форма mío."
+        },
+        "es:lesson-02:session-50:intro3:r3": {
+          "ru": "Платье одно: es mío.",
+          "uk": "Сукня одна: es mío."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "28f36cf1dfef86e2863a790b91c0deb2de463b839ec1a704b4099ad65896df5f"
+}

@@ -1,0 +1,827 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-02:session-49",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-02:session-49:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — sombrero",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-49:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — sombrero",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-49:i01:audio",
+          "transcript": "sombrero"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-49:i01:r1",
+            "targetText": "sombrero",
+            "meaningByLocale": {
+              "ru": "шляпа. Мужской род: el sombrero. 🔊 *sombrero*",
+              "uk": "капелюх. Чоловічий рід: el sombrero. 🔊 *sombrero*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sombrero",
+          "definitionByLocale": {
+            "ru": "шляпа. Мужской род: el sombrero. 🔊 *sombrero*",
+            "uk": "капелюх. Чоловічий рід: el sombrero. 🔊 *sombrero*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-49:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-49:i02:r1",
+          "text": "sombrero"
+        },
+        {
+          "responseId": "es:lesson-02:session-49:i02:r2",
+          "text": "sobre"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-49:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-49:i02:audio",
+          "transcript": "sombrero"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-49:i02:r1",
+            "targetText": "sombrero",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-49:i02:r2",
+            "targetText": "sobre",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-49:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит sombrero — шляпа.",
+              "uk": "Звучить sombrero — капелюх."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-49:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bolso",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-49:i03:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bolso",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-49:i03:audio",
+          "transcript": "bolso"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-49:i03:r1",
+            "targetText": "bolso",
+            "meaningByLocale": {
+              "ru": "сумка, сумочка. Мужской род: el bolso. 🔊 *bolso*",
+              "uk": "сумка, сумочка. Чоловічий рід: el bolso. 🔊 *bolso*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bolso",
+          "definitionByLocale": {
+            "ru": "сумка, сумочка. Мужской род: el bolso. 🔊 *bolso*",
+            "uk": "сумка, сумочка. Чоловічий рід: el bolso. 🔊 *bolso*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-49:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-49:i04:r1",
+          "text": "bolso"
+        },
+        {
+          "responseId": "es:lesson-02:session-49:i04:r2",
+          "text": "bolsa"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-49:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-49:i04:audio",
+          "transcript": "bolso"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-49:i04:r1",
+            "targetText": "bolso",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-49:i04:r2",
+            "targetText": "bolsa",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-49:i04:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит bolso с конечной -o.",
+              "uk": "Звучить bolso з кінцевою -o."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-49:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це капелюх, з un",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-49:i05:r1",
+          "text": "Плитки: sombrero"
+        },
+        {
+          "responseId": "es:lesson-02:session-49:i05:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-49:i05:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-49:i05:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це капелюх, з un",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es un sombrero.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это шляпа, с un",
+          "uk": "Зберіть фразу — це капелюх, з un"
+        },
+        "orderedTokens": [
+          "Es",
+          "un",
+          "sombrero"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-49:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це капелюх, з un",
+            "feedbackByLocale": {
+              "ru": "sombrero мужского рода.",
+              "uk": "sombrero чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-49:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — той самий капелюх Ани",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-49:i06:r1",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-02:session-49:i06:r2",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-49:i06:r3",
+          "text": "los"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — той самий капелюх Ани",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — та самая шляпа Аны",
+          "uk": "Вставте слово — той самий капелюх Ани"
+        },
+        "gappedTargetPhrase": "Es ___ sombrero de Ana.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-49:i06:r1",
+            "text": "el"
+          },
+          {
+            "responseId": "es:lesson-02:session-49:i06:r2",
+            "text": "la"
+          },
+          {
+            "responseId": "es:lesson-02:session-49:i06:r3",
+            "text": "los"
+          }
+        ],
+        "testedDimension": "Вставте слово — той самий капелюх Ани",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-49:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — той самий капелюх Ани",
+            "feedbackByLocale": {
+              "ru": "Sombrero мужского рода: el.",
+              "uk": "Sombrero чоловічого роду: el."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-49:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — той самий капелюх Ани",
+            "feedbackByLocale": {
+              "ru": "Шляпа одна: el.",
+              "uk": "Капелюх один: el."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-49:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це капелюх Ани",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-49:i07:r1",
+          "text": "Плитки: Ana"
+        },
+        {
+          "responseId": "es:lesson-02:session-49:i07:r2",
+          "text": "de"
+        },
+        {
+          "responseId": "es:lesson-02:session-49:i07:r3",
+          "text": "sombrero"
+        },
+        {
+          "responseId": "es:lesson-02:session-49:i07:r4",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-02:session-49:i07:r5",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-49:i07:r6",
+          "text": "la."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це капелюх Ани",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es el sombrero de Ana.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это шляпа Аны",
+          "uk": "Зберіть фразу — це капелюх Ани"
+        },
+        "orderedTokens": [
+          "Es",
+          "el",
+          "sombrero",
+          "de",
+          "Ana"
+        ],
+        "authoredDistractorTokens": [
+          "la"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-49:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це капелюх Ани",
+            "feedbackByLocale": {
+              "ru": "артикль относится к sombrero, не к владельцу.",
+              "uk": "артикль стосується sombrero, не власника."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-49:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — назвіть власника капелюха",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-49:i08:r1",
+          "text": "de"
+        },
+        {
+          "responseId": "es:lesson-02:session-49:i08:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-49:i08:r3",
+          "text": "son"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — назвіть власника капелюха",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — назовите владельца шляпы",
+          "uk": "Вставте слово — назвіть власника капелюха"
+        },
+        "gappedTargetPhrase": "Es el sombrero ___ Ana.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-49:i08:r1",
+            "text": "de"
+          },
+          {
+            "responseId": "es:lesson-02:session-49:i08:r2",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-02:session-49:i08:r3",
+            "text": "son"
+          }
+        ],
+        "testedDimension": "Вставте слово — назвіть власника капелюха",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-49:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — назвіть власника капелюха",
+            "feedbackByLocale": {
+              "ru": "Перед именем владельца нужно de.",
+              "uk": "Перед ім'ям власника потрібне de."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-49:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — назвіть власника капелюха",
+            "feedbackByLocale": {
+              "ru": "Связь с владельцем выражает de.",
+              "uk": "Зв'язок із власником виражає de."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-49:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це сумочка, використайте bolso",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-49:i09:r1",
+          "text": "Плитки: bolso"
+        },
+        {
+          "responseId": "es:lesson-02:session-49:i09:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-49:i09:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-49:i09:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це сумочка, використайте bolso",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es un bolso.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это сумочка, используйте bolso",
+          "uk": "Зберіть фразу — це сумочка, використайте bolso"
+        },
+        "orderedTokens": [
+          "Es",
+          "un",
+          "bolso"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-49:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це сумочка, використайте bolso",
+            "feedbackByLocale": {
+              "ru": "bolso мужского рода.",
+              "uk": "bolso чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-49:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — одна сумочка, з bolso",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-49:i10:r1",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-49:i10:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-49:i10:r3",
+          "text": "unos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — одна сумочка, з bolso",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — одна сумочка, с bolso",
+          "uk": "Вставте слово — одна сумочка, з bolso"
+        },
+        "gappedTargetPhrase": "Es ___ bolso.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-49:i10:r1",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-02:session-49:i10:r2",
+            "text": "una"
+          },
+          {
+            "responseId": "es:lesson-02:session-49:i10:r3",
+            "text": "unos"
+          }
+        ],
+        "testedDimension": "Вставте слово — одна сумочка, з bolso",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-49:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — одна сумочка, з bolso",
+            "feedbackByLocale": {
+              "ru": "Bolso мужского рода: un.",
+              "uk": "Bolso чоловічого роду: un."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-49:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — одна сумочка, з bolso",
+            "feedbackByLocale": {
+              "ru": "Сумочка одна: un.",
+              "uk": "Сумочка одна: un."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-49:i11",
+      "ordinal": 14,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-49:i11:r1",
+          "text": "Плитки: Ana"
+        },
+        {
+          "responseId": "es:lesson-02:session-49:i11:r2",
+          "text": "de"
+        },
+        {
+          "responseId": "es:lesson-02:session-49:i11:r3",
+          "text": "sombrero"
+        },
+        {
+          "responseId": "es:lesson-02:session-49:i11:r4",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-02:session-49:i11:r5",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-49:i11:r6",
+          "text": "la."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-49:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-49:i11:audio",
+          "transcript": "Es el sombrero de Ana."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Es el sombrero de Ana.",
+        "orderedTokens": [
+          "Es",
+          "el",
+          "sombrero",
+          "de",
+          "Ana"
+        ],
+        "authoredDistractorTokens": [
+          "la"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-49:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит el sombrero.",
+              "uk": "звучить el sombrero."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-49:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — це капелюх Ани",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-49:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — це капелюх Ани",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-49:i12:audio",
+          "transcript": "Es el sombrero de Ana."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es el sombrero de Ana.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-49:i13",
+      "ordinal": 16,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — ця сумочка належить Ані, з bolso",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-49:i13:r1",
+          "text": "Плитки: Ana"
+        },
+        {
+          "responseId": "es:lesson-02:session-49:i13:r2",
+          "text": "de"
+        },
+        {
+          "responseId": "es:lesson-02:session-49:i13:r3",
+          "text": "bolso"
+        },
+        {
+          "responseId": "es:lesson-02:session-49:i13:r4",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-02:session-49:i13:r5",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-49:i13:r6",
+          "text": "la."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — ця сумочка належить Ані, з bolso",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es el bolso de Ana.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — эта сумочка принадлежит Ане, с bolso",
+          "uk": "Зберіть фразу — ця сумочка належить Ані, з bolso"
+        },
+        "orderedTokens": [
+          "Es",
+          "el",
+          "bolso",
+          "de",
+          "Ana"
+        ],
+        "authoredDistractorTokens": [
+          "la"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-49:i13:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — ця сумочка належить Ані, з bolso",
+            "feedbackByLocale": {
+              "ru": "bolso мужского рода.",
+              "uk": "bolso чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-49:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — назвіть сумочку з bolso",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-49:i14:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — назвіть сумочку з bolso",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-49:i14:audio",
+          "transcript": "Es un bolso."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es un bolso.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 14,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "3229eb079407af29e4d309f3f3c948f9370bdf79f4be0738548f0c9f2faebc75"
+}

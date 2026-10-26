@@ -728,4 +728,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"отдельно спросить название вещи и её владельца.","uk":"окремо запитати назву речі та її власника."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 2, sessionOrdinal: 48,
+    sourceFingerprint: "8273e0880b1367855146a926e4d39734f207608e2e7263744d0dd664b7240170",
+    newWordCount: 1,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"определить число по es/son и артиклю, даже если слово не меняется.","uk":"визначити число за es/son та артиклем, навіть якщо слово не змінюється."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 2, sessionOrdinal: 49,
+    sourceFingerprint: "c38ff0005828e75c86905095cb81f0c7a584f6dec427e835eae2c2934c41ce93",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"узнать конкретный предмет и назвать владельца через el + вещь + de + имя.","uk":"упізнати конкретний предмет і назвати власника через el + річ + de + ім'я."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 2, sessionOrdinal: 50,
+    sourceFingerprint: "c581e78afbeedefb14031abadcf06b8e181736685f4901339a0612fd02646093",
+    newWordCount: 1,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"различить отрицание названия вещи и отрицание принадлежности.","uk":"розрізнити заперечення назви речі й заперечення належності."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 2, sessionOrdinal: 51,
+    sourceFingerprint: "af3cab8e8d0872bec2249648bb0b14be401733a23e89198af22f6566ef21e12b",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбрать артикль по запомненному роду слова, а не только по окончанию.","uk":"вибрати артикль за запам'ятованим родом слова, а не лише за закінченням."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
+  }),
 ]);

@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-02:session-50:i01",
+    "correctText": "vestido",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-50:i02",
+    "correctText": "vestido",
+    "correctResponseId": "es:lesson-02:session-50:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-50:i03",
+    "correctText": "Es un vestido.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-50:i04",
+    "correctText": "no",
+    "correctResponseId": "es:lesson-02:session-50:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-50:i05",
+    "correctText": "No es una falda.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-50:i06",
+    "correctText": "mío",
+    "correctResponseId": "es:lesson-02:session-50:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-50:i07",
+    "correctText": "No es mío.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-50:i08",
+    "correctText": "No es mío.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-50:i09",
+    "correctText": "Es un vestido.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-50:i10",
+    "correctText": "Es de Ana.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-50:i11",
+    "correctText": "No es una falda.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-50:i12",
+    "correctText": "No es mío.",
+    "correctResponseId": null
+  }
+]

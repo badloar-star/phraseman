@@ -1,0 +1,1070 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-02:session-48",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-02:session-48:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — paraguas",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-48:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — paraguas",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-48:i01:audio",
+          "transcript": "paraguas"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-48:i01:r1",
+            "targetText": "paraguas",
+            "meaningByLocale": {
+              "ru": "зонт. Мужской род; один — un paraguas, несколько — unos paraguas. 🔊 *paraguas*",
+              "uk": "парасоля. Чоловічий рід; одна — un paraguas, кілька — unos paraguas. 🔊 *paraguas*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "paraguas",
+          "definitionByLocale": {
+            "ru": "зонт. Мужской род; один — un paraguas, несколько — unos paraguas. 🔊 *paraguas*",
+            "uk": "парасоля. Чоловічий рід; одна — un paraguas, кілька — unos paraguas. 🔊 *paraguas*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-48:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-48:i02:r1",
+          "text": "paraguas"
+        },
+        {
+          "responseId": "es:lesson-02:session-48:i02:r2",
+          "text": "paquete"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-48:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-48:i02:audio",
+          "transcript": "paraguas"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-48:i02:r1",
+            "targetText": "paraguas",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-48:i02:r2",
+            "targetText": "paquete",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-48:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит paraguas — зонт.",
+              "uk": "Звучить paraguas — парасоля."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-48:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — одна парасоля",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-48:i03:r1",
+          "text": "Плитки: paraguas"
+        },
+        {
+          "responseId": "es:lesson-02:session-48:i03:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-48:i03:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-48:i03:r4",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — одна парасоля",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es un paraguas.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — один зонт",
+          "uk": "Зберіть фразу — одна парасоля"
+        },
+        "orderedTokens": [
+          "Es",
+          "un",
+          "paraguas"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-48:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — одна парасоля",
+            "feedbackByLocale": {
+              "ru": "зонт один.",
+              "uk": "парасоля одна."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-48:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — одна парасоля",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-48:i04:r1",
+          "text": "paraguas"
+        },
+        {
+          "responseId": "es:lesson-02:session-48:i04:r2",
+          "text": "paragua"
+        },
+        {
+          "responseId": "es:lesson-02:session-48:i04:r3",
+          "text": "paraguases"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — одна парасоля",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — один зонт",
+          "uk": "Вставте слово — одна парасоля"
+        },
+        "gappedTargetPhrase": "Es un ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-48:i04:r1",
+            "text": "paraguas"
+          },
+          {
+            "responseId": "es:lesson-02:session-48:i04:r2",
+            "text": "paragua"
+          },
+          {
+            "responseId": "es:lesson-02:session-48:i04:r3",
+            "text": "paraguases"
+          }
+        ],
+        "testedDimension": "Вставте слово — одна парасоля",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-48:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — одна парасоля",
+            "feedbackByLocale": {
+              "ru": "В слове paraguas конечная -s сохраняется.",
+              "uk": "У слові paraguas кінцева -s зберігається."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-48:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — одна парасоля",
+            "feedbackByLocale": {
+              "ru": "Нужна форма paraguas.",
+              "uk": "Потрібна форма paraguas."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-48:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — кілька парасоль, з unos",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-48:i05:r1",
+          "text": "Плитки: paraguas"
+        },
+        {
+          "responseId": "es:lesson-02:session-48:i05:r2",
+          "text": "unos"
+        },
+        {
+          "responseId": "es:lesson-02:session-48:i05:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-48:i05:r4",
+          "text": "unas."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — кілька парасоль, з unos",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son unos paraguas.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — несколько зонтов, с unos",
+          "uk": "Зберіть фразу — кілька парасоль, з unos"
+        },
+        "orderedTokens": [
+          "Son",
+          "unos",
+          "paraguas"
+        ],
+        "authoredDistractorTokens": [
+          "unas"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-48:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — кілька парасоль, з unos",
+            "feedbackByLocale": {
+              "ru": "paraguas мужского рода.",
+              "uk": "paraguas чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-48:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — кілька парасоль",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-48:i06:r1",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-48:i06:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-48:i06:r3",
+          "text": "soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — кілька парасоль",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — несколько зонтов",
+          "uk": "Вставте слово — кілька парасоль"
+        },
+        "gappedTargetPhrase": "___ unos paraguas.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-48:i06:r1",
+            "text": "son"
+          },
+          {
+            "responseId": "es:lesson-02:session-48:i06:r2",
+            "text": "es"
+          },
+          {
+            "responseId": "es:lesson-02:session-48:i06:r3",
+            "text": "soy"
+          }
+        ],
+        "testedDimension": "Вставте слово — кілька парасоль",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-48:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — кілька парасоль",
+            "feedbackByLocale": {
+              "ru": "Зонтов несколько: son.",
+              "uk": "Парасоль кілька: son."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-48:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — кілька парасоль",
+            "feedbackByLocale": {
+              "ru": "Речь о зонтах, не о говорящем: son.",
+              "uk": "Йдеться про парасолі, не про мовця: son."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-48:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — парасолі Луїса",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-48:i07:r1",
+          "text": "Плитки: Luis"
+        },
+        {
+          "responseId": "es:lesson-02:session-48:i07:r2",
+          "text": "de"
+        },
+        {
+          "responseId": "es:lesson-02:session-48:i07:r3",
+          "text": "paraguas"
+        },
+        {
+          "responseId": "es:lesson-02:session-48:i07:r4",
+          "text": "los"
+        },
+        {
+          "responseId": "es:lesson-02:session-48:i07:r5",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-48:i07:r6",
+          "text": "las."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — парасолі Луїса",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son los paraguas de Luis.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — зонты Луиса",
+          "uk": "Зберіть фразу — парасолі Луїса"
+        },
+        "orderedTokens": [
+          "Son",
+          "los",
+          "paraguas",
+          "de",
+          "Luis"
+        ],
+        "authoredDistractorTokens": [
+          "las"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-48:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — парасолі Луїса",
+            "feedbackByLocale": {
+              "ru": "paraguas мужского рода.",
+              "uk": "paraguas чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-48:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — конкретні парасолі Луїса",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-48:i08:r1",
+          "text": "los"
+        },
+        {
+          "responseId": "es:lesson-02:session-48:i08:r2",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-02:session-48:i08:r3",
+          "text": "las"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — конкретні парасолі Луїса",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — конкретные зонты Луиса",
+          "uk": "Вставте слово — конкретні парасолі Луїса"
+        },
+        "gappedTargetPhrase": "Son ___ paraguas de Luis.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-48:i08:r1",
+            "text": "los"
+          },
+          {
+            "responseId": "es:lesson-02:session-48:i08:r2",
+            "text": "el"
+          },
+          {
+            "responseId": "es:lesson-02:session-48:i08:r3",
+            "text": "las"
+          }
+        ],
+        "testedDimension": "Вставте слово — конкретні парасолі Луїса",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-48:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — конкретні парасолі Луїса",
+            "feedbackByLocale": {
+              "ru": "Зонтов несколько: los.",
+              "uk": "Парасоль кілька: los."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-48:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — конкретні парасолі Луїса",
+            "feedbackByLocale": {
+              "ru": "Paraguas мужского рода: los.",
+              "uk": "Paraguas чоловічого роду: los."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-48:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-48:i09:r1",
+          "text": "Плитки: paraguas"
+        },
+        {
+          "responseId": "es:lesson-02:session-48:i09:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-48:i09:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-48:i09:r4",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-48:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-48:i09:audio",
+          "transcript": "Es un paraguas."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Es un paraguas.",
+        "orderedTokens": [
+          "Es",
+          "un",
+          "paraguas"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-48:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит es.",
+              "uk": "звучить es."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-48:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — парасолі, з unos",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-48:i10:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — парасолі, з unos",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-48:i10:audio",
+          "transcript": "Son unos paraguas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son unos paraguas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-48:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — поруч одна сумка",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-48:i11:r1",
+          "text": "Плитки: bolsa"
+        },
+        {
+          "responseId": "es:lesson-02:session-48:i11:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-48:i11:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-48:i11:r4",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — поруч одна сумка",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es una bolsa.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — рядом одна сумка",
+          "uk": "Зберіть фразу — поруч одна сумка"
+        },
+        "orderedTokens": [
+          "Es",
+          "una",
+          "bolsa"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-48:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — поруч одна сумка",
+            "feedbackByLocale": {
+              "ru": "bolsa женского рода.",
+              "uk": "bolsa жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-48:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — книжки Ани біля входу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-48:i12:r1",
+          "text": "los"
+        },
+        {
+          "responseId": "es:lesson-02:session-48:i12:r2",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-02:session-48:i12:r3",
+          "text": "el"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — книжки Ани біля входу",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — книги Аны у входа",
+          "uk": "Вставте слово — книжки Ани біля входу"
+        },
+        "gappedTargetPhrase": "Son ___ libros de Ana.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-48:i12:r1",
+            "text": "los"
+          },
+          {
+            "responseId": "es:lesson-02:session-48:i12:r2",
+            "text": "las"
+          },
+          {
+            "responseId": "es:lesson-02:session-48:i12:r3",
+            "text": "el"
+          }
+        ],
+        "testedDimension": "Вставте слово — книжки Ани біля входу",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-48:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — книжки Ани біля входу",
+            "feedbackByLocale": {
+              "ru": "Libros мужского рода: los.",
+              "uk": "Libros чоловічого роду: los."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-48:i12:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — книжки Ани біля входу",
+            "feedbackByLocale": {
+              "ru": "Книг несколько: los.",
+              "uk": "Книжок кілька: los."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-48:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — книжки не мої",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-48:i13:r1",
+          "text": "Плитки: míos"
+        },
+        {
+          "responseId": "es:lesson-02:session-48:i13:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-48:i13:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-02:session-48:i13:r4",
+          "text": "mías."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — книжки не мої",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No son míos.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — книги не мои",
+          "uk": "Зберіть фразу — книжки не мої"
+        },
+        "orderedTokens": [
+          "No",
+          "son",
+          "míos"
+        ],
+        "authoredDistractorTokens": [
+          "mías"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-48:i13:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — книжки не мої",
+            "feedbackByLocale": {
+              "ru": "libros мужского рода.",
+              "uk": "libros чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-48:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — запитайте власника однієї сумки",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-48:i14:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — запитайте власника однієї сумки",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-48:i14:audio",
+          "transcript": "¿De quién es?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿De quién es?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-48:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — сумка належить Ані",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-48:i15:r1",
+          "text": "Плитки: Ana"
+        },
+        {
+          "responseId": "es:lesson-02:session-48:i15:r2",
+          "text": "de"
+        },
+        {
+          "responseId": "es:lesson-02:session-48:i15:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-48:i15:r4",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — сумка належить Ані",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es de Ana.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — сумка принадлежит Ане",
+          "uk": "Зберіть фразу — сумка належить Ані"
+        },
+        "orderedTokens": [
+          "Es",
+          "de",
+          "Ana"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-48:i15:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — сумка належить Ані",
+            "feedbackByLocale": {
+              "ru": "сумка одна.",
+              "uk": "сумка одна."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-48:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — одна конкретна парасоля Луїса",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-48:i16:r1",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-02:session-48:i16:r2",
+          "text": "los"
+        },
+        {
+          "responseId": "es:lesson-02:session-48:i16:r3",
+          "text": "la"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — одна конкретна парасоля Луїса",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — один конкретный зонт Луиса",
+          "uk": "Вставте слово — одна конкретна парасоля Луїса"
+        },
+        "gappedTargetPhrase": "Es ___ paraguas de Luis.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-48:i16:r1",
+            "text": "el"
+          },
+          {
+            "responseId": "es:lesson-02:session-48:i16:r2",
+            "text": "los"
+          },
+          {
+            "responseId": "es:lesson-02:session-48:i16:r3",
+            "text": "la"
+          }
+        ],
+        "testedDimension": "Вставте слово — одна конкретна парасоля Луїса",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-48:i16:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — одна конкретна парасоля Луїса",
+            "feedbackByLocale": {
+              "ru": "Зонт один: el.",
+              "uk": "Парасоля одна: el."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-48:i16:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — одна конкретна парасоля Луїса",
+            "feedbackByLocale": {
+              "ru": "Paraguas мужского рода: el.",
+              "uk": "Paraguas чоловічого роду: el."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-48:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — одна парасоля Луїса",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-48:i17:r1",
+          "text": "Плитки: Luis"
+        },
+        {
+          "responseId": "es:lesson-02:session-48:i17:r2",
+          "text": "de"
+        },
+        {
+          "responseId": "es:lesson-02:session-48:i17:r3",
+          "text": "paraguas"
+        },
+        {
+          "responseId": "es:lesson-02:session-48:i17:r4",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-02:session-48:i17:r5",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-48:i17:r6",
+          "text": "los."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — одна парасоля Луїса",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es el paraguas de Luis.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — один зонт Луиса",
+          "uk": "Зберіть фразу — одна парасоля Луїса"
+        },
+        "orderedTokens": [
+          "Es",
+          "el",
+          "paraguas",
+          "de",
+          "Luis"
+        ],
+        "authoredDistractorTokens": [
+          "los"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-48:i17:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — одна парасоля Луїса",
+            "feedbackByLocale": {
+              "ru": "зонт один.",
+              "uk": "парасоля одна."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-48:i18",
+      "ordinal": 21,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — парасолі Луїса",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-48:i18:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — парасолі Луїса",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-48:i18:audio",
+          "transcript": "Son los paraguas de Luis."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son los paraguas de Luis.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 18,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "998f4ead56f47d59eb2ce23c66bc03e3367744f7e6490d2d575275ad88aa71b3"
+}

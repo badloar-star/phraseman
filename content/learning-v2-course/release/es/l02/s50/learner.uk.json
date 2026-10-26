@@ -1,0 +1,665 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-02:session-50",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-02:session-50:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — vestido",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-50:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — vestido",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-50:i01:audio",
+          "transcript": "vestido"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-50:i01:r1",
+            "targetText": "vestido",
+            "meaningByLocale": {
+              "ru": "платье. Мужской род: el vestido. 🔊 *vestido*",
+              "uk": "сукня. Чоловічий рід: el vestido. 🔊 *vestido*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "vestido",
+          "definitionByLocale": {
+            "ru": "платье. Мужской род: el vestido. 🔊 *vestido*",
+            "uk": "сукня. Чоловічий рід: el vestido. 🔊 *vestido*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-50:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-50:i02:r1",
+          "text": "vestido"
+        },
+        {
+          "responseId": "es:lesson-02:session-50:i02:r2",
+          "text": "sombrero"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-50:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-50:i02:audio",
+          "transcript": "vestido"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-50:i02:r1",
+            "targetText": "vestido",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-50:i02:r2",
+            "targetText": "sombrero",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-50:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит vestido — платье.",
+              "uk": "Звучить vestido — сукня."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-50:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це сукня",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-50:i03:r1",
+          "text": "Плитки: vestido"
+        },
+        {
+          "responseId": "es:lesson-02:session-50:i03:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-50:i03:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-50:i03:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це сукня",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es un vestido.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это платье",
+          "uk": "Зберіть фразу — це сукня"
+        },
+        "orderedTokens": [
+          "Es",
+          "un",
+          "vestido"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-50:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це сукня",
+            "feedbackByLocale": {
+              "ru": "vestido мужского рода.",
+              "uk": "vestido чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-50:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — це не спідниця",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-50:i04:r1",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-02:session-50:i04:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-50:i04:r3",
+          "text": "de"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — це не спідниця",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это не юбка",
+          "uk": "Вставте слово — це не спідниця"
+        },
+        "gappedTargetPhrase": "___ es una falda.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-50:i04:r1",
+            "text": "no"
+          },
+          {
+            "responseId": "es:lesson-02:session-50:i04:r2",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-02:session-50:i04:r3",
+            "text": "de"
+          }
+        ],
+        "testedDimension": "Вставте слово — це не спідниця",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-50:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — це не спідниця",
+            "feedbackByLocale": {
+              "ru": "Для отрицания названия нужно no.",
+              "uk": "Для заперечення назви потрібне no."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-50:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — це не спідниця",
+            "feedbackByLocale": {
+              "ru": "Здесь нужно отрицание no перед es.",
+              "uk": "Тут потрібне заперечення no перед es."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-50:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це не спідниця",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-50:i05:r1",
+          "text": "Плитки: falda"
+        },
+        {
+          "responseId": "es:lesson-02:session-50:i05:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-50:i05:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-50:i05:r4",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-02:session-50:i05:r5",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це не спідниця",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No es una falda.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это не юбка",
+          "uk": "Зберіть фразу — це не спідниця"
+        },
+        "orderedTokens": [
+          "No",
+          "es",
+          "una",
+          "falda"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-50:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це не спідниця",
+            "feedbackByLocale": {
+              "ru": "falda женского рода.",
+              "uk": "falda жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-50:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — сукня не моя",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-50:i06:r1",
+          "text": "mío"
+        },
+        {
+          "responseId": "es:lesson-02:session-50:i06:r2",
+          "text": "mía"
+        },
+        {
+          "responseId": "es:lesson-02:session-50:i06:r3",
+          "text": "míos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — сукня не моя",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — платье не моё",
+          "uk": "Вставте слово — сукня не моя"
+        },
+        "gappedTargetPhrase": "No es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-50:i06:r1",
+            "text": "mío"
+          },
+          {
+            "responseId": "es:lesson-02:session-50:i06:r2",
+            "text": "mía"
+          },
+          {
+            "responseId": "es:lesson-02:session-50:i06:r3",
+            "text": "míos"
+          }
+        ],
+        "testedDimension": "Вставте слово — сукня не моя",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-50:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — сукня не моя",
+            "feedbackByLocale": {
+              "ru": "Vestido мужского рода: mío.",
+              "uk": "Vestido чоловічого роду: mío."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-50:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — сукня не моя",
+            "feedbackByLocale": {
+              "ru": "Платье одно: mío.",
+              "uk": "Сукня одна: mío."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-50:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — сукня не моя",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-50:i07:r1",
+          "text": "Плитки: mío"
+        },
+        {
+          "responseId": "es:lesson-02:session-50:i07:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-50:i07:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-02:session-50:i07:r4",
+          "text": "mía."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — сукня не моя",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No es mío.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — платье не моё",
+          "uk": "Зберіть фразу — сукня не моя"
+        },
+        "orderedTokens": [
+          "No",
+          "es",
+          "mío"
+        ],
+        "authoredDistractorTokens": [
+          "mía"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-50:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — сукня не моя",
+            "feedbackByLocale": {
+              "ru": "vestido мужского рода.",
+              "uk": "vestido чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-50:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-50:i08:r1",
+          "text": "Плитки: mío"
+        },
+        {
+          "responseId": "es:lesson-02:session-50:i08:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-50:i08:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-02:session-50:i08:r4",
+          "text": "mía."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-50:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-50:i08:audio",
+          "transcript": "No es mío."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "No es mío.",
+        "orderedTokens": [
+          "No",
+          "es",
+          "mío"
+        ],
+        "authoredDistractorTokens": [
+          "mía"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-50:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит mío.",
+              "uk": "звучить mío."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-50:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — це сукня",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-50:i09:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — це сукня",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-50:i09:audio",
+          "transcript": "Es un vestido."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es un vestido.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-50:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — сукня належить Ані",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-50:i10:r1",
+          "text": "Плитки: Ana"
+        },
+        {
+          "responseId": "es:lesson-02:session-50:i10:r2",
+          "text": "de"
+        },
+        {
+          "responseId": "es:lesson-02:session-50:i10:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-50:i10:r4",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — сукня належить Ані",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es de Ana.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — платье принадлежит Ане",
+          "uk": "Зберіть фразу — сукня належить Ані"
+        },
+        "orderedTokens": [
+          "Es",
+          "de",
+          "Ana"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-50:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — сукня належить Ані",
+            "feedbackByLocale": {
+              "ru": "платье одно.",
+              "uk": "сукня одна."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-50:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — це не спідниця",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-50:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — це не спідниця",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-50:i11:audio",
+          "transcript": "No es una falda."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No es una falda.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-50:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — сукня не моя",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-50:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — сукня не моя",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-50:i12:audio",
+          "transcript": "No es mío."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No es mío.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "21547f6b1daa6e82becba09f0ed05f8e5fb1a3848da4a7d1dc392ae417efbf97"
+}

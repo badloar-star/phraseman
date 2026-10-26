@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-02:session-51",
+  "entries": [
+    {
+      "interactionId": "es:lesson-02:session-51:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-51:intro1:r2": {
+          "ru": "Конечная -a не делает idioma женским: нужен el.",
+          "uk": "Кінцева -a не робить idioma жіночим: потрібен el."
+        },
+        "es:lesson-02:session-51:intro1:r3": {
+          "ru": "Язык один: es.",
+          "uk": "Мова одна: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-51:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-51:intro2:r2": {
+          "ru": "Для voz нужен артикль la.",
+          "uk": "Для voz потрібен артикль la."
+        },
+        "es:lesson-02:session-51:intro2:r3": {
+          "ru": "Голос один: es.",
+          "uk": "Голос один: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-51:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-51:intro3:r2": {
+          "ru": "Voz женского рода: la.",
+          "uk": "Voz жіночого роду: la."
+        },
+        "es:lesson-02:session-51:intro3:r3": {
+          "ru": "Перед именем нужно de.",
+          "uk": "Перед ім'ям потрібне de."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e312a79588078c449766771b30c8821257e61814ec6ccd9352dbd0010808f83a"
+}

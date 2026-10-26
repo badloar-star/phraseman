@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-02:session-48",
+  "entries": [
+    {
+      "interactionId": "es:lesson-02:session-48:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-48:intro1:r2": {
+          "ru": "Слово в единственном числе — paraguas.",
+          "uk": "Слово в однині — paraguas."
+        },
+        "es:lesson-02:session-48:intro1:r3": {
+          "ru": "Один зонт требует es.",
+          "uk": "Одна парасоля потребує es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-48:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-48:intro2:r2": {
+          "ru": "Множественное число тоже paraguas.",
+          "uk": "Множина теж paraguas."
+        },
+        "es:lesson-02:session-48:intro2:r3": {
+          "ru": "Зонтов несколько: son.",
+          "uk": "Парасоль кілька: son."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-48:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-48:intro3:r2": {
+          "ru": "Paraguas мужского рода: los.",
+          "uk": "Paraguas чоловічого роду: los."
+        },
+        "es:lesson-02:session-48:intro3:r3": {
+          "ru": "Зонтов несколько: son.",
+          "uk": "Парасоль кілька: son."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "1a5da4395b4c1dc96f0255ef0badf0cf00c05ddfa0e14f9c7443c4f4e85cebb3"
+}

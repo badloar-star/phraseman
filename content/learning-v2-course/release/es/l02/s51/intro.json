@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-02:session-51",
+  "learningOutcomeByLocale": {
+    "ru": "выбрать артикль по запомненному роду слова, а не только по окончанию.",
+    "uk": "вибрати артикль за запам'ятованим родом слова, а не лише за закінченням."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-02:session-51:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Язык пока трудный",
+        "uk": "Мова поки складна"
+      },
+      "bodyByLocale": {
+        "ru": "Вы слушаете запись на языке, который только начали учить. `Idioma` — «язык», слово мужского рода: el idioma, несмотря на конечную -a. Скажите `El idioma es difícil` — «Язык трудный». Соберите `el idioma` + `es` + `difícil`. Запомните пару el idioma; знакомое difícil не меняется по роду.",
+        "uk": "Ви слухаєте запис мовою, яку щойно почали вчити. `Idioma` — «мова», слово чоловічого роду: el idioma, попри кінцеву -a. Скажіть `El idioma es difícil` — «Мова складна». Зберіть `el idioma` + `es` + `difícil`. Запам'ятайте пару el idioma; знайоме difícil не змінюється за родом."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-51:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите, что язык трудный.",
+          "uk": "Скажіть, що мова складна."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-51:intro1:r1",
+              "text": "El idioma es difícil."
+            },
+            {
+              "responseId": "es:lesson-02:session-51:intro1:r2",
+              "text": "La idioma es difícil."
+            },
+            {
+              "responseId": "es:lesson-02:session-51:intro1:r3",
+              "text": "El idioma son difícil."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-51:intro1:r1",
+              "text": "El idioma es difícil."
+            },
+            {
+              "responseId": "es:lesson-02:session-51:intro1:r2",
+              "text": "La idioma es difícil."
+            },
+            {
+              "responseId": "es:lesson-02:session-51:intro1:r3",
+              "text": "El idioma son difícil."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что язык трудный.",
+          "uk": "Скажіть, що мова складна."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-02:session-51:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Приятный голос",
+        "uk": "Приємний голос"
+      },
+      "bodyByLocale": {
+        "ru": "Слова пока трудны, но голос в записи вам нравится. `Voz` — «голос», слово женского рода: la voz. Скажите `La voz es agradable` — «Голос приятный». Соберите `la voz` + `es` + `agradable`. Хотя русское «голос» мужского рода, испанское voz требует la. Знакомое agradable сохраняет форму.",
+        "uk": "Слова поки складні, але голос у записі вам подобається. `Voz` — «голос», слово жіночого роду: la voz. Скажіть `La voz es agradable` — «Голос приємний». Зберіть `la voz` + `es` + `agradable`. Хоча українське «голос» чоловічого роду, іспанське voz потребує la. Знайоме agradable зберігає форму."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-51:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите, что голос приятный.",
+          "uk": "Скажіть, що голос приємний."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-51:intro2:r1",
+              "text": "La voz es agradable."
+            },
+            {
+              "responseId": "es:lesson-02:session-51:intro2:r2",
+              "text": "El voz es agradable."
+            },
+            {
+              "responseId": "es:lesson-02:session-51:intro2:r3",
+              "text": "La voz son agradable."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-51:intro2:r1",
+              "text": "La voz es agradable."
+            },
+            {
+              "responseId": "es:lesson-02:session-51:intro2:r2",
+              "text": "El voz es agradable."
+            },
+            {
+              "responseId": "es:lesson-02:session-51:intro2:r3",
+              "text": "La voz son agradable."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что голос приятный.",
+          "uk": "Скажіть, що голос приємний."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-02:session-51:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Это голос Аны",
+        "uk": "Це голос Ани"
+      },
+      "bodyByLocale": {
+        "ru": "Вы узнаёте, кто говорит: это Ана. Скажите `Es la voz de Ana` — «Это голос Аны». Соберите `es` + `la voz` + `de Ana`. La относится к женскому voz, а de Ana связывает голос с человеком. Название языка в этой фразе не нужно: сейчас вы узнаёте говорящего.",
+        "uk": "Ви впізнаєте, хто говорить: це Ана. Скажіть `Es la voz de Ana` — «Це голос Ани». Зберіть `es` + `la voz` + `de Ana`. La стосується жіночого voz, а de Ana пов'язує голос із людиною. Назва мови в цій фразі не потрібна: зараз ви впізнаєте мовця."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-51:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите, что это голос Аны.",
+          "uk": "Скажіть, що це голос Ани."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-51:intro3:r1",
+              "text": "Es la voz de Ana."
+            },
+            {
+              "responseId": "es:lesson-02:session-51:intro3:r2",
+              "text": "Es el voz de Ana."
+            },
+            {
+              "responseId": "es:lesson-02:session-51:intro3:r3",
+              "text": "Es la voz Ana."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-51:intro3:r1",
+              "text": "Es la voz de Ana."
+            },
+            {
+              "responseId": "es:lesson-02:session-51:intro3:r2",
+              "text": "Es el voz de Ana."
+            },
+            {
+              "responseId": "es:lesson-02:session-51:intro3:r3",
+              "text": "Es la voz Ana."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что это голос Аны.",
+          "uk": "Скажіть, що це голос Ани."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "bb93d0c5194183efda8dd55428794de969633b0332284ed5065980b77bbba792"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-02:session-50",
+  "learningOutcomeByLocale": {
+    "ru": "различить отрицание названия вещи и отрицание принадлежности.",
+    "uk": "розрізнити заперечення назви речі й заперечення належності."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-02:session-50:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Назовите платье",
+        "uk": "Назвіть сукню"
+      },
+      "bodyByLocale": {
+        "ru": "На стуле лежит платье. `Vestido` — «платье», слово мужского рода: el vestido. Скажите `Es un vestido` — «Это платье». Соберите `es` + `un` + `vestido`. Выбирайте un по испанскому мужскому роду, хотя русское «платье» среднего рода.",
+        "uk": "На стільці лежить сукня. `Vestido` — «сукня», слово чоловічого роду: el vestido. Скажіть `Es un vestido` — «Це сукня». Зберіть `es` + `un` + `vestido`. Вибирайте un за іспанським чоловічим родом, хоча українське «сукня» жіночого роду."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-50:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите платье.",
+          "uk": "Назвіть сукню."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-50:intro1:r1",
+              "text": "Es un vestido."
+            },
+            {
+              "responseId": "es:lesson-02:session-50:intro1:r2",
+              "text": "Es una vestido."
+            },
+            {
+              "responseId": "es:lesson-02:session-50:intro1:r3",
+              "text": "Son un vestido."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-50:intro1:r1",
+              "text": "Es un vestido."
+            },
+            {
+              "responseId": "es:lesson-02:session-50:intro1:r2",
+              "text": "Es una vestido."
+            },
+            {
+              "responseId": "es:lesson-02:session-50:intro1:r3",
+              "text": "Son un vestido."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите платье.",
+          "uk": "Назвіть сукню."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-02:session-50:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Это не юбка",
+        "uk": "Це не спідниця"
+      },
+      "bodyByLocale": {
+        "ru": "Друг учит испанский и назвал платье словом falda. Исправьте название: `No es una falda` — «Это не юбка». Соберите `no` + `es` + `una falda`. Здесь отрицается именно название предмета. Следующей отдельной репликой можно сказать знакомое Es un vestido.",
+        "uk": "Друг вивчає іспанську й назвав сукню словом falda. Виправте назву: `No es una falda` — «Це не спідниця». Зберіть `no` + `es` + `una falda`. Тут заперечується саме назва предмета. Наступною окремою реплікою можна сказати знайоме Es un vestido."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-50:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите, что это не юбка.",
+          "uk": "Скажіть, що це не спідниця."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-50:intro2:r1",
+              "text": "No es una falda."
+            },
+            {
+              "responseId": "es:lesson-02:session-50:intro2:r2",
+              "text": "Es una falda."
+            },
+            {
+              "responseId": "es:lesson-02:session-50:intro2:r3",
+              "text": "No es un falda."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-50:intro2:r1",
+              "text": "No es una falda."
+            },
+            {
+              "responseId": "es:lesson-02:session-50:intro2:r2",
+              "text": "Es una falda."
+            },
+            {
+              "responseId": "es:lesson-02:session-50:intro2:r3",
+              "text": "No es un falda."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что это не юбка.",
+          "uk": "Скажіть, що це не спідниця."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-02:session-50:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Платье не моё",
+        "uk": "Сукня не моя"
+      },
+      "bodyByLocale": {
+        "ru": "Друг думает, что платье ваше. Скажите `No es mío` — «Оно не моё». Соберите `no` + `es` + `mío`. Теперь вы не спорите с названием vestido, а отрицаете принадлежность. Форма mío согласуется с мужским vestido независимо от пола говорящего.",
+        "uk": "Друг думає, що сукня ваша. Скажіть `No es mío` — «Вона не моя». Зберіть `no` + `es` + `mío`. Тепер ви не сперечаєтеся з назвою vestido, а заперечуєте належність. Форма mío узгоджується з чоловічим vestido незалежно від статі мовця."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-50:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите о платье: оно не моё.",
+          "uk": "Скажіть про сукню: вона не моя."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-50:intro3:r1",
+              "text": "No es mío."
+            },
+            {
+              "responseId": "es:lesson-02:session-50:intro3:r2",
+              "text": "No es mía."
+            },
+            {
+              "responseId": "es:lesson-02:session-50:intro3:r3",
+              "text": "No son míos."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-50:intro3:r1",
+              "text": "No es mío."
+            },
+            {
+              "responseId": "es:lesson-02:session-50:intro3:r2",
+              "text": "No es mía."
+            },
+            {
+              "responseId": "es:lesson-02:session-50:intro3:r3",
+              "text": "No son míos."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите о платье: оно не моё.",
+          "uk": "Скажіть про сукню: вона не моя."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "936ece414bff38c7f2578a2d0948e472b9dbdc16e1f30a66eee2b0d6ab81adf6"
+}

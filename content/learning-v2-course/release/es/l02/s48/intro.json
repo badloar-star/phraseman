@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-02:session-48",
+  "learningOutcomeByLocale": {
+    "ru": "определить число по es/son и артиклю, даже если слово не меняется.",
+    "uk": "визначити число за es/son та артиклем, навіть якщо слово не змінюється."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-02:session-48:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Один зонт",
+        "uk": "Одна парасоля"
+      },
+      "bodyByLocale": {
+        "ru": "У двери стоит один зонт. `Paraguas` — «зонт», слово мужского рода: el paraguas. Скажите `Es un paraguas` — «Это зонт». Соберите `es` + `un` + `paraguas`. Конечная -s здесь есть уже в единственном числе: не убирайте её. Один предмет обозначают es и un.",
+        "uk": "Біля дверей стоїть одна парасоля. `Paraguas` — «парасоля», слово чоловічого роду: el paraguas. Скажіть `Es un paraguas` — «Це парасоля». Зберіть `es` + `un` + `paraguas`. Кінцева -s тут є вже в однині: не прибирайте її. Один предмет позначають es та un."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-48:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите один зонт.",
+          "uk": "Назвіть одну парасолю."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-48:intro1:r1",
+              "text": "Es un paraguas."
+            },
+            {
+              "responseId": "es:lesson-02:session-48:intro1:r2",
+              "text": "Es un paragua."
+            },
+            {
+              "responseId": "es:lesson-02:session-48:intro1:r3",
+              "text": "Son un paraguas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-48:intro1:r1",
+              "text": "Es un paraguas."
+            },
+            {
+              "responseId": "es:lesson-02:session-48:intro1:r2",
+              "text": "Es un paragua."
+            },
+            {
+              "responseId": "es:lesson-02:session-48:intro1:r3",
+              "text": "Son un paraguas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите один зонт.",
+          "uk": "Назвіть одну парасолю."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-02:session-48:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Несколько зонтов",
+        "uk": "Кілька парасоль"
+      },
+      "bodyByLocale": {
+        "ru": "Рядом стоят ещё несколько зонтов. Назовите их с unos: `Son unos paraguas` — «Это зонты». Соберите `son` + `unos` + `paraguas`. Само paraguas не меняется; множественное число показывают son и unos. Не добавляйте к paraguas ещё одно окончание.",
+        "uk": "Поруч стоять ще кілька парасоль. Назвіть їх з unos: `Son unos paraguas` — «Це парасолі». Зберіть `son` + `unos` + `paraguas`. Саме paraguas не змінюється; множину показують son та unos. Не додавайте до paraguas ще одне закінчення."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-48:intro2:q",
+        "promptByLocale": {
+          "ru": "Назовите зонты с unos.",
+          "uk": "Назвіть парасолі з unos."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-48:intro2:r1",
+              "text": "Son unos paraguas."
+            },
+            {
+              "responseId": "es:lesson-02:session-48:intro2:r2",
+              "text": "Son unos paraguases."
+            },
+            {
+              "responseId": "es:lesson-02:session-48:intro2:r3",
+              "text": "Es unos paraguas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-48:intro2:r1",
+              "text": "Son unos paraguas."
+            },
+            {
+              "responseId": "es:lesson-02:session-48:intro2:r2",
+              "text": "Son unos paraguases."
+            },
+            {
+              "responseId": "es:lesson-02:session-48:intro2:r3",
+              "text": "Es unos paraguas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите зонты с unos.",
+          "uk": "Назвіть парасолі з unos."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-02:session-48:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Те самые зонты",
+        "uk": "Ті самі парасолі"
+      },
+      "bodyByLocale": {
+        "ru": "Вы узнаёте зонты, за которыми вернулся Луис. Скажите `Son los paraguas de Luis` — «Это зонты Луиса». Соберите `son` + `los paraguas` + `de Luis`. Los выделяет конкретные зонты, а знакомое de Luis называет владельца. Форма paraguas остаётся прежней.",
+        "uk": "Ви впізнаєте парасолі, за якими повернувся Луїс. Скажіть `Son los paraguas de Luis` — «Це парасолі Луїса». Зберіть `son` + `los paraguas` + `de Luis`. Los виділяє конкретні парасолі, а знайоме de Luis називає власника. Форма paraguas залишається незмінною."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-48:intro3:q",
+        "promptByLocale": {
+          "ru": "Назовите зонты Луиса.",
+          "uk": "Назвіть парасолі Луїса."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-48:intro3:r1",
+              "text": "Son los paraguas de Luis."
+            },
+            {
+              "responseId": "es:lesson-02:session-48:intro3:r2",
+              "text": "Son las paraguas de Luis."
+            },
+            {
+              "responseId": "es:lesson-02:session-48:intro3:r3",
+              "text": "Es los paraguas de Luis."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-48:intro3:r1",
+              "text": "Son los paraguas de Luis."
+            },
+            {
+              "responseId": "es:lesson-02:session-48:intro3:r2",
+              "text": "Son las paraguas de Luis."
+            },
+            {
+              "responseId": "es:lesson-02:session-48:intro3:r3",
+              "text": "Es los paraguas de Luis."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите зонты Луиса.",
+          "uk": "Назвіть парасолі Луїса."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "96d870f1e0bb03c9d992ac23728b54575e9aab7d107922c9b4a08fc02b160937"
+}

@@ -1,0 +1,832 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-02:session-51",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-02:session-51:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — idioma",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-51:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — idioma",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-51:i01:audio",
+          "transcript": "idioma"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-51:i01:r1",
+            "targetText": "idioma",
+            "meaningByLocale": {
+              "ru": "язык. Мужской род: el idioma. 🔊 *idioma*",
+              "uk": "мова. Чоловічий рід: el idioma. 🔊 *idioma*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "idioma",
+          "definitionByLocale": {
+            "ru": "язык. Мужской род: el idioma. 🔊 *idioma*",
+            "uk": "мова. Чоловічий рід: el idioma. 🔊 *idioma*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-51:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-51:i02:r1",
+          "text": "idioma"
+        },
+        {
+          "responseId": "es:lesson-02:session-51:i02:r2",
+          "text": "día"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-51:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-51:i02:audio",
+          "transcript": "idioma"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-51:i02:r1",
+            "targetText": "idioma",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-51:i02:r2",
+            "targetText": "día",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-51:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит idioma — язык.",
+              "uk": "Звучить idioma — мова."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-51:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — voz",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-51:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — voz",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-51:i03:audio",
+          "transcript": "voz"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-51:i03:r1",
+            "targetText": "voz",
+            "meaningByLocale": {
+              "ru": "голос. Женский род: la voz. 🔊 *voz*",
+              "uk": "голос. Жіночий рід: la voz. 🔊 *voz*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "voz",
+          "definitionByLocale": {
+            "ru": "голос. Женский род: la voz. 🔊 *voz*",
+            "uk": "голос. Жіночий рід: la voz. 🔊 *voz*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-51:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-51:i04:r1",
+          "text": "voz"
+        },
+        {
+          "responseId": "es:lesson-02:session-51:i04:r2",
+          "text": "nuez"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-51:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-51:i04:audio",
+          "transcript": "voz"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-51:i04:r1",
+            "targetText": "voz",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-51:i04:r2",
+            "targetText": "nuez",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-51:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит voz — голос.",
+              "uk": "Звучить voz — голос."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-51:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — язык трудный",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-51:i05:r1",
+          "text": "Плитки: difícil"
+        },
+        {
+          "responseId": "es:lesson-02:session-51:i05:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-51:i05:r3",
+          "text": "idioma"
+        },
+        {
+          "responseId": "es:lesson-02:session-51:i05:r4",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-02:session-51:i05:r5",
+          "text": "la."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — язык трудный",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "El idioma es difícil.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — язык трудный",
+          "uk": "Зберіть фразу — мова складна"
+        },
+        "orderedTokens": [
+          "El",
+          "idioma",
+          "es",
+          "difícil"
+        ],
+        "authoredDistractorTokens": [
+          "la"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-51:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — язык трудный",
+            "feedbackByLocale": {
+              "ru": "idioma мужского рода.",
+              "uk": "idioma чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-51:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — язык трудный",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-51:i06:r1",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-02:session-51:i06:r2",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-51:i06:r3",
+          "text": "los"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — язык трудный",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — язык трудный",
+          "uk": "Вставте слово — мова складна"
+        },
+        "gappedTargetPhrase": "___ idioma es difícil.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-51:i06:r1",
+            "text": "el"
+          },
+          {
+            "responseId": "es:lesson-02:session-51:i06:r2",
+            "text": "la"
+          },
+          {
+            "responseId": "es:lesson-02:session-51:i06:r3",
+            "text": "los"
+          }
+        ],
+        "testedDimension": "Вставьте слово — язык трудный",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-51:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — язык трудный",
+            "feedbackByLocale": {
+              "ru": "Запомните мужское el idioma.",
+              "uk": "Запам'ятайте чоловіче el idioma."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-51:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — язык трудный",
+            "feedbackByLocale": {
+              "ru": "Язык один: el.",
+              "uk": "Мова одна: el."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-51:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — голос приятный",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-51:i07:r1",
+          "text": "Плитки: agradable"
+        },
+        {
+          "responseId": "es:lesson-02:session-51:i07:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-51:i07:r3",
+          "text": "voz"
+        },
+        {
+          "responseId": "es:lesson-02:session-51:i07:r4",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-51:i07:r5",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — голос приятный",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "La voz es agradable.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — голос приятный",
+          "uk": "Зберіть фразу — голос приємний"
+        },
+        "orderedTokens": [
+          "La",
+          "voz",
+          "es",
+          "agradable"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-51:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — голос приятный",
+            "feedbackByLocale": {
+              "ru": "voz женского рода.",
+              "uk": "voz жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-51:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — голос приятный",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-51:i08:r1",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-51:i08:r2",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-02:session-51:i08:r3",
+          "text": "las"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — голос приятный",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — голос приятный",
+          "uk": "Вставте слово — голос приємний"
+        },
+        "gappedTargetPhrase": "___ voz es agradable.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-51:i08:r1",
+            "text": "la"
+          },
+          {
+            "responseId": "es:lesson-02:session-51:i08:r2",
+            "text": "el"
+          },
+          {
+            "responseId": "es:lesson-02:session-51:i08:r3",
+            "text": "las"
+          }
+        ],
+        "testedDimension": "Вставьте слово — голос приятный",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-51:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — голос приятный",
+            "feedbackByLocale": {
+              "ru": "Запомните женское la voz.",
+              "uk": "Запам'ятайте жіноче la voz."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-51:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — голос приятный",
+            "feedbackByLocale": {
+              "ru": "Голос один: la.",
+              "uk": "Голос один: la."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-51:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это голос Аны",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-51:i09:r1",
+          "text": "Плитки: Ana"
+        },
+        {
+          "responseId": "es:lesson-02:session-51:i09:r2",
+          "text": "de"
+        },
+        {
+          "responseId": "es:lesson-02:session-51:i09:r3",
+          "text": "voz"
+        },
+        {
+          "responseId": "es:lesson-02:session-51:i09:r4",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-51:i09:r5",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-51:i09:r6",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это голос Аны",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es la voz de Ana.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это голос Аны",
+          "uk": "Зберіть фразу — це голос Ани"
+        },
+        "orderedTokens": [
+          "Es",
+          "la",
+          "voz",
+          "de",
+          "Ana"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-51:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это голос Аны",
+            "feedbackByLocale": {
+              "ru": "voz женского рода.",
+              "uk": "voz жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-51:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — узнайте голос Аны",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-51:i10:r1",
+          "text": "de"
+        },
+        {
+          "responseId": "es:lesson-02:session-51:i10:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-51:i10:r3",
+          "text": "son"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — узнайте голос Аны",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — узнайте голос Аны",
+          "uk": "Вставте слово — упізнайте голос Ани"
+        },
+        "gappedTargetPhrase": "Es la voz ___ Ana.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-51:i10:r1",
+            "text": "de"
+          },
+          {
+            "responseId": "es:lesson-02:session-51:i10:r2",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-02:session-51:i10:r3",
+            "text": "son"
+          }
+        ],
+        "testedDimension": "Вставьте слово — узнайте голос Аны",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-51:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — узнайте голос Аны",
+            "feedbackByLocale": {
+              "ru": "Перед именем нужна связь de.",
+              "uk": "Перед ім'ям потрібен зв'язок de."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-51:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — узнайте голос Аны",
+            "feedbackByLocale": {
+              "ru": "Голос связывается с человеком через de.",
+              "uk": "Голос пов'язується з людиною через de."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-51:i11",
+      "ordinal": 14,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-51:i11:r1",
+          "text": "Плитки: Ana"
+        },
+        {
+          "responseId": "es:lesson-02:session-51:i11:r2",
+          "text": "de"
+        },
+        {
+          "responseId": "es:lesson-02:session-51:i11:r3",
+          "text": "voz"
+        },
+        {
+          "responseId": "es:lesson-02:session-51:i11:r4",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-51:i11:r5",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-51:i11:r6",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-51:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-51:i11:audio",
+          "transcript": "Es la voz de Ana."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Es la voz de Ana.",
+        "orderedTokens": [
+          "Es",
+          "la",
+          "voz",
+          "de",
+          "Ana"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-51:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит la voz.",
+              "uk": "звучить la voz."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-51:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — голос приятный",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-51:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — голос приятный",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-51:i12:audio",
+          "transcript": "La voz es agradable."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "La voz es agradable.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-51:i13",
+      "ordinal": 16,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — язык трудный",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-51:i13:r1",
+          "text": "Плитки: difícil"
+        },
+        {
+          "responseId": "es:lesson-02:session-51:i13:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-51:i13:r3",
+          "text": "idioma"
+        },
+        {
+          "responseId": "es:lesson-02:session-51:i13:r4",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-02:session-51:i13:r5",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — язык трудный",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "El idioma es difícil.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — язык трудный",
+          "uk": "Зберіть фразу — мова складна"
+        },
+        "orderedTokens": [
+          "El",
+          "idioma",
+          "es",
+          "difícil"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-51:i13:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — язык трудный",
+            "feedbackByLocale": {
+              "ru": "язык один.",
+              "uk": "мова одна."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-51:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — это голос Аны",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-51:i14:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — это голос Аны",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-51:i14:audio",
+          "transcript": "Es la voz de Ana."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es la voz de Ana.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 14,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "e0b70900f248bacc60bac162d5fa008164bc4cf2942658bc1b028973c82da94c"
+}

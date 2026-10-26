@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-02:session-49",
+  "entries": [
+    {
+      "interactionId": "es:lesson-02:session-49:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-49:intro1:r2": {
+          "ru": "Выбирайте род по испанскому sombrero: un.",
+          "uk": "Вибирайте рід за іспанським sombrero: un."
+        },
+        "es:lesson-02:session-49:intro1:r3": {
+          "ru": "Шляпа одна: es.",
+          "uk": "Капелюх один: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-49:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-49:intro2:r2": {
+          "ru": "Sombrero мужского рода: el.",
+          "uk": "Sombrero чоловічого роду: el."
+        },
+        "es:lesson-02:session-49:intro2:r3": {
+          "ru": "Перед именем владельца нужно de.",
+          "uk": "Перед ім'ям власника потрібне de."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-49:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-49:intro3:r2": {
+          "ru": "Для bolso нужен un, хотя bolsa женского рода.",
+          "uk": "Для bolso потрібен un, хоча bolsa жіночого роду."
+        },
+        "es:lesson-02:session-49:intro3:r3": {
+          "ru": "Сумочка одна: es.",
+          "uk": "Сумочка одна: es."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "4594149505a2e9b1fd5ae0f3cb6908f87127e4c2608d57c11a257e1ce122899d"
+}

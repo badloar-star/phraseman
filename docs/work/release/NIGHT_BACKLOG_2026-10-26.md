@@ -317,6 +317,17 @@ d71db87d3, aa2bbfc3e, 2dbf1ed8a, 3e3414750, 89c8f67fe, 825894865, 5469199f0, 73c
 
 ## 5. Ход ночи — ревью и прогон (Ревизор, обновляется)
 
+> **ГОТОВНОСТЬ К OTA (утро 26.10, HEAD 57e967e37): 🟢 по коду и тестам, финальное слово — `ota_final_check.sh` на хэше сборки.** tsc 0 / 0 · флаги по умолчанию 51 / 51 совпадают с эталоном (`learning_chapter_exam_v2_enabled = true` — решение координатора / владельца) · новых против 2.0.2 поломок кода нет · из 24 новых красных наборов jest осталось 10, все — устаревшие тесты, не баги приложения (владельцы ниже) · functions — все красные старые, сервер в OTA не едет.
+
+- **ПЕРЕПРОГОН 19 «ТОЛЬКО ТЕСТЫ» НА 49eab54ac (01:17):** 9 зелёные, 10 красные (149 тестов: 139 ✔ / 10 ✖). Коммиты после 49eab54ac до 57e967e37 — только docs, результат действует.
+  - **Закрыты ночными перезакрепами (9):** accounts_v2_client_wiring_v2 · dev_links_r1_selectors_exist · dialogue_v2_plus_tools · learning_v2_task_body_intro_word_2026_10_22 · learning_v2_visibility_switch_contract · mistake_hide · phone_state_legacy_inventory · phrase_workshop_wiring_2026_10_25 (45142e2d1) · spire_golden_task (c71d37063 + functions/node_modules в копии).
+  - **Остаются (10), все — тест отстал от верного кода:** lesson_completion_entitlement_contract, lesson_list_flat_and_completion_xp_contract, stats_bump_calls_carry_study_target → 2 · Дизайн (Мастерская aa2bbfc3e; проверка Plus по-прежнему до открытия урока) · paywall_upcoming_phrases_v1, paywall_ux_r1_contract, premium_modal_locale → 2 · Дизайн («Восстановить» блокирует только покупка / восстановление) · scroll_inertia_contract → 2 · Дизайн (**единственная реальная мелочь:** PaywallMPanels.tsx:42 и PaywallMSheet.tsx:180 без `decelerationRate="fast"`, М за флагом) · plus_ring_wiring_contract → 8 · Моменты (замок владельца e2be987c1) · scenes_edge_cases_2026_10_22 → 8 · Моменты / 4 · Темы (HOME_SCENE_INK) · notifications_english_copy → 10 · Переводчик (тексты пушей e7571a7a3).
+
+- **Пачка 00:50–01:16 (17 коммитов) — ✅:** c71d37063 · 031f122f8 · 100e1c9bb · f79638555 · bab0306ea (обещание «голос не записываем и не оцениваем» убрано ×9 — честнее, голос VOICE.md) · c8dd3d872 · 635702c09 · cd70cc3a9 · 33db1f8a9 · 45142e2d1 · **590f6937d** (промокод из пейвола: replace, закрытие возвращает пейвол с теми же context / source — источник прежний, контракт источников не нарушен, тест есть) · 26f03e894 · 50289cc50 · d045fdf19 · eacd31068 · **3f4aac045** (тема из кэша без ожидания сети) · 9a0c461e1. Авто-скан: цветов, чтений Firestore, немых catch, сырого текста, флагов true, замков — 0.
+  - 🟡 635702c09, cd70cc3a9, 33db1f8a9 (возврат на вкладку «Уроки») без своих тестов (параметр `id` вкладка не читает — и раньше /lessons_list был тем же компонентом, потери нет). Владелец — 2 · Дизайн.
+  - 🟡 3f4aac045: если Plus-тему когда-нибудь отзовут, сохранённая тема держится до следующего входа — живого отката нет. Владелец — 4 · Темы.
+- **Только docs, ревью не нужно:** 95269f49c · 7d1aad911 · 49eab54ac · 9cae9c58b · 7a2e319af · 9981aad63 · be2488025 · 57e967e37.
+
 **Прогон HEAD частями** (`C:/Temp/claude/night2.sh`; каждая часть сама встаёт в очередь светофора): копия b3e60af43 готова 22:05 →
 tsc app + functions → node --test → jest 11 частей по 300 файлов → jest functions. Итоги — в этот раздел по мере частей.
 

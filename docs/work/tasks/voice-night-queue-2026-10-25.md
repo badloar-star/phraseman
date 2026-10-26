@@ -65,3 +65,5 @@ Governance-ID: TG-AE73EC9539AA (прочёсывание обещаний о д�
 Governance-ID: TG-CC464645FE5B (4 неправды о данных: тексты ×9)
 
 Governance-ID: TG-C6091DBEE9DC (выбор владельца: 3 обещания, варианты А/Б)
+
+Governance-ID: TG-3516A999A4DB (сводка ночи Переводчика для владельца)

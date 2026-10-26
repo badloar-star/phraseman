@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-01:session-53",
+  "entries": [
+    {
+      "interactionId": "es:lesson-01:session-53:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-53:intro1:r2": {
+          "ru": "Это отрицание неприемлемости: смысл меняется.",
+          "uk": "Це заперечення неприйнятності: зміст змінюється."
+        },
+        "es:lesson-01:session-53:intro1:r3": {
+          "ru": "Это оценка человека, а нужно оценить предложение.",
+          "uk": "Це оцінка людини, а потрібно оцінити пропозицію."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-53:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-53:intro2:r2": {
+          "ru": "Это противоположная оценка.",
+          "uk": "Це протилежна оцінка."
+        },
+        "es:lesson-01:session-53:intro2:r3": {
+          "ru": "Это отказ считать вариант приемлемым.",
+          "uk": "Це відмова вважати варіант прийнятним."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-53:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-53:intro3:r2": {
+          "ru": "Это возражение, а вы соглашаетесь.",
+          "uk": "Це заперечення, а ви погоджуєтеся."
+        },
+        "es:lesson-01:session-53:intro3:r3": {
+          "ru": "Так вы подтверждаете неприемлемость, а вариант вас устраивает.",
+          "uk": "Так ви підтверджуєте неприйнятність, а варіант вас влаштовує."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "cff4f51ca350c0ca9f89c577b1d9fdec19cd45d39160a42fcf6ccbcaf4781b89"
+}

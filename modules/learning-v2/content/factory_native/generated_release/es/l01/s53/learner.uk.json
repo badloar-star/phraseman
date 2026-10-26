@@ -1,0 +1,593 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-01:session-53",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-01:session-53:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — inaceptable",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-53:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — inaceptable",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-53:i01:audio",
+          "transcript": "inaceptable"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-53:i01:r1",
+            "targetText": "inaceptable",
+            "meaningByLocale": {
+              "ru": "неприемлемый. Форма одинакова для мужского и женского рода. 🔊 *inaceptable*",
+              "uk": "неприйнятний. Форма однакова для чоловічого та жіночого роду. 🔊 *inaceptable*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "inaceptable",
+          "definitionByLocale": {
+            "ru": "неприемлемый. Форма одинакова для мужского и женского рода. 🔊 *inaceptable*",
+            "uk": "неприйнятний. Форма однакова для чоловічого та жіночого роду. 🔊 *inaceptable*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-53:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-53:i02:r1",
+          "text": "inaceptable"
+        },
+        {
+          "responseId": "es:lesson-01:session-53:i02:r2",
+          "text": "aceptable"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-53:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-53:i02:audio",
+          "transcript": "inaceptable"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-53:i02:r1",
+            "targetText": "inaceptable",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-53:i02:r2",
+            "targetText": "aceptable",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-53:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит начало in-: inaceptable.",
+              "uk": "Звучить початок in-: inaceptable."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-53:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — назвіть відмову повернути гроші неприйнятною",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-53:i03:r1",
+          "text": "Плитки: inaceptable"
+        },
+        {
+          "responseId": "es:lesson-01:session-53:i03:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-53:i03:r3",
+          "text": "no."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — назвіть відмову повернути гроші неприйнятною",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es inaceptable.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — назовите отказ вернуть деньги неприемлемым",
+          "uk": "Зберіть фразу — назвіть відмову повернути гроші неприйнятною"
+        },
+        "orderedTokens": [
+          "Es",
+          "inaceptable"
+        ],
+        "authoredDistractorTokens": [
+          "no"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-53:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — назвіть відмову повернути гроші неприйнятною",
+            "feedbackByLocale": {
+              "ru": "inaceptable уже передаёт отрицательную оценку.",
+              "uk": "inaceptable вже передає негативну оцінку."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-53:i04",
+      "ordinal": 7,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — заперечте проти відмови повернути гроші: це неприйнятно",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-53:i04:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — заперечте проти відмови повернути гроші: це неприйнятно",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-53:i04:audio",
+          "transcript": "Es inaceptable."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es inaceptable.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-53:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — aceptable",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-53:i05:audio"
+      ],
+      "accessibilityLabel": "Картка слова — aceptable",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-53:i05:audio",
+          "transcript": "aceptable"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-53:i05:r1",
+            "targetText": "aceptable",
+            "meaningByLocale": {
+              "ru": "приемлемый. Форма одинакова для мужского и женского рода. 🔊 *aceptable*",
+              "uk": "прийнятний. Форма однакова для чоловічого та жіночого роду. 🔊 *aceptable*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "aceptable",
+          "definitionByLocale": {
+            "ru": "приемлемый. Форма одинакова для мужского и женского рода. 🔊 *aceptable*",
+            "uk": "прийнятний. Форма однакова для чоловічого та жіночого роду. 🔊 *aceptable*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-53:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-53:i06:r1",
+          "text": "aceptable"
+        },
+        {
+          "responseId": "es:lesson-01:session-53:i06:r2",
+          "text": "inaceptable"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-53:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-53:i06:audio",
+          "transcript": "aceptable"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-53:i06:r1",
+            "targetText": "aceptable",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-53:i06:r2",
+            "targetText": "inaceptable",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-53:i06:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть слово",
+            "feedbackByLocale": {
+              "ru": "Здесь нет начального in-: aceptable.",
+              "uk": "Тут немає початкового in-: aceptable."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-53:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — назвіть новий варіант прийнятним",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-53:i07:r1",
+          "text": "aceptable"
+        },
+        {
+          "responseId": "es:lesson-01:session-53:i07:r2",
+          "text": "inaceptable"
+        },
+        {
+          "responseId": "es:lesson-01:session-53:i07:r3",
+          "text": "imposible"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — назвіть новий варіант прийнятним",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — назовите новый вариант приемлемым",
+          "uk": "Вставте слово — назвіть новий варіант прийнятним"
+        },
+        "gappedTargetPhrase": "Es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-53:i07:r1",
+            "text": "aceptable"
+          },
+          {
+            "responseId": "es:lesson-01:session-53:i07:r2",
+            "text": "inaceptable"
+          },
+          {
+            "responseId": "es:lesson-01:session-53:i07:r3",
+            "text": "imposible"
+          }
+        ],
+        "testedDimension": "Вставте слово — назвіть новий варіант прийнятним",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-53:i07:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — назвіть новий варіант прийнятним",
+            "feedbackByLocale": {
+              "ru": "Это противоположная оценка.",
+              "uk": "Це протилежна оцінка."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-53:i07:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — назвіть новий варіант прийнятним",
+            "feedbackByLocale": {
+              "ru": "Это невозможность, а вы оцениваете приемлемость.",
+              "uk": "Це неможливість, а ви оцінюєте прийнятність."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-53:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — повне повернення вас влаштовує: це прийнятно",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-53:i08:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — повне повернення вас влаштовує: це прийнятно",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-53:i08:audio",
+          "transcript": "Es aceptable."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es aceptable.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-53:i09",
+      "ordinal": 12,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — підтвердьте «Так, це прийнятно»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-53:i09:r1",
+          "text": "Плитки: aceptable"
+        },
+        {
+          "responseId": "es:lesson-01:session-53:i09:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-53:i09:r3",
+          "text": "sí"
+        },
+        {
+          "responseId": "es:lesson-01:session-53:i09:r4",
+          "text": "no."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — підтвердьте «Так, це прийнятно»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Sí, es aceptable.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — подтвердите «Да, это приемлемо»",
+          "uk": "Зберіть фразу — підтвердьте «Так, це прийнятно»"
+        },
+        "orderedTokens": [
+          "Sí,",
+          "es",
+          "aceptable"
+        ],
+        "authoredDistractorTokens": [
+          "no"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-53:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — підтвердьте «Так, це прийнятно»",
+            "feedbackByLocale": {
+              "ru": "подтверждаете приемлемость.",
+              "uk": "підтверджуєте прийнятність."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-53:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-53:i10:r1",
+          "text": "Плитки: inaceptable"
+        },
+        {
+          "responseId": "es:lesson-01:session-53:i10:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-53:i10:r3",
+          "text": "no."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-53:i10:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-53:i10:audio",
+          "transcript": "Es inaceptable."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Es inaceptable.",
+        "orderedTokens": [
+          "Es",
+          "inaceptable"
+        ],
+        "authoredDistractorTokens": [
+          "no"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-53:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "в записи её нет.",
+              "uk": "у записі її немає."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-53:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — назвіть початкову відмову несправедливою",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-53:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — назвіть початкову відмову несправедливою",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-53:i11:audio",
+          "transcript": "No es justo."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No es justo.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-53:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — підтвердьте прийнятність повного повернення",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-53:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — підтвердьте прийнятність повного повернення",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-53:i12:audio",
+          "transcript": "Sí, es aceptable."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Sí, es aceptable.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "f4edb77c9488e5f47822ac2a0d94de89aa41440253351bc7e2aa54c6397b7d0e"
+}

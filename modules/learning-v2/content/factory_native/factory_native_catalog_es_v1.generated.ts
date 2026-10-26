@@ -371,4 +371,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"спросить мнение с ¿Es…? и ¿Son…?.","uk":"запитати думку з ¿Es…? та ¿Son…?."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 1, sessionOrdinal: 53,
+    sourceFingerprint: "f85d5e31de8c4d0a8944a0a9aa6518b15043e3b9d06dd142958482deabce7548",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"произнести короткое возражение и согласие отдельными репликами.","uk":"вимовити коротке заперечення та згоду окремими репліками."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 1, sessionOrdinal: 54,
+    sourceFingerprint: "00bb142b836fd699c8ef821f85d55ce303f2676df2f56ab8396bae576eed49e1",
+    newWordCount: 3,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбрать somos, son или es по тому, о ком говорите.","uk":"вибрати somos, son або es залежно від того, про кого говорите."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
+  }),
 ]);

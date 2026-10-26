@@ -1,0 +1,634 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-01:session-54",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-01:session-54:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — diez",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-54:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — diez",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-54:i01:audio",
+          "transcript": "diez"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-54:i01:r1",
+            "targetText": "diez",
+            "meaningByLocale": {
+              "ru": "десять. 🔊 *diez*",
+              "uk": "десять. 🔊 *diez*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "diez",
+          "definitionByLocale": {
+            "ru": "десять. 🔊 *diez*",
+            "uk": "десять. 🔊 *diez*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-54:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите число",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-54:i02:r1",
+          "text": "10"
+        },
+        {
+          "responseId": "es:lesson-01:session-54:i02:r2",
+          "text": "9"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-54:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите число",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-54:i02:audio",
+          "transcript": "diez"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-54:i02:r1",
+            "targetText": "10",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-54:i02:r2",
+            "targetText": "9",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-54:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите число",
+            "feedbackByLocale": {
+              "ru": "Звучит diez — десять, а не nueve — девять.",
+              "uk": "Звучить diez — десять, а не nueve — дев'ять."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-54:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — вас десять, включая вас",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-54:i03:r1",
+          "text": "Somos"
+        },
+        {
+          "responseId": "es:lesson-01:session-54:i03:r2",
+          "text": "Son"
+        },
+        {
+          "responseId": "es:lesson-01:session-54:i03:r3",
+          "text": "Es"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — вас десять, включая вас",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вас десять, включая вас",
+          "uk": "Вставте слово — вас десятеро, включно з вами"
+        },
+        "gappedTargetPhrase": "___ diez.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-54:i03:r1",
+            "text": "Somos"
+          },
+          {
+            "responseId": "es:lesson-01:session-54:i03:r2",
+            "text": "Son"
+          },
+          {
+            "responseId": "es:lesson-01:session-54:i03:r3",
+            "text": "Es"
+          }
+        ],
+        "testedDimension": "Вставьте слово — вас десять, включая вас",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-54:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вас десять, включая вас",
+            "feedbackByLocale": {
+              "ru": "Так говорят о других, не включая себя.",
+              "uk": "Так говорять про інших, не включаючи себе."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-54:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вас десять, включая вас",
+            "feedbackByLocale": {
+              "ru": "Es не называет количество вашей группы людей.",
+              "uk": "Es не називає кількість вашої групи людей."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-54:i04",
+      "ordinal": 7,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — назовите число своей группы: десять вместе с вами",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-54:i04:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — назовите число своей группы: десять вместе с вами",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-54:i04:audio",
+          "transcript": "Somos diez."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Somos diez.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-54:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — в другой группе десять человек",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-54:i05:r1",
+          "text": "Плитки: diez"
+        },
+        {
+          "responseId": "es:lesson-01:session-54:i05:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-01:session-54:i05:r3",
+          "text": "somos."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — в другой группе десять человек",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son diez.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — в другой группе десять человек",
+          "uk": "Зберіть фразу — в іншій групі десятеро людей"
+        },
+        "orderedTokens": [
+          "Son",
+          "diez"
+        ],
+        "authoredDistractorTokens": [
+          "somos"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-54:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — в другой группе десять человек",
+            "feedbackByLocale": {
+              "ru": "вы не входите в другую группу.",
+              "uk": "ви не входите до іншої групи."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-54:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — grupo",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-54:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — grupo",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-54:i06:audio",
+          "transcript": "el grupo"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-54:i06:r1",
+            "targetText": "el grupo",
+            "meaningByLocale": {
+              "ru": "группа. Мужской род. 🔊 *el grupo*",
+              "uk": "група. Чоловічий рід. 🔊 *el grupo*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "el grupo",
+          "definitionByLocale": {
+            "ru": "группа. Мужской род. 🔊 *el grupo*",
+            "uk": "група. Чоловічий рід. 🔊 *el grupo*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-54:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — numeroso",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-54:i07:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — numeroso",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-54:i07:audio",
+          "transcript": "numeroso"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-54:i07:r1",
+            "targetText": "numeroso",
+            "meaningByLocale": {
+              "ru": "многочисленный; женская форма — numerosa. 🔊 *numeroso*",
+              "uk": "численний; жіноча форма — numerosa. 🔊 *numeroso*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "numeroso",
+          "definitionByLocale": {
+            "ru": "многочисленный; женская форма — numerosa. 🔊 *numeroso*",
+            "uk": "численний; жіноча форма — numerosa. 🔊 *numeroso*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-54:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-54:i08:r1",
+          "text": "numeroso"
+        },
+        {
+          "responseId": "es:lesson-01:session-54:i08:r2",
+          "text": "numerosa"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-54:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-54:i08:audio",
+          "transcript": "numeroso"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-54:i08:r1",
+            "targetText": "numeroso",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-54:i08:r2",
+            "targetText": "numerosa",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-54:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит окончание o: numeroso.",
+              "uk": "Звучить закінчення o: numeroso."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-54:i09",
+      "ordinal": 12,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — назовите одну группу el grupo многочисленной",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-54:i09:r1",
+          "text": "numeroso"
+        },
+        {
+          "responseId": "es:lesson-01:session-54:i09:r2",
+          "text": "numerosa"
+        },
+        {
+          "responseId": "es:lesson-01:session-54:i09:r3",
+          "text": "numerosos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — назовите одну группу el grupo многочисленной",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — назовите одну группу el grupo многочисленной",
+          "uk": "Вставте слово — назвіть одну групу el grupo численною"
+        },
+        "gappedTargetPhrase": "Es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-54:i09:r1",
+            "text": "numeroso"
+          },
+          {
+            "responseId": "es:lesson-01:session-54:i09:r2",
+            "text": "numerosa"
+          },
+          {
+            "responseId": "es:lesson-01:session-54:i09:r3",
+            "text": "numerosos"
+          }
+        ],
+        "testedDimension": "Вставьте слово — назовите одну группу el grupo многочисленной",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-54:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — назовите одну группу el grupo многочисленной",
+            "feedbackByLocale": {
+              "ru": "El grupo мужского рода: numeroso.",
+              "uk": "El grupo чоловічого роду: numeroso."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-54:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — назовите одну группу el grupo многочисленной",
+            "feedbackByLocale": {
+              "ru": "Группа одна, нужна форма единственного числа.",
+              "uk": "Група одна, потрібна форма однини."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-54:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — оцените одну группу el grupo: она многочисленная",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-54:i10:r1",
+          "text": "Плитки: numeroso"
+        },
+        {
+          "responseId": "es:lesson-01:session-54:i10:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-54:i10:r3",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — оцените одну группу el grupo: она многочисленная",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es numeroso.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — оцените одну группу el grupo: она многочисленная",
+          "uk": "Зберіть фразу — оцініть одну групу el grupo: вона численна"
+        },
+        "orderedTokens": [
+          "Es",
+          "numeroso"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-54:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — оцените одну группу el grupo: она многочисленная",
+            "feedbackByLocale": {
+              "ru": "говорите об одной группе как целом.",
+              "uk": "говорите про одну групу як ціле."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-54:i11",
+      "ordinal": 14,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-54:i11:r1",
+          "text": "Плитки: diez"
+        },
+        {
+          "responseId": "es:lesson-01:session-54:i11:r2",
+          "text": "somos"
+        },
+        {
+          "responseId": "es:lesson-01:session-54:i11:r3",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-54:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-54:i11:audio",
+          "transcript": "Somos diez."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Somos diez.",
+        "orderedTokens": [
+          "Somos",
+          "diez"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-54:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит somos.",
+              "uk": "звучить somos."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-54:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — сообщите, что в вашей группе десять человек вместе с вами",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-54:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — сообщите, что в вашей группе десять человек вместе с вами",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-54:i12:audio",
+          "transcript": "Somos diez."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Somos diez.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "61509acd4d7fc24b03f5080e11fd784b5f798d5a26b5f2d95ddfdc5ca5c1e7ca"
+}

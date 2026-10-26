@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-01:session-53:i01",
+    "correctText": "inaceptable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-53:i02",
+    "correctText": "inaceptable",
+    "correctResponseId": "es:lesson-01:session-53:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-53:i03",
+    "correctText": "Es inaceptable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-53:i04",
+    "correctText": "Es inaceptable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-53:i05",
+    "correctText": "aceptable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-53:i06",
+    "correctText": "aceptable",
+    "correctResponseId": "es:lesson-01:session-53:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-53:i07",
+    "correctText": "aceptable",
+    "correctResponseId": "es:lesson-01:session-53:i07:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-53:i08",
+    "correctText": "Es aceptable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-53:i09",
+    "correctText": "Sí, es aceptable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-53:i10",
+    "correctText": "Es inaceptable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-53:i11",
+    "correctText": "No es justo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-53:i12",
+    "correctText": "Sí, es aceptable.",
+    "correctResponseId": null
+  }
+]

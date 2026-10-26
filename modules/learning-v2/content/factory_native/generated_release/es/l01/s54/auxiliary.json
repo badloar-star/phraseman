@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-01:session-54",
+  "entries": [
+    {
+      "interactionId": "es:lesson-01:session-54:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-54:intro1:r2": {
+          "ru": "Так говорят о других людях, не включая себя.",
+          "uk": "Так говорять про інших людей, не включаючи себе."
+        },
+        "es:lesson-01:session-54:intro1:r3": {
+          "ru": "Nueve — девять, а вас десять.",
+          "uk": "Nueve — дев'ять, а вас десятеро."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-54:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-54:intro2:r2": {
+          "ru": "Somos включило бы вас в их число.",
+          "uk": "Somos включило б вас до їхнього числа."
+        },
+        "es:lesson-01:session-54:intro2:r3": {
+          "ru": "Это девять участников, а не десять.",
+          "uk": "Це дев'ятеро учасників, а не десятеро."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-54:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-54:intro3:r2": {
+          "ru": "Форма numerosa не согласуется с el grupo.",
+          "uk": "Форма numerosa не узгоджується з el grupo."
+        },
+        "es:lesson-01:session-54:intro3:r3": {
+          "ru": "Это о нескольких людях или группах, а вы описываете одну группу как целое.",
+          "uk": "Це про кількох людей або кілька груп, а ви описуєте одну групу як ціле."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5649e86a23ed4371cc42a25b11b482b121b3c859d698a8c7e599e85304d03399"
+}

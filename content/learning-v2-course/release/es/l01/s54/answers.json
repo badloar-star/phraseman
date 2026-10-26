@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-01:session-54:i01",
+    "correctText": "diez",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-54:i02",
+    "correctText": "10",
+    "correctResponseId": "es:lesson-01:session-54:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-54:i03",
+    "correctText": "Somos",
+    "correctResponseId": "es:lesson-01:session-54:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-54:i04",
+    "correctText": "Somos diez.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-54:i05",
+    "correctText": "Son diez.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-54:i06",
+    "correctText": "el grupo",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-54:i07",
+    "correctText": "numeroso",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-54:i08",
+    "correctText": "numeroso",
+    "correctResponseId": "es:lesson-01:session-54:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-54:i09",
+    "correctText": "numeroso",
+    "correctResponseId": "es:lesson-01:session-54:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-54:i10",
+    "correctText": "Es numeroso.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-54:i11",
+    "correctText": "Somos diez.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-54:i12",
+    "correctText": "Somos diez.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-01:session-53",
+  "learningOutcomeByLocale": {
+    "ru": "произнести короткое возражение и согласие отдельными репликами.",
+    "uk": "вимовити коротке заперечення та згоду окремими репліками."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-01:session-53:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Это неприемлемо",
+        "uk": "Це неприйнятно"
+      },
+      "bodyByLocale": {
+        "ru": "После отмены бронирования вам отказываются возвращать деньги. Вы не согласны: `Es inaceptable` — «Это неприемлемо». `Inaceptable` означает «неприемлемый». Соберите `es` + `inaceptable`. Отрицательная оценка уже содержится в слове inaceptable, поэтому добавлять no для этой мысли не нужно.",
+        "uk": "Після скасування бронювання вам відмовляються повертати гроші. Ви не згодні: `Es inaceptable` — «Це неприйнятно». `Inaceptable` означає «неприйнятний». Складіть `es` + `inaceptable`. Негативна оцінка вже міститься в слові inaceptable, тому додавати no для цієї думки не потрібно."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-53:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите предложение неприемлемым.",
+          "uk": "Назвіть пропозицію неприйнятною."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-53:intro1:r1",
+              "text": "Es inaceptable."
+            },
+            {
+              "responseId": "es:lesson-01:session-53:intro1:r2",
+              "text": "No es inaceptable."
+            },
+            {
+              "responseId": "es:lesson-01:session-53:intro1:r3",
+              "text": "Eres inaceptable."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-53:intro1:r1",
+              "text": "Es inaceptable."
+            },
+            {
+              "responseId": "es:lesson-01:session-53:intro1:r2",
+              "text": "No es inaceptable."
+            },
+            {
+              "responseId": "es:lesson-01:session-53:intro1:r3",
+              "text": "Eres inaceptable."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите предложение неприемлемым.",
+          "uk": "Назвіть пропозицію неприйнятною."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-01:session-53:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Приемлемый вариант",
+        "uk": "Прийнятний варіант"
+      },
+      "bodyByLocale": {
+        "ru": "Теперь предлагают вернуть всю сумму. Такой вариант вас устраивает: `Es aceptable` — «Это приемлемо». `Aceptable` означает «приемлемый». Соберите `es` + `aceptable`. Слова aceptable и inaceptable не меняются по роду. Здесь вы выбираете положительную оценку нового предложения.",
+        "uk": "Тепер пропонують повернути всю суму. Такий варіант вас влаштовує: `Es aceptable` — «Це прийнятно». `Aceptable` означає «прийнятний». Складіть `es` + `aceptable`. Слова aceptable та inaceptable не змінюються за родом. Тут ви вибираєте позитивну оцінку нової пропозиції."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-53:intro2:q",
+        "promptByLocale": {
+          "ru": "Назовите полный возврат приемлемым вариантом.",
+          "uk": "Назвіть повне повернення прийнятним варіантом."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-53:intro2:r1",
+              "text": "Es aceptable."
+            },
+            {
+              "responseId": "es:lesson-01:session-53:intro2:r2",
+              "text": "Es inaceptable."
+            },
+            {
+              "responseId": "es:lesson-01:session-53:intro2:r3",
+              "text": "No es aceptable."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-53:intro2:r1",
+              "text": "Es aceptable."
+            },
+            {
+              "responseId": "es:lesson-01:session-53:intro2:r2",
+              "text": "Es inaceptable."
+            },
+            {
+              "responseId": "es:lesson-01:session-53:intro2:r3",
+              "text": "No es aceptable."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите полный возврат приемлемым вариантом.",
+          "uk": "Назвіть повне повернення прийнятним варіантом."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-01:session-53:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Подтвердите согласие",
+        "uk": "Підтвердьте згоду"
+      },
+      "bodyByLocale": {
+        "ru": "Друг уточняет, согласны ли вы с полным возвратом. Ответьте: `Sí, es aceptable` — «Да, это приемлемо». Соберите `sí` + `es` + `aceptable`. Поставьте ударение в sí и запятую после него. Это одна короткая реплика: она подтверждает вашу оценку предложения.",
+        "uk": "Друг уточнює, чи згодні ви з повним поверненням. Дайте відповідь: `Sí, es aceptable` — «Так, це прийнятно». Складіть `sí` + `es` + `aceptable`. Поставте наголос у sí й кому після нього. Це одна коротка репліка: вона підтверджує вашу оцінку пропозиції."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-53:intro3:q",
+        "promptByLocale": {
+          "ru": "Подтвердите, что вариант приемлем.",
+          "uk": "Підтвердьте, що варіант прийнятний."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-53:intro3:r1",
+              "text": "Sí, es aceptable."
+            },
+            {
+              "responseId": "es:lesson-01:session-53:intro3:r2",
+              "text": "No es aceptable."
+            },
+            {
+              "responseId": "es:lesson-01:session-53:intro3:r3",
+              "text": "Sí, es inaceptable."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-53:intro3:r1",
+              "text": "Sí, es aceptable."
+            },
+            {
+              "responseId": "es:lesson-01:session-53:intro3:r2",
+              "text": "No es aceptable."
+            },
+            {
+              "responseId": "es:lesson-01:session-53:intro3:r3",
+              "text": "Sí, es inaceptable."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Подтвердите, что вариант приемлем.",
+          "uk": "Підтвердьте, що варіант прийнятний."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2831fe53ab866b22b187fe904d2dc17310256d7065988d73c283c42f2eac0d37"
+}

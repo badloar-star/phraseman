@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-01:session-54",
+  "learningOutcomeByLocale": {
+    "ru": "выбрать somos, son или es по тому, о ком говорите.",
+    "uk": "вибрати somos, son або es залежно від того, про кого говорите."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-01:session-54:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Нас десять",
+        "uk": "Нас десятеро"
+      },
+      "bodyByLocale": {
+        "ru": "Вы пересчитали участников своей группы вместе с собой. Всего десять: `Somos diez` — «Нас десять». `Diez` означает «десять». Соберите `somos` + `diez`. Somos включает вас в названное количество. Diez не получает окончаний по роду или числу.",
+        "uk": "Ви порахували учасників своєї групи разом із собою. Усього десятеро: `Somos diez` — «Нас десятеро». `Diez` означає «десять». Складіть `somos` + `diez`. Somos включає вас у названу кількість. Diez не отримує закінчень за родом або числом."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-54:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите десять участников своей группы, включая себя.",
+          "uk": "Назвіть десятьох учасників своєї групи, включно із собою."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-54:intro1:r1",
+              "text": "Somos diez."
+            },
+            {
+              "responseId": "es:lesson-01:session-54:intro1:r2",
+              "text": "Son diez."
+            },
+            {
+              "responseId": "es:lesson-01:session-54:intro1:r3",
+              "text": "Somos nueve."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-54:intro1:r1",
+              "text": "Somos diez."
+            },
+            {
+              "responseId": "es:lesson-01:session-54:intro1:r2",
+              "text": "Son diez."
+            },
+            {
+              "responseId": "es:lesson-01:session-54:intro1:r3",
+              "text": "Somos nueve."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите десять участников своей группы, включая себя.",
+          "uk": "Назвіть десятьох учасників своєї групи, включно із собою."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-01:session-54:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Их десять",
+        "uk": "Їх десятеро"
+      },
+      "bodyByLocale": {
+        "ru": "В соседней группе тоже десять участников, но вы в неё не входите. Скажите: `Son diez` — «Их десять». Соберите `son` + `diez`. Меняется только форма ser: somos для вашей группы, son для другой. Число diez остаётся тем же.",
+        "uk": "У сусідній групі теж десятеро учасників, але ви до неї не входите. Скажіть: `Son diez` — «Їх десятеро». Складіть `son` + `diez`. Змінюється лише форма ser: somos для вашої групи, son для іншої. Число diez залишається тим самим."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-54:intro2:q",
+        "promptByLocale": {
+          "ru": "Назовите десять участников другой группы.",
+          "uk": "Назвіть десятьох учасників іншої групи."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-54:intro2:r1",
+              "text": "Son diez."
+            },
+            {
+              "responseId": "es:lesson-01:session-54:intro2:r2",
+              "text": "Somos diez."
+            },
+            {
+              "responseId": "es:lesson-01:session-54:intro2:r3",
+              "text": "Son nueve."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-54:intro2:r1",
+              "text": "Son diez."
+            },
+            {
+              "responseId": "es:lesson-01:session-54:intro2:r2",
+              "text": "Somos diez."
+            },
+            {
+              "responseId": "es:lesson-01:session-54:intro2:r3",
+              "text": "Son nueve."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите десять участников другой группы.",
+          "uk": "Назвіть десятьох учасників іншої групи."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-01:session-54:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Большая по составу группа",
+        "uk": "Велика за складом група"
+      },
+      "bodyByLocale": {
+        "ru": "Для небольшой репетиционной комнаты десять участников — много. `El grupo` — «группа», слово мужского рода. `Numeroso` означает «многочисленный». О вашей группе как об одном целом скажите: `Es numeroso` — «Она многочисленная». Соберите `es` + `numeroso`. Одна группа — es, хотя внутри много людей. Numeroso согласуется с испанским el grupo; женская форма — numerosa.",
+        "uk": "Для невеликої репетиційної кімнати десятеро учасників — багато. `El grupo` — «група», слово чоловічого роду. `Numeroso` означає «численний». Про вашу групу як одне ціле скажіть: `Es numeroso` — «Вона численна». Складіть `es` + `numeroso`. Одна група — es, хоча всередині багато людей. Numeroso узгоджується з іспанським el grupo; жіноча форма — numerosa."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-54:intro3:q",
+        "promptByLocale": {
+          "ru": "Назовите группу el grupo многочисленной.",
+          "uk": "Назвіть групу el grupo численною."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-54:intro3:r1",
+              "text": "Es numeroso."
+            },
+            {
+              "responseId": "es:lesson-01:session-54:intro3:r2",
+              "text": "Es numerosa."
+            },
+            {
+              "responseId": "es:lesson-01:session-54:intro3:r3",
+              "text": "Son numerosos."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-54:intro3:r1",
+              "text": "Es numeroso."
+            },
+            {
+              "responseId": "es:lesson-01:session-54:intro3:r2",
+              "text": "Es numerosa."
+            },
+            {
+              "responseId": "es:lesson-01:session-54:intro3:r3",
+              "text": "Son numerosos."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите группу el grupo многочисленной.",
+          "uk": "Назвіть групу el grupo численною."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "43ced66e97a05358f90c80ed3bbc66b92d51bb093e06379eb2d3349e23985d69"
+}

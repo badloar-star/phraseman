@@ -1,0 +1,72 @@
+[
+  {
+    "interactionId": "es:lesson-02:session-36:i01",
+    "correctText": "regalo",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-36:i02",
+    "correctText": "regalo",
+    "correctResponseId": "es:lesson-02:session-36:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-36:i03",
+    "correctText": "juguete",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-36:i04",
+    "correctText": "juguete",
+    "correctResponseId": "es:lesson-02:session-36:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-36:i05",
+    "correctText": "Es un regalo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-36:i06",
+    "correctText": "un",
+    "correctResponseId": "es:lesson-02:session-36:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-36:i07",
+    "correctText": "¿Es un juguete?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-36:i08",
+    "correctText": "es",
+    "correctResponseId": "es:lesson-02:session-36:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-36:i09",
+    "correctText": "¿Es un regalo?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-36:i10",
+    "correctText": "un",
+    "correctResponseId": "es:lesson-02:session-36:i10:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-36:i11",
+    "correctText": "¿Es un juguete?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-36:i12",
+    "correctText": "¿Es un juguete?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-36:i13",
+    "correctText": "No es un juguete.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-36:i14",
+    "correctText": "Sí, es un juguete.",
+    "correctResponseId": null
+  }
+]

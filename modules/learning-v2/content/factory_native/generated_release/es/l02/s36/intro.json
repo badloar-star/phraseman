@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-02:session-36",
+  "learningOutcomeByLocale": {
+    "ru": "проверить своё предположение вопросом ¿Es un…?",
+    "uk": "перевірити своє припущення запитанням ¿Es un…?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-02:session-36:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Подарок на столе",
+        "uk": "Подарунок на столі"
+      },
+      "bodyByLocale": {
+        "ru": "На столе лежит свёрток с бантом. `Regalo` — «подарок», слово мужского рода: el regalo. Назовите его: `Es un regalo` — «Это подарок». Соберите `es` + `un` + `regalo`. Здесь вы называете вид предмета, поэтому используете un.",
+        "uk": "На столі лежить згорток із бантом. `Regalo` — «подарунок», слово чоловічого роду: el regalo. Назвіть його: `Es un regalo` — «Це подарунок». Зберіть `es` + `un` + `regalo`. Тут ви називаєте вид предмета, тому використовуєте un."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-36:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите, что это подарок.",
+          "uk": "Скажіть, що це подарунок."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-36:intro1:r1",
+              "text": "Es un regalo."
+            },
+            {
+              "responseId": "es:lesson-02:session-36:intro1:r2",
+              "text": "Es una regalo."
+            },
+            {
+              "responseId": "es:lesson-02:session-36:intro1:r3",
+              "text": "Son un regalo."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-36:intro1:r1",
+              "text": "Es un regalo."
+            },
+            {
+              "responseId": "es:lesson-02:session-36:intro1:r2",
+              "text": "Es una regalo."
+            },
+            {
+              "responseId": "es:lesson-02:session-36:intro1:r3",
+              "text": "Son un regalo."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что это подарок.",
+          "uk": "Скажіть, що це подарунок."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-02:session-36:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Может быть, игрушка?",
+        "uk": "Можливо, іграшка?"
+      },
+      "bodyByLocale": {
+        "ru": "По форме свёртка вы предполагаете, что внутри игрушка. `Juguete` — «игрушка», слово мужского рода: el juguete. Спросите `¿Es un juguete?` — «Это игрушка?» Соберите `¿es` + `un juguete?`. Порядок слов тот же, что в утверждении; вопрос обозначают знаки ¿…? и вопросительная интонация.",
+        "uk": "За формою згортка ви припускаєте, що всередині іграшка. `Juguete` — «іграшка», слово чоловічого роду: el juguete. Запитайте `¿Es un juguete?` — «Це іграшка?» Зберіть `¿es` + `un juguete?`. Порядок слів той самий, що у твердженні; запитання позначають знаки ¿…? і питальна інтонація."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-36:intro2:q",
+        "promptByLocale": {
+          "ru": "Спросите, игрушка ли это.",
+          "uk": "Запитайте, чи це іграшка."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-36:intro2:r1",
+              "text": "¿Es un juguete?"
+            },
+            {
+              "responseId": "es:lesson-02:session-36:intro2:r2",
+              "text": "¿Es una juguete?"
+            },
+            {
+              "responseId": "es:lesson-02:session-36:intro2:r3",
+              "text": "¿Son un juguete?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-36:intro2:r1",
+              "text": "¿Es un juguete?"
+            },
+            {
+              "responseId": "es:lesson-02:session-36:intro2:r2",
+              "text": "¿Es una juguete?"
+            },
+            {
+              "responseId": "es:lesson-02:session-36:intro2:r3",
+              "text": "¿Son un juguete?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите, игрушка ли это.",
+          "uk": "Запитайте, чи це іграшка."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-02:session-36:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ответ на предположение",
+        "uk": "Відповідь на припущення"
+      },
+      "bodyByLocale": {
+        "ru": "Друг знает, что внутри, и подтверждает вашу догадку: `Sí, es un juguete` — «Да, это игрушка». Соберите `sí` + `es un juguete`. Знакомое sí подтверждает, а следующая часть называет предмет. Не меняйте un: juguete остаётся мужского рода, хотя по-русски «игрушка» женского.",
+        "uk": "Друг знає, що всередині, й підтверджує вашу здогадку: `Sí, es un juguete` — «Так, це іграшка». Зберіть `sí` + `es un juguete`. Знайоме sí підтверджує, а наступна частина називає предмет. Не змінюйте un: juguete залишається чоловічого роду, хоча українське «іграшка» жіночого."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-36:intro3:q",
+        "promptByLocale": {
+          "ru": "Подтвердите: да, это игрушка.",
+          "uk": "Підтвердьте: так, це іграшка."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-36:intro3:r1",
+              "text": "Sí, es un juguete."
+            },
+            {
+              "responseId": "es:lesson-02:session-36:intro3:r2",
+              "text": "No es un juguete."
+            },
+            {
+              "responseId": "es:lesson-02:session-36:intro3:r3",
+              "text": "Sí, es una juguete."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-36:intro3:r1",
+              "text": "Sí, es un juguete."
+            },
+            {
+              "responseId": "es:lesson-02:session-36:intro3:r2",
+              "text": "No es un juguete."
+            },
+            {
+              "responseId": "es:lesson-02:session-36:intro3:r3",
+              "text": "Sí, es una juguete."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Подтвердите: да, это игрушка.",
+          "uk": "Підтвердьте: так, це іграшка."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "bf3445f98789d3cf7c763fd8b9243ab2e94353b6091c6b5ccdc72f09b341945a"
+}

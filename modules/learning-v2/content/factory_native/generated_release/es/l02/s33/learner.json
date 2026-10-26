@@ -1,0 +1,822 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-02:session-33",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-02:session-33:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — espejo",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-33:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — espejo",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-33:i01:audio",
+          "transcript": "espejo"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-33:i01:r1",
+            "targetText": "espejo",
+            "meaningByLocale": {
+              "ru": "зеркало. Мужской род: el espejo. 🔊 *espejo*",
+              "uk": "дзеркало. Чоловічий рід: el espejo. 🔊 *espejo*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "espejo",
+          "definitionByLocale": {
+            "ru": "зеркало. Мужской род: el espejo. 🔊 *espejo*",
+            "uk": "дзеркало. Чоловічий рід: el espejo. 🔊 *espejo*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-33:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-33:i02:r1",
+          "text": "espejo"
+        },
+        {
+          "responseId": "es:lesson-02:session-33:i02:r2",
+          "text": "abrigo"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-33:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-33:i02:audio",
+          "transcript": "espejo"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-33:i02:r1",
+            "targetText": "espejo",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-33:i02:r2",
+            "targetText": "abrigo",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-33:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит espejo — зеркало.",
+              "uk": "Звучить espejo — дзеркало."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-33:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — peine",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-33:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — peine",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-33:i03:audio",
+          "transcript": "peine"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-33:i03:r1",
+            "targetText": "peine",
+            "meaningByLocale": {
+              "ru": "расчёска. Мужской род: el peine. 🔊 *peine*",
+              "uk": "гребінець. Чоловічий рід: el peine. 🔊 *peine*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "peine",
+          "definitionByLocale": {
+            "ru": "расчёска. Мужской род: el peine. 🔊 *peine*",
+            "uk": "гребінець. Чоловічий рід: el peine. 🔊 *peine*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-33:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-33:i04:r1",
+          "text": "peine"
+        },
+        {
+          "responseId": "es:lesson-02:session-33:i04:r2",
+          "text": "puente"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-33:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-33:i04:audio",
+          "transcript": "peine"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-33:i04:r1",
+            "targetText": "peine",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-33:i04:r2",
+            "targetText": "puente",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-33:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит peine — расчёска.",
+              "uk": "Звучить peine — гребінець."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-33:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — зеркало новое",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-33:i05:r1",
+          "text": "nuevo"
+        },
+        {
+          "responseId": "es:lesson-02:session-33:i05:r2",
+          "text": "nueva"
+        },
+        {
+          "responseId": "es:lesson-02:session-33:i05:r3",
+          "text": "nuevas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — зеркало новое",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — зеркало новое",
+          "uk": "Вставте слово — дзеркало нове"
+        },
+        "gappedTargetPhrase": "El espejo es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-33:i05:r1",
+            "text": "nuevo"
+          },
+          {
+            "responseId": "es:lesson-02:session-33:i05:r2",
+            "text": "nueva"
+          },
+          {
+            "responseId": "es:lesson-02:session-33:i05:r3",
+            "text": "nuevas"
+          }
+        ],
+        "testedDimension": "Вставьте слово — зеркало новое",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-33:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — зеркало новое",
+            "feedbackByLocale": {
+              "ru": "Espejo мужского рода: nuevo.",
+              "uk": "Espejo чоловічого роду: nuevo."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-33:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — зеркало новое",
+            "feedbackByLocale": {
+              "ru": "Зеркало одно и мужского рода: nuevo.",
+              "uk": "Дзеркало одне й чоловічого роду: nuevo."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-33:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — зеркало новое",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-33:i06:r1",
+          "text": "Плитки: nuevo"
+        },
+        {
+          "responseId": "es:lesson-02:session-33:i06:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-33:i06:r3",
+          "text": "espejo"
+        },
+        {
+          "responseId": "es:lesson-02:session-33:i06:r4",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-02:session-33:i06:r5",
+          "text": "la."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — зеркало новое",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "El espejo es nuevo.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — зеркало новое",
+          "uk": "Зберіть фразу — дзеркало нове"
+        },
+        "orderedTokens": [
+          "El",
+          "espejo",
+          "es",
+          "nuevo"
+        ],
+        "authoredDistractorTokens": [
+          "la"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-33:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — зеркало новое",
+            "feedbackByLocale": {
+              "ru": "espejo мужского рода.",
+              "uk": "espejo чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-33:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — это расчёска",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-33:i07:r1",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-33:i07:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-33:i07:r3",
+          "text": "unos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — это расчёска",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это расчёска",
+          "uk": "Вставте слово — це гребінець"
+        },
+        "gappedTargetPhrase": "Es ___ peine.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-33:i07:r1",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-02:session-33:i07:r2",
+            "text": "una"
+          },
+          {
+            "responseId": "es:lesson-02:session-33:i07:r3",
+            "text": "unos"
+          }
+        ],
+        "testedDimension": "Вставьте слово — это расчёска",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-33:i07:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это расчёска",
+            "feedbackByLocale": {
+              "ru": "Peine мужского рода: un.",
+              "uk": "Peine чоловічого роду: un."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-33:i07:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это расчёска",
+            "feedbackByLocale": {
+              "ru": "Расчёска одна: un.",
+              "uk": "Гребінець один: un."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-33:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — назовите расчёску",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-33:i08:r1",
+          "text": "Плитки: peine"
+        },
+        {
+          "responseId": "es:lesson-02:session-33:i08:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-33:i08:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-33:i08:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — назовите расчёску",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es un peine.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — назовите расчёску",
+          "uk": "Зберіть фразу — назвіть гребінець"
+        },
+        "orderedTokens": [
+          "Es",
+          "un",
+          "peine"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-33:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — назовите расчёску",
+            "feedbackByLocale": {
+              "ru": "peine мужского рода.",
+              "uk": "peine чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-33:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — расчёска полезная",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-33:i09:r1",
+          "text": "El"
+        },
+        {
+          "responseId": "es:lesson-02:session-33:i09:r2",
+          "text": "La"
+        },
+        {
+          "responseId": "es:lesson-02:session-33:i09:r3",
+          "text": "Las"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — расчёска полезная",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — расчёска полезная",
+          "uk": "Вставте слово — гребінець корисний"
+        },
+        "gappedTargetPhrase": "___ peine es útil.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-33:i09:r1",
+            "text": "El"
+          },
+          {
+            "responseId": "es:lesson-02:session-33:i09:r2",
+            "text": "La"
+          },
+          {
+            "responseId": "es:lesson-02:session-33:i09:r3",
+            "text": "Las"
+          }
+        ],
+        "testedDimension": "Вставьте слово — расчёска полезная",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-33:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — расчёска полезная",
+            "feedbackByLocale": {
+              "ru": "Peine мужского рода: el.",
+              "uk": "Peine чоловічого роду: el."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-33:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — расчёска полезная",
+            "feedbackByLocale": {
+              "ru": "Здесь одна расчёска мужского рода: el.",
+              "uk": "Тут один гребінець чоловічого роду: el."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-33:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — расчёска полезная",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-33:i10:r1",
+          "text": "Плитки: útil"
+        },
+        {
+          "responseId": "es:lesson-02:session-33:i10:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-33:i10:r3",
+          "text": "peine"
+        },
+        {
+          "responseId": "es:lesson-02:session-33:i10:r4",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-02:session-33:i10:r5",
+          "text": "la."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — расчёска полезная",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "El peine es útil.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — расчёска полезная",
+          "uk": "Зберіть фразу — гребінець корисний"
+        },
+        "orderedTokens": [
+          "El",
+          "peine",
+          "es",
+          "útil"
+        ],
+        "authoredDistractorTokens": [
+          "la"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-33:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — расчёска полезная",
+            "feedbackByLocale": {
+              "ru": "peine мужского рода.",
+              "uk": "peine чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-33:i11",
+      "ordinal": 14,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-33:i11:r1",
+          "text": "Плитки: nuevo"
+        },
+        {
+          "responseId": "es:lesson-02:session-33:i11:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-33:i11:r3",
+          "text": "espejo"
+        },
+        {
+          "responseId": "es:lesson-02:session-33:i11:r4",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-02:session-33:i11:r5",
+          "text": "la."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-33:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-33:i11:audio",
+          "transcript": "El espejo es nuevo."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "El espejo es nuevo.",
+        "orderedTokens": [
+          "El",
+          "espejo",
+          "es",
+          "nuevo"
+        ],
+        "authoredDistractorTokens": [
+          "la"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-33:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "в записи звучит el.",
+              "uk": "у записі звучить el."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-33:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — зеркало новое",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-33:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — зеркало новое",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-33:i12:audio",
+          "transcript": "El espejo es nuevo."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "El espejo es nuevo.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-33:i13",
+      "ordinal": 16,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — уточните: расчёска не новая",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-33:i13:r1",
+          "text": "Плитки: nuevo"
+        },
+        {
+          "responseId": "es:lesson-02:session-33:i13:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-33:i13:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-02:session-33:i13:r4",
+          "text": "peine"
+        },
+        {
+          "responseId": "es:lesson-02:session-33:i13:r5",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-02:session-33:i13:r6",
+          "text": "nueva."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — уточните: расчёска не новая",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "El peine no es nuevo.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — уточните: расчёска не новая",
+          "uk": "Зберіть фразу — уточніть: гребінець не новий"
+        },
+        "orderedTokens": [
+          "El",
+          "peine",
+          "no",
+          "es",
+          "nuevo"
+        ],
+        "authoredDistractorTokens": [
+          "nueva"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-33:i13:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — уточните: расчёска не новая",
+            "feedbackByLocale": {
+              "ru": "peine мужского рода.",
+              "uk": "peine чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-33:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — расчёска полезная",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-33:i14:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — расчёска полезная",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-33:i14:audio",
+          "transcript": "El peine es útil."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "El peine es útil.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 14,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "3152f63cc9eb1899ad8b8ad713502199c1a0bb14690e1850f616273563245273"
+}

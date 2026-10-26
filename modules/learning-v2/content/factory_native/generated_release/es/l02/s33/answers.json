@@ -1,0 +1,72 @@
+[
+  {
+    "interactionId": "es:lesson-02:session-33:i01",
+    "correctText": "espejo",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-33:i02",
+    "correctText": "espejo",
+    "correctResponseId": "es:lesson-02:session-33:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-33:i03",
+    "correctText": "peine",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-33:i04",
+    "correctText": "peine",
+    "correctResponseId": "es:lesson-02:session-33:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-33:i05",
+    "correctText": "nuevo",
+    "correctResponseId": "es:lesson-02:session-33:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-33:i06",
+    "correctText": "El espejo es nuevo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-33:i07",
+    "correctText": "un",
+    "correctResponseId": "es:lesson-02:session-33:i07:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-33:i08",
+    "correctText": "Es un peine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-33:i09",
+    "correctText": "El",
+    "correctResponseId": "es:lesson-02:session-33:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-33:i10",
+    "correctText": "El peine es útil.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-33:i11",
+    "correctText": "El espejo es nuevo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-33:i12",
+    "correctText": "El espejo es nuevo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-33:i13",
+    "correctText": "El peine no es nuevo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-33:i14",
+    "correctText": "El peine es útil.",
+    "correctResponseId": null
+  }
+]

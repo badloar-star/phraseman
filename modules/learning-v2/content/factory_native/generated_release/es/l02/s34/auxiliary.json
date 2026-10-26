@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-02:session-34",
+  "entries": [
+    {
+      "interactionId": "es:lesson-02:session-34:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-34:intro1:r2": {
+          "ru": "Для almohada нужна cómoda.",
+          "uk": "Для almohada потрібна cómoda."
+        },
+        "es:lesson-02:session-34:intro1:r3": {
+          "ru": "Подушка одна: es.",
+          "uk": "Подушка одна: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-34:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-34:intro2:r2": {
+          "ru": "Подушек несколько: cómodas.",
+          "uk": "Подушок кілька: cómodas."
+        },
+        "es:lesson-02:session-34:intro2:r3": {
+          "ru": "Для нескольких предметов нужна son.",
+          "uk": "Для кількох предметів потрібна son."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-34:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-34:intro3:r2": {
+          "ru": "Для женских mantas нужна nuevas.",
+          "uk": "Для жіночих mantas потрібна nuevas."
+        },
+        "es:lesson-02:session-34:intro3:r3": {
+          "ru": "Одеял несколько: nuevas.",
+          "uk": "Ковдр кілька: nuevas."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ee121d6637d183a5721c5e1d11cd754b25a66d39ed63c20d8d172da0d1875f8a"
+}

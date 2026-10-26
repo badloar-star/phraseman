@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-02:session-33",
+  "learningOutcomeByLocale": {
+    "ru": "выбрать знакомое описание по роду испанского названия предмета.",
+    "uk": "вибрати знайомий опис за родом іспанської назви предмета."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-02:session-33:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Новое зеркало",
+        "uk": "Нове дзеркало"
+      },
+      "bodyByLocale": {
+        "ru": "Вы поставили на полку новое зеркало. `Espejo` — «зеркало», слово мужского рода: el espejo. Скажите `El espejo es nuevo` — «Зеркало новое». Соберите `el espejo` + `es` + `nuevo`. Для мужского espejo выбирайте el и nuevo, хотя по-русски «зеркало» среднего рода.",
+        "uk": "Ви поставили на полицю нове дзеркало. `Espejo` — «дзеркало», слово чоловічого роду: el espejo. Скажіть `El espejo es nuevo` — «Дзеркало нове». Зберіть `el espejo` + `es` + `nuevo`. Для чоловічого espejo вибирайте el і nuevo, хоча українською «дзеркало» середнього роду."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-33:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите, что зеркало новое.",
+          "uk": "Скажіть, що дзеркало нове."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-33:intro1:r1",
+              "text": "El espejo es nuevo."
+            },
+            {
+              "responseId": "es:lesson-02:session-33:intro1:r2",
+              "text": "La espejo es nueva."
+            },
+            {
+              "responseId": "es:lesson-02:session-33:intro1:r3",
+              "text": "El espejo es nueva."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-33:intro1:r1",
+              "text": "El espejo es nuevo."
+            },
+            {
+              "responseId": "es:lesson-02:session-33:intro1:r2",
+              "text": "La espejo es nueva."
+            },
+            {
+              "responseId": "es:lesson-02:session-33:intro1:r3",
+              "text": "El espejo es nueva."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что зеркало новое.",
+          "uk": "Скажіть, що дзеркало нове."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-02:session-33:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Расчёска рядом",
+        "uk": "Гребінець поруч"
+      },
+      "bodyByLocale": {
+        "ru": "Рядом лежит расчёска. `Peine` — «расчёска», слово мужского рода: el peine. Назовите её: `Es un peine` — «Это расчёска». Соберите `es` + `un` + `peine`. Конечная -e не определяет род; запомните el peine. Русское «расчёска» женского рода, но здесь нужен un.",
+        "uk": "Поруч лежить гребінець. `Peine` — «гребінець», слово чоловічого роду: el peine. Назвіть його: `Es un peine` — «Це гребінець». Зберіть `es` + `un` + `peine`. Кінцева -e не визначає рід; запам'ятайте el peine. Тут рід збігається з українським словом, тож для одного предмета потрібен un."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-33:intro2:q",
+        "promptByLocale": {
+          "ru": "Назовите расчёску.",
+          "uk": "Назвіть гребінець."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-33:intro2:r1",
+              "text": "Es un peine."
+            },
+            {
+              "responseId": "es:lesson-02:session-33:intro2:r2",
+              "text": "Es una peine."
+            },
+            {
+              "responseId": "es:lesson-02:session-33:intro2:r3",
+              "text": "Son un peine."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-33:intro2:r1",
+              "text": "Es un peine."
+            },
+            {
+              "responseId": "es:lesson-02:session-33:intro2:r2",
+              "text": "Es una peine."
+            },
+            {
+              "responseId": "es:lesson-02:session-33:intro2:r3",
+              "text": "Son un peine."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите расчёску.",
+          "uk": "Назвіть гребінець."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-02:session-33:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Полезная вещь",
+        "uk": "Корисна річ"
+      },
+      "bodyByLocale": {
+        "ru": "Это небольшая расчёска, которую удобно брать с собой. Скажите `El peine es útil` — «Расчёска полезная». Соберите `el peine` + `es` + `útil`. Знакомое útil не меняется по роду: не нужно добавлять к нему -o или -a. Артикль el по-прежнему выбирайте по мужскому peine.",
+        "uk": "Це невеликий гребінець, який зручно брати із собою. Скажіть `El peine es útil` — «Гребінець корисний». Зберіть `el peine` + `es` + `útil`. Знайоме útil не змінюється за родом: не потрібно додавати до нього -o або -a. Артикль el і далі вибирайте за чоловічим peine."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-33:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите, что расчёска полезная.",
+          "uk": "Скажіть, що гребінець корисний."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-33:intro3:r1",
+              "text": "El peine es útil."
+            },
+            {
+              "responseId": "es:lesson-02:session-33:intro3:r2",
+              "text": "La peine es útil."
+            },
+            {
+              "responseId": "es:lesson-02:session-33:intro3:r3",
+              "text": "El peine son útil."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-33:intro3:r1",
+              "text": "El peine es útil."
+            },
+            {
+              "responseId": "es:lesson-02:session-33:intro3:r2",
+              "text": "La peine es útil."
+            },
+            {
+              "responseId": "es:lesson-02:session-33:intro3:r3",
+              "text": "El peine son útil."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что расчёска полезная.",
+          "uk": "Скажіть, що гребінець корисний."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "bb4d8a6d4601f1172a61a6d9e12f48bcca1693032ae8af9652a9a292ba20675e"
+}

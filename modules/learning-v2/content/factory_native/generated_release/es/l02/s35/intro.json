@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-02:session-35",
+  "learningOutcomeByLocale": {
+    "ru": "отрицать название предмета с no es и назвать его правильно.",
+    "uk": "заперечувати назву предмета з no es і називати його правильно."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-02:session-35:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Щётка для уборки",
+        "uk": "Щітка для прибирання"
+      },
+      "bodyByLocale": {
+        "ru": "В коробке лежит щётка. `Cepillo` — «щётка», слово мужского рода: el cepillo. Назовите предмет: `Es un cepillo` — «Это щётка». Соберите `es` + `un` + `cepillo`. Хотя русское «щётка» женского рода, испанское cepillo требует un.",
+        "uk": "У коробці лежить щітка. `Cepillo` — «щітка», слово чоловічого роду: el cepillo. Назвіть предмет: `Es un cepillo` — «Це щітка». Зберіть `es` + `un` + `cepillo`. Хоча українське «щітка» жіночого роду, іспанське cepillo потребує un."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-35:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите щётку.",
+          "uk": "Назвіть щітку."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-35:intro1:r1",
+              "text": "Es un cepillo."
+            },
+            {
+              "responseId": "es:lesson-02:session-35:intro1:r2",
+              "text": "Es una cepillo."
+            },
+            {
+              "responseId": "es:lesson-02:session-35:intro1:r3",
+              "text": "Son un cepillo."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-35:intro1:r1",
+              "text": "Es un cepillo."
+            },
+            {
+              "responseId": "es:lesson-02:session-35:intro1:r2",
+              "text": "Es una cepillo."
+            },
+            {
+              "responseId": "es:lesson-02:session-35:intro1:r3",
+              "text": "Son un cepillo."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите щётку.",
+          "uk": "Назвіть щітку."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-02:session-35:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Это не губка",
+        "uk": "Це не губка"
+      },
+      "bodyByLocale": {
+        "ru": "Помощник учит испанские названия и ошибочно назвал щётку словом «губка». `Esponja` — «губка», слово женского рода: la esponja. Возразите: `No es una esponja` — «Это не губка». Соберите `no` + `es` + `una esponja`. Знакомое no ставьте перед es; перед esponja оставьте una.",
+        "uk": "Помічник вивчає іспанські назви й помилково назвав щітку словом «губка». `Esponja` — «губка», слово жіночого роду: la esponja. Заперечте: `No es una esponja` — «Це не губка». Зберіть `no` + `es` + `una esponja`. Знайоме no ставте перед es; перед esponja залиште una."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-35:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите, что это не губка.",
+          "uk": "Скажіть, що це не губка."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-35:intro2:r1",
+              "text": "No es una esponja."
+            },
+            {
+              "responseId": "es:lesson-02:session-35:intro2:r2",
+              "text": "Es no una esponja."
+            },
+            {
+              "responseId": "es:lesson-02:session-35:intro2:r3",
+              "text": "No es un esponja."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-35:intro2:r1",
+              "text": "No es una esponja."
+            },
+            {
+              "responseId": "es:lesson-02:session-35:intro2:r2",
+              "text": "Es no una esponja."
+            },
+            {
+              "responseId": "es:lesson-02:session-35:intro2:r3",
+              "text": "No es un esponja."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что это не губка.",
+          "uk": "Скажіть, що це не губка."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-02:session-35:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Исправьте ошибку",
+        "uk": "Виправте помилку"
+      },
+      "bodyByLocale": {
+        "ru": "Теперь помощник показывает губку и снова путает испанские названия: говорит cepillo. Сначала отрицайте неверное название, затем дайте верное: `No es un cepillo. Es una esponja` — «Это не щётка. Это губка». Соберите две короткие фразы: `no es` + `un cepillo`; затем `es` + `una esponja`. В каждой выбирайте артикль по своему существительному.",
+        "uk": "Тепер помічник показує губку й знову плутає іспанські назви: каже cepillo. Спочатку заперечте хибну назву, потім дайте правильну: `No es un cepillo. Es una esponja` — «Це не щітка. Це губка». Зберіть дві короткі фрази: `no es` + `un cepillo`; потім `es` + `una esponja`. У кожній вибирайте артикль за своїм іменником."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-35:intro3:q",
+        "promptByLocale": {
+          "ru": "Начните исправление: это не щётка.",
+          "uk": "Почніть виправлення: це не щітка."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-35:intro3:r1",
+              "text": "No es un cepillo."
+            },
+            {
+              "responseId": "es:lesson-02:session-35:intro3:r2",
+              "text": "No es una cepillo."
+            },
+            {
+              "responseId": "es:lesson-02:session-35:intro3:r3",
+              "text": "Es un cepillo."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-35:intro3:r1",
+              "text": "No es un cepillo."
+            },
+            {
+              "responseId": "es:lesson-02:session-35:intro3:r2",
+              "text": "No es una cepillo."
+            },
+            {
+              "responseId": "es:lesson-02:session-35:intro3:r3",
+              "text": "Es un cepillo."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Начните исправление: это не щётка.",
+          "uk": "Почніть виправлення: це не щітка."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "4a2955019529745350e2d2bfa74cf444bb21d68d9b41725e3e48e026975f54fc"
+}

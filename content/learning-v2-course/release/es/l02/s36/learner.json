@@ -1,0 +1,802 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-02:session-36",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-02:session-36:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — regalo",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-36:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — regalo",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-36:i01:audio",
+          "transcript": "regalo"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-36:i01:r1",
+            "targetText": "regalo",
+            "meaningByLocale": {
+              "ru": "подарок. Мужской род: el regalo. 🔊 *regalo*",
+              "uk": "подарунок. Чоловічий рід: el regalo. 🔊 *regalo*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "regalo",
+          "definitionByLocale": {
+            "ru": "подарок. Мужской род: el regalo. 🔊 *regalo*",
+            "uk": "подарунок. Чоловічий рід: el regalo. 🔊 *regalo*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-36:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-36:i02:r1",
+          "text": "regalo"
+        },
+        {
+          "responseId": "es:lesson-02:session-36:i02:r2",
+          "text": "reloj"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-36:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-36:i02:audio",
+          "transcript": "regalo"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-36:i02:r1",
+            "targetText": "regalo",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-36:i02:r2",
+            "targetText": "reloj",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-36:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит regalo — подарок.",
+              "uk": "Звучить regalo — подарунок."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-36:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — juguete",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-36:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — juguete",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-36:i03:audio",
+          "transcript": "juguete"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-36:i03:r1",
+            "targetText": "juguete",
+            "meaningByLocale": {
+              "ru": "игрушка. Мужской род: el juguete. 🔊 *juguete*",
+              "uk": "іграшка. Чоловічий рід: el juguete. 🔊 *juguete*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "juguete",
+          "definitionByLocale": {
+            "ru": "игрушка. Мужской род: el juguete. 🔊 *juguete*",
+            "uk": "іграшка. Чоловічий рід: el juguete. 🔊 *juguete*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-36:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-36:i04:r1",
+          "text": "juguete"
+        },
+        {
+          "responseId": "es:lesson-02:session-36:i04:r2",
+          "text": "guante"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-36:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-36:i04:audio",
+          "transcript": "juguete"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-36:i04:r1",
+            "targetText": "juguete",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-36:i04:r2",
+            "targetText": "guante",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-36:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит juguete — игрушка.",
+              "uk": "Звучить juguete — іграшка."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-36:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это подарок",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-36:i05:r1",
+          "text": "Плитки: regalo"
+        },
+        {
+          "responseId": "es:lesson-02:session-36:i05:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-36:i05:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-36:i05:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это подарок",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es un regalo.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это подарок",
+          "uk": "Зберіть фразу — це подарунок"
+        },
+        "orderedTokens": [
+          "Es",
+          "un",
+          "regalo"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-36:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это подарок",
+            "feedbackByLocale": {
+              "ru": "regalo мужского рода.",
+              "uk": "regalo чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-36:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — это игрушка?",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-36:i06:r1",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-36:i06:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-36:i06:r3",
+          "text": "unas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — это игрушка?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это игрушка?",
+          "uk": "Вставте слово — це іграшка?"
+        },
+        "gappedTargetPhrase": "¿Es ___ juguete?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-36:i06:r1",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-02:session-36:i06:r2",
+            "text": "una"
+          },
+          {
+            "responseId": "es:lesson-02:session-36:i06:r3",
+            "text": "unas"
+          }
+        ],
+        "testedDimension": "Вставьте слово — это игрушка?",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-36:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это игрушка?",
+            "feedbackByLocale": {
+              "ru": "Juguete мужского рода: un.",
+              "uk": "Juguete чоловічого роду: un."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-36:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это игрушка?",
+            "feedbackByLocale": {
+              "ru": "Один предмет мужского рода: un.",
+              "uk": "Один предмет чоловічого роду: un."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-36:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это игрушка?",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-36:i07:r1",
+          "text": "Плитки: juguete?"
+        },
+        {
+          "responseId": "es:lesson-02:session-36:i07:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-36:i07:r3",
+          "text": "¿es"
+        },
+        {
+          "responseId": "es:lesson-02:session-36:i07:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это игрушка?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Es un juguete?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это игрушка?",
+          "uk": "Зберіть фразу — це іграшка?"
+        },
+        "orderedTokens": [
+          "¿Es",
+          "un",
+          "juguete"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-36:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это игрушка?",
+            "feedbackByLocale": {
+              "ru": "juguete мужского рода.",
+              "uk": "juguete чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-36:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — спросите об одном подарке",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-36:i08:r1",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-36:i08:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-36:i08:r3",
+          "text": "soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — спросите об одном подарке",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — спросите об одном подарке",
+          "uk": "Вставте слово — запитайте про один подарунок"
+        },
+        "gappedTargetPhrase": "¿___ un regalo?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-36:i08:r1",
+            "text": "es"
+          },
+          {
+            "responseId": "es:lesson-02:session-36:i08:r2",
+            "text": "son"
+          },
+          {
+            "responseId": "es:lesson-02:session-36:i08:r3",
+            "text": "soy"
+          }
+        ],
+        "testedDimension": "Вставьте слово — спросите об одном подарке",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-36:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — спросите об одном подарке",
+            "feedbackByLocale": {
+              "ru": "Речь об одном подарке: es.",
+              "uk": "Йдеться про один подарунок: es."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-36:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — спросите об одном подарке",
+            "feedbackByLocale": {
+              "ru": "Soy относится к говорящему, а вопрос о подарке.",
+              "uk": "Soy стосується мовця, а запитання про подарунок."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-36:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это подарок?",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-36:i09:r1",
+          "text": "Плитки: regalo?"
+        },
+        {
+          "responseId": "es:lesson-02:session-36:i09:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-36:i09:r3",
+          "text": "¿es"
+        },
+        {
+          "responseId": "es:lesson-02:session-36:i09:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это подарок?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Es un regalo?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это подарок?",
+          "uk": "Зберіть фразу — це подарунок?"
+        },
+        "orderedTokens": [
+          "¿Es",
+          "un",
+          "regalo"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-36:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это подарок?",
+            "feedbackByLocale": {
+              "ru": "regalo мужского рода.",
+              "uk": "regalo чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-36:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — да, это игрушка",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-36:i10:r1",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-36:i10:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-36:i10:r3",
+          "text": "unos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — да, это игрушка",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — да, это игрушка",
+          "uk": "Вставте слово — так, це іграшка"
+        },
+        "gappedTargetPhrase": "Sí, es ___ juguete.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-36:i10:r1",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-02:session-36:i10:r2",
+            "text": "una"
+          },
+          {
+            "responseId": "es:lesson-02:session-36:i10:r3",
+            "text": "unos"
+          }
+        ],
+        "testedDimension": "Вставьте слово — да, это игрушка",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-36:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — да, это игрушка",
+            "feedbackByLocale": {
+              "ru": "Juguete мужского рода: un.",
+              "uk": "Juguete чоловічого роду: un."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-36:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — да, это игрушка",
+            "feedbackByLocale": {
+              "ru": "Игрушка одна: un.",
+              "uk": "Іграшка одна: un."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-36:i11",
+      "ordinal": 14,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-36:i11:r1",
+          "text": "Плитки: juguete?"
+        },
+        {
+          "responseId": "es:lesson-02:session-36:i11:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-36:i11:r3",
+          "text": "¿es"
+        },
+        {
+          "responseId": "es:lesson-02:session-36:i11:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-36:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-36:i11:audio",
+          "transcript": "¿Es un juguete?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "¿Es un juguete?",
+        "orderedTokens": [
+          "¿Es",
+          "un",
+          "juguete"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-36:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит un juguete.",
+              "uk": "звучить un juguete."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-36:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — это игрушка?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-36:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — это игрушка?",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-36:i12:audio",
+          "transcript": "¿Es un juguete?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Es un juguete?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-36:i13",
+      "ordinal": 16,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это не игрушка",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-36:i13:r1",
+          "text": "Плитки: juguete"
+        },
+        {
+          "responseId": "es:lesson-02:session-36:i13:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-36:i13:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-36:i13:r4",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-02:session-36:i13:r5",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это не игрушка",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No es un juguete.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это не игрушка",
+          "uk": "Зберіть фразу — це не іграшка"
+        },
+        "orderedTokens": [
+          "No",
+          "es",
+          "un",
+          "juguete"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-36:i13:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это не игрушка",
+            "feedbackByLocale": {
+              "ru": "juguete мужского рода.",
+              "uk": "juguete чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-36:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — да, это игрушка",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-36:i14:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — да, это игрушка",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-36:i14:audio",
+          "transcript": "Sí, es un juguete."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Sí, es un juguete.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 14,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "66bc6692c704edf62d401e57d89e973020972208457f7684d57d333d36b14961"
+}

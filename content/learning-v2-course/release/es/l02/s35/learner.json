@@ -1,0 +1,812 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-02:session-35",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-02:session-35:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cepillo",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-35:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cepillo",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-35:i01:audio",
+          "transcript": "cepillo"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-35:i01:r1",
+            "targetText": "cepillo",
+            "meaningByLocale": {
+              "ru": "щётка. Мужской род: el cepillo. 🔊 *cepillo*",
+              "uk": "щітка. Чоловічий рід: el cepillo. 🔊 *cepillo*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cepillo",
+          "definitionByLocale": {
+            "ru": "щётка. Мужской род: el cepillo. 🔊 *cepillo*",
+            "uk": "щітка. Чоловічий рід: el cepillo. 🔊 *cepillo*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-35:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-35:i02:r1",
+          "text": "cepillo"
+        },
+        {
+          "responseId": "es:lesson-02:session-35:i02:r2",
+          "text": "cuchillo"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-35:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-35:i02:audio",
+          "transcript": "cepillo"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-35:i02:r1",
+            "targetText": "cepillo",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-35:i02:r2",
+            "targetText": "cuchillo",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-35:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит cepillo — щётка.",
+              "uk": "Звучить cepillo — щітка."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-35:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — esponja",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-35:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — esponja",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-35:i03:audio",
+          "transcript": "esponja"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-35:i03:r1",
+            "targetText": "esponja",
+            "meaningByLocale": {
+              "ru": "губка. Женский род: la esponja. 🔊 *esponja*",
+              "uk": "губка. Жіночий рід: la esponja. 🔊 *esponja*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "esponja",
+          "definitionByLocale": {
+            "ru": "губка. Женский род: la esponja. 🔊 *esponja*",
+            "uk": "губка. Жіночий рід: la esponja. 🔊 *esponja*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-35:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-35:i04:r1",
+          "text": "esponja"
+        },
+        {
+          "responseId": "es:lesson-02:session-35:i04:r2",
+          "text": "espejo"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-35:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-35:i04:audio",
+          "transcript": "esponja"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-35:i04:r1",
+            "targetText": "esponja",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-35:i04:r2",
+            "targetText": "espejo",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-35:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит esponja — губка.",
+              "uk": "Звучить esponja — губка."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-35:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это щётка",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-35:i05:r1",
+          "text": "Плитки: cepillo"
+        },
+        {
+          "responseId": "es:lesson-02:session-35:i05:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-35:i05:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-35:i05:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это щётка",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es un cepillo.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это щётка",
+          "uk": "Зберіть фразу — це щітка"
+        },
+        "orderedTokens": [
+          "Es",
+          "un",
+          "cepillo"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-35:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это щётка",
+            "feedbackByLocale": {
+              "ru": "cepillo мужского рода.",
+              "uk": "cepillo чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-35:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — это не губка",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-35:i06:r1",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-02:session-35:i06:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-35:i06:r3",
+          "text": "la"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — это не губка",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это не губка",
+          "uk": "Вставте слово — це не губка"
+        },
+        "gappedTargetPhrase": "___ es una esponja.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-35:i06:r1",
+            "text": "no"
+          },
+          {
+            "responseId": "es:lesson-02:session-35:i06:r2",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-02:session-35:i06:r3",
+            "text": "la"
+          }
+        ],
+        "testedDimension": "Вставьте слово — это не губка",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-35:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это не губка",
+            "feedbackByLocale": {
+              "ru": "Для отрицания перед es нужно no.",
+              "uk": "Для заперечення перед es потрібне no."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-35:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это не губка",
+            "feedbackByLocale": {
+              "ru": "La не отрицает фразу: нужно no.",
+              "uk": "La не заперечує фразу: потрібне no."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-35:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это не губка",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-35:i07:r1",
+          "text": "Плитки: esponja"
+        },
+        {
+          "responseId": "es:lesson-02:session-35:i07:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-35:i07:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-35:i07:r4",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-02:session-35:i07:r5",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это не губка",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No es una esponja.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это не губка",
+          "uk": "Зберіть фразу — це не губка"
+        },
+        "orderedTokens": [
+          "No",
+          "es",
+          "una",
+          "esponja"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-35:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это не губка",
+            "feedbackByLocale": {
+              "ru": "esponja женского рода.",
+              "uk": "esponja жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-35:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — это губка",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-35:i08:r1",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-35:i08:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-35:i08:r3",
+          "text": "unos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — это губка",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это губка",
+          "uk": "Вставте слово — це губка"
+        },
+        "gappedTargetPhrase": "Es ___ esponja.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-35:i08:r1",
+            "text": "una"
+          },
+          {
+            "responseId": "es:lesson-02:session-35:i08:r2",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-02:session-35:i08:r3",
+            "text": "unos"
+          }
+        ],
+        "testedDimension": "Вставьте слово — это губка",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-35:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это губка",
+            "feedbackByLocale": {
+              "ru": "Esponja женского рода: una.",
+              "uk": "Esponja жіночого роду: una."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-35:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это губка",
+            "feedbackByLocale": {
+              "ru": "Речь об одной губке: una.",
+              "uk": "Йдеться про одну губку: una."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-35:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это не щётка",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-35:i09:r1",
+          "text": "Плитки: cepillo"
+        },
+        {
+          "responseId": "es:lesson-02:session-35:i09:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-35:i09:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-35:i09:r4",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-02:session-35:i09:r5",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это не щётка",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No es un cepillo.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это не щётка",
+          "uk": "Зберіть фразу — це не щітка"
+        },
+        "orderedTokens": [
+          "No",
+          "es",
+          "un",
+          "cepillo"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-35:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это не щётка",
+            "feedbackByLocale": {
+              "ru": "cepillo мужского рода.",
+              "uk": "cepillo чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-35:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — это не щётка",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-35:i10:r1",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-35:i10:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-35:i10:r3",
+          "text": "unas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — это не щётка",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это не щётка",
+          "uk": "Вставте слово — це не щітка"
+        },
+        "gappedTargetPhrase": "No es ___ cepillo.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-35:i10:r1",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-02:session-35:i10:r2",
+            "text": "una"
+          },
+          {
+            "responseId": "es:lesson-02:session-35:i10:r3",
+            "text": "unas"
+          }
+        ],
+        "testedDimension": "Вставьте слово — это не щётка",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-35:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это не щётка",
+            "feedbackByLocale": {
+              "ru": "Cepillo мужского рода: un.",
+              "uk": "Cepillo чоловічого роду: un."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-35:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это не щётка",
+            "feedbackByLocale": {
+              "ru": "Один предмет мужского рода требует un.",
+              "uk": "Один предмет чоловічого роду потребує un."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-35:i11",
+      "ordinal": 14,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-35:i11:r1",
+          "text": "Плитки: esponja"
+        },
+        {
+          "responseId": "es:lesson-02:session-35:i11:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-35:i11:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-35:i11:r4",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-02:session-35:i11:r5",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-35:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-35:i11:audio",
+          "transcript": "No es una esponja."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "No es una esponja.",
+        "orderedTokens": [
+          "No",
+          "es",
+          "una",
+          "esponja"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-35:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит una esponja.",
+              "uk": "звучить una esponja."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-35:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — это не щётка",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-35:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — это не щётка",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-35:i12:audio",
+          "transcript": "No es un cepillo."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No es un cepillo.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-35:i13",
+      "ordinal": 16,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — назовите губку правильно",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-35:i13:r1",
+          "text": "Плитки: esponja"
+        },
+        {
+          "responseId": "es:lesson-02:session-35:i13:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-35:i13:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-35:i13:r4",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — назовите губку правильно",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es una esponja.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — назовите губку правильно",
+          "uk": "Зберіть фразу — назвіть губку правильно"
+        },
+        "orderedTokens": [
+          "Es",
+          "una",
+          "esponja"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-35:i13:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — назовите губку правильно",
+            "feedbackByLocale": {
+              "ru": "esponja женского рода.",
+              "uk": "esponja жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-35:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — это губка",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-35:i14:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — это губка",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-35:i14:audio",
+          "transcript": "Es una esponja."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es una esponja.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 14,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "d72a497701533b33e21c6b0554c5662ebc1fcb775a644dd6d06e424db7f0b910"
+}

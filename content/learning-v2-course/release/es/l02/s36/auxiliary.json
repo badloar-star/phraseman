@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-02:session-36",
+  "entries": [
+    {
+      "interactionId": "es:lesson-02:session-36:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-36:intro1:r2": {
+          "ru": "Regalo мужского рода: un.",
+          "uk": "Regalo чоловічого роду: un."
+        },
+        "es:lesson-02:session-36:intro1:r3": {
+          "ru": "Подарок один: es.",
+          "uk": "Подарунок один: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-36:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-36:intro2:r2": {
+          "ru": "Juguete мужского рода: un.",
+          "uk": "Juguete чоловічого роду: un."
+        },
+        "es:lesson-02:session-36:intro2:r3": {
+          "ru": "Вы спрашиваете об одном предмете: es.",
+          "uk": "Ви питаєте про один предмет: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-36:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-36:intro3:r2": {
+          "ru": "Это отрицание: «Это не игрушка».",
+          "uk": "Це заперечення: «Це не іграшка»."
+        },
+        "es:lesson-02:session-36:intro3:r3": {
+          "ru": "Перед juguete нужно un.",
+          "uk": "Перед juguete потрібен un."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "813232c00dd759d022cdcd5a2bc6ffeebf9b895994a527f32e696390fc4e4347"
+}

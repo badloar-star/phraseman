@@ -1,0 +1,72 @@
+[
+  {
+    "interactionId": "es:lesson-02:session-34:i01",
+    "correctText": "almohada",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-34:i02",
+    "correctText": "almohada",
+    "correctResponseId": "es:lesson-02:session-34:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-34:i03",
+    "correctText": "manta",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-34:i04",
+    "correctText": "manta",
+    "correctResponseId": "es:lesson-02:session-34:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-34:i05",
+    "correctText": "La almohada es cómoda.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-34:i06",
+    "correctText": "son",
+    "correctResponseId": "es:lesson-02:session-34:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-34:i07",
+    "correctText": "Las almohadas son cómodas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-34:i08",
+    "correctText": "cómodas",
+    "correctResponseId": "es:lesson-02:session-34:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-34:i09",
+    "correctText": "Las mantas son nuevas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-34:i10",
+    "correctText": "nuevas",
+    "correctResponseId": "es:lesson-02:session-34:i10:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-34:i11",
+    "correctText": "Las almohadas son cómodas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-34:i12",
+    "correctText": "Las almohadas son cómodas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-34:i13",
+    "correctText": "La manta es nueva.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-34:i14",
+    "correctText": "Las mantas son nuevas.",
+    "correctResponseId": null
+  }
+]

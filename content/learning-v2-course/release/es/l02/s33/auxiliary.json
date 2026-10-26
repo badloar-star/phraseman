@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-02:session-33",
+  "entries": [
+    {
+      "interactionId": "es:lesson-02:session-33:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-33:intro1:r2": {
+          "ru": "Испанское espejo мужского рода.",
+          "uk": "Іспанське espejo чоловічого роду."
+        },
+        "es:lesson-02:session-33:intro1:r3": {
+          "ru": "К espejo подходит nuevo.",
+          "uk": "До espejo підходить nuevo."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-33:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-33:intro2:r2": {
+          "ru": "Для peine нужен un.",
+          "uk": "Для peine потрібен un."
+        },
+        "es:lesson-02:session-33:intro2:r3": {
+          "ru": "Расчёска одна: es.",
+          "uk": "Гребінець один: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-33:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-33:intro3:r2": {
+          "ru": "Для peine нужен el.",
+          "uk": "Для peine потрібен el."
+        },
+        "es:lesson-02:session-33:intro3:r3": {
+          "ru": "Один предмет требует es.",
+          "uk": "Один предмет потребує es."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e6269c959f73c2e229e9e345c83baa75a835117d84e3c71cc1f29024bc1dfad3"
+}

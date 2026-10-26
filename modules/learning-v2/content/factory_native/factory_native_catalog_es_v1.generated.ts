@@ -623,4 +623,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"узнать нужную вещь и назвать владельца после её названия.","uk":"упізнати потрібну річ і назвати власника після її назви."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 2, sessionOrdinal: 33,
+    sourceFingerprint: "b3089efc1d5e33ffa1e41854e68665882f8cb91534b30b15ae1887be2fd42cb1",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбрать знакомое описание по роду испанского названия предмета.","uk":"вибрати знайомий опис за родом іспанської назви предмета."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 2, sessionOrdinal: 34,
+    sourceFingerprint: "3bd89047539be8aaf0a7128e16a3b119fbd81142c102c056b9b2ebbe3277d0ff",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"согласовать знакомое описание с несколькими предметами женского рода.","uk":"узгодити знайомий опис із кількома предметами жіночого роду."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 2, sessionOrdinal: 35,
+    sourceFingerprint: "8d44e64c2fe6d09adf30c1acbb3146c50bc5ece1c758473e5eeb59d101894afe",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"отрицать название предмета с no es и назвать его правильно.","uk":"заперечувати назву предмета з no es і називати його правильно."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 2, sessionOrdinal: 36,
+    sourceFingerprint: "6ca2c60299d5266d0cdcea0cbe10a68d198323e10c4aeaf19e1fce70f4d6dd78",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"проверить своё предположение вопросом ¿Es un…?","uk":"перевірити своє припущення запитанням ¿Es un…?"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
+  }),
 ]);

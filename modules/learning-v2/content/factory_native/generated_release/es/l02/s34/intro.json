@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-02:session-34",
+  "learningOutcomeByLocale": {
+    "ru": "согласовать знакомое описание с несколькими предметами женского рода.",
+    "uk": "узгодити знайомий опис із кількома предметами жіночого роду."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-02:session-34:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Удобная подушка",
+        "uk": "Зручна подушка"
+      },
+      "bodyByLocale": {
+        "ru": "Вы пробуете подушку для гостя. `Almohada` — «подушка», слово женского рода: la almohada. Скажите `La almohada es cómoda` — «Подушка удобная». Соберите `la almohada` + `es` + `cómoda`. Один предмет женского рода требует la, es и женского cómoda.",
+        "uk": "Ви пробуєте подушку для гостя. `Almohada` — «подушка», слово жіночого роду: la almohada. Скажіть `La almohada es cómoda` — «Подушка зручна». Зберіть `la almohada` + `es` + `cómoda`. Один предмет жіночого роду потребує la, es і жіночого cómoda."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-34:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите, что подушка удобная.",
+          "uk": "Скажіть, що подушка зручна."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-34:intro1:r1",
+              "text": "La almohada es cómoda."
+            },
+            {
+              "responseId": "es:lesson-02:session-34:intro1:r2",
+              "text": "La almohada es cómodo."
+            },
+            {
+              "responseId": "es:lesson-02:session-34:intro1:r3",
+              "text": "La almohada son cómoda."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-34:intro1:r1",
+              "text": "La almohada es cómoda."
+            },
+            {
+              "responseId": "es:lesson-02:session-34:intro1:r2",
+              "text": "La almohada es cómodo."
+            },
+            {
+              "responseId": "es:lesson-02:session-34:intro1:r3",
+              "text": "La almohada son cómoda."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что подушка удобная.",
+          "uk": "Скажіть, що подушка зручна."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-02:session-34:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Две удобные подушки",
+        "uk": "Дві зручні подушки"
+      },
+      "bodyByLocale": {
+        "ru": "Вы проверили обе подушки. Скажите `Las almohadas son cómodas` — «Подушки удобные». Соберите `las almohadas` + `son` + `cómodas`. Теперь предметов несколько: la → las, almohada → almohadas, es → son, cómoda → cómodas. Вы уже знаете эти формы; соедините их в одной фразе.",
+        "uk": "Ви перевірили обидві подушки. Скажіть `Las almohadas son cómodas` — «Подушки зручні». Зберіть `las almohadas` + `son` + `cómodas`. Тепер предметів кілька: la → las, almohada → almohadas, es → son, cómoda → cómodas. Ви вже знаєте ці форми; поєднайте їх в одній фразі."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-34:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите, что подушки удобные.",
+          "uk": "Скажіть, що подушки зручні."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-34:intro2:r1",
+              "text": "Las almohadas son cómodas."
+            },
+            {
+              "responseId": "es:lesson-02:session-34:intro2:r2",
+              "text": "Las almohadas son cómoda."
+            },
+            {
+              "responseId": "es:lesson-02:session-34:intro2:r3",
+              "text": "Las almohadas es cómodas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-34:intro2:r1",
+              "text": "Las almohadas son cómodas."
+            },
+            {
+              "responseId": "es:lesson-02:session-34:intro2:r2",
+              "text": "Las almohadas son cómoda."
+            },
+            {
+              "responseId": "es:lesson-02:session-34:intro2:r3",
+              "text": "Las almohadas es cómodas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что подушки удобные.",
+          "uk": "Скажіть, що подушки зручні."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-02:session-34:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Новые одеяла",
+        "uk": "Нові ковдри"
+      },
+      "bodyByLocale": {
+        "ru": "Осталось разложить новые одеяла. `Manta` — «одеяло», слово женского рода: la manta; несколько — mantas. Скажите `Las mantas son nuevas` — «Одеяла новые». Соберите `las mantas` + `son` + `nuevas`. Из знакомого nuevo выберите женскую множественную форму nuevas: речь о нескольких mantas.",
+        "uk": "Залишилося розкласти нові ковдри. `Manta` — «ковдра», слово жіночого роду: la manta; кілька — mantas. Скажіть `Las mantas son nuevas` — «Ковдри нові». Зберіть `las mantas` + `son` + `nuevas`. Із знайомого nuevo виберіть жіночу множинну форму nuevas: йдеться про кілька mantas."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-34:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите, что одеяла новые.",
+          "uk": "Скажіть, що ковдри нові."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-34:intro3:r1",
+              "text": "Las mantas son nuevas."
+            },
+            {
+              "responseId": "es:lesson-02:session-34:intro3:r2",
+              "text": "Las mantas son nuevos."
+            },
+            {
+              "responseId": "es:lesson-02:session-34:intro3:r3",
+              "text": "Las mantas son nueva."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-34:intro3:r1",
+              "text": "Las mantas son nuevas."
+            },
+            {
+              "responseId": "es:lesson-02:session-34:intro3:r2",
+              "text": "Las mantas son nuevos."
+            },
+            {
+              "responseId": "es:lesson-02:session-34:intro3:r3",
+              "text": "Las mantas son nueva."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что одеяла новые.",
+          "uk": "Скажіть, що ковдри нові."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "dcdfcdcf1646f7c07c840f3239eeb9e71ba8241ee3dafe44985b53b0b5e4c271"
+}

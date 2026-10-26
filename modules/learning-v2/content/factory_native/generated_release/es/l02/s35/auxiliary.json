@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-02:session-35",
+  "entries": [
+    {
+      "interactionId": "es:lesson-02:session-35:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-35:intro1:r2": {
+          "ru": "Род выбираем по испанскому cepillo: un.",
+          "uk": "Рід вибираємо за іспанським cepillo: un."
+        },
+        "es:lesson-02:session-35:intro1:r3": {
+          "ru": "Предмет один: es.",
+          "uk": "Предмет один: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-35:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-35:intro2:r2": {
+          "ru": "В этой фразе no ставится перед es.",
+          "uk": "У цій фразі no ставиться перед es."
+        },
+        "es:lesson-02:session-35:intro2:r3": {
+          "ru": "Esponja женского рода: una.",
+          "uk": "Esponja жіночого роду: una."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-35:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-35:intro3:r2": {
+          "ru": "Cepillo мужского рода: un.",
+          "uk": "Cepillo чоловічого роду: un."
+        },
+        "es:lesson-02:session-35:intro3:r3": {
+          "ru": "Без no вы подтверждаете ошибочное название.",
+          "uk": "Без no ви підтверджуєте хибну назву."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f11bc36c6faa8ea320ff2d55f543f48a506f632c7a9fb996ffe53e6940f2de38"
+}

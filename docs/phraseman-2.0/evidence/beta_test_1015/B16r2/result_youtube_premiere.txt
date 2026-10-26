@@ -1,0 +1,3 @@
+ждём: lingman_videos
+10-15 15:02:35.896 I/ReactNativeJS(13432): [PUSH-TAP-DEV] simulate {"type":"youtube_premiere","videoId":"dev","channelId":"dev"}
+10-15 15:02:35.897 W/ReactNativeJS(13432): '[PUSH-TAP-DEV] after_route simulate', '{"notif":"youtube_premiere","ok":true}'

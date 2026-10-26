@@ -1,0 +1,2 @@
+ep1-102: 10-17 23:24:36.887 I/ReactNativeJS( 2450): [FIRESTORE-FIRST-TOUCH] installed default:locked(TypeError) getFirestore:locked(TypeError) ms=69651
+ep1-112: 10-17 23:25:50.740 I/ReactNativeJS( 3729): [FIRESTORE-FIRST-TOUCH] installed default:locked(TypeError) getFirestore:locked(TypeError) ms=143504

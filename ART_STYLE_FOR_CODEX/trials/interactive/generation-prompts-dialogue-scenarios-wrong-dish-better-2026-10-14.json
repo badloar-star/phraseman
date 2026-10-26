@@ -1,0 +1,14 @@
+{
+  "scenario": "wrong_dish_better",
+  "title": "Принесли не то, но вкуснее",
+  "generatedAt": "2026-10-14",
+  "style": "S2 matte clay",
+  "variants": [
+    "dinner plate with a petite unexpected pastry",
+    "serving cloche and surprise fruit tart",
+    "mismatched but appetizing plate and bowl",
+    "serving plate with aside blank menu-card form and surprise dessert",
+    "nested plates with a surprising small bowl"
+  ],
+  "constraints": ["true transparent RGBA", "no characters, hands or text", "cyan internal marker 3-8% of object for white accent extraction", "dark and light trial pairs", "trial location only"]
+}

@@ -29,10 +29,29 @@ export type DialogueV2LatencyTrace = Readonly<{
 
 const storage = new AsyncLocalStorage<DialogueV2LatencyTrace>();
 
+const ALLOWED_ERROR_CODES = new Set([
+  'access_denied',
+  'assistant_response_invalid',
+  'completion_absent',
+  'completion_unknown',
+  'dialog_free_limit',
+  'dialogue_v2_provider_deadline',
+  'dialogue_v2_provider_failed',
+  'provider_configuration_failure',
+  'provider_http_failure',
+  'provider_shape_failure',
+  'selection_mismatch',
+  'session_expired',
+  'turn_execution_failed',
+  'turn_in_progress',
+  'turn_replay_expired',
+  'voice_selection_unavailable',
+]);
+
 function errorCode(error: unknown): string {
   const value = error as { code?: unknown; message?: unknown } | null;
-  if (typeof value?.code === 'string') return value.code.slice(0, 80);
-  if (typeof value?.message === 'string') return value.message.slice(0, 80);
+  if (typeof value?.code === 'string' && ALLOWED_ERROR_CODES.has(value.code)) return value.code;
+  if (typeof value?.message === 'string' && ALLOWED_ERROR_CODES.has(value.message)) return value.message;
   return 'unknown';
 }
 

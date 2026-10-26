@@ -1,0 +1,31 @@
+14:34:25 старт B16
+14:34:50 тип reminder: ссылка (ждём: Главная)
+14:34:59 снимок notif_reminder
+14:35:00 тип reminder: снято, PUSH-TAP-DEV строк 1
+14:35:24 тип streak_at_risk: ссылка (ждём: lessons_list)
+14:35:34 снимок notif_streak_at_risk
+14:35:34 тип streak_at_risk: снято, PUSH-TAP-DEV строк 1
+14:35:59 тип upsell_d4: ссылка (ждём: пейвол notification_upsell)
+14:36:08 снимок notif_upsell_d4
+14:36:09 тип upsell_d4: снято, PUSH-TAP-DEV строк 1
+14:36:33 тип youtube_premiere: ссылка (ждём: lingman_videos)
+14:36:43 снимок notif_youtube_premiere
+14:36:43 тип youtube_premiere: снято, PUSH-TAP-DEV строк 1
+14:37:08 тип activity_like: ссылка (ждём: вкладка Друзья)
+14:37:18 снимок notif_activity_like
+14:37:18 тип activity_like: снято, PUSH-TAP-DEV строк 1
+14:37:42 тип premium_expiry_reminder: ссылка (ждём: Управление Plus)
+14:37:52 снимок notif_premium_expiry_reminder
+14:37:52 тип premium_expiry_reminder: снято, PUSH-TAP-DEV строк 1
+14:38:17 тип premium_expiry_vip: ссылка (ждём: пейвол vip_expired)
+14:38:26 снимок notif_premium_expiry_vip
+14:38:27 тип premium_expiry_vip: снято, PUSH-TAP-DEV строк 1
+14:38:51 тип spire_week_result: ссылка (ждём: Сообщество, Пик (или Главная при скрытом Пике))
+14:39:01 снимок notif_spire_week_result
+14:39:01 тип spire_week_result: снято, PUSH-TAP-DEV строк 1
+14:39:25 тип arena_friend_invite: ссылка (ждём: Главная)
+14:39:35 снимок notif_arena_friend_invite
+14:39:35 тип arena_friend_invite: снято, PUSH-TAP-DEV строк 1
+14:39:59 тип unknown_type: ссылка (ждём: Главная)
+14:40:09 снимок notif_unknown_type
+14:40:09 тип unknown_type: снято, PUSH-TAP-DEV строк 1

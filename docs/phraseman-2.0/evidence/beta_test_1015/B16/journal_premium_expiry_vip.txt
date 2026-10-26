@@ -1,0 +1,7 @@
+10-15 14:38:06.257 I/ReactNativeJS(10120): '[DEEPLINK] redirectSystemPath', '{"in":"phraseman:///","initial":true,"out":"/home"}'
+10-15 14:38:07.679 I/ReactNativeJS(10120): '[SPIRE]', '[SPIRE-GATE]', '{"lang":"ru","allowed":true,"reason":"ui_lang_allowed","where":"isSpireTabEnabled source=context"}'
+10-15 14:38:18.661 I/ReactNativeJS(10120): '[DEEPLINK] redirectSystemPath', '{"in":"phraseman://dev_state?notif=premium_expiry_vip&next=/(tabs)/home","initial":false,"out":"/dev_state?notif=premium_expiry_vip&next=/(tabs)/home"}'
+10-15 14:38:18.663 I/ReactNativeJS(10120): '[DEEPLINK] redirectSystemPath', '{"in":"phraseman://dev_state?notif=premium_expiry_vip&next=/(tabs)/home","initial":false,"out":"/dev_state?notif=premium_expiry_vip&next=/(tabs)/home"}'
+10-15 14:38:20.404 I/ReactNativeJS(10120): [PUSH-TAP-DEV] simulate {"type":"premium_expiry_reminder","kind":"vip"}
+10-15 14:38:20.653 I/ReactNativeJS(10120): [INFO] [PAYWALL-OPEN]: шапка: ctx=vip_expired source=notification_premium_expiry текст=vip_expired контекстная=true выгода=есть lang=ru
+10-15 14:38:20.666 I/ReactNativeJS(10120): '[PAYWALL-OPEN] решение окна', '{"decision":"show","reason":"show","context":"vip_expired","source":"notification_premium_expiry","shownContext":"vip_expired","accessResolved":true,"hasPremiumAccess":false,"cachedEntitlement":"free","waitCeilingP

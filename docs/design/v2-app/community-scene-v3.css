@@ -61,13 +61,13 @@
 /* ── плитки наборов: обложка в тоне сцены темы, без превью карточек ── */
 .cs-tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 12px 0 10px; transition: opacity .15s; }
 .cs-tiles.cs-fade { opacity: 0; }
-.cs-tile { position: relative; min-height: 158px; border-radius: 22px; overflow: hidden; color: #fff; padding: 12px; display: flex; flex-direction: column; box-shadow: var(--sh);
+.cs-tile { position: relative; min-height: 136px; border-radius: 22px; overflow: hidden; color: #fff; padding: 12px; display: flex; flex-direction: column; box-shadow: var(--sh);
   background: radial-gradient(90% 70% at 100% 0%, var(--st-glow), transparent 70%), linear-gradient(165deg, var(--st-top) 0%, var(--st-bot) 100%); }
 .cs-tr { display: flex; align-items: center; gap: 6px; }
 .cs-tr .qchip { height: 28px; padding: 0 9px; font-size: 13px; gap: 4px; }
 .cs-tr .qchip .io { font-size: 13px; }
 .cs-rank { margin-left: auto; width: 26px; height: 26px; border-radius: 13px; background: #fff; color: #121318; font-size: 13px; font-weight: 800; display: flex; align-items: center; justify-content: center; }
-.cs-tt { font-size: 17px; line-height: 21px; font-weight: 700; margin-top: auto; padding-top: 24px; letter-spacing: -.2px; text-wrap: balance; }
+.cs-tt { font-size: 17px; line-height: 21px; font-weight: 700; margin-top: auto; padding-top: 12px; letter-spacing: -.2px; text-wrap: balance; }
 .cs-tb { display: flex; align-items: center; gap: 6px; margin-top: 8px; font-size: 13px; font-weight: 700; color: rgba(255, 255, 255, .92); }
 .cs-tb .cs-like { margin-left: auto; }
 /* только что опубликованный набор — первым в «Новых», с одним мягким кольцом в цвете темы (подтверждение действия, не декор) */
@@ -164,3 +164,41 @@
 
 /* страница: кнопка «Повторить» рядом с темами */
 .chp.cs-replay { margin-left: auto; }
+
+/* Clear contest explanation and a finite celebration, started when visible. */
+.cs-rules { max-height: calc(100% - 80px); overflow-y: auto; }
+.cs-state-panel { min-height: 300px; }
+.cs-state-panel p { color: var(--sec); font-size: 16px; line-height: 24px; }
+.cs-state-icon { font-size: 36px; color: var(--acc); margin-top: 20px; }
+.cs-state-skeleton { height: 136px; border-radius: 22px; background: var(--ctl); }
+.cs-rule-intro { color: var(--sec); font-size: 15px; line-height: 21px; margin: 12px 0 8px; }
+.cs-rules .hm-row { align-items: flex-start; padding-top: 12px; padding-bottom: 12px; }
+.cs-rules .hm-row .s { font-size: 14px; line-height: 20px; margin-top: 4px; }
+.cs-rule-prizes { background: var(--ctl); border-radius: 18px; padding: 10px 14px; margin-top: 10px; }
+.cs-rule-prizes > div { display: flex; justify-content: space-between; gap: 12px; padding: 7px 0; font-size: 15px; }
+.cs-winner { top: 110px; padding: 24px 20px 16px; text-align: center; }
+.cs-victory-art { height: 190px; position: relative; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; }
+.cs-victory-rays { position: absolute; width: 240px; height: 240px; border-radius: 50%; background: repeating-conic-gradient(from 0deg, transparent 0deg 17deg, #F5BD5824 17deg 22deg), radial-gradient(circle, #F5BD5830, transparent 68%); mask-image: radial-gradient(circle, #000 15%, transparent 70%); }
+.cs-winner .cs-medal { width: 122px; height: 122px; border-radius: 50%; font-size: 65px; color: #82500C; background: linear-gradient(145deg, #FFF1BD, #F1BC52 65%, #D98A20); box-shadow: inset 0 2px 0 #FFF5D8, 0 10px 30px #A568282B; opacity: 1; }
+.cs-winner .cs-medal .io { filter: drop-shadow(0 2px 0 #FFF0BB); }
+.cs-winner-rank { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); padding: 9px 22px; border-radius: 12px; background: #F8D985; color: #65400B; font-size: 15px; font-weight: 800; letter-spacing: 2px; white-space: nowrap; }
+.cs-congrats { font-size: 31px; line-height: 38px; margin-top: 8px; }
+.cs-winner-copy { font-size: 16px; line-height: 23px; margin-top: 10px; }
+.cs-winner .cs-prize { margin-top: 22px; }
+.cs-recelebrate { display: block; margin: 8px auto 0; padding: 12px 8px; min-height: 44px; font: inherit; font-size: 13px; color: var(--sec); background: none; border: 0; cursor: pointer; }
+.cs-winner .cs-conf { height: 100%; z-index: 2; overflow: hidden; }
+.cs-winner .cs-conf i { width: 7px; height: 12px; }
+.cs-winner .cs-conf i:nth-child(3n) { width: 7px; height: 7px; border-radius: 50%; }
+.cs-ov.on .cs-winner .cs-medal, .cs-ov.on .cs-winner .cs-medal::before, .cs-ov.on .cs-winner .cs-late, .cs-ov.on .cs-winner .cs-conf i { animation: none; }
+.cs-ov.cs-celebrating .cs-winner .cs-medal { animation: cs-trophy-arrive 1s var(--cs-out) both; }
+.cs-ov.cs-celebrating .cs-victory-rays { animation: cs-rays 3.6s ease-out both; }
+.cs-ov.cs-celebrating .cs-winner .cs-late { animation: cs-up .6s var(--cs-out) var(--d, 0ms) both; }
+.cs-ov.cs-celebrating .cs-winner .cs-conf i { animation: cs-celebrate-fall 3.1s cubic-bezier(.2,.55,.55,1) calc(150ms + var(--d) * 1ms) both; }
+@keyframes cs-trophy-arrive { 0% { opacity: 0; transform: translateY(40px) scale(.4) rotate(-16deg); } 60% { opacity: 1; transform: translateY(-8px) scale(1.1) rotate(6deg); } 100% { opacity: 1; transform: none; } }
+@keyframes cs-rays { from { opacity: 0; transform: rotate(-35deg) scale(.7); } 30% { opacity: 1; } to { opacity: 1; transform: rotate(35deg) scale(1); } }
+@keyframes cs-celebrate-fall { 0% { opacity: 0; transform: translate(0,-20px) rotate(0deg); } 8%, 78% { opacity: 1; } 100% { opacity: 0; transform: translate(var(--dx),620px) rotate(var(--r)); } }
+@media (prefers-reduced-motion: reduce) {
+  .cs-winner *, .cs-winner *::before { animation: none !important; transition: none !important; }
+  .cs-winner .cs-conf { display: none; }
+  .cs-winner .cs-medal, .cs-winner .cs-late { opacity: 1; transform: none; }
+}

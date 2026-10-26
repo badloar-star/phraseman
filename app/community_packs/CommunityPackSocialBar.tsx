@@ -20,7 +20,7 @@
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { packAddFailureToast } from './packQuickAdd';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState, useSyncExternalStore } from 'react';
 import { logCardsOptimisticFrame, logCardsOptimisticStep, markCardsOptimisticTap } from '../flashcards/cards_optimistic_trace';
 import { Animated, Easing, Text, TouchableOpacity, View } from 'react-native';
 import { useLineScale } from '../../hooks/useLineScale';
@@ -46,11 +46,16 @@ import {
   formatCommentsCount,
   shouldShowCommentsCount,
 } from './packComments';
+import { DebugLogger } from '../debug-logger';
+import { packSocialLive } from './packSocialLive';
+import { captureAccountGeneration, isCurrentAccountGeneration, subscribeAccountGeneration } from '../account_generation';
 import { isCommunityPackLikedLocally, setCommunityPackLikedLocally } from './packSocialStorage';
 import { nestedBoxShadow } from '../../components/v2/ShadowSurface';
 import { noteSwallowedAs } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
-export type CommunityPackSocialVariant = 'row' | 'tile' | 'screen' | 'list' | 'previewMeta' | 'previewCta' | 'videoAdd' | 'videoAddRound' | 'setAdd' | 'setHeart';
+export type CommunityPackSocialVariant = 'row' | 'tile' | 'screen' | 'list' | 'previewMeta' | 'previewCta' | 'videoAdd' | 'videoAddRound' | 'setAdd' | 'setHeart' | 'sceneAdd' | 'sceneHeart' | 'sceneTileHeart';
+
+subscribeAccountGeneration(() => packSocialLive.reset());
 
 type Props = {
   pack: FlashcardMarketPack;
@@ -119,8 +124,8 @@ export default function CommunityPackSocialBar({
   const isPreviewCta = mode === 'previewCta';
   const isVideoAdd = mode === 'videoAdd';
   const isVideoAddRound = mode === 'videoAddRound';
-  const isSetAdd = mode === 'setAdd';
-  const isSetHeart = mode === 'setHeart';
+  const isSetAdd = mode === 'setAdd' || mode === 'sceneAdd';
+  const isSetHeart = mode === 'setHeart' || mode === 'sceneHeart' || mode === 'sceneTileHeart';
   // зачем: строки каталога, как и плитки, — без чтения членства (2 чтения Firestore на КАЖДЫЙ набор).
   // Экран просмотра тоже: набор ещё не добавлен, лайк закрыт — членство читать незачем.
   const isCatalog = isTile || isList || isPreviewMeta || isSetAdd || isSetHeart;
@@ -131,12 +136,15 @@ export default function CommunityPackSocialBar({
   // зачем (владелец 15.10, Ревизор a9486a249): внутри раздела «Видео»/«Карточки» язык — локальный выбор раздела, иначе набор из ролика на es лёг бы в чужой язык
   const studyTarget = useEffectiveStudyTarget(globalStudyTarget);
 
-  const [snapshot, setSnapshot] = useState<PackSocialSnapshot>(() => ({
-    likesCount: pack.likesCount ?? 0,
-    addedCount: pack.addedCount ?? 0,
-    liked: false,
-    added: owned,
-  }));
+  const readSnapshot = useCallback(() => packSocialLive.get(pack.id, {
+    likesCount: pack.likesCount ?? 0, addedCount: pack.addedCount ?? 0,
+    liked: false, added: owned,
+  }), [pack.id, pack.likesCount, pack.addedCount, owned]);
+  const snapshot = useSyncExternalStore(packSocialLive.subscribe, readSnapshot, readSnapshot);
+  const setSnapshot = useCallback((update: React.SetStateAction<PackSocialSnapshot>) => {
+    const previous = readSnapshot();
+    packSocialLive.set(pack.id, typeof update === 'function' ? update(previous) : update);
+  }, [pack.id, readSnapshot]);
 
   /**
    * Счётчик локальных действий пользователя (лайк / добавление).
@@ -154,11 +162,24 @@ export default function CommunityPackSocialBar({
   const likeInFlightRef = useRef(false);
 
   useEffect(() => {
+    let live = true;
+    const account = captureAccountGeneration();
+    const sequence = opSeqRef.current;
+    void isCommunityPackLikedLocally(pack.id).then(liked => {
+      if (!live || !isCurrentAccountGeneration(account) || sequence !== opSeqRef.current) return;
+      const shown = packSocialLive.intent(pack.id) ?? liked;
+      setSnapshot(previous => previous.liked === shown ? previous : { ...previous, liked: shown });
+    }).catch(error => DebugLogger.warn('pack-like:hydrate', String(error)));
+    return () => { live = false; };
+  }, [pack.id, setSnapshot]);
+
+  useEffect(() => {
     // зачем: на экране просмотра цифры читает соседний `previewMeta`; кнопке второе чтение того же документа не нужно.
     // зачем (аудит кнопок Карточек #14/#15, 15.10, 💸): набор ролика клиент знает как `video:<id>`, а документ сообщества — `video_<id>`; чтение шло по неверному id и давало 3 пустых чтения Firestore на КАЖДУЮ строку.
     // Кнопки «Добавить» у видео-наборов ни лайков, ни цифр не показывают — читать нечего.
-    if (isPreviewCta || isSetAdd || isSetHeart || isVideoAdd || isVideoAddRound) return undefined;
+    if (isPreviewCta || isSetAdd || mode === 'sceneTileHeart' || isVideoAdd || isVideoAddRound) return undefined;
     let cancelled = false;
+    const account = captureAccountGeneration();
     const seqAtStart = opSeqRef.current;
     void (async () => {
       /**
@@ -166,7 +187,7 @@ export default function CommunityPackSocialBar({
        * можно лайкнуть, — на экране набора. Плиткам каталога это лишние 2 чтения
        * Firestore КАЖДАЯ: их снимок обновляет событие `community_pack_like_changed`.
        */
-      const userId = isCatalog ? null : await getCanonicalUserId().catch(noteSwallowedAs('CommunityPackSocialBar:useEffect.getCanonicalUserId', null));
+      const userId = isCatalog && !isSetHeart ? null : await getCanonicalUserId().catch(noteSwallowedAs('CommunityPackSocialBar:useEffect.getCanonicalUserId', null));
       const [liked, state] = await Promise.all([
         isCommunityPackLikedLocally(pack.id).catch(noteSwallowedAs('CommunityPackSocialBar:useEffect.isCommunityPackLikedLocally', false)),
         fetchCommunityPackSocialState(pack.id, userId).catch(() => ({
@@ -174,14 +195,14 @@ export default function CommunityPackSocialBar({
           membership: null,
         })),
       ]);
-      if (cancelled || opSeqRef.current !== seqAtStart) return;
+      if (cancelled || !isCurrentAccountGeneration(account) || opSeqRef.current !== seqAtStart) return;
       // зачем (проверка координатора 15.10, дыра №5): флаг лайка читался только из локального хранилища, а membership шла лишь в пересчёт цифры. После выхода/смены аккаунта (ACC-SWITCH стирает локальный флаг)
       // сердце оставалось пустым, а цифра показывала на один меньше серверной. Сервер говорит «лайк есть» — берём его и восстанавливаем локальный флаг.
       const serverLiked = state.membership?.liked === true;
-      const likedNow = liked || serverLiked;
+      const likedNow = packSocialLive.intent(pack.id) ?? (liked || serverLiked);
       // обратный случай (локально «есть», на сервере «нет») НЕ сбрасываем: это может быть ещё не доставленный лайк (решение координатора 15.10)
       console.log(`[PACK-LIKE] reconcile pack=${pack.id} source=${serverLiked && !liked ? 'server' : 'local'} local=${String(liked)} server=${state.membership ? String(serverLiked) : 'n/a'} shown=${String(likedNow)}`); // guard-ok: ветка решения
-      if (serverLiked && !liked) {
+      if (serverLiked && !liked && packSocialLive.intent(pack.id) !== false) {
         void setCommunityPackLikedLocally(pack.id, true).catch((error: unknown) => {
           console.warn(`[PACK-LIKE] ${pack.id}: восстановление локального флага не удалось`, error instanceof Error ? error.message : String(error)); // guard-ok: catch называет причину
         });
@@ -198,7 +219,7 @@ export default function CommunityPackSocialBar({
     return () => {
       cancelled = true;
     };
-  }, [pack.id, pack.likesCount, pack.addedCount, owned, isCatalog, isPreviewCta, isSetAdd, isSetHeart, isVideoAdd, isVideoAddRound]);
+  }, [pack.id, pack.likesCount, pack.addedCount, owned, isCatalog, isPreviewCta, isSetAdd, isSetHeart, isVideoAdd, isVideoAddRound, mode, setSnapshot]);
 
   /**
    * Счётчик откликов.
@@ -236,10 +257,11 @@ export default function CommunityPackSocialBar({
     const sub = onAppEvent('community_pack_like_changed', (e) => {
       if (e.packId !== pack.id) return;
       opSeqRef.current += 1;
+      packSocialLive.setIntent(pack.id, e.liked);
       setSnapshot((prev) => (prev.liked === e.liked ? prev : toggleLikeOptimistic(prev)));
     });
     return () => sub.remove();
-  }, [pack.id]);
+  }, [pack.id, setSnapshot]);
 
   const isAdded = owned || snapshot.added;
 
@@ -253,44 +275,25 @@ export default function CommunityPackSocialBar({
     ]).start();
   }, [likePop]);
 
-  const likeLockedToast = useCallback(() => {
-    emitAppEvent(
-      'action_toast',
-      actionToastTri('info', {
-        ru: 'Сначала добавь набор себе — потом можно поставить лайк.',
-        uk: 'Спершу додай набір собі — потім можна поставити лайк.',
-        es: 'Primero añade el pack; después podrás darle me gusta.', en: 'First add the pack to your own; then you can like it.',
-        'pt-BR': 'Primeiro adicione o pacote; depois você pode curtir.',
-        vi: 'Hãy thêm bộ thẻ trước, sau đó bạn có thể thích.',
-        id: 'Tambahkan paket dulu, setelah itu kamu bisa menyukainya.',
-        tr: 'Önce paketi ekle, sonra beğenebilirsin.',
-        pl: 'Najpierw dodaj zestaw do siebie — potem możesz polubić.',
-      }),
-    );
-  }, []);
-
   const onLikePress = useCallback(() => {
-    if (!isAdded) {
-      likeLockedToast();
-      return;
-    }
-    // зачем (аудит Optimistic UI, координатор 15.10, дыра №6): пока идёт запись «Добавить себе», isAdded оптимистичный: лайк в этот момент обгонял откат добавления (кнопка навсегда «В моих», набора нет)
-    if (addInFlightRef.current) {
-      console.log(`[OPT-UI] pack_like ignored reason=add_in_flight pack=${pack.id}`); // guard-ok: ранний выход пишет причину
+    if (pack.authorStableId && pack.authorStableId === captureAccountGeneration().stableId) {
+      emitAppEvent('action_toast', actionToastTri('info', { ru: 'Свой набор поддержать сердечком нельзя.', uk: 'Власний набір підтримати сердечком не можна.', en: 'You cannot give your own pack a heart.', es: 'No puedes dar un corazón a tu propio pack.' }));
       return;
     }
     // зачем (координатор 18.10, решение по аудиту (в)): пока лайк в полёте, повторный тап не ставится в очередь — иначе при отказе облака
     // второй тап переворачивал уже откаченное сердце. Один запрос за раз; тап в это время пишет причину и ничего не меняет.
-    if (likeInFlightRef.current) {
+    if (likeInFlightRef.current || !packSocialLive.beginLike(pack.id)) {
       console.log(`[OPT-UI] pack_like ignored reason=like_in_flight pack=${pack.id}`); // guard-ok: ранний выход пишет причину
       return;
     }
     likeInFlightRef.current = true;
+    const account = captureAccountGeneration();
     runLikePop();
     /** Оптимистично: цифра меняется сразу, сервер догоняет. */
     const expectedLiked = !snapshot.liked;
     opSeqRef.current += 1;
-    setSnapshot((prev) => toggleLikeOptimistic(prev));
+    packSocialLive.setLiked(pack.id, expectedLiked);
+    emitAppEvent('community_pack_like_changed', { packId: pack.id, liked: expectedLiked });
     const likeFailedToast = () => {
         // зачем (аудит Optimistic UI 05.10, п.4): откат больше не молчит — как у избранного видео.
         emitAppEvent('action_toast', expectedLiked
@@ -311,21 +314,25 @@ export default function CommunityPackSocialBar({
     void (async () => {
       let res: Awaited<ReturnType<typeof toggleCommunityPackLike>>;
       try {
-        res = await toggleCommunityPackLike(pack.id);
+        res = await toggleCommunityPackLike(pack.id, expectedLiked, true);
       } catch (error) {
+        if (!isCurrentAccountGeneration(account)) return;
         // зачем (FINAL_PHASE п.7): исключение оставляло цифру перевёрнутой навсегда — откатываем.
         console.warn(`[PACK-LIKE] ${pack.id}: переключение не удалось — откат к liked=${!expectedLiked}`, error); // guard-ok: catch называет причину
-        setSnapshot((prev) => (prev.liked === expectedLiked ? toggleLikeOptimistic(prev) : prev));
+        packSocialLive.setLiked(pack.id, !expectedLiked);
+        emitAppEvent('community_pack_like_changed', { packId: pack.id, liked: !expectedLiked });
         likeFailedToast();
         return;
       } finally {
         likeInFlightRef.current = false;
+        if (isCurrentAccountGeneration(account)) packSocialLive.endLike(pack.id);
       }
       /**
        * Сверяемся с фактическим состоянием на устройстве: если параллельное нажатие
        * увело его в другую сторону, приводим цифру к правде, а не оставляем расхождение.
        * Отказ облака (rejected) вернул флаг назад — та же сверка откатывает сердце и цифру, плюс тост.
        */
+      if (!isCurrentAccountGeneration(account)) return;
       if (res.rejected) {
         console.warn(`[PACK-LIKE] ${pack.id}: облако не приняло — откат к liked=${res.liked}`); // guard-ok: откат по отказу облака
         likeFailedToast();
@@ -333,7 +340,7 @@ export default function CommunityPackSocialBar({
       if (res.liked === expectedLiked) return;
       setSnapshot((prev) => (prev.liked === res.liked ? prev : toggleLikeOptimistic(prev)));
     })();
-  }, [isAdded, likeLockedToast, runLikePop, pack.id, snapshot.liked]);
+  }, [runLikePop, pack.id, pack.authorStableId, snapshot.liked, setSnapshot]);
 
   const onAddPress = useCallback(() => {
     /**
@@ -415,7 +422,7 @@ export default function CommunityPackSocialBar({
       // («этот набор добавить нельзя»). Прежний текст «Проверь связь» отправлял человека чинить интернет зря.
       emitAppEvent('action_toast', packAddFailureToast(res));
     })().finally(() => { addInFlightRef.current = false; });
-  }, [pack, onAdded, studyTarget, isAdded, onRequestPurchase, snapshot]);
+  }, [pack, onAdded, studyTarget, isAdded, onRequestPurchase, snapshot, setSnapshot]);
 
   const addedLabel = triLang(lang, {
     ru: 'добавили', uk: 'додали', en: 'added', es: 'lo añadieron',
@@ -437,19 +444,7 @@ export default function CommunityPackSocialBar({
     ru: 'Нравится', uk: 'Подобається', en: 'Like', es: 'Me gusta',
     'pt-BR': 'Curtir', vi: 'Thích', id: 'Suka', tr: 'Beğen', pl: 'Lubię to',
   });
-  const likeLockedHint = triLang(lang, {
-    ru: 'Лайк — после добавления',
-    uk: 'Лайк — після додавання',
-    en: 'Like it after adding',
-    es: 'Me gusta tras añadirlo',
-    'pt-BR': 'Curtir após adicionar',
-    vi: 'Thích sau khi thêm',
-    id: 'Suka setelah ditambahkan',
-    tr: 'Beğeni eklendikten sonra',
-    pl: 'Polubienie po dodaniu',
-  });
-
-  const likeA11y = isAdded ? 'qa-pack-like' : 'qa-pack-like-locked';
+  const likeA11y = 'qa-pack-like';
 
   /**
    * Счётчик откликов «💬 N» — третьим после лайков и добавлений.
@@ -544,8 +539,8 @@ export default function CommunityPackSocialBar({
           testID={`pack-like-${pack.id}`}
           accessibilityRole="button"
           accessibilityLabel={likeA11y}
-          accessibilityState={{ disabled: !isAdded, selected: snapshot.liked }}
-          accessibilityHint={isAdded ? undefined : likeLockedHint}
+          accessibilityState={{ selected: snapshot.liked }}
+
           activeOpacity={0.85}
           onPress={onLikePress}
           hitSlop={{ top: 10, bottom: 10, left: 8, right: 8 }}
@@ -561,6 +556,15 @@ export default function CommunityPackSocialBar({
     );
   }
 
+  if (mode === 'sceneHeart' || mode === 'sceneTileHeart') {
+    const compact = mode === 'sceneTileHeart';
+    return <TouchableOpacity testID={`pack-like-${pack.id}`} accessibilityRole="button" accessibilityLabel={likeLabel} accessibilityState={{ selected: snapshot.liked }}  onPress={event => { event.stopPropagation(); void onLikePress(); }} activeOpacity={.85} style={{ minHeight: compact ? 28 : 48, minWidth: 44, borderRadius: 24, paddingHorizontal: compact ? 2 : 16, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6, backgroundColor: compact ? 'transparent' : 'rgba(255,255,255,.17)' }}>
+      <Animated.View style={{ transform: [{ scale: likePop }] }}><Ionicons name={snapshot.liked ? 'heart' : 'heart-outline'} size={compact ? 14 : 20} color="#FFFFFF" /></Animated.View><Text style={{ color: '#FFFFFF', fontSize: compact ? 13 : 16, fontWeight: '700' }}>{snapshot.likesCount}</Text>
+    </TouchableOpacity>;
+  }
+  if (mode === 'sceneAdd') {
+    return <TouchableOpacity testID={`pack-add-${pack.id}`} accessibilityRole="button" accessibilityLabel={isAdded ? ownedLabel : addLabel} disabled={isAdded} onPress={onAddPress} activeOpacity={.85} style={{ flex: 1, minHeight: 48, borderRadius: 24, backgroundColor: '#FFFFFF', flexDirection: 'row', gap: 8, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 12 }}><Ionicons name={isAdded ? 'checkmark' : 'add'} size={22} color="#18212A" /><Text style={{ color: '#18212A', fontSize: 16, fontWeight: '700' }}>{isAdded ? ownedLabel : addLabel}</Text></TouchableOpacity>;
+  }
   if (isSetHeart) {
     // зачем (cards-v2 setOther(false): круглое сердце 48 рядом с «Добавить себе +»): правило владельца «лайк — после добавления» сохранено:
     // до добавления сердце приглушено и объясняет причину тостом (onLikePress), после — ставит лайк.
@@ -572,7 +576,7 @@ export default function CommunityPackSocialBar({
         icon={snapshot.liked ? 'heart' : 'heart-outline'}
         label={likeLabel}
         onPress={onLikePress}
-        style={{ opacity: isAdded ? 1 : 0.5 }}
+        style={{ opacity: 1 }}
       />
     );
   }
@@ -701,8 +705,8 @@ export default function CommunityPackSocialBar({
           testID={`pack-like-${pack.id}`}
           accessibilityRole="button"
           accessibilityLabel={likeA11y}
-          accessibilityState={{ disabled: !isAdded, selected: snapshot.liked }}
-          accessibilityHint={isAdded ? undefined : likeLockedHint}
+          accessibilityState={{ selected: snapshot.liked }}
+
           accessible
           activeOpacity={0.85}
           onPress={onLikePress}
@@ -714,7 +718,7 @@ export default function CommunityPackSocialBar({
             minHeight: 44,
             paddingHorizontal: 8,
             // До добавления лайк приглушён (макет: 50%), но остаётся нажимаемым — тост объяснит.
-            opacity: isAdded ? 1 : 0.5,
+            opacity: 1,
           }}
         >
           <Animated.View style={{ transform: [{ scale: likePop }] }}>
@@ -778,21 +782,21 @@ export default function CommunityPackSocialBar({
           testID={`pack-like-${pack.id}`}
           accessibilityRole="button"
           accessibilityLabel={likeA11y}
-          accessibilityState={{ disabled: !isAdded, selected: snapshot.liked }}
+          accessibilityState={{ selected: snapshot.liked }}
           onPress={onLikePress}
           hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-          style={{ flexDirection: 'row', alignItems: 'center', gap: 5, opacity: isAdded ? 1 : 0.5 }}
+          style={{ flexDirection: 'row', alignItems: 'center', gap: 5, opacity: 1 }}
         >
           <Animated.View style={{ transform: [{ scale: likePop }] }}>
             <Ionicons
               name={snapshot.liked ? 'heart' : 'heart-outline'}
               size={18}
-              color={snapshot.liked && isAdded ? g.text : g.secondary}
+              color={snapshot.liked ? g.text : g.secondary}
             />
           </Animated.View>
           <Text
             style={{
-              color: snapshot.liked && isAdded ? g.text : g.secondary,
+              color: snapshot.liked ? g.text : g.secondary,
               fontSize: 13,
               fontWeight: '700',
             }}

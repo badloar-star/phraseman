@@ -1,0 +1,14 @@
+{
+  "tool": "built-in image_gen; no project API key used",
+  "scenarioId": "train_station",
+  "candidatePrefix": "dialog_scene_train_station_option_",
+  "concepts": [
+    "blank ticket stub with seal",
+    "blank platform post",
+    "station clock without numerals",
+    "luggage trolley with bag",
+    "rail-switch lever assembly"
+  ],
+  "style": "S2 matte clay; graphite dark, derived warm ivory light, true alpha, separate white accent",
+  "status": "Five options generated for both modes; per-mode mask/size logs are train-station-preparation-dark.log and train-station-preparation-light.log. All await owner visual review."
+}

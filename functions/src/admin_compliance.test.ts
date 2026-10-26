@@ -5,6 +5,7 @@ import {
   isMaxVoiceSafetyFlag,
   normalizeSafetyListInput,
   normalizeSafetyMarkInput,
+  requireComplianceAdmin,
   safetyFlagMatchesFilter,
 } from './admin_compliance';
 
@@ -56,11 +57,34 @@ describe('admin compliance pure contracts', () => {
     )).toBe(false);
   });
 
-  test('callable source enforces App Check, permissions, exact counts, audit and honest pagination', () => {
+  test('allows authorized compliance reads without App Check while preserving auth and role checks', () => {
+    expect(requireComplianceAdmin({
+      auth: { uid: 'support-1', token: { admin: true, adminRole: 'support' } },
+    }, 'diagnostics.read')).toMatchObject({ actorUid: 'support-1', role: 'support' });
+    expect(() => requireComplianceAdmin({}, 'diagnostics.read')).toThrow('Authentication required');
+    expect(() => requireComplianceAdmin({
+      auth: { uid: 'user-1', token: { admin: false } },
+    }, 'diagnostics.read')).toThrow('Permission denied');
+    expect(() => requireComplianceAdmin({
+      auth: { uid: 'content-1', token: { admin: true, adminRole: 'content_editor' } },
+    }, 'diagnostics.read')).toThrow('Permission denied');
+  });
+
+  test('keeps compliance status writes permission-gated without requiring App Check', () => {
+    expect(requireComplianceAdmin({
+      auth: { uid: 'developer-1', token: { admin: true, adminRole: 'developer' } },
+    }, 'diagnostics.status.write')).toMatchObject({ actorUid: 'developer-1', role: 'developer' });
+    expect(() => requireComplianceAdmin({
+      auth: { uid: 'support-1', token: { admin: true, adminRole: 'support' } },
+    }, 'diagnostics.status.write')).toThrow('Permission denied');
+  });
+
+  test('callable source follows the shared admin App Check policy, permissions, exact counts, audit and honest pagination', () => {
     const source = readFileSync(join(__dirname, 'admin_compliance.ts'), 'utf8');
-    expect(source).toContain("if (!request.app)");
-    expect(source).toContain("requireAdmin(request, 'diagnostics.read')");
-    expect(source).toContain("requireAdmin(request, 'diagnostics.status.write')");
+    expect(source).toContain('requireAdminAppCheck(request)');
+    expect(source).toContain('enforceAppCheck: ENFORCE_APP_CHECK_ADMIN');
+    expect(source).toContain("requireComplianceAdmin(request, 'diagnostics.read')");
+    expect(source).toContain("requireComplianceAdmin(request, 'diagnostics.status.write')");
     expect(source).toContain('.count().get()');
     expect(source).toContain("orderBy('createdAtMs', 'desc')");
     expect(source).toContain("phase: 'legacy'");

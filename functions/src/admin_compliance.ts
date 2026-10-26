@@ -3,7 +3,7 @@ import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { createAuditRecord } from './admin/audit_contract';
 import { hasPermission, roleFromAdminToken } from './admin/permissions';
-import { ENFORCE_APP_CHECK, ENFORCE_APP_CHECK_SENSITIVE } from './callable_options';
+import { ENFORCE_APP_CHECK_ADMIN, requireAdminAppCheck } from './callable_options';
 
 const REGION = 'us-central1';
 const CONSENTS = 'user_consents';
@@ -31,8 +31,8 @@ function requiredText(value: unknown, field: string, max = 500): string {
   return result;
 }
 
-function requireAdmin(request: { app?: unknown; auth?: { uid?: string; token?: unknown } }, permission: 'diagnostics.read' | 'diagnostics.status.write') {
-  if (!request.app) throw new HttpsError('failed-precondition', 'App Check required');
+export function requireComplianceAdmin(request: { app?: unknown; auth?: { uid?: string; token?: unknown } }, permission: 'diagnostics.read' | 'diagnostics.status.write') {
+  requireAdminAppCheck(request);
   const actorUid = request.auth?.uid?.trim() ?? '';
   if (!actorUid) throw new HttpsError('unauthenticated', 'Authentication required');
   const role = roleFromAdminToken(request.auth?.token);
@@ -169,9 +169,9 @@ async function complianceOverview(db: FirebaseFirestore.Firestore) {
 }
 
 export const adminGetComplianceOverview = onCall({
-  region: REGION, enforceAppCheck: ENFORCE_APP_CHECK, timeoutSeconds: 30, memory: '256MiB',
+  region: REGION, enforceAppCheck: ENFORCE_APP_CHECK_ADMIN, timeoutSeconds: 30, memory: '256MiB',
 }, async (request) => {
-  requireAdmin(request, 'diagnostics.read');
+  requireComplianceAdmin(request, 'diagnostics.read');
   return complianceOverview(admin.firestore());
 });
 
@@ -224,9 +224,9 @@ async function listSafetyFlagsForIdentity(
 }
 
 export const adminListSafetyFlags = onCall({
-  region: REGION, enforceAppCheck: ENFORCE_APP_CHECK, timeoutSeconds: 30, memory: '256MiB',
+  region: REGION, enforceAppCheck: ENFORCE_APP_CHECK_ADMIN, timeoutSeconds: 30, memory: '256MiB',
 }, async (request) => {
-  requireAdmin(request, 'diagnostics.read');
+  requireComplianceAdmin(request, 'diagnostics.read');
   const filter = normalizeSafetyListInput(request.data);
   const db = admin.firestore();
   if (filter.identity) return listSafetyFlagsForIdentity(db, filter);
@@ -284,9 +284,9 @@ export const adminListSafetyFlags = onCall({
 });
 
 export const adminMarkSafetyFlagsHandled = onCall({
-  region: REGION, enforceAppCheck: ENFORCE_APP_CHECK_SENSITIVE, timeoutSeconds: 30, memory: '256MiB',
+  region: REGION, enforceAppCheck: ENFORCE_APP_CHECK_ADMIN, timeoutSeconds: 30, memory: '256MiB',
 }, async (request) => {
-  const { actorUid, role } = requireAdmin(request, 'diagnostics.status.write');
+  const { actorUid, role } = requireComplianceAdmin(request, 'diagnostics.status.write');
   const input = normalizeSafetyMarkInput(request.data);
   const db = admin.firestore();
   const fingerprint = createHash('sha256').update(JSON.stringify({ ids: [...input.ids].sort(), reason: input.reason, requestId: input.requestId })).digest('hex');

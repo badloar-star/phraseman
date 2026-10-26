@@ -67,3 +67,13 @@ Governance-ID: TG-CC464645FE5B (4 неправды о данных: тексты
 Governance-ID: TG-C6091DBEE9DC (выбор владельца: 3 обещания, варианты А/Б)
 
 Governance-ID: TG-3516A999A4DB (сводка ночи Переводчика для владельца)
+
+Governance-ID: TG-7B77656346D0 (банки экзаменов глав v2: уроки 04–07)
+
+Governance-ID: TG-11C9B38ABEB1 (коммиты банков 05–07 и PROGRESS)
+
+Governance-ID: TG-BE6DB7F086F8 (подключение банков 04–07 в registry_l04_l07)
+
+Governance-ID: TG-AFFEB051F49A (банки 04–07: вернуть «?», вопросы урока 6)
+
+Governance-ID: TG-8B34EA017BF3 (вернуть варианты с ’s в банки 04–07, PROGRESS)

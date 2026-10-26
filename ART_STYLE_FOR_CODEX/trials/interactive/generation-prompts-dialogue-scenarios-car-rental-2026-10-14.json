@@ -1,0 +1,14 @@
+{
+  "tool": "built-in image_gen; no project API key used",
+  "scenarioId": "car_rental",
+  "candidatePrefix": "dialog_scene_car_rental_option_",
+  "concepts": [
+    "car with blank key fob",
+    "key with blank rental tag",
+    "closed blank agreement folio",
+    "open car door and suitcase",
+    "car wheel and tagged key"
+  ],
+  "style": "S2 matte monochrome clay; dark graphite / derived warm ivory light; true alpha and separate white accent",
+  "status": "Five dark/light candidates generated; per-mode measurements are car-rental-preparation-dark.log and car-rental-preparation-light.log. Candidates remain unapproved."
+}

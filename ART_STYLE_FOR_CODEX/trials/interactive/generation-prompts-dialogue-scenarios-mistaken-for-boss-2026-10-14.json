@@ -1,0 +1,14 @@
+{
+  "scenario": "mistaken_for_boss",
+  "title": "Тебя приняли за нового шефа",
+  "generatedAt": "2026-10-14",
+  "style": "S2 matte clay",
+  "variants": [
+    "empty executive chair and blank visitor badge",
+    "blank office door plaque and new key",
+    "briefcase, desk bell, and misaligned blank nameplate",
+    "document folder, access card, and empty chair silhouette",
+    "desk organizer, key, and blank upright nameplate"
+  ],
+  "constraints": ["true transparent RGBA", "no people, portraits, crown or text", "cyan internal marker for separate white accent extraction", "dark/light trial pairs", "trial location only"]
+}

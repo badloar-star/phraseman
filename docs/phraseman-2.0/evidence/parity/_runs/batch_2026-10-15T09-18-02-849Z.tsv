@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+community-006	2026-10-15T09:18:51.585Z	error	17341	step_target_not_found:#friend-request-row-dev-demo-friend-request-1+ждали_metro_31мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-15T09-18-02-849Z/community-006.error.png	0

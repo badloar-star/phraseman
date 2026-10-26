@@ -52,12 +52,54 @@ assert.match(get('screens').innerHTML,/light\/cards_option_05.webp/);
 vm.runInContext("priority='mistakes_entry';render()",context);
 assert.match(get('screens').innerHTML,/mistakes_option_01.webp/);
 const config=vm.runInContext('CONFIG',context);
+const requirements=JSON.parse(fs.readFileSync(path.join(root,'requirements.json'),'utf8'));
+for(const item of requirements.dialogueThemes){const id=typeof item==='string'?item:item.id;assert.ok(Array.isArray(config.candidates[id]),'Dialogue theme must have a picker: '+id);}
+for(const item of requirements.scenarios)assert.ok(Array.isArray(config.candidates['dialog_scene_'+item.id]),'Dialogue scenario must have a picker: '+item.id);
+for(const category of requirements.uiCategories)for(const item of category.icons)assert.ok(Array.isArray(config.candidates[item.id]),'Owner-listed UI icon must have a picker: '+item.id);
+assert.match(html,/id="dialogueThemePreview"/,'Dialogue icon gallery needs a topic-to-screen preview control');
+assert.equal(vm.runInContext('typeof applyDialogueThemeArt',context),'function','Selected dialogue topic must update the original dialogue screen preview');
+assert.equal(config.candidates.dialogue_airplane.length,5,'Airplane theme must expose all five generated choices');
+assert.equal(config.candidates.dialogue_cup.length,5,'Generated cup options must be exposed in the dialogue theme picker');
+assert.match(html,/id="dialogueScenarioPreview"/,'Individual dialogue scenarios need a selector in the full-screen mockup');
+assert.equal(vm.runInContext('typeof applyDialogScenarioArt',context),'function','Selected scenario art must update its real scenario card');
+assert.equal(config.candidates.dialog_scene_restaurant.length,5,'Restaurant scenario must expose all five generated choices');
+const scenarioMed={dataset:{},innerHTML:'<svg>original scenario icon</svg>'};
+const scenarioTitle={dataset:{},textContent:'Закажи кофе'};
+const scenarioCard={querySelector(selector){if(selector==='.ti')return scenarioTitle;if(selector==='.med')return scenarioMed;return null;}};
+vm.runInContext("dialogueScenarioSelect.value='restaurant';show='light'",context);
+context.scenarioTestDoc={querySelectorAll:selector=>selector==='.brief'?[scenarioCard]:[]};
+vm.runInContext('applyDialogScenarioArt(scenarioTestDoc)',context);
+assert.match(scenarioMed.innerHTML,/dialog_scene_restaurant_option_01r1\.webp/,'Selected scenario must replace the actual matching brief-card icon');
+assert.equal(scenarioTitle.textContent,'В ресторане','Scenario preview title must follow the selected real scenario');
+const dialogueTile={dataset:{},innerHTML:'<svg>original</svg>'};
+const dialogueCard={querySelector(selector){if(selector==='.grow div')return {textContent:'Повседневное'};if(selector==='.tile')return dialogueTile;return null;}};
+vm.runInContext("dialogueThemeSelect.value='dialogue_cup'",context);
+context.dialogueTestDoc={querySelectorAll:selector=>selector==='.ph .card.c2'?[dialogueCard]:[]};
+vm.runInContext("applyDialogueThemeArt(dialogueTestDoc)",context);
+assert.match(dialogueTile.innerHTML,/dialogue_cup_option_01r1\.webp/,'Selected cup must replace the real everyday-dialogue category artwork');
+for(const key of ['flag_es','flag_fr'])assert.ok(Array.isArray(config.candidates[key]),'Language flags need independent pickers');
+const flagImage={dataset:{},src:'temporary-flag',hidden:false,getAttribute:()=> 'assets/language_es_dev.webp',closest:()=>null};
+context.flagArtDoc={querySelectorAll:()=>[flagImage]};
+vm.runInContext("show='dark';selected.flag_es=5;applyOriginalArt(flagArtDoc)",context);
+assert.match(flagImage.src,/dark\/flag_es_option_05.webp/,'Selected flag must replace temporary artwork in original onboarding screen');
+vm.runInContext("show='both';render()",context);
 assert.deepEqual(Array.from(config.streakTierDays||[]),[0,10,20,30,40,50,60,70,80,90],'Preview must use real app streak thresholds');
 vm.runInContext("streakKey='streak_02';render()",context);
 assert.match(get('screens').innerHTML,/>10 дней</,'Second stage must show its real ten-day threshold');
 vm.runInContext("streakKey='streak_10';render()",context);
 assert.match(get('screens').innerHTML,/>90 дней</,'Tenth stage must show its real ninety-day threshold');
 assert.ok(config.candidates.streak_01?.length===5,'First streak stage needs five independent variants');
+let streakVariantChecks=0;
+for(let stage=1;stage<=10;stage++){
+  const key='streak_'+String(stage).padStart(2,'0');
+  assert.equal(config.candidates[key]?.length,5,'Every dark streak stage needs five candidates: '+key);
+  for(const option of config.candidates[key]){
+    assert.ok(option.dark&&option.darkAccent,'Every dark streak candidate needs both layers');
+    vm.runInContext("streakKey='"+key+"';selected['"+key+"']="+option.number+";render()",context);
+    assert.ok(get('screens').innerHTML.includes(path.basename(option.dark)),'Selected streak artwork must render in actual Home header');
+    streakVariantChecks++;
+  }
+}
 vm.runInContext("streakKey='streak_freeze';render()",context);
 assert.match(get('screens').innerHTML,/streak_freeze_option_01.webp/,'Freeze choice must appear in the actual Home header');
 vm.runInContext("streakKey='streak_01';selected.streak_01=5;render()",context);
@@ -174,16 +216,18 @@ const K={icon:()=>'',phone:()=>'',col:()=>'',block:()=>'',sheet:()=>'',energy:()
 let towerChecks=0;
 for(let tier=0;tier<12;tier++) for(let design=0;design<5;design++) {
   const ctx=vm.createContext({K,URLSearchParams,location:{search:'?tier='+tier+'&design='+design}});
+  ctx.window=ctx;
+  vm.runInContext(fs.readFileSync(path.resolve('docs/design/v2-app/spire-tower-render.js'),'utf8'),ctx);
   vm.runInContext(prefix,ctx);
   const svg=vm.runInContext('towerSvg({myFloor:4,sel:4})',ctx);
   assert.equal((svg.match(/data-floor="/g)||[]).length,15);
-  assert.match(svg,/class="fl mine sel" data-floor="4"/);
+  assert.match(svg,/data-floor="4"[\s\S]*?stroke-width="1\.4"/,'Selected floor gets the app renderer selection outline');
   for(const floor of [5,10,15])assert.ok(svg.includes('data-floor="'+floor+'"'));
   towerChecks++;
 }
 const atlas=fs.readFileSync(path.join(root,'tower-atlas.html'),'utf8');
 assert.equal((atlas.match(/<iframe /g)||[]).length,60);
-const evidence={homeSelection:true,lightAndDarkCards:true,candidatePaths:true,streakHeaderChecks:2,missingThemeChecks:4,wrappedHiddenCssCheck:true,pairedRevisionChecks,rankBridgeChecks,specialBridgeChecks:3,liveAiToggleChecks:3,themeEndpointChecks:themeChecks,
+const evidence={homeSelection:true,lightAndDarkCards:true,candidatePaths:true,approvedCrownByteLocks:2,streakVariantChecks,streakHeaderChecks:2,missingThemeChecks:4,wrappedHiddenCssCheck:true,pairedRevisionChecks,rankBridgeChecks,specialBridgeChecks:3,liveAiToggleChecks:3,themeEndpointChecks:themeChecks,
   towerGeometryChecks:towerChecks,floorsPerTower:15,comparisonFrames:60,browserVisualVerification:'not performed'};
 fs.writeFileSync(path.join(root,'verification-evidence.json'),JSON.stringify(evidence,null,2));
 console.log(JSON.stringify(evidence));

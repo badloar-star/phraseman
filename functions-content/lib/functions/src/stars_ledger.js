@@ -127,6 +127,7 @@ exports.STAR_OP_CLASS = Object.freeze({
     global_broadcast: 'grant',
     account_merge_out: 'spend',
     account_merge_in: 'grant',
+    legacy_bonus: 'grant',
 });
 exports.STAR_OP_SOURCE = Object.freeze({
     arena_match: 'arena',
@@ -174,6 +175,7 @@ exports.STAR_OP_SOURCE = Object.freeze({
     // Перенос при слиянии (8T) — «другое»: своей строки на экране нет, а приток
     // обязан попасть в сумму разреза (иначе bySource разойдётся с grantedTotal).
     account_merge_in: 'other',
+    legacy_bonus: 'other',
     account_merge_out: 'other',
 });
 /* ------------------------------- проекции -------------------------------- */

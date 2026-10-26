@@ -22,8 +22,9 @@ const KNOWN_OVERRIDES: Record<string, number> = {
 };
 
 test('renderPremiumList phase 1 wraps (not replaces) the base renderer', () => {
-  expect(html).toMatch(/const _pmP1RenderPremiumList = window\.renderPremiumList;\s*[\s\S]{0,200}window\.renderPremiumList = function renderPremiumListPhase1\(\)/);
-  expect(html).toContain('return _pmP1RenderPremiumList?.();');
+  expect(html).toContain('const _pmP1RenderPremiumList = window.renderPremiumList;');
+  expect(html).toMatch(/window\.renderPremiumList\s*=\s*function renderPremiumListPhase1\(\)\s*{return pmRenderPlusPage\('pr-list','pr-summary','pr-count',_pmP1RenderPremiumList\);}/);
+  expect(html).toContain('} else renderer?.();');
 });
 
 describe('live legacy runtime ownership', () => {

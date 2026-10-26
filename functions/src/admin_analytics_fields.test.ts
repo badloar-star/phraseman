@@ -10,7 +10,7 @@ describe('admin analytics user field projection', () => {
   const main = fs.readFileSync(path.join(__dirname, 'admin_analytics.ts'), 'utf8');
 
   it('selects every progress field the access classification reads', () => {
-    const used = new Set([...core.matchAll(/progress\.([a-z_]+)/g)].map((m) => `progress.${m[1]}`));
+    const used = new Set([...core.matchAll(/progress\.([a-z0-9_]+)/g)].map((m) => `progress.${m[1]}`));
     const missing = [...used].filter((field) => !ANALYTICS_USER_FIELDS.includes(field));
     expect(missing).toEqual([]);
   });
@@ -19,6 +19,10 @@ describe('admin analytics user field projection', () => {
     for (const field of ['identityHidden', 'analyticsConsent', 'updatedAt', 'last_active_at']) {
       expect(ANALYTICS_USER_FIELDS).toContain(field);
     }
+  });
+
+  it('piggybacks the compact Spire week record on the existing users projection', () => {
+    expect(ANALYTICS_USER_FIELDS).toContain('progress.spire_week_v1');
   });
 
   it('reads users through the projection, not whole documents', () => {

@@ -1,3 +1,4 @@
+import { classifyCron, readDiagnosticsScheduler } from './diagnostics_scheduler_status';
 import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { ENFORCE_APP_CHECK } from './callable_options';
@@ -32,18 +33,6 @@ const ECONOMY_DAYS_LIMIT = 7;
 const PENDING_DELETES_LIMIT = 50;
 const RESTORES_LIMIT = 20;
 
-/**
- * Кроны, для которых сутки тишины — норма.
- *
- * зачем список здесь, а не в heartbeat-документе: интервал знает только
- * определение onSchedule, и дублировать его в каждом прогоне — лишняя запись.
- * Недельных кронов единицы, и их состав меняется реже, чем расписания.
- */
-const WEEKLY_CRON_NAMES = new Set(['spireFinalizeCron']);
-
-/** Порог «крон молчит» для обычных (не недельных) расписаний. */
-const SILENT_AFTER_MS = 26 * 60 * 60 * 1000;
-const WEEKLY_SILENT_AFTER_MS = 8 * 24 * 60 * 60 * 1000;
 
 function requireDiagnosticsPermission(
   request: { auth?: { uid?: string; token?: Row } | null },
@@ -77,7 +66,7 @@ export const adminGetDiagnosticsOverview = onCall(
 
     // зачем (владелец, 2026-08-31): аккаунты на отложенном удалении обязаны
     // быть ВИДНЫ — сколько ждут, сколько дней осталось, кто уже созрел.
-    const [heartbeatsSnap, deletionsSnap, errorsSnap, economySnap, pendingSnap, restoresSnap] = await Promise.all([
+    const [heartbeatsSnap, deletionsSnap, errorsSnap, economySnap, pendingSnap, restoresSnap, scheduler] = await Promise.all([
       db.collection(CRON_HEARTBEATS).limit(HEARTBEATS_LIMIT).get(),
       db.collection(ACCOUNT_DELETE_DIAGNOSTICS)
         .orderBy('startedAtMs', 'desc').limit(DELETION_RUNS_LIMIT).get(),
@@ -90,6 +79,7 @@ export const adminGetDiagnosticsOverview = onCall(
         .where('status', '==', 'queued').limit(PENDING_DELETES_LIMIT).get(),
       db.collection('account_deletion_restores')
         .orderBy('restoredAtMs', 'desc').limit(RESTORES_LIMIT).get(),
+      readDiagnosticsScheduler(),
     ]);
 
     // ── Пульс кронов: сервер сам решает, кто «молчит», чтобы у эвристики
@@ -97,10 +87,13 @@ export const adminGetDiagnosticsOverview = onCall(
     const crons = heartbeatsSnap.docs.map((doc) => {
       const data = doc.data() as Row;
       const lastRunAtMs = ms(data.lastRunAtMs);
-      const silentAfter = WEEKLY_CRON_NAMES.has(doc.id) ? WEEKLY_SILENT_AFTER_MS : SILENT_AFTER_MS;
-      const silent = lastRunAtMs > 0 && nowMs - lastRunAtMs > silentAfter;
+      const classification=classifyCron(doc.id,{lastRunAtMs,ok:data.ok===true},scheduler.jobs,nowMs);
+      const silent=classification.health==='stale';
       return {
         name: doc.id,
+        ...classification,
+        schedulerCheckedAtMs:scheduler.checkedAtMs,
+        schedulerError:scheduler.error,
         lastRunAtMs,
         durationMs: ms(data.durationMs),
         ok: data.ok === true,
@@ -111,8 +104,8 @@ export const adminGetDiagnosticsOverview = onCall(
       };
     }).sort((left, right) => {
       // Проблемные первыми: упавшие, затем молчащие, затем по свежести.
-      const leftBad = (left.ok ? 0 : 2) + (left.silent ? 1 : 0);
-      const rightBad = (right.ok ? 0 : 2) + (right.silent ? 1 : 0);
+      const leftBad = ['error','unknown','paused','stale'].includes(left.health) ? 1 : left.health==='retired' ? -1 : 0;
+      const rightBad = ['error','unknown','paused','stale'].includes(right.health) ? 1 : right.health==='retired' ? -1 : 0;
       if (leftBad !== rightBad) return rightBad - leftBad;
       return right.lastRunAtMs - left.lastRunAtMs;
     });

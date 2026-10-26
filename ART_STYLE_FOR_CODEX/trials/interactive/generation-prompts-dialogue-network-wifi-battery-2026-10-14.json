@@ -1,0 +1,27 @@
+{
+  "tool": "built-in image_gen; no project API key used",
+  "style": "S2 matte clay; real alpha; dark graphite and light ivory bases; separate white .accent masks",
+  "sets": {
+    "dialogue_network": {
+      "concepts": ["three-node triangle", "four-spoke hub", "branching node graph", "interlocking chain links", "network globe"],
+      "measurements": {"01": 7.011, "02": 4.922, "03": 2.069, "04": 18.082, "05": 2.114},
+      "alphaTransparencyPct": {"01": 73.8, "02": 69.79, "03": 84.64, "04": 64.15, "05": 71.73},
+      "alignment": "All options align; option 4 exceeds 8% accent-area limit. Options 1,2,3,5 pass numeric gates."
+    },
+    "dialogue_wifi": {
+      "concepts": ["classic Wi-Fi arcs", "tabletop router", "hotspot beacon", "phone with signal", "access-point puck"],
+      "measurements": {"01": 24.003, "02": 0.183, "03": 16.822, "04": 3.325, "05": 9.719},
+      "alphaTransparencyPct": {"01": 75.0, "02": 72.6, "03": 67.07, "04": 80.0, "05": 65.64},
+      "alignment": {"01": "area too large", "02": "area below 1%", "03": "area too large", "04": "interior mismatch 16.4–16.5%", "05": "area too large"},
+      "acceptance": "No option passes the current numerical gates; all are draft previews only."
+    },
+    "dialogue_battery": {
+      "concepts": ["horizontal cell", "vertical battery pack", "rounded power bank", "cylindrical battery", "lightning charge window"],
+      "measurements": {"01": 3.007, "02": 2.439, "03": 0.455, "04": 10.224, "05": 3.448},
+      "alphaTransparencyPct": {"01": 73.98, "02": 75.85, "03": 63.25, "04": 65.62, "05": 65.1},
+      "alignment": {"01": "pass", "02": "pass", "03": "fail; interior mismatch 45.7–47.8%", "04": "pass alignment, accent above 8%", "05": "pass"},
+      "acceptance": "Options 1, 2, and 5 pass numeric gates; options 3 and 4 remain incomplete."
+    }
+  },
+  "approval": "All options are drafts; no owner has selected production art."
+}

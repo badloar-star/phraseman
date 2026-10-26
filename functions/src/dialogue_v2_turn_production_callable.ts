@@ -423,6 +423,9 @@ export function createDialogueV2ProviderGenerator(
     const beforeDeadline = <T>(operation: Promise<T>): Promise<T> => (
       Promise.race([operation, deadlineFailurePromise])
     );
+    let failureStage: DialogueV2ProviderFailureStage = 'model_config';
+    let failureStatus: number | null = null;
+    let failureProviderCode: DialogueV2ProviderHttpErrorCode | null = null;
     try {
       const trace = currentDialogueV2LatencyTrace();
       const configuredModel = await timedDialogueV2Step('model_config', () => beforeDeadline(runtime.resolveModel()));
@@ -435,6 +438,7 @@ export function createDialogueV2ProviderGenerator(
       if (effectiveModel !== configuredModel) {
         console.warn('[DIALOGUE-V2-TURN] coached_model_fallback', JSON.stringify({ configured: configuredModel, used: effectiveModel }));
       }
+      failureStage = 'configuration';
       const configuration = safeProviderConfiguration(
         runtime.resolveApiKey(),
         effectiveModel,
@@ -444,11 +448,24 @@ export function createDialogueV2ProviderGenerator(
       }
 
       // зачем (владелец 18.10: «не больше 20 $ в день в принципе»): общий дневной потолок расходов — резерв до платного вызова.
+      failureStage = 'spend_cap';
       await timedDialogueV2Step('spend_cap', () => reserveDailySpend({ fn: 'dialogueV2TextTurn', kind: 'chat', model: configuration.model }));
       // [DLG-V2-LATENCY] сборка промпта отдельно от сети: сколько сообщений и символов уходит модели (без самого текста).
+      failureStage = 'request_build';
       const promptStartedAt = Date.now();
       const messages = providerMessages(request, runtime.nowMs?.() ?? Date.now());
       const maxTokens = coachingRequested ? coachingMaxTokens : PROVIDER_MAX_TOKENS;
+      const providerBody = JSON.stringify({
+        model: configuration.model,
+        max_tokens: maxTokens,
+        messages,
+        temperature: 0.8,
+        // зачем (баг 02.10): ход с разбором — строгая схема с обязательным «coaching»,
+        // иначе модель на поздних ходах отвечает без него и цели диалога стоят.
+        ...(modelSupportsJsonObject(configuration.model)
+          ? { response_format: coachingRequested ? dialogueV2CoachingResponseFormat() : { type: 'json_object' } }
+          : {}),
+      });
       const inputChars = messages.reduce((sum, message) => sum + message.content.length, 0);
       trace?.record('prompt_build', Date.now() - promptStartedAt, {
         messages: messages.length,
@@ -457,6 +474,7 @@ export function createDialogueV2ProviderGenerator(
         inputChars,
         approxInputTokens: Math.ceil(inputChars / 4),
       });
+      failureStage = 'provider_request';
       const providerStartedAt = Date.now();
       const response = await beforeDeadline(runtime.fetchImpl(OPENAI_CHAT_URL, {
         method: 'POST',
@@ -464,17 +482,7 @@ export function createDialogueV2ProviderGenerator(
           Authorization: `Bearer ${configuration.apiKey}`,
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          model: configuration.model,
-          max_tokens: maxTokens,
-          messages,
-          temperature: 0.8,
-          // зачем (баг 02.10): ход с разбором — строгая схема с обязательным «coaching»,
-          // иначе модель на поздних ходах отвечает без него и цели диалога стоят.
-          ...(modelSupportsJsonObject(configuration.model)
-            ? { response_format: coachingRequested ? dialogueV2CoachingResponseFormat() : { type: 'json_object' } }
-            : {}),
-        }),
+        body: providerBody,
         signal: abortController.signal,
       }));
       // первые байты: fetch разрешается на заголовках ответа — это время модели до начала выдачи
@@ -487,7 +495,13 @@ export function createDialogueV2ProviderGenerator(
         deadlineMs: DIALOGUE_V2_PROVIDER_DEADLINE_MS,
         status: providerStatus(response),
       }, response.ok);
-      if (!response.ok) throw new Error('provider_http_failure');
+      failureStatus = providerStatus(response);
+      if (!response.ok) {
+        failureStage = 'provider_http';
+        failureProviderCode = await providerHttpErrorCode(response, beforeDeadline);
+        throw new Error('provider_http_failure');
+      }
+      failureStage = 'provider_payload';
       const bodyStartedAt = Date.now();
       const payload = await beforeDeadline(response.json());
       // последние байты: тело целиком (без потоковой выдачи модель отдаёт ответ одним куском после генерации)
@@ -504,7 +518,9 @@ export function createDialogueV2ProviderGenerator(
         completionTokens: typeof usage?.completion_tokens === 'number' ? usage.completion_tokens : null,
       });
       // зачем: PM-231 (A3) — токены оплачены с этого момента; отчёт не бросает.
+      failureStage = 'usage_reporting';
       await reportDialogueV2Usage(runtime.onUsage, payload, configuration.model, 'v2_text');
+      failureStage = 'provider_shape';
       const content = providerContent(
         payload,
         coachingRequested ? PROVIDER_MAX_COACHING_CONTENT_LENGTH : PROVIDER_MAX_CONTENT_LENGTH,
@@ -513,10 +529,14 @@ export function createDialogueV2ProviderGenerator(
       return content;
     } catch (error) {
       // Never attach provider bodies, credentials, prompts, or learner text.
-      // зачем (запрет немого catch): причина отказа модели — только код, без тел и текста.
-      currentDialogueV2LatencyTrace()?.record('provider_failed', 0, {
-        reason: error === deadlineFailure ? 'deadline' : String((error as { message?: unknown })?.message ?? 'unknown').slice(0, 60),
-      }, false);
+      const diagnostic = Object.freeze({
+        stage: failureStage,
+        ...(failureStatus === null ? {} : { status: failureStatus }),
+        code: providerFailureCode(error, deadlineFailure),
+        ...(failureProviderCode === null ? {} : { providerCode: failureProviderCode }),
+      });
+      console.error('[DIALOGUE-V2-TURN] provider_failed', JSON.stringify(diagnostic));
+      currentDialogueV2LatencyTrace()?.record('provider_failed', 0, diagnostic, false);
       throw new Error('dialogue_v2_provider_failed');
     } finally {
       clearTimeout(deadline);
@@ -525,10 +545,72 @@ export function createDialogueV2ProviderGenerator(
   };
 }
 
+type DialogueV2ProviderFailureStage =
+  | 'model_config'
+  | 'configuration'
+  | 'spend_cap'
+  | 'request_build'
+  | 'provider_request'
+  | 'provider_http'
+  | 'provider_payload'
+  | 'usage_reporting'
+  | 'provider_shape';
+
+type DialogueV2ProviderHttpErrorCode =
+  | 'insufficient_quota'
+  | 'rate_limit_exceeded'
+  | 'invalid_api_key'
+  | 'model_not_found'
+  | 'other';
+
+const ALLOWED_PROVIDER_HTTP_ERROR_CODES = new Set<DialogueV2ProviderHttpErrorCode>([
+  'insufficient_quota',
+  'rate_limit_exceeded',
+  'invalid_api_key',
+  'model_not_found',
+]);
+
+async function providerHttpErrorCode(
+  response: unknown,
+  beforeDeadline: <T>(operation: Promise<T>) => Promise<T>,
+): Promise<DialogueV2ProviderHttpErrorCode> {
+  try {
+    const json = (response as { json?: unknown } | null)?.json;
+    if (typeof json !== 'function') return 'other';
+    const payload = await beforeDeadline((json as () => Promise<unknown>).call(response));
+    const providerError = (payload as { error?: unknown } | null)?.error;
+    if (!providerError || typeof providerError !== 'object') return 'other';
+    const fields = providerError as { code?: unknown; type?: unknown; param?: unknown };
+    for (const value of [fields.code, fields.type, fields.param]) {
+      if (typeof value === 'string' && ALLOWED_PROVIDER_HTTP_ERROR_CODES.has(value as DialogueV2ProviderHttpErrorCode)) {
+        return value as DialogueV2ProviderHttpErrorCode;
+      }
+    }
+  } catch {
+    // A malformed provider error body is classified locally; no upstream text is logged.
+  }
+  return 'other';
+}
+
+function providerFailureCode(error: unknown, deadlineFailure: Error): string {
+  if (error === deadlineFailure || (error as { name?: unknown } | null)?.name === 'AbortError') {
+    return 'deadline';
+  }
+  const message = (error as { message?: unknown } | null)?.message;
+  if (message === 'provider_configuration_failure') return 'configuration_failure';
+  if (message === 'provider_context_invalid') return 'context_invalid';
+  if (message === 'provider_opening_invalid') return 'opening_invalid';
+  if (message === 'provider_http_failure') return 'http_failure';
+  if (message === 'provider_shape_failure') return 'shape_failure';
+  return 'transport_or_internal_failure';
+}
+
 /** Код HTTP ответа модели для журнала: в типе транспорта его нет (Pick ok/json), у настоящего fetch — есть. */
 function providerStatus(response: unknown): number | null {
   const status = (response as { status?: unknown } | null)?.status;
-  return typeof status === 'number' ? status : null;
+  return Number.isInteger(status) && Number(status) >= 100 && Number(status) <= 599
+    ? Number(status)
+    : null;
 }
 
 function releaseRepository(

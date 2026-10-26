@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+dialogs-025	2026-10-13T17:51:42.799Z	error	27284	step_target_not_found:#dialogue-v2-briefing-start+ждали_metro_43мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-13T17-50-02-601Z/dialogs-025.error.png	0

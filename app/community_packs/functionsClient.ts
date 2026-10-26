@@ -1,3 +1,4 @@
+import type { ContestEntry } from '../../shared/community_month_contest';
 import { getApp } from '@react-native-firebase/app';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DebugLogger } from '../debug-logger';
@@ -19,6 +20,25 @@ export function isCommunityPacksCloudEnabled(): boolean {
 
 function callable<TReq, TRes>(name: string) {
   return httpsCallable<TReq, TRes>(getFunctions(getApp(), FUNCTIONS_REGION), name);
+}
+
+export type CommunityMonthReward = Readonly<{
+  rewardId: string; monthId: string; packTitle: string; place: 1 | 2 | 3; claimed: boolean;
+}>;
+export type CommunityMonthReceipt = Readonly<{
+  rewardId: string; kind: 'coins' | 'plus'; amount?: number; untilMs?: number;
+  stars?: number; starsEarnedTotal?: number; starsSeq?: number;
+}>;
+export async function callCommunityMonthGetRanking(userId: string): Promise<{ monthId: string; entries: ContestEntry[] }> {
+  return callFunction('communityMonthGetRanking', { userId });
+}
+
+export async function callCommunityMonthGetRewards(userId: string): Promise<CommunityMonthReward[]> {
+  const data = await callFunction<{ userId: string }, { rewards: CommunityMonthReward[] }>('communityMonthGetRewards', { userId });
+  return data.rewards;
+}
+export async function callCommunityMonthClaimReward(userId: string, rewardId: string): Promise<CommunityMonthReceipt> {
+  return callFunction('communityMonthClaimReward', { userId, rewardId });
 }
 
 async function callFunction<TReq, TRes>(name: string, data: TReq): Promise<TRes> {

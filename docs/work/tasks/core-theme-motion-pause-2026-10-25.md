@@ -3,6 +3,9 @@
 Governance-ID: TG-107F4924F9AF
 Governance-ID: TG-192935D28029
 Governance-ID: TG-F4941ABE75E2
+Governance-ID: TG-15F537C9CD28
+Governance-ID: TG-AF917DCABF3F
+Governance-ID: TG-398FF3F5F890
 
 ## Outcome
 Владелец: «скролл стал дёрганым, на главной». Подозреваемый: PremiumThemeMotion — WebView на всю сцену Главной. В ней WebGL-шейдер 24 к/с (signal/storm/gravity) или бесконечная CSS-анимация (olive/titanium/horizon), androidLayerType=hardware.
@@ -39,3 +42,7 @@ Revert коммита. Страница без __pmSetRunning ведёт себ�
 - app/remote_flags.ts: удалённый флаг premium_theme_webgl_motion_enabled, по умолчанию false. Коммит только своих хунков (--patch от HEAD), чужие строки paywall_* не трогаем.
 - PremiumThemeMotion: WebGL-темы (Обсидиан / Аметист / Сингулярность) при выключенном флаге не монтируют WebView — фон статичный (градиент сцены). CSS-темы как прежде, с паузой.
 - Включение шейдера: флаг true в «Пульте», живьём, без сборки — после проверки паузы на эмуляторе.
+
+## Долг после Ревизора (65dc9a915 ✅)
+- Перед включением из «Пульта»: шейдер стартует с target=0 до первого onLoadEnd (сейчас несколько кадров движения до паузы).
+- Перед включением из «Пульта»: повтор A/B Сверки с паузой. Флаг меняет фон живьём через remote_config_changed, без сборки — иначе ANR вернётся у людей.

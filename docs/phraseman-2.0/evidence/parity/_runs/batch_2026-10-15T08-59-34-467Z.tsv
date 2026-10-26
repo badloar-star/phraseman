@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+paywalls-010	2026-10-15T09:00:03.879Z	error	11783	step_target_not_found:#soft-upsell-card+ждали_metro_23мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-15T08-59-34-467Z/paywalls-010.error.png	0

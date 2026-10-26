@@ -1,0 +1,14 @@
+{
+  "scenario": "plans_next_year",
+  "title": "Планы на будущее",
+  "generatedAt": "2026-10-14",
+  "style": "S2 matte clay",
+  "variants": [
+    "blank calendar arc and compass disc",
+    "branching timeline with three blank milestones",
+    "folded planner with empty tabs and horizon medallion",
+    "sunrise disc over blank future-month blocks",
+    "closed notebook, key and compass plan set"
+  ],
+  "constraints": ["true transparent RGBA", "no people, text, dates, digits or logos", "cyan internal marker for separate white accent extraction", "dark/light trial pairs", "trial location only"]
+}

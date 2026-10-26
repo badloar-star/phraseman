@@ -23,6 +23,7 @@ export const ANALYTICS_USER_FIELDS: readonly string[] = Object.freeze([
   'progress.intro_access_until_ms', 'progress.loyalty_gift_until_ms', 'progress.admin_premium_override',
   'progress.vip_plan', 'progress.vip_active', 'progress.vip_admin_override', 'progress.vip_from', 'progress.vip_until',
   'progress.vip_expiry', 'progress.vip_admin_grant_at', 'progress.vip_grant_at',
+  'progress.spire_week_v1',
 ]);
 
 export interface AnalyticsUserRow {

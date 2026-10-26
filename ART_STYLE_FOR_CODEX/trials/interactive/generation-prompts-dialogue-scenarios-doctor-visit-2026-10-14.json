@@ -1,0 +1,14 @@
+{
+  "tool": "built-in image_gen; no project API key used",
+  "scenarioId": "doctor_visit",
+  "candidatePrefix": "dialog_scene_doctor_visit_option_",
+  "concepts": [
+    "stethoscope with chestpiece medallion",
+    "appointment folder with tab",
+    "thermometer with plain bulb inset",
+    "reflex hammer with head medallion",
+    "diagnostic case with receiver disc"
+  ],
+  "style": "S2 matte graphite clay dark, derived warm ivory light, genuine transparency and separate aligned white accent",
+  "status": "Five generated options in dark/light. None is owner-approved. Review `doctor-visit-preparation-dark.log` and `doctor-visit-preparation-light.log` for per-mode accent gates."
+}

@@ -1,0 +1,19 @@
+{
+  "tool": "built-in image_gen; no project API key used",
+  "mode": "light",
+  "option": 1,
+  "sourceFiles": {
+    "continue": "S2_clay/dark/continue_option_01.webp",
+    "phrase_of_day": "S2_clay/dark/phrase_option_01.webp",
+    "mistakes_entry": "S2_clay/dark/mistakes_option_01.webp"
+  },
+  "method": "Generate ivory material revision with cyan temporary marker; extract the marker pixel-for-pixel as a separate white .accent.webp layer using prepare-clay-candidates.mjs.",
+  "acceptance": {
+    "trueAlpha": true,
+    "dimensions": "1024x1024",
+    "continue": {"accentFramePct": 0.6, "alignment": "passes", "status": "draft: accent below 1% minimum; edge fragments visible"},
+    "phrase_of_day": {"accentFramePct": 2.427, "interiorEdgePct": 34, "limitPct": 12, "status": "draft: mask misaligned; edge fragments visible"},
+    "mistakes_entry": {"accentFramePct": 1.58, "interiorEdgePct": 22, "limitPct": 12, "status": "draft: mask misaligned; edge fragments visible"}
+  },
+  "promptPattern": "Preserve exact silhouette, camera, proportions, and position from each selected dark option. Change charcoal to warm ivory clay with neutral gray relief shading. Place one cyan temporary marker only on a raised feature, broad enough for at least 1% full-canvas coverage. True transparent alpha; no checkerboard, text, debris, or external shadow."
+}

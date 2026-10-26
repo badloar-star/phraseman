@@ -33,3 +33,13 @@ Out of scope: логика подготовки занятия (Learning V2), п
 ## Rollback
 
 Откат коммита; данные не затрагиваются.
+
+Governance-ID: TG-5BAB9BDD51B8
+
+Governance-ID: TG-2416E8F2BD5D
+
+Governance-ID: TG-706DB99F38F6
+
+Governance-ID: TG-AD5D5345760F
+
+Governance-ID: TG-83110AE755C3

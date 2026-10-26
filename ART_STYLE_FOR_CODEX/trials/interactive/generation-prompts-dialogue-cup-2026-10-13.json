@@ -1,0 +1,20 @@
+{
+  "tool": "built-in image_gen; no project API key used",
+  "category": "dialogue theme cup",
+  "style": "S2 monochrome matte clay with one cyan temporary segmentation marker extracted into a white overlay",
+  "optionsGenerated": 5,
+  "modeMeasurements": {
+    "dark": {"option": 1, "accentFramePct": 1.074, "interiorEdgePct": 16.6, "alignment": "fail"},
+    "light": {"option": 1, "accentFramePct": 1.075, "interiorEdgePct": 13.9, "alignment": "fail"},
+    "darkOption2": {"accentFramePct": 0.379, "interiorEdgePct": 0, "alignment": "pass"},
+    "lightOption2": {"accentFramePct": 0.394, "interiorEdgePct": 0, "alignment": "pass"},
+    "darkOption3": {"accentFramePct": 0.775, "interiorEdgePct": 0, "alignment": "pass", "alphaTransparencyPct": 61.01},
+    "lightOption3": {"accentFramePct": 1.789, "interiorEdgePct": 1.9, "alignment": "pass", "alphaTransparencyPct": 51.78},
+    "lightOption4": {"accentFramePct": 1.077, "interiorEdgePct": 0, "alignment": "pass", "alphaTransparencyPct": 58.25},
+    "darkOption4": {"accentFramePct": 0.718, "interiorEdgePct": 0, "alignment": "pass", "alphaTransparencyPct": 60.48},
+    "lightOption5": {"accentFramePct": 2.731, "interiorEdgePct": 0.8, "alignment": "pass", "alphaTransparencyPct": 46.93},
+    "darkOption5": {"accentFramePct": 1.907, "interiorEdgePct": 7.2, "alignment": "pass", "alphaTransparencyPct": 60.34}
+  },
+  "acceptance": "Five dark/light concepts now exist. Options 1–4 remain draft for previously recorded alignment or accent-size failures. Option 5 meets alpha, coverage, and alignment thresholds in both themes, but has visible peripheral speckles in source previews; do not treat as visually accepted until cleaned/reviewed. No cup option is approved yet.",
+  "promptTemplate": "One refined isolated clay coffee cup icon, graphite for dark and warm ivory for light; same cup silhouette and centered cyan round raised ceramic marker on the front; genuine transparent alpha; no lettering, scene, or edge-touching shadows."
+}

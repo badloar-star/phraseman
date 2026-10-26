@@ -23,7 +23,8 @@
       "Bash(node c:/appsprojects/phraseman/fix_lessons.js)",
       "Bash(node c:/appsprojects/phraseman/fix_lessons2.js)",
       "Bash(npx tsc:*)",
-      "Bash(sort -t p -k2 -n)"
+      "Bash(sort -t p -k2 -n)",
+      "Bash(node scripts/content_pipeline_brief.mjs --status)"
     ]
   }
 }

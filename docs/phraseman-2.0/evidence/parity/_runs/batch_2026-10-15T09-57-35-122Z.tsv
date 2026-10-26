@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+auth-gap-013	2026-10-15T09:58:19.403Z	error	10712	step_target_not_found:#settings-switch-continue+ждали_metro_27мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-15T09-57-35-122Z/auth-gap-013.error.png	0

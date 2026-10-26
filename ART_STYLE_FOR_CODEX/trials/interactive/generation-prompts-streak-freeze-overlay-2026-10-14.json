@@ -1,0 +1,16 @@
+{
+  "style": "S2 matte clay",
+  "candidatePrefix": "streak_freeze_overlay_option_",
+  "count": 5,
+  "transparentBackground": true,
+  "source": "built-in image generation; five separate 1024x1024 RGBA images per theme derived from the same dark concept",
+  "concepts": [
+    "faceted ice medallion with a recessed ember-shaped center",
+    "frost band overlay tucked over one corner of a streak token",
+    "small snow crystal seated in a compact ember shield",
+    "single ice shard above a flame-shaped inset",
+    "frozen droplet nested into a rounded streak tile"
+  ],
+  "processing": "Separate white .accent.webp masks are generated from cyan segmentation markers; dark and light outputs remain in trials/S2_clay.",
+  "qualityNote": "All ten dark/light pairs retain transparency, but strict accent-to-base alignment failed for all ten. These remain drafts and must not be treated as approved assets."
+}

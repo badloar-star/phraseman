@@ -1,0 +1,2 @@
+ждём: Главная
+10-15 14:34:52.951 I/ReactNativeJS( 8539): [PUSH-TAP-DEV] simulate {"type":"reminder"}

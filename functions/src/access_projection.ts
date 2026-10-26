@@ -33,10 +33,14 @@ export function buildAccessProjection(
   nowMs: number = Date.now(),
 ): AccessProjection {
   const safeNow = Number.isSafeInteger(nowMs) && nowMs >= 0 ? nowMs : Date.now();
-  const premiumPlan = boundedString(progress.premium_plan).toLowerCase();
+  const premiumPlan = progressMs(progress.community_plus_until_ms) > safeNow
+    && !isStorePremiumActive(progress, safeNow) && !isAdminGrantActive(progress, safeNow)
+    ? 'community_prize'
+    : boundedString(progress.premium_plan).toLowerCase();
   const premiumExpiresAtMs = Math.max(
     progressMs(progress.premium_expiry),
     progressMs(progress.premium_rc_expiry_ms),
+    progressMs(progress.community_plus_until_ms),
   );
   // The listener is allowed to show only a compact server-owned projection,
   // but it must never invent a different entitlement policy. In particular,
@@ -44,7 +48,8 @@ export function buildAccessProjection(
   // RevenueCat expiry/revoke. Otherwise the app says Plus while AI correctly
   // rejects the same account with dialog_plus_required.
   const premiumActive = isStorePremiumActive(progress, safeNow)
-    || isAdminGrantActive(progress, safeNow);
+    || isAdminGrantActive(progress, safeNow)
+    || progressMs(progress.community_plus_until_ms) > safeNow;
   const vipActive = isVipActive(progress, safeNow);
 
   return Object.freeze({

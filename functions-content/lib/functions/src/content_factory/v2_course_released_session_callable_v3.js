@@ -35,7 +35,9 @@ var __importStar = (this && this.__importStar) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.learningV2CourseReleasedSessionGetV3 = exports.V2_COURSE_RELEASED_SESSION_CALLABLE_OPTIONS_V3 = exports.V2_COURSE_RELEASED_SESSION_RESPONSE_SCHEMA_V3 = void 0;
 exports.resolveV2CourseReleasedSessionFromAuthenticatedRepositoryV3 = resolveV2CourseReleasedSessionFromAuthenticatedRepositoryV3;
+exports.exactV2CourseReleasedSessionResolvedV3 = exactV2CourseReleasedSessionResolvedV3;
 exports.createV2CourseReleasedSessionHandlerV3 = createV2CourseReleasedSessionHandlerV3;
+exports.createV2CourseReleasedSessionTombstoneHandlerV3 = createV2CourseReleasedSessionTombstoneHandlerV3;
 const admin = __importStar(require("firebase-admin"));
 const https_1 = require("firebase-functions/v2/https");
 const release_rollout_v1_1 = require("../../../modules/learning-v2/content/release_rollout_v1");
@@ -103,7 +105,7 @@ async function resolveV2CourseReleasedSessionFromAuthenticatedRepositoryV3(input
         canonicalAudioChildRaw: material.canonicalAudioChildRaw,
     });
 }
-function exactResolved(input, resolved) {
+function exactV2CourseReleasedSessionResolvedV3(input, resolved) {
     let intro;
     let learner;
     let evaluatorCapsule;
@@ -203,7 +205,7 @@ function createV2CourseReleasedSessionHandlerV3(resolve = resolveV2CourseRelease
                 : "";
             throw new https_1.HttpsError("unavailable", `course_session_unavailable: ${message}${where ? ` @ ${where}` : ""}`);
         }
-        const checked = exactResolved(input, resolved);
+        const checked = exactV2CourseReleasedSessionResolvedV3(input, resolved);
         return Object.freeze({
             schemaVersion: exports.V2_COURSE_RELEASED_SESSION_RESPONSE_SCHEMA_V3,
             releaseId: checked.summary.releaseId,
@@ -248,5 +250,10 @@ function createV2CourseReleasedSessionHandlerV3(resolve = resolveV2CourseRelease
         });
     };
 }
-exports.learningV2CourseReleasedSessionGetV3 = (0, https_1.onCall)(exports.V2_COURSE_RELEASED_SESSION_CALLABLE_OPTIONS_V3, createV2CourseReleasedSessionHandlerV3());
+function createV2CourseReleasedSessionTombstoneHandlerV3() {
+    return async (_request) => {
+        throw new https_1.HttpsError("failed-precondition", "upgrade_required");
+    };
+}
+exports.learningV2CourseReleasedSessionGetV3 = (0, https_1.onCall)(exports.V2_COURSE_RELEASED_SESSION_CALLABLE_OPTIONS_V3, createV2CourseReleasedSessionTombstoneHandlerV3());
 //# sourceMappingURL=v2_course_released_session_callable_v3.js.map

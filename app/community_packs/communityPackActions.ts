@@ -1,3 +1,5 @@
+import { captureAccountGeneration, isCurrentAccountGeneration, type AccountGenerationToken } from '../account_generation';
+import { packSocialLive } from './packSocialLive';
 /**
  * Cards 2.1 §1.3 / §2 — действия над набором сообщества без валюты:
  *   • «Добавить себе» — одно нажатие, оптимистично, без списаний и подтверждений;
@@ -186,23 +188,28 @@ export type ToggleLikeResult = {
 // экран и хранилище расходились. Тапы по одному набору идут строго по очереди (см. serial_per_key.ts).
 const likeQueue = createSerialPerKey();
 
-export function toggleCommunityPackLike(packId: string): Promise<ToggleLikeResult> {
+export function toggleCommunityPackLike(packId: string, desiredLiked?: boolean, alreadyEmitted = false): Promise<ToggleLikeResult> {
   if (!packId) return Promise.resolve({ liked: false, changed: false });
-  return likeQueue(`like:${packId}`, () => toggleCommunityPackLikeNow(packId));
+  const account = captureAccountGeneration();
+  return likeQueue(`like:${packId}`, () => toggleCommunityPackLikeNow(packId, account, desiredLiked, alreadyEmitted));
 }
 
-async function toggleCommunityPackLikeNow(packId: string): Promise<ToggleLikeResult> {
+async function toggleCommunityPackLikeNow(packId: string, account: AccountGenerationToken, desiredLiked?: boolean, alreadyEmitted = false): Promise<ToggleLikeResult> {
   // зачем (координатор 12.10, cards-gap-033): dev `fail=pack_like` — исключение, на которое экран показывает откат сердца и тост.
   if (isDevCardsFail('pack_like')) {
     console.warn(`[DEV-STATE] community: лайк подменён сбоем pack=${packId}`); // guard-ok: dev-ветка
     throw new Error('dev_pack_like_failed');
   }
+  if (!isCurrentAccountGeneration(account)) throw new Error('pack_like_account_changed');
   const wasLiked = await isCommunityPackLikedLocally(packId);
-  const nextLiked = !wasLiked;
+  if (!isCurrentAccountGeneration(account)) throw new Error('pack_like_account_changed');
+  const nextLiked = desiredLiked ?? !wasLiked;
   const changed = await setCommunityPackLikedLocally(packId, nextLiked);
+  if (!isCurrentAccountGeneration(account)) throw new Error('pack_like_account_changed');
   if (!changed) return { liked: wasLiked, changed: false };
 
-  emitAppEvent('community_pack_like_changed', { packId, liked: nextLiked });
+  if (!alreadyEmitted) packSocialLive.setLiked(packId, nextLiked);
+  if (!alreadyEmitted) emitAppEvent('community_pack_like_changed', { packId, liked: nextLiked });
   /**
    * Серверную запись ЖДЁМ (раньше был «выстрелил и забыл»): вызывающий UI должен
    * знать, долетел ли лайк, иначе оптимистичная цифра расходится с сервером и при
@@ -212,8 +219,10 @@ async function toggleCommunityPackLikeNow(packId: string): Promise<ToggleLikeRes
   let synced = false;
   try {
     const userId = await getCanonicalUserId();
+    if (!isCurrentAccountGeneration(account, userId)) throw new Error('pack_like_account_changed');
     if (userId) {
       const res = await setCommunityPackLikeRemote(packId, userId, nextLiked);
+      if (!isCurrentAccountGeneration(account, userId)) throw new Error('pack_like_account_changed');
       synced = res.changed;
       // зачем (координатор 18.10, решение по аудиту (б)): очереди повторной отправки до релиза нет — лайк, который облако не приняло,
       // при следующем чтении молча откатывался. Теперь откат сразу: локальный флаг назад, экран покажет тост. Сборка без облака
@@ -221,11 +230,13 @@ async function toggleCommunityPackLikeNow(packId: string): Promise<ToggleLikeRes
       if (res.ok === false && res.reason !== 'cloud_off') {
         console.warn(`[PACK-LIKE] облако не приняло pack=${packId} liked=${nextLiked} reason=${res.reason ?? 'unknown'} → откат локального флага`); // guard-ok: отказ облака, один раз на тап
         await setCommunityPackLikedLocally(packId, wasLiked);
+        packSocialLive.setLiked(packId, wasLiked);
         emitAppEvent('community_pack_like_changed', { packId, liked: wasLiked });
         return { liked: wasLiked, changed: false, synced: false, rejected: true };
       }
     }
   } catch (e) {
+      if (!isCurrentAccountGeneration(account)) throw new Error('pack_like_account_changed');
       // лайк остаётся локальным до следующей попытки
       DebugLogger.error('communityPackActions:res', e instanceof Error ? e : new Error(String(e)), 'warning');
     }

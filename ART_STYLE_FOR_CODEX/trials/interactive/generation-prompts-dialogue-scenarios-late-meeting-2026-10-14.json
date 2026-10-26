@@ -1,0 +1,14 @@
+{
+  "tool": "built-in image_gen; no project API key used",
+  "scenarioId": "late_excuse_meeting",
+  "candidatePrefix": "dialog_scene_late_excuse_meeting_option_",
+  "concepts": [
+    "blank-face analog clock",
+    "meeting folio and watch",
+    "empty chair with watch",
+    "hourglass and briefcase",
+    "blank calendar page with marker"
+  ],
+  "style": "S2 graphite clay / warm ivory, true alpha and separate white accent",
+  "status": "Five dark/light options generated; inspect late-meeting-preparation-dark.log and late-meeting-preparation-light.log for numeric gates. Drafts await review."
+}

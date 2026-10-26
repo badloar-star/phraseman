@@ -124,10 +124,14 @@ const CapFill = memo(function CapFill({ width, color }: { width: number; color: 
 function V2TabBar({ items, activeIndex, onSelect, onInteract, bottomOffset, collapseStyle, reduceMotion }: Props) {
   const { liquidGlassThemeId } = useTheme();
   const palette = liquidGlassTokens(liquidGlassThemeId);
-  const glassFill = useMemo(() => Platform.OS === 'ios'
-    ? ([alphaHex(palette.opaqueControl, 0.64), alphaHex(palette.bgBottom, 0.76)] as const)
-    : ([alphaHex(palette.opaqueControl, 0.90), alphaHex(palette.bgBottom, 0.94)] as const),
-  [palette.opaqueControl, palette.bgBottom]);
+  const glassFill = useMemo(() => palette.premiumDock
+    ? (liquidGlassThemeId.includes('_ref_')
+        ? ([palette.premiumDock, palette.bg] as const)
+        : ([palette.premiumDock, palette.premiumDock] as const))
+    : Platform.OS === 'ios'
+      ? ([alphaHex(palette.opaqueControl, 0.64), alphaHex(palette.bgBottom, 0.76)] as const)
+      : ([alphaHex(palette.opaqueControl, 0.90), alphaHex(palette.bgBottom, 0.94)] as const),
+  [liquidGlassThemeId, palette.bg, palette.bgBottom, palette.opaqueControl, palette.premiumDock]);
   const count = items.length;
   // зачем (владелец 11.10, «кнопки справа обрезаны»): боковые отступы считаем от ширины ОКНА и безопасных зон слева/справа, а капсула
   // не шире окна — даже если родитель по какой-то причине шире экрана. Реальная геометрия пишется в журнал [TABBAR].

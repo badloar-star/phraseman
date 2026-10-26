@@ -1,0 +1,7 @@
+10-15 14:35:47.957 I/ReactNativeJS( 9081): '[DEEPLINK] redirectSystemPath', '{"in":"phraseman:///","initial":true,"out":"/home"}'
+10-15 14:35:49.229 I/ReactNativeJS( 9081): '[SPIRE]', '[SPIRE-GATE]', '{"lang":"ru","allowed":true,"reason":"ui_lang_allowed","where":"isSpireTabEnabled source=context"}'
+10-15 14:35:59.727 I/ReactNativeJS( 9081): '[DEEPLINK] redirectSystemPath', '{"in":"phraseman://dev_state?notif=upsell_d4&next=/(tabs)/home","initial":false,"out":"/dev_state?notif=upsell_d4&next=/(tabs)/home"}'
+10-15 14:35:59.729 I/ReactNativeJS( 9081): '[DEEPLINK] redirectSystemPath', '{"in":"phraseman://dev_state?notif=upsell_d4&next=/(tabs)/home","initial":false,"out":"/dev_state?notif=upsell_d4&next=/(tabs)/home"}'
+10-15 14:36:01.933 I/ReactNativeJS( 9081): [PUSH-TAP-DEV] simulate {"type":"upsell_d4"}
+10-15 14:36:02.246 I/ReactNativeJS( 9081): [INFO] [PAYWALL-OPEN]: шапка: ctx=notification_upsell source=notification_upsell текст=notification_upsell контекстная=true выгода=есть lang=ru
+10-15 14:36:02.265 I/ReactNativeJS( 9081): '[PAYWALL-OPEN] решение окна', '{"decision":"show","reason":"show","context":"notification_upsell","source":"notification_upsell","shownContext":"notification_upsell","accessResolved":true,"hasPremiumAccess":false,"cachedEntitlement":"free","wait

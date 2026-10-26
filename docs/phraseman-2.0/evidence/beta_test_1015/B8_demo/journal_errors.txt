@@ -1,0 +1,6 @@
+10-15 15:05:10.895 W/ReactNativeJS(14295): [JS-STALL] +54799ms поток стоял 454ms (с +54345ms)
+10-15 15:05:14.950 W/ReactNativeJS(14295): [JS-STALL] skipped_background ms=2833 gap=4053ms counted=1220ms at=+58853ms
+10-15 15:05:14.952 W/ReactNativeJS(14295): [JS-STALL] +58853ms поток стоял 1220ms (с +57633ms)
+10-15 15:05:14.956 W/ReactNativeJS(14295): [JS-STALL] heartbeat +58853ms splash=hidden@+4894ms
+10-15 15:05:15.318 W/ReactNativeJS(14295): [JS-STALL] +59223ms поток стоял 291ms (с +58932ms)
+10-15 15:05:16.107 W/ReactNativeJS(14295): [JS-STALL] watchdog stop +60011ms

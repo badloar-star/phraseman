@@ -1,0 +1,2 @@
+ждём: вкладка Друзья
+10-15 14:37:12.272 I/ReactNativeJS( 9599): [PUSH-TAP-DEV] simulate {"type":"activity_like"}

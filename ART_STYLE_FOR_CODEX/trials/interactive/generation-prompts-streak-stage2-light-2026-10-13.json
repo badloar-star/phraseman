@@ -1,0 +1,14 @@
+{
+  "tool": "built-in image_gen; no project API key used",
+  "mode": "light",
+  "stage": 2,
+  "tierDays": 10,
+  "prompts": [
+    {"asset":"light/streak_02_option_01r1","prompt":"Precise edit of its light day-one droplet flame. Advance to ten days: preserve compact droplet identity; add one broad rounded integrated secondary flame tongue along shoulder; body 8% broader. Keep same cyan inset on lower front. Warm ivory #e9e5dd matte clay, soft grey shading, same camera. True transparent alpha, clean isolated silhouette, no stray pixels."},
+    {"asset":"light/streak_02_option_02r1","prompt":"Precise edit of its light day-one open ribbon loop. Advance to ten days: preserve continuous loop and hollow; ribbon 10% thicker, tip 6% taller, heavier lower curve, no extra disconnected shapes. Keep cyan inset on same lower ribbon detail. Warm ivory #e9e5dd matte clay, soft grey shading, same camera. True transparent alpha, no stray pixels."},
+    {"asset":"light/streak_02_option_03r1","prompt":"Precise edit of its light day-one leaning S flame. Advance to ten days: preserve curled hooked tip, extend it 8%, broaden base 10%, stronger shoulder, at most three integrated large lobes. Keep cyan inset on same lower front detail. Warm ivory #e9e5dd matte clay, soft grey shading, same camera. True transparent alpha, no stray pixels."},
+    {"asset":"light/streak_02_option_04r1","prompt":"Precise edit of its light day-one rounded-square relief badge. Advance to ten days: preserve exact badge frame, make embossed flame three broad integrated tongues, center taller with deeper relief; retain one cyan pill beneath. Warm ivory #e9e5dd matte clay, soft grey shading, same camera. True transparent alpha outside the badge, no stray pixels."},
+    {"asset":"light/streak_02_option_05r1","prompt":"Precise edit of its light day-one three-petal flame. Advance to ten days: keep exactly three integrated petals; center 10% taller, side petals 12% broader and extend upward. Keep cyan inset on lower center. Warm ivory #e9e5dd matte clay, soft grey shading, same camera. True transparent alpha, no stray pixels."}
+  ],
+  "sharedConstraints":"One icon, square1024, only flat cyan #00ffff marker detail 2–5% of canvas with neutral bevel; premium adult UI sculpture; preserve real transparent background; no floor, cast shadow, checkerboard, specks, text, number, crown, tower, glass, metal, particles or extra elements."
+}

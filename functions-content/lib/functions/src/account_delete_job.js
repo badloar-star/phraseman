@@ -34,6 +34,8 @@ var __importStar = (this && this.__importStar) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ACCOUNT_DELETE_CREDENTIAL_RECEIPT_TTL_MS = exports.ACCOUNT_DELETE_CREDENTIAL_RECEIPTS = exports.ACCOUNT_DELETE_PERMANENT_DENIALS = exports.ACCOUNT_DELETE_AUTH_MARKERS = exports.ACCOUNT_DELETE_TOMBSTONES = exports.ACCOUNT_DELETE_JOBS = void 0;
+exports.accountDeleteProfileHasLinkedSignIn = accountDeleteProfileHasLinkedSignIn;
+exports.accountDeleteProfilesLinked = accountDeleteProfilesLinked;
 exports.fenceAccountDeletionRoots = fenceAccountDeletionRoots;
 exports.fenceAccountDeletionCredential = fenceAccountDeletionCredential;
 exports.accountDeleteJobId = accountDeleteJobId;
@@ -52,6 +54,32 @@ exports.ACCOUNT_DELETE_AUTH_MARKERS = 'account_deletion_auth_markers';
 exports.ACCOUNT_DELETE_PERMANENT_DENIALS = 'account_deletion_permanent_denials';
 exports.ACCOUNT_DELETE_CREDENTIAL_RECEIPTS = 'account_deletion_credential_receipts';
 exports.ACCOUNT_DELETE_CREDENTIAL_RECEIPT_TTL_MS = 7 * 24 * 60 * 60_000;
+/**
+ * D189: есть ли в профиле привязанный способ входа. linkedAuth пишется только при привязке Google/Apple (почта, провайдер);
+ * запись с provider 'anonymous' без почты привязкой не считается; любое другое непустое значение — привязка (сомнение = «не гость»).
+ */
+function accountDeleteProfileHasLinkedSignIn(data) {
+    const linked = data.linkedAuth;
+    if (linked && typeof linked === 'object' && Object.keys(linked).length > 0) {
+        const record = linked;
+        const provider = typeof record.provider === 'string' ? record.provider.trim().toLowerCase() : '';
+        const email = typeof record.email === 'string' ? record.email.trim() : '';
+        if (!(provider === 'anonymous' && !email))
+            return true;
+    }
+    return typeof data.email === 'string' && data.email.trim().length > 0;
+}
+/** D189: профили всего identityClosure одним getAll; 'linked' — хоть один с привязанным входом. Ошибка чтения — бросает. */
+async function accountDeleteProfilesLinked(db, ids) {
+    if (ids.length === 0)
+        return 'clean';
+    const snaps = await db.getAll(...ids.map((id) => db.collection('users').doc(id)));
+    for (const snap of snaps) {
+        if (snap.exists && accountDeleteProfileHasLinkedSignIn(snap.data() ?? {}))
+            return 'linked';
+    }
+    return 'clean';
+}
 async function fenceAccountDeletionRoots(db, authUid, stableUid, nowMs = Date.now()) {
     const jobId = accountDeleteJobId(authUid);
     const authMarkerRef = db.collection(exports.ACCOUNT_DELETE_AUTH_MARKERS).doc(authUid);
@@ -213,8 +241,12 @@ function jobStatus(value) {
         return value;
     return 'queued';
 }
-async function enqueueAccountDeletionJob(db, authUid, stableUid, nowMs = Date.now(), receipt, identityClosure) {
+async function enqueueAccountDeletionJob(db, authUid, stableUid, nowMs = Date.now(), receipt, identityClosure, guest) {
     const jobId = accountDeleteJobId(authUid);
+    // зачем (D189, владелец 14.10 «ДА, СРАЗУ»): гость не может восстановиться — его задача сразу к исполнению, без 14 дней.
+    // Только по решению сервера (строгий признак в accountDeleteEnqueue); без решения — обычные 14 дней.
+    const guestImmediate = guest?.immediate === true;
+    const graceDeadlineMs = guestImmediate ? nowMs : (0, account_delete_grace_1.accountDeleteGraceDeadlineMs)(nowMs);
     const ref = db.collection(exports.ACCOUNT_DELETE_JOBS).doc(jobId);
     const tombstoneRef = db.collection(exports.ACCOUNT_DELETE_TOMBSTONES).doc(stableUid);
     const authMarkerRef = db.collection(exports.ACCOUNT_DELETE_AUTH_MARKERS).doc(authUid);
@@ -280,7 +312,7 @@ async function enqueueAccountDeletionJob(db, authUid, stableUid, nowMs = Date.no
         tx.set(tombstoneRef, {
             jobId,
             status: 'pending',
-            graceDeadlineMs: (0, account_delete_grace_1.accountDeleteGraceDeadlineMs)(nowMs),
+            graceDeadlineMs,
             authUidHash: sha256(authUid),
             stableUidHash: sha256(stableUid),
             updatedAtMs: nowMs,
@@ -351,7 +383,7 @@ async function enqueueAccountDeletionJob(db, authUid, stableUid, nowMs = Date.no
         // зачем grace (владелец, 2026-08-31): 14 дней на «передумать» после
         // случайного удаления. Локальные данные стёрты сразу, но серверные живут
         // до дедлайна — воркер возьмёт задачу только после nextAttemptAtMs.
-        const graceDeadlineMs = (0, account_delete_grace_1.accountDeleteGraceDeadlineMs)(nowMs);
+        // D189: у гостя дедлайн = сейчас (graceDeadlineMs посчитан в начале функции).
         tx.create(ref, {
             jobId,
             authUid,
@@ -362,7 +394,8 @@ async function enqueueAccountDeletionJob(db, authUid, stableUid, nowMs = Date.no
             attempts: 0,
             nextAttemptAtMs: graceDeadlineMs,
             graceDeadlineMs,
-            graceMs: account_delete_grace_1.ACCOUNT_DELETE_GRACE_MS,
+            graceMs: guestImmediate ? 0 : account_delete_grace_1.ACCOUNT_DELETE_GRACE_MS,
+            ...(guest ? { guestImmediate, guestDecisionReason: guest.reason.slice(0, 64) } : {}),
             createdAtMs: nowMs,
             updatedAtMs: nowMs,
             identityClosure: frozenClosure,
@@ -380,22 +413,34 @@ function boundedError(error) {
         .replace(/\s+/g, ' ')
         .slice(0, 240);
 }
-async function processAccountDeletionJob(db, jobId, execute, nowMs = Date.now()) {
+async function processAccountDeletionJob(db, jobId, execute, nowMs = Date.now(), options = {}) {
     const ref = db.collection(exports.ACCOUNT_DELETE_JOBS).doc(jobId);
+    // зачем (координатор 14.10, удаление гостя №3): воркер сработал на запись задачи и вышел за 1,3 с МОЛЧА — задача ждала
+    // grace 14 дней. Каждый ранний выход теперь пишет причину [ACCOUNT-DELETE-JOB] (без uid; транзакция может повториться —
+    // в журнал идёт причина последней попытки).
+    let skip = { reason: 'unknown' };
     const claimed = await db.runTransaction(async (tx) => {
         const snapshot = await tx.get(ref);
-        if (!snapshot.exists)
+        if (!snapshot.exists) {
+            skip = { reason: 'job_missing' };
             return null;
+        }
         const data = snapshot.data() ?? {};
         const status = jobStatus(data.status);
         const leaseUntilMs = Number(data.leaseUntilMs ?? 0);
         const nextAttemptAtMs = Number(data.nextAttemptAtMs ?? 0);
-        if (status === 'completed' || status === 'failed')
+        if (status === 'completed' || status === 'failed') {
+            skip = { reason: `terminal_${status}` };
             return null;
-        if (status === 'queued' && Number.isFinite(nextAttemptAtMs) && nextAttemptAtMs > nowMs)
+        }
+        if (status === 'queued' && Number.isFinite(nextAttemptAtMs) && nextAttemptAtMs > nowMs) {
+            skip = { reason: 'not_due', status, msUntilDue: nextAttemptAtMs - nowMs, inGrace: Number(data.graceDeadlineMs ?? 0) > nowMs };
             return null;
-        if (status === 'running' && Number.isFinite(leaseUntilMs) && leaseUntilMs > nowMs)
+        }
+        if (status === 'running' && Number.isFinite(leaseUntilMs) && leaseUntilMs > nowMs) {
+            skip = { reason: 'lease_active', status, msUntilLeaseEnd: leaseUntilMs - nowMs };
             return null;
+        }
         const authUid = typeof data.authUid === 'string' ? data.authUid : '';
         const stableUid = typeof data.stableUid === 'string' ? data.stableUid : '';
         const closureCutoffMs = Number(data.closureCutoffMs ?? data.createdAtMs ?? 0);
@@ -409,6 +454,7 @@ async function processAccountDeletionJob(db, jobId, execute, nowMs = Date.now())
         }
         const previousAttempts = Math.max(0, Math.floor(Number(data.attempts) || 0));
         if (previousAttempts >= ACCOUNT_DELETE_JOB_MAX_ATTEMPTS) {
+            skip = { reason: 'max_attempts_marked_failed', attempts: previousAttempts };
             tx.update(ref, {
                 status: 'failed',
                 leaseUntilMs: admin.firestore.FieldValue.delete(),
@@ -449,10 +495,55 @@ async function processAccountDeletionJob(db, jobId, execute, nowMs = Date.now())
             updatedAtMs: nowMs,
             updatedAt: admin.firestore.FieldValue.serverTimestamp(),
         }, { merge: true });
-        return { authUid, stableUid, attempts, leaseToken, closureCutoffMs, identityClosure };
+        return {
+            authUid, stableUid, attempts, leaseToken, closureCutoffMs, identityClosure,
+            guestImmediate: data.guestImmediate === true,
+            createdAtMs: Number(data.createdAtMs ?? nowMs),
+        };
     });
-    if (!claimed)
+    if (!claimed) {
+        console.log(JSON.stringify({ event: 'account_delete_job_skip', tag: '[ACCOUNT-DELETE-JOB]', ...skip }));
         return;
+    }
+    console.log(JSON.stringify({ event: 'account_delete_job_claimed', tag: '[ACCOUNT-DELETE-JOB]', attempts: claimed.attempts, guestImmediate: claimed.guestImmediate }));
+    // зачем (D189, координатор: «перепроверка при обработке задачи — тоже»): пользователь Auth к этому моменту уже снят,
+    // поэтому перепроверяем то, что осталось, — профили всего identityClosure. Привязка или ошибка чтения → назад в 14 дней.
+    if (claimed.guestImmediate) {
+        let recheck;
+        try {
+            recheck = await (options.profilesLinked ?? accountDeleteProfilesLinked)(db, claimed.identityClosure);
+        }
+        catch (error) {
+            console.warn(JSON.stringify({ event: 'account_delete_guest_recheck_failed', tag: '[ACCOUNT-DELETE]', error: boundedError(error) }));
+            recheck = 'read_failed';
+        }
+        if (recheck !== 'clean') {
+            const graceDeadlineMs = (0, account_delete_grace_1.accountDeleteGraceDeadlineMs)(claimed.createdAtMs);
+            console.warn(JSON.stringify({ event: 'account_delete_guest_recheck', tag: '[ACCOUNT-DELETE]', guest_immediate: false, reason: recheck, backToGrace: true }));
+            const back = db.batch();
+            back.set(ref, {
+                status: 'queued',
+                guestImmediate: false,
+                guestDecisionReason: `recheck_${recheck}`,
+                nextAttemptAtMs: graceDeadlineMs,
+                graceDeadlineMs,
+                graceMs: account_delete_grace_1.ACCOUNT_DELETE_GRACE_MS,
+                leaseUntilMs: admin.firestore.FieldValue.delete(),
+                leaseToken: admin.firestore.FieldValue.delete(),
+                updatedAtMs: nowMs,
+                updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+            }, { merge: true });
+            back.set(db.collection(exports.ACCOUNT_DELETE_TOMBSTONES).doc(claimed.stableUid), {
+                status: 'pending', graceDeadlineMs, updatedAtMs: nowMs, updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+            }, { merge: true });
+            back.set(db.collection(exports.ACCOUNT_DELETE_AUTH_MARKERS).doc(claimed.authUid), {
+                status: 'pending', updatedAtMs: nowMs, updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+            }, { merge: true });
+            await back.commit();
+            return;
+        }
+        console.log(JSON.stringify({ event: 'account_delete_guest_recheck', tag: '[ACCOUNT-DELETE]', guest_immediate: true, reason: 'clean' }));
+    }
     try {
         const stats = await execute(db, claimed.stableUid, claimed.authUid, claimed.closureCutoffMs, claimed.identityClosure);
         const batch = db.batch();

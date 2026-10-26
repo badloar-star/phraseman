@@ -112,7 +112,7 @@ function inspectLocale(locale, markdown) {
   const tasks = parsePractice(markdown);
   if (!header.title || !header.scene || !header.operation) add("header", `${locale}: нужны заголовок, ситуация и операция`);
   for (const issue of newWordDeclarationIssues({ [locale]: header })) add("new_words", issue);
-  if (header.newWords.length < 1 || header.newWords.length > 5) add("new_words", `${locale}: новых слов ${header.newWords.length}; нужно 1–5`);
+  if ((header.newWords.length < 1 && header.newWordsDeclaration !== "explicit_none") || header.newWords.length > 5) add("new_words", `${locale}: нужно 1–5 новых слов либо явное «—» для закрепления знакомых`);
   if (intro.length !== 3) add("intro", `${locale}: вводных страниц ${intro.length}; нужно 3`);
   for (const [index, page] of intro.entries()) {
     const correct = page.options.filter((option) => option.correct).length;

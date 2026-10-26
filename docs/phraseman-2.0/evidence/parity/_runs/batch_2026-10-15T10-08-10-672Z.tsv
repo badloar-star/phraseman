@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+auth-gap-018	2026-10-15T10:08:56.648Z	error	12998	step_target_not_found:#settings-switch-continue+ждали_metro_31мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-15T10-08-10-672Z/auth-gap-018.error.png	0

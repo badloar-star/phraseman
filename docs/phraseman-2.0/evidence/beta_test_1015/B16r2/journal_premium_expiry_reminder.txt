@@ -1,0 +1,6 @@
+10-15 15:02:57.265 I/ReactNativeJS(13756): '[DEEPLINK] redirectSystemPath', '{"in":"phraseman:///","initial":true,"out":"/home"}'
+10-15 15:02:58.817 I/ReactNativeJS(13756): '[SPIRE]', '[SPIRE-GATE]', '{"lang":"ru","allowed":true,"reason":"ui_lang_allowed","where":"isSpireTabEnabled source=context"}'
+10-15 15:03:12.833 I/ReactNativeJS(13756): '[DEEPLINK] redirectSystemPath', '{"in":"phraseman://dev_state?notif=premium_expiry_reminder&next=/(tabs)/home","initial":false,"out":"/dev_state?notif=premium_expiry_reminder&next=/(tabs)/home"}'
+10-15 15:03:12.836 I/ReactNativeJS(13756): '[DEEPLINK] redirectSystemPath', '{"in":"phraseman://dev_state?notif=premium_expiry_reminder&next=/(tabs)/home","initial":false,"out":"/dev_state?notif=premium_expiry_reminder&next=/(tabs)/home"}'
+10-15 15:03:19.116 I/ReactNativeJS(13756): [PUSH-TAP-DEV] simulate {"type":"premium_expiry_reminder"}
+10-15 15:03:19.117 W/ReactNativeJS(13756): '[PUSH-TAP-DEV] after_route simulate', '{"notif":"premium_expiry_reminder","ok":true}'

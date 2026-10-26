@@ -15,6 +15,7 @@ const MATERIALS=['#77736e','#373b43','#dad8d0','#4c8876','#cad3d7','#a87b68','#3
 const MATERIAL=MATERIALS[TIER];
 `;
 let result = source.replace('<meta charset="utf-8">','<meta charset="utf-8"><base href="../../../docs/design/v2-app/">')
+  .replace('const TIER = 0; // лига образца — Гранит','// league is selected by the preview URL setup above')
   .replace('const { icon, phone, col, block, sheet, energy, coins, coinImg } = K;', setup + '\nconst { icon, phone, col, block, sheet, energy, coins, coinImg } = K;')
   .replace('const FH = (f) => (isGuard(f) ? 60 : 46);','const FH=(f)=>(isGuard(f)?60:46)+(DESIGN===1?5:DESIGN===2&&isGuard(f)?8:0);')
   .replace('const FW = (f) => 196 - (f - 1) * 5;','const FW=(f)=>{const progression=TIER*.8;if(DESIGN===1)return 172+progression-(f-1)*3.8;if(DESIGN===2)return 204+progression-Math.floor((f-1)/5)*26-(f%5===0?-6:0);if(DESIGN===3)return 192+progression-(f-1)*4.5;if(DESIGN===4)return 180+progression-(f-1)*2.7;return 196+progression-(f-1)*5;};')

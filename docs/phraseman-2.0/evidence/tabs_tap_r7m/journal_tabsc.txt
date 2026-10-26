@@ -1,0 +1,85 @@
+10-15 12:32:04.161 I/SVERKA  (16604): R7M launch
+10-15 12:32:26.538 W/ReactNativeJS(16629): [JS-STALL] +1997ms поток стоял 1992ms (с +5ms)
+10-15 12:32:27.106 I/ReactNativeJS(16629): [TAP-LAT] [TABS-RENDER] #1 inst=1 seq=1 t=47106 changed=first render
+10-15 12:32:27.600 I/ReactNativeJS(16629): [TAP-LAT] [TABS-COMMIT] inst=1 seq=2 t=47594 render#1 active=0 visual=0 page=0 pathname=/
+10-15 12:32:27.607 I/ReactNativeJS(16629): [TAP-LAT] [TABS-IDX] inst=1 seq=3 t=47601 source=route_effect {"pathname":"/","segments":"","rawFromRouter":0,"fromRouter":0,"pending":null,"active":0,"visual":0,"page":0,"layoutChanged":true}
+10-15 12:32:27.609 I/ReactNativeJS(16629): [TAP-LAT] [TABS-IDX] inst=1 seq=4 t=47607 source=route_effect:from_router {"fromRouter":0,"active":"0→0","visual":"0→0"}
+10-15 12:32:27.650 W/ReactNativeJS(16629): [JS-STALL] +3111ms поток стоял 999ms (с +2112ms)
+10-15 12:32:27.790 I/ReactNativeJS(16629): [TAP-LAT] [TABS-INST] mount inst=1 seq=5 t=47788
+10-15 12:32:28.078 I/ReactNativeJS(16629): [TAP-LAT] [TABS-RENDER] #2 inst=1 seq=6 t=48074 changed=none (parent/context)
+10-15 12:32:28.167 I/ReactNativeJS(16629): [TAP-LAT] [TABS-COMMIT] inst=1 seq=7 t=48162 render#2 active=0 visual=0 page=0 pathname=/
+10-15 12:32:28.255 W/ReactNativeJS(16629): [JS-STALL] +3716ms поток стоял 604ms (с +3112ms)
+10-15 12:32:28.270 I/ReactNativeJS(16629): [TABS-SINGLE] flag tabs_single_guard=on source=rc_cache
+10-15 12:32:28.286 I/ReactNativeJS(16629): [TAP-LAT] [TABS-RENDER] #3 inst=1 seq=8 t=48284 changed=focusTick:0→1
+10-15 12:32:28.371 I/ReactNativeJS(16629): [TAP-LAT] [TABS-COMMIT] inst=1 seq=9 t=48362 render#3 active=0 visual=0 page=0 pathname=/
+10-15 12:32:28.543 I/ReactNativeJS(16629): [TAP-LAT] [TABS-RENDER] #4 inst=1 seq=10 t=48536 changed=theme:#1→#3
+10-15 12:32:29.265 I/ReactNativeJS(16629): [TAP-LAT] [TABS-COMMIT] inst=1 seq=11 t=49260 render#4 active=0 visual=0 page=0 pathname=/
+10-15 12:32:29.323 W/ReactNativeJS(16629): [JS-STALL] +4785ms поток стоял 1069ms (с +3716ms)
+10-15 12:32:29.383 I/ReactNativeJS(16629): [TAP-LAT] → (tabs) · без касания (редирект/таймер) · коммит→кадр 1193.4мс
+10-15 12:32:29.383 I/ReactNativeJS(16629): [TAP-LAT]    ↳ JS после коммита занят: 1 отрезк. >50мс (1193мс) · рендеры: stack 4×(249/54/46/512мс, всего 861мс) · layout:tabs 4×(188/44/46/503мс, всего 781мс) · tab:home 1×(452мс, всего 452мс)
+10-15 12:32:29.920 W/ReactNativeJS(16629): [JS-STALL] +5382ms поток стоял 597ms (с +4785ms)
+10-15 12:32:29.923 W/ReactNativeJS(16629): [JS-STALL] heartbeat +5382ms splash=shown
+10-15 12:32:31.194 I/ReactNativeJS(16629): [TAP-LAT] [TABS-RENDER] #5 inst=1 seq=12 t=51192 changed=none (parent/context)
+10-15 12:32:31.260 I/ReactNativeJS(16629): [TAP-LAT] [TABS-COMMIT] inst=1 seq=13 t=51255 render#5 active=0 visual=0 page=0 pathname=/
+10-15 12:32:31.461 W/ReactNativeJS(16629): [JS-STALL] +6923ms поток стоял 908ms (с +6015ms)
+10-15 12:32:31.485 I/ReactNativeJS(16629): '[TABS-PREMOUNT] start', '{"reason":"home_painted","startTabIdx":0,"startedAlready":false}'
+10-15 12:32:34.419 W/ReactNativeJS(16629): [JS-STALL] +9876ms поток стоял 2835ms (с +7041ms)
+10-15 12:32:34.721 W/ReactNativeJS(16629): [JS-STALL] +10183ms поток стоял 307ms (с +9876ms)
+10-15 12:32:35.474 W/ReactNativeJS(16629): [JS-STALL] +10935ms поток стоял 752ms (с +10183ms)
+10-15 12:32:35.474 W/ReactNativeJS(16629): [JS-STALL] heartbeat +10935ms splash=hidden@+6495ms
+10-15 12:32:36.736 I/ReactNativeJS(16629): [TAP-LAT] [TABS-RENDER] #6 inst=1 seq=14 t=56734 changed=visited:1→2 mounted:1→2
+10-15 12:32:37.621 I/ReactNativeJS(16629): [TAP-LAT] [TABS-COMMIT] inst=1 seq=15 t=57619 render#6 active=0 visual=0 page=0 pathname=/
+10-15 12:32:37.643 W/ReactNativeJS(16629): [JS-STALL] +13105ms поток стоял 1018ms (с +12087ms)
+10-15 12:32:37.974 W/ReactNativeJS(16629): [JS-STALL] +13436ms поток стоял 330ms (с +13106ms)
+10-15 12:32:38.285 W/ReactNativeJS(16629): [JS-STALL] +13746ms поток стоял 266ms (с +13480ms)
+10-15 12:32:38.570 I/ReactNativeJS(16629): '[TABS-PREMOUNT] step', '{"idx":1,"outcome":"mounted","queuedMs":0,"totalMs":4135,"quietReason":"quiet","quietWaitMs":2268,"cleanTicks":4,"lastLagMs":23,"maxLagMs":838,"sinceTouchMs":1200,"idleWaitMs":3,"prewarmMs":0,"commitMs":1553}'
+10-15 12:32:39.812 I/ReactNativeJS(16629): [TAP-LAT] [TABS-RENDER] #7 inst=1 seq=16 t=59810 changed=visited:2→3 mounted:2→3
+10-15 12:32:40.285 I/ReactNativeJS(16629): [TAP-LAT] [TABS-COMMIT] inst=1 seq=17 t=60281 render#7 active=0 visual=0 page=0 pathname=/
+10-15 12:32:40.356 W/ReactNativeJS(16629): [JS-STALL] +15818ms поток стоял 577ms (с +15241ms)
+10-15 12:32:43.105 W/ReactNativeJS(16629): [JS-STALL] +18567ms поток стоял 2634ms (с +15933ms)
+10-15 12:32:43.106 W/ReactNativeJS(16629): [JS-STALL] heartbeat +18567ms splash=hidden@+6495ms
+10-15 12:32:43.314 I/ReactNativeJS(16629): '[TABS-PREMOUNT] step', '{"idx":2,"outcome":"mounted","queuedMs":4100,"totalMs":4743,"quietReason":"quiet","quietWaitMs":1231,"cleanTicks":4,"lastLagMs":33,"maxLagMs":96,"sinceTouchMs":1200,"idleWaitMs":0,"prewarmMs":0,"commitMs":3297}'
+10-15 12:32:44.301 W/ReactNativeJS(16629): [JS-STALL] +19762ms поток стоял 883ms (с +18879ms)
+10-15 12:32:45.428 I/ReactNativeJS(16629): [TAP-LAT] [TABS-RENDER] #8 inst=1 seq=18 t=65428 changed=visited:3→4 mounted:3→4
+10-15 12:32:45.782 I/ReactNativeJS(16629): [TAP-LAT] [TABS-COMMIT] inst=1 seq=19 t=65764 render#8 active=0 visual=0 page=0 pathname=/
+10-15 12:32:45.946 W/ReactNativeJS(16629): [JS-STALL] +21408ms поток стоял 520ms (с +20888ms)
+10-15 12:32:46.183 I/ReactNativeJS(16629): '[TABS-PREMOUNT] step', '{"idx":3,"outcome":"mounted","queuedMs":8813,"totalMs":2865,"quietReason":"quiet","quietWaitMs":1912,"cleanTicks":4,"lastLagMs":36,"maxLagMs":784,"sinceTouchMs":1200,"idleWaitMs":176,"prewarmMs":0,"commitMs":591}'
+10-15 12:32:48.141 W/ReactNativeJS(16629): [JS-STALL] heartbeat +23603ms splash=hidden@+6495ms
+10-15 12:32:49.715 I/ReactNativeJS(16629): [TAP-LAT] [TABS-RENDER] #9 inst=1 seq=20 t=69715 changed=visited:4→5 mounted:4→5
+10-15 12:32:50.125 I/ReactNativeJS(16629): [TAP-LAT] [TABS-COMMIT] inst=1 seq=21 t=70120 render#9 active=0 visual=0 page=0 pathname=/
+10-15 12:32:50.227 W/ReactNativeJS(16629): [JS-STALL] +25688ms поток стоял 571ms (с +25117ms)
+10-15 12:32:50.843 W/ReactNativeJS(16629): [JS-STALL] +26304ms поток стоял 386ms (с +25918ms)
+10-15 12:32:51.013 I/ReactNativeJS(16629): '[TABS-PREMOUNT] step', '{"idx":4,"outcome":"mounted","queuedMs":11679,"totalMs":4828,"quietReason":"quiet","quietWaitMs":651,"cleanTicks":4,"lastLagMs":14,"maxLagMs":20,"sinceTouchMs":1200,"idleWaitMs":2856,"prewarmMs":0,"commitMs":1128}'
+10-15 12:32:52.149 W/ReactNativeJS(16629): [JS-STALL] +27611ms поток стоял 884ms (с +26727ms)
+10-15 12:32:53.248 W/ReactNativeJS(16629): [JS-STALL] heartbeat +28709ms splash=hidden@+6495ms
+10-15 12:32:58.270 W/ReactNativeJS(16629): [JS-STALL] heartbeat +33732ms splash=hidden@+6495ms
+10-15 12:33:03.312 W/ReactNativeJS(16629): [JS-STALL] heartbeat +38772ms splash=hidden@+6495ms
+10-15 12:33:08.367 W/ReactNativeJS(16629): [JS-STALL] heartbeat +43829ms splash=hidden@+6495ms
+10-15 12:33:13.384 W/ReactNativeJS(16629): [JS-STALL] heartbeat +48846ms splash=hidden@+6495ms
+10-15 12:33:18.392 W/ReactNativeJS(16629): [JS-STALL] heartbeat +53853ms splash=hidden@+6495ms
+10-15 12:33:19.832 W/ReactNativeJS(16629): [JS-STALL] +55294ms поток стоял 274ms (с +55020ms)
+10-15 12:33:23.485 W/ReactNativeJS(16629): [JS-STALL] heartbeat +58947ms splash=hidden@+6495ms
+10-15 12:33:24.654 W/ReactNativeJS(16629): [JS-STALL] watchdog stop +60114ms
+10-15 12:33:29.221 I/SVERKA  (16917): R7M ready-wait i=17
+10-15 12:33:41.621 I/SVERKA  (16995): R7M предпоÐёт нет DEV-STATE и пейвоÐа
+10-15 12:33:46.749 I/ReactNativeJS(16629): [TAP-LAT] [TABS-RENDER] #10 inst=1 seq=22 t=26748 changed=pathname:/→/lesson_menu segments:→lesson_menu
+10-15 12:33:46.803 I/ReactNativeJS(16629): [TAP-LAT] [TABS-COMMIT] inst=1 seq=23 t=26799 render#10 active=0 visual=0 page=0 pathname=/lesson_menu
+10-15 12:33:46.805 I/ReactNativeJS(16629): [TAP-LAT] [TABS-IDX] inst=1 seq=24 t=26803 source=route_effect {"pathname":"/lesson_menu","segments":"lesson_menu","rawFromRouter":null,"fromRouter":null,"pending":null,"active":0,"visual":0,"page":0,"layoutChanged":false}
+10-15 12:33:47.350 I/ReactNativeJS(16629): [TAP-LAT] → lesson_menu (из (tabs)) · палец 98.3мс · JS-лаг на отпускании 98.3мс · отпускание→обработчик — · обработчик→коммит 2291.4мс · коммит→кадр 605.6мс · ОТ ОТПУСКАНИЯ ДО КАДРА 2897мс ⚠️ МЕДЛЕННО
+10-15 12:33:47.350 I/ReactNativeJS(16629): [TAP-LAT]    ↳ JS после коммита занят: 1 отрезк. >50мс (605мс) · рендеры от касания: stack 3×(117/101/470мс, всего 688мс) · layout:tabs 1×(456мс, всего 456мс)
+10-15 12:33:52.253 I/SVERKA  (17042): R7M ПродоÐжить нажато, урок
+10-15 12:33:52.479 W/ReactNativeJS(16629): '[NAV-BACK] candidate:reset', '{"reason":"no_candidate","leaving":"/lesson_menu","leavingSection":"lessons","candidate":null,"candidateSection":null}'
+10-15 12:33:52.487 W/ReactNativeJS(16629): '[NAV-BACK] decision', '{"leaving":"/lesson_menu","leavingSection":"lessons","candidate":null,"chosen":"/lessons_list","fallback":"/lessons_list","method":"dismiss_to"}'
+10-15 12:33:53.228 I/ReactNativeJS(16629): [TAP-LAT] → lessons_list (из lesson_menu) · без касания (редирект/таймер) · коммит→кадр 257.5мс
+10-15 12:33:53.228 I/ReactNativeJS(16629): [TAP-LAT]    ↳ JS после коммита занят: 1 отрезк. >50мс (257мс) · рендеры: stack 12×(117/101/470/132/71/…мс, всего 1343мс) · layout:tabs 3×(456/2/8мс, всего 465мс) · tab:home 1×(1мс, всего 1мс)
+10-15 12:33:57.241 I/SVERKA  (17056): R7M назад
+10-15 12:33:57.440 I/SVERKA  (17058): R7M switch 1 lessons
+10-15 12:34:00.848 I/SVERKA  (17065): R7M switch 1 home
+10-15 12:34:04.158 I/SVERKA  (17072): R7M switch 2 lessons
+10-15 12:34:07.398 I/SVERKA  (17079): R7M switch 2 home
+10-15 12:34:10.647 I/SVERKA  (17088): R7M switch 3 lessons
+10-15 12:34:13.896 I/SVERKA  (17095): R7M switch 3 home
+10-15 12:34:17.179 I/SVERKA  (17103): R7M switch 4 lessons
+10-15 12:34:20.458 I/SVERKA  (17110): R7M switch 4 home
+10-15 12:34:23.705 I/SVERKA  (17117): R7M switch 5 lessons
+10-15 12:34:26.947 I/SVERKA  (17124): R7M switch 5 home

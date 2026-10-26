@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+auth-gap-005	2026-10-15T09:27:44.309Z	error	12972	step_target_not_found:#account-link-row+ждали_metro_32мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-15T09-26-55-490Z/auth-gap-005.error.png	0

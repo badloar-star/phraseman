@@ -1,0 +1,3 @@
+ждём: пейвол vip_expired
+10-15 15:03:53.486 I/ReactNativeJS(14035): [PUSH-TAP-DEV] simulate {"type":"premium_expiry_reminder","kind":"vip"}
+10-15 15:03:53.488 W/ReactNativeJS(14035): '[PUSH-TAP-DEV] after_route simulate', '{"notif":"premium_expiry_vip","ok":true}'

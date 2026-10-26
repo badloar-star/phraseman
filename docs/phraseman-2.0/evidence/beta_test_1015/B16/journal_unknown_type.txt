@@ -1,0 +1,5 @@
+10-15 14:39:48.686 I/ReactNativeJS(10921): '[DEEPLINK] redirectSystemPath', '{"in":"phraseman:///","initial":true,"out":"/home"}'
+10-15 14:39:49.992 I/ReactNativeJS(10921): '[SPIRE]', '[SPIRE-GATE]', '{"lang":"ru","allowed":true,"reason":"ui_lang_allowed","where":"isSpireTabEnabled source=context"}'
+10-15 14:40:02.110 I/ReactNativeJS(10921): '[DEEPLINK] redirectSystemPath', '{"in":"phraseman://dev_state?notif=unknown_type&next=/(tabs)/home","initial":false,"out":"/dev_state?notif=unknown_type&next=/(tabs)/home"}'
+10-15 14:40:02.112 I/ReactNativeJS(10921): '[DEEPLINK] redirectSystemPath', '{"in":"phraseman://dev_state?notif=unknown_type&next=/(tabs)/home","initial":false,"out":"/dev_state?notif=unknown_type&next=/(tabs)/home"}'
+10-15 14:40:03.990 I/ReactNativeJS(10921): [PUSH-TAP-DEV] simulate {"type":"unknown_type"}

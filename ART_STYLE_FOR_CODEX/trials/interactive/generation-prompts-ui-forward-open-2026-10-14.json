@@ -1,0 +1,17 @@
+{
+  "iconId": "ui_01_03",
+  "label": "вперёд/открыть",
+  "style": "S2 matte clay",
+  "options": 5,
+  "themeModes": ["dark", "light"],
+  "transparentBackground": true,
+  "concepts": [
+    "right arrow passing through an open doorway frame",
+    "beveled arrow emerging from a rounded portal",
+    "right chevron with short clay shaft",
+    "open door slab with forward arrow through its opening",
+    "forward arrow inset in a shallow circular medallion"
+  ],
+  "segmentation": "Cyan front-surface circular inlay is extracted as a separate white accent mask; corresponding light variants are derived from dark sources.",
+  "qualityNote": "Options 01, 03, 04, and 05 pass accent size and alignment. Option 02’s refined r2 pair passes at 1.438-1.439%; its initial pair is retained as a superseded draft."
+}

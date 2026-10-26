@@ -1,0 +1,14 @@
+{
+  "tool": "built-in image_gen; no project API key used",
+  "scenarioId": "first_meeting",
+  "candidatePrefix": "dialog_scene_first_meeting_option_",
+  "concepts": [
+    "overlapping blank speech bubbles",
+    "paired blank name badges",
+    "two interlocking connection rings",
+    "blank invitation folio",
+    "paired cafe cups"
+  ],
+  "style": "S2 matte graphite clay / derived warm ivory, no people, true alpha, separately extracted white theme accent",
+  "status": "Five concepts generated in dark/light. Per-mode marker checks are in first-meeting-preparation-dark.log and first-meeting-preparation-light.log; all await owner visual review."
+}

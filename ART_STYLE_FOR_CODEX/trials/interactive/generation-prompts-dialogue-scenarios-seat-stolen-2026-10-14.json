@@ -1,0 +1,14 @@
+{
+  "tool": "built-in image_gen; no project API key used",
+  "scenarioId": "seat_stolen_cafe",
+  "candidatePrefix": "dialog_scene_seat_stolen_cafe_option_",
+  "concepts": [
+    "empty chair with seat marker",
+    "blank reservation tent",
+    "cafe table with occupied place setting",
+    "table marker plate with cup",
+    "two chairs and tabletop"
+  ],
+  "style": "S2 premium matte clay; graphite dark and warm ivory light; true alpha and separate white accent",
+  "status": "Five generated in both modes; inspect seat-stolen-preparation-dark.log and seat-stolen-preparation-light.log for measured alpha/accent results. All await owner selection."
+}

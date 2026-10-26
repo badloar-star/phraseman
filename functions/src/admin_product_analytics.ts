@@ -538,21 +538,27 @@ conversion_context_rows AS (
   FROM conversion_events
   GROUP BY context_bucket, source_bucket
 ),
-conversion_failure_rows AS (
+  governed_conversion_failures AS (
+    SELECT
+      user_pseudo_id,
+      CASE
+        WHEN purchase_error IN (
+          'identity_sync', 'no_active_entitlement_after_purchase', 'payment_pending',
+          'network_error', 'payment_error', 'store_error', 'configuration_error',
+          'sdk_other', 'unknown'
+        ) THEN purchase_error
+        ELSE 'legacy_or_other'
+      END AS reason
+    FROM conversion_events
+    WHERE event_name = 'purchase_failed'
+  ),
+  conversion_failure_rows AS (
   SELECT 'conversion_failure' AS row_kind, TO_JSON_STRING(STRUCT(
-    CASE
-      WHEN purchase_error IN (
-        'identity_sync', 'no_active_entitlement_after_purchase', 'payment_pending',
-        'network_error', 'payment_error', 'store_error', 'configuration_error',
-        'sdk_other', 'unknown'
-      ) THEN purchase_error
-      ELSE 'legacy_or_other'
-    END AS reason,
+      reason,
     COUNT(*) AS events,
     COUNT(DISTINCT user_pseudo_id) AS app_instances
   )) AS payload
-  FROM conversion_events
-  WHERE event_name = 'purchase_failed'
+    FROM governed_conversion_failures
   GROUP BY reason
 ),
 activity_days AS (
@@ -814,12 +820,16 @@ activation_summary_row AS (
   )) AS payload
   FROM first_touch_instance_facts
 ),
+governed_acquisition_channels AS (
+  SELECT IFNULL(acquisition_channel_bucket, 'direct_or_unknown') AS channel
+  FROM first_touch_instance_facts
+),
 acquisition_channel_rows AS (
   SELECT 'acquisition_channel' AS row_kind, TO_JSON_STRING(STRUCT(
-    IFNULL(acquisition_channel_bucket, 'direct_or_unknown') AS channel,
+    channel,
     COUNT(*) AS consented_first_touch_app_instances
   )) AS payload
-  FROM first_touch_instance_facts
+  FROM governed_acquisition_channels
   GROUP BY channel
 ),
 experiment_exposure_rows AS (
@@ -840,7 +850,7 @@ experiment_exposure_rows AS (
     AND assignment_quality = 'frozen'
     AND experiment_id IS NOT NULL
     AND exposure_id IS NOT NULL
-  GROUP BY experiment_id, definition_version, variant_id, control_variant_id, surface, config_revision
+  GROUP BY experiment_id, experiment_definition_version, experiment_variant_id, experiment_control_variant_id, experiment_surface, experiment_config_revision
 ),
 release_adoption_rows AS (
   SELECT 'release_adoption' AS row_kind, TO_JSON_STRING(STRUCT(
@@ -873,16 +883,24 @@ operation_failure_rows AS (
   WHERE event_name = 'product_operation_failure'
   GROUP BY app_version, build_number, platform, feature, operation, failure_code, retryable
 ),
+daily_kpi_facts AS (
+  SELECT
+    FORMAT_DATE('%Y-%m-%d', DATE(TIMESTAMP_MICROS(event_timestamp), @reportingTimezone)) AS local_date,
+    event_name,
+    session_id,
+    user_pseudo_id
+  FROM base
+),
 daily_kpi_rows AS (
   SELECT 'daily_kpi' AS row_kind, TO_JSON_STRING(STRUCT(
-    FORMAT_DATE('%Y-%m-%d', DATE(TIMESTAMP_MICROS(event_timestamp), @reportingTimezone)) AS local_date,
+    local_date,
     COUNT(DISTINCT IF(event_name = 'product_session_start', session_id, NULL)) AS sessions,
     COUNT(DISTINCT IF(event_name = 'product_session_start', user_pseudo_id, NULL)) AS active_consented_app_instances,
     COUNTIF(event_name = 'product_screen_view') AS screen_views,
     COUNTIF(event_name = 'lesson_start') AS lesson_starts,
     COUNTIF(event_name = 'lesson_complete') AS lesson_completes
   )) AS payload
-  FROM base
+  FROM daily_kpi_facts
   GROUP BY local_date
 ),
 quality_row AS (
@@ -1274,9 +1292,14 @@ export async function handleAdminProductAnalytics(
   return value;
 }
 
-export const adminProductAnalytics = onCall({
+export const ADMIN_PRODUCT_ANALYTICS_OPTIONS = Object.freeze({
   region: REGION,
   enforceAppCheck: ENFORCE_APP_CHECK_ADMIN,
-  timeoutSeconds: 60,
-  memory: '512MiB',
-}, handleAdminProductAnalytics);
+  timeoutSeconds: 180,
+  memory: '512MiB' as const,
+});
+
+export const adminProductAnalytics = onCall(
+  ADMIN_PRODUCT_ANALYTICS_OPTIONS,
+  handleAdminProductAnalytics,
+);

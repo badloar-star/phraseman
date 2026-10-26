@@ -1,0 +1,14 @@
+{
+  "scenario": "neighbor_cat_accusation",
+  "title": "Сосед думает, ты прячешь его кота",
+  "generatedAt": "2026-10-14",
+  "style": "S2 matte clay",
+  "variants": [
+    "empty pet carrier and loose collar",
+    "food bowl and paw-shaped token",
+    "unspooled yarn and empty cushion",
+    "blank lost-pet notice and paw token",
+    "half-open door, bowl, and dangling collar tag"
+  ],
+  "constraints": ["true transparent RGBA", "no visible people or cat", "cyan internal marker for separate white accent extraction", "dark and light trial pairs", "trial location only"]
+}

@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+cards-v2-021	2026-10-15T08:45:43.687Z	error	13951	step_target_not_found:#fc-gallery-tile-*+ждали_metro_27мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-15T08-44-56-256Z/cards-v2-021.error.png	0

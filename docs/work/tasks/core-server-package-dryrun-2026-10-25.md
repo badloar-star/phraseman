@@ -4,6 +4,13 @@ Governance-ID: TG-18395D804ACC
 Governance-ID: TG-7FA621BDE003
 Governance-ID: TG-57AC268D3026
 Governance-ID: TG-BE7A5599AF33
+Governance-ID: TG-543770AD8615
+Governance-ID: TG-3C5412DAEDFD
+Governance-ID: TG-3931115FF57E
+
+Дополнение 25.10 (координатор): стор-экспорт Android и гейты STORE-BUNDLE-DEV / DPK-GATE — в КОПИИ снимка
+/c/Temp/claude/release_2_0_2_export. Сам снимок уходит в EAS, его не трогаем. Копия без node_modules и .git,
+node_modules подключены junction на снимок (только чтение). Переменные — как у профиля production. Репозиторий и прод не меняются.
 
 ## Outcome
 Сухой прогон (без `--execute`) пакета из docs/work/release/SERVER_PACKAGE_2026-10-25.md на HEAD после коммита флагов.

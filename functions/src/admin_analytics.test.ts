@@ -57,11 +57,23 @@ describe('analytics callable source contract', () => {
   });
 
   it('returns aggregate sections and safe source metadata', () => {
-    for (const key of ['generatedAtMs', 'definitionVersion', 'access', 'storeActivity', 'shardActivity', 'funnelSignals', 'appActivity', 'quality']) {
+    for (const key of ['generatedAtMs', 'definitionVersion', 'access', 'storeActivity', 'shardActivity', 'funnelSignals', 'appActivity', 'quality', 'spireStatistics']) {
       expect(source).toContain(key);
     }
     expect(source).toContain('errorCode');
     expect(source).not.toContain('error instanceof Error ? error.message');
+  });
+
+  it('derives Spire statistics from the existing users rows without another Firestore query', () => {
+    expect(source).toContain('aggregateAdminSpireStatistics');
+    expect(source).toContain('getWeekKey(isoDateUtc(new Date(generatedAtMs)))');
+    expect(source.match(/collection\('users'\)/g)).toHaveLength(1);
+  });
+
+  it('keeps the existing snapshot cache key so legacy cached payloads can age out without a forced rescan', () => {
+    expect(source).toContain("kind: 'snapshot'");
+    expect(source).toContain('data: { rangeDays, refresh: wantsAnalyticsRefresh(request.data) }');
+    expect(source).not.toContain("kind: 'snapshot_v2'");
   });
 
   it('loads the user population in bounded pages instead of one oversized browser-style read', () => {

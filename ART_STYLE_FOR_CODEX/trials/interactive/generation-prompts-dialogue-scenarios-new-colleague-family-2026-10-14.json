@@ -1,0 +1,14 @@
+{
+  "scenario": "new_colleague_family",
+  "title": "Новый коллега о семье",
+  "generatedAt": "2026-10-14",
+  "style": "S2 matte clay",
+  "variants": [
+    "blank frame with three abstract family forms and speech bubble",
+    "three graduated pairs of shoes and chat tile",
+    "three varied-height cups and conversation cue",
+    "linked medallions in varied sizes beside briefcase corner",
+    "closed album with three blank medallions and conversation tile"
+  ],
+  "constraints": ["true transparent RGBA", "no faces, people, text, or childlike drawing", "cyan internal marker for separate white accent extraction", "dark/light trial pairs", "trial location only"]
+}

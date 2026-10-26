@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+auth-gap-012	2026-10-15T09:23:32.086Z	blank_too_long	11827	marker+пусто_6_повторов+ждали_metro_36мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-15T09-23-07-465Z/auth-gap-012.blank_too_long.png	0

@@ -1,0 +1,5 @@
+10-15 14:36:22.298 I/ReactNativeJS( 9341): '[DEEPLINK] redirectSystemPath', '{"in":"phraseman:///","initial":true,"out":"/home"}'
+10-15 14:36:23.781 I/ReactNativeJS( 9341): '[SPIRE]', '[SPIRE-GATE]', '{"lang":"ru","allowed":true,"reason":"ui_lang_allowed","where":"isSpireTabEnabled source=context"}'
+10-15 14:36:34.926 I/ReactNativeJS( 9341): '[DEEPLINK] redirectSystemPath', '{"in":"phraseman://dev_state?notif=youtube_premiere&next=/(tabs)/home","initial":false,"out":"/dev_state?notif=youtube_premiere&next=/(tabs)/home"}'
+10-15 14:36:34.928 I/ReactNativeJS( 9341): '[DEEPLINK] redirectSystemPath', '{"in":"phraseman://dev_state?notif=youtube_premiere&next=/(tabs)/home","initial":false,"out":"/dev_state?notif=youtube_premiere&next=/(tabs)/home"}'
+10-15 14:36:36.644 I/ReactNativeJS( 9341): [PUSH-TAP-DEV] simulate {"type":"youtube_premiere","videoId":"dev","channelId":"dev"}

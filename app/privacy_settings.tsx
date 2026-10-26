@@ -34,6 +34,8 @@ import { getAiDialogConsentState, setAiDialogConsent, recordAiDialogConsentToClo
 import { scheduleConsentCloudRecord } from './consent_cloud_coalescer';
 import { isDevRobotNoCloud, noteRobotNoCloudSkip } from './dev_robot_no_cloud';
 import { emitAppEvent } from './events';
+import { ThemedArt } from '../components/theme/ThemedArt';
+import { privacyAiStateArt } from '../modules/privacy/privacy_ai_art';
 import BackGlyph from '../components/v2/BackGlyph';
 
 /** Строка на 9 UI-языках (форма triLang). */
@@ -100,9 +102,10 @@ interface PrivacyRowProps {
   right?: React.ReactNode;
   onPress?: () => void;
   accessibilityLabel?: string;
+  stateArtwork?: 'ai_off' | null;
 }
 
-function PrivacyRow({ testID, icon, label, glass, titleColor, labelColor, scaled, sub, right, onPress, accessibilityLabel }: PrivacyRowProps) {
+function PrivacyRow({ testID, icon, label, glass, titleColor, labelColor, scaled, sub, right, onPress, accessibilityLabel, stateArtwork }: PrivacyRowProps) {
   const rowStyle: ViewStyle = {
     minHeight: 64,
     borderRadius: 14,
@@ -119,7 +122,7 @@ function PrivacyRow({ testID, icon, label, glass, titleColor, labelColor, scaled
     <>
       <PlateFill g={glass} radius={14} />
       <View style={{ width: 41, height: 41, borderRadius: 10, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.dividerTone, boxShadow: nestedBoxShadow(glass) }}>
-        <Ionicons name={icon} size={20} color={titleColor} />
+        {stateArtwork ? <ThemedArt name={stateArtwork} size={27} testID={`${testID}-state-art`} /> : <Ionicons name={icon} size={20} color={titleColor} />}
       </View>
       <View style={{ flex: 1, minWidth: 0 }}>
         <Text style={{ color: labelColor ?? glass.text, fontSize: scaled(16), lineHeight: scaled(21), fontWeight: '700', flexShrink: 1 }}>
@@ -353,6 +356,7 @@ export default function PrivacySettings() {
                 glass={glass}
                 titleColor={glass.lightTint}
                 scaled={scaled}
+                stateArtwork={privacyAiStateArt(aiExplainOn)}
               />
               <PrivacyRow
                 testID="privacy-ai-dialog-consent"
@@ -365,6 +369,7 @@ export default function PrivacySettings() {
                 glass={glass}
                 titleColor={glass.lightTint}
                 scaled={scaled}
+                stateArtwork={privacyAiStateArt(aiDialogOn)}
               />
               {/* зачем (приказ владельца 11.10): «Память диалогов» — контроль данных (что сохранено / очистить),
                   поэтому живёт здесь, рядом с согласием на AI-диалоги, а не в самом разделе «Диалоги». */}

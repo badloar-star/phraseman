@@ -1,0 +1,21 @@
+{
+  "tool": "built-in image_gen; no project API key used",
+  "category": "dialogue theme cursor",
+  "optionsGenerated": 5,
+  "concepts": [
+    "classic arrow cursor with cyan inset facet",
+    "pointing hand cursor with cyan fingertip pad",
+    "arrow pointer with a cyan click ripple",
+    "stylus pointing at a cyan diamond target",
+    "four-way move cursor with a cyan central knob"
+  ],
+  "style": "S2 matte clay; true-alpha generated geometry; grayscale tone mapping produces dark graphite and light ivory; temporary cyan markers become separate white .accent layers",
+  "measurements": {
+    "01": {"dark": {"accentFramePct": 2.714, "alphaTransparencyPct": 72.55, "alignment": "pass; interior mismatch 8.3%"}, "light": {"accentFramePct": 2.714, "alphaTransparencyPct": 72.55, "alignment": "pass; interior mismatch 8.3%"}},
+    "02": {"dark": {"accentFramePct": 1.039, "alphaTransparencyPct": 69.12, "alignment": "pass; inset 0px"}, "light": {"accentFramePct": 1.039, "alphaTransparencyPct": 69.12, "alignment": "pass; inset 0px"}},
+    "03": {"dark": {"accentFramePct": 7.498, "alphaTransparencyPct": 75.9, "alignment": "pass; interior mismatch 4.8%"}, "light": {"accentFramePct": 7.498, "alphaTransparencyPct": 75.9, "alignment": "pass; interior mismatch 4.8%"}},
+    "04": {"dark": {"accentFramePct": 1.513, "alphaTransparencyPct": 87.36, "alignment": "fail; interior mismatch 16.2%"}, "light": {"accentFramePct": 1.513, "alphaTransparencyPct": 87.36, "alignment": "fail; interior mismatch 16.5%"}},
+    "05": {"dark": {"accentFramePct": 0.58, "alphaTransparencyPct": 75.0, "alignment": "fail; accent below 1%"}, "light": {"accentFramePct": 0.58, "alphaTransparencyPct": 75.0, "alignment": "fail; accent below 1%"}}
+  },
+  "acceptance": "Options 1–3 meet numeric gates. Option 4 has relief mismatch and option 5's accent is below 1%. All remain drafts pending owner review."
+}

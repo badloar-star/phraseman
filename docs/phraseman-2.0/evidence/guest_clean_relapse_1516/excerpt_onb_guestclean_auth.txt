@@ -1,0 +1,84 @@
+10-15 15:34:00.584 I/ReactNativeJS(18109): [ONB-SHOW] effective=false show=false devRoute=false path=/ reason=initial_state
+10-15 15:34:00.787 I/ReactNativeJS(18109): [DEV-STATE] toast: хост смонтирован lang=ru
+10-15 15:34:00.790 I/ReactNativeJS(18109): [DEV-STATE] toast: слот хоста wanted=false visible=false слотДержит=никто
+10-15 15:34:11.349 I/ReactNativeJS(18109): [ONB-SHOW] effective=true show=true devRoute=false path=/ reason=boot onboarding_done=null qa=off
+10-15 15:37:46.854 W/ReactNativeJS(18109): [AUTH-LINK-GOOGLE] start {"provider":"google","authState":"anonymous","authUid":"h:10db1a3c","localStable":"h:bbb4d6d9","requireOwnership":false,"t":5967990}
+10-15 15:38:05.622 W/ReactNativeJS(18109): [AUTH-LINK-GOOGLE] native ok {"provider":"google","providerSubject":"h:c49d60c6","deferIdentityPreparation":false,"t":5986759}
+10-15 15:38:05.637 W/ReactNativeJS(18109): [AUTH-LINK-GOOGLE] link decision {"provider":"google","canTryLink":true,"anonymous":true,"sourceUid":"h:10db1a3c","preProviderStable":"h:bbb4d6d9","t":5986774}
+10-15 15:38:06.665 I/ReactNativeJS(18109): [ONB-SIGNIN] slow_ms=8000 вход всё ещё выполняется
+10-15 15:38:06.991 W/ReactNativeJS(18109): [AUTH-LINK-GOOGLE] link conflict {"provider":"google","code":"auth/credential-already-in-use","expectedConflict":true,"t":5988129}
+10-15 15:38:07.322 W/ReactNativeJS(18109): [AUTH-LINK-GOOGLE] clean_proof timing {"allKeys":60,"getAllKeysMs":27,"selected":2215,"filterMs":39,"multiGetMs":228,"bytes":3490,"top5":"achievements_v1=2504 level_spin_star_projection_v1:<id>=199 client_shard_phone_s","t":5988459}
+10-15 15:38:07.353 W/ReactNativeJS(18109): [AUTH-LINK-GOOGLE] clean_proof dirty {"count":13,"t":5988475}
+10-15 15:38:07.377 I/ReactNativeJS(18109): [GUEST-CLEAN] 1/13 key=streak_count kind=default len=1 shape=num+
+10-15 15:38:07.382 I/ReactNativeJS(18109): [GUEST-CLEAN] 2/13 key=active_days_v1 kind=default len=34 shape={anchor:str10,bits:str1}
+10-15 15:38:07.383 I/ReactNativeJS(18109): [GUEST-CLEAN] 3/13 key=unlocked_lessons kind=default len=3 shape=arr1[num+]
+10-15 15:38:07.394 I/ReactNativeJS(18109): [GUEST-CLEAN] 4/13 key=achievement_foundation_progress_v2 kind=default len=126 shape={version:num+,maxEligibleShardBalance:num0,activeDates:arr1[str10],comeback:null,paidAccess:{plus:false,pro:false}}
+10-15 15:38:07.399 I/ReactNativeJS(18109): [GUEST-CLEAN] 5/13 key=phraseman_foreground_usage_ms_v1 kind=service len=6 shape=num+
+10-15 15:38:07.401 I/ReactNativeJS(18109): [GUEST-CLEAN] 6/13 key=phraseman_foreground_daily_ms_v1 kind=service len=21 shape={2026-10-15:num+}
+10-15 15:38:07.408 I/ReactNativeJS(18109): [GUEST-CLEAN] 7/13 key=achievements_v1 kind=progress len=2504 shape=arr32[{id:str8,unlockedAt:null,notified:false,shardClaimed:true}]
+10-15 15:38:07.414 I/ReactNativeJS(18109): [GUEST-CLEAN] 8/13 key=stable_auth_link_cache_v1 kind=service len=100 shape={key:str65,linkedAt:num+}
+10-15 15:38:07.420 I/ReactNativeJS(18109): [GUEST-CLEAN] 9/13 key=energy_state kind=service len=120 shape={schemaVersion:num+,current:num+,lastSettledAt:num+,recoveryCreditMicrounits:num0,recoveryDivisionRemainde:num0}
+10-15 15:38:07.421 I/ReactNativeJS(18109): [GUEST-CLEAN] 10/13 key=install_date kind=service len=13 shape=num+
+10-15 15:38:07.422 I/ReactNativeJS(18109): [GUEST-CLEAN] 11/13 key=client_shard_phone_state_outbox_v1:<id>:1 kind=progress len=169 shape={schemaVersion:str34,ownerStableId:str36,lineage:num+,operationIds:arr0,acknowledgedOperationIds:arr0}
+10-15 15:38:07.427 I/ReactNativeJS(18109): [GUEST-CLEAN] 12/13 key=level_spin_star_projection_v1:<id> kind=progress len=199 shape={schemaVersion:str36,ownerStableId:str36,operations:arr0,acknowledged:{},serverBalance:num0,serverEarnedTotal:num0,serverSeq:num0}
+10-15 15:38:07.430 I/ReactNativeJS(18109): [GUEST-CLEAN] 13/13 key=v2:required-session-local-commit-index:v1:v2:progress:v1:<id kind=progress len=165 shape=str165(not_json)
+10-15 15:38:07.433 I/ReactNativeJS(18109): [GUEST-CLEAN] summary dirty=13 default=4 service=5 progress=4 wouldBeClean=false decision=not_clean
+10-15 15:38:07.470 I/ReactNativeJS(18109): '[AUTH-SWITCH] handoff-proof', '{"provider":"google","localClean":false,"postCompletionHandoff":false,"stableId":"133f009d"}'
+10-15 15:38:07.864 W/ReactNativeJS(18109): [AUTH-LINK-GOOGLE] handoff proof {"provider":"google","localClean":false,"postCompletionHandoff":false,"t":5988999}
+10-15 15:38:07.867 W/ReactNativeJS(18109): [AUTH-LINK-GOOGLE] branch account_switch_required {"provider":"google","source":"anonymous_link_conflict","localStable":"h:bbb4d6d9","tookMs":21022,"t":5989003}
+10-15 15:38:07.870 W/ReactNativeJS(18109): [WARNING] [AUTH-LINK-GOOGLE] branch account_switch_required: [AUTH-LINK-GOOGLE] branch account_switch_required {"provider":"google","source":"anonymous_link_conflict","localStable":"h:bbb4d6d9","tookMs":21022,"t":5989003}
+10-15 15:38:10.014 I/ReactNativeJS(18109): [AUTH-SWITCH-OFFER] resume_credential stored provider=google ttlMs=600000
+10-15 15:38:10.033 I/ReactNativeJS(18109): [ONB-SIGNIN] slow_ms=23601 вход завершён
+10-15 15:38:10.088 I/ReactNativeJS(18109): [AUTH-SWITCH-OFFER] onboarding confirm enqueued (waiting for ThemedBlockingAlertHost)
+10-15 15:38:10.095 I/ReactNativeJS(18109): [AUTH-SWITCH-OFFER] onboarding ui decision_pending → spinner and busy notice hidden
+10-15 15:38:13.598 I/ReactNativeJS(18109): '[AUTH-SWITCH-OFFER] alert host', '{"title":"Этот аккаунт уже есть в Phraseman","visible":false,"forced":false,"arbiterActive":null}'
+10-15 15:38:14.965 I/ReactNativeJS(18109): [DEV-STATE] toast: слот хоста wanted=false visible=false слотДержит=themedAlert
+10-15 15:38:14.979 I/ReactNativeJS(18109): '[AUTH-SWITCH-OFFER] alert host', '{"title":"Этот аккаунт уже есть в Phraseman","visible":true,"forced":false,"arbiterActive":"themedAlert"}'
+10-15 15:40:27.493 I/ReactNativeJS(18109): [AUTH-SWITCH-OFFER] onboarding confirm answered choice=switch waitedMs=137405
+10-15 15:40:27.499 I/ReactNativeJS(18109): [AUTH-SWITCH-OFFER] onboarding ui decision_made choice=switch
+10-15 15:40:29.248 I/ReactNativeJS(18109): [DEV-STATE] toast: слот хоста wanted=false visible=false слотДержит=никто
+10-15 15:40:50.002 I/ReactNativeJS(18109): [AUTH-SWITCH-OFFER] onboarding switched synced=no tookMs=22500
+10-15 15:40:50.052 I/ReactNativeJS(18109): [AUTH-SWITCH-OFFER] resume_credential used provider=google ageMs=160038
+10-15 15:40:50.061 W/ReactNativeJS(18109): [AUTH-LINK-GOOGLE] start {"provider":"google","authState":"anonymous","authUid":"h:26f4594a","localStable":"h:e0097bc8","requireOwnership":false,"t":6151194}
+10-15 15:40:50.081 W/ReactNativeJS(18109): [AUTH-LINK-GOOGLE] native skipped {"provider":"google","source":"resume_credential","t":6151206}
+10-15 15:40:50.088 W/ReactNativeJS(18109): [AUTH-LINK-GOOGLE] native ok {"provider":"google","providerSubject":"h:c49d60c6","deferIdentityPreparation":false,"t":6151219}
+10-15 15:40:50.128 W/ReactNativeJS(18109): [AUTH-LINK-GOOGLE] link decision {"provider":"google","canTryLink":true,"anonymous":true,"sourceUid":"h:26f4594a","preProviderStable":"h:e0097bc8","t":6151231}
+10-15 15:40:51.321 W/ReactNativeJS(18109): [AUTH-LINK-GOOGLE] link conflict {"provider":"google","code":"auth/credential-already-in-use","expectedConflict":true,"t":6152458}
+10-15 15:40:55.394 W/ReactNativeJS(18109): [AUTH-LINK-GOOGLE] clean_proof timing {"allKeys":64,"getAllKeysMs":967,"selected":2211,"filterMs":50,"multiGetMs":3048,"bytes":340,"top5":"v2:required-session-completion-scheduler:v1:<id>=340 shard_survey_last_at_ms=0 u","t":6156530}
+10-15 15:40:55.398 W/ReactNativeJS(18109): [AUTH-LINK-GOOGLE] clean_proof dirty {"count":1,"t":6156535}
+10-15 15:40:55.410 I/ReactNativeJS(18109): [GUEST-CLEAN] 1/1 key=v2:required-session-completion-scheduler:v1:<id> kind=progress len=340 shape={accountScopeHash:str64,cursorFingerprint:str64,failureOrdinal:num0,nextAttemptAtMs:num+,reason:str16,revision:num+,schemaVersion:str55}
+10-15 15:40:55.412 I/ReactNativeJS(18109): [GUEST-CLEAN] summary dirty=1 default=0 service=0 progress=1 wouldBeClean=false decision=not_clean
+10-15 15:40:55.483 I/ReactNativeJS(18109): '[AUTH-SWITCH] handoff-proof', '{"provider":"google","localClean":false,"postCompletionHandoff":true,"stableId":"ff17f3b5"}'
+10-15 15:40:57.726 W/ReactNativeJS(18109): [AUTH-LINK-GOOGLE] handoff proof {"provider":"google","localClean":false,"postCompletionHandoff":true,"t":6158862}
+10-15 15:40:59.843 I/ReactNativeJS(18109): [ONB-SIGNIN] slow_ms=8000 вход всё ещё выполняется
+10-15 15:41:04.331 W/ReactNativeJS(18109): [AUTH-LINK-GOOGLE] handoff signed_in {"provider":"google","sourceUid":"h:26f4594a","targetUid":"h:d9408b9b","uidChanged":true,"t":6165466}
+10-15 15:41:05.019 W/ReactNativeJS(18109): [AUTH-LINK-GOOGLE] link_lookup result {"provider":"google","completed":true,"found":true,"providerUid":"h:d9408b9b","localStable":"h:e0097bc8","remoteStable":"h:de10a251","branch":"remote","t":6166155}
+10-15 15:41:08.752 W/ReactNativeJS(18109): [AUTH-LINK-GOOGLE] ensure_link remote {"provider":"google","ok":true,"failure":null,"source":"callable","stableUid":"h:de10a251","nonceRejection":null,"t":6169888}
+10-15 15:41:08.754 W/ReactNativeJS(18109): [AUTH-LINK-GOOGLE] outcome {"provider":"google","kind":"merged_swap_to_remote","handoffMarker":true,"target":"h:de10a251","t":6169891}
+10-15 15:41:08.765 W/ReactNativeJS(18109): [AUTH-LINK-GOOGLE] swap stage local_data_checked {"provider":"google","tookMs":0,"sinceStartMs":18704,"preserveLocalProgress":false,"handoff":true,"t":6169897}
+10-15 15:41:08.769 W/ReactNativeJS(18109): [AUTH-LINK-GOOGLE] swap presync_skipped {"provider":"google","reason":"handoff","t":6169904}
+10-15 15:41:08.773 W/ReactNativeJS(18109): [AUTH-LINK-GOOGLE] swap stage presync_phase_done {"provider":"google","tookMs":11,"sinceStartMs":18715,"t":6169909}
+10-15 15:41:08.783 W/ReactNativeJS(18109): [AUTH-LINK-GOOGLE] swap stage server_merge_done {"provider":"google","tookMs":7,"sinceStartMs":18722,"called":false,"t":6169915}
+10-15 15:41:08.785 W/ReactNativeJS(18109): [AUTH-LINK-GOOGLE] swap merge_result {"provider":"google","called":false,"ok":false,"canonical":"none","canonicalIsRemote":false,"alreadyMerged":false,"t":6169921}
+10-15 15:41:08.813 W/ReactNativeJS(18109): [AUTH-LINK-GOOGLE] swap stage authoritative_link_reused {"provider":"google","tookMs":34,"sinceStartMs":18756,"source":"callable","ageMs":58,"t":6169950}
+10-15 15:41:08.830 W/ReactNativeJS(18109): [AUTH-LINK-GOOGLE] swap merge_skipped_fallback {"provider":"google","preserveLocalProgress":false,"ok":true,"failure":null,"canonical":"h:de10a251","t":6169951}
+10-15 15:41:08.844 W/ReactNativeJS(18109): [WARNING] [AUTH-LINK-GOOGLE] swap merge_skipped_fallback: [AUTH-LINK-GOOGLE] swap merge_skipped_fallback {"provider":"google","preserveLocalProgress":false,"ok":true,"failure":null,"canonical":"h:de10a251","t":6169951}
+10-15 15:41:08.857 W/ReactNativeJS(18109): [AUTH-LINK-GOOGLE] swap stage sync_quiesced {"provider":"google","tookMs":40,"sinceStartMs":18796,"t":6169989}
+10-15 15:41:08.912 W/ReactNativeJS(18109): [AUTH-LINK-GOOGLE] swap stage entitlement_transition_begun {"provider":"google","tookMs":55,"sinceStartMs":18851,"t":6170044}
+10-15 15:41:08.918 W/ReactNativeJS(18109): [AUTH-LINK-GOOGLE] swap stage transition_lock_acquired {"provider":"google","tookMs":10,"sinceStartMs":18861,"t":6170054}
+10-15 15:41:10.974 W/ReactNativeJS(18109): [AUTH-LINK-GOOGLE] swap stage wipe_done {"provider":"google","tookMs":2054,"sinceStartMs":20915,"t":6172108}
+10-15 15:41:11.655 W/ReactNativeJS(18109): [AUTH-LINK-GOOGLE] swap stage set_stable_id_done {"provider":"google","tookMs":684,"sinceStartMs":21599,"t":6172792}
+10-15 15:41:11.755 W/ReactNativeJS(18109): [AUTH-LINK-GOOGLE] swap stage handoff_cleared {"provider":"google","tookMs":100,"sinceStartMs":21699,"t":6172892}
+10-15 15:41:11.925 W/ReactNativeJS(18109): [AUTH-LINK-GOOGLE] swap stage generation_begun {"provider":"google","tookMs":170,"sinceStartMs":21869,"t":6173062}
+10-15 15:41:11.930 W/ReactNativeJS(18109): [AUTH-LINK-GOOGLE] swap stage stable_id_installed {"provider":"google","tookMs":5,"sinceStartMs":21874,"t":6173067}
+10-15 15:41:11.935 W/ReactNativeJS(18109): [AUTH-LINK-GOOGLE] swap stage auth_user_ready {"provider":"google","tookMs":4,"sinceStartMs":21878,"t":6173071}
+10-15 15:41:11.981 W/ReactNativeJS(18109): [AUTH-LINK-GOOGLE] result merged_devices {"provider":"google","from":"h:e0097bc8","to":"h:de10a251","tookMs":21925,"t":6173118}
+10-15 15:41:13.374 I/ReactNativeJS(18109): [AUTH-SWITCH-OFFER] resume_sign_in ok provider=google result=merged_devices
+10-15 15:41:13.388 I/ReactNativeJS(18109): [ONB-SIGNIN] slow_ms=23354 вход завершён
+10-15 15:41:13.396 I/ReactNativeJS(18109): [AUTH-SWITCH-OFFER] onboarding resume continued provider=google source=existing_account result=merged_devices
+10-15 15:41:17.454 I/ReactNativeJS(18109): [ONB-SHOW] effective=false show=false devRoute=false path=/home reason=onboarding_done
+10-15 15:41:31.861 I/ReactNativeJS(18109): [SIGNIN] bg:swap_restore:restoreFromCloud ok 19881ms
+10-15 15:41:32.078 I/ReactNativeJS(18109): [SIGNIN] bg:swap_restore:switchBackup ok 216ms
+10-15 15:41:32.103 I/ReactNativeJS(18109): [SIGNIN] bg:swap_restore:markOnboarded ok 25ms
+10-15 15:41:32.114 I/ReactNativeJS(18109): [SIGNIN] bg:swap_restore:revenueCat ok 10ms
+10-15 15:41:33.839 I/ReactNativeJS(18109): [SIGNIN] bg:swap_restore done total=21863ms restore=restored

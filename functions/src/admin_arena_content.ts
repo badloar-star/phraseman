@@ -1,3 +1,6 @@
+import * as admin from 'firebase-admin';
+import { inspectSpireWeeklyPacks } from './admin_spire_pack_status';
+import { spireWeekId } from './spire_groups';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import deManifest from '../../content/arena-multilingual/generated/de/manifest.json';
 import esManifest from '../../content/arena-multilingual/generated/es/manifest.json';
@@ -240,7 +243,13 @@ export const adminArenaContentStatus = onCall(
   ADMIN_SENSITIVE_WRITE_OPTIONS,
   async (request) => {
     requireArenaContentAdmin(request as AdminRequest);
-    return arenaAdminContentStatus();
+    const lang=String(request.data?.studyTarget||'en');
+    if(!['en','es','fr','de','it'].includes(lang)) throw new HttpsError('invalid-argument','target_unsupported');
+    const weeklyPacks=await inspectSpireWeeklyPacks(lang,spireWeekId(new Date()),async path=>{
+      const [metadata]=await admin.storage().bucket().file(path).getMetadata();
+      return metadata;
+    });
+    return {...arenaAdminContentStatus(),weeklyPacks};
   },
 );
 

@@ -47,7 +47,7 @@ const SPECIAL = {
   'cards-002': 'uk → ru: проверить перенос «Правда / неправда» на ru', 'cards-section-032': 'uk → ru: проверить перенос «Правда / неправда» на ru',
   'learn-064': 'не то состояние: нужен экран-таблица неправильных глаголов «Урок 12 · 18 глаголов» (вкладки «Словарь / Учить»), без dev-плашки «Open debugger…»',
   'spire-gap-022': 'добавлено по Дизайну 15.10: пересъёмка на аккаунте без Plus и с друзьями — энергия (SpireEnergyPill без капсулы) и «Друзья на этой неделе» в коде есть',
-  'cards-gap-023': 'после правки Дизайна (окно 06:30): меню фильтра открыть и сверить лог [CARDS-FILTER-MENU] с образцом №23 — низ шапки ≈95, верх меню 106 (insets.top + 56), right 16, width 200',
+  'cards-gap-023': 'после правки Дизайна a65e5e40c: меню фильтра открыть и сверить лог [CARDS-FILTER-MENU] с образцом №23 — низ шапки ≈95, верх меню 106 (insets.top + 56), right 16, width 200',
   'settings-gap-035': 'без клавиатуры: ввести < 10 символов, затем скрыть клавиатуру (back) — карточка диагностики не перекрыта',
 };
 for (const [id, why] of Object.entries(SPECIAL)) targets.set(id, { why: targets.has(id) ? targets.get(id).why + '; ' + why : why });
@@ -67,7 +67,7 @@ for (const [id, t] of targets) {
 const esc = (s) => String(s || '').replace(/\|/g, '\\|');
 const out = ['# СПИСОК СЪЁМКИ после №7 — для Сверки (Макеты, 15.10)', '',
   'Координатор 15.10: Сверка берёт файл как есть, **если владелец разрешит эмулятор**. Порядок — по экранам (маршрут `next=`), чтобы снимать одним проходом.', '',
-  '**Перед проходом (один раз):** язык интерфейса приложения — **Русский** (часть прошлых кадров снята на uk; `uiLang` в dev_state умеет только `en|off`). Правила перед КАЖДЫМ кадром — DEV_LINKS_R1.md §«Правила» (force-stop → ссылка → «DEV-STATE OK»; `overlays=off`; фикстуры карточек — только на анонимном госте).', '',
+  '**Язык кадра:** в каждую ссылку добавлен `uiLang=ru` (dev_state умеет 9 языков с e3669e5b5; только память, app_lang не пишется) — переключать язык руками не нужно. Правила перед КАЖДЫМ кадром — DEV_LINKS_R1.md §«Правила» (force-stop → ссылка → «DEV-STATE OK»; `overlays=off`; фикстуры карточек — только на анонимном госте).', '',
   `Строк: ${targets.size} (из CLOSE_AFTER_SHOT 49+38+6 и особые строки координатора). Без готовой ссылки в DEV_LINKS: ${missing.length ? missing.join(', ') : 'нет'}.`, '',
   '**Тем же проходом:** `SHOT_LIST_R1_REST_2026-10-15.md` (Дизайн, 23 строки остатка PARITY r1 — Карточки и др., со ссылками и шагами; пересечений с этим списком по id нет, проверено 15.10).', '',
   'Колонки: **ссылка / шаги** — из DEV_LINKS_R1.md (Дизайн), «тапы» — грамматика scripts/parity_steps.mjs; **зачем** — что подтвердить на кадре; язык у всех — ru.', ''];
@@ -77,7 +77,9 @@ for (const [key, rows] of [...groups.entries()].sort((a, b) => a[0].localeCompar
   for (const { id, t, r, L } of rows.sort((a, b) => a.id.localeCompare(b.id))) {
     n++;
     const st = r ? `${r.screen} · ${r.state}` : '(нет в реестре)';
-    const link = L ? (L.link.startsWith('phraseman://') ? '`' + L.link + '`' : esc(L.link)) : '**нет ссылки — путь вручную по образцу**';
+    // зачем (e3669e5b5, 15.10): dev_state?uiLang умеет все 9 языков — язык кадра ru ставим ссылкой, а не руками перед проходом
+    const withLang = (u) => (/[?&]uiLang=/.test(u) ? u : u.replace('phraseman://dev_state?', 'phraseman://dev_state?uiLang=ru&'));
+    const link = L ? (L.link.startsWith('phraseman://') ? '`' + withLang(L.link) + '`' : esc(L.link)) : '**нет ссылки — путь вручную по образцу**';
     out.push(`| ${n} | ${id} | ${esc(st)} | ${link}${L && L.before ? '<br>перед кадром: ' + esc(L.before).slice(0, 160) : ''} | ${L && L.taps && L.taps !== '—' ? esc(L.taps) : '—'} | ${esc(theme(L && L.link, r))} | ${esc(t.why)} |`);
   }
   out.push('');

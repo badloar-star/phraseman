@@ -1,0 +1,85 @@
+10-15 15:15:23.853 I/ReactNativeJS(16478): '[PERF-R1-NAV]', '{"event":"attached","attempt":0,"atMs":3213}'
+10-15 15:15:24.263 I/ReactNativeJS(16478): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#JuYXGb*[(tabs)#Noy9nK*]","atMs":3620}'
+10-15 15:15:24.295 I/ReactNativeJS(16478): [TABS-SINGLE] flag tabs_single_guard=on source=rc_cache
+10-15 15:15:24.451 I/ReactNativeJS(16478): '[SPIRE]', '[SPIRE-GATE]', '{"lang":"ru","allowed":true,"reason":"ui_lang_allowed","where":"isSpireTabEnabled source=context"}'
+10-15 15:15:25.641 I/ReactNativeJS(16478): [INFO] [SPIRE]: tab flag: remote=true dev=false (из кэша remote_config_cache_v1)
+10-15 15:15:26.708 I/ReactNativeJS(16478): '[PERF-R1-NAV]', '{"event":"action","type":"NAVIGATE","name":"(tabs)","noop":false,"atMs":6066,"stack":"anonymous@148102:34 | forEach | anonymous@148102:25 | anonymous@145418:19 | apply | latestCallback@147137:31 | anonymous@153454:29 | dispatch@153154:31 |
+10-15 15:15:27.080 I/ReactNativeJS(16478): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#JuYXGb*[(tabs)#Noy9nK*]","atMs":6440}'
+10-15 15:15:27.254 I/ReactNativeJS(16478): [INFO] [SPIRE]: tab flag: remote=true dev=false (из кэша remote_config_cache_v1)
+10-15 15:15:27.255 I/ReactNativeJS(16478): [INFO] [SPIRE]: tab flag: remote=true dev=false (из кэша remote_config_cache_v1)
+10-15 15:15:27.410 I/ReactNativeJS(16478): '[TABS-PREMOUNT] start', '{"reason":"home_painted","startTabIdx":0,"startedAlready":false}'
+10-15 15:15:27.422 I/ReactNativeJS(16478): [INFO] [SPIRE]: [D191-GATE] вход ui=ru study=en tab=true now=2026-10-15T14:15:27.420Z
+10-15 15:15:27.426 I/ReactNativeJS(16478): [INFO] [SPIRE]: [D191-GATE] флаг moments_v3: remote=false dev=false кэш=есть
+10-15 15:15:27.428 I/ReactNativeJS(16478): [INFO] [SPIRE]: [D191-GATE] не показываем: флаг moments_v3 выключен
+10-15 15:15:27.446 I/ReactNativeJS(16478): [INFO] [SPIRE]: [SPIRE-WEEK-MODAL] вход ui=ru study=en tab=true
+10-15 15:15:28.690 I/ReactNativeJS(16478): [INFO] [SPIRE]: [SPIRE-WEEK-CARD] where=home_week_modal weekId=2026-W41 lang=en peek_skip: в комнате не сидел (недели=2026-W42) — 0 чтений
+10-15 15:15:28.693 I/ReactNativeJS(16478): [INFO] [SPIRE]: [SPIRE-WEEK-MODAL] не показали бы: итога прошлой недели нет / уже показан / не играл (lang=en)
+10-15 15:15:31.383 I/ReactNativeJS(16478): [INFO] [SPIRE]: tab flag: remote=true dev=false (из кэша remote_config_cache_v1)
+10-15 15:15:31.388 I/ReactNativeJS(16478): [INFO] [SPIRE]: tab flag: remote=true dev=false (из кэша remote_config_cache_v1)
+10-15 15:15:35.248 I/ReactNativeJS(16478): '[TABS-PREMOUNT] step', '{"idx":1,"outcome":"mounted","queuedMs":0,"totalMs":5242,"quietReason":"quiet","quietWaitMs":2666,"cleanTicks":4,"lastLagMs":26,"maxLagMs":1038,"sinceTouchMs":1200,"idleWaitMs":1,"prewarmMs":1,"commitMs":1974}'
+10-15 15:15:35.511 I/SVERKA  (16721): === SPIRE link 15:15:35 ===
+10-15 15:15:36.344 I/ReactNativeJS(16478): '[PERF-R1-NAV]', '{"event":"action","type":"NAVIGATE","name":"__root","noop":false,"atMs":15704,"stack":"anonymous@148102:34 | forEach | anonymous@148102:25 | anonymous@145418:19 | apply | latestCallback@147137:31 | anonymous@153454:29 | anonymous@153472:27
+10-15 15:15:36.705 I/ReactNativeJS(16478): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#JuYXGb*[(tabs)#Noy9nK,dev_state#U6U1Ky*]","atMs":16065}'
+10-15 15:15:36.812 I/ReactNativeJS(16478): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#JuYXGb*[(tabs)#Noy9nK,dev_state#U6U1Ky*]","atMs":16171}'
+10-15 15:15:39.502 I/ReactNativeJS(16478): '[PERF-R1-NAV]', '{"event":"action","type":"REPLACE","name":"(tabs)","noop":false,"atMs":18862,"stack":"anonymous@148102:34 | forEach | anonymous@148102:25 | anonymous@145418:19 | apply | latestCallback@147137:31 | anonymous@153454:29 | dispatch@153154:31 |
+10-15 15:15:40.037 I/ReactNativeJS(16478): '[PERF-R1-NAV]', '{"event":"attached","attempt":0,"atMs":19396}'
+10-15 15:15:40.041 I/ReactNativeJS(16478): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#JuYXGb*[(tabs)#Noy9nK,(tabs)#aKKNbU*]","atMs":19401}'
+10-15 15:15:40.041 I/ReactNativeJS(16478): [TABS-SINGLE] observe tabs=2 source=dev_state between=[] top=(tabs) instSeen=2 sinceStartMs=18288 event=state
+10-15 15:15:40.042 I/ReactNativeJS(16478): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#JuYXGb*[(tabs)#Noy9nK,(tabs)#aKKNbU*]","atMs":19403}'
+10-15 15:15:40.663 I/ReactNativeJS(16478): [INFO] [SPIRE]: [D191-GATE] вход ui=ru study=en tab=true now=2026-10-15T14:15:40.663Z
+10-15 15:15:40.664 I/ReactNativeJS(16478): [INFO] [SPIRE]: [D191-GATE] флаг moments_v3: remote=false dev=false кэш=есть
+10-15 15:15:40.664 I/ReactNativeJS(16478): [INFO] [SPIRE]: [D191-GATE] не показываем: флаг moments_v3 выключен
+10-15 15:15:40.703 I/ReactNativeJS(16478): [INFO] [SPIRE]: [SPIRE-WEEK-MODAL] вход ui=ru study=en tab=true
+10-15 15:15:40.704 I/ReactNativeJS(16478): [INFO] [SPIRE]: [SPIRE-WEEK-MODAL] пропуск: уже проверяли в этом запуске (ru:en)
+10-15 15:15:41.237 I/ReactNativeJS(16478): '[TABS-PREMOUNT] start', '{"reason":"home_painted","startTabIdx":0,"startedAlready":false}'
+10-15 15:15:41.862 I/ReactNativeJS(16478): [PUSH-TAP-DEV] simulate {"type":"spire_week_result"}
+10-15 15:15:41.864 W/ReactNativeJS(16478): '[PUSH-TAP-DEV] after_route simulate', '{"notif":"spire_week_result","ok":true}'
+10-15 15:15:42.160 I/ReactNativeJS(16478): '[PERF-R1-NAV]', '{"event":"action","type":"PUSH","name":"(tabs)","noop":false,"atMs":21520,"stack":"anonymous@148102:34 | forEach | anonymous@148102:25 | anonymous@145418:19 | apply | latestCallback@147137:31 | anonymous@153454:29 | dispatch@153154:31 | an
+10-15 15:15:42.161 I/ReactNativeJS(16478): '[PERF-R1-NAV]', '{"event":"action","type":"PUSH","name":"(tabs)","noop":false,"atMs":21521,"stack":"anonymous@148102:34 | forEach | anonymous@148102:25 | anonymous@145418:19 | apply | latestCallback@147137:31 | anonymous@153454:29 | dispatch@153154:31 | an
+10-15 15:15:42.551 I/ReactNativeJS(16478): [INFO] [SPIRE]: rankBy=steps dev=none week=none config=есть (смена решения)
+10-15 15:15:42.929 I/ReactNativeJS(16478): [INFO] [SPIRE]: home: вход, читаем конфиг (кэш 6 ч); первый кадр из памяти процесса: да (enabled=true)
+10-15 15:15:42.943 I/ReactNativeJS(16478): '[SPIRE-GATE] screen', '{"lang":"ru","allowed":true,"reason":"ui_lang_allowed","locked":false,"previous":null,"preview":false,"config":"enabled","result":"screen_allowed"}'
+10-15 15:15:42.996 I/ReactNativeJS(16478): '[PERF-R1-NAV]', '{"event":"attached","attempt":0,"atMs":22353}'
+10-15 15:15:43.006 I/ReactNativeJS(16478): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#JuYXGb*[(tabs)#Noy9nK,(tabs)#aKKNbU,(tabs)#eAQc9I*]","atMs":22366}'
+10-15 15:15:43.009 I/ReactNativeJS(16478): [TABS-SINGLE] observe tabs=3 source=(tabs) between=[(tabs)] top=(tabs) instSeen=3 sinceStartMs=21255 event=state
+10-15 15:15:43.011 I/ReactNativeJS(16478): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#JuYXGb*[(tabs)#Noy9nK,(tabs)#aKKNbU,(tabs)#eAQc9I*]","atMs":22370}'
+10-15 15:15:43.013 I/ReactNativeJS(16478): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#JuYXGb*[(tabs)#Noy9nK,(tabs)#aKKNbU,(tabs)#eAQc9I*]","atMs":22373}'
+10-15 15:15:44.770 I/ReactNativeJS(16478): [INFO] [SPIRE]: friends: друзей нет — ряд скрыт, 0 вызовов
+10-15 15:15:44.790 I/ReactNativeJS(16478): '[TABS-PREMOUNT] start', '{"reason":"content_ready_non_home_start","startTabIdx":3,"startedAlready":false}'
+10-15 15:15:44.878 I/ReactNativeJS(16478): [INFO] [SPIRE]: home: config.enabled=true
+10-15 15:15:44.885 I/ReactNativeJS(16478): [INFO] [SPIRE]: [SPIRE-WEEK-MODAL] вход ui=ru study=en tab=true
+10-15 15:15:44.886 I/ReactNativeJS(16478): [INFO] [SPIRE]: [SPIRE-WEEK-MODAL] пропуск: уже проверяли в этом запуске (ru:en)
+10-15 15:15:44.896 I/ReactNativeJS(16478): '[TABS-PREMOUNT] start', '{"reason":"content_ready_non_home_start","startTabIdx":3,"startedAlready":true}'
+10-15 15:15:44.906 I/ReactNativeJS(16478): '[TABS-PREMOUNT] start', '{"reason":"content_ready_non_home_start","startTabIdx":3,"startedAlready":true}'
+10-15 15:15:44.909 I/ReactNativeJS(16478): '[TABS-PREMOUNT] start', '{"reason":"content_ready_non_home_start","startTabIdx":3,"startedAlready":true}'
+10-15 15:15:44.916 I/ReactNativeJS(16478): '[TABS-PREMOUNT] start', '{"reason":"content_ready_non_home_start","startTabIdx":3,"startedAlready":true}'
+10-15 15:15:44.922 I/ReactNativeJS(16478): '[TABS-PREMOUNT] start', '{"reason":"content_ready_non_home_start","startTabIdx":3,"startedAlready":true}'
+10-15 15:15:44.933 I/ReactNativeJS(16478): [INFO] [SPIRE]: home: локальной недели нет (lang=en) — маркер не рисуем
+10-15 15:15:45.325 I/ReactNativeJS(16478): [INFO] [SPIRE]: room: синхронизация en уже идёт — присоединяемся
+10-15 15:15:45.339 I/ReactNativeJS(16478): [INFO] [SPIRE]: friends: друзей нет — ряд скрыт, 0 вызовов
+10-15 15:15:45.388 I/ReactNativeJS(16478): [INFO] [SPIRE]: room: вход lang=en week=2026-W42 force=false кэш=есть (возраст 653664мс)
+10-15 15:15:45.389 I/ReactNativeJS(16478): [INFO] [SPIRE]: game: комната status=cache reason=cache_fresh group=2026-W42_en_t0_d3_1792071550177_e64a07ba-5ee
+10-15 15:15:45.449 I/ReactNativeJS(16478): '[TABS-PREMOUNT] start', '{"reason":"content_ready_non_home_start","startTabIdx":3,"startedAlready":true}'
+10-15 15:15:45.458 I/ReactNativeJS(16478): '[TABS-PREMOUNT] start', '{"reason":"content_ready_non_home_start","startTabIdx":3,"startedAlready":true}'
+10-15 15:15:45.478 I/ReactNativeJS(16478): '[TABS-PREMOUNT] start', '{"reason":"content_ready_non_home_start","startTabIdx":3,"startedAlready":true}'
+10-15 15:15:45.484 I/ReactNativeJS(16478): '[TABS-PREMOUNT] start', '{"reason":"content_ready_non_home_start","startTabIdx":3,"startedAlready":true}'
+10-15 15:15:45.490 I/ReactNativeJS(16478): '[TABS-PREMOUNT] start', '{"reason":"content_ready_non_home_start","startTabIdx":3,"startedAlready":true}'
+10-15 15:15:45.496 I/ReactNativeJS(16478): [INFO] [SPIRE]: pack: скачиваем spire_packs/en/0/2026-W42.json
+10-15 15:15:45.500 I/ReactNativeJS(16478): [INFO] [SPIRE]: [SPIRE-WEEK-CARD] where=spire weekId=2026-W41 lang=en skip: в комнате не сидел (недели=2026-W42) — 0 чтений
+10-15 15:15:45.501 I/ReactNativeJS(16478): [INFO] [SPIRE]: game: итог недели пришёл после ухода с экрана — не показываю
+10-15 15:15:45.518 I/ReactNativeJS(16478): [INFO] [SPIRE]: [SPIRE-WEEK-CARD] where=spire weekId=2026-W41 lang=en skip: в комнате не сидел (недели=2026-W42) — 0 чтений
+10-15 15:15:45.519 I/ReactNativeJS(16478): [INFO] [SPIRE]: game: итога недели нет (null) — карточки не будет
+10-15 15:15:45.743 I/ReactNativeJS(16478): [INFO] [SPIRE]: rankBy=steps dev=none week=2026-W42 config=есть (смена решения)
+10-15 15:15:46.577 I/ReactNativeJS(16478): [INFO] [SPIRE]: room: вход lang=en week=2026-W42 force=false кэш=есть (возраст 655240мс)
+10-15 15:15:46.577 I/ReactNativeJS(16478): [INFO] [SPIRE]: friends: друзей нет — ряд скрыт, 0 вызовов
+10-15 15:15:46.580 I/ReactNativeJS(16478): [INFO] [SPIRE]: game: комната status=cache reason=cache_fresh group=2026-W42_en_t0_d3_1792071550177_e64a07ba-5ee
+10-15 15:15:46.919 I/ReactNativeJS(16478): '[TABS-PREMOUNT] start', '{"reason":"content_ready_non_home_start","startTabIdx":3,"startedAlready":true}'
+10-15 15:15:46.923 I/ReactNativeJS(16478): '[TABS-PREMOUNT] start', '{"reason":"content_ready_non_home_start","startTabIdx":3,"startedAlready":true}'
+10-15 15:15:46.925 I/ReactNativeJS(16478): '[TABS-PREMOUNT] start', '{"reason":"content_ready_non_home_start","startTabIdx":3,"startedAlready":true}'
+10-15 15:15:47.014 I/ReactNativeJS(16478): [INFO] [SPIRE]: [SPIRE-WEEK-CARD] where=spire weekId=2026-W41 lang=en skip: в комнате не сидел (недели=2026-W42) — 0 чтений
+10-15 15:15:47.029 I/ReactNativeJS(16478): [INFO] [SPIRE]: game: итога недели нет (null) — карточки не будет
+10-15 15:15:47.853 W/ReactNativeJS(16478): [WARN] [SPIRE]: pack: ответ 403 за 2358мс
+10-15 15:15:47.856 I/ReactNativeJS(16478): [INFO] [SPIRE]: game: прогрев пакета status=unavailable source=none
+10-15 15:15:47.856 I/ReactNativeJS(16478): [INFO] [SPIRE]: game: прогрев пакета status=unavailable source=none
+10-15 15:15:47.865 I/ReactNativeJS(16478): '[TABS-PREMOUNT] step', '{"idx":2,"outcome":"guard_timeout","queuedMs":5228,"totalMs":12616}'
+10-15 15:15:47.867 I/ReactNativeJS(16478): '[TABS-PREMOUNT] step', '{"idx":3,"outcome":"cancelled","queuedMs":17826,"totalMs":0}'

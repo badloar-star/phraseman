@@ -4,6 +4,7 @@ exports.V2_ACTIVITY_SESSION_PACKAGE_AUTHORITY_V2 = exports.encodeV2ActivitySessi
 const activity_catalog_v2_1 = require("./activity_catalog_v2");
 const decision_registry_1 = require("../policies/decision_registry");
 const course_topology_v1_1 = require("../content/course_topology_v1");
+const mode_native_payload_v1_1 = require("./mode_native_payload_v1");
 exports.V2_REQUIRED_SESSION_TASK_PURPOSES_V2 = Object.freeze([
     "intro_comprehension_check",
     "intro_comprehension_check",
@@ -66,6 +67,10 @@ const TASK_KEYS = [
     "localEvaluatorCapsuleId",
     "introQuestionRef",
     "reviewSource",
+];
+const TASK_KEYS_WITH_SCRIPTED_REPEAT_REVEAL_POLICY = [
+    ...TASK_KEYS,
+    "scriptedRepeatRevealPolicy",
 ];
 const INTRO_QUESTION_KEYS = [
     "coveredConceptIds",
@@ -207,7 +212,9 @@ const parseV2ActivitySessionPackageV2 = (rawCanonical) => {
         const taughtObjectiveIds = new Set();
         tasks.forEach((candidateTask, taskIndex) => {
             const task = record(candidateTask, `sessions[${sessionIndex}].tasks[${taskIndex}]`);
-            exactKeys(task, TASK_KEYS, `sessions[${sessionIndex}].tasks[${taskIndex}]`);
+            exactKeys(task, Object.prototype.hasOwnProperty.call(task, "scriptedRepeatRevealPolicy")
+                ? TASK_KEYS_WITH_SCRIPTED_REPEAT_REVEAL_POLICY
+                : TASK_KEYS, `sessions[${sessionIndex}].tasks[${taskIndex}]`);
             literal(task.taskOrdinal, taskIndex + 1, "taskOrdinal");
             literal(task.purpose, exports.V2_REQUIRED_SESSION_TASK_PURPOSES_V2[taskIndex], "purpose");
             for (const key of ["contentItemId", "objectiveId"]) {
@@ -241,6 +248,12 @@ const parseV2ActivitySessionPackageV2 = (rawCanonical) => {
             if (task.answerExposure !== "allowed_after_attempt" &&
                 task.answerExposure !== "forbidden")
                 fail("answerExposure is invalid");
+            const scriptedRepeatRevealPolicy = task.scriptedRepeatRevealPolicy;
+            if (scriptedRepeatRevealPolicy !== undefined &&
+                (task.family !== "scripted_repeat_compare" ||
+                    !(0, mode_native_payload_v1_1.isLearningV2ScriptedRepeatRevealPolicyV1)(scriptedRepeatRevealPolicy))) {
+                fail("scripted repeat reveal policy is invalid");
+            }
             if (!["trained", "varied", "novel"].includes(String(task.promptNovelty)))
                 fail("promptNovelty is invalid");
             if (taskIndex < 3) {
@@ -302,8 +315,10 @@ const parseV2ActivitySessionPackageV2 = (rawCanonical) => {
                 literal(task.answerExposure, "forbidden", "independent answerExposure");
                 if (task.promptNovelty === "trained")
                     fail("independent checks must be varied or novel");
-                if (task.family === "scripted_repeat_compare")
-                    fail("scripted repeat cannot be an independent check");
+                if (task.family === "scripted_repeat_compare" &&
+                    !(0, mode_native_payload_v1_1.isLearningV2ScriptedRepeatRevealPolicyV1)(scriptedRepeatRevealPolicy)) {
+                    fail("independent scripted repeat requires the strict after-attempt reveal policy");
+                }
                 if (!taughtObjectiveIds.has(String(task.objectiveId)))
                     fail("independent checks must bind a previously taught objective");
             }

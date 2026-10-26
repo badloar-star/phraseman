@@ -1,0 +1,14 @@
+{
+  "tool": "built-in image_gen; no project API key used",
+  "scenarioId": "tourist_info",
+  "candidatePrefix": "dialog_scene_tourist_info_option_",
+  "concepts": [
+    "folded map with inset pin",
+    "information bell and blank counter block",
+    "globe on a short stand",
+    "compass with blank guide booklet",
+    "blank two-board wayfinding post"
+  ],
+  "style": "S2 matte monochrome clay; graphite dark / derived warm ivory light; true alpha; separate white theme accent",
+  "status": "Five options generated in dark/light. See tourist-info-preparation-dark.log and tourist-info-preparation-light.log for per-mode technical checks; drafts await owner review."
+}

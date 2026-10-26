@@ -1,0 +1,14 @@
+{
+  "scenario": "class_schedule_talk",
+  "title": "Расписание занятий",
+  "generatedAt": "2026-10-14",
+  "style": "S2 matte clay",
+  "variants": [
+    "blank timetable tile with analog clock",
+    "lesson notebook with calendar tab",
+    "two blank calendar tiles and curved link arrow",
+    "clock nested inside open lesson planner",
+    "stacked schedule cards with highlighted empty slot"
+  ],
+  "constraints": ["true transparent RGBA", "no people, dates, text or written numbers", "cyan internal marker for separate white accent extraction", "dark/light trial pairs", "trial location only"]
+}

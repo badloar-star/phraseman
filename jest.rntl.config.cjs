@@ -71,6 +71,7 @@ module.exports = {
     '<rootDir>/tests/use_guarded_nav_stable.test.tsx',
     '<rootDir>/tests/use_voice_attempt_gate.test.tsx',
     '<rootDir>/tests/voice_allowance_d194_contract.test.tsx',
+    '<rootDir>/tests/paywall_admin_controls_render.test.tsx',
   ],
   // Официальная настройка gesture-handler для jest (без неё — «RNGestureHandlerModule could not be found»).
   setupFiles: ['react-native-gesture-handler/jestSetup'],

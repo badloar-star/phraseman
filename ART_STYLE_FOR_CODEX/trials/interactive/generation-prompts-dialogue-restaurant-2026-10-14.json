@@ -1,0 +1,21 @@
+{
+  "tool": "built-in image_gen; no project API key used",
+  "category": "dialogue theme restaurant",
+  "optionsGenerated": 5,
+  "concepts": ["shallow clay dinner plate with a vertical fork and knife and centered round inset accent", "wide shallow clay plate with a continuous contrasting rim", "low rounded serving cloche on an oval platter with one large cyan-marked knob", "crossed fork and table knife resting on a folded napkin, fork handle marked cyan", "closed standing menu folio with blank page and one broad cyan bookmark"],
+  "style": "S2 matte clay; genuine alpha; cyan temporary marker extracted as separate white .accent layer",
+  "modeMeasurements": {
+    "option01Light": {"accentFramePct": 0.363, "interiorEdgePct": 5.8, "alignment": "pass", "alphaTransparencyPct": 61.08},
+    "option01Dark": {"accentFramePct": 0.406, "interiorEdgePct": 0.3, "alignment": "pass", "alphaTransparencyPct": 61.5},
+    "option02Light": {"accentFramePct": 2.814, "interiorEdgePct": 0, "alignment": "pass", "alphaTransparencyPct": 54.18},
+    "option02Dark": {"accentFramePct": 4.099, "interiorEdgePct": 0, "alignment": "pass", "alphaTransparencyPct": 51.98},
+    "option03Light": {"accentFramePct": 2.549, "interiorEdgePct": 0.7, "alignment": "pass", "alphaTransparencyPct": 56.54},
+    "option03Dark": {"accentFramePct": 2.549, "interiorEdgePct": 0.7, "alignment": "pass", "alphaTransparencyPct": 56.54},
+    "option04Light": {"accentFramePct": 5.335, "interiorEdgePct": 2.7, "alignment": "pass", "alphaTransparencyPct": 67.86},
+    "option04Dark": {"accentFramePct": 5.335, "interiorEdgePct": 2.7, "alignment": "pass", "alphaTransparencyPct": 67.86},
+    "option05Light": {"accentFramePct": 4.451, "interiorEdgePct": 0.4, "alignment": "pass", "alphaTransparencyPct": 61.17},
+    "option05Dark": {"accentFramePct": 4.451, "interiorEdgePct": 0.3, "alignment": "pass", "alphaTransparencyPct": 61.17}
+  },
+  "acceptance": "Options 1 and 2 status remains unchanged: option 1 is draft because accent coverage is below 1%; option 2 passes technical gates but awaits visual acceptance. Option 3 passes alpha, accent-size, and mask-alignment checks; it remains a draft pending visual acceptance. Options 4 and 5 pass alpha, accent-size, and alignment gates in both modes; they remain drafts until visual review.",
+  "prompts": ["A refined premium matte-clay restaurant icon: one shallow round plate with a single fork and knife as a balanced compact emblem, centered small cyan inset on plate; warm ivory for light theme, charcoal graphite for dark; no text, food, setting, surface, or cast shadow; genuinely transparent outside object.", "A single thick shallow dining plate in three-quarter top view, broad softly rounded ceramic rim and a bold continuous cyan ring on the rim as segmentation marker; monochrome warm ivory/graphite clay, no food, utensils, scene, surface or shadow; true alpha.", "Create ONE centered premium clay product-render icon: low rounded serving cloche on shallow oval platter, single large smooth cyan knob as sole accent marker; simple 2-part silhouette, 64px legibility, transparent alpha, no shadows/background/debris. Built-in imagegen; no project API key. Source was cleaned to the largest connected alpha silhouette, resized to 1024, and tone-mapped to dark graphite and light ivory while preserving geometry.", "Create one premium monochrome clay restaurant pictogram: fork and table knife crossing at a gentle angle over a folded oval napkin, only 3 forms; a single large cyan-marked fork handle. True-alpha background, no scene, no shadows; dark/light palette conversion is performed from this common geometry. Built-in imagegen; no project API key.", "Create one premium monochrome clay icon: closed standing menu folio, slightly open with a blank visible inset page and a single broad cyan-marked ribbon. No lettering or symbols. True-alpha background; dark/light palette conversion is performed from this common geometry. Built-in imagegen; no project API key."]
+}

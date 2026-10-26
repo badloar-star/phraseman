@@ -5,7 +5,24 @@
 
 ## Статус
 
-### CURRENT V2 AUTHORITY — 2026-08-30
+### CURRENT V2 AUTHORITY — 2026-10-14
+
+- Текущий canonical fingerprint:
+  `d956442e0946194e3de8105601ae993fe6f7932e7904cc3e4e972fc8444875da`.
+- Статус: `OWNER APPROVED` точным решением владельца
+  «Да, одобряю именно d956…75da».
+- Точный successor receipt:
+  [`../../../content/learning-v2-course/judgements/owner/2026-10-14_english_blueprint_d956_approval.md`](../../../content/learning-v2-course/judgements/owner/2026-10-14_english_blueprint_d956_approval.md).
+- Fingerprint `f776cf32…18b0` и все более ранние fingerprints сохраняются как
+  история, но имеют статус `SUPERSEDED` для current-byte authorization.
+- Это approval только exact curriculum body: learner-facing bytes, release,
+  mockup, audio и course readiness им не утверждены. `draft`, `edit` и `full`
+  допускаются автоматической fail-closed проверкой fingerprint, pinned plan и
+  exact row с grammar/vocabulary/scene/mode, source/prior-source digests и
+  per-session lock — без повторного owner prompt, lifecycle epoch или guardian
+  receipt. Semantic acceptance и publication gates остаются обязательными.
+
+### HISTORICAL V2 AUTHORITY — 2026-08-30
 
 - Full B1 grammar-first canonical fingerprint:
   `94ab72b4979033687bde511b0b7de9b53a1692190e61dfe7cfc8475b94673cbf`.

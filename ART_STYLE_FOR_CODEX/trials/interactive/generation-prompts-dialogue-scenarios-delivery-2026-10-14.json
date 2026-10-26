@@ -1,0 +1,14 @@
+{
+  "tool": "built-in image_gen; no project API key used",
+  "scenarioId": "phone_delivery",
+  "candidatePrefix": "dialog_scene_phone_delivery_option_",
+  "concepts": [
+    "parcel box with inset seal",
+    "insulated delivery tote with patch",
+    "parcel locker panel with knob",
+    "meal carrier box with seal",
+    "hand trolley carrying a parcel"
+  ],
+  "style": "S2 matte clay, neutral graphite dark and derived warm ivory light, true alpha and separate white accent",
+  "status": "Five options generated in dark/light. Per-mode alignment and size results are in delivery-preparation-dark.log and delivery-preparation-light.log; all remain unapproved drafts."
+}

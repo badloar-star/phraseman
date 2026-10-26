@@ -1,0 +1,2 @@
+ждём: Главная
+10-15 14:39:27.493 I/ReactNativeJS(10638): [PUSH-TAP-DEV] simulate {"type":"arena_friend_invite"}

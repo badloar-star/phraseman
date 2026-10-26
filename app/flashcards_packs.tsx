@@ -68,6 +68,7 @@ import {
   sortCommunityMarketPacksBySocial,
 } from './community_packs/communityFirestore';
 import { getCanonicalUserId } from './user_id_policy';
+import { CommunityMonthRewardHost } from '../components/packs/CommunityMonthRewardHost';
 import {
   communitySortLabel,
   excludeVideoPacks,
@@ -158,7 +159,7 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
   // зачем (решение владельца «все элементы как на макете» через координатора 05.10; макет packs-simple.html кадр 1: `.bar3` — активна «Новые»):
   // каталог открывается на «Новые»; `?sort=popular` по-прежнему ведёт на «Топ». Сортировка клиентская над ОДНИМ загруженным списком —
   // ни нового запроса, ни индекса Firestore смена умолчания не требует (applyCommunityPacksFilter).
-  const [communitySort, setCommunitySort] = useState<CommunityPacksSort>(() => params.sort === 'popular' ? 'popular' : 'new');
+  const [communitySort, setCommunitySort] = useState<CommunityPacksSort>(() => params.sort === 'new' ? 'new' : embedded || params.sort === 'popular' ? 'popular' : 'new');
   // зачем (cards-v2 commHead()): чипы «Популярные / Новые / A1…B2» — один выбранный; уровень — клиентский фильтр поверх сортировки «Популярные».
   // Чипы уровней рисуются, только если у каких-то наборов каталога есть уровень (поля пока нет — данные ждём от Ядра).
   const [communityLevel, setCommunityLevel] = useState<string | null>(null);
@@ -435,6 +436,7 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
           <View style={styles.headerActions}>
             <PackLanguagePicker
               pill={embedded}
+              renderTrigger={embedded ? open => <KitTouchable onPress={open} accessibilityRole="button" accessibilityLabel={packLanguage.toUpperCase()} style={{ height: 36, paddingHorizontal: 12, borderRadius: 18, backgroundColor: 'rgba(255,255,255,.17)', flexDirection: 'row', alignItems: 'center', gap: 7 }}><Text style={{ color: '#FFFFFF', fontSize: 15, fontWeight: '700' }}>{packLanguage.toUpperCase()}</Text><Ionicons name="chevron-down" size={14} color="#FFFFFF" /></KitTouchable> : undefined}
               lang={lang}
               t={t}
               value={packLanguage}
@@ -507,7 +509,7 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
           >
             {/* зачем (cards-v2 catalog() / commHead()): заголовок «Сообщество» 34/40 (+ круглая «создать набор» — функция приложения, в макете её нет),
                 капсула поиска «Наборы и авторы», чипы «Популярные / Новые / A1…B2» (чипы уровней — только когда в каталоге есть уровни). */}
-            <View style={styles.listHead}>
+            {!embedded ? <View style={styles.listHead}>
               <View style={styles.titleRow}>
                 <Text maxFontSizeMultiplier={1.15} accessibilityRole="header" testID={embedded ? 'flashcards-packs-title-embedded' : 'flashcards-packs-title'} style={[styles.embeddedTitle, { color: g.text }]}>
                   {screenTitle}
@@ -533,8 +535,11 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
                   <PackChips g={g} chips={filterChips} activeId={activeChip} onChange={onChip} testIDPrefix="flashcards-packs-chip" />
                 </View>
               ) : null}
-            </View>
+            </View> : null}
             <FlashcardsCategoryHub
+              sceneMode={embedded}
+              onSceneSort={setCommunitySort}
+              sceneTools={<View style={styles.searchWrap}><KitSearchField g={g} value={communityQuery} onChangeText={setCommunityQuery} placeholder={searchLabel} clearLabel={clearSearchLabel} testID="flashcards-packs-search" /><PackChips g={g} chips={filterChips} activeId={activeChip} onChange={onChip} testIDPrefix="flashcards-packs-chip" /></View>}
               lang={lang} // зачем (R07, координатор 15.10): язык интерфейса (было ru/uk/es — 6 языков видели русский каталог)
               t={t}
               themeMode={themeMode}
@@ -555,7 +560,9 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
               communityLevel={communityLevel}
               packLanguage={packLanguage}
             />
+            {embedded && cloudCommunityEnabled ? <CommunityMonthRewardHost userId={hubAuthorStableId} /> : null}
           </Animated.ScrollView>
+          {embedded ? <KitTouchable testID="community-scene-create" accessibilityRole="button" accessibilityLabel={createPackLabel} onPress={() => router.push({ pathname: '/community_pack_create', params: { origin: 'community', packLanguage } } as never)} style={{ position: 'absolute', left: 16, right: 16, bottom: tabContentBottomPad + 12, height: 54, borderRadius: 27, backgroundColor: g.ctaFill, alignItems: 'center', justifyContent: 'center', flexDirection: 'row', gap: 10 }}><Ionicons name="add" size={22} color={g.ctaFillInk} /><Text style={{ color: g.ctaFillInk, fontSize: 17, fontWeight: '700' }}>{createPackLabel}</Text></KitTouchable> : null}
         </View>
       </SafeAreaView>
     </ScreenGradient>
@@ -567,7 +574,7 @@ const baseStyles = StyleSheet.create({
   scrollRegion: { flex: 1, minHeight: 0 },
   scrollView: { flex: 1, minHeight: 0 },
   scrollContent: { paddingTop: 16, paddingBottom: 104 },
-  scrollContentEmbedded: { paddingTop: 8 },
+  scrollContentEmbedded: { paddingTop: 0 },
   // зачем (community-redesign.html #c1, `.h1c`): заголовок 32/38, 700, -0.6; строка заголовка с «+» — отступ 10 сверху.
   listHead: { paddingHorizontal: 20 },
   titleRow: { flexDirection: 'row', alignItems: 'center', gap: 10, marginTop: 10 },

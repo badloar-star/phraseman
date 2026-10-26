@@ -1,0 +1,14 @@
+{
+  "tool": "built-in image_gen; no project API key used",
+  "scenarioId": "airport_checkin",
+  "candidatePrefix": "dialog_scene_airport_checkin_option_",
+  "concepts": [
+    "blank boarding pass with inset seal",
+    "passport with blank cover medallion",
+    "cabin suitcase with front marker",
+    "luggage scale and suitcase",
+    "gate arch with carry-on"
+  ],
+  "style": "S2 matte clay, graphite dark / derived warm ivory light, true alpha, separate white theme-accent",
+  "status": "Five dark/light options generated; all await per-mode technical and owner visual review. See airport-checkin-preparation-dark.log and airport-checkin-preparation-light.log."
+}

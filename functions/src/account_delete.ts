@@ -322,6 +322,7 @@ const DIRECT_DOCUMENT_SPECS: AccountDeleteDirectDocumentSpec[] = [
   { collection: 'users', values: 'both' },
   { collection: 'public_profiles', values: 'both' },
   { collection: 'leaderboard', values: 'both' },
+  { collection: 'premium_theme_video_watch', values: 'stable' },
   { collection: 'arena_profiles', values: 'both' },
   { collection: 'arena_question_history', values: 'both' },
   { collection: 'matchmaking_queue', values: 'both' },

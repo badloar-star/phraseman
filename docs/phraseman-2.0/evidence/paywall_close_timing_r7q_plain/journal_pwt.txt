@@ -1,0 +1,181 @@
+10-15 15:07:33.480 W/ReactNativeJS(15251): [JS-STALL] +1311ms поток стоял 1310ms (с +1ms)
+10-15 15:07:34.687 W/ReactNativeJS(15251): [JS-STALL] +2516ms поток стоял 1100ms (с +1416ms)
+10-15 15:07:34.856 I/ReactNativeJS(15251): '[PERF-R1-NAV]', '{"event":"attached","attempt":0,"atMs":3916}'
+10-15 15:07:35.558 I/ReactNativeJS(15251): [PAYWALL-CLOSE-FREEZE] t=55556 tabs focus
+10-15 15:07:35.568 I/ReactNativeJS(15251): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#O3m8Qz*[(tabs)#qTBI8D*]","atMs":4630}'
+10-15 15:07:35.595 W/ReactNativeJS(15251): [JS-STALL] +3425ms поток стоял 904ms (с +2521ms)
+10-15 15:07:35.615 I/ReactNativeJS(15251): [TABS-SINGLE] flag tabs_single_guard=on source=rc_cache
+10-15 15:07:37.326 W/ReactNativeJS(15251): [JS-STALL] +5156ms поток стоял 1522ms (с +3634ms)
+10-15 15:07:37.329 W/ReactNativeJS(15251): [JS-STALL] heartbeat +5156ms splash=shown
+10-15 15:07:37.855 W/ReactNativeJS(15251): [JS-STALL] +5684ms поток стоял 315ms (с +5369ms)
+10-15 15:07:38.964 I/ReactNativeJS(15251): '[PERF-R1-NAV]', '{"event":"action","type":"NAVIGATE","name":"(tabs)","noop":false,"atMs":8027,"stack":"anonymous@148102:34 | forEach | anonymous@148102:25 | anonymous@145418:19 | apply | latestCallback@147137:31 | anonymous@153454:29 | dispatch@153154:31 | anonymous@145348:61 | anonymous@152990:27 | anonymous@152978:37 | anonymous@145348:27 | apply | latestCallback@147137:31 | run@213504:31 | anonymous@216073:33 | react-stack-bottom-frame@28552:26 | runWithFiberInDEV@2034
+10-15 15:07:39.136 I/ReactNativeJS(15251): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#O3m8Qz*[(tabs)#qTBI8D*]","atMs":8199}'
+10-15 15:07:41.209 W/ReactNativeJS(15251): [JS-STALL] +9039ms поток стоял 3355ms (с +5684ms)
+10-15 15:07:42.036 W/ReactNativeJS(15251): [JS-STALL] +9866ms поток стоял 827ms (с +9039ms)
+10-15 15:07:42.495 W/ReactNativeJS(15251): [JS-STALL] +10324ms поток стоял 252ms (с +10072ms)
+10-15 15:07:42.497 W/ReactNativeJS(15251): [JS-STALL] heartbeat +10324ms splash=hidden@+6553ms
+10-15 15:07:44.482 W/ReactNativeJS(15251): [JS-STALL] +12312ms поток стоял 707ms (с +11605ms)
+10-15 15:07:45.099 W/ReactNativeJS(15251): [JS-STALL] +12929ms поток стоял 615ms (с +12314ms)
+10-15 15:07:45.397 W/ReactNativeJS(15251): [JS-STALL] +13227ms поток стоял 298ms (с +12929ms)
+10-15 15:07:45.782 W/ReactNativeJS(15251): [JS-STALL] +13611ms поток стоял 384ms (с +13227ms)
+10-15 15:07:46.277 W/ReactNativeJS(15251): [JS-STALL] +14108ms поток стоял 274ms (с +13834ms)
+10-15 15:07:49.650 I/SVERKA  (15484): === PWT start 15:07:49 ===
+10-15 15:07:50.981 W/ReactNativeJS(15251): [JS-STALL] +18811ms поток стоял 3619ms (с +15192ms)
+10-15 15:07:50.983 W/ReactNativeJS(15251): [JS-STALL] heartbeat +18811ms splash=hidden@+6553ms
+10-15 15:07:51.109 I/ReactNativeJS(15251): [PAYWALL-CLOSE-FREEZE] t=71108 tab_tap requested=4 active=0 page=0
+10-15 15:07:51.609 I/ReactNativeJS(15251): '[PERF-R1-NAV]', '{"event":"action","type":"NAVIGATE","name":"(tabs)","noop":false,"atMs":20660,"stack":"anonymous@148102:34 | forEach | anonymous@148102:25 | anonymous@145418:19 | apply | latestCallback@147137:31 | anonymous@153454:29 | dispatch@153154:31 | anonymous@145348:61 | anonymous@152990:27 | anonymous@152978:37 | anonymous@145348:27 | apply | latestCallback@147137:31 | run@213504:31 | anonymous@216073:33 | react-stack-bottom-frame@28552:26 | runWithFiberInDEV@203
+10-15 15:07:51.951 I/ReactNativeJS(15251): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#O3m8Qz*[(tabs)#qTBI8D*]","atMs":21014}'
+10-15 15:07:51.963 W/ReactNativeJS(15251): [JS-STALL] +19794ms поток стоял 887ms (с +18907ms)
+10-15 15:07:53.110 W/ReactNativeJS(15251): [JS-STALL] +20940ms поток стоял 804ms (с +20136ms)
+10-15 15:07:53.944 W/ReactNativeJS(15251): [JS-STALL] +21774ms поток стоял 647ms (с +21127ms)
+10-15 15:07:54.269 W/ReactNativeJS(15251): [JS-STALL] +22099ms поток стоял 314ms (с +21785ms)
+10-15 15:07:54.884 I/SVERKA  (15507): === PWT 1 open-tap 15:07:55 ===
+10-15 15:07:55.971 W/ReactNativeJS(15251): [JS-STALL] +23802ms поток стоял 647ms (с +23155ms)
+10-15 15:07:56.185 W/ReactNativeJS(15251): [JS-STALL] heartbeat +24016ms splash=hidden@+6553ms
+10-15 15:07:58.982 W/ReactNativeJS(15251): [JS-STALL] +26812ms поток стоял 1222ms (с +25590ms)
+10-15 15:07:59.956 W/ReactNativeJS(15251): [JS-STALL] +27786ms поток стоял 775ms (с +27011ms)
+10-15 15:08:00.250 W/ReactNativeJS(15251): [JS-STALL] +28081ms поток стоял 276ms (с +27805ms)
+10-15 15:08:00.972 W/ReactNativeJS(15251): [JS-STALL] +28803ms поток стоял 361ms (с +28442ms)
+10-15 15:08:01.196 W/ReactNativeJS(15251): [JS-STALL] heartbeat +29027ms splash=hidden@+6553ms
+10-15 15:08:01.606 W/ReactNativeJS(15251): [JS-STALL] +29436ms поток стоял 297ms (с +29139ms)
+10-15 15:08:02.874 W/ReactNativeJS(15251): [JS-STALL] +30704ms поток стоял 285ms (с +30419ms)
+10-15 15:08:03.545 W/ReactNativeJS(15251): [JS-STALL] +31376ms поток стоял 255ms (с +31121ms)
+10-15 15:08:04.279 W/ReactNativeJS(15251): [JS-STALL] +32110ms поток стоял 285ms (с +31825ms)
+10-15 15:08:04.508 I/SVERKA  (15646): === PWT 1 close-tap 15:08:04 ===
+10-15 15:08:05.561 W/ReactNativeJS(15251): [JS-STALL] +33391ms поток стоял 289ms (с +33102ms)
+10-15 15:08:06.280 W/ReactNativeJS(15251): [JS-STALL] +34110ms поток стоял 294ms (с +33816ms)
+10-15 15:08:06.281 W/ReactNativeJS(15251): [JS-STALL] heartbeat +34110ms splash=hidden@+6553ms
+10-15 15:08:06.966 W/ReactNativeJS(15251): [JS-STALL] +34796ms поток стоял 290ms (с +34506ms)
+10-15 15:08:09.400 W/ReactNativeJS(15251): [JS-STALL] +37231ms поток стоял 266ms (с +36965ms)
+10-15 15:08:10.217 W/ReactNativeJS(15251): [JS-STALL] +38047ms поток стоял 508ms (с +37539ms)
+10-15 15:08:10.797 W/ReactNativeJS(15251): [JS-STALL] +38627ms поток стоял 273ms (с +38354ms)
+10-15 15:08:11.453 W/ReactNativeJS(15251): [JS-STALL] heartbeat +39283ms splash=hidden@+6553ms
+10-15 15:08:11.743 I/SVERKA  (15698): === PWT 1 tab-tap 15:08:11 ===
+10-15 15:08:11.825 I/ReactNativeJS(15251): [PAYWALL-CLOSE-FREEZE] t=91825 tab_tap requested=0 active=4 page=4
+10-15 15:08:12.886 W/ReactNativeJS(15251): [JS-STALL] +40716ms поток стоял 1078ms (с +39638ms)
+10-15 15:08:13.220 W/ReactNativeJS(15251): [JS-STALL] +41050ms поток стоял 288ms (с +40762ms)
+10-15 15:08:16.563 W/ReactNativeJS(15251): [JS-STALL] heartbeat +44393ms splash=hidden@+6553ms
+10-15 15:08:16.592 I/ReactNativeJS(15251): [PAYWALL-CLOSE-FREEZE] t=96592 tab_tap requested=4 active=0 page=0
+10-15 15:08:17.276 I/ReactNativeJS(15251): '[PERF-R1-NAV]', '{"event":"action","type":"NAVIGATE","name":"(tabs)","noop":false,"atMs":46338,"stack":"anonymous@148102:34 | forEach | anonymous@148102:25 | anonymous@145418:19 | apply | latestCallback@147137:31 | anonymous@153454:29 | dispatch@153154:31 | anonymous@145348:61 | anonymous@152990:27 | anonymous@152978:37 | anonymous@145348:27 | apply | latestCallback@147137:31 | run@213504:31 | anonymous@216073:33 | react-stack-bottom-frame@28552:26 | runWithFiberInDEV@203
+10-15 15:08:17.821 I/ReactNativeJS(15251): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#O3m8Qz*[(tabs)#qTBI8D*]","atMs":46884}'
+10-15 15:08:17.912 W/ReactNativeJS(15251): [JS-STALL] +45743ms поток стоял 1350ms (с +44393ms)
+10-15 15:08:18.226 W/ReactNativeJS(15251): [JS-STALL] +46056ms поток стоял 305ms (с +45751ms)
+10-15 15:08:18.728 W/ReactNativeJS(15251): [JS-STALL] +46558ms поток стоял 304ms (с +46254ms)
+10-15 15:08:19.441 W/ReactNativeJS(15251): [JS-STALL] +47272ms поток стоял 333ms (с +46939ms)
+10-15 15:08:20.352 W/ReactNativeJS(15251): [JS-STALL] +48182ms поток стоял 532ms (с +47650ms)
+10-15 15:08:21.014 W/ReactNativeJS(15251): [JS-STALL] +48844ms поток стоял 321ms (с +48523ms)
+10-15 15:08:21.684 W/ReactNativeJS(15251): [JS-STALL] +49514ms поток стоял 288ms (с +49226ms)
+10-15 15:08:21.688 W/ReactNativeJS(15251): [JS-STALL] heartbeat +49514ms splash=hidden@+6553ms
+10-15 15:08:21.836 I/SVERKA  (15731): === PWT 2 open-tap 15:08:22 ===
+10-15 15:08:22.374 W/ReactNativeJS(15251): [JS-STALL] +50204ms поток стоял 282ms (с +49922ms)
+10-15 15:08:22.973 W/ReactNativeJS(15251): [JS-STALL] +50802ms поток стоял 275ms (с +50527ms)
+10-15 15:08:23.759 W/ReactNativeJS(15251): [JS-STALL] +51589ms поток стоял 360ms (с +51229ms)
+10-15 15:08:24.446 W/ReactNativeJS(15251): [JS-STALL] +52269ms поток стоял 340ms (с +51929ms)
+10-15 15:08:25.098 W/ReactNativeJS(15251): [JS-STALL] +52927ms поток стоял 295ms (с +52632ms)
+10-15 15:08:25.176 I/ReactNativeJS(15251): '[PERF-R1-NAV]', '{"event":"action","type":"PUSH","name":"premium_modal","noop":false,"atMs":54237,"stack":"anonymous@148102:34 | forEach | anonymous@148102:25 | anonymous@145418:19 | apply | latestCallback@147137:31 | anonymous@153454:29 | dispatch@153154:31 | anonymous@145348:61 | anonymous@152990:27 | anonymous@152978:37 | anonymous@145348:27 | apply | latestCallback@147137:31 | run@213504:31 | anonymous@216073:33 | react-stack-bottom-frame@28552:26 | runWithFiberInDEV@
+10-15 15:08:26.118 I/ReactNativeJS(15251): [PAYWALL-CLOSE-FREEZE] t=6116 tabs blur
+10-15 15:08:26.121 I/ReactNativeJS(15251): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#O3m8Qz*[(tabs)#qTBI8D,premium_modal#hn7XIl*]","atMs":55184}'
+10-15 15:08:26.376 W/ReactNativeJS(15251): [JS-STALL] +54205ms поток стоял 1278ms (с +52927ms)
+10-15 15:08:26.782 W/ReactNativeJS(15251): [JS-STALL] +54611ms поток стоял 390ms (с +54221ms)
+10-15 15:08:26.783 W/ReactNativeJS(15251): [JS-STALL] heartbeat +54611ms splash=hidden@+6553ms
+10-15 15:08:27.992 W/ReactNativeJS(15251): [JS-STALL] +55822ms поток стоял 298ms (с +55524ms)
+10-15 15:08:29.251 W/ReactNativeJS(15251): [JS-STALL] +57081ms поток стоял 272ms (с +56809ms)
+10-15 15:08:30.400 I/SVERKA  (15772): === PWT 2 close-tap 15:08:30 ===
+10-15 15:08:31.141 W/ReactNativeJS(15251): [JS-STALL] +58969ms поток стоял 273ms (с +58696ms)
+10-15 15:08:31.800 W/ReactNativeJS(15251): [JS-STALL] heartbeat +59626ms splash=hidden@+6553ms
+10-15 15:08:32.524 W/ReactNativeJS(15251): [JS-STALL] +60350ms поток стоял 375ms (с +59975ms)
+10-15 15:08:32.527 W/ReactNativeJS(15251): [JS-STALL] watchdog stop +60350ms
+10-15 15:08:33.403 I/ReactNativeJS(15251): [PAYWALL-CLOSE-TIMING] stage=handleClose +0ms d=0ms via=x reason=close context=generic source=settings_premium
+10-15 15:08:33.404 I/ReactNativeJS(15251): [PAYWALL-CLOSE-TIMING] stage=handleClose:haptic +3ms d=3ms
+10-15 15:08:33.413 I/ReactNativeJS(15251): [PAYWALL-CLOSE] via=x reason=close context=generic source=settings_premium
+10-15 15:08:33.430 I/ReactNativeJS(15251): [PAYWALL-CLOSE-TIMING] stage=doClose:analytics_start +23ms d=20ms
+10-15 15:08:33.455 I/ReactNativeJS(15251): [PAYWALL-CLOSE-TIMING] stage=doClose:analytics_done +31ms d=8ms
+10-15 15:08:33.473 I/ReactNativeJS(15251): [PAYWALL-CLOSE-TIMING] stage=dismiss:pre_log +70ms d=39ms branch=dismiss(1) shouldReplace=false candidate=yes
+10-15 15:08:33.498 I/ReactNativeJS(15251): [PAYWALL-CLOSE-FREEZE] t=13491 branch=dismiss(1) why: shouldReplace=false candidate=yes canDismiss=true nativePopToBack=true
+10-15 15:08:33.509 I/ReactNativeJS(15251): [PAYWALL-CLOSE-TIMING] stage=dismiss:call +102ms d=32ms branch=dismiss(1)
+10-15 15:08:33.516 I/ReactNativeJS(15251): [PAYWALL-CLOSE-TIMING] stage=dismiss:returned +112ms d=10ms dismiss(1)
+10-15 15:08:33.633 I/ReactNativeJS(15251): '[PERF-R1-NAV]', '{"event":"action","type":"POP","noop":false,"atMs":62691,"stack":"anonymous@148102:34 | forEach | anonymous@148102:25 | anonymous@145418:19 | apply | latestCallback@147137:31 | anonymous@153454:29 | dispatch@153154:31 | anonymous@145348:61 | anonymous@152990:27 | anonymous@152978:37 | anonymous@145348:27 | apply | latestCallback@147137:31 | run@213504:31 | anonymous@216073:33 | react-stack-bottom-frame@28552:26 | runWithFiberInDEV@20349:135"}'
+10-15 15:08:33.704 I/ReactNativeJS(15251): [PAYWALL-CLOSE-TIMING] render SettingsMain n=1 +297ms
+10-15 15:08:33.715 I/ReactNativeJS(15251): [PAYWALL-CLOSE-TIMING] cause SettingsMain n=1 +307ms changed=settingsRuntimeActive
+10-15 15:08:33.947 I/ReactNativeJS(15251): [PAYWALL-CLOSE-TIMING] profile id=settings_body phase=nested-update actualMs=87 +537ms
+10-15 15:08:33.957 I/ReactNativeJS(15251): [PAYWALL-CLOSE-TIMING] profile id=settings_auth_modal phase=nested-update actualMs=1 +547ms
+10-15 15:08:33.973 I/ReactNativeJS(15251): [PAYWALL-CLOSE-TIMING] stage=paywall:unmount +567ms d=455ms
+10-15 15:08:34.021 I/ReactNativeJS(15251): [PAYWALL-CLOSE-FREEZE] t=14020 tabs focus
+10-15 15:08:34.024 I/ReactNativeJS(15251): [PAYWALL-CLOSE-TIMING] stage=settings:focus +622ms d=55ms
+10-15 15:08:34.028 I/ReactNativeJS(15251): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#O3m8Qz*[(tabs)#qTBI8D*]","atMs":63090}'
+10-15 15:08:34.124 I/ReactNativeJS(15251): [PAYWALL-CLOSE-TIMING] render SettingsMain n=2 +724ms
+10-15 15:08:34.129 I/ReactNativeJS(15251): [PAYWALL-CLOSE-TIMING] cause SettingsMain n=2 +729ms changed=focusTick
+10-15 15:08:34.333 I/ReactNativeJS(15251): [PAYWALL-CLOSE-TIMING] profile id=settings_body phase=nested-update actualMs=81 +931ms
+10-15 15:08:34.337 I/ReactNativeJS(15251): [PAYWALL-CLOSE-TIMING] profile id=settings_auth_modal phase=nested-update actualMs=2 +934ms
+10-15 15:08:34.389 I/ReactNativeJS(15251): [PAYWALL-CLOSE-TIMING] render SettingsMain n=3 +986ms
+10-15 15:08:34.391 I/ReactNativeJS(15251): [PAYWALL-CLOSE-TIMING] cause SettingsMain n=3 +990ms changed=нет
+10-15 15:08:34.444 I/ReactNativeJS(15251): [PAYWALL-CLOSE-FREEZE] t=14442 +0ms branch=dismiss(1) stack=[*__root] > [*(tabs)] index=0 top=__root paywallInStack=false overlay=none
+10-15 15:08:34.444 I/ReactNativeJS(15251): [PAYWALL-CLOSE-TIMING] tick +1044ms plan=+102ms lag=942ms
+10-15 15:08:34.448 I/ReactNativeJS(15251): [PAYWALL-CLOSE-TIMING] tick +1048ms plan=+152ms lag=896ms
+10-15 15:08:34.449 I/ReactNativeJS(15251): [PAYWALL-CLOSE-TIMING] tick +1048ms plan=+252ms lag=796ms
+10-15 15:08:34.450 I/ReactNativeJS(15251): [PAYWALL-CLOSE-FREEZE] t=14449 +300ms branch=dismiss(1) stack=[*__root] > [*(tabs)] index=0 top=__root paywallInStack=false overlay=none
+10-15 15:08:34.452 I/ReactNativeJS(15251): [PAYWALL-CLOSE-TIMING] tick +1052ms plan=+402ms lag=650ms
+10-15 15:08:34.455 I/ReactNativeJS(15251): [PAYWALL-CLOSE-TIMING] stage=settings:frame1 +1054ms d=432ms
+10-15 15:08:34.458 I/ReactNativeJS(15251): [PAYWALL-CLOSE-FREEZE] t=14457 +800ms branch=dismiss(1) stack=[*__root] > [*(tabs)] index=0 top=__root paywallInStack=false overlay=none
+10-15 15:08:34.474 I/ReactNativeJS(15251): [PAYWALL-CLOSE-TIMING] render SettingsMain n=4 +1073ms
+10-15 15:08:34.477 I/ReactNativeJS(15251): [PAYWALL-CLOSE-TIMING] cause SettingsMain n=4 +1076ms changed=snapshotProfile,snapshotSettings
+10-15 15:08:34.720 I/ReactNativeJS(15251): [PAYWALL-CLOSE-TIMING] profile id=settings_body phase=update actualMs=111 +1317ms
+10-15 15:08:34.723 I/ReactNativeJS(15251): [PAYWALL-CLOSE-TIMING] profile id=settings_auth_modal phase=update actualMs=1 +1321ms
+10-15 15:08:34.737 I/ReactNativeJS(15251): [PAYWALL-CLOSE-TIMING] stage=settings:frame +1337ms d=283ms
+10-15 15:08:34.739 I/ReactNativeJS(15251): [PAYWALL-CLOSE-TIMING] END reason=settings_frame total=1338ms settingsRenders=4 selfLogMs=130.1 (10% of total; dev-зонд и старые [WINBACK-FREEZE] см. dismiss:pre_log -> dismiss:call)
+10-15 15:08:35.106 I/ReactNativeJS(15251): [PAYWALL-CLOSE-FREEZE] t=15105 +1500ms branch=dismiss(1) stack=[*__root] > [*(tabs)] index=0 top=__root paywallInStack=false overlay=none
+10-15 15:08:38.122 I/SVERKA  (15817): === PWT 2 tab-tap 15:08:38 ===
+10-15 15:08:38.307 I/ReactNativeJS(15251): [PAYWALL-CLOSE-FREEZE] t=18307 tab_tap requested=0 active=4 page=4
+10-15 15:08:39.407 I/ReactNativeJS(15251): '[PERF-R1-NAV]', '{"event":"action","type":"NAVIGATE","name":"(tabs)","noop":false,"atMs":68470,"stack":"anonymous@148102:34 | forEach | anonymous@148102:25 | anonymous@145418:19 | apply | latestCallback@147137:31 | anonymous@153454:29 | dispatch@153154:31 | anonymous@145348:61 | anonymous@152990:27 | anonymous@152978:37 | anonymous@145348:27 | apply | latestCallback@147137:31 | run@213504:31 | anonymous@216073:33 | react-stack-bottom-frame@28552:26 | runWithFiberInDEV@203
+10-15 15:08:39.853 I/ReactNativeJS(15251): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#O3m8Qz*[(tabs)#qTBI8D*]","atMs":68915}'
+10-15 15:08:43.300 I/ReactNativeJS(15251): [PAYWALL-CLOSE-FREEZE] t=23299 tab_tap requested=4 active=0 page=0
+10-15 15:08:44.168 I/ReactNativeJS(15251): '[PERF-R1-NAV]', '{"event":"action","type":"NAVIGATE","name":"(tabs)","noop":false,"atMs":73231,"stack":"anonymous@148102:34 | forEach | anonymous@148102:25 | anonymous@145418:19 | apply | latestCallback@147137:31 | anonymous@153454:29 | dispatch@153154:31 | anonymous@145348:61 | anonymous@152990:27 | anonymous@152978:37 | anonymous@145348:27 | apply | latestCallback@147137:31 | run@213504:31 | anonymous@216073:33 | react-stack-bottom-frame@28552:26 | runWithFiberInDEV@203
+10-15 15:08:44.991 I/ReactNativeJS(15251): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#O3m8Qz*[(tabs)#qTBI8D*]","atMs":74054}'
+10-15 15:08:48.515 I/SVERKA  (15847): === PWT 3 open-tap 15:08:48 ===
+10-15 15:08:51.540 I/ReactNativeJS(15251): '[PERF-R1-NAV]', '{"event":"action","type":"PUSH","name":"premium_modal","noop":false,"atMs":80603,"stack":"anonymous@148102:34 | forEach | anonymous@148102:25 | anonymous@145418:19 | apply | latestCallback@147137:31 | anonymous@153454:29 | dispatch@153154:31 | anonymous@145348:61 | anonymous@152990:27 | anonymous@152978:37 | anonymous@145348:27 | apply | latestCallback@147137:31 | run@213504:31 | anonymous@216073:33 | react-stack-bottom-frame@28552:26 | runWithFiberInDEV@
+10-15 15:08:52.060 I/ReactNativeJS(15251): [PAYWALL-CLOSE-FREEZE] t=32060 tabs blur
+10-15 15:08:52.065 I/ReactNativeJS(15251): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#O3m8Qz*[(tabs)#qTBI8D,premium_modal#T4W03y*]","atMs":81128}'
+10-15 15:08:56.761 I/SVERKA  (15882): === PWT 3 close-tap 15:08:57 ===
+10-15 15:08:59.534 I/ReactNativeJS(15251): [PAYWALL-CLOSE-TIMING] stage=handleClose +0ms d=0ms via=x reason=close context=generic source=settings_premium
+10-15 15:08:59.537 I/ReactNativeJS(15251): [PAYWALL-CLOSE-TIMING] stage=handleClose:haptic +2ms d=2ms
+10-15 15:08:59.537 I/ReactNativeJS(15251): [PAYWALL-CLOSE] via=x reason=close context=generic source=settings_premium
+10-15 15:08:59.540 I/ReactNativeJS(15251): [PAYWALL-CLOSE-TIMING] stage=doClose:analytics_start +5ms d=3ms
+10-15 15:08:59.541 I/ReactNativeJS(15251): [PAYWALL-CLOSE-TIMING] stage=doClose:analytics_done +7ms d=2ms
+10-15 15:08:59.588 I/ReactNativeJS(15251): [PAYWALL-CLOSE-TIMING] stage=dismiss:pre_log +19ms d=12ms branch=dismissTo shouldReplace=false candidate=none
+10-15 15:08:59.591 I/ReactNativeJS(15251): [PAYWALL-CLOSE-FREEZE] t=39591 branch=dismissTo why: shouldReplace=false candidate=none canDismiss=skipped nativePopToBack=true
+10-15 15:08:59.595 I/ReactNativeJS(15251): [PAYWALL-CLOSE-TIMING] stage=dismiss:call +61ms d=42ms branch=dismissTo
+10-15 15:08:59.634 I/ReactNativeJS(15251): [PAYWALL-CLOSE-TIMING] stage=dismiss:returned +100ms d=39ms dismissTo
+10-15 15:08:59.701 I/ReactNativeJS(15251): '[PERF-R1-NAV]', '{"event":"action","type":"POP_TO","name":"(tabs)","noop":false,"atMs":88764,"stack":"anonymous@148102:34 | forEach | anonymous@148102:25 | anonymous@145418:19 | apply | latestCallback@147137:31 | anonymous@153454:29 | dispatch@153154:31 | anonymous@145348:61 | anonymous@152990:27 | anonymous@152978:37 | anonymous@145348:27 | apply | latestCallback@147137:31 | run@213504:31 | anonymous@216073:33 | react-stack-bottom-frame@28552:26 | runWithFiberInDEV@20349
+10-15 15:08:59.841 I/ReactNativeJS(15251): [PAYWALL-CLOSE-TIMING] render SettingsMain n=1 +308ms
+10-15 15:08:59.845 I/ReactNativeJS(15251): [PAYWALL-CLOSE-TIMING] cause SettingsMain n=1 +311ms changed=settingsRuntimeActive
+10-15 15:09:00.034 I/ReactNativeJS(15251): [PAYWALL-CLOSE-TIMING] profile id=settings_body phase=nested-update actualMs=66 +498ms
+10-15 15:09:00.037 I/ReactNativeJS(15251): [PAYWALL-CLOSE-TIMING] profile id=settings_auth_modal phase=nested-update actualMs=1 +502ms
+10-15 15:09:00.058 I/ReactNativeJS(15251): [PAYWALL-CLOSE-TIMING] stage=paywall:unmount +524ms d=424ms
+10-15 15:09:00.089 I/ReactNativeJS(15251): [PAYWALL-CLOSE-FREEZE] t=40088 tabs focus
+10-15 15:09:00.091 I/ReactNativeJS(15251): [PAYWALL-CLOSE-TIMING] stage=settings:focus +557ms d=33ms
+10-15 15:09:00.094 I/ReactNativeJS(15251): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#O3m8Qz*[(tabs)#qTBI8D*]","atMs":89157}'
+10-15 15:09:00.145 I/ReactNativeJS(15251): [PAYWALL-CLOSE-TIMING] render SettingsMain n=2 +612ms
+10-15 15:09:00.148 I/ReactNativeJS(15251): [PAYWALL-CLOSE-TIMING] cause SettingsMain n=2 +614ms changed=focusTick
+10-15 15:09:00.318 I/ReactNativeJS(15251): [PAYWALL-CLOSE-TIMING] profile id=settings_body phase=nested-update actualMs=55 +783ms
+10-15 15:09:00.321 I/ReactNativeJS(15251): [PAYWALL-CLOSE-TIMING] profile id=settings_auth_modal phase=nested-update actualMs=1 +786ms
+10-15 15:09:00.352 I/ReactNativeJS(15251): [PAYWALL-CLOSE-TIMING] render SettingsMain n=3 +818ms
+10-15 15:09:00.355 I/ReactNativeJS(15251): [PAYWALL-CLOSE-TIMING] cause SettingsMain n=3 +821ms changed=нет
+10-15 15:09:00.415 I/ReactNativeJS(15251): [PAYWALL-CLOSE-FREEZE] t=40414 +0ms branch=dismissTo stack=[*__root] > [*(tabs)] index=0 top=__root paywallInStack=false overlay=none
+10-15 15:09:00.416 I/ReactNativeJS(15251): [PAYWALL-CLOSE-TIMING] tick +882ms plan=+61ms lag=821ms
+10-15 15:09:00.417 I/ReactNativeJS(15251): [PAYWALL-CLOSE-TIMING] tick +884ms plan=+111ms lag=773ms
+10-15 15:09:00.419 I/ReactNativeJS(15251): [PAYWALL-CLOSE-TIMING] tick +886ms plan=+211ms lag=675ms
+10-15 15:09:00.420 I/ReactNativeJS(15251): [PAYWALL-CLOSE-FREEZE] t=40420 +300ms branch=dismissTo stack=[*__root] > [*(tabs)] index=0 top=__root paywallInStack=false overlay=none
+10-15 15:09:00.421 I/ReactNativeJS(15251): [PAYWALL-CLOSE-TIMING] tick +888ms plan=+361ms lag=527ms
+10-15 15:09:00.424 I/ReactNativeJS(15251): [PAYWALL-CLOSE-TIMING] stage=settings:frame1 +889ms d=332ms
+10-15 15:09:00.438 I/ReactNativeJS(15251): [PAYWALL-CLOSE-TIMING] render SettingsMain n=4 +904ms
+10-15 15:09:00.442 I/ReactNativeJS(15251): [PAYWALL-CLOSE-TIMING] cause SettingsMain n=4 +907ms changed=snapshotProfile,snapshotSettings
+10-15 15:09:00.648 I/ReactNativeJS(15251): [PAYWALL-CLOSE-TIMING] profile id=settings_body phase=update actualMs=106 +1113ms
+10-15 15:09:00.651 I/ReactNativeJS(15251): [PAYWALL-CLOSE-TIMING] profile id=settings_auth_modal phase=update actualMs=1 +1116ms
+10-15 15:09:00.663 I/ReactNativeJS(15251): [PAYWALL-CLOSE-FREEZE] t=40662 +800ms branch=dismissTo stack=[*__root] > [*(tabs)] index=0 top=__root paywallInStack=false overlay=none
+10-15 15:09:00.664 I/ReactNativeJS(15251): [PAYWALL-CLOSE-TIMING] stage=settings:frame +1131ms d=242ms
+10-15 15:09:00.665 I/ReactNativeJS(15251): [PAYWALL-CLOSE-TIMING] END reason=settings_frame total=1132ms settingsRenders=4 selfLogMs=75.6 (7% of total; dev-зонд и старые [WINBACK-FREEZE] см. dismiss:pre_log -> dismiss:call)
+10-15 15:09:01.121 I/ReactNativeJS(15251): [PAYWALL-CLOSE-FREEZE] t=41120 +1500ms branch=dismissTo stack=[*__root] > [*(tabs)] index=0 top=__root paywallInStack=false overlay=none
+10-15 15:09:04.095 I/SVERKA  (15933): === PWT 3 tab-tap 15:09:04 ===
+10-15 15:09:04.258 I/ReactNativeJS(15251): [PAYWALL-CLOSE-FREEZE] t=44257 tab_tap requested=0 active=4 page=4
+10-15 15:09:05.083 I/ReactNativeJS(15251): '[PERF-R1-NAV]', '{"event":"action","type":"NAVIGATE","name":"(tabs)","noop":false,"atMs":94147,"stack":"anonymous@148102:34 | forEach | anonymous@148102:25 | anonymous@145418:19 | apply | latestCallback@147137:31 | anonymous@153454:29 | dispatch@153154:31 | anonymous@145348:61 | anonymous@152990:27 | anonymous@152978:37 | anonymous@145348:27 | apply | latestCallback@147137:31 | run@213504:31 | anonymous@216073:33 | react-stack-bottom-frame@28552:26 | runWithFiberInDEV@203
+10-15 15:09:05.418 I/ReactNativeJS(15251): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#O3m8Qz*[(tabs)#qTBI8D*]","atMs":94479}'

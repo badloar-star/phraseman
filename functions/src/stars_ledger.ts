@@ -134,6 +134,7 @@ export type StarOpReason =
   // набора не оплачена учёбой и не должна двигать очки лиги, иначе таблицу
   // выигрывал бы автор популярного набора, а не тот, кто занимается.
   | 'community_pack_sale'
+  | 'community_month_reward'
   // зачем (владелец 2026-09-24, TOWER.md T35/§4.6, PM-280): монеты Шпиля. До
   // миграции PM-069 «монеты = руны» (D49/D51), поэтому Шпиль платит в этот же
   // журнал, а не в новое поле. Ступень/этаж/вершина — earn: оплачены учёбой
@@ -193,6 +194,7 @@ export const STAR_OP_CLASS: Readonly<Record<StarOpReason, StarOpClass>> = Object
   dialog_extra_replies: 'spend',
   dialog_unlock: 'spend',
   community_pack_sale: 'grant',
+  community_month_reward: 'grant',
   spire_step: 'earn',
   spire_week_reward: 'grant',
   referral_spin: 'grant',
@@ -251,6 +253,7 @@ export const STAR_OP_SOURCE: Readonly<Record<StarOpReason, RuneSourceKey>> = Obj
   // Продажа своего набора — отдельного смысла в разрезе «откуда руны» пока нет,
   // поэтому «другое»: приток обязан быть виден в сумме.
   community_pack_sale: 'other',
+  community_month_reward: 'other',
   // Ступени Шпиля — учебные задания, для игрока это «заработал занимаясь»;
   // своей строки у Шпиля на экране «Руны» нет, новый ключ сломал бы разрез клиента.
   spire_step: 'learning',

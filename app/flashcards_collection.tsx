@@ -309,7 +309,7 @@ export default function FlashcardsScreen() {
   const strLang: Lang = lang;
   const cardContentLang = useMemo(() => flashcardContentLang(lang, studyTarget), [lang, studyTarget]);
   const router   = useRouter();
-  const params   = useLocalSearchParams<{ cat?: string; pack?: string; create?: string; preview?: string; from?: string; openComments?: string; commentId?: string; search?: string }>();
+  const params   = useLocalSearchParams<{ cat?: string; pack?: string; create?: string; preview?: string; scene?: string; from?: string; openComments?: string; commentId?: string; search?: string }>();
   const routeCat = useMemo(() => normalizeRouteCategory(params.cat), [params.cat]);
   const packDeeplink = useMemo(() => normalizePackParam(params.pack), [params.pack]);
   const routeCatRef = useRef<CategoryId | null>(null);
@@ -1428,6 +1428,7 @@ export default function FlashcardsScreen() {
   // плитки, ни тёплого каталога). Раньше в эти ~1,7 с рисовался экран СВОЕГО набора с «0 карточек» и пустой сеткой, потом экран перескакивал на просмотр.
   // Пока каталог не ответил (collectionDataReady=false) — заготовки той же геометрии, без чисел. Каталог ответил, а набора нет — прежнее поведение.
   const previewResolving = previewMode && !!packDeeplink && !currentMarketPack && !videoMomentPack && !collectionDataReady;
+  const communitySceneSurface = params.scene === 'community' && !!currentMarketPack?.isCommunityUgc && !currentMarketPack.videoId;
   const packSurface = !!packDeeplink && !(previewMode && currentMarketPack) && !videoMomentPack && !currentMarketPack?.videoId && !previewResolving;
   const packMine = !!packDeeplink && (
     isLocalAuthorPackId(packDeeplink)
@@ -1538,7 +1539,7 @@ export default function FlashcardsScreen() {
         из useStableSafeAreaInsets (родной или запасной по высоте строки состояния — не меньше), как требует Performance Bible. Равнозначно SafeAreaView
         по всем четырём краям. Журнал положения панели — [CARDS-SET-HEADER] (PackHeaderV2). */}
     <View style={[st.safe, { backgroundColor: 'transparent', paddingTop: insets.top, paddingBottom: insets.bottom, paddingLeft: insets.left, paddingRight: insets.right }]}>
-      <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} backgroundColor="transparent" translucent />
+      <StatusBar barStyle={(communitySceneSurface || (previewMode && !currentMarketPack?.videoId) || statusBarLight) ? 'light-content' : 'dark-content'} backgroundColor="transparent" translucent />
         {deeplinkCardsState === 'failed' ? (
           <PackOpenFailedView lang={lang} onRetry={retryDeeplinkCards} onBack={leaveCollection} />
         ) : null}
@@ -1565,15 +1566,17 @@ export default function FlashcardsScreen() {
           />
         ) : previewResolving ? (
           <CommunityPackPreviewSkeleton lang={lang} onBack={handleCollectionBack} />
-        ) : previewMode && currentMarketPack ? (
+        ) : (previewMode || communitySceneSurface) && currentMarketPack ? (
           <CommunityPackPreview
+            owned={packOwnedByMe}
+            onTrain={packOwnedByMe && listCards.length > 0 ? onTrainThisPack : undefined}
             pack={currentMarketPack}
             cards={listCards}
             lang={lang}
             cardContentLang={cardContentLang}
             t={t}
             onBack={handleCollectionBack}
-            onMore={() => setPackMoreOpen(true)}
+            onMore={() => packOwnedByMe ? setSavedActionsOpen(true) : setPackMoreOpen(true)}
             onAdded={() => { void loadAll(); }}
             onRequestPurchase={requestPackPurchase}
             onOpenComments={() => { setHighlightCommentId(null); setCommentsSheetOpen(true); }}
@@ -2050,7 +2053,7 @@ export default function FlashcardsScreen() {
 
     </View>
     {/* зачем (закон владельца 22.10 «назад везде в одном месте»): одна кнопка на все шапки коллекции; в режиме выбора слева «Отмена» — без «назад» */}
-    {selectionMode ? null : <ScreenBackButton screen="flashcards_collection" testID="fc-collection-back" onPress={deeplinkCardsState === 'failed' ? leaveCollection : handleCollectionBack} />}
+    {selectionMode ? null : <ScreenBackButton sceneTop={(communitySceneSurface || previewMode) && !currentMarketPack?.videoId ? "#163C65" : undefined} screen="flashcards_collection" testID="fc-collection-back" onPress={deeplinkCardsState === 'failed' ? leaveCollection : handleCollectionBack} />}
     {expandedData ? (
       <ExpandedCardV2
         card={expandedData}

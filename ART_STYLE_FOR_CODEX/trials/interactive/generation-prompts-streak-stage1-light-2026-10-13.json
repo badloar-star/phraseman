@@ -1,0 +1,26 @@
+{
+  "tool": "built-in image_gen; no project API key used",
+  "mode": "light",
+  "prompts": [
+    {
+      "asset": "light/streak_01_option_01r1",
+      "prompt": "Use case: stylized-concept. Asset type: Phraseman streak day-one light-theme icon variant 1. Generate one icon only. One compact upright flame, single smooth pointed tip and rounded droplet body, small cyan inner flame inset centered low on front, about 3 percent canvas. First/simple stage of ten-day streak. Premium mature minimalist soft matte warm ivory clay #e9e5dd with subtle light-gray form shadows, clean bevels, soft top-left studio light, near-frontal slight three-quarter view, silhouette fills 80% square 1024 frame and stays legible at 24px. Cyan only flat #00ffff segmentation detail with neutral bevel, no spill. True transparent alpha, no backdrop, floor, shadow cast onto background, checkerboard, specks. No text, numbers, rank, crown, metal, glass, jewel, particles, childish toy style, face, tower."
+    },
+    {
+      "asset": "light/streak_01_option_02r2",
+      "prompt": "Use case: precise-object-edit. Edit target: existing light-theme day-one open-loop flame icon. Enlarge ONLY the existing cyan inset along the lower ribbon so its flat cyan area is about 3 percent of the full square canvas, with neutral ivory bevel. Clean the isolated icon cutout: remove all stray specks outside the connected main object; preserve true transparent alpha in the open hollow and background. Preserve the loop silhouette, pose, warm ivory clay material, camera, scale, and all geometry exactly. Do not add anything. No checkerboard."
+    },
+    {
+      "asset": "light/streak_01_option_03r1",
+      "prompt": "Use case: stylized-concept. Asset type: Phraseman streak day-one light-theme icon variant 3. Generate one icon only. One leaning warm ivory matte clay flame with curled hooked tip, rounded broad base and gentle S-shaped silhouette, small cyan teardrop inset at lower center about 3 percent canvas. First/simple stage of ten-day streak. Mature minimalist matte warm ivory #e9e5dd, subtle light-gray shadows, clean bevels, soft top-left light, near-frontal slight three-quarter view, fills 80% square 1024 frame, legible at 24px. Cyan only flat #00ffff segmentation detail with neutral bevel, no glow or spill. True transparent alpha, no backdrop, floor, checkerboard, specks. No text, numbers, rank, crown, metal, glass, jewel, particles, childish toy style, face, tower."
+    },
+    {
+      "asset": "light/streak_01_option_04r2",
+      "prompt": "Use case: precise-object-edit. Edit target: existing light-theme day-one rounded-square clay badge with recessed flame and cyan pill beneath. Enlarge ONLY the existing cyan pill to flat cyan area about 3 percent of full square canvas, keeping a neutral ivory bevel. Clean the isolated icon cutout: remove all stray specks outside the connected main object; preserve true transparent alpha outside the main badge. Preserve badge silhouette, flame, pose, warm ivory material, camera, scale, and all other geometry exactly. Do not add anything. No checkerboard."
+    },
+    {
+      "asset": "light/streak_01_option_05r1",
+      "prompt": "Use case: stylized-concept. Asset type: Phraseman streak day-one light-theme icon variant 5. Generate one icon only. A single integrated three-lobed warm ivory matte clay flame bud: tall central tapered petal and two shorter broad rounded side lobes, small cyan oval ember inset at lower center about 3 percent canvas. First/simple stage of ten-day streak. Premium mature minimalist soft matte warm ivory #e9e5dd, subtle light-gray shading, generous clean bevels, soft top-left light, near-frontal slight three-quarter view, fills 80% square 1024 frame, legible at 24px. Cyan only flat #00ffff segmentation detail with neutral bevel, no spill. True transparent alpha, no backdrop, floor, checkerboard, specks. No text, numbers, rank, crown, metal, glass, jewel, particles, childish toy style, face, tower."
+    }
+  ]
+}

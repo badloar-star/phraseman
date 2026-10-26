@@ -1,0 +1,14 @@
+{
+  "tool": "built-in image_gen; no project API key used",
+  "scenarioId": "complaint_order",
+  "candidatePrefix": "dialog_scene_complaint_order_option_",
+  "concepts": [
+    "open parcel with mismatched cup",
+    "blank refund slip and return emblem",
+    "closed return box and blank tag",
+    "paired exchange parcels",
+    "open order box and replacement item"
+  ],
+  "style": "S2 monochrome graphite clay / derived warm ivory, true transparency and separate white accent layer",
+  "status": "Five generated candidates in dark/light; check order-problem-preparation-dark.log and order-problem-preparation-light.log for exact mask/area gates. None owner-approved."
+}

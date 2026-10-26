@@ -65,7 +65,9 @@ const exactPractice = JSON.parse(
 
 export const EPISODE_01_SESSION_05_SOURCE: SessionSource = Object.freeze({
   ...previous,
-  generationInputFingerprint: 'full-b1-exact-i-am-temperature-e01-s05-v2',
+  // SHA-256 of the stable authoring identity
+  // `full-b1-exact-i-am-temperature-e01-s05-v2`.
+  generationInputFingerprint: '2c205df606f5df6cfc1ad946fe7677dafa29ce6a1f8894b6351e7d429cfd9139',
   sessionKindOverride: 'words_then_phrases',
   distractorAuthorship: 'manual',
   reviewConstructIds: ['affirmative_self_statement'],

@@ -38,6 +38,7 @@ exports.parseV2CourseReleasedSessionRequestV2 = parseV2CourseReleasedSessionRequ
 exports.resolveV2CourseReleasedServerEnvironmentV2 = resolveV2CourseReleasedServerEnvironmentV2;
 exports.resolveV2CourseReleasedSessionFromAuthenticatedRepositoryV2 = resolveV2CourseReleasedSessionFromAuthenticatedRepositoryV2;
 exports.createV2CourseReleasedSessionHandlerV2 = createV2CourseReleasedSessionHandlerV2;
+exports.createV2CourseReleasedSessionTombstoneHandlerV2 = createV2CourseReleasedSessionTombstoneHandlerV2;
 const admin = __importStar(require("firebase-admin"));
 const https_1 = require("firebase-functions/v2/https");
 const release_rollout_v1_1 = require("../../../modules/learning-v2/content/release_rollout_v1");
@@ -279,5 +280,10 @@ function createV2CourseReleasedSessionHandlerV2(resolve = resolveV2CourseRelease
         });
     };
 }
-exports.learningV2CourseReleasedSessionGetV2 = (0, https_1.onCall)(exports.V2_COURSE_RELEASED_SESSION_CALLABLE_OPTIONS_V2, createV2CourseReleasedSessionHandlerV2());
+function createV2CourseReleasedSessionTombstoneHandlerV2() {
+    return async (_request) => {
+        throw new https_1.HttpsError("failed-precondition", "upgrade_required");
+    };
+}
+exports.learningV2CourseReleasedSessionGetV2 = (0, https_1.onCall)(exports.V2_COURSE_RELEASED_SESSION_CALLABLE_OPTIONS_V2, createV2CourseReleasedSessionTombstoneHandlerV2());
 //# sourceMappingURL=v2_course_released_session_callable_v2.js.map

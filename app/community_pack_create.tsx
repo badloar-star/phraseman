@@ -74,6 +74,7 @@ import {
 } from './community_packs/localAuthorPacks';
 import { getCanonicalUserId } from './user_id_policy';
 import { useEffectivePlatformOS } from './platform_ui_preview';
+import { CommunityPackCheckScene } from '../components/packs/CommunityPackCheckScene';
 import { getTextInputSystemEditMenuProps } from './textInputSystemMenuProps';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { useFeatureAccess, usePremium } from '../components/PremiumContext';
@@ -314,6 +315,8 @@ export default function CommunityPackCreateScreen() {
   // зачем (cards-v2 `lvls`, данные Ядра ee01d089a): уровень набора A1–C1 по выбору автора; нет выбора — поле не уходит
   const [level, setLevel] = useState<PackLevel | null>(null);
   const [rows, setRows] = useState<Row[]>([]);
+  const [contestReview, setContestReview] = useState(false);
+  const [contestReviewError, setContestReviewError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
   const [loadErr, setLoadErr] = useState<string | null>(null);
   const [addCardFormOpen, setAddCardFormOpen] = useState(false);
@@ -935,6 +938,7 @@ export default function CommunityPackCreateScreen() {
       return;
     }
     submitInFlightRef.current = true;
+    setContestReviewError(null);
     void (async () => {
       setBusy(true);
       try {
@@ -980,6 +984,7 @@ export default function CommunityPackCreateScreen() {
           return;
         }
         if (publishResult !== 'submitted') {
+          setContestReviewError(triLang(lang, { ru: 'Карточки сохранены на устройстве. Не удалось завершить публикацию — попробуй ещё раз.', uk: 'Картки збережено на пристрої. Не вдалося завершити публікацію — спробуй ще раз.', es: 'Las tarjetas están guardadas en este dispositivo. No se pudo completar la publicación. Inténtalo de nuevo.', en: 'Cards are saved on this device. Publication did not finish. Please try again.' }));
           // зачем (Макеты cards-072, разбор 13.10): набор сохранён, не дошла только публикация — это сообщение (тон info), а не ошибка
           emitAppEvent('action_toast', actionToastTri('info', {
             ru: 'Набор сохранён на устройстве. Публикация не завершена — нажми «Сохранить» ещё раз при подключении.',
@@ -1018,6 +1023,7 @@ export default function CommunityPackCreateScreen() {
         );
       } catch (e: unknown) {
         DebugLogger.error('community_pack_create:save', e instanceof Error ? e : new Error(String(e)), 'warning');
+        setContestReviewError(triLang(lang, { ru: 'Не удалось сохранить набор. Проверь подключение и попробуй ещё раз.', uk: 'Не вдалося зберегти набір. Перевір підключення та спробуй ще раз.', es: 'No se pudo guardar el conjunto. Comprueba la conexión e inténtalo de nuevo.', en: 'Could not save the pack. Check your connection and try again.' }));
         const msg = e && typeof e === 'object' && 'message' in e ? String((e as Error).message) : String(e);
         if (msg.includes('free_author_pack_limit_reached')) {
           // зачем: сырой код ошибки в тосте — потеря работы без объяснения; ведём в покупку (черновик сохранён)
@@ -1164,6 +1170,8 @@ export default function CommunityPackCreateScreen() {
     setAddCardFormOpen(true);
   };
   const fieldInput = { color: kg.text, fontSize: 16, lineHeight: 24, paddingHorizontal: 0, paddingVertical: 0 } as const;
+
+  if (contestReview) return <SafeAreaView style={{ flex: 1 }} edges={['left', 'right']}><CommunityPackCheckScene lang={lang} cards={rows.map(row => ({ id: row.id, front: row.en, back: cardBackText(row), issue: !row.en.trim() ? triLang(lang, { ru: 'Добавь слово или фразу', uk: 'Додай слово або фразу', es: 'Añade una palabra o frase', en: 'Add a word or phrase' }) : undefined }))} busy={busy} error={contestReviewError} bottomInset={insets.bottom + 16} onBack={() => setContestReview(false)} onEdit={index => { setContestReview(false); editRow(index); }} onPublish={onSubmit} /></SafeAreaView>;
 
   return (
     <CardsGlassScreen g={g}>
@@ -1331,6 +1339,7 @@ export default function CommunityPackCreateScreen() {
                   if (busy) return;
                   if (packLimitReached) { openPackLimitPaywall(); return; }
                   Keyboard.dismiss();
+                  if (publishToCommunity && !isEditMode && payload && !localSaveError(payload)) { setContestReview(true); return; }
                   void onSubmit();
                 }}
               />

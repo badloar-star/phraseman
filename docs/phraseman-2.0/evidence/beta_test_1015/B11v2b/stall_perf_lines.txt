@@ -1,0 +1,14 @@
+10-15 15:10:21.354 I/ReactNativeJS(15997): '[PERF-R1-PROFILE]', '{"id":"lessons","n":1,"phase":"mount","actualMs":771,"baseMs":569,"startedAtMs":4321566,"commitAtMs":4322462}'
+10-15 15:10:21.401 W/ReactNativeJS(15997): [JS-STALL] +10959ms поток стоял 1082ms (с +9877ms)
+10-15 15:10:22.048 I/ReactNativeJS(15997): '[PERF-R1-PROFILE]', '{"id":"lessons","n":2,"phase":"update","actualMs":357,"baseMs":354,"startedAtMs":4322670,"commitAtMs":4323149}'
+10-15 15:10:22.139 I/ReactNativeJS(15997): '[PERF-R1]', '{"screen":"lessons","stage":"first_frame","ms":1577,"commits":2}'
+10-15 15:10:22.692 I/ReactNativeJS(15997): '[PERF-R1-PROFILE]', '{"id":"lessons","n":3,"phase":"update","actualMs":201,"baseMs":283,"startedAtMs":4323533,"commitAtMs":4323815}'
+10-15 15:10:23.069 I/ReactNativeJS(15997): '[PERF-R1-PROFILE]', '{"id":"lessons","n":4,"phase":"update","actualMs":159,"baseMs":360,"startedAtMs":4323962,"commitAtMs":4324194}'
+10-15 15:10:23.303 I/ReactNativeJS(15997): '[PERF-R1-PROFILE]', '{"id":"lessons","n":5,"phase":"update","actualMs":44,"baseMs":338,"startedAtMs":4324319,"commitAtMs":4324430}'
+10-15 15:10:23.595 I/ReactNativeJS(15997): '[PERF-R1-PROFILE]', '{"id":"lessons","n":6,"phase":"update","actualMs":68,"baseMs":308,"startedAtMs":4324587,"commitAtMs":4324716}'
+10-15 15:10:23.697 I/ReactNativeJS(15997): '[PERF-R1-PROFILE]', '{"id":"lessons","n":7,"phase":"update","actualMs":1,"baseMs":308,"startedAtMs":4324803,"commitAtMs":4324830}'
+10-15 15:10:23.931 I/ReactNativeJS(15997): '[PERF-R1-PROFILE]', '{"id":"lessons","n":8,"phase":"update","actualMs":94,"baseMs":314,"startedAtMs":4324903,"commitAtMs":4325050}'
+10-15 15:10:26.918 W/ReactNativeJS(15997): [JS-STALL] +16477ms поток стоял 2611ms (с +13866ms)
+10-15 15:10:26.920 I/ReactNativeJS(15997): '[PERF-R1]', '{"screen":"lessons","stage":"commits_3s","commits":6,"ms":6358}'
+10-15 15:10:32.784 W/ReactNativeJS(15997): [JS-STALL] +22343ms поток стоял 1544ms (с +20799ms)
+10-15 15:10:36.166 W/ReactNativeJS(15997): [JS-STALL] +25725ms поток стоял 1730ms (с +23995ms)

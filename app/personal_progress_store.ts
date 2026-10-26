@@ -63,6 +63,14 @@ export function createPersonalProgressStore(
   const publish: PersonalProgressStore['publish'] = (projection, source) => {
     revision += 1;
     snapshot = snapshotFrom(projection, source);
+    // зачем (владелец 22.10: «Тебя не было 4 дня» на Главной — сперва логи): откуда пришли даты активности и что в них
+    // (источник, весь массив, серия, сколько уроков, сегодняшний ключ и пояс). Одна строка на публикацию снимка.
+    const nowAway = new Date();
+    console.log('[HOME-AWAY] snapshot publish', JSON.stringify({ // guard-ok: временная трассировка владельца
+      source, revision, activityDates: projection.activityDates, streakCount: projection.streakCount,
+      completedLessons: projection.completedLessons.length, nowIso: nowAway.toISOString(), tzOffsetMin: nowAway.getTimezoneOffset(),
+      todayLocal: `${nowAway.getFullYear()}-${String(nowAway.getMonth() + 1).padStart(2, '0')}-${String(nowAway.getDate()).padStart(2, '0')}`,
+    }));
     emit();
   };
 
@@ -72,6 +80,7 @@ export function createPersonalProgressStore(
     const projection = usePhoneState
       ? await dependencies.readPhoneState()
       : await dependencies.readLegacy();
+    console.log('[HOME-AWAY] hydrate', JSON.stringify({ usePhoneState, stale: revision !== startedAtRevision, activityDates: projection.activityDates })); // guard-ok: временная трассировка
     if (revision === startedAtRevision) publish(projection, usePhoneState ? 'phone_state' : 'legacy');
     return snapshot;
   };

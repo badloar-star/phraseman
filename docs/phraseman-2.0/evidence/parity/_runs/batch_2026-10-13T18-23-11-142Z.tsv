@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+dialogs-008	2026-10-13T18:24:48.599Z	timeout	90650	нет маркера+ждали_metro_29мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-13T18-23-11-142Z/dialogs-008.timeout.png	0

@@ -1,17 +1,38 @@
 import crypto from "node:crypto";
 import { createServer } from "node:http";
+import { existsSync } from "node:fs";
 import { readFile } from "node:fs/promises";
 import { dirname, isAbsolute, relative, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 
-import { buildSessionCandidateReceipt } from "../content/learning-v2-course/pipeline/build_session_candidate_receipt.mjs";
+import { buildSessionCandidateReceiptForWrite } from "../content/learning-v2-course/pipeline/build_session_candidate_receipt.mjs";
+import { parseSessionHeader } from "../content/learning-v2-course/pipeline/session_header.mjs";
+import {
+  validateActivationManifest,
+  validateSessionAcceptanceReceipt,
+} from "../content/learning-v2-course/pipeline/session_acceptance_receipt.mjs";
 import { validateSessionReviewEvidenceManifest } from "../content/learning-v2-course/pipeline/session_review_evidence_manifest.mjs";
 
 const DEFAULT_HOST = "127.0.0.1";
 const DEFAULT_PORT = 59690;
 const COURSE_RELATIVE_PREFIX = "content/learning-v2-course/";
-const S01_MANIFEST_RELATIVE = "sessions/en/l01/s01/review-evidence-manifest.json";
-const S02_MANIFEST_RELATIVE = "outputs/s02-review-fixed-20261013/review-evidence-manifest.json";
+const S01_MANIFEST_RELATIVE = "sessions/en/l01/s01/owner-review-preview-manifest.json";
+const S02_MANIFEST_RELATIVE = "sessions/en/l01/s02/owner-review-preview-manifest.json";
+const S03_MANIFEST_RELATIVE = "sessions/en/l01/s03/owner-review-preview-manifest.json";
+const S04_MANIFEST_RELATIVE = "sessions/en/l01/s04/owner-review-preview-manifest.json";
+const S05_MANIFEST_RELATIVE = "sessions/en/l01/s05/owner-review-preview-manifest.json";
+const S06_MANIFEST_RELATIVE = "sessions/en/l01/s06/owner-review-preview-manifest.json";
+const S07_MANIFEST_RELATIVE = "sessions/en/l01/s07/owner-review-preview-manifest.json";
+const S08_MANIFEST_RELATIVE = "sessions/en/l01/s08/owner-review-preview-manifest.json";
+const S09_MANIFEST_RELATIVE = "sessions/en/l01/s09/owner-review-preview-manifest.json";
+const S10_MANIFEST_RELATIVE = "sessions/en/l01/s10/owner-review-preview-manifest.json";
+const S11_MANIFEST_RELATIVE = "sessions/en/l01/s11/owner-review-preview-manifest.json";
+const S12_MANIFEST_RELATIVE = "sessions/en/l01/s12/owner-review-preview-manifest.json";
+const S13_MANIFEST_RELATIVE = "sessions/en/l01/s13/owner-review-preview-manifest.json";
+const S14_MANIFEST_RELATIVE = "sessions/en/l01/s14/owner-review-preview-manifest.json";
+const S15_MANIFEST_RELATIVE = "sessions/en/l01/s15/owner-review-preview-manifest.json";
+const ACTIVATION_MANIFEST_RELATIVE = "activation/en/active-sessions.v1.json";
+const AVAILABILITY_RELATIVE = "app/learning_v2_bundle_availability_v1.generated.ts";
 const CANDIDATE_SESSION_FILES = Object.freeze([
   "intro.json",
   "auxiliary.json",
@@ -19,12 +40,29 @@ const CANDIDATE_SESSION_FILES = Object.freeze([
   "learner.uk.json",
   "answers.json",
 ]);
-const CANDIDATE_GENERATED_FILES = Object.freeze([
+const candidateGeneratedFiles = (sessionNumber) => Object.freeze([
   "app.js",
   "data.js",
   "external.html",
   "index.html",
-  ...CANDIDATE_SESSION_FILES.map((name) => `en/l01/s01/${name}`),
+  ...CANDIDATE_SESSION_FILES.map((name) => `en/l01/s${sessionNumber}/${name}`),
+]);
+export const OWNER_REVIEW_MANIFEST_PATHS = Object.freeze([
+  S01_MANIFEST_RELATIVE,
+  S02_MANIFEST_RELATIVE,
+  S03_MANIFEST_RELATIVE,
+  S04_MANIFEST_RELATIVE,
+  S05_MANIFEST_RELATIVE,
+  S06_MANIFEST_RELATIVE,
+  S07_MANIFEST_RELATIVE,
+  S08_MANIFEST_RELATIVE,
+  S09_MANIFEST_RELATIVE,
+  S10_MANIFEST_RELATIVE,
+  S11_MANIFEST_RELATIVE,
+  S12_MANIFEST_RELATIVE,
+  S13_MANIFEST_RELATIVE,
+  S14_MANIFEST_RELATIVE,
+  S15_MANIFEST_RELATIVE,
 ]);
 const TEXT_REVIEW_ROLES = Object.freeze([
   "learner",
@@ -62,6 +100,44 @@ const HTML_HEADERS = Object.freeze({
 });
 
 const sha256 = (bytes) => crypto.createHash("sha256").update(bytes).digest("hex");
+
+function parseAvailabilityCeiling(source) {
+  const matches = [...String(source).matchAll(/^export const LEARNING_V2_BUNDLE_CONTIGUOUS_CEILING_V1 = ([0-9]+);$/gmu)];
+  if (matches.length !== 1) throw new Error("learning_v2_availability_ceiling_invalid");
+  const value = Number(matches[0][1]);
+  if (!Number.isSafeInteger(value) || value < 0) throw new Error("learning_v2_availability_ceiling_invalid");
+  return value;
+}
+
+export async function loadLearningV2LocalActivationStatus({ courseRoot } = {}) {
+  const effectiveCourseRoot = resolve(courseRoot ?? process.cwd(), courseRoot ? "." : "content/learning-v2-course");
+  const repoRoot = resolve(effectiveCourseRoot, "../..");
+  const manifest = JSON.parse(await readFile(resolveInside(
+    effectiveCourseRoot,
+    ACTIVATION_MANIFEST_RELATIVE,
+    "activation_manifest",
+  ), "utf8"));
+  const { activeCount } = validateActivationManifest(manifest);
+  const contiguousCeiling = parseAvailabilityCeiling(await readFile(resolve(repoRoot, AVAILABILITY_RELATIVE), "utf8"));
+  if (activeCount !== contiguousCeiling) throw new Error("learning_v2_activation_availability_mismatch");
+  const activeSessionKeys = [];
+  for (const entry of manifest.activeSessions) {
+    const acceptance = await validateSessionAcceptanceReceipt({
+      repoRoot,
+      acceptanceReceiptPath: entry.acceptanceReceiptPath,
+    });
+    if (acceptance.session !== entry.session
+      || acceptance.state !== "TEXT_CANONICAL"
+      || acceptance.acceptanceReceiptSha256 !== entry.acceptanceReceiptSha256) {
+      throw new Error(`learning_v2_activation_acceptance_mismatch:${entry.session}`);
+    }
+    activeSessionKeys.push(entry.session);
+  }
+  return Object.freeze({
+    contiguousCeiling,
+    activeSessionKeys: Object.freeze(activeSessionKeys),
+  });
+}
 
 function resolveInside(root, relativePath, label) {
   if (typeof relativePath !== "string" || !relativePath || relativePath.includes("\\")) {
@@ -123,13 +199,13 @@ export async function validateLearningV2CurrentCandidate({ courseRoot, manifestP
     }
   }
   if (sha256(JSON.stringify(verifiedReceiptFiles)) !== receipt.inventorySha256) throw new Error("candidate_receipt_inventory_stale");
-  if (JSON.stringify([...generatedCandidateFiles].sort()) !== JSON.stringify([...CANDIDATE_GENERATED_FILES].sort())) {
+  if (JSON.stringify([...generatedCandidateFiles].sort()) !== JSON.stringify([...candidateGeneratedFiles(sessionNumber)].sort())) {
     throw new Error("candidate_generated_file_set_invalid");
   }
 
   const manifestFiles = [];
   for (const name of CANDIDATE_SESSION_FILES) {
-    const expectedPath = `en/l01/s01/${name}`;
+    const expectedPath = `en/l01/s${sessionNumber}/${name}`;
     const entry = manifest.candidateFiles?.find((item) => item.path === expectedPath);
     if (!entry) throw new Error(`candidate_manifest_file_missing:${expectedPath}`);
     const bytes = await readFile(resolveInside(candidateRoot, expectedPath, "candidate_manifest_file"));
@@ -139,6 +215,26 @@ export async function validateLearningV2CurrentCandidate({ courseRoot, manifestP
   if (manifest.candidateFiles.length !== CANDIDATE_SESSION_FILES.length) throw new Error("candidate_manifest_file_set_invalid");
   const candidateBundleSha256 = candidateBundle(manifestFiles);
   if (candidateBundleSha256 !== manifest.candidateBundleSha256) throw new Error("candidate_bundle_stale");
+
+  if (manifest.schemaVersion === "learning_v2_s01_private_preview_manifest_v1") {
+    if (manifest.courseSessionId !== "en:lesson-01:session-01"
+      || manifest.reviewStatus !== "HOLD"
+      || manifest.textReviewEvidencePersisted !== false
+      || manifest.contentReceiptSha256 !== receiptSha256) {
+      throw new Error("candidate_private_preview_manifest_invalid");
+    }
+    return Object.freeze({
+      courseRoot: effectiveCourseRoot,
+      candidateRoot,
+      candidateKey: "en/l01/s01",
+      candidateIndexPath: resolve(candidateRoot, "index.html"),
+      candidateDataPath: resolve(candidateRoot, "data.js"),
+      candidateBundleSha256,
+      contentReceiptInventorySha256: receipt.inventorySha256,
+      contentReceiptSha256: receiptSha256,
+      privatePreview: true,
+    });
+  }
 
   const headPath = resolveInside(effectiveCourseRoot, manifest.receiptChain?.head?.path, "candidate_receipt_head");
   const headBytes = await readFile(headPath);
@@ -177,8 +273,12 @@ export async function validateLearningV2SessionCandidate({ courseRoot, manifestP
     throw new Error("candidate_manifest_outside_course");
   }
   const manifest = JSON.parse(await readFile(effectiveManifestPath, "utf8"));
-  if (manifest.schemaVersion !== "learning_v2_session_review_evidence_manifest_v1") throw new Error("candidate_manifest_schema_invalid");
-  if (manifest.courseSessionId !== "en:lesson-01:session-02") throw new Error("candidate_session_unsupported");
+  const privatePreview = manifest.schemaVersion === "learning_v2_session_private_preview_manifest_v1";
+  if (!privatePreview && manifest.schemaVersion !== "learning_v2_session_review_evidence_manifest_v1") throw new Error("candidate_manifest_schema_invalid");
+  const sessionMatch = /^en:lesson-01:session-(01|02|03|04|05|06|07|08|09|10|11|12|13|14|15)$/u.exec(String(manifest.courseSessionId ?? ""));
+  if (!sessionMatch) throw new Error("candidate_session_unsupported");
+  const sessionNumber = sessionMatch[1];
+  const candidateKey = `en/l01/s${sessionNumber}`;
   if (manifest.releaseAuthority !== false) throw new Error("candidate_manifest_release_authority_not_false");
 
   const candidateRoot = courseManifestPath(effectiveCourseRoot, manifest.candidateRoot, "candidate_root");
@@ -198,35 +298,87 @@ export async function validateLearningV2SessionCandidate({ courseRoot, manifestP
     || receipt.candidateBundleSha256 !== manifest.candidateBundleSha256) {
     throw new Error("candidate_content_receipt_manifest_mismatch");
   }
-  if (receipt.preview?.generated !== true || receipt.preview?.fileCount !== 4 || receipt.fileCount !== 23
+  const generatedPreview = receipt.preview?.generated === true && receipt.preview?.fileCount === 4;
+  const projectionOnlyPreview = receipt.preview?.generated === false && receipt.preview?.fileCount === 0;
+  if ((!generatedPreview && !projectionOnlyPreview)
     || !Array.isArray(receipt.files) || receipt.files.length !== receipt.fileCount) {
     throw new Error("candidate_content_receipt_inventory_invalid");
   }
   const repoRoot = resolve(effectiveCourseRoot, "../..");
-  const predecessorPath = resolve(repoRoot, ...String(receipt.frozenPredecessor?.receiptPath ?? "").split("/"));
-  const rebuilt = buildSessionCandidateReceipt({
+  const predecessorPath = receipt.frozenPredecessor?.receiptPath
+    ? resolve(repoRoot, ...String(receipt.frozenPredecessor.receiptPath).split("/"))
+    : null;
+  const acceptedPredecessorPath = receipt.acceptedPredecessor?.acceptanceReceiptPath
+    ? resolve(repoRoot, ...String(receipt.acceptedPredecessor.acceptanceReceiptPath).split("/"))
+    : null;
+  const revisionPredecessorPath = receipt.frozenRevisionPredecessor?.receiptPath
+    ? resolve(repoRoot, ...String(receipt.frozenRevisionPredecessor.receiptPath).split("/"))
+    : null;
+  const rebuilt = await buildSessionCandidateReceiptForWrite({
     repoRoot,
     candidateRoot,
-    session: "en/l01/s02",
-    s01ReceiptPath: predecessorPath,
+    session: candidateKey,
+    ...(predecessorPath ? { predecessorReceiptPath: predecessorPath } : {}),
+    ...(acceptedPredecessorPath ? { acceptedPredecessorReceiptPath: acceptedPredecessorPath } : {}),
+    ...(revisionPredecessorPath ? { revisionPredecessorReceiptPath: revisionPredecessorPath } : {}),
   });
   if (JSON.stringify(rebuilt) !== JSON.stringify(receipt)) throw new Error("candidate_content_receipt_stale");
+
+  if (privatePreview) {
+    const isHold = manifest.reviewStatus === "HOLD"
+      && manifest.textVerified === false
+      && manifest.textReviewEvidencePersisted === false;
+    const isTextCanonical = manifest.reviewStatus === "TEXT_CANONICAL"
+      && manifest.textVerified === true
+      && manifest.textReviewEvidencePersisted === true;
+    if ((!isHold && !isTextCanonical) || manifest.contentReceiptSha256 !== receiptSha256) {
+      throw new Error("candidate_private_preview_manifest_invalid");
+    }
+    const receiptCandidateFiles = receipt.files
+      .filter((entry) => entry.category === "candidate" && entry.path.includes(`/en/l01/s${sessionNumber}/`))
+      .map((entry) => ({
+        path: entry.path.slice(`${receipt.candidateRoot}/`.length),
+        bytes: entry.bytes,
+        sha256: entry.sha256,
+      }))
+      .sort((left, right) => left.path.localeCompare(right.path));
+    const declaredCandidateFiles = [...(manifest.candidateFiles ?? [])]
+      .sort((left, right) => left.path.localeCompare(right.path));
+    if (JSON.stringify(declaredCandidateFiles) !== JSON.stringify(receiptCandidateFiles)) {
+      throw new Error("candidate_private_preview_file_set_invalid");
+    }
+    if (isTextCanonical) {
+      const acceptance = await validateSessionAcceptanceReceipt({
+        repoRoot,
+        acceptanceReceiptPath: manifest.acceptanceReceiptPath,
+      });
+      if (acceptance.acceptanceReceiptSha256 !== manifest.acceptanceReceiptSha256
+        || acceptance.courseSessionId !== manifest.courseSessionId
+        || acceptance.candidateReceiptPath !== manifest.candidateReceiptPath
+        || acceptance.candidateBundleSha256 !== receipt.candidateBundleSha256
+        || acceptance.candidateInventorySha256 !== receipt.inventorySha256) {
+        throw new Error("candidate_acceptance_manifest_mismatch");
+      }
+    }
+  }
 
   return Object.freeze({
     courseRoot: effectiveCourseRoot,
     candidateRoot,
-    candidateKey: "en/l01/s02",
+    candidateKey,
     candidateIndexPath: resolve(candidateRoot, "index.html"),
     candidateDataPath: resolve(candidateRoot, "data.js"),
     candidateBundleSha256: receipt.candidateBundleSha256,
     contentReceiptInventorySha256: receipt.inventorySha256,
     contentReceiptSha256: receiptSha256,
+    ...(projectionOnlyPreview ? { projectionOnlyPreview: true } : {}),
+    ...(privatePreview ? { privatePreview: true, textCanonical: manifest.reviewStatus === "TEXT_CANONICAL" } : {}),
   });
 }
 
 async function validateCandidateForManifest({ courseRoot, manifestPath }) {
   const manifest = JSON.parse(await readFile(manifestPath, "utf8"));
-  return manifest.schemaVersion === "learning_v2_session_review_evidence_manifest_v1"
+  return ["learning_v2_session_review_evidence_manifest_v1", "learning_v2_session_private_preview_manifest_v1"].includes(manifest.schemaVersion)
     ? validateLearningV2SessionCandidate({ courseRoot, manifestPath })
     : validateLearningV2CurrentCandidate({ courseRoot, manifestPath });
 }
@@ -245,6 +397,9 @@ export async function validateLearningV2TextEligibility({ courseRoot, manifestPa
   const effectiveCourseRoot = verifiedCandidate.courseRoot;
   const effectiveManifestPath = manifestPath ?? resolve(effectiveCourseRoot, "sessions/en/l01/s01/review-evidence-manifest.json");
   const manifest = JSON.parse(await readFile(effectiveManifestPath, "utf8"));
+  if (manifest.schemaVersion === "learning_v2_session_private_preview_manifest_v1" && verifiedCandidate.textCanonical === true) {
+    return Object.freeze({ textVerified: true, candidateKey: verifiedCandidate.candidateKey, dimensionCount: 2 });
+  }
   if (manifest.schemaVersion === "learning_v2_session_review_evidence_manifest_v1") {
     return validateSessionReviewEvidenceManifest({ courseRoot: effectiveCourseRoot, manifest, candidate: verifiedCandidate });
   }
@@ -331,6 +486,43 @@ function candidateEntryFromHtml(candidateHtml, candidateKey) {
   const entries = jsonScript(candidateHtml, "data").value;
   if (!Array.isArray(entries) || entries.length !== 1 || entries[0]?.key !== candidateKey) throw new Error("candidate_catalogue_entry_invalid");
   return entries[0];
+}
+
+async function candidateEntryForPreview(candidate, canonicalHtml) {
+  if (candidate.projectionOnlyPreview !== true) {
+    return candidateEntryFromHtml(await readFile(candidate.candidateIndexPath, "utf8"), candidate.candidateKey);
+  }
+  const canonicalEntry = catalogueEntryFromHtml(canonicalHtml, candidate.candidateKey);
+  const [lang, lesson, session] = candidate.candidateKey.split("/");
+  const projectionRoot = resolve(candidate.candidateRoot, lang, lesson, session);
+  const [intro, auxiliary, learner, learnerUk, answers, finalRu, finalUk] = await Promise.all([
+    readFile(resolve(projectionRoot, "intro.json"), "utf8").then(JSON.parse),
+    readFile(resolve(projectionRoot, "auxiliary.json"), "utf8").then(JSON.parse),
+    readFile(resolve(projectionRoot, "learner.json"), "utf8").then(JSON.parse),
+    readFile(resolve(projectionRoot, "learner.uk.json"), "utf8").then(JSON.parse),
+    readFile(resolve(projectionRoot, "answers.json"), "utf8").then(JSON.parse),
+    readFile(resolve(candidate.candidateRoot, "source-snapshot", "content", "learning-v2-course", "sessions", lang, lesson, session, "final.ru.md"), "utf8"),
+    readFile(resolve(candidate.candidateRoot, "source-snapshot", "content", "learning-v2-course", "sessions", lang, lesson, session, "final.uk.md"), "utf8"),
+  ]);
+  const ruHeader = parseSessionHeader(finalRu);
+  const ukHeader = parseSessionHeader(finalUk);
+  return {
+    ...canonicalEntry,
+    title: ruHeader.title.replace(/^[^·]+\s*·\s*/u, "").trim(),
+    scene: ruHeader.scene,
+    titleByLocale: {
+      ...canonicalEntry.titleByLocale,
+      ru: ruHeader.title.replace(/^[^·]+\s*·\s*/u, "").trim(),
+      uk: ukHeader.title.replace(/^[^·]+\s*·\s*/u, "").trim(),
+    },
+    sceneByLocale: { ...canonicalEntry.sceneByLocale, ru: ruHeader.scene, uk: ukHeader.scene },
+    viewSource: "candidate",
+    intro,
+    auxiliary,
+    learner,
+    learnerByLocale: { ...canonicalEntry.learnerByLocale, uk: learnerUk },
+    answers,
+  };
 }
 
 function catalogueEntryFromHtml(catalogueHtml, candidateKey) {
@@ -547,8 +739,8 @@ function uniqueSourceSlice(source, startMarker, endMarker, label) {
   return source.slice(start, end);
 }
 
-function candidateRuntimePatch(candidateAppSource, candidateKey) {
-  const sessionNumber = /^en\/l01\/s(01|02)$/u.exec(candidateKey)?.[1];
+export function candidateRuntimePatch(candidateAppSource, candidateKey) {
+  const sessionNumber = /^en\/l01\/s(01|02|03|04|05|06|07|08|09|10|11|12|13|14|15)$/u.exec(candidateKey)?.[1];
   if (!sessionNumber) throw new Error("candidate_runtime_session_unsupported");
   const runtimeMarker = `__ownerReviewS${sessionNumber}RuntimePatched`;
   const uiBlock = uniqueSourceSlice(candidateAppSource, "const UI = {", "function activityCountLabel", "ui");
@@ -564,38 +756,71 @@ function candidateRuntimePatch(candidateAppSource, candidateKey) {
   const introFeedbackHtml = `html:selectedFeedback && analysisComplete && diagnosticComplete
         ? tl(selectedFeedback)
         : tl(ui("missingIntroExplanation")),`;
-  if (renderBlock.split(introFeedbackText).length !== 2) throw new Error("candidate_runtime_intro_feedback_boundary_invalid");
-  renderBlock = renderBlock.replace(introFeedbackText, introFeedbackHtml);
+  const conciseIntroFeedbackText = `text:selectedFeedback || ui("missingIntroExplanation"),`;
+  const conciseIntroFeedbackHtml = `html:tl(selectedFeedback || ui("missingIntroExplanation")),`;
+  if (renderBlock.split(introFeedbackText).length === 2) {
+    renderBlock = renderBlock.replace(introFeedbackText, introFeedbackHtml);
+  } else if (renderBlock.split(conciseIntroFeedbackText).length === 2) {
+    renderBlock = renderBlock.replace(conciseIntroFeedbackText, conciseIntroFeedbackHtml);
+  } else {
+    throw new Error("candidate_runtime_intro_feedback_boundary_invalid");
+  }
   const unverifiedFeedback = `h("div", {class:"fb no", role:"status", "aria-live":"polite", "aria-atomic":"true", text:ui("unverified")})`;
   const neutralUnverifiedFeedback = `h("div", {class:"fb neutral", "data-owner-review-status":"owner-review-unverified-neutral", role:"status", "aria-live":"polite", "aria-atomic":"true", text:ui("unverified")})`;
   if (renderBlock.split(unverifiedFeedback).length !== 2) throw new Error("candidate_runtime_unverified_feedback_boundary_invalid");
   renderBlock = renderBlock.replace(unverifiedFeedback, neutralUnverifiedFeedback);
-  return `;(()=>{if(globalThis.${runtimeMarker})return;${uiBlock}\n${helperBlock}\n${renderBlock}\nconst legacyRenderSession=renderSession;renderSession=function ownerReviewRenderSession(){if(S.session?.key!==${JSON.stringify(candidateKey)})return legacyRenderSession();if(S.step===0&&!S.answered&&S.right===0&&S.wrong===0){S.audioAttempt=null;S.unverified=0;}return candidateRenderSession();};globalThis.${runtimeMarker}=true;})();`;
+  const answerFeedbackPolicy = `function ownerReviewTrimAnswerFeedback(){const panel=app.querySelector(".panel");if(!panel)return;const next=panel.querySelector(".actions .btn.primary");if(S.answered&&S.ok){panel.querySelectorAll(".fb.ok,.explanation,.explanation-units,.speed-analysis").forEach(node=>node.remove());if(next)next.disabled=false;return;}panel.querySelectorAll(".explanation,.explanation-units,.speed-analysis").forEach(node=>node.remove());if(S.answered&&!S.ok){const status=panel.querySelector(".fb.no[role=status]");if(next&&status&&status.textContent.trim()!==ui("missingIntroExplanation")&&status.textContent.trim()!==ui("missingExplanation"))next.disabled=false;}if(S.tileFeedback||S.pairFeedback&&!S.pairFeedback.correct){const feedback=[...panel.querySelectorAll(".fb.no")];feedback.slice(1).forEach(node=>node.remove());if(S.pairFeedback&&!S.pairFeedback.correct&&!feedback.length){const message=S.locale==="uk"?"Ця пара не збігається. Спробуйте інший варіант.":"Эта пара не подходит. Попробуйте другой вариант.";const status=document.createElement("div");status.className="fb no";status.setAttribute("role","status");status.setAttribute("aria-live","polite");status.textContent=message;panel.append(status);}}}`;
+  return `;(()=>{if(globalThis.${runtimeMarker})return;${uiBlock}\n${helperBlock}\n${renderBlock}\n${answerFeedbackPolicy}\nconst legacyRenderSession=renderSession;renderSession=function ownerReviewRenderSession(){if(S.session?.key!==${JSON.stringify(candidateKey)})return legacyRenderSession();if(S.step===0&&!S.answered&&S.right===0&&S.wrong===0){S.audioAttempt=null;S.unverified=0;}candidateRenderSession();ownerReviewTrimAnswerFeedback();};globalThis.${runtimeMarker}=true;})();`;
 }
 
 function safeJsonForHtml(value) {
   return JSON.stringify(value).replace(/</gu, "\\u003c");
 }
 
+function removeCandidateReviewedCardEvidence(evidence, candidateKey) {
+  if (!evidence || typeof evidence !== "object" || Array.isArray(evidence)) return evidence;
+  if (evidence.cards && typeof evidence.cards === "object" && !Array.isArray(evidence.cards)) {
+    const cards = { ...evidence.cards };
+    delete cards[candidateKey];
+    return { ...evidence, cards };
+  }
+  const legacy = { ...evidence };
+  delete legacy[candidateKey];
+  return legacy;
+}
+
 function fullCourseInjection(states, comparisons = {}, runtimePatch = "", primaryFailed = false) {
   const safeStates = states.map((state) => ({
     key: state.candidateKey,
-    textVerified: true,
+    textVerified: state.textVerified === true,
+    appActivated: state.appActivated === true,
     releaseAuthority: false,
   }));
   const safeComparisons = { ...comparisons };
   if (safeStates.length === 1) safeComparisons.changes = comparisons[safeStates[0].key]?.changes ?? [];
   const comparisonScript = `<script id="owner-review-diff-data" type="application/json">${safeJsonForHtml(safeComparisons)}</script>`;
-  const runtimeScript = runtimePatch ? `<script id="owner-review-runtime">${runtimePatch}</script>` : "";
+  const acceptedStates = safeStates.filter((state) => state.textVerified).map(({ key, appActivated }) => ({ key, appActivated }));
+  const acceptedCopyScript = acceptedStates.length ? `<script id="owner-review-text-canonical-copy">(()=>{const accepted=${safeJsonForHtml(acceptedStates)};const copy={ru:{active:{badge:"ТЕКСТ ПРИНЯТ · АКТИВНО В ПРИЛОЖЕНИИ",summary:"Проверенный текст локально активирован в приложении."},inactive:{badge:"ТЕКСТ ПРИНЯТ · НЕ АКТИВИРОВАНО",summary:"Проверенный текст сохранён; занятие не активировано, потому что runtime-гейт не пройден."}},uk:{active:{badge:"ТЕКСТ ПРИЙНЯТО · АКТИВНО В ЗАСТОСУНКУ",summary:"Перевірений текст локально активовано в застосунку."},inactive:{badge:"ТЕКСТ ПРИЙНЯТО · НЕ АКТИВОВАНО",summary:"Перевірений текст збережено; заняття не активовано, тому що runtime-гейт не пройдено."}}};const settle=()=>{const locale=S.locale==="uk"?"uk":"ru";for(const state of accepted){const key=state.key;const value=copy[locale][state.appActivated?"active":"inactive"];const index=DATA.findIndex(item=>item.key===key);const card=document.querySelectorAll("button.card")[index];if(!card)continue;for(const chip of card.querySelectorAll(".chip")){if(/НЕ ПРОВЕРЕНО|НЕ ПЕРЕВІРЕНО/u.test(chip.textContent||"")&&chip.textContent!==value.badge)chip.textContent=value.badge;}const summary=card.querySelector(".fix-summary");if(summary&&/нельзя считать проверенным|не можна вважати перевіреним/u.test(summary.textContent||"")&&summary.textContent!==value.summary)summary.textContent=value.summary;}};settle();const app=document.getElementById("app");if(app)new MutationObserver(settle).observe(app,{childList:true,subtree:true});document.getElementById("locale")?.addEventListener("change",settle);})();</script>` : "";
+  const runtimeScript = `${runtimePatch ? `<script id="owner-review-runtime">${runtimePatch}</script>` : ""}${acceptedCopyScript}`;
   return `<style id="current-candidate-style">
 .candidate-validation-error{margin:12px auto;max-width:1200px;padding:12px 16px;border:2px solid #c0413f;border-radius:12px;background:#fff0ef;color:#7b2220;font-weight:800}
-.card.text-verified{border-color:#55a88d;background:#dff4e9}
+.card.text-verified{border-color:#2f9b76;background:#dff4e9}
+.card.text-review-pending{border-color:#d99a11;background:#fff4c9}
 .card.text-verified .meta{display:flex;flex-wrap:wrap;min-width:0}
+.card.text-review-pending .meta{display:flex;flex-wrap:wrap;min-width:0}
 .card.text-verified .chip{max-width:100%;white-space:normal;overflow-wrap:anywhere}
-.chip.text-verified-label{background:#bce8d6;color:#075c49}.chip.release-scope{background:#edf0ea;color:#58665f}
+.chip.text-verified-label{background:#bcebd8;color:#0e654b}.chip.release-scope{background:#edf0ea;color:#58665f}.chip.audio-scope{background:#fff0bc;color:#775200}
+.chip.text-review-pending-label{background:#ffe9a6;color:#775200}
 .owner-review-tools{display:flex;justify-content:flex-end;margin:0 0 14px}.owner-review-diff-toggle{border:1px solid #166c57;border-radius:999px;background:#edf7f2;color:#123c32;padding:9px 14px;font:700 14px/1.2 system-ui,sans-serif;cursor:pointer}
 .owner-review-diff{position:fixed;z-index:4000;inset:0;background:#11231dcc;display:grid;place-items:center;padding:18px}.owner-review-diff-dialog{width:min(980px,100%);max-height:92vh;overflow:auto;border-radius:20px;background:#fbfcf8;color:#14251f;padding:22px;box-shadow:0 18px 70px #0007}.owner-review-diff-head{display:flex;align-items:center;justify-content:space-between;gap:16px;position:sticky;top:-22px;background:#fbfcf8;padding:10px 0 14px;z-index:1}.owner-review-diff-head h2{margin:0}.owner-review-diff-close{border:1px solid #80928a;border-radius:999px;background:#eef2ed;padding:9px 13px;font-weight:700;cursor:pointer}.owner-review-diff-group{border-top:1px solid #d9e2dc;padding-top:14px;margin-top:14px}.owner-review-diff-group h3{margin:0 0 10px}.owner-review-diff-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;margin:10px 0}.owner-review-diff-cell{min-width:0;border-radius:12px;padding:12px;background:#f1f1eb;white-space:pre-wrap;overflow-wrap:anywhere}.owner-review-diff-cell.after{background:#dff4e9}.owner-review-diff-cell b{display:block;margin-bottom:7px}.owner-review-diff-field{grid-column:1/-1;font-weight:800;margin-bottom:-5px}@media(max-width:680px){.owner-review-diff-row{grid-template-columns:1fr}}
-</style>${comparisonScript}${runtimeScript}<script id="current-candidate-state">(()=>{const states=${JSON.stringify(safeStates)};const comparisons=JSON.parse(document.getElementById("owner-review-diff-data")?.textContent||'{}');const verifiedKeys=new Set(states.map(state=>state.key));if(${JSON.stringify(primaryFailed)}){const box=document.createElement("div");box.className="candidate-validation-error";box.textContent="Текущая правка недоступна: проверка доказательств не пройдена.";document.body.prepend(box);}const locale=()=>S.locale==="uk"?"uk":"ru";const text=(value)=>value?.[locale()]??value?.ru??value?.uk??"";const closeDiff=()=>document.querySelector(".owner-review-diff")?.remove();const showDiff=()=>{const comparison=comparisons[S.session?.key]??{changes:[]};closeDiff();const overlay=document.createElement("div");overlay.className="owner-review-diff";const dialog=document.createElement("div");dialog.className="owner-review-diff-dialog";dialog.setAttribute("role","dialog");dialog.setAttribute("aria-modal","true");dialog.setAttribute("aria-label","Сравнение текста");const head=document.createElement("div");head.className="owner-review-diff-head";const title=document.createElement("h2");title.textContent="Что изменилось";const close=document.createElement("button");close.type="button";close.className="owner-review-diff-close";close.textContent="Закрыть сравнение";close.onclick=closeDiff;head.append(title,close);dialog.append(head);const groups=new Map();for(const change of comparison.changes||[]){const id=change.groupId||"session";if(!groups.has(id))groups.set(id,[]);groups.get(id).push(change);}for(const changes of groups.values()){const section=document.createElement("section");section.className="owner-review-diff-group";section.dataset.groupId=changes[0].groupId||"session";const heading=document.createElement("h3");heading.textContent=text(changes[0].groupLabelByLocale);section.append(heading);for(const change of changes){const row=document.createElement("div");row.className="owner-review-diff-row";row.dataset.pathKey=change.pathKey||"";const field=document.createElement("div");field.className="owner-review-diff-field";field.textContent=text(change.fieldLabelByLocale);const before=document.createElement("div");before.className="owner-review-diff-cell before";const beforeTitle=document.createElement("b");beforeTitle.textContent="Было в макете";before.append(beforeTitle,document.createTextNode(text(change.beforeByLocale)));const after=document.createElement("div");after.className="owner-review-diff-cell after";const afterTitle=document.createElement("b");afterTitle.textContent="Стало";after.append(afterTitle,document.createTextNode(text(change.afterByLocale)));row.append(field,before,after);section.append(row);}dialog.append(section);}overlay.append(dialog);overlay.addEventListener("click",event=>{if(event.target===overlay)closeDiff();});document.body.append(overlay);close.focus();};const attach=()=>{for(const state of states){const index=DATA.findIndex(item=>item.key===state.key);const card=document.querySelectorAll("button.card")[index];if(!card)continue;const existingVerified=card.querySelector(".text-verified-label");const existingScope=card.querySelector(".release-scope");const pending=card.querySelectorAll(".chip.pending");const summary=card.querySelector(".fix-summary");const needsCardUpdate=!card.classList.contains("text-verified")||existingVerified?.textContent!=="Текст проверен"||existingScope?.textContent!=="Выпуск не подтверждён"||pending.length>0||Boolean(summary);if(needsCardUpdate){card.classList.remove("needs-repair","candidate");card.classList.add("source-fixed","text-verified");pending.forEach(node=>node.remove());summary?.remove();const meta=card.querySelector(".meta");if(meta){let verified=existingVerified;if(!verified){verified=document.createElement("span");verified.className="chip fixed text-verified-label";meta.append(verified);}if(verified.textContent!=="Текст проверен")verified.textContent="Текст проверен";let scope=existingScope;if(!scope){scope=document.createElement("span");scope.className="chip release-scope";meta.append(scope);}if(scope.textContent!=="Выпуск не подтверждён")scope.textContent="Выпуск не подтверждён";}}}if(verifiedKeys.has(S.session?.key)&&!document.querySelector(".owner-review-diff-toggle")){const panel=document.querySelector("#app .panel");if(panel){const tools=document.createElement("div");tools.className="owner-review-tools";const button=document.createElement("button");button.type="button";button.className="owner-review-diff-toggle";button.textContent="Показать изменения";button.onclick=showDiff;tools.append(button);panel.prepend(tools);}}};attach();const app=document.getElementById("app");if(app)new MutationObserver(attach).observe(app,{childList:true,subtree:true});document.getElementById("locale")?.addEventListener("change",()=>{if(document.querySelector(".owner-review-diff"))showDiff();});})();</script>`;
+</style>${comparisonScript}${runtimeScript}<script id="current-candidate-state">(()=>{const states=${JSON.stringify(safeStates)};const comparisons=JSON.parse(document.getElementById("owner-review-diff-data")?.textContent||'{}');const previewKeys=new Set(states.map(state=>state.key));if(${JSON.stringify(primaryFailed)}){const box=document.createElement("div");box.className="candidate-validation-error";box.textContent="Текущая правка недоступна: проверка доказательств не пройдена.";document.body.prepend(box);}const locale=()=>S.locale==="uk"?"uk":"ru";const text=(value)=>value?.[locale()]??value?.ru??value?.uk??"";const closeDiff=()=>document.querySelector(".owner-review-diff")?.remove();const showDiff=()=>{const comparison=comparisons[S.session?.key]??{changes:[]};closeDiff();const overlay=document.createElement("div");overlay.className="owner-review-diff";const dialog=document.createElement("div");dialog.className="owner-review-diff-dialog";dialog.setAttribute("role","dialog");dialog.setAttribute("aria-modal","true");dialog.setAttribute("aria-label","Сравнение текста");const head=document.createElement("div");head.className="owner-review-diff-head";const title=document.createElement("h2");title.textContent="Что изменилось";const close=document.createElement("button");close.type="button";close.className="owner-review-diff-close";close.textContent="Закрыть сравнение";close.onclick=closeDiff;head.append(title,close);dialog.append(head);const groups=new Map();for(const change of comparison.changes||[]){const id=change.groupId||"session";if(!groups.has(id))groups.set(id,[]);groups.get(id).push(change);}for(const changes of groups.values()){const section=document.createElement("section");section.className="owner-review-diff-group";section.dataset.groupId=changes[0].groupId||"session";const heading=document.createElement("h3");heading.textContent=text(changes[0].groupLabelByLocale);section.append(heading);for(const change of changes){const row=document.createElement("div");row.className="owner-review-diff-row";row.dataset.pathKey=change.pathKey||"";const field=document.createElement("div");field.className="owner-review-diff-field";field.textContent=text(change.fieldLabelByLocale);const before=document.createElement("div");before.className="owner-review-diff-cell before";const beforeTitle=document.createElement("b");beforeTitle.textContent="Было в макете";before.append(beforeTitle,document.createTextNode(text(change.beforeByLocale)));const after=document.createElement("div");after.className="owner-review-diff-cell after";const afterTitle=document.createElement("b");afterTitle.textContent="Стало";after.append(afterTitle,document.createTextNode(text(change.afterByLocale)));row.append(field,before,after);section.append(row);}dialog.append(section);}overlay.append(dialog);overlay.addEventListener("click",event=>{if(event.target===overlay)closeDiff();});document.body.append(overlay);close.focus();};const attach=()=>{for(const state of states){const index=DATA.findIndex(item=>item.key===state.key);const card=document.querySelectorAll("button.card")[index];if(!card)continue;const statusLabel=state.textVerified?"Текст принят":"Текст ещё проверяется";const statusClass=state.textVerified?"text-verified":"text-review-pending";const statusLabelClass=state.textVerified?"text-verified-label":"text-review-pending-label";const audioLabel="Аудио: прослушивание не заявлено";const activationLabel=state.appActivated?"В приложении: локально активно":state.textVerified?"В приложении: не активно — runtime-гейт":"В приложении: не активировано";const existingStatus=card.querySelector(".text-verified-label,.text-review-pending-label");const existingAudio=card.querySelector(".audio-scope");const existingScope=card.querySelector(".release-scope");const needsCardUpdate=!card.classList.contains(statusClass)||(state.textVerified?!card.classList.contains("source-fixed"):!card.classList.contains("needs-repair"))||existingStatus?.textContent!==statusLabel||existingAudio?.textContent!==audioLabel||existingScope?.textContent!==activationLabel;if(needsCardUpdate){card.classList.remove("source-fixed","needs-repair","text-verified","text-review-pending");if(state.textVerified)card.classList.add("source-fixed","text-verified");else card.classList.add("needs-repair","text-review-pending");const meta=card.querySelector(".meta");if(meta){let status=existingStatus;if(!status){status=document.createElement("span");meta.append(status);}status.className="chip "+statusLabelClass;status.textContent=statusLabel;let audio=existingAudio;if(!audio){audio=document.createElement("span");audio.className="chip audio-scope";meta.append(audio);}audio.textContent=audioLabel;let scope=existingScope;if(!scope){scope=document.createElement("span");scope.className="chip release-scope";meta.append(scope);}scope.textContent=activationLabel;}}}if(previewKeys.has(S.session?.key)&&!document.querySelector(".owner-review-diff-toggle")){const panel=document.querySelector("#app .panel");if(panel){const tools=document.createElement("div");tools.className="owner-review-tools";const button=document.createElement("button");button.type="button";button.className="owner-review-diff-toggle";button.textContent="Показать изменения";button.onclick=showDiff;tools.append(button);panel.prepend(tools);}}};attach();const app=document.getElementById("app");if(app)new MutationObserver(attach).observe(app,{childList:true,subtree:true});document.getElementById("locale")?.addEventListener("change",()=>{if(document.querySelector(".owner-review-diff"))showDiff();});})();</script>`;
+}
+
+function privateHoldFinalizer(states) {
+  const pendingKeys = states
+    .map((state) => state.candidateKey);
+  if (!pendingKeys.length) return "";
+  return `<script id="owner-review-private-hold-finalizer">(()=>{const keys=${safeJsonForHtml(pendingKeys)};const settle=()=>{for(const key of keys){const index=DATA.findIndex(item=>item.key===key);const card=document.querySelectorAll("button.card")[index];if(!card)continue;for(const chip of card.querySelectorAll(".chip")){if(chip.textContent?.trim()==="Выпуск надо синхронизировать")chip.remove();}}};settle();const app=document.getElementById("app");if(app)new MutationObserver(settle).observe(app,{childList:true,subtree:true});})();</script>`;
 }
 
 function candidateReturnInjection() {
@@ -609,21 +834,27 @@ function injectBeforeBodyEnd(html, injection) {
   return `${html.slice(0, index)}${injection}\n${html.slice(index)}`;
 }
 
-async function buildFullCourseHtml(rawHtml, previews, options = {}) {
+export async function buildLearningV2OwnerReviewFullCourseHtml(rawHtml, previews, options = {}) {
   const verifiedPreviews = previews.filter((preview) => preview.ok);
   const canonicalHtml = options.canonicalHtml ?? rawHtml;
   const comparisons = {};
   const states = [];
   const runtimePatches = [];
+  const activeSessionKeys = new Set(options.activeSessionKeys ?? []);
   let html = rawHtml;
   for (const preview of verifiedPreviews) {
-    const candidateHtml = await readFile(preview.candidate.candidateIndexPath, "utf8");
-    const candidateEntry = candidateEntryFromHtml(candidateHtml, preview.candidate.candidateKey);
+    const candidateEntry = await candidateEntryForPreview(preview.candidate, canonicalHtml);
     const canonicalEntry = catalogueEntryFromHtml(canonicalHtml, preview.candidate.candidateKey);
     comparisons[preview.candidate.candidateKey] = { changes: buildComparisonChanges(canonicalEntry, candidateEntry) };
-    states.push({ candidateKey: preview.candidate.candidateKey });
+    states.push({
+      candidateKey: preview.candidate.candidateKey,
+      textVerified: preview.textVerified === true,
+      appActivated: activeSessionKeys.has(preview.candidate.candidateKey),
+    });
     if (options.includeRuntime !== false) {
-      const candidateAppSource = await readFile(resolve(preview.candidate.candidateRoot, "app.js"), "utf8");
+      const candidateAppSource = await readFile(preview.candidate.projectionOnlyPreview === true
+        ? resolve(preview.candidate.courseRoot, "mockup", "app.js")
+        : resolve(preview.candidate.candidateRoot, "app.js"), "utf8");
       runtimePatches.push(candidateRuntimePatch(candidateAppSource, preview.candidate.candidateKey));
     }
     if (html.includes('<script id="data" type="application/json">')) {
@@ -631,13 +862,15 @@ async function buildFullCourseHtml(rawHtml, previews, options = {}) {
     }
     html = replaceJsonScript(html, "source-quality-findings", (findings) => removeCandidateFinding(findings, preview.candidate.candidateKey));
     html = replaceJsonScript(html, "source-release-findings", (findings) => removeCandidateFinding(findings, preview.candidate.candidateKey));
+    html = replaceJsonScript(html, "reviewed-cards", (evidence) => removeCandidateReviewedCardEvidence(evidence, preview.candidate.candidateKey));
   }
-  return injectBeforeBodyEnd(html, fullCourseInjection(
+  const ownerReviewInjection = fullCourseInjection(
     states,
     comparisons,
     runtimePatches.join("\n"),
     previews[0]?.ok === false,
-  ));
+  );
+  return injectBeforeBodyEnd(html, `${ownerReviewInjection}${privateHoldFinalizer(states)}`);
 }
 
 export async function startLearningV2StaticOwnerReviewServer(options = {}) {
@@ -652,8 +885,13 @@ export async function startLearningV2StaticOwnerReviewServer(options = {}) {
     ? [...options.manifestPaths]
     : options.manifestPath
       ? [options.manifestPath]
-      : [resolve(courseRoot, S01_MANIFEST_RELATIVE), resolve(courseRoot, S02_MANIFEST_RELATIVE)];
-  if (manifestPaths.length < 1 || manifestPaths.length > 2) throw new Error("candidate_manifest_set_invalid");
+      : OWNER_REVIEW_MANIFEST_PATHS
+          .map((relativePath) => resolve(courseRoot, relativePath))
+          .filter((absolutePath) => existsSync(absolutePath));
+  if (manifestPaths.length < 1 || manifestPaths.length > OWNER_REVIEW_MANIFEST_PATHS.length) throw new Error("candidate_manifest_set_invalid");
+  const localActivationStatus = fullCourse
+    ? await loadLearningV2LocalActivationStatus({ courseRoot }).catch(() => ({ contiguousCeiling: 0, activeSessionKeys: [] }))
+    : { contiguousCeiling: 0, activeSessionKeys: [] };
   const indexPath = resolve(rootDirectory, "index.html");
   await readFile(indexPath);
 
@@ -670,9 +908,12 @@ export async function startLearningV2StaticOwnerReviewServer(options = {}) {
   const previewForManifest = async (manifestPath) => {
     const candidate = await candidateForManifest(manifestPath);
     if (!candidate.ok) return candidate;
+    if (candidate.value.privatePreview === true && candidate.value.textCanonical !== true) {
+      return { ok: true, candidate: candidate.value, textVerified: false };
+    }
     try {
       await validateLearningV2TextEligibility({ courseRoot, manifestPath, candidate: candidate.value });
-      return { ok: true, candidate: candidate.value };
+      return { ok: true, candidate: candidate.value, textVerified: true };
     } catch (error) {
       return { ok: false, error: error instanceof Error ? error : new Error(String(error)) };
     }
@@ -721,8 +962,9 @@ export async function startLearningV2StaticOwnerReviewServer(options = {}) {
           const previews = await currentPreviews();
           let entries = parseDataJs(source);
           for (const preview of previews.filter((item) => item.ok)) {
-            const candidateSource = await readFile(preview.candidate.candidateDataPath, "utf8");
-            const [candidateEntry] = parseDataJs(candidateSource);
+            const candidateEntry = preview.candidate.projectionOnlyPreview === true
+              ? await candidateEntryForPreview(preview.candidate, await readFile(indexPath, "utf8"))
+              : parseDataJs(await readFile(preview.candidate.candidateDataPath, "utf8"))[0];
             if (candidateEntry?.key !== preview.candidate.candidateKey) throw new Error("candidate_data_js_entry_invalid");
             entries = overlayEntry(entries, candidateEntry, preview.candidate.candidateKey);
           }
@@ -732,16 +974,19 @@ export async function startLearningV2StaticOwnerReviewServer(options = {}) {
             readFile(resolve(rootDirectory, assetName), "utf8"),
             readFile(indexPath, "utf8"),
           ]);
-          bytes = await buildFullCourseHtml(externalHtml, await currentPreviews(), {
+          bytes = await buildLearningV2OwnerReviewFullCourseHtml(externalHtml, await currentPreviews(), {
             canonicalHtml,
             includeRuntime: false,
+            activeSessionKeys: localActivationStatus.activeSessionKeys,
           });
         } else if (assetName === "app.js") {
           const source = await readFile(resolve(rootDirectory, assetName), "utf8");
           const patches = [];
           for (const preview of (await currentPreviews()).filter((item) => item.ok)) {
             patches.push(candidateRuntimePatch(
-              await readFile(resolve(preview.candidate.candidateRoot, "app.js"), "utf8"),
+              await readFile(preview.candidate.projectionOnlyPreview === true
+                ? resolve(rootDirectory, "app.js")
+                : resolve(preview.candidate.candidateRoot, "app.js"), "utf8"),
               preview.candidate.candidateKey,
             ));
           }
@@ -768,7 +1013,9 @@ export async function startLearningV2StaticOwnerReviewServer(options = {}) {
     try {
       const rawHtml = await readFile(indexPath, "utf8");
       const html = fullCourse
-        ? await buildFullCourseHtml(rawHtml, await currentPreviews())
+        ? await buildLearningV2OwnerReviewFullCourseHtml(rawHtml, await currentPreviews(), {
+            activeSessionKeys: localActivationStatus.activeSessionKeys,
+          })
         : rawHtml;
       response.writeHead(200, HTML_HEADERS);
       response.end(html);

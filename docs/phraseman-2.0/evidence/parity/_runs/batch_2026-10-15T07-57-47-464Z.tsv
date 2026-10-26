@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+cards-gap-023	2026-10-15T07:58:56.110Z	error	16170	step_target_not_found:#fc-menu-filter+ждали_metro_34мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-15T07-57-47-464Z/cards-gap-023.error.png	0

@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+auth-gap-017	2026-10-15T10:00:31.161Z	error	6363	step_target_not_found:#settings-switch-continue+ждали_metro_22мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-15T09-59-52-225Z/auth-gap-017.error.png	0

@@ -120,3 +120,38 @@ Governance-ID: TG-589FB4A3DE74
 4. Прогоны вариантов онбординга (аватар/рамка ±, 5 языков, уведомления ±, код друга ±, пейвол пропущен, прерван + холодный старт) —
    Сверка, фильтр [GUEST-CLEAN] summary и kind=progress. R15c — белый список по форме ключа (_migration_, cloud_last_sync_,
    customization_selection_) + аура + решения п.3 — по её фактам, ревью Opus до коммита.
+
+## R15c (16:40) — прогон r15b_1015: остаток — очередь выбора аватара
+
+Governance-ID: TG-277EE4DAF1DB
+
+Единственный kind=progress у свежего гостя — `customization_selection_outbox_v1:<id>:1` (одна операция выбора). Правка:
+`customization_selection_*` целиком → default (в коде ровно 4 семейства, операции выбора delta 0; покупки — отдельная очередь
+`customization_rune_purchase_outbox_v1:` и `*_owned_v1`); `user_avatar_aura` → выбор гостя; маркер миграции по форме
+(`_migration(_vN)?` + короткий скаляр) → service; `cloud_last_sync_*` → service. Тесты: аура, владение аурой → progress,
+промокод (premium_plan/premium_expiry) → не чист; старая строка R15b «очередь выбора = progress» обновлена по решению координатора.
+Ревью Opus 16:39 — APPROVE. Тесты окна 47/47. Коммит — окно 16:45.
+Не блокирует (Opus): сузить префикс до 4 констант `constants/customization_storage_keys.ts` и значение маркера миграции до
+флагов (1|true|done|migrated|vN|метка времени) — шаг R15d после повторного прогона Сверки.
+
+R15c 41d86d915 — Ревизор ✅ (🔴 нет). R15d (после повтора Сверки): вместо префикса `customization_selection_` — 4 точных ключа
+журнала из `constants/customization_storage_keys.ts` (head, operation, outbox, quarantine), маркер миграции — только флаги.
+
+## R15d (17:35) — прогон Сверки ff21fefa4 + Ревизор + story_events
+
+Governance-ID: TG-ED161EA33D9A
+
+Факт Сверки (вар.1, первый вход): progress=1 — `cloud_created_at_synced_v1` (значение '1', метка «createdAt уже в облаке»).
+Инвентаризация ключей хранилища с префиксом `cloud_` (grep литералов app/components/hooks/modules/constants): ровно три —
+`cloud_migration_v1` ('1', маркер миграции) → service; `cloud_last_sync_snapshot_v1` (копия отправленного) → service;
+`cloud_created_at_synced_v1` ('1') → service. Прочие `cloud_*` литералы — события (cloud_profile_hydrated), коды ошибок
+(cloud_sync_disabled, cloud_disabled, cloud_off, cloud_unavailable), метки журналов (cloud_sync:*) — не ключи хранилища.
+Правка: явные ключи + форма `cloud_*_synced_vN` только со значением '1'; `customization_selection_` → 4 точных префикса из
+constants/customization_storage_keys.ts (Ревизор); маркер миграции — только флаги (1|true|done|migrated|vN|метка времени);
+`story_events_v1:` → service и в WIPE_ONLY_ACCOUNT_KEY_PREFIXES (стирание при выходе/смене/удалении — политика §3/§20).
+
+R15d ✅ eeb35dbdf (17:46:03): 92/92, Opus APPROVE; story_events_v1 стирается при выходе/смене/удалении. Попутно #48 ✅ 22042872e (17:45), #43 ✅ ec993aa93 (17:15), R61 ✅ 010436f4f (17:30). Хэши координатору/Сверке не отправлены — пересылка между сессиями на паузе до сообщения владельца.
+
+## Инвентарь phone-state (координатор ~21:00)
+
+✅ 3b2c4474f: community_owned_pack_tombstones_v1 portable/union/personal; study_target_v1 device_only/none/low; префикс story_events_v1 device_only/none/personal. Сторож 0/0/0, phone-state 367/367. Хэш координатору не ушёл — пересылка на паузе.

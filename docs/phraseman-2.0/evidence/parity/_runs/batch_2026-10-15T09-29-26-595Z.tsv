@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+auth-gap-008	2026-10-15T09:30:16.742Z	error	14119	step_target_not_found:#account-link-row+ждали_metro_31мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-15T09-29-26-595Z/auth-gap-008.error.png	0

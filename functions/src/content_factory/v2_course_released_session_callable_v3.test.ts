@@ -8,8 +8,17 @@ import {
 import { parseLearningV2CourseSessionEvaluatorCapsuleChildV1 } from "../../../modules/learning-v2/runtime/course_session_evaluator_capsule_child_v1";
 import {
   createV2CourseReleasedSessionHandlerV3,
+  createV2CourseReleasedSessionTombstoneHandlerV3,
   V2_COURSE_RELEASED_SESSION_CALLABLE_OPTIONS_V3,
 } from "./v2_course_released_session_callable_v3";
+
+test("legacy v3 callable tombstone always requires upgrade and returns no source learner raw", async () => {
+  const handler = createV2CourseReleasedSessionTombstoneHandlerV3();
+  await expect(handler({ data: {}, auth: { uid: "auth-1" } })).rejects.toMatchObject({
+    code: "failed-precondition",
+    message: "upgrade_required",
+  });
+});
 
 jest.mock(
   "../../../modules/learning-v2/runtime/course_session_client_children_v1",

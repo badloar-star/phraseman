@@ -20,6 +20,7 @@ const course_session_client_children_v1_1 = require("../../runtime/course_sessio
 // заполняет восемь полей полномочий, которых у ручного объекта не было.
 const course_session_evaluator_capsule_child_v1_1 = require("../../runtime/course_session_evaluator_capsule_child_v1");
 const local_evaluator_capsule_v1_1 = require("../../runtime/local_evaluator_capsule_v1");
+const mode_native_payload_v1_1 = require("../../contracts/mode_native_payload_v1");
 // зачем sha256Utf8 вместо node:crypto (инцидент 2026-08-17): этот файл
 // вызывается из app/learning_v2_course_released_session_client_v3.ts прямо на
 // устройстве (бандл урока 1 без сети) — node:crypto недоступен в рантайме RN,
@@ -40,7 +41,7 @@ const episode_01_session_18_task_feedback_v1_1 = require("./episode_01_session_1
 const es_episode_01_session_01_task_feedback_v1_1 = require("./es_episode_01_session_01_task_feedback_v1");
 const learning_v2_new_word_card_editorial_v1_1 = require("./learning_v2_new_word_card_editorial_v1");
 const es_learning_v2_new_word_card_editorial_v1_1 = require("./es_learning_v2_new_word_card_editorial_v1");
-const mode_native_payload_v1_1 = require("../../contracts/mode_native_payload_v1");
+const mode_native_payload_v1_2 = require("../../contracts/mode_native_payload_v1");
 /**
  * Соль для криптографического обязательства ответа. Контракт требует ровно
  * 64 шестнадцатеричных знака.
@@ -182,6 +183,16 @@ function purposeFor(purpose) {
     if (!mapped)
         throw new Error(`session_package_unsupported_purpose:${purpose}`);
     return mapped;
+}
+function modePayloadForLearner(card) {
+    const payload = card.modePayload;
+    if (payload?.family !== 'scripted_repeat_compare' ||
+        purposeFor(card.purpose) !== 'independent_check')
+        return payload;
+    return Object.freeze({
+        ...payload,
+        scriptedRepeatRevealPolicy: mode_native_payload_v1_1.LEARNING_V2_SCRIPTED_REPEAT_AFTER_FIRST_ATTEMPT_REVEAL_POLICY_V1,
+    });
 }
 function inputModeFor(family, modeNative) {
     // зачем: незнакомое семейство не должно молча стать выбором из вариантов —
@@ -841,11 +852,12 @@ function buildSessionChildBodiesFromShard(shard, interfaceLocale, courseSessionI
         interactionProfile: choreography.interactionProfile,
         interactions: practiceCards.map((card, index) => {
             const task = learnerTaskProjection(card, choiceCards, interfaceLocale, options?.allowUnavailableAuthoredChoiceTargets === true);
-            const speedMatchMeanings = card.modePayload?.family === 'speed_match'
-                ? card.modePayload.pairGrid.map((pair) => pair.meaningByLocale[locale]).join(' · ')
+            const modePayload = modePayloadForLearner(card);
+            const speedMatchMeanings = modePayload?.family === 'speed_match'
+                ? modePayload.pairGrid.map((pair) => pair.meaningByLocale[locale]).join(' · ')
                 : null;
-            const speedMatchTargets = card.modePayload?.family === 'speed_match'
-                ? card.modePayload.pairGrid.map((pair) => pair.target).join(' · ')
+            const speedMatchTargets = modePayload?.family === 'speed_match'
+                ? modePayload.pairGrid.map((pair) => pair.target).join(' · ')
                 : null;
             return {
                 interactionId: card.cardId,
@@ -856,10 +868,10 @@ function buildSessionChildBodiesFromShard(shard, interfaceLocale, courseSessionI
                 prompt: task.prompt,
                 responseOptions: task.responseOptions,
                 mediaIds: [],
-                audioTargetIds: card.modePayload
-                    ? (0, mode_native_payload_v1_1.learningV2ModeNativeAudioTargetIdsV1)(card.modePayload)
+                audioTargetIds: modePayload
+                    ? (0, mode_native_payload_v1_2.learningV2ModeNativeAudioTargetIdsV1)(modePayload)
                     : [],
-                modePayload: card.modePayload,
+                modePayload,
                 accessibilityLabel: speedMatchMeanings && speedMatchTargets
                     ? `${speedMatchTargets}. ${speedMatchMeanings}.`
                     : card.accessibilityLabelByLocale[locale] ?? '',

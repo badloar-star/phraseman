@@ -17,7 +17,7 @@
 // functions/src/content_factory/*, что и основная кодбаза.
 // ═══════════════════════════════════════════════════════════════════════════
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.adminGetV2OwnerGeneratorSetupCatalog = exports.adminConfirmV2OwnerEpisode = exports.adminImportV2OwnerEpisodeStage = exports.adminPublishAuthoredLearningV2Course = exports.learningV2CourseActiveCatalogGetV1 = exports.learningV2CourseReleasedSessionGetV3 = exports.learningV2CourseReleasedSessionGetV2 = exports.learningV2ActivityReleasedSessionGetV1 = exports.learningV2ActivityAuxiliarySessionGetV1 = void 0;
+exports.adminGetV2OwnerGeneratorSetupCatalog = exports.adminConfirmV2OwnerEpisode = exports.adminImportV2OwnerEpisodeStage = exports.adminPublishAuthoredLearningV2Course = exports.learningV2CourseActiveCatalogGetV1 = exports.learningV2CourseReleasedSessionGetV4 = exports.learningV2CourseReleasedSessionGetV3 = exports.learningV2CourseReleasedSessionGetV2 = exports.learningV2ActivityReleasedSessionGetV1 = exports.learningV2ActivityAuxiliarySessionGetV1 = void 0;
 var v2_activity_auxiliary_session_callable_v1_1 = require("../functions/src/content_factory/v2_activity_auxiliary_session_callable_v1");
 Object.defineProperty(exports, "learningV2ActivityAuxiliarySessionGetV1", { enumerable: true, get: function () { return v2_activity_auxiliary_session_callable_v1_1.learningV2ActivityAuxiliarySessionGetV1; } });
 var v2_activity_released_session_callable_v1_1 = require("../functions/src/content_factory/v2_activity_released_session_callable_v1");
@@ -26,6 +26,8 @@ var v2_course_released_session_callable_v2_1 = require("../functions/src/content
 Object.defineProperty(exports, "learningV2CourseReleasedSessionGetV2", { enumerable: true, get: function () { return v2_course_released_session_callable_v2_1.learningV2CourseReleasedSessionGetV2; } });
 var v2_course_released_session_callable_v3_1 = require("../functions/src/content_factory/v2_course_released_session_callable_v3");
 Object.defineProperty(exports, "learningV2CourseReleasedSessionGetV3", { enumerable: true, get: function () { return v2_course_released_session_callable_v3_1.learningV2CourseReleasedSessionGetV3; } });
+var v2_course_released_session_callable_v4_1 = require("../functions/src/content_factory/v2_course_released_session_callable_v4");
+Object.defineProperty(exports, "learningV2CourseReleasedSessionGetV4", { enumerable: true, get: function () { return v2_course_released_session_callable_v4_1.learningV2CourseReleasedSessionGetV4; } });
 var v2_course_active_catalog_callable_v1_1 = require("../functions/src/content_factory/v2_course_active_catalog_callable_v1");
 Object.defineProperty(exports, "learningV2CourseActiveCatalogGetV1", { enumerable: true, get: function () { return v2_course_active_catalog_callable_v1_1.learningV2CourseActiveCatalogGetV1; } });
 var learning_v2_publish_authored_course_v1_1 = require("../functions/src/content_factory/learning_v2_publish_authored_course_v1");

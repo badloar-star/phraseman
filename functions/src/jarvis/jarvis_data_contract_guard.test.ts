@@ -229,6 +229,11 @@ const INTENTIONALLY_UNREAD_SERVER_PROGRESS_FIELDS = [
     writer: 'revenuecat_shards.ts',
     authority: 'RevenueCat production NON_RENEWING_PURCHASE lifetime Pro only',
   },
+  {
+    field: 'premium_theme_entitlements_v1',
+    writer: 'premium_themes.ts',
+    authority: 'server-verified theme achievement facts; presentation entitlement is intentionally not a Jarvis business metric',
+  },
 ] as const;
 
 // Owner Repository is an account-scoped local immutable journal, not a new
@@ -385,6 +390,31 @@ const MONEY_WRITER_CONTRACTS = [
 ] as const;
 
 const ISOLATED_COLLECTION_CONTRACTS = [
+  { collection: 'community_contest_winners', writer: 'functions/src/community_month_contest.ts', authority: 'server-only immutable first prize per pack; excludes every past winner from future contests', fields: ['monthId', 'place', 'rewardId', 'finalizedAtMs'] },
+  {
+    collection: 'community_contest_config',
+    writer: 'functions/src/community_month_contest.ts',
+    authority: 'server-only rollout control; monthly awards disabled until a full protected voting month',
+    fields: ['enabled', 'firstFullMonth'],
+  },
+  {
+    collection: 'contest_votes',
+    writer: 'app/community_packs/packSocialFirestore.ts',
+    authority: 'atomic membership snapshot frozen by Rules after each voting month; monthly prizes only, not revenue',
+    fields: ['monthId', 'userId', 'liked', 'updatedAt'],
+  },
+  {
+    collection: 'community_month_results',
+    writer: 'functions/src/community_month_contest.ts',
+    authority: 'immutable monthly contest outcome, server-only; not revenue or a Jarvis metric',
+    fields: ['monthId', 'winners', 'finalizedAtMs', 'ruleVersion'],
+  },
+  {
+    collection: 'community_month_rewards',
+    writer: 'functions/src/community_month_contest.ts',
+    authority: 'private server-owned prize receipt; coin grants use stars ledger, Plus uses community_plus_until_ms; not revenue',
+    fields: ['rewardId', 'claimed', 'claimedAtMs', 'receipt', 'community_plus_until_ms'],
+  },
   {
     collection: 'community_packs',
     writer: 'functions/src/community_packs.ts',
@@ -450,6 +480,42 @@ const ISOLATED_COLLECTION_CONTRACTS = [
     collection: 'access_projection',
     writer: 'functions/src/access_projection.ts',
     authority: 'intentionally_unread_personal_payload',
+  },
+  {
+    collection: 'admin_staff_members',
+    writer: 'functions/src/admin_staff_membership.ts',
+    authority: 'server-only staff membership authority; intentionally unread by Jarvis and every browser client',
+    fields: ['uid', 'active', 'revision', 'badge', 'sections', 'updatedAtMs', 'updatedByUid'],
+  },
+  {
+    collection: 'admin_staff_members_v2',
+    writer: 'functions/src/admin_staff_isolated_core.ts (schema only; no production writer)',
+    authority: 'reserved server-only isolated staff membership schema; no production reader, writer, or export until dedicated Auth project and IAM are verified; intentionally unread by Jarvis and browsers',
+    fields: ['identityNamespace', 'principalKey', 'authProjectId', 'authUid', 'active', 'revision', 'badge', 'sections', 'updatedAtMs', 'updatedByPrincipalKey'],
+  },
+  {
+    collection: 'admin_staff_audit',
+    writer: 'functions/src/admin_staff_membership.ts',
+    authority: 'immutable server-only staff access audit with bounded reason codes; intentionally unread by Jarvis and every browser client',
+    fields: ['operationId', 'requestDigest', 'actorUid', 'targetUid', 'resultRevision', 'reasonCode', 'createdAtMs'],
+  },
+  {
+    collection: 'admin_staff_rate_limits',
+    writer: 'functions/src/admin_staff_membership.ts + functions/src/admin_staff_invitation.ts',
+    authority: 'server-only staff endpoint abuse guard; intentionally unread by Jarvis and every browser client',
+    fields: ['schemaVersion', 'scope', 'windowStartedAtMs', 'count', 'updatedAtMs'],
+  },
+  {
+    collection: 'admin_staff_invitations',
+    writer: 'functions/src/admin_staff_invitation.ts',
+    authority: 'server-only pending staff reservation; no credential, activation, or membership authority; intentionally unread by Jarvis and every browser client',
+    fields: ['reservationId', 'revision', 'status', 'email', 'emailMasked', 'badge', 'sections', 'createdAtMs', 'expiresAtMs'],
+  },
+  {
+    collection: 'admin_staff_invitation_audit',
+    writer: 'functions/src/admin_staff_invitation.ts',
+    authority: 'immutable PII-free owner reservation audit; intentionally unread by Jarvis and every browser client',
+    fields: ['operationId', 'requestDigest', 'actorUid', 'reservationId', 'action', 'resultRevision', 'resultStatus', 'reasonCode', 'createdAtMs'],
   },
   {
     collection: 'personal_sync_segments',
@@ -627,6 +693,28 @@ const INTENTIONALLY_EXCLUDED_NESTED_FIELDS = [{
 }] as const;
 
 describe('Jarvis data contract — silence must never replace a broken source', () => {
+  test('staff authority collections stay explicit, client-blocked, and intentionally unread by Jarvis', () => {
+    const jarvisDir = path.join(functionsSrc, 'jarvis');
+    const readers = fs.readdirSync(jarvisDir)
+      .filter((file) => file.endsWith('.ts') && !file.includes('.test.'))
+      .map((file) => fs.readFileSync(path.join(jarvisDir, file), 'utf8'))
+      .join('\n');
+    const rules = fs.readFileSync(path.join(root, 'firestore.rules'), 'utf8');
+    const staffCollections = new Map([
+      ['admin_staff_members', 'functions/src/admin_staff_membership.ts'],
+      ['admin_staff_members_v2', 'functions/src/admin_staff_isolated_core.ts (schema only; no production writer)'],
+      ['admin_staff_audit', 'functions/src/admin_staff_membership.ts'],
+      ['admin_staff_rate_limits', 'functions/src/admin_staff_membership.ts + functions/src/admin_staff_invitation.ts'],
+      ['admin_staff_invitations', 'functions/src/admin_staff_invitation.ts'],
+      ['admin_staff_invitation_audit', 'functions/src/admin_staff_invitation.ts'],
+    ]);
+    for (const [collection, writer] of staffCollections) {
+      expect(ISOLATED_COLLECTION_CONTRACTS).toContainEqual(expect.objectContaining({ collection, writer }));
+      expect(readers).not.toContain(collection);
+      expect(rules).toContain(`/${collection}/`);
+    }
+  });
+
   test('Arena publication identity stays sealed and intentionally unread by Jarvis', () => {
     expect(ISOLATED_COLLECTION_CONTRACTS).toContainEqual(expect.objectContaining({
       collection: 'arena_v2_config',
@@ -1125,4 +1213,20 @@ describe('Arena friend invite and notification isolation', () => {
     expect(deletion).toContain("{ collection: 'voice_call_reviews', field: 'authUid', values: 'auth' }");
     expect(jarvisReaders).not.toContain("collection('voice_call_reviews')");
   });
+});
+
+// No current Jarvis department consumes the new story collections. Pin the boundary:
+// content-only user feed, server-only documents, existing admin_log audit stream.
+describe('story announcement data boundary', () => {
+ test('writer and rule names stay paired; feed projects only public content', () => {
+  const writer=readSource('story_announcements.ts');
+  const rules=fs.readFileSync(path.join(root,'firestore.rules'),'utf8');
+  for(const collection of ['story_announcements','story_announcement_feed']) {
+   expect(writer.replace(/"/g, "'")).toContain(`collection('${collection}')`);
+   expect(rules).toContain(`&& collection != '${collection}'`);
+   expect(rules).toContain(`match /${collection}/{id} { allow read, write: if false; }`);
+  }
+  expect(writer.replace(/\s+/g, '')).toContain('items:liveAnnouncements(feed.data()?.items??[],nowMs)');
+  expect(writer.replace(/"/g, "'" )).toContain("collection('admin_log')");
+ });
 });

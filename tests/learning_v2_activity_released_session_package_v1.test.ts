@@ -12,6 +12,7 @@ import {
 } from "../modules/learning-v2/runtime/activity_learner_action_resource_v1";
 import { materializeLearningV2ActivityPostTerminalCardCatalogV1 } from "../modules/learning-v2/runtime/activity_post_terminal_card_catalog_v1";
 import { materializeLearningV2ActivityPostTerminalCardCapsuleV1 } from "../modules/learning-v2/runtime/activity_post_terminal_card_capsule_v1";
+import { LEARNING_V2_SCRIPTED_REPEAT_AFTER_FIRST_ATTEMPT_REVEAL_POLICY_V1 } from "../modules/learning-v2/contracts/mode_native_payload_v1";
 import {
   buildV2LocalEvaluatorCapsuleRawV1,
   createV2LocalEvaluatorCommitmentV1,
@@ -40,10 +41,14 @@ const localized = (prefix: string) =>
     ),
   ) as never;
 
-function fixture() {
+function fixture(options: Readonly<{
+  scriptedRepeatAtSlot10?: boolean;
+  scriptedRepeatRevealPolicy?: unknown;
+}> = {}) {
   const sourceFingerprint = h("source");
   const renderTasks = Array.from({ length: 12 }, (_, index) => {
     const slot = index + 1;
+    const scriptedRepeat = options.scriptedRepeatAtSlot10 === true && slot === 10;
     return Object.freeze({
       taskId: `task-${slot}`,
       slot,
@@ -61,13 +66,19 @@ function fixture() {
                   : slot === 11
                     ? "interleaved_review"
                     : "independent_check",
-      family: "phrase_builder",
+      family: scriptedRepeat ? "scripted_repeat_compare" : "phrase_builder",
       answerExposure:
         slot === 10 || slot === 12 ? "forbidden" : "allowed_after_attempt",
       promptNovelty: slot === 10 || slot === 12 ? "novel" : "trained",
-      inputMode: "ordered_tokens",
+      inputMode: scriptedRepeat ? "scripted_speech" : "ordered_tokens",
       support: slot === 10 || slot === 12 ? "none" : "model",
       hintsAllowed: slot === 10 || slot === 12 ? 0 : 1,
+      ...(scriptedRepeat && options.scriptedRepeatRevealPolicy !== undefined
+        ? {
+            scriptedRepeatRevealPolicy:
+              options.scriptedRepeatRevealPolicy,
+          }
+        : {}),
       learner: Object.freeze({
         promptId: `prompt-${slot}`,
         prompt: `Prompt ${slot}`,
@@ -80,7 +91,9 @@ function fixture() {
         accessibilityLabel: `Task ${slot}`,
       }),
       scriptedAlternate: null,
-      runtimeCapabilityId: "v2.activity.phrase_builder.v1",
+      runtimeCapabilityId: scriptedRepeat
+        ? "v2.activity.scripted_repeat_compare.v1"
+        : "v2.activity.phrase_builder.v1",
     });
   });
   const renderBody = Object.freeze({
@@ -170,7 +183,9 @@ function fixture() {
         activityId,
         promptId: task.learner.promptId,
         slot: task.slot,
-        family: "phrase_builder" as const,
+        family: task.family as
+          | "phrase_builder"
+          | "scripted_repeat_compare",
         report,
         save,
         voiceAvailable: true,
@@ -276,8 +291,12 @@ function fixture() {
       capsuleId: `capsule-${entry.slot}`,
       taskId: entry.taskId,
       activityId: entry.activityId,
-      family: "phrase_builder" as const,
-      inputKind: "text" as const,
+      family: renderTasks[entry.slot - 1]!.family as
+        | "phrase_builder"
+        | "scripted_repeat_compare",
+      inputKind: renderTasks[entry.slot - 1]!.inputMode === "scripted_speech"
+        ? "transcript" as const
+        : "text" as const,
       normalizationLocale: "en-US",
       normalizationProfileHash:
         V2_LOCAL_EVALUATOR_NORMALIZATION_PROFILE_HASH_V1,
@@ -356,6 +375,51 @@ describe("released Activity session package", () => {
         response: { kind: "text", value: "wrong" },
       }).resultCode,
     ).toBe("provisional_wrong");
+  });
+
+  it("preserves the strict reveal policy for an independent scripted repeat", () => {
+    const source = fixture({
+      scriptedRepeatAtSlot10: true,
+      scriptedRepeatRevealPolicy:
+        LEARNING_V2_SCRIPTED_REPEAT_AFTER_FIRST_ATTEMPT_REVEAL_POLICY_V1,
+    });
+    const parsed = parseLearningV2ActivityReleasedSessionPackageV1(
+      materializeLearningV2ActivityReleasedSessionPackageV1(source),
+    );
+    const runtime = mountLearningV2ActivityReleasedSessionRuntimeV1({
+      packageHandle: parsed,
+      interfaceLocale: "ru",
+    });
+
+    expect(
+      getLearningV2ActivityReleasedSessionTaskV1(runtime, 10),
+    ).toMatchObject({
+      family: "scripted_repeat_compare",
+      support: "none",
+      hintsAllowed: 0,
+      answerExposure: "forbidden",
+      scriptedRepeatRevealPolicy:
+        LEARNING_V2_SCRIPTED_REPEAT_AFTER_FIRST_ATTEMPT_REVEAL_POLICY_V1,
+    });
+  });
+
+  it.each([
+    ["missing", undefined],
+    [
+      "pre-attempt",
+      {
+        ...LEARNING_V2_SCRIPTED_REPEAT_AFTER_FIRST_ATTEMPT_REVEAL_POLICY_V1,
+        answerExposedBeforeAttempt: true,
+      },
+    ],
+  ])("rejects an independent scripted repeat with %s reveal evidence", (_label, policy) => {
+    const source = fixture({
+      scriptedRepeatAtSlot10: true,
+      scriptedRepeatRevealPolicy: policy,
+    });
+    expect(() =>
+      materializeLearningV2ActivityReleasedSessionPackageV1(source),
+    ).toThrow("learning_v2_activity_released_session_package_invalid");
   });
 
   it("rejects coordinated render/action drift, capsule swaps and copied handles", () => {

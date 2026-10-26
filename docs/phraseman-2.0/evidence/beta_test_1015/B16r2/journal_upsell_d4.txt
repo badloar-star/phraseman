@@ -1,0 +1,8 @@
+10-15 15:01:34.818 I/ReactNativeJS(13128): '[DEEPLINK] redirectSystemPath', '{"in":"phraseman:///","initial":true,"out":"/home"}'
+10-15 15:01:36.314 I/ReactNativeJS(13128): '[SPIRE]', '[SPIRE-GATE]', '{"lang":"ru","allowed":true,"reason":"ui_lang_allowed","where":"isSpireTabEnabled source=context"}'
+10-15 15:01:49.179 I/ReactNativeJS(13128): '[DEEPLINK] redirectSystemPath', '{"in":"phraseman://dev_state?notif=upsell_d4&next=/(tabs)/home","initial":false,"out":"/dev_state?notif=upsell_d4&next=/(tabs)/home"}'
+10-15 15:01:49.182 I/ReactNativeJS(13128): '[DEEPLINK] redirectSystemPath', '{"in":"phraseman://dev_state?notif=upsell_d4&next=/(tabs)/home","initial":false,"out":"/dev_state?notif=upsell_d4&next=/(tabs)/home"}'
+10-15 15:01:55.346 I/ReactNativeJS(13128): [PUSH-TAP-DEV] simulate {"type":"upsell_d4"}
+10-15 15:01:55.350 W/ReactNativeJS(13128): '[PUSH-TAP-DEV] after_route simulate', '{"notif":"upsell_d4","ok":true}'
+10-15 15:01:56.336 I/ReactNativeJS(13128): [INFO] [PAYWALL-OPEN]: шапка: ctx=notification_upsell source=notification_upsell текст=notification_upsell контекстная=true выгода=есть lang=ru
+10-15 15:01:56.360 I/ReactNativeJS(13128): '[PAYWALL-OPEN] решение окна', '{"decision":"show","reason":"show","context":"notification_upsell","source":"notification_upsell","shownContext":"notification_upsell","accessResolved":true,"hasPremiumAccess":false,"cachedEntitlement":"free","wait

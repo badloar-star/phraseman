@@ -2,10 +2,13 @@ import fs from 'node:fs';
 import path from 'node:path';
 import sharp from 'sharp';
 import { accentAlignment } from '../../scripts/accent_alignment.mjs';
+import { markerWeight } from './clay-marker.mjs';
 
 // Extract the marked accent from the same raster pixels. Never redraw or shift it.
-const inset = Math.max(0, Math.min(4, Number(process.argv.find(v=>v.startsWith('--inset='))?.slice(8)) || 0));
+const inset = Math.max(0, Math.min(32, Number(process.argv.find(v=>v.startsWith('--inset='))?.slice(8)) || 0));
 const files = process.argv.slice(2).filter(v=>!v.startsWith('--'));
+const marker=process.argv.find(v=>v.startsWith('--marker='))?.slice(9)||'cyan';
+markerWeight(0,0,0,marker);
 if (!files.length) throw new Error('Pass one or more *.source.png paths.');
 const results = [];
 for (const source of files) {
@@ -21,8 +24,7 @@ for (const source of files) {
     if (!a) transparent++;
     if (a > 128) visible++;
     // Cyan/turquoise is a temporary segmentation marker, absent elsewhere in the image.
-    const colorSeparation = Math.min(g - r, b - r);
-    const weight = Math.max(0, Math.min(1, (colorSeparation - 12) / 22));
+    const weight = markerWeight(r,g,b,marker);
     if (weight > 0 && a > 0) {
       const neutral = Math.round(.2126 * r + .7152 * g + .0722 * b);
       for (let c = 0; c < 3; c++) base[i + c] = Math.round(data[i + c] * (1 - weight) + neutral * weight);
@@ -34,8 +36,8 @@ for (const source of files) {
   if (!transparent || !visible) throw new Error('Missing usable source alpha: ' + source);
   if (!accentPixels) throw new Error('Missing segmentation marker: ' + source);
   if (inset) {
-    // A small inward alpha edge avoids painting the neutral bevel surrounding a raised detail.
-    // Positions and camera remain unchanged; the actual base raster is not moved.
+    // An inward mask edge keeps the white accent on the same front-facing inset surface,
+    // avoiding the neutral bevel. The base raster and camera remain unchanged.
     const originalAlpha = Buffer.from(accent);
     for (let y=inset;y<info.height-inset;y++) for(let x=inset;x<info.width-inset;x++) {
       const i=(y*info.width+x)*4;
@@ -55,7 +57,7 @@ for (const source of files) {
   await sharp(accent, { raw: info }).webp({ lossless: true }).toFile(accentDest);
   const alignment = await accentAlignment(dest, accentDest);
   results.push({ source, base: dest, accent: accentDest, size: [info.width, info.height],
-    bytes: fs.statSync(dest).size, maskInsetPx:inset, accentFramePct: +(100 * accentPixels / (1024 * 1024)).toFixed(3),
+    bytes: fs.statSync(dest).size, marker, maskInsetPx:inset, accentFramePct: +(100 * accentPixels / (1024 * 1024)).toFixed(3),
     transparentPct: +(100 * transparent / (1024 * 1024)).toFixed(2), alignment });
 }
 const report = path.resolve('ART_STYLE_FOR_CODEX/trials/interactive/candidate-preparation-report.json');
@@ -63,5 +65,7 @@ let previous = [];
 if (fs.existsSync(report)) previous = JSON.parse(fs.readFileSync(report, 'utf8'));
 const refreshed = new Map(previous.map(r => [path.resolve(r.source), r]));
 for (const r of results) refreshed.set(path.resolve(r.source), r);
-fs.writeFileSync(report, JSON.stringify([...refreshed.values()], null, 2));
+const reportDraft = `${report}.${process.pid}.tmp`;
+fs.writeFileSync(reportDraft, JSON.stringify([...refreshed.values()], null, 2));
+fs.renameSync(reportDraft, report);
 for (const r of results) console.log(JSON.stringify(r));

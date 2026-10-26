@@ -48,6 +48,12 @@ describe('account deletion plan covers the PM-252 gaps by both identities', () =
     }
   });
 
+  test('premium theme video watch counter is deleted by stable document id', () => {
+    const direct = accountDeleteDirectDocumentPlan(STABLE, AUTH);
+    expect(direct).toContainEqual({ collection: 'premium_theme_video_watch', id: STABLE });
+    expect(direct).not.toContainEqual({ collection: 'premium_theme_video_watch', id: AUTH });
+  });
+
   // зачем (координатор 15.10, 3705b3984): метка «посчитан» статистики экрана уровня онбординга адресована stableId — стирается с аккаунтом.
   test('the onboarding level «counted» marker is deleted by the stable id', () => {
     const direct = accountDeleteDirectDocumentPlan(STABLE, AUTH);

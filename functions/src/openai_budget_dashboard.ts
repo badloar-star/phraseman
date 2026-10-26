@@ -5,7 +5,8 @@ import { ENFORCE_APP_CHECK } from './callable_options';
 const REGION = 'us-central1';
 const DAY_MS = 24 * 60 * 60 * 1000;
 const MAX_DAYS = 90;
-const MAX_DOCS_PER_COLLECTION = 2000;
+const MAX_DOCS_PER_COLLECTION = 10000;
+const PAGE_SIZE = 500;
 const VOICE_SPLIT_TEXT_PRICE_DATE = '2026-08-21';
 const VOICE_LEGACY_TEXT_PER_M = 0.6;
 const VOICE_OUTPUT_TEXT_PER_M = 2.4;
@@ -19,7 +20,7 @@ type UsageRow = {
   inputTokens: number;
   outputTokens: number;
   totalTokens: number;
-  costUsd: number;
+  costUsd: number | null;
   uid: string;
   createdAtMs: number;
 };
@@ -47,7 +48,7 @@ function clampDays(value: unknown): number {
 }
 
 function createdMs(data: FirebaseFirestore.DocumentData): number {
-  const direct = num(data.createdAtMs);
+  const direct = num(data.createdAtMs) || num(data.receivedAtMs);
   if (direct) return direct;
   const ts = data.createdAt;
   if (ts && typeof ts.toMillis === 'function') {
@@ -57,12 +58,14 @@ function createdMs(data: FirebaseFirestore.DocumentData): number {
   return Number.isFinite(parsed) ? parsed : 0;
 }
 
-function priceFor(model: string): Price {
-  return OPENAI_MODEL_PRICES[model] || OPENAI_MODEL_PRICES['gpt-4.1-nano'];
+function priceFor(model: string): Price | undefined {
+  const key=Object.keys(OPENAI_MODEL_PRICES).sort((a,b)=>b.length-a.length).find(key=>model===key || (model.startsWith(key+'-') && /^\d{4}-\d{2}-\d{2}$/.test(model.slice(key.length+1))));
+  return key ? OPENAI_MODEL_PRICES[key] : undefined;
 }
 
-function costUsd(model: string, inputTokens: number, outputTokens: number): number {
+function costUsd(model: string, inputTokens: number, outputTokens: number): number | null {
   const p = priceFor(model);
+  if(!p || inputTokens+outputTokens===0) return null;
   return (inputTokens / 1_000_000) * p.input + (outputTokens / 1_000_000) * p.output;
 }
 
@@ -72,7 +75,8 @@ export function usageFromDoc(
   snap: FirebaseFirestore.QueryDocumentSnapshot,
 ): UsageRow {
   const data = snap.data() || {};
-  const model = text(data.model, 80) || 'gpt-4o-mini';
+  const model = text(data.model, 80) || 'unknown';
+  const storedCost=typeof data.estCostUsd==='number' && Number.isFinite(data.estCostUsd) && data.estCostUsd>=0 ? data.estCostUsd : null;
 
   if (collectionName === 'voice_call_billing') {
     const hasSplitTextFields = Object.prototype.hasOwnProperty.call(data, 'textInputTokens')
@@ -105,7 +109,7 @@ export function usageFromDoc(
       totalTokens: inputTokens + outputTokens,
       // Это all-in сумма: Realtime audio/text + cached + transcription.
       // Пересчёт общей chat-формулой потерял бы почти всю стоимость звонка.
-      costUsd: num(data.estCostUsd) + legacyTextPriceCorrectionUsd,
+      costUsd: storedCost===null ? null : storedCost + legacyTextPriceCorrectionUsd,
       uid: text(data.uid || data.authUid, 120),
       createdAtMs: createdMs(data),
     };
@@ -123,7 +127,7 @@ export function usageFromDoc(
       inputTokens,
       outputTokens,
       totalTokens: num(data.totalTokens) || inputTokens + outputTokens,
-      costUsd: costUsd(model, inputTokens, outputTokens),
+      costUsd: storedCost ?? (num(data.inputChars)>0 ? null : costUsd(model, inputTokens, outputTokens)),
       uid: text(data.uid, 120),
       createdAtMs: createdMs(data),
     };
@@ -141,7 +145,7 @@ export function usageFromDoc(
       inputTokens: characters,
       outputTokens: 0,
       totalTokens: characters,
-      costUsd: num(data.estCostUsd),
+      costUsd: storedCost,
       uid: '',
       createdAtMs: createdMs(data),
     };
@@ -164,45 +168,51 @@ export function usageFromDoc(
     inputTokens,
     outputTokens,
     totalTokens,
-    costUsd: costUsd(model, inputTokens, outputTokens),
+    costUsd: storedCost ?? (num(data.inputChars)>0 ? null : costUsd(model, inputTokens, outputTokens)),
     uid: text(data.uid || data.authUid, 120),
     createdAtMs: createdMs(data),
   };
 }
 
-async function openAiBudgetSafeGetDocs(
+export async function openAiBudgetSafeGetDocs(
   collectionName: string,
   fromMs: number,
+  nowMs: number,
 ): Promise<{ docs: FirebaseFirestore.QueryDocumentSnapshot[]; error?: string; truncated?: boolean; totalCount?: number }> {
   try {
+    const timeField=collectionName==='weekly_review_billing'?'receivedAtMs':(['stats_insights_billing','compass_billing'].includes(collectionName)?'createdAt':'createdAtMs');
+    const from=timeField==='createdAt'?admin.firestore.Timestamp.fromMillis(fromMs):fromMs;
+    const to=timeField==='createdAt'?admin.firestore.Timestamp.fromMillis(nowMs):nowMs;
     const base = admin.firestore()
       .collection(collectionName)
-      .where('createdAtMs', '>=', fromMs);
-    // зачем: удешевление 2026-08-24 — раньше дашборд молча резал каждую
-    // коллекцию до MAX_DOCS_PER_COLLECTION документов без индикации: при росте
-    // трафика (напр. диалоги на новых капах 10/200) владелец увидел бы заниженную
-    // сумму и не узнал бы об этом. count() — ОДНА операция чтения независимо от
-    // числа документов (агрегирующий запрос Firestore), поэтому проверка точного
-    // числа практически бесплатна рядом с уже идущим .limit()-запросом.
-    const [snap, countSnap] = await Promise.all([
-      base.limit(MAX_DOCS_PER_COLLECTION).get(),
-      base.count().get(),
-    ]);
-    const totalCount = countSnap.data().count;
-    return { docs: snap.docs, totalCount, truncated: totalCount > snap.docs.length };
+      .where(timeField, '>=', from);
+    const bounded=base.where(timeField,'<=',to).orderBy(timeField,'desc');
+    const countSnap=await bounded.count().get();
+    const totalCount=countSnap.data().count;
+    const docs: FirebaseFirestore.QueryDocumentSnapshot[]=[];
+    let cursor: FirebaseFirestore.QueryDocumentSnapshot | undefined;
+    while(docs.length<Math.min(totalCount,MAX_DOCS_PER_COLLECTION)) {
+      let query=bounded.limit(Math.min(PAGE_SIZE,MAX_DOCS_PER_COLLECTION-docs.length));
+      if(cursor)query=query.startAfter(cursor);
+      const snap=await query.get();
+      if(snap.empty)break;
+      docs.push(...snap.docs);cursor=snap.docs[snap.docs.length-1];
+      if(snap.size<PAGE_SIZE)break;
+    }
+    return {docs,totalCount,truncated:totalCount>docs.length};
   } catch (e) {
     console.warn('openAiBudgetSafeGetDocs failed', collectionName, e);
     return { docs: [], error: e instanceof Error ? e.message : String(e) };
   }
 }
 
-function aggregate(rows: UsageRow[], rangeDays: number) {
+export function aggregate(rows: UsageRow[], rangeDays: number, nowMs = Date.now()) {
   const total = rows.reduce((acc, row) => {
     acc.calls += 1;
     acc.inputTokens += row.inputTokens;
     acc.outputTokens += row.outputTokens;
     acc.totalTokens += row.totalTokens;
-    acc.costUsd += row.costUsd;
+    acc.costUsd += row.costUsd ?? 0;
     if (row.uid) acc.uniqueUsers.add(row.uid);
     return acc;
   }, {
@@ -230,7 +240,7 @@ function aggregate(rows: UsageRow[], rangeDays: number) {
       cur.inputTokens += row.inputTokens;
       cur.outputTokens += row.outputTokens;
       cur.totalTokens += row.totalTokens;
-      cur.costUsd += row.costUsd;
+      cur.costUsd += row.costUsd ?? 0;
       if (row.uid) cur.uniqueUsers.add(row.uid);
       map.set(label, cur);
     }
@@ -255,14 +265,14 @@ function aggregate(rows: UsageRow[], rangeDays: number) {
   for (const row of rows) {
     const key = dayKey(row.createdAtMs);
     const cur = seriesMap.get(key) || { costUsd: 0, calls: 0, totalTokens: 0 };
-    cur.costUsd += row.costUsd;
+    cur.costUsd += row.costUsd ?? 0;
     cur.calls += 1;
     cur.totalTokens += row.totalTokens;
     seriesMap.set(key, cur);
   }
   // Заполняем весь диапазон днями (включая нулевые), чтобы график не «рвался».
   const series: Array<{ date: string; costUsd: number; calls: number; totalTokens: number }> = [];
-  const startMs = Date.now() - (rangeDays - 1) * DAY_MS;
+  const startMs = Math.floor(nowMs / DAY_MS) * DAY_MS - (rangeDays - 1) * DAY_MS;
   for (let i = 0; i < rangeDays; i += 1) {
     const key = dayKey(startMs + i * DAY_MS);
     const v = seriesMap.get(key) || { costUsd: 0, calls: 0, totalTokens: 0 };
@@ -272,6 +282,7 @@ function aggregate(rows: UsageRow[], rangeDays: number) {
   return {
     totals: {
       calls: total.calls,
+      unpricedCalls: rows.filter(row=>row.costUsd===null).length,
       inputTokens: total.inputTokens,
       outputTokens: total.outputTokens,
       totalTokens: total.totalTokens,
@@ -285,6 +296,7 @@ function aggregate(rows: UsageRow[], rangeDays: number) {
   };
 }
 
+const budgetCache = new Map<number,{at:number;value:unknown}>();
 export const openAiBudgetDashboard = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
   if (!request.auth?.token?.admin) {
     throw new HttpsError('permission-denied', 'Admin only');
@@ -292,7 +304,10 @@ export const openAiBudgetDashboard = onCall({ region: REGION, enforceAppCheck: E
 
   const rangeDays = clampDays(request.data?.rangeDays);
   const now = Date.now();
-  const fromMs = now - rangeDays * DAY_MS;
+  const cached=budgetCache.get(rangeDays);
+  if(request.data?.force!==true && cached && now-cached.at<60000) return cached.value;
+  for(const [key,entry] of budgetCache)if(now-entry.at>=60000)budgetCache.delete(key);
+  const fromMs = Math.floor(now / DAY_MS) * DAY_MS - (rangeDays - 1) * DAY_MS;
 
   // ВСЕ billing-коллекции проекта. Раньше читались только первые 4 — из-за чего
   // дашборд недосчитывал >60% реальных трат (7 фич были не видны). Теперь честно
@@ -319,19 +334,22 @@ export const openAiBudgetDashboard = onCall({ region: REGION, enforceAppCheck: E
   ];
 
   const fetchedDocs = await Promise.all(
-    SOURCES.map((s) => openAiBudgetSafeGetDocs(s.collection, fromMs)),
+    SOURCES.map((s) => openAiBudgetSafeGetDocs(s.collection, fromMs, now)),
   );
   const fetched = SOURCES.map((s, i) => ({ ...s, ...fetchedDocs[i] }));
 
   const rows = fetched.flatMap((item) => item.docs.map((snap) => usageFromDoc(item.collection, item.feature, snap)))
     .filter((row) => row.createdAtMs >= fromMs)
     .sort((a, b) => b.createdAtMs - a.createdAtMs);
-  const agg = aggregate(rows, rangeDays);
+  const agg = aggregate(rows, rangeDays, now);
 
-  return {
+  const result = {
     ok: true,
     rangeDays,
     generatedAtMs: now,
+    fromMs,
+    scope: 'recorded_usage_estimate',
+    unpriced: rows.filter(row=>row.costUsd===null).map(row=>({model:row.model,feature:row.feature})).reduce((acc, row)=>{const found=acc.find(x=>x.model===row.model&&x.feature===row.feature);if(found)found.calls++;else acc.push({...row,calls:1});return acc;},[] as Array<{model:string;feature:string;calls:number}>),
     prices: OPENAI_MODEL_PRICES,
     ...agg,
     recent: rows.slice(0, 25),
@@ -344,4 +362,6 @@ export const openAiBudgetDashboard = onCall({ region: REGION, enforceAppCheck: E
       .filter((item) => item.truncated)
       .map((item) => ({ collection: item.collection, feature: item.feature, totalCount: item.totalCount ?? null, shownCount: item.docs.length })),
   };
+  if(!result.errors.length)budgetCache.set(rangeDays,{at:now,value:result});
+  return result;
 });

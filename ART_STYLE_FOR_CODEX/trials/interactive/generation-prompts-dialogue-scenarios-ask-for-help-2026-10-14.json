@@ -1,0 +1,14 @@
+{
+  "tool": "built-in image_gen; no project API key used",
+  "scenarioId": "ask_for_help",
+  "candidatePrefix": "dialog_scene_ask_for_help_option_",
+  "concepts": [
+    "life ring with inset marker",
+    "blank help bubble with raised question glyph",
+    "open support case with folded blanket",
+    "rescue whistle",
+    "carabiner with short rope loop"
+  ],
+  "style": "S2 neutral graphite clay / derived warm ivory, true alpha, separate white accent, no people",
+  "status": "Five candidates generated for dark/light; measurements are in ask-for-help-preparation-dark.log and ask-for-help-preparation-light.log. None owner-approved."
+}

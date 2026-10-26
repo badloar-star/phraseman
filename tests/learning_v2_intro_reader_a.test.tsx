@@ -4,8 +4,9 @@ import { StyleSheet } from "react-native";
 import LearningV2SessionIntro from "../app/learning_v2_session_intro";
 import { INDIGO } from "../constants/theme";
 import { liquidGlassTokens } from "../constants/liquidGlassThemePalette";
-import { LV2_GOOD } from "../components/learning-v2/LearningV2Glass";
 import type { LessonIntroScreen } from "../app/lesson_data_types";
+
+/* eslint-disable @typescript-eslint/no-require-imports -- Jest mock factories load their mocked modules at runtime. */
 
 jest.mock("react-native", () => ({
   View: "View",
@@ -88,8 +89,19 @@ jest.mock("../components/PressableHybrid", () => {
     );
   };
 });
-jest.mock("react-native-reanimated", () => {
+// зачем (владелец 22.10, вариант В: «✕ в одном месте»): ✕ интро — общий ScreenCloseButton (навигация, системная «назад»); здесь его
+// подменяет простая кнопка с тем же testID — проверяем зону 48 и то, что ✕ ведёт в onBack
+jest.mock("../components/v2/ScreenBackButton", () => {
   const React = require("react");
+  const { Pressable, View } = require("react-native");
+  return {
+    SCREEN_BACK_SIZE: 48,
+    ScreenBackSlot: () => React.createElement(View, { style: { width: 48, height: 48 } }),
+    ScreenCloseButton: ({ testID, onPress, accessibilityLabel }: any) =>
+      React.createElement(Pressable, { testID, onPress, accessibilityLabel, style: { minWidth: 48, minHeight: 48 } }),
+  };
+});
+jest.mock("react-native-reanimated", () => {
   const { View } = require("react-native");
   const animation = {
     duration: () => animation,
@@ -230,9 +242,10 @@ describe("Learning V2 intro Reader A", () => {
     expect(wrong.props.accessibilityLabel).toContain("неверный пример");
 
     const close = view.getByTestId("learning-v2-intro-close");
+    // 22.10: ✕ — общий ScreenCloseButton (круг 48 в общей точке); зона нажатия не меньше 44
     expect(StyleSheet.flatten(close.props.style)).toMatchObject({
-      minWidth: 44,
-      minHeight: 44,
+      minWidth: 48,
+      minHeight: 48,
     });
 
     const next = view.getByTestId("learning-v2-intro-next");
@@ -240,11 +253,11 @@ describe("Learning V2 intro Reader A", () => {
     await fireEvent.press(view.getByTestId("learning-v2-intro-answer-0"));
     await fireEvent.press(view.getByTestId("learning-v2-intro-answer-1"));
     expect(view.getByText("После I нужна связка am.")).toBeTruthy();
-    expect(view.getByText("Am here")).toBeTruthy();
-    expect(view.getByText("Am · глагол-связка · форма be")).toBeTruthy();
-    expect(view.getByText("Am here → I am here.")).toBeTruthy();
+    expect(view.queryByTestId("learning-v2-text-analysis")).toBeNull();
+    expect(view.queryByText("Am here → I am here.")).toBeNull();
     await fireEvent.press(view.getByTestId("learning-v2-intro-answer-2"));
     expect(view.getByTestId("learning-v2-intro-next").props.accessibilityState.disabled).toBe(false);
+    expect(view.queryByTestId("learning-v2-text-analysis")).toBeNull();
     expect(JSON.stringify(view.toJSON()).toLowerCase()).not.toContain("сесси");
   });
 
@@ -323,6 +336,6 @@ describe("Learning V2 intro Reader A", () => {
     const okMarker = StyleSheet.flatten(
       view.getByTestId("learning-v2-intro-part-1-0").props.style,
     );
-    expect(okMarker.color).toBe(LV2_GOOD);
+    expect(okMarker.color).toBe(glass.good);
   });
 });

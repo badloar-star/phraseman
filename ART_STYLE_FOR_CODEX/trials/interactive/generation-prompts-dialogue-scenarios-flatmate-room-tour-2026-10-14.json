@@ -1,0 +1,14 @@
+{
+  "scenario": "flatmate_room_tour",
+  "title": "Показать комнату",
+  "generatedAt": "2026-10-14",
+  "style": "S2 matte clay",
+  "variants": [
+    "open doorway frame with hanging room key",
+    "reading chair, floor lamp, and window token",
+    "blank floor-plan tile with key in one corner",
+    "folded bed cover with bedside lamp and shelf",
+    "apartment door plaque, key, and potted-leaf form"
+  ],
+  "constraints": ["true transparent RGBA", "no people, text or environment scene", "cyan internal marker for separate white accent extraction", "dark/light trial pairs", "trial location only"]
+}

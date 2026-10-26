@@ -610,6 +610,7 @@ export {
 } from "./community_packs";
 // зачем (04.10, сессия 3 «Карточки»): удаление одной карточки из своего опубликованного набора.
 export { communityAuthorRemoveCard } from "./community_pack_card_remove";
+export { communityMonthGetRanking, communityMonthFinalize, communityMonthGetRewards, communityMonthClaimReward } from './community_month_contest';
 
 // D128 (2026-09-30): озвучка одобренных наборов карточек через OpenAI TTS.
 // Деплой — только после релиза клиента 2.0 (D91), прицельно:
@@ -705,6 +706,8 @@ export {
 export { openAiBudgetDashboard } from "./openai_budget_dashboard";
 export { adminProductAnalytics } from "./admin_product_analytics";
 export { adminSubscriptionAnalytics } from "./admin_subscription_analytics";
+export { adminGetProductStatistics } from "./admin_statistics";
+export { adminStaffIsolatedSession } from "./admin_staff_isolated_endpoint";
 export { adminMonthlyDecisionPack } from "./admin_monthly_decision_pack";
 export { adminGetAnalyticsSnapshot } from "./admin_analytics";
 export { adminGetRevenueCatOverviewMetrics } from "./admin_revenuecat_overview";
@@ -1047,7 +1050,6 @@ export {
   premiumThemeConditionClaim,
   premiumThemeVideoWatchReport,
 } from "./premium_themes";
-
 // зачем (D78/PM-080, Q109): videoWatchRunesClaim (руны за просмотр видео) удалена вместе
 // с кодом. В облаке функция доживает до min_app_version >= 2.0 (её зовёт 1.6.24) —
 // см. DEPLOY_NOW.md, Шаг 2. Полная выкладка предложит её удалить — до релиза отвечать «нет».
@@ -1196,3 +1198,7 @@ export { adminStoryAnnouncementsList, adminStoryAnnouncementCommand, storyAnnoun
 
 // Admin Hosting uses this bounded read-only projection. The separate admin codebase is not configured for deployment yet.
 export { adminListOpsLog } from './admin_ops_log';
+
+// Server-backed staff membership foundation. No legacy admin claim is granted.
+export { adminStaffGetSession, adminStaffSetMembership, adminStaffResolveIdentity, adminStaffListMemberships } from './admin_staff_membership';
+export { adminStaffCreateInvitation, adminStaffListInvitations, adminStaffRevokeInvitation } from './admin_staff_invitation';

@@ -1,0 +1,17 @@
+{
+  "iconId": "ui_01_01",
+  "label": "закрыть",
+  "style": "S2 matte clay",
+  "options": 5,
+  "themeModes": ["dark", "light"],
+  "transparentBackground": true,
+  "concepts": [
+    "crossed rounded bars with no tile",
+    "negative-space X cut through a rounded-square token",
+    "four tapered arms meeting as a diagonal cross",
+    "broad beveled X with rounded tips",
+    "slim curved blades crossing without a button tile"
+  ],
+  "segmentation": "Small cyan front-surface inlay extracted to its own white accent layer; light variants derived from corresponding dark forms.",
+  "qualityNote": "All ten dark/light pairs preserve alpha and pass the 1-8% accent-size plus alignment checks. The five variants are available in the interactive workbench."
+}

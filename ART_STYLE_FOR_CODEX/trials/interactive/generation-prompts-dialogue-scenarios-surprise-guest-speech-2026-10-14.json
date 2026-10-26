@@ -1,0 +1,14 @@
+{
+  "scenario": "surprise_guest_speech",
+  "title": "Тебе вручили микрофон",
+  "generatedAt": "2026-10-14",
+  "style": "S2 matte clay",
+  "variants": [
+    "microphone rising from a closed ribboned gift box",
+    "microphone resting on a tiny empty podium",
+    "microphone wrapped by a curling blank party ribbon",
+    "mic stand beside a toppled blank party hat",
+    "microphone emerging from an open envelope with confetti discs"
+  ],
+  "constraints": ["true transparent RGBA", "no people, hands, text or stage scene", "cyan internal marker for separate white accent extraction", "dark and light trial pairs", "trial location only"]
+}

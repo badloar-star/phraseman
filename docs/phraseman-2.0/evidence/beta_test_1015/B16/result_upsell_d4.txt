@@ -1,0 +1,2 @@
+ждём: пейвол notification_upsell
+10-15 14:36:01.933 I/ReactNativeJS( 9081): [PUSH-TAP-DEV] simulate {"type":"upsell_d4"}

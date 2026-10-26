@@ -1,0 +1,14 @@
+{
+  "scenario": "video_call_now",
+  "title": "Что происходит сейчас",
+  "generatedAt": "2026-10-14",
+  "style": "S2 matte clay",
+  "variants": [
+    "video-call tile with live waveform inset",
+    "lens module and offset blank conversation tiles",
+    "webcam silhouette linked to now-marker disc",
+    "blank call window with lens and cyan status notch",
+    "camera lens nested in speech bubble with open arc"
+  ],
+  "constraints": ["true transparent RGBA", "no people, faces or text/UI screenshot", "cyan internal marker for separate white accent extraction", "dark/light trial pairs", "trial location only"]
+}

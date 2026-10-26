@@ -1,0 +1,14 @@
+{
+  "tool": "built-in image_gen; no project API key used",
+  "scenarioId": "hotel_checkin",
+  "candidatePrefix": "dialog_scene_hotel_checkin_option_",
+  "concepts": [
+    "upright keycard with blank-face marker",
+    "front-facing compact suitcase",
+    "room key with blank key tag",
+    "closed reception folio",
+    "service bell with front medallion"
+  ],
+  "style": "S2 matte graphite clay, derived warm ivory counterpart, true alpha and separate white accent",
+  "status": "Five options generated for dark/light. Per-mode alignment and size results are recorded in hotel-checkin-preparation-dark.log and hotel-checkin-preparation-light.log. None is owner-approved."
+}

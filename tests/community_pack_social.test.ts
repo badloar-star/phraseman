@@ -8,6 +8,7 @@
 import { readFileSync } from 'fs';
 import path from 'path';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { beginAccountGeneration, __resetAccountGenerationForTests } from '../app/account_generation';
 import {
   COMMUNITY_PACK_ADDS_SUBCOLLECTION,
   COMMUNITY_PACK_LIKES_SUBCOLLECTION,
@@ -122,6 +123,7 @@ describe('лайк набора идемпотентен', () => {
 });
 
 describe('счётчик добавлений дедуплицируется по пользователю', () => {
+  beforeEach(() => { __resetAccountGenerationForTests(); beginAccountGeneration('social-test-user'); });
   test('повторное добавление тем же пользователем не увеличивает addedCount', async () => {
     const m = memoryTx();
     const first = await applyPackAdd(m.tx, 'p1', 'u1');

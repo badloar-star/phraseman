@@ -1,0 +1,5 @@
+10-15 15:05:25.272 I/ReactNativeJS(14295): [MISTAKES-FLOW] хаб → тренировка: шторка=2 готово=2 группа=all источник=демо-снимок dev (mistakes=demo)
+10-15 15:05:27.930 I/ReactNativeJS(14295): [MISTAKES-FLOW] тренировка: вход=hub шторка=2 собрано=6 очередь=6 счётчик=0/6 старая сессия=false демо хаба=true → РАСХОЖДЕНИЕ: хаб показывал демо-снимок dev
+10-15 15:05:30.859 I/ReactNativeJS(14295): [MISTAKES-FLOW] крестик: вход=hub источник=cards запасной путь=/mistakes_hub
+10-15 15:05:30.862 W/ReactNativeJS(14295): '[NAV-BACK] candidate:reset', '{"reason":"no_candidate","leaving":"/mistake_practice_session","leavingSection":"flashcards","candidate":null,"candidateSection":null}', { [Stack] name: 'Stack' }
+10-15 15:05:30.864 W/ReactNativeJS(14295): '[NAV-BACK] decision', '{"leaving":"/mistake_practice_session","leavingSection":"flashcards","candidate":null,"chosen":"/mistakes_hub","fallback":"/mistakes_hub","method":"dismiss_to"}', { [Stack] name: 'Stack' }

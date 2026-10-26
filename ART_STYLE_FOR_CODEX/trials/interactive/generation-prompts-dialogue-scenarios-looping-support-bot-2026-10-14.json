@@ -1,0 +1,14 @@
+{
+  "scenario": "looping_support_bot",
+  "title": "Бот поддержки ходит по кругу",
+  "generatedAt": "2026-10-14",
+  "style": "S2 matte clay",
+  "variants": [
+    "return arrow nested in speech bubble",
+    "stack of repeated blank support cards in a loop",
+    "faceless chatbot device with internal loop track",
+    "three message tiles connected into a circular route",
+    "two message blocks linked by loop line with broken endpoint"
+  ],
+  "constraints": ["true transparent RGBA", "no people, faces or text", "cyan internal marker for separate white accent extraction", "dark/light trial pairs", "trial location only"]
+}

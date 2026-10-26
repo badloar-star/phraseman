@@ -5,6 +5,10 @@ Governance-ID: TG-D5DFC34F2B94
 Governance-ID: TG-BEFF3D1C0C56
 Governance-ID: TG-6210FE02D210
 Governance-ID: TG-1CAEB7FFAB3B
+Governance-ID: TG-7465F573C765
+Governance-ID: TG-D6B9A95E21F8
+Governance-ID: TG-2A24D8BA9732
+Governance-ID: TG-4406560C0067
 Status: Готово — 74b488a48 (приложение, тесты, pre-commit-сторож), 680974d97 (генераторы и гейты)
 Owner: 5 · ВХОД И АККАУНТ (задание Codex № 5 передано владельцем 22.10: Codex без токенов)
 

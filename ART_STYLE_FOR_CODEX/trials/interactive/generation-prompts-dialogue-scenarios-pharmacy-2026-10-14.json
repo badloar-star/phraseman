@@ -1,0 +1,14 @@
+{
+  "tool": "built-in image_gen; no project API key used",
+  "scenarioId": "pharmacy",
+  "candidatePrefix": "dialog_scene_pharmacy_option_",
+  "concepts": [
+    "medicine bottle with blank front label",
+    "single capsule with inset end marker",
+    "compact first-aid case with front cross",
+    "dropper bottle with front inset",
+    "blister pack with one marked cavity"
+  ],
+  "style": "S2 matte monochrome clay, transparent background, cyan temporary accent marker extracted to white layer, derived warm-ivory light pair",
+  "status": "Five options generated for dark/light. Each remains an unapproved draft pending the recorded per-mode alpha/accent gates and owner visual review. See pharmacy-preparation-dark.log and pharmacy-preparation-light.log."
+}

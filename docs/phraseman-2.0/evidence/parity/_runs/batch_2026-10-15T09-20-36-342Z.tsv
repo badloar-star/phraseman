@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+community-019	2026-10-15T09:21:27.927Z	error	19828	step_target_not_found:#friends-open-add+ждали_metro_42мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-15T09-20-36-342Z/community-019.error.png	0

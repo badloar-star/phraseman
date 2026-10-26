@@ -1,0 +1,27 @@
+{
+  "tool": "built-in image_gen; no project API key used",
+  "mode": "light",
+  "sourceGroups": ["continue options 2–5", "phrase options 3–5", "mistakes options 2–5"],
+  "method": "Per-option dark S2 clay reference; built-in image_gen ivory material edition with cyan temporary marker; exact marker extraction through prepare-clay-candidates.mjs.",
+  "measurements": {
+    "continue": {
+      "2": {"accentFramePct": 0.817, "alignment": "pass"},
+      "3": {"accentFramePct": 0.939, "alignment": "pass"},
+      "4": {"accentFramePct": 1.496, "alignment": "pass"},
+      "5": {"accentFramePct": 1.999, "alignment": "fail", "interiorEdgePct": 14.3, "limitPct": 12}
+    },
+    "phrase_of_day": {
+      "3": {"accentFramePct": 0.493, "alignment": "pass"},
+      "4": {"accentFramePct": 0.899, "alignment": "pass"},
+      "5": {"accentFramePct": 0.417, "alignment": "fail", "interiorEdgePct": 13.1, "limitPct": 12}
+    },
+    "mistakes_entry": {
+      "2": {"accentFramePct": 0.993, "alignment": "pass"},
+      "3": {"accentFramePct": 0.571, "alignment": "pass"},
+      "4": {"accentFramePct": 0.422, "alignment": "pass"},
+      "5": {"accentFramePct": 0.458, "alignment": "pass"}
+    }
+  },
+  "acceptance": "Continue 4 is an asset-check pass; nine options are below 1% mask area; Continue 5 and Phrase 5 exceed the 12% interior-edge mismatch limit. No candidate is production-selected; visual review is pending.",
+  "prompt": "Faithfully create the light-material edition of this exact selected dark clay option. Preserve its unique concept, silhouette, geometry, proportions, camera and centered position. Recolor charcoal to warm ivory clay/ceramic with neutral grey relief shadows. Add one simple cyan temporary mask marker only on a raised facet, broad enough for 2–4% full-canvas coverage, away from edges and holes. The marker will be extracted as a separate white .accent layer; preserve its contour. True transparent alpha; no cyan elsewhere, text, debris, or invented geometry. 1024×1024."
+}

@@ -28,6 +28,7 @@ import {
   buildV2ActivitySessionProjection,
   parseV2ActivitySessionProjectionSource,
 } from "./v2_activity_session_projection";
+import { LEARNING_V2_SCRIPTED_REPEAT_AFTER_FIRST_ATTEMPT_REVEAL_POLICY_V1 } from "../../../modules/learning-v2/contracts/mode_native_payload_v1";
 
 const families = [
   "phrase_builder",
@@ -424,18 +425,50 @@ describe("Learning V2 per-session projection boundary", () => {
       ),
     ).toThrow("v2_activity_session_independent_answer_leak");
 
-    const scripted = fixture() as any;
+    const scripted = fixture(4) as any;
     scripted.session.tasks[9].family = "scripted_repeat_compare";
     scripted.session.tasks[9].inputMode = "scripted_speech";
+    scripted.session.tasks[9].evaluator.inputKind = "transcript";
+    scripted.session.tasks[9].scriptedRepeatRevealPolicy =
+      LEARNING_V2_SCRIPTED_REPEAT_AFTER_FIRST_ATTEMPT_REVEAL_POLICY_V1;
     scripted.session.tasks[9].scriptedAlternate = {
       alternateId: "independent-scripted-alternate",
       instruction: "Use the non-authoritative scripted fallback",
       voiceEvidenceEquivalent: false,
       canAward: false,
     };
+    const trustedScripted = parseV2ActivitySessionProjectionSource(
+      canonicalJsonV1(scripted),
+    );
+    expect(
+      buildV2ActivitySessionProjection(trustedScripted).renderSeed.session
+        .tasks[9].scriptedRepeatRevealPolicy,
+    ).toEqual(
+      LEARNING_V2_SCRIPTED_REPEAT_AFTER_FIRST_ATTEMPT_REVEAL_POLICY_V1,
+    );
+
+    const missingPolicy = fixture(4) as any;
+    missingPolicy.session.tasks[9].family = "scripted_repeat_compare";
+    missingPolicy.session.tasks[9].inputMode = "scripted_speech";
+    missingPolicy.session.tasks[9].evaluator.inputKind = "transcript";
+    missingPolicy.session.tasks[9].scriptedAlternate = {
+      alternateId: "independent-scripted-missing-policy",
+      instruction: "Use the non-authoritative scripted fallback",
+      voiceEvidenceEquivalent: false,
+      canAward: false,
+    };
     expect(() =>
-      parseV2ActivitySessionProjectionSource(canonicalJsonV1(scripted)),
-    ).toThrow("v2_activity_session_independent_scripted_repeat_invalid");
+      parseV2ActivitySessionProjectionSource(canonicalJsonV1(missingPolicy)),
+    ).toThrow("v2_activity_session_independent_scripted_repeat_reveal_invalid");
+
+    const legacyPolicy = JSON.parse(JSON.stringify(scripted));
+    legacyPolicy.session.tasks[9].scriptedRepeatRevealPolicy = {
+      ...LEARNING_V2_SCRIPTED_REPEAT_AFTER_FIRST_ATTEMPT_REVEAL_POLICY_V1,
+      answerExposedBeforeAttempt: true,
+    };
+    expect(() =>
+      parseV2ActivitySessionProjectionSource(canonicalJsonV1(legacyPolicy)),
+    ).toThrow("v2_activity_session_scripted_repeat_reveal_policy_invalid");
   });
 
   it("allows a scripted alternate only for the exact audio-failure family policy", () => {

@@ -195,6 +195,7 @@ export function mapCommunityPackDocToMarket(
     previewWords: packPreviewWords(data.cards, communityPackDocLanguage(data)),
     isOfficial: false,
     isCommunityUgc: true,
+    firstPublishedAtMs: typeof data.publishedAt === 'number' && Number.isFinite(data.publishedAt) ? data.publishedAt : undefined,
     updatedAt: typeof data.updatedAt === 'number' ? new Date(data.updatedAt).toISOString() : new Date().toISOString(),
   };
 }

@@ -1,0 +1,2 @@
+ждём: Управление Plus
+10-15 14:37:45.692 I/ReactNativeJS( 9866): [PUSH-TAP-DEV] simulate {"type":"premium_expiry_reminder"}

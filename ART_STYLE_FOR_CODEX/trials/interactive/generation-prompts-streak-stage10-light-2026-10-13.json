@@ -1,0 +1,14 @@
+{
+  "tool": "built-in image_gen; no project API key used",
+  "mode": "light",
+  "stage": 10,
+  "tierDays": 90,
+  "prompts": [
+    {"asset":"light/streak_10_option_01r1","reference":"dark/streak_10_option_01","prompt":"Light ivory-clay adaptation of exact multi-lobed flame, preserving all details and cyan inset."},
+    {"asset":"light/streak_10_option_02r1","reference":"dark/streak_10_option_02","prompt":"Light ivory-clay adaptation of exact open loop, preserving the transparent center and cyan crescent."},
+    {"asset":"light/streak_10_option_03r1","reference":"dark/streak_10_option_03","prompt":"Light ivory-clay adaptation of exact flame silhouette, preserving curves, proportions and cyan inset."},
+    {"asset":"light/streak_10_option_04r1","reference":"dark/streak_10_option_04","prompt":"Light ivory-clay adaptation of exact sculpted flame/plaque, preserving geometry and inset marker."},
+    {"asset":"light/streak_10_option_05r1","reference":"dark/streak_10_option_05","prompt":"Light ivory-clay adaptation of exact flame silhouette, preserving geometry and cyan inset."}
+  ],
+  "acceptance": "All five sources have true alpha and separately prepared aligned white accent layers. Accent area: 5.033%, 1.242%, 3.386%, 1.274%, 2.265%. Visual drafts due generated edge fragments; no cleanup performed."
+}

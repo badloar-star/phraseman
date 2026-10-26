@@ -1,0 +1,72 @@
+10-15 14:15:55.435 I/ReactNativeJS( 5456): [FIRESTORE-FIRST-TOUCH] installed default:locked(TypeError) getFirestore:locked(TypeError) ms=1056572
+10-15 14:15:57.148 W/ReactNativeJS( 5456): [JS-STALL] +1294ms поток стоял 1292ms (с +2ms)
+10-15 14:15:57.995 W/ReactNativeJS( 5456): [JS-STALL] +2142ms поток стоял 815ms (с +1327ms)
+10-15 14:15:58.542 W/ReactNativeJS( 5456): [JS-STALL] +2690ms поток стоял 546ms (с +2144ms)
+10-15 14:15:59.377 W/ReactNativeJS( 5456): [JS-STALL] +3524ms поток стоял 834ms (с +2690ms)
+10-15 14:15:59.939 W/ReactNativeJS( 5456): [JS-STALL] +4083ms поток стоял 559ms (с +3524ms)
+10-15 14:16:00.458 W/ReactNativeJS( 5456): [JS-STALL] +4605ms поток стоял 302ms (с +4303ms)
+10-15 14:16:01.077 W/ReactNativeJS( 5456): [JS-STALL] +5222ms поток стоял 608ms (с +4614ms)
+10-15 14:16:01.079 W/ReactNativeJS( 5456): [JS-STALL] heartbeat +5222ms splash=hidden@+4726ms
+10-15 14:16:02.851 W/ReactNativeJS( 5456): [JS-STALL] +6998ms поток стоял 1776ms (с +5222ms)
+10-15 14:16:03.223 W/ReactNativeJS( 5456): [JS-STALL] +7371ms поток стоял 373ms (с +6998ms)
+10-15 14:16:04.061 W/ReactNativeJS( 5456): [JS-STALL] +8208ms поток стоял 380ms (с +7828ms)
+10-15 14:16:04.888 W/ReactNativeJS( 5456): [JS-STALL] +9032ms поток стоял 365ms (с +8667ms)
+10-15 14:16:04.889 W/ReactNativeJS( 5456): [JS-STALL] onboarding step=welcome поток стоял 369ms
+10-15 14:16:06.146 W/ReactNativeJS( 5456): [JS-STALL] heartbeat +10293ms splash=hidden@+4726ms
+10-15 14:16:08.022 W/ReactNativeJS( 5456): [JS-STALL] onboarding step=welcome поток стоял 1506ms
+10-15 14:16:08.024 W/ReactNativeJS( 5456): [JS-STALL] +12171ms поток стоял 1507ms (с +10664ms)
+10-15 14:16:08.321 W/ReactNativeJS( 5456): [JS-STALL] onboarding step=welcome поток стоял 292ms
+10-15 14:16:08.323 W/ReactNativeJS( 5456): [JS-STALL] +12470ms поток стоял 292ms (с +12178ms)
+10-15 14:16:09.264 W/ReactNativeJS( 5456): [JS-STALL] onboarding step=welcome поток стоял 916ms
+10-15 14:16:09.264 W/ReactNativeJS( 5456): [JS-STALL] +13412ms поток стоял 917ms (с +12495ms)
+10-15 14:16:10.298 W/ReactNativeJS( 5456): [JS-STALL] +14445ms поток стоял 824ms (с +13621ms)
+10-15 14:16:10.300 W/ReactNativeJS( 5456): [JS-STALL] onboarding step=welcome поток стоял 827ms
+10-15 14:16:11.062 W/ReactNativeJS( 5456): [JS-STALL] onboarding step=welcome поток стоял 681ms
+10-15 14:16:11.063 W/ReactNativeJS( 5456): [JS-STALL] +15210ms поток стоял 682ms (с +14528ms)
+10-15 14:16:11.207 W/ReactNativeJS( 5456): [JS-STALL] heartbeat +15354ms splash=hidden@+4726ms
+10-15 14:16:11.797 W/ReactNativeJS( 5456): [JS-STALL] +15945ms поток стоял 516ms (с +15429ms)
+10-15 14:16:11.828 W/ReactNativeJS( 5456): [JS-STALL] onboarding step=welcome поток стоял 536ms
+10-15 14:16:12.645 W/ReactNativeJS( 5456): [JS-STALL] +16790ms поток стоял 763ms (с +16027ms)
+10-15 14:16:12.649 W/ReactNativeJS( 5456): [JS-STALL] onboarding step=welcome поток стоял 766ms
+10-15 14:16:14.043 W/ReactNativeJS( 5456): [JS-STALL] +18190ms поток стоял 1388ms (с +16802ms)
+10-15 14:16:14.047 W/ReactNativeJS( 5456): [JS-STALL] onboarding step=welcome поток стоял 1389ms
+10-15 14:16:16.265 W/ReactNativeJS( 5456): [JS-STALL] heartbeat +20409ms splash=hidden@+4726ms
+10-15 14:16:20.930 W/ReactNativeJS( 5456): [JS-STALL] +25078ms поток стоял 4510ms (с +20568ms)
+10-15 14:16:20.932 W/ReactNativeJS( 5456): [JS-STALL] onboarding step=welcome поток стоял 4511ms
+10-15 14:16:21.284 W/ReactNativeJS( 5456): [JS-STALL] heartbeat +25431ms splash=hidden@+4726ms
+10-15 14:16:23.745 W/ReactNativeJS( 5456): [JS-STALL] +27892ms поток стоял 645ms (с +27247ms)
+10-15 14:16:23.753 W/ReactNativeJS( 5456): [JS-STALL] onboarding step=welcome поток стоял 647ms
+10-15 14:16:25.470 W/ReactNativeJS( 5456): [JS-STALL] onboarding step=welcome поток стоял 320ms
+10-15 14:16:25.471 W/ReactNativeJS( 5456): [JS-STALL] +29619ms поток стоял 327ms (с +29292ms)
+10-15 14:16:26.410 W/ReactNativeJS( 5456): [JS-STALL] heartbeat +30556ms splash=hidden@+4726ms
+10-15 14:16:27.992 W/ReactNativeJS( 5456): [JS-STALL] onboarding step=welcome поток стоял 1017ms
+10-15 14:16:27.993 W/ReactNativeJS( 5456): [JS-STALL] +32140ms поток стоял 1018ms (с +31122ms)
+10-15 14:16:30.654 W/ReactNativeJS( 5456): [JS-STALL] onboarding step=welcome поток стоял 1071ms
+10-15 14:16:30.656 W/ReactNativeJS( 5456): [JS-STALL] +34803ms поток стоял 1073ms (с +33730ms)
+10-15 14:16:31.416 W/ReactNativeJS( 5456): [JS-STALL] heartbeat +35563ms splash=hidden@+4726ms
+10-15 14:16:32.858 W/ReactNativeJS( 5456): [JS-STALL] onboarding step=welcome поток стоял 845ms
+10-15 14:16:32.860 W/ReactNativeJS( 5456): [JS-STALL] +37006ms поток стоял 846ms (с +36160ms)
+10-15 14:16:33.180 W/ReactNativeJS( 5456): [JS-STALL] +37328ms поток стоял 317ms (с +37011ms)
+10-15 14:16:33.185 W/ReactNativeJS( 5456): [JS-STALL] onboarding step=welcome поток стоял 320ms
+10-15 14:16:33.819 W/ReactNativeJS( 5456): [JS-STALL] +37967ms поток стоял 261ms (с +37706ms)
+10-15 14:16:33.820 W/ReactNativeJS( 5456): [JS-STALL] onboarding step=welcome поток стоял 262ms
+10-15 14:16:34.457 W/ReactNativeJS( 5456): [JS-STALL] +38604ms поток стоял 279ms (с +38325ms)
+10-15 14:16:34.466 W/ReactNativeJS( 5456): [JS-STALL] onboarding step=welcome поток стоял 287ms
+10-15 14:16:36.421 W/ReactNativeJS( 5456): [JS-STALL] heartbeat +40568ms splash=hidden@+4726ms
+10-15 14:16:41.426 W/ReactNativeJS( 5456): [JS-STALL] heartbeat +45573ms splash=hidden@+4726ms
+10-15 14:16:46.466 W/ReactNativeJS( 5456): [JS-STALL] heartbeat +50614ms splash=hidden@+4726ms
+10-15 14:16:51.538 W/ReactNativeJS( 5456): [JS-STALL] heartbeat +55686ms splash=hidden@+4726ms
+10-15 14:16:55.918 W/ReactNativeJS( 5456): [JS-STALL] watchdog stop +60065ms
+10-15 14:17:05.996 W/ReactNativeJS( 5456): [JS-STALL] onboarding step=privacy поток стоял 708ms
+10-15 14:17:06.635 W/ReactNativeJS( 5456): [JS-STALL] onboarding step=privacy поток стоял 274ms
+10-15 14:17:08.845 W/ReactNativeJS( 5456): [JS-STALL] onboarding step=privacy поток стоял 553ms
+10-15 14:17:21.772 W/ReactNativeJS( 5456): [JS-STALL] onboarding step=niceToMeet поток стоял 316ms
+10-15 14:17:34.037 W/ReactNativeJS( 5456): [JS-STALL] onboarding step=promise поток стоял 266ms
+10-15 14:17:57.328 W/ReactNativeJS( 5456): [JS-STALL] onboarding step=language поток стоял 258ms
+10-15 14:18:23.788 W/ReactNativeJS( 5456): [JS-STALL] onboarding step=notifications поток стоял 277ms
+10-15 14:18:36.419 W/ReactNativeJS( 5456): [JS-STALL] onboarding step=name поток стоял 265ms
+10-15 14:18:36.747 W/ReactNativeJS( 5456): [JS-STALL] onboarding step=name поток стоял 326ms
+10-15 14:18:51.195 W/ReactNativeJS( 5456): [JS-STALL] onboarding step=trialReminder поток стоял 320ms
+10-15 14:18:51.684 W/ReactNativeJS( 5456): [JS-STALL] onboarding step=trialReminder поток стоял 347ms
+10-15 14:19:16.887 W/ReactNativeJS( 5456): [JS-STALL] onboarding step=onboardingPaywall поток стоял 366ms
+10-15 14:19:31.715 W/ReactNativeJS( 5456): [JS-STALL] onboarding step=onboardingPaywall поток стоял 1598ms

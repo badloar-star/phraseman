@@ -1,0 +1,14 @@
+{
+  "tool": "built-in image_gen; no project API key used",
+  "scenarioId": "clothes_shop",
+  "candidatePrefix": "dialog_scene_clothes_shop_option_",
+  "concepts": [
+    "hanger with shirt and centered chest medallion",
+    "folded garments with a front patch",
+    "front-facing T-shirt with chest medallion",
+    "clothing bag with inset front patch",
+    "measuring tape loop and marked button"
+  ],
+  "style": "S2 matte clay; graphite dark and derived warm ivory light; true alpha; cyan generation marker converted to separate white accent",
+  "status": "5 candidates produced in both themes; generated options remain unapproved. Exact per-mode accent gates are in clothes-preparation-dark.log and clothes-preparation-light.log; workbench reports candidates as drafts until gates and owner visual review pass."
+}

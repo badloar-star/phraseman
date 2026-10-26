@@ -1,0 +1,14 @@
+{
+  "tool": "built-in image_gen; no project API key used",
+  "scenarioId": "lost_luggage",
+  "candidatePrefix": "dialog_scene_lost_luggage_option_",
+  "concepts": [
+    "upright suitcase with detached blank tag",
+    "carousel and emerging suitcase",
+    "claim ticket with suitcase emboss",
+    "open empty suitcase",
+    "locator tag by carry-on handle"
+  ],
+  "style": "S2 matte clay, dark graphite / derived warm ivory, true alpha, separate white accent",
+  "status": "Five options generated for dark/light; see lost-luggage-preparation-dark.log and lost-luggage-preparation-light.log for per-mode mask and area checks. None is owner-approved."
+}

@@ -13,6 +13,15 @@ Governance-ID: TG-25EF74B593D2
 Governance-ID: TG-F85F576326FA
 Governance-ID: TG-F3CBD0E9A08C
 Governance-ID: TG-AE3AB7F02F39
+Governance-ID: TG-3C36095EC111
+Governance-ID: TG-7F58CB4012C2
+Governance-ID: TG-25B594F5F051
+Governance-ID: TG-C60C57F5E2E6
+Governance-ID: TG-069EF428ABB9
+Governance-ID: TG-A294330E88E0
+Governance-ID: TG-3DD808E82386
+Governance-ID: TG-302886C6BDF2
+Governance-ID: TG-7D9440827DAC
 Status: In progress
 Owner: Learning V2 сессии (по поручению 0 · КООРДИНАТОР 24.10)
 Related epic/enabler: docs/work/support/REPORTS_BATCH_2026-10-24.md (владелец пачки и replies.json — 1 · ЯДРО)
@@ -61,3 +70,5 @@ Contain: каждый найденный немой путь получает л
 Outcome: сдача экзамена ОТКРЫВАЕТ непройденные эпизоды главы (прогресс v2 «open»), а не засчитывает их (замок «открыто ≠ пройдено»).
 Scope: app/learning_v2_chapter_exam_v1.ts finishLearningV2ChapterExamV1; тест движка. Architecture: store.complete → store.open одной записью.
 Security and privacy: без изменений. Technical debt: нет. Verification: тесты экзамена и прогресса v2. Rollback: откат коммита.
+
+## Дополнение — перечень немых catch в ночных коммитах (только чтение, без правок)

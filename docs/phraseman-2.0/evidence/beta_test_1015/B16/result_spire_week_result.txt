@@ -1,0 +1,2 @@
+ждём: Сообщество, Пик (или Главная при скрытом Пике)
+10-15 14:38:53.142 I/ReactNativeJS(10375): [PUSH-TAP-DEV] simulate {"type":"spire_week_result"}

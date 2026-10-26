@@ -148,7 +148,7 @@ import { fiftyFiftyUsageKey, grammarHintSeenKey, lastOpenedLessonKey, lessonIntr
 import { recordHomeContinueLegacy } from './home_continue_mark';
 import { lessonSupportContentAvailableForTarget } from './lesson_support_target_gate';
 import { loadFrenchRemoteLessonRows } from './french_lesson_remote_runtime';
-import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
+import { markNextNavigationAsReplace, dismissToTabRoute, safeRouterBack } from './navigation_back';
 import { emitAppEvent } from './events';
 import { patchHomeScreenHydration } from './home_screen_hydration';
 import { useMistakeExplain } from './use_mistake_explain';
@@ -2717,11 +2717,11 @@ function LessonScreen() {
     if (from === 'lesson_menu') {
       const popToMenu = () => {
         if (router.canGoBack()) {
-          safeRouterBack(router, { pathname: '/lessons_list', params: { id: String(lessonId) } } as any);
+          safeRouterBack(router, { pathname: '/(tabs)/lessons', params: { id: String(lessonId) } } as any);
           return;
         }
         if (NATIVE_LESSON_DISMISS_ENABLED) {
-          router.dismissTo({ pathname: '/lessons_list', params: { id: String(lessonId) } });
+          dismissToTabRoute(router, '/(tabs)/lessons');
           return;
         }
         void trackActivity('navigation:native_lesson_dismiss_skipped', {
@@ -2730,7 +2730,7 @@ function LessonScreen() {
           result: 'info',
           tags: { lessonId, from },
         });
-        safeRouterBack(router, { pathname: '/lessons_list', params: { id: String(lessonId) } } as any);
+        safeRouterBack(router, { pathname: '/(tabs)/lessons', params: { id: String(lessonId) } } as any);
       };
       void import('./lesson_menu')
         .then((m) => m.prefetchLessonMenuCache(lessonId, studyTargetRef.current))
@@ -4177,7 +4177,7 @@ function LessonScreen() {
     frenchLessonSilentLeave,
     'lesson1',
     `${frenchLessonRemoteFailed ? 'french_remote_failed' : 'french_pack_blocked'} lesson=${lessonId}`,
-    () => safeRouterBack(router, { pathname: '/lessons_list', params: { id: String(lessonId) } } as any),
+    () => safeRouterBack(router, { pathname: '/(tabs)/lessons', params: { id: String(lessonId) } } as any),
   );
   // зачем: тот же полноэкранный ActivityIndicator дёргал геометрию при загрузке
   // французского урока с сервера — переиспользуем один скелетон-компонент вместо

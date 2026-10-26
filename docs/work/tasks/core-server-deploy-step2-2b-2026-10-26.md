@@ -1,6 +1,8 @@
 # Ядро · серверная выкладка шагов 2 и 2б пакета 26.10 (слово владельца через координатора)
 
 Governance-ID: TG-A6EB6AD79C67
+Governance-ID: TG-D6B33A09A0CB
+Governance-ID: TG-1B56A45E4153
 Status: In progress
 Owner: 1 · ЯДРО
 

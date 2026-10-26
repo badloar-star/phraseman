@@ -44,10 +44,11 @@ App Check не включается (пломба).
 | 11 | **43053dbd5** настоящий срок Plus для кольца | Кольцо Plus у аватара подписчика гаснет само, когда подписка кончилась. Раньше сервер считал срок подписки «бессрочным» (`premium_expiry='0'`), и кольцо горело вечно. Та же ошибка была у старого админского гранта со сроком. | `publicProfileProjectMine`, `adminGrantAccess`, `revenueCatShardsWebhook`, `premiumExpiryCron`, `adminGetUserProfile`, `adminSearchUsers` | 🟢 клиент читает тот же `plusUntilMs` |
 | 12 | **c0473f366** журнал `[FREEFORM-PLUS]` | Для человека ничего. В журнале появляется, чей отказ «нужен Plus» в свободном разговоре и какое поле подписки его решило: 48 отказов за 3 дня шли очередями по 13–18 попыток. | `dialogueV2FreeformSessionStart`, `dialogueV2FreeformSessionTurn` (`dialogueV2FreeformTranslate` из строки 4 получит то же из HEAD) | 🟢 ответ не меняется |
 | 13 | **614e76486** пуш «серия ждёт» без обещания урока (Переводчик 7398140e4) | Пуш `streak_at_risk` уходит всем курсам, включая es/fr/de/it, где «Уроков» нет (D129/D130), а на 6 языках обещал «урок». Новое тело ×9: «Пара минут сегодня — и серия растёт.» Заголовок «🔥 Серия N дней ждёт тебя» прежний. Правда по коду: день засчитывает любое учебное действие — урок, карточки, «Мои ошибки», диалог, ступени Пика. **Риск:** только текст. **Откат:** revert и выкладка одной функции. | `reEngagePushCron` | 🟢 клиент текст не читает: тап ведёт туда же |
+| 14 | **(коммит ниже)** пуш «Позвать» с серией вдвоём без обещания урока (координатор 26.10) | db333a336 вернул в `nudgeStreakBody` «урок» на en/es/pt/vi/id/tr/pl. Вторая фраза ×9 — та же, что в строке 13: «{n} {days} подряд. Пара минут сегодня — и серия растёт.» Сторож «без урока» с NFC — `friends_push_copy.test.ts`. **Входит в 2б (владелец 26.10 утро, кнопкой у координатора):** пуш шлёт `friendsNudge`, она добавлена в команду 2б. Пока «Вместе» выключен, пуш почти не уходит. | `friendsNudge` | 🟢 клиент текст не читает |
 
 Сухой прогон шага 2б — без `--execute`; кнопка — та же строка с `--execute`:
 ```bash
-bash scripts/deploy_from_clean_head.sh --only "functions:default:adminGrantAccess,functions:default:adminSetUserBan,functions:default:publicProfileProjectMine,functions:default:revenueCatShardsWebhook,functions:default:premiumExpiryCron,functions:default:adminGetUserProfile,functions:default:adminSearchUsers,functions:default:dialogueV2FreeformSessionStart,functions:default:dialogueV2FreeformSessionTurn,functions:default:reEngagePushCron"
+bash scripts/deploy_from_clean_head.sh --only "functions:default:adminGrantAccess,functions:default:adminSetUserBan,functions:default:publicProfileProjectMine,functions:default:revenueCatShardsWebhook,functions:default:premiumExpiryCron,functions:default:adminGetUserProfile,functions:default:adminSearchUsers,functions:default:dialogueV2FreeformSessionStart,functions:default:dialogueV2FreeformSessionTurn,functions:default:reEngagePushCron,functions:default:friendsNudge"
 ```
 Проверка после (журналы, только чтение):
 - `[ADMIN-PLUS]` `step: in / out` — выдача Plus из админки проходит как раньше;
@@ -63,6 +64,14 @@ bash scripts/deploy_from_clean_head.sh --only "functions:default:adminGrantAcces
 новую функцию, а Accounts V2 выключен (`config/accounts_v2` нет). Выложить её вместе с запуском Accounts V2.
 
 ## Порядок
+
+> **Шаг 2 выложен 26.10 05:53–06:00 UTC** (Ядро, «да» владельца через координатора) из HEAD **36938fd46**. Результат:
+> - 13 функций — Successful (`dialogueV2FreeformTranslate` создана), `hosting:admin` и `hosting:knowlywww` — release complete;
+> - право вызова — 0 функций без публичного права;
+> - перед выкладкой в той же выгрузке: сборка functions (ошибок типов 0), тесты строк functions 147/147 и корневые 60/60;
+> - журналы 06:00–06:11: ERROR 0, 5xx 0, ревизии поднялись чисто. Две ERROR `[SPIRE-REPORT] report_rejected tier_mismatch` в 05:55 —
+>   со СТАРОЙ ревизии 00004, до обновления; это обычные отказы отчётов;
+> - сайт: privacy — October 25, 2026, оговорка «Where available in the app» на месте.
 
 1. **Сухой прогон** (ничего не выкладывает): сверка «бой vs HEAD», сборка, команда.
    Замер 25.10 19:45: `OK`, создаётся только `dialogueV2FreeformTranslate`.

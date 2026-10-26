@@ -65,6 +65,21 @@ describe('тексты пушей «Друзей» на 9 языках', () => {
     expect(friendsPushText('tr', 'lessonDoneBody', { n: 2 })).toBe('İkinize de +2 jeton');
   });
 
+  // зачем (координатор 26.10): пуш «Позвать» с серией уходит любому курсу, а у es/fr/de/it «Уроков» нет (D129/D130) —
+  // тело не обещает урок ни на одном языке. Тот же сторож, что у streak_at_risk (re_engage_push.test.ts), с NFC: в NFD
+  // диакритика — отдельный символ, и «liç»/«bài» прошли бы мимо.
+  test('nudgeStreakBody не обещает урок ни на одном из 9 языков (NFC и NFD)', () => {
+    const LESSON_WORD = /урок|занят|lesson|lecci|liç|pelajaran|\bders\b|lekcj|(^|\s)bài(\s|$)/i;
+    const promisesLesson = (body: string): boolean => LESSON_WORD.test(body.normalize('NFC'));
+    for (const lang of FRIENDS_PUSH_LANGS) {
+      const body = friendsPushText(lang, 'nudgeStreakBody', { n: 3 });
+      expect([lang, promisesLesson(body)]).toEqual([lang, false]);
+      expect([lang, promisesLesson(body.normalize('NFD'))]).toEqual([lang, false]);
+    }
+    expect(promisesLesson('Uma lição curta e a sequência continua.'.normalize('NFD'))).toBe(true);
+    expect(promisesLesson('Một bài ngắn là chuỗi tiếp tục.'.normalize('NFD'))).toBe(true);
+  });
+
   test('язык получателя — цепочка админских рассылок, запасной ru', () => {
     expect(friendsPushLangOf({ lang: 'en', app_lang: 'pl' })).toBe('en');
     expect(friendsPushLangOf({ app_lang: 'pt-BR' })).toBe('pt');

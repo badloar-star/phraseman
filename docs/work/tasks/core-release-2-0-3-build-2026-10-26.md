@@ -1,6 +1,8 @@
 # Ядро · полная версия 2.0.3 в App Store и Google Play + серверная выкладка шагов 2/2б (слово владельца через координатора)
 
 Governance-ID: TG-2CF708EAD2D3
+Governance-ID: TG-F5D4E797CFF8
+Governance-ID: TG-B18086E69B30
 Status: In progress
 Owner: 1 · ЯДРО
 

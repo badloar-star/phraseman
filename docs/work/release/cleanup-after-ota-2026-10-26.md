@@ -19,3 +19,5 @@
 - LearningV2ChaptersCourse (карта глав, строки learning-v2-003/005/006/076) — в боевом пути подменён SEASON_SCENE_V2_ENABLED; импортируют app/(tabs)/lessons.tsx и SeasonCourseConnected (import type). Удалить мёртвую ветку → строки закроются через component_unreachable.
 - LearningV2MapNode (строка 075) — 4 импортёра (lessons.tsx, ChaptersCourse, PulseMapSessionRow, Horizons). Удалять вместе с картой.
 - Founder Pass (строка 015) — файла нет; закрыть только «removed_by_owner» словом владельца.
+- (скорость, первый после OTA) AppMessagesInbox (1261 строка) — отделить лёгкий хук подсчёта непрочитанных (точка на колокольчике) от тяжёлого интерфейса ящика и окон опроса VIP; интерфейс грузить лениво. Ядро, аудит 5a15d588a.
+- Моменты №8 — предзагрузка чанка в app/lesson_complete.tsx + хранилище показанных рубежей (риск двойного показа).

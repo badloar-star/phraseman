@@ -1,0 +1,166 @@
+/* ───────── Наборы сообщества · «Набор месяца» — только то, чего нет в движке peak-scene-v2 (владелец 26.10 через координатора) ─────────
+   Движок (темы, сцена, стекло, таббар 2.0, пьедестал V2, шторка) вшит в community-scene-v3.html дословно из эталона. Здесь:
+   обложка-плитка в тоне сцены темы, сегмент «Топ / Новые» со скользящей шайбой, строка правки ИИ, окно победителя и ДВИЖЕНИЕ.
+   Тайминги и кривые — из приложения (constants/motionHybrid.ts KIT_MOTION, kit.css, CommunityPackSocialBar likePop, V2SegmentedControl):
+   нажатие 90 мс вниз / 240 мс вверх, счётчики 650 мс cubic-bezier(.3,1.4,.5,1), затемнение 260 мс, шторка 440 мс cubic-bezier(.2,1,.3,1),
+   лайк 1 → 1,18 → 1 за 110 + 140 мс, сегмент — пружина без отскока (~260 мс). Входы — ease-out ≤ 520 мс, лесенка ≤ 60 мс на элемент.
+   prefers-reduced-motion гасит всё (правило эталона на .ph *). Обводок у контейнеров нет (стиль «Тень»). Классы с префиксом cs-. */
+:root { --cs-out: cubic-bezier(.23, 1, .32, 1); --cs-sheet: cubic-bezier(.2, 1, .3, 1); --cs-num: cubic-bezier(.3, 1.4, .5, 1); }
+.ph.th-ink { --st-top: oklch(.47 .14 282); --st-bot: oklch(.28 .10 276); --st-glow: oklch(.66 .13 300 / .9); }
+.ph.th-marine { --st-top: oklch(.36 .08 214); --st-bot: oklch(.15 .05 222); --st-glow: oklch(.55 .10 200 / .85); }
+
+/* ── стопка экранов в телефоне: переходы как в приложении (новый экран въезжает справа, прежний уходит на четверть) ── */
+.cs-stack { position: absolute; inset: 0; }
+.cs-screen { position: absolute; inset: 0; overflow: hidden; background: var(--bg); }
+.cs-screen .scr > .in { padding: 0; }
+.cs-hidden { display: none; }
+.cs-in { animation: cs-push-in .36s var(--cs-out) both; }
+.cs-out { animation: cs-push-out .36s var(--cs-out) both; pointer-events: none; }
+.cs-back-in { animation: cs-push-out .34s var(--cs-out) reverse both; }
+.cs-back-out { animation: cs-push-in .3s var(--cs-out) reverse both; pointer-events: none; }
+@keyframes cs-push-in { from { transform: translateX(100%); } to { transform: none; } }
+@keyframes cs-push-out { from { transform: none; opacity: 1; } to { transform: translateX(-26%); opacity: .55; } }
+
+/* ── появление экрана лесенкой (только при первом показе; переход между экранами — сам въезд) ── */
+.cs-enter [data-e] { animation: cs-up .5s var(--cs-out) both; animation-delay: var(--d, 0ms); }
+.cs-enter .cs-hero { animation: cs-hero-in .6s var(--cs-out) both; animation-delay: 60ms; }
+.cs-enter .pk2-blk { animation: cs-rise .56s var(--cs-out) both; animation-delay: var(--d, 0ms); }
+.cs-enter .pk2-coin { animation: cs-drop .5s var(--cs-out) both; animation-delay: var(--d, 0ms); }
+.cs-enter .cs-tile { animation: cs-up .46s var(--cs-out) both; animation-delay: var(--d, 0ms); }
+@keyframes cs-up { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes cs-hero-in { from { opacity: 0; transform: translateY(12px) scale(.94); } to { opacity: 1; transform: none; } }
+@keyframes cs-rise { from { opacity: 0; transform: translateY(46px); } to { opacity: 1; transform: none; } }
+@keyframes cs-drop { from { opacity: 0; transform: translateY(-18px) scale(.9); } to { opacity: 1; transform: none; } }
+/* первое место — мягкий блеск по стеклу раз в 5 с; только transform, блок режет лишнее */
+.pk2-blk.first { overflow: hidden; }
+.pk2-blk.first::after { content: ""; position: absolute; top: -40%; bottom: -40%; left: -60%; width: 60%; pointer-events: none;
+  background: linear-gradient(105deg, transparent 20%, rgba(255, 255, 255, .34) 50%, transparent 80%); transform: translateX(-100%) rotate(12deg); animation: cs-sheen 5s ease-in-out 1.4s infinite; }
+@keyframes cs-sheen { 0% { transform: translateX(-100%) rotate(12deg); } 28% { transform: translateX(420%) rotate(12deg); } 100% { transform: translateX(420%) rotate(12deg); } }
+
+/* ── сцены ── */
+.cs-cat .a-stage { height: 580px; }
+.cs-pack .a-stage { height: 520px; }
+.cs-check .a-stage { height: 390px; }
+.cs-hero { position: absolute; z-index: 1; display: block; filter: drop-shadow(0 28px 34px rgba(0, 0, 0, .45)); pointer-events: none; }
+.cs-copy { width: 210px; }
+.cs-copy .a-title { font-size: 36px; line-height: 40px; letter-spacing: -.7px; }
+.cs-copy .pk-rew { margin-top: 14px; }
+.cs-nm { max-width: 100%; padding: 0 8px; overflow: hidden; text-overflow: ellipsis; }
+.cs-cat .pk2-me .s .io { color: #fff; }
+/* таббар 2.0 — только значками (правило владельца; в коде V2TabBar подписей нет, они живут в accessibilityLabel) */
+.tbar .ti span { display: none; }
+.tbar .ti .io { font-size: 25px; }
+
+/* ── сегмент «Топ / Новые»: дорожка, скользящая шайба (пружина без отскока, как V2SegmentedControl) ── */
+.cs-seg { position: relative; margin-left: auto; display: flex; gap: 4px; padding: 2px; border-radius: 18px; background: color-mix(in srgb, var(--tx) 6%, transparent); }
+.cs-seg .qchip { position: relative; z-index: 1; height: 32px; padding: 0 13px; font-size: 14px; background: transparent; color: var(--sec); transition: color .2s var(--cs-out); }
+.cs-seg .qchip.on { color: var(--on-solid); }
+.cs-puck { position: absolute; top: 2px; left: 0; height: 32px; width: 60px; border-radius: 16px; background: var(--solid); transition: transform .26s var(--cs-out), width .26s var(--cs-out); }
+.cs-fix .qchip.on { background: var(--solid); color: var(--on-solid); }
+
+/* ── плитки наборов: обложка в тоне сцены темы, без превью карточек ── */
+.cs-tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 12px 0 10px; transition: opacity .15s; }
+.cs-tiles.cs-fade { opacity: 0; }
+.cs-tile { position: relative; min-height: 158px; border-radius: 22px; overflow: hidden; color: #fff; padding: 12px; display: flex; flex-direction: column; box-shadow: var(--sh);
+  background: radial-gradient(90% 70% at 100% 0%, var(--st-glow), transparent 70%), linear-gradient(165deg, var(--st-top) 0%, var(--st-bot) 100%); }
+.cs-tr { display: flex; align-items: center; gap: 6px; }
+.cs-tr .qchip { height: 28px; padding: 0 9px; font-size: 13px; gap: 4px; }
+.cs-tr .qchip .io { font-size: 13px; }
+.cs-rank { margin-left: auto; width: 26px; height: 26px; border-radius: 13px; background: #fff; color: #121318; font-size: 13px; font-weight: 800; display: flex; align-items: center; justify-content: center; }
+.cs-tt { font-size: 17px; line-height: 21px; font-weight: 700; margin-top: auto; padding-top: 24px; letter-spacing: -.2px; text-wrap: balance; }
+.cs-tb { display: flex; align-items: center; gap: 6px; margin-top: 8px; font-size: 13px; font-weight: 700; color: rgba(255, 255, 255, .92); }
+.cs-tb .cs-like { margin-left: auto; }
+/* только что опубликованный набор — первым в «Новых», с одним мягким кольцом в цвете темы (подтверждение действия, не декор) */
+.cs-tile.cs-new { animation: cs-glow 1.8s var(--cs-out) .6s both; }
+@keyframes cs-glow { 0%, 100% { box-shadow: var(--sh); } 30% { box-shadow: 0 0 0 5px color-mix(in srgb, var(--solid) 55%, transparent), var(--sh); } }
+
+/* ── лайк: мгновенно, с отскоком сердца (110 + 140 мс, как likePop в приложении) и прыжком счётчика (650 мс, как kit) ── */
+.cs-like { display: inline-flex; align-items: center; gap: 4px; font-variant-numeric: tabular-nums; cursor: pointer; }
+.cs-like .io { font-size: 15px; display: inline-block; }
+.cs-like.on .io { color: #FFB4C8; }
+.cs-like.locked { opacity: .55; }
+.cs-pop { animation: cs-pop .25s var(--cs-out); }
+@keyframes cs-pop { 0% { transform: scale(1); } 44% { transform: scale(1.18); } 100% { transform: scale(1); } }
+.cs-num { display: inline-block; }
+.cs-num.up { animation: numup .65s var(--cs-num); }
+.cs-num.dn { animation: numdn .65s var(--cs-num); }
+.cs-shake { animation: cs-shake .32s var(--cs-out); }
+@keyframes cs-shake { 0%, 100% { transform: none; } 25% { transform: translateX(-4px); } 55% { transform: translateX(3px); } 80% { transform: translateX(-2px); } }
+.a-cta .qbtn.glass.cs-like { flex: none; width: auto; padding: 0 18px; height: 54px; border-radius: 27px; font-size: 17px; gap: 8px; }
+.a-cta .qbtn.glass.cs-like .io { font-size: 20px; }
+.a-cta .qbtn.glass.cs-like.on { background: #fff; color: #121318; }
+.a-cta .qbtn.glass.cs-like.on .io { color: #E0485E; }
+
+/* ── «Добавить себе» → «В твоих наборах»: фон и текст меняются на месте (размытие 160 мс маскирует смену) ── */
+.qbtn.white { transition: background .26s var(--cs-out), color .26s var(--cs-out), box-shadow .26s; }
+.qbtn.white.added { background: rgba(255, 255, 255, .16); color: #fff; box-shadow: inset 0 1px 0 rgba(255, 255, 255, .22); }
+.cs-sw { display: inline-flex; align-items: center; gap: 10px; transition: filter .16s, opacity .16s; }
+.cs-sw.cs-blur { filter: blur(3px); opacity: .35; }
+.cs-blur { filter: blur(3px); opacity: .35; }
+.cs-fix .t, .cs-fix .s, .a-count { transition: filter .16s, opacity .16s; }
+
+/* ── проверка ИИ: карточки проверяются по очереди, правка на месте ── */
+.hm-row .ck { transition: background .22s, box-shadow .22s, color .22s; position: relative; }
+.hm-row.pending .ck::after, .cs-fix.pending .cs-ckp::after { content: ""; position: absolute; inset: 4px; border-radius: 50%; box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--tx) 18%, transparent); border-top: 2px solid var(--sec); animation: cs-spin .9s linear infinite; }
+.cs-fix .cs-ckp { position: relative; width: 26px; height: 26px; flex: none; overflow: hidden; transition: width .26s var(--cs-out), margin .26s var(--cs-out), opacity .18s; }
+.cs-fix:not(.pending) .cs-ckp { width: 0; margin-right: -12px; opacity: 0; } /* кружок проверки уезжает плавно, текст не прыгает влево */
+.cs-fix .ck { width: 26px; height: 26px; border-radius: 13px; flex: none; display: flex; align-items: center; justify-content: center; font-size: 14px; background: var(--acc); color: var(--on-solid); }
+.th-ink .cs-fix .ck { color: #fff; }
+@keyframes cs-spin { to { transform: rotate(360deg); } }
+.hm-row.ok .ck.on { animation: cs-pop .28s var(--cs-out); }
+.cs-fix { display: flex; align-items: center; gap: 12px; margin: 6px -8px; padding: 10px 10px 10px 12px; border-radius: 18px; background: color-mix(in srgb, var(--acc) 13%, transparent); transition: background .3s var(--cs-out); }
+.cs-fix.pending, .cs-fix.fixed { background: transparent; }
+.cs-fix .tx { flex: 1; min-width: 0; }
+.cs-fix .t { font-size: 16px; line-height: 21px; font-weight: 700; }
+.cs-fix .s { font-size: 14px; line-height: 19px; color: var(--sec); }
+.cs-fix .w { font-size: 14px; line-height: 19px; font-weight: 700; color: var(--acc); margin-top: 4px; display: flex; align-items: center; gap: 5px; transition: opacity .26s var(--cs-out), transform .26s var(--cs-out), color .2s; }
+.cs-fix .w .io { font-size: 14px; }
+.cs-fix.pending .w, .cs-fix.pending .qchip { opacity: 0; transform: translateY(6px); }
+.cs-fix .qchip { transition: opacity .26s var(--cs-out), transform .26s var(--cs-out); }
+.cs-fix .w.done { color: var(--good); }
+.cs-fix .ck.on { animation: cs-pop .28s var(--cs-out); }
+.pk2-dock .qbtn { transition: background .3s var(--cs-out), color .3s var(--cs-out); }
+.pk2-dock .qbtn.cs-ready { animation: cs-pop .3s var(--cs-out); }
+
+/* ── шторка: затемнение 260 мс, выезд 440 мс по кривой приложения; окно — 340 мс из .94 ── */
+.cs-ov .qdim { opacity: 0; transition: opacity .26s; }
+.cs-ov.on .qdim { opacity: 1; }
+.cs-ov.off .qdim { opacity: 0; transition-duration: .2s; }
+.cs-ov .qsheet { transform: translateY(110%); transition: transform .44s var(--cs-sheet); }
+.cs-ov.on .qsheet { transform: none; }
+.cs-ov.off .qsheet { transform: translateY(110%); transition-duration: .3s; }
+.cs-modal { position: absolute; left: 22px; right: 22px; top: 140px; z-index: 45; border-radius: 30px; background: var(--card); box-shadow: var(--sh2); padding: 28px 20px 20px; overflow: hidden;
+  opacity: 0; transform: scale(.94) translateY(14px); transition: opacity .22s, transform .34s var(--cs-out); }
+.cs-ov.on .cs-modal { opacity: 1; transform: none; }
+.cs-ov.off .cs-modal { opacity: 0; transform: scale(.97); transition-duration: .18s; }
+/* конфетти в оттенках темы: конечный залп ≤ 1200 мс, как ConfettiBurst в приложении; медаль влетает, приз и кнопка догоняют */
+.cs-conf { position: absolute; left: 0; right: 0; top: 0; height: 190px; pointer-events: none; }
+.cs-conf i { position: absolute; top: -14px; width: 8px; height: 13px; border-radius: 3px; opacity: 0; }
+.cs-ov.on .cs-conf i { animation: cs-fall 1.15s cubic-bezier(.22, 1, .36, 1) both; animation-delay: calc(140ms + var(--d, 0) * 1ms); }
+@keyframes cs-fall { 0% { opacity: 0; transform: translate(0, 0) rotate(0deg); } 12% { opacity: 1; } 100% { opacity: 0; transform: translate(var(--dx, 0px), 150px) rotate(var(--r, 180deg)); } }
+.cs-medal { position: relative; width: 96px; height: 96px; border-radius: 48px; margin: 0 auto; display: flex; align-items: center; justify-content: center; font-size: 46px; color: var(--acc);
+  background: color-mix(in srgb, var(--acc) 14%, transparent); box-shadow: 0 0 0 12px color-mix(in srgb, var(--acc) 7%, transparent); opacity: 0; }
+.cs-ov.on .cs-medal { animation: cs-medal .56s var(--cs-out) .12s both; }
+@keyframes cs-medal { 0% { opacity: 0; transform: translateY(-36px) scale(.5); } 100% { opacity: 1; transform: none; } }
+.cs-medal::before { content: ""; position: absolute; inset: -12px; border-radius: 50%; box-shadow: 0 0 0 2px color-mix(in srgb, var(--acc) 40%, transparent); opacity: 0; }
+.cs-ov.on .cs-medal::before { animation: cs-ring .9s var(--cs-out) .4s both; }
+@keyframes cs-ring { 0% { opacity: .9; transform: scale(.8); } 100% { opacity: 0; transform: scale(1.6); } }
+.cs-prize { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 16px; height: 54px; border-radius: 18px; background: color-mix(in srgb, var(--acc) 13%, transparent); font-size: 17px; font-weight: 700; }
+.cs-prize .io { font-size: 20px; color: var(--acc); }
+.cs-late { opacity: 0; }
+.cs-ov.on .cs-late { opacity: 1; animation: cs-up .46s var(--cs-out) both; animation-delay: var(--d, 0ms); }
+.cs-modal .pk-me .s .io { color: var(--sec); }
+.cs-modal .pk-pod .p .c .io { font-size: 12px; }
+.cs-ov.on .pk-pod .p { animation: cs-up .46s var(--cs-out) both; animation-delay: var(--d, 0ms); }
+
+/* ── строка-тост после публикации — как ActionToast 'top_line' в приложении (top 54, отступы 14, радиус 19, плитка 41×41 r10, без обводки — тон и тень);
+   въезд сверху ease-out cubic, уход вверх, сама уходит через 2,2 с ── */
+.cs-toast { position: absolute; left: 14px; right: 14px; top: 54px; z-index: 36; display: flex; align-items: center; gap: 12px; padding: 8px 16px 8px 8px; border-radius: 19px;
+  background: var(--ctl); color: var(--tx); font-size: 16px; line-height: 20px; font-weight: 700; box-shadow: var(--sh2); pointer-events: none; animation: cs-toast-in .32s cubic-bezier(.33, 1, .68, 1) both; }
+.cs-toast .tile { width: 41px; height: 41px; border-radius: 10px; flex: none; display: flex; align-items: center; justify-content: center; background: var(--card); color: var(--acc); font-size: 20px; }
+.cs-toast.off { animation: cs-toast-out .26s cubic-bezier(.33, 1, .68, 1) both; }
+@keyframes cs-toast-in { from { opacity: 0; transform: translateY(-18px); } to { opacity: 1; transform: none; } }
+@keyframes cs-toast-out { to { opacity: 0; transform: translateY(-18px); } }
+
+/* страница: кнопка «Повторить» рядом с темами */
+.chp.cs-replay { margin-left: auto; }

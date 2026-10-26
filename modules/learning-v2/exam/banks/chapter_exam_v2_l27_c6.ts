@@ -1,0 +1,36 @@
+// chapter_exam_v2_l27_c6.ts — банк экзамена v2: урок 27, глава 6 (эпизоды 41–48).
+// зачем (слово владельца 26.10 «банки для всех уроков и глав — в 2.0.3»): глава 6 урока 27 — уют, гостевой дом, вещи и соседи:
+// «я бы …, если бы …» (If we had more water, we would stay longer), were в условии (If a room were available …; If I were you …) и
+// «уже сделал» (41–48). Обе части условия засчитываются в любом порядке. Сторож слов — owner_locks_exam_episode_words.
+import type { ChapterExamV2Bank } from '../chapter_exam_v2';
+
+export const CHAPTER_EXAM_V2_BANK_L27_C6: ChapterExamV2Bank = {
+  lessonOrdinal: 27,
+  chapterOrdinal: 6,
+  grammarPoints: [
+    { id: 'l27c6_would_if', label: { ru: 'я бы …, если бы … — would + if', uk: 'я б …, якби … — would + if' }, episodeOrdinals: [41, 42, 43] },
+    { id: 'l27c6_if_were', label: { ru: 'если бы был / на твоём месте — if … were', uk: 'якби був / на твоєму місці — if … were' }, episodeOrdinals: [44, 46, 48] },
+    { id: 'l27c6_have_done', label: { ru: 'уже сделал — have + done', uk: 'уже зробив — have + done' }, episodeOrdinals: [41, 42, 44] },
+  ],
+  items: [
+    // ── Ситуация → сам говоришь или пишешь ───────────────────────────────────────────────────────────────────────
+    { id: 'l27c6-01', type: 'situation', grammarPoint: 'l27c6_would_if', situation: { ru: 'Вас ждут на ужин к семи, а вы ещё дома. Скажи, что вы приехали бы вовремя, если бы вышли сейчас.', uk: 'На вас чекають на вечерю о сьомій, а ви ще вдома. Скажи, що ви приїхали б вчасно, якби вийшли зараз.' }, accepted: ['We would arrive on time if we left now.', 'If we left now, we would arrive on time.'] },
+    { id: 'l27c6-02', type: 'situation', grammarPoint: 'l27c6_if_were', situation: { ru: 'Хозяйка гостевого дома говорит, что завтра всё занято. Скажи, что если бы номер был свободен, вы остались бы ещё на ночь.', uk: 'Господиня гостьового будинку каже, що завтра все зайнято. Скажи, що якби номер був вільний, ви залишилися б ще на ніч.' }, accepted: ['If a room were available, we would stay another night.', 'We would stay another night if a room were available.'] },
+    { id: 'l27c6-03', type: 'situation', grammarPoint: 'l27c6_have_done', situation: { ru: 'Друг говорит, что ничего от тебя не получал. Скажи, что ты уже отправил ему сообщение.', uk: 'Друг каже, що нічого від тебе не отримував. Скажи, що ти вже надіслав йому повідомлення.' }, accepted: ['I have already sent you a message.'] },
+    { id: 'l27c6-04', type: 'situation', grammarPoint: 'l27c6_would_if', situation: { ru: 'На пикнике кончается вода. Скажи, что если бы у вас было больше воды, вы бы остались подольше.', uk: 'На пікніку закінчується вода. Скажи, що якби у вас було більше води, ви б залишилися довше.' }, accepted: ['If we had more water, we would stay longer.', 'We would stay longer if we had more water.'] },
+    { id: 'l27c6-05', type: 'situation', grammarPoint: 'l27c6_if_were', situation: { ru: 'Сосед по комнате смотрит видео по ночам без наушников. Посоветуй: на его месте ты бы пользовался наушниками.', uk: 'Сусід по кімнаті дивиться відео ночами без навушників. Порадь: на його місці ти б користувався навушниками.' }, accepted: ['If I were you, I would use headphones.', 'I would use headphones if I were you.'] },
+    { id: 'l27c6-06', type: 'situation', grammarPoint: 'l27c6_have_done', situation: { ru: 'Жена просит отодвинуть кресло от батареи. Скажи, что ты уже передвинул его.', uk: 'Дружина просить відсунути крісло від батареї. Скажи, що ти вже його пересунув.' }, accepted: ['I have already moved the chair.'] },
+    // ── Ответ в мини-диалоге ──────────────────────────────────────────────────────────────────────────────────────
+    { id: 'l27c6-07', type: 'dialogue', grammarPoint: 'l27c6_would_if', partnerLine: 'This chair is close to the window.', situation: { ru: 'В углу кресло смотрелось бы лучше, но там тесно. Скажи, что вы поставили бы его туда, если бы было больше места.', uk: 'У кутку крісло виглядало б краще, але там тісно. Скажи, що ви поставили б його туди, якби було більше місця.' }, accepted: ['We would put the chair there if we had more space.', 'If we had more space, we would put the chair there.'] },
+    { id: 'l27c6-08', type: 'dialogue', grammarPoint: 'l27c6_have_done', partnerLine: 'Your room will be ready soon.', situation: { ru: 'Хозяйка не знает, что ты рассчитался. Скажи, что уже оплатил номер.', uk: 'Господиня не знає, що ти розрахувався. Скажи, що вже оплатив номер.' }, accepted: ['I have already paid for the room.'] },
+    { id: 'l27c6-09', type: 'dialogue', grammarPoint: 'l27c6_if_were', partnerLine: 'Can I return it?', situation: { ru: 'Полка не подходит для ванной. Скажи, что если бы она подходила, вы бы её оставили.', uk: 'Полиця не підходить для ванної. Скажи, що якби вона підходила, ви б її залишили.' }, accepted: ['If it were suitable, we would keep the shelf.', 'We would keep the shelf if it were suitable.', 'If it were suitable, we would keep it.'] },
+    { id: 'l27c6-10', type: 'dialogue', grammarPoint: 'l27c6_would_if', partnerLine: 'We waited unnecessarily.', situation: { ru: 'Вы ждали друг друга у разных входов. Скажи, что вы легче нашли бы друг друга, если бы выбрали один вход.', uk: 'Ви чекали одне одного біля різних входів. Скажи, що ви легше знайшли б одне одного, якби обрали один вхід.' }, accepted: ['If we chose one entrance, we would find each other more easily.', 'We would find each other more easily if we chose one entrance.'] },
+    { id: 'l27c6-11', type: 'dialogue', grammarPoint: 'l27c6_have_done', partnerLine: 'How much water should we take?', situation: { ru: 'Сумку для пикника ты уже собираешь. Скажи, что чашки уже упаковал.', uk: 'Сумку для пікніка ти вже збираєш. Скажи, що чашки вже спакував.' }, accepted: ['I have already packed the cups.'] },
+    { id: 'l27c6-12', type: 'dialogue', grammarPoint: 'l27c6_if_were', partnerLine: 'The noise kept me awake.', situation: { ru: 'Окна номера выходят на дорогу. Скажи, что если бы комната была тише, вы бы оба спали лучше.', uk: 'Вікна номера виходять на дорогу. Скажи, що якби кімната була тихіша, ви б обоє спали краще.' }, accepted: ['If the room were quieter, we would both sleep better.', 'We would both sleep better if the room were quieter.'] },
+    // ── Найди и исправь ошибку ────────────────────────────────────────────────────────────────────────────────────
+    { id: 'l27c6-13', type: 'fix', grammarPoint: 'l27c6_would_if', wrong: 'We would arrive on time if we leave now.', accepted: ['We would arrive on time if we left now.', 'If we left now, we would arrive on time.'] },
+    { id: 'l27c6-14', type: 'fix', grammarPoint: 'l27c6_if_were', wrong: 'If I am you, I would use headphones.', accepted: ['If I were you, I would use headphones.', 'I would use headphones if I were you.'] },
+    { id: 'l27c6-15', type: 'fix', grammarPoint: 'l27c6_have_done', wrong: 'I have already move the chair.', accepted: ['I have already moved the chair.'] },
+    { id: 'l27c6-16', type: 'fix', grammarPoint: 'l27c6_if_were', wrong: 'If a room is available, we would stay another night.', accepted: ['If a room were available, we would stay another night.', 'We would stay another night if a room were available.'] },
+  ],
+};

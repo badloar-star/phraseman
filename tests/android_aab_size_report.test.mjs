@@ -120,14 +120,15 @@ test('package exposes only an informational AAB size report', () => {
 });
 
 // зачем (координатор 25.10): релиз 2.0.2 (144); runtimeVersion обязан совпадать с версией — на 2.0.0 канал production отдал бы
-// новой сборке старые OTA-заплатки и откатил её JS
-test('production build metadata is 144 with app and runtime version 2.0.2', () => {
+// новой сборке старые OTA-заплатки и откатил её JS. 26.10 (владелец через координатора): полная 2.0.3 (145) — на runtime 2.0.2
+// новая сборка делила бы канал с заплатками для 2.0.2 (OTA3 от 7116bc581); своя ветка runtime 2.0.3 — заплатки только для неё.
+test('production build metadata is 145 with app and runtime version 2.0.3', () => {
   const root = path.resolve(import.meta.dirname, '..');
   const app = JSON.parse(readFileSync(path.join(root, 'app.json'), 'utf8')).expo;
-  assert.equal(app.version, '2.0.2');
-  assert.equal(app.runtimeVersion, '2.0.2');
-  assert.equal(app.android.versionCode, 144);
-  assert.equal(app.ios.buildNumber, '144');
+  assert.equal(app.version, '2.0.3');
+  assert.equal(app.runtimeVersion, '2.0.3');
+  assert.equal(app.android.versionCode, 145);
+  assert.equal(app.ios.buildNumber, '145');
 });
 
 test('production version gate accepts build 135 with app version 2.0.0 unchanged', () => {

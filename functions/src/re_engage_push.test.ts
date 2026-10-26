@@ -238,12 +238,26 @@ describe('buildExpoPushMessage', () => {
     expect(streak.title).toContain('5');
   });
 
-  // зачем (Переводчик 7398140e4, координатор 26.10): пуш уходит и курсам без «Уроков» (es/fr/de/it, D129/D130) — тело не обещает урок
+  // зачем (Переводчик 7398140e4, координатор 26.10): пуш уходит и курсам без «Уроков» (es/fr/de/it, D129/D130) — тело не обещает урок.
+  // vi: \b в JS понимает только латиницу — «bài» ловим по пробелам. NFC (Ревизор 991f9704c): тело в NFD («lição», «bài» с
+  // отдельными диакритиками) иначе прошло бы мимо регулярки.
+  const LESSON_WORD = /урок|занят|lesson|lecci|liç|pelajaran|\bders\b|lekcj|(^|\s)bài(\s|$)/i;
+  const promisesLesson = (body: string): boolean => LESSON_WORD.test(body.normalize('NFC'));
+
   it.each(['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'])('streak_at_risk (%s): тело без обещания урока', (lang) => {
     const streak = buildExpoPushMessage({ ...base, lang, reason: 'streak_at_risk', streakCount: 5 });
-    // vi: \b в JS понимает только латиницу — «bài» ловим по пробелам
-    expect(streak.body).not.toMatch(/урок|занят|lesson|lecci|liç|pelajaran|\bders\b|lekcj|(^|\s)bài(\s|$)/i);
+    expect(promisesLesson(streak.body)).toBe(false);
     expect(streak.title).toContain('5');
+  });
+
+  it('сторож урока ловит и NFD-форму (pt «lição», vi «bài»), и NFC', () => {
+    for (const old of ['Uma lição hoje e sua sequência cresce.', 'Một bài hôm nay là chuỗi dài thêm.']) {
+      const nfd = old.normalize('NFD');
+      expect(nfd).not.toBe(old.normalize('NFC')); // кейс действительно в NFD
+      expect(promisesLesson(nfd)).toBe(true);
+      expect(promisesLesson(old.normalize('NFC'))).toBe(true);
+    }
+    expect(promisesLesson('Vài phút hôm nay là chuỗi dài thêm.'.normalize('NFD'))).toBe(false);
   });
 
   // зачем (EN_READINESS_R1): английский интерфейс не должен получать русский пуш (запасной язык — ru).

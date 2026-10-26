@@ -1,0 +1,1044 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-32:session-48",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-32:session-48:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — fridge",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-48:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — fridge",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-48:i01:audio",
+          "transcript": "fridge"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-48:i01:r1",
+            "targetText": "fridge",
+            "meaningByLocale": {
+              "ru": "Холодильник. Повторение знакомого слова.",
+              "uk": "Холодильник. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fridge",
+          "definitionByLocale": {
+            "ru": "Холодильник. Повторение знакомого слова.",
+            "uk": "Холодильник. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-48:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-48:i02:r1",
+          "text": "The fridge is noisy, so it might be old."
+        },
+        {
+          "responseId": "en:lesson-32:session-48:i02:r2",
+          "text": "The fridge is noisy, so it must be old."
+        },
+        {
+          "responseId": "en:lesson-32:session-48:i02:r3",
+          "text": "The fridge is noisy, so it can't be old."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-48:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-48:i02:audio",
+          "transcript": "The fridge is noisy, so it might be old."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-48:i02:r1",
+            "targetText": "The fridge is noisy, so it might be old.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-48:i02:r2",
+            "targetText": "The fridge is noisy, so it must be old.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-48:i02:r3",
+            "targetText": "The fridge is noisy, so it can't be old.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-48:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The fridge is noisy, so it might be old.",
+              "uk": "У записі звучить The fridge is noisy, so it might be old."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-48:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The fridge is noisy, so it might be old.",
+              "uk": "У записі звучить The fridge is noisy, so it might be old."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-48:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви вперше чуєте цей холодильник і за шумом припускаєте, що йому багато років. Холодильник шумить, тому він, можливо, старий.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-48:i03:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-48:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-48:i03:r3",
+          "text": "to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви вперше чуєте цей холодильник і за шумом припускаєте, що йому багато років. Холодильник шумить, тому він, можливо, старий.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы впервые слышите этот холодильник и по шуму предполагаете, что ему много лет. Холодильник шумит, поэтому он, возможно, старый.",
+          "uk": "Ви вперше чуєте цей холодильник і за шумом припускаєте, що йому багато років. Холодильник шумить, тому він, можливо, старий."
+        },
+        "gappedTargetPhrase": "The fridge is noisy, so it might ___ old.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-48:i03:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-48:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-48:i03:r3",
+            "text": "to be"
+          }
+        ],
+        "testedDimension": "Ви вперше чуєте цей холодильник і за шумом припускаєте, що йому багато років. Холодильник шумить, тому він, можливо, старий.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-48:i03:r2",
+            "correct": false,
+            "testedDimension": "Ви вперше чуєте цей холодильник і за шумом припускаєте, що йому багато років. Холодильник шумить, тому він, можливо, старий.",
+            "feedbackByLocale": {
+              "ru": "После might нужна форма be.",
+              "uk": "Після might потрібна форма be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-48:i03:r3",
+            "correct": false,
+            "testedDimension": "Ви вперше чуєте цей холодильник і за шумом припускаєте, що йому багато років. Холодильник шумить, тому він, можливо, старий.",
+            "feedbackByLocale": {
+              "ru": "После might не ставим to.",
+              "uk": "Після might не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-48:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bottle",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-48:i04:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bottle",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-48:i04:audio",
+          "transcript": "bottle"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-48:i04:r1",
+            "targetText": "bottle",
+            "meaningByLocale": {
+              "ru": "Бутылка. Повторение знакомого слова.",
+              "uk": "Пляшка. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bottle",
+          "definitionByLocale": {
+            "ru": "Бутылка. Повторение знакомого слова.",
+            "uk": "Пляшка. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-48:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Анна вважає, що соку не залишилося, але крізь скло видно рідину. Пляшка не може бути порожньою.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Анна вважає, що соку не залишилося, але крізь скло видно рідину. Пляшка не може бути порожньою.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The bottle can't be empty.",
+        "localizedMeaning": {
+          "ru": "Анна считает, что сока не осталось, но сквозь стекло видна жидкость. Бутылка не может быть пустой.",
+          "uk": "Анна вважає, що соку не залишилося, але крізь скло видно рідину. Пляшка не може бути порожньою."
+        },
+        "orderedTokens": [
+          "The",
+          "bottle",
+          "can't",
+          "be",
+          "empty"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-48:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cheese",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-48:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cheese",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-48:i06:audio",
+          "transcript": "cheese"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-48:i06:r1",
+            "targetText": "cheese",
+            "meaningByLocale": {
+              "ru": "Сыр. Повторение знакомого слова.",
+              "uk": "Сир. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cheese",
+          "definitionByLocale": {
+            "ru": "Сыр. Повторение знакомого слова.",
+            "uk": "Сир. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-48:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Сир, який я купив, м’який. Скажіть без that.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-48:i07:audio"
+      ],
+      "accessibilityLabel": "Сир, який я купив, м’який. Скажіть без that.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-48:i07:audio",
+          "transcript": "The cheese I bought is soft."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The cheese I bought is soft.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-48:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сир, який я купив, м’який. Уточніть предмет без зайвого займенника.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-48:i08:r1",
+          "text": "bought"
+        },
+        {
+          "responseId": "en:lesson-32:session-48:i08:r2",
+          "text": "bought it"
+        },
+        {
+          "responseId": "en:lesson-32:session-48:i08:r3",
+          "text": "buying"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сир, який я купив, м’який. Уточніть предмет без зайвого займенника.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сыр, который я купил, мягкий. Уточните предмет без лишнего местоимения.",
+          "uk": "Сир, який я купив, м’який. Уточніть предмет без зайвого займенника."
+        },
+        "gappedTargetPhrase": "The cheese I ___ is soft.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-48:i08:r1",
+            "text": "bought"
+          },
+          {
+            "responseId": "en:lesson-32:session-48:i08:r2",
+            "text": "bought it"
+          },
+          {
+            "responseId": "en:lesson-32:session-48:i08:r3",
+            "text": "buying"
+          }
+        ],
+        "testedDimension": "Сир, який я купив, м’який. Уточніть предмет без зайвого займенника.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-48:i08:r2",
+            "correct": false,
+            "testedDimension": "Сир, який я купив, м’який. Уточніть предмет без зайвого займенника.",
+            "feedbackByLocale": {
+              "ru": "Предмет уже назван: it не нужно.",
+              "uk": "Предмет уже названо: it не потрібне."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-48:i08:r3",
+            "correct": false,
+            "testedDimension": "Сир, який я купив, м’який. Уточніть предмет без зайвого займенника.",
+            "feedbackByLocale": {
+              "ru": "Нужна прошедшая форма bought.",
+              "uk": "Потрібна минула форма bought."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-48:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви вперше чуєте цей холодильник і за шумом припускаєте, що йому багато років. Холодильник шумить, тому він, можливо, старий. Почніть із The fridge is noisy.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви вперше чуєте цей холодильник і за шумом припускаєте, що йому багато років. Холодильник шумить, тому він, можливо, старий. Почніть із The fridge is noisy.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The fridge is noisy, so it might be old.",
+        "localizedMeaning": {
+          "ru": "Вы впервые слышите этот холодильник и по шуму предполагаете, что ему много лет. Холодильник шумит, поэтому он, возможно, старый. Начните с The fridge is noisy.",
+          "uk": "Ви вперше чуєте цей холодильник і за шумом припускаєте, що йому багато років. Холодильник шумить, тому він, можливо, старий. Почніть із The fridge is noisy."
+        },
+        "orderedTokens": [
+          "The",
+          "fridge",
+          "is",
+          "noisy,",
+          "so",
+          "it",
+          "might",
+          "be",
+          "old"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-48:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна вважає, що соку не залишилося, але крізь скло видно рідину. Скажіть висновок, замінивши The bottle займенником It.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-48:i10:audio"
+      ],
+      "accessibilityLabel": "Анна вважає, що соку не залишилося, але крізь скло видно рідину. Скажіть висновок, замінивши The bottle займенником It.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-48:i10:audio",
+          "transcript": "It can’t be empty."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It can’t be empty.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-48:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Пляшка не може бути порожньою. Виберіть форму після can’t.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-48:i11:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-48:i11:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-48:i11:r3",
+          "text": "being"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Пляшка не може бути порожньою. Виберіть форму після can’t.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Бутылка не может быть пустой. Выберите форму после can’t.",
+          "uk": "Пляшка не може бути порожньою. Виберіть форму після can’t."
+        },
+        "gappedTargetPhrase": "The bottle can't ___ empty.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-48:i11:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-48:i11:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-48:i11:r3",
+            "text": "being"
+          }
+        ],
+        "testedDimension": "Пляшка не може бути порожньою. Виберіть форму після can’t.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-48:i11:r2",
+            "correct": false,
+            "testedDimension": "Пляшка не може бути порожньою. Виберіть форму після can’t.",
+            "feedbackByLocale": {
+              "ru": "После can’t используем be.",
+              "uk": "Після can’t використовуємо be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-48:i11:r3",
+            "correct": false,
+            "testedDimension": "Пляшка не може бути порожньою. Виберіть форму після can’t.",
+            "feedbackByLocale": {
+              "ru": "Нужна начальная форма be.",
+              "uk": "Потрібна початкова форма be."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-48:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — soup",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-48:i12:audio"
+      ],
+      "accessibilityLabel": "Картка слова — soup",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-48:i12:audio",
+          "transcript": "soup"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-48:i12:r1",
+            "targetText": "soup",
+            "meaningByLocale": {
+              "ru": "Суп. Повторение знакомого слова.",
+              "uk": "Суп. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "soup",
+          "definitionByLocale": {
+            "ru": "Суп. Повторение знакомого слова.",
+            "uk": "Суп. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-48:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-48:i13:r1",
+          "text": "The soup must be cold."
+        },
+        {
+          "responseId": "en:lesson-32:session-48:i13:r2",
+          "text": "The soup may be cold."
+        },
+        {
+          "responseId": "en:lesson-32:session-48:i13:r3",
+          "text": "The soup could be cold."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-48:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-48:i13:audio",
+          "transcript": "The soup must be cold."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-48:i13:r1",
+            "targetText": "The soup must be cold.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-48:i13:r2",
+            "targetText": "The soup may be cold.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-48:i13:r3",
+            "targetText": "The soup could be cold.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-48:i13:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The soup must be cold.",
+              "uk": "У записі звучить The soup must be cold."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-48:i13:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The soup must be cold.",
+              "uk": "У записі звучить The soup must be cold."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-48:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Суп простояв у справному холодильнику всю ніч. Ви ще не дістали його. Суп, напевно, холодний.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-48:i14:audio"
+      ],
+      "accessibilityLabel": "Суп простояв у справному холодильнику всю ніч. Ви ще не дістали його. Суп, напевно, холодний.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-48:i14:audio",
+          "transcript": "The soup must be cold."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The soup must be cold.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-48:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Покажіть предмет Анні: почніть із This is, потім назвіть the cheese й уточнення I bought. Не додавайте that.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Покажіть предмет Анні: почніть із This is, потім назвіть the cheese й уточнення I bought. Не додавайте that.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is the cheese I bought.",
+        "localizedMeaning": {
+          "ru": "Покажите предмет Анне: начните с This is, затем назовите the cheese и уточнение I bought. Не добавляйте that.",
+          "uk": "Покажіть предмет Анні: почніть із This is, потім назвіть the cheese й уточнення I bought. Не додавайте that."
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "the",
+          "cheese",
+          "I",
+          "bought"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-48:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Холодильник шумить, тому він, можливо, старий. Поєднайте ознаку й припущення словом «тому».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-48:i16:r1",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-32:session-48:i16:r2",
+          "text": "because"
+        },
+        {
+          "responseId": "en:lesson-32:session-48:i16:r3",
+          "text": "although"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Холодильник шумить, тому він, можливо, старий. Поєднайте ознаку й припущення словом «тому».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Холодильник шумит, поэтому он, возможно, старый. Соедините признак и предположение словом «поэтому».",
+          "uk": "Холодильник шумить, тому він, можливо, старий. Поєднайте ознаку й припущення словом «тому»."
+        },
+        "gappedTargetPhrase": "The fridge is noisy, ___ it might be old.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-48:i16:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-32:session-48:i16:r2",
+            "text": "because"
+          },
+          {
+            "responseId": "en:lesson-32:session-48:i16:r3",
+            "text": "although"
+          }
+        ],
+        "testedDimension": "Холодильник шумить, тому він, можливо, старий. Поєднайте ознаку й припущення словом «тому».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-48:i16:r2",
+            "correct": false,
+            "testedDimension": "Холодильник шумить, тому він, можливо, старий. Поєднайте ознаку й припущення словом «тому».",
+            "feedbackByLocale": {
+              "ru": "После связки идёт вывод: нужен so.",
+              "uk": "Після сполучника йде висновок: потрібне so."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-48:i16:r3",
+            "correct": false,
+            "testedDimension": "Холодильник шумить, тому він, можливо, старий. Поєднайте ознаку й припущення словом «тому».",
+            "feedbackByLocale": {
+              "ru": "Нужен вывод из признака, используем so.",
+              "uk": "Потрібен висновок з ознаки, використовуємо so."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-48:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна запитує, на чому ґрунтується ваше припущення. Холодильник шумить, тому він, можливо, старий. Дайте відповідь, починаючи з The fridge is noisy.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-48:i17:audio"
+      ],
+      "accessibilityLabel": "Анна запитує, на чому ґрунтується ваше припущення. Холодильник шумить, тому він, можливо, старий. Дайте відповідь, починаючи з The fridge is noisy.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-48:i17:audio",
+          "transcript": "The fridge is noisy, so it might be old."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The fridge is noisy, so it might be old.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-48:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: названо можливість чи впевнений висновок?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-48:i18:r1",
+          "text": "The fridge is noisy, so it might be old."
+        },
+        {
+          "responseId": "en:lesson-32:session-48:i18:r2",
+          "text": "The fridge is noisy, so it must be old."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-48:i18:audioA",
+        "en:lesson-32:session-48:i18:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: названо можливість чи впевнений висновок?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "The fridge is noisy, so it might be old.",
+        "contrastB": "The fridge is noisy, so it must be old.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-32:session-48:i18:audioA",
+          "transcript": "The fridge is noisy, so it might be old."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-32:session-48:i18:audioB",
+          "transcript": "The fridge is noisy, so it must be old."
+        },
+        "testedPhoneticContrast": "Послухайте: названо можливість чи впевнений висновок?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-48:i18:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: названо можливість чи впевнений висновок?",
+            "feedbackByLocale": {
+              "ru": "Звучит might: это возможность.",
+              "uk": "Звучить might: це можливість."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-48:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, який варіант виключений.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-48:i19:audio"
+      ],
+      "accessibilityLabel": "Послухайте, який варіант виключений.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-48:i19:audio",
+          "transcript": "The bottle can't be empty."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The bottle can't be empty.",
+        "orderedTokens": [
+          "The",
+          "bottle",
+          "can't",
+          "be",
+          "empty"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-48:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Суп простояв у справному холодильнику всю ніч. Ви ще не дістали його. Суп, напевно, холодний.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-48:i20:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-48:i20:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-48:i20:r3",
+          "text": "to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Суп простояв у справному холодильнику всю ніч. Ви ще не дістали його. Суп, напевно, холодний.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Суп простоял в работающем холодильнике всю ночь. Вы ещё не достали его. Суп, должно быть, холодный.",
+          "uk": "Суп простояв у справному холодильнику всю ніч. Ви ще не дістали його. Суп, напевно, холодний."
+        },
+        "gappedTargetPhrase": "The soup must ___ cold.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-48:i20:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-48:i20:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-48:i20:r3",
+            "text": "to be"
+          }
+        ],
+        "testedDimension": "Суп простояв у справному холодильнику всю ніч. Ви ще не дістали його. Суп, напевно, холодний.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-48:i20:r2",
+            "correct": false,
+            "testedDimension": "Суп простояв у справному холодильнику всю ніч. Ви ще не дістали його. Суп, напевно, холодний.",
+            "feedbackByLocale": {
+              "ru": "После must здесь нужна форма be.",
+              "uk": "Після must тут потрібна форма be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-48:i20:r3",
+            "correct": false,
+            "testedDimension": "Суп простояв у справному холодильнику всю ніч. Ви ще не дістали його. Суп, напевно, холодний.",
+            "feedbackByLocale": {
+              "ru": "После must не ставим to.",
+              "uk": "Після must не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-48:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Холодильник шумить, тому він, можливо, старий. Назвіть ту саму можливість із could замість might. Почніть із The fridge is noisy.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-48:i21:audio"
+      ],
+      "accessibilityLabel": "Холодильник шумить, тому він, можливо, старий. Назвіть ту саму можливість із could замість might. Почніть із The fridge is noisy.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-48:i21:audio",
+          "transcript": "The fridge is noisy, so it could be old."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The fridge is noisy, so it could be old.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "297e40d46b7b37f6d2d3ca2f25a4c3f9dbac3f10ad3336eee7765045a3afeea2"
+}

@@ -1,0 +1,1044 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-32:session-46",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-32:session-46:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cat",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-46:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cat",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-46:i01:audio",
+          "transcript": "cat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-46:i01:r1",
+            "targetText": "cat",
+            "meaningByLocale": {
+              "ru": "Кот. Повторение знакомого слова.",
+              "uk": "Кіт. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cat",
+          "definitionByLocale": {
+            "ru": "Кот. Повторение знакомого слова.",
+            "uk": "Кіт. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-46:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-46:i02:r1",
+          "text": "The cat is quiet, so it might be asleep."
+        },
+        {
+          "responseId": "en:lesson-32:session-46:i02:r2",
+          "text": "The cat is quiet, so it must be asleep."
+        },
+        {
+          "responseId": "en:lesson-32:session-46:i02:r3",
+          "text": "The cat is quiet, so it can't be asleep."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-46:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-46:i02:audio",
+          "transcript": "The cat is quiet, so it might be asleep."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-46:i02:r1",
+            "targetText": "The cat is quiet, so it might be asleep.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-46:i02:r2",
+            "targetText": "The cat is quiet, so it must be asleep.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-46:i02:r3",
+            "targetText": "The cat is quiet, so it can't be asleep.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-46:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The cat is quiet, so it might be asleep.",
+              "uk": "У записі звучить The cat is quiet, so it might be asleep."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-46:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The cat is quiet, so it might be asleep.",
+              "uk": "У записі звучить The cat is quiet, so it might be asleep."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-46:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Кіт зазвичай нявкає біля кухні, але зараз його не чути. Ви припускаєте, що він спить. Кіт не видає звуків, тому він, можливо, спить.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-46:i03:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-46:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-46:i03:r3",
+          "text": "to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Кіт зазвичай нявкає біля кухні, але зараз його не чути. Ви припускаєте, що він спить. Кіт не видає звуків, тому він, можливо, спить.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Кот обычно мяукает возле кухни, но сейчас его не слышно. Вы допускаете, что он спит. Кот не издаёт звуков, поэтому он, возможно, спит.",
+          "uk": "Кіт зазвичай нявкає біля кухні, але зараз його не чути. Ви припускаєте, що він спить. Кіт не видає звуків, тому він, можливо, спить."
+        },
+        "gappedTargetPhrase": "The cat is quiet, so it might ___ asleep.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-46:i03:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-46:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-46:i03:r3",
+            "text": "to be"
+          }
+        ],
+        "testedDimension": "Кіт зазвичай нявкає біля кухні, але зараз його не чути. Ви припускаєте, що він спить. Кіт не видає звуків, тому він, можливо, спить.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-46:i03:r2",
+            "correct": false,
+            "testedDimension": "Кіт зазвичай нявкає біля кухні, але зараз його не чути. Ви припускаєте, що він спить. Кіт не видає звуків, тому він, можливо, спить.",
+            "feedbackByLocale": {
+              "ru": "После might нужна форма be.",
+              "uk": "Після might потрібна форма be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-46:i03:r3",
+            "correct": false,
+            "testedDimension": "Кіт зазвичай нявкає біля кухні, але зараз його не чути. Ви припускаєте, що він спить. Кіт не видає звуків, тому він, можливо, спить.",
+            "feedbackByLocale": {
+              "ru": "После might не ставим to.",
+              "uk": "Після might не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-46:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — door",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-46:i04:audio"
+      ],
+      "accessibilityLabel": "Картка слова — door",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-46:i04:audio",
+          "transcript": "door"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-46:i04:r1",
+            "targetText": "door",
+            "meaningByLocale": {
+              "ru": "Дверь. Повторение знакомого слова.",
+              "uk": "Двері. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "door",
+          "definitionByLocale": {
+            "ru": "Дверь. Повторение знакомого слова.",
+            "uk": "Двері. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-46:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Анна припускає, що двері відчинені, але ви бачите, що вони щільно зачинені. Двері не можуть бути відчиненими.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Анна припускає, що двері відчинені, але ви бачите, що вони щільно зачинені. Двері не можуть бути відчиненими.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The door can't be open.",
+        "localizedMeaning": {
+          "ru": "Анна предполагает, что дверь открыта, но вы видите, что она плотно закрыта. Дверь не может быть открытой.",
+          "uk": "Анна припускає, що двері відчинені, але ви бачите, що вони щільно зачинені. Двері не можуть бути відчиненими."
+        },
+        "orderedTokens": [
+          "The",
+          "door",
+          "can't",
+          "be",
+          "open"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-46:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — toy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-46:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — toy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-46:i06:audio",
+          "transcript": "toy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-46:i06:r1",
+            "targetText": "toy",
+            "meaningByLocale": {
+              "ru": "Игрушка. Повторение знакомого слова.",
+              "uk": "Іграшка. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "toy",
+          "definitionByLocale": {
+            "ru": "Игрушка. Повторение знакомого слова.",
+            "uk": "Іграшка. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-46:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Іграшка, яку я знайшов, маленька. Скажіть без that.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-46:i07:audio"
+      ],
+      "accessibilityLabel": "Іграшка, яку я знайшов, маленька. Скажіть без that.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-46:i07:audio",
+          "transcript": "The toy I found is small."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The toy I found is small.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-46:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Іграшка, яку я знайшов, маленька. Уточніть предмет без зайвого займенника.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-46:i08:r1",
+          "text": "found"
+        },
+        {
+          "responseId": "en:lesson-32:session-46:i08:r2",
+          "text": "found it"
+        },
+        {
+          "responseId": "en:lesson-32:session-46:i08:r3",
+          "text": "finding"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Іграшка, яку я знайшов, маленька. Уточніть предмет без зайвого займенника.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Игрушка, которую я нашёл, маленькая. Уточните предмет без лишнего местоимения.",
+          "uk": "Іграшка, яку я знайшов, маленька. Уточніть предмет без зайвого займенника."
+        },
+        "gappedTargetPhrase": "The toy I ___ is small.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-46:i08:r1",
+            "text": "found"
+          },
+          {
+            "responseId": "en:lesson-32:session-46:i08:r2",
+            "text": "found it"
+          },
+          {
+            "responseId": "en:lesson-32:session-46:i08:r3",
+            "text": "finding"
+          }
+        ],
+        "testedDimension": "Іграшка, яку я знайшов, маленька. Уточніть предмет без зайвого займенника.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-46:i08:r2",
+            "correct": false,
+            "testedDimension": "Іграшка, яку я знайшов, маленька. Уточніть предмет без зайвого займенника.",
+            "feedbackByLocale": {
+              "ru": "Предмет уже назван: it не нужно.",
+              "uk": "Предмет уже названо: it не потрібне."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-46:i08:r3",
+            "correct": false,
+            "testedDimension": "Іграшка, яку я знайшов, маленька. Уточніть предмет без зайвого займенника.",
+            "feedbackByLocale": {
+              "ru": "Нужна прошедшая форма found.",
+              "uk": "Потрібна минула форма found."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-46:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Кіт зазвичай нявкає біля кухні, але зараз його не чути. Ви припускаєте, що він спить. Кіт не видає звуків, тому він, можливо, спить. Почніть із The cat is quiet.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Кіт зазвичай нявкає біля кухні, але зараз його не чути. Ви припускаєте, що він спить. Кіт не видає звуків, тому він, можливо, спить. Почніть із The cat is quiet.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The cat is quiet, so it might be asleep.",
+        "localizedMeaning": {
+          "ru": "Кот обычно мяукает возле кухни, но сейчас его не слышно. Вы допускаете, что он спит. Кот не издаёт звуков, поэтому он, возможно, спит. Начните с The cat is quiet.",
+          "uk": "Кіт зазвичай нявкає біля кухні, але зараз його не чути. Ви припускаєте, що він спить. Кіт не видає звуків, тому він, можливо, спить. Почніть із The cat is quiet."
+        },
+        "orderedTokens": [
+          "The",
+          "cat",
+          "is",
+          "quiet,",
+          "so",
+          "it",
+          "might",
+          "be",
+          "asleep"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-46:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна припускає, що двері відчинені, але ви бачите, що вони щільно зачинені. Скажіть висновок, замінивши The door займенником It.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-46:i10:audio"
+      ],
+      "accessibilityLabel": "Анна припускає, що двері відчинені, але ви бачите, що вони щільно зачинені. Скажіть висновок, замінивши The door займенником It.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-46:i10:audio",
+          "transcript": "It can’t be open."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It can’t be open.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-46:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Двері не можуть бути відчиненими. Виберіть форму після can’t.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-46:i11:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-46:i11:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-46:i11:r3",
+          "text": "being"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Двері не можуть бути відчиненими. Виберіть форму після can’t.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дверь не может быть открытой. Выберите форму после can’t.",
+          "uk": "Двері не можуть бути відчиненими. Виберіть форму після can’t."
+        },
+        "gappedTargetPhrase": "The door can't ___ open.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-46:i11:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-46:i11:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-46:i11:r3",
+            "text": "being"
+          }
+        ],
+        "testedDimension": "Двері не можуть бути відчиненими. Виберіть форму після can’t.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-46:i11:r2",
+            "correct": false,
+            "testedDimension": "Двері не можуть бути відчиненими. Виберіть форму після can’t.",
+            "feedbackByLocale": {
+              "ru": "После can’t используем be.",
+              "uk": "Після can’t використовуємо be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-46:i11:r3",
+            "correct": false,
+            "testedDimension": "Двері не можуть бути відчиненими. Виберіть форму після can’t.",
+            "feedbackByLocale": {
+              "ru": "Нужна начальная форма be.",
+              "uk": "Потрібна початкова форма be."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-46:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bowl",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-46:i12:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bowl",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-46:i12:audio",
+          "transcript": "bowl"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-46:i12:r1",
+            "targetText": "bowl",
+            "meaningByLocale": {
+              "ru": "Миска. Повторение знакомого слова.",
+              "uk": "Миска. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bowl",
+          "definitionByLocale": {
+            "ru": "Миска. Повторение знакомого слова.",
+            "uk": "Миска. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-46:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-46:i13:r1",
+          "text": "The bowl must be empty."
+        },
+        {
+          "responseId": "en:lesson-32:session-46:i13:r2",
+          "text": "The bowl may be empty."
+        },
+        {
+          "responseId": "en:lesson-32:session-46:i13:r3",
+          "text": "The bowl could be empty."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-46:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-46:i13:audio",
+          "transcript": "The bowl must be empty."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-46:i13:r1",
+            "targetText": "The bowl must be empty.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-46:i13:r2",
+            "targetText": "The bowl may be empty.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-46:i13:r3",
+            "targetText": "The bowl could be empty.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-46:i13:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The bowl must be empty.",
+              "uk": "У записі звучить The bowl must be empty."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-46:i13:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The bowl must be empty.",
+              "uk": "У записі звучить The bowl must be empty."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-46:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви чули, як Анна висипала весь корм із миски в пакет. Самої миски звідси не видно. Миска, напевно, порожня.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-46:i14:audio"
+      ],
+      "accessibilityLabel": "Ви чули, як Анна висипала весь корм із миски в пакет. Самої миски звідси не видно. Миска, напевно, порожня.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-46:i14:audio",
+          "transcript": "The bowl must be empty."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The bowl must be empty.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-46:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Покажіть предмет Анні: почніть із This is, потім назвіть the toy й уточнення I found. Не додавайте that.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Покажіть предмет Анні: почніть із This is, потім назвіть the toy й уточнення I found. Не додавайте that.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is the toy I found.",
+        "localizedMeaning": {
+          "ru": "Покажите предмет Анне: начните с This is, затем назовите the toy и уточнение I found. Не добавляйте that.",
+          "uk": "Покажіть предмет Анні: почніть із This is, потім назвіть the toy й уточнення I found. Не додавайте that."
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "the",
+          "toy",
+          "I",
+          "found"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-46:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Кіт не видає звуків, тому він, можливо, спить. Поєднайте ознаку й припущення словом «тому».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-46:i16:r1",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-32:session-46:i16:r2",
+          "text": "because"
+        },
+        {
+          "responseId": "en:lesson-32:session-46:i16:r3",
+          "text": "although"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Кіт не видає звуків, тому він, можливо, спить. Поєднайте ознаку й припущення словом «тому».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Кот не издаёт звуков, поэтому он, возможно, спит. Соедините признак и предположение словом «поэтому».",
+          "uk": "Кіт не видає звуків, тому він, можливо, спить. Поєднайте ознаку й припущення словом «тому»."
+        },
+        "gappedTargetPhrase": "The cat is quiet, ___ it might be asleep.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-46:i16:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-32:session-46:i16:r2",
+            "text": "because"
+          },
+          {
+            "responseId": "en:lesson-32:session-46:i16:r3",
+            "text": "although"
+          }
+        ],
+        "testedDimension": "Кіт не видає звуків, тому він, можливо, спить. Поєднайте ознаку й припущення словом «тому».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-46:i16:r2",
+            "correct": false,
+            "testedDimension": "Кіт не видає звуків, тому він, можливо, спить. Поєднайте ознаку й припущення словом «тому».",
+            "feedbackByLocale": {
+              "ru": "После связки идёт вывод: нужен so.",
+              "uk": "Після сполучника йде висновок: потрібне so."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-46:i16:r3",
+            "correct": false,
+            "testedDimension": "Кіт не видає звуків, тому він, можливо, спить. Поєднайте ознаку й припущення словом «тому».",
+            "feedbackByLocale": {
+              "ru": "Нужен вывод из признака, используем so.",
+              "uk": "Потрібен висновок з ознаки, використовуємо so."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-46:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна запитує, на чому ґрунтується ваше припущення. Кіт не видає звуків, тому він, можливо, спить. Дайте відповідь, починаючи з The cat is quiet.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-46:i17:audio"
+      ],
+      "accessibilityLabel": "Анна запитує, на чому ґрунтується ваше припущення. Кіт не видає звуків, тому він, можливо, спить. Дайте відповідь, починаючи з The cat is quiet.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-46:i17:audio",
+          "transcript": "The cat is quiet, so it might be asleep."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The cat is quiet, so it might be asleep.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-46:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: названо можливість чи впевнений висновок?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-46:i18:r1",
+          "text": "The cat is quiet, so it might be asleep."
+        },
+        {
+          "responseId": "en:lesson-32:session-46:i18:r2",
+          "text": "The cat is quiet, so it must be asleep."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-46:i18:audioA",
+        "en:lesson-32:session-46:i18:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: названо можливість чи впевнений висновок?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "The cat is quiet, so it might be asleep.",
+        "contrastB": "The cat is quiet, so it must be asleep.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-32:session-46:i18:audioA",
+          "transcript": "The cat is quiet, so it might be asleep."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-32:session-46:i18:audioB",
+          "transcript": "The cat is quiet, so it must be asleep."
+        },
+        "testedPhoneticContrast": "Послухайте: названо можливість чи впевнений висновок?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-46:i18:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: названо можливість чи впевнений висновок?",
+            "feedbackByLocale": {
+              "ru": "Звучит might: это возможность.",
+              "uk": "Звучить might: це можливість."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-46:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, який варіант виключений.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-46:i19:audio"
+      ],
+      "accessibilityLabel": "Послухайте, який варіант виключений.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-46:i19:audio",
+          "transcript": "The door can't be open."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The door can't be open.",
+        "orderedTokens": [
+          "The",
+          "door",
+          "can't",
+          "be",
+          "open"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-46:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви чули, як Анна висипала весь корм із миски в пакет. Самої миски звідси не видно. Миска, напевно, порожня.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-46:i20:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-46:i20:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-46:i20:r3",
+          "text": "to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви чули, як Анна висипала весь корм із миски в пакет. Самої миски звідси не видно. Миска, напевно, порожня.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы слышали, как Анна высыпала весь корм из миски в пакет. Саму миску отсюда не видно. Миска, должно быть, пустая.",
+          "uk": "Ви чули, як Анна висипала весь корм із миски в пакет. Самої миски звідси не видно. Миска, напевно, порожня."
+        },
+        "gappedTargetPhrase": "The bowl must ___ empty.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-46:i20:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-46:i20:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-46:i20:r3",
+            "text": "to be"
+          }
+        ],
+        "testedDimension": "Ви чули, як Анна висипала весь корм із миски в пакет. Самої миски звідси не видно. Миска, напевно, порожня.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-46:i20:r2",
+            "correct": false,
+            "testedDimension": "Ви чули, як Анна висипала весь корм із миски в пакет. Самої миски звідси не видно. Миска, напевно, порожня.",
+            "feedbackByLocale": {
+              "ru": "После must здесь нужна форма be.",
+              "uk": "Після must тут потрібна форма be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-46:i20:r3",
+            "correct": false,
+            "testedDimension": "Ви чули, як Анна висипала весь корм із миски в пакет. Самої миски звідси не видно. Миска, напевно, порожня.",
+            "feedbackByLocale": {
+              "ru": "После must не ставим to.",
+              "uk": "Після must не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-46:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Кіт не видає звуків, тому він, можливо, спить. Назвіть ту саму можливість із could замість might. Почніть із The cat is quiet.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-46:i21:audio"
+      ],
+      "accessibilityLabel": "Кіт не видає звуків, тому він, можливо, спить. Назвіть ту саму можливість із could замість might. Почніть із The cat is quiet.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-46:i21:audio",
+          "transcript": "The cat is quiet, so it could be asleep."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The cat is quiet, so it could be asleep.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "0a739841ac6e028a1f882a3203874d078258d7a6f527ecb2553148048cc389e4"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-32:session-50:i01",
+    "correctText": "train",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-50:i02",
+    "correctText": "The train is quiet, so it might be empty.",
+    "correctResponseId": "en:lesson-32:session-50:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-50:i03",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-50:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-50:i04",
+    "correctText": "bag",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-50:i05",
+    "correctText": "The bag can't be light.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-50:i06",
+    "correctText": "ticket",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-50:i07",
+    "correctText": "The ticket I bought is expensive.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-50:i08",
+    "correctText": "bought",
+    "correctResponseId": "en:lesson-32:session-50:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-50:i09",
+    "correctText": "The train is quiet, so it might be empty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-50:i10",
+    "correctText": "It can’t be light.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-50:i11",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-50:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-50:i12",
+    "correctText": "platform",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-50:i13",
+    "correctText": "The platform must be wet.",
+    "correctResponseId": "en:lesson-32:session-50:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-50:i14",
+    "correctText": "The platform must be wet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-50:i15",
+    "correctText": "This is the ticket I bought.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-50:i16",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-32:session-50:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-50:i17",
+    "correctText": "The train is quiet, so it might be empty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-50:i18",
+    "correctText": "The train is quiet, so it might be empty.",
+    "correctResponseId": "en:lesson-32:session-50:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-50:i19",
+    "correctText": "The bag can't be light.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-50:i20",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-50:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-50:i21",
+    "correctText": "The train is quiet, so it could be empty.",
+    "correctResponseId": null
+  }
+]

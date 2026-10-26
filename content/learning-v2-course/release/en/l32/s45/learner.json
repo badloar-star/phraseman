@@ -1,0 +1,1044 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-32:session-45",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-32:session-45:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — milk",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-45:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — milk",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-45:i01:audio",
+          "transcript": "milk"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-45:i01:r1",
+            "targetText": "milk",
+            "meaningByLocale": {
+              "ru": "Молоко. Повторение знакомого слова.",
+              "uk": "Молоко. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "milk",
+          "definitionByLocale": {
+            "ru": "Молоко. Повторение знакомого слова.",
+            "uk": "Молоко. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-45:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-45:i02:r1",
+          "text": "The milk smells strange, so it might be bad."
+        },
+        {
+          "responseId": "en:lesson-32:session-45:i02:r2",
+          "text": "The milk smells strange, so it must be bad."
+        },
+        {
+          "responseId": "en:lesson-32:session-45:i02:r3",
+          "text": "The milk smells strange, so it can't be bad."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-45:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-45:i02:audio",
+          "transcript": "The milk smells strange, so it might be bad."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-45:i02:r1",
+            "targetText": "The milk smells strange, so it might be bad.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-45:i02:r2",
+            "targetText": "The milk smells strange, so it must be bad.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-45:i02:r3",
+            "targetText": "The milk smells strange, so it can't be bad.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-45:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The milk smells strange, so it might be bad.",
+              "uk": "У записі звучить The milk smells strange, so it might be bad."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-45:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The milk smells strange, so it might be bad.",
+              "uk": "У записі звучить The milk smells strange, so it might be bad."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-45:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Открыв молоко, вы замечаете необычный запах и предполагаете, что оно испортилось. Молоко странно пахнет, поэтому оно, возможно, испортилось.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-45:i03:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-45:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-45:i03:r3",
+          "text": "to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Открыв молоко, вы замечаете необычный запах и предполагаете, что оно испортилось. Молоко странно пахнет, поэтому оно, возможно, испортилось.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Открыв молоко, вы замечаете необычный запах и предполагаете, что оно испортилось. Молоко странно пахнет, поэтому оно, возможно, испортилось.",
+          "uk": "Відкривши молоко, ви помічаєте незвичний запах і припускаєте, що воно зіпсувалося. Молоко дивно пахне, тому воно, можливо, зіпсувалося."
+        },
+        "gappedTargetPhrase": "The milk smells strange, so it might ___ bad.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-45:i03:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-45:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-45:i03:r3",
+            "text": "to be"
+          }
+        ],
+        "testedDimension": "Открыв молоко, вы замечаете необычный запах и предполагаете, что оно испортилось. Молоко странно пахнет, поэтому оно, возможно, испортилось.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-45:i03:r2",
+            "correct": false,
+            "testedDimension": "Открыв молоко, вы замечаете необычный запах и предполагаете, что оно испортилось. Молоко странно пахнет, поэтому оно, возможно, испортилось.",
+            "feedbackByLocale": {
+              "ru": "После might нужна форма be.",
+              "uk": "Після might потрібна форма be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-45:i03:r3",
+            "correct": false,
+            "testedDimension": "Открыв молоко, вы замечаете необычный запах и предполагаете, что оно испортилось. Молоко странно пахнет, поэтому оно, возможно, испортилось.",
+            "feedbackByLocale": {
+              "ru": "После might не ставим to.",
+              "uk": "Після might не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-45:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — box",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-45:i04:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — box",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-45:i04:audio",
+          "transcript": "box"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-45:i04:r1",
+            "targetText": "box",
+            "meaningByLocale": {
+              "ru": "Коробка. Повторение знакомого слова.",
+              "uk": "Коробка. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "box",
+          "definitionByLocale": {
+            "ru": "Коробка. Повторение знакомого слова.",
+            "uk": "Коробка. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-45:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Анна считает, что коробка пуста, но через открытый верх видны яйца. Коробка не может быть пустой.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Анна считает, что коробка пуста, но через открытый верх видны яйца. Коробка не может быть пустой.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The box can't be empty.",
+        "localizedMeaning": {
+          "ru": "Анна считает, что коробка пуста, но через открытый верх видны яйца. Коробка не может быть пустой.",
+          "uk": "Анна вважає, що коробка порожня, але крізь відкритий верх видно яйця. Коробка не може бути порожньою."
+        },
+        "orderedTokens": [
+          "The",
+          "box",
+          "can't",
+          "be",
+          "empty"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-45:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — apple",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-45:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — apple",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-45:i06:audio",
+          "transcript": "apple"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-45:i06:r1",
+            "targetText": "apple",
+            "meaningByLocale": {
+              "ru": "Яблоко. Повторение знакомого слова.",
+              "uk": "Яблуко. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "apple",
+          "definitionByLocale": {
+            "ru": "Яблоко. Повторение знакомого слова.",
+            "uk": "Яблуко. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-45:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Яблоко, которое я выбрал, зелёное. Скажите без that.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-45:i07:audio"
+      ],
+      "accessibilityLabel": "Яблоко, которое я выбрал, зелёное. Скажите без that.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-45:i07:audio",
+          "transcript": "The apple I chose is green."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The apple I chose is green.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-45:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Яблоко, которое я выбрал, зелёное. Уточните предмет без лишнего местоимения.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-45:i08:r1",
+          "text": "chose"
+        },
+        {
+          "responseId": "en:lesson-32:session-45:i08:r2",
+          "text": "chose it"
+        },
+        {
+          "responseId": "en:lesson-32:session-45:i08:r3",
+          "text": "choosing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Яблоко, которое я выбрал, зелёное. Уточните предмет без лишнего местоимения.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Яблоко, которое я выбрал, зелёное. Уточните предмет без лишнего местоимения.",
+          "uk": "Яблуко, яке я вибрав, зелене. Уточніть предмет без зайвого займенника."
+        },
+        "gappedTargetPhrase": "The apple I ___ is green.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-45:i08:r1",
+            "text": "chose"
+          },
+          {
+            "responseId": "en:lesson-32:session-45:i08:r2",
+            "text": "chose it"
+          },
+          {
+            "responseId": "en:lesson-32:session-45:i08:r3",
+            "text": "choosing"
+          }
+        ],
+        "testedDimension": "Яблоко, которое я выбрал, зелёное. Уточните предмет без лишнего местоимения.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-45:i08:r2",
+            "correct": false,
+            "testedDimension": "Яблоко, которое я выбрал, зелёное. Уточните предмет без лишнего местоимения.",
+            "feedbackByLocale": {
+              "ru": "Предмет уже назван: it не нужно.",
+              "uk": "Предмет уже названо: it не потрібне."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-45:i08:r3",
+            "correct": false,
+            "testedDimension": "Яблоко, которое я выбрал, зелёное. Уточните предмет без лишнего местоимения.",
+            "feedbackByLocale": {
+              "ru": "Нужна прошедшая форма chose.",
+              "uk": "Потрібна минула форма chose."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-45:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Открыв молоко, вы замечаете необычный запах и предполагаете, что оно испортилось. Молоко странно пахнет, поэтому оно, возможно, испортилось. Начните с The milk smells strange.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Открыв молоко, вы замечаете необычный запах и предполагаете, что оно испортилось. Молоко странно пахнет, поэтому оно, возможно, испортилось. Начните с The milk smells strange.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The milk smells strange, so it might be bad.",
+        "localizedMeaning": {
+          "ru": "Открыв молоко, вы замечаете необычный запах и предполагаете, что оно испортилось. Молоко странно пахнет, поэтому оно, возможно, испортилось. Начните с The milk smells strange.",
+          "uk": "Відкривши молоко, ви помічаєте незвичний запах і припускаєте, що воно зіпсувалося. Молоко дивно пахне, тому воно, можливо, зіпсувалося. Почніть із The milk smells strange."
+        },
+        "orderedTokens": [
+          "The",
+          "milk",
+          "smells",
+          "strange,",
+          "so",
+          "it",
+          "might",
+          "be",
+          "bad"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-45:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна считает, что коробка пуста, но через открытый верх видны яйца. Скажите вывод, заменив The box местоимением It.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-45:i10:audio"
+      ],
+      "accessibilityLabel": "Анна считает, что коробка пуста, но через открытый верх видны яйца. Скажите вывод, заменив The box местоимением It.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-45:i10:audio",
+          "transcript": "It can’t be empty."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It can’t be empty.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-45:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Коробка не может быть пустой. Выберите форму после can’t.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-45:i11:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-45:i11:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-45:i11:r3",
+          "text": "being"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Коробка не может быть пустой. Выберите форму после can’t.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Коробка не может быть пустой. Выберите форму после can’t.",
+          "uk": "Коробка не може бути порожньою. Виберіть форму після can’t."
+        },
+        "gappedTargetPhrase": "The box can't ___ empty.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-45:i11:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-45:i11:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-45:i11:r3",
+            "text": "being"
+          }
+        ],
+        "testedDimension": "Коробка не может быть пустой. Выберите форму после can’t.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-45:i11:r2",
+            "correct": false,
+            "testedDimension": "Коробка не может быть пустой. Выберите форму после can’t.",
+            "feedbackByLocale": {
+              "ru": "После can’t используем be.",
+              "uk": "Після can’t використовуємо be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-45:i11:r3",
+            "correct": false,
+            "testedDimension": "Коробка не может быть пустой. Выберите форму после can’t.",
+            "feedbackByLocale": {
+              "ru": "Нужна начальная форма be.",
+              "uk": "Потрібна початкова форма be."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-45:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — ice",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-45:i12:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — ice",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-45:i12:audio",
+          "transcript": "ice"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-45:i12:r1",
+            "targetText": "ice",
+            "meaningByLocale": {
+              "ru": "Лёд. Повторение знакомого слова.",
+              "uk": "Лід. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ice",
+          "definitionByLocale": {
+            "ru": "Лёд. Повторение знакомого слова.",
+            "uk": "Лід. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-45:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-45:i13:r1",
+          "text": "The ice must be cold."
+        },
+        {
+          "responseId": "en:lesson-32:session-45:i13:r2",
+          "text": "The ice may be cold."
+        },
+        {
+          "responseId": "en:lesson-32:session-45:i13:r3",
+          "text": "The ice could be cold."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-45:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-45:i13:audio",
+          "transcript": "The ice must be cold."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-45:i13:r1",
+            "targetText": "The ice must be cold.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-45:i13:r2",
+            "targetText": "The ice may be cold.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-45:i13:r3",
+            "targetText": "The ice could be cold.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-45:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The ice must be cold.",
+              "uk": "У записі звучить The ice must be cold."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-45:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The ice must be cold.",
+              "uk": "У записі звучить The ice must be cold."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-45:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна только что вынула лёд из морозилки. Вы ещё не брали его в руки. Лёд, должно быть, холодный.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-45:i14:audio"
+      ],
+      "accessibilityLabel": "Анна только что вынула лёд из морозилки. Вы ещё не брали его в руки. Лёд, должно быть, холодный.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-45:i14:audio",
+          "transcript": "The ice must be cold."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The ice must be cold.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-45:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Покажите предмет Анне: начните с This is, затем назовите the apple и уточнение I chose. Не добавляйте that.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Покажите предмет Анне: начните с This is, затем назовите the apple и уточнение I chose. Не добавляйте that.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is the apple I chose.",
+        "localizedMeaning": {
+          "ru": "Покажите предмет Анне: начните с This is, затем назовите the apple и уточнение I chose. Не добавляйте that.",
+          "uk": "Покажіть предмет Анні: почніть із This is, потім назвіть the apple й уточнення I chose. Не додавайте that."
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "the",
+          "apple",
+          "I",
+          "chose"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-45:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Молоко странно пахнет, поэтому оно, возможно, испортилось. Соедините признак и предположение словом «поэтому».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-45:i16:r1",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-32:session-45:i16:r2",
+          "text": "because"
+        },
+        {
+          "responseId": "en:lesson-32:session-45:i16:r3",
+          "text": "although"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Молоко странно пахнет, поэтому оно, возможно, испортилось. Соедините признак и предположение словом «поэтому».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Молоко странно пахнет, поэтому оно, возможно, испортилось. Соедините признак и предположение словом «поэтому».",
+          "uk": "Молоко дивно пахне, тому воно, можливо, зіпсувалося. Поєднайте ознаку й припущення словом «тому»."
+        },
+        "gappedTargetPhrase": "The milk smells strange, ___ it might be bad.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-45:i16:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-32:session-45:i16:r2",
+            "text": "because"
+          },
+          {
+            "responseId": "en:lesson-32:session-45:i16:r3",
+            "text": "although"
+          }
+        ],
+        "testedDimension": "Молоко странно пахнет, поэтому оно, возможно, испортилось. Соедините признак и предположение словом «поэтому».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-45:i16:r2",
+            "correct": false,
+            "testedDimension": "Молоко странно пахнет, поэтому оно, возможно, испортилось. Соедините признак и предположение словом «поэтому».",
+            "feedbackByLocale": {
+              "ru": "После связки идёт вывод: нужен so.",
+              "uk": "Після сполучника йде висновок: потрібне so."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-45:i16:r3",
+            "correct": false,
+            "testedDimension": "Молоко странно пахнет, поэтому оно, возможно, испортилось. Соедините признак и предположение словом «поэтому».",
+            "feedbackByLocale": {
+              "ru": "Нужен вывод из признака, используем so.",
+              "uk": "Потрібен висновок з ознаки, використовуємо so."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-45:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна спрашивает, на чём основано ваше предположение. Молоко странно пахнет, поэтому оно, возможно, испортилось. Ответьте, начиная с The milk smells strange.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-45:i17:audio"
+      ],
+      "accessibilityLabel": "Анна спрашивает, на чём основано ваше предположение. Молоко странно пахнет, поэтому оно, возможно, испортилось. Ответьте, начиная с The milk smells strange.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-45:i17:audio",
+          "transcript": "The milk smells strange, so it might be bad."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The milk smells strange, so it might be bad.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-45:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: названа возможность или уверенный вывод?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-45:i18:r1",
+          "text": "The milk smells strange, so it might be bad."
+        },
+        {
+          "responseId": "en:lesson-32:session-45:i18:r2",
+          "text": "The milk smells strange, so it must be bad."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-45:i18:audioA",
+        "en:lesson-32:session-45:i18:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: названа возможность или уверенный вывод?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "The milk smells strange, so it might be bad.",
+        "contrastB": "The milk smells strange, so it must be bad.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-32:session-45:i18:audioA",
+          "transcript": "The milk smells strange, so it might be bad."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-32:session-45:i18:audioB",
+          "transcript": "The milk smells strange, so it must be bad."
+        },
+        "testedPhoneticContrast": "Послушайте: названа возможность или уверенный вывод?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-45:i18:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: названа возможность или уверенный вывод?",
+            "feedbackByLocale": {
+              "ru": "Звучит might: это возможность.",
+              "uk": "Звучить might: це можливість."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-45:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, какой вариант исключён.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-45:i19:audio"
+      ],
+      "accessibilityLabel": "Послушайте, какой вариант исключён.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-45:i19:audio",
+          "transcript": "The box can't be empty."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The box can't be empty.",
+        "orderedTokens": [
+          "The",
+          "box",
+          "can't",
+          "be",
+          "empty"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-45:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Анна только что вынула лёд из морозилки. Вы ещё не брали его в руки. Лёд, должно быть, холодный.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-45:i20:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-45:i20:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-45:i20:r3",
+          "text": "to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Анна только что вынула лёд из морозилки. Вы ещё не брали его в руки. Лёд, должно быть, холодный.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Анна только что вынула лёд из морозилки. Вы ещё не брали его в руки. Лёд, должно быть, холодный.",
+          "uk": "Анна щойно вийняла лід із морозилки. Ви ще не брали його до рук. Лід, напевно, холодний."
+        },
+        "gappedTargetPhrase": "The ice must ___ cold.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-45:i20:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-45:i20:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-45:i20:r3",
+            "text": "to be"
+          }
+        ],
+        "testedDimension": "Анна только что вынула лёд из морозилки. Вы ещё не брали его в руки. Лёд, должно быть, холодный.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-45:i20:r2",
+            "correct": false,
+            "testedDimension": "Анна только что вынула лёд из морозилки. Вы ещё не брали его в руки. Лёд, должно быть, холодный.",
+            "feedbackByLocale": {
+              "ru": "После must здесь нужна форма be.",
+              "uk": "Після must тут потрібна форма be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-45:i20:r3",
+            "correct": false,
+            "testedDimension": "Анна только что вынула лёд из морозилки. Вы ещё не брали его в руки. Лёд, должно быть, холодный.",
+            "feedbackByLocale": {
+              "ru": "После must не ставим to.",
+              "uk": "Після must не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-45:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Молоко странно пахнет, поэтому оно, возможно, испортилось. Назовите ту же возможность с could вместо might. Начните с The milk smells strange.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-45:i21:audio"
+      ],
+      "accessibilityLabel": "Молоко странно пахнет, поэтому оно, возможно, испортилось. Назовите ту же возможность с could вместо might. Начните с The milk smells strange.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-45:i21:audio",
+          "transcript": "The milk smells strange, so it could be bad."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The milk smells strange, so it could be bad.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "9ce18a3265a0f32d071acaeadf920e501b90588b6c56f8cf1e7abb6554d2023d"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-32:session-45",
+  "learningOutcomeByLocale": {
+    "ru": "объяснять предположение, отвергать невозможный вариант и уточнять предмет.",
+    "uk": "пояснювати припущення, відкидати неможливий варіант і уточнювати предмет."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-32:session-45:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Наблюдение и возможность",
+        "uk": "Спостереження й можливість"
+      },
+      "bodyByLocale": {
+        "ru": "Открыв молоко, вы замечаете необычный запах и предполагаете, что оно испортилось. The milk smells strange, so it might be bad. — Молоко странно пахнет, поэтому оно, возможно, испортилось. Соберите The milk smells strange + so + it might be bad. До so назовите наблюдение, после so — возможный вывод с might. Перед состоянием bad нужна связка be.",
+        "uk": "Відкривши молоко, ви помічаєте незвичний запах і припускаєте, що воно зіпсувалося. The milk smells strange, so it might be bad. — Молоко дивно пахне, тому воно, можливо, зіпсувалося. Складіть The milk smells strange + so + it might be bad. До so назвіть спостереження, після so — можливий висновок із might. Перед станом bad потрібна зв’язка be."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-45:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-45:intro1:r1",
+              "text": "The milk smells strange, so it might be bad."
+            },
+            {
+              "responseId": "en:lesson-32:session-45:intro1:r2",
+              "text": "The milk smells strange, so it might is bad."
+            },
+            {
+              "responseId": "en:lesson-32:session-45:intro1:r3",
+              "text": "The milk smells strange, so it might to be bad."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-45:intro1:r1",
+              "text": "The milk smells strange, so it might be bad."
+            },
+            {
+              "responseId": "en:lesson-32:session-45:intro1:r2",
+              "text": "The milk smells strange, so it might is bad."
+            },
+            {
+              "responseId": "en:lesson-32:session-45:intro1:r3",
+              "text": "The milk smells strange, so it might to be bad."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-32:session-45:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Этот вариант исключён",
+        "uk": "Цей варіант виключений"
+      },
+      "bodyByLocale": {
+        "ru": "Анна считает, что коробка пуста, но через открытый верх видны яйца. The box can't be empty. — Коробка не может быть пустой. Соберите The box + can’t + be + empty. Наблюдение исключает названное состояние. Can’t выражает этот вывод; перед empty здесь нужна связка be.",
+        "uk": "Анна вважає, що коробка порожня, але крізь відкритий верх видно яйця. The box can't be empty. — Коробка не може бути порожньою. Складіть The box + can’t + be + empty. Спостереження виключає названий стан. Can’t виражає цей висновок; перед empty тут потрібна зв’язка be."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-45:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-45:intro2:r1",
+              "text": "The box can't be empty."
+            },
+            {
+              "responseId": "en:lesson-32:session-45:intro2:r2",
+              "text": "The box can't is empty."
+            },
+            {
+              "responseId": "en:lesson-32:session-45:intro2:r3",
+              "text": "The box can't to be empty."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-45:intro2:r1",
+              "text": "The box can't be empty."
+            },
+            {
+              "responseId": "en:lesson-32:session-45:intro2:r2",
+              "text": "The box can't is empty."
+            },
+            {
+              "responseId": "en:lesson-32:session-45:intro2:r3",
+              "text": "The box can't to be empty."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-32:session-45:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Уточняем предмет",
+        "uk": "Уточнюємо предмет"
+      },
+      "bodyByLocale": {
+        "ru": "Вы показываете Анне предмет и уточняете своё действие с ним: The apple I chose is green. — Яблоко, которое я выбрал, зелёное. Соберите The apple + I chose + is green. Часть I chose уточняет apple. That можно опустить: I уже называет того, кто выполнил действие.",
+        "uk": "Ви показуєте Анні предмет й уточнюєте свою дію з ним: The apple I chose is green. — Яблуко, яке я вибрав, зелене. Складіть The apple + I chose + is green. Частина I chose уточнює apple. That можна опустити: I вже називає того, хто виконав дію."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-45:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-45:intro3:r1",
+              "text": "The apple I chose is green."
+            },
+            {
+              "responseId": "en:lesson-32:session-45:intro3:r2",
+              "text": "The apple I chose it is green."
+            },
+            {
+              "responseId": "en:lesson-32:session-45:intro3:r3",
+              "text": "The apple I choosing is green."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-45:intro3:r1",
+              "text": "The apple I chose is green."
+            },
+            {
+              "responseId": "en:lesson-32:session-45:intro3:r2",
+              "text": "The apple I chose it is green."
+            },
+            {
+              "responseId": "en:lesson-32:session-45:intro3:r3",
+              "text": "The apple I choosing is green."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d5adfd25ea3403c07f754b8d2ccd131395adb8276e6c3f0c743d3ea4620f9a07"
+}

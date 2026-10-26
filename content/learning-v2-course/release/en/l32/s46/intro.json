@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-32:session-46",
+  "learningOutcomeByLocale": {
+    "ru": "объяснять предположение, отвергать невозможный вариант и уточнять предмет.",
+    "uk": "пояснювати припущення, відкидати неможливий варіант і уточнювати предмет."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-32:session-46:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Наблюдение и возможность",
+        "uk": "Спостереження й можливість"
+      },
+      "bodyByLocale": {
+        "ru": "Кот обычно мяукает возле кухни, но сейчас его не слышно. Вы допускаете, что он спит. The cat is quiet, so it might be asleep. — Кот не издаёт звуков, поэтому он, возможно, спит. Соберите The cat is quiet + so + it might be asleep. До so назовите наблюдение, после so — возможный вывод с might. Перед состоянием asleep нужна связка be.",
+        "uk": "Кіт зазвичай нявкає біля кухні, але зараз його не чути. Ви припускаєте, що він спить. The cat is quiet, so it might be asleep. — Кіт не видає звуків, тому він, можливо, спить. Складіть The cat is quiet + so + it might be asleep. До so назвіть спостереження, після so — можливий висновок із might. Перед станом asleep потрібна зв’язка be."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-46:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-46:intro1:r1",
+              "text": "The cat is quiet, so it might be asleep."
+            },
+            {
+              "responseId": "en:lesson-32:session-46:intro1:r2",
+              "text": "The cat is quiet, so it might is asleep."
+            },
+            {
+              "responseId": "en:lesson-32:session-46:intro1:r3",
+              "text": "The cat is quiet, so it might to be asleep."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-46:intro1:r1",
+              "text": "The cat is quiet, so it might be asleep."
+            },
+            {
+              "responseId": "en:lesson-32:session-46:intro1:r2",
+              "text": "The cat is quiet, so it might is asleep."
+            },
+            {
+              "responseId": "en:lesson-32:session-46:intro1:r3",
+              "text": "The cat is quiet, so it might to be asleep."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-32:session-46:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Этот вариант исключён",
+        "uk": "Цей варіант виключений"
+      },
+      "bodyByLocale": {
+        "ru": "Анна предполагает, что дверь открыта, но вы видите, что она плотно закрыта. The door can't be open. — Дверь не может быть открытой. Соберите The door + can’t + be + open. Наблюдение исключает названное состояние. Can’t выражает этот вывод; перед open здесь нужна связка be.",
+        "uk": "Анна припускає, що двері відчинені, але ви бачите, що вони щільно зачинені. The door can't be open. — Двері не можуть бути відчиненими. Складіть The door + can’t + be + open. Спостереження виключає названий стан. Can’t виражає цей висновок; перед open тут потрібна зв’язка be."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-46:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-46:intro2:r1",
+              "text": "The door can't be open."
+            },
+            {
+              "responseId": "en:lesson-32:session-46:intro2:r2",
+              "text": "The door can't is open."
+            },
+            {
+              "responseId": "en:lesson-32:session-46:intro2:r3",
+              "text": "The door can't to be open."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-46:intro2:r1",
+              "text": "The door can't be open."
+            },
+            {
+              "responseId": "en:lesson-32:session-46:intro2:r2",
+              "text": "The door can't is open."
+            },
+            {
+              "responseId": "en:lesson-32:session-46:intro2:r3",
+              "text": "The door can't to be open."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-32:session-46:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Уточняем предмет",
+        "uk": "Уточнюємо предмет"
+      },
+      "bodyByLocale": {
+        "ru": "Вы показываете Анне предмет и уточняете своё действие с ним: The toy I found is small. — Игрушка, которую я нашёл, маленькая. Соберите The toy + I found + is small. Часть I found уточняет toy. That можно опустить: I уже называет того, кто выполнил действие.",
+        "uk": "Ви показуєте Анні предмет й уточнюєте свою дію з ним: The toy I found is small. — Іграшка, яку я знайшов, маленька. Складіть The toy + I found + is small. Частина I found уточнює toy. That можна опустити: I вже називає того, хто виконав дію."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-46:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-46:intro3:r1",
+              "text": "The toy I found is small."
+            },
+            {
+              "responseId": "en:lesson-32:session-46:intro3:r2",
+              "text": "The toy I found it is small."
+            },
+            {
+              "responseId": "en:lesson-32:session-46:intro3:r3",
+              "text": "The toy I finding is small."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-46:intro3:r1",
+              "text": "The toy I found is small."
+            },
+            {
+              "responseId": "en:lesson-32:session-46:intro3:r2",
+              "text": "The toy I found it is small."
+            },
+            {
+              "responseId": "en:lesson-32:session-46:intro3:r3",
+              "text": "The toy I finding is small."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a669cdd283ece8e7514d9056272a9e2a4affd920a80b4abe6b40176f2733b2b2"
+}

@@ -28,7 +28,7 @@ import { DebugLogger } from './debug-logger';
 import { isDevMistakesDemoOn } from './dev_mistakes_demo';
 import { withoutLocallyHiddenMistakes } from './mistake_local_hidden';
 import { rememberMistakeDetailDraft } from './mistake_detail_draft';
-import { safeRouterBack } from './navigation_back';
+import { dismissToTabRoute, safeRouterBack } from './navigation_back';
 import NoEnergyModal from '../components/NoEnergyModal';
 import { peekStableId } from './stable_id';
 
@@ -383,7 +383,7 @@ export default function MistakesHubScreen() {
     if (mode === 'loading') return <PanelCta g={g} label={copy.practice} onPress={() => undefined} disabled />;
     // зачем (координатор 24.10): журнал не прочитался — человеку нужен явный повтор, а не «К урокам» при 30 ошибках
     if (mode === 'failed') return <PanelCta g={g} testID="mistakes-hub-retry" label={copy.retry} onPress={() => { hapticTap(); silentRetryRef.current = 0; void load('retry_tap', () => false); }} />;
-    return <PanelCta g={g} testID="mistakes-hub-to-lessons" label={copy.toLessons} onPress={() => { hapticTap(); router.push('/lessons_list' as never); }} />;
+    return <PanelCta g={g} testID="mistakes-hub-to-lessons" label={copy.toLessons} onPress={() => { hapticTap(); dismissToTabRoute(router, '/(tabs)/lessons'); }} />; // зачем (координатор 26.10, запрет петель владельцем): /lessons_list — копия вкладки «Уроки»; переход сворачивает стек до самой вкладки
   })();
 
   const minutes = Math.max(1, Math.ceil((sheetReady * SECONDS_PER_MISTAKE) / 60));

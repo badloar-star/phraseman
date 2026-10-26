@@ -210,7 +210,7 @@ describe('Gustav French curriculum contract', () => {
     expect(source).toContain('frenchStudyActive(studyTarget)');
     expect(source).toContain('phraseHasStudyTargetContent(phrase, studyTarget)');
     expect(source).toContain('lessonProgressKey(lessonId, studyTarget)');
-    expect(source).toContain("router.replace('/lessons_list' as any)");
+    expect(source).toContain('dismissToTabRoute(router, COMPLETE_TO_LESSONS_TAB);');
     expect(source.indexOf('const canApply = await canApplyCompletionRewards()')).toBeLessThan(
       source.indexOf('grantBonus()'),
     );

@@ -106,7 +106,7 @@ import {
 } from './ai_dialog_hint_economy';
 import { useVoiceAttemptGate } from '../hooks/use_voice_attempt_gate';
 import MicAllowanceBadge from '../components/MicAllowanceBadge';
-import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
+import { dismissToTabRoute, markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { aiDialogContentAvailableForTarget, aiDialogTargetGateCopy } from './ai_dialog_target_gate';
 import { useOrphanDialogRouteRedirect } from './orphan_dialog_route_redirect';
@@ -2186,7 +2186,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
                                     onPress={() => {
                                       if (strictPlaybackUnavailable) return;
                                       hapticTap();
-              router.replace('/lessons_list' as any);
+              dismissToTabRoute(router, '/(tabs)/lessons'); // зачем (координатор 26.10, запрет петель владельцем): /lessons_list — копия вкладки «Уроки»; переход сворачивает стек до самой вкладки
             }}
             style={{
               marginTop: 22,

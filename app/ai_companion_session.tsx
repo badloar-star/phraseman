@@ -49,7 +49,7 @@ import {
 } from './ai_dialog_client';
 import { buildCompanionMemory } from './ai_companion_memory';
 import { parseKeyPhrases } from './ai_dialog_markup';
-import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
+import { dismissToTabRoute, markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { DebugLogger } from './debug-logger';
 import { trackEvent } from './analytics';
 import { captureAccountGeneration } from './account_generation';
@@ -362,7 +362,7 @@ function AiCompanionSession() {
             accessibilityRole="button"
             onPress={() => {
               hapticTap();
-              router.replace('/lessons_list' as any);
+              dismissToTabRoute(router, '/(tabs)/lessons'); // зачем (координатор 26.10, запрет петель владельцем): /lessons_list — копия вкладки «Уроки»; переход сворачивает стек до самой вкладки
             }}
             style={{
               marginTop: 22,

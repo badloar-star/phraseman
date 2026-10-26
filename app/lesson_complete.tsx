@@ -1098,7 +1098,7 @@ export default function LessonComplete() {
       if (!canApply) {
         if (!cancelled && frenchStudyActive(studyTarget)) {
           markNextNavigationAsReplace();
-          router.replace('/lessons_list' as any);
+          dismissToTabRoute(router, COMPLETE_TO_LESSONS_TAB); // зачем (координатор 26.10, запрет петель владельцем): /lessons_list — копия вкладки «Уроки»; переход сворачивает стек до самой вкладки
         }
         return;
       }

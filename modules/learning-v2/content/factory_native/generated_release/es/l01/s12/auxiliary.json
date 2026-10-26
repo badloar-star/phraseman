@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-01:session-12",
+  "entries": [
+    {
+      "interactionId": "es:lesson-01:session-12:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-12:intro1:r2": {
+          "ru": "Decidido здесь относится к мужчине.",
+          "uk": "Decidido тут стосується чоловіка."
+        },
+        "es:lesson-01:session-12:intro1:r3": {
+          "ru": "Это вопрос о ней, а не к ней.",
+          "uk": "Це запитання про неї, а не до неї."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-12:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-12:intro2:r2": {
+          "ru": "При обращении к подруге нужно окончание a.",
+          "uk": "Для звертання до подруги потрібне закінчення a."
+        },
+        "es:lesson-01:session-12:intro2:r3": {
+          "ru": "Это «ты решительная?», противоположное качество.",
+          "uk": "Це «ти рішуча?», протилежна риса."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-12:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-12:intro3:r2": {
+          "ru": "Без no вы, наоборот, называете её нерешительной.",
+          "uk": "Без no ви, навпаки, називаєте її нерішучою."
+        },
+        "es:lesson-01:session-12:intro3:r3": {
+          "ru": "Для обращения к подруге нужна форма indecisa.",
+          "uk": "Для звертання до подруги потрібна форма indecisa."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "849becb978bfa68d90ab195a01eac08c682aaa210bef071971aa568c1ef52a1a"
+}

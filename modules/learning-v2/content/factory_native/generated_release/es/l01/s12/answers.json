@@ -1,0 +1,67 @@
+[
+  {
+    "interactionId": "es:lesson-01:session-12:i01",
+    "correctText": "decidido",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-12:i02",
+    "correctText": "decidida",
+    "correctResponseId": "es:lesson-01:session-12:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-12:i03",
+    "correctText": "decidida",
+    "correctResponseId": "es:lesson-01:session-12:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-12:i04",
+    "correctText": "¿Eres decidida?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-12:i05",
+    "correctText": "indeciso",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-12:i06",
+    "correctText": "Ты нерешительная?",
+    "correctResponseId": "es:lesson-01:session-12:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-12:i07",
+    "correctText": "Eres",
+    "correctResponseId": "es:lesson-01:session-12:i07:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-12:i08",
+    "correctText": "¿Eres decidida?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-12:i09",
+    "correctText": "No eres indecisa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-12:i10",
+    "correctText": "exigente",
+    "correctResponseId": "es:lesson-01:session-12:i10:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-12:i11",
+    "correctText": "No eres indecisa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-12:i12",
+    "correctText": "¿Eres indecisa?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-12:i13",
+    "correctText": "Tú eres decidida.",
+    "correctResponseId": null
+  }
+]

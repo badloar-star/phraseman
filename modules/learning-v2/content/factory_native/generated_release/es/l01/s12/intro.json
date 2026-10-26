@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-01:session-12",
+  "learningOutcomeByLocale": {
+    "ru": "задавать вопрос женщине, выбирая окончание качества по собеседнице.",
+    "uk": "ставити запитання жінці, обираючи закінчення риси за співрозмовницею."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-01:session-12:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Обычно решаешь уверенно?",
+        "uk": "Зазвичай вирішуєш упевнено?"
+      },
+      "bodyByLocale": {
+        "ru": "Подруга сравнивает два курса. Вы хотите узнать, решительный ли она человек вообще: `¿Eres decidida?` — «Ты решительная?» `Decidido` — «решительный», а женщине говорим `decidida`. Соберите вопрос: `¿` + `eres` + `decidida` + `?`. Окончание зависит от подруги, к которой вы обращаетесь. Пол говорящего на него не влияет.",
+        "uk": "Подруга порівнює два курси. Ви хочете дізнатися, чи вона загалом рішуча людина: `¿Eres decidida?` — «Ти рішуча?» `Decidido` — «рішучий», а жінці кажемо `decidida`. Складіть запитання: `¿` + `eres` + `decidida` + `?`. Закінчення залежить від подруги, до якої ви звертаєтеся. Стать мовця на нього не впливає."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-12:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите подругу: «Ты решительная?»",
+          "uk": "Запитайте подругу: «Ти рішуча?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-12:intro1:r1",
+              "text": "¿Eres decidida?"
+            },
+            {
+              "responseId": "es:lesson-01:session-12:intro1:r2",
+              "text": "¿Eres decidido?"
+            },
+            {
+              "responseId": "es:lesson-01:session-12:intro1:r3",
+              "text": "¿Es decidida?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-12:intro1:r1",
+              "text": "¿Eres decidida?"
+            },
+            {
+              "responseId": "es:lesson-01:session-12:intro1:r2",
+              "text": "¿Eres decidido?"
+            },
+            {
+              "responseId": "es:lesson-01:session-12:intro1:r3",
+              "text": "¿Es decidida?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите подругу: «Ты решительная?»",
+          "uk": "Запитайте подругу: «Ти рішуча?»"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-01:session-12:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Часто трудно выбрать?",
+        "uk": "Часто важко обрати?"
+      },
+      "bodyByLocale": {
+        "ru": "Подруга долго сравнивает эти два курса. Вы хотите уточнить, часто ли ей трудно выбрать: `¿Eres indecisa?` — «Ты нерешительная?» `Indeciso` означает «нерешительный»; для женщины нужна форма `indecisa`. Порядок тот же: `eres` + качество, вокруг — знаки вопроса. Не добавляйте `no`: вы спрашиваете, свойственна ли ей нерешительность, а не отрицаете её.",
+        "uk": "Подруга довго порівнює ці два курси. Ви хочете уточнити, чи часто їй важко обрати: `¿Eres indecisa?` — «Ти нерішуча?» `Indeciso` означає «нерішучий»; для жінки потрібна форма `indecisa`. Порядок той самий: `eres` + риса, навколо — знаки питання. Не додавайте `no`: ви запитуєте, чи властива їй нерішучість, а не заперечуєте її."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-12:intro2:q",
+        "promptByLocale": {
+          "ru": "Спросите подругу: «Ты нерешительная?»",
+          "uk": "Запитайте подругу: «Ти нерішуча?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-12:intro2:r1",
+              "text": "¿Eres indecisa?"
+            },
+            {
+              "responseId": "es:lesson-01:session-12:intro2:r2",
+              "text": "¿Eres indeciso?"
+            },
+            {
+              "responseId": "es:lesson-01:session-12:intro2:r3",
+              "text": "¿Eres decidida?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-12:intro2:r1",
+              "text": "¿Eres indecisa?"
+            },
+            {
+              "responseId": "es:lesson-01:session-12:intro2:r2",
+              "text": "¿Eres indeciso?"
+            },
+            {
+              "responseId": "es:lesson-01:session-12:intro2:r3",
+              "text": "¿Eres decidida?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите подругу: «Ты нерешительная?»",
+          "uk": "Запитайте подругу: «Ти нерішуча?»"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-01:session-12:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Это не значит, что ты нерешительная",
+        "uk": "Це не означає, що ти нерішуча"
+      },
+      "bodyByLocale": {
+        "ru": "Подруга сомневается в выборе курса, но вы знаете: обычно она решает уверенно. Один сложный выбор не описывает весь характер. Поддержите её: `No eres indecisa` — «Ты не нерешительная». Соберите `no` + `eres` + `indecisa`. Знакомое `no` отрицает качество; окончание `a` сохраняется, потому что вы говорите с женщиной.",
+        "uk": "Подруга сумнівається у виборі курсу, але ви знаєте: зазвичай вона вирішує впевнено. Один складний вибір не описує весь характер. Підтримайте її: `No eres indecisa` — «Ти не нерішуча». Складіть `no` + `eres` + `indecisa`. Знайоме `no` заперечує рису; закінчення `a` зберігається, бо ви говорите з жінкою."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-12:intro3:q",
+        "promptByLocale": {
+          "ru": "Возразите подруге: «Ты не нерешительная».",
+          "uk": "Заперечте подрузі: «Ти не нерішуча»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-12:intro3:r1",
+              "text": "No eres indecisa."
+            },
+            {
+              "responseId": "es:lesson-01:session-12:intro3:r2",
+              "text": "Eres indecisa."
+            },
+            {
+              "responseId": "es:lesson-01:session-12:intro3:r3",
+              "text": "No eres indeciso."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-12:intro3:r1",
+              "text": "No eres indecisa."
+            },
+            {
+              "responseId": "es:lesson-01:session-12:intro3:r2",
+              "text": "Eres indecisa."
+            },
+            {
+              "responseId": "es:lesson-01:session-12:intro3:r3",
+              "text": "No eres indeciso."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Возразите подруге: «Ты не нерешительная».",
+          "uk": "Заперечте подрузі: «Ти не нерішуча»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "aac3ff3f0d363cd4c3f84a3d686c21b846ddb3638f5b4cc38ce0d698f20bea5f"
+}

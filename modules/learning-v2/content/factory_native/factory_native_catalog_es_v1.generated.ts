@@ -84,4 +84,11 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"отрицать качество собеседника через no eres.","uk":"заперечувати рису співрозмовника через no eres."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 1, sessionOrdinal: 12,
+    sourceFingerprint: "e00b4d85e83b41571916f5029112b9b13e81ba13590326649af393ddd6caef34",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"задавать вопрос женщине, выбирая окончание качества по собеседнице.","uk":"ставити запитання жінці, обираючи закінчення риси за співрозмовницею."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
+  }),
 ]);

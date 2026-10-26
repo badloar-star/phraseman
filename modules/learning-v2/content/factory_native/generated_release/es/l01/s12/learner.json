@@ -1,0 +1,749 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-01:session-12",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-01:session-12:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — decidido",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-12:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — decidido",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-12:i01:audio",
+          "transcript": "decidido"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-12:i01:r1",
+            "targetText": "decidido",
+            "meaningByLocale": {
+              "ru": "решительный. Женская форма — decidida. Здесь говорим о привычном качестве человека, а не о том, что он уже выбрал курс. 🔊 *decidido*",
+              "uk": "рішучий. Жіноча форма — decidida. Тут говоримо про звичну рису людини, а не про те, що вона вже обрала курс. 🔊 *decidido*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "decidido",
+          "definitionByLocale": {
+            "ru": "решительный. Женская форма — decidida. Здесь говорим о привычном качестве человека, а не о том, что он уже выбрал курс. 🔊 *decidido*",
+            "uk": "рішучий. Жіноча форма — decidida. Тут говоримо про звичну рису людини, а не про те, що вона вже обрала курс. 🔊 *decidido*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-12:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-12:i02:r1",
+          "text": "decidida"
+        },
+        {
+          "responseId": "es:lesson-01:session-12:i02:r2",
+          "text": "decidido"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-12:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-12:i02:audio",
+          "transcript": "decidida"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-12:i02:r1",
+            "targetText": "decidida",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-12:i02:r2",
+            "targetText": "decidido",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-12:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В конце звучит a.",
+              "uk": "Наприкінці звучить a."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-12:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — спросите подругу «Ты решительная?»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-12:i03:r1",
+          "text": "decidida"
+        },
+        {
+          "responseId": "es:lesson-01:session-12:i03:r2",
+          "text": "decidido"
+        },
+        {
+          "responseId": "es:lesson-01:session-12:i03:r3",
+          "text": "curiosa"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — спросите подругу «Ты решительная?»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — спросите подругу «Ты решительная?»",
+          "uk": "Вставте слово — запитайте подругу «Ти рішуча?»"
+        },
+        "gappedTargetPhrase": "¿Eres ___?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-12:i03:r1",
+            "text": "decidida"
+          },
+          {
+            "responseId": "es:lesson-01:session-12:i03:r2",
+            "text": "decidido"
+          },
+          {
+            "responseId": "es:lesson-01:session-12:i03:r3",
+            "text": "curiosa"
+          }
+        ],
+        "testedDimension": "Вставьте слово — спросите подругу «Ты решительная?»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-12:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — спросите подругу «Ты решительная?»",
+            "feedbackByLocale": {
+              "ru": "К женщине обращаемся с формой decidida.",
+              "uk": "До жінки звертаємося з формою decidida."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-12:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — спросите подругу «Ты решительная?»",
+            "feedbackByLocale": {
+              "ru": "Это «любознательная», а нужно спросить о решительности.",
+              "uk": "Це «допитлива», а треба запитати про рішучість."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-12:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — спросите подругу «Ты решительная?»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-12:i04:r1",
+          "text": "Плитки: decidida"
+        },
+        {
+          "responseId": "es:lesson-01:session-12:i04:r2",
+          "text": "¿eres"
+        },
+        {
+          "responseId": "es:lesson-01:session-12:i04:r3",
+          "text": "decidido."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — спросите подругу «Ты решительная?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Eres decidida?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — спросите подругу «Ты решительная?»",
+          "uk": "Складіть фразу — запитайте подругу «Ти рішуча?»"
+        },
+        "orderedTokens": [
+          "¿Eres",
+          "decidida"
+        ],
+        "authoredDistractorTokens": [
+          "decidido"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-12:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — спросите подругу «Ты решительная?»",
+            "feedbackByLocale": {
+              "ru": "вы обращаетесь к женщине.",
+              "uk": "ви звертаєтеся до жінки."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-12:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — indeciso",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-12:i05:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — indeciso",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-12:i05:audio",
+          "transcript": "indeciso"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-12:i05:r1",
+            "targetText": "indeciso",
+            "meaningByLocale": {
+              "ru": "нерешительный. Женская форма — indecisa. Так можно описать человека, которому обычно трудно выбрать. 🔊 *indeciso*",
+              "uk": "нерішучий. Жіноча форма — indecisa. Так можна описати людину, якій зазвичай важко обрати. 🔊 *indeciso*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "indeciso",
+          "definitionByLocale": {
+            "ru": "нерешительный. Женская форма — indecisa. Так можно описать человека, которому обычно трудно выбрать. 🔊 *indeciso*",
+            "uk": "нерішучий. Жіноча форма — indecisa. Так можна описати людину, якій зазвичай важко обрати. 🔊 *indeciso*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-12:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите смысл",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-12:i06:r1",
+          "text": "Ты нерешительная?"
+        },
+        {
+          "responseId": "es:lesson-01:session-12:i06:r2",
+          "text": "Ты решительная?"
+        },
+        {
+          "responseId": "es:lesson-01:session-12:i06:r3",
+          "text": "Она нерешительная?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-12:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите смысл",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-12:i06:audio",
+          "transcript": "¿Eres indecisa?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-12:i06:r1",
+            "targetText": "Ты нерешительная?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-12:i06:r2",
+            "targetText": "Ты решительная?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-12:i06:r3",
+            "targetText": "Она нерешительная?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-12:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите смысл",
+            "feedbackByLocale": {
+              "ru": "Звучит indecisa — «нерешительная», не decidida.",
+              "uk": "Звучить indecisa — «нерішуча», не decidida."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-12:i06:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите смысл",
+            "feedbackByLocale": {
+              "ru": "Eres означает, что вопрос обращён к собеседнице.",
+              "uk": "Eres означає, що запитання звернене до співрозмовниці."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-12:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — спросите подругу «Ты нерешительная?»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-12:i07:r1",
+          "text": "Eres"
+        },
+        {
+          "responseId": "es:lesson-01:session-12:i07:r2",
+          "text": "Es"
+        },
+        {
+          "responseId": "es:lesson-01:session-12:i07:r3",
+          "text": "Tú"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — спросите подругу «Ты нерешительная?»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — спросите подругу «Ты нерешительная?»",
+          "uk": "Вставте слово — запитайте подругу «Ти нерішуча?»"
+        },
+        "gappedTargetPhrase": "¿___ indecisa?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-12:i07:r1",
+            "text": "Eres"
+          },
+          {
+            "responseId": "es:lesson-01:session-12:i07:r2",
+            "text": "Es"
+          },
+          {
+            "responseId": "es:lesson-01:session-12:i07:r3",
+            "text": "Tú"
+          }
+        ],
+        "testedDimension": "Вставьте слово — спросите подругу «Ты нерешительная?»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-12:i07:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — спросите подругу «Ты нерешительная?»",
+            "feedbackByLocale": {
+              "ru": "К собеседнице обращаемся через eres.",
+              "uk": "До співрозмовниці звертаємося через eres."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-12:i07:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — спросите подругу «Ты нерешительная?»",
+            "feedbackByLocale": {
+              "ru": "Tú не заменяет eres в этом вопросе.",
+              "uk": "Tú не замінює eres у цьому запитанні."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-12:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-12:i08:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-12:i08:audio",
+          "transcript": "¿Eres decidida?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Eres decidida?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-12:i09",
+      "ordinal": 12,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-12:i09:r1",
+          "text": "Плитки: indecisa"
+        },
+        {
+          "responseId": "es:lesson-01:session-12:i09:r2",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-01:session-12:i09:r3",
+          "text": "eres"
+        },
+        {
+          "responseId": "es:lesson-01:session-12:i09:r4",
+          "text": "indeciso."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-12:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-12:i09:audio",
+          "transcript": "No eres indecisa."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "No eres indecisa.",
+        "orderedTokens": [
+          "No",
+          "eres",
+          "indecisa"
+        ],
+        "authoredDistractorTokens": [
+          "indeciso"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-12:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите",
+            "feedbackByLocale": {
+              "ru": "в записи слышно indecisa.",
+              "uk": "у записі чути indecisa."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-12:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — спросите подругу «Ты требовательная?»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-12:i10:r1",
+          "text": "exigente"
+        },
+        {
+          "responseId": "es:lesson-01:session-12:i10:r2",
+          "text": "exigenta"
+        },
+        {
+          "responseId": "es:lesson-01:session-12:i10:r3",
+          "text": "decidida"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — спросите подругу «Ты требовательная?»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — спросите подругу «Ты требовательная?»",
+          "uk": "Вставте слово — запитайте подругу «Ти вимоглива?»"
+        },
+        "gappedTargetPhrase": "¿Eres ___?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-12:i10:r1",
+            "text": "exigente"
+          },
+          {
+            "responseId": "es:lesson-01:session-12:i10:r2",
+            "text": "exigenta"
+          },
+          {
+            "responseId": "es:lesson-01:session-12:i10:r3",
+            "text": "decidida"
+          }
+        ],
+        "testedDimension": "Вставьте слово — спросите подругу «Ты требовательная?»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-12:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — спросите подругу «Ты требовательная?»",
+            "feedbackByLocale": {
+              "ru": "Знакомое exigente не меняет e на a.",
+              "uk": "Знайоме exigente не змінює e на a."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-12:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — спросите подругу «Ты требовательная?»",
+            "feedbackByLocale": {
+              "ru": "Это «решительная», а нужно «требовательная».",
+              "uk": "Це «рішуча», а треба «вимоглива»."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-12:i11",
+      "ordinal": 14,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — подруга обычно уверенно принимает решения; возразите «Ты не нерешительная»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-12:i11:r1",
+          "text": "Плитки: no"
+        },
+        {
+          "responseId": "es:lesson-01:session-12:i11:r2",
+          "text": "eres"
+        },
+        {
+          "responseId": "es:lesson-01:session-12:i11:r3",
+          "text": "indecisa"
+        },
+        {
+          "responseId": "es:lesson-01:session-12:i11:r4",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — подруга обычно уверенно принимает решения; возразите «Ты не нерешительная»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No eres indecisa.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — подруга обычно уверенно принимает решения; возразите «Ты не нерешительная»",
+          "uk": "Складіть фразу — подруга зазвичай упевнено ухвалює рішення; заперечте «Ти не нерішуча»"
+        },
+        "orderedTokens": [
+          "No",
+          "eres",
+          "indecisa"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-12:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — подруга обычно уверенно принимает решения; возразите «Ты не нерешительная»",
+            "feedbackByLocale": {
+              "ru": "вы говорите подруге «ты», поэтому eres.",
+              "uk": "ви кажете подрузі «ти», тому eres."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-12:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-12:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-12:i12:audio",
+          "transcript": "¿Eres indecisa?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Eres indecisa?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-12:i13",
+      "ordinal": 16,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — подчеркните обращение к подруге: «Ты решительная», со словом tú",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-12:i13:r1",
+          "text": "Плитки: decidido"
+        },
+        {
+          "responseId": "es:lesson-01:session-12:i13:r2",
+          "text": "eres"
+        },
+        {
+          "responseId": "es:lesson-01:session-12:i13:r3",
+          "text": "tú"
+        },
+        {
+          "responseId": "es:lesson-01:session-12:i13:r4",
+          "text": "decidida."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — подчеркните обращение к подруге: «Ты решительная», со словом tú",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Tú eres decidida.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — подчеркните обращение к подруге: «Ты решительная», со словом tú",
+          "uk": "Складіть фразу — підкресліть звертання до подруги: «Ти рішуча», зі словом tú"
+        },
+        "orderedTokens": [
+          "Tú",
+          "eres",
+          "decidida"
+        ],
+        "authoredDistractorTokens": [
+          "decidido"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-12:i13:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — подчеркните обращение к подруге: «Ты решительная», со словом tú",
+            "feedbackByLocale": {
+              "ru": "вы обращаетесь к женщине.",
+              "uk": "ви звертаєтеся до жінки."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 13,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "ffc5de725522c67bd2731027bfde087eddfe1c540f9673964b61b7c90002d730"
+}

@@ -5,6 +5,7 @@ import { Image } from 'expo-image';
 import React, { useEffect, useState, useSyncExternalStore } from 'react';
 import { AppState, Modal, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { LinearGradient } from '../SafeLinearGradient';
+import Svg, { Defs, RadialGradient, Rect, Stop } from 'react-native-svg';
 import { KitTouchable } from '../KitTouchable';
 import { useTheme } from '../ThemeContext';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
@@ -21,6 +22,10 @@ import { captureAccountGeneration, isCurrentAccountGeneration } from '../../app/
 import { DebugLogger } from '../../app/debug-logger';
 
 export type CommunitySceneAuthor = Readonly<{ name: string; coinRank: number; isPremium: boolean }>;
+export const communityScenePanelStyle = StyleSheet.create({ panel: {
+  marginTop: -38, marginHorizontal: 16, paddingHorizontal: 16, paddingTop: 14, paddingBottom: 6,
+  borderTopLeftRadius: 28, borderTopRightRadius: 28, borderBottomLeftRadius: 28, borderBottomRightRadius: 28,
+} }).panel;
 const WHITE = '#FFFFFF'; // theme-exempt: foreground on the dark stage, same as the approved mock.
 const GLASS = 'rgba(255,255,255,0.17)'; // theme-exempt: translucent stage material.
 const FAN = require('../../assets/images/community_scene/community_16_steel_blueprint_fan.webp');
@@ -34,7 +39,7 @@ const FANS = {
   cloud: require('../../assets/images/community_scene/community_28_cloud_silver_fan.webp'),
 };
 
-export function CommunitySceneFan(): React.JSX.Element {
+export function CommunitySceneFan({ size = 224, top = 92, right = -18 }: Readonly<{ size?: number; top?: number; right?: number }> = {}): React.JSX.Element {
   const { liquidGlassThemeId, liquidGlassAppearance } = useTheme();
   const accent = liquidGlassTokens(liquidGlassThemeId).accent;
   const n = parseInt(accent.slice(1, 7), 16);
@@ -42,13 +47,22 @@ export function CommunitySceneFan(): React.JSX.Element {
   const source = c < .03 ? (liquidGlassAppearance === 'dark' ? FANS.obsidian : FANS.cloud)
     : h < 30 || h >= 330 ? FANS.coral : h < 100 ? FANS.coffee : h < 228 ? FANS.ocean
     : h < 244 ? FANS.glacier : h < 270 ? FAN : FANS.violet;
-  return <Image source={source} contentFit="contain" style={s.fan} accessibilityElementsHidden />;
+  return <Image source={source} contentFit="contain" style={[s.fan, { width: size, height: size, top, right }]} accessibilityElementsHidden />;
 }
 
 export function CommunitySceneBackdrop(): React.JSX.Element {
   const { liquidGlassThemeId, liquidGlassAppearance } = useTheme();
   const c = homeSceneTokensForTheme(liquidGlassThemeId, liquidGlassAppearance);
-  return <LinearGradient pointerEvents="none" colors={[c.sceneTop, c.sceneBottom]} style={StyleSheet.absoluteFill} />;
+  return <View pointerEvents="none" style={StyleSheet.absoluteFill}>
+    <LinearGradient colors={[c.sceneTop, c.sceneBottom]} start={{ x: .22, y: 0 }} end={{ x: .78, y: 1 }} style={StyleSheet.absoluteFill} />
+    <Svg width="100%" height="100%" style={StyleSheet.absoluteFill}>
+      <Defs><RadialGradient id="communitySceneLight" cx="18%" cy="0%" rx="70%" ry="50%" fx="18%" fy="0%">
+        <Stop offset="0" stopColor={c.sceneGlow} /><Stop offset=".7" stopColor={c.sceneGlow} stopOpacity="0" />
+      </RadialGradient></Defs>
+      <Rect width="100%" height="100%" fill="url(#communitySceneLight)" />
+    </Svg>
+    {c.scrim ? <LinearGradient colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.4)']} style={{ position: 'absolute', left: 0, right: 0, bottom: 0, height: 300 }} /> : null}
+  </View>;
 }
 
 function AuthorCoin({ pack, lang, size = 22, authorOverride }: Readonly<{ pack: FlashcardMarketPack; lang: Lang; size?: number; authorOverride?: CommunitySceneAuthor }>): React.JSX.Element {
@@ -92,18 +106,20 @@ export function CommunityContestRules({ visible, lang, onClose }: Readonly<{ vis
         <View style={[s.prizes, { backgroundColor: g.opaqueControl }]}>{[LP('Plus на 3 месяца', '3 months of Plus'), LP('2000 монет', '2000 coins'), LP('1000 монет', '1000 coins')].map((prize, i) => <View key={prize} style={s.prizeRow}><Text style={[s.ruleTitle, { color: g.text }]}>{LP(`${i + 1} место`, `Place ${i + 1}`)}</Text><Text style={{ color: g.text }}>{prize}</Text></View>)}</View>
         <Text style={[s.ruleBody, { color: g.secondary, marginTop: 16 }]}>{LP('Первый конкурс — с 1 ноября 2026 года. Далее — каждый календарный месяц по UTC. Старые сердечки не переносятся в рейтинг нового месяца. Набор может участвовать снова, пока ни разу не занял 1, 2 или 3 место. После любого призового места он больше не участвует. Чужому набору можно поставить сердечко сразу, без добавления себе; сердечко можно убрать. Собственный набор поддержать нельзя.', 'The first contest starts on 1 November 2026, followed by each calendar month in UTC. Older hearts do not carry into a new month. A pack may enter again until it has placed first, second or third. Any prize place permanently ends its eligibility. Give another member’s pack a heart without adding it first; you can remove your heart. You cannot support your own pack.')}</Text>
         <Text style={[s.ruleBody, { color: g.secondary }]}>{LP('Итоги фиксируются после окончания месяца. При равном числе сердечек выше набор, опубликованный раньше. Снятые с публикации наборы и наборы без сердечек призов не получают. Если подходящих наборов меньше трёх, награждаются только они. Приз каждого набора можно получить один раз; при сбое сети он сохраняется.', 'Results are finalized after the month ends. Ties favour earlier publication. Unpublished packs and packs without hearts do not win. If fewer than three packs qualify, only those packs receive prizes. Each pack’s prize can be claimed once and remains available after a connection failure.')}</Text>
-        <KitTouchable onPress={onClose} accessibilityRole="button" style={[s.button, { backgroundColor: g.ctaFill }]}><Text style={[s.buttonText, { color: g.ctaFillInk }]}>{LP('Понятно', 'Got it')}</Text></KitTouchable>
+        <KitTouchable onPress={onClose} accessibilityRole="button" style={[s.button, { backgroundColor: g.cta }]}><Text style={[s.buttonText, { color: g.ctaInk }]}>{LP('Понятно', 'Got it')}</Text></KitTouchable>
       </ScrollView></View>
     </View>
   </Modal>;
 }
 
-export function CommunityContestStage({ packs, lang, onOpen, authorId, topInset = 100, authors }: Readonly<{
+export function CommunityContestStage({ packs, lang, onOpen, authorId, topInset = 100, authors, referenceNowMs }: Readonly<{
   packs: readonly FlashcardMarketPack[]; lang: Lang; onOpen: (pack: FlashcardMarketPack) => void; authorId: string | null; topInset?: number; authors?: Readonly<Record<string, CommunitySceneAuthor>>;
+  /** Visual fixtures only; ignored without fixture authors, never sent to the server. */
+  referenceNowMs?: number;
 }>): React.JSX.Element {
   const [rules, setRules] = useState(false);
   const router = useRouter();
-  const [nowMs, setNowMs] = useState(Date.now);
+  const [liveNowMs, setNowMs] = useState(Date.now);
   useEffect(() => {
     const refresh = () => setNowMs(previous => {
       const current = Date.now();
@@ -113,6 +129,7 @@ export function CommunityContestStage({ packs, lang, onOpen, authorId, topInset 
     const subscription = AppState.addEventListener('change', state => { if (state === 'active') refresh(); });
     return () => { clearInterval(timer); subscription.remove(); };
   }, []);
+  const nowMs = authors && typeof referenceNowMs === 'number' && Number.isFinite(referenceNowMs) ? referenceNowMs : liveNowMs;
   const month = contestMonth(nowMs);
   const schedule = communityContestSchedule(nowMs);
   useSyncExternalStore(packSocialLive.subscribe, packSocialLive.getVersion, packSocialLive.getVersion);
@@ -145,10 +162,10 @@ export function CommunityContestStage({ packs, lang, onOpen, authorId, topInset 
     <View style={s.stageCopy}><Text style={s.kicker}>{schedule.phase === 'upcoming' ? LP('До начала конкурса', 'Contest starts in') : LP('До конца конкурса', 'Contest ends in')}</Text><Text style={s.stageTitle}>{LP(`${schedule.days} ${schedule.days % 10 === 1 && schedule.days % 100 !== 11 ? 'день' : schedule.days % 10 >= 2 && schedule.days % 10 <= 4 && (schedule.days % 100 < 12 || schedule.days % 100 > 14) ? 'дня' : 'дней'}`, `${schedule.days} ${schedule.days === 1 ? 'day' : 'days'}`)}</Text>
       <KitTouchable onPress={() => setRules(true)} accessibilityRole="button" style={s.rulesButton}><Text style={s.ruleLabel}>{LP('Условия участия', 'How to take part')}</Text><Ionicons name="chevron-forward" size={14} color={WHITE} /></KitTouchable>
     </View>
-    {mine >= 0 ? <View style={s.myPlace}><Text style={s.kicker}>{LP('Твой набор', 'Your pack')}</Text><Text style={s.myRank}>{mine + 1} {LP('место', 'place')}</Text><Text style={s.ruleLabel}>♥ {ranked[mine].hearts}</Text></View> : null}
+    {mine >= 0 ? <View style={s.myPlace}><Text style={s.kicker}>{LP('Твой набор', 'Your pack')}</Text><View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}><AuthorCoin pack={ranked[mine].pack} lang={lang} size={30} authorOverride={authors?.[ranked[mine].pack.id]} /><Text style={s.myRank}>{mine + 1} {LP('место', 'place')}</Text></View><Text style={s.ruleLabel}>♥ {ranked[mine].hearts}</Text></View> : null}
     <View style={s.podium}>{[1, 0, 2].map(index => { const row = ranked[index]; const pack = row?.pack; return <View key={index} style={{ flex: 1, justifyContent: 'flex-end' }}>
-      {pack ? <KitTouchable onPress={() => { if (row.known) onOpen(pack); else router.push({ pathname: '/flashcards_collection', params: { pack: pack.id, preview: '1', scene: 'community', from: 'community' } }); }} accessibilityRole="button" accessibilityLabel={packTitleForInterface(pack, lang)} testID={`community-podium-${index + 1}`} style={[s.podiumBlock, { height: [124, 100, 80][index] }]}>
-        <View style={s.podiumCoin}><AuthorCoin pack={pack} lang={lang} size={index === 0 ? 48 : 38} authorOverride={authors?.[pack.id]} /></View><Text style={s.place}>{index + 1}</Text><Text style={s.podiumName}>{packTitleForInterface(pack, lang)}</Text><Text style={s.ruleLabel}>♥ {row.hearts}</Text>
+      {pack ? <KitTouchable onPress={() => { if (row.known) onOpen(pack); else router.push({ pathname: '/flashcards_collection', params: { pack: pack.id, preview: '1', scene: 'community', from: 'community' } }); }} accessibilityRole="button" accessibilityLabel={packTitleForInterface(pack, lang)} testID={`community-podium-${index + 1}`} style={[s.podiumBlock, { height: [124, 100, 80][index], backgroundColor: 'transparent' }]}>
+        <LinearGradient pointerEvents="none" colors={index === 0 ? ['rgba(255,255,255,.34)', 'rgba(255,255,255,.12)', 'rgba(255,255,255,.05)'] : ['rgba(255,255,255,.26)', 'rgba(255,255,255,.08)', 'rgba(255,255,255,.04)']} locations={[0, .7, 1]} style={[StyleSheet.absoluteFill, { borderTopLeftRadius: 16, borderTopRightRadius: 16, borderBottomLeftRadius: 6, borderBottomRightRadius: 6 }]} /><View style={s.podiumCoin}><AuthorCoin pack={pack} lang={lang} size={index === 0 ? 48 : 38} authorOverride={authors?.[pack.id]} /></View><Text style={s.place}>{index + 1}</Text><Text style={s.podiumName}>{packTitleForInterface(pack, lang)}</Text><Text style={s.ruleLabel}>♥ {row.hearts}</Text>
       </KitTouchable> : <View style={[s.podiumBlock, { height: [124, 100, 80][index], opacity: .5 }]}><Text style={s.place}>{index + 1}</Text><Text style={s.podiumName}>{LP('Место свободно', 'Open place')}</Text></View>}
     </View>; })}</View>
     <CommunityContestRules visible={rules} lang={lang} onClose={() => setRules(false)} />

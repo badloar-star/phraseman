@@ -3,6 +3,12 @@
 Governance-ID: TG-2CF708EAD2D3
 Governance-ID: TG-F5D4E797CFF8
 Governance-ID: TG-B18086E69B30
+Governance-ID: TG-3856AFDED735
+Governance-ID: TG-6FC0F33B9F2F
+Governance-ID: TG-AD211F2BC512
+Governance-ID: TG-6371EA87051A
+Governance-ID: TG-3C131EAFF5BE
+Governance-ID: TG-BE660C1DB0A8
 Status: In progress
 Owner: 1 · ЯДРО
 
@@ -33,6 +39,21 @@ Android-сборка остаётся готовой и ждёт.
 ## Verification
 Сервер: тесты строк в выгрузке HEAD зелёные, 10 минут журналов без ERROR. Сборка: проверка типов приложения 0 на
 хэше, сторож номеров/precheck зелёный, сборки EAS FINISHED, статусы отправки.
+
+## Итог 26.10 (Ядро)
+- Номера — b60fa6ea3. Снимок b60fa6ea3 (LF): проверка типов приложения — 0 ошибок. `release:precheck`: красный только паритет
+  макетов (351 нарушение). По слову владельца он обойдён `PARITY_GATE_WAIVER=owner-2026-10-26:собрать 2.0.3 с красным
+  паритетом макетов, переснять и чинить после выпуска` — только в локальном прогоне, в окружение EAS не положен. Остальные
+  гейты зелёные. Ревизор 🟢: версии, профиль, флаги 51/51, банки 1:1–1:3, бандлы без dev-строк (npm ci).
+- Сборки EAS (06:28 → FINISHED):
+  - Android 3d0a5f8d-73af-49f0-b34d-1164b2d36a73;
+  - iOS 4cd4b013-181b-4c27-a1a1-fb57b415abac.
+- iOS отправлен в App Store Connect (submission d41ffcf3-2c54-42fe-ba53-8289d1f07faa). Submit for Review — кнопка
+  владельца.
+- Android: отправка 9883ed46-95b1-4226-a1ed-a9c096380791 → 403. У ключа `firebase-adminsdk` нет прав в Play Console.
+  .aab — артефакт сборки на expo.dev, ждёт ручной загрузки владельцем или выдачи прав ключу.
+- Не вошло (нативное): заставка Android цветом темы (UiModeManager) — только план; отзыв Sign in with Apple — JS,
+  флаг выключен.
 
 ## Rollback
 Сервер — раздел «Откат» пакета. Сборка — не выпускать в магазине (Play: не продвигать релиз; App Store: не отправлять

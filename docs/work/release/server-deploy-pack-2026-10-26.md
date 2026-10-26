@@ -46,6 +46,12 @@ App Check не включается (пломба).
 | 13 | **614e76486** пуш «серия ждёт» без обещания урока (Переводчик 7398140e4) | Пуш `streak_at_risk` уходит всем курсам, включая es/fr/de/it, где «Уроков» нет (D129/D130), а на 6 языках обещал «урок». Новое тело ×9: «Пара минут сегодня — и серия растёт.» Заголовок «🔥 Серия N дней ждёт тебя» прежний. Правда по коду: день засчитывает любое учебное действие — урок, карточки, «Мои ошибки», диалог, ступени Пика. **Риск:** только текст. **Откат:** revert и выкладка одной функции. | `reEngagePushCron` | 🟢 клиент текст не читает: тап ведёт туда же |
 | 14 | **(коммит ниже)** пуш «Позвать» с серией вдвоём без обещания урока (координатор 26.10) | db333a336 вернул в `nudgeStreakBody` «урок» на en/es/pt/vi/id/tr/pl. Вторая фраза ×9 — та же, что в строке 13: «{n} {days} подряд. Пара минут сегодня — и серия растёт.» Сторож «без урока» с NFC — `friends_push_copy.test.ts`. **Входит в 2б (владелец 26.10 утро, кнопкой у координатора):** пуш шлёт `friendsNudge`, она добавлена в команду 2б. Пока «Вместе» выключен, пуш почти не уходит. | `friendsNudge` | 🟢 клиент текст не читает |
 
+> **Шаг 2б выложен 26.10 06:44–06:51 UTC** (Ядро, «да» владельца через координатора; `friendsNudge` — отдельным «да» владельца
+> 26.10 утро) из HEAD **ebe2b465a**. Результат:
+> - 11 функций — Successful; право вызова — 0 функций без публичного права;
+> - перед выкладкой в той же выгрузке: сборка functions (ошибок типов 0), тесты строк 10–14 — 186/186;
+> - журналы 06:51–07:02: ERROR 0, 5xx 0, новые ревизии всех 11 функций поднялись чисто.
+
 Сухой прогон шага 2б — без `--execute`; кнопка — та же строка с `--execute`:
 ```bash
 bash scripts/deploy_from_clean_head.sh --only "functions:default:adminGrantAccess,functions:default:adminSetUserBan,functions:default:publicProfileProjectMine,functions:default:revenueCatShardsWebhook,functions:default:premiumExpiryCron,functions:default:adminGetUserProfile,functions:default:adminSearchUsers,functions:default:dialogueV2FreeformSessionStart,functions:default:dialogueV2FreeformSessionTurn,functions:default:reEngagePushCron,functions:default:friendsNudge"

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-32:session-14:i01",
+    "correctText": "bread",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-14:i02",
+    "correctText": "The bread might be fresh.",
+    "correctResponseId": "en:lesson-32:session-14:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-14:i03",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-14:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-14:i04",
+    "correctText": "shop",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-14:i05",
+    "correctText": "The shop must be busy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-14:i06",
+    "correctText": "milk",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-14:i07",
+    "correctText": "The milk I bought is cold.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-14:i08",
+    "correctText": "bought",
+    "correctResponseId": "en:lesson-32:session-14:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-14:i09",
+    "correctText": "The bread might be fresh.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-14:i10",
+    "correctText": "It must be busy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-14:i11",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-14:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-14:i12",
+    "correctText": "bag",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-14:i13",
+    "correctText": "The bag may be heavy.",
+    "correctResponseId": "en:lesson-32:session-14:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-14:i14",
+    "correctText": "The bag may be heavy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-14:i15",
+    "correctText": "This is the milk I bought.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-14:i16",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-32:session-14:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-14:i17",
+    "correctText": "The shop was busy, so I waited.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-14:i18",
+    "correctText": "The bread might be fresh.",
+    "correctResponseId": "en:lesson-32:session-14:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-14:i19",
+    "correctText": "The shop must be busy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-14:i20",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-14:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-14:i21",
+    "correctText": "The bread may be fresh.",
+    "correctResponseId": null
+  }
+]

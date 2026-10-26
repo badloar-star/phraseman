@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-32:session-17",
+  "entries": [
+    {
+      "interactionId": "en:lesson-32:session-17:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-32:session-17:intro1:r2": {
+          "ru": "После could используем be.",
+          "uk": "Після could використовуємо be."
+        },
+        "en:lesson-32:session-17:intro1:r3": {
+          "ru": "После could не ставим to.",
+          "uk": "Після could не ставимо to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-32:session-17:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-32:session-17:intro2:r2": {
+          "ru": "После could используем wake без s.",
+          "uk": "Після could використовуємо wake без s."
+        },
+        "en:lesson-32:session-17:intro2:r3": {
+          "ru": "После could не ставим to.",
+          "uk": "Після could не ставимо to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-32:session-17:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-32:session-17:intro3:r2": {
+          "ru": "После could здесь используем be.",
+          "uk": "Після could тут використовуємо be."
+        },
+        "en:lesson-32:session-17:intro3:r3": {
+          "ru": "После could не ставим to.",
+          "uk": "Після could не ставимо to."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9712bb6b18f58b33257531689a667d5519ac443f910d4aa4307420314f19efb2"
+}

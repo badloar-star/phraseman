@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-32:session-13",
+  "entries": [
+    {
+      "interactionId": "en:lesson-32:session-13:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-32:session-13:intro1:r2": {
+          "ru": "После might здесь нужна форма be.",
+          "uk": "Після might тут потрібна форма be."
+        },
+        "en:lesson-32:session-13:intro1:r3": {
+          "ru": "После might не ставим to.",
+          "uk": "Після might не ставимо to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-32:session-13:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-32:session-13:intro2:r2": {
+          "ru": "После must здесь используем be.",
+          "uk": "Після must тут використовуємо be."
+        },
+        "en:lesson-32:session-13:intro2:r3": {
+          "ru": "После must не ставим to.",
+          "uk": "Після must не ставимо to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-32:session-13:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-32:session-13:intro3:r2": {
+          "ru": "Предмет уже назван: it после bought не нужно.",
+          "uk": "Предмет уже названо: it після bought не потрібне."
+        },
+        "en:lesson-32:session-13:intro3:r3": {
+          "ru": "Для завершённого прошлого действия нужна форма bought.",
+          "uk": "Для завершеної минулої дії потрібна форма bought."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5376545076878850ddf236351f2e7a9ef1d18d294d02efeb1e639cc7fa89bf44"
+}

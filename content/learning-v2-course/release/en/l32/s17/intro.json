@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-32:session-17",
+  "learningOutcomeByLocale": {
+    "ru": "называть возможную причину, состояние и последствие с could.",
+    "uk": "називати можливу причину, стан і наслідок із could."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-32:session-17:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Это может быть ветер",
+        "uk": "Це може бути вітер"
+      },
+      "bodyByLocale": {
+        "ru": "Вечером вы слышите стук возле окна, но ещё не видите его причину: It could be the wind — это может быть ветер. Соберите It + could + be + the wind. Could здесь называет возможное объяснение. Перед существительным the wind нужна связка be.",
+        "uk": "Увечері ви чуєте стукіт біля вікна, але ще не бачите його причини: It could be the wind — це може бути вітер. Складіть It + could + be + the wind. Could тут називає можливе пояснення. Перед іменником the wind потрібна зв’язка be."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-17:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-17:intro1:r1",
+              "text": "It could be the wind."
+            },
+            {
+              "responseId": "en:lesson-32:session-17:intro1:r2",
+              "text": "It could is the wind."
+            },
+            {
+              "responseId": "en:lesson-32:session-17:intro1:r3",
+              "text": "It could to be the wind."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-17:intro1:r1",
+              "text": "It could be the wind."
+            },
+            {
+              "responseId": "en:lesson-32:session-17:intro1:r2",
+              "text": "It could is the wind."
+            },
+            {
+              "responseId": "en:lesson-32:session-17:intro1:r3",
+              "text": "It could to be the wind."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-32:session-17:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Шум может разбудить Бена",
+        "uk": "Шум може розбудити Бена"
+      },
+      "bodyByLocale": {
+        "ru": "Бен спит в соседней комнате, а стук становится громче. Вы допускаете последствие: The noise could wake Ben — шум может разбудить Бена. Соберите The noise + could + wake + Ben. После could ставим начальную форму wake без s и без to. Здесь речь о возможном результате, а не о прошлом.",
+        "uk": "Бен спить у сусідній кімнаті, а стукіт стає гучнішим. Ви припускаєте наслідок: The noise could wake Ben — шум може розбудити Бена. Складіть The noise + could + wake + Ben. Після could ставимо початкову форму wake без s і без to. Тут ідеться про можливий результат, а не про минуле."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-17:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-17:intro2:r1",
+              "text": "The noise could wake Ben."
+            },
+            {
+              "responseId": "en:lesson-32:session-17:intro2:r2",
+              "text": "The noise could wakes Ben."
+            },
+            {
+              "responseId": "en:lesson-32:session-17:intro2:r3",
+              "text": "The noise could to wake Ben."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-17:intro2:r1",
+              "text": "The noise could wake Ben."
+            },
+            {
+              "responseId": "en:lesson-32:session-17:intro2:r2",
+              "text": "The noise could wakes Ben."
+            },
+            {
+              "responseId": "en:lesson-32:session-17:intro2:r3",
+              "text": "The noise could to wake Ben."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-32:session-17:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Возможно, окно открыто",
+        "uk": "Можливо, вікно відчинене"
+      },
+      "bodyByLocale": {
+        "ru": "Вы чувствуете сквозняк и предполагаете, что окно осталось открытым: The window could be open — окно может быть открыто. Соберите The window + could + be + open. Open описывает состояние; перед ним нужна связка be. Could показывает, что вы ещё не проверили этот вариант.",
+        "uk": "Ви відчуваєте протяг і припускаєте, що вікно залишилося відчиненим: The window could be open — вікно може бути відчинене. Складіть The window + could + be + open. Open описує стан; перед ним потрібна зв’язка be. Could показує, що ви ще не перевірили цей варіант."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-17:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-17:intro3:r1",
+              "text": "The window could be open."
+            },
+            {
+              "responseId": "en:lesson-32:session-17:intro3:r2",
+              "text": "The window could is open."
+            },
+            {
+              "responseId": "en:lesson-32:session-17:intro3:r3",
+              "text": "The window could to be open."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-17:intro3:r1",
+              "text": "The window could be open."
+            },
+            {
+              "responseId": "en:lesson-32:session-17:intro3:r2",
+              "text": "The window could is open."
+            },
+            {
+              "responseId": "en:lesson-32:session-17:intro3:r3",
+              "text": "The window could to be open."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "51ecd9b4d9f1505544dd8b28e658c17f664c1b776a4964bc043cf8b4137e8c4d"
+}

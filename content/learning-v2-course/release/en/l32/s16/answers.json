@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-32:session-16:i01",
+    "correctText": "room",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-16:i02",
+    "correctText": "The room might be ready.",
+    "correctResponseId": "en:lesson-32:session-16:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-16:i03",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-16:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-16:i04",
+    "correctText": "bed",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-16:i05",
+    "correctText": "The bed must be comfortable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-16:i06",
+    "correctText": "towel",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-16:i07",
+    "correctText": "The towel I used is wet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-16:i08",
+    "correctText": "used",
+    "correctResponseId": "en:lesson-32:session-16:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-16:i09",
+    "correctText": "The room might be ready.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-16:i10",
+    "correctText": "It must be comfortable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-16:i11",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-16:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-16:i12",
+    "correctText": "window",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-16:i13",
+    "correctText": "The window may be open.",
+    "correctResponseId": "en:lesson-32:session-16:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-16:i14",
+    "correctText": "The window may be open.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-16:i15",
+    "correctText": "This is the towel I used.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-16:i16",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-32:session-16:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-16:i17",
+    "correctText": "The room was not ready, so I waited.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-16:i18",
+    "correctText": "The room might be ready.",
+    "correctResponseId": "en:lesson-32:session-16:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-16:i19",
+    "correctText": "The bed must be comfortable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-16:i20",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-16:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-16:i21",
+    "correctText": "The room may be ready.",
+    "correctResponseId": null
+  }
+]

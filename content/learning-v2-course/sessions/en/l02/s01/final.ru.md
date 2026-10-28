@@ -99,7 +99,7 @@ interested — заинтересован · included — входит в цен
 <!-- interaction_id: en:lesson-02:session-01:i07; family: scripted_repeat_compare -->
 🎙 **We are not comfortable.**
 
-**11 · Вы ещё не готовы выходить. Дополните отрицание о себе**
+**11 · Вы ещё не готовы выходить. Дополните фразу с «не» о себе**
 <!-- interaction_id: en:lesson-02:session-01:i08; family: context_gap_grammar -->
 I ___ not ready. → **am** · is · are
 - is — *Про себя — `I am not`.*

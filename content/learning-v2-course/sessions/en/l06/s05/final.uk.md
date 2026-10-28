@@ -87,7 +87,7 @@ buy — купувати · weigh — зважувати · pack — пакув�
 
 **8 · Картка слова — scales**
 <!-- interaction_id: en:lesson-06:session-05:word:scales; family: word_card -->
-> **scales** — ваги. The scales are on the table. — «Ваги на столі». Прилад, на якому дізнаються вагу. Слово scales завжди у множині: are.
+> **scales** — ваги. The scales are on the table. — «Ваги на столі». Прилад, на якому дізнаються вагу. Слово scales завжди у формі для кількох: are.
 
 **9 · Послухайте продавця й складіть фразу**
 <!-- interaction_id: en:lesson-06:session-05:i05; family: listen_build_dictation -->

@@ -87,7 +87,7 @@ buy — покупать · weigh — взвешивать · pack — упак�
 
 **8 · Карточка слова — scales**
 <!-- interaction_id: en:lesson-06:session-05:word:scales; family: word_card -->
-> **scales** — весы. The scales are on the table. — «Весы на столе». Прибор, на котором узнают вес. Слово scales всегда во множественном числе: are.
+> **scales** — весы. The scales are on the table. — «Весы на столе». Прибор, на котором узнают вес. Слово scales всегда в форме для нескольких: are.
 
 **9 · Послушайте продавца и соберите фразу**
 <!-- interaction_id: en:lesson-06:session-05:i05; family: listen_build_dictation -->

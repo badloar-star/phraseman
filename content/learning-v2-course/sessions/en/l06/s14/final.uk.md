@@ -40,12 +40,12 @@
 
 ### Речі в сушарці
 
-Прання закінчилося, і ви переклали мокрі речі в сушарку. Вона вже гуде, а кошик стоїть поруч. Сусідка йде по каву й питає, де ваші речі. laundry — «білизна й одяг для прання». Тут це незлічуваний іменник: про білизну кажемо з is, навіть якщо речей кілька. Складаємо Our laundry + is + in the dryer — «Наша білизна в сушарці»: спочатку називаємо речі, потім is, потім їхнє місце.
+Прання закінчилося, і ви переклали мокрі речі в сушарку. Вона вже гуде, а кошик стоїть поруч. Сусідка йде по каву й питає, де ваші речі. laundry — «білизна й одяг для прання». Тут це слово, яке не рахують поштучно: про білизну кажемо з is, навіть якщо речей кілька. Складаємо Our laundry + is + in the dryer — «Наша білизна в сушарці»: спочатку називаємо речі, потім is, потім їхнє місце.
 
 **Сусідка питає, де ваші речі. Скажіть: «Наша білизна в сушарці».**
 
 - ✅ **Our laundry is in the dryer.**
-- ❌ Our laundry are in the dryer. — *laundry тут незлічуване, тому потрібно is, а не are.*
+- ❌ Our laundry are in the dryer. — *laundry тут не рахується поштучно, тому потрібно is, а не are.*
 - ❌ Our laundry is on the dryer. — *Речі всередині сушарки, тому потрібно in, а не on.*
 
 ---
@@ -142,7 +142,7 @@ You ___ at my joke every day. → **laugh** · laughs · are laugh
 **19 · Послухайте сусідку**
 <!-- interaction_id: en:lesson-06:session-14:i15; family: listen_choose -->
 🔊 *Whose laundry is this?* → **Whose laundry is this?** · Whose laundry are these? · Whose detergent is this?
-- Whose laundry are these? — *У записі `laundry is this` — все сказано в однині, а в цьому варіанті `laundry are these` — у множині.*
+- Whose laundry are these? — *У записі `laundry is this` — все сказано у формі для одного, а в цьому варіанті `laundry are these` — у формі для кількох.*
 - Whose detergent is this? — *У записі річ — `laundry`, білизна, а в цьому варіанті — `detergent`, порошок.*
 
 **20 · З’єднайте слова зі значеннями**

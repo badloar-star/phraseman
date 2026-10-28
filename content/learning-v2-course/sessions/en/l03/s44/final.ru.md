@@ -46,7 +46,7 @@
 
 - ✅ **An assistant is here.**
 - ❌ A assistant is here. — *Слово assistant начинается с гласного звука, поэтому an: An assistant is here.*
-- ❌ An assistant are here. — *С assistant в единственном числе нужно is.*
+- ❌ An assistant are here. — *С assistant в форме для одного нужно is.*
 
 ---
 

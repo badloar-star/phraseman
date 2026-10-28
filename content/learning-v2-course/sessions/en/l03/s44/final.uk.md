@@ -46,7 +46,7 @@
 
 - ✅ **An assistant is here.**
 - ❌ A assistant is here. — *Слово assistant починається з голосного звуку, тому an: An assistant is here.*
-- ❌ An assistant are here. — *З assistant в однині потрібне is.*
+- ❌ An assistant are here. — *З assistant у формі для одного потрібне is.*
 
 ---
 

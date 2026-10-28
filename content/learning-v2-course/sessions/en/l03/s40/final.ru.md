@@ -67,7 +67,7 @@
 <!-- interaction_id: en:lesson-03:session-40:i03; family: context_gap_grammar -->
 That ___ is heavy. → **box** · boxes · a box
 - boxes — *После That нужен один предмет: box без es.*
-- a box — *После That артикль a не ставим: That box is heavy.*
+- a box — *После That a не ставим: That box is heavy.*
 
 **4 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-40:i04; family: speed_match -->

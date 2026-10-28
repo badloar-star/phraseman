@@ -1,0 +1,688 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-03:session-11",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-03:session-11:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — rojo",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-11:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — rojo",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-11:i01:audio",
+          "transcript": "rojo"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-11:i01:r1",
+            "targetText": "rojo",
+            "meaningByLocale": {
+              "ru": "красный; roja — форма женского рода. 🔊 *rojo*",
+              "uk": "червоний; roja — форма жіночого роду. 🔊 *rojo*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rojo",
+          "definitionByLocale": {
+            "ru": "красный; roja — форма женского рода. 🔊 *rojo*",
+            "uk": "червоний; roja — форма жіночого роду. 🔊 *rojo*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-11:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-11:i02:r1",
+          "text": "roja"
+        },
+        {
+          "responseId": "es:lesson-03:session-11:i02:r2",
+          "text": "rojo"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-11:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-11:i02:audio",
+          "transcript": "roja"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-11:i02:r1",
+            "targetText": "roja",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-03:session-11:i02:r2",
+            "targetText": "rojo",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-11:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В конце слышно -a: roja.",
+              "uk": "Наприкінці чути -a: roja."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-11:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — чашка червона",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-11:i03:r1",
+          "text": "Плитки: roja"
+        },
+        {
+          "responseId": "es:lesson-03:session-11:i03:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-11:i03:r3",
+          "text": "taza"
+        },
+        {
+          "responseId": "es:lesson-03:session-11:i03:r4",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-03:session-11:i03:r5",
+          "text": "rojo."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — чашка червона",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "La taza es roja.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — чашка красная",
+          "uk": "Зберіть фразу — чашка червона"
+        },
+        "orderedTokens": [
+          "La",
+          "taza",
+          "es",
+          "roja"
+        ],
+        "authoredDistractorTokens": [
+          "rojo"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-11:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — чашка червона",
+            "feedbackByLocale": {
+              "ru": "taza женского рода.",
+              "uk": "taza жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-11:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — кілька чашок червоні",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-11:i04:r1",
+          "text": "rojas"
+        },
+        {
+          "responseId": "es:lesson-03:session-11:i04:r2",
+          "text": "rojos"
+        },
+        {
+          "responseId": "es:lesson-03:session-11:i04:r3",
+          "text": "roja"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — кілька чашок червоні",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — несколько чашек красные",
+          "uk": "Вставте слово — кілька чашок червоні"
+        },
+        "gappedTargetPhrase": "Las tazas son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-11:i04:r1",
+            "text": "rojas"
+          },
+          {
+            "responseId": "es:lesson-03:session-11:i04:r2",
+            "text": "rojos"
+          },
+          {
+            "responseId": "es:lesson-03:session-11:i04:r3",
+            "text": "roja"
+          }
+        ],
+        "testedDimension": "Вставте слово — кілька чашок червоні",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-11:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — кілька чашок червоні",
+            "feedbackByLocale": {
+              "ru": "Tazas женского рода: rojas.",
+              "uk": "Tazas жіночого роду: rojas."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-11:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — кілька чашок червоні",
+            "feedbackByLocale": {
+              "ru": "Чашек несколько: rojas.",
+              "uk": "Чашок кілька: rojas."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-11:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — чашки червоні",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-11:i05:r1",
+          "text": "Плитки: rojas"
+        },
+        {
+          "responseId": "es:lesson-03:session-11:i05:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-11:i05:r3",
+          "text": "tazas"
+        },
+        {
+          "responseId": "es:lesson-03:session-11:i05:r4",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-03:session-11:i05:r5",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — чашки червоні",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Las tazas son rojas.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — чашки красные",
+          "uk": "Зберіть фразу — чашки червоні"
+        },
+        "orderedTokens": [
+          "Las",
+          "tazas",
+          "son",
+          "rojas"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-11:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — чашки червоні",
+            "feedbackByLocale": {
+              "ru": "чашек несколько.",
+              "uk": "чашок кілька."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-11:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — одна тарілка червона",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-11:i06:r1",
+          "text": "rojo"
+        },
+        {
+          "responseId": "es:lesson-03:session-11:i06:r2",
+          "text": "roja"
+        },
+        {
+          "responseId": "es:lesson-03:session-11:i06:r3",
+          "text": "rojos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — одна тарілка червона",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — одна тарелка красная",
+          "uk": "Вставте слово — одна тарілка червона"
+        },
+        "gappedTargetPhrase": "El plato es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-11:i06:r1",
+            "text": "rojo"
+          },
+          {
+            "responseId": "es:lesson-03:session-11:i06:r2",
+            "text": "roja"
+          },
+          {
+            "responseId": "es:lesson-03:session-11:i06:r3",
+            "text": "rojos"
+          }
+        ],
+        "testedDimension": "Вставте слово — одна тарілка червона",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-11:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — одна тарілка червона",
+            "feedbackByLocale": {
+              "ru": "Plato мужского рода: rojo.",
+              "uk": "Plato чоловічого роду: rojo."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-11:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — одна тарілка червона",
+            "feedbackByLocale": {
+              "ru": "Тарелка одна: rojo.",
+              "uk": "Тарілка одна: rojo."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-11:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — тарілка червона",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-11:i07:r1",
+          "text": "Плитки: rojo"
+        },
+        {
+          "responseId": "es:lesson-03:session-11:i07:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-11:i07:r3",
+          "text": "plato"
+        },
+        {
+          "responseId": "es:lesson-03:session-11:i07:r4",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-03:session-11:i07:r5",
+          "text": "la."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — тарілка червона",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "El plato es rojo.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — тарелка красная",
+          "uk": "Зберіть фразу — тарілка червона"
+        },
+        "orderedTokens": [
+          "El",
+          "plato",
+          "es",
+          "rojo"
+        ],
+        "authoredDistractorTokens": [
+          "la"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-11:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — тарілка червона",
+            "feedbackByLocale": {
+              "ru": "plato мужского рода.",
+              "uk": "plato чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-11:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-11:i08:r1",
+          "text": "Плитки: rojas"
+        },
+        {
+          "responseId": "es:lesson-03:session-11:i08:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-11:i08:r3",
+          "text": "tazas"
+        },
+        {
+          "responseId": "es:lesson-03:session-11:i08:r4",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-03:session-11:i08:r5",
+          "text": "rojos."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-11:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-11:i08:audio",
+          "transcript": "Las tazas son rojas."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Las tazas son rojas.",
+        "orderedTokens": [
+          "Las",
+          "tazas",
+          "son",
+          "rojas"
+        ],
+        "authoredDistractorTokens": [
+          "rojos"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-11:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит rojas.",
+              "uk": "звучить rojas."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-11:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — чашка червона; назвіть предмет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-11:i09:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — чашка червона; назвіть предмет",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-11:i09:audio",
+          "transcript": "La taza es roja."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "La taza es roja.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-11:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — кілька тарілок червоні",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-11:i10:r1",
+          "text": "rojos"
+        },
+        {
+          "responseId": "es:lesson-03:session-11:i10:r2",
+          "text": "rojas"
+        },
+        {
+          "responseId": "es:lesson-03:session-11:i10:r3",
+          "text": "rojo"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — кілька тарілок червоні",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — несколько тарелок красные",
+          "uk": "Вставте слово — кілька тарілок червоні"
+        },
+        "gappedTargetPhrase": "Los platos son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-11:i10:r1",
+            "text": "rojos"
+          },
+          {
+            "responseId": "es:lesson-03:session-11:i10:r2",
+            "text": "rojas"
+          },
+          {
+            "responseId": "es:lesson-03:session-11:i10:r3",
+            "text": "rojo"
+          }
+        ],
+        "testedDimension": "Вставте слово — кілька тарілок червоні",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-11:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — кілька тарілок червоні",
+            "feedbackByLocale": {
+              "ru": "Platos мужского рода: rojos.",
+              "uk": "Platos чоловічого роду: rojos."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-11:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — кілька тарілок червоні",
+            "feedbackByLocale": {
+              "ru": "Тарелок несколько: rojos.",
+              "uk": "Тарілок кілька: rojos."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-11:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — чашки червоні; назвіть предмети",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-11:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — чашки червоні; назвіть предмети",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-11:i11:audio",
+          "transcript": "Las tazas son rojas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Las tazas son rojas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-11:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — тарілка червона; назвіть предмет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-11:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — тарілка червона; назвіть предмет",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-11:i12:audio",
+          "transcript": "El plato es rojo."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "El plato es rojo.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "ca9bb877e9f01a5552ddba64555e848f051d1fb72081fdb70258398f18065555"
+}

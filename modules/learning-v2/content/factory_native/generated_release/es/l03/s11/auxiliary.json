@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-03:session-11",
+  "entries": [
+    {
+      "interactionId": "es:lesson-03:session-11:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-11:intro1:r2": {
+          "ru": "Для taza нужна форма roja.",
+          "uk": "Для taza потрібна форма roja."
+        },
+        "es:lesson-03:session-11:intro1:r3": {
+          "ru": "Чашка одна: es.",
+          "uk": "Чашка одна: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-11:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-11:intro2:r2": {
+          "ru": "Tazas женского рода: rojas.",
+          "uk": "Tazas жіночого роду: rojas."
+        },
+        "es:lesson-03:session-11:intro2:r3": {
+          "ru": "Чашек несколько: rojas.",
+          "uk": "Чашок кілька: rojas."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-11:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-11:intro3:r2": {
+          "ru": "Для plato нужна форма rojo.",
+          "uk": "Для plato потрібна форма rojo."
+        },
+        "es:lesson-03:session-11:intro3:r3": {
+          "ru": "Запомните el plato и rojo.",
+          "uk": "Запам'ятайте el plato та rojo."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f7b0f8ecb2b9434f2c2b68507ea2b3855de816222aa63f4f6f4845479935b590"
+}

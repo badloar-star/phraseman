@@ -861,4 +861,11 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"описать чёрный цвет и отрицать неподходящий цвет.","uk":"описати чорний колір і заперечити невідповідний колір."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 11,
+    sourceFingerprint: "63db2d3a08e119efefa2c788287ae94738635adbd43a5d587f794d5a43f44d79",
+    newWordCount: 1,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"описать красный цвет одной и нескольких вещей.","uk":"описати червоний колір однієї та кількох речей."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+  }),
 ]);

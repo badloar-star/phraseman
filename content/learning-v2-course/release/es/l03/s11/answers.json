@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-03:session-11:i01",
+    "correctText": "rojo",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-11:i02",
+    "correctText": "roja",
+    "correctResponseId": "es:lesson-03:session-11:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-11:i03",
+    "correctText": "La taza es roja.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-11:i04",
+    "correctText": "rojas",
+    "correctResponseId": "es:lesson-03:session-11:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-11:i05",
+    "correctText": "Las tazas son rojas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-11:i06",
+    "correctText": "rojo",
+    "correctResponseId": "es:lesson-03:session-11:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-11:i07",
+    "correctText": "El plato es rojo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-11:i08",
+    "correctText": "Las tazas son rojas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-11:i09",
+    "correctText": "La taza es roja.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-11:i10",
+    "correctText": "rojos",
+    "correctResponseId": "es:lesson-03:session-11:i10:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-11:i11",
+    "correctText": "Las tazas son rojas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-11:i12",
+    "correctText": "El plato es rojo.",
+    "correctResponseId": null
+  }
+]

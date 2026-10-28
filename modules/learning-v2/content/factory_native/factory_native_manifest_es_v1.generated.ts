@@ -1719,4 +1719,18 @@ export const FACTORY_NATIVE_MANIFEST_ES_V1: readonly LearningV2FactoryNativeMani
     loadAnswers: () => require("./generated_release/es/l03/s10/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/es/l03/s10/auxiliary.json") as unknown,
   }),
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 11,
+    sourceFingerprint: "63db2d3a08e119efefa2c788287ae94738635adbd43a5d587f794d5a43f44d79",
+    introCorrectChoiceIndexes: Object.freeze([0,0,0]),
+    introPromptByAuthoredLocale: Object.freeze({"ru":["Скажите, что чашка красная.","Скажите, что чашки красные.","Скажите, что тарелка красная."],"uk":["Скажіть, що чашка червона.","Скажіть, що чашки червоні.","Скажіть, що тарілка червона."]}),
+    introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Для taza нужна форма roja.","Чашка одна: es."],["Tazas женского рода: rojas.","Чашек несколько: rojas."],["Для plato нужна форма rojo.","Запомните el plato и rojo."]],"uk":[["Для taza потрібна форма roja.","Чашка одна: es."],["Tazas жіночого роду: rojas.","Чашок кілька: rojas."],["Для plato потрібна форма rojo.","Запам'ятайте el plato та rojo."]]}),
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"описать красный цвет одной и нескольких вещей.","uk":"описати червоний колір однієї та кількох речей."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+    practiceTitlesByAuthoredLocale: Object.freeze({"ru":[{"ordinal":1,"title":"Карточка слова — rojo"},{"ordinal":2,"title":"Послушайте и выберите слово"},{"ordinal":3,"title":"Соберите фразу — чашка красная"},{"ordinal":4,"title":"Вставьте слово — несколько чашек красные"},{"ordinal":5,"title":"Соберите фразу — чашки красные"},{"ordinal":6,"title":"Вставьте слово — одна тарелка красная"},{"ordinal":7,"title":"Соберите фразу — тарелка красная"},{"ordinal":8,"title":"Послушайте и соберите фразу"},{"ordinal":9,"title":"Скажите вслух — чашка красная; назовите предмет"},{"ordinal":10,"title":"Вставьте слово — несколько тарелок красные"},{"ordinal":11,"title":"Скажите вслух — чашки красные; назовите предметы"},{"ordinal":12,"title":"Скажите вслух — тарелка красная; назовите предмет"}],"uk":[{"ordinal":1,"title":"Картка слова — rojo"},{"ordinal":2,"title":"Послухайте й виберіть слово"},{"ordinal":3,"title":"Зберіть фразу — чашка червона"},{"ordinal":4,"title":"Вставте слово — кілька чашок червоні"},{"ordinal":5,"title":"Зберіть фразу — чашки червоні"},{"ordinal":6,"title":"Вставте слово — одна тарілка червона"},{"ordinal":7,"title":"Зберіть фразу — тарілка червона"},{"ordinal":8,"title":"Послухайте й зберіть фразу"},{"ordinal":9,"title":"Скажіть уголос — чашка червона; назвіть предмет"},{"ordinal":10,"title":"Вставте слово — кілька тарілок червоні"},{"ordinal":11,"title":"Скажіть уголос — чашки червоні; назвіть предмети"},{"ordinal":12,"title":"Скажіть уголос — тарілка червона; назвіть предмет"}]}),
+    loadIntro: () => require("./generated_release/es/l03/s11/intro.json") as unknown,
+    loadLearner: (locale: "ru" | "uk") => locale === "uk" ? require("./generated_release/es/l03/s11/learner.uk.json") as unknown : require("./generated_release/es/l03/s11/learner.json") as unknown,
+    loadAnswers: () => require("./generated_release/es/l03/s11/answers.json") as unknown,
+    loadAuxiliary: () => require("./generated_release/es/l03/s11/auxiliary.json") as unknown,
+  }),
 ]);

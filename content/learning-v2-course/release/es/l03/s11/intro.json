@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-03:session-11",
+  "learningOutcomeByLocale": {
+    "ru": "описать красный цвет одной и нескольких вещей.",
+    "uk": "описати червоний колір однієї та кількох речей."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-03:session-11:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Одна чашка",
+        "uk": "Одна чашка"
+      },
+      "bodyByLocale": {
+        "ru": "На полке стоит красная чашка. `Rojo` — «красный», для женского рода — roja. Скажите `La taza es roja` — «Чашка красная». Соберите `la taza` + `es` + `roja`. Taza женского рода и обозначает одну вещь: roja с -a.",
+        "uk": "На полиці стоїть червона чашка. `Rojo` — «червоний», для жіночого роду — roja. Скажіть `La taza es roja` — «Чашка червона». Складіть `la taza` + `es` + `roja`. Taza жіночого роду й позначає одну річ: roja з -a."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-11:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите, что чашка красная.",
+          "uk": "Скажіть, що чашка червона."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-11:intro1:r1",
+              "text": "La taza es roja."
+            },
+            {
+              "responseId": "es:lesson-03:session-11:intro1:r2",
+              "text": "La taza es rojo."
+            },
+            {
+              "responseId": "es:lesson-03:session-11:intro1:r3",
+              "text": "La taza son roja."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-11:intro1:r1",
+              "text": "La taza es roja."
+            },
+            {
+              "responseId": "es:lesson-03:session-11:intro1:r2",
+              "text": "La taza es rojo."
+            },
+            {
+              "responseId": "es:lesson-03:session-11:intro1:r3",
+              "text": "La taza son roja."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что чашка красная.",
+          "uk": "Скажіть, що чашка червона."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-03:session-11:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Набор для гостей",
+        "uk": "Набір для гостей"
+      },
+      "bodyByLocale": {
+        "ru": "Вы выбрали несколько красных чашек. Скажите `Las tazas son rojas` — «Чашки красные». Соберите `las tazas` + `son` + `rojas`. К форме roja добавьте -s, потому что чашек несколько. Женский род сохраняется: rojas, а не rojos.",
+        "uk": "Ви вибрали кілька червоних чашок. Скажіть `Las tazas son rojas` — «Чашки червоні». Складіть `las tazas` + `son` + `rojas`. До форми roja додайте -s, тому що чашок кілька. Жіночий рід зберігається: rojas, а не rojos."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-11:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите, что чашки красные.",
+          "uk": "Скажіть, що чашки червоні."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-11:intro2:r1",
+              "text": "Las tazas son rojas."
+            },
+            {
+              "responseId": "es:lesson-03:session-11:intro2:r2",
+              "text": "Las tazas son rojos."
+            },
+            {
+              "responseId": "es:lesson-03:session-11:intro2:r3",
+              "text": "Las tazas son roja."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-11:intro2:r1",
+              "text": "Las tazas son rojas."
+            },
+            {
+              "responseId": "es:lesson-03:session-11:intro2:r2",
+              "text": "Las tazas son rojos."
+            },
+            {
+              "responseId": "es:lesson-03:session-11:intro2:r3",
+              "text": "Las tazas son roja."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что чашки красные.",
+          "uk": "Скажіть, що чашки червоні."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-03:session-11:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Тарелка к чашкам",
+        "uk": "Тарілка до чашок"
+      },
+      "bodyByLocale": {
+        "ru": "К чашкам выбрали красную тарелку. Скажите `El plato es rojo` — «Тарелка красная». Соберите `el plato` + `es` + `rojo`. Испанское plato мужского рода, поэтому rojo, хотя русская «тарелка» женского. Цвет согласуется с испанским названием вещи.",
+        "uk": "До чашок вибрали червону тарілку. Скажіть `El plato es rojo` — «Тарілка червона». Складіть `el plato` + `es` + `rojo`. Іспанське plato чоловічого роду, тому rojo, хоча українська «тарілка» жіночого. Колір узгоджується з іспанською назвою речі."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-11:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите, что тарелка красная.",
+          "uk": "Скажіть, що тарілка червона."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-11:intro3:r1",
+              "text": "El plato es rojo."
+            },
+            {
+              "responseId": "es:lesson-03:session-11:intro3:r2",
+              "text": "El plato es roja."
+            },
+            {
+              "responseId": "es:lesson-03:session-11:intro3:r3",
+              "text": "La plato es roja."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-11:intro3:r1",
+              "text": "El plato es rojo."
+            },
+            {
+              "responseId": "es:lesson-03:session-11:intro3:r2",
+              "text": "El plato es roja."
+            },
+            {
+              "responseId": "es:lesson-03:session-11:intro3:r3",
+              "text": "La plato es roja."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что тарелка красная.",
+          "uk": "Скажіть, що тарілка червона."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b597a5063b6d8812ae641a3eebea9d894b2b60c65b7def4482e7e011c6876084"
+}

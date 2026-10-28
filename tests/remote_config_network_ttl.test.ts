@@ -1,4 +1,5 @@
-// PM-210 — Remote Config не читает Firestore на каждом запуске.
+// PM-210 — Remote Config: кэш до сети, метка свежести. 28.10 (владелец через координатора): «онбординг из Пульта должен применяться
+// ПРИ КАЖДОМ ЗАПУСКЕ» — холодный старт читает документ ВСЕГДА (1 чтение на запуск), пропуск по свежему кэшу снят.
 //
 // зачем: владелец, «Firebase-экономия по умолчанию». Кэш remote_config_cache_v1
 // применяется до сети; если сеть подтверждала его меньше 6 ч назад — повторное
@@ -61,10 +62,10 @@ describe('remote config network TTL (PM-210)', () => {
     expect(await AsyncStorage.getItem(CACHE_KEY)).toContain('force_update_enabled');
   });
 
-  it('skips the network while the cache is younger than the TTL', async () => {
+  it('reads the network once on a cold start even with a fresh cache (owner 28.10: Pult on every launch)', async () => {
     await seedCache(NOW - 60 * 60 * 1000);
     await loadRemoteConfig({ nowMs: NOW });
-    expect(mockDocGet).not.toHaveBeenCalled();
+    expect(mockDocGet).toHaveBeenCalledTimes(1);
   });
 
   it('reads the network once the cache is older than the TTL', async () => {

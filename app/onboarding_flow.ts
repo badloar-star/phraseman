@@ -112,8 +112,45 @@ export function parseEnabledOnboardingSteps(raw: string | null | undefined): Onb
     }
     return ALL_STEP_IDS.filter((id) => requested.has(id));
   } catch {
+    // Битый JSON — полный каталог; причину называет explainEnabledOnboardingSteps (лог [ONB-FLAGS]).
     return [...ALL_STEP_IDS];
   }
+}
+
+export type OnboardingStepDecisionReason = 'no_list_all_on' | 'bad_list_all_on' | 'mandatory' | 'on_in_pult' | 'default_on_old_list' | 'off_in_pult';
+export type OnboardingStepsExplanation = Readonly<{
+  listState: 'empty' | 'invalid' | 'with_catalog_mark' | 'without_catalog_mark';
+  steps: readonly Readonly<{ id: OnboardingStepId; on: boolean; why: OnboardingStepDecisionReason }>[];
+}>;
+
+/**
+ * То же решение, что parseEnabledOnboardingSteps, но с причиной по каждому шагу — для лога [ONB-FLAGS].
+ * зачем (координатор 28.10, «выключил в Пульте — ничего не изменилось»): лог обязан показать, почему шаг включён или выключен.
+ */
+export function explainEnabledOnboardingSteps(raw: string | null | undefined): OnboardingStepsExplanation {
+  const enabled = new Set(parseEnabledOnboardingSteps(raw));
+  let parsed: unknown = null;
+  let listState: OnboardingStepsExplanation['listState'] = 'empty';
+  if (raw) {
+    try {
+      parsed = JSON.parse(raw);
+      listState = Array.isArray(parsed) && parsed.every((value) => typeof value === 'string')
+        ? (parsed.includes(ONBOARDING_STEPS_CATALOG_MARK) ? 'with_catalog_mark' : 'without_catalog_mark')
+        : 'invalid';
+    } catch {
+      listState = 'invalid'; // битый JSON — так и пишем в лог
+    }
+  }
+  const listed = new Set(Array.isArray(parsed) ? parsed : []);
+  const steps = ALL_STEP_IDS.map((id) => {
+    const why: OnboardingStepDecisionReason = listState === 'empty' ? 'no_list_all_on'
+      : listState === 'invalid' ? 'bad_list_all_on'
+        : id === MANDATORY_ONBOARDING_STEP ? 'mandatory'
+          : listed.has(id) ? 'on_in_pult'
+            : enabled.has(id) ? 'default_on_old_list' : 'off_in_pult';
+    return { id, on: enabled.has(id), why };
+  });
+  return { listState, steps };
 }
 
 export function resolveEnabledOnboardingOrder(

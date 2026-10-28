@@ -80,6 +80,8 @@ const REMOTE_CONFIG_FETCHED_AT_KEY = 'remote_config_fetched_at_v1';
 // частые перезапуски. Худший случай для рубильников (`phone_state_emergency_stop`,
 // `force_update_enabled` + `min_app_version`, `accounts_v2_client_enabled`): кто уже запускал приложение в последние 6 ч, получит
 // их не позже чем через 6 ч. Нужна мгновенность — `refreshRemoteConfigNow()`.
+// 28.10 (владелец через координатора, «Пульт при каждом запуске»): холодный старт читает сеть ВСЕГДА — 1 чтение на запуск;
+// константа осталась только для подписи возраста кэша в логе (fresh/expired).
 export const REMOTE_CONFIG_NETWORK_TTL_MS = 6 * 60 * 60 * 1000;
 const REMOTE_CONFIG_MAX_CACHE_BYTES = 64 * 1024;
 const REMOTE_CONFIG_MAX_KEYS_PER_SECTION = 256;
@@ -231,7 +233,7 @@ function applyAndCache(raw: RawConfig | undefined, fetchedAtMs: number = Date.no
     DebugLogger.warn('[STARTUP-READS]', `remote_config: network doc rejected (overflow): ${String(error)}`);
     return;
   }
-  applyRemoteConfigSnapshot(clean);
+  applyRemoteConfigSnapshot(clean, { source: 'network', fetchedAtMs });
   logAccountsV2ClientFlag('network');
   logRemoteGates('network', clean.bools);
   // зачем (11.10, «Шпиль не виден»): зеркало кэша обновляется ДО события. Раньше событие уходило первым, и слушатели,
@@ -290,7 +292,7 @@ async function applyRemoteConfigCacheFromStorage(): Promise<boolean> {
     boundedUtf8Bytes(raw, REMOTE_CONFIG_MAX_CACHE_BYTES);
     const parsed = JSON.parse(raw) as RawConfig;
     const cleanFromCache = sanitizeRaw(parsed);
-    applyRemoteConfigSnapshot(cleanFromCache);
+    applyRemoteConfigSnapshot(cleanFromCache, { source: 'cache' });
     logAccountsV2ClientFlag('cache');
     logRemoteGates('cache', cleanFromCache.bools);
     emitAppEvent('remote_config_changed');
@@ -304,8 +306,8 @@ async function applyRemoteConfigCacheFromStorage(): Promise<boolean> {
 
 /**
  * One-shot load at startup: apply cache immediately (so flags are right before
- * the network responds), then fetch the live doc once — unless the cache was
- * confirmed by the network less than REMOTE_CONFIG_NETWORK_TTL_MS ago.
+ * the network responds), then fetch the live doc once on every cold start
+ * (owner 28.10: Pult applies on each launch; no polling).
  * `force: true` always goes to the network. Safe to call always.
  */
 export async function loadRemoteConfig(options: Readonly<{ force?: boolean; nowMs?: number }> = {}): Promise<void> {
@@ -322,12 +324,13 @@ export async function loadRemoteConfig(options: Readonly<{ force?: boolean; nowM
       const cacheApplied = await applyRemoteConfigCacheFromStorage();
       const nowMs = Number.isFinite(options.nowMs) ? Number(options.nowMs) : Date.now();
       if (!force) {
+        // зачем (владелец 28.10 через координатора: «онбординг из Пульта должен применяться ПРИ КАЖДОМ ЗАПУСКЕ»): холодный старт всегда
+        // читает документ один раз — пока чтение идёт, работает кэш, свежее значение применяется событием remote_config_changed.
+        // Раньше (PM-210, 01.10) сеть пропускалась при кэше моложе 6 ч, и выключенный в Пульте раздел жил до 6 ч. Стоимость — 1 чтение
+        // на холодный старт; опроса нет. Возраст кэша — только в лог.
         const age = await readRemoteConfigCacheAge(nowMs, cacheApplied);
-        if (age.fresh) {
-          DebugLogger.info('[STARTUP-READS]', `remote_config: cache fresh (ageMin=${Math.round(age.ageMs / 60_000)}, ttlMin=${REMOTE_CONFIG_NETWORK_TTL_MS / 60_000}) -> network skipped`);
-          return;
-        }
-        DebugLogger.info('[STARTUP-READS]', `remote_config: network read (reason=${age.reason}, ageMs=${age.ageMs ?? 'n/a'})`);
+        DebugLogger.info('[STARTUP-READS]', `remote_config: network read on cold start (cache=${age.fresh ? 'fresh' : age.reason}, ageMs=${age.ageMs ?? 'n/a'})`);
+        console.log(`[ONB-FLAGS] cold start: cache=${cacheApplied ? 'applied' : 'none'} cacheAgeMin=${age.ageMs === null ? '—' : Math.round(age.ageMs / 60_000)} → network read`); // guard-ok: одна строка на холодный старт
       } else {
         DebugLogger.info('[STARTUP-READS]', 'remote_config: network read (reason=force)');
       }

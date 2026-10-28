@@ -15,6 +15,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 
 import {
+  explainEnabledOnboardingSteps,
   ONBOARDING_ENABLED_STEPS_TEXT_KEY,
   parseEnabledOnboardingSteps,
   type OnboardingStepId,
@@ -463,6 +464,9 @@ let _textOverrides: Partial<Record<RemoteTextKey, string>> = {};
 let _rolloutOverrides: Record<string, number> = {};
 let _configSignature = 'defaults';
 let _remoteConfigSnapshotApplied = false;
+// Откуда пришёл последний применённый снимок — для лога [ONB-FLAGS] (кэш телефона или сеть, когда).
+export type RemoteConfigSnapshotMeta = Readonly<{ source: 'cache' | 'network'; fetchedAtMs?: number }>;
+let _lastSnapshotMeta: (RemoteConfigSnapshotMeta & { appliedAtMs: number }) | null = null;
 
 const ROLLOUT_SUFFIX = '_rollout_pct';
 
@@ -508,7 +512,17 @@ export function getRemoteText(key: RemoteTextKey): string {
 }
 
 export function getEnabledOnboardingSteps(): OnboardingStepId[] {
-  return parseEnabledOnboardingSteps(getRemoteText(ONBOARDING_ENABLED_STEPS_TEXT_KEY));
+  const raw = getRemoteText(ONBOARDING_ENABLED_STEPS_TEXT_KEY);
+  const steps = parseEnabledOnboardingSteps(raw);
+  // зачем (координатор 28.10, «выключил разделы в Пульте — ничего не изменилось»): одна строка на сборку списка шагов (старт онбординга
+  // и каждое remote_config_changed) — что пришло из Пульта, откуда и когда, и решение по каждому шагу с причиной.
+  const origin = typeof _textOverrides[ONBOARDING_ENABLED_STEPS_TEXT_KEY] === 'string'
+    ? `pult(${_lastSnapshotMeta?.source ?? '?'}, fetchedAt=${_lastSnapshotMeta?.fetchedAtMs ? new Date(_lastSnapshotMeta.fetchedAtMs).toISOString() : '—'})`
+    : `default(snapshotApplied=${_remoteConfigSnapshotApplied}, last=${_lastSnapshotMeta?.source ?? 'none'})`;
+  const explained = explainEnabledOnboardingSteps(raw);
+  const decisions = explained.steps.map((s) => `${s.id}=${s.on ? 'on' : 'OFF'}:${s.why}`).join(' ');
+  console.log(`[ONB-FLAGS] steps: origin=${origin} list=${explained.listState} raw=${raw ? raw.slice(0, 220) : '""'} skip=${getRemoteBool('onboarding_skip_enabled')} → ${decisions}`); // guard-ok: одна строка на сборку списка шагов
+  return steps;
 }
 
 /**
@@ -520,7 +534,7 @@ export function applyRemoteConfigSnapshot(snapshot: {
   numbers?: Partial<Record<string, unknown>>;
   bools?: Partial<Record<string, unknown>>;
   texts?: Partial<Record<string, unknown>>;
-}): string {
+}, meta?: RemoteConfigSnapshotMeta): string {
   // Server authority is intentionally limited to sync, updates, video,
   // promo/payment, and premium entitlement. All other product decisions stay
   // local even if legacy keys are still present in an old Firestore document.
@@ -541,6 +555,8 @@ export function applyRemoteConfigSnapshot(snapshot: {
     'gate_lessons_premium', 'gate_speaking_premium', 'gate_ai_dialog_premium', 'gate_stats_premium',
     'gate_flashcards_premium', 'gate_themes_premium', 'gate_avatar_auras_premium', 'gate_mastery_premium',
     'gate_energy_premium', 'gate_arena_premium', 'gate_mistake_practice_premium', 'gate_extra_languages_premium',
+    // зачем (владелец 28.10 через координатора: «выключил в Пульте — ничего не изменилось»): тумблер «Пропуск» онбординга из Пульта
+    'onboarding_skip_enabled',
   ]);
   const allowedTexts = new Set<RemoteTextKey>([
     'min_app_version', 'store_url_ios', 'store_url_android', 'manual_update_campaign_id',
@@ -553,6 +569,10 @@ export function applyRemoteConfigSnapshot(snapshot: {
     'promo_banner_until', 'promo_banner_campaign_id', 'promo_banner_audience', 'promo_banner_platform',
     'discount_offer_badge_percent', 'youtube_channel_id', 'youtube_channel_handle',
     'youtube_channel_name', 'youtube_channel_url', 'youtube_pinned_videos',
+    // зачем (владелец 28.10 через координатора): разделы онбординга, выключенные галочками в Пульте, должны пропадать. С 30.09 (общий
+    // снимок 2.0, efe19ae9d) ключ не входил в список — значение Пульта молча выбрасывалось, приложение показывало весь каталог.
+    // Локальные рубильники кода (язык/уровень в CleanOnboarding) по-прежнему сильнее Пульта.
+    'onboarding_enabled_steps_v1',
   ]);
   const nextNumbers: Partial<Record<RemoteNumberKey, number>> = {};
   const nextBools: Partial<Record<RemoteBoolKey, boolean>> = {};
@@ -596,6 +616,11 @@ export function applyRemoteConfigSnapshot(snapshot: {
   _textOverrides = nextTexts;
   _rolloutOverrides = nextRollouts;
   _remoteConfigSnapshotApplied = true;
+  _lastSnapshotMeta = meta ? { ...meta, appliedAtMs: Date.now() } : { source: 'network', appliedAtMs: Date.now() };
+  // зачем (координатор 28.10): что пришло из Пульта по онбордингу и что принято — видно, если ключ снова выпадет из белого списка
+  const rawSteps = snapshot.texts?.[ONBOARDING_ENABLED_STEPS_TEXT_KEY];
+  const rawSkip = snapshot.bools?.onboarding_skip_enabled;
+  console.log(`[ONB-FLAGS] apply: source=${meta?.source ?? 'unknown'} fetchedAt=${meta?.fetchedAtMs ? new Date(meta.fetchedAtMs).toISOString() : '—'} steps_in=${typeof rawSteps === 'string' ? rawSteps.slice(0, 220) : 'absent'} steps_taken=${typeof nextTexts[ONBOARDING_ENABLED_STEPS_TEXT_KEY] === 'string'} skip_in=${typeof rawSkip === 'boolean' ? rawSkip : 'absent'} skip_taken=${typeof nextBools.onboarding_skip_enabled === 'boolean'}`); // guard-ok: одна строка на применение снимка
   _configSignature = buildSignature();
   return _configSignature;
 }
@@ -1019,6 +1044,7 @@ export function __resetRemoteFlagsForTest(): void {
   _rolloutOverrides = {};
   _remoteConfigSnapshotApplied = false;
   _configSignature = 'defaults';
+  _lastSnapshotMeta = null;
 }
 
 /* expo-router route shim. */

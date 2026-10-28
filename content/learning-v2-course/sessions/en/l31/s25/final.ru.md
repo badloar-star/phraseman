@@ -139,7 +139,7 @@ I stayed home because ___. → **it was cold** · of it was cold · it cold
 <!-- interaction_id: en:lesson-31:session-25:i19; family: listen_build_dictation -->
 🔊 *I stayed home because I was tired.* Плитки: `tired` `was` `I` `because` `home` `stayed` `I` → **I stayed home because I was tired.**
 
-**20 · Перед словами the rain пропущена часть связки because of. Вставьте её.**
+**20 · Перед словами the rain пропущена часть because of. Вставьте её.**
 <!-- interaction_id: en:lesson-31:session-25:i20; family: context_gap_grammar -->
 I stayed home because ___ the rain. → **of** · to · at
 - to — *Нужна связка because of.*

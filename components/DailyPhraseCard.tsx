@@ -7,6 +7,7 @@ import {
   ScrollView,
   StyleSheet,
   Text,
+  useWindowDimensions,
   View,
 } from 'react-native';
 import { Image } from 'expo-image';
@@ -112,6 +113,11 @@ function DailyPhraseCard({
   // зачем: модалка «Фраза дня» стала bottom sheet — низ должен уважать home indicator/nav bar.
   const insets = useStableSafeAreaInsets();
   const sheetBottomInset = normalizeSafeAreaBottomInset(insets.bottom);
+  // зачем (жалоба пользователя Android 28.10, через координатора: «видны только 2 варианта из 4, остальные срезаны»): потолок 86 % высоты
+  // оставлял на варианты слишком мало места после шапки и фразы. Теперь шторка растёт до высоты окна минус верхняя безопасная зона и зазор
+  // (не выше 94 %), сжимается flexShrink, а содержимое прокручивается внутри — ничего не обрезается, текст переносится.
+  const { height: windowHeight } = useWindowDimensions();
+  const sheetMaxHeight = Math.max(320, Math.round(Math.min(windowHeight * 0.94, windowHeight - insets.top - 12)));
   const params = useGlobalSearchParams<{ openPhrase?: string; play?: string }>();
   const dailyPhraseGateOpen = dailyPhraseContentAvailableForTarget(studyTarget);
   // зачем: homeV2 наследует поведение homeAdditional (пульс, видимость, intro),
@@ -790,7 +796,7 @@ function DailyPhraseCard({
             <Pressable style={StyleSheet.absoluteFillObject} onPress={closeDetails} />
           </Animated.View>
           {/* зачем (координатор 14.10, «ручка ⇒ свайп»): свайп вниз закрывает детали фразы дня тем же closeDetails, что фон и крестик; лист едет за пальцем. Высоту 86 % держит внешний слой */}
-          <SheetSwipeClose name="daily-phrase-details" onClose={closeDetails} wrapStyle={{ flexShrink: 1, maxHeight: '86%', minHeight: 0 }}>
+          <SheetSwipeClose name="daily-phrase-details" onClose={closeDetails} wrapStyle={{ flexShrink: 1, maxHeight: sheetMaxHeight, minHeight: 0 }}>
           <Animated.View
             style={[
               styles.sheet,
@@ -1254,8 +1260,7 @@ const styles = StyleSheet.create({
   },
   sheet: {
     width: '100%',
-    flexShrink: 1, // зачем: внутри внешнего слоя свайпа лист сжимается вместе с ним (86 % держит обёртка)
-    maxHeight: '86%',
+    flexShrink: 1, // зачем: внутри внешнего слоя свайпа лист сжимается вместе с ним (потолок высоты держит обёртка: sheetMaxHeight)
     borderTopLeftRadius: 24,
     borderTopRightRadius: 24,
     borderWidth: 0,

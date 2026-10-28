@@ -46,6 +46,8 @@ export type DialogueV2TurnCoaching = Readonly<{
   mood: DialogueV2CoachingMood | null;
   activeObjectiveId: string | null;
   dialogueEnded: boolean;
+  /** Все цели сценария пройдены (сервер шлёт при coachingVersion 2; в старом ответе поля нет — false). */
+  allObjectivesComplete: boolean;
 }>;
 
 export type DialogueV2CoachedTurnRequest = Readonly<{
@@ -147,9 +149,17 @@ function alignedTexts(value: unknown, count: number, maxLength: number): readonl
 /** Разбор проверяется поле за полем: битое поле → null, реплика при этом не теряется. */
 export function parseDialogueV2TurnCoaching(value: unknown, replyCount: number): DialogueV2TurnCoaching | null {
   const raw = plainRecord(value);
-  if (!raw || !hasExactKeys(raw, [
-    'replyTranslations', 'replyExplanations', 'betterPhrasing', 'hint', 'mood', 'activeObjectiveId', 'dialogueEnded',
-  ])) return null;
+  const required = ['replyTranslations', 'replyExplanations', 'betterPhrasing', 'hint', 'mood', 'activeObjectiveId', 'dialogueEnded'];
+  // зачем (28.10): allObjectivesComplete необязателен — ответ старого сервера/повтор хода без него остаётся валидным; не булево — отклоняем разбор
+  const hasComplete = raw !== null && Object.prototype.hasOwnProperty.call(raw, 'allObjectivesComplete');
+  if (!raw || !hasExactKeys(raw, hasComplete ? [...required, 'allObjectivesComplete'] : required)) {
+    console.warn('[DIALOGUE-V2] coached:parse → coaching keys rejected', JSON.stringify({ keys: raw ? Object.keys(raw) : null })); // guard-ok: ранний выход пишет причину
+    return null;
+  }
+  if (hasComplete && typeof raw.allObjectivesComplete !== 'boolean') {
+    console.warn('[DIALOGUE-V2] coached:parse → allObjectivesComplete is not boolean', JSON.stringify({ type: typeof raw.allObjectivesComplete })); // guard-ok: ранний выход пишет причину
+    return null;
+  }
   return Object.freeze({
     replyTranslations: alignedTexts(raw.replyTranslations, replyCount, 800),
     replyExplanations: alignedTexts(raw.replyExplanations, replyCount, 600),
@@ -160,6 +170,7 @@ export function parseDialogueV2TurnCoaching(value: unknown, replyCount: number):
       ? raw.activeObjectiveId
       : null,
     dialogueEnded: raw.dialogueEnded === true,
+    allObjectivesComplete: raw.allObjectivesComplete === true,
   });
 }
 
@@ -318,18 +329,19 @@ export async function sendDialogueV2CoachedTextTurn(
         betterPhrasing: devBetter ? 'I would like a table for two, please.' : null, hint: DEV_DIALOG_HINT_TEXT,
         // зачем (Макеты dialogs-019, разбор 13.10): у настоящего ответа сервера настроение собеседника есть всегда и в шапке стоит «😊 Доволен», а подставной ход
         // оставлял mood пустым — шапка рисовала запасное «Диалог». Без явного dev_dialog_mood подставной ход отдаёт 'smile' («Доволен»), как в образце.
-        mood: devMood ?? 'smile', activeObjectiveId: null, dialogueEnded: devEnd,
+        mood: devMood ?? 'smile', activeObjectiveId: null, dialogueEnded: devEnd, allObjectivesComplete: false,
       },
     };
   }
   const startedAt = Date.now();
   let data: unknown;
   try {
-    const callable = httpsCallable<DialogueV2CoachedTurnRequest, unknown>(
+    const callable = httpsCallable<DialogueV2CoachedTurnRequest & Readonly<{ coachingVersion: 2 }>, unknown>(
       getFunctions(getApp(), FUNCTIONS_REGION),
       'dialogueV2TextTurn',
     );
-    data = (await callable(request)).data;
+    // зачем (координатор 28.10): coachingVersion 2 — клиент понимает coaching.allObjectivesComplete; сервер выложен 28.10 18:29
+    data = (await callable({ ...request, coachingVersion: 2 })).data;
   } catch (error: unknown) {
     const reason = classifyDialogueV2TurnFailure(error);
     const { code, message } = errorText(error);

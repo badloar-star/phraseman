@@ -34,6 +34,7 @@ import { markDialogueV2Done } from './dialogue_v2_done_store';
 import { markDialogueV2DoneToday } from './dialogue_v2_day_mark';
 import { createDialogueEnergySettler, type DialogueEnergySettler } from './dialogue_v2_energy_settle';
 import { formatDialogObjectiveLabel } from '../components/dialogs/dialog_objective_label';
+import { dialogsSceneGoalsDoneLabel } from '../components/dialogs/scene/dialogs_scene_copy';
 import { resolveCurrentDialogueV2PreparedBotVoice } from './dialogue_v2_prepared_bot_voice_runtime';
 import { triLang } from '../constants/i18n';
 import { useMyCoinRank } from '../hooks/use_my_coin_rank';
@@ -517,6 +518,7 @@ function SessionContent() {
         replies: result.replies.length,
         coaching: coached ? 'present' : 'none',
         dialogueEnded: coached?.dialogueEnded ?? null,
+        allObjectivesComplete: coached?.allObjectivesComplete ?? 'absent',
         activeObjectiveId: activeId,
         activeIndex,
         objectives: objectives.map((objective, index) => `${objective.id}:${activeIndex < 0 ? 'unknown' : index < activeIndex ? 'passed' : index === activeIndex ? 'active' : 'ahead'}`),
@@ -861,9 +863,12 @@ function SessionContent() {
     );
   }
 
-  const objectiveIndex = coaching.activeObjectiveId
-    ? Math.max(0, model.objectives.findIndex((objective) => objective.id === coaching.activeObjectiveId))
-    : 0;
+  const objectivesAllDone = coaching.allObjectivesComplete && model.objectives.length > 0;
+  const objectiveIndex = objectivesAllDone
+    ? model.objectives.length - 1
+    : coaching.activeObjectiveId
+      ? Math.max(0, model.objectives.findIndex((objective) => objective.id === coaching.activeObjectiveId))
+      : 0;
   const currentObjective = model.objectives[objectiveIndex] ?? null;
   // зачем (жалоба владельца 25.10 «подсказки не относятся к реплике собеседника»): фразы «Можно сказать…» — ответы на последнюю реплику
   // собеседника, а не на цель шага; не распознали — подсказок нет. Журнал [DIALOG-HINTS] — в модуле подбора.
@@ -959,7 +964,9 @@ function SessionContent() {
       } : null}
       personaIcon={scenarioId ? dialogueScenarioAvatarIcon(scenarioId) : undefined}
       goal={currentObjective ? {
-        kicker: coachingLabels.goalKicker(objectiveIndex + 1, model.objectives.length),
+        kicker: objectivesAllDone
+          ? dialogsSceneGoalsDoneLabel(lang, model.objectives.length, model.objectives.length)
+          : coachingLabels.goalKicker(objectiveIndex + 1, model.objectives.length),
         // зачем (координатор 12.10, dialogs-030/014): название цели в карточке с заглавной и без точки, как в брифинге и шторке «Задания» (formatDialogObjectiveLabel); исходный текст не меняется
         label: formatDialogObjectiveLabel(currentObjective.label),
       } : null}

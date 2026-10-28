@@ -69,6 +69,8 @@ export function useDialogueV2SessionCoaching({ studyTarget, sessionId, freeTier 
   const [activeObjectiveId, setActiveObjectiveId] = useState<string | null>(null);
   const [hint, setHint] = useState<string | null>(null);
   const [ended, setEnded] = useState(false);
+  // зачем (координатор 28.10): сервер сказал «все цели пройдены»; однажды true — не сбрасывается (цели назад не откатываются)
+  const [allObjectivesComplete, setAllObjectivesComplete] = useState(false);
   const [summarySeen, setSummarySeen] = useState(false);
   const [translatedIds, setTranslatedIds] = useState<ReadonlySet<string>>(() => new Set());
   const [fixOpenIds, setFixOpenIds] = useState<ReadonlySet<string>>(() => new Set());
@@ -149,6 +151,7 @@ export function useDialogueV2SessionCoaching({ studyTarget, sessionId, freeTier 
     console.log('[DIALOGUE-V2] coaching:turn', JSON.stringify({
       activeObjectiveId: coaching.activeObjectiveId,
       dialogueEnded: coaching.dialogueEnded,
+      allObjectivesComplete: coaching.allObjectivesComplete ?? 'absent',
       mood: coaching.mood ?? null,
       hasHint: !!coaching.hint,
     }));
@@ -156,6 +159,7 @@ export function useDialogueV2SessionCoaching({ studyTarget, sessionId, freeTier 
     if (coaching.activeObjectiveId) setActiveObjectiveId(coaching.activeObjectiveId);
     if (coaching.hint) setHint(coaching.hint);
     if (coaching.dialogueEnded) setEnded(true);
+    if (coaching.allObjectivesComplete === true) setAllObjectivesComplete(true);
   }, []);
 
   /** Отправка хода: пилюля «N/30» уменьшается сразу (повтор того же turnId — без изменений). */
@@ -261,6 +265,7 @@ export function useDialogueV2SessionCoaching({ studyTarget, sessionId, freeTier 
     activeObjectiveId,
     hint,
     ended,
+    allObjectivesComplete,
     summarySeen,
     translatedIds,
     fixOpenIds,

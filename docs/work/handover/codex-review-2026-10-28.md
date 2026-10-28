@@ -220,6 +220,23 @@
   недоступна / не дотягивается; привести к правилу сторожа (зона нажатия ≥ 44, не перекрыта).
 - Перед коммитом этих файлов прогнать эти два набора.
 
+### 19. Красные тесты Learning V2 из-за твоих коммитов (данные Learning V2, HEAD 18fbf989c) — до сборки 2.0.4
+- **82cfea233 (испанский) — 6 наборов:** `season_count_one_rule`, `season_exam_captions_etalon`, `season_exam_card_refresh_on_focus`,
+  `season_wire_contract`, `active_course_catalog_client_v1` (ожидал `network`, теперь `bundled_factory`),
+  `course_released_session_client_v3` (ожидал `offline`, теперь `learning_v2_factory_session_unavailable`).
+- **b9773b2ca (voice packs) — 4 набора:** `learning_v2_session_runtime_contract`, `learning_v2_system_tts_only`,
+  `learning_v2_episode_exit_resume_contract`, `season_shared_modal` (в моке expo-router нет `useRootNavigationState`).
+  Сверка Ревизора (п.14) уточняет: `episode_exit_resume` красный уже до b9773b2ca — его покраснил 82cfea233 / cab8c99b6.
+- **cf3e41b2b (английский курс целиком) — 3 набора:** `task_counts_index` — пересобрать `scripts/build_learning_v2_task_counts.ts`
+  (не хватает 285 занятий); `all_ready_tasks_runtime_audit` — `sound_contrast` 1 → 229, перезакрепить; `bundled_session_material` —
+  урок 32 теперь с контентом.
+- 🔴 **Проверь поведение, а не только ожидание** — `app/learning_v2_course_released_session_client_v3.ts:1165`: для en / es, если занятия
+  нет в бандле, сразу `throw learning_v2_factory_session_unavailable` — без сети и без офлайн-копии (LKG). Это безопасно, только если КАЖДОЕ
+  выпущенное занятие en / es лежит в бандле. Тест «офлайн → копия» перезакреплён на отказ, а индекс счётчиков не видит 285 занятий —
+  убедиться, что в сборке нет занятий, которые откроются «Занятие недоступно». Жалобы «нет доступа ни к одному занятию» (#11) и
+  «курс открывается не полностью» (#1, #3) — проверить на этой ветке: журнал `[V2-...]` с `factory_session_unavailable` и id занятия.
+- Решение — обновить ожидания там, где поведение задумано, и исправить данные там, где нет (счётчики, недостающие занятия).
+
 ## Кнопка «Уроки» на Главной (жалоба владельца) — для сведения
 
 - Гипотеза про `tabs_hidden_route_redirect` для интерфейса ru/uk скорее неверна: перенаправление срабатывает, только если текущий маршрут —

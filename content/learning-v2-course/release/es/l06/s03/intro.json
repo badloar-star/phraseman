@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-06:session-03",
+  "learningOutcomeByLocale": {
+    "ru": "добавить aquí, чтобы сообщить о наличии предмета здесь.",
+    "uk": "додати aquí, щоб повідомити про наявність предмета тут."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-06:session-03:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Позвать к свободному стулу",
+        "uk": "Покликати до вільного стільця"
+      },
+      "bodyByLocale": {
+        "ru": "Друг ищет, где сесть, а рядом с вами есть стул. Скажите `Hay una silla aquí` — «Здесь есть стул». Соберите `Hay una silla` + `aquí`. Aquí означает «здесь», рядом с говорящим. В этой сборке поставьте его в конце. Слово уточняет место: теперь другу не придётся искать стул по всей комнате.",
+        "uk": "Друг шукає, де сісти, а поруч із вами є стілець. Скажіть `Hay una silla aquí` — «Тут є стілець». Складіть `Hay una silla` + `aquí`. Aquí означає «тут», поруч із мовцем. У цій збірці поставте його в кінці. Слово уточнює місце: тепер другові не доведеться шукати стілець по всій кімнаті."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-03:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите «Здесь есть стул». Начните с Hay una silla, здесь поставьте в конце.",
+          "uk": "Скажіть «Тут є стілець». Почніть з Hay una silla, тут поставте в кінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-03:intro1:r1",
+              "text": "Hay una silla aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-03:intro1:r2",
+              "text": "Hay una silla tiempo."
+            },
+            {
+              "responseId": "es:lesson-06:session-03:intro1:r3",
+              "text": "Hay un silla aquí."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-03:intro1:r1",
+              "text": "Hay una silla aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-03:intro1:r2",
+              "text": "Hay una silla tiempo."
+            },
+            {
+              "responseId": "es:lesson-06:session-03:intro1:r3",
+              "text": "Hay un silla aquí."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Здесь есть стул». Начните с Hay una silla, здесь поставьте в конце.",
+          "uk": "Скажіть «Тут є стілець». Почніть з Hay una silla, тут поставте в кінці."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-06:session-03:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Найти стол поблизости",
+        "uk": "Знайти стіл поблизу"
+      },
+      "bodyByLocale": {
+        "ru": "Вы ищете, куда поставить вещи, и замечаете стол рядом. Скажите `Hay una mesa aquí` — «Здесь есть стол». Соберите `Hay una mesa` + `aquí`. Название предмета меняется, но aquí остаётся тем же. Оно не получает окончаний из-за рода предмета.",
+        "uk": "Ви шукаєте, куди поставити речі, й помічаєте стіл поруч. Скажіть `Hay una mesa aquí` — «Тут є стіл». Складіть `Hay una mesa` + `aquí`. Назва предмета змінюється, але aquí залишається тим самим. Воно не отримує закінчень через рід предмета."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-03:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «Здесь есть стол». Начните с Hay una mesa, aquí поставьте в конце.",
+          "uk": "Скажіть «Тут є стіл». Почніть з Hay una mesa, aquí поставте в кінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-03:intro2:r1",
+              "text": "Hay una mesa aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-03:intro2:r2",
+              "text": "Hay un mesa aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-03:intro2:r3",
+              "text": "Tengo una mesa aquí."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-03:intro2:r1",
+              "text": "Hay una mesa aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-03:intro2:r2",
+              "text": "Hay un mesa aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-03:intro2:r3",
+              "text": "Tengo una mesa aquí."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Здесь есть стол». Начните с Hay una mesa, aquí поставьте в конце.",
+          "uk": "Скажіть «Тут є стіл». Почніть з Hay una mesa, aquí поставте в кінці."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-06:session-03:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Найти книгу рядом",
+        "uk": "Знайти книгу поруч"
+      },
+      "bodyByLocale": {
+        "ru": "Друг хочет почитать, и вы замечаете книгу возле себя. Сообщите `Hay un libro aquí` — «Здесь есть книга». Соберите `Hay un libro` + `aquí`. Libro мужского рода, поэтому un. Aquí не меняется: место рядом с вами то же, хотя предмет теперь другой.",
+        "uk": "Друг хоче почитати, і ви помічаєте книгу біля себе. Повідомте `Hay un libro aquí` — «Тут є книга». Складіть `Hay un libro` + `aquí`. Libro чоловічого роду, тому un. Aquí не змінюється: місце поруч із вами те саме, хоча предмет тепер інший."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-03:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите «Здесь есть книга». Начните с Hay un libro, aquí поставьте в конце.",
+          "uk": "Скажіть «Тут є книга». Почніть з Hay un libro, aquí поставте в кінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-03:intro3:r1",
+              "text": "Hay un libro aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-03:intro3:r2",
+              "text": "Hay una libro aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-03:intro3:r3",
+              "text": "Hay un libro años."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-03:intro3:r1",
+              "text": "Hay un libro aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-03:intro3:r2",
+              "text": "Hay una libro aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-03:intro3:r3",
+              "text": "Hay un libro años."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Здесь есть книга». Начните с Hay un libro, aquí поставьте в конце.",
+          "uk": "Скажіть «Тут є книга». Почніть з Hay un libro, aquí поставте в кінці."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "0c44faeeeb33956139856e5d375af9ad62287573e2cf0d0ae93224edf517814b"
+}

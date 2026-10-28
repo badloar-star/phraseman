@@ -1,0 +1,67 @@
+[
+  {
+    "interactionId": "es:lesson-06:session-03:i01",
+    "correctText": "aquí",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-03:i02",
+    "correctText": "aquí",
+    "correctResponseId": "es:lesson-06:session-03:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-03:i03",
+    "correctText": "aquí",
+    "correctResponseId": "es:lesson-06:session-03:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-03:i04",
+    "correctText": "Hay una silla aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-03:i05",
+    "correctText": "una",
+    "correctResponseId": "es:lesson-06:session-03:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-03:i06",
+    "correctText": "Hay una mesa aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-03:i07",
+    "correctText": "Hay un libro aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-03:i08",
+    "correctText": "Hay una silla aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-03:i09",
+    "correctText": "aquí",
+    "correctResponseId": "es:lesson-06:session-03:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-03:i10",
+    "correctText": "Hay una silla aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-03:i11",
+    "correctText": "Hay una mesa aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-03:i12",
+    "correctText": "Hay un libro aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-03:i13",
+    "correctText": "Hay una cama aquí.",
+    "correctResponseId": null
+  }
+]

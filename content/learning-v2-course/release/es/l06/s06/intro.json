@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-06:session-06",
+  "learningOutcomeByLocale": {
+    "ru": "после hay назвать точное количество предметов.",
+    "uk": "після hay назвати точну кількість предметів."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-06:session-06:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Посчитать места",
+        "uk": "Порахувати місця"
+      },
+      "bodyByLocale": {
+        "ru": "На встречу пришли двое, и вы нашли два стула. Сообщите `Hay dos sillas` — «Есть два стула». Соберите `Hay` + `dos` + `sillas`. Число ставим перед предметом, без una. После dos нужно sillas с s. Hay остаётся прежним — считать стулья умеем мы, ему менять форму не нужно.",
+        "uk": "На зустріч прийшли двоє, і ви знайшли два стільці. Повідомте `Hay dos sillas` — «Є два стільці». Складіть `Hay` + `dos` + `sillas`. Число ставимо перед предметом, без una. Після dos потрібно sillas із s. Hay залишається тим самим — рахувати стільці вміємо ми, йому змінювати форму не потрібно."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-06:intro1:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Есть два стула». Начните с Hay, число поставьте перед предметом.",
+          "uk": "Повідомте «Є два стільці». Почніть з Hay, число поставте перед предметом."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-06:intro1:r1",
+              "text": "Hay dos sillas."
+            },
+            {
+              "responseId": "es:lesson-06:session-06:intro1:r2",
+              "text": "Hay dos silla."
+            },
+            {
+              "responseId": "es:lesson-06:session-06:intro1:r3",
+              "text": "Hay una dos sillas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-06:intro1:r1",
+              "text": "Hay dos sillas."
+            },
+            {
+              "responseId": "es:lesson-06:session-06:intro1:r2",
+              "text": "Hay dos silla."
+            },
+            {
+              "responseId": "es:lesson-06:session-06:intro1:r3",
+              "text": "Hay una dos sillas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Есть два стула». Начните с Hay, число поставьте перед предметом.",
+          "uk": "Повідомте «Є два стільці». Почніть з Hay, число поставте перед предметом."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-06:session-06:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Посчитать столы",
+        "uk": "Порахувати столи"
+      },
+      "bodyByLocale": {
+        "ru": "В комнате для занятия стоят три стола. Скажите `Hay tres mesas` — «Есть три стола». Соберите `Hay` + `tres` + `mesas`. После tres называем несколько столов: mesas. Между hay и tres артикль не добавляем.",
+        "uk": "У кімнаті для заняття стоять три столи. Скажіть `Hay tres mesas` — «Є три столи». Складіть `Hay` + `tres` + `mesas`. Після tres називаємо кілька столів: mesas. Між hay та tres артикль не додаємо."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-06:intro2:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Есть три стола». Начните с Hay, число поставьте перед предметом.",
+          "uk": "Повідомте «Є три столи». Почніть з Hay, число поставте перед предметом."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-06:intro2:r1",
+              "text": "Hay tres mesas."
+            },
+            {
+              "responseId": "es:lesson-06:session-06:intro2:r2",
+              "text": "Hay tres mesa."
+            },
+            {
+              "responseId": "es:lesson-06:session-06:intro2:r3",
+              "text": "Hay una tres mesas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-06:intro2:r1",
+              "text": "Hay tres mesas."
+            },
+            {
+              "responseId": "es:lesson-06:session-06:intro2:r2",
+              "text": "Hay tres mesa."
+            },
+            {
+              "responseId": "es:lesson-06:session-06:intro2:r3",
+              "text": "Hay una tres mesas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Есть три стола». Начните с Hay, число поставьте перед предметом.",
+          "uk": "Повідомте «Є три столи». Почніть з Hay, число поставте перед предметом."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-06:session-06:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Проверить книги для чтения",
+        "uk": "Перевірити книги для читання"
+      },
+      "bodyByLocale": {
+        "ru": "Для совместного чтения вы нашли две книги. Сообщите `Hay dos libros` — «Есть две книги». Соберите `Hay` + `dos` + `libros`. Dos не меняется из-за рода предмета: dos sillas и dos libros. А у названия нескольких книг сохраняется s.",
+        "uk": "Для спільного читання ви знайшли дві книги. Повідомте `Hay dos libros` — «Є дві книги». Складіть `Hay` + `dos` + `libros`. Dos не змінюється через рід предмета: dos sillas і dos libros. А в назві кількох книг зберігається s."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-06:intro3:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Есть две книги». Начните с Hay, число поставьте перед предметом.",
+          "uk": "Повідомте «Є дві книги». Почніть з Hay, число поставте перед предметом."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-06:intro3:r1",
+              "text": "Hay dos libros."
+            },
+            {
+              "responseId": "es:lesson-06:session-06:intro3:r2",
+              "text": "Hay dos libro."
+            },
+            {
+              "responseId": "es:lesson-06:session-06:intro3:r3",
+              "text": "Hay un dos libros."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-06:intro3:r1",
+              "text": "Hay dos libros."
+            },
+            {
+              "responseId": "es:lesson-06:session-06:intro3:r2",
+              "text": "Hay dos libro."
+            },
+            {
+              "responseId": "es:lesson-06:session-06:intro3:r3",
+              "text": "Hay un dos libros."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Есть две книги». Начните с Hay, число поставьте перед предметом.",
+          "uk": "Повідомте «Є дві книги». Почніть з Hay, число поставте перед предметом."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "fa5cc521617cc241ebedb72f01a80877343718f8ad5354c4bffa103aabf2dda1"
+}

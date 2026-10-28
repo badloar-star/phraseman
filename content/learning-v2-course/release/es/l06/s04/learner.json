@@ -1,0 +1,721 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-06:session-04",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-06:session-04:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — allí",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-04:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — allí",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-04:i01:audio",
+          "transcript": "allí"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-06:session-04:i01:r1",
+            "targetText": "allí",
+            "meaningByLocale": {
+              "ru": "там, в месте на некотором расстоянии от говорящего. 🔊 *allí*",
+              "uk": "там, у місці на певній відстані від мовця. 🔊 *allí*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "allí",
+          "definitionByLocale": {
+            "ru": "там, в месте на некотором расстоянии от говорящего. 🔊 *allí*",
+            "uk": "там, у місці на певній відстані від мовця. 🔊 *allí*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-04:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-04:i02:r1",
+          "text": "allí"
+        },
+        {
+          "responseId": "es:lesson-06:session-04:i02:r2",
+          "text": "aquí"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-04:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-04:i02:audio",
+          "transcript": "allí"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-06:session-04:i02:r1",
+            "targetText": "allí",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-06:session-04:i02:r2",
+            "targetText": "aquí",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-04:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит allí — там, не aquí — здесь.",
+              "uk": "Звучить allí — там, не aquí — тут."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-04:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — там есть стол",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-04:i03:r1",
+          "text": "allí"
+        },
+        {
+          "responseId": "es:lesson-06:session-04:i03:r2",
+          "text": "aquí"
+        },
+        {
+          "responseId": "es:lesson-06:session-04:i03:r3",
+          "text": "años"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — там есть стол",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — там есть стол",
+          "uk": "Вставте слово — там є стіл"
+        },
+        "gappedTargetPhrase": "Hay una mesa ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-04:i03:r1",
+            "text": "allí"
+          },
+          {
+            "responseId": "es:lesson-06:session-04:i03:r2",
+            "text": "aquí"
+          },
+          {
+            "responseId": "es:lesson-06:session-04:i03:r3",
+            "text": "años"
+          }
+        ],
+        "testedDimension": "Вставьте слово — там есть стол",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-04:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — там есть стол",
+            "feedbackByLocale": {
+              "ru": "Нужно «там» — allí.",
+              "uk": "Потрібно «там» — allí."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-04:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — там есть стол",
+            "feedbackByLocale": {
+              "ru": "Это годы; для места нужно allí.",
+              "uk": "Це роки; для місця потрібно allí."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-04:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — там есть стол; начните с Hay, слово «там» поставьте в конце",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-04:i04:r1",
+          "text": "Плитки: allí"
+        },
+        {
+          "responseId": "es:lesson-06:session-04:i04:r2",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-04:i04:r3",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-06:session-04:i04:r4",
+          "text": "mesa"
+        },
+        {
+          "responseId": "es:lesson-06:session-04:i04:r5",
+          "text": "aquí."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — там есть стол; начните с Hay, слово «там» поставьте в конце",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Hay una mesa allí.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — там есть стол; начните с Hay, слово «там» поставьте в конце",
+          "uk": "Зберіть фразу — там є стіл; почніть з Hay, слово «там» поставте в кінці"
+        },
+        "orderedTokens": [
+          "Hay",
+          "una",
+          "mesa",
+          "allí"
+        ],
+        "authoredDistractorTokens": [
+          "aquí"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-04:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — там есть стол; начните с Hay, слово «там» поставьте в конце",
+            "feedbackByLocale": {
+              "ru": "она означает «здесь», а нужно «там».",
+              "uk": "вона означає «тут», а потрібно «там»."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-04:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — там есть стул",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-04:i05:r1",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-06:session-04:i05:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-06:session-04:i05:r3",
+          "text": "unos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — там есть стул",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — там есть стул",
+          "uk": "Вставте слово — там є стілець"
+        },
+        "gappedTargetPhrase": "Hay ___ silla allí.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-04:i05:r1",
+            "text": "una"
+          },
+          {
+            "responseId": "es:lesson-06:session-04:i05:r2",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-06:session-04:i05:r3",
+            "text": "unos"
+          }
+        ],
+        "testedDimension": "Вставьте слово — там есть стул",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-04:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — там есть стул",
+            "feedbackByLocale": {
+              "ru": "Silla женского рода: una.",
+              "uk": "Silla жіночого роду: una."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-04:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — там есть стул",
+            "feedbackByLocale": {
+              "ru": "Одна silla: una.",
+              "uk": "Одна silla: una."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-04:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — там есть стул; начните с Hay, слово «там» поставьте в конце",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-04:i06:r1",
+          "text": "Плитки: silla"
+        },
+        {
+          "responseId": "es:lesson-06:session-04:i06:r2",
+          "text": "allí"
+        },
+        {
+          "responseId": "es:lesson-06:session-04:i06:r3",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-04:i06:r4",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-06:session-04:i06:r5",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — там есть стул; начните с Hay, слово «там» поставьте в конце",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Hay una silla allí.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — там есть стул; начните с Hay, слово «там» поставьте в конце",
+          "uk": "Зберіть фразу — там є стілець; почніть з Hay, слово «там» поставте в кінці"
+        },
+        "orderedTokens": [
+          "Hay",
+          "una",
+          "silla",
+          "allí"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-04:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — там есть стул; начните с Hay, слово «там» поставьте в конце",
+            "feedbackByLocale": {
+              "ru": "с silla нужна una.",
+              "uk": "з silla потрібна una."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-04:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — там есть книга; начните с Hay, слово «там» поставьте в конце",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-04:i07:r1",
+          "text": "Плитки: libro"
+        },
+        {
+          "responseId": "es:lesson-06:session-04:i07:r2",
+          "text": "allí"
+        },
+        {
+          "responseId": "es:lesson-06:session-04:i07:r3",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-04:i07:r4",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-06:session-04:i07:r5",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — там есть книга; начните с Hay, слово «там» поставьте в конце",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Hay un libro allí.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — там есть книга; начните с Hay, слово «там» поставьте в конце",
+          "uk": "Зберіть фразу — там є книга; почніть з Hay, слово «там» поставте в кінці"
+        },
+        "orderedTokens": [
+          "Hay",
+          "un",
+          "libro",
+          "allí"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-04:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — там есть книга; начните с Hay, слово «там» поставьте в конце",
+            "feedbackByLocale": {
+              "ru": "с libro нужен un.",
+              "uk": "з libro потрібен un."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-04:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-04:i08:r1",
+          "text": "Плитки: Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-04:i08:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-06:session-04:i08:r3",
+          "text": "mesa"
+        },
+        {
+          "responseId": "es:lesson-06:session-04:i08:r4",
+          "text": "allí"
+        },
+        {
+          "responseId": "es:lesson-06:session-04:i08:r5",
+          "text": "aquí."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-04:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-04:i08:audio",
+          "transcript": "Hay una mesa allí."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Hay una mesa allí.",
+        "orderedTokens": [
+          "Hay",
+          "una",
+          "mesa",
+          "allí"
+        ],
+        "authoredDistractorTokens": [
+          "aquí"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-04:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит allí.",
+              "uk": "звучить allí."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-04:i09",
+      "ordinal": 12,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — здесь есть стул; теперь предмет рядом с вами",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-04:i09:r1",
+          "text": "aquí"
+        },
+        {
+          "responseId": "es:lesson-06:session-04:i09:r2",
+          "text": "allí"
+        },
+        {
+          "responseId": "es:lesson-06:session-04:i09:r3",
+          "text": "tiempo"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — здесь есть стул; теперь предмет рядом с вами",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — здесь есть стул; теперь предмет рядом с вами",
+          "uk": "Вставте слово — тут є стілець; тепер предмет поруч із вами"
+        },
+        "gappedTargetPhrase": "Hay una silla ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-04:i09:r1",
+            "text": "aquí"
+          },
+          {
+            "responseId": "es:lesson-06:session-04:i09:r2",
+            "text": "allí"
+          },
+          {
+            "responseId": "es:lesson-06:session-04:i09:r3",
+            "text": "tiempo"
+          }
+        ],
+        "testedDimension": "Вставьте слово — здесь есть стул; теперь предмет рядом с вами",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-04:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — здесь есть стул; теперь предмет рядом с вами",
+            "feedbackByLocale": {
+              "ru": "Теперь нужно «здесь» — aquí.",
+              "uk": "Тепер потрібно «тут» — aquí."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-04:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — здесь есть стул; теперь предмет рядом с вами",
+            "feedbackByLocale": {
+              "ru": "Это время; «здесь» — aquí.",
+              "uk": "Це час; «тут» — aquí."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-04:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — там есть стол; начните с Hay, слово «там» поставьте в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-04:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — там есть стол; начните с Hay, слово «там» поставьте в конце",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-04:i10:audio",
+          "transcript": "Hay una mesa allí."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay una mesa allí.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-04:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — там есть стул; начните с Hay, слово «там» поставьте в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-04:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — там есть стул; начните с Hay, слово «там» поставьте в конце",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-04:i11:audio",
+          "transcript": "Hay una silla allí."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay una silla allí.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-04:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — там есть книга; начните с Hay, слово «там» поставьте в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-04:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — там есть книга; начните с Hay, слово «там» поставьте в конце",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-04:i12:audio",
+          "transcript": "Hay un libro allí."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay un libro allí.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-04:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — здесь есть книга; теперь предмет рядом с вами, начните с Hay, слово «здесь» поставьте в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-04:i13:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — здесь есть книга; теперь предмет рядом с вами, начните с Hay, слово «здесь» поставьте в конце",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-04:i13:audio",
+          "transcript": "Hay un libro aquí."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay un libro aquí.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 13,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "2fb75e0c8a64d23227f5104b62a0a59f570be9e22ef63466deda6b3a921dc374"
+}

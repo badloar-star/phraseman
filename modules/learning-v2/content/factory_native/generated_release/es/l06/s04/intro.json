@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-06:session-04",
+  "learningOutcomeByLocale": {
+    "ru": "уточнить место словом allí — там.",
+    "uk": "уточнити місце словом allí — там."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-06:session-04:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Показать стол подальше",
+        "uk": "Показати стіл подалі"
+      },
+      "bodyByLocale": {
+        "ru": "Вы стоите у входа, а стол заметили в дальнем углу. Скажите `Hay una mesa allí` — «Там есть стол». Соберите `Hay una mesa` + `allí`. Allí означает «там», не рядом с вами. В выбранном порядке поставьте его в конец: друг поймёт, в какую сторону идти, и не будет ждать стол у двери.",
+        "uk": "Ви стоїте біля входу, а стіл помітили в дальньому кутку. Скажіть `Hay una mesa allí` — «Там є стіл». Складіть `Hay una mesa` + `allí`. Allí означає «там», не поруч із вами. У вибраному порядку поставте його в кінець: друг зрозуміє, у який бік іти, і не чекатиме стіл біля дверей."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-04:intro1:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Там есть стол». Начните с Hay, место поставьте в конце.",
+          "uk": "Повідомте «Там є стіл». Почніть з Hay, місце поставте в кінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-04:intro1:r1",
+              "text": "Hay una mesa allí."
+            },
+            {
+              "responseId": "es:lesson-06:session-04:intro1:r2",
+              "text": "Hay una mesa aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-04:intro1:r3",
+              "text": "Hay un mesa allí."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-04:intro1:r1",
+              "text": "Hay una mesa allí."
+            },
+            {
+              "responseId": "es:lesson-06:session-04:intro1:r2",
+              "text": "Hay una mesa aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-04:intro1:r3",
+              "text": "Hay un mesa allí."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Там есть стол». Начните с Hay, место поставьте в конце.",
+          "uk": "Повідомте «Там є стіл». Почніть з Hay, місце поставте в кінці."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-06:session-04:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Указать свободный стул",
+        "uk": "Указати вільний стілець"
+      },
+      "bodyByLocale": {
+        "ru": "В другом конце комнаты вы заметили свободный стул. Скажите `Hay una silla allí` — «Там есть стул». Соберите `Hay una silla` + `allí`. Слово allí не меняется при замене предмета. Оно говорит о месте, а una silla — о том, что там есть.",
+        "uk": "В іншому кінці кімнати ви помітили вільний стілець. Скажіть `Hay una silla allí` — «Там є стілець». Складіть `Hay una silla` + `allí`. Слово allí не змінюється при заміні предмета. Воно говорить про місце, а una silla — про те, що там є."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-04:intro2:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Там есть стул». Начните с Hay, место поставьте в конце.",
+          "uk": "Повідомте «Там є стілець». Почніть з Hay, місце поставте в кінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-04:intro2:r1",
+              "text": "Hay una silla allí."
+            },
+            {
+              "responseId": "es:lesson-06:session-04:intro2:r2",
+              "text": "Hay una silla aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-04:intro2:r3",
+              "text": "Hay un silla allí."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-04:intro2:r1",
+              "text": "Hay una silla allí."
+            },
+            {
+              "responseId": "es:lesson-06:session-04:intro2:r2",
+              "text": "Hay una silla aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-04:intro2:r3",
+              "text": "Hay un silla allí."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Там есть стул». Начните с Hay, место поставьте в конце.",
+          "uk": "Повідомте «Там є стілець». Почніть з Hay, місце поставте в кінці."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-06:session-04:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Заметить книгу на дальнем столе",
+        "uk": "Помітити книгу на дальньому столі"
+      },
+      "bodyByLocale": {
+        "ru": "Друг ищет чтение, и вы показываете на книгу в другой части комнаты. Скажите `Hay un libro allí` — «Там есть книга». Соберите `Hay un libro` + `allí`. С libro используем un. Allí сохраняется: для книги и для стула слово «там» одно и то же.",
+        "uk": "Друг шукає читання, і ви показуєте на книгу в іншій частині кімнати. Скажіть `Hay un libro allí` — «Там є книга». Складіть `Hay un libro` + `allí`. З libro використовуємо un. Allí зберігається: для книги й для стільця слово «там» одне й те саме."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-04:intro3:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Там есть книга». Начните с Hay, место поставьте в конце.",
+          "uk": "Повідомте «Там є книга». Почніть з Hay, місце поставте в кінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-04:intro3:r1",
+              "text": "Hay un libro allí."
+            },
+            {
+              "responseId": "es:lesson-06:session-04:intro3:r2",
+              "text": "Hay una libro allí."
+            },
+            {
+              "responseId": "es:lesson-06:session-04:intro3:r3",
+              "text": "Hay un libro aquí."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-04:intro3:r1",
+              "text": "Hay un libro allí."
+            },
+            {
+              "responseId": "es:lesson-06:session-04:intro3:r2",
+              "text": "Hay una libro allí."
+            },
+            {
+              "responseId": "es:lesson-06:session-04:intro3:r3",
+              "text": "Hay un libro aquí."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Там есть книга». Начните с Hay, место поставьте в конце.",
+          "uk": "Повідомте «Там є книга». Почніть з Hay, місце поставте в кінці."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ec7670d2026bffdd27f95aeb79a6b0a2af0820e5f1d611a97fa7fe40f55d66d1"
+}

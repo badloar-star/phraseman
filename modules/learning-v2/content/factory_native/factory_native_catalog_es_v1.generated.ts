@@ -1981,4 +1981,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"после hay использовать una со знакомыми словами женского рода.","uk":"після hay використовувати una зі знайомими словами жіночого роду."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 6","uk":"Іспанська · Урок 6"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 6, sessionOrdinal: 3,
+    sourceFingerprint: "e94e9bc9b59651cc6658e4870386e62b0f26617cb991a0fe801cdd2d7ad227b5",
+    newWordCount: 1,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"добавить aquí, чтобы сообщить о наличии предмета здесь.","uk":"додати aquí, щоб повідомити про наявність предмета тут."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 6","uk":"Іспанська · Урок 6"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 6, sessionOrdinal: 4,
+    sourceFingerprint: "abdc90ec5a79362691c5c5ca4f8d54d00987fc5eec23acbcf0579532245dbc0a",
+    newWordCount: 1,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"уточнить место словом allí — там.","uk":"уточнити місце словом allí — там."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 6","uk":"Іспанська · Урок 6"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 6, sessionOrdinal: 5,
+    sourceFingerprint: "8036ab4da5a088488ad435314e0c3c1fbdce6dab6aa7c8b090544f7c8af93803",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"после hay назвать несколько предметов без указания точного числа.","uk":"після hay назвати кілька предметів без зазначення точного числа."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 6","uk":"Іспанська · Урок 6"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 6, sessionOrdinal: 6,
+    sourceFingerprint: "bf1d603ba4cfef7ed97e662e72f3c7e51f6011a5bf3a1f8ab8ed4387dc8529aa",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"после hay назвать точное количество предметов.","uk":"після hay назвати точну кількість предметів."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 6","uk":"Іспанська · Урок 6"}),
+  }),
 ]);

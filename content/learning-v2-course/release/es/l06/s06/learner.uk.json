@@ -1,0 +1,658 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-06:session-06",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-06:session-06:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте та виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-06:i01:r1",
+          "text": "dos"
+        },
+        {
+          "responseId": "es:lesson-06:session-06:i01:r2",
+          "text": "tres"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-06:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте та виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-06:i01:audio",
+          "transcript": "dos"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-06:session-06:i01:r1",
+            "targetText": "dos",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-06:session-06:i01:r2",
+            "targetText": "tres",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-06:i01:r2",
+            "correct": false,
+            "testedDimension": "Послухайте та виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит dos — два.",
+              "uk": "Звучить dos — два."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-06:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — є два стільці",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-06:i02:r1",
+          "text": "sillas"
+        },
+        {
+          "responseId": "es:lesson-06:session-06:i02:r2",
+          "text": "silla"
+        },
+        {
+          "responseId": "es:lesson-06:session-06:i02:r3",
+          "text": "mesa"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — є два стільці",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — есть два стула",
+          "uk": "Вставте слово — є два стільці"
+        },
+        "gappedTargetPhrase": "Hay dos ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-06:i02:r1",
+            "text": "sillas"
+          },
+          {
+            "responseId": "es:lesson-06:session-06:i02:r2",
+            "text": "silla"
+          },
+          {
+            "responseId": "es:lesson-06:session-06:i02:r3",
+            "text": "mesa"
+          }
+        ],
+        "testedDimension": "Вставте слово — є два стільці",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-06:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — є два стільці",
+            "feedbackByLocale": {
+              "ru": "После dos нужно sillas.",
+              "uk": "Після dos потрібно sillas."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-06:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — є два стільці",
+            "feedbackByLocale": {
+              "ru": "Нужно назвать стулья: sillas.",
+              "uk": "Потрібно назвати стільці: sillas."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-06:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — є два стільці; почніть з Hay, число поставте перед предметом",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-06:i03:r1",
+          "text": "Плитки: sillas"
+        },
+        {
+          "responseId": "es:lesson-06:session-06:i03:r2",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-06:i03:r3",
+          "text": "dos"
+        },
+        {
+          "responseId": "es:lesson-06:session-06:i03:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — є два стільці; почніть з Hay, число поставте перед предметом",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Hay dos sillas.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — есть два стула; начните с Hay, число поставьте перед предметом",
+          "uk": "Зберіть фразу — є два стільці; почніть з Hay, число поставте перед предметом"
+        },
+        "orderedTokens": [
+          "Hay",
+          "dos",
+          "sillas"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-06:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — є два стільці; почніть з Hay, число поставте перед предметом",
+            "feedbackByLocale": {
+              "ru": "перед dos нет артикля.",
+              "uk": "перед dos немає артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-06:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — є три столи",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-06:i04:r1",
+          "text": "tres"
+        },
+        {
+          "responseId": "es:lesson-06:session-06:i04:r2",
+          "text": "dos"
+        },
+        {
+          "responseId": "es:lesson-06:session-06:i04:r3",
+          "text": "cinco"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — є три столи",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — есть три стола",
+          "uk": "Вставте слово — є три столи"
+        },
+        "gappedTargetPhrase": "Hay ___ mesas.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-06:i04:r1",
+            "text": "tres"
+          },
+          {
+            "responseId": "es:lesson-06:session-06:i04:r2",
+            "text": "dos"
+          },
+          {
+            "responseId": "es:lesson-06:session-06:i04:r3",
+            "text": "cinco"
+          }
+        ],
+        "testedDimension": "Вставте слово — є три столи",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-06:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — є три столи",
+            "feedbackByLocale": {
+              "ru": "Нужно три — tres.",
+              "uk": "Потрібно три — tres."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-06:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — є три столи",
+            "feedbackByLocale": {
+              "ru": "Это пять; нужно tres.",
+              "uk": "Це п’ять; потрібно tres."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-06:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — є три столи; почніть з Hay, число поставте перед предметом",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-06:i05:r1",
+          "text": "Плитки: mesas"
+        },
+        {
+          "responseId": "es:lesson-06:session-06:i05:r2",
+          "text": "tres"
+        },
+        {
+          "responseId": "es:lesson-06:session-06:i05:r3",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-06:i05:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — є три столи; почніть з Hay, число поставте перед предметом",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Hay tres mesas.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — есть три стола; начните с Hay, число поставьте перед предметом",
+          "uk": "Зберіть фразу — є три столи; почніть з Hay, число поставте перед предметом"
+        },
+        "orderedTokens": [
+          "Hay",
+          "tres",
+          "mesas"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-06:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — є три столи; почніть з Hay, число поставте перед предметом",
+            "feedbackByLocale": {
+              "ru": "перед tres не нужен артикль.",
+              "uk": "перед tres не потрібен артикль."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-06:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — є дві книги; почніть з Hay, число поставте перед предметом",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-06:i06:r1",
+          "text": "Плитки: libros"
+        },
+        {
+          "responseId": "es:lesson-06:session-06:i06:r2",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-06:i06:r3",
+          "text": "dos"
+        },
+        {
+          "responseId": "es:lesson-06:session-06:i06:r4",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — є дві книги; почніть з Hay, число поставте перед предметом",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Hay dos libros.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — есть две книги; начните с Hay, число поставьте перед предметом",
+          "uk": "Зберіть фразу — є дві книги; почніть з Hay, число поставте перед предметом"
+        },
+        "orderedTokens": [
+          "Hay",
+          "dos",
+          "libros"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-06:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — є дві книги; почніть з Hay, число поставте перед предметом",
+            "feedbackByLocale": {
+              "ru": "перед dos нет артикля.",
+              "uk": "перед dos немає артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-06:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте та зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-06:i07:r1",
+          "text": "Плитки: Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-06:i07:r2",
+          "text": "dos"
+        },
+        {
+          "responseId": "es:lesson-06:session-06:i07:r3",
+          "text": "sillas"
+        },
+        {
+          "responseId": "es:lesson-06:session-06:i07:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-06:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте та зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-06:i07:audio",
+          "transcript": "Hay dos sillas."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Hay dos sillas.",
+        "orderedTokens": [
+          "Hay",
+          "dos",
+          "sillas"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-06:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте та зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "её нет в услышанной фразе.",
+              "uk": "її немає в почутій фразі."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-06:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — є дві книги",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-06:i08:r1",
+          "text": "libros"
+        },
+        {
+          "responseId": "es:lesson-06:session-06:i08:r2",
+          "text": "libro"
+        },
+        {
+          "responseId": "es:lesson-06:session-06:i08:r3",
+          "text": "una"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — є дві книги",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — есть две книги",
+          "uk": "Вставте слово — є дві книги"
+        },
+        "gappedTargetPhrase": "Hay dos ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-06:i08:r1",
+            "text": "libros"
+          },
+          {
+            "responseId": "es:lesson-06:session-06:i08:r2",
+            "text": "libro"
+          },
+          {
+            "responseId": "es:lesson-06:session-06:i08:r3",
+            "text": "una"
+          }
+        ],
+        "testedDimension": "Вставте слово — є дві книги",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-06:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — є дві книги",
+            "feedbackByLocale": {
+              "ru": "После dos нужно libros.",
+              "uk": "Після dos потрібно libros."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-06:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — є дві книги",
+            "feedbackByLocale": {
+              "ru": "Нужно название книг: libros.",
+              "uk": "Потрібна назва книг: libros."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-06:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — є два стільці; почніть з Hay, число поставте перед предметом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-06:i09:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — є два стільці; почніть з Hay, число поставте перед предметом",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-06:i09:audio",
+          "transcript": "Hay dos sillas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay dos sillas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-06:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — є три столи; почніть з Hay, число поставте перед предметом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-06:i10:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — є три столи; почніть з Hay, число поставте перед предметом",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-06:i10:audio",
+          "transcript": "Hay tres mesas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay tres mesas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-06:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — є дві книги; почніть з Hay, число поставте перед предметом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-06:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — є дві книги; почніть з Hay, число поставте перед предметом",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-06:i11:audio",
+          "transcript": "Hay dos libros."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay dos libros.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-06:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — ви оглядаєте іншу кімнату. Скажіть «Є три стільці»; почніть з Hay, число поставте перед предметом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-06:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — ви оглядаєте іншу кімнату. Скажіть «Є три стільці»; почніть з Hay, число поставте перед предметом",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-06:i12:audio",
+          "transcript": "Hay tres sillas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay tres sillas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "722d1a1116688ce806c0f05115efb257c97b4685a8984739ecfc56c2722aee4c"
+}

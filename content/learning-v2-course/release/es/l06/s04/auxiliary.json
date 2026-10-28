@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-06:session-04",
+  "entries": [
+    {
+      "interactionId": "es:lesson-06:session-04:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-04:intro1:r2": {
+          "ru": "Aquí — здесь; в этой ситуации нужен стол там: allí.",
+          "uk": "Aquí — тут; у цій ситуації потрібен стіл там: allí."
+        },
+        "es:lesson-06:session-04:intro1:r3": {
+          "ru": "Mesa женского рода: una.",
+          "uk": "Mesa жіночого роду: una."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-04:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-04:intro2:r2": {
+          "ru": "Для места подальше в этой сцене нужно allí.",
+          "uk": "Для місця подалі в цій сцені потрібно allí."
+        },
+        "es:lesson-06:session-04:intro2:r3": {
+          "ru": "Silla женского рода: una.",
+          "uk": "Silla жіночого роду: una."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-04:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-04:intro3:r2": {
+          "ru": "Libro мужского рода: un.",
+          "uk": "Libro чоловічого роду: un."
+        },
+        "es:lesson-06:session-04:intro3:r3": {
+          "ru": "Aquí — здесь; по ситуации книга там: allí.",
+          "uk": "Aquí — тут; за ситуацією книга там: allí."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "62614bcecbcda0cb2f4f67551cc23b0881a574f629ab55e309365d84d86c4613"
+}

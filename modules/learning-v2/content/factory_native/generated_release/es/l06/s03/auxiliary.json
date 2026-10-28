@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-06:session-03",
+  "entries": [
+    {
+      "interactionId": "es:lesson-06:session-03:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-03:intro1:r2": {
+          "ru": "Для места «здесь» нужно aquí.",
+          "uk": "Для місця «тут» потрібно aquí."
+        },
+        "es:lesson-06:session-03:intro1:r3": {
+          "ru": "Silla женского рода: una.",
+          "uk": "Silla жіночого роду: una."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-03:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-03:intro2:r2": {
+          "ru": "Mesa женского рода: una.",
+          "uk": "Mesa жіночого роду: una."
+        },
+        "es:lesson-06:session-03:intro2:r3": {
+          "ru": "Для сообщения о наличии используем hay.",
+          "uk": "Для повідомлення про наявність використовуємо hay."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-03:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-03:intro3:r2": {
+          "ru": "Libro мужского рода: un.",
+          "uk": "Libro чоловічого роду: un."
+        },
+        "es:lesson-06:session-03:intro3:r3": {
+          "ru": "«Здесь» — aquí.",
+          "uk": "«Тут» — aquí."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ee86e4b6f55e9f8d5f029281a16744bba81dddb0fe4ec1b1a66cf85ee4e67d93"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-06:session-06",
+  "entries": [
+    {
+      "interactionId": "es:lesson-06:session-06:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-06:intro1:r2": {
+          "ru": "После dos нужно множественное sillas.",
+          "uk": "Після dos потрібна множина sillas."
+        },
+        "es:lesson-06:session-06:intro1:r3": {
+          "ru": "Перед dos здесь нет una.",
+          "uk": "Перед dos тут немає una."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-06:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-06:intro2:r2": {
+          "ru": "Столов три: mesas.",
+          "uk": "Столів три: mesas."
+        },
+        "es:lesson-06:session-06:intro2:r3": {
+          "ru": "Перед числом не нужна una.",
+          "uk": "Перед числом не потрібна una."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-06:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-06:intro3:r2": {
+          "ru": "Книг две: libros.",
+          "uk": "Книг дві: libros."
+        },
+        "es:lesson-06:session-06:intro3:r3": {
+          "ru": "Перед dos не нужен un.",
+          "uk": "Перед dos не потрібен un."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "1bbec690773f6e7afb5ba995edc2b4ef8f38df37cce1516e7c234d2051121625"
+}

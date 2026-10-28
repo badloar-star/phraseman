@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-06:session-05",
+  "entries": [
+    {
+      "interactionId": "es:lesson-06:session-05:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-05:intro1:r2": {
+          "ru": "Книг несколько: libros.",
+          "uk": "Книг кілька: libros."
+        },
+        "es:lesson-06:session-05:intro1:r3": {
+          "ru": "Un обозначает один предмет и не подходит к libros.",
+          "uk": "Un позначає один предмет і не підходить до libros."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-05:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-05:intro2:r2": {
+          "ru": "Стульев несколько: sillas.",
+          "uk": "Стільців кілька: sillas."
+        },
+        "es:lesson-06:session-05:intro2:r3": {
+          "ru": "Una относится к одному предмету, не к sillas.",
+          "uk": "Una стосується одного предмета, не sillas."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-05:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-05:intro3:r2": {
+          "ru": "Нужно несколько столов: mesas.",
+          "uk": "Потрібно кілька столів: mesas."
+        },
+        "es:lesson-06:session-05:intro3:r3": {
+          "ru": "Una не сочетается с mesas во множественном числе.",
+          "uk": "Una не поєднується з mesas у множині."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "059885d5d353867a4555d2488bac581d7870a686bcdaeb180a5a1568869fd0ef"
+}

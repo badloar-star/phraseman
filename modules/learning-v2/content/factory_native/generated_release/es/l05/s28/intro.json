@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-05:session-28",
+  "learningOutcomeByLocale": {
+    "ru": "использовать ellas tienen для группы женщин.",
+    "uk": "використовувати ellas tienen для групи жінок."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-05:session-28:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сумка подруг",
+        "uk": "Сумка подруг"
+      },
+      "bodyByLocale": {
+        "ru": "Две подруги собирают вещи. Скажите о них `Ellas tienen una bolsa` — «У них есть сумка». Соберите `Ellas` + `tienen` + `una bolsa`. Ellas обозначает группу женщин. Форма tienen такая же, как с ellos: людей несколько. Выбираем ellas по людям, о которых говорим, а не по роду слова bolsa.",
+        "uk": "Дві подруги збирають речі. Скажіть про них `Ellas tienen una bolsa` — «Вони мають сумку». Зберіть `Ellas` + `tienen` + `una bolsa`. Ellas позначає групу жінок. Форма tienen така сама, як з ellos: людей кілька. Обираємо ellas за людьми, про яких кажемо, а не за родом слова bolsa."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-28:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите о подругах «У них есть сумка». Начните с Ellas tienen, используйте bolsa.",
+          "uk": "Скажіть про подруг «Вони мають сумку». Почніть з Ellas tienen, використайте bolsa."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-28:intro1:r1",
+              "text": "Ellas tienen una bolsa."
+            },
+            {
+              "responseId": "es:lesson-05:session-28:intro1:r2",
+              "text": "Ellas tiene una bolsa."
+            },
+            {
+              "responseId": "es:lesson-05:session-28:intro1:r3",
+              "text": "Ella tienen una bolsa."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-28:intro1:r1",
+              "text": "Ellas tienen una bolsa."
+            },
+            {
+              "responseId": "es:lesson-05:session-28:intro1:r2",
+              "text": "Ellas tiene una bolsa."
+            },
+            {
+              "responseId": "es:lesson-05:session-28:intro1:r3",
+              "text": "Ella tienen una bolsa."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите о подругах «У них есть сумка». Начните с Ellas tienen, используйте bolsa.",
+          "uk": "Скажіть про подруг «Вони мають сумку». Почніть з Ellas tienen, використайте bolsa."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-05:session-28:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Книга у подруг",
+        "uk": "Книжка в подруг"
+      },
+      "bodyByLocale": {
+        "ru": "Подруги берут книгу в дорогу. Сообщите `Ellas tienen un libro` — «У них есть книга». Соберите `Ellas` + `tienen` + `un libro`. Хотя libro мужского рода, начало остаётся ellas tienen: говорим о женщинах. Род книги влияет только на артикль перед libro — un.",
+        "uk": "Подруги беруть книжку в дорогу. Повідомте `Ellas tienen un libro` — «Вони мають книжку». Зберіть `Ellas` + `tienen` + `un libro`. Хоча libro чоловічого роду, початок залишається ellas tienen: кажемо про жінок. Рід книжки впливає тільки на артикль перед libro — un."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-28:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите о подругах «У них есть книга». Начните с Ellas tienen.",
+          "uk": "Скажіть про подруг «Вони мають книжку». Почніть з Ellas tienen."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-28:intro2:r1",
+              "text": "Ellas tienen un libro."
+            },
+            {
+              "responseId": "es:lesson-05:session-28:intro2:r2",
+              "text": "Ellas tienen una libro."
+            },
+            {
+              "responseId": "es:lesson-05:session-28:intro2:r3",
+              "text": "Ellas tiene un libro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-28:intro2:r1",
+              "text": "Ellas tienen un libro."
+            },
+            {
+              "responseId": "es:lesson-05:session-28:intro2:r2",
+              "text": "Ellas tienen una libro."
+            },
+            {
+              "responseId": "es:lesson-05:session-28:intro2:r3",
+              "text": "Ellas tiene un libro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите о подругах «У них есть книга». Начните с Ellas tienen.",
+          "uk": "Скажіть про подруг «Вони мають книжку». Почніть з Ellas tienen."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-05:session-28:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ключ у подруг",
+        "uk": "Ключ у подруг"
+      },
+      "bodyByLocale": {
+        "ru": "Сосед спрашивает, смогут ли подруги открыть дверь. Объясните `Ellas tienen una llave` — «У них есть ключ». Соберите `Ellas` + `tienen` + `una llave`. Начало ellas tienen сообщает о нескольких женщинах. Ключ один, поэтому una llave; число людей не требует нескольких ключей.",
+        "uk": "Сусід питає, чи зможуть подруги відчинити двері. Поясніть `Ellas tienen una llave` — «Вони мають ключ». Зберіть `Ellas` + `tienen` + `una llave`. Початок ellas tienen повідомляє про кількох жінок. Ключ один, тому una llave; кількість людей не вимагає кількох ключів."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-28:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите о подругах «У них есть ключ». Начните с Ellas tienen.",
+          "uk": "Скажіть про подруг «Вони мають ключ». Почніть з Ellas tienen."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-28:intro3:r1",
+              "text": "Ellas tienen una llave."
+            },
+            {
+              "responseId": "es:lesson-05:session-28:intro3:r2",
+              "text": "Ellas tenemos una llave."
+            },
+            {
+              "responseId": "es:lesson-05:session-28:intro3:r3",
+              "text": "Ellas tienen un llave."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-28:intro3:r1",
+              "text": "Ellas tienen una llave."
+            },
+            {
+              "responseId": "es:lesson-05:session-28:intro3:r2",
+              "text": "Ellas tenemos una llave."
+            },
+            {
+              "responseId": "es:lesson-05:session-28:intro3:r3",
+              "text": "Ellas tienen un llave."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите о подругах «У них есть ключ». Начните с Ellas tienen.",
+          "uk": "Скажіть про подруг «Вони мають ключ». Почніть з Ellas tienen."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "8c3da6dcaf38293c9bc5b08097f63bf36d56c5cc32f85a83a92fbc650dbbbde3"
+}

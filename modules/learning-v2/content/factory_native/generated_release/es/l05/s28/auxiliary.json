@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-05:session-28",
+  "entries": [
+    {
+      "interactionId": "es:lesson-05:session-28:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-28:intro1:r2": {
+          "ru": "Подруг несколько: tienen.",
+          "uk": "Подруг кілька: tienen."
+        },
+        "es:lesson-05:session-28:intro1:r3": {
+          "ru": "О нескольких подругах нужно ellas.",
+          "uk": "Про кількох подруг потрібно ellas."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-28:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-28:intro2:r2": {
+          "ru": "Libro мужского рода: un.",
+          "uk": "Libro чоловічого роду: un."
+        },
+        "es:lesson-05:session-28:intro2:r3": {
+          "ru": "С ellas нужна форма tienen.",
+          "uk": "З ellas потрібна форма tienen."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-28:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-28:intro3:r2": {
+          "ru": "Tenemos — «у нас»; о них нужно tienen.",
+          "uk": "Tenemos — «ми маємо»; про них потрібно tienen."
+        },
+        "es:lesson-05:session-28:intro3:r3": {
+          "ru": "Llave женского рода: una.",
+          "uk": "Llave жіночого роду: una."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9134d5301dac7706a7a894accc553491e46db71541884893a7f394c61dfcba94"
+}

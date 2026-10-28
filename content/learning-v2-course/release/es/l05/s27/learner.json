@@ -1,0 +1,678 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-05:session-27",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-05:session-27:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-27:i01:r1",
+          "text": "tienen"
+        },
+        {
+          "responseId": "es:lesson-05:session-27:i01:r2",
+          "text": "tiene"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-27:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-27:i01:audio",
+          "transcript": "tienen"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-05:session-27:i01:r1",
+            "targetText": "tienen",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-05:session-27:i01:r2",
+            "targetText": "tiene",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-27:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи есть конечное n: tienen.",
+              "uk": "У записі є кінцеве n: tienen."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-27:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — у них есть книга",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-27:i02:r1",
+          "text": "tienen"
+        },
+        {
+          "responseId": "es:lesson-05:session-27:i02:r2",
+          "text": "tiene"
+        },
+        {
+          "responseId": "es:lesson-05:session-27:i02:r3",
+          "text": "tenemos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — у них есть книга",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — у них есть книга",
+          "uk": "Вставте слово — вони мають книжку"
+        },
+        "gappedTargetPhrase": "Ellos ___ un libro.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-27:i02:r1",
+            "text": "tienen"
+          },
+          {
+            "responseId": "es:lesson-05:session-27:i02:r2",
+            "text": "tiene"
+          },
+          {
+            "responseId": "es:lesson-05:session-27:i02:r3",
+            "text": "tenemos"
+          }
+        ],
+        "testedDimension": "Вставьте слово — у них есть книга",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-27:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у них есть книга",
+            "feedbackByLocale": {
+              "ru": "После ellos нужна форма tienen.",
+              "uk": "Після ellos потрібна форма tienen."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-27:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у них есть книга",
+            "feedbackByLocale": {
+              "ru": "Tenemos — «у нас»; здесь «у них».",
+              "uk": "Tenemos — «ми маємо»; тут «вони мають»."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-27:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — у них есть книга; начните с Ellos",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-27:i03:r1",
+          "text": "Плитки: un"
+        },
+        {
+          "responseId": "es:lesson-05:session-27:i03:r2",
+          "text": "Ellos"
+        },
+        {
+          "responseId": "es:lesson-05:session-27:i03:r3",
+          "text": "libro"
+        },
+        {
+          "responseId": "es:lesson-05:session-27:i03:r4",
+          "text": "tienen"
+        },
+        {
+          "responseId": "es:lesson-05:session-27:i03:r5",
+          "text": "tiene."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — у них есть книга; начните с Ellos",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Ellos tienen un libro.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — у них есть книга; начните с Ellos",
+          "uk": "Зберіть фразу — вони мають книжку; почніть з Ellos"
+        },
+        "orderedTokens": [
+          "Ellos",
+          "tienen",
+          "un",
+          "libro"
+        ],
+        "authoredDistractorTokens": [
+          "tiene"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-27:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — у них есть книга; начните с Ellos",
+            "feedbackByLocale": {
+              "ru": "с ellos нужно tienen.",
+              "uk": "з ellos потрібно tienen."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-27:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — у них есть машина",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-27:i04:r1",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-05:session-27:i04:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-05:session-27:i04:r3",
+          "text": "unas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — у них есть машина",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — у них есть машина",
+          "uk": "Вставте слово — вони мають машину"
+        },
+        "gappedTargetPhrase": "Ellos tienen ___ carro.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-27:i04:r1",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-05:session-27:i04:r2",
+            "text": "una"
+          },
+          {
+            "responseId": "es:lesson-05:session-27:i04:r3",
+            "text": "unas"
+          }
+        ],
+        "testedDimension": "Вставьте слово — у них есть машина",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-27:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у них есть машина",
+            "feedbackByLocale": {
+              "ru": "Carro мужского рода: un.",
+              "uk": "Carro чоловічого роду: un."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-27:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у них есть машина",
+            "feedbackByLocale": {
+              "ru": "Машина одна: un carro.",
+              "uk": "Машина одна: un carro."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-27:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — у них есть машина; начните с Ellos, используйте carro",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-27:i05:r1",
+          "text": "Плитки: carro"
+        },
+        {
+          "responseId": "es:lesson-05:session-27:i05:r2",
+          "text": "tienen"
+        },
+        {
+          "responseId": "es:lesson-05:session-27:i05:r3",
+          "text": "Ellos"
+        },
+        {
+          "responseId": "es:lesson-05:session-27:i05:r4",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-05:session-27:i05:r5",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — у них есть машина; начните с Ellos, используйте carro",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Ellos tienen un carro.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — у них есть машина; начните с Ellos, используйте carro",
+          "uk": "Зберіть фразу — вони мають машину; почніть з Ellos, використайте carro"
+        },
+        "orderedTokens": [
+          "Ellos",
+          "tienen",
+          "un",
+          "carro"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-27:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — у них есть машина; начните с Ellos, используйте carro",
+            "feedbackByLocale": {
+              "ru": "carro мужского рода.",
+              "uk": "carro чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-27:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — у них есть ключ; начните с Ellos",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-27:i06:r1",
+          "text": "Плитки: una"
+        },
+        {
+          "responseId": "es:lesson-05:session-27:i06:r2",
+          "text": "llave"
+        },
+        {
+          "responseId": "es:lesson-05:session-27:i06:r3",
+          "text": "Ellos"
+        },
+        {
+          "responseId": "es:lesson-05:session-27:i06:r4",
+          "text": "tienen"
+        },
+        {
+          "responseId": "es:lesson-05:session-27:i06:r5",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — у них есть ключ; начните с Ellos",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Ellos tienen una llave.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — у них есть ключ; начните с Ellos",
+          "uk": "Зберіть фразу — вони мають ключ; почніть з Ellos"
+        },
+        "orderedTokens": [
+          "Ellos",
+          "tienen",
+          "una",
+          "llave"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-27:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — у них есть ключ; начните с Ellos",
+            "feedbackByLocale": {
+              "ru": "llave женского рода.",
+              "uk": "llave жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-27:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-27:i07:r1",
+          "text": "Плитки: libro"
+        },
+        {
+          "responseId": "es:lesson-05:session-27:i07:r2",
+          "text": "Ellos"
+        },
+        {
+          "responseId": "es:lesson-05:session-27:i07:r3",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-05:session-27:i07:r4",
+          "text": "tienen"
+        },
+        {
+          "responseId": "es:lesson-05:session-27:i07:r5",
+          "text": "tiene."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-27:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-27:i07:audio",
+          "transcript": "Ellos tienen un libro."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Ellos tienen un libro.",
+        "orderedTokens": [
+          "Ellos",
+          "tienen",
+          "un",
+          "libro"
+        ],
+        "authoredDistractorTokens": [
+          "tiene"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-27:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит tienen.",
+              "uk": "звучить tienen."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-27:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — у них есть ключ",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-27:i08:r1",
+          "text": "tienen"
+        },
+        {
+          "responseId": "es:lesson-05:session-27:i08:r2",
+          "text": "tiene"
+        },
+        {
+          "responseId": "es:lesson-05:session-27:i08:r3",
+          "text": "tengo"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — у них есть ключ",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — у них есть ключ",
+          "uk": "Вставте слово — вони мають ключ"
+        },
+        "gappedTargetPhrase": "Ellos ___ una llave.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-27:i08:r1",
+            "text": "tienen"
+          },
+          {
+            "responseId": "es:lesson-05:session-27:i08:r2",
+            "text": "tiene"
+          },
+          {
+            "responseId": "es:lesson-05:session-27:i08:r3",
+            "text": "tengo"
+          }
+        ],
+        "testedDimension": "Вставьте слово — у них есть ключ",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-27:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у них есть ключ",
+            "feedbackByLocale": {
+              "ru": "Людей несколько: tienen.",
+              "uk": "Людей кілька: tienen."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-27:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у них есть ключ",
+            "feedbackByLocale": {
+              "ru": "Tengo — о себе; о них нужно tienen.",
+              "uk": "Tengo — про себе; про них потрібно tienen."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-27:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — у них есть книга; начните с Ellos tienen",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-27:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — у них есть книга; начните с Ellos tienen",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-27:i09:audio",
+          "transcript": "Ellos tienen un libro."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Ellos tienen un libro.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-27:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — у них есть машина; начните с Ellos tienen, используйте carro",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-27:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — у них есть машина; начните с Ellos tienen, используйте carro",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-27:i10:audio",
+          "transcript": "Ellos tienen un carro."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Ellos tienen un carro.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-27:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — у них есть ключ; начните с Ellos tienen",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-27:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — у них есть ключ; начните с Ellos tienen",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-27:i11:audio",
+          "transcript": "Ellos tienen una llave."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Ellos tienen una llave.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-27:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — у них есть коробка; начните с Ellos tienen",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-27:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — у них есть коробка; начните с Ellos tienen",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-27:i12:audio",
+          "transcript": "Ellos tienen una caja."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Ellos tienen una caja.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "2b23811ec626edaf09577d0f9556f3cb08396a19b72e0f738a5395994f6aaf00"
+}

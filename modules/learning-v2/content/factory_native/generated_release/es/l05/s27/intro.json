@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-05:session-27",
+  "learningOutcomeByLocale": {
+    "ru": "соединить ellos с tienen, когда говорите о нескольких других людях.",
+    "uk": "поєднати ellos із tienen, коли кажете про кількох інших людей."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-05:session-27:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Книга у друзей",
+        "uk": "Книжка в друзів"
+      },
+      "bodyByLocale": {
+        "ru": "Два друга взяли книгу в дорогу. Расскажите о них `Ellos tienen un libro` — «У них есть книга». Соберите `Ellos` + `tienen` + `un libro`. Ellos обозначает нескольких мужчин или смешанную группу; с ним нужна форма tienen с n на конце. Tiene относится к одному человеку, tienen — к нескольким. Здесь книга одна, хотя людей двое.",
+        "uk": "Двоє друзів узяли книжку в дорогу. Розкажіть про них `Ellos tienen un libro` — «Вони мають книжку». Зберіть `Ellos` + `tienen` + `un libro`. Ellos позначає кількох чоловіків або змішану групу; з ним потрібна форма tienen із n наприкінці. Tiene стосується однієї людини, tienen — кількох. Тут книжка одна, хоча людей двоє."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-27:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите «У них есть книга». Начните с Ellos tienen.",
+          "uk": "Скажіть «Вони мають книжку». Почніть з Ellos tienen."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-27:intro1:r1",
+              "text": "Ellos tienen un libro."
+            },
+            {
+              "responseId": "es:lesson-05:session-27:intro1:r2",
+              "text": "Ellos tiene un libro."
+            },
+            {
+              "responseId": "es:lesson-05:session-27:intro1:r3",
+              "text": "Ellos tenemos un libro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-27:intro1:r1",
+              "text": "Ellos tienen un libro."
+            },
+            {
+              "responseId": "es:lesson-05:session-27:intro1:r2",
+              "text": "Ellos tiene un libro."
+            },
+            {
+              "responseId": "es:lesson-05:session-27:intro1:r3",
+              "text": "Ellos tenemos un libro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «У них есть книга». Начните с Ellos tienen.",
+          "uk": "Скажіть «Вони мають книжку». Почніть з Ellos tienen."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-05:session-27:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Их машина",
+        "uk": "Їхня машина"
+      },
+      "bodyByLocale": {
+        "ru": "Друг и подруга едут вместе на машине. Сообщите `Ellos tienen un carro` — «У них есть машина». Соберите `Ellos` + `tienen` + `un carro`. О смешанной группе здесь говорим ellos, а глагол ставим в форме tienen. Число машин не определяет форму глагола: людей несколько, машина одна.",
+        "uk": "Друг і подруга їдуть разом машиною. Повідомте `Ellos tienen un carro` — «Вони мають машину». Зберіть `Ellos` + `tienen` + `un carro`. Про змішану групу тут кажемо ellos, а дієслово ставимо у формі tienen. Кількість машин не визначає форми дієслова: людей кілька, машина одна."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-27:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «У них есть машина». Начните с Ellos tienen, используйте carro.",
+          "uk": "Скажіть «Вони мають машину». Почніть з Ellos tienen, використайте carro."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-27:intro2:r1",
+              "text": "Ellos tienen un carro."
+            },
+            {
+              "responseId": "es:lesson-05:session-27:intro2:r2",
+              "text": "Ellos tiene un carro."
+            },
+            {
+              "responseId": "es:lesson-05:session-27:intro2:r3",
+              "text": "Ellos tienen una carro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-27:intro2:r1",
+              "text": "Ellos tienen un carro."
+            },
+            {
+              "responseId": "es:lesson-05:session-27:intro2:r2",
+              "text": "Ellos tiene un carro."
+            },
+            {
+              "responseId": "es:lesson-05:session-27:intro2:r3",
+              "text": "Ellos tienen una carro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «У них есть машина». Начните с Ellos tienen, используйте carro.",
+          "uk": "Скажіть «Вони мають машину». Почніть з Ellos tienen, використайте carro."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-05:session-27:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ключ у друзей",
+        "uk": "Ключ у друзів"
+      },
+      "bodyByLocale": {
+        "ru": "Уточняете для соседа, что у двух друзей есть ключ: `Ellos tienen una llave` — «У них есть ключ». Соберите `Ellos` + `tienen` + `una llave`. Начало ellos tienen сохраняется, затем называем вещь. Llave женского рода, поэтому una. Род вещи не меняет форму tienen.",
+        "uk": "Уточнюєте для сусіда, що двоє друзів мають ключ: `Ellos tienen una llave` — «Вони мають ключ». Зберіть `Ellos` + `tienen` + `una llave`. Початок ellos tienen зберігається, далі називаємо річ. Llave жіночого роду, тому una. Рід речі не змінює форми tienen."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-27:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите «У них есть ключ». Начните с Ellos tienen.",
+          "uk": "Скажіть «Вони мають ключ». Почніть з Ellos tienen."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-27:intro3:r1",
+              "text": "Ellos tienen una llave."
+            },
+            {
+              "responseId": "es:lesson-05:session-27:intro3:r2",
+              "text": "Ellos tenemos una llave."
+            },
+            {
+              "responseId": "es:lesson-05:session-27:intro3:r3",
+              "text": "Ellos tienen un llave."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-27:intro3:r1",
+              "text": "Ellos tienen una llave."
+            },
+            {
+              "responseId": "es:lesson-05:session-27:intro3:r2",
+              "text": "Ellos tenemos una llave."
+            },
+            {
+              "responseId": "es:lesson-05:session-27:intro3:r3",
+              "text": "Ellos tienen un llave."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «У них есть ключ». Начните с Ellos tienen.",
+          "uk": "Скажіть «Вони мають ключ». Почніть з Ellos tienen."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "53eb143a67ed627b50177109d358707767c89468bd4bbead2ca9140dc452e9bd"
+}

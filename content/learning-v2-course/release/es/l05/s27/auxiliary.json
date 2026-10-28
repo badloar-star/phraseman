@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-05:session-27",
+  "entries": [
+    {
+      "interactionId": "es:lesson-05:session-27:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-27:intro1:r2": {
+          "ru": "Людей несколько: tienen с n.",
+          "uk": "Людей кілька: tienen із n."
+        },
+        "es:lesson-05:session-27:intro1:r3": {
+          "ru": "Tenemos — «у нас»; о них нужно tienen.",
+          "uk": "Tenemos — «ми маємо»; про них потрібно tienen."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-27:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-27:intro2:r2": {
+          "ru": "После ellos нужно tienen.",
+          "uk": "Після ellos потрібно tienen."
+        },
+        "es:lesson-05:session-27:intro2:r3": {
+          "ru": "Carro мужского рода: un.",
+          "uk": "Carro чоловічого роду: un."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-27:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-27:intro3:r2": {
+          "ru": "Говорите о них, не о вас: tienen.",
+          "uk": "Кажете про них, не про вас: tienen."
+        },
+        "es:lesson-05:session-27:intro3:r3": {
+          "ru": "Llave женского рода: una.",
+          "uk": "Llave жіночого роду: una."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "68f18c4a3631a4d2fbf2124b00952839f0519b9b54f5c1cc2bbebb0586c6a23f"
+}

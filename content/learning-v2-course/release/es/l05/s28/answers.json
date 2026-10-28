@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-05:session-28:i01",
+    "correctText": "ellas",
+    "correctResponseId": "es:lesson-05:session-28:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-28:i02",
+    "correctText": "tienen",
+    "correctResponseId": "es:lesson-05:session-28:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-28:i03",
+    "correctText": "Ellas tienen una bolsa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-28:i04",
+    "correctText": "un",
+    "correctResponseId": "es:lesson-05:session-28:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-28:i05",
+    "correctText": "Ellas tienen un libro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-28:i06",
+    "correctText": "Ellas tienen una llave.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-28:i07",
+    "correctText": "Ellas tienen una bolsa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-28:i08",
+    "correctText": "tienen",
+    "correctResponseId": "es:lesson-05:session-28:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-28:i09",
+    "correctText": "Ellas tienen una bolsa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-28:i10",
+    "correctText": "Ellas tienen un libro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-28:i11",
+    "correctText": "Ellas tienen una llave.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-28:i12",
+    "correctText": "Ellas tienen una caja.",
+    "correctResponseId": null
+  }
+]

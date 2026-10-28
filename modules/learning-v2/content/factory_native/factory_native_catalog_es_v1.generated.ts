@@ -1757,4 +1757,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"поставить no перед tenemos.","uk":"поставити no перед tenemos."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 5, sessionOrdinal: 27,
+    sourceFingerprint: "541c78ffe890ec49edfcd55fcf59cbf744426973cc8f26d7baa3d6fe56e27c1a",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"соединить ellos с tienen, когда говорите о нескольких других людях.","uk":"поєднати ellos із tienen, коли кажете про кількох інших людей."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 5, sessionOrdinal: 28,
+    sourceFingerprint: "2e966eeb0ec1f5cd7bf9cb4c7e64c641e5b101baeac083e7366437107e32d9b6",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"использовать ellas tienen для группы женщин.","uk":"використовувати ellas tienen для групи жінок."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
+  }),
 ]);

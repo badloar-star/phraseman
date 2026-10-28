@@ -134,6 +134,9 @@ export const PAYWALL_SOURCE_VALUES = [
   'ai_explain_limit_card',
   'dialogue_v2_freeform_server',
   'phrase_workshop',
+  // зачем (Ревизор 28.10, ae0261b1b): кнопка «Открыть Plus» в объявлении историй (шаблон plus, StoryViewer → use_story_cta_action) — свой
+  // source, чтобы воронка отличала вход из историй; без записи rejectUnknown в стор-сборке закрывал окно Plus сразу после открытия.
+  'story_announcement',
 ] as const;
 
 export type PaywallSource = (typeof PAYWALL_SOURCE_VALUES)[number];

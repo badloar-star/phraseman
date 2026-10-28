@@ -129,6 +129,7 @@
 |---|---|---|
 | `generic` / `settings_premium` | Настройки → «Подписка Plus · Не активна» | `app/(tabs)/settings.tsx:942` |
 | `generic` / `plus_launch_splash` | заставка при запуске: «Больше практики — без стопов», «Получить Plus» / «Не сейчас»; раз в 14 дней, с 3-го дня | `components/plus-splash/PlusLaunchSplashHost.tsx:124` |
+| `generic` / `story_announcement` | объявление в историях по шаблону `plus` (публикует админка): кнопка «Открыть Plus» закрывает истории и открывает окно Plus. Добавлено 28.10. | `components/stories/templates/use_story_cta_action.ts` |
 | `premium_expired`, `vip_expired` / `entitlement_expired` | шторка «Plus закончился · прогресс сохранён», «Продлить Plus» / «Позже» | `components/EntitlementExpiredHost.tsx:361` |
 | `referral_ended` / `referral_ended` | «Доступ можно открыть снова» | `app/(tabs)/friends.tsx:2889` |
 | `vip_expired`, `notification_upsell` / `notification_*` | тап по пушам (VIP истекает, интро кончается, upsell d4 / d7 / d14) | `app/notification_tap_handler.ts:33, :125` |

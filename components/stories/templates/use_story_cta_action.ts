@@ -13,6 +13,7 @@ import { Share } from 'react-native';
 import { useRouter } from 'expo-router';
 import type { Lang } from '../../../constants/i18n';
 import { DebugLogger } from '../../../app/debug-logger';
+import { openPremiumPaywall } from '../../../app/paywall_navigation';
 import { isPremiumThemeId } from '../../../app/premium_theme_catalog';
 import { isPremiumThemeUnlocked } from '../../../app/premium_theme_entitlements';
 import { hapticTap } from '../../../hooks/use-haptics';
@@ -42,10 +43,12 @@ export function useStoryCtaAction(lang: Lang, studio: boolean, closeViewer: (sou
       return;
     }
     if (cta.action === 'open_plus') {
-      // зачем: экран Plus — маршрут; просмотр (Modal) закрываем, иначе экран открылся бы под ним
-      DebugLogger.info(LOG, `Plus: закрываем просмотр и открываем /premium_modal source=story_announcement`);
+      // зачем: экран Plus — маршрут; просмотр (Modal) закрываем, иначе экран открылся бы под ним.
+      // source 'story_announcement' обязан быть в PAYWALL_SOURCE_VALUES (Ревизор 28.10: без записи окно Plus в стор-сборке закрывалось сразу);
+      // context 'generic' — объявление Plus продаёт Plus целиком, а не упёрлось в лимит (как заставка Plus при запуске).
+      DebugLogger.info(LOG, 'Plus: закрываем просмотр и открываем окно Plus context=generic source=story_announcement');
       closeViewer('cta_open_plus');
-      router.push({ pathname: '/premium_modal', params: { source: 'story_announcement' } } as never);
+      openPremiumPaywall(router, { context: 'generic', source: 'story_announcement' });
       return;
     }
     if (cta.action === 'share_link') {

@@ -1,0 +1,92 @@
+[
+  {
+    "interactionId": "es:lesson-03:session-24:i01",
+    "correctText": "Es un libro rojo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-24:i02",
+    "correctText": "pequeña",
+    "correctResponseId": "es:lesson-03:session-24:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-24:i03",
+    "correctText": "Son unos guantes negros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-24:i04",
+    "correctText": "blancas",
+    "correctResponseId": "es:lesson-03:session-24:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-24:i05",
+    "correctText": "Son los lápices rojos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-24:i06",
+    "correctText": "la",
+    "correctResponseId": "es:lesson-03:session-24:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-24:i07",
+    "correctText": "¿Cómo es el bolso?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-24:i08",
+    "correctText": "es",
+    "correctResponseId": "es:lesson-03:session-24:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-24:i09",
+    "correctText": "Es una caja pequeña.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-24:i10",
+    "correctText": "pequeña",
+    "correctResponseId": "es:lesson-03:session-24:i10:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-24:i11",
+    "correctText": "bonito",
+    "correctResponseId": "es:lesson-03:session-24:i11:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-24:i12",
+    "correctText": "azules",
+    "correctResponseId": "es:lesson-03:session-24:i12:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-24:i13",
+    "correctText": "Es un libro rojo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-24:i14",
+    "correctText": "Es una caja pequeña.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-24:i15",
+    "correctText": "Son unos guantes negros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-24:i16",
+    "correctText": "¿Cómo es el bolso?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-24:i17",
+    "correctText": "Es pequeña.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-24:i18",
+    "correctText": "Son unas tazas blancas.",
+    "correctResponseId": null
+  }
+]

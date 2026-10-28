@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-03:session-26",
+  "entries": [
+    {
+      "interactionId": "es:lesson-03:session-26:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-26:intro1:r2": {
+          "ru": "Формы suava нет: suave.",
+          "uk": "Форми suava немає: suave."
+        },
+        "es:lesson-03:session-26:intro1:r3": {
+          "ru": "Подушка одна: suave.",
+          "uk": "Подушка одна: suave."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-26:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-26:intro2:r2": {
+          "ru": "Нужна форма dura.",
+          "uk": "Потрібна форма dura."
+        },
+        "es:lesson-03:session-26:intro2:r3": {
+          "ru": "Подушка одна: dura.",
+          "uk": "Подушка одна: dura."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-26:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-26:intro3:r2": {
+          "ru": "Suave не меняется по роду.",
+          "uk": "Suave не змінюється за родом."
+        },
+        "es:lesson-03:session-26:intro3:r3": {
+          "ru": "Одеяло одно: suave.",
+          "uk": "Ковдра одна: suave."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "682224f31862292a2ca62500821d0e433eda4a80ee13f4bce305567af6a33138"
+}

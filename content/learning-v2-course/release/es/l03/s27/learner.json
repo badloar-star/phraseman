@@ -1,0 +1,657 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-03:session-27",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-03:session-27:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — resistente",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-27:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — resistente",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-27:i01:audio",
+          "transcript": "resistente"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-27:i01:r1",
+            "targetText": "resistente",
+            "meaningByLocale": {
+              "ru": "прочный, стойкий к нагрузке; несколько — resistentes. 🔊 *resistente*",
+              "uk": "міцний, стійкий до навантаження; кілька — resistentes. 🔊 *resistente*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "resistente",
+          "definitionByLocale": {
+            "ru": "прочный, стойкий к нагрузке; несколько — resistentes. 🔊 *resistente*",
+            "uk": "міцний, стійкий до навантаження; кілька — resistentes. 🔊 *resistente*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-27:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-27:i02:r1",
+          "text": "resistente"
+        },
+        {
+          "responseId": "es:lesson-03:session-27:i02:r2",
+          "text": "resistentes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-27:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-27:i02:audio",
+          "transcript": "resistente"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-27:i02:r1",
+            "targetText": "resistente",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-03:session-27:i02:r2",
+            "targetText": "resistentes",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-27:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи нет конечного -s: resistente.",
+              "uk": "У записі немає кінцевого -s: resistente."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-27:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — сумка прочная; используйте bolso",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-27:i03:r1",
+          "text": "Плитки: resistente"
+        },
+        {
+          "responseId": "es:lesson-03:session-27:i03:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-27:i03:r3",
+          "text": "bolso"
+        },
+        {
+          "responseId": "es:lesson-03:session-27:i03:r4",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-03:session-27:i03:r5",
+          "text": "la."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — сумка прочная; используйте bolso",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "El bolso es resistente.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — сумка прочная; используйте bolso",
+          "uk": "Зберіть фразу — сумка міцна; використайте bolso"
+        },
+        "orderedTokens": [
+          "El",
+          "bolso",
+          "es",
+          "resistente"
+        ],
+        "authoredDistractorTokens": [
+          "la"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-27:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — сумка прочная; используйте bolso",
+            "feedbackByLocale": {
+              "ru": "bolso мужского рода.",
+              "uk": "bolso чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-27:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — одна сумка прочная",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-27:i04:r1",
+          "text": "resistente"
+        },
+        {
+          "responseId": "es:lesson-03:session-27:i04:r2",
+          "text": "resistenta"
+        },
+        {
+          "responseId": "es:lesson-03:session-27:i04:r3",
+          "text": "resistentes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — одна сумка прочная",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — одна сумка прочная",
+          "uk": "Вставте слово — одна сумка міцна"
+        },
+        "gappedTargetPhrase": "La bolsa es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-27:i04:r1",
+            "text": "resistente"
+          },
+          {
+            "responseId": "es:lesson-03:session-27:i04:r2",
+            "text": "resistenta"
+          },
+          {
+            "responseId": "es:lesson-03:session-27:i04:r3",
+            "text": "resistentes"
+          }
+        ],
+        "testedDimension": "Вставьте слово — одна сумка прочная",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-27:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — одна сумка прочная",
+            "feedbackByLocale": {
+              "ru": "Resistente не меняется по роду.",
+              "uk": "Resistente не змінюється за родом."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-27:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — одна сумка прочная",
+            "feedbackByLocale": {
+              "ru": "Сумка одна: resistente.",
+              "uk": "Сумка одна: resistente."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-27:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — сумка прочная; используйте bolsa",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-27:i05:r1",
+          "text": "Плитки: resistente"
+        },
+        {
+          "responseId": "es:lesson-03:session-27:i05:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-27:i05:r3",
+          "text": "bolsa"
+        },
+        {
+          "responseId": "es:lesson-03:session-27:i05:r4",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-03:session-27:i05:r5",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — сумка прочная; используйте bolsa",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "La bolsa es resistente.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — сумка прочная; используйте bolsa",
+          "uk": "Зберіть фразу — сумка міцна; використайте bolsa"
+        },
+        "orderedTokens": [
+          "La",
+          "bolsa",
+          "es",
+          "resistente"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-27:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — сумка прочная; используйте bolsa",
+            "feedbackByLocale": {
+              "ru": "bolsa женского рода.",
+              "uk": "bolsa жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-27:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — несколько сумок прочные",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-27:i06:r1",
+          "text": "resistentes"
+        },
+        {
+          "responseId": "es:lesson-03:session-27:i06:r2",
+          "text": "resistente"
+        },
+        {
+          "responseId": "es:lesson-03:session-27:i06:r3",
+          "text": "resistentas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — несколько сумок прочные",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — несколько сумок прочные",
+          "uk": "Вставте слово — кілька сумок міцні"
+        },
+        "gappedTargetPhrase": "Las bolsas son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-27:i06:r1",
+            "text": "resistentes"
+          },
+          {
+            "responseId": "es:lesson-03:session-27:i06:r2",
+            "text": "resistente"
+          },
+          {
+            "responseId": "es:lesson-03:session-27:i06:r3",
+            "text": "resistentas"
+          }
+        ],
+        "testedDimension": "Вставьте слово — несколько сумок прочные",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-27:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — несколько сумок прочные",
+            "feedbackByLocale": {
+              "ru": "Сумок несколько: resistentes.",
+              "uk": "Сумок кілька: resistentes."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-27:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — несколько сумок прочные",
+            "feedbackByLocale": {
+              "ru": "Окончание -e сохраняется: resistentes.",
+              "uk": "Закінчення -e зберігається: resistentes."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-27:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — сумки прочные; используйте bolsas",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-27:i07:r1",
+          "text": "Плитки: resistentes"
+        },
+        {
+          "responseId": "es:lesson-03:session-27:i07:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-27:i07:r3",
+          "text": "bolsas"
+        },
+        {
+          "responseId": "es:lesson-03:session-27:i07:r4",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-03:session-27:i07:r5",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — сумки прочные; используйте bolsas",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Las bolsas son resistentes.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — сумки прочные; используйте bolsas",
+          "uk": "Зберіть фразу — сумки міцні; використайте bolsas"
+        },
+        "orderedTokens": [
+          "Las",
+          "bolsas",
+          "son",
+          "resistentes"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-27:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — сумки прочные; используйте bolsas",
+            "feedbackByLocale": {
+              "ru": "сумок несколько.",
+              "uk": "сумок кілька."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-27:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-27:i08:r1",
+          "text": "Плитки: resistente"
+        },
+        {
+          "responseId": "es:lesson-03:session-27:i08:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-27:i08:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-03:session-27:i08:r4",
+          "text": "bolso"
+        },
+        {
+          "responseId": "es:lesson-03:session-27:i08:r5",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-03:session-27:i08:r6",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-27:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-27:i08:audio",
+          "transcript": "El bolso no es resistente."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "El bolso no es resistente.",
+        "orderedTokens": [
+          "El",
+          "bolso",
+          "no",
+          "es",
+          "resistente"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-27:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит es.",
+              "uk": "звучить es."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-27:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — сумка прочная; назовите её словом bolso",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-27:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — сумка прочная; назовите её словом bolso",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-27:i09:audio",
+          "transcript": "El bolso es resistente."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "El bolso es resistente.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-27:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — сумка прочная; назовите её словом bolsa",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-27:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — сумка прочная; назовите её словом bolsa",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-27:i10:audio",
+          "transcript": "La bolsa es resistente."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "La bolsa es resistente.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-27:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — сумки прочные; назовите их словом bolsas",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-27:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — сумки прочные; назовите их словом bolsas",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-27:i11:audio",
+          "transcript": "Las bolsas son resistentes."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Las bolsas son resistentes.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-27:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — сумка не прочная; назовите её словом bolso",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-27:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — сумка не прочная; назовите её словом bolso",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-27:i12:audio",
+          "transcript": "El bolso no es resistente."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "El bolso no es resistente.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "517a088e1f3efac1cda890aa2458dabd21cf315b58079d58abb373e4dffeb520"
+}

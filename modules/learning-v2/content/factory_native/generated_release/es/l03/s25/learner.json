@@ -1,0 +1,891 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-03:session-25",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-03:session-25:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — pesado",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-25:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — pesado",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-25:i01:audio",
+          "transcript": "pesado"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-25:i01:r1",
+            "targetText": "pesado",
+            "meaningByLocale": {
+              "ru": "тяжёлый по весу; pesada — женская форма. 🔊 *pesado*",
+              "uk": "важкий за вагою; pesada — жіноча форма. 🔊 *pesado*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pesado",
+          "definitionByLocale": {
+            "ru": "тяжёлый по весу; pesada — женская форма. 🔊 *pesado*",
+            "uk": "важкий за вагою; pesada — жіноча форма. 🔊 *pesado*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-25:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-25:i02:r1",
+          "text": "pesado"
+        },
+        {
+          "responseId": "es:lesson-03:session-25:i02:r2",
+          "text": "pequeña"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-25:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-25:i02:audio",
+          "transcript": "pesado"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-25:i02:r1",
+            "targetText": "pesado",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-03:session-25:i02:r2",
+            "targetText": "pequeña",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-25:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи звучит pesado, с окончанием -ado.",
+              "uk": "У записі звучить pesado, із закінченням -ado."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-25:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — чемодан тяжёлый",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-25:i03:r1",
+          "text": "Плитки: pesada"
+        },
+        {
+          "responseId": "es:lesson-03:session-25:i03:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-25:i03:r3",
+          "text": "maleta"
+        },
+        {
+          "responseId": "es:lesson-03:session-25:i03:r4",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-03:session-25:i03:r5",
+          "text": "pesado."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — чемодан тяжёлый",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "La maleta es pesada.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — чемодан тяжёлый",
+          "uk": "Зберіть фразу — валіза важка"
+        },
+        "orderedTokens": [
+          "La",
+          "maleta",
+          "es",
+          "pesada"
+        ],
+        "authoredDistractorTokens": [
+          "pesado"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-25:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — чемодан тяжёлый",
+            "feedbackByLocale": {
+              "ru": "maleta женского рода.",
+              "uk": "maleta жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-25:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — чемодан тяжёлый",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-25:i04:r1",
+          "text": "pesada"
+        },
+        {
+          "responseId": "es:lesson-03:session-25:i04:r2",
+          "text": "pesado"
+        },
+        {
+          "responseId": "es:lesson-03:session-25:i04:r3",
+          "text": "pesadas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — чемодан тяжёлый",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — чемодан тяжёлый",
+          "uk": "Вставте слово — валіза важка"
+        },
+        "gappedTargetPhrase": "La maleta es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-25:i04:r1",
+            "text": "pesada"
+          },
+          {
+            "responseId": "es:lesson-03:session-25:i04:r2",
+            "text": "pesado"
+          },
+          {
+            "responseId": "es:lesson-03:session-25:i04:r3",
+            "text": "pesadas"
+          }
+        ],
+        "testedDimension": "Вставьте слово — чемодан тяжёлый",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-25:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — чемодан тяжёлый",
+            "feedbackByLocale": {
+              "ru": "Maleta женского рода: pesada.",
+              "uk": "Maleta жіночого роду: pesada."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-25:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — чемодан тяжёлый",
+            "feedbackByLocale": {
+              "ru": "Чемодан один: pesada.",
+              "uk": "Валіза одна: pesada."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-25:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — ligero",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-25:i05:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — ligero",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-25:i05:audio",
+          "transcript": "ligero"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-25:i05:r1",
+            "targetText": "ligero",
+            "meaningByLocale": {
+              "ru": "лёгкий по весу; ligera — женская форма. 🔊 *ligero*",
+              "uk": "легкий за вагою; ligera — жіноча форма. 🔊 *ligero*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ligero",
+          "definitionByLocale": {
+            "ru": "лёгкий по весу; ligera — женская форма. 🔊 *ligero*",
+            "uk": "легкий за вагою; ligera — жіноча форма. 🔊 *ligero*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-25:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-25:i06:r1",
+          "text": "ligero"
+        },
+        {
+          "responseId": "es:lesson-03:session-25:i06:r2",
+          "text": "pesado"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-25:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-25:i06:audio",
+          "transcript": "ligero"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-25:i06:r1",
+            "targetText": "ligero",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-03:session-25:i06:r2",
+            "targetText": "pesado",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-25:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи слово начинается с li: ligero.",
+              "uk": "У записі слово починається з li: ligero."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-25:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — чемодан лёгкий",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-25:i07:r1",
+          "text": "Плитки: ligera"
+        },
+        {
+          "responseId": "es:lesson-03:session-25:i07:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-25:i07:r3",
+          "text": "maleta"
+        },
+        {
+          "responseId": "es:lesson-03:session-25:i07:r4",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-03:session-25:i07:r5",
+          "text": "ligero."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — чемодан лёгкий",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "La maleta es ligera.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — чемодан лёгкий",
+          "uk": "Зберіть фразу — валіза легка"
+        },
+        "orderedTokens": [
+          "La",
+          "maleta",
+          "es",
+          "ligera"
+        ],
+        "authoredDistractorTokens": [
+          "ligero"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-25:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — чемодан лёгкий",
+            "feedbackByLocale": {
+              "ru": "maleta женского рода.",
+              "uk": "maleta жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-25:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — чемодан лёгкий",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-25:i08:r1",
+          "text": "ligera"
+        },
+        {
+          "responseId": "es:lesson-03:session-25:i08:r2",
+          "text": "ligero"
+        },
+        {
+          "responseId": "es:lesson-03:session-25:i08:r3",
+          "text": "ligeras"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — чемодан лёгкий",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — чемодан лёгкий",
+          "uk": "Вставте слово — валіза легка"
+        },
+        "gappedTargetPhrase": "La maleta es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-25:i08:r1",
+            "text": "ligera"
+          },
+          {
+            "responseId": "es:lesson-03:session-25:i08:r2",
+            "text": "ligero"
+          },
+          {
+            "responseId": "es:lesson-03:session-25:i08:r3",
+            "text": "ligeras"
+          }
+        ],
+        "testedDimension": "Вставьте слово — чемодан лёгкий",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-25:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — чемодан лёгкий",
+            "feedbackByLocale": {
+              "ru": "Maleta женского рода: ligera.",
+              "uk": "Maleta жіночого роду: ligera."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-25:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — чемодан лёгкий",
+            "feedbackByLocale": {
+              "ru": "Чемодан один: ligera.",
+              "uk": "Валіза одна: ligera."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-25:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — сумка лёгкая; используйте bolso",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-25:i09:r1",
+          "text": "Плитки: ligero"
+        },
+        {
+          "responseId": "es:lesson-03:session-25:i09:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-25:i09:r3",
+          "text": "bolso"
+        },
+        {
+          "responseId": "es:lesson-03:session-25:i09:r4",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-03:session-25:i09:r5",
+          "text": "ligera."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — сумка лёгкая; используйте bolso",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "El bolso es ligero.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — сумка лёгкая; используйте bolso",
+          "uk": "Зберіть фразу — сумка легка; використайте bolso"
+        },
+        "orderedTokens": [
+          "El",
+          "bolso",
+          "es",
+          "ligero"
+        ],
+        "authoredDistractorTokens": [
+          "ligera"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-25:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — сумка лёгкая; используйте bolso",
+            "feedbackByLocale": {
+              "ru": "bolso мужского рода.",
+              "uk": "bolso чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-25:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-25:i10:r1",
+          "text": "Плитки: pesado"
+        },
+        {
+          "responseId": "es:lesson-03:session-25:i10:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-25:i10:r3",
+          "text": "bolso"
+        },
+        {
+          "responseId": "es:lesson-03:session-25:i10:r4",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-03:session-25:i10:r5",
+          "text": "ligero."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-25:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-25:i10:audio",
+          "transcript": "El bolso es pesado."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "El bolso es pesado.",
+        "orderedTokens": [
+          "El",
+          "bolso",
+          "es",
+          "pesado"
+        ],
+        "authoredDistractorTokens": [
+          "ligero"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-25:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит pesado.",
+              "uk": "звучить pesado."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-25:i11",
+      "ordinal": 14,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — сумка не тяжёлая; используйте bolso",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-25:i11:r1",
+          "text": "pesado"
+        },
+        {
+          "responseId": "es:lesson-03:session-25:i11:r2",
+          "text": "pesada"
+        },
+        {
+          "responseId": "es:lesson-03:session-25:i11:r3",
+          "text": "pesados"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — сумка не тяжёлая; используйте bolso",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — сумка не тяжёлая; используйте bolso",
+          "uk": "Вставте слово — сумка не важка; використайте bolso"
+        },
+        "gappedTargetPhrase": "El bolso no es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-25:i11:r1",
+            "text": "pesado"
+          },
+          {
+            "responseId": "es:lesson-03:session-25:i11:r2",
+            "text": "pesada"
+          },
+          {
+            "responseId": "es:lesson-03:session-25:i11:r3",
+            "text": "pesados"
+          }
+        ],
+        "testedDimension": "Вставьте слово — сумка не тяжёлая; используйте bolso",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-25:i11:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — сумка не тяжёлая; используйте bolso",
+            "feedbackByLocale": {
+              "ru": "Bolso мужского рода: pesado.",
+              "uk": "Bolso чоловічого роду: pesado."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-25:i11:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — сумка не тяжёлая; используйте bolso",
+            "feedbackByLocale": {
+              "ru": "Сумка одна: pesado.",
+              "uk": "Сумка одна: pesado."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-25:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — чемодан не тяжёлый",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-25:i12:r1",
+          "text": "pesada"
+        },
+        {
+          "responseId": "es:lesson-03:session-25:i12:r2",
+          "text": "pesado"
+        },
+        {
+          "responseId": "es:lesson-03:session-25:i12:r3",
+          "text": "pesadas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — чемодан не тяжёлый",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — чемодан не тяжёлый",
+          "uk": "Вставте слово — валіза не важка"
+        },
+        "gappedTargetPhrase": "La maleta no es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-25:i12:r1",
+            "text": "pesada"
+          },
+          {
+            "responseId": "es:lesson-03:session-25:i12:r2",
+            "text": "pesado"
+          },
+          {
+            "responseId": "es:lesson-03:session-25:i12:r3",
+            "text": "pesadas"
+          }
+        ],
+        "testedDimension": "Вставьте слово — чемодан не тяжёлый",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-25:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — чемодан не тяжёлый",
+            "feedbackByLocale": {
+              "ru": "Maleta женского рода: pesada.",
+              "uk": "Maleta жіночого роду: pesada."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-25:i12:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — чемодан не тяжёлый",
+            "feedbackByLocale": {
+              "ru": "Чемодан один: pesada.",
+              "uk": "Валіза одна: pesada."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-25:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — чемодан тяжёлый; назовите предмет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-25:i13:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — чемодан тяжёлый; назовите предмет",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-25:i13:audio",
+          "transcript": "La maleta es pesada."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "La maleta es pesada.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-25:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — чемодан лёгкий; назовите предмет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-25:i14:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — чемодан лёгкий; назовите предмет",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-25:i14:audio",
+          "transcript": "La maleta es ligera."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "La maleta es ligera.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-25:i15",
+      "ordinal": 18,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — сумка лёгкая; назовите её словом bolso",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-25:i15:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — сумка лёгкая; назовите её словом bolso",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-25:i15:audio",
+          "transcript": "El bolso es ligero."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "El bolso es ligero.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-25:i16",
+      "ordinal": 19,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — чемодан не тяжёлый; назовите предмет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-25:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — чемодан не тяжёлый; назовите предмет",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-25:i16:audio",
+          "transcript": "La maleta no es pesada."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "La maleta no es pesada.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 16,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "926cf98197b23cb1d1cbfb58f634ddbf7aa6c29f9d3959243951c0d90e12786e"
+}

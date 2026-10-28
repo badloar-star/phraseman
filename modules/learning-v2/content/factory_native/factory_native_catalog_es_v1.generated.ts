@@ -952,4 +952,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"ответить на ¿Cómo es? короткой фразой без повторения названия вещи.","uk":"відповідати на ¿Cómo es? короткою фразою без повторення назви речі."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 24,
+    sourceFingerprint: "454db4445ca902c40be1d0febec2fd99637761de923e0a73c5ddafa108cd070b",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"самостоятельно назвать вещь с признаком и попросить её описать.","uk":"самостійно називати річ з ознакою й просити її описати."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 25,
+    sourceFingerprint: "0b691c7286018064078d0663b0a4eb6c459df3abe62b70961ac4a43dce5242d9",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"описать вес вещи и согласовать pesado или ligero с её названием.","uk":"описувати вагу речі й узгоджувати pesado або ligero з її назвою."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 26,
+    sourceFingerprint: "bdea79a51a8ff3e292c0a6d8f2cb927b02afaeb9b493730273b368fe1cbcabda",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"описать мягкость поверхности и твёрдость вещи.","uk":"описувати м'якість поверхні й твердість речі."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 27,
+    sourceFingerprint: "8544557cb868a7ce411f5c0156d671e23eee37503576ff785ea25564ab920898",
+    newWordCount: 1,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"описать прочность вещи словом resistente в единственном и множественном числе.","uk":"описувати міцність речі словом resistente в однині й множині."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+  }),
 ]);

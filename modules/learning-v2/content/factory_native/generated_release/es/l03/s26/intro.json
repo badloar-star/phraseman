@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-03:session-26",
+  "learningOutcomeByLocale": {
+    "ru": "описать мягкость поверхности и твёрдость вещи.",
+    "uk": "описувати м'якість поверхні й твердість речі."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-03:session-26:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Приятная на ощупь",
+        "uk": "Приємна на дотик"
+      },
+      "bodyByLocale": {
+        "ru": "Проводите рукой по подушке: ткань мягкая и приятная. `Suave` здесь значит «мягкий на ощупь». Скажите `La almohada es suave` — «Подушка мягкая». Соберите `la almohada` + `es` + `suave`. Suave заканчивается на -e и не меняется по роду: с женским almohada тоже suave.",
+        "uk": "Проводите рукою по подушці: тканина м'яка й приємна. `Suave` тут означає «м'який на дотик». Скажіть `La almohada es suave` — «Подушка м'яка». Зберіть `la almohada` + `es` + `suave`. Suave закінчується на -e й не змінюється за родом: із жіночим almohada теж suave."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-26:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите, что подушка мягкая на ощупь.",
+          "uk": "Скажіть, що подушка м'яка на дотик."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-26:intro1:r1",
+              "text": "La almohada es suave."
+            },
+            {
+              "responseId": "es:lesson-03:session-26:intro1:r2",
+              "text": "La almohada es suava."
+            },
+            {
+              "responseId": "es:lesson-03:session-26:intro1:r3",
+              "text": "La almohada es suaves."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-26:intro1:r1",
+              "text": "La almohada es suave."
+            },
+            {
+              "responseId": "es:lesson-03:session-26:intro1:r2",
+              "text": "La almohada es suava."
+            },
+            {
+              "responseId": "es:lesson-03:session-26:intro1:r3",
+              "text": "La almohada es suaves."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что подушка мягкая на ощупь.",
+          "uk": "Скажіть, що подушка м'яка на дотик."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-03:session-26:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Слишком твёрдая для сна",
+        "uk": "Надто тверда для сну"
+      },
+      "bodyByLocale": {
+        "ru": "Надавливаете на другую подушку: она почти не проминается. `Duro` значит «твёрдый». Скажите `La almohada es dura` — «Подушка твёрдая». Соберите `la almohada` + `es` + `dura`. В отличие от suave, у duro есть женская форма dura. Она согласуется с almohada.",
+        "uk": "Натискаєте на іншу подушку: вона майже не прогинається. `Duro` означає «твердий». Скажіть `La almohada es dura` — «Подушка тверда». Зберіть `la almohada` + `es` + `dura`. На відміну від suave, у duro є жіноча форма dura. Вона узгоджується з almohada."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-26:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите, что подушка твёрдая.",
+          "uk": "Скажіть, що подушка тверда."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-26:intro2:r1",
+              "text": "La almohada es dura."
+            },
+            {
+              "responseId": "es:lesson-03:session-26:intro2:r2",
+              "text": "La almohada es duro."
+            },
+            {
+              "responseId": "es:lesson-03:session-26:intro2:r3",
+              "text": "La almohada es duras."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-26:intro2:r1",
+              "text": "La almohada es dura."
+            },
+            {
+              "responseId": "es:lesson-03:session-26:intro2:r2",
+              "text": "La almohada es duro."
+            },
+            {
+              "responseId": "es:lesson-03:session-26:intro2:r3",
+              "text": "La almohada es duras."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что подушка твёрдая.",
+          "uk": "Скажіть, що подушка тверда."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-03:session-26:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Мягкое одеяло",
+        "uk": "М'яка ковдра"
+      },
+      "bodyByLocale": {
+        "ru": "К подушке подбираете особенно приятное одеяло. Скажите `La manta es muy suave` — «Одеяло очень мягкое». Соберите `la manta` + `es` + `muy suave`. Знакомое muy стоит перед признаком и усиливает его. Suave с женским manta остаётся без изменения.",
+        "uk": "До подушки підбираєте особливо приємну ковдру. Скажіть `La manta es muy suave` — «Ковдра дуже м'яка». Зберіть `la manta` + `es` + `muy suave`. Знайоме muy стоїть перед ознакою й посилює її. Suave із жіночим manta залишається без змін."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-26:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите, что одеяло очень мягкое на ощупь.",
+          "uk": "Скажіть, що ковдра дуже м'яка на дотик."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-26:intro3:r1",
+              "text": "La manta es muy suave."
+            },
+            {
+              "responseId": "es:lesson-03:session-26:intro3:r2",
+              "text": "La manta es muy suava."
+            },
+            {
+              "responseId": "es:lesson-03:session-26:intro3:r3",
+              "text": "La manta es muy suaves."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-26:intro3:r1",
+              "text": "La manta es muy suave."
+            },
+            {
+              "responseId": "es:lesson-03:session-26:intro3:r2",
+              "text": "La manta es muy suava."
+            },
+            {
+              "responseId": "es:lesson-03:session-26:intro3:r3",
+              "text": "La manta es muy suaves."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что одеяло очень мягкое на ощупь.",
+          "uk": "Скажіть, що ковдра дуже м'яка на дотик."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "744d19dc74e40e0a8c90762798cdce4f73e211a218bf54043976e6bc1738b46a"
+}

@@ -1,0 +1,82 @@
+[
+  {
+    "interactionId": "es:lesson-03:session-25:i01",
+    "correctText": "pesado",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-25:i02",
+    "correctText": "pesado",
+    "correctResponseId": "es:lesson-03:session-25:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-25:i03",
+    "correctText": "La maleta es pesada.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-25:i04",
+    "correctText": "pesada",
+    "correctResponseId": "es:lesson-03:session-25:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-25:i05",
+    "correctText": "ligero",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-25:i06",
+    "correctText": "ligero",
+    "correctResponseId": "es:lesson-03:session-25:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-25:i07",
+    "correctText": "La maleta es ligera.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-25:i08",
+    "correctText": "ligera",
+    "correctResponseId": "es:lesson-03:session-25:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-25:i09",
+    "correctText": "El bolso es ligero.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-25:i10",
+    "correctText": "El bolso es pesado.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-25:i11",
+    "correctText": "pesado",
+    "correctResponseId": "es:lesson-03:session-25:i11:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-25:i12",
+    "correctText": "pesada",
+    "correctResponseId": "es:lesson-03:session-25:i12:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-25:i13",
+    "correctText": "La maleta es pesada.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-25:i14",
+    "correctText": "La maleta es ligera.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-25:i15",
+    "correctText": "El bolso es ligero.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-25:i16",
+    "correctText": "La maleta no es pesada.",
+    "correctResponseId": null
+  }
+]

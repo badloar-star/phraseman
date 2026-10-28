@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-03:session-27",
+  "learningOutcomeByLocale": {
+    "ru": "описать прочность вещи словом resistente в единственном и множественном числе.",
+    "uk": "описувати міцність речі словом resistente в однині й множині."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-03:session-27:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Прочная сумка",
+        "uk": "Міцна сумка"
+      },
+      "bodyByLocale": {
+        "ru": "Нужна сумка, которая выдержит покупки. Продавец показывает прочную модель — el bolso. Скажите `El bolso es resistente` — «Сумка прочная». Соберите `el bolso` + `es` + `resistente`. Resistente здесь значит «прочный, стойкий к нагрузке». Окончание -e сохраняется с мужским bolso.",
+        "uk": "Потрібна сумка, яка витримає покупки. Продавець показує міцну модель — el bolso. Скажіть `El bolso es resistente` — «Сумка міцна». Зберіть `el bolso` + `es` + `resistente`. Resistente тут означає «міцний, стійкий до навантаження». Закінчення -e зберігається з чоловічим bolso."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-27:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите, что сумка прочная, используя bolso.",
+          "uk": "Скажіть, що сумка міцна, використовуючи bolso."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-27:intro1:r1",
+              "text": "El bolso es resistente."
+            },
+            {
+              "responseId": "es:lesson-03:session-27:intro1:r2",
+              "text": "El bolso es resistento."
+            },
+            {
+              "responseId": "es:lesson-03:session-27:intro1:r3",
+              "text": "El bolso es resistentes."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-27:intro1:r1",
+              "text": "El bolso es resistente."
+            },
+            {
+              "responseId": "es:lesson-03:session-27:intro1:r2",
+              "text": "El bolso es resistento."
+            },
+            {
+              "responseId": "es:lesson-03:session-27:intro1:r3",
+              "text": "El bolso es resistentes."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что сумка прочная, используя bolso.",
+          "uk": "Скажіть, що сумка міцна, використовуючи bolso."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-03:session-27:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Другая сумка",
+        "uk": "Інша сумка"
+      },
+      "bodyByLocale": {
+        "ru": "Сравниваете её с многоразовой сумкой, которую продавец называет la bolsa. Скажите `La bolsa es resistente` — «Сумка прочная». Соберите `la bolsa` + `es` + `resistente`. У resistente одна форма для обоих родов. Женское bolsa не требует замены -e на -a.",
+        "uk": "Порівнюєте її з багаторазовою сумкою, яку продавець називає la bolsa. Скажіть `La bolsa es resistente` — «Сумка міцна». Зберіть `la bolsa` + `es` + `resistente`. У resistente одна форма для обох родів. Жіноче bolsa не вимагає заміни -e на -a."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-27:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите, что сумка прочная, используя bolsa.",
+          "uk": "Скажіть, що сумка міцна, використовуючи bolsa."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-27:intro2:r1",
+              "text": "La bolsa es resistente."
+            },
+            {
+              "responseId": "es:lesson-03:session-27:intro2:r2",
+              "text": "La bolsa es resistenta."
+            },
+            {
+              "responseId": "es:lesson-03:session-27:intro2:r3",
+              "text": "La bolsa son resistente."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-27:intro2:r1",
+              "text": "La bolsa es resistente."
+            },
+            {
+              "responseId": "es:lesson-03:session-27:intro2:r2",
+              "text": "La bolsa es resistenta."
+            },
+            {
+              "responseId": "es:lesson-03:session-27:intro2:r3",
+              "text": "La bolsa son resistente."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что сумка прочная, используя bolsa.",
+          "uk": "Скажіть, що сумка міцна, використовуючи bolsa."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-03:session-27:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Две сумки для семьи",
+        "uk": "Дві сумки для сім'ї"
+      },
+      "bodyByLocale": {
+        "ru": "Выбираете несколько таких сумок. Скажите `Las bolsas son resistentes` — «Сумки прочные». Соберите `las bolsas` + `son` + `resistentes`. Для множественного числа к resistente добавьте -s. Род не меняет форму, а число меняет: resistente → resistentes.",
+        "uk": "Обираєте кілька таких сумок. Скажіть `Las bolsas son resistentes` — «Сумки міцні». Зберіть `las bolsas` + `son` + `resistentes`. Для множини до resistente додайте -s. Рід не змінює форму, а число змінює: resistente → resistentes."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-27:intro3:q",
+        "promptByLocale": {
+          "ru": "Опишите несколько прочных сумок словом bolsas.",
+          "uk": "Опишіть кілька міцних сумок словом bolsas."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-27:intro3:r1",
+              "text": "Las bolsas son resistentes."
+            },
+            {
+              "responseId": "es:lesson-03:session-27:intro3:r2",
+              "text": "Las bolsas son resistente."
+            },
+            {
+              "responseId": "es:lesson-03:session-27:intro3:r3",
+              "text": "Las bolsas son resistentas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-27:intro3:r1",
+              "text": "Las bolsas son resistentes."
+            },
+            {
+              "responseId": "es:lesson-03:session-27:intro3:r2",
+              "text": "Las bolsas son resistente."
+            },
+            {
+              "responseId": "es:lesson-03:session-27:intro3:r3",
+              "text": "Las bolsas son resistentas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Опишите несколько прочных сумок словом bolsas.",
+          "uk": "Опишіть кілька міцних сумок словом bolsas."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "31b60a1046b0e2679b8795fd7a883a4d3f687ed269ea5166a921c9506bba3aa2"
+}

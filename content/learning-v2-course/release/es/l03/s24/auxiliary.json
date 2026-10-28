@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-03:session-24",
+  "entries": [
+    {
+      "interactionId": "es:lesson-03:session-24:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-24:intro1:r2": {
+          "ru": "Libro мужского рода: rojo.",
+          "uk": "Libro чоловічого роду: rojo."
+        },
+        "es:lesson-03:session-24:intro1:r3": {
+          "ru": "После libro сразу поставьте цвет.",
+          "uk": "Після libro відразу поставте колір."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-24:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-24:intro2:r2": {
+          "ru": "Это не просьба описать конкретную сумку.",
+          "uk": "Це не прохання описати конкретну сумку."
+        },
+        "es:lesson-03:session-24:intro2:r3": {
+          "ru": "Так спрашивают о владельце.",
+          "uk": "Так запитують про власника."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-24:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-24:intro3:r2": {
+          "ru": "Речь о caja: pequeña.",
+          "uk": "Йдеться про caja: pequeña."
+        },
+        "es:lesson-03:session-24:intro3:r3": {
+          "ru": "Коробка одна: es pequeña.",
+          "uk": "Коробка одна: es pequeña."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "8bd4107c481162f9916b737b21ca49bdff7088ea9a76908fc5fb19e06a516084"
+}

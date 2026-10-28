@@ -1,0 +1,901 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-03:session-26",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-03:session-26:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — suave",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-26:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — suave",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-26:i01:audio",
+          "transcript": "suave"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-26:i01:r1",
+            "targetText": "suave",
+            "meaningByLocale": {
+              "ru": "мягкий, приятный на ощупь; одна форма для обоих родов. 🔊 *suave*",
+              "uk": "м'який, приємний на дотик; одна форма для обох родів. 🔊 *suave*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "suave",
+          "definitionByLocale": {
+            "ru": "мягкий, приятный на ощупь; одна форма для обоих родов. 🔊 *suave*",
+            "uk": "м'який, приємний на дотик; одна форма для обох родів. 🔊 *suave*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-26:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-26:i02:r1",
+          "text": "suave"
+        },
+        {
+          "responseId": "es:lesson-03:session-26:i02:r2",
+          "text": "grande"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-26:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-26:i02:audio",
+          "transcript": "suave"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-26:i02:r1",
+            "targetText": "suave",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-03:session-26:i02:r2",
+            "targetText": "grande",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-26:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи звучит suave, не grande.",
+              "uk": "У записі звучить suave, не grande."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-26:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — подушка м'яка на дотик",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-26:i03:r1",
+          "text": "Плитки: suave"
+        },
+        {
+          "responseId": "es:lesson-03:session-26:i03:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-26:i03:r3",
+          "text": "almohada"
+        },
+        {
+          "responseId": "es:lesson-03:session-26:i03:r4",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-03:session-26:i03:r5",
+          "text": "suaves."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — подушка м'яка на дотик",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "La almohada es suave.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — подушка мягкая на ощупь",
+          "uk": "Зберіть фразу — подушка м'яка на дотик"
+        },
+        "orderedTokens": [
+          "La",
+          "almohada",
+          "es",
+          "suave"
+        ],
+        "authoredDistractorTokens": [
+          "suaves"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-26:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — подушка м'яка на дотик",
+            "feedbackByLocale": {
+              "ru": "подушка одна.",
+              "uk": "подушка одна."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-26:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — подушка м'яка на дотик",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-26:i04:r1",
+          "text": "suave"
+        },
+        {
+          "responseId": "es:lesson-03:session-26:i04:r2",
+          "text": "suava"
+        },
+        {
+          "responseId": "es:lesson-03:session-26:i04:r3",
+          "text": "suaves"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — подушка м'яка на дотик",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — подушка мягкая на ощупь",
+          "uk": "Вставте слово — подушка м'яка на дотик"
+        },
+        "gappedTargetPhrase": "La almohada es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-26:i04:r1",
+            "text": "suave"
+          },
+          {
+            "responseId": "es:lesson-03:session-26:i04:r2",
+            "text": "suava"
+          },
+          {
+            "responseId": "es:lesson-03:session-26:i04:r3",
+            "text": "suaves"
+          }
+        ],
+        "testedDimension": "Вставте слово — подушка м'яка на дотик",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-26:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — подушка м'яка на дотик",
+            "feedbackByLocale": {
+              "ru": "Suave не меняется по роду.",
+              "uk": "Suave не змінюється за родом."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-26:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — подушка м'яка на дотик",
+            "feedbackByLocale": {
+              "ru": "Подушка одна: suave.",
+              "uk": "Подушка одна: suave."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-26:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — duro",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-26:i05:audio"
+      ],
+      "accessibilityLabel": "Картка слова — duro",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-26:i05:audio",
+          "transcript": "duro"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-26:i05:r1",
+            "targetText": "duro",
+            "meaningByLocale": {
+              "ru": "твёрдый; dura — женская форма. 🔊 *duro*",
+              "uk": "твердий; dura — жіноча форма. 🔊 *duro*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "duro",
+          "definitionByLocale": {
+            "ru": "твёрдый; dura — женская форма. 🔊 *duro*",
+            "uk": "твердий; dura — жіноча форма. 🔊 *duro*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-26:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-26:i06:r1",
+          "text": "duro"
+        },
+        {
+          "responseId": "es:lesson-03:session-26:i06:r2",
+          "text": "suave"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-26:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-26:i06:audio",
+          "transcript": "duro"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-26:i06:r1",
+            "targetText": "duro",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-03:session-26:i06:r2",
+            "targetText": "suave",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-26:i06:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи слово начинается с du: duro.",
+              "uk": "У записі слово починається з du: duro."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-26:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — подушка тверда",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-26:i07:r1",
+          "text": "Плитки: dura"
+        },
+        {
+          "responseId": "es:lesson-03:session-26:i07:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-26:i07:r3",
+          "text": "almohada"
+        },
+        {
+          "responseId": "es:lesson-03:session-26:i07:r4",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-03:session-26:i07:r5",
+          "text": "duro."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — подушка тверда",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "La almohada es dura.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — подушка твёрдая",
+          "uk": "Зберіть фразу — подушка тверда"
+        },
+        "orderedTokens": [
+          "La",
+          "almohada",
+          "es",
+          "dura"
+        ],
+        "authoredDistractorTokens": [
+          "duro"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-26:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — подушка тверда",
+            "feedbackByLocale": {
+              "ru": "almohada женского рода.",
+              "uk": "almohada жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-26:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — подушка тверда",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-26:i08:r1",
+          "text": "dura"
+        },
+        {
+          "responseId": "es:lesson-03:session-26:i08:r2",
+          "text": "duro"
+        },
+        {
+          "responseId": "es:lesson-03:session-26:i08:r3",
+          "text": "duras"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — подушка тверда",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — подушка твёрдая",
+          "uk": "Вставте слово — подушка тверда"
+        },
+        "gappedTargetPhrase": "La almohada es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-26:i08:r1",
+            "text": "dura"
+          },
+          {
+            "responseId": "es:lesson-03:session-26:i08:r2",
+            "text": "duro"
+          },
+          {
+            "responseId": "es:lesson-03:session-26:i08:r3",
+            "text": "duras"
+          }
+        ],
+        "testedDimension": "Вставте слово — подушка тверда",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-26:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — подушка тверда",
+            "feedbackByLocale": {
+              "ru": "Almohada женского рода: dura.",
+              "uk": "Almohada жіночого роду: dura."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-26:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — подушка тверда",
+            "feedbackByLocale": {
+              "ru": "Подушка одна: dura.",
+              "uk": "Подушка одна: dura."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-26:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — ковдра дуже м'яка на дотик",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-26:i09:r1",
+          "text": "Плитки: suave"
+        },
+        {
+          "responseId": "es:lesson-03:session-26:i09:r2",
+          "text": "muy"
+        },
+        {
+          "responseId": "es:lesson-03:session-26:i09:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-26:i09:r4",
+          "text": "manta"
+        },
+        {
+          "responseId": "es:lesson-03:session-26:i09:r5",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-03:session-26:i09:r6",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — ковдра дуже м'яка на дотик",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "La manta es muy suave.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — одеяло очень мягкое на ощупь",
+          "uk": "Зберіть фразу — ковдра дуже м'яка на дотик"
+        },
+        "orderedTokens": [
+          "La",
+          "manta",
+          "es",
+          "muy",
+          "suave"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-26:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — ковдра дуже м'яка на дотик",
+            "feedbackByLocale": {
+              "ru": "manta женского рода.",
+              "uk": "manta жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-26:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-26:i10:r1",
+          "text": "Плитки: dura"
+        },
+        {
+          "responseId": "es:lesson-03:session-26:i10:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-26:i10:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-03:session-26:i10:r4",
+          "text": "almohada"
+        },
+        {
+          "responseId": "es:lesson-03:session-26:i10:r5",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-03:session-26:i10:r6",
+          "text": "duro."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-26:i10:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-26:i10:audio",
+          "transcript": "La almohada no es dura."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "La almohada no es dura.",
+        "orderedTokens": [
+          "La",
+          "almohada",
+          "no",
+          "es",
+          "dura"
+        ],
+        "authoredDistractorTokens": [
+          "duro"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-26:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит dura.",
+              "uk": "звучить dura."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-26:i11",
+      "ordinal": 14,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — подушка не тверда",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-26:i11:r1",
+          "text": "dura"
+        },
+        {
+          "responseId": "es:lesson-03:session-26:i11:r2",
+          "text": "duro"
+        },
+        {
+          "responseId": "es:lesson-03:session-26:i11:r3",
+          "text": "duras"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — подушка не тверда",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — подушка не твёрдая",
+          "uk": "Вставте слово — подушка не тверда"
+        },
+        "gappedTargetPhrase": "La almohada no es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-26:i11:r1",
+            "text": "dura"
+          },
+          {
+            "responseId": "es:lesson-03:session-26:i11:r2",
+            "text": "duro"
+          },
+          {
+            "responseId": "es:lesson-03:session-26:i11:r3",
+            "text": "duras"
+          }
+        ],
+        "testedDimension": "Вставте слово — подушка не тверда",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-26:i11:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — подушка не тверда",
+            "feedbackByLocale": {
+              "ru": "Almohada женского рода: dura.",
+              "uk": "Almohada жіночого роду: dura."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-26:i11:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — подушка не тверда",
+            "feedbackByLocale": {
+              "ru": "Подушка одна: dura.",
+              "uk": "Подушка одна: dura."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-26:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — ковдра дуже м'яка на дотик",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-26:i12:r1",
+          "text": "suave"
+        },
+        {
+          "responseId": "es:lesson-03:session-26:i12:r2",
+          "text": "suava"
+        },
+        {
+          "responseId": "es:lesson-03:session-26:i12:r3",
+          "text": "suaves"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — ковдра дуже м'яка на дотик",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — одеяло очень мягкое на ощупь",
+          "uk": "Вставте слово — ковдра дуже м'яка на дотик"
+        },
+        "gappedTargetPhrase": "La manta es muy ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-26:i12:r1",
+            "text": "suave"
+          },
+          {
+            "responseId": "es:lesson-03:session-26:i12:r2",
+            "text": "suava"
+          },
+          {
+            "responseId": "es:lesson-03:session-26:i12:r3",
+            "text": "suaves"
+          }
+        ],
+        "testedDimension": "Вставте слово — ковдра дуже м'яка на дотик",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-26:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — ковдра дуже м'яка на дотик",
+            "feedbackByLocale": {
+              "ru": "У suave нет отдельной женской формы.",
+              "uk": "У suave немає окремої жіночої форми."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-26:i12:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — ковдра дуже м'яка на дотик",
+            "feedbackByLocale": {
+              "ru": "Одеяло одно: suave.",
+              "uk": "Ковдра одна: suave."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-26:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — подушка м'яка на дотик; назвіть предмет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-26:i13:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — подушка м'яка на дотик; назвіть предмет",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-26:i13:audio",
+          "transcript": "La almohada es suave."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "La almohada es suave.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-26:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — подушка тверда; назвіть предмет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-26:i14:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — подушка тверда; назвіть предмет",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-26:i14:audio",
+          "transcript": "La almohada es dura."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "La almohada es dura.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-26:i15",
+      "ordinal": 18,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — ковдра дуже м'яка на дотик; назвіть предмет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-26:i15:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — ковдра дуже м'яка на дотик; назвіть предмет",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-26:i15:audio",
+          "transcript": "La manta es muy suave."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "La manta es muy suave.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-26:i16",
+      "ordinal": 19,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — подушка не тверда; назвіть предмет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-26:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — подушка не тверда; назвіть предмет",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-26:i16:audio",
+          "transcript": "La almohada no es dura."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "La almohada no es dura.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 16,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "3d23788e49feb4ff9e41d2d18232466ca300a3df2861e313bd4c9d3033a9b98a"
+}

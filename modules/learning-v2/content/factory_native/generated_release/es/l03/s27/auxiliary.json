@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-03:session-27",
+  "entries": [
+    {
+      "interactionId": "es:lesson-03:session-27:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-27:intro1:r2": {
+          "ru": "Формы resistento нет: resistente.",
+          "uk": "Форми resistento немає: resistente."
+        },
+        "es:lesson-03:session-27:intro1:r3": {
+          "ru": "Сумка одна: resistente.",
+          "uk": "Сумка одна: resistente."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-27:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-27:intro2:r2": {
+          "ru": "Не меняйте окончание: resistente.",
+          "uk": "Не змінюйте закінчення: resistente."
+        },
+        "es:lesson-03:session-27:intro2:r3": {
+          "ru": "Сумка одна: es.",
+          "uk": "Сумка одна: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-27:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-27:intro3:r2": {
+          "ru": "Нужна форма множественного числа resistentes.",
+          "uk": "Потрібна форма множини resistentes."
+        },
+        "es:lesson-03:session-27:intro3:r3": {
+          "ru": "Не меняйте -e на -a: resistentes.",
+          "uk": "Не змінюйте -e на -a: resistentes."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "0466e0f5df5284420302f1d1571be2f6351f40b7a3567c9edf47ee23428dac94"
+}

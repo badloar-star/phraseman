@@ -1,0 +1,82 @@
+[
+  {
+    "interactionId": "es:lesson-03:session-26:i01",
+    "correctText": "suave",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-26:i02",
+    "correctText": "suave",
+    "correctResponseId": "es:lesson-03:session-26:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-26:i03",
+    "correctText": "La almohada es suave.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-26:i04",
+    "correctText": "suave",
+    "correctResponseId": "es:lesson-03:session-26:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-26:i05",
+    "correctText": "duro",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-26:i06",
+    "correctText": "duro",
+    "correctResponseId": "es:lesson-03:session-26:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-26:i07",
+    "correctText": "La almohada es dura.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-26:i08",
+    "correctText": "dura",
+    "correctResponseId": "es:lesson-03:session-26:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-26:i09",
+    "correctText": "La manta es muy suave.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-26:i10",
+    "correctText": "La almohada no es dura.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-26:i11",
+    "correctText": "dura",
+    "correctResponseId": "es:lesson-03:session-26:i11:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-26:i12",
+    "correctText": "suave",
+    "correctResponseId": "es:lesson-03:session-26:i12:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-26:i13",
+    "correctText": "La almohada es suave.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-26:i14",
+    "correctText": "La almohada es dura.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-26:i15",
+    "correctText": "La manta es muy suave.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-26:i16",
+    "correctText": "La almohada no es dura.",
+    "correctResponseId": null
+  }
+]

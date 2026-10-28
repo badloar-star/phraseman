@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-03:session-25",
+  "entries": [
+    {
+      "interactionId": "es:lesson-03:session-25:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-25:intro1:r2": {
+          "ru": "Нужна женская форма pesada.",
+          "uk": "Потрібна жіноча форма pesada."
+        },
+        "es:lesson-03:session-25:intro1:r3": {
+          "ru": "Чемодан один: pesada.",
+          "uk": "Валіза одна: pesada."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-25:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-25:intro2:r2": {
+          "ru": "Нужна форма ligera.",
+          "uk": "Потрібна форма ligera."
+        },
+        "es:lesson-03:session-25:intro2:r3": {
+          "ru": "Чемодан один: ligera.",
+          "uk": "Валіза одна: ligera."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-25:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-25:intro3:r2": {
+          "ru": "С bolso нужна форма ligero.",
+          "uk": "З bolso потрібна форма ligero."
+        },
+        "es:lesson-03:session-25:intro3:r3": {
+          "ru": "Сумка одна: ligero.",
+          "uk": "Сумка одна: ligero."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e29188d732cac3c1e68dfb738f7b135ae75f90a69b6aacc3d6406708bd494a11"
+}

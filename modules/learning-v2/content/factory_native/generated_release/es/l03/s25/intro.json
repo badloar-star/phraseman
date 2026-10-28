@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-03:session-25",
+  "learningOutcomeByLocale": {
+    "ru": "описать вес вещи и согласовать pesado или ligero с её названием.",
+    "uk": "описувати вагу речі й узгоджувати pesado або ligero з її назвою."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-03:session-25:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Первый чемодан тяжёлый",
+        "uk": "Перша валіза важка"
+      },
+      "bodyByLocale": {
+        "ru": "Поднимаете пустой чемодан: даже без вещей он тяжёлый. `Pesado` значит «тяжёлый». Скажите `La maleta es pesada` — «Чемодан тяжёлый». Соберите `la maleta` + `es` + `pesada`. Maleta женского рода, поэтому -o меняется на -a. Здесь описываем вес самого чемодана.",
+        "uk": "Піднімаєте порожню валізу: навіть без речей вона важка. `Pesado` означає «важкий». Скажіть `La maleta es pesada` — «Валіза важка». Зберіть `la maleta` + `es` + `pesada`. Maleta жіночого роду, тому -o змінюється на -a. Тут описуємо вагу самої валізи."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-25:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите, что чемодан тяжёлый.",
+          "uk": "Скажіть, що валіза важка."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-25:intro1:r1",
+              "text": "La maleta es pesada."
+            },
+            {
+              "responseId": "es:lesson-03:session-25:intro1:r2",
+              "text": "La maleta es pesado."
+            },
+            {
+              "responseId": "es:lesson-03:session-25:intro1:r3",
+              "text": "La maleta es pesadas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-25:intro1:r1",
+              "text": "La maleta es pesada."
+            },
+            {
+              "responseId": "es:lesson-03:session-25:intro1:r2",
+              "text": "La maleta es pesado."
+            },
+            {
+              "responseId": "es:lesson-03:session-25:intro1:r3",
+              "text": "La maleta es pesadas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что чемодан тяжёлый.",
+          "uk": "Скажіть, що валіза важка."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-03:session-25:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Второй чемодан лёгкий",
+        "uk": "Друга валіза легка"
+      },
+      "bodyByLocale": {
+        "ru": "Пробуете другой пустой чемодан: его легко поднять. `Ligero` значит «лёгкий по весу». Скажите `La maleta es ligera` — «Чемодан лёгкий». Соберите `la maleta` + `es` + `ligera`. С maleta снова нужна женская форма на -a: ligera. Не путайте лёгкий вес с простотой задания — здесь говорим только о весе.",
+        "uk": "Пробуєте іншу порожню валізу: її легко підняти. `Ligero` означає «легкий за вагою». Скажіть `La maleta es ligera` — «Валіза легка». Зберіть `la maleta` + `es` + `ligera`. З maleta знову потрібна жіноча форма на -a: ligera. Не плутайте легку вагу з простотою завдання — тут говоримо лише про вагу."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-25:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите, что чемодан лёгкий.",
+          "uk": "Скажіть, що валіза легка."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-25:intro2:r1",
+              "text": "La maleta es ligera."
+            },
+            {
+              "responseId": "es:lesson-03:session-25:intro2:r2",
+              "text": "La maleta es ligero."
+            },
+            {
+              "responseId": "es:lesson-03:session-25:intro2:r3",
+              "text": "La maleta es ligeras."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-25:intro2:r1",
+              "text": "La maleta es ligera."
+            },
+            {
+              "responseId": "es:lesson-03:session-25:intro2:r2",
+              "text": "La maleta es ligero."
+            },
+            {
+              "responseId": "es:lesson-03:session-25:intro2:r3",
+              "text": "La maleta es ligeras."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что чемодан лёгкий.",
+          "uk": "Скажіть, що валіза легка."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-03:session-25:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Сумка вместо чемодана",
+        "uk": "Сумка замість валізи"
+      },
+      "bodyByLocale": {
+        "ru": "Рядом предлагают лёгкую дорожную сумку — el bolso. Скажите `El bolso es ligero` — «Сумка лёгкая». Соберите `el bolso` + `es` + `ligero`. Испанское bolso мужского рода, поэтому сохраняйте -o. По-русски «сумка лёгкая», но испанская форма согласуется с bolso.",
+        "uk": "Поруч пропонують легку дорожню сумку — el bolso. Скажіть `El bolso es ligero` — «Сумка легка». Зберіть `el bolso` + `es` + `ligero`. Іспанське bolso чоловічого роду, тому зберігайте -o. Українською «сумка легка», але іспанська форма узгоджується з bolso."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-25:intro3:q",
+        "promptByLocale": {
+          "ru": "Опишите лёгкую сумку словом bolso.",
+          "uk": "Опишіть легку сумку словом bolso."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-25:intro3:r1",
+              "text": "El bolso es ligero."
+            },
+            {
+              "responseId": "es:lesson-03:session-25:intro3:r2",
+              "text": "El bolso es ligera."
+            },
+            {
+              "responseId": "es:lesson-03:session-25:intro3:r3",
+              "text": "El bolso es ligeros."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-25:intro3:r1",
+              "text": "El bolso es ligero."
+            },
+            {
+              "responseId": "es:lesson-03:session-25:intro3:r2",
+              "text": "El bolso es ligera."
+            },
+            {
+              "responseId": "es:lesson-03:session-25:intro3:r3",
+              "text": "El bolso es ligeros."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Опишите лёгкую сумку словом bolso.",
+          "uk": "Опишіть легку сумку словом bolso."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "954121520f4580337291dec7ad503fd312c08cfc9907ee5fd37e733eb79e3a82"
+}

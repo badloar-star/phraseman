@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-03:session-27:i01",
+    "correctText": "resistente",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-27:i02",
+    "correctText": "resistente",
+    "correctResponseId": "es:lesson-03:session-27:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-27:i03",
+    "correctText": "El bolso es resistente.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-27:i04",
+    "correctText": "resistente",
+    "correctResponseId": "es:lesson-03:session-27:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-27:i05",
+    "correctText": "La bolsa es resistente.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-27:i06",
+    "correctText": "resistentes",
+    "correctResponseId": "es:lesson-03:session-27:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-27:i07",
+    "correctText": "Las bolsas son resistentes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-27:i08",
+    "correctText": "El bolso no es resistente.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-27:i09",
+    "correctText": "El bolso es resistente.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-27:i10",
+    "correctText": "La bolsa es resistente.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-27:i11",
+    "correctText": "Las bolsas son resistentes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-27:i12",
+    "correctText": "El bolso no es resistente.",
+    "correctResponseId": null
+  }
+]

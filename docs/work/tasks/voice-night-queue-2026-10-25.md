@@ -81,3 +81,5 @@ Governance-ID: TG-8B34EA017BF3 (вернуть варианты с ’s в ба�
 Governance-ID: TG-6EB07DE452C7 (28.10: тест уровня — бессмыслица в подсказках ×9; строки «Пожаловаться»)
 
 Governance-ID: TG-3466FA06E090 (28.10: внести 13 правок заголовков теста уровня в final.ru.md/final.uk.md; откат — git revert коммита; пересборку выпуска запускает Codex)
+
+Governance-ID: TG-3466FA06E090 (28.10: ревизия текстов флага «Пожаловаться» ×9 — правка только чистых файлов ReportPackModal, ReportUserModal, PackMoreMenu, ReportCommentModal + сторож pm107; чужие файлы — предложениями координатору)

@@ -57,8 +57,8 @@ interface Props {
 function reasonsFor(lang: Lang): { id: PackReportReason; label: string }[] {
   return [
     { id: 'offensive', label: triLang(lang, { ru: 'Оскорбления / ненависть', uk: 'Образа / ненависть', en: 'Insults or hate', es: 'Insultos u odio', 'pt-BR': 'Insulto ou ódio', vi: 'Xúc phạm / thù ghét', id: 'Hinaan / kebencian', tr: 'Hakaret / nefret', pl: 'Obraza / nienawiść' }) },
-    { id: 'sexual', label: triLang(lang, { ru: 'Откровенный контент', uk: 'Відвертий контент', en: 'Explicit content', es: 'Contenido sexual', 'pt-BR': 'Conteúdo explícito', vi: 'Nội dung nhạy cảm', id: 'Konten eksplisit', tr: 'Müstehcen içerik', pl: 'Treści dla dorosłych' }) },
-    { id: 'spam', label: triLang(lang, { ru: 'Спам / бессмыслица', uk: 'Спам / нісенітниця', en: 'Spam or nonsense', es: 'Spam', 'pt-BR': 'Spam ou besteira', vi: 'Spam / vô nghĩa', id: 'Spam / tidak bermakna', tr: 'Spam / anlamsız', pl: 'Spam / bezsens' }) },
+    { id: 'sexual', label: triLang(lang, { ru: 'Откровенный контент', uk: 'Відвертий контент', en: 'Explicit content', es: 'Contenido explícito', 'pt-BR': 'Conteúdo explícito', vi: 'Nội dung nhạy cảm', id: 'Konten eksplisit', tr: 'Müstehcen içerik', pl: 'Treści dla dorosłych' }) },
+    { id: 'spam', label: triLang(lang, { ru: 'Спам / бессмыслица', uk: 'Спам / нісенітниця', en: 'Spam or nonsense', es: 'Spam o sin sentido', 'pt-BR': 'Spam ou besteira', vi: 'Spam / vô nghĩa', id: 'Spam / tidak bermakna', tr: 'Spam / anlamsız', pl: 'Spam / bezsens' }) },
     { id: 'copyright', label: triLang(lang, { ru: 'Авторское право', uk: 'Авторське право', en: 'Copyright', es: 'Derechos de autor', 'pt-BR': 'Direitos autorais', vi: 'Bản quyền', id: 'Hak cipta', tr: 'Telif hakkı', pl: 'Prawa autorskie' }) },
     { id: 'wrong_translation', label: triLang(lang, { ru: 'Неправильный перевод', uk: 'Неправильний переклад', en: 'Wrong translation', es: 'Traducción incorrecta', 'pt-BR': 'Tradução errada', vi: 'Dịch sai', id: 'Terjemahan salah', tr: 'Yanlış çeviri', pl: 'Błędne tłumaczenie' }) },
     { id: 'other', label: triLang(lang, { ru: 'Другое', uk: 'Інше', en: 'Other', es: 'Otro', 'pt-BR': 'Outro', vi: 'Khác', id: 'Lainnya', tr: 'Diğer', pl: 'Inne' }) },
@@ -106,7 +106,7 @@ function ReportPackModal({
     DebugLogger.warn(LOG, `тост ошибки: ${reason}`);
     emitAppEvent('action_toast', actionToastTri('error', {
       ru: 'Жалоба не отправилась. Попробуй ещё раз', uk: 'Скаргу не надіслано. Спробуй ще раз', en: "Couldn't send the report. Try again",
-      es: 'No se pudo enviar el reporte. Inténtalo de nuevo', 'pt-BR': 'Não foi possível enviar a denúncia. Tente de novo',
+      es: 'No se pudo enviar la denuncia. Inténtalo de nuevo', 'pt-BR': 'Não foi possível enviar a denúncia. Tente de novo',
       vi: 'Không gửi được báo cáo. Hãy thử lại', id: 'Laporan gagal dikirim. Coba lagi', tr: 'Şikayet gönderilemedi. Tekrar dene',
       pl: 'Nie udało się wysłać zgłoszenia. Spróbuj ponownie',
     }));
@@ -195,7 +195,7 @@ function ReportPackModal({
         <View style={{ maxHeight: sheetContentMaxHeight, minHeight: 0, flexShrink: 1 }}>
           <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 4 }}>
             <Text accessibilityRole="header" maxFontSizeMultiplier={1.15} style={{ color: glass.text, fontSize: 22, fontWeight: '700', flex: 1 }}>
-              {triLang(lang, { uk: 'Поскаржитися на набір', ru: 'Пожаловаться на набор', en: 'Report the pack', es: 'Reportar el pack', 'pt-BR': 'Denunciar o pacote', vi: 'Báo cáo bộ thẻ', id: 'Laporkan pack', tr: 'Paketi şikayet et', pl: 'Zgłoś zestaw' })}
+              {triLang(lang, { uk: 'Поскаржитися на набір', ru: 'Пожаловаться на набор', en: 'Report this pack', es: 'Denunciar el pack', 'pt-BR': 'Denunciar o pacote', vi: 'Báo cáo bộ thẻ', id: 'Laporkan paket', tr: 'Paketi şikayet et', pl: 'Zgłoś zestaw' })}
             </Text>
             <TouchableOpacity
               testID="report-pack-close"
@@ -252,7 +252,7 @@ function ReportPackModal({
               multiline
               maxLength={500}
               accessibilityLabel={triLang(lang, {
-                uk: 'Коментар (необов\'язково)', ru: 'Комментарий (необязательно)', en: 'Comment (optional)', es: 'Comentario (opcional)',
+                uk: 'Коментар (необов’язково)', ru: 'Комментарий (необязательно)', en: 'Comment (optional)', es: 'Comentario (opcional)',
                 'pt-BR': 'Comentário (opcional)', vi: 'Bình luận (không bắt buộc)', id: 'Komentar (opsional)', tr: 'Yorum (isteğe bağlı)', pl: 'Komentarz (opcjonalnie)',
               })}
               placeholder={triLang(lang, {

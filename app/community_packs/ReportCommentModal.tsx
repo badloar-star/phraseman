@@ -117,7 +117,7 @@ function ReportCommentModal({ visible, packId, packTitle, comment, lang, onClose
         hapticError();
         emitAppEvent('action_toast', actionToastTri('error', {
   ru: 'Жалоба не отправилась. Попробуй ещё раз', uk: 'Скаргу не надіслано. Спробуй ще раз', en: "Couldn't send the report. Try again",
-  es: 'No se pudo enviar el reporte. Inténtalo de nuevo', 'pt-BR': 'Não foi possível enviar a denúncia. Tente de novo',
+  es: 'No se pudo enviar la denuncia. Inténtalo de nuevo', 'pt-BR': 'Não foi possível enviar a denúncia. Tente de novo',
   vi: 'Không gửi được báo cáo. Hãy thử lại', id: 'Laporan gagal dikirim. Coba lagi', tr: 'Şikayet gönderilemedi. Tekrar dene',
   pl: 'Nie udało się wysłać zgłoszenia. Spróbuj ponownie',
 }));
@@ -128,7 +128,7 @@ function ReportCommentModal({ visible, packId, packTitle, comment, lang, onClose
       hapticError();
       emitAppEvent('action_toast', actionToastTri('error', {
   ru: 'Жалоба не отправилась. Попробуй ещё раз', uk: 'Скаргу не надіслано. Спробуй ще раз', en: "Couldn't send the report. Try again",
-  es: 'No se pudo enviar el reporte. Inténtalo de nuevo', 'pt-BR': 'Não foi possível enviar a denúncia. Tente de novo',
+  es: 'No se pudo enviar la denuncia. Inténtalo de nuevo', 'pt-BR': 'Não foi possível enviar a denúncia. Tente de novo',
   vi: 'Không gửi được báo cáo. Hãy thử lại', id: 'Laporan gagal dikirim. Coba lagi', tr: 'Şikayet gönderilemedi. Tekrar dene',
   pl: 'Nie udało się wysłać zgłoszenia. Spróbuj ponownie',
 }));
@@ -249,9 +249,9 @@ function ReportCommentModal({ visible, packId, packTitle, comment, lang, onClose
                   onChangeText={setNote}
                   multiline
                   maxLength={500}
-                  placeholder={triLang(lang, { ru: 'Комментарий (необязательно)…', uk: 'Коментар (необов\'язково)…', en: 'Comment (optional)…', es: 'Comentario (opcional)…', 'pt-BR': 'Comentário (opcional)…', vi: 'Bình luận (không bắt buộc)…', id: 'Komentar (opsional)…', tr: 'Yorum (isteğe bağlı)…', pl: 'Komentarz (opcjonalnie)…' })}
+                  placeholder={triLang(lang, { ru: 'Комментарий (необязательно)…', uk: 'Коментар (необов’язково)…', en: 'Comment (optional)…', es: 'Comentario (opcional)…', 'pt-BR': 'Comentário (opcional)…', vi: 'Bình luận (không bắt buộc)…', id: 'Komentar (opsional)…', tr: 'Yorum (isteğe bağlı)…', pl: 'Komentarz (opcjonalnie)…' })}
                   placeholderTextColor={glass.mutedText}
-                  accessibilityLabel={triLang(lang, { ru: 'Комментарий к жалобе', uk: 'Коментар до скарги', en: 'Report comment', es: 'Comentario de la denuncia', 'pt-BR': 'Comentário da denúncia', vi: 'Bình luận báo cáo', id: 'Komentar laporan', tr: 'Şikayet yorumu', pl: 'Komentarz zgłoszenia' })}
+                  accessibilityLabel={triLang(lang, { ru: 'Комментарий к жалобе', uk: 'Коментар до скарги', en: 'Comment for the report', es: 'Comentario de la denuncia', 'pt-BR': 'Comentário da denúncia', vi: 'Ghi chú cho báo cáo', id: 'Catatan untuk laporan', tr: 'Şikayet notu', pl: 'Komentarz zgłoszenia' })}
                   style={{ color: glass.text, backgroundColor: glass.opaqueControl, borderRadius: 16, paddingHorizontal: 16, paddingVertical: 14, fontSize: f.body, minHeight: 64, marginTop: 4, textAlignVertical: 'top' }}
                 />
               </ScrollView>

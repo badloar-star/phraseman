@@ -9,7 +9,7 @@ test('PM-107: report control is wired, labelled and submits', () => {
   assert.match(sheet, /onPress=\{\(\) => \{[^}]*setReportFor\(c\)/s);
   assert.match(sheet, /Ionicons name="flag-outline"/);
   assert.match(modal, /submitPackCommentReport\(/);
-  assert.match(modal, /accessibilityLabel=\{triLang\(lang, \{[^}]*Report comment/s);
+  assert.match(modal, /accessibilityLabel=\{triLang\(lang, \{[^}]*Comment for the report/s);
   assert.match(modal, /onPress=\{handleSend\}/);
 });
 

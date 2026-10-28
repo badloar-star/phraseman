@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-06:session-42",
+  "learningOutcomeByLocale": {
+    "ru": "сказать, что воды много, с помощью mucha.",
+    "uk": "сказати, що води багато, за допомогою mucha."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-06:session-42:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Запас для встречи",
+        "uk": "Запас для зустрічі"
+      },
+      "bodyByLocale": {
+        "ru": "Вы посмотрели на приготовленную воду и сообщаете помощнику `Hay mucha agua` — «Есть много воды». Соберите `Hay` + `mucha` + `agua`. Mucho означает «много», а перед agua нужна форма mucha: agua женского рода. Слово количества ставим перед водой. Не называем число бутылок — говорим, что воды много.",
+        "uk": "Ви подивилися на підготовлену воду й повідомляєте помічнику `Hay mucha agua` — «Є багато води». Складіть `Hay` + `mucha` + `agua`. Mucho означає «багато», а перед agua потрібна форма mucha: agua жіночого роду. Слово кількості ставимо перед водою. Не називаємо число пляшок — кажемо, що води багато."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-42:intro1:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Есть много воды». Начните с Hay, количество поставьте перед agua.",
+          "uk": "Повідомте «Є багато води». Почніть з Hay, кількість поставте перед agua."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-42:intro1:r1",
+              "text": "Hay mucha agua."
+            },
+            {
+              "responseId": "es:lesson-06:session-42:intro1:r2",
+              "text": "Hay mucho agua."
+            },
+            {
+              "responseId": "es:lesson-06:session-42:intro1:r3",
+              "text": "Hay muchas agua."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-42:intro1:r1",
+              "text": "Hay mucha agua."
+            },
+            {
+              "responseId": "es:lesson-06:session-42:intro1:r2",
+              "text": "Hay mucho agua."
+            },
+            {
+              "responseId": "es:lesson-06:session-42:intro1:r3",
+              "text": "Hay muchas agua."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Есть много воды». Начните с Hay, количество поставьте перед agua.",
+          "uk": "Повідомте «Є багато води». Почніть з Hay, кількість поставте перед agua."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-06:session-42:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Показать запас рядом",
+        "uk": "Показати запас поруч"
+      },
+      "bodyByLocale": {
+        "ru": "Друг собирается идти за водой, а вы показываете на уже приготовленный запас рядом. Скажите `Hay mucha agua aquí` — «Здесь много воды». Соберите `Hay mucha agua` + `aquí`. Добавляем место после сообщения о количестве. Сначала сообщаем, сколько воды, потом где: лишний поход можно отменить одной фразой.",
+        "uk": "Друг збирається йти по воду, а ви показуєте на вже підготовлений запас поруч. Скажіть `Hay mucha agua aquí` — «Тут багато води». Складіть `Hay mucha agua` + `aquí`. Додаємо місце після повідомлення про кількість. Спочатку повідомляємо, скільки води, потім де: зайвий похід можна скасувати однією фразою."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-42:intro2:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Здесь много воды». Начните с Hay, количество поставьте перед agua, место — в конце.",
+          "uk": "Повідомте «Тут багато води». Почніть з Hay, кількість поставте перед agua, місце — у кінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-42:intro2:r1",
+              "text": "Hay mucha agua aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-42:intro2:r2",
+              "text": "Hay mucho agua aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-42:intro2:r3",
+              "text": "Hay mucha agua allí."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-42:intro2:r1",
+              "text": "Hay mucha agua aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-42:intro2:r2",
+              "text": "Hay mucho agua aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-42:intro2:r3",
+              "text": "Hay mucha agua allí."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Здесь много воды». Начните с Hay, количество поставьте перед agua, место — в конце.",
+          "uk": "Повідомте «Тут багато води». Почніть з Hay, кількість поставте перед agua, місце — у кінці."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-06:session-42:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Уточнить количество",
+        "uk": "Уточнити кількість"
+      },
+      "bodyByLocale": {
+        "ru": "Перед другой встречей вы ещё не видели запас воды. Спросите помощника `¿Hay mucha agua?` — «Много воды?» Соберите `¿Hay` + `mucha agua?`. Вопрос не меняет форму mucha. Мы уточняем количество, а не только наличие воды.",
+        "uk": "Перед іншою зустріччю ви ще не бачили запас води. Запитайте помічника `¿Hay mucha agua?` — «Багато води?» Складіть `¿Hay` + `mucha agua?`. Запитання не змінює форму mucha. Ми уточнюємо кількість, а не лише наявність води."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-42:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите «Много воды?». Начните с ¿Hay, количество поставьте перед agua.",
+          "uk": "Запитайте «Багато води?». Почніть з ¿Hay, кількість поставте перед agua."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-42:intro3:r1",
+              "text": "¿Hay mucha agua?"
+            },
+            {
+              "responseId": "es:lesson-06:session-42:intro3:r2",
+              "text": "¿Hay mucho agua?"
+            },
+            {
+              "responseId": "es:lesson-06:session-42:intro3:r3",
+              "text": "¿Hay agua?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-42:intro3:r1",
+              "text": "¿Hay mucha agua?"
+            },
+            {
+              "responseId": "es:lesson-06:session-42:intro3:r2",
+              "text": "¿Hay mucho agua?"
+            },
+            {
+              "responseId": "es:lesson-06:session-42:intro3:r3",
+              "text": "¿Hay agua?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «Много воды?». Начните с ¿Hay, количество поставьте перед agua.",
+          "uk": "Запитайте «Багато води?». Почніть з ¿Hay, кількість поставте перед agua."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "24c31adf8ad2834ab32d055df2af334800cc3a012e886809288f8ce610b94c61"
+}

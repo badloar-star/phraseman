@@ -1,0 +1,673 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-06:session-44",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-06:session-44:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-44:i01:r1",
+          "text": "muchas"
+        },
+        {
+          "responseId": "es:lesson-06:session-44:i01:r2",
+          "text": "muchos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-44:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-44:i01:audio",
+          "transcript": "muchas"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-06:session-44:i01:r1",
+            "targetText": "muchas",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-06:session-44:i01:r2",
+            "targetText": "muchos",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-44:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит muchas, с as в конце.",
+              "uk": "Звучить muchas, з as у кінці."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-44:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — есть много стульев",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-44:i02:r1",
+          "text": "muchas"
+        },
+        {
+          "responseId": "es:lesson-06:session-44:i02:r2",
+          "text": "muchos"
+        },
+        {
+          "responseId": "es:lesson-06:session-44:i02:r3",
+          "text": "mucha"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — есть много стульев",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — есть много стульев",
+          "uk": "Вставте слово — є багато стільців"
+        },
+        "gappedTargetPhrase": "Hay ___ sillas.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-44:i02:r1",
+            "text": "muchas"
+          },
+          {
+            "responseId": "es:lesson-06:session-44:i02:r2",
+            "text": "muchos"
+          },
+          {
+            "responseId": "es:lesson-06:session-44:i02:r3",
+            "text": "mucha"
+          }
+        ],
+        "testedDimension": "Вставьте слово — есть много стульев",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-44:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — есть много стульев",
+            "feedbackByLocale": {
+              "ru": "Sillas женского рода: muchas.",
+              "uk": "Sillas жіночого роду: muchas."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-44:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — есть много стульев",
+            "feedbackByLocale": {
+              "ru": "Стульев несколько: muchas.",
+              "uk": "Стільців кілька: muchas."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-44:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — есть много стульев; начните с Hay, количество поставьте перед sillas",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-44:i03:r1",
+          "text": "Плитки: sillas"
+        },
+        {
+          "responseId": "es:lesson-06:session-44:i03:r2",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-44:i03:r3",
+          "text": "muchas"
+        },
+        {
+          "responseId": "es:lesson-06:session-44:i03:r4",
+          "text": "muchos."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — есть много стульев; начните с Hay, количество поставьте перед sillas",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Hay muchas sillas.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — есть много стульев; начните с Hay, количество поставьте перед sillas",
+          "uk": "Зберіть фразу — є багато стільців; почніть з Hay, кількість поставте перед sillas"
+        },
+        "orderedTokens": [
+          "Hay",
+          "muchas",
+          "sillas"
+        ],
+        "authoredDistractorTokens": [
+          "muchos"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-44:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — есть много стульев; начните с Hay, количество поставьте перед sillas",
+            "feedbackByLocale": {
+              "ru": "sillas женского рода.",
+              "uk": "sillas жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-44:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — в комнате много стульев",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-44:i04:r1",
+          "text": "sillas"
+        },
+        {
+          "responseId": "es:lesson-06:session-44:i04:r2",
+          "text": "silla"
+        },
+        {
+          "responseId": "es:lesson-06:session-44:i04:r3",
+          "text": "libros"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — в комнате много стульев",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — в комнате много стульев",
+          "uk": "Вставте слово — у кімнаті багато стільців"
+        },
+        "gappedTargetPhrase": "Hay muchas ___ en la habitación.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-44:i04:r1",
+            "text": "sillas"
+          },
+          {
+            "responseId": "es:lesson-06:session-44:i04:r2",
+            "text": "silla"
+          },
+          {
+            "responseId": "es:lesson-06:session-44:i04:r3",
+            "text": "libros"
+          }
+        ],
+        "testedDimension": "Вставьте слово — в комнате много стульев",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-44:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — в комнате много стульев",
+            "feedbackByLocale": {
+              "ru": "Стульев несколько: sillas.",
+              "uk": "Стільців кілька: sillas."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-44:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — в комнате много стульев",
+            "feedbackByLocale": {
+              "ru": "Нужны стулья — sillas, а не книги.",
+              "uk": "Потрібні стільці — sillas, а не книжки."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-44:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — в комнате много стульев; начните с Hay, количество поставьте перед sillas, место — в конце",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-44:i05:r1",
+          "text": "Плитки: habitación"
+        },
+        {
+          "responseId": "es:lesson-06:session-44:i05:r2",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-44:i05:r3",
+          "text": "muchas"
+        },
+        {
+          "responseId": "es:lesson-06:session-44:i05:r4",
+          "text": "sillas"
+        },
+        {
+          "responseId": "es:lesson-06:session-44:i05:r5",
+          "text": "en"
+        },
+        {
+          "responseId": "es:lesson-06:session-44:i05:r6",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-06:session-44:i05:r7",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — в комнате много стульев; начните с Hay, количество поставьте перед sillas, место — в конце",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Hay muchas sillas en la habitación.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — в комнате много стульев; начните с Hay, количество поставьте перед sillas, место — в конце",
+          "uk": "Зберіть фразу — у кімнаті багато стільців; почніть з Hay, кількість поставте перед sillas, місце — у кінці"
+        },
+        "orderedTokens": [
+          "Hay",
+          "muchas",
+          "sillas",
+          "en",
+          "la",
+          "habitación"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-44:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — в комнате много стульев; начните с Hay, количество поставьте перед sillas, место — в конце",
+            "feedbackByLocale": {
+              "ru": "habitación женского рода.",
+              "uk": "habitación жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-44:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — много стульев?; начните с ¿Hay, количество поставьте перед sillas",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-44:i06:r1",
+          "text": "Плитки: sillas?"
+        },
+        {
+          "responseId": "es:lesson-06:session-44:i06:r2",
+          "text": "¿Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-44:i06:r3",
+          "text": "muchas"
+        },
+        {
+          "responseId": "es:lesson-06:session-44:i06:r4",
+          "text": "muchos."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — много стульев?; начните с ¿Hay, количество поставьте перед sillas",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Hay muchas sillas?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — много стульев?; начните с ¿Hay, количество поставьте перед sillas",
+          "uk": "Зберіть фразу — багато стільців?; почніть з ¿Hay, кількість поставте перед sillas"
+        },
+        "orderedTokens": [
+          "¿Hay",
+          "muchas",
+          "sillas"
+        ],
+        "authoredDistractorTokens": [
+          "muchos"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-44:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — много стульев?; начните с ¿Hay, количество поставьте перед sillas",
+            "feedbackByLocale": {
+              "ru": "с sillas нужна muchas.",
+              "uk": "із sillas потрібна muchas."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-44:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-44:i07:r1",
+          "text": "Плитки: Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-44:i07:r2",
+          "text": "muchas"
+        },
+        {
+          "responseId": "es:lesson-06:session-44:i07:r3",
+          "text": "sillas"
+        },
+        {
+          "responseId": "es:lesson-06:session-44:i07:r4",
+          "text": "muchos."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-44:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-44:i07:audio",
+          "transcript": "Hay muchas sillas."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Hay muchas sillas.",
+        "orderedTokens": [
+          "Hay",
+          "muchas",
+          "sillas"
+        ],
+        "authoredDistractorTokens": [
+          "muchos"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-44:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит muchas.",
+              "uk": "звучить muchas."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-44:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — в комнате много стульев",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-44:i08:r1",
+          "text": "en"
+        },
+        {
+          "responseId": "es:lesson-06:session-44:i08:r2",
+          "text": "de"
+        },
+        {
+          "responseId": "es:lesson-06:session-44:i08:r3",
+          "text": "una"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — в комнате много стульев",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — в комнате много стульев",
+          "uk": "Вставте слово — у кімнаті багато стільців"
+        },
+        "gappedTargetPhrase": "Hay muchas sillas ___ la habitación.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-44:i08:r1",
+            "text": "en"
+          },
+          {
+            "responseId": "es:lesson-06:session-44:i08:r2",
+            "text": "de"
+          },
+          {
+            "responseId": "es:lesson-06:session-44:i08:r3",
+            "text": "una"
+          }
+        ],
+        "testedDimension": "Вставьте слово — в комнате много стульев",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-44:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — в комнате много стульев",
+            "feedbackByLocale": {
+              "ru": "Для места нужно en.",
+              "uk": "Для місця потрібно en."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-44:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — в комнате много стульев",
+            "feedbackByLocale": {
+              "ru": "Перед местом нужно en.",
+              "uk": "Перед місцем потрібно en."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-44:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — есть много стульев; начните с Hay, количество поставьте перед sillas",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-44:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — есть много стульев; начните с Hay, количество поставьте перед sillas",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-44:i09:audio",
+          "transcript": "Hay muchas sillas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay muchas sillas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-44:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — в комнате много стульев; начните с Hay, количество поставьте перед sillas, место — в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-44:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — в комнате много стульев; начните с Hay, количество поставьте перед sillas, место — в конце",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-44:i10:audio",
+          "transcript": "Hay muchas sillas en la habitación."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay muchas sillas en la habitación.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-44:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — много стульев?; начните с ¿Hay, количество поставьте перед sillas",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-44:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — много стульев?; начните с ¿Hay, количество поставьте перед sillas",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-44:i11:audio",
+          "transcript": "¿Hay muchas sillas?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Hay muchas sillas?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-44:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — показываете на стулья рядом: «Здесь много стульев»; начните с Hay, количество поставьте перед sillas, место — в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-44:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — показываете на стулья рядом: «Здесь много стульев»; начните с Hay, количество поставьте перед sillas, место — в конце",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-44:i12:audio",
+          "transcript": "Hay muchas sillas aquí."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay muchas sillas aquí.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "f5cb853a0fcb5ad5a781161ba36eceb13389ad34141ec59788fd8904a112828e"
+}

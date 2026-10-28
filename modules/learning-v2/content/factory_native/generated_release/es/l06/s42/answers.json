@@ -1,0 +1,67 @@
+[
+  {
+    "interactionId": "es:lesson-06:session-42:i01",
+    "correctText": "mucho",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-42:i02",
+    "correctText": "mucha",
+    "correctResponseId": "es:lesson-06:session-42:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-42:i03",
+    "correctText": "mucha",
+    "correctResponseId": "es:lesson-06:session-42:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-42:i04",
+    "correctText": "Hay mucha agua.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-42:i05",
+    "correctText": "aquí",
+    "correctResponseId": "es:lesson-06:session-42:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-42:i06",
+    "correctText": "Hay mucha agua aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-42:i07",
+    "correctText": "¿Hay mucha agua?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-42:i08",
+    "correctText": "Hay mucha agua aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-42:i09",
+    "correctText": "mucha",
+    "correctResponseId": "es:lesson-06:session-42:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-42:i10",
+    "correctText": "Hay mucha agua.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-42:i11",
+    "correctText": "Hay mucha agua aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-42:i12",
+    "correctText": "¿Hay mucha agua?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-42:i13",
+    "correctText": "Hay mucha agua allí.",
+    "correctResponseId": null
+  }
+]

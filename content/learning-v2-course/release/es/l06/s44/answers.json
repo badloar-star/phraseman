@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-06:session-44:i01",
+    "correctText": "muchas",
+    "correctResponseId": "es:lesson-06:session-44:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-44:i02",
+    "correctText": "muchas",
+    "correctResponseId": "es:lesson-06:session-44:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-44:i03",
+    "correctText": "Hay muchas sillas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-44:i04",
+    "correctText": "sillas",
+    "correctResponseId": "es:lesson-06:session-44:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-44:i05",
+    "correctText": "Hay muchas sillas en la habitación.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-44:i06",
+    "correctText": "¿Hay muchas sillas?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-44:i07",
+    "correctText": "Hay muchas sillas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-44:i08",
+    "correctText": "en",
+    "correctResponseId": "es:lesson-06:session-44:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-44:i09",
+    "correctText": "Hay muchas sillas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-44:i10",
+    "correctText": "Hay muchas sillas en la habitación.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-44:i11",
+    "correctText": "¿Hay muchas sillas?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-44:i12",
+    "correctText": "Hay muchas sillas aquí.",
+    "correctResponseId": null
+  }
+]

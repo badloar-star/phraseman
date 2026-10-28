@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-06:session-44",
+  "entries": [
+    {
+      "interactionId": "es:lesson-06:session-44:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-44:intro1:r2": {
+          "ru": "Sillas женского рода: muchas.",
+          "uk": "Sillas жіночого роду: muchas."
+        },
+        "es:lesson-06:session-44:intro1:r3": {
+          "ru": "Стульев несколько: muchas.",
+          "uk": "Стільців кілька: muchas."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-44:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-44:intro2:r2": {
+          "ru": "С sillas нужна форма muchas.",
+          "uk": "Із sillas потрібна форма muchas."
+        },
+        "es:lesson-06:session-44:intro2:r3": {
+          "ru": "Перед местом нужно en.",
+          "uk": "Перед місцем потрібно en."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-44:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-44:intro3:r2": {
+          "ru": "Sillas женского рода: muchas.",
+          "uk": "Sillas жіночого роду: muchas."
+        },
+        "es:lesson-06:session-44:intro3:r3": {
+          "ru": "После muchas нужно sillas.",
+          "uk": "Після muchas потрібно sillas."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5aaebf0f2bd28071c228939e8bd96f4539baea165442c9e44a5bb6c17ac1930a"
+}

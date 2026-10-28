@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-06:session-43",
+  "learningOutcomeByLocale": {
+    "ru": "использовать muchos перед несколькими предметами мужского рода.",
+    "uk": "використовувати muchos перед кількома предметами чоловічого роду."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-06:session-43:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Книг хватает",
+        "uk": "Книжок вистачає"
+      },
+      "bodyByLocale": {
+        "ru": "Вы увидели множество книг для посетителей. Скажите `Hay muchos libros` — «Есть много книг». Соберите `Hay` + `muchos` + `libros`. Libro мужского рода, книг несколько, поэтому форма muchos с os. У libros тоже есть s. Вместо точного числа сообщаем, что книг много; пересчитывать всю полку ради этой фразы не нужно.",
+        "uk": "Ви побачили безліч книжок для відвідувачів. Скажіть `Hay muchos libros` — «Є багато книжок». Складіть `Hay` + `muchos` + `libros`. Libro чоловічого роду, книжок кілька, тому форма muchos з os. У libros теж є s. Замість точного числа повідомляємо, що книжок багато; перераховувати всю полицю заради цієї фрази не потрібно."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-43:intro1:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Есть много книг». Начните с Hay, количество поставьте перед libros.",
+          "uk": "Повідомте «Є багато книжок». Почніть з Hay, кількість поставте перед libros."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-43:intro1:r1",
+              "text": "Hay muchos libros."
+            },
+            {
+              "responseId": "es:lesson-06:session-43:intro1:r2",
+              "text": "Hay mucho libros."
+            },
+            {
+              "responseId": "es:lesson-06:session-43:intro1:r3",
+              "text": "Hay muchas libros."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-43:intro1:r1",
+              "text": "Hay muchos libros."
+            },
+            {
+              "responseId": "es:lesson-06:session-43:intro1:r2",
+              "text": "Hay mucho libros."
+            },
+            {
+              "responseId": "es:lesson-06:session-43:intro1:r3",
+              "text": "Hay muchas libros."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Есть много книг». Начните с Hay, количество поставьте перед libros.",
+          "uk": "Повідомте «Є багато книжок». Почніть з Hay, кількість поставте перед libros."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-06:session-43:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Добавить место рядом",
+        "uk": "Додати місце поруч"
+      },
+      "bodyByLocale": {
+        "ru": "Спутник не заметил книги рядом с вами. Сообщите `Hay muchos libros aquí` — «Здесь много книг». Соберите `Hay muchos libros` + `aquí`. Сохраняем muchos libros целиком и добавляем место. Hay не меняется из-за количества книг.",
+        "uk": "Супутник не помітив книжки поруч із вами. Повідомте `Hay muchos libros aquí` — «Тут багато книжок». Складіть `Hay muchos libros` + `aquí`. Зберігаємо muchos libros цілком і додаємо місце. Hay не змінюється через кількість книжок."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-43:intro2:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Здесь много книг». Начните с Hay, количество поставьте перед libros, место — в конце.",
+          "uk": "Повідомте «Тут багато книжок». Почніть з Hay, кількість поставте перед libros, місце — у кінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-43:intro2:r1",
+              "text": "Hay muchos libros aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-43:intro2:r2",
+              "text": "Hay mucho libros aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-43:intro2:r3",
+              "text": "Hay muchos libro aquí."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-43:intro2:r1",
+              "text": "Hay muchos libros aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-43:intro2:r2",
+              "text": "Hay mucho libros aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-43:intro2:r3",
+              "text": "Hay muchos libro aquí."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Здесь много книг». Начните с Hay, количество поставьте перед libros, место — в конце.",
+          "uk": "Повідомте «Тут багато книжок». Почніть з Hay, кількість поставте перед libros, місце — у кінці."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-06:session-43:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Назвать комнату",
+        "uk": "Назвати кімнату"
+      },
+      "bodyByLocale": {
+        "ru": "Друг по телефону интересуется обстановкой комнаты для чтения. Скажите `Hay muchos libros en la habitación` — «В комнате много книг». Соберите `Hay muchos libros` + `en la habitación`. Сначала количество и предметы, потом место. La habitación относится к одной комнате и не меняется из-за множества книг.",
+        "uk": "Друг телефоном цікавиться обстановкою кімнати для читання. Скажіть `Hay muchos libros en la habitación` — «У кімнаті багато книжок». Складіть `Hay muchos libros` + `en la habitación`. Спочатку кількість і предмети, потім місце. La habitación стосується однієї кімнати й не змінюється через безліч книжок."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-43:intro3:q",
+        "promptByLocale": {
+          "ru": "Сообщите «В комнате много книг». Начните с Hay, количество поставьте перед libros, место — в конце.",
+          "uk": "Повідомте «У кімнаті багато книжок». Почніть з Hay, кількість поставте перед libros, місце — у кінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-43:intro3:r1",
+              "text": "Hay muchos libros en la habitación."
+            },
+            {
+              "responseId": "es:lesson-06:session-43:intro3:r2",
+              "text": "Hay muchas libros en la habitación."
+            },
+            {
+              "responseId": "es:lesson-06:session-43:intro3:r3",
+              "text": "Hay muchos libros la habitación."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-43:intro3:r1",
+              "text": "Hay muchos libros en la habitación."
+            },
+            {
+              "responseId": "es:lesson-06:session-43:intro3:r2",
+              "text": "Hay muchas libros en la habitación."
+            },
+            {
+              "responseId": "es:lesson-06:session-43:intro3:r3",
+              "text": "Hay muchos libros la habitación."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «В комнате много книг». Начните с Hay, количество поставьте перед libros, место — в конце.",
+          "uk": "Повідомте «У кімнаті багато книжок». Почніть з Hay, кількість поставте перед libros, місце — у кінці."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b129900fea680021359f6d9038f548c48cbf35c86ac803de9100a7336dabf088"
+}

@@ -2254,4 +2254,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"говорить о наличии воды без un или una.","uk":"говорити про наявність води без un чи una."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 6","uk":"Іспанська · Урок 6"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 6, sessionOrdinal: 42,
+    sourceFingerprint: "3a64fe8e5de05e7505aa805b44818af25095adfb4ad859bb861bd3bba60a0c54",
+    newWordCount: 1,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"сказать, что воды много, с помощью mucha.","uk":"сказати, що води багато, за допомогою mucha."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 6","uk":"Іспанська · Урок 6"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 6, sessionOrdinal: 43,
+    sourceFingerprint: "7d9dc94396914636d57e6bb6db4f001218e29041f9c29d100eade2c55ecc9f11",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"использовать muchos перед несколькими предметами мужского рода.","uk":"використовувати muchos перед кількома предметами чоловічого роду."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 6","uk":"Іспанська · Урок 6"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 6, sessionOrdinal: 44,
+    sourceFingerprint: "cbb0e671af6ed18730a80980146b3c2c83561aafb6c8ffdd7cd58f605f329f62",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"использовать muchas перед несколькими предметами женского рода.","uk":"використовувати muchas перед кількома предметами жіночого роду."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 6","uk":"Іспанська · Урок 6"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 6, sessionOrdinal: 45,
+    sourceFingerprint: "56a7315399f18366de716e6f98bc37f209dd877aa379a2e18799150b58a29f36",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"сказать «мало воды» с помощью poca.","uk":"сказати «мало води» за допомогою poca."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 6","uk":"Іспанська · Урок 6"}),
+  }),
 ]);

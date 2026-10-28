@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-06:session-43",
+  "entries": [
+    {
+      "interactionId": "es:lesson-06:session-43:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-43:intro1:r2": {
+          "ru": "Книг несколько: muchos.",
+          "uk": "Книжок кілька: muchos."
+        },
+        "es:lesson-06:session-43:intro1:r3": {
+          "ru": "Libros мужского рода: muchos.",
+          "uk": "Libros чоловічого роду: muchos."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-43:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-43:intro2:r2": {
+          "ru": "Для нескольких libros нужна форма muchos.",
+          "uk": "Для кількох libros потрібна форма muchos."
+        },
+        "es:lesson-06:session-43:intro2:r3": {
+          "ru": "После muchos нужно libros.",
+          "uk": "Після muchos потрібно libros."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-43:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-43:intro3:r2": {
+          "ru": "Libros мужского рода: muchos.",
+          "uk": "Libros чоловічого роду: muchos."
+        },
+        "es:lesson-06:session-43:intro3:r3": {
+          "ru": "Перед местом нужно en.",
+          "uk": "Перед місцем потрібно en."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "88d1c2597a658116bfdaa0f0ad163a3558e9215a00ac00c27bafe6aac84e937e"
+}

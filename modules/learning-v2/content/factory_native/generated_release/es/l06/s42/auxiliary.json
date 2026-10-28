@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-06:session-42",
+  "entries": [
+    {
+      "interactionId": "es:lesson-06:session-42:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-42:intro1:r2": {
+          "ru": "Agua женского рода: mucha.",
+          "uk": "Agua жіночого роду: mucha."
+        },
+        "es:lesson-06:session-42:intro1:r3": {
+          "ru": "Здесь вода не во множественном числе: mucha.",
+          "uk": "Тут вода не в множині: mucha."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-42:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-42:intro2:r2": {
+          "ru": "Перед agua нужно mucha.",
+          "uk": "Перед agua потрібно mucha."
+        },
+        "es:lesson-06:session-42:intro2:r3": {
+          "ru": "Запас рядом: aquí.",
+          "uk": "Запас поруч: aquí."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-42:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-42:intro3:r2": {
+          "ru": "С agua нужна mucha.",
+          "uk": "Із agua потрібна mucha."
+        },
+        "es:lesson-06:session-42:intro3:r3": {
+          "ru": "Здесь спрашиваем не только о наличии, но и о большом количестве: mucha.",
+          "uk": "Тут запитуємо не лише про наявність, а й про велику кількість: mucha."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "1be2fdcf9d571c8816fa3a8a15ef035de7eca0114f9ca18b814dcb484c62c92d"
+}

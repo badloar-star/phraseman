@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-06:session-45",
+  "learningOutcomeByLocale": {
+    "ru": "сказать «мало воды» с помощью poca.",
+    "uk": "сказати «мало води» за допомогою poca."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-06:session-45:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Осталось мало",
+        "uk": "Залишилося мало"
+      },
+      "bodyByLocale": {
+        "ru": "Перед прогулкой вы посмотрели на запас воды: её мало. Сообщите `Hay poca agua` — «Мало воды». Соберите `Hay` + `poca` + `agua`. Знакомое poco перед agua принимает форму poca, потому что agua женского рода. Poca подчёркивает небольшое количество; вода есть, но её мало. Это не то же самое, что «воды нет».",
+        "uk": "Перед прогулянкою ви подивилися на запас води: її мало. Повідомте `Hay poca agua` — «Мало води». Складіть `Hay` + `poca` + `agua`. Знайоме poco перед agua набуває форми poca, тому що agua жіночого роду. Poca підкреслює невелику кількість; вода є, але її мало. Це не те саме, що «води немає»."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-45:intro1:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Мало воды». Начните с Hay, количество поставьте перед agua.",
+          "uk": "Повідомте «Мало води». Почніть з Hay, кількість поставте перед agua."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-45:intro1:r1",
+              "text": "Hay poca agua."
+            },
+            {
+              "responseId": "es:lesson-06:session-45:intro1:r2",
+              "text": "Hay poco agua."
+            },
+            {
+              "responseId": "es:lesson-06:session-45:intro1:r3",
+              "text": "No hay agua."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-45:intro1:r1",
+              "text": "Hay poca agua."
+            },
+            {
+              "responseId": "es:lesson-06:session-45:intro1:r2",
+              "text": "Hay poco agua."
+            },
+            {
+              "responseId": "es:lesson-06:session-45:intro1:r3",
+              "text": "No hay agua."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Мало воды». Начните с Hay, количество поставьте перед agua.",
+          "uk": "Повідомте «Мало води». Почніть з Hay, кількість поставте перед agua."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-06:session-45:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Запас рядом",
+        "uk": "Запас поруч"
+      },
+      "bodyByLocale": {
+        "ru": "Спутник собирается налить воду всем, а вы показываете на небольшой запас рядом. Скажите `Hay poca agua aquí` — «Здесь мало воды». Соберите `Hay poca agua` + `aquí`. Добавляем место в конце. От перестановки бутылки воды больше не станет — сначала сообщим о малом количестве.",
+        "uk": "Супутник збирається налити воду всім, а ви показуєте на невеликий запас поруч. Скажіть `Hay poca agua aquí` — «Тут мало води». Складіть `Hay poca agua` + `aquí`. Додаємо місце наприкінці. Від переставляння пляшки води більше не стане — спочатку повідомимо про малу кількість."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-45:intro2:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Здесь мало воды». Начните с Hay, количество поставьте перед agua, место — в конце.",
+          "uk": "Повідомте «Тут мало води». Почніть з Hay, кількість поставте перед agua, місце — наприкінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-45:intro2:r1",
+              "text": "Hay poca agua aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-45:intro2:r2",
+              "text": "Hay poco agua aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-45:intro2:r3",
+              "text": "Hay poca agua allí."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-45:intro2:r1",
+              "text": "Hay poca agua aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-45:intro2:r2",
+              "text": "Hay poco agua aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-45:intro2:r3",
+              "text": "Hay poca agua allí."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Здесь мало воды». Начните с Hay, количество поставьте перед agua, место — в конце.",
+          "uk": "Повідомте «Тут мало води». Почніть з Hay, кількість поставте перед agua, місце — наприкінці."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-06:session-45:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Уточнить запас",
+        "uk": "Уточнити запас"
+      },
+      "bodyByLocale": {
+        "ru": "Друг посмотрел воду в другом месте, и вы хотите уточнить, мало ли её. Спросите `¿Hay poca agua?` — «Мало воды?» Соберите `¿Hay` + `poca agua?`. Вопрос сохраняет poca перед agua. Здесь выясняем, действительно ли количество маленькое.",
+        "uk": "Друг перевірив воду в іншому місці, і ви хочете уточнити, чи мало її. Запитайте `¿Hay poca agua?` — «Мало води?» Складіть `¿Hay` + `poca agua?`. У запитанні зберігаємо poca перед agua. Тут з'ясовуємо, чи справді кількість мала."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-45:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите «Мало воды?». Начните с ¿Hay, количество поставьте перед agua.",
+          "uk": "Запитайте «Мало води?». Почніть з ¿Hay, кількість поставте перед agua."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-45:intro3:r1",
+              "text": "¿Hay poca agua?"
+            },
+            {
+              "responseId": "es:lesson-06:session-45:intro3:r2",
+              "text": "¿Hay poco agua?"
+            },
+            {
+              "responseId": "es:lesson-06:session-45:intro3:r3",
+              "text": "¿Hay mucha agua?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-45:intro3:r1",
+              "text": "¿Hay poca agua?"
+            },
+            {
+              "responseId": "es:lesson-06:session-45:intro3:r2",
+              "text": "¿Hay poco agua?"
+            },
+            {
+              "responseId": "es:lesson-06:session-45:intro3:r3",
+              "text": "¿Hay mucha agua?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «Мало воды?». Начните с ¿Hay, количество поставьте перед agua.",
+          "uk": "Запитайте «Мало води?». Почніть з ¿Hay, кількість поставте перед agua."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d8fbc9f61d8440d3ea4ee20467d266a60947c9dde3be7d51e978ac66f6d21746"
+}

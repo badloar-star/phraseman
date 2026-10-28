@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-06:session-45",
+  "entries": [
+    {
+      "interactionId": "es:lesson-06:session-45:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-45:intro1:r2": {
+          "ru": "Agua женского рода: poca.",
+          "uk": "Agua жіночого роду: poca."
+        },
+        "es:lesson-06:session-45:intro1:r3": {
+          "ru": "Это «воды нет», а по условию немного воды осталось.",
+          "uk": "Це «води немає», а за умовою трохи води залишилося."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-45:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-45:intro2:r2": {
+          "ru": "Перед agua нужна poca.",
+          "uk": "Перед agua потрібна poca."
+        },
+        "es:lesson-06:session-45:intro2:r3": {
+          "ru": "Показываем на запас рядом: aquí.",
+          "uk": "Показуємо на запас поруч: aquí."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-45:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-45:intro3:r2": {
+          "ru": "С agua нужна poca.",
+          "uk": "З agua потрібна poca."
+        },
+        "es:lesson-06:session-45:intro3:r3": {
+          "ru": "Mucha означает много, а спрашиваем о малом количестве.",
+          "uk": "Mucha означає багато, а запитуємо про малу кількість."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c445f2d0c4de5317c7763d33ba3497ae1b9a4b5c64f247d886447ac5666e7bf2"
+}

@@ -1,0 +1,683 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-06:session-43",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-06:session-43:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-43:i01:r1",
+          "text": "muchos"
+        },
+        {
+          "responseId": "es:lesson-06:session-43:i01:r2",
+          "text": "muchas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-43:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-43:i01:audio",
+          "transcript": "muchos"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-06:session-43:i01:r1",
+            "targetText": "muchos",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-06:session-43:i01:r2",
+            "targetText": "muchas",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-43:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит muchos, с os в конце.",
+              "uk": "Звучить muchos, з os у кінці."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-43:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — есть много книг",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-43:i02:r1",
+          "text": "muchos"
+        },
+        {
+          "responseId": "es:lesson-06:session-43:i02:r2",
+          "text": "mucho"
+        },
+        {
+          "responseId": "es:lesson-06:session-43:i02:r3",
+          "text": "muchas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — есть много книг",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — есть много книг",
+          "uk": "Вставте слово — є багато книжок"
+        },
+        "gappedTargetPhrase": "Hay ___ libros.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-43:i02:r1",
+            "text": "muchos"
+          },
+          {
+            "responseId": "es:lesson-06:session-43:i02:r2",
+            "text": "mucho"
+          },
+          {
+            "responseId": "es:lesson-06:session-43:i02:r3",
+            "text": "muchas"
+          }
+        ],
+        "testedDimension": "Вставьте слово — есть много книг",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-43:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — есть много книг",
+            "feedbackByLocale": {
+              "ru": "Книг несколько: muchos.",
+              "uk": "Книжок кілька: muchos."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-43:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — есть много книг",
+            "feedbackByLocale": {
+              "ru": "Libros мужского рода: muchos.",
+              "uk": "Libros чоловічого роду: muchos."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-43:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — есть много книг; начните с Hay, количество поставьте перед libros",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-43:i03:r1",
+          "text": "Плитки: libros"
+        },
+        {
+          "responseId": "es:lesson-06:session-43:i03:r2",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-43:i03:r3",
+          "text": "muchos"
+        },
+        {
+          "responseId": "es:lesson-06:session-43:i03:r4",
+          "text": "muchas."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — есть много книг; начните с Hay, количество поставьте перед libros",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Hay muchos libros.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — есть много книг; начните с Hay, количество поставьте перед libros",
+          "uk": "Зберіть фразу — є багато книжок; почніть з Hay, кількість поставте перед libros"
+        },
+        "orderedTokens": [
+          "Hay",
+          "muchos",
+          "libros"
+        ],
+        "authoredDistractorTokens": [
+          "muchas"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-43:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — есть много книг; начните с Hay, количество поставьте перед libros",
+            "feedbackByLocale": {
+              "ru": "libros мужского рода.",
+              "uk": "libros чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-43:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — здесь много книг",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-43:i04:r1",
+          "text": "libros"
+        },
+        {
+          "responseId": "es:lesson-06:session-43:i04:r2",
+          "text": "libro"
+        },
+        {
+          "responseId": "es:lesson-06:session-43:i04:r3",
+          "text": "mesas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — здесь много книг",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — здесь много книг",
+          "uk": "Вставте слово — тут багато книжок"
+        },
+        "gappedTargetPhrase": "Hay muchos ___ aquí.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-43:i04:r1",
+            "text": "libros"
+          },
+          {
+            "responseId": "es:lesson-06:session-43:i04:r2",
+            "text": "libro"
+          },
+          {
+            "responseId": "es:lesson-06:session-43:i04:r3",
+            "text": "mesas"
+          }
+        ],
+        "testedDimension": "Вставьте слово — здесь много книг",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-43:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — здесь много книг",
+            "feedbackByLocale": {
+              "ru": "Книг несколько: libros.",
+              "uk": "Книжок кілька: libros."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-43:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — здесь много книг",
+            "feedbackByLocale": {
+              "ru": "Нужны книги — libros, а не столы.",
+              "uk": "Потрібні книжки — libros, а не столи."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-43:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — здесь много книг; начните с Hay, количество поставьте перед libros, место — в конце",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-43:i05:r1",
+          "text": "Плитки: aquí"
+        },
+        {
+          "responseId": "es:lesson-06:session-43:i05:r2",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-43:i05:r3",
+          "text": "muchos"
+        },
+        {
+          "responseId": "es:lesson-06:session-43:i05:r4",
+          "text": "libros"
+        },
+        {
+          "responseId": "es:lesson-06:session-43:i05:r5",
+          "text": "mucho."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — здесь много книг; начните с Hay, количество поставьте перед libros, место — в конце",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Hay muchos libros aquí.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — здесь много книг; начните с Hay, количество поставьте перед libros, место — в конце",
+          "uk": "Зберіть фразу — тут багато книжок; почніть з Hay, кількість поставте перед libros, місце — у кінці"
+        },
+        "orderedTokens": [
+          "Hay",
+          "muchos",
+          "libros",
+          "aquí"
+        ],
+        "authoredDistractorTokens": [
+          "mucho"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-43:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — здесь много книг; начните с Hay, количество поставьте перед libros, место — в конце",
+            "feedbackByLocale": {
+              "ru": "нужна форма muchos.",
+              "uk": "потрібна форма muchos."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-43:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — в комнате много книг; начните с Hay, количество поставьте перед libros, место — в конце",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-43:i06:r1",
+          "text": "Плитки: habitación"
+        },
+        {
+          "responseId": "es:lesson-06:session-43:i06:r2",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-43:i06:r3",
+          "text": "muchos"
+        },
+        {
+          "responseId": "es:lesson-06:session-43:i06:r4",
+          "text": "libros"
+        },
+        {
+          "responseId": "es:lesson-06:session-43:i06:r5",
+          "text": "en"
+        },
+        {
+          "responseId": "es:lesson-06:session-43:i06:r6",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-06:session-43:i06:r7",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — в комнате много книг; начните с Hay, количество поставьте перед libros, место — в конце",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Hay muchos libros en la habitación.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — в комнате много книг; начните с Hay, количество поставьте перед libros, место — в конце",
+          "uk": "Зберіть фразу — у кімнаті багато книжок; почніть з Hay, кількість поставте перед libros, місце — у кінці"
+        },
+        "orderedTokens": [
+          "Hay",
+          "muchos",
+          "libros",
+          "en",
+          "la",
+          "habitación"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-43:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — в комнате много книг; начните с Hay, количество поставьте перед libros, место — в конце",
+            "feedbackByLocale": {
+              "ru": "habitación женского рода.",
+              "uk": "habitación жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-43:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-43:i07:r1",
+          "text": "Плитки: Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-43:i07:r2",
+          "text": "muchos"
+        },
+        {
+          "responseId": "es:lesson-06:session-43:i07:r3",
+          "text": "libros"
+        },
+        {
+          "responseId": "es:lesson-06:session-43:i07:r4",
+          "text": "aquí"
+        },
+        {
+          "responseId": "es:lesson-06:session-43:i07:r5",
+          "text": "muchas."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-43:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-43:i07:audio",
+          "transcript": "Hay muchos libros aquí."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Hay muchos libros aquí.",
+        "orderedTokens": [
+          "Hay",
+          "muchos",
+          "libros",
+          "aquí"
+        ],
+        "authoredDistractorTokens": [
+          "muchas"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-43:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит muchos.",
+              "uk": "звучить muchos."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-43:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — в комнате много книг",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-43:i08:r1",
+          "text": "en"
+        },
+        {
+          "responseId": "es:lesson-06:session-43:i08:r2",
+          "text": "de"
+        },
+        {
+          "responseId": "es:lesson-06:session-43:i08:r3",
+          "text": "una"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — в комнате много книг",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — в комнате много книг",
+          "uk": "Вставте слово — у кімнаті багато книжок"
+        },
+        "gappedTargetPhrase": "Hay muchos libros ___ la habitación.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-43:i08:r1",
+            "text": "en"
+          },
+          {
+            "responseId": "es:lesson-06:session-43:i08:r2",
+            "text": "de"
+          },
+          {
+            "responseId": "es:lesson-06:session-43:i08:r3",
+            "text": "una"
+          }
+        ],
+        "testedDimension": "Вставьте слово — в комнате много книг",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-43:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — в комнате много книг",
+            "feedbackByLocale": {
+              "ru": "Для места нужно en.",
+              "uk": "Для місця потрібно en."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-43:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — в комнате много книг",
+            "feedbackByLocale": {
+              "ru": "Перед местом нужно en.",
+              "uk": "Перед місцем потрібно en."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-43:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — есть много книг; начните с Hay, количество поставьте перед libros",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-43:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — есть много книг; начните с Hay, количество поставьте перед libros",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-43:i09:audio",
+          "transcript": "Hay muchos libros."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay muchos libros.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-43:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — здесь много книг; начните с Hay, количество поставьте перед libros, место — в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-43:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — здесь много книг; начните с Hay, количество поставьте перед libros, место — в конце",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-43:i10:audio",
+          "transcript": "Hay muchos libros aquí."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay muchos libros aquí.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-43:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — в комнате много книг; начните с Hay, количество поставьте перед libros, место — в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-43:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — в комнате много книг; начните с Hay, количество поставьте перед libros, место — в конце",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-43:i11:audio",
+          "transcript": "Hay muchos libros en la habitación."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay muchos libros en la habitación.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-43:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — вы ещё не видели другую комнату: «Много книг?»; начните с ¿Hay, количество поставьте перед libros",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-43:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — вы ещё не видели другую комнату: «Много книг?»; начните с ¿Hay, количество поставьте перед libros",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-43:i12:audio",
+          "transcript": "¿Hay muchos libros?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Hay muchos libros?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "e157446d7d601f7e683faa3a852f2fdcc44c3615baf761506d423210d5a6bf20"
+}

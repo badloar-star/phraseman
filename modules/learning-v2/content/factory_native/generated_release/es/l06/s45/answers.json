@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-06:session-45:i01",
+    "correctText": "poca",
+    "correctResponseId": "es:lesson-06:session-45:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-45:i02",
+    "correctText": "poca",
+    "correctResponseId": "es:lesson-06:session-45:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-45:i03",
+    "correctText": "Hay poca agua.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-45:i04",
+    "correctText": "aquí",
+    "correctResponseId": "es:lesson-06:session-45:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-45:i05",
+    "correctText": "Hay poca agua aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-45:i06",
+    "correctText": "¿Hay poca agua?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-45:i07",
+    "correctText": "Hay poca agua aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-45:i08",
+    "correctText": "poca",
+    "correctResponseId": "es:lesson-06:session-45:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-45:i09",
+    "correctText": "Hay poca agua.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-45:i10",
+    "correctText": "Hay poca agua aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-45:i11",
+    "correctText": "¿Hay poca agua?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-45:i12",
+    "correctText": "Hay poca agua allí.",
+    "correctResponseId": null
+  }
+]

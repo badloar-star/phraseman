@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-06:session-43:i01",
+    "correctText": "muchos",
+    "correctResponseId": "es:lesson-06:session-43:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-43:i02",
+    "correctText": "muchos",
+    "correctResponseId": "es:lesson-06:session-43:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-43:i03",
+    "correctText": "Hay muchos libros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-43:i04",
+    "correctText": "libros",
+    "correctResponseId": "es:lesson-06:session-43:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-43:i05",
+    "correctText": "Hay muchos libros aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-43:i06",
+    "correctText": "Hay muchos libros en la habitación.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-43:i07",
+    "correctText": "Hay muchos libros aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-43:i08",
+    "correctText": "en",
+    "correctResponseId": "es:lesson-06:session-43:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-43:i09",
+    "correctText": "Hay muchos libros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-43:i10",
+    "correctText": "Hay muchos libros aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-43:i11",
+    "correctText": "Hay muchos libros en la habitación.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-43:i12",
+    "correctText": "¿Hay muchos libros?",
+    "correctResponseId": null
+  }
+]

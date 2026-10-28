@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-06:session-44",
+  "learningOutcomeByLocale": {
+    "ru": "использовать muchas перед несколькими предметами женского рода.",
+    "uk": "використовувати muchas перед кількома предметами жіночого роду."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-06:session-44:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Места для гостей",
+        "uk": "Місця для гостей"
+      },
+      "bodyByLocale": {
+        "ru": "Вы осмотрели приготовленную комнату и увидели много стульев. Скажите `Hay muchas sillas` — «Есть много стульев». Соберите `Hay` + `muchas` + `sillas`. Silla женского рода, стульев несколько: нужны muchas и sillas с as. В русском «стул» мужского рода, но испанская форма выбирается по silla, а не по переводу.",
+        "uk": "Ви оглянули підготовлену кімнату й побачили багато стільців. Скажіть `Hay muchas sillas` — «Є багато стільців». Складіть `Hay` + `muchas` + `sillas`. Silla жіночого роду, стільців кілька: потрібні muchas і sillas з as. Українською «стілець» чоловічого роду, але іспанську форму обираємо за silla, а не за перекладом."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-44:intro1:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Есть много стульев». Начните с Hay, количество поставьте перед sillas.",
+          "uk": "Повідомте «Є багато стільців». Почніть з Hay, кількість поставте перед sillas."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-44:intro1:r1",
+              "text": "Hay muchas sillas."
+            },
+            {
+              "responseId": "es:lesson-06:session-44:intro1:r2",
+              "text": "Hay muchos sillas."
+            },
+            {
+              "responseId": "es:lesson-06:session-44:intro1:r3",
+              "text": "Hay mucha sillas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-44:intro1:r1",
+              "text": "Hay muchas sillas."
+            },
+            {
+              "responseId": "es:lesson-06:session-44:intro1:r2",
+              "text": "Hay muchos sillas."
+            },
+            {
+              "responseId": "es:lesson-06:session-44:intro1:r3",
+              "text": "Hay mucha sillas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Есть много стульев». Начните с Hay, количество поставьте перед sillas.",
+          "uk": "Повідомте «Є багато стільців». Почніть з Hay, кількість поставте перед sillas."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-06:session-44:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Назвать комнату",
+        "uk": "Назвати кімнату"
+      },
+      "bodyByLocale": {
+        "ru": "Друг готовится принести ещё стулья, а вы сообщаете `Hay muchas sillas en la habitación` — «В комнате много стульев». Соберите `Hay muchas sillas` + `en la habitación`. Сначала говорим о количестве, потом о месте. Возможно, поход за дополнительными стульями уже не нужен — лучше сначала посмотреть на запас.",
+        "uk": "Друг готується принести ще стільці, а ви повідомляєте `Hay muchas sillas en la habitación` — «У кімнаті багато стільців». Складіть `Hay muchas sillas` + `en la habitación`. Спочатку говоримо про кількість, потім про місце. Можливо, похід по додаткові стільці вже не потрібен — краще спочатку подивитися на запас."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-44:intro2:q",
+        "promptByLocale": {
+          "ru": "Сообщите «В комнате много стульев». Начните с Hay, количество поставьте перед sillas, место — в конце.",
+          "uk": "Повідомте «У кімнаті багато стільців». Почніть з Hay, кількість поставте перед sillas, місце — у кінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-44:intro2:r1",
+              "text": "Hay muchas sillas en la habitación."
+            },
+            {
+              "responseId": "es:lesson-06:session-44:intro2:r2",
+              "text": "Hay muchos sillas en la habitación."
+            },
+            {
+              "responseId": "es:lesson-06:session-44:intro2:r3",
+              "text": "Hay muchas sillas la habitación."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-44:intro2:r1",
+              "text": "Hay muchas sillas en la habitación."
+            },
+            {
+              "responseId": "es:lesson-06:session-44:intro2:r2",
+              "text": "Hay muchos sillas en la habitación."
+            },
+            {
+              "responseId": "es:lesson-06:session-44:intro2:r3",
+              "text": "Hay muchas sillas la habitación."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «В комнате много стульев». Начните с Hay, количество поставьте перед sillas, место — в конце.",
+          "uk": "Повідомте «У кімнаті багато стільців». Почніть з Hay, кількість поставте перед sillas, місце — у кінці."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-06:session-44:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Уточнить до встречи",
+        "uk": "Уточнити до зустрічі"
+      },
+      "bodyByLocale": {
+        "ru": "Перед встречей в другом месте вы спрашиваете организатора `¿Hay muchas sillas?` — «Много стульев?» Соберите `¿Hay` + `muchas sillas?`. Вопрос сохраняет форму muchas. Уточняем большое количество, а не просто наличие хотя бы одного стула.",
+        "uk": "Перед зустріччю в іншому місці ви запитуєте організатора `¿Hay muchas sillas?` — «Багато стільців?» Складіть `¿Hay` + `muchas sillas?`. Запитання зберігає форму muchas. Уточнюємо велику кількість, а не просто наявність хоча б одного стільця."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-44:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите «Много стульев?». Начните с ¿Hay, количество поставьте перед sillas.",
+          "uk": "Запитайте «Багато стільців?». Почніть з ¿Hay, кількість поставте перед sillas."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-44:intro3:r1",
+              "text": "¿Hay muchas sillas?"
+            },
+            {
+              "responseId": "es:lesson-06:session-44:intro3:r2",
+              "text": "¿Hay muchos sillas?"
+            },
+            {
+              "responseId": "es:lesson-06:session-44:intro3:r3",
+              "text": "¿Hay muchas silla?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-44:intro3:r1",
+              "text": "¿Hay muchas sillas?"
+            },
+            {
+              "responseId": "es:lesson-06:session-44:intro3:r2",
+              "text": "¿Hay muchos sillas?"
+            },
+            {
+              "responseId": "es:lesson-06:session-44:intro3:r3",
+              "text": "¿Hay muchas silla?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «Много стульев?». Начните с ¿Hay, количество поставьте перед sillas.",
+          "uk": "Запитайте «Багато стільців?». Почніть з ¿Hay, кількість поставте перед sillas."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "988e228d00e2517a2b4dee88d29ed6fb235aa940cd772dc5e83cafe99e999947"
+}

@@ -1,0 +1,92 @@
+[
+  {
+    "interactionId": "es:lesson-04:session-08:i01",
+    "correctText": "hermana",
+    "correctResponseId": "es:lesson-04:session-08:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-08:i02",
+    "correctText": "Es mi hermana.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-08:i03",
+    "correctText": "alto",
+    "correctResponseId": "es:lesson-04:session-08:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-08:i04",
+    "correctText": "Mi hermana es amable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-08:i05",
+    "correctText": "mi",
+    "correctResponseId": "es:lesson-04:session-08:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-08:i06",
+    "correctText": "Son mis libros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-08:i07",
+    "correctText": "nuevos",
+    "correctResponseId": "es:lesson-04:session-08:i07:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-08:i08",
+    "correctText": "No son mis llaves.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-08:i09",
+    "correctText": "pequeñas",
+    "correctResponseId": "es:lesson-04:session-08:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-08:i10",
+    "correctText": "No es mi bolso.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-08:i11",
+    "correctText": "Es mi llave.",
+    "correctResponseId": "es:lesson-04:session-08:i11:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-08:i12",
+    "correctText": "mis",
+    "correctResponseId": "es:lesson-04:session-08:i12:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-08:i13",
+    "correctText": "Es mi hermano.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-08:i14",
+    "correctText": "Mi hermana es amable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-08:i15",
+    "correctText": "Son mis libros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-08:i16",
+    "correctText": "No son mis llaves.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-08:i17",
+    "correctText": "Mi bolso es rojo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-08:i18",
+    "correctText": "Mis llaves son pequeñas.",
+    "correctResponseId": null
+  }
+]

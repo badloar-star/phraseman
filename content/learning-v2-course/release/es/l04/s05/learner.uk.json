@@ -1,0 +1,668 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-04:session-05",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-04:session-05:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-05:i01:r1",
+          "text": "mis"
+        },
+        {
+          "responseId": "es:lesson-04:session-05:i01:r2",
+          "text": "mi"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-05:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-05:i01:audio",
+          "transcript": "mis"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-04:session-05:i01:r1",
+            "targetText": "mis",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-04:session-05:i01:r2",
+            "targetText": "mi",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-05:i01:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи есть конечное -s: mis.",
+              "uk": "У записі є кінцеве -s: mis."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-05:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — це моя книжка, одна",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-05:i02:r1",
+          "text": "mi"
+        },
+        {
+          "responseId": "es:lesson-04:session-05:i02:r2",
+          "text": "mis"
+        },
+        {
+          "responseId": "es:lesson-04:session-05:i02:r3",
+          "text": "muy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — це моя книжка, одна",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это моя книга, одна",
+          "uk": "Вставте слово — це моя книжка, одна"
+        },
+        "gappedTargetPhrase": "Es ___ libro.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-05:i02:r1",
+            "text": "mi"
+          },
+          {
+            "responseId": "es:lesson-04:session-05:i02:r2",
+            "text": "mis"
+          },
+          {
+            "responseId": "es:lesson-04:session-05:i02:r3",
+            "text": "muy"
+          }
+        ],
+        "testedDimension": "Вставте слово — це моя книжка, одна",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-05:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — це моя книжка, одна",
+            "feedbackByLocale": {
+              "ru": "Одна книга: mi.",
+              "uk": "Одна книжка: mi."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-05:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — це моя книжка, одна",
+            "feedbackByLocale": {
+              "ru": "Muy означает «очень», а нужно mi — мой.",
+              "uk": "Muy означає «дуже», а потрібне mi — мій."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-05:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це мої книжки",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-05:i03:r1",
+          "text": "Плитки: libros"
+        },
+        {
+          "responseId": "es:lesson-04:session-05:i03:r2",
+          "text": "mis"
+        },
+        {
+          "responseId": "es:lesson-04:session-05:i03:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-05:i03:r4",
+          "text": "mi."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це мої книжки",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son mis libros.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это мои книги",
+          "uk": "Зберіть фразу — це мої книжки"
+        },
+        "orderedTokens": [
+          "Son",
+          "mis",
+          "libros"
+        ],
+        "authoredDistractorTokens": [
+          "mi"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-05:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це мої книжки",
+            "feedbackByLocale": {
+              "ru": "книг несколько.",
+              "uk": "книжок кілька."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-05:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — це мої книжки",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-05:i04:r1",
+          "text": "mis"
+        },
+        {
+          "responseId": "es:lesson-04:session-05:i04:r2",
+          "text": "mi"
+        },
+        {
+          "responseId": "es:lesson-04:session-05:i04:r3",
+          "text": "muy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — це мої книжки",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это мои книги",
+          "uk": "Вставте слово — це мої книжки"
+        },
+        "gappedTargetPhrase": "Son ___ libros.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-05:i04:r1",
+            "text": "mis"
+          },
+          {
+            "responseId": "es:lesson-04:session-05:i04:r2",
+            "text": "mi"
+          },
+          {
+            "responseId": "es:lesson-04:session-05:i04:r3",
+            "text": "muy"
+          }
+        ],
+        "testedDimension": "Вставте слово — це мої книжки",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-05:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — це мої книжки",
+            "feedbackByLocale": {
+              "ru": "Перед множественным libros нужна форма mis.",
+              "uk": "Перед множиною libros потрібна форма mis."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-05:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — це мої книжки",
+            "feedbackByLocale": {
+              "ru": "Muy означает «очень»; принадлежность передаёт mis.",
+              "uk": "Muy означає «дуже»; належність передає mis."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-05:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — мої книжки нові",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-05:i05:r1",
+          "text": "Плитки: nuevos"
+        },
+        {
+          "responseId": "es:lesson-04:session-05:i05:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-05:i05:r3",
+          "text": "libros"
+        },
+        {
+          "responseId": "es:lesson-04:session-05:i05:r4",
+          "text": "mis"
+        },
+        {
+          "responseId": "es:lesson-04:session-05:i05:r5",
+          "text": "nuevo."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — мої книжки нові",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Mis libros son nuevos.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — мои книги новые",
+          "uk": "Зберіть фразу — мої книжки нові"
+        },
+        "orderedTokens": [
+          "Mis",
+          "libros",
+          "son",
+          "nuevos"
+        ],
+        "authoredDistractorTokens": [
+          "nuevo"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-05:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — мої книжки нові",
+            "feedbackByLocale": {
+              "ru": "libros во множественном числе.",
+              "uk": "libros у множині."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-05:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — мої книжки нові",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-05:i06:r1",
+          "text": "nuevos"
+        },
+        {
+          "responseId": "es:lesson-04:session-05:i06:r2",
+          "text": "nuevo"
+        },
+        {
+          "responseId": "es:lesson-04:session-05:i06:r3",
+          "text": "nuevas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — мої книжки нові",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — мои книги новые",
+          "uk": "Вставте слово — мої книжки нові"
+        },
+        "gappedTargetPhrase": "Mis libros son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-05:i06:r1",
+            "text": "nuevos"
+          },
+          {
+            "responseId": "es:lesson-04:session-05:i06:r2",
+            "text": "nuevo"
+          },
+          {
+            "responseId": "es:lesson-04:session-05:i06:r3",
+            "text": "nuevas"
+          }
+        ],
+        "testedDimension": "Вставте слово — мої книжки нові",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-05:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — мої книжки нові",
+            "feedbackByLocale": {
+              "ru": "Книг несколько: nuevos.",
+              "uk": "Книжок кілька: nuevos."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-05:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — мої книжки нові",
+            "feedbackByLocale": {
+              "ru": "Libros мужского рода.",
+              "uk": "Libros чоловічого роду."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-05:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це не мої книжки",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-05:i07:r1",
+          "text": "Плитки: libros"
+        },
+        {
+          "responseId": "es:lesson-04:session-05:i07:r2",
+          "text": "mis"
+        },
+        {
+          "responseId": "es:lesson-04:session-05:i07:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-05:i07:r4",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-04:session-05:i07:r5",
+          "text": "mi."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це не мої книжки",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No son mis libros.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это не мои книги",
+          "uk": "Зберіть фразу — це не мої книжки"
+        },
+        "orderedTokens": [
+          "No",
+          "son",
+          "mis",
+          "libros"
+        ],
+        "authoredDistractorTokens": [
+          "mi"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-05:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це не мої книжки",
+            "feedbackByLocale": {
+              "ru": "книг несколько.",
+              "uk": "книжок кілька."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-05:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-05:i08:r1",
+          "text": "Плитки: libro"
+        },
+        {
+          "responseId": "es:lesson-04:session-05:i08:r2",
+          "text": "mi"
+        },
+        {
+          "responseId": "es:lesson-04:session-05:i08:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-05:i08:r4",
+          "text": "mis."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-05:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-05:i08:audio",
+          "transcript": "Es mi libro."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Es mi libro.",
+        "orderedTokens": [
+          "Es",
+          "mi",
+          "libro"
+        ],
+        "authoredDistractorTokens": [
+          "mis"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-05:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит mi.",
+              "uk": "звучить mi."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-05:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — це моя книжка, одна; почніть з Es",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-05:i09:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — це моя книжка, одна; почніть з Es",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-05:i09:audio",
+          "transcript": "Es mi libro."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es mi libro.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-05:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — це мої книжки; почніть з Son",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-05:i10:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — це мої книжки; почніть з Son",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-05:i10:audio",
+          "transcript": "Son mis libros."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son mis libros.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-05:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — мої книжки нові; почніть з Mis libros",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-05:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — мої книжки нові; почніть з Mis libros",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-05:i11:audio",
+          "transcript": "Mis libros son nuevos."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Mis libros son nuevos.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-05:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — це не мої книжки; почніть з No son",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-05:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — це не мої книжки; почніть з No son",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-05:i12:audio",
+          "transcript": "No son mis libros."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No son mis libros.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "181e4e010898df3a2d059e82ee8ae196ead1f3cad9797bd9d498157246d724c9"
+}

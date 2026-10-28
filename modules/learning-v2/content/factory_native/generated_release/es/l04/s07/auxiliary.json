@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-04:session-07",
+  "entries": [
+    {
+      "interactionId": "es:lesson-04:session-07:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-07:intro1:r2": {
+          "ru": "Сумка одна: es.",
+          "uk": "Сумка одна: es."
+        },
+        "es:lesson-04:session-07:intro1:r3": {
+          "ru": "С единственным bolso нужно mi.",
+          "uk": "З одниною bolso потрібне mi."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-07:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-07:intro2:r2": {
+          "ru": "Для нескольких книг нужно son.",
+          "uk": "Для кількох книжок потрібне son."
+        },
+        "es:lesson-04:session-07:intro2:r3": {
+          "ru": "Перед множественным libros нужно mis.",
+          "uk": "Перед множиною libros потрібне mis."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-07:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-07:intro3:r2": {
+          "ru": "Ключей несколько: mis.",
+          "uk": "Ключів кілька: mis."
+        },
+        "es:lesson-04:session-07:intro3:r3": {
+          "ru": "Перед mis здесь нет артикля las.",
+          "uk": "Перед mis тут немає артикля las."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "aabc9061fa227dbb1d3558bef9956a9146c606cba86d5723b894f5a73b077c0c"
+}

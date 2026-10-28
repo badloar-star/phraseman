@@ -1211,4 +1211,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"поставить mi перед названием своей книги без артикля.","uk":"поставити mi перед назвою своєї книжки без артикля."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 4, sessionOrdinal: 5,
+    sourceFingerprint: "988832ac0fa56139b8cc4c5f7117a1a3593429580af1bf57c795b1aadb519b3d",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"перейти от mi libro к mis libros.","uk":"перейти від mi libro до mis libros."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 4, sessionOrdinal: 6,
+    sourceFingerprint: "b42fe91cf9e51287e3c6258c55b5593b7adc49128afcabe8b0d559287f1a876b",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"использовать mis с женским множественным числом.","uk":"використовувати mis із жіночою множиною."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 4, sessionOrdinal: 7,
+    sourceFingerprint: "af9be00115781153485fbc638159e7e242fb8954b620b4327c749810fad4527b",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"отрицать принадлежность одной вещи и нескольких.","uk":"заперечувати належність однієї речі й кількох."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 4, sessionOrdinal: 8,
+    sourceFingerprint: "d572f32e0d7d417e86b30e1871bb2fcb325a4a0846b254c49c7f109015aa0f8e",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"самостоятельно выбрать mi или mis.","uk":"самостійно вибрати mi або mis."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
+  }),
 ]);

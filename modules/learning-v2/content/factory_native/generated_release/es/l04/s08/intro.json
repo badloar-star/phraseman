@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-04:session-08",
+  "learningOutcomeByLocale": {
+    "ru": "самостоятельно выбрать mi или mis.",
+    "uk": "самостійно вибрати mi або mis."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-04:session-08:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Представить сестру",
+        "uk": "Представити сестру"
+      },
+      "bodyByLocale": {
+        "ru": "На встречу пришла ваша сестра. Представьте её: `Es mi hermana` — «Это моя сестра». Соберите `es` + `mi hermana`. Для одного человека нужна форма mi. Перед mi в этой конструкции артикля нет.",
+        "uk": "На зустріч прийшла ваша сестра. Представте її: `Es mi hermana` — «Це моя сестра». Зберіть `es` + `mi hermana`. Для однієї людини потрібна форма mi. Перед mi в цій конструкції артикля немає."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-08:intro1:q",
+        "promptByLocale": {
+          "ru": "Представьте сестру, начав с Es.",
+          "uk": "Представте сестру, почавши з Es."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-08:intro1:r1",
+              "text": "Es mi hermana."
+            },
+            {
+              "responseId": "es:lesson-04:session-08:intro1:r2",
+              "text": "Es mis hermana."
+            },
+            {
+              "responseId": "es:lesson-04:session-08:intro1:r3",
+              "text": "Es la mi hermana."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-08:intro1:r1",
+              "text": "Es mi hermana."
+            },
+            {
+              "responseId": "es:lesson-04:session-08:intro1:r2",
+              "text": "Es mis hermana."
+            },
+            {
+              "responseId": "es:lesson-04:session-08:intro1:r3",
+              "text": "Es la mi hermana."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Представьте сестру, начав с Es.",
+          "uk": "Представте сестру, почавши з Es."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-04:session-08:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Забрать книги",
+        "uk": "Забрати книжки"
+      },
+      "bodyByLocale": {
+        "ru": "После встречи забираете несколько своих книг. Скажите `Son mis libros` — «Это мои книги». Соберите `son` + `mis libros`. Книг несколько, поэтому mis и libros с -s. Владелец при этом один — вы.",
+        "uk": "Після зустрічі забираєте кілька своїх книжок. Скажіть `Son mis libros` — «Це мої книжки». Зберіть `son` + `mis libros`. Книжок кілька, тому mis і libros з -s. Власник при цьому один — ви."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-08:intro2:q",
+        "promptByLocale": {
+          "ru": "Назовите свои книги, начав с Son.",
+          "uk": "Назвіть свої книжки, почавши з Son."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-08:intro2:r1",
+              "text": "Son mis libros."
+            },
+            {
+              "responseId": "es:lesson-04:session-08:intro2:r2",
+              "text": "Son mi libros."
+            },
+            {
+              "responseId": "es:lesson-04:session-08:intro2:r3",
+              "text": "Es mis libros."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-08:intro2:r1",
+              "text": "Son mis libros."
+            },
+            {
+              "responseId": "es:lesson-04:session-08:intro2:r2",
+              "text": "Son mi libros."
+            },
+            {
+              "responseId": "es:lesson-04:session-08:intro2:r3",
+              "text": "Es mis libros."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите свои книги, начав с Son.",
+          "uk": "Назвіть свої книжки, почавши з Son."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-04:session-08:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Не те ключи",
+        "uk": "Не ті ключі"
+      },
+      "bodyByLocale": {
+        "ru": "Друг протягивает чужие ключи. Скажите `No son mis llaves` — «Это не мои ключи». Соберите `no` + `son` + `mis llaves`. No ставится перед son. С женским множественным llaves используем mis без изменения по роду.",
+        "uk": "Друг простягає чужі ключі. Скажіть `No son mis llaves` — «Це не мої ключі». Зберіть `no` + `son` + `mis llaves`. No ставиться перед son. З жіночою множиною llaves використовуємо mis без зміни за родом."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-08:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите, что это не ваши ключи, начав с No son.",
+          "uk": "Скажіть, що це не ваші ключі, почавши з No son."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-08:intro3:r1",
+              "text": "No son mis llaves."
+            },
+            {
+              "responseId": "es:lesson-04:session-08:intro3:r2",
+              "text": "No son mi llaves."
+            },
+            {
+              "responseId": "es:lesson-04:session-08:intro3:r3",
+              "text": "No es mis llaves."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-08:intro3:r1",
+              "text": "No son mis llaves."
+            },
+            {
+              "responseId": "es:lesson-04:session-08:intro3:r2",
+              "text": "No son mi llaves."
+            },
+            {
+              "responseId": "es:lesson-04:session-08:intro3:r3",
+              "text": "No es mis llaves."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что это не ваши ключи, начав с No son.",
+          "uk": "Скажіть, що це не ваші ключі, почавши з No son."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "9c1704fb1621853ce5903d8bf20576164c688b2b81cc0e39dc443987df54f4a7"
+}

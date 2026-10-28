@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-04:session-05:i01",
+    "correctText": "mis",
+    "correctResponseId": "es:lesson-04:session-05:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-05:i02",
+    "correctText": "mi",
+    "correctResponseId": "es:lesson-04:session-05:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-05:i03",
+    "correctText": "Son mis libros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-05:i04",
+    "correctText": "mis",
+    "correctResponseId": "es:lesson-04:session-05:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-05:i05",
+    "correctText": "Mis libros son nuevos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-05:i06",
+    "correctText": "nuevos",
+    "correctResponseId": "es:lesson-04:session-05:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-05:i07",
+    "correctText": "No son mis libros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-05:i08",
+    "correctText": "Es mi libro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-05:i09",
+    "correctText": "Es mi libro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-05:i10",
+    "correctText": "Son mis libros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-05:i11",
+    "correctText": "Mis libros son nuevos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-05:i12",
+    "correctText": "No son mis libros.",
+    "correctResponseId": null
+  }
+]

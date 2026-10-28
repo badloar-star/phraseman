@@ -1,0 +1,996 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-04:session-08",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-04:session-08:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-08:i01:r1",
+          "text": "hermana"
+        },
+        {
+          "responseId": "es:lesson-04:session-08:i01:r2",
+          "text": "hermano"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-08:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-08:i01:audio",
+          "transcript": "hermana"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-04:session-08:i01:r1",
+            "targetText": "hermana",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-04:session-08:i01:r2",
+            "targetText": "hermano",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-08:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи окончание -a: hermana.",
+              "uk": "У записі закінчення -a: hermana."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-08:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это моя сестра",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-08:i02:r1",
+          "text": "Плитки: hermana"
+        },
+        {
+          "responseId": "es:lesson-04:session-08:i02:r2",
+          "text": "mi"
+        },
+        {
+          "responseId": "es:lesson-04:session-08:i02:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-08:i02:r4",
+          "text": "la."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это моя сестра",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es mi hermana.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это моя сестра",
+          "uk": "Зберіть фразу — це моя сестра"
+        },
+        "orderedTokens": [
+          "Es",
+          "mi",
+          "hermana"
+        ],
+        "authoredDistractorTokens": [
+          "la"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-08:i02:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это моя сестра",
+            "feedbackByLocale": {
+              "ru": "перед mi здесь нет артикля.",
+              "uk": "перед mi тут немає артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-08:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — мой брат высокий",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-08:i03:r1",
+          "text": "alto"
+        },
+        {
+          "responseId": "es:lesson-04:session-08:i03:r2",
+          "text": "alta"
+        },
+        {
+          "responseId": "es:lesson-04:session-08:i03:r3",
+          "text": "altos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — мой брат высокий",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — мой брат высокий",
+          "uk": "Вставте слово — мій брат високий"
+        },
+        "gappedTargetPhrase": "Mi hermano es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-08:i03:r1",
+            "text": "alto"
+          },
+          {
+            "responseId": "es:lesson-04:session-08:i03:r2",
+            "text": "alta"
+          },
+          {
+            "responseId": "es:lesson-04:session-08:i03:r3",
+            "text": "altos"
+          }
+        ],
+        "testedDimension": "Вставьте слово — мой брат высокий",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-08:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — мой брат высокий",
+            "feedbackByLocale": {
+              "ru": "Hermano мужского рода.",
+              "uk": "Hermano чоловічого роду."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-08:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — мой брат высокий",
+            "feedbackByLocale": {
+              "ru": "Брат один: alto.",
+              "uk": "Брат один: alto."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-08:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — моя сестра приветливая",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-08:i04:r1",
+          "text": "Плитки: amable"
+        },
+        {
+          "responseId": "es:lesson-04:session-08:i04:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-08:i04:r3",
+          "text": "hermana"
+        },
+        {
+          "responseId": "es:lesson-04:session-08:i04:r4",
+          "text": "mi"
+        },
+        {
+          "responseId": "es:lesson-04:session-08:i04:r5",
+          "text": "amables."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — моя сестра приветливая",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Mi hermana es amable.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — моя сестра приветливая",
+          "uk": "Зберіть фразу — моя сестра привітна"
+        },
+        "orderedTokens": [
+          "Mi",
+          "hermana",
+          "es",
+          "amable"
+        ],
+        "authoredDistractorTokens": [
+          "amables"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-08:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — моя сестра приветливая",
+            "feedbackByLocale": {
+              "ru": "сестра одна.",
+              "uk": "сестра одна."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-08:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — это моя книга, одна",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-08:i05:r1",
+          "text": "mi"
+        },
+        {
+          "responseId": "es:lesson-04:session-08:i05:r2",
+          "text": "mis"
+        },
+        {
+          "responseId": "es:lesson-04:session-08:i05:r3",
+          "text": "muy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — это моя книга, одна",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это моя книга, одна",
+          "uk": "Вставте слово — це моя книжка, одна"
+        },
+        "gappedTargetPhrase": "Es ___ libro.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-08:i05:r1",
+            "text": "mi"
+          },
+          {
+            "responseId": "es:lesson-04:session-08:i05:r2",
+            "text": "mis"
+          },
+          {
+            "responseId": "es:lesson-04:session-08:i05:r3",
+            "text": "muy"
+          }
+        ],
+        "testedDimension": "Вставьте слово — это моя книга, одна",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-08:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это моя книга, одна",
+            "feedbackByLocale": {
+              "ru": "Одна книга: mi.",
+              "uk": "Одна книжка: mi."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-08:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это моя книга, одна",
+            "feedbackByLocale": {
+              "ru": "Muy означает «очень».",
+              "uk": "Muy означає «дуже»."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-08:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это мои книги",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-08:i06:r1",
+          "text": "Плитки: libros"
+        },
+        {
+          "responseId": "es:lesson-04:session-08:i06:r2",
+          "text": "mis"
+        },
+        {
+          "responseId": "es:lesson-04:session-08:i06:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-08:i06:r4",
+          "text": "mi."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это мои книги",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son mis libros.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это мои книги",
+          "uk": "Зберіть фразу — це мої книжки"
+        },
+        "orderedTokens": [
+          "Son",
+          "mis",
+          "libros"
+        ],
+        "authoredDistractorTokens": [
+          "mi"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-08:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это мои книги",
+            "feedbackByLocale": {
+              "ru": "книг несколько.",
+              "uk": "книжок кілька."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-08:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — мои книги новые",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-08:i07:r1",
+          "text": "nuevos"
+        },
+        {
+          "responseId": "es:lesson-04:session-08:i07:r2",
+          "text": "nuevo"
+        },
+        {
+          "responseId": "es:lesson-04:session-08:i07:r3",
+          "text": "nuevas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — мои книги новые",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — мои книги новые",
+          "uk": "Вставте слово — мої книжки нові"
+        },
+        "gappedTargetPhrase": "Mis libros son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-08:i07:r1",
+            "text": "nuevos"
+          },
+          {
+            "responseId": "es:lesson-04:session-08:i07:r2",
+            "text": "nuevo"
+          },
+          {
+            "responseId": "es:lesson-04:session-08:i07:r3",
+            "text": "nuevas"
+          }
+        ],
+        "testedDimension": "Вставьте слово — мои книги новые",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-08:i07:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — мои книги новые",
+            "feedbackByLocale": {
+              "ru": "Книг несколько: nuevos.",
+              "uk": "Книжок кілька: nuevos."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-08:i07:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — мои книги новые",
+            "feedbackByLocale": {
+              "ru": "Libros мужского рода.",
+              "uk": "Libros чоловічого роду."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-08:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-08:i08:r1",
+          "text": "Плитки: llaves"
+        },
+        {
+          "responseId": "es:lesson-04:session-08:i08:r2",
+          "text": "mis"
+        },
+        {
+          "responseId": "es:lesson-04:session-08:i08:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-08:i08:r4",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-04:session-08:i08:r5",
+          "text": "mi."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-08:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-08:i08:audio",
+          "transcript": "No son mis llaves."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "No son mis llaves.",
+        "orderedTokens": [
+          "No",
+          "son",
+          "mis",
+          "llaves"
+        ],
+        "authoredDistractorTokens": [
+          "mi"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-08:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит mis.",
+              "uk": "звучить mis."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-08:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — мои ключи маленькие",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-08:i09:r1",
+          "text": "pequeñas"
+        },
+        {
+          "responseId": "es:lesson-04:session-08:i09:r2",
+          "text": "pequeños"
+        },
+        {
+          "responseId": "es:lesson-04:session-08:i09:r3",
+          "text": "pequeña"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — мои ключи маленькие",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — мои ключи маленькие",
+          "uk": "Вставте слово — мої ключі маленькі"
+        },
+        "gappedTargetPhrase": "Mis llaves son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-08:i09:r1",
+            "text": "pequeñas"
+          },
+          {
+            "responseId": "es:lesson-04:session-08:i09:r2",
+            "text": "pequeños"
+          },
+          {
+            "responseId": "es:lesson-04:session-08:i09:r3",
+            "text": "pequeña"
+          }
+        ],
+        "testedDimension": "Вставьте слово — мои ключи маленькие",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-08:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — мои ключи маленькие",
+            "feedbackByLocale": {
+              "ru": "Llaves женского рода.",
+              "uk": "Llaves жіночого роду."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-08:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — мои ключи маленькие",
+            "feedbackByLocale": {
+              "ru": "Ключей несколько: pequeñas.",
+              "uk": "Ключів кілька: pequeñas."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-08:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это не моя сумка; используйте bolso",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-08:i10:r1",
+          "text": "Плитки: bolso"
+        },
+        {
+          "responseId": "es:lesson-04:session-08:i10:r2",
+          "text": "mi"
+        },
+        {
+          "responseId": "es:lesson-04:session-08:i10:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-08:i10:r4",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-04:session-08:i10:r5",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это не моя сумка; используйте bolso",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No es mi bolso.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это не моя сумка; используйте bolso",
+          "uk": "Зберіть фразу — це не моя сумка; використайте bolso"
+        },
+        "orderedTokens": [
+          "No",
+          "es",
+          "mi",
+          "bolso"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-08:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это не моя сумка; используйте bolso",
+            "feedbackByLocale": {
+              "ru": "перед mi здесь нет артикля.",
+              "uk": "перед mi тут немає артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-08:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-08:i11:r1",
+          "text": "Es mi llave."
+        },
+        {
+          "responseId": "es:lesson-04:session-08:i11:r2",
+          "text": "Son mis llaves."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-08:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-08:i11:audio",
+          "transcript": "Es mi llave."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-04:session-08:i11:r1",
+            "targetText": "Es mi llave.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-04:session-08:i11:r2",
+            "targetText": "Son mis llaves.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-08:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи один ключ: es mi llave.",
+              "uk": "У записі один ключ: es mi llave."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-08:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — это мои ключи",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-08:i12:r1",
+          "text": "mis"
+        },
+        {
+          "responseId": "es:lesson-04:session-08:i12:r2",
+          "text": "mi"
+        },
+        {
+          "responseId": "es:lesson-04:session-08:i12:r3",
+          "text": "muy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — это мои ключи",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это мои ключи",
+          "uk": "Вставте слово — це мої ключі"
+        },
+        "gappedTargetPhrase": "Son ___ llaves.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-08:i12:r1",
+            "text": "mis"
+          },
+          {
+            "responseId": "es:lesson-04:session-08:i12:r2",
+            "text": "mi"
+          },
+          {
+            "responseId": "es:lesson-04:session-08:i12:r3",
+            "text": "muy"
+          }
+        ],
+        "testedDimension": "Вставьте слово — это мои ключи",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-08:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это мои ключи",
+            "feedbackByLocale": {
+              "ru": "Ключей несколько: mis.",
+              "uk": "Ключів кілька: mis."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-08:i12:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это мои ключи",
+            "feedbackByLocale": {
+              "ru": "Muy означает «очень», а принадлежность передаёт mis.",
+              "uk": "Muy означає «дуже», а належність передає mis."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-08:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — это мой брат; начните с Es",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-08:i13:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — это мой брат; начните с Es",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-08:i13:audio",
+          "transcript": "Es mi hermano."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es mi hermano.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-08:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — моя сестра приветливая; начните с Mi hermana",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-08:i14:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — моя сестра приветливая; начните с Mi hermana",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-08:i14:audio",
+          "transcript": "Mi hermana es amable."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Mi hermana es amable.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-08:i15",
+      "ordinal": 18,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — это мои книги; начните с Son",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-08:i15:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — это мои книги; начните с Son",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-08:i15:audio",
+          "transcript": "Son mis libros."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son mis libros.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-08:i16",
+      "ordinal": 19,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — это не мои ключи; начните с No son",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-08:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — это не мои ключи; начните с No son",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-08:i16:audio",
+          "transcript": "No son mis llaves."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No son mis llaves.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-08:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — моя сумка красная; начните с Mi bolso",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-08:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — моя сумка красная; начните с Mi bolso",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-08:i17:audio",
+          "transcript": "Mi bolso es rojo."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Mi bolso es rojo.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-08:i18",
+      "ordinal": 21,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — мои ключи маленькие; начните с Mis llaves",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-08:i18:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — мои ключи маленькие; начните с Mis llaves",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-08:i18:audio",
+          "transcript": "Mis llaves son pequeñas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Mis llaves son pequeñas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 18,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "fac50ad258816fbf161687b78f6c9f4da8a02656bf2880bb0cea37fcf2310392"
+}

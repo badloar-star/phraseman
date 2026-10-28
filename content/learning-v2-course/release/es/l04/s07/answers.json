@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-04:session-07:i01",
+    "correctText": "No es mi bolso.",
+    "correctResponseId": "es:lesson-04:session-07:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-07:i02",
+    "correctText": "es",
+    "correctResponseId": "es:lesson-04:session-07:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-07:i03",
+    "correctText": "No es mi bolso.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-07:i04",
+    "correctText": "mis",
+    "correctResponseId": "es:lesson-04:session-07:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-07:i05",
+    "correctText": "No son mis libros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-07:i06",
+    "correctText": "No son mis llaves.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-07:i07",
+    "correctText": "No es mi llave.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-07:i08",
+    "correctText": "son",
+    "correctResponseId": "es:lesson-04:session-07:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-07:i09",
+    "correctText": "No es mi bolso.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-07:i10",
+    "correctText": "No son mis libros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-07:i11",
+    "correctText": "No son mis llaves.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-07:i12",
+    "correctText": "No es mi llave.",
+    "correctResponseId": null
+  }
+]

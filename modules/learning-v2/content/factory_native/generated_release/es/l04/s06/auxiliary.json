@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-04:session-06",
+  "entries": [
+    {
+      "interactionId": "es:lesson-04:session-06:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-06:intro1:r2": {
+          "ru": "С одной llave нужна форма mi.",
+          "uk": "З однією llave потрібна форма mi."
+        },
+        "es:lesson-04:session-06:intro1:r3": {
+          "ru": "Перед mi здесь не ставим la.",
+          "uk": "Перед mi тут не ставимо la."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-06:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-06:intro2:r2": {
+          "ru": "Перед множественным llaves нужно mis.",
+          "uk": "Перед множиною llaves потрібне mis."
+        },
+        "es:lesson-04:session-06:intro2:r3": {
+          "ru": "Перед mis здесь не ставим las.",
+          "uk": "Перед mis тут не ставимо las."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-06:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-06:intro3:r2": {
+          "ru": "Llaves женского рода.",
+          "uk": "Llaves жіночого роду."
+        },
+        "es:lesson-04:session-06:intro3:r3": {
+          "ru": "Ключей несколько: pequeñas.",
+          "uk": "Ключів кілька: pequeñas."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a9cffbce9563330c2f35098986dffe031be4f0257d35f2b257c420caf654ee57"
+}

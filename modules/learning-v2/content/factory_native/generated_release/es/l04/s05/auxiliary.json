@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-04:session-05",
+  "entries": [
+    {
+      "interactionId": "es:lesson-04:session-05:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-05:intro1:r2": {
+          "ru": "Для одной книги нужно libro.",
+          "uk": "Для однієї книжки потрібне libro."
+        },
+        "es:lesson-04:session-05:intro1:r3": {
+          "ru": "С единственным libro нужна форма mi.",
+          "uk": "З одниною libro потрібна форма mi."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-05:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-05:intro2:r2": {
+          "ru": "Перед множественным libros нужно mis.",
+          "uk": "Перед множиною libros потрібне mis."
+        },
+        "es:lesson-04:session-05:intro2:r3": {
+          "ru": "Нужно множественное libros.",
+          "uk": "Потрібна множина libros."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-05:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-05:intro3:r2": {
+          "ru": "Нужно son.",
+          "uk": "Потрібне son."
+        },
+        "es:lesson-04:session-05:intro3:r3": {
+          "ru": "Нужна форма nuevos.",
+          "uk": "Потрібна форма nuevos."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "71878868d1fb4d45ced37ae015d523922f0649b2a90fce4c51a0fa6fa5a96dce"
+}

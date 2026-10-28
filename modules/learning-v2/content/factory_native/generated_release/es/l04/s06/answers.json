@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-04:session-06:i01",
+    "correctText": "Son mis llaves.",
+    "correctResponseId": "es:lesson-04:session-06:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-06:i02",
+    "correctText": "mi",
+    "correctResponseId": "es:lesson-04:session-06:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-06:i03",
+    "correctText": "Es mi llave.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-06:i04",
+    "correctText": "mis",
+    "correctResponseId": "es:lesson-04:session-06:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-06:i05",
+    "correctText": "Son mis llaves.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-06:i06",
+    "correctText": "Mis llaves son pequeñas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-06:i07",
+    "correctText": "No son mis llaves.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-06:i08",
+    "correctText": "pequeñas",
+    "correctResponseId": "es:lesson-04:session-06:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-06:i09",
+    "correctText": "Es mi llave.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-06:i10",
+    "correctText": "Son mis llaves.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-06:i11",
+    "correctText": "Mis llaves son pequeñas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-06:i12",
+    "correctText": "No son mis llaves.",
+    "correctResponseId": null
+  }
+]

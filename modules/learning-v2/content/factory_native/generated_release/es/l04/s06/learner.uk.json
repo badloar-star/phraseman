@@ -1,0 +1,668 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-04:session-06",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-04:session-06:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-06:i01:r1",
+          "text": "Son mis llaves."
+        },
+        {
+          "responseId": "es:lesson-04:session-06:i01:r2",
+          "text": "Es mi llave."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-06:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-06:i01:audio",
+          "transcript": "Son mis llaves."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-04:session-06:i01:r1",
+            "targetText": "Son mis llaves.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-04:session-06:i01:r2",
+            "targetText": "Es mi llave.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-06:i01:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи несколько ключей: son mis llaves.",
+              "uk": "У записі кілька ключів: son mis llaves."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-06:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — це мій ключ, один",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-06:i02:r1",
+          "text": "mi"
+        },
+        {
+          "responseId": "es:lesson-04:session-06:i02:r2",
+          "text": "mis"
+        },
+        {
+          "responseId": "es:lesson-04:session-06:i02:r3",
+          "text": "muy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — це мій ключ, один",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это мой ключ, один",
+          "uk": "Вставте слово — це мій ключ, один"
+        },
+        "gappedTargetPhrase": "Es ___ llave.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-06:i02:r1",
+            "text": "mi"
+          },
+          {
+            "responseId": "es:lesson-04:session-06:i02:r2",
+            "text": "mis"
+          },
+          {
+            "responseId": "es:lesson-04:session-06:i02:r3",
+            "text": "muy"
+          }
+        ],
+        "testedDimension": "Вставте слово — це мій ключ, один",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-06:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — це мій ключ, один",
+            "feedbackByLocale": {
+              "ru": "Один ключ: mi.",
+              "uk": "Один ключ: mi."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-06:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — це мій ключ, один",
+            "feedbackByLocale": {
+              "ru": "Muy значит «очень»; нужно mi — мой.",
+              "uk": "Muy означає «дуже»; потрібне mi — мій."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-06:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це мій ключ",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-06:i03:r1",
+          "text": "Плитки: llave"
+        },
+        {
+          "responseId": "es:lesson-04:session-06:i03:r2",
+          "text": "mi"
+        },
+        {
+          "responseId": "es:lesson-04:session-06:i03:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-06:i03:r4",
+          "text": "la."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це мій ключ",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es mi llave.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это мой ключ",
+          "uk": "Зберіть фразу — це мій ключ"
+        },
+        "orderedTokens": [
+          "Es",
+          "mi",
+          "llave"
+        ],
+        "authoredDistractorTokens": [
+          "la"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-06:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це мій ключ",
+            "feedbackByLocale": {
+              "ru": "перед mi здесь нет артикля.",
+              "uk": "перед mi тут немає артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-06:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — це мої ключі",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-06:i04:r1",
+          "text": "mis"
+        },
+        {
+          "responseId": "es:lesson-04:session-06:i04:r2",
+          "text": "mi"
+        },
+        {
+          "responseId": "es:lesson-04:session-06:i04:r3",
+          "text": "muy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — це мої ключі",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это мои ключи",
+          "uk": "Вставте слово — це мої ключі"
+        },
+        "gappedTargetPhrase": "Son ___ llaves.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-06:i04:r1",
+            "text": "mis"
+          },
+          {
+            "responseId": "es:lesson-04:session-06:i04:r2",
+            "text": "mi"
+          },
+          {
+            "responseId": "es:lesson-04:session-06:i04:r3",
+            "text": "muy"
+          }
+        ],
+        "testedDimension": "Вставте слово — це мої ключі",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-06:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — це мої ключі",
+            "feedbackByLocale": {
+              "ru": "Несколько ключей: mis.",
+              "uk": "Кілька ключів: mis."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-06:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — це мої ключі",
+            "feedbackByLocale": {
+              "ru": "Muy означает «очень», а нужно mis — мои.",
+              "uk": "Muy означає «дуже», а потрібне mis — мої."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-06:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це мої ключі",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-06:i05:r1",
+          "text": "Плитки: llaves"
+        },
+        {
+          "responseId": "es:lesson-04:session-06:i05:r2",
+          "text": "mis"
+        },
+        {
+          "responseId": "es:lesson-04:session-06:i05:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-06:i05:r4",
+          "text": "las."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це мої ключі",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son mis llaves.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это мои ключи",
+          "uk": "Зберіть фразу — це мої ключі"
+        },
+        "orderedTokens": [
+          "Son",
+          "mis",
+          "llaves"
+        ],
+        "authoredDistractorTokens": [
+          "las"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-06:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це мої ключі",
+            "feedbackByLocale": {
+              "ru": "перед mis здесь нет артикля.",
+              "uk": "перед mis тут немає артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-06:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — мої ключі маленькі",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-06:i06:r1",
+          "text": "Плитки: pequeñas"
+        },
+        {
+          "responseId": "es:lesson-04:session-06:i06:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-06:i06:r3",
+          "text": "llaves"
+        },
+        {
+          "responseId": "es:lesson-04:session-06:i06:r4",
+          "text": "mis"
+        },
+        {
+          "responseId": "es:lesson-04:session-06:i06:r5",
+          "text": "pequeños."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — мої ключі маленькі",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Mis llaves son pequeñas.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — мои ключи маленькие",
+          "uk": "Зберіть фразу — мої ключі маленькі"
+        },
+        "orderedTokens": [
+          "Mis",
+          "llaves",
+          "son",
+          "pequeñas"
+        ],
+        "authoredDistractorTokens": [
+          "pequeños"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-06:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — мої ключі маленькі",
+            "feedbackByLocale": {
+              "ru": "llaves женского рода.",
+              "uk": "llaves жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-06:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-06:i07:r1",
+          "text": "Плитки: llaves"
+        },
+        {
+          "responseId": "es:lesson-04:session-06:i07:r2",
+          "text": "mis"
+        },
+        {
+          "responseId": "es:lesson-04:session-06:i07:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-06:i07:r4",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-04:session-06:i07:r5",
+          "text": "mi."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-06:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-06:i07:audio",
+          "transcript": "No son mis llaves."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "No son mis llaves.",
+        "orderedTokens": [
+          "No",
+          "son",
+          "mis",
+          "llaves"
+        ],
+        "authoredDistractorTokens": [
+          "mi"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-06:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит mis.",
+              "uk": "звучить mis."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-06:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — мої ключі маленькі",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-06:i08:r1",
+          "text": "pequeñas"
+        },
+        {
+          "responseId": "es:lesson-04:session-06:i08:r2",
+          "text": "pequeños"
+        },
+        {
+          "responseId": "es:lesson-04:session-06:i08:r3",
+          "text": "pequeña"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — мої ключі маленькі",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — мои ключи маленькие",
+          "uk": "Вставте слово — мої ключі маленькі"
+        },
+        "gappedTargetPhrase": "Mis llaves son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-06:i08:r1",
+            "text": "pequeñas"
+          },
+          {
+            "responseId": "es:lesson-04:session-06:i08:r2",
+            "text": "pequeños"
+          },
+          {
+            "responseId": "es:lesson-04:session-06:i08:r3",
+            "text": "pequeña"
+          }
+        ],
+        "testedDimension": "Вставте слово — мої ключі маленькі",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-06:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — мої ключі маленькі",
+            "feedbackByLocale": {
+              "ru": "Llaves женского рода.",
+              "uk": "Llaves жіночого роду."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-06:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — мої ключі маленькі",
+            "feedbackByLocale": {
+              "ru": "Ключей несколько: pequeñas.",
+              "uk": "Ключів кілька: pequeñas."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-06:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — це мій ключ, один; почніть з Es",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-06:i09:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — це мій ключ, один; почніть з Es",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-06:i09:audio",
+          "transcript": "Es mi llave."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es mi llave.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-06:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — це мої ключі; почніть з Son",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-06:i10:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — це мої ключі; почніть з Son",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-06:i10:audio",
+          "transcript": "Son mis llaves."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son mis llaves.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-06:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — мої ключі маленькі; почніть з Mis llaves",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-06:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — мої ключі маленькі; почніть з Mis llaves",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-06:i11:audio",
+          "transcript": "Mis llaves son pequeñas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Mis llaves son pequeñas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-06:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — це не мої ключі; почніть з No son",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-06:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — це не мої ключі; почніть з No son",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-06:i12:audio",
+          "transcript": "No son mis llaves."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No son mis llaves.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "77f487e7cb8acfee9d4e72da1c81812e02c8541f1ee0048255ff26f963b1609f"
+}

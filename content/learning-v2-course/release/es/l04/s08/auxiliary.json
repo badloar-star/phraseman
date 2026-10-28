@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-04:session-08",
+  "entries": [
+    {
+      "interactionId": "es:lesson-04:session-08:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-08:intro1:r2": {
+          "ru": "С единственным hermana нужно mi.",
+          "uk": "З одниною hermana потрібне mi."
+        },
+        "es:lesson-04:session-08:intro1:r3": {
+          "ru": "Перед mi здесь нет la.",
+          "uk": "Перед mi тут немає la."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-08:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-08:intro2:r2": {
+          "ru": "Перед libros нужно mis.",
+          "uk": "Перед libros потрібне mis."
+        },
+        "es:lesson-04:session-08:intro2:r3": {
+          "ru": "Для нескольких книг нужно son.",
+          "uk": "Для кількох книжок потрібне son."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-08:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-08:intro3:r2": {
+          "ru": "Ключей несколько: mis.",
+          "uk": "Ключів кілька: mis."
+        },
+        "es:lesson-04:session-08:intro3:r3": {
+          "ru": "Нужен глагол son.",
+          "uk": "Потрібне дієслово son."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f30df204048da7cc7e75a3551b24aea7f73e67d9a5f74de35b1a627f7655e240"
+}

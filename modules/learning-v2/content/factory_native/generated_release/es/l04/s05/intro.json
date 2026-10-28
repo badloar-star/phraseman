@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-04:session-05",
+  "learningOutcomeByLocale": {
+    "ru": "перейти от mi libro к mis libros.",
+    "uk": "перейти від mi libro до mis libros."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-04:session-05:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Одна книга",
+        "uk": "Одна книжка"
+      },
+      "bodyByLocale": {
+        "ru": "Нашли одну свою книгу. Скажите `Es mi libro` — «Это моя книга». Соберите `es` + `mi libro`. Mi относится к одной книге: libro стоит в единственном числе. Владелец — вы, но сейчас важнее посчитать вещи: книга одна.",
+        "uk": "Знайшли одну свою книжку. Скажіть `Es mi libro` — «Це моя книжка». Зберіть `es` + `mi libro`. Mi стосується однієї книжки: libro стоїть в однині. Власник — ви, але зараз важливіше порахувати речі: книжка одна."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-05:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите одну свою книгу, начав с Es.",
+          "uk": "Назвіть одну свою книжку, почавши з Es."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-05:intro1:r1",
+              "text": "Es mi libro."
+            },
+            {
+              "responseId": "es:lesson-04:session-05:intro1:r2",
+              "text": "Es mi libros."
+            },
+            {
+              "responseId": "es:lesson-04:session-05:intro1:r3",
+              "text": "Es mis libro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-05:intro1:r1",
+              "text": "Es mi libro."
+            },
+            {
+              "responseId": "es:lesson-04:session-05:intro1:r2",
+              "text": "Es mi libros."
+            },
+            {
+              "responseId": "es:lesson-04:session-05:intro1:r3",
+              "text": "Es mis libro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите одну свою книгу, начав с Es.",
+          "uk": "Назвіть одну свою книжку, почавши з Es."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-04:session-05:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Несколько книг",
+        "uk": "Кілька книжок"
+      },
+      "bodyByLocale": {
+        "ru": "Теперь нашли несколько своих книг. Скажите `Son mis libros` — «Это мои книги». Соберите `son` + `mis libros`. К libro добавьте -s, а mi замените на mis. Владелец всё ещё один — вы. Mis выбираем потому, что книг несколько.",
+        "uk": "Тепер знайшли кілька своїх книжок. Скажіть `Son mis libros` — «Це мої книжки». Зберіть `son` + `mis libros`. До libro додайте -s, а mi замініть на mis. Власник усе ще один — ви. Mis вибираємо тому, що книжок кілька."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-05:intro2:q",
+        "promptByLocale": {
+          "ru": "Назовите несколько своих книг, начав с Son.",
+          "uk": "Назвіть кілька своїх книжок, почавши з Son."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-05:intro2:r1",
+              "text": "Son mis libros."
+            },
+            {
+              "responseId": "es:lesson-04:session-05:intro2:r2",
+              "text": "Son mi libros."
+            },
+            {
+              "responseId": "es:lesson-04:session-05:intro2:r3",
+              "text": "Son mis libro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-05:intro2:r1",
+              "text": "Son mis libros."
+            },
+            {
+              "responseId": "es:lesson-04:session-05:intro2:r2",
+              "text": "Son mi libros."
+            },
+            {
+              "responseId": "es:lesson-04:session-05:intro2:r3",
+              "text": "Son mis libro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите несколько своих книг, начав с Son.",
+          "uk": "Назвіть кілька своїх книжок, почавши з Son."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-04:session-05:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Какие ваши книги",
+        "uk": "Які ваші книжки"
+      },
+      "bodyByLocale": {
+        "ru": "Объясните другу: `Mis libros son nuevos` — «Мои книги новые». Соберите `mis libros` + `son` + `nuevos`. Множественное число видно в mis, libros и nuevos; для описания нескольких книг используется son. Мужской род libros определяет форму nuevos.",
+        "uk": "Поясніть другу: `Mis libros son nuevos` — «Мої книжки нові». Зберіть `mis libros` + `son` + `nuevos`. Множину видно в mis, libros і nuevos; для опису кількох книжок використовується son. Чоловічий рід libros визначає форму nuevos."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-05:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите, что ваши книги новые, начав с Mis libros.",
+          "uk": "Скажіть, що ваші книжки нові, почавши з Mis libros."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-05:intro3:r1",
+              "text": "Mis libros son nuevos."
+            },
+            {
+              "responseId": "es:lesson-04:session-05:intro3:r2",
+              "text": "Mis libros es nuevos."
+            },
+            {
+              "responseId": "es:lesson-04:session-05:intro3:r3",
+              "text": "Mis libros son nuevo."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-05:intro3:r1",
+              "text": "Mis libros son nuevos."
+            },
+            {
+              "responseId": "es:lesson-04:session-05:intro3:r2",
+              "text": "Mis libros es nuevos."
+            },
+            {
+              "responseId": "es:lesson-04:session-05:intro3:r3",
+              "text": "Mis libros son nuevo."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что ваши книги новые, начав с Mis libros.",
+          "uk": "Скажіть, що ваші книжки нові, почавши з Mis libros."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "8ec1a21e1550a8f1058c4e002e5f3e7574c962bbd04bd385ceec7d697f16486d"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-06:session-15",
+  "learningOutcomeByLocale": {
+    "ru": "спросить о содержимом места с помощью ¿Qué hay...?",
+    "uk": "запитати про вміст місця за допомогою ¿Qué hay...?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-06:session-15:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Узнать, что есть рядом",
+        "uk": "Дізнатися, що є поруч"
+      },
+      "bodyByLocale": {
+        "ru": "Вы вошли в незнакомую комнату и ещё не успели осмотреться. Спросите друга `¿Qué hay aquí?` — «Что здесь есть?» Соберите `¿Qué` + `hay` + `aquí?`. Qué означает «что» и ставится перед hay. Так вы не угадываете по очереди стол, стул и книгу — один вопрос охватывает всё, что есть в этом месте.",
+        "uk": "Ви ввійшли до незнайомої кімнати й ще не встигли роздивитися. Запитайте друга `¿Qué hay aquí?` — «Що тут є?» Складіть `¿Qué` + `hay` + `aquí?`. Qué означає «що» й ставиться перед hay. Так ви не вгадуєте по черзі стіл, стілець і книгу — одне запитання охоплює все, що є в цьому місці."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-15:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите «Что здесь есть?». Начните с ¿Qué, место поставьте в конце.",
+          "uk": "Запитайте «Що тут є?». Почніть з ¿Qué, місце поставте в кінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-15:intro1:r1",
+              "text": "¿Qué hay aquí?"
+            },
+            {
+              "responseId": "es:lesson-06:session-15:intro1:r2",
+              "text": "¿Qué tengo aquí?"
+            },
+            {
+              "responseId": "es:lesson-06:session-15:intro1:r3",
+              "text": "¿Qué hay allí?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-15:intro1:r1",
+              "text": "¿Qué hay aquí?"
+            },
+            {
+              "responseId": "es:lesson-06:session-15:intro1:r2",
+              "text": "¿Qué tengo aquí?"
+            },
+            {
+              "responseId": "es:lesson-06:session-15:intro1:r3",
+              "text": "¿Qué hay allí?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «Что здесь есть?». Начните с ¿Qué, место поставьте в конце.",
+          "uk": "Запитайте «Що тут є?». Почніть з ¿Qué, місце поставте в кінці."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-06:session-15:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Спросить о другом помещении",
+        "uk": "Запитати про інше приміщення"
+      },
+      "bodyByLocale": {
+        "ru": "Вы указываете на соседнюю комнату, куда ещё не заходили. Спросите `¿Qué hay allí?` — «Что там есть?» Соберите `¿Qué` + `hay` + `allí?`. Вместо aquí выбираем allí, потому что речь о другом месте. Начало qué hay остаётся прежним.",
+        "uk": "Ви вказуєте на сусідню кімнату, куди ще не заходили. Запитайте `¿Qué hay allí?` — «Що там є?» Складіть `¿Qué` + `hay` + `allí?`. Замість aquí вибираємо allí, бо йдеться про інше місце. Початок qué hay залишається тим самим."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-15:intro2:q",
+        "promptByLocale": {
+          "ru": "Спросите «Что там есть?». Начните с ¿Qué, место поставьте в конце.",
+          "uk": "Запитайте «Що там є?». Почніть з ¿Qué, місце поставте в кінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-15:intro2:r1",
+              "text": "¿Qué hay allí?"
+            },
+            {
+              "responseId": "es:lesson-06:session-15:intro2:r2",
+              "text": "¿Qué hay aquí?"
+            },
+            {
+              "responseId": "es:lesson-06:session-15:intro2:r3",
+              "text": "¿Qué tienes allí?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-15:intro2:r1",
+              "text": "¿Qué hay allí?"
+            },
+            {
+              "responseId": "es:lesson-06:session-15:intro2:r2",
+              "text": "¿Qué hay aquí?"
+            },
+            {
+              "responseId": "es:lesson-06:session-15:intro2:r3",
+              "text": "¿Qué tienes allí?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «Что там есть?». Начните с ¿Qué, место поставьте в конце.",
+          "uk": "Запитайте «Що там є?». Почніть з ¿Qué, місце поставте в кінці."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-06:session-15:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Назвать найденный предмет",
+        "uk": "Назвати знайдений предмет"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спросил, что есть в комнате, и вы заметили стол. Ответьте `Hay una mesa` — «Есть стол». Соберите `Hay` + `una mesa`. В ответе на «что» называем найденную вещь. Не начинаем с sí: друг просил назвать предмет, а не подтвердить заранее названный стол.",
+        "uk": "Друг запитав, що є в кімнаті, і ви помітили стіл. Дайте відповідь `Hay una mesa` — «Є стіл». Складіть `Hay` + `una mesa`. У відповіді на «що» називаємо знайдену річ. Не починаємо із sí: друг просив назвати предмет, а не підтвердити заздалегідь названий стіл."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-15:intro3:q",
+        "promptByLocale": {
+          "ru": "Ответьте на вопрос «Что есть?»: «Есть стол». Начните с Hay.",
+          "uk": "Дайте відповідь на запитання «Що є?»: «Є стіл». Почніть з Hay."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-15:intro3:r1",
+              "text": "Hay una mesa."
+            },
+            {
+              "responseId": "es:lesson-06:session-15:intro3:r2",
+              "text": "Hay un mesa."
+            },
+            {
+              "responseId": "es:lesson-06:session-15:intro3:r3",
+              "text": "Tengo una mesa."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-15:intro3:r1",
+              "text": "Hay una mesa."
+            },
+            {
+              "responseId": "es:lesson-06:session-15:intro3:r2",
+              "text": "Hay un mesa."
+            },
+            {
+              "responseId": "es:lesson-06:session-15:intro3:r3",
+              "text": "Tengo una mesa."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ответьте на вопрос «Что есть?»: «Есть стол». Начните с Hay.",
+          "uk": "Дайте відповідь на запитання «Що є?»: «Є стіл». Почніть з Hay."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "8166770ee72c45d1b562eff9a050b9d06641d94eb6051a516448d7421e7d39fc"
+}

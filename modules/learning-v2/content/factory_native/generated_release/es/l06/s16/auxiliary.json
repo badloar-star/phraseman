@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-06:session-16",
+  "entries": [
+    {
+      "interactionId": "es:lesson-06:session-16:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-16:intro1:r2": {
+          "ru": "Baño мужского рода: un.",
+          "uk": "Baño чоловічого роду: un."
+        },
+        "es:lesson-06:session-16:intro1:r3": {
+          "ru": "Нужно «здесь» — aquí.",
+          "uk": "Потрібно «тут» — aquí."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-16:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-16:intro2:r2": {
+          "ru": "Подтверждаем наличие в месте: hay.",
+          "uk": "Підтверджуємо наявність у місці: hay."
+        },
+        "es:lesson-06:session-16:intro2:r3": {
+          "ru": "В этой фразе sillas без артикля.",
+          "uk": "У цій фразі sillas без артикля."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-16:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-16:intro3:r2": {
+          "ru": "В сообщении об отсутствии нужно no hay.",
+          "uk": "У повідомленні про відсутність потрібно no hay."
+        },
+        "es:lesson-06:session-16:intro3:r3": {
+          "ru": "No ставим перед hay.",
+          "uk": "No ставимо перед hay."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "d28e59c537ef1ef053633a0d92916f74cc7cb44b241782182527715d704b9d3e"
+}

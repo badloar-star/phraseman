@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-06:session-16",
+  "learningOutcomeByLocale": {
+    "ru": "выбирать вопрос о наличии, утвердительный ответ и отрицательное сообщение.",
+    "uk": "вибирати запитання про наявність, ствердну відповідь і заперечне повідомлення."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-06:session-16:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Узнать, есть ли туалет",
+        "uk": "Дізнатися, чи є туалет"
+      },
+      "bodyByLocale": {
+        "ru": "Вы вошли в незнакомое здание и спрашиваете сотрудника `¿Hay un baño aquí?` — «Здесь есть туалет?» Соберите `¿Hay` + `un baño` + `aquí?`. Hay спрашивает о наличии, un подходит к baño, а aquí ограничивает вопрос этим местом. Начальный ¿ заранее предупреждает читателя: сейчас будет вопрос.",
+        "uk": "Ви ввійшли до незнайомої будівлі й запитуєте працівника `¿Hay un baño aquí?` — «Тут є туалет?» Складіть `¿Hay` + `un baño` + `aquí?`. Hay запитує про наявність, un підходить до baño, а aquí обмежує запитання цим місцем. Початковий ¿ заздалегідь попереджає читача: зараз буде запитання."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-16:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите «Здесь есть туалет?». Начните с ¿Hay, используйте un baño, место поставьте в конце.",
+          "uk": "Запитайте «Тут є туалет?». Почніть з ¿Hay, використайте un baño, місце поставте в кінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-16:intro1:r1",
+              "text": "¿Hay un baño aquí?"
+            },
+            {
+              "responseId": "es:lesson-06:session-16:intro1:r2",
+              "text": "¿Hay una baño aquí?"
+            },
+            {
+              "responseId": "es:lesson-06:session-16:intro1:r3",
+              "text": "¿Hay un baño allí?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-16:intro1:r1",
+              "text": "¿Hay un baño aquí?"
+            },
+            {
+              "responseId": "es:lesson-06:session-16:intro1:r2",
+              "text": "¿Hay una baño aquí?"
+            },
+            {
+              "responseId": "es:lesson-06:session-16:intro1:r3",
+              "text": "¿Hay un baño allí?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «Здесь есть туалет?». Начните с ¿Hay, используйте un baño, место поставьте в конце.",
+          "uk": "Запитайте «Тут є туалет?». Почніть з ¿Hay, використайте un baño, місце поставте в кінці."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-06:session-16:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Подтвердить наличие стульев",
+        "uk": "Підтвердити наявність стільців"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спросил о стульях, и вы видели их в комнате. Ответьте `Sí, hay sillas` — «Да, стулья есть». Соберите `Sí,` + `hay` + `sillas`. Sí подтверждает, а hay sillas сообщает, что именно есть. В этой общей фразе sillas без артикля.",
+        "uk": "Друг запитав про стільці, і ви бачили їх у кімнаті. Дайте відповідь `Sí, hay sillas` — «Так, стільці є». Складіть `Sí,` + `hay` + `sillas`. Sí підтверджує, а hay sillas повідомляє, що саме є. У цій загальній фразі sillas без артикля."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-16:intro2:q",
+        "promptByLocale": {
+          "ru": "Ответьте «Да, стулья есть» без артикля. Начните с Sí, hay.",
+          "uk": "Дайте відповідь «Так, стільці є» без артикля. Почніть із Sí, hay."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-16:intro2:r1",
+              "text": "Sí, hay sillas."
+            },
+            {
+              "responseId": "es:lesson-06:session-16:intro2:r2",
+              "text": "Sí, tengo sillas."
+            },
+            {
+              "responseId": "es:lesson-06:session-16:intro2:r3",
+              "text": "Sí, hay una sillas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-16:intro2:r1",
+              "text": "Sí, hay sillas."
+            },
+            {
+              "responseId": "es:lesson-06:session-16:intro2:r2",
+              "text": "Sí, tengo sillas."
+            },
+            {
+              "responseId": "es:lesson-06:session-16:intro2:r3",
+              "text": "Sí, hay una sillas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ответьте «Да, стулья есть» без артикля. Начните с Sí, hay.",
+          "uk": "Дайте відповідь «Так, стільці є» без артикля. Почніть із Sí, hay."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-06:session-16:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ответить, что столов нет",
+        "uk": "Відповісти, що столів немає"
+      },
+      "bodyByLocale": {
+        "ru": "Организатор спросил о столах, но в комнате их нет. Скажите `No, no hay mesas` — «Нет, столов нет». Соберите `No,` + `no hay` + `mesas`. Первое no — ответ «нет», второе ставим перед hay для отрицания внутри фразы. Название предметов остаётся mesas.",
+        "uk": "Організатор запитав про столи, але в кімнаті їх немає. Скажіть `No, no hay mesas` — «Ні, столів немає». Складіть `No,` + `no hay` + `mesas`. Перше no — відповідь «ні», друге ставимо перед hay для заперечення всередині фрази. Назва предметів залишається mesas."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-16:intro3:q",
+        "promptByLocale": {
+          "ru": "Ответьте «Нет, столов нет» без артикля. Начните с No, no hay.",
+          "uk": "Дайте відповідь «Ні, столів немає» без артикля. Почніть з No, no hay."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-16:intro3:r1",
+              "text": "No, no hay mesas."
+            },
+            {
+              "responseId": "es:lesson-06:session-16:intro3:r2",
+              "text": "No, hay mesas."
+            },
+            {
+              "responseId": "es:lesson-06:session-16:intro3:r3",
+              "text": "No, hay no mesas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-16:intro3:r1",
+              "text": "No, no hay mesas."
+            },
+            {
+              "responseId": "es:lesson-06:session-16:intro3:r2",
+              "text": "No, hay mesas."
+            },
+            {
+              "responseId": "es:lesson-06:session-16:intro3:r3",
+              "text": "No, hay no mesas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ответьте «Нет, столов нет» без артикля. Начните с No, no hay.",
+          "uk": "Дайте відповідь «Ні, столів немає» без артикля. Почніть з No, no hay."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "25f83c786c8b8571e1c9153a26b9345ba6ecd487d7dd62377cf540ba0a00f1e6"
+}

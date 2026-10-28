@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-06:session-13:i01",
+    "correctText": "sí",
+    "correctResponseId": "es:lesson-06:session-13:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-13:i02",
+    "correctText": "Sí",
+    "correctResponseId": "es:lesson-06:session-13:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-13:i03",
+    "correctText": "Sí, hay sillas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-13:i04",
+    "correctText": "una",
+    "correctResponseId": "es:lesson-06:session-13:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-13:i05",
+    "correctText": "Sí, hay una mesa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-13:i06",
+    "correctText": "Sí, hay libros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-13:i07",
+    "correctText": "Sí, hay sillas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-13:i08",
+    "correctText": "hay",
+    "correctResponseId": "es:lesson-06:session-13:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-13:i09",
+    "correctText": "Sí, hay sillas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-13:i10",
+    "correctText": "Sí, hay una mesa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-13:i11",
+    "correctText": "Sí, hay libros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-13:i12",
+    "correctText": "Sí, hay un baño.",
+    "correctResponseId": null
+  }
+]

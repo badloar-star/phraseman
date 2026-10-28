@@ -2051,4 +2051,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"спросить о наличии нескольких предметов с помощью ¿Hay...?","uk":"запитати про наявність кількох предметів за допомогою ¿Hay...?"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 6","uk":"Іспанська · Урок 6"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 6, sessionOrdinal: 13,
+    sourceFingerprint: "cdd5c1ecacb31a2e2f86a93bece877249d447036964436c52b8c3be24fde8a39",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"дать утвердительный ответ с sí и hay.","uk":"дати ствердну відповідь із sí та hay."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 6","uk":"Іспанська · Урок 6"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 6, sessionOrdinal: 14,
+    sourceFingerprint: "853052e2e098e42ea2f79bb999d1a3912f51eafd6f91f3dc147672c3aaf85b6d",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"дать отрицательный ответ с отдельным No и фразой no hay.","uk":"дати заперечну відповідь з окремим No та фразою no hay."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 6","uk":"Іспанська · Урок 6"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 6, sessionOrdinal: 15,
+    sourceFingerprint: "a9659d0f08e9efdd172274cac3e2a658e99d962647fe57b12bd4982a27e6709a",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"спросить о содержимом места с помощью ¿Qué hay...?","uk":"запитати про вміст місця за допомогою ¿Qué hay...?"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 6","uk":"Іспанська · Урок 6"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 6, sessionOrdinal: 16,
+    sourceFingerprint: "2cf5c1cbbc1f96ff0d8eb2cedaea7c15dc2268a859cac7f9ca19107715eb0469",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбирать вопрос о наличии, утвердительный ответ и отрицательное сообщение.","uk":"вибирати запитання про наявність, ствердну відповідь і заперечне повідомлення."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 6","uk":"Іспанська · Урок 6"}),
+  }),
 ]);

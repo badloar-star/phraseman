@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-06:session-13",
+  "entries": [
+    {
+      "interactionId": "es:lesson-06:session-13:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-13:intro1:r2": {
+          "ru": "Нужно подтвердить наличие, поэтому hay.",
+          "uk": "Потрібно підтвердити наявність, тому hay."
+        },
+        "es:lesson-06:session-13:intro1:r3": {
+          "ru": "В этой фразе называем стулья без артикля.",
+          "uk": "У цій фразі називаємо стільці без артикля."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-13:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-13:intro2:r2": {
+          "ru": "Mesa женского рода: una.",
+          "uk": "Mesa жіночого роду: una."
+        },
+        "es:lesson-06:session-13:intro2:r3": {
+          "ru": "Здесь подтверждаем наличие через hay.",
+          "uk": "Тут підтверджуємо наявність через hay."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-13:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-13:intro3:r2": {
+          "ru": "Un не подходит к libros; здесь артикля нет.",
+          "uk": "Un не підходить до libros; тут артикля немає."
+        },
+        "es:lesson-06:session-13:intro3:r3": {
+          "ru": "Подтверждаем наличие, не владение: hay.",
+          "uk": "Підтверджуємо наявність, не володіння: hay."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "863f5f9602d6d47e06b2d197c9be5530c19f39d39cc277f68171962dd734edfa"
+}

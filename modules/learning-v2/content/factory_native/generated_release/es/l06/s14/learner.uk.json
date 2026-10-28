@@ -1,0 +1,678 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-06:session-14",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-06:session-14:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте та виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-14:i01:r1",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-06:session-14:i01:r2",
+          "text": "sí"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-14:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте та виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-14:i01:audio",
+          "transcript": "no"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-06:session-14:i01:r1",
+            "targetText": "no",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-06:session-14:i01:r2",
+            "targetText": "sí",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-14:i01:r2",
+            "correct": false,
+            "testedDimension": "Послухайте та виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит no — нет.",
+              "uk": "Звучить no — ні."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-14:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — ні, стільців немає",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-14:i02:r1",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-06:session-14:i02:r2",
+          "text": "sí"
+        },
+        {
+          "responseId": "es:lesson-06:session-14:i02:r3",
+          "text": "una"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — ні, стільців немає",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — нет, стульев нет",
+          "uk": "Вставте слово — ні, стільців немає"
+        },
+        "gappedTargetPhrase": "No, ___ hay sillas.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-14:i02:r1",
+            "text": "no"
+          },
+          {
+            "responseId": "es:lesson-06:session-14:i02:r2",
+            "text": "sí"
+          },
+          {
+            "responseId": "es:lesson-06:session-14:i02:r3",
+            "text": "una"
+          }
+        ],
+        "testedDimension": "Вставте слово — ні, стільців немає",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-14:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — ні, стільців немає",
+            "feedbackByLocale": {
+              "ru": "Нужно отрицание no перед hay.",
+              "uk": "Потрібне заперечення no перед hay."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-14:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — ні, стільців немає",
+            "feedbackByLocale": {
+              "ru": "Чтобы отрицать наличие, ставим no.",
+              "uk": "Щоб заперечити наявність, ставимо no."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-14:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — ні, стільців немає; без артикля, почніть з No, no hay",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-14:i03:r1",
+          "text": "Плитки: sillas"
+        },
+        {
+          "responseId": "es:lesson-06:session-14:i03:r2",
+          "text": "No,"
+        },
+        {
+          "responseId": "es:lesson-06:session-14:i03:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-06:session-14:i03:r4",
+          "text": "hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-14:i03:r5",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — ні, стільців немає; без артикля, почніть з No, no hay",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No, no hay sillas.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — нет, стульев нет; без артикля, начните с No, no hay",
+          "uk": "Зберіть фразу — ні, стільців немає; без артикля, почніть з No, no hay"
+        },
+        "orderedTokens": [
+          "No,",
+          "no",
+          "hay",
+          "sillas"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-14:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — ні, стільців немає; без артикля, почніть з No, no hay",
+            "feedbackByLocale": {
+              "ru": "в этой фразе sillas без артикля.",
+              "uk": "у цій фразі sillas без артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-14:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — ні, столів немає",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-14:i04:r1",
+          "text": "mesas"
+        },
+        {
+          "responseId": "es:lesson-06:session-14:i04:r2",
+          "text": "libros"
+        },
+        {
+          "responseId": "es:lesson-06:session-14:i04:r3",
+          "text": "sillas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — ні, столів немає",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — нет, столов нет",
+          "uk": "Вставте слово — ні, столів немає"
+        },
+        "gappedTargetPhrase": "No, no hay ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-14:i04:r1",
+            "text": "mesas"
+          },
+          {
+            "responseId": "es:lesson-06:session-14:i04:r2",
+            "text": "libros"
+          },
+          {
+            "responseId": "es:lesson-06:session-14:i04:r3",
+            "text": "sillas"
+          }
+        ],
+        "testedDimension": "Вставте слово — ні, столів немає",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-14:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — ні, столів немає",
+            "feedbackByLocale": {
+              "ru": "Нужно назвать столы: mesas.",
+              "uk": "Потрібно назвати столи: mesas."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-14:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — ні, столів немає",
+            "feedbackByLocale": {
+              "ru": "Это стулья; столы — mesas.",
+              "uk": "Це стільці; столи — mesas."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-14:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — ні, столів немає; без артикля, почніть з No, no hay",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-14:i05:r1",
+          "text": "Плитки: mesas"
+        },
+        {
+          "responseId": "es:lesson-06:session-14:i05:r2",
+          "text": "hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-14:i05:r3",
+          "text": "No,"
+        },
+        {
+          "responseId": "es:lesson-06:session-14:i05:r4",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-06:session-14:i05:r5",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — ні, столів немає; без артикля, почніть з No, no hay",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No, no hay mesas.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — нет, столов нет; без артикля, начните с No, no hay",
+          "uk": "Зберіть фразу — ні, столів немає; без артикля, почніть з No, no hay"
+        },
+        "orderedTokens": [
+          "No,",
+          "no",
+          "hay",
+          "mesas"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-14:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — ні, столів немає; без артикля, почніть з No, no hay",
+            "feedbackByLocale": {
+              "ru": "здесь mesas без артикля.",
+              "uk": "тут mesas без артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-14:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — ні, книг немає; без артикля, почніть з No, no hay",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-14:i06:r1",
+          "text": "Плитки: libros"
+        },
+        {
+          "responseId": "es:lesson-06:session-14:i06:r2",
+          "text": "No,"
+        },
+        {
+          "responseId": "es:lesson-06:session-14:i06:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-06:session-14:i06:r4",
+          "text": "hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-14:i06:r5",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — ні, книг немає; без артикля, почніть з No, no hay",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No, no hay libros.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — нет, книг нет; без артикля, начните с No, no hay",
+          "uk": "Зберіть фразу — ні, книг немає; без артикля, почніть з No, no hay"
+        },
+        "orderedTokens": [
+          "No,",
+          "no",
+          "hay",
+          "libros"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-14:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — ні, книг немає; без артикля, почніть з No, no hay",
+            "feedbackByLocale": {
+              "ru": "она не подходит к libros.",
+              "uk": "вона не підходить до libros."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-14:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте та зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-14:i07:r1",
+          "text": "Плитки: No,"
+        },
+        {
+          "responseId": "es:lesson-06:session-14:i07:r2",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-06:session-14:i07:r3",
+          "text": "hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-14:i07:r4",
+          "text": "sillas"
+        },
+        {
+          "responseId": "es:lesson-06:session-14:i07:r5",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-14:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте та зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-14:i07:audio",
+          "transcript": "No, no hay sillas."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "No, no hay sillas.",
+        "orderedTokens": [
+          "No,",
+          "no",
+          "hay",
+          "sillas"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-14:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте та зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "её нет в ответе.",
+              "uk": "її немає у відповіді."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-14:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — ні, книг немає",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-14:i08:r1",
+          "text": "hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-14:i08:r2",
+          "text": "tengo"
+        },
+        {
+          "responseId": "es:lesson-06:session-14:i08:r3",
+          "text": "tienes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — ні, книг немає",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — нет, книг нет",
+          "uk": "Вставте слово — ні, книг немає"
+        },
+        "gappedTargetPhrase": "No, no ___ libros.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-14:i08:r1",
+            "text": "hay"
+          },
+          {
+            "responseId": "es:lesson-06:session-14:i08:r2",
+            "text": "tengo"
+          },
+          {
+            "responseId": "es:lesson-06:session-14:i08:r3",
+            "text": "tienes"
+          }
+        ],
+        "testedDimension": "Вставте слово — ні, книг немає",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-14:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — ні, книг немає",
+            "feedbackByLocale": {
+              "ru": "Сообщаем об отсутствии в месте: no hay.",
+              "uk": "Повідомляємо про відсутність у місці: no hay."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-14:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — ні, книг немає",
+            "feedbackByLocale": {
+              "ru": "Нужно отсутствие без указания владельца: no hay.",
+              "uk": "Потрібна відсутність без зазначення власника: no hay."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-14:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — ні, стільців немає; без артикля, почніть з No, no hay",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-14:i09:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — ні, стільців немає; без артикля, почніть з No, no hay",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-14:i09:audio",
+          "transcript": "No, no hay sillas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No, no hay sillas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-14:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — ні, столів немає; без артикля, почніть з No, no hay",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-14:i10:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — ні, столів немає; без артикля, почніть з No, no hay",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-14:i10:audio",
+          "transcript": "No, no hay mesas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No, no hay mesas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-14:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — ні, книг немає; без артикля, почніть з No, no hay",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-14:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — ні, книг немає; без артикля, почніть з No, no hay",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-14:i11:audio",
+          "transcript": "No, no hay libros."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No, no hay libros.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-14:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — друг запитує вас про іншу кімнату, де є стільці. Дайте відповідь «Так, стільці є»; без артикля, почніть із Sí, hay",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-14:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — друг запитує вас про іншу кімнату, де є стільці. Дайте відповідь «Так, стільці є»; без артикля, почніть із Sí, hay",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-14:i12:audio",
+          "transcript": "Sí, hay sillas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Sí, hay sillas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "a41ae1d1dbe8310eba745a22b714c1ecef754a5c7bec7c4e2eaae076d112458d"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-06:session-14",
+  "entries": [
+    {
+      "interactionId": "es:lesson-06:session-14:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-14:intro1:r2": {
+          "ru": "После отдельного ответа нужно ещё no перед hay, чтобы сказать об отсутствии.",
+          "uk": "Після окремої відповіді потрібне ще no перед hay, щоб сказати про відсутність."
+        },
+        "es:lesson-06:session-14:intro1:r3": {
+          "ru": "Внутри фразы порядок no hay.",
+          "uk": "Усередині фрази порядок no hay."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-14:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-14:intro2:r2": {
+          "ru": "Фраза об отсутствии требует no hay.",
+          "uk": "Фраза про відсутність потребує no hay."
+        },
+        "es:lesson-06:session-14:intro2:r3": {
+          "ru": "В этой фразе mesas без артикля.",
+          "uk": "У цій фразі mesas без артикля."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-14:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-14:intro3:r2": {
+          "ru": "Для отсутствия нужно второе no перед hay.",
+          "uk": "Для відсутності потрібне друге no перед hay."
+        },
+        "es:lesson-06:session-14:intro3:r3": {
+          "ru": "Un не подходит к libros; здесь артикля нет.",
+          "uk": "Un не підходить до libros; тут артикля немає."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "1f5768f6b79846db1ed58999d6d3bd09ce1668af0f124133e50c578f96ed371d"
+}

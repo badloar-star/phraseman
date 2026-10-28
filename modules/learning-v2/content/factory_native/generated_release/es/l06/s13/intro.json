@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-06:session-13",
+  "learningOutcomeByLocale": {
+    "ru": "дать утвердительный ответ с sí и hay.",
+    "uk": "дати ствердну відповідь із sí та hay."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-06:session-13:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Подтвердить наличие стульев",
+        "uk": "Підтвердити наявність стільців"
+      },
+      "bodyByLocale": {
+        "ru": "Гость спросил, есть ли стулья. Вы видели их и отвечаете `Sí, hay sillas` — «Да, стулья есть». Соберите `Sí,` + `hay` + `sillas`. Sí означает «да», затем идёт обычное сообщение о наличии. Hay остаётся hay: отвечая гостю, не нужно превращать общие стулья в свои.",
+        "uk": "Гість запитав, чи є стільці. Ви бачили їх і відповідаєте `Sí, hay sillas` — «Так, стільці є». Складіть `Sí,` + `hay` + `sillas`. Sí означає «так», далі йде звичайне повідомлення про наявність. Hay залишається hay: відповідаючи гостю, не потрібно перетворювати спільні стільці на свої."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-13:intro1:q",
+        "promptByLocale": {
+          "ru": "Ответьте «Да, стулья есть» без артикля. Начните с Sí, hay.",
+          "uk": "Дайте відповідь «Так, стільці є» без артикля. Почніть із Sí, hay."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-13:intro1:r1",
+              "text": "Sí, hay sillas."
+            },
+            {
+              "responseId": "es:lesson-06:session-13:intro1:r2",
+              "text": "Sí, tengo sillas."
+            },
+            {
+              "responseId": "es:lesson-06:session-13:intro1:r3",
+              "text": "Sí, hay una sillas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-13:intro1:r1",
+              "text": "Sí, hay sillas."
+            },
+            {
+              "responseId": "es:lesson-06:session-13:intro1:r2",
+              "text": "Sí, tengo sillas."
+            },
+            {
+              "responseId": "es:lesson-06:session-13:intro1:r3",
+              "text": "Sí, hay una sillas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ответьте «Да, стулья есть» без артикля. Начните с Sí, hay.",
+          "uk": "Дайте відповідь «Так, стільці є» без артикля. Почніть із Sí, hay."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-06:session-13:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Подтвердить наличие стола",
+        "uk": "Підтвердити наявність стола"
+      },
+      "bodyByLocale": {
+        "ru": "Организатор спрашивает, есть ли стол. Вы проверили комнату и отвечаете `Sí, hay una mesa` — «Да, стол есть». Соберите `Sí,` + `hay` + `una mesa`. После подтверждения sí остаётся знакомая фраза hay una mesa. Mesa женского рода, поэтому una.",
+        "uk": "Організатор запитує, чи є стіл. Ви перевірили кімнату й відповідаєте `Sí, hay una mesa` — «Так, стіл є». Складіть `Sí,` + `hay` + `una mesa`. Після підтвердження sí залишається знайома фраза hay una mesa. Mesa жіночого роду, тому una."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-13:intro2:q",
+        "promptByLocale": {
+          "ru": "Ответьте «Да, стол есть». Начните с Sí, hay, используйте una mesa.",
+          "uk": "Дайте відповідь «Так, стіл є». Почніть із Sí, hay, використайте una mesa."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-13:intro2:r1",
+              "text": "Sí, hay una mesa."
+            },
+            {
+              "responseId": "es:lesson-06:session-13:intro2:r2",
+              "text": "Sí, hay un mesa."
+            },
+            {
+              "responseId": "es:lesson-06:session-13:intro2:r3",
+              "text": "Sí, tengo una mesa."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-13:intro2:r1",
+              "text": "Sí, hay una mesa."
+            },
+            {
+              "responseId": "es:lesson-06:session-13:intro2:r2",
+              "text": "Sí, hay un mesa."
+            },
+            {
+              "responseId": "es:lesson-06:session-13:intro2:r3",
+              "text": "Sí, tengo una mesa."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ответьте «Да, стол есть». Начните с Sí, hay, используйте una mesa.",
+          "uk": "Дайте відповідь «Так, стіл є». Почніть із Sí, hay, використайте una mesa."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-06:session-13:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Подтвердить наличие книг",
+        "uk": "Підтвердити наявність книг"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спросил, есть ли книги для чтения. Вы видели несколько и говорите `Sí, hay libros` — «Да, книги есть». Соберите `Sí,` + `hay` + `libros`. Не называя точного числа, используйте libros без артикля. Утвердительный ответ не меняет форму hay.",
+        "uk": "Друг запитав, чи є книги для читання. Ви бачили кілька й говорите `Sí, hay libros` — «Так, книги є». Складіть `Sí,` + `hay` + `libros`. Не називаючи точного числа, використовуйте libros без артикля. Ствердна відповідь не змінює форму hay."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-13:intro3:q",
+        "promptByLocale": {
+          "ru": "Ответьте «Да, книги есть» без артикля. Начните с Sí, hay.",
+          "uk": "Дайте відповідь «Так, книги є» без артикля. Почніть із Sí, hay."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-13:intro3:r1",
+              "text": "Sí, hay libros."
+            },
+            {
+              "responseId": "es:lesson-06:session-13:intro3:r2",
+              "text": "Sí, hay un libros."
+            },
+            {
+              "responseId": "es:lesson-06:session-13:intro3:r3",
+              "text": "Sí, tengo libros."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-13:intro3:r1",
+              "text": "Sí, hay libros."
+            },
+            {
+              "responseId": "es:lesson-06:session-13:intro3:r2",
+              "text": "Sí, hay un libros."
+            },
+            {
+              "responseId": "es:lesson-06:session-13:intro3:r3",
+              "text": "Sí, tengo libros."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ответьте «Да, книги есть» без артикля. Начните с Sí, hay.",
+          "uk": "Дайте відповідь «Так, книги є» без артикля. Почніть із Sí, hay."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ddce5fb5e0d2d9a3ecd0f5d4e53f997d9666d69cd5b7e9e8dd4b12b854bf8485"
+}

@@ -1,0 +1,658 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-06:session-15",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-06:session-15:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-15:i01:r1",
+          "text": "qué"
+        },
+        {
+          "responseId": "es:lesson-06:session-15:i01:r2",
+          "text": "aquí"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-15:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-15:i01:audio",
+          "transcript": "qué"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-06:session-15:i01:r1",
+            "targetText": "qué",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-06:session-15:i01:r2",
+            "targetText": "aquí",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-15:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит qué — что.",
+              "uk": "Звучить qué — що."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-15:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — что здесь есть?",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-15:i02:r1",
+          "text": "Qué"
+        },
+        {
+          "responseId": "es:lesson-06:session-15:i02:r2",
+          "text": "Una"
+        },
+        {
+          "responseId": "es:lesson-06:session-15:i02:r3",
+          "text": "Tres"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — что здесь есть?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — что здесь есть?",
+          "uk": "Вставте слово — що тут є?"
+        },
+        "gappedTargetPhrase": "¿___ hay aquí?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-15:i02:r1",
+            "text": "Qué"
+          },
+          {
+            "responseId": "es:lesson-06:session-15:i02:r2",
+            "text": "Una"
+          },
+          {
+            "responseId": "es:lesson-06:session-15:i02:r3",
+            "text": "Tres"
+          }
+        ],
+        "testedDimension": "Вставьте слово — что здесь есть?",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-15:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — что здесь есть?",
+            "feedbackByLocale": {
+              "ru": "Спросить «что» — qué.",
+              "uk": "Запитати «що» — qué."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-15:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — что здесь есть?",
+            "feedbackByLocale": {
+              "ru": "Это число три; «что» — qué.",
+              "uk": "Це число три; «що» — qué."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-15:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — что здесь есть?; начните с ¿Qué, место поставьте в конце",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-15:i03:r1",
+          "text": "Плитки: aquí?"
+        },
+        {
+          "responseId": "es:lesson-06:session-15:i03:r2",
+          "text": "hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-15:i03:r3",
+          "text": "¿Qué"
+        },
+        {
+          "responseId": "es:lesson-06:session-15:i03:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — что здесь есть?; начните с ¿Qué, место поставьте в конце",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Qué hay aquí?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — что здесь есть?; начните с ¿Qué, место поставьте в конце",
+          "uk": "Зберіть фразу — що тут є?; почніть з ¿Qué, місце поставте в кінці"
+        },
+        "orderedTokens": [
+          "¿Qué",
+          "hay",
+          "aquí"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-15:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — что здесь есть?; начните с ¿Qué, место поставьте в конце",
+            "feedbackByLocale": {
+              "ru": "вопрос собирается из qué + hay + aquí.",
+              "uk": "запитання складається з qué + hay + aquí."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-15:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — что там есть?",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-15:i04:r1",
+          "text": "allí"
+        },
+        {
+          "responseId": "es:lesson-06:session-15:i04:r2",
+          "text": "aquí"
+        },
+        {
+          "responseId": "es:lesson-06:session-15:i04:r3",
+          "text": "tiempo"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — что там есть?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — что там есть?",
+          "uk": "Вставте слово — що там є?"
+        },
+        "gappedTargetPhrase": "¿Qué hay ___?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-15:i04:r1",
+            "text": "allí"
+          },
+          {
+            "responseId": "es:lesson-06:session-15:i04:r2",
+            "text": "aquí"
+          },
+          {
+            "responseId": "es:lesson-06:session-15:i04:r3",
+            "text": "tiempo"
+          }
+        ],
+        "testedDimension": "Вставьте слово — что там есть?",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-15:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — что там есть?",
+            "feedbackByLocale": {
+              "ru": "Нужно «там» — allí.",
+              "uk": "Потрібно «там» — allí."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-15:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — что там есть?",
+            "feedbackByLocale": {
+              "ru": "Это время; «там» — allí.",
+              "uk": "Це час; «там» — allí."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-15:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — что там есть?; начните с ¿Qué, место поставьте в конце",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-15:i05:r1",
+          "text": "Плитки: allí?"
+        },
+        {
+          "responseId": "es:lesson-06:session-15:i05:r2",
+          "text": "¿Qué"
+        },
+        {
+          "responseId": "es:lesson-06:session-15:i05:r3",
+          "text": "hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-15:i05:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — что там есть?; начните с ¿Qué, место поставьте в конце",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Qué hay allí?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — что там есть?; начните с ¿Qué, место поставьте в конце",
+          "uk": "Зберіть фразу — що там є?; почніть з ¿Qué, місце поставте в кінці"
+        },
+        "orderedTokens": [
+          "¿Qué",
+          "hay",
+          "allí"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-15:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — что там есть?; начните с ¿Qué, место поставьте в конце",
+            "feedbackByLocale": {
+              "ru": "здесь нет названия предмета, перед которым нужен артикль.",
+              "uk": "тут немає назви предмета, перед яким потрібен артикль."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-15:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — есть стол; начните с Hay",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-15:i06:r1",
+          "text": "Плитки: mesa"
+        },
+        {
+          "responseId": "es:lesson-06:session-15:i06:r2",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-15:i06:r3",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-06:session-15:i06:r4",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — есть стол; начните с Hay",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Hay una mesa.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — есть стол; начните с Hay",
+          "uk": "Зберіть фразу — є стіл; почніть з Hay"
+        },
+        "orderedTokens": [
+          "Hay",
+          "una",
+          "mesa"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-15:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — есть стол; начните с Hay",
+            "feedbackByLocale": {
+              "ru": "с mesa нужна una.",
+              "uk": "з mesa потрібна una."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-15:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-15:i07:r1",
+          "text": "Плитки: ¿Qué"
+        },
+        {
+          "responseId": "es:lesson-06:session-15:i07:r2",
+          "text": "hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-15:i07:r3",
+          "text": "aquí?"
+        },
+        {
+          "responseId": "es:lesson-06:session-15:i07:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-15:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-15:i07:audio",
+          "transcript": "¿Qué hay aquí?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "¿Qué hay aquí?",
+        "orderedTokens": [
+          "¿Qué",
+          "hay",
+          "aquí"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-15:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "её нет в вопросе.",
+              "uk": "її немає в запитанні."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-15:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — есть стол",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-15:i08:r1",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-06:session-15:i08:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-06:session-15:i08:r3",
+          "text": "unos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — есть стол",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — есть стол",
+          "uk": "Вставте слово — є стіл"
+        },
+        "gappedTargetPhrase": "Hay ___ mesa.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-15:i08:r1",
+            "text": "una"
+          },
+          {
+            "responseId": "es:lesson-06:session-15:i08:r2",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-06:session-15:i08:r3",
+            "text": "unos"
+          }
+        ],
+        "testedDimension": "Вставьте слово — есть стол",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-15:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — есть стол",
+            "feedbackByLocale": {
+              "ru": "Mesa женского рода: una.",
+              "uk": "Mesa жіночого роду: una."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-15:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — есть стол",
+            "feedbackByLocale": {
+              "ru": "Одна mesa: una.",
+              "uk": "Одна mesa: una."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-15:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — что здесь есть?; начните с ¿Qué, место поставьте в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-15:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — что здесь есть?; начните с ¿Qué, место поставьте в конце",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-15:i09:audio",
+          "transcript": "¿Qué hay aquí?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Qué hay aquí?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-15:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — что там есть?; начните с ¿Qué, место поставьте в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-15:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — что там есть?; начните с ¿Qué, место поставьте в конце",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-15:i10:audio",
+          "transcript": "¿Qué hay allí?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Qué hay allí?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-15:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — есть стол; начните с Hay, используйте una mesa",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-15:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — есть стол; начните с Hay, используйте una mesa",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-15:i11:audio",
+          "transcript": "Hay una mesa."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay una mesa.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-15:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — в другой комнате вы заметили стулья. Сообщите «Есть стулья»; без артикля, начните с Hay",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-15:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — в другой комнате вы заметили стулья. Сообщите «Есть стулья»; без артикля, начните с Hay",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-15:i12:audio",
+          "transcript": "Hay sillas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay sillas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "826f67a9cbfe801f77fac7c674b58e95fecf0cdd34a699258fae6e3e19524e62"
+}

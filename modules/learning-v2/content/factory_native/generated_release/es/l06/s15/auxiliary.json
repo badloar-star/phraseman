@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-06:session-15",
+  "entries": [
+    {
+      "interactionId": "es:lesson-06:session-15:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-15:intro1:r2": {
+          "ru": "Спрашиваем о наличии в месте, поэтому hay.",
+          "uk": "Запитуємо про наявність у місці, тому hay."
+        },
+        "es:lesson-06:session-15:intro1:r3": {
+          "ru": "Нужно «здесь» — aquí.",
+          "uk": "Потрібно «тут» — aquí."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-15:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-15:intro2:r2": {
+          "ru": "В этой сцене нужно «там» — allí.",
+          "uk": "У цій сцені потрібно «там» — allí."
+        },
+        "es:lesson-06:session-15:intro2:r3": {
+          "ru": "Не спрашиваем о вещах собеседника; для наличия нужно hay.",
+          "uk": "Не запитуємо про речі співрозмовника; для наявності потрібно hay."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-15:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-15:intro3:r2": {
+          "ru": "Mesa женского рода: una.",
+          "uk": "Mesa жіночого роду: una."
+        },
+        "es:lesson-06:session-15:intro3:r3": {
+          "ru": "Сообщаем о наличии в комнате, поэтому hay.",
+          "uk": "Повідомляємо про наявність у кімнаті, тому hay."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ddb397ecb6e1483a47dc3638fcd624542135dbf196c7a53167854f11aae1d9ec"
+}

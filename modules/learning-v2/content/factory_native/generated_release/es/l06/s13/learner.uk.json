@@ -1,0 +1,663 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-06:session-13",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-06:session-13:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте та виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-13:i01:r1",
+          "text": "sí"
+        },
+        {
+          "responseId": "es:lesson-06:session-13:i01:r2",
+          "text": "no"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-13:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте та виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-13:i01:audio",
+          "transcript": "sí"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-06:session-13:i01:r1",
+            "targetText": "sí",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-06:session-13:i01:r2",
+            "targetText": "no",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-13:i01:r2",
+            "correct": false,
+            "testedDimension": "Послухайте та виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит sí — да.",
+              "uk": "Звучить sí — так."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-13:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — так, стільці є",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-13:i02:r1",
+          "text": "Sí"
+        },
+        {
+          "responseId": "es:lesson-06:session-13:i02:r2",
+          "text": "No"
+        },
+        {
+          "responseId": "es:lesson-06:session-13:i02:r3",
+          "text": "Una"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — так, стільці є",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — да, стулья есть",
+          "uk": "Вставте слово — так, стільці є"
+        },
+        "gappedTargetPhrase": "___, hay sillas.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-13:i02:r1",
+            "text": "Sí"
+          },
+          {
+            "responseId": "es:lesson-06:session-13:i02:r2",
+            "text": "No"
+          },
+          {
+            "responseId": "es:lesson-06:session-13:i02:r3",
+            "text": "Una"
+          }
+        ],
+        "testedDimension": "Вставте слово — так, стільці є",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-13:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — так, стільці є",
+            "feedbackByLocale": {
+              "ru": "Нужно подтвердить: sí.",
+              "uk": "Потрібно підтвердити: sí."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-13:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — так, стільці є",
+            "feedbackByLocale": {
+              "ru": "Подтверждение «да» — sí.",
+              "uk": "Підтвердження «так» — sí."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-13:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — так, стільці є; без артикля, почніть із Sí, hay",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-13:i03:r1",
+          "text": "Плитки: sillas"
+        },
+        {
+          "responseId": "es:lesson-06:session-13:i03:r2",
+          "text": "Sí,"
+        },
+        {
+          "responseId": "es:lesson-06:session-13:i03:r3",
+          "text": "hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-13:i03:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — так, стільці є; без артикля, почніть із Sí, hay",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Sí, hay sillas.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — да, стулья есть; без артикля, начните с Sí, hay",
+          "uk": "Зберіть фразу — так, стільці є; без артикля, почніть із Sí, hay"
+        },
+        "orderedTokens": [
+          "Sí,",
+          "hay",
+          "sillas"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-13:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — так, стільці є; без артикля, почніть із Sí, hay",
+            "feedbackByLocale": {
+              "ru": "называем стулья без артикля.",
+              "uk": "називаємо стільці без артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-13:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — так, стіл є",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-13:i04:r1",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-06:session-13:i04:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-06:session-13:i04:r3",
+          "text": "unos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — так, стіл є",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — да, стол есть",
+          "uk": "Вставте слово — так, стіл є"
+        },
+        "gappedTargetPhrase": "Sí, hay ___ mesa.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-13:i04:r1",
+            "text": "una"
+          },
+          {
+            "responseId": "es:lesson-06:session-13:i04:r2",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-06:session-13:i04:r3",
+            "text": "unos"
+          }
+        ],
+        "testedDimension": "Вставте слово — так, стіл є",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-13:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — так, стіл є",
+            "feedbackByLocale": {
+              "ru": "Mesa женского рода: una.",
+              "uk": "Mesa жіночого роду: una."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-13:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — так, стіл є",
+            "feedbackByLocale": {
+              "ru": "Одна mesa: una.",
+              "uk": "Одна mesa: una."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-13:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — так, стіл є; почніть із Sí, hay",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-13:i05:r1",
+          "text": "Плитки: mesa"
+        },
+        {
+          "responseId": "es:lesson-06:session-13:i05:r2",
+          "text": "Sí,"
+        },
+        {
+          "responseId": "es:lesson-06:session-13:i05:r3",
+          "text": "hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-13:i05:r4",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-06:session-13:i05:r5",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — так, стіл є; почніть із Sí, hay",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Sí, hay una mesa.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — да, стол есть; начните с Sí, hay",
+          "uk": "Зберіть фразу — так, стіл є; почніть із Sí, hay"
+        },
+        "orderedTokens": [
+          "Sí,",
+          "hay",
+          "una",
+          "mesa"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-13:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — так, стіл є; почніть із Sí, hay",
+            "feedbackByLocale": {
+              "ru": "с mesa нужна una.",
+              "uk": "з mesa потрібна una."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-13:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — так, книги є; без артикля, почніть із Sí, hay",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-13:i06:r1",
+          "text": "Плитки: libros"
+        },
+        {
+          "responseId": "es:lesson-06:session-13:i06:r2",
+          "text": "hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-13:i06:r3",
+          "text": "Sí,"
+        },
+        {
+          "responseId": "es:lesson-06:session-13:i06:r4",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — так, книги є; без артикля, почніть із Sí, hay",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Sí, hay libros.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — да, книги есть; без артикля, начните с Sí, hay",
+          "uk": "Зберіть фразу — так, книги є; без артикля, почніть із Sí, hay"
+        },
+        "orderedTokens": [
+          "Sí,",
+          "hay",
+          "libros"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-13:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — так, книги є; без артикля, почніть із Sí, hay",
+            "feedbackByLocale": {
+              "ru": "она не подходит к libros.",
+              "uk": "вона не підходить до libros."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-13:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте та зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-13:i07:r1",
+          "text": "Плитки: Sí,"
+        },
+        {
+          "responseId": "es:lesson-06:session-13:i07:r2",
+          "text": "hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-13:i07:r3",
+          "text": "sillas"
+        },
+        {
+          "responseId": "es:lesson-06:session-13:i07:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-13:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте та зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-13:i07:audio",
+          "transcript": "Sí, hay sillas."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Sí, hay sillas.",
+        "orderedTokens": [
+          "Sí,",
+          "hay",
+          "sillas"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-13:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте та зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "её нет в ответе.",
+              "uk": "її немає у відповіді."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-13:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — так, книги є",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-13:i08:r1",
+          "text": "hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-13:i08:r2",
+          "text": "tengo"
+        },
+        {
+          "responseId": "es:lesson-06:session-13:i08:r3",
+          "text": "tienes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — так, книги є",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — да, книги есть",
+          "uk": "Вставте слово — так, книги є"
+        },
+        "gappedTargetPhrase": "Sí, ___ libros.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-13:i08:r1",
+            "text": "hay"
+          },
+          {
+            "responseId": "es:lesson-06:session-13:i08:r2",
+            "text": "tengo"
+          },
+          {
+            "responseId": "es:lesson-06:session-13:i08:r3",
+            "text": "tienes"
+          }
+        ],
+        "testedDimension": "Вставте слово — так, книги є",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-13:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — так, книги є",
+            "feedbackByLocale": {
+              "ru": "Подтверждаем наличие: hay.",
+              "uk": "Підтверджуємо наявність: hay."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-13:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — так, книги є",
+            "feedbackByLocale": {
+              "ru": "Не говорим о книгах собеседника: нужно hay.",
+              "uk": "Не говоримо про книги співрозмовника: потрібно hay."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-13:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — так, стільці є; без артикля, почніть із Sí, hay",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-13:i09:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — так, стільці є; без артикля, почніть із Sí, hay",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-13:i09:audio",
+          "transcript": "Sí, hay sillas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Sí, hay sillas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-13:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — так, стіл є; почніть із Sí, hay, використайте una mesa",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-13:i10:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — так, стіл є; почніть із Sí, hay, використайте una mesa",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-13:i10:audio",
+          "transcript": "Sí, hay una mesa."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Sí, hay una mesa.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-13:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — так, книги є; без артикля, почніть із Sí, hay",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-13:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — так, книги є; без артикля, почніть із Sí, hay",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-13:i11:audio",
+          "transcript": "Sí, hay libros."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Sí, hay libros.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-13:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — так, туалет є; почніть із Sí, hay, використайте un baño",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-13:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — так, туалет є; почніть із Sí, hay, використайте un baño",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-13:i12:audio",
+          "transcript": "Sí, hay un baño."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Sí, hay un baño.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "1eba806ed8e6c8b5114164e837fb7708fd891cc43088cb6f4393a4f45749d393"
+}

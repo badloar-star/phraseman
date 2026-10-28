@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-06:session-14",
+  "learningOutcomeByLocale": {
+    "ru": "дать отрицательный ответ с отдельным No и фразой no hay.",
+    "uk": "дати заперечну відповідь з окремим No та фразою no hay."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-06:session-14:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ответить на вопрос о стульях",
+        "uk": "Відповісти на запитання про стільці"
+      },
+      "bodyByLocale": {
+        "ru": "Гость спросил, есть ли стулья, но комната пустая. Ответьте `No, no hay sillas` — «Нет, стульев нет». Соберите `No,` + `no hay` + `sillas`. Первое no — отдельный ответ «нет», второе отрицает наличие перед hay. Два no здесь не спорят друг с другом: у каждого своя работа.",
+        "uk": "Гість запитав, чи є стільці, але кімната порожня. Дайте відповідь `No, no hay sillas` — «Ні, стільців немає». Складіть `No,` + `no hay` + `sillas`. Перше no — окрема відповідь «ні», друге заперечує наявність перед hay. Два no тут не сперечаються одне з одним: у кожного своя робота."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-14:intro1:q",
+        "promptByLocale": {
+          "ru": "Ответьте «Нет, стульев нет» без артикля. Начните с No, no hay.",
+          "uk": "Дайте відповідь «Ні, стільців немає» без артикля. Почніть з No, no hay."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-14:intro1:r1",
+              "text": "No, no hay sillas."
+            },
+            {
+              "responseId": "es:lesson-06:session-14:intro1:r2",
+              "text": "No, hay sillas."
+            },
+            {
+              "responseId": "es:lesson-06:session-14:intro1:r3",
+              "text": "No, hay no sillas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-14:intro1:r1",
+              "text": "No, no hay sillas."
+            },
+            {
+              "responseId": "es:lesson-06:session-14:intro1:r2",
+              "text": "No, hay sillas."
+            },
+            {
+              "responseId": "es:lesson-06:session-14:intro1:r3",
+              "text": "No, hay no sillas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ответьте «Нет, стульев нет» без артикля. Начните с No, no hay.",
+          "uk": "Дайте відповідь «Ні, стільців немає» без артикля. Почніть з No, no hay."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-06:session-14:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ответить о столах",
+        "uk": "Відповісти про столи"
+      },
+      "bodyByLocale": {
+        "ru": "Организатор спрашивает вас, есть ли столы в соседней комнате. Вы уже проверили: их нет. Скажите `No, no hay mesas` — «Нет, столов нет». Соберите `No,` + `no hay` + `mesas`. Сохраняем оба no, а после hay меняем только название предметов.",
+        "uk": "Організатор запитує вас, чи є столи в сусідній кімнаті. Ви вже перевірили: їх немає. Скажіть `No, no hay mesas` — «Ні, столів немає». Складіть `No,` + `no hay` + `mesas`. Зберігаємо обидва no, а після hay змінюємо лише назву предметів."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-14:intro2:q",
+        "promptByLocale": {
+          "ru": "Ответьте «Нет, столов нет» без артикля. Начните с No, no hay.",
+          "uk": "Дайте відповідь «Ні, столів немає» без артикля. Почніть з No, no hay."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-14:intro2:r1",
+              "text": "No, no hay mesas."
+            },
+            {
+              "responseId": "es:lesson-06:session-14:intro2:r2",
+              "text": "No, hay mesas."
+            },
+            {
+              "responseId": "es:lesson-06:session-14:intro2:r3",
+              "text": "No, no hay una mesas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-14:intro2:r1",
+              "text": "No, no hay mesas."
+            },
+            {
+              "responseId": "es:lesson-06:session-14:intro2:r2",
+              "text": "No, hay mesas."
+            },
+            {
+              "responseId": "es:lesson-06:session-14:intro2:r3",
+              "text": "No, no hay una mesas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ответьте «Нет, столов нет» без артикля. Начните с No, no hay.",
+          "uk": "Дайте відповідь «Ні, столів немає» без артикля. Почніть з No, no hay."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-06:session-14:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ответить о книгах",
+        "uk": "Відповісти про книги"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спросил о книгах для чтения, но на полке пусто. Скажите `No, no hay libros` — «Нет, книг нет». Соберите `No,` + `no hay` + `libros`. Название нескольких предметов libros здесь без артикля. Можно было бы сказать только No hay libros, но сейчас тренируем полный ответ с отдельным «нет» в начале.",
+        "uk": "Друг запитав про книги для читання, але на полиці порожньо. Скажіть `No, no hay libros` — «Ні, книг немає». Складіть `No,` + `no hay` + `libros`. Назва кількох предметів libros тут без артикля. Можна було б сказати лише No hay libros, але зараз тренуємо повну відповідь з окремим «ні» на початку."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-14:intro3:q",
+        "promptByLocale": {
+          "ru": "Ответьте «Нет, книг нет» без артикля. Начните с No, no hay.",
+          "uk": "Дайте відповідь «Ні, книг немає» без артикля. Почніть з No, no hay."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-14:intro3:r1",
+              "text": "No, no hay libros."
+            },
+            {
+              "responseId": "es:lesson-06:session-14:intro3:r2",
+              "text": "No, hay libros."
+            },
+            {
+              "responseId": "es:lesson-06:session-14:intro3:r3",
+              "text": "No, no hay un libros."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-14:intro3:r1",
+              "text": "No, no hay libros."
+            },
+            {
+              "responseId": "es:lesson-06:session-14:intro3:r2",
+              "text": "No, hay libros."
+            },
+            {
+              "responseId": "es:lesson-06:session-14:intro3:r3",
+              "text": "No, no hay un libros."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ответьте «Нет, книг нет» без артикля. Начните с No, no hay.",
+          "uk": "Дайте відповідь «Ні, книг немає» без артикля. Почніть з No, no hay."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "194c2cde90cd4afeeb756b5cc7f7499532c933b60a377f62c7301dd7ac3c900a"
+}

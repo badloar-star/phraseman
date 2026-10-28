@@ -1,0 +1,92 @@
+[
+  {
+    "interactionId": "es:lesson-06:session-16:i01",
+    "correctText": "baño",
+    "correctResponseId": "es:lesson-06:session-16:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-16:i02",
+    "correctText": "sí",
+    "correctResponseId": "es:lesson-06:session-16:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-16:i03",
+    "correctText": "un",
+    "correctResponseId": "es:lesson-06:session-16:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-16:i04",
+    "correctText": "¿Hay un baño aquí?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-16:i05",
+    "correctText": "sillas",
+    "correctResponseId": "es:lesson-06:session-16:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-16:i06",
+    "correctText": "Sí, hay sillas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-16:i07",
+    "correctText": "No, no hay mesas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-16:i08",
+    "correctText": "No hay libros aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-16:i09",
+    "correctText": "Qué",
+    "correctResponseId": "es:lesson-06:session-16:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-16:i10",
+    "correctText": "¿Qué hay allí?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-16:i11",
+    "correctText": "Hay una mesa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-16:i12",
+    "correctText": "no",
+    "correctResponseId": "es:lesson-06:session-16:i12:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-16:i13",
+    "correctText": "No, no hay libros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-16:i14",
+    "correctText": "una",
+    "correctResponseId": "es:lesson-06:session-16:i14:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-16:i15",
+    "correctText": "¿Hay libros aquí?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-16:i16",
+    "correctText": "¿Hay un baño aquí?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-16:i17",
+    "correctText": "Sí, hay sillas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-16:i18",
+    "correctText": "¿Qué hay aquí?",
+    "correctResponseId": null
+  }
+]

@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть про поїздку, яка вже закінчилася.
 
-**Що ви опануєте:** past simple: finished event; went, enjoyed; yesterday, last Sunday
+**Що ви опануєте:** розповісти про те, що вже закінчилося: вчора, минулої неділі
 **Нові слова:** day trip, school trip, coach trip, boat trip
 
 ## Інтро 1

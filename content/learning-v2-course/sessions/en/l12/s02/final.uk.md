@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть про вчорашню дорогу містом.
 
-**Що ви опануєте:** Past Simple: regular verb + -ed; final -e + -d
+**Що ви опануєте:** розповісти про вчорашнє: додавати до дії -ed або -d
 **Нові слова:** cycle path, street corner, traffic jam, road sign
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Расскажите о поездке, которая уже закончилась.
 
-**Что вы освоите:** past simple: finished event; went, enjoyed; yesterday, last Sunday
+**Что вы освоите:** рассказать о том, что уже закончилось: вчера, в прошлое воскресенье
 **Новые слова:** day trip, school trip, coach trip, boat trip
 
 ## Интро 1

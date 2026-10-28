@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-03:session-35",
+  "entries": [
+    {
+      "interactionId": "es:lesson-03:session-35:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-35:intro1:r2": {
+          "ru": "Нужна мужская форма rubio.",
+          "uk": "Потрібна чоловіча форма rubio."
+        },
+        "es:lesson-03:session-35:intro1:r3": {
+          "ru": "Один человек: rubio.",
+          "uk": "Одна людина: rubio."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-35:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-35:intro2:r2": {
+          "ru": "Нужна женская форма morena.",
+          "uk": "Потрібна жіноча форма morena."
+        },
+        "es:lesson-03:session-35:intro2:r3": {
+          "ru": "Один человек: morena.",
+          "uk": "Одна людина: morena."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-35:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-35:intro3:r2": {
+          "ru": "О женщине: rubia.",
+          "uk": "Про жінку: rubia."
+        },
+        "es:lesson-03:session-35:intro3:r3": {
+          "ru": "Один человек: es.",
+          "uk": "Одна людина: es."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "38e8e0bd1138ba95b21e3b39c47905ef0b917dc8673971786bb74f135c8138ed"
+}

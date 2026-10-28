@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-03:session-36",
+  "learningOutcomeByLocale": {
+    "ru": "описать характер нескольких женщин формами tranquilas и alegres.",
+    "uk": "описувати характер кількох жінок формами tranquilas і alegres."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-03:session-36:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Спокойные по характеру",
+        "uk": "Спокійні за характером"
+      },
+      "bodyByLocale": {
+        "ru": "Вы уже назвали двух соседок. Расскажите об их спокойном характере: `Son tranquilas` — «Они спокойные». Соберите `son` + `tranquilas`. Говорите о нескольких женщинах, поэтому у tranquilo окончание -as. Здесь описываем характер, а не состояние в эту минуту.",
+        "uk": "Ви вже назвали двох сусідок. Розкажіть про їхній спокійний характер: `Son tranquilas` — «Вони спокійні». Зберіть `son` + `tranquilas`. Говорите про кількох жінок, тому tranquilo має закінчення -as. Тут описуємо характер, а не стан цієї миті."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-36:intro1:q",
+        "promptByLocale": {
+          "ru": "О двух женщинах: они спокойные по характеру. Без имён и местоимения.",
+          "uk": "Про двох жінок: вони спокійні за характером. Без імен і займенника."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-36:intro1:r1",
+              "text": "Son tranquilas."
+            },
+            {
+              "responseId": "es:lesson-03:session-36:intro1:r2",
+              "text": "Son tranquilos."
+            },
+            {
+              "responseId": "es:lesson-03:session-36:intro1:r3",
+              "text": "Son tranquila."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-36:intro1:r1",
+              "text": "Son tranquilas."
+            },
+            {
+              "responseId": "es:lesson-03:session-36:intro1:r2",
+              "text": "Son tranquilos."
+            },
+            {
+              "responseId": "es:lesson-03:session-36:intro1:r3",
+              "text": "Son tranquila."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "О двух женщинах: они спокойные по характеру. Без имён и местоимения.",
+          "uk": "Про двох жінок: вони спокійні за характером. Без імен і займенника."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-03:session-36:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Весёлые люди",
+        "uk": "Веселі люди"
+      },
+      "bodyByLocale": {
+        "ru": "Соседки любят шутить и легко находят повод для смеха. Скажите `Son alegres` — «Они весёлые». Соберите `son` + `alegres`. Знакомое alegre не меняется по роду. Для нескольких людей добавьте -s: alegres. Женский род не превращает -e в -a.",
+        "uk": "Сусідки люблять жартувати й легко знаходять привід для сміху. Скажіть `Son alegres` — «Вони веселі». Зберіть `son` + `alegres`. Знайоме alegre не змінюється за родом. Для кількох людей додайте -s: alegres. Жіночий рід не перетворює -e на -a."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-36:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите, что обе женщины весёлые по характеру. Без имён и местоимения.",
+          "uk": "Скажіть, що обидві жінки веселі за характером. Без імен і займенника."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-36:intro2:r1",
+              "text": "Son alegres."
+            },
+            {
+              "responseId": "es:lesson-03:session-36:intro2:r2",
+              "text": "Son alegras."
+            },
+            {
+              "responseId": "es:lesson-03:session-36:intro2:r3",
+              "text": "Son alegre."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-36:intro2:r1",
+              "text": "Son alegres."
+            },
+            {
+              "responseId": "es:lesson-03:session-36:intro2:r2",
+              "text": "Son alegras."
+            },
+            {
+              "responseId": "es:lesson-03:session-36:intro2:r3",
+              "text": "Son alegre."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что обе женщины весёлые по характеру. Без имён и местоимения.",
+          "uk": "Скажіть, що обидві жінки веселі за характером. Без імен і займенника."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-03:session-36:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Очень спокойные",
+        "uk": "Дуже спокійні"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает, легко ли с ними договориться. Подчеркните их спокойный характер: `Son muy tranquilas` — «Они очень спокойные». Соберите `son` + `muy tranquilas`. Muy стоит перед признаком и не меняется. Tranquilas сохраняет женское множественное -as.",
+        "uk": "Друг запитує, чи легко з ними домовитися. Підкресліть їхній спокійний характер: `Son muy tranquilas` — «Вони дуже спокійні». Зберіть `son` + `muy tranquilas`. Muy стоїть перед ознакою й не змінюється. Tranquilas зберігає жіноче множинне -as."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-36:intro3:q",
+        "promptByLocale": {
+          "ru": "О двух женщинах: они очень спокойные по характеру. Без имён и местоимения.",
+          "uk": "Про двох жінок: вони дуже спокійні за характером. Без імен і займенника."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-36:intro3:r1",
+              "text": "Son muy tranquilas."
+            },
+            {
+              "responseId": "es:lesson-03:session-36:intro3:r2",
+              "text": "Son muy tranquila."
+            },
+            {
+              "responseId": "es:lesson-03:session-36:intro3:r3",
+              "text": "Son muy tranquilos."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-36:intro3:r1",
+              "text": "Son muy tranquilas."
+            },
+            {
+              "responseId": "es:lesson-03:session-36:intro3:r2",
+              "text": "Son muy tranquila."
+            },
+            {
+              "responseId": "es:lesson-03:session-36:intro3:r3",
+              "text": "Son muy tranquilos."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "О двух женщинах: они очень спокойные по характеру. Без имён и местоимения.",
+          "uk": "Про двох жінок: вони дуже спокійні за характером. Без імен і займенника."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "1c5506328eaefccfda4eeaea8b807a5db8e0c71b5db37a0467954a91d6e8f5bb"
+}

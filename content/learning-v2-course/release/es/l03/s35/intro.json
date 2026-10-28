@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-03:session-35",
+  "learningOutcomeByLocale": {
+    "ru": "описать светлые или тёмные волосы человека знакомой конструкцией с es.",
+    "uk": "описувати світле або темне волосся людини знайомою конструкцією з es."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-03:session-35:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Светловолосый Луис",
+        "uk": "Світловолосий Луїс"
+      },
+      "bodyByLocale": {
+        "ru": "Друг ещё не видел Луиса. Помогите узнать его: `Luis es rubio` — «Луис светловолосый». Rubio означает «светловолосый, блондин». Соберите `Luis` + `es` + `rubio`. О мужчине используйте форму на -o.",
+        "uk": "Друг іще не бачив Луїса. Допоможіть упізнати його: `Luis es rubio` — «Луїс світловолосий». Rubio означає «світловолосий, блондин». Зберіть `Luis` + `es` + `rubio`. Про чоловіка використовуйте форму на -o."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-35:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите, что Луис светловолосый.",
+          "uk": "Скажіть, що Луїс світловолосий."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-35:intro1:r1",
+              "text": "Luis es rubio."
+            },
+            {
+              "responseId": "es:lesson-03:session-35:intro1:r2",
+              "text": "Luis es rubia."
+            },
+            {
+              "responseId": "es:lesson-03:session-35:intro1:r3",
+              "text": "Luis es rubios."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-35:intro1:r1",
+              "text": "Luis es rubio."
+            },
+            {
+              "responseId": "es:lesson-03:session-35:intro1:r2",
+              "text": "Luis es rubia."
+            },
+            {
+              "responseId": "es:lesson-03:session-35:intro1:r3",
+              "text": "Luis es rubios."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что Луис светловолосый.",
+          "uk": "Скажіть, що Луїс світловолосий."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-03:session-35:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Темноволосая Ана",
+        "uk": "Темноволоса Ана"
+      },
+      "bodyByLocale": {
+        "ru": "С Луисом приезжает Ана. Чтобы описать её волосы, скажите `Ana es morena` — «Ана темноволосая». Moreno в этом описании означает «темноволосый». Соберите `Ana` + `es` + `morena`. О женщине форма morena. У moreno бывает и значение смуглой кожи; здесь говорим именно о волосах.",
+        "uk": "З Луїсом приїжджає Ана. Щоб описати її волосся, скажіть `Ana es morena` — «Ана темноволоса». Moreno в цьому описі означає «темноволосий». Зберіть `Ana` + `es` + `morena`. Про жінку форма morena. У moreno буває й значення смаглявої шкіри; тут говоримо саме про волосся."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-35:intro2:q",
+        "promptByLocale": {
+          "ru": "Опишите Ану как темноволосую, используя morena.",
+          "uk": "Опишіть Ану як темноволосу, використовуючи morena."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-35:intro2:r1",
+              "text": "Ana es morena."
+            },
+            {
+              "responseId": "es:lesson-03:session-35:intro2:r2",
+              "text": "Ana es moreno."
+            },
+            {
+              "responseId": "es:lesson-03:session-35:intro2:r3",
+              "text": "Ana es morenas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-35:intro2:r1",
+              "text": "Ana es morena."
+            },
+            {
+              "responseId": "es:lesson-03:session-35:intro2:r2",
+              "text": "Ana es moreno."
+            },
+            {
+              "responseId": "es:lesson-03:session-35:intro2:r3",
+              "text": "Ana es morenas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Опишите Ану как темноволосую, используя morena.",
+          "uk": "Опишіть Ану як темноволосу, використовуючи morena."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-03:session-35:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Исправить описание",
+        "uk": "Виправити опис"
+      },
+      "bodyByLocale": {
+        "ru": "Друг перепутал и сказал, что Ана светловолосая. Поправьте одной фразой: `Ana no es rubia` — «Ана не светловолосая». Соберите `Ana` + `no es` + `rubia`. No стоит перед es. Отрицание не меняет согласование: о женщине всё равно rubia.",
+        "uk": "Друг переплутав і сказав, що Ана світловолоса. Виправте однією фразою: `Ana no es rubia` — «Ана не світловолоса». Зберіть `Ana` + `no es` + `rubia`. No стоїть перед es. Заперечення не змінює узгодження: про жінку однаково rubia."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-35:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите, что Ана не светловолосая.",
+          "uk": "Скажіть, що Ана не світловолоса."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-35:intro3:r1",
+              "text": "Ana no es rubia."
+            },
+            {
+              "responseId": "es:lesson-03:session-35:intro3:r2",
+              "text": "Ana no es rubio."
+            },
+            {
+              "responseId": "es:lesson-03:session-35:intro3:r3",
+              "text": "Ana no son rubia."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-35:intro3:r1",
+              "text": "Ana no es rubia."
+            },
+            {
+              "responseId": "es:lesson-03:session-35:intro3:r2",
+              "text": "Ana no es rubio."
+            },
+            {
+              "responseId": "es:lesson-03:session-35:intro3:r3",
+              "text": "Ana no son rubia."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что Ана не светловолосая.",
+          "uk": "Скажіть, що Ана не світловолоса."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ec08ae5511de77166bd548c6100365311d59df9657c46230b6a7c300b136d33d"
+}

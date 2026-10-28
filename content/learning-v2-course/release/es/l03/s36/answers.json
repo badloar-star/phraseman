@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-03:session-36:i01",
+    "correctText": "tranquilas",
+    "correctResponseId": "es:lesson-03:session-36:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-36:i02",
+    "correctText": "Son tranquilas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-36:i03",
+    "correctText": "alegres",
+    "correctResponseId": "es:lesson-03:session-36:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-36:i04",
+    "correctText": "Son alegres.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-36:i05",
+    "correctText": "tranquilas",
+    "correctResponseId": "es:lesson-03:session-36:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-36:i06",
+    "correctText": "Son muy tranquilas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-36:i07",
+    "correctText": "Son muy alegres.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-36:i08",
+    "correctText": "tranquila",
+    "correctResponseId": "es:lesson-03:session-36:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-36:i09",
+    "correctText": "Son tranquilas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-36:i10",
+    "correctText": "Son alegres.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-36:i11",
+    "correctText": "Son muy tranquilas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-36:i12",
+    "correctText": "Son muy alegres.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,881 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-03:session-35",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-03:session-35:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — rubio",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-35:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — rubio",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-35:i01:audio",
+          "transcript": "rubio"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-35:i01:r1",
+            "targetText": "rubio",
+            "meaningByLocale": {
+              "ru": "светловолосый, блондин; rubia — женская форма. 🔊 *rubio*",
+              "uk": "світловолосий, блондин; rubia — жіноча форма. 🔊 *rubio*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rubio",
+          "definitionByLocale": {
+            "ru": "светловолосый, блондин; rubia — женская форма. 🔊 *rubio*",
+            "uk": "світловолосий, блондин; rubia — жіноча форма. 🔊 *rubio*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-35:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-35:i02:r1",
+          "text": "rubio"
+        },
+        {
+          "responseId": "es:lesson-03:session-35:i02:r2",
+          "text": "rubia"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-35:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-35:i02:audio",
+          "transcript": "rubio"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-35:i02:r1",
+            "targetText": "rubio",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-03:session-35:i02:r2",
+            "targetText": "rubia",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-35:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи окончание -o: rubio.",
+              "uk": "У записі закінчення -o: rubio."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-35:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — Луис светловолосый",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-35:i03:r1",
+          "text": "Плитки: rubio"
+        },
+        {
+          "responseId": "es:lesson-03:session-35:i03:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-35:i03:r3",
+          "text": "Luis"
+        },
+        {
+          "responseId": "es:lesson-03:session-35:i03:r4",
+          "text": "rubia."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — Луис светловолосый",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Luis es rubio.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — Луис светловолосый",
+          "uk": "Зберіть фразу — Луїс світловолосий"
+        },
+        "orderedTokens": [
+          "Luis",
+          "es",
+          "rubio"
+        ],
+        "authoredDistractorTokens": [
+          "rubia"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-35:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — Луис светловолосый",
+            "feedbackByLocale": {
+              "ru": "описываем мужчину.",
+              "uk": "описуємо чоловіка."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-35:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — Луис светловолосый",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-35:i04:r1",
+          "text": "rubio"
+        },
+        {
+          "responseId": "es:lesson-03:session-35:i04:r2",
+          "text": "rubia"
+        },
+        {
+          "responseId": "es:lesson-03:session-35:i04:r3",
+          "text": "rubios"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — Луис светловолосый",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — Луис светловолосый",
+          "uk": "Вставте слово — Луїс світловолосий"
+        },
+        "gappedTargetPhrase": "Luis es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-35:i04:r1",
+            "text": "rubio"
+          },
+          {
+            "responseId": "es:lesson-03:session-35:i04:r2",
+            "text": "rubia"
+          },
+          {
+            "responseId": "es:lesson-03:session-35:i04:r3",
+            "text": "rubios"
+          }
+        ],
+        "testedDimension": "Вставьте слово — Луис светловолосый",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-35:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — Луис светловолосый",
+            "feedbackByLocale": {
+              "ru": "О мужчине: rubio.",
+              "uk": "Про чоловіка: rubio."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-35:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — Луис светловолосый",
+            "feedbackByLocale": {
+              "ru": "Один человек: rubio.",
+              "uk": "Одна людина: rubio."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-35:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — moreno",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-35:i05:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — moreno",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-35:i05:audio",
+          "transcript": "moreno"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-35:i05:r1",
+            "targetText": "moreno",
+            "meaningByLocale": {
+              "ru": "здесь: темноволосый; morena — женская форма. 🔊 *moreno*",
+              "uk": "тут: темноволосий; morena — жіноча форма. 🔊 *moreno*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "moreno",
+          "definitionByLocale": {
+            "ru": "здесь: темноволосый; morena — женская форма. 🔊 *moreno*",
+            "uk": "тут: темноволосий; morena — жіноча форма. 🔊 *moreno*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-35:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-35:i06:r1",
+          "text": "moreno"
+        },
+        {
+          "responseId": "es:lesson-03:session-35:i06:r2",
+          "text": "rubio"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-35:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-35:i06:audio",
+          "transcript": "moreno"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-35:i06:r1",
+            "targetText": "moreno",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-03:session-35:i06:r2",
+            "targetText": "rubio",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-35:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи слово начинается с mo: moreno.",
+              "uk": "У записі слово починається з mo: moreno."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-35:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — Ана темноволосая; используйте morena",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-35:i07:r1",
+          "text": "Плитки: morena"
+        },
+        {
+          "responseId": "es:lesson-03:session-35:i07:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-35:i07:r3",
+          "text": "Ana"
+        },
+        {
+          "responseId": "es:lesson-03:session-35:i07:r4",
+          "text": "moreno."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — Ана темноволосая; используйте morena",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Ana es morena.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — Ана темноволосая; используйте morena",
+          "uk": "Зберіть фразу — Ана темноволоса; використайте morena"
+        },
+        "orderedTokens": [
+          "Ana",
+          "es",
+          "morena"
+        ],
+        "authoredDistractorTokens": [
+          "moreno"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-35:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — Ана темноволосая; используйте morena",
+            "feedbackByLocale": {
+              "ru": "описываем женщину.",
+              "uk": "описуємо жінку."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-35:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — Ана темноволосая",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-35:i08:r1",
+          "text": "morena"
+        },
+        {
+          "responseId": "es:lesson-03:session-35:i08:r2",
+          "text": "moreno"
+        },
+        {
+          "responseId": "es:lesson-03:session-35:i08:r3",
+          "text": "morenas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — Ана темноволосая",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — Ана темноволосая",
+          "uk": "Вставте слово — Ана темноволоса"
+        },
+        "gappedTargetPhrase": "Ana es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-35:i08:r1",
+            "text": "morena"
+          },
+          {
+            "responseId": "es:lesson-03:session-35:i08:r2",
+            "text": "moreno"
+          },
+          {
+            "responseId": "es:lesson-03:session-35:i08:r3",
+            "text": "morenas"
+          }
+        ],
+        "testedDimension": "Вставьте слово — Ана темноволосая",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-35:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — Ана темноволосая",
+            "feedbackByLocale": {
+              "ru": "О женщине: morena.",
+              "uk": "Про жінку: morena."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-35:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — Ана темноволосая",
+            "feedbackByLocale": {
+              "ru": "Один человек: morena.",
+              "uk": "Одна людина: morena."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-35:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — Ана не светловолосая",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-35:i09:r1",
+          "text": "Плитки: rubia"
+        },
+        {
+          "responseId": "es:lesson-03:session-35:i09:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-35:i09:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-03:session-35:i09:r4",
+          "text": "Ana"
+        },
+        {
+          "responseId": "es:lesson-03:session-35:i09:r5",
+          "text": "rubio."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — Ана не светловолосая",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Ana no es rubia.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — Ана не светловолосая",
+          "uk": "Зберіть фразу — Ана не світловолоса"
+        },
+        "orderedTokens": [
+          "Ana",
+          "no",
+          "es",
+          "rubia"
+        ],
+        "authoredDistractorTokens": [
+          "rubio"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-35:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — Ана не светловолосая",
+            "feedbackByLocale": {
+              "ru": "описываем женщину.",
+              "uk": "описуємо жінку."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-35:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-35:i10:r1",
+          "text": "Плитки: moreno"
+        },
+        {
+          "responseId": "es:lesson-03:session-35:i10:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-35:i10:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-03:session-35:i10:r4",
+          "text": "Luis"
+        },
+        {
+          "responseId": "es:lesson-03:session-35:i10:r5",
+          "text": "morena."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-35:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-35:i10:audio",
+          "transcript": "Luis no es moreno."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Luis no es moreno.",
+        "orderedTokens": [
+          "Luis",
+          "no",
+          "es",
+          "moreno"
+        ],
+        "authoredDistractorTokens": [
+          "morena"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-35:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит moreno.",
+              "uk": "звучить moreno."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-35:i11",
+      "ordinal": 14,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — Ана не светловолосая",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-35:i11:r1",
+          "text": "rubia"
+        },
+        {
+          "responseId": "es:lesson-03:session-35:i11:r2",
+          "text": "rubio"
+        },
+        {
+          "responseId": "es:lesson-03:session-35:i11:r3",
+          "text": "rubias"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — Ана не светловолосая",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — Ана не светловолосая",
+          "uk": "Вставте слово — Ана не світловолоса"
+        },
+        "gappedTargetPhrase": "Ana no es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-35:i11:r1",
+            "text": "rubia"
+          },
+          {
+            "responseId": "es:lesson-03:session-35:i11:r2",
+            "text": "rubio"
+          },
+          {
+            "responseId": "es:lesson-03:session-35:i11:r3",
+            "text": "rubias"
+          }
+        ],
+        "testedDimension": "Вставьте слово — Ана не светловолосая",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-35:i11:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — Ана не светловолосая",
+            "feedbackByLocale": {
+              "ru": "О женщине: rubia.",
+              "uk": "Про жінку: rubia."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-35:i11:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — Ана не светловолосая",
+            "feedbackByLocale": {
+              "ru": "Один человек: rubia.",
+              "uk": "Одна людина: rubia."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-35:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — Луис не темноволосый",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-35:i12:r1",
+          "text": "moreno"
+        },
+        {
+          "responseId": "es:lesson-03:session-35:i12:r2",
+          "text": "morena"
+        },
+        {
+          "responseId": "es:lesson-03:session-35:i12:r3",
+          "text": "morenos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — Луис не темноволосый",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — Луис не темноволосый",
+          "uk": "Вставте слово — Луїс не темноволосий"
+        },
+        "gappedTargetPhrase": "Luis no es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-35:i12:r1",
+            "text": "moreno"
+          },
+          {
+            "responseId": "es:lesson-03:session-35:i12:r2",
+            "text": "morena"
+          },
+          {
+            "responseId": "es:lesson-03:session-35:i12:r3",
+            "text": "morenos"
+          }
+        ],
+        "testedDimension": "Вставьте слово — Луис не темноволосый",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-35:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — Луис не темноволосый",
+            "feedbackByLocale": {
+              "ru": "О мужчине: moreno.",
+              "uk": "Про чоловіка: moreno."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-35:i12:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — Луис не темноволосый",
+            "feedbackByLocale": {
+              "ru": "Один человек: moreno.",
+              "uk": "Одна людина: moreno."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-35:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — Луис светловолосый; назовите его по имени",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-35:i13:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — Луис светловолосый; назовите его по имени",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-35:i13:audio",
+          "transcript": "Luis es rubio."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Luis es rubio.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-35:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — Ана темноволосая; назовите её по имени и используйте morena",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-35:i14:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — Ана темноволосая; назовите её по имени и используйте morena",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-35:i14:audio",
+          "transcript": "Ana es morena."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Ana es morena.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-35:i15",
+      "ordinal": 18,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — Ана не светловолосая; назовите её по имени",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-35:i15:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — Ана не светловолосая; назовите её по имени",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-35:i15:audio",
+          "transcript": "Ana no es rubia."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Ana no es rubia.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-35:i16",
+      "ordinal": 19,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — Луис не темноволосый; назовите его по имени и используйте moreno",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-35:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — Луис не темноволосый; назовите его по имени и используйте moreno",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-35:i16:audio",
+          "transcript": "Luis no es moreno."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Luis no es moreno.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 16,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "89bbedbc56e5a899792cfcd8849cd8770937ae9782dccca4cca6374bf5f3243b"
+}

@@ -1,0 +1,82 @@
+[
+  {
+    "interactionId": "es:lesson-03:session-35:i01",
+    "correctText": "rubio",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-35:i02",
+    "correctText": "rubio",
+    "correctResponseId": "es:lesson-03:session-35:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-35:i03",
+    "correctText": "Luis es rubio.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-35:i04",
+    "correctText": "rubio",
+    "correctResponseId": "es:lesson-03:session-35:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-35:i05",
+    "correctText": "moreno",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-35:i06",
+    "correctText": "moreno",
+    "correctResponseId": "es:lesson-03:session-35:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-35:i07",
+    "correctText": "Ana es morena.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-35:i08",
+    "correctText": "morena",
+    "correctResponseId": "es:lesson-03:session-35:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-35:i09",
+    "correctText": "Ana no es rubia.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-35:i10",
+    "correctText": "Luis no es moreno.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-35:i11",
+    "correctText": "rubia",
+    "correctResponseId": "es:lesson-03:session-35:i11:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-35:i12",
+    "correctText": "moreno",
+    "correctResponseId": "es:lesson-03:session-35:i12:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-35:i13",
+    "correctText": "Luis es rubio.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-35:i14",
+    "correctText": "Ana es morena.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-35:i15",
+    "correctText": "Ana no es rubia.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-35:i16",
+    "correctText": "Luis no es moreno.",
+    "correctResponseId": null
+  }
+]

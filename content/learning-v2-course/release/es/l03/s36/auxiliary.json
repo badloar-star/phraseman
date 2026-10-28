@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-03:session-36",
+  "entries": [
+    {
+      "interactionId": "es:lesson-03:session-36:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-36:intro1:r2": {
+          "ru": "Здесь обе женщины: tranquilas.",
+          "uk": "Тут обидві жінки: tranquilas."
+        },
+        "es:lesson-03:session-36:intro1:r3": {
+          "ru": "Людей несколько: tranquilas.",
+          "uk": "Людей кілька: tranquilas."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-36:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-36:intro2:r2": {
+          "ru": "Не меняйте -e на -a: alegres.",
+          "uk": "Не змінюйте -e на -a: alegres."
+        },
+        "es:lesson-03:session-36:intro2:r3": {
+          "ru": "Людей несколько: alegres.",
+          "uk": "Людей кілька: alegres."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-36:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-36:intro3:r2": {
+          "ru": "Людей несколько: tranquilas.",
+          "uk": "Людей кілька: tranquilas."
+        },
+        "es:lesson-03:session-36:intro3:r3": {
+          "ru": "Речь о женщинах: tranquilas.",
+          "uk": "Йдеться про жінок: tranquilas."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "de082c32823677faddd6fa8d94f29e49936fea45854aa946faf5d1ed98c555de"
+}

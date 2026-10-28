@@ -1,0 +1,659 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-03:session-36",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-03:session-36:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — обе женщины спокойные по характеру",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-36:i01:r1",
+          "text": "tranquilas"
+        },
+        {
+          "responseId": "es:lesson-03:session-36:i01:r2",
+          "text": "tranquilos"
+        },
+        {
+          "responseId": "es:lesson-03:session-36:i01:r3",
+          "text": "tranquila"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — обе женщины спокойные по характеру",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — обе женщины спокойные по характеру",
+          "uk": "Вставте слово — обидві жінки спокійні за характером"
+        },
+        "gappedTargetPhrase": "Son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-36:i01:r1",
+            "text": "tranquilas"
+          },
+          {
+            "responseId": "es:lesson-03:session-36:i01:r2",
+            "text": "tranquilos"
+          },
+          {
+            "responseId": "es:lesson-03:session-36:i01:r3",
+            "text": "tranquila"
+          }
+        ],
+        "testedDimension": "Вставьте слово — обе женщины спокойные по характеру",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-36:i01:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — обе женщины спокойные по характеру",
+            "feedbackByLocale": {
+              "ru": "Обе женщины: tranquilas.",
+              "uk": "Обидві жінки: tranquilas."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-36:i01:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — обе женщины спокойные по характеру",
+            "feedbackByLocale": {
+              "ru": "Людей несколько: tranquilas.",
+              "uk": "Людей кілька: tranquilas."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-36:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — они спокойные по характеру; обе женщины, без местоимения",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-36:i02:r1",
+          "text": "Плитки: tranquilas"
+        },
+        {
+          "responseId": "es:lesson-03:session-36:i02:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-36:i02:r3",
+          "text": "tranquilos."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — они спокойные по характеру; обе женщины, без местоимения",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son tranquilas.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — они спокойные по характеру; обе женщины, без местоимения",
+          "uk": "Зберіть фразу — вони спокійні за характером; обидві жінки, без займенника"
+        },
+        "orderedTokens": [
+          "Son",
+          "tranquilas"
+        ],
+        "authoredDistractorTokens": [
+          "tranquilos"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-36:i02:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — они спокойные по характеру; обе женщины, без местоимения",
+            "feedbackByLocale": {
+              "ru": "речь о женщинах.",
+              "uk": "йдеться про жінок."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-36:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — обе женщины весёлые по характеру",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-36:i03:r1",
+          "text": "alegres"
+        },
+        {
+          "responseId": "es:lesson-03:session-36:i03:r2",
+          "text": "alegre"
+        },
+        {
+          "responseId": "es:lesson-03:session-36:i03:r3",
+          "text": "alegras"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — обе женщины весёлые по характеру",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — обе женщины весёлые по характеру",
+          "uk": "Вставте слово — обидві жінки веселі за характером"
+        },
+        "gappedTargetPhrase": "Son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-36:i03:r1",
+            "text": "alegres"
+          },
+          {
+            "responseId": "es:lesson-03:session-36:i03:r2",
+            "text": "alegre"
+          },
+          {
+            "responseId": "es:lesson-03:session-36:i03:r3",
+            "text": "alegras"
+          }
+        ],
+        "testedDimension": "Вставьте слово — обе женщины весёлые по характеру",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-36:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — обе женщины весёлые по характеру",
+            "feedbackByLocale": {
+              "ru": "Людей несколько: alegres.",
+              "uk": "Людей кілька: alegres."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-36:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — обе женщины весёлые по характеру",
+            "feedbackByLocale": {
+              "ru": "Alegre сохраняет -e; множественное число — alegres.",
+              "uk": "Alegre зберігає -e; множина — alegres."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-36:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — они весёлые по характеру; без местоимения",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-36:i04:r1",
+          "text": "Плитки: alegres"
+        },
+        {
+          "responseId": "es:lesson-03:session-36:i04:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-36:i04:r3",
+          "text": "alegre."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — они весёлые по характеру; без местоимения",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son alegres.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — они весёлые по характеру; без местоимения",
+          "uk": "Зберіть фразу — вони веселі за характером; без займенника"
+        },
+        "orderedTokens": [
+          "Son",
+          "alegres"
+        ],
+        "authoredDistractorTokens": [
+          "alegre"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-36:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — они весёлые по характеру; без местоимения",
+            "feedbackByLocale": {
+              "ru": "людей несколько.",
+              "uk": "людей кілька."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-36:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — обе женщины очень спокойные по характеру",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-36:i05:r1",
+          "text": "tranquilas"
+        },
+        {
+          "responseId": "es:lesson-03:session-36:i05:r2",
+          "text": "tranquila"
+        },
+        {
+          "responseId": "es:lesson-03:session-36:i05:r3",
+          "text": "tranquilos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — обе женщины очень спокойные по характеру",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — обе женщины очень спокойные по характеру",
+          "uk": "Вставте слово — обидві жінки дуже спокійні за характером"
+        },
+        "gappedTargetPhrase": "Son muy ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-36:i05:r1",
+            "text": "tranquilas"
+          },
+          {
+            "responseId": "es:lesson-03:session-36:i05:r2",
+            "text": "tranquila"
+          },
+          {
+            "responseId": "es:lesson-03:session-36:i05:r3",
+            "text": "tranquilos"
+          }
+        ],
+        "testedDimension": "Вставьте слово — обе женщины очень спокойные по характеру",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-36:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — обе женщины очень спокойные по характеру",
+            "feedbackByLocale": {
+              "ru": "Людей несколько: tranquilas.",
+              "uk": "Людей кілька: tranquilas."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-36:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — обе женщины очень спокойные по характеру",
+            "feedbackByLocale": {
+              "ru": "Обе женщины: tranquilas.",
+              "uk": "Обидві жінки: tranquilas."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-36:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — они очень спокойные по характеру; обе женщины, без местоимения",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-36:i06:r1",
+          "text": "Плитки: tranquilas"
+        },
+        {
+          "responseId": "es:lesson-03:session-36:i06:r2",
+          "text": "muy"
+        },
+        {
+          "responseId": "es:lesson-03:session-36:i06:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-36:i06:r4",
+          "text": "tranquila."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — они очень спокойные по характеру; обе женщины, без местоимения",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son muy tranquilas.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — они очень спокойные по характеру; обе женщины, без местоимения",
+          "uk": "Зберіть фразу — вони дуже спокійні за характером; обидві жінки, без займенника"
+        },
+        "orderedTokens": [
+          "Son",
+          "muy",
+          "tranquilas"
+        ],
+        "authoredDistractorTokens": [
+          "tranquila"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-36:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — они очень спокойные по характеру; обе женщины, без местоимения",
+            "feedbackByLocale": {
+              "ru": "людей несколько.",
+              "uk": "людей кілька."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-36:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-36:i07:r1",
+          "text": "Плитки: alegres"
+        },
+        {
+          "responseId": "es:lesson-03:session-36:i07:r2",
+          "text": "muy"
+        },
+        {
+          "responseId": "es:lesson-03:session-36:i07:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-36:i07:r4",
+          "text": "alegre."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-36:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-36:i07:audio",
+          "transcript": "Son muy alegres."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Son muy alegres.",
+        "orderedTokens": [
+          "Son",
+          "muy",
+          "alegres"
+        ],
+        "authoredDistractorTokens": [
+          "alegre"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-36:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит alegres.",
+              "uk": "звучить alegres."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-36:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — Ана спокойная по характеру",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-36:i08:r1",
+          "text": "tranquila"
+        },
+        {
+          "responseId": "es:lesson-03:session-36:i08:r2",
+          "text": "tranquilas"
+        },
+        {
+          "responseId": "es:lesson-03:session-36:i08:r3",
+          "text": "tranquilo"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — Ана спокойная по характеру",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — Ана спокойная по характеру",
+          "uk": "Вставте слово — Ана спокійна за характером"
+        },
+        "gappedTargetPhrase": "Ana es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-36:i08:r1",
+            "text": "tranquila"
+          },
+          {
+            "responseId": "es:lesson-03:session-36:i08:r2",
+            "text": "tranquilas"
+          },
+          {
+            "responseId": "es:lesson-03:session-36:i08:r3",
+            "text": "tranquilo"
+          }
+        ],
+        "testedDimension": "Вставьте слово — Ана спокойная по характеру",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-36:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — Ана спокойная по характеру",
+            "feedbackByLocale": {
+              "ru": "Одна женщина: tranquila.",
+              "uk": "Одна жінка: tranquila."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-36:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — Ана спокойная по характеру",
+            "feedbackByLocale": {
+              "ru": "О женщине: tranquila.",
+              "uk": "Про жінку: tranquila."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-36:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — обе женщины спокойные по характеру; без имён и местоимения",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-36:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — обе женщины спокойные по характеру; без имён и местоимения",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-36:i09:audio",
+          "transcript": "Son tranquilas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son tranquilas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-36:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — обе женщины весёлые по характеру; без имён и местоимения",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-36:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — обе женщины весёлые по характеру; без имён и местоимения",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-36:i10:audio",
+          "transcript": "Son alegres."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son alegres.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-36:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — обе женщины очень спокойные по характеру; без имён и местоимения",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-36:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — обе женщины очень спокойные по характеру; без имён и местоимения",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-36:i11:audio",
+          "transcript": "Son muy tranquilas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son muy tranquilas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-36:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — обе женщины очень весёлые по характеру; без имён и местоимения",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-36:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — обе женщины очень весёлые по характеру; без имён и местоимения",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-36:i12:audio",
+          "transcript": "Son muy alegres."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son muy alegres.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "8f0e35fb4572ba45dac522867626e7308e09b79782dcb0cbe1a1ffa39f0d5f50"
+}

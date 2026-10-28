@@ -1029,4 +1029,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"описать человека словом joven и нескольких людей словом jóvenes.","uk":"описувати людину словом joven і кількох людей словом jóvenes."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 35,
+    sourceFingerprint: "c713e92042da2a046f1a3329c5b7d12131b42b0dca13ee28ed0fcb6ce643eedd",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"описать светлые или тёмные волосы человека знакомой конструкцией с es.","uk":"описувати світле або темне волосся людини знайомою конструкцією з es."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 36,
+    sourceFingerprint: "5ed9839df135648d44d74b048617638479394a4d473ef27ab2711645c14aabf7",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"описать характер нескольких женщин формами tranquilas и alegres.","uk":"описувати характер кількох жінок формами tranquilas і alegres."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+  }),
 ]);

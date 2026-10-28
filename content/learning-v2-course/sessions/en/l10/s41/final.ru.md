@@ -63,7 +63,7 @@
 - Perhaps she is at home. — *В записи звучит Perhaps she is at work.*
 - Perhaps he is at work. — *В записи звучит Perhaps she is at work.*
 
-**4 · Выберите связку после he**
+**4 · Выберите форму be после he**
 <!-- interaction_id: en:lesson-10:session-41:i03; family: context_gap_grammar -->
 Perhaps he ___ on the bus. → **is** · are · am
 - are — *С he нужна is.*
@@ -83,7 +83,7 @@ Perhaps he ___ on the bus. → **is** · are · am
 - They are probably at home. — *В записи звучит They are probably at work.*
 - We are probably at work. — *В записи звучит They are probably at work.*
 
-**8 · Выберите связку после he**
+**8 · Выберите форму be после he**
 <!-- interaction_id: en:lesson-10:session-41:i06; family: context_gap_grammar -->
 He ___ probably at home. → **is** · are · am
 - are — *С he нужна is.*
@@ -103,7 +103,7 @@ He ___ probably at home. → **is** · are · am
 - It is quite cold. — *В записи звучит It is quite warm.*
 - It is quite windy. — *В записи звучит It is quite warm.*
 
-**12 · Выберите связку в описании погоды**
+**12 · Выберите форму be в описании погоды**
 <!-- interaction_id: en:lesson-10:session-41:i09; family: context_gap_grammar -->
 It ___ quite cold. → **is** · are · am
 - are — *С it нужна is.*

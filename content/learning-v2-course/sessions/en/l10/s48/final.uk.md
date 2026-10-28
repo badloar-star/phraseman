@@ -63,7 +63,7 @@ Nearly — «майже». Сніданок ще не повністю гото�
 - The apricot is small. — *У записі звучить The apricot is ripe.*
 - The peach is ripe. — *У записі звучить The apricot is ripe.*
 
-**4 · Один фрукт. Виберіть зв’язку**
+**4 · Один фрукт. Виберіть форму be**
 <!-- interaction_id: en:lesson-10:session-48:i03; family: context_gap_grammar -->
 This apricot ___ sweet. → **is** · are · am
 - are — *Один абрикос: is.*
@@ -83,7 +83,7 @@ This apricot ___ sweet. → **is** · are · am
 - The grapefruit is in the bag. — *У записі звучить The grapefruit is on the plate.*
 - The apricot is on the plate. — *У записі звучить The grapefruit is on the plate.*
 
-**8 · Ви чистите фрукт зараз. Виберіть допоміжне дієслово**
+**8 · Ви чистите фрукт зараз. Виберіть do або does**
 <!-- interaction_id: en:lesson-10:session-48:i06; family: context_gap_grammar -->
 I ___ peeling a grapefruit. → **am** · is · are
 - is — *З I потрібна am.*
@@ -123,7 +123,7 @@ We ___ enough bread. → **have** · has · having
 - It is nearly nine. — *У записі звучить It is nearly eight.*
 - It is exactly eight. — *У записі звучить It is nearly eight.*
 
-**16 · Опишіть готовність сніданку. Виберіть зв’язку**
+**16 · Опишіть готовність сніданку. Виберіть форму be**
 <!-- interaction_id: en:lesson-10:session-48:i12; family: context_gap_grammar -->
 Breakfast ___ nearly ready. → **is** · are · am
 - are — *З breakfast потрібна is.*

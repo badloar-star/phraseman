@@ -123,7 +123,7 @@ I am ___ a denim jacket. → **wearing** · wear · wears
 - I like this flowery skirt. — *У записі звучить I like this flowery dress.*
 - I need this flowery dress. — *У записі звучить I like this flowery dress.*
 
-**16 · Виберіть допоміжне дієслово для she перед wearing**
+**16 · Виберіть do або does для she перед wearing**
 <!-- interaction_id: en:lesson-10:session-44:i12; family: context_gap_grammar -->
 She ___ wearing a flowery dress. → **is** · are · am
 - are — *З she потрібна is.*

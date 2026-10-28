@@ -63,7 +63,7 @@
 - Somebody is waiting for you. — *В записи звучит Somebody is calling you.*
 - Somebody is calling me. — *В записи звучит Somebody is calling you.*
 
-**4 · Стук слышен сейчас. Выберите вспомогательный глагол**
+**4 · Стук слышен сейчас. Выберите do или does**
 <!-- interaction_id: en:lesson-10:session-52:i03; family: context_gap_grammar -->
 Somebody ___ knocking. → **is** · are · am
 - are — *С somebody нужна is.*
@@ -83,7 +83,7 @@ Somebody ___ knocking. → **is** · are · am
 - Nobody is in the garden. — *В записи звучит Nobody is in the kitchen.*
 - Somebody is in the kitchen. — *В записи звучит Nobody is in the kitchen.*
 
-**8 · Выберите связку после nobody**
+**8 · Выберите форму be после nobody**
 <!-- interaction_id: en:lesson-10:session-52:i06; family: context_gap_grammar -->
 Nobody ___ at home. → **is** · are · am
 - are — *С nobody нужна is.*

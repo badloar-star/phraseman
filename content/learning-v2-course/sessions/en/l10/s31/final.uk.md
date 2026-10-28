@@ -63,7 +63,7 @@
 - We travel in April. — *У записі звучить I travel in April.*
 - I travel in January. — *У записі звучить I travel in April.*
 
-**4 · Виберіть допоміжне дієслово для запитання з you**
+**4 · Виберіть do або does для запитання з you**
 <!-- interaction_id: en:lesson-10:session-31:i03; family: context_gap_grammar -->
 ___ you travel in April? → **Do** · Does · Is
 - Does — *З you потрібна do, не does.*

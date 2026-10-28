@@ -63,7 +63,7 @@
 - The bag is underneath the chair. — *У записі звучить The bag is underneath the table.*
 - The box is underneath the table. — *У записі звучить The bag is underneath the table.*
 
-**4 · Виберіть зв’язку: ключі у множині**
+**4 · Виберіть форму be: ключі: їх кілька**
 <!-- interaction_id: en:lesson-10:session-37:i03; family: context_gap_grammar -->
 The keys ___ underneath the chair. → **are** · is · am
 - is — *Keys у множині: are.*
@@ -83,7 +83,7 @@ The keys ___ underneath the chair. → **are** · is · am
 - The ladder is against the wall. — *У записі звучить The chair is against the wall.*
 - The chair is near the door. — *У записі звучить The chair is against the wall.*
 
-**8 · Виберіть зв’язку: одна драбина**
+**8 · Виберіть форму be: одна драбина**
 <!-- interaction_id: en:lesson-10:session-37:i06; family: context_gap_grammar -->
 The ladder ___ against the wall. → **is** · are · am
 - are — *Одна драбина: is.*

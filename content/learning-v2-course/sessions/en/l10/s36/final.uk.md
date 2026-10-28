@@ -103,7 +103,7 @@ We are ___ indoors. → **eating** · eat · eats
 - He is still eating. — *У записі звучить He is still sleeping.*
 - She is still sleeping. — *У записі звучить He is still sleeping.*
 
-**12 · Дощ триває. Виберіть допоміжне дієслово**
+**12 · Дощ триває. Виберіть do або does**
 <!-- interaction_id: en:lesson-10:session-36:i09; family: context_gap_grammar -->
 It ___ still raining. → **is** · are · am
 - are — *З it потрібна is.*

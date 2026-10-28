@@ -63,7 +63,7 @@
 - Perhaps she is at home. — *У записі звучить Perhaps she is at work.*
 - Perhaps he is at work. — *У записі звучить Perhaps she is at work.*
 
-**4 · Виберіть зв’язку після he**
+**4 · Виберіть форму be після he**
 <!-- interaction_id: en:lesson-10:session-41:i03; family: context_gap_grammar -->
 Perhaps he ___ on the bus. → **is** · are · am
 - are — *З he потрібна is.*
@@ -83,7 +83,7 @@ Perhaps he ___ on the bus. → **is** · are · am
 - They are probably at home. — *У записі звучить They are probably at work.*
 - We are probably at work. — *У записі звучить They are probably at work.*
 
-**8 · Виберіть зв’язку після he**
+**8 · Виберіть форму be після he**
 <!-- interaction_id: en:lesson-10:session-41:i06; family: context_gap_grammar -->
 He ___ probably at home. → **is** · are · am
 - are — *З he потрібна is.*
@@ -103,7 +103,7 @@ He ___ probably at home. → **is** · are · am
 - It is quite cold. — *У записі звучить It is quite warm.*
 - It is quite windy. — *У записі звучить It is quite warm.*
 
-**12 · Виберіть зв’язку в описі погоди**
+**12 · Виберіть форму be в описі погоди**
 <!-- interaction_id: en:lesson-10:session-41:i09; family: context_gap_grammar -->
 It ___ quite cold. → **is** · are · am
 - are — *З it потрібна is.*

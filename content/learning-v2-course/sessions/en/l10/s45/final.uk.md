@@ -63,7 +63,7 @@
 - The heel is low. — *У записі звучить The heel is high.*
 - The shoe is light. — *У записі звучить The heel is high.*
 
-**4 · Виберіть зв’язку: один підбор**
+**4 · Виберіть форму be: один підбор**
 <!-- interaction_id: en:lesson-10:session-45:i03; family: context_gap_grammar -->
 The heel ___ low. → **is** · are · am
 - are — *Один підбор: is.*

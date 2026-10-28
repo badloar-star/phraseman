@@ -103,7 +103,7 @@ I ___. → **disagree** · disagrees · disagreeing
 - I do not mind. — *В записи звучит We do not mind.*
 - We do mind. — *В записи звучит We do not mind.*
 
-**12 · Выберите вспомогательный глагол для отрицания с I**
+**12 · Выберите do или does для «не» с I**
 <!-- interaction_id: en:lesson-10:session-08:i09; family: context_gap_grammar -->
 I ___ not mind. → **do** · does · am
 - does — *С I нужен do.*

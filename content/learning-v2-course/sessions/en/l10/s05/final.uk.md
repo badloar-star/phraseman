@@ -103,7 +103,7 @@ We are ___ on the patio. → **eating** · eat · eats
 - The suitcase is in the bedroom. — *У записі звучить The suitcase is in the attic.*
 - The box is in the attic. — *У записі звучить The suitcase is in the attic.*
 
-**12 · Виберіть зв’язку: кілька коробок**
+**12 · Виберіть форму be: кілька коробок**
 <!-- interaction_id: en:lesson-10:session-05:i09; family: context_gap_grammar -->
 The boxes ___ in the attic. → **are** · is · am
 - is — *Boxes у множині: are.*
@@ -123,7 +123,7 @@ The boxes ___ in the attic. → **are** · is · am
 - The cellar is dark. — *У записі звучить The cellar is cool.*
 - The attic is cool. — *У записі звучить The cellar is cool.*
 
-**16 · Виберіть зв’язку: кілька пляшок**
+**16 · Виберіть форму be: кілька пляшок**
 <!-- interaction_id: en:lesson-10:session-05:i12; family: context_gap_grammar -->
 The bottles ___ in the cellar. → **are** · is · am
 - is — *Bottles у множині: are.*

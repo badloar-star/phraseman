@@ -63,7 +63,7 @@
 - This sauce is mild. — *В записи звучит This cheese is mild.*
 - This cheese is salty. — *В записи звучит This cheese is mild.*
 
-**4 · Выберите связку: один соус**
+**4 · Выберите форму be: один соус**
 <!-- interaction_id: en:lesson-10:session-43:i03; family: context_gap_grammar -->
 This sauce ___ mild. → **is** · are · am
 - are — *Один соус: is.*
@@ -83,7 +83,7 @@ This sauce ___ mild. → **is** · are · am
 - The soup is creamy. — *В записи звучит The sauce is creamy.*
 - The sauce is spicy. — *В записи звучит The sauce is creamy.*
 
-**8 · Выберите связку в описании супа**
+**8 · Выберите форму be в описании супа**
 <!-- interaction_id: en:lesson-10:session-43:i06; family: context_gap_grammar -->
 The soup ___ creamy. → **is** · are · am
 - are — *С soup нужна is.*

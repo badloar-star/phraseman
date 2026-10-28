@@ -63,7 +63,7 @@
 - The heel is low. — *В записи звучит The heel is high.*
 - The shoe is light. — *В записи звучит The heel is high.*
 
-**4 · Выберите связку: один каблук**
+**4 · Выберите форму be: один каблук**
 <!-- interaction_id: en:lesson-10:session-45:i03; family: context_gap_grammar -->
 The heel ___ low. → **is** · are · am
 - are — *Один каблук: is.*

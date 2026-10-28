@@ -103,7 +103,7 @@ I swim ___ a week. → **twice** · once · never
 - What else do you need? — *В записи звучит What else do we need?*
 - What else does she need? — *В записи звучит What else do we need?*
 
-**12 · Выберите вспомогательный глагол с you**
+**12 · Выберите do или does с you**
 <!-- interaction_id: en:lesson-10:session-17:i09; family: context_gap_grammar -->
 What else ___ you need? → **do** · does · are
 - does — *С you нужен do.*

@@ -123,7 +123,7 @@ I would ___ some sparkling water. → **like** · likes · liking
 - We need a teaspoon. — *У записі звучить I need a teaspoon.*
 - I have a teaspoon. — *У записі звучить I need a teaspoon.*
 
-**16 · Виберіть артикль перед однією ложкою**
+**16 · Виберіть слово перед однією ложкою**
 <!-- interaction_id: en:lesson-10:session-06:i12; family: context_gap_grammar -->
 I need ___ teaspoon. → **a** · an · some
 - an — *Teaspoon починається з приголосного звука: a.*

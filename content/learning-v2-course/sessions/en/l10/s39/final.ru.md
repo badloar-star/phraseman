@@ -103,7 +103,7 @@ Each person ___ a cup. → **has** · have · having
 - The other table is free. — *В записи звучит The other chair is free.*
 - The other chair is wet. — *В записи звучит The other chair is free.*
 
-**12 · Выберите связку: один другой стул**
+**12 · Выберите форму be: один другой стул**
 <!-- interaction_id: en:lesson-10:session-39:i09; family: context_gap_grammar -->
 The other chair ___ free. → **is** · are · am
 - are — *Один стул: is.*
@@ -123,7 +123,7 @@ The other chair ___ free. → **is** · are · am
 - Is anyone waiting inside? — *В записи звучит Is anyone waiting outside?*
 - Is anyone eating outside? — *В записи звучит Is anyone waiting outside?*
 
-**16 · Выберите вспомогательный глагол перед anyone в вопросе о действии сейчас**
+**16 · Выберите do или does перед anyone в вопросе о действии сейчас**
 <!-- interaction_id: en:lesson-10:session-39:i12; family: context_gap_grammar -->
 ___ anyone sitting here? → **Is** · Are · Am
 - Are — *С anyone нужна is.*

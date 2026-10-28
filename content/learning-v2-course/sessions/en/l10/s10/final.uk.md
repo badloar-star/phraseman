@@ -83,7 +83,7 @@ I ___ the address. → **know** · knows · knowing
 - We hope you are well. — *У записі звучить I hope you are well.*
 - I hope she is well. — *У записі звучить I hope you are well.*
 
-**8 · Виберіть зв’язку з you**
+**8 · Виберіть форму be з you**
 <!-- interaction_id: en:lesson-10:session-10:i06; family: context_gap_grammar -->
 I hope you ___ well. → **are** · is · am
 - is — *З you потрібна are.*

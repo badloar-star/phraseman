@@ -123,7 +123,7 @@ I am ___ a plate with a tea towel. → **drying** · dry · dries
 - The bin bag is empty. — *В записи звучит The bin bag is full.*
 - The bin bag is black. — *В записи звучит The bin bag is full.*
 
-**16 · Выберите связку: один пакет**
+**16 · Выберите форму be: один пакет**
 <!-- interaction_id: en:lesson-10:session-16:i12; family: context_gap_grammar -->
 The bin bag ___ full. → **is** · are · am
 - are — *Один пакет: is.*

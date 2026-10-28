@@ -63,7 +63,7 @@ Nearly — «почти». Завтрак ещё не полностью гот�
 - The apricot is small. — *В записи звучит The apricot is ripe.*
 - The peach is ripe. — *В записи звучит The apricot is ripe.*
 
-**4 · Один фрукт. Выберите связку**
+**4 · Один фрукт. Выберите форму be**
 <!-- interaction_id: en:lesson-10:session-48:i03; family: context_gap_grammar -->
 This apricot ___ sweet. → **is** · are · am
 - are — *Один абрикос: is.*
@@ -83,7 +83,7 @@ This apricot ___ sweet. → **is** · are · am
 - The grapefruit is in the bag. — *В записи звучит The grapefruit is on the plate.*
 - The apricot is on the plate. — *В записи звучит The grapefruit is on the plate.*
 
-**8 · Вы чистите фрукт сейчас. Выберите вспомогательный глагол**
+**8 · Вы чистите фрукт сейчас. Выберите do или does**
 <!-- interaction_id: en:lesson-10:session-48:i06; family: context_gap_grammar -->
 I ___ peeling a grapefruit. → **am** · is · are
 - is — *С I нужна am.*
@@ -123,7 +123,7 @@ We ___ enough bread. → **have** · has · having
 - It is nearly nine. — *В записи звучит It is nearly eight.*
 - It is exactly eight. — *В записи звучит It is nearly eight.*
 
-**16 · Опишите готовность завтрака. Выберите связку**
+**16 · Опишите готовность завтрака. Выберите форму be**
 <!-- interaction_id: en:lesson-10:session-48:i12; family: context_gap_grammar -->
 Breakfast ___ nearly ready. → **is** · are · am
 - are — *С breakfast нужна is.*

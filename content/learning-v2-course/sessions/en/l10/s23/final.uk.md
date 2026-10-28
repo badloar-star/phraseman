@@ -83,7 +83,7 @@ I ___ you. → **trust** · trusts · am trust
 - Please tell her the truth. — *У записі звучить Please tell me the truth.*
 - Please tell him the truth. — *У записі звучить Please tell me the truth.*
 
-**8 · Виберіть займенник для «скажи мені»**
+**8 · Виберіть слово для «скажи мені»**
 <!-- interaction_id: en:lesson-10:session-23:i06; family: context_gap_grammar -->
 Tell ___ the truth. → **me** · I · my
 - I — *Після tell для «мені» потрібна me.*
@@ -103,7 +103,7 @@ Tell ___ the truth. → **me** · I · my
 - We need advice. — *У записі звучить I need advice.*
 - She needs advice. — *У записі звучить I need advice.*
 
-**12 · Виберіть форму advice: тут це незлічуване слово**
+**12 · Виберіть форму advice: тут його не рахують поштучно**
 <!-- interaction_id: en:lesson-10:session-23:i09; family: context_gap_grammar -->
 I need ___. → **advice** · an advice · advices
 - an advice — *Advice тут без неозначеного артикля.*

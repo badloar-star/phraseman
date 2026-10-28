@@ -103,7 +103,7 @@ She usually ___ a nightdress. → **wears** · wear · wearing
 - We need some tights. — *У записі звучить I need some tights.*
 - I have some tights. — *У записі звучить I need some tights.*
 
-**12 · Виберіть слово перед tights у множині**
+**12 · Виберіть слово перед tights: їх кілька**
 <!-- interaction_id: en:lesson-10:session-12:i09; family: context_gap_grammar -->
 I need ___ tights. → **some** · a · an
 - a — *Tights — множина, a не підходить.*

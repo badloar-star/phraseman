@@ -83,7 +83,7 @@ I ___ you. → **trust** · trusts · am trust
 - Please tell her the truth. — *В записи звучит Please tell me the truth.*
 - Please tell him the truth. — *В записи звучит Please tell me the truth.*
 
-**8 · Выберите местоимение для «скажи мне»**
+**8 · Выберите слово для «скажи мне»**
 <!-- interaction_id: en:lesson-10:session-23:i06; family: context_gap_grammar -->
 Tell ___ the truth. → **me** · I · my
 - I — *После tell для «мне» нужна me.*
@@ -103,7 +103,7 @@ Tell ___ the truth. → **me** · I · my
 - We need advice. — *В записи звучит I need advice.*
 - She needs advice. — *В записи звучит I need advice.*
 
-**12 · Выберите форму advice: здесь это неисчисляемое слово**
+**12 · Выберите форму advice: здесь его не считают поштучно**
 <!-- interaction_id: en:lesson-10:session-23:i09; family: context_gap_grammar -->
 I need ___. → **advice** · an advice · advices
 - an advice — *Advice здесь без неопределённого артикля.*

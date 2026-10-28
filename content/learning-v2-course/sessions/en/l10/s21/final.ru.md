@@ -83,7 +83,7 @@ I also ___ bread. → **need** · needs · needing
 - Even Tom is late. — *В записи звучит Even Tom is here.*
 - Even Tom is ready. — *В записи звучит Even Tom is here.*
 
-**8 · Выберите связку с одним человеком, Tom**
+**8 · Выберите форму be с одним человеком, Tom**
 <!-- interaction_id: en:lesson-10:session-21:i06; family: context_gap_grammar -->
 Even Tom ___ here. → **is** · are · am
 - are — *С Tom нужна is.*
@@ -123,7 +123,7 @@ I am just ___. → **looking** · look · looks
 - He is almost ready. — *В записи звучит She is almost ready.*
 - We are almost ready. — *В записи звучит She is almost ready.*
 
-**16 · Выберите связку с it**
+**16 · Выберите форму be с it**
 <!-- interaction_id: en:lesson-10:session-21:i12; family: context_gap_grammar -->
 It ___ almost ready. → **is** · are · am
 - are — *С it нужна is.*

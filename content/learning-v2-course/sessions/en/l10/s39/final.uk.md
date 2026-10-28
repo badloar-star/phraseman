@@ -103,7 +103,7 @@ Each person ___ a cup. → **has** · have · having
 - The other table is free. — *У записі звучить The other chair is free.*
 - The other chair is wet. — *У записі звучить The other chair is free.*
 
-**12 · Виберіть зв’язку: один інший стілець**
+**12 · Виберіть форму be: один інший стілець**
 <!-- interaction_id: en:lesson-10:session-39:i09; family: context_gap_grammar -->
 The other chair ___ free. → **is** · are · am
 - are — *Один стілець: is.*
@@ -123,7 +123,7 @@ The other chair ___ free. → **is** · are · am
 - Is anyone waiting inside? — *У записі звучить Is anyone waiting outside?*
 - Is anyone eating outside? — *У записі звучить Is anyone waiting outside?*
 
-**16 · Виберіть допоміжне дієслово перед anyone у запитанні про дію зараз**
+**16 · Виберіть do або does перед anyone у запитанні про дію зараз**
 <!-- interaction_id: en:lesson-10:session-39:i12; family: context_gap_grammar -->
 ___ anyone sitting here? → **Is** · Are · Am
 - Are — *З anyone потрібна is.*

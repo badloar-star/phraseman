@@ -83,7 +83,7 @@ I would ___ a single room. → **like** · likes · liking
 - Do you have a single room? — *У записі звучить Do you have a double room?*
 - We have a double room. — *У записі звучить Do you have a double room?*
 
-**8 · Виберіть допоміжне дієслово з you**
+**8 · Виберіть do або does з you**
 <!-- interaction_id: en:lesson-10:session-24:i06; family: context_gap_grammar -->
 ___ you have a double room? → **Do** · Does · Is
 - Does — *З you потрібне Do.*

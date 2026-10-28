@@ -63,7 +63,7 @@
 - Do you need anything? — *В записи звучит Do they need anything?*
 - Does he need anything? — *В записи звучит Do they need anything?*
 
-**4 · Выберите вспомогательный глагол для вопроса с you**
+**4 · Выберите do или does для вопроса с you**
 <!-- interaction_id: en:lesson-10:session-38:i03; family: context_gap_grammar -->
 ___ you need anything? → **Do** · Does · Are
 - Does — *С you нужна do.*
@@ -83,7 +83,7 @@ ___ you need anything? → **Do** · Does · Are
 - Everything is in the bag. — *В записи звучит Everything is in the car.*
 - Everything is ready. — *В записи звучит Everything is in the car.*
 
-**8 · Выберите связку после everything**
+**8 · Выберите форму be после everything**
 <!-- interaction_id: en:lesson-10:session-38:i06; family: context_gap_grammar -->
 Everything ___ ready. → **is** · are · am
 - are — *После everything нужна is.*
@@ -103,7 +103,7 @@ Everything ___ ready. → **is** · are · am
 - There is nothing in the bag. — *В записи звучит There is nothing on the table.*
 - There is nothing on the chair. — *В записи звучит There is nothing on the table.*
 
-**12 · Выберите связку перед nothing**
+**12 · Выберите форму be перед nothing**
 <!-- interaction_id: en:lesson-10:session-38:i09; family: context_gap_grammar -->
 There ___ nothing in the bag. → **is** · are · am
 - are — *Здесь нужна is.*
@@ -123,7 +123,7 @@ There ___ nothing in the bag. → **is** · are · am
 - Your keys are somewhere in the bedroom. — *В записи звучит Your keys are somewhere in the kitchen.*
 - My keys are somewhere in the kitchen. — *В записи звучит Your keys are somewhere in the kitchen.*
 
-**16 · Выберите связку: один телефон**
+**16 · Выберите форму be: один телефон**
 <!-- interaction_id: en:lesson-10:session-38:i12; family: context_gap_grammar -->
 My phone ___ somewhere in the house. → **is** · are · am
 - are — *Один телефон: is.*

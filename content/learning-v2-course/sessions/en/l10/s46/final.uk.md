@@ -83,7 +83,7 @@ I usually ___ cabbage. → **buy** · buys · buying
 - I am cutting the cauliflower. — *У записі звучить I am washing the cauliflower.*
 - I am washing the cabbage. — *У записі звучить I am washing the cauliflower.*
 
-**8 · Опишіть овоч. Виберіть зв’язку**
+**8 · Опишіть овоч. Виберіть форму be**
 <!-- interaction_id: en:lesson-10:session-46:i06; family: context_gap_grammar -->
 The cauliflower ___ fresh. → **is** · are · am
 - are — *З cauliflower тут потрібна is.*
@@ -123,7 +123,7 @@ I am ___ garlic. → **chopping** · choping · chop
 - The lentils are cold. — *У записі звучить The lentils are ready.*
 - The potatoes are ready. — *У записі звучить The lentils are ready.*
 
-**16 · Виберіть зв’язку з множиною lentils**
+**16 · Виберіть форму be з lentils (їх кілька)**
 <!-- interaction_id: en:lesson-10:session-46:i12; family: context_gap_grammar -->
 The lentils ___ ready. → **are** · is · am
 - is — *Lentils — множина: are.*

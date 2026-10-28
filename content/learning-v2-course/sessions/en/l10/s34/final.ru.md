@@ -103,7 +103,7 @@ My granddaughter is ___. → **reading** · read · reads
 - My son is a teenager. — *В записи звучит My daughter is a teenager.*
 - Your daughter is a teenager. — *В записи звучит My daughter is a teenager.*
 
-**12 · Выберите артикль перед teenager**
+**12 · Выберите слово перед teenager**
 <!-- interaction_id: en:lesson-10:session-34:i09; family: context_gap_grammar -->
 My son is ___ teenager. → **a** · an · some
 - an — *Teenager начинается с согласного звука: a.*

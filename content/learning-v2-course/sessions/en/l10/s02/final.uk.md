@@ -123,7 +123,7 @@ I am ___ my boarding pass. → **showing** · show · shows
 - My hand luggage is heavy. — *У записі звучить My hand luggage is light.*
 - Your hand luggage is light. — *У записі звучить My hand luggage is light.*
 
-**16 · Виберіть зв’язку після this**
+**16 · Виберіть форму be після this**
 <!-- interaction_id: en:lesson-10:session-02:i12; family: context_gap_grammar -->
 This ___ my hand luggage. → **is** · are · am
 - are — *Після this потрібна is.*

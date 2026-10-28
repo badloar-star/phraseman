@@ -63,7 +63,7 @@
 - We travel in April. — *В записи звучит I travel in April.*
 - I travel in January. — *В записи звучит I travel in April.*
 
-**4 · Выберите вспомогательный глагол для вопроса с you**
+**4 · Выберите do или does для вопроса с you**
 <!-- interaction_id: en:lesson-10:session-31:i03; family: context_gap_grammar -->
 ___ you travel in April? → **Do** · Does · Is
 - Does — *С you нужна do, не does.*

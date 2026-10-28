@@ -103,7 +103,7 @@ I ___ a light bulb. → **need** · needs · needing
 - There is a problem. — *У записі звучить There is a power cut.*
 - There is a light bulb. — *У записі звучить There is a power cut.*
 
-**12 · Виберіть зв’язку в there is для однієї ситуації**
+**12 · Виберіть форму be в there is для однієї ситуації**
 <!-- interaction_id: en:lesson-10:session-04:i09; family: context_gap_grammar -->
 There ___ a power cut. → **is** · are · am
 - are — *З a power cut потрібна is.*

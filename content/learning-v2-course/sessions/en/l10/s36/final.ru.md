@@ -103,7 +103,7 @@ We are ___ indoors. → **eating** · eat · eats
 - He is still eating. — *В записи звучит He is still sleeping.*
 - She is still sleeping. — *В записи звучит He is still sleeping.*
 
-**12 · Дождь продолжается. Выберите вспомогательный глагол**
+**12 · Дождь продолжается. Выберите do или does**
 <!-- interaction_id: en:lesson-10:session-36:i09; family: context_gap_grammar -->
 It ___ still raining. → **is** · are · am
 - are — *С it нужна is.*

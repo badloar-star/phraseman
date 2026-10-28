@@ -103,7 +103,7 @@ My cheek ___ dirty. → **is** · are · am
 - My lips are dry. — *У записі звучить Your lips are dry.*
 - Your lips are wet. — *У записі звучить Your lips are dry.*
 
-**12 · Виберіть дієслово для lips у множині**
+**12 · Виберіть дієслово для lips: їх кілька**
 <!-- interaction_id: en:lesson-10:session-33:i09; family: context_gap_grammar -->
 My lips ___ dry. → **are** · is · am
 - is — *З lips потрібна are, не is.*

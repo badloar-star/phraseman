@@ -123,7 +123,7 @@ Does she ___ the signature? → **recognize** · recognizes · recognizing
 - He recognizes the accent. — *У записі звучить She recognizes the accent.*
 - She recognizes the voice. — *У записі звучить She recognizes the accent.*
 
-**16 · Виберіть допоміжне дієслово для запитання з you**
+**16 · Виберіть do або does для запитання з you**
 <!-- interaction_id: en:lesson-10:session-22:i12; family: context_gap_grammar -->
 ___ you recognize the accent? → **Do** · Does · Are
 - Does — *З you потрібне do.*

@@ -63,7 +63,7 @@
 - Somebody is waiting for you. — *У записі звучить Somebody is calling you.*
 - Somebody is calling me. — *У записі звучить Somebody is calling you.*
 
-**4 · Стукіт чути зараз. Виберіть допоміжне дієслово**
+**4 · Стукіт чути зараз. Виберіть do або does**
 <!-- interaction_id: en:lesson-10:session-52:i03; family: context_gap_grammar -->
 Somebody ___ knocking. → **is** · are · am
 - are — *З somebody потрібна is.*
@@ -83,7 +83,7 @@ Somebody ___ knocking. → **is** · are · am
 - Nobody is in the garden. — *У записі звучить Nobody is in the kitchen.*
 - Somebody is in the kitchen. — *У записі звучить Nobody is in the kitchen.*
 
-**8 · Виберіть зв’язку після nobody**
+**8 · Виберіть форму be після nobody**
 <!-- interaction_id: en:lesson-10:session-52:i06; family: context_gap_grammar -->
 Nobody ___ at home. → **is** · are · am
 - are — *З nobody потрібна is.*

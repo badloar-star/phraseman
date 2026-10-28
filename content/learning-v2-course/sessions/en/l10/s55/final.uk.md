@@ -64,7 +64,7 @@
 - Your room is untidy. — *У записі звучить Your desk is untidy.*
 - My desk is untidy. — *У записі звучить Your desk is untidy.*
 
-**4 · Виберіть зв’язку: одна кімната**
+**4 · Виберіть форму be: одна кімната**
 <!-- interaction_id: en:lesson-10:session-55:i03; family: context_gap_grammar -->
 My room ___ untidy. → **is** · are · am
 - are — *Одна кімната: is.*
@@ -104,7 +104,7 @@ I am ___ a sleeveless shirt. → **wearing** · wear · wears
 - This bed is uncomfortable. — *У записі звучить This chair is uncomfortable.*
 - These chairs are uncomfortable. — *У записі звучить This chair is uncomfortable.*
 
-**12 · Виберіть зв’язку: черевики у множині**
+**12 · Виберіть форму be: черевики: їх кілька**
 <!-- interaction_id: en:lesson-10:session-55:i09; family: context_gap_grammar -->
 These boots ___ uncomfortable. → **are** · is · am
 - is — *Множина: are.*
@@ -124,7 +124,7 @@ These boots ___ uncomfortable. → **are** · is · am
 - They are not ready yet. — *У записі звучить We are not ready yet.*
 - We are ready. — *У записі звучить We are not ready yet.*
 
-**16 · Виберіть зв’язку після I**
+**16 · Виберіть форму be після I**
 <!-- interaction_id: en:lesson-10:session-55:i12; family: context_gap_grammar -->
 I ___ not ready yet. → **am** · is · are
 - is — *З I потрібна am.*

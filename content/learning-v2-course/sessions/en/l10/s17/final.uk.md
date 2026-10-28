@@ -103,7 +103,7 @@ I swim ___ a week. → **twice** · once · never
 - What else do you need? — *У записі звучить What else do we need?*
 - What else does she need? — *У записі звучить What else do we need?*
 
-**12 · Виберіть допоміжне дієслово з you**
+**12 · Виберіть do або does з you**
 <!-- interaction_id: en:lesson-10:session-17:i09; family: context_gap_grammar -->
 What else ___ you need? → **do** · does · are
 - does — *З you потрібне do.*

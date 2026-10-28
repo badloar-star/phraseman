@@ -83,7 +83,7 @@ I usually ___ beetroot. → **buy** · buys · buying
 - I am cutting the leek. — *У записі звучить I am washing the leek.*
 - I am washing the beetroot. — *У записі звучить I am washing the leek.*
 
-**8 · Опишіть овоч. Виберіть зв’язку**
+**8 · Опишіть овоч. Виберіть форму be**
 <!-- interaction_id: en:lesson-10:session-47:i06; family: context_gap_grammar -->
 The leek ___ fresh. → **is** · are · am
 - are — *З leek тут потрібна is.*
@@ -123,7 +123,7 @@ I am ___ parsley. → **chopping** · choping · chop
 - The radishes are dirty. — *У записі звучить The radishes are clean.*
 - The potatoes are clean. — *У записі звучить The radishes are clean.*
 
-**16 · Виберіть зв’язку з множиною radishes**
+**16 · Виберіть форму be з radishes (їх кілька)**
 <!-- interaction_id: en:lesson-10:session-47:i12; family: context_gap_grammar -->
 The radishes ___ clean. → **are** · is · am
 - is — *Radishes — множина: are.*

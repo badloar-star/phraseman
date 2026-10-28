@@ -83,7 +83,7 @@ I would ___ a window seat. → **like** · likes · liking
 - I prefer an aisle seat. — *У записі звучить We prefer an aisle seat.*
 - We prefer a window seat. — *У записі звучить We prefer an aisle seat.*
 
-**8 · Виберіть артикль перед aisle seat**
+**8 · Виберіть слово перед aisle seat**
 <!-- interaction_id: en:lesson-10:session-14:i06; family: context_gap_grammar -->
 I would like ___ aisle seat. → **an** · a · some
 - a — *Aisle починається з голосного звука: an.*
@@ -103,7 +103,7 @@ I would like ___ aisle seat. → **an** · a · some
 - Where are the boarding gates? — *У записі звучить Where is the boarding gate?*
 - This is the boarding gate. — *У записі звучить Where is the boarding gate?*
 
-**12 · Ви запитуєте про один вихід. Виберіть зв’язку**
+**12 · Ви запитуєте про один вихід. Виберіть форму be**
 <!-- interaction_id: en:lesson-10:session-14:i09; family: context_gap_grammar -->
 Where ___ the boarding gate? → **is** · are · am
 - are — *Один вихід: is.*

@@ -103,7 +103,7 @@ Does she ___ the parcel today? → **expect** · expects · expecting
 - Delivery is today. — *У записі звучить Delivery is tomorrow.*
 - Arrival is tomorrow. — *У записі звучить Delivery is tomorrow.*
 
-**12 · Виберіть зв’язку з delivery у повідомленні про дату**
+**12 · Виберіть форму be з delivery у повідомленні про дату**
 <!-- interaction_id: en:lesson-10:session-20:i09; family: context_gap_grammar -->
 Delivery ___ today. → **is** · are · am
 - are — *Тут потрібна is.*

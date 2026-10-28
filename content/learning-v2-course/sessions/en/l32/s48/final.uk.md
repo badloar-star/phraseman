@@ -82,7 +82,7 @@ The fridge is noisy, so it might ___ old. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-48:i07; family: scripted_repeat_compare -->
 🎙 **The cheese I bought is soft.**
 
-**8 · Сир, який я купив, м’який. Уточніть предмет без зайвого займенника.**
+**8 · Сир, який я купив, м’який. Предмет уже названо — не повторюйте його.**
 <!-- interaction_id: en:lesson-32:session-48:i08; family: context_gap_grammar -->
 The cheese I ___ is soft. → **bought** · bought it · buying
 - bought it — *Предмет уже названо: it не потрібне.*
@@ -92,7 +92,7 @@ The cheese I ___ is soft. → **bought** · bought it · buying
 <!-- interaction_id: en:lesson-32:session-48:i09; family: phrase_builder -->
 Плитки: `old` `be` `might` `it` `so` `noisy,` `is` `fridge` `The` → **The fridge is noisy, so it might be old.**
 
-**10 · Анна вважає, що соку не залишилося, але крізь скло видно рідину. Скажіть висновок, замінивши The bottle займенником It.**
+**10 · Анна вважає, що соку не залишилося, але крізь скло видно рідину. Скажіть висновок, замінивши The bottle словом It.**
 <!-- interaction_id: en:lesson-32:session-48:i10; family: scripted_repeat_compare -->
 🎙 **It can’t be empty.**
 

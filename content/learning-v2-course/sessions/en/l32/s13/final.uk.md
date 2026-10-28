@@ -82,7 +82,7 @@ The bus might ___ late. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-13:i07; family: scripted_repeat_compare -->
 🎙 **The ticket I bought is valid.**
 
-**8 · Квиток, який я купив, дійсний. Уточніть предмет без зайвого займенника.**
+**8 · Квиток, який я купив, дійсний. Предмет уже названо — не повторюйте його.**
 <!-- interaction_id: en:lesson-32:session-13:i08; family: context_gap_grammar -->
 The ticket I ___ is valid. → **bought** · bought it · buying
 - bought it — *Предмет уже названо: it не потрібне.*
@@ -92,7 +92,7 @@ The ticket I ___ is valid. → **bought** · bought it · buying
 <!-- interaction_id: en:lesson-32:session-13:i09; family: phrase_builder -->
 Плитки: `late` `be` `might` `bus` `The` → **The bus might be late.**
 
-**10 · Коли автобус приїхав, ви помітили, що водій кілька разів позіхнув і потер очі. Скажіть висновок іще раз, замінивши The driver займенником He.**
+**10 · Коли автобус приїхав, ви помітили, що водій кілька разів позіхнув і потер очі. Скажіть висновок іще раз, замінивши The driver словом He.**
 <!-- interaction_id: en:lesson-32:session-13:i10; family: scripted_repeat_compare -->
 🎙 **He must be tired.**
 

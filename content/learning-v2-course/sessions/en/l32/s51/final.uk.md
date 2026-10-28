@@ -82,7 +82,7 @@ The cafe is busy, so it might ___ popular. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-51:i07; family: scripted_repeat_compare -->
 🎙 **The cake I chose is sweet.**
 
-**8 · Пиріг, який я вибрав, солодкий. Уточніть предмет без зайвого займенника.**
+**8 · Пиріг, який я вибрав, солодкий. Предмет уже названо — не повторюйте його.**
 <!-- interaction_id: en:lesson-32:session-51:i08; family: context_gap_grammar -->
 The cake I ___ is sweet. → **chose** · chose it · choosing
 - chose it — *Предмет уже названо: it не потрібне.*
@@ -92,7 +92,7 @@ The cake I ___ is sweet. → **chose** · chose it · choosing
 <!-- interaction_id: en:lesson-32:session-51:i09; family: phrase_builder -->
 Плитки: `popular` `be` `might` `it` `so` `busy,` `is` `cafe` `The` → **The cafe is busy, so it might be popular.**
 
-**10 · Анна вважає, що на столі нічого немає, але ви бачите на ньому чашки й тарілки. Скажіть висновок, замінивши The table займенником It.**
+**10 · Анна вважає, що на столі нічого немає, але ви бачите на ньому чашки й тарілки. Скажіть висновок, замінивши The table словом It.**
 <!-- interaction_id: en:lesson-32:session-51:i10; family: scripted_repeat_compare -->
 🎙 **It can’t be empty.**
 

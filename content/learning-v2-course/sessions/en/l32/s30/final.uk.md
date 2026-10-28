@@ -82,7 +82,7 @@ The suitcase can't ___ mine. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-30:i07; family: scripted_repeat_compare -->
 🎙 **The coat I bought is warm.**
 
-**8 · Пальто, яке я купив, тепле. Уточніть предмет без зайвого займенника.**
+**8 · Пальто, яке я купив, тепле. Предмет уже названо — не повторюйте його.**
 <!-- interaction_id: en:lesson-32:session-30:i08; family: context_gap_grammar -->
 The coat I ___ is warm. → **bought** · bought it · buying
 - bought it — *Предмет уже названо: it не потрібне.*
@@ -92,7 +92,7 @@ The coat I ___ is warm. → **bought** · bought it · buying
 <!-- interaction_id: en:lesson-32:session-30:i09; family: phrase_builder -->
 Плитки: `mine` `be` `can't` `suitcase` `The` → **The suitcase can't be mine.**
 
-**10 · Анна із зусиллям пересуває сумку й просить допомогти її підняти. Скажіть висновок іще раз, замінивши The bag займенником It.**
+**10 · Анна із зусиллям пересуває сумку й просить допомогти її підняти. Скажіть висновок іще раз, замінивши The bag словом It.**
 <!-- interaction_id: en:lesson-32:session-30:i10; family: scripted_repeat_compare -->
 🎙 **It must be heavy.**
 
@@ -145,7 +145,7 @@ The book could ___ heavy. → **be** · is · to be
 - is — *Після could тут використовуємо be.*
 - to be — *Після could не ставимо to.*
 
-**21 · Ваша валіза червона, а Анна показує вам чорну. Ви впевнені, що це інша річ. Повторіть висновок, замінивши The suitcase займенником It.**
+**21 · Ваша валіза червона, а Анна показує вам чорну. Ви впевнені, що це інша річ. Повторіть висновок, замінивши The suitcase словом It.**
 <!-- interaction_id: en:lesson-32:session-30:i21; family: scripted_repeat_compare -->
 🎙 **It can't be mine.**
 

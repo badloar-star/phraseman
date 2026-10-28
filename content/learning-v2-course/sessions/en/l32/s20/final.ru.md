@@ -82,7 +82,7 @@ The plant could ___ dry. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-20:i07; family: scripted_repeat_compare -->
 🎙 **The pot I bought is small.**
 
-**8 · Горшок, который я купил, маленький. Уточните предмет без лишнего местоимения.**
+**8 · Горшок, который я купил, маленький. Предмет уже назван — не повторяйте его.**
 <!-- interaction_id: en:lesson-32:session-20:i08; family: context_gap_grammar -->
 The pot I ___ is small. → **bought** · bought it · buying
 - bought it — *Предмет уже назван: it не нужно.*
@@ -92,7 +92,7 @@ The pot I ___ is small. → **bought** · bought it · buying
 <!-- interaction_id: en:lesson-32:session-20:i09; family: phrase_builder -->
 Плитки: `dry` `be` `could` `plant` `The` → **The plant could be dry.**
 
-**10 · Анна говорит, что растение неделю стояло на солнце без полива. Вы делаете вывод о почве, ещё не касаясь её. Скажите вывод ещё раз, заменив The soil местоимением It.**
+**10 · Анна говорит, что растение неделю стояло на солнце без полива. Вы делаете вывод о почве, ещё не касаясь её. Скажите вывод ещё раз, заменив The soil словом It.**
 <!-- interaction_id: en:lesson-32:session-20:i10; family: scripted_repeat_compare -->
 🎙 **It must be dry.**
 

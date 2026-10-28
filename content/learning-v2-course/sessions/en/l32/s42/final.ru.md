@@ -82,7 +82,7 @@ The window is wet, so it might ___ cold. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-42:i07; family: scripted_repeat_compare -->
 🎙 **The blanket I washed is dry.**
 
-**8 · Одеяло, которое я постирал, сухое. Уточните предмет без лишнего местоимения.**
+**8 · Одеяло, которое я постирал, сухое. Предмет уже назван — не повторяйте его.**
 <!-- interaction_id: en:lesson-32:session-42:i08; family: context_gap_grammar -->
 The blanket I ___ is dry. → **washed** · washed it · washing
 - washed it — *Предмет уже назван: it не нужно.*
@@ -92,7 +92,7 @@ The blanket I ___ is dry. → **washed** · washed it · washing
 <!-- interaction_id: en:lesson-32:session-42:i09; family: phrase_builder -->
 Плитки: `cold` `be` `might` `it` `so` `wet,` `is` `window` `The` → **The window is wet, so it might be cold.**
 
-**10 · Анна считает, что на кровати ничего нет, но вы видите на ней большой чемодан. Скажите вывод, заменив The bed местоимением It.**
+**10 · Анна считает, что на кровати ничего нет, но вы видите на ней большой чемодан. Скажите вывод, заменив The bed словом It.**
 <!-- interaction_id: en:lesson-32:session-42:i10; family: scripted_repeat_compare -->
 🎙 **It can’t be empty.**
 

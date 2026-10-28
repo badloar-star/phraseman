@@ -82,7 +82,7 @@ The door could ___ locked. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-18:i07; family: scripted_repeat_compare -->
 🎙 **The note I wrote is short.**
 
-**8 · Записка, которую я написал, короткая. Уточните предмет без лишнего местоимения.**
+**8 · Записка, которую я написал, короткая. Предмет уже назван — не повторяйте его.**
 <!-- interaction_id: en:lesson-32:session-18:i08; family: context_gap_grammar -->
 The note I ___ is short. → **wrote** · wrote it · writing
 - wrote it — *Предмет уже назван: it не нужно.*
@@ -92,7 +92,7 @@ The note I ___ is short. → **wrote** · wrote it · writing
 <!-- interaction_id: en:lesson-32:session-18:i09; family: phrase_builder -->
 Плитки: `locked` `be` `could` `door` `The` → **The door could be locked.**
 
-**10 · Из приоткрытого окна комнаты идёт тёплый воздух, хотя на улице прохладно. Скажите вывод ещё раз, заменив The room местоимением It.**
+**10 · Из приоткрытого окна комнаты идёт тёплый воздух, хотя на улице прохладно. Скажите вывод ещё раз, заменив The room словом It.**
 <!-- interaction_id: en:lesson-32:session-18:i10; family: scripted_repeat_compare -->
 🎙 **It must be warm.**
 

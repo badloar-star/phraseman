@@ -82,7 +82,7 @@ The house is quiet, so it might ___ empty. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-54:i07; family: scripted_repeat_compare -->
 🎙 **The gift I brought is small.**
 
-**8 · Подарок, который я принёс, маленький. Уточните предмет без лишнего местоимения.**
+**8 · Подарок, который я принёс, маленький. Предмет уже назван — не повторяйте его.**
 <!-- interaction_id: en:lesson-32:session-54:i08; family: context_gap_grammar -->
 The gift I ___ is small. → **brought** · brought it · bringing
 - brought it — *Предмет уже назван: it не нужно.*
@@ -92,7 +92,7 @@ The gift I ___ is small. → **brought** · brought it · bringing
 <!-- interaction_id: en:lesson-32:session-54:i09; family: phrase_builder -->
 Плитки: `empty` `be` `might` `it` `so` `quiet,` `is` `house` `The` → **The house is quiet, so it might be empty.**
 
-**10 · Бен предполагает, что дверь открыта, но вы видите плотно закрытую дверь перед собой. Скажите вывод, заменив The door местоимением It.**
+**10 · Бен предполагает, что дверь открыта, но вы видите плотно закрытую дверь перед собой. Скажите вывод, заменив The door словом It.**
 <!-- interaction_id: en:lesson-32:session-54:i10; family: scripted_repeat_compare -->
 🎙 **It can’t be open.**
 

@@ -60,7 +60,7 @@
 - The address Anna wrote is wrong. — *В записи звучит The address Ben wrote is wrong.*
 - The address Tom wrote is wrong. — *В записи звучит The address Ben wrote is wrong.*
 
-**3 · Уточните адрес, который написал Бен. Не повторяйте address местоимением.**
+**3 · Уточните адрес, который написал Бен. Не повторяйте address словом it.**
 <!-- interaction_id: en:lesson-32:session-04:i03; family: context_gap_grammar -->
 The address Ben ___ is wrong. → **wrote** · wrote it · written
 - wrote it — *Address уже названо: it после wrote не нужно.*
@@ -82,7 +82,7 @@ The address Ben ___ is wrong. → **wrote** · wrote it · written
 <!-- interaction_id: en:lesson-32:session-04:i07; family: scripted_repeat_compare -->
 🎙 **This must be the right street.**
 
-**8 · Номер дома не совпал с запиской Анны. Вы делаете вывод, что дом не тот. Выберите связку.**
+**8 · Номер дома не совпал с запиской Анны. Вы делаете вывод, что дом не тот. Выберите форму be.**
 <!-- interaction_id: en:lesson-32:session-04:i08; family: context_gap_grammar -->
 This must ___ the wrong house. → **be** · is · being
 - is — *После must здесь нужна форма be.*

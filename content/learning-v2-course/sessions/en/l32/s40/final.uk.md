@@ -82,7 +82,7 @@ The towel is heavy, so it might ___ wet. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-40:i07; family: scripted_repeat_compare -->
 🎙 **The bag I packed is small.**
 
-**8 · Сумка, яку я зібрав, маленька. Уточніть предмет без зайвого займенника.**
+**8 · Сумка, яку я зібрав, маленька. Предмет уже названо — не повторюйте його.**
 <!-- interaction_id: en:lesson-32:session-40:i08; family: context_gap_grammar -->
 The bag I ___ is small. → **packed** · packed it · packing
 - packed it — *Предмет уже названо: it не потрібне.*
@@ -92,7 +92,7 @@ The bag I ___ is small. → **packed** · packed it · packing
 <!-- interaction_id: en:lesson-32:session-40:i09; family: phrase_builder -->
 Плитки: `wet` `be` `might` `it` `so` `heavy,` `is` `towel` `The` → **The towel is heavy, so it might be wet.**
 
-**10 · Ви бачите, що вода сягає лише середини прозорої пляшки. Скажіть висновок, замінивши The bottle займенником It.**
+**10 · Ви бачите, що вода сягає лише середини прозорої пляшки. Скажіть висновок, замінивши The bottle словом It.**
 <!-- interaction_id: en:lesson-32:session-40:i10; family: scripted_repeat_compare -->
 🎙 **It can’t be full.**
 

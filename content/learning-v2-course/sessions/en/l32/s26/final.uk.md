@@ -82,7 +82,7 @@ The bottle can't ___ empty. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-26:i07; family: scripted_repeat_compare -->
 🎙 **The cup I washed is clean.**
 
-**8 · Чашка, яку я помив, чиста. Уточніть предмет без зайвого займенника.**
+**8 · Чашка, яку я помив, чиста. Предмет уже названо — не повторюйте його.**
 <!-- interaction_id: en:lesson-32:session-26:i08; family: context_gap_grammar -->
 The cup I ___ is clean. → **washed** · washed it · washing
 - washed it — *Предмет уже названо: it не потрібне.*
@@ -92,7 +92,7 @@ The cup I ___ is clean. → **washed** · washed it · washing
 <!-- interaction_id: en:lesson-32:session-26:i09; family: phrase_builder -->
 Плитки: `empty` `be` `can't` `bottle` `The` → **The bottle can't be empty.**
 
-**10 · Анна склала в сумку кілька повних пляшок і піднімає її двома руками. Скажіть висновок іще раз, замінивши The bag займенником It.**
+**10 · Анна склала в сумку кілька повних пляшок і піднімає її двома руками. Скажіть висновок іще раз, замінивши The bag словом It.**
 <!-- interaction_id: en:lesson-32:session-26:i10; family: scripted_repeat_compare -->
 🎙 **It must be heavy.**
 
@@ -145,7 +145,7 @@ The water could ___ cold. → **be** · is · to be
 - is — *Після could тут використовуємо be.*
 - to be — *Після could не ставимо to.*
 
-**21 · Ви чуєте, як усередині закритої пляшки хлюпає вода. Анна припустила, що вона порожня. Повторіть висновок, замінивши The bottle займенником It.**
+**21 · Ви чуєте, як усередині закритої пляшки хлюпає вода. Анна припустила, що вона порожня. Повторіть висновок, замінивши The bottle словом It.**
 <!-- interaction_id: en:lesson-32:session-26:i21; family: scripted_repeat_compare -->
 🎙 **It can't be empty.**
 

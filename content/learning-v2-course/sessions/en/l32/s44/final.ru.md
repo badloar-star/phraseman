@@ -82,7 +82,7 @@ The shirt is light, so it might ___ dry. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-44:i07; family: scripted_repeat_compare -->
 🎙 **The basket I bought is large.**
 
-**8 · Корзина, которую я купил, большая. Уточните предмет без лишнего местоимения.**
+**8 · Корзина, которую я купил, большая. Предмет уже назван — не повторяйте его.**
 <!-- interaction_id: en:lesson-32:session-44:i08; family: context_gap_grammar -->
 The basket I ___ is large. → **bought** · bought it · buying
 - bought it — *Предмет уже назван: it не нужно.*
@@ -92,7 +92,7 @@ The basket I ___ is large. → **bought** · bought it · buying
 <!-- interaction_id: en:lesson-32:session-44:i09; family: phrase_builder -->
 Плитки: `dry` `be` `might` `it` `so` `light,` `is` `shirt` `The` → **The shirt is light, so it might be dry.**
 
-**10 · На носке свежая грязь: он только что упал в лужу. Скажите вывод, заменив The sock местоимением It.**
+**10 · На носке свежая грязь: он только что упал в лужу. Скажите вывод, заменив The sock словом It.**
 <!-- interaction_id: en:lesson-32:session-44:i10; family: scripted_repeat_compare -->
 🎙 **It can’t be clean.**
 

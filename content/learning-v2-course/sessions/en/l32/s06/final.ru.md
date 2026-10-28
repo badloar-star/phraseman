@@ -60,7 +60,7 @@
 - The train must be full. — *В записи звучит The train must be late.*
 - The train must be nearby. — *В записи звучит The train must be late.*
 
-**3 · Поезд ещё не пришёл, хотя время прибытия прошло. Вы делаете вывод о задержке. Выберите связку.**
+**3 · Поезд ещё не пришёл, хотя время прибытия прошло. Вы делаете вывод о задержке. Выберите форму be.**
 <!-- interaction_id: en:lesson-32:session-06:i03; family: context_gap_grammar -->
 The train must ___ late. → **be** · is · being
 - is — *После must здесь нужна форма be.*
@@ -82,7 +82,7 @@ The train must ___ late. → **be** · is · being
 <!-- interaction_id: en:lesson-32:session-06:i07; family: scripted_repeat_compare -->
 🎙 **This must be the right station.**
 
-**8 · Уточните купленный билет, не повторяя ticket местоимением.**
+**8 · Уточните купленный билет, не повторяя ticket словом it.**
 <!-- interaction_id: en:lesson-32:session-06:i08; family: context_gap_grammar -->
 The ticket I ___ is in my bag. → **bought** · bought it · buying
 - bought it — *Ticket уже названо: it после bought не нужно.*

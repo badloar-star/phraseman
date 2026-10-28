@@ -82,7 +82,7 @@ The bike is noisy, so it might ___ broken. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-38:i07; family: scripted_repeat_compare -->
 🎙 **The helmet I bought is new.**
 
-**8 · Шолом, який я купив, новий. Уточніть предмет без зайвого займенника.**
+**8 · Шолом, який я купив, новий. Предмет уже названо — не повторюйте його.**
 <!-- interaction_id: en:lesson-32:session-38:i08; family: context_gap_grammar -->
 The helmet I ___ is new. → **bought** · bought it · buying
 - bought it — *Предмет уже названо: it не потрібне.*
@@ -92,7 +92,7 @@ The helmet I ___ is new. → **bought** · bought it · buying
 <!-- interaction_id: en:lesson-32:session-38:i09; family: phrase_builder -->
 Плитки: `broken` `be` `might` `it` `so` `noisy,` `is` `bike` `The` → **The bike is noisy, so it might be broken.**
 
-**10 · Дужка замка повністю закрита, і ланцюг не знімається. Анна вважала, що вже відчинила його. Скажіть висновок, замінивши The lock займенником It.**
+**10 · Дужка замка повністю закрита, і ланцюг не знімається. Анна вважала, що вже відчинила його. Скажіть висновок, замінивши The lock словом It.**
 <!-- interaction_id: en:lesson-32:session-38:i10; family: scripted_repeat_compare -->
 🎙 **It can’t be open.**
 

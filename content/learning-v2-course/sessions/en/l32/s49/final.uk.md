@@ -82,7 +82,7 @@ The table is sticky, so it might ___ dirty. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-49:i07; family: scripted_repeat_compare -->
 🎙 **The cloth I washed is clean.**
 
-**8 · Ганчірка, яку я виправ, чиста. Уточніть предмет без зайвого займенника.**
+**8 · Ганчірка, яку я виправ, чиста. Предмет уже названо — не повторюйте його.**
 <!-- interaction_id: en:lesson-32:session-49:i08; family: context_gap_grammar -->
 The cloth I ___ is clean. → **washed** · washed it · washing
 - washed it — *Предмет уже названо: it не потрібне.*
@@ -92,7 +92,7 @@ The cloth I ___ is clean. → **washed** · washed it · washing
 <!-- interaction_id: en:lesson-32:session-49:i09; family: phrase_builder -->
 Плитки: `dirty` `be` `might` `it` `so` `sticky,` `is` `table` `The` → **The table is sticky, so it might be dirty.**
 
-**10 · Анна каже, що чашка повна, але в ній залишилося лише трохи чаю на дні. Скажіть висновок, замінивши The cup займенником It.**
+**10 · Анна каже, що чашка повна, але в ній залишилося лише трохи чаю на дні. Скажіть висновок, замінивши The cup словом It.**
 <!-- interaction_id: en:lesson-32:session-49:i10; family: scripted_repeat_compare -->
 🎙 **It can’t be full.**
 

@@ -82,7 +82,7 @@ The chair moves, so it might ___ broken. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-37:i07; family: scripted_repeat_compare -->
 🎙 **The glue I bought is strong.**
 
-**8 · Клей, який я купив, міцний. Уточніть предмет без зайвого займенника.**
+**8 · Клей, який я купив, міцний. Предмет уже названо — не повторюйте його.**
 <!-- interaction_id: en:lesson-32:session-37:i08; family: context_gap_grammar -->
 The glue I ___ is strong. → **bought** · bought it · buying
 - bought it — *Предмет уже названо: it не потрібне.*
@@ -92,7 +92,7 @@ The glue I ___ is strong. → **bought** · bought it · buying
 <!-- interaction_id: en:lesson-32:session-37:i09; family: phrase_builder -->
 Плитки: `broken` `be` `might` `it` `so` `moves,` `chair` `The` → **The chair moves, so it might be broken.**
 
-**10 · Ви приклали лінійку до ніжки й бачите, що вона сильно зігнута. Скажіть висновок, замінивши The leg займенником It.**
+**10 · Ви приклали лінійку до ніжки й бачите, що вона сильно зігнута. Скажіть висновок, замінивши The leg словом It.**
 <!-- interaction_id: en:lesson-32:session-37:i10; family: scripted_repeat_compare -->
 🎙 **It can’t be straight.**
 

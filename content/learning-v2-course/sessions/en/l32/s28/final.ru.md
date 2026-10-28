@@ -82,7 +82,7 @@ The bread can't ___ fresh. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-28:i07; family: scripted_repeat_compare -->
 🎙 **The bowl I washed is clean.**
 
-**8 · Миска, которую я помыл, чистая. Уточните предмет без лишнего местоимения.**
+**8 · Миска, которую я помыл, чистая. Предмет уже назван — не повторяйте его.**
 <!-- interaction_id: en:lesson-32:session-28:i08; family: context_gap_grammar -->
 The bowl I ___ is clean. → **washed** · washed it · washing
 - washed it — *Предмет уже назван: it не нужно.*
@@ -92,7 +92,7 @@ The bowl I ___ is clean. → **washed** · washed it · washing
 <!-- interaction_id: en:lesson-32:session-28:i09; family: phrase_builder -->
 Плитки: `fresh` `be` `can't` `bread` `The` → **The bread can't be fresh.**
 
-**10 · Анна только что сняла кастрюлю с плиты, и над ней поднимается пар. Скажите вывод ещё раз, заменив The soup местоимением It.**
+**10 · Анна только что сняла кастрюлю с плиты, и над ней поднимается пар. Скажите вывод ещё раз, заменив The soup словом It.**
 <!-- interaction_id: en:lesson-32:session-28:i10; family: scripted_repeat_compare -->
 🎙 **It must be hot.**
 
@@ -145,7 +145,7 @@ The milk could ___ cold. → **be** · is · to be
 - is — *После could здесь используем be.*
 - to be — *После could не ставим to.*
 
-**21 · Анна считает хлеб сегодняшним, но вы помните, что купили именно эту буханку неделю назад. Повторите вывод, заменив The bread местоимением It.**
+**21 · Анна считает хлеб сегодняшним, но вы помните, что купили именно эту буханку неделю назад. Повторите вывод, заменив The bread словом It.**
 <!-- interaction_id: en:lesson-32:session-28:i21; family: scripted_repeat_compare -->
 🎙 **It can't be fresh.**
 

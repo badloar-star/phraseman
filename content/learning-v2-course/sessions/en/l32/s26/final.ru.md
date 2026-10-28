@@ -82,7 +82,7 @@ The bottle can't ___ empty. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-26:i07; family: scripted_repeat_compare -->
 🎙 **The cup I washed is clean.**
 
-**8 · Чашка, которую я помыл, чистая. Уточните предмет без лишнего местоимения.**
+**8 · Чашка, которую я помыл, чистая. Предмет уже назван — не повторяйте его.**
 <!-- interaction_id: en:lesson-32:session-26:i08; family: context_gap_grammar -->
 The cup I ___ is clean. → **washed** · washed it · washing
 - washed it — *Предмет уже назван: it не нужно.*
@@ -92,7 +92,7 @@ The cup I ___ is clean. → **washed** · washed it · washing
 <!-- interaction_id: en:lesson-32:session-26:i09; family: phrase_builder -->
 Плитки: `empty` `be` `can't` `bottle` `The` → **The bottle can't be empty.**
 
-**10 · Анна сложила в сумку несколько полных бутылок и поднимает её двумя руками. Скажите вывод ещё раз, заменив The bag местоимением It.**
+**10 · Анна сложила в сумку несколько полных бутылок и поднимает её двумя руками. Скажите вывод ещё раз, заменив The bag словом It.**
 <!-- interaction_id: en:lesson-32:session-26:i10; family: scripted_repeat_compare -->
 🎙 **It must be heavy.**
 
@@ -145,7 +145,7 @@ The water could ___ cold. → **be** · is · to be
 - is — *После could здесь используем be.*
 - to be — *После could не ставим to.*
 
-**21 · Вы слышите, как внутри закрытой бутылки плещется вода. Анна предположила, что она пустая. Повторите вывод, заменив The bottle местоимением It.**
+**21 · Вы слышите, как внутри закрытой бутылки плещется вода. Анна предположила, что она пустая. Повторите вывод, заменив The bottle словом It.**
 <!-- interaction_id: en:lesson-32:session-26:i21; family: scripted_repeat_compare -->
 🎙 **It can't be empty.**
 

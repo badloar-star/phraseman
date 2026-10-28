@@ -82,7 +82,7 @@ The path is wet, so it might ___ slippery. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-52:i07; family: scripted_repeat_compare -->
 🎙 **The plant I bought is small.**
 
-**8 · Растение, которое я купил, маленькое. Уточните предмет без лишнего местоимения.**
+**8 · Растение, которое я купил, маленькое. Предмет уже назван — не повторяйте его.**
 <!-- interaction_id: en:lesson-32:session-52:i08; family: context_gap_grammar -->
 The plant I ___ is small. → **bought** · bought it · buying
 - bought it — *Предмет уже назван: it не нужно.*
@@ -92,7 +92,7 @@ The plant I ___ is small. → **bought** · bought it · buying
 <!-- interaction_id: en:lesson-32:session-52:i09; family: phrase_builder -->
 Плитки: `slippery` `be` `might` `it` `so` `wet,` `is` `path` `The` → **The path is wet, so it might be slippery.**
 
-**10 · В открытом ведре видна дождевая вода. Анна считала, что оно пустое. Скажите вывод, заменив The bucket местоимением It.**
+**10 · В открытом ведре видна дождевая вода. Анна считала, что оно пустое. Скажите вывод, заменив The bucket словом It.**
 <!-- interaction_id: en:lesson-32:session-52:i10; family: scripted_repeat_compare -->
 🎙 **It can’t be empty.**
 

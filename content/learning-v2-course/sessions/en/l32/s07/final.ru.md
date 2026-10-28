@@ -82,7 +82,7 @@ He must ___ help. → **need** · needs · be need
 <!-- interaction_id: en:lesson-32:session-07:i07; family: scripted_repeat_compare -->
 🎙 **The stairs must be here.**
 
-**8 · Уточните план, который вы нашли, не повторяя map местоимением.**
+**8 · Уточните план, который вы нашли, не повторяя map словом it.**
 <!-- interaction_id: en:lesson-32:session-07:i08; family: context_gap_grammar -->
 The map I ___ is useful. → **found** · found it · finding
 - found it — *Map уже названо: it после found не нужно.*

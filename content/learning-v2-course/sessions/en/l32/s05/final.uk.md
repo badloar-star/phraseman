@@ -60,7 +60,7 @@
 - The lunch Ben made is ready. — *У записі звучить The lunch I made is ready.*
 - The lunch Anna made is ready. — *У записі звучить The lunch I made is ready.*
 
-**3 · Анна й Бен пропустили обід. Ви робите висновок про голод. Виберіть зв’язку після must.**
+**3 · Анна й Бен пропустили обід. Ви робите висновок про голод. Виберіть форму be після must.**
 <!-- interaction_id: en:lesson-32:session-05:i03; family: context_gap_grammar -->
 They must ___ hungry. → **be** · are · is
 - are — *Після must тут потрібна форма be.*
@@ -82,7 +82,7 @@ They must ___ hungry. → **be** · are · is
 <!-- interaction_id: en:lesson-32:session-05:i07; family: scripted_repeat_compare -->
 🎙 **I was hungry, so I ate an apple.**
 
-**8 · Уточніть бутерброд, який приготували, не повторюючи sandwich займенником.**
+**8 · Уточніть бутерброд, який приготували, не повторюючи sandwich словом it.**
 <!-- interaction_id: en:lesson-32:session-05:i08; family: context_gap_grammar -->
 The sandwich I ___ is for Ben. → **made** · made it · making
 - made it — *Sandwich уже названо: it після made не потрібне.*

@@ -82,7 +82,7 @@ The milk smells strange, so it might ___ bad. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-45:i07; family: scripted_repeat_compare -->
 🎙 **The apple I chose is green.**
 
-**8 · Яблоко, которое я выбрал, зелёное. Уточните предмет без лишнего местоимения.**
+**8 · Яблоко, которое я выбрал, зелёное. Предмет уже назван — не повторяйте его.**
 <!-- interaction_id: en:lesson-32:session-45:i08; family: context_gap_grammar -->
 The apple I ___ is green. → **chose** · chose it · choosing
 - chose it — *Предмет уже назван: it не нужно.*
@@ -92,7 +92,7 @@ The apple I ___ is green. → **chose** · chose it · choosing
 <!-- interaction_id: en:lesson-32:session-45:i09; family: phrase_builder -->
 Плитки: `bad` `be` `might` `it` `so` `strange,` `smells` `milk` `The` → **The milk smells strange, so it might be bad.**
 
-**10 · Анна считает, что коробка пуста, но через открытый верх видны яйца. Скажите вывод, заменив The box местоимением It.**
+**10 · Анна считает, что коробка пуста, но через открытый верх видны яйца. Скажите вывод, заменив The box словом It.**
 <!-- interaction_id: en:lesson-32:session-45:i10; family: scripted_repeat_compare -->
 🎙 **It can’t be empty.**
 

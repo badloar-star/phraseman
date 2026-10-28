@@ -82,7 +82,7 @@ The lamp could ___ broken. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-23:i07; family: scripted_repeat_compare -->
 🎙 **The book I borrowed is short.**
 
-**8 · Книга, которую я взял почитать, короткая. Уточните предмет без лишнего местоимения.**
+**8 · Книга, которую я взял почитать, короткая. Предмет уже назван — не повторяйте его.**
 <!-- interaction_id: en:lesson-32:session-23:i08; family: context_gap_grammar -->
 The book I ___ is short. → **borrowed** · borrowed it · borrowing
 - borrowed it — *Предмет уже назван: it не нужно.*
@@ -92,7 +92,7 @@ The book I ___ is short. → **borrowed** · borrowed it · borrowing
 <!-- interaction_id: en:lesson-32:session-23:i09; family: phrase_builder -->
 Плитки: `broken` `be` `could` `lamp` `The` → **The lamp could be broken.**
 
-**10 · Вы включили другую лампу со старой лампочкой, которая заметно нагревает абажур. Она горит уже час. Скажите вывод ещё раз, заменив The bulb местоимением It.**
+**10 · Вы включили другую лампу со старой лампочкой, которая заметно нагревает абажур. Она горит уже час. Скажите вывод ещё раз, заменив The bulb словом It.**
 <!-- interaction_id: en:lesson-32:session-23:i10; family: scripted_repeat_compare -->
 🎙 **It must be hot.**
 

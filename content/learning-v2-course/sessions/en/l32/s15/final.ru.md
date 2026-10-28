@@ -82,7 +82,7 @@ The cake might ___ ready. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-15:i07; family: scripted_repeat_compare -->
 🎙 **The card I wrote is short.**
 
-**8 · Открытка, которую я написал, короткая. Уточните предмет без лишнего местоимения.**
+**8 · Открытка, которую я написал, короткая. Предмет уже назван — не повторяйте его.**
 <!-- interaction_id: en:lesson-32:session-15:i08; family: context_gap_grammar -->
 The card I ___ is short. → **wrote** · wrote it · writing
 - wrote it — *Предмет уже назван: it не нужно.*
@@ -92,7 +92,7 @@ The card I ___ is short. → **wrote** · wrote it · writing
 <!-- interaction_id: en:lesson-32:session-15:i09; family: phrase_builder -->
 Плитки: `ready` `be` `might` `cake` `The` → **The cake might be ready.**
 
-**10 · Бен приехал после долгой дороги и говорит, что не ел с самого утра. Скажите вывод ещё раз, заменив The guest местоимением He.**
+**10 · Бен приехал после долгой дороги и говорит, что не ел с самого утра. Скажите вывод ещё раз, заменив The guest словом He.**
 <!-- interaction_id: en:lesson-32:session-15:i10; family: scripted_repeat_compare -->
 🎙 **He must be hungry.**
 

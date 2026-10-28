@@ -96,7 +96,7 @@ It could ___ from the kitchen. → **come** · comes · to come
 <!-- interaction_id: en:lesson-32:session-17:i10; family: scripted_repeat_compare -->
 🎙 **It could be the wind.**
 
-**11 · Это может быть ветер. Выберите связку после could.**
+**11 · Это может быть ветер. Выберите форму be после could.**
 <!-- interaction_id: en:lesson-32:session-17:i11; family: context_gap_grammar -->
 It could ___ the wind. → **be** · is · to be
 - is — *После could здесь нужна форма be.*

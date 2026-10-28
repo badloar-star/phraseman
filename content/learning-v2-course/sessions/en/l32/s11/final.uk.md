@@ -82,7 +82,7 @@ The towel might ___ dry. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-11:i07; family: scripted_repeat_compare -->
 🎙 **The coat I washed is clean.**
 
-**8 · Уточніть пальто, яке випрали, без зайвого займенника.**
+**8 · Уточніть пальто, яке випрали, без зайвого it.**
 <!-- interaction_id: en:lesson-32:session-11:i08; family: context_gap_grammar -->
 The coat I ___ is clean. → **washed** · washed it · washing
 - washed it — *Coat уже названо: it не потрібне.*

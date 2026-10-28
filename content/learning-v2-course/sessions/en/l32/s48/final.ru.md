@@ -82,7 +82,7 @@ The fridge is noisy, so it might ___ old. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-48:i07; family: scripted_repeat_compare -->
 🎙 **The cheese I bought is soft.**
 
-**8 · Сыр, который я купил, мягкий. Уточните предмет без лишнего местоимения.**
+**8 · Сыр, который я купил, мягкий. Предмет уже назван — не повторяйте его.**
 <!-- interaction_id: en:lesson-32:session-48:i08; family: context_gap_grammar -->
 The cheese I ___ is soft. → **bought** · bought it · buying
 - bought it — *Предмет уже назван: it не нужно.*
@@ -92,7 +92,7 @@ The cheese I ___ is soft. → **bought** · bought it · buying
 <!-- interaction_id: en:lesson-32:session-48:i09; family: phrase_builder -->
 Плитки: `old` `be` `might` `it` `so` `noisy,` `is` `fridge` `The` → **The fridge is noisy, so it might be old.**
 
-**10 · Анна считает, что сока не осталось, но сквозь стекло видна жидкость. Скажите вывод, заменив The bottle местоимением It.**
+**10 · Анна считает, что сока не осталось, но сквозь стекло видна жидкость. Скажите вывод, заменив The bottle словом It.**
 <!-- interaction_id: en:lesson-32:session-48:i10; family: scripted_repeat_compare -->
 🎙 **It can’t be empty.**
 

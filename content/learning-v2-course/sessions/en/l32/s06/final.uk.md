@@ -60,7 +60,7 @@
 - The train must be full. — *У записі звучить The train must be late.*
 - The train must be nearby. — *У записі звучить The train must be late.*
 
-**3 · Поїзд ще не приїхав, хоча час прибуття минув. Ви робите висновок про затримку. Виберіть зв’язку.**
+**3 · Поїзд ще не приїхав, хоча час прибуття минув. Ви робите висновок про затримку. Виберіть форму be.**
 <!-- interaction_id: en:lesson-32:session-06:i03; family: context_gap_grammar -->
 The train must ___ late. → **be** · is · being
 - is — *Після must тут потрібна форма be.*
@@ -82,7 +82,7 @@ The train must ___ late. → **be** · is · being
 <!-- interaction_id: en:lesson-32:session-06:i07; family: scripted_repeat_compare -->
 🎙 **This must be the right station.**
 
-**8 · Уточніть куплений квиток, не повторюючи ticket займенником.**
+**8 · Уточніть куплений квиток, не повторюючи ticket словом it.**
 <!-- interaction_id: en:lesson-32:session-06:i08; family: context_gap_grammar -->
 The ticket I ___ is in my bag. → **bought** · bought it · buying
 - bought it — *Ticket уже названо: it після bought не потрібне.*

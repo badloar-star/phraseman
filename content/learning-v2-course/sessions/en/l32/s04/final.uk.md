@@ -60,7 +60,7 @@
 - The address Anna wrote is wrong. — *У записі звучить The address Ben wrote is wrong.*
 - The address Tom wrote is wrong. — *У записі звучить The address Ben wrote is wrong.*
 
-**3 · Уточніть адресу, яку написав Бен. Не повторюйте address займенником.**
+**3 · Уточніть адресу, яку написав Бен. Не повторюйте address словом it.**
 <!-- interaction_id: en:lesson-32:session-04:i03; family: context_gap_grammar -->
 The address Ben ___ is wrong. → **wrote** · wrote it · written
 - wrote it — *Address уже названо: it після wrote не потрібне.*
@@ -82,7 +82,7 @@ The address Ben ___ is wrong. → **wrote** · wrote it · written
 <!-- interaction_id: en:lesson-32:session-04:i07; family: scripted_repeat_compare -->
 🎙 **This must be the right street.**
 
-**8 · Номер будинку не збігся із запискою Анни. Ви робите висновок, що будинок не той. Виберіть зв’язку.**
+**8 · Номер будинку не збігся із запискою Анни. Ви робите висновок, що будинок не той. Виберіть форму be.**
 <!-- interaction_id: en:lesson-32:session-04:i08; family: context_gap_grammar -->
 This must ___ the wrong house. → **be** · is · being
 - is — *Після must тут потрібна форма be.*

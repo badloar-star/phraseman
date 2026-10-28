@@ -82,7 +82,7 @@ The room might ___ ready. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-16:i07; family: scripted_repeat_compare -->
 🎙 **The towel I used is wet.**
 
-**8 · Рушник, яким я скористався, мокрий. Уточніть предмет без зайвого займенника.**
+**8 · Рушник, яким я скористався, мокрий. Предмет уже названо — не повторюйте його.**
 <!-- interaction_id: en:lesson-32:session-16:i08; family: context_gap_grammar -->
 The towel I ___ is wet. → **used** · used it · using
 - used it — *Предмет уже названо: it не потрібне.*
@@ -92,7 +92,7 @@ The towel I ___ is wet. → **used** · used it · using
 <!-- interaction_id: en:lesson-32:session-16:i09; family: phrase_builder -->
 Плитки: `ready` `be` `might` `room` `The` → **The room might be ready.**
 
-**10 · У номері Анна лягла на ліжко, задоволено усміхнулася й одразу розслабилася. Ви самі ще не сідали на нього. Скажіть висновок іще раз, замінивши The bed займенником It.**
+**10 · У номері Анна лягла на ліжко, задоволено усміхнулася й одразу розслабилася. Ви самі ще не сідали на нього. Скажіть висновок іще раз, замінивши The bed словом It.**
 <!-- interaction_id: en:lesson-32:session-16:i10; family: scripted_repeat_compare -->
 🎙 **It must be comfortable.**
 

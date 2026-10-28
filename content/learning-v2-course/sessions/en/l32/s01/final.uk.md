@@ -96,7 +96,7 @@ He must ___ the way. → **know** · knows · knowing
 <!-- interaction_id: en:lesson-32:session-01:i10; family: scripted_repeat_compare -->
 🎙 **You must be tired.**
 
-**11 · Ви вже вжили must для висновку. Виберіть зв’язку перед at home.**
+**11 · Ви вже вжили must для висновку. Виберіть форму be перед at home.**
 <!-- interaction_id: en:lesson-32:session-01:i11; family: context_gap_grammar -->
 They must ___ at home. → **be** · are · is
 - are — *Після must використовуємо be, навіть із they.*

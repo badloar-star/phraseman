@@ -82,7 +82,7 @@ The key can't ___ right. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-32:i07; family: scripted_repeat_compare -->
 🎙 **The note I wrote is short.**
 
-**8 · Записка, которую я написал, короткая. Уточните предмет без лишнего местоимения.**
+**8 · Записка, которую я написал, короткая. Предмет уже назван — не повторяйте его.**
 <!-- interaction_id: en:lesson-32:session-32:i08; family: context_gap_grammar -->
 The note I ___ is short. → **wrote** · wrote it · writing
 - wrote it — *Предмет уже назван: it не нужно.*
@@ -92,7 +92,7 @@ The note I ___ is short. → **wrote** · wrote it · writing
 <!-- interaction_id: en:lesson-32:session-32:i09; family: phrase_builder -->
 Плитки: `right` `be` `can't` `key` `The` → **The key can't be right.**
 
-**10 · Ручка поворачивается, но дверь не поддаётся, и внутри слышен щелчок замка. Скажите вывод ещё раз, заменив The door местоимением It.**
+**10 · Ручка поворачивается, но дверь не поддаётся, и внутри слышен щелчок замка. Скажите вывод ещё раз, заменив The door словом It.**
 <!-- interaction_id: en:lesson-32:session-32:i10; family: scripted_repeat_compare -->
 🎙 **It must be locked.**
 
@@ -145,7 +145,7 @@ The room could ___ empty. → **be** · is · to be
 - is — *После could здесь используем be.*
 - to be — *После could не ставим to.*
 
-**21 · На ключе указан номер 12, а ваша комната — номер 18. Вы уверены, что вам выдали другой ключ. Повторите вывод, заменив The key местоимением It.**
+**21 · На ключе указан номер 12, а ваша комната — номер 18. Вы уверены, что вам выдали другой ключ. Повторите вывод, заменив The key словом It.**
 <!-- interaction_id: en:lesson-32:session-32:i21; family: scripted_repeat_compare -->
 🎙 **It can't be right.**
 

@@ -82,7 +82,7 @@ The cat is quiet, so it might ___ asleep. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-46:i07; family: scripted_repeat_compare -->
 🎙 **The toy I found is small.**
 
-**8 · Іграшка, яку я знайшов, маленька. Уточніть предмет без зайвого займенника.**
+**8 · Іграшка, яку я знайшов, маленька. Предмет уже названо — не повторюйте його.**
 <!-- interaction_id: en:lesson-32:session-46:i08; family: context_gap_grammar -->
 The toy I ___ is small. → **found** · found it · finding
 - found it — *Предмет уже названо: it не потрібне.*
@@ -92,7 +92,7 @@ The toy I ___ is small. → **found** · found it · finding
 <!-- interaction_id: en:lesson-32:session-46:i09; family: phrase_builder -->
 Плитки: `asleep` `be` `might` `it` `so` `quiet,` `is` `cat` `The` → **The cat is quiet, so it might be asleep.**
 
-**10 · Анна припускає, що двері відчинені, але ви бачите, що вони щільно зачинені. Скажіть висновок, замінивши The door займенником It.**
+**10 · Анна припускає, що двері відчинені, але ви бачите, що вони щільно зачинені. Скажіть висновок, замінивши The door словом It.**
 <!-- interaction_id: en:lesson-32:session-46:i10; family: scripted_repeat_compare -->
 🎙 **It can’t be open.**
 

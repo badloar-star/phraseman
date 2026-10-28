@@ -82,7 +82,7 @@ The bus might ___ late. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-13:i07; family: scripted_repeat_compare -->
 🎙 **The ticket I bought is valid.**
 
-**8 · Билет, который я купил, действителен. Уточните предмет без лишнего местоимения.**
+**8 · Билет, который я купил, действителен. Предмет уже назван — не повторяйте его.**
 <!-- interaction_id: en:lesson-32:session-13:i08; family: context_gap_grammar -->
 The ticket I ___ is valid. → **bought** · bought it · buying
 - bought it — *Предмет уже назван: it не нужно.*
@@ -92,7 +92,7 @@ The ticket I ___ is valid. → **bought** · bought it · buying
 <!-- interaction_id: en:lesson-32:session-13:i09; family: phrase_builder -->
 Плитки: `late` `be` `might` `bus` `The` → **The bus might be late.**
 
-**10 · Когда автобус приехал, вы заметили, что водитель несколько раз зевнул и потёр глаза. Скажите вывод ещё раз, заменив The driver местоимением He.**
+**10 · Когда автобус приехал, вы заметили, что водитель несколько раз зевнул и потёр глаза. Скажите вывод ещё раз, заменив The driver словом He.**
 <!-- interaction_id: en:lesson-32:session-13:i10; family: scripted_repeat_compare -->
 🎙 **He must be tired.**
 

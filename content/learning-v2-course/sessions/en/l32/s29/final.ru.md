@@ -82,7 +82,7 @@ The clock can't ___ right. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-29:i07; family: scripted_repeat_compare -->
 🎙 **The watch I bought is new.**
 
-**8 · Часы, которые я купил, новые. Уточните предмет без лишнего местоимения.**
+**8 · Часы, которые я купил, новые. Предмет уже назван — не повторяйте его.**
 <!-- interaction_id: en:lesson-32:session-29:i08; family: context_gap_grammar -->
 The watch I ___ is new. → **bought** · bought it · buying
 - bought it — *Предмет уже назван: it не нужно.*
@@ -92,7 +92,7 @@ The watch I ___ is new. → **bought** · bought it · buying
 <!-- interaction_id: en:lesson-32:session-29:i09; family: phrase_builder -->
 Плитки: `right` `be` `can't` `clock` `The` → **The clock can't be right.**
 
-**10 · По верному времени поезд должен был прибыть десять минут назад, но на его платформе по-прежнему пусто. Скажите вывод ещё раз, заменив The train местоимением It.**
+**10 · По верному времени поезд должен был прибыть десять минут назад, но на его платформе по-прежнему пусто. Скажите вывод ещё раз, заменив The train словом It.**
 <!-- interaction_id: en:lesson-32:session-29:i10; family: scripted_repeat_compare -->
 🎙 **It must be late.**
 
@@ -145,7 +145,7 @@ The ticket could ___ valid. → **be** · is · to be
 - is — *После could здесь используем be.*
 - to be — *После could не ставим to.*
 
-**21 · Минутная стрелка на вокзальных часах не двигалась уже двадцать минут. Вы отвергаете их показания. Повторите вывод, заменив The clock местоимением It.**
+**21 · Минутная стрелка на вокзальных часах не двигалась уже двадцать минут. Вы отвергаете их показания. Повторите вывод, заменив The clock словом It.**
 <!-- interaction_id: en:lesson-32:session-29:i21; family: scripted_repeat_compare -->
 🎙 **It can't be right.**
 

@@ -82,7 +82,7 @@ The bag is light, so it might ___ empty. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-55:i07; family: scripted_repeat_compare -->
 🎙 **The book I read is short.**
 
-**8 · Книга, которую я прочитал, короткая. Уточните предмет без лишнего местоимения.**
+**8 · Книга, которую я прочитал, короткая. Предмет уже назван — не повторяйте его.**
 <!-- interaction_id: en:lesson-32:session-55:i08; family: context_gap_grammar -->
 The book I ___ is short. → **read** · read it · reading
 - read it — *Предмет уже назван: it не нужно.*
@@ -92,7 +92,7 @@ The book I ___ is short. → **read** · read it · reading
 <!-- interaction_id: en:lesson-32:session-55:i09; family: phrase_builder -->
 Плитки: `empty` `be` `might` `it` `so` `light,` `is` `bag` `The` → **The bag is light, so it might be empty.**
 
-**10 · Из рубашки капает вода. Анна считала, что она высохла после дождя. Скажите вывод, заменив The shirt местоимением It.**
+**10 · Из рубашки капает вода. Анна считала, что она высохла после дождя. Скажите вывод, заменив The shirt словом It.**
 <!-- interaction_id: en:lesson-32:session-55:i10; family: scripted_repeat_compare -->
 🎙 **It can’t be dry.**
 

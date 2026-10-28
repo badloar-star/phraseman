@@ -82,7 +82,7 @@ The oven could ___ cold. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-22:i07; family: scripted_repeat_compare -->
 🎙 **The dish I washed is clean.**
 
-**8 · Блюдо, которое я помыл, чистое. Уточните предмет без лишнего местоимения.**
+**8 · Блюдо, которое я помыл, чистое. Предмет уже назван — не повторяйте его.**
 <!-- interaction_id: en:lesson-32:session-22:i08; family: context_gap_grammar -->
 The dish I ___ is clean. → **washed** · washed it · washing
 - washed it — *Предмет уже назван: it не нужно.*
@@ -92,7 +92,7 @@ The dish I ___ is clean. → **washed** · washed it · washing
 <!-- interaction_id: en:lesson-32:session-22:i09; family: phrase_builder -->
 Плитки: `cold` `be` `could` `oven` `The` → **The oven could be cold.**
 
-**10 · Пирог пёкся нужное время. Таймер прозвенел, а через стекло видна золотистая корочка. Скажите вывод ещё раз, заменив The cake местоимением It.**
+**10 · Пирог пёкся нужное время. Таймер прозвенел, а через стекло видна золотистая корочка. Скажите вывод ещё раз, заменив The cake словом It.**
 <!-- interaction_id: en:lesson-32:session-22:i10; family: scripted_repeat_compare -->
 🎙 **It must be ready.**
 

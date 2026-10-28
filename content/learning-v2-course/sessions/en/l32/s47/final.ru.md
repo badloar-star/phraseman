@@ -82,7 +82,7 @@ The coat is thin, so it might ___ light. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-47:i07; family: scripted_repeat_compare -->
 🎙 **The hat I bought is warm.**
 
-**8 · Шапка, которую я купил, тёплая. Уточните предмет без лишнего местоимения.**
+**8 · Шапка, которую я купил, тёплая. Предмет уже назван — не повторяйте его.**
 <!-- interaction_id: en:lesson-32:session-47:i08; family: context_gap_grammar -->
 The hat I ___ is warm. → **bought** · bought it · buying
 - bought it — *Предмет уже назван: it не нужно.*
@@ -92,7 +92,7 @@ The hat I ___ is warm. → **bought** · bought it · buying
 <!-- interaction_id: en:lesson-32:session-47:i09; family: phrase_builder -->
 Плитки: `light` `be` `might` `it` `so` `thin,` `is` `coat` `The` → **The coat is thin, so it might be light.**
 
-**10 · С зонта на пол стекает вода. Анна думала, что он уже высох. Скажите вывод, заменив The umbrella местоимением It.**
+**10 · С зонта на пол стекает вода. Анна думала, что он уже высох. Скажите вывод, заменив The umbrella словом It.**
 <!-- interaction_id: en:lesson-32:session-47:i10; family: scripted_repeat_compare -->
 🎙 **It can’t be dry.**
 

@@ -82,7 +82,7 @@ The suitcase can't ___ mine. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-30:i07; family: scripted_repeat_compare -->
 🎙 **The coat I bought is warm.**
 
-**8 · Пальто, которое я купил, тёплое. Уточните предмет без лишнего местоимения.**
+**8 · Пальто, которое я купил, тёплое. Предмет уже назван — не повторяйте его.**
 <!-- interaction_id: en:lesson-32:session-30:i08; family: context_gap_grammar -->
 The coat I ___ is warm. → **bought** · bought it · buying
 - bought it — *Предмет уже назван: it не нужно.*
@@ -92,7 +92,7 @@ The coat I ___ is warm. → **bought** · bought it · buying
 <!-- interaction_id: en:lesson-32:session-30:i09; family: phrase_builder -->
 Плитки: `mine` `be` `can't` `suitcase` `The` → **The suitcase can't be mine.**
 
-**10 · Анна с усилием передвигает сумку и просит помочь её поднять. Скажите вывод ещё раз, заменив The bag местоимением It.**
+**10 · Анна с усилием передвигает сумку и просит помочь её поднять. Скажите вывод ещё раз, заменив The bag словом It.**
 <!-- interaction_id: en:lesson-32:session-30:i10; family: scripted_repeat_compare -->
 🎙 **It must be heavy.**
 
@@ -145,7 +145,7 @@ The book could ___ heavy. → **be** · is · to be
 - is — *После could здесь используем be.*
 - to be — *После could не ставим to.*
 
-**21 · Ваш чемодан красный, а Анна показывает вам чёрный. Вы уверены, что это другая вещь. Повторите вывод, заменив The suitcase местоимением It.**
+**21 · Ваш чемодан красный, а Анна показывает вам чёрный. Вы уверены, что это другая вещь. Повторите вывод, заменив The suitcase словом It.**
 <!-- interaction_id: en:lesson-32:session-30:i21; family: scripted_repeat_compare -->
 🎙 **It can't be mine.**
 

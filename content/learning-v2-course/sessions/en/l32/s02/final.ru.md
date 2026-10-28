@@ -60,7 +60,7 @@
 - The keys must be there. — *В записи звучит The keys must be here.*
 - The keys must be upstairs. — *В записи звучит The keys must be here.*
 
-**3 · Вы уверены по памяти, что ключи здесь. Выберите связку после must.**
+**3 · Вы уверены по памяти, что ключи здесь. Выберите форму be после must.**
 <!-- interaction_id: en:lesson-32:session-02:i03; family: context_gap_grammar -->
 The keys must ___ here. → **be** · are · is
 - are — *После must нужна начальная форма be.*
@@ -82,7 +82,7 @@ The keys must ___ here. → **be** · are · is
 <!-- interaction_id: en:lesson-32:session-02:i07; family: scripted_repeat_compare -->
 🎙 **The coat I wore is in the car.**
 
-**8 · Уточните пальто через I wore, не повторяя предмет местоимением.**
+**8 · Уточните пальто через I wore, не повторяя предмет словом it.**
 <!-- interaction_id: en:lesson-32:session-02:i08; family: context_gap_grammar -->
 The coat I ___ is in the car. → **wore** · wore it · worn
 - wore it — *Coat уже названо: it после wore не нужно.*

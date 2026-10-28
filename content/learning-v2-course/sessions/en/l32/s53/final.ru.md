@@ -82,7 +82,7 @@ The bag is heavy, so it might ___ full. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-53:i07; family: scripted_repeat_compare -->
 🎙 **The sandwich I made is large.**
 
-**8 · Бутерброд, который я сделал, большой. Уточните предмет без лишнего местоимения.**
+**8 · Бутерброд, который я сделал, большой. Предмет уже назван — не повторяйте его.**
 <!-- interaction_id: en:lesson-32:session-53:i08; family: context_gap_grammar -->
 The sandwich I ___ is large. → **made** · made it · making
 - made it — *Предмет уже назван: it не нужно.*
@@ -92,7 +92,7 @@ The sandwich I ___ is large. → **made** · made it · making
 <!-- interaction_id: en:lesson-32:session-53:i09; family: phrase_builder -->
 Плитки: `full` `be` `might` `it` `so` `heavy,` `is` `bag` `The` → **The bag is heavy, so it might be full.**
 
-**10 · В прозрачной бутылке видна вода. Анна ошибочно считает её пустой. Скажите вывод, заменив The bottle местоимением It.**
+**10 · В прозрачной бутылке видна вода. Анна ошибочно считает её пустой. Скажите вывод, заменив The bottle словом It.**
 <!-- interaction_id: en:lesson-32:session-53:i10; family: scripted_repeat_compare -->
 🎙 **It can’t be empty.**
 

@@ -82,7 +82,7 @@ The soup might ___ hot. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-12:i07; family: scripted_repeat_compare -->
 🎙 **The bowl I washed is clean.**
 
-**8 · Миска, которую я помыл, чистая. Уточните предмет без лишнего местоимения.**
+**8 · Миска, которую я помыл, чистая. Предмет уже назван — не повторяйте его.**
 <!-- interaction_id: en:lesson-32:session-12:i08; family: context_gap_grammar -->
 The bowl I ___ is clean. → **washed** · washed it · washing
 - washed it — *Предмет уже назван: it не нужно.*
@@ -92,7 +92,7 @@ The bowl I ___ is clean. → **washed** · washed it · washing
 <!-- interaction_id: en:lesson-32:session-12:i09; family: phrase_builder -->
 Плитки: `hot` `be` `might` `soup` `The` → **The soup might be hot.**
 
-**10 · Рис варился положенное время, и таймер только что прозвенел. Вы ещё не открывали крышку. Скажите вывод ещё раз, заменив The rice местоимением It.**
+**10 · Рис варился положенное время, и таймер только что прозвенел. Вы ещё не открывали крышку. Скажите вывод ещё раз, заменив The rice словом It.**
 <!-- interaction_id: en:lesson-32:session-12:i10; family: scripted_repeat_compare -->
 🎙 **It must be ready.**
 

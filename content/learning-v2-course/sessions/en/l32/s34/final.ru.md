@@ -82,7 +82,7 @@ The road is wet, so it might ___ slippery. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-34:i07; family: scripted_repeat_compare -->
 🎙 **The bag I packed is heavy.**
 
-**8 · Сумка, которую я собрал, тяжёлая. Уточните предмет без лишнего местоимения.**
+**8 · Сумка, которую я собрал, тяжёлая. Предмет уже назван — не повторяйте его.**
 <!-- interaction_id: en:lesson-32:session-34:i08; family: context_gap_grammar -->
 The bag I ___ is heavy. → **packed** · packed it · packing
 - packed it — *Предмет уже назван: it не нужно.*
@@ -92,7 +92,7 @@ The bag I ___ is heavy. → **packed** · packed it · packing
 <!-- interaction_id: en:lesson-32:session-34:i09; family: phrase_builder -->
 Плитки: `slippery` `be` `might` `it` `so` `wet,` `is` `road` `The` → **The road is wet, so it might be slippery.**
 
-**10 · С рукавов пальто Анны капает вода. Скажите вывод, заменив The coat местоимением It.**
+**10 · С рукавов пальто Анны капает вода. Скажите вывод, заменив The coat словом It.**
 <!-- interaction_id: en:lesson-32:session-34:i10; family: scripted_repeat_compare -->
 🎙 **It can’t be dry.**
 

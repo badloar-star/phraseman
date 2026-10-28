@@ -82,7 +82,7 @@ The cake might ___ ready. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-15:i07; family: scripted_repeat_compare -->
 🎙 **The card I wrote is short.**
 
-**8 · Листівка, яку я написав, коротка. Уточніть предмет без зайвого займенника.**
+**8 · Листівка, яку я написав, коротка. Предмет уже названо — не повторюйте його.**
 <!-- interaction_id: en:lesson-32:session-15:i08; family: context_gap_grammar -->
 The card I ___ is short. → **wrote** · wrote it · writing
 - wrote it — *Предмет уже названо: it не потрібне.*
@@ -92,7 +92,7 @@ The card I ___ is short. → **wrote** · wrote it · writing
 <!-- interaction_id: en:lesson-32:session-15:i09; family: phrase_builder -->
 Плитки: `ready` `be` `might` `cake` `The` → **The cake might be ready.**
 
-**10 · Бен приїхав після довгої дороги й каже, що не їв від самого ранку. Скажіть висновок іще раз, замінивши The guest займенником He.**
+**10 · Бен приїхав після довгої дороги й каже, що не їв від самого ранку. Скажіть висновок іще раз, замінивши The guest словом He.**
 <!-- interaction_id: en:lesson-32:session-15:i10; family: scripted_repeat_compare -->
 🎙 **He must be hungry.**
 

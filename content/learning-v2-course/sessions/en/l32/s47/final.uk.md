@@ -82,7 +82,7 @@ The coat is thin, so it might ___ light. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-47:i07; family: scripted_repeat_compare -->
 🎙 **The hat I bought is warm.**
 
-**8 · Шапка, яку я купив, тепла. Уточніть предмет без зайвого займенника.**
+**8 · Шапка, яку я купив, тепла. Предмет уже названо — не повторюйте його.**
 <!-- interaction_id: en:lesson-32:session-47:i08; family: context_gap_grammar -->
 The hat I ___ is warm. → **bought** · bought it · buying
 - bought it — *Предмет уже названо: it не потрібне.*
@@ -92,7 +92,7 @@ The hat I ___ is warm. → **bought** · bought it · buying
 <!-- interaction_id: en:lesson-32:session-47:i09; family: phrase_builder -->
 Плитки: `light` `be` `might` `it` `so` `thin,` `is` `coat` `The` → **The coat is thin, so it might be light.**
 
-**10 · З парасолі на підлогу стікає вода. Анна думала, що вона вже висохла. Скажіть висновок, замінивши The umbrella займенником It.**
+**10 · З парасолі на підлогу стікає вода. Анна думала, що вона вже висохла. Скажіть висновок, замінивши The umbrella словом It.**
 <!-- interaction_id: en:lesson-32:session-47:i10; family: scripted_repeat_compare -->
 🎙 **It can’t be dry.**
 

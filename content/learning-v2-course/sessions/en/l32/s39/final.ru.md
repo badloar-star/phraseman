@@ -82,7 +82,7 @@ The bread is warm, so it might ___ fresh. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-39:i07; family: scripted_repeat_compare -->
 🎙 **The knife I bought is sharp.**
 
-**8 · Нож, который я купил, острый. Уточните предмет без лишнего местоимения.**
+**8 · Нож, который я купил, острый. Предмет уже назван — не повторяйте его.**
 <!-- interaction_id: en:lesson-32:session-39:i08; family: context_gap_grammar -->
 The knife I ___ is sharp. → **bought** · bought it · buying
 - bought it — *Предмет уже назван: it не нужно.*
@@ -92,7 +92,7 @@ The knife I ___ is sharp. → **bought** · bought it · buying
 <!-- interaction_id: en:lesson-32:session-39:i09; family: phrase_builder -->
 Плитки: `fresh` `be` `might` `it` `so` `warm,` `is` `bread` `The` → **The bread is warm, so it might be fresh.**
 
-**10 · Анна говорит, что пакет пуст, но через прозрачную стенку вы видите хлеб. Скажите вывод, заменив The bag местоимением It.**
+**10 · Анна говорит, что пакет пуст, но через прозрачную стенку вы видите хлеб. Скажите вывод, заменив The bag словом It.**
 <!-- interaction_id: en:lesson-32:session-39:i10; family: scripted_repeat_compare -->
 🎙 **It can’t be empty.**
 

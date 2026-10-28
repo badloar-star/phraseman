@@ -82,7 +82,7 @@ The soup might ___ hot. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-12:i07; family: scripted_repeat_compare -->
 🎙 **The bowl I washed is clean.**
 
-**8 · Миска, яку я помив, чиста. Уточніть предмет без зайвого займенника.**
+**8 · Миска, яку я помив, чиста. Предмет уже названо — не повторюйте його.**
 <!-- interaction_id: en:lesson-32:session-12:i08; family: context_gap_grammar -->
 The bowl I ___ is clean. → **washed** · washed it · washing
 - washed it — *Предмет уже названо: it не потрібне.*
@@ -92,7 +92,7 @@ The bowl I ___ is clean. → **washed** · washed it · washing
 <!-- interaction_id: en:lesson-32:session-12:i09; family: phrase_builder -->
 Плитки: `hot` `be` `might` `soup` `The` → **The soup might be hot.**
 
-**10 · Рис варився належний час, і таймер щойно задзвенів. Ви ще не відкривали кришку. Скажіть висновок іще раз, замінивши The rice займенником It.**
+**10 · Рис варився належний час, і таймер щойно задзвенів. Ви ще не відкривали кришку. Скажіть висновок іще раз, замінивши The rice словом It.**
 <!-- interaction_id: en:lesson-32:session-12:i10; family: scripted_repeat_compare -->
 🎙 **It must be ready.**
 

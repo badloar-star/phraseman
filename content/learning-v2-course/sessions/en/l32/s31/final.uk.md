@@ -82,7 +82,7 @@ The cup can't ___ clean. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-31:i07; family: scripted_repeat_compare -->
 🎙 **The towel I used is wet.**
 
-**8 · Рушник, яким я скористався, мокрий. Уточніть предмет без зайвого займенника.**
+**8 · Рушник, яким я скористався, мокрий. Предмет уже названо — не повторюйте його.**
 <!-- interaction_id: en:lesson-32:session-31:i08; family: context_gap_grammar -->
 The towel I ___ is wet. → **used** · used it · using
 - used it — *Предмет уже названо: it не потрібне.*
@@ -92,7 +92,7 @@ The towel I ___ is wet. → **used** · used it · using
 <!-- interaction_id: en:lesson-32:session-31:i09; family: phrase_builder -->
 Плитки: `clean` `be` `can't` `cup` `The` → **The cup can't be clean.**
 
-**10 · Пробку вийнято, але вода вже кілька хвилин не йде з раковини. Скажіть висновок іще раз, замінивши The sink займенником It.**
+**10 · Пробку вийнято, але вода вже кілька хвилин не йде з раковини. Скажіть висновок іще раз, замінивши The sink словом It.**
 <!-- interaction_id: en:lesson-32:session-31:i10; family: scripted_repeat_compare -->
 🎙 **It must be blocked.**
 
@@ -145,7 +145,7 @@ The floor could ___ wet. → **be** · is · to be
 - is — *Після could тут використовуємо be.*
 - to be — *Після could не ставимо to.*
 
-**21 · Анна поставила чашку до чистого посуду, але всередині видно старий чай, а на краю сліди помади. Повторіть висновок, замінивши The cup займенником It.**
+**21 · Анна поставила чашку до чистого посуду, але всередині видно старий чай, а на краю сліди помади. Повторіть висновок, замінивши The cup словом It.**
 <!-- interaction_id: en:lesson-32:session-31:i21; family: scripted_repeat_compare -->
 🎙 **It can't be clean.**
 

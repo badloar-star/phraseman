@@ -82,7 +82,7 @@ The bus is slow, so it might ___ late. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-41:i07; family: scripted_repeat_compare -->
 🎙 **The ticket I bought is cheap.**
 
-**8 · Квиток, який я купив, дешевий. Уточніть предмет без зайвого займенника.**
+**8 · Квиток, який я купив, дешевий. Предмет уже названо — не повторюйте його.**
 <!-- interaction_id: en:lesson-32:session-41:i08; family: context_gap_grammar -->
 The ticket I ___ is cheap. → **bought** · bought it · buying
 - bought it — *Предмет уже названо: it не потрібне.*
@@ -92,7 +92,7 @@ The ticket I ___ is cheap. → **bought** · bought it · buying
 <!-- interaction_id: en:lesson-32:session-41:i09; family: phrase_builder -->
 Плитки: `late` `be` `might` `it` `so` `slow,` `is` `bus` `The` → **The bus is slow, so it might be late.**
 
-**10 · Анна думає, що місце біля вікна вільне, але ви бачите пасажира, який там сидить. Скажіть висновок, замінивши The seat займенником It.**
+**10 · Анна думає, що місце біля вікна вільне, але ви бачите пасажира, який там сидить. Скажіть висновок, замінивши The seat словом It.**
 <!-- interaction_id: en:lesson-32:session-41:i10; family: scripted_repeat_compare -->
 🎙 **It can’t be empty.**
 

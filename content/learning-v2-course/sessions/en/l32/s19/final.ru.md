@@ -82,7 +82,7 @@ The cat could ___ outside. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-19:i07; family: scripted_repeat_compare -->
 🎙 **The toy I bought is small.**
 
-**8 · Игрушка, которую я купил, маленькая. Уточните предмет без лишнего местоимения.**
+**8 · Игрушка, которую я купил, маленькая. Предмет уже назван — не повторяйте его.**
 <!-- interaction_id: en:lesson-32:session-19:i08; family: context_gap_grammar -->
 The toy I ___ is small. → **bought** · bought it · buying
 - bought it — *Предмет уже назван: it не нужно.*
@@ -92,7 +92,7 @@ The toy I ___ is small. → **bought** · bought it · buying
 <!-- interaction_id: en:lesson-32:session-19:i09; family: phrase_builder -->
 Плитки: `outside` `be` `could` `cat` `The` → **The cat could be outside.**
 
-**10 · Вы вспоминаете, как кошка долго вылизывала дно миски, прежде чем ушла. Сейчас саму миску вы не видите. Скажите вывод ещё раз, заменив The bowl местоимением It.**
+**10 · Вы вспоминаете, как кошка долго вылизывала дно миски, прежде чем ушла. Сейчас саму миску вы не видите. Скажите вывод ещё раз, заменив The bowl словом It.**
 <!-- interaction_id: en:lesson-32:session-19:i10; family: scripted_repeat_compare -->
 🎙 **It must be empty.**
 

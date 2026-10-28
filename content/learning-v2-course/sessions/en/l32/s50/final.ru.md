@@ -82,7 +82,7 @@ The train is quiet, so it might ___ empty. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-50:i07; family: scripted_repeat_compare -->
 🎙 **The ticket I bought is expensive.**
 
-**8 · Билет, который я купил, дорогой. Уточните предмет без лишнего местоимения.**
+**8 · Билет, который я купил, дорогой. Предмет уже назван — не повторяйте его.**
 <!-- interaction_id: en:lesson-32:session-50:i08; family: context_gap_grammar -->
 The ticket I ___ is expensive. → **bought** · bought it · buying
 - bought it — *Предмет уже назван: it не нужно.*
@@ -92,7 +92,7 @@ The ticket I ___ is expensive. → **bought** · bought it · buying
 <!-- interaction_id: en:lesson-32:session-50:i09; family: phrase_builder -->
 Плитки: `empty` `be` `might` `it` `so` `quiet,` `is` `train` `The` → **The train is quiet, so it might be empty.**
 
-**10 · Анна думает, что сумка лёгкая, но весы показывают двадцать килограммов. Скажите вывод, заменив The bag местоимением It.**
+**10 · Анна думает, что сумка лёгкая, но весы показывают двадцать килограммов. Скажите вывод, заменив The bag словом It.**
 <!-- interaction_id: en:lesson-32:session-50:i10; family: scripted_repeat_compare -->
 🎙 **It can’t be light.**
 

@@ -82,7 +82,7 @@ The cup can't ___ clean. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-31:i07; family: scripted_repeat_compare -->
 🎙 **The towel I used is wet.**
 
-**8 · Полотенце, которым я воспользовался, мокрое. Уточните предмет без лишнего местоимения.**
+**8 · Полотенце, которым я воспользовался, мокрое. Предмет уже назван — не повторяйте его.**
 <!-- interaction_id: en:lesson-32:session-31:i08; family: context_gap_grammar -->
 The towel I ___ is wet. → **used** · used it · using
 - used it — *Предмет уже назван: it не нужно.*
@@ -92,7 +92,7 @@ The towel I ___ is wet. → **used** · used it · using
 <!-- interaction_id: en:lesson-32:session-31:i09; family: phrase_builder -->
 Плитки: `clean` `be` `can't` `cup` `The` → **The cup can't be clean.**
 
-**10 · Пробка вынута, но вода уже несколько минут не уходит из раковины. Скажите вывод ещё раз, заменив The sink местоимением It.**
+**10 · Пробка вынута, но вода уже несколько минут не уходит из раковины. Скажите вывод ещё раз, заменив The sink словом It.**
 <!-- interaction_id: en:lesson-32:session-31:i10; family: scripted_repeat_compare -->
 🎙 **It must be blocked.**
 
@@ -145,7 +145,7 @@ The floor could ___ wet. → **be** · is · to be
 - is — *После could здесь используем be.*
 - to be — *После could не ставим to.*
 
-**21 · Анна поставила чашку к чистой посуде, но внутри виден старый чай, а на краю следы помады. Повторите вывод, заменив The cup местоимением It.**
+**21 · Анна поставила чашку к чистой посуде, но внутри виден старый чай, а на краю следы помады. Повторите вывод, заменив The cup словом It.**
 <!-- interaction_id: en:lesson-32:session-31:i21; family: scripted_repeat_compare -->
 🎙 **It can't be clean.**
 

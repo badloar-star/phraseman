@@ -82,7 +82,7 @@ The table is sticky, so it might ___ dirty. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-49:i07; family: scripted_repeat_compare -->
 🎙 **The cloth I washed is clean.**
 
-**8 · Тряпка, которую я постирал, чистая. Уточните предмет без лишнего местоимения.**
+**8 · Тряпка, которую я постирал, чистая. Предмет уже назван — не повторяйте его.**
 <!-- interaction_id: en:lesson-32:session-49:i08; family: context_gap_grammar -->
 The cloth I ___ is clean. → **washed** · washed it · washing
 - washed it — *Предмет уже назван: it не нужно.*
@@ -92,7 +92,7 @@ The cloth I ___ is clean. → **washed** · washed it · washing
 <!-- interaction_id: en:lesson-32:session-49:i09; family: phrase_builder -->
 Плитки: `dirty` `be` `might` `it` `so` `sticky,` `is` `table` `The` → **The table is sticky, so it might be dirty.**
 
-**10 · Анна говорит, что чашка полная, но в ней осталось только немного чая на дне. Скажите вывод, заменив The cup местоимением It.**
+**10 · Анна говорит, что чашка полная, но в ней осталось только немного чая на дне. Скажите вывод, заменив The cup словом It.**
 <!-- interaction_id: en:lesson-32:session-49:i10; family: scripted_repeat_compare -->
 🎙 **It can’t be full.**
 

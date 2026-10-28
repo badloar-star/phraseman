@@ -82,7 +82,7 @@ The bag is heavy, so it might ___ full. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-53:i07; family: scripted_repeat_compare -->
 🎙 **The sandwich I made is large.**
 
-**8 · Бутерброд, який я зробив, великий. Уточніть предмет без зайвого займенника.**
+**8 · Бутерброд, який я зробив, великий. Предмет уже названо — не повторюйте його.**
 <!-- interaction_id: en:lesson-32:session-53:i08; family: context_gap_grammar -->
 The sandwich I ___ is large. → **made** · made it · making
 - made it — *Предмет уже названо: it не потрібне.*
@@ -92,7 +92,7 @@ The sandwich I ___ is large. → **made** · made it · making
 <!-- interaction_id: en:lesson-32:session-53:i09; family: phrase_builder -->
 Плитки: `full` `be` `might` `it` `so` `heavy,` `is` `bag` `The` → **The bag is heavy, so it might be full.**
 
-**10 · У прозорій пляшці видно воду. Анна помилково вважає її порожньою. Скажіть висновок, замінивши The bottle займенником It.**
+**10 · У прозорій пляшці видно воду. Анна помилково вважає її порожньою. Скажіть висновок, замінивши The bottle словом It.**
 <!-- interaction_id: en:lesson-32:session-53:i10; family: scripted_repeat_compare -->
 🎙 **It can’t be empty.**
 

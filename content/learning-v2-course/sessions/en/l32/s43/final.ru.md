@@ -82,7 +82,7 @@ The grass is long, so it might ___ wet. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-43:i07; family: scripted_repeat_compare -->
 🎙 **The ball I found is dirty.**
 
-**8 · Мяч, который я нашёл, грязный. Уточните предмет без лишнего местоимения.**
+**8 · Мяч, который я нашёл, грязный. Предмет уже назван — не повторяйте его.**
 <!-- interaction_id: en:lesson-32:session-43:i08; family: context_gap_grammar -->
 The ball I ___ is dirty. → **found** · found it · finding
 - found it — *Предмет уже назван: it не нужно.*
@@ -92,7 +92,7 @@ The ball I ___ is dirty. → **found** · found it · finding
 <!-- interaction_id: en:lesson-32:session-43:i09; family: phrase_builder -->
 Плитки: `wet` `be` `might` `it` `so` `long,` `is` `grass` `The` → **The grass is long, so it might be wet.**
 
-**10 · Вы видите, что калитка закрыта на замок. Анна думала, что через неё укатился мяч. Скажите вывод, заменив The gate местоимением It.**
+**10 · Вы видите, что калитка закрыта на замок. Анна думала, что через неё укатился мяч. Скажите вывод, заменив The gate словом It.**
 <!-- interaction_id: en:lesson-32:session-43:i10; family: scripted_repeat_compare -->
 🎙 **It can’t be open.**
 

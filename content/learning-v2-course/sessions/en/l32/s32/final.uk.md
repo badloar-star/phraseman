@@ -82,7 +82,7 @@ The key can't ___ right. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-32:i07; family: scripted_repeat_compare -->
 🎙 **The note I wrote is short.**
 
-**8 · Записка, яку я написав, коротка. Уточніть предмет без зайвого займенника.**
+**8 · Записка, яку я написав, коротка. Предмет уже названо — не повторюйте його.**
 <!-- interaction_id: en:lesson-32:session-32:i08; family: context_gap_grammar -->
 The note I ___ is short. → **wrote** · wrote it · writing
 - wrote it — *Предмет уже названо: it не потрібне.*
@@ -92,7 +92,7 @@ The note I ___ is short. → **wrote** · wrote it · writing
 <!-- interaction_id: en:lesson-32:session-32:i09; family: phrase_builder -->
 Плитки: `right` `be` `can't` `key` `The` → **The key can't be right.**
 
-**10 · Ручка повертається, але двері не піддаються, й усередині чути клацання замка. Скажіть висновок іще раз, замінивши The door займенником It.**
+**10 · Ручка повертається, але двері не піддаються, й усередині чути клацання замка. Скажіть висновок іще раз, замінивши The door словом It.**
 <!-- interaction_id: en:lesson-32:session-32:i10; family: scripted_repeat_compare -->
 🎙 **It must be locked.**
 
@@ -145,7 +145,7 @@ The room could ___ empty. → **be** · is · to be
 - is — *Після could тут використовуємо be.*
 - to be — *Після could не ставимо to.*
 
-**21 · На ключі вказано номер 12, а ваша кімната — номер 18. Ви впевнені, що вам видали інший ключ. Повторіть висновок, замінивши The key займенником It.**
+**21 · На ключі вказано номер 12, а ваша кімната — номер 18. Ви впевнені, що вам видали інший ключ. Повторіть висновок, замінивши The key словом It.**
 <!-- interaction_id: en:lesson-32:session-32:i21; family: scripted_repeat_compare -->
 🎙 **It can't be right.**
 

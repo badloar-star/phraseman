@@ -82,7 +82,7 @@ The oven could ___ cold. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-22:i07; family: scripted_repeat_compare -->
 🎙 **The dish I washed is clean.**
 
-**8 · Блюдо, яке я помив, чисте. Уточніть предмет без зайвого займенника.**
+**8 · Блюдо, яке я помив, чисте. Предмет уже названо — не повторюйте його.**
 <!-- interaction_id: en:lesson-32:session-22:i08; family: context_gap_grammar -->
 The dish I ___ is clean. → **washed** · washed it · washing
 - washed it — *Предмет уже названо: it не потрібне.*
@@ -92,7 +92,7 @@ The dish I ___ is clean. → **washed** · washed it · washing
 <!-- interaction_id: en:lesson-32:session-22:i09; family: phrase_builder -->
 Плитки: `cold` `be` `could` `oven` `The` → **The oven could be cold.**
 
-**10 · Пиріг пікся потрібний час. Таймер задзвенів, а крізь скло видно золотисту скоринку. Скажіть висновок іще раз, замінивши The cake займенником It.**
+**10 · Пиріг пікся потрібний час. Таймер задзвенів, а крізь скло видно золотисту скоринку. Скажіть висновок іще раз, замінивши The cake словом It.**
 <!-- interaction_id: en:lesson-32:session-22:i10; family: scripted_repeat_compare -->
 🎙 **It must be ready.**
 

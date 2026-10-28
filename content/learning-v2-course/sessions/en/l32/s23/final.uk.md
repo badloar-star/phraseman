@@ -82,7 +82,7 @@ The lamp could ___ broken. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-23:i07; family: scripted_repeat_compare -->
 🎙 **The book I borrowed is short.**
 
-**8 · Книжка, яку я позичив, коротка. Уточніть предмет без зайвого займенника.**
+**8 · Книжка, яку я позичив, коротка. Предмет уже названо — не повторюйте його.**
 <!-- interaction_id: en:lesson-32:session-23:i08; family: context_gap_grammar -->
 The book I ___ is short. → **borrowed** · borrowed it · borrowing
 - borrowed it — *Предмет уже названо: it не потрібне.*
@@ -92,7 +92,7 @@ The book I ___ is short. → **borrowed** · borrowed it · borrowing
 <!-- interaction_id: en:lesson-32:session-23:i09; family: phrase_builder -->
 Плитки: `broken` `be` `could` `lamp` `The` → **The lamp could be broken.**
 
-**10 · Ви ввімкнули іншу лампу зі старою лампочкою, яка помітно нагріває абажур. Вона світить уже годину. Скажіть висновок іще раз, замінивши The bulb займенником It.**
+**10 · Ви ввімкнули іншу лампу зі старою лампочкою, яка помітно нагріває абажур. Вона світить уже годину. Скажіть висновок іще раз, замінивши The bulb словом It.**
 <!-- interaction_id: en:lesson-32:session-23:i10; family: scripted_repeat_compare -->
 🎙 **It must be hot.**
 

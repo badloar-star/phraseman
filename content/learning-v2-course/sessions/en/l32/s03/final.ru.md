@@ -60,7 +60,7 @@
 - The soup must be cold. — *В записи звучит The soup must be hot.*
 - The soup must be ready. — *В записи звучит The soup must be hot.*
 
-**3 · Над супом поднимается пар. Вы делаете вывод, что он горячий. Выберите связку.**
+**3 · Над супом поднимается пар. Вы делаете вывод, что он горячий. Выберите форму be.**
 <!-- interaction_id: en:lesson-32:session-03:i03; family: context_gap_grammar -->
 The soup must ___ hot. → **be** · is · being
 - is — *После must здесь нужна форма be.*
@@ -82,7 +82,7 @@ The soup must ___ hot. → **be** · is · being
 <!-- interaction_id: en:lesson-32:session-03:i07; family: scripted_repeat_compare -->
 🎙 **The spoon I washed is clean.**
 
-**8 · Уточните суп, который уже приготовила Анна, не повторяя soup местоимением.**
+**8 · Уточните суп, который уже приготовила Анна, не повторяя soup словом it.**
 <!-- interaction_id: en:lesson-32:session-03:i08; family: context_gap_grammar -->
 The soup Anna ___ is ready. → **made** · made it · make
 - made it — *Soup уже названо: it после made не нужно.*
@@ -139,7 +139,7 @@ The bowl was hot, ___ I put it down. → **so** · because · although
 <!-- interaction_id: en:lesson-32:session-03:i19; family: listen_build_dictation -->
 🔊 *The soup must be hot.* Плитки: `hot` `be` `must` `soup` `The` → **The soup must be hot.**
 
-**20 · Бен не ел с утра. Вы уже используете must для вывода о голоде. Выберите связку.**
+**20 · Бен не ел с утра. Вы уже используете must для вывода о голоде. Выберите форму be.**
 <!-- interaction_id: en:lesson-32:session-03:i20; family: context_gap_grammar -->
 He must ___ hungry. → **be** · is · are
 - is — *После must здесь нужна форма be.*

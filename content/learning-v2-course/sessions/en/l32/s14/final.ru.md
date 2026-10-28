@@ -82,7 +82,7 @@ The bread might ___ fresh. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-14:i07; family: scripted_repeat_compare -->
 🎙 **The milk I bought is cold.**
 
-**8 · Молоко, которое я купил, холодное. Уточните предмет без лишнего местоимения.**
+**8 · Молоко, которое я купил, холодное. Предмет уже назван — не повторяйте его.**
 <!-- interaction_id: en:lesson-32:session-14:i08; family: context_gap_grammar -->
 The milk I ___ is cold. → **bought** · bought it · buying
 - bought it — *Предмет уже назван: it не нужно.*
@@ -92,7 +92,7 @@ The milk I ___ is cold. → **bought** · bought it · buying
 <!-- interaction_id: en:lesson-32:session-14:i09; family: phrase_builder -->
 Плитки: `fresh` `be` `might` `bread` `The` → **The bread might be fresh.**
 
-**10 · Из-за полок вы не видите кассу, но слышите много голосов, а новые покупатели продолжают входить. Скажите вывод ещё раз, заменив The shop местоимением It.**
+**10 · Из-за полок вы не видите кассу, но слышите много голосов, а новые покупатели продолжают входить. Скажите вывод ещё раз, заменив The shop словом It.**
 <!-- interaction_id: en:lesson-32:session-14:i10; family: scripted_repeat_compare -->
 🎙 **It must be busy.**
 

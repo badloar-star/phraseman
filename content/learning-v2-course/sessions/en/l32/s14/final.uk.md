@@ -82,7 +82,7 @@ The bread might ___ fresh. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-14:i07; family: scripted_repeat_compare -->
 🎙 **The milk I bought is cold.**
 
-**8 · Молоко, яке я купив, холодне. Уточніть предмет без зайвого займенника.**
+**8 · Молоко, яке я купив, холодне. Предмет уже названо — не повторюйте його.**
 <!-- interaction_id: en:lesson-32:session-14:i08; family: context_gap_grammar -->
 The milk I ___ is cold. → **bought** · bought it · buying
 - bought it — *Предмет уже названо: it не потрібне.*
@@ -92,7 +92,7 @@ The milk I ___ is cold. → **bought** · bought it · buying
 <!-- interaction_id: en:lesson-32:session-14:i09; family: phrase_builder -->
 Плитки: `fresh` `be` `might` `bread` `The` → **The bread might be fresh.**
 
-**10 · Через полиці ви не бачите касу, але чуєте багато голосів, а нові покупці продовжують заходити. Скажіть висновок іще раз, замінивши The shop займенником It.**
+**10 · Через полиці ви не бачите касу, але чуєте багато голосів, а нові покупці продовжують заходити. Скажіть висновок іще раз, замінивши The shop словом It.**
 <!-- interaction_id: en:lesson-32:session-14:i10; family: scripted_repeat_compare -->
 🎙 **It must be busy.**
 

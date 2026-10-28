@@ -82,7 +82,7 @@ The room might ___ ready. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-16:i07; family: scripted_repeat_compare -->
 🎙 **The towel I used is wet.**
 
-**8 · Полотенце, которым я воспользовался, мокрое. Уточните предмет без лишнего местоимения.**
+**8 · Полотенце, которым я воспользовался, мокрое. Предмет уже назван — не повторяйте его.**
 <!-- interaction_id: en:lesson-32:session-16:i08; family: context_gap_grammar -->
 The towel I ___ is wet. → **used** · used it · using
 - used it — *Предмет уже назван: it не нужно.*
@@ -92,7 +92,7 @@ The towel I ___ is wet. → **used** · used it · using
 <!-- interaction_id: en:lesson-32:session-16:i09; family: phrase_builder -->
 Плитки: `ready` `be` `might` `room` `The` → **The room might be ready.**
 
-**10 · В номере Анна легла на кровать, довольно улыбнулась и сразу расслабилась. Вы сами ещё не садились на неё. Скажите вывод ещё раз, заменив The bed местоимением It.**
+**10 · В номере Анна легла на кровать, довольно улыбнулась и сразу расслабилась. Вы сами ещё не садились на неё. Скажите вывод ещё раз, заменив The bed словом It.**
 <!-- interaction_id: en:lesson-32:session-16:i10; family: scripted_repeat_compare -->
 🎙 **It must be comfortable.**
 

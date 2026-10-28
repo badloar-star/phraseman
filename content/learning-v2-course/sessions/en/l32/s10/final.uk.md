@@ -82,7 +82,7 @@ The bag might ___ at home. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-10:i07; family: scripted_repeat_compare -->
 🎙 **The bag may be under the seat.**
 
-**8 · Анна говорить про куплену нею сумку. Виберіть форму без зайвого займенника.**
+**8 · Анна говорить про куплену нею сумку. Виберіть форму без зайвого it.**
 <!-- interaction_id: en:lesson-32:session-10:i08; family: context_gap_grammar -->
 The bag I ___ is blue. → **bought** · bought it · buying
 - bought it — *Не повторюємо bag займенником it.*

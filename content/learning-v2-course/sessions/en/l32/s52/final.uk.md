@@ -82,7 +82,7 @@ The path is wet, so it might ___ slippery. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-52:i07; family: scripted_repeat_compare -->
 🎙 **The plant I bought is small.**
 
-**8 · Рослина, яку я купив, маленька. Уточніть предмет без зайвого займенника.**
+**8 · Рослина, яку я купив, маленька. Предмет уже названо — не повторюйте його.**
 <!-- interaction_id: en:lesson-32:session-52:i08; family: context_gap_grammar -->
 The plant I ___ is small. → **bought** · bought it · buying
 - bought it — *Предмет уже названо: it не потрібне.*
@@ -92,7 +92,7 @@ The plant I ___ is small. → **bought** · bought it · buying
 <!-- interaction_id: en:lesson-32:session-52:i09; family: phrase_builder -->
 Плитки: `slippery` `be` `might` `it` `so` `wet,` `is` `path` `The` → **The path is wet, so it might be slippery.**
 
-**10 · У відкритому відрі видно дощову воду. Анна вважала, що воно порожнє. Скажіть висновок, замінивши The bucket займенником It.**
+**10 · У відкритому відрі видно дощову воду. Анна вважала, що воно порожнє. Скажіть висновок, замінивши The bucket словом It.**
 <!-- interaction_id: en:lesson-32:session-52:i10; family: scripted_repeat_compare -->
 🎙 **It can’t be empty.**
 

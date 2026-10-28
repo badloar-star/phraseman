@@ -82,7 +82,7 @@ The room can't ___ empty. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-27:i07; family: scripted_repeat_compare -->
 🎙 **The towel I used is wet.**
 
-**8 · Рушник, яким я скористався, мокрий. Уточніть предмет без зайвого займенника.**
+**8 · Рушник, яким я скористався, мокрий. Предмет уже названо — не повторюйте його.**
 <!-- interaction_id: en:lesson-32:session-27:i08; family: context_gap_grammar -->
 The towel I ___ is wet. → **used** · used it · using
 - used it — *Предмет уже названо: it не потрібне.*
@@ -92,7 +92,7 @@ The towel I ___ is wet. → **used** · used it · using
 <!-- interaction_id: en:lesson-32:session-27:i09; family: phrase_builder -->
 Плитки: `empty` `be` `can't` `room` `The` → **The room can't be empty.**
 
-**10 · Анна довго йшла під сильним дощем без парасолі. Ви робите висновок про її пальто. Скажіть висновок іще раз, замінивши The coat займенником It.**
+**10 · Анна довго йшла під сильним дощем без парасолі. Ви робите висновок про її пальто. Скажіть висновок іще раз, замінивши The coat словом It.**
 <!-- interaction_id: en:lesson-32:session-27:i10; family: scripted_repeat_compare -->
 🎙 **It must be wet.**
 
@@ -145,7 +145,7 @@ The window could ___ open. → **be** · is · to be
 - is — *Після could тут використовуємо be.*
 - to be — *Після could не ставимо to.*
 
-**21 · Крізь скло ви бачите всередині людей. Анна думає, що в кімнаті нікого немає. Повторіть висновок, замінивши The room займенником It.**
+**21 · Крізь скло ви бачите всередині людей. Анна думає, що в кімнаті нікого немає. Повторіть висновок, замінивши The room словом It.**
 <!-- interaction_id: en:lesson-32:session-27:i21; family: scripted_repeat_compare -->
 🎙 **It can't be empty.**
 

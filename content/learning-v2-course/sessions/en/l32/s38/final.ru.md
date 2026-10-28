@@ -82,7 +82,7 @@ The bike is noisy, so it might ___ broken. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-38:i07; family: scripted_repeat_compare -->
 🎙 **The helmet I bought is new.**
 
-**8 · Шлем, который я купил, новый. Уточните предмет без лишнего местоимения.**
+**8 · Шлем, который я купил, новый. Предмет уже назван — не повторяйте его.**
 <!-- interaction_id: en:lesson-32:session-38:i08; family: context_gap_grammar -->
 The helmet I ___ is new. → **bought** · bought it · buying
 - bought it — *Предмет уже назван: it не нужно.*
@@ -92,7 +92,7 @@ The helmet I ___ is new. → **bought** · bought it · buying
 <!-- interaction_id: en:lesson-32:session-38:i09; family: phrase_builder -->
 Плитки: `broken` `be` `might` `it` `so` `noisy,` `is` `bike` `The` → **The bike is noisy, so it might be broken.**
 
-**10 · Дужка замка полностью закрыта, и цепь не снимается. Анна считала, что уже открыла его. Скажите вывод, заменив The lock местоимением It.**
+**10 · Дужка замка полностью закрыта, и цепь не снимается. Анна считала, что уже открыла его. Скажите вывод, заменив The lock словом It.**
 <!-- interaction_id: en:lesson-32:session-38:i10; family: scripted_repeat_compare -->
 🎙 **It can’t be open.**
 

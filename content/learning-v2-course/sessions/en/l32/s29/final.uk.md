@@ -82,7 +82,7 @@ The clock can't ___ right. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-29:i07; family: scripted_repeat_compare -->
 🎙 **The watch I bought is new.**
 
-**8 · Годинник, який я купив, новий. Уточніть предмет без зайвого займенника.**
+**8 · Годинник, який я купив, новий. Предмет уже названо — не повторюйте його.**
 <!-- interaction_id: en:lesson-32:session-29:i08; family: context_gap_grammar -->
 The watch I ___ is new. → **bought** · bought it · buying
 - bought it — *Предмет уже названо: it не потрібне.*
@@ -92,7 +92,7 @@ The watch I ___ is new. → **bought** · bought it · buying
 <!-- interaction_id: en:lesson-32:session-29:i09; family: phrase_builder -->
 Плитки: `right` `be` `can't` `clock` `The` → **The clock can't be right.**
 
-**10 · За правильним часом поїзд мав прибути десять хвилин тому, але на його платформі досі порожньо. Скажіть висновок іще раз, замінивши The train займенником It.**
+**10 · За правильним часом поїзд мав прибути десять хвилин тому, але на його платформі досі порожньо. Скажіть висновок іще раз, замінивши The train словом It.**
 <!-- interaction_id: en:lesson-32:session-29:i10; family: scripted_repeat_compare -->
 🎙 **It must be late.**
 
@@ -145,7 +145,7 @@ The ticket could ___ valid. → **be** · is · to be
 - is — *Після could тут використовуємо be.*
 - to be — *Після could не ставимо to.*
 
-**21 · Хвилинна стрілка на вокзальному годиннику не рухалася вже двадцять хвилин. Ви відкидаєте його показання. Повторіть висновок, замінивши The clock займенником It.**
+**21 · Хвилинна стрілка на вокзальному годиннику не рухалася вже двадцять хвилин. Ви відкидаєте його показання. Повторіть висновок, замінивши The clock словом It.**
 <!-- interaction_id: en:lesson-32:session-29:i21; family: scripted_repeat_compare -->
 🎙 **It can't be right.**
 

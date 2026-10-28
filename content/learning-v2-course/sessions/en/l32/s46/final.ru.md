@@ -82,7 +82,7 @@ The cat is quiet, so it might ___ asleep. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-46:i07; family: scripted_repeat_compare -->
 🎙 **The toy I found is small.**
 
-**8 · Игрушка, которую я нашёл, маленькая. Уточните предмет без лишнего местоимения.**
+**8 · Игрушка, которую я нашёл, маленькая. Предмет уже назван — не повторяйте его.**
 <!-- interaction_id: en:lesson-32:session-46:i08; family: context_gap_grammar -->
 The toy I ___ is small. → **found** · found it · finding
 - found it — *Предмет уже назван: it не нужно.*
@@ -92,7 +92,7 @@ The toy I ___ is small. → **found** · found it · finding
 <!-- interaction_id: en:lesson-32:session-46:i09; family: phrase_builder -->
 Плитки: `asleep` `be` `might` `it` `so` `quiet,` `is` `cat` `The` → **The cat is quiet, so it might be asleep.**
 
-**10 · Анна предполагает, что дверь открыта, но вы видите, что она плотно закрыта. Скажите вывод, заменив The door местоимением It.**
+**10 · Анна предполагает, что дверь открыта, но вы видите, что она плотно закрыта. Скажите вывод, заменив The door словом It.**
 <!-- interaction_id: en:lesson-32:session-46:i10; family: scripted_repeat_compare -->
 🎙 **It can’t be open.**
 

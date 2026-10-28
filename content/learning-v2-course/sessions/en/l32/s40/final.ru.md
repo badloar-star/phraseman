@@ -82,7 +82,7 @@ The towel is heavy, so it might ___ wet. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-40:i07; family: scripted_repeat_compare -->
 🎙 **The bag I packed is small.**
 
-**8 · Сумка, которую я собрал, маленькая. Уточните предмет без лишнего местоимения.**
+**8 · Сумка, которую я собрал, маленькая. Предмет уже назван — не повторяйте его.**
 <!-- interaction_id: en:lesson-32:session-40:i08; family: context_gap_grammar -->
 The bag I ___ is small. → **packed** · packed it · packing
 - packed it — *Предмет уже назван: it не нужно.*
@@ -92,7 +92,7 @@ The bag I ___ is small. → **packed** · packed it · packing
 <!-- interaction_id: en:lesson-32:session-40:i09; family: phrase_builder -->
 Плитки: `wet` `be` `might` `it` `so` `heavy,` `is` `towel` `The` → **The towel is heavy, so it might be wet.**
 
-**10 · Вы видите, что вода доходит только до середины прозрачной бутылки. Скажите вывод, заменив The bottle местоимением It.**
+**10 · Вы видите, что вода доходит только до середины прозрачной бутылки. Скажите вывод, заменив The bottle словом It.**
 <!-- interaction_id: en:lesson-32:session-40:i10; family: scripted_repeat_compare -->
 🎙 **It can’t be full.**
 

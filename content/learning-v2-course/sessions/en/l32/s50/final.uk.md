@@ -82,7 +82,7 @@ The train is quiet, so it might ___ empty. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-50:i07; family: scripted_repeat_compare -->
 🎙 **The ticket I bought is expensive.**
 
-**8 · Квиток, який я купив, дорогий. Уточніть предмет без зайвого займенника.**
+**8 · Квиток, який я купив, дорогий. Предмет уже названо — не повторюйте його.**
 <!-- interaction_id: en:lesson-32:session-50:i08; family: context_gap_grammar -->
 The ticket I ___ is expensive. → **bought** · bought it · buying
 - bought it — *Предмет уже названо: it не потрібне.*
@@ -92,7 +92,7 @@ The ticket I ___ is expensive. → **bought** · bought it · buying
 <!-- interaction_id: en:lesson-32:session-50:i09; family: phrase_builder -->
 Плитки: `empty` `be` `might` `it` `so` `quiet,` `is` `train` `The` → **The train is quiet, so it might be empty.**
 
-**10 · Анна думає, що сумка легка, але ваги показують двадцять кілограмів. Скажіть висновок, замінивши The bag займенником It.**
+**10 · Анна думає, що сумка легка, але ваги показують двадцять кілограмів. Скажіть висновок, замінивши The bag словом It.**
 <!-- interaction_id: en:lesson-32:session-50:i10; family: scripted_repeat_compare -->
 🎙 **It can’t be light.**
 

@@ -82,7 +82,7 @@ The bread is warm, so it might ___ fresh. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-39:i07; family: scripted_repeat_compare -->
 🎙 **The knife I bought is sharp.**
 
-**8 · Ніж, який я купив, гострий. Уточніть предмет без зайвого займенника.**
+**8 · Ніж, який я купив, гострий. Предмет уже названо — не повторюйте його.**
 <!-- interaction_id: en:lesson-32:session-39:i08; family: context_gap_grammar -->
 The knife I ___ is sharp. → **bought** · bought it · buying
 - bought it — *Предмет уже названо: it не потрібне.*
@@ -92,7 +92,7 @@ The knife I ___ is sharp. → **bought** · bought it · buying
 <!-- interaction_id: en:lesson-32:session-39:i09; family: phrase_builder -->
 Плитки: `fresh` `be` `might` `it` `so` `warm,` `is` `bread` `The` → **The bread is warm, so it might be fresh.**
 
-**10 · Анна каже, що пакет порожній, але крізь прозору стінку ви бачите хліб. Скажіть висновок, замінивши The bag займенником It.**
+**10 · Анна каже, що пакет порожній, але крізь прозору стінку ви бачите хліб. Скажіть висновок, замінивши The bag словом It.**
 <!-- interaction_id: en:lesson-32:session-39:i10; family: scripted_repeat_compare -->
 🎙 **It can’t be empty.**
 

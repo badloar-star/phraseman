@@ -82,7 +82,7 @@ The bread can't ___ fresh. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-28:i07; family: scripted_repeat_compare -->
 🎙 **The bowl I washed is clean.**
 
-**8 · Миска, яку я помив, чиста. Уточніть предмет без зайвого займенника.**
+**8 · Миска, яку я помив, чиста. Предмет уже названо — не повторюйте його.**
 <!-- interaction_id: en:lesson-32:session-28:i08; family: context_gap_grammar -->
 The bowl I ___ is clean. → **washed** · washed it · washing
 - washed it — *Предмет уже названо: it не потрібне.*
@@ -92,7 +92,7 @@ The bowl I ___ is clean. → **washed** · washed it · washing
 <!-- interaction_id: en:lesson-32:session-28:i09; family: phrase_builder -->
 Плитки: `fresh` `be` `can't` `bread` `The` → **The bread can't be fresh.**
 
-**10 · Анна щойно зняла каструлю з плити, і над нею підіймається пара. Скажіть висновок іще раз, замінивши The soup займенником It.**
+**10 · Анна щойно зняла каструлю з плити, і над нею підіймається пара. Скажіть висновок іще раз, замінивши The soup словом It.**
 <!-- interaction_id: en:lesson-32:session-28:i10; family: scripted_repeat_compare -->
 🎙 **It must be hot.**
 
@@ -145,7 +145,7 @@ The milk could ___ cold. → **be** · is · to be
 - is — *Після could тут використовуємо be.*
 - to be — *Після could не ставимо to.*
 
-**21 · Анна вважає хліб сьогоднішнім, але ви пам’ятаєте, що купили саме цю хлібину тиждень тому. Повторіть висновок, замінивши The bread займенником It.**
+**21 · Анна вважає хліб сьогоднішнім, але ви пам’ятаєте, що купили саме цю хлібину тиждень тому. Повторіть висновок, замінивши The bread словом It.**
 <!-- interaction_id: en:lesson-32:session-28:i21; family: scripted_repeat_compare -->
 🎙 **It can't be fresh.**
 

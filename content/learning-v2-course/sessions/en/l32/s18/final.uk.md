@@ -82,7 +82,7 @@ The door could ___ locked. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-18:i07; family: scripted_repeat_compare -->
 🎙 **The note I wrote is short.**
 
-**8 · Записка, яку я написав, коротка. Уточніть предмет без зайвого займенника.**
+**8 · Записка, яку я написав, коротка. Предмет уже названо — не повторюйте його.**
 <!-- interaction_id: en:lesson-32:session-18:i08; family: context_gap_grammar -->
 The note I ___ is short. → **wrote** · wrote it · writing
 - wrote it — *Предмет уже названо: it не потрібне.*
@@ -92,7 +92,7 @@ The note I ___ is short. → **wrote** · wrote it · writing
 <!-- interaction_id: en:lesson-32:session-18:i09; family: phrase_builder -->
 Плитки: `locked` `be` `could` `door` `The` → **The door could be locked.**
 
-**10 · Із прочиненого вікна кімнати йде тепле повітря, хоча надворі прохолодно. Скажіть висновок іще раз, замінивши The room займенником It.**
+**10 · Із прочиненого вікна кімнати йде тепле повітря, хоча надворі прохолодно. Скажіть висновок іще раз, замінивши The room словом It.**
 <!-- interaction_id: en:lesson-32:session-18:i10; family: scripted_repeat_compare -->
 🎙 **It must be warm.**
 

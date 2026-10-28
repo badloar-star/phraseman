@@ -60,7 +60,7 @@
 - The soup must be cold. — *У записі звучить The soup must be hot.*
 - The soup must be ready. — *У записі звучить The soup must be hot.*
 
-**3 · Над супом підіймається пара. Ви робите висновок, що він гарячий. Виберіть зв’язку.**
+**3 · Над супом підіймається пара. Ви робите висновок, що він гарячий. Виберіть форму be.**
 <!-- interaction_id: en:lesson-32:session-03:i03; family: context_gap_grammar -->
 The soup must ___ hot. → **be** · is · being
 - is — *Після must тут потрібна форма be.*
@@ -82,7 +82,7 @@ The soup must ___ hot. → **be** · is · being
 <!-- interaction_id: en:lesson-32:session-03:i07; family: scripted_repeat_compare -->
 🎙 **The spoon I washed is clean.**
 
-**8 · Уточніть суп, який уже приготувала Анна, не повторюючи soup займенником.**
+**8 · Уточніть суп, який уже приготувала Анна, не повторюючи soup словом it.**
 <!-- interaction_id: en:lesson-32:session-03:i08; family: context_gap_grammar -->
 The soup Anna ___ is ready. → **made** · made it · make
 - made it — *Soup уже названо: it після made не потрібне.*
@@ -139,7 +139,7 @@ The bowl was hot, ___ I put it down. → **so** · because · although
 <!-- interaction_id: en:lesson-32:session-03:i19; family: listen_build_dictation -->
 🔊 *The soup must be hot.* Плитки: `hot` `be` `must` `soup` `The` → **The soup must be hot.**
 
-**20 · Бен не їв із ранку. Ви вже використовуєте must для висновку про голод. Виберіть зв’язку.**
+**20 · Бен не їв із ранку. Ви вже використовуєте must для висновку про голод. Виберіть форму be.**
 <!-- interaction_id: en:lesson-32:session-03:i20; family: context_gap_grammar -->
 He must ___ hungry. → **be** · is · are
 - is — *Після must тут потрібна форма be.*

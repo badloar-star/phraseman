@@ -82,7 +82,7 @@ The chair moves, so it might ___ broken. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-37:i07; family: scripted_repeat_compare -->
 🎙 **The glue I bought is strong.**
 
-**8 · Клей, который я купил, прочный. Уточните предмет без лишнего местоимения.**
+**8 · Клей, который я купил, прочный. Предмет уже назван — не повторяйте его.**
 <!-- interaction_id: en:lesson-32:session-37:i08; family: context_gap_grammar -->
 The glue I ___ is strong. → **bought** · bought it · buying
 - bought it — *Предмет уже назван: it не нужно.*
@@ -92,7 +92,7 @@ The glue I ___ is strong. → **bought** · bought it · buying
 <!-- interaction_id: en:lesson-32:session-37:i09; family: phrase_builder -->
 Плитки: `broken` `be` `might` `it` `so` `moves,` `chair` `The` → **The chair moves, so it might be broken.**
 
-**10 · Вы приложили линейку к ножке и видите, что она сильно изогнута. Скажите вывод, заменив The leg местоимением It.**
+**10 · Вы приложили линейку к ножке и видите, что она сильно изогнута. Скажите вывод, заменив The leg словом It.**
 <!-- interaction_id: en:lesson-32:session-37:i10; family: scripted_repeat_compare -->
 🎙 **It can’t be straight.**
 

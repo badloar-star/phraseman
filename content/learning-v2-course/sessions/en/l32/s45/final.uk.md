@@ -82,7 +82,7 @@ The milk smells strange, so it might ___ bad. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-45:i07; family: scripted_repeat_compare -->
 🎙 **The apple I chose is green.**
 
-**8 · Яблуко, яке я вибрав, зелене. Уточніть предмет без зайвого займенника.**
+**8 · Яблуко, яке я вибрав, зелене. Предмет уже названо — не повторюйте його.**
 <!-- interaction_id: en:lesson-32:session-45:i08; family: context_gap_grammar -->
 The apple I ___ is green. → **chose** · chose it · choosing
 - chose it — *Предмет уже названо: it не потрібне.*
@@ -92,7 +92,7 @@ The apple I ___ is green. → **chose** · chose it · choosing
 <!-- interaction_id: en:lesson-32:session-45:i09; family: phrase_builder -->
 Плитки: `bad` `be` `might` `it` `so` `strange,` `smells` `milk` `The` → **The milk smells strange, so it might be bad.**
 
-**10 · Анна вважає, що коробка порожня, але крізь відкритий верх видно яйця. Скажіть висновок, замінивши The box займенником It.**
+**10 · Анна вважає, що коробка порожня, але крізь відкритий верх видно яйця. Скажіть висновок, замінивши The box словом It.**
 <!-- interaction_id: en:lesson-32:session-45:i10; family: scripted_repeat_compare -->
 🎙 **It can’t be empty.**
 

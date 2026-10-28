@@ -82,7 +82,7 @@ The dog must ___ thirsty. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-08:i07; family: scripted_repeat_compare -->
 🎙 **The dog must need water.**
 
-**8 · Уточніть помиту вами миску, не повторюючи її займенником.**
+**8 · Уточніть помиту вами миску, не повторюючи її словом it.**
 <!-- interaction_id: en:lesson-32:session-08:i08; family: context_gap_grammar -->
 The bowl I ___ is clean. → **washed** · washed it · washing
 - washed it — *Bowl уже названо, it не потрібне.*

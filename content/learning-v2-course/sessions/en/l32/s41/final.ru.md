@@ -82,7 +82,7 @@ The bus is slow, so it might ___ late. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-41:i07; family: scripted_repeat_compare -->
 🎙 **The ticket I bought is cheap.**
 
-**8 · Билет, который я купил, дешёвый. Уточните предмет без лишнего местоимения.**
+**8 · Билет, который я купил, дешёвый. Предмет уже назван — не повторяйте его.**
 <!-- interaction_id: en:lesson-32:session-41:i08; family: context_gap_grammar -->
 The ticket I ___ is cheap. → **bought** · bought it · buying
 - bought it — *Предмет уже назван: it не нужно.*
@@ -92,7 +92,7 @@ The ticket I ___ is cheap. → **bought** · bought it · buying
 <!-- interaction_id: en:lesson-32:session-41:i09; family: phrase_builder -->
 Плитки: `late` `be` `might` `it` `so` `slow,` `is` `bus` `The` → **The bus is slow, so it might be late.**
 
-**10 · Анна думает, что место у окна свободно, но вы видите сидящего там пассажира. Скажите вывод, заменив The seat местоимением It.**
+**10 · Анна думает, что место у окна свободно, но вы видите сидящего там пассажира. Скажите вывод, заменив The seat словом It.**
 <!-- interaction_id: en:lesson-32:session-41:i10; family: scripted_repeat_compare -->
 🎙 **It can’t be empty.**
 

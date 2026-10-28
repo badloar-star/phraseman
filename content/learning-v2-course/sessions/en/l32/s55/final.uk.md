@@ -82,7 +82,7 @@ The bag is light, so it might ___ empty. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-55:i07; family: scripted_repeat_compare -->
 🎙 **The book I read is short.**
 
-**8 · Книжка, яку я прочитав, коротка. Уточніть предмет без зайвого займенника.**
+**8 · Книжка, яку я прочитав, коротка. Предмет уже названо — не повторюйте його.**
 <!-- interaction_id: en:lesson-32:session-55:i08; family: context_gap_grammar -->
 The book I ___ is short. → **read** · read it · reading
 - read it — *Предмет уже названо: it не потрібне.*
@@ -92,7 +92,7 @@ The book I ___ is short. → **read** · read it · reading
 <!-- interaction_id: en:lesson-32:session-55:i09; family: phrase_builder -->
 Плитки: `empty` `be` `might` `it` `so` `light,` `is` `bag` `The` → **The bag is light, so it might be empty.**
 
-**10 · Із сорочки крапає вода. Анна вважала, що вона висохла після дощу. Скажіть висновок, замінивши The shirt займенником It.**
+**10 · Із сорочки крапає вода. Анна вважала, що вона висохла після дощу. Скажіть висновок, замінивши The shirt словом It.**
 <!-- interaction_id: en:lesson-32:session-55:i10; family: scripted_repeat_compare -->
 🎙 **It can’t be dry.**
 

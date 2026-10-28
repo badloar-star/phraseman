@@ -82,7 +82,7 @@ The room can't ___ empty. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-27:i07; family: scripted_repeat_compare -->
 🎙 **The towel I used is wet.**
 
-**8 · Полотенце, которым я воспользовался, мокрое. Уточните предмет без лишнего местоимения.**
+**8 · Полотенце, которым я воспользовался, мокрое. Предмет уже назван — не повторяйте его.**
 <!-- interaction_id: en:lesson-32:session-27:i08; family: context_gap_grammar -->
 The towel I ___ is wet. → **used** · used it · using
 - used it — *Предмет уже назван: it не нужно.*
@@ -92,7 +92,7 @@ The towel I ___ is wet. → **used** · used it · using
 <!-- interaction_id: en:lesson-32:session-27:i09; family: phrase_builder -->
 Плитки: `empty` `be` `can't` `room` `The` → **The room can't be empty.**
 
-**10 · Анна долго шла под сильным дождём без зонта. Вы делаете вывод о её пальто. Скажите вывод ещё раз, заменив The coat местоимением It.**
+**10 · Анна долго шла под сильным дождём без зонта. Вы делаете вывод о её пальто. Скажите вывод ещё раз, заменив The coat словом It.**
 <!-- interaction_id: en:lesson-32:session-27:i10; family: scripted_repeat_compare -->
 🎙 **It must be wet.**
 
@@ -145,7 +145,7 @@ The window could ___ open. → **be** · is · to be
 - is — *После could здесь используем be.*
 - to be — *После could не ставим to.*
 
-**21 · Через стекло вы видите внутри людей. Анна думает, что в комнате никого нет. Повторите вывод, заменив The room местоимением It.**
+**21 · Через стекло вы видите внутри людей. Анна думает, что в комнате никого нет. Повторите вывод, заменив The room словом It.**
 <!-- interaction_id: en:lesson-32:session-27:i21; family: scripted_repeat_compare -->
 🎙 **It can't be empty.**
 

@@ -82,7 +82,7 @@ The grass is long, so it might ___ wet. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-43:i07; family: scripted_repeat_compare -->
 🎙 **The ball I found is dirty.**
 
-**8 · М’яч, який я знайшов, брудний. Уточніть предмет без зайвого займенника.**
+**8 · М’яч, який я знайшов, брудний. Предмет уже названо — не повторюйте його.**
 <!-- interaction_id: en:lesson-32:session-43:i08; family: context_gap_grammar -->
 The ball I ___ is dirty. → **found** · found it · finding
 - found it — *Предмет уже названо: it не потрібне.*
@@ -92,7 +92,7 @@ The ball I ___ is dirty. → **found** · found it · finding
 <!-- interaction_id: en:lesson-32:session-43:i09; family: phrase_builder -->
 Плитки: `wet` `be` `might` `it` `so` `long,` `is` `grass` `The` → **The grass is long, so it might be wet.**
 
-**10 · Ви бачите, що хвіртку замкнено. Анна думала, що крізь неї покотився м’яч. Скажіть висновок, замінивши The gate займенником It.**
+**10 · Ви бачите, що хвіртку замкнено. Анна думала, що крізь неї покотився м’яч. Скажіть висновок, замінивши The gate словом It.**
 <!-- interaction_id: en:lesson-32:session-43:i10; family: scripted_repeat_compare -->
 🎙 **It can’t be open.**
 

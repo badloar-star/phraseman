@@ -39,7 +39,9 @@ const MODAL_LIKE = /(Modal|Toast|Sheet|Banner|Celebration|Prompt)\w*\.tsx$/;
 // зачем (закон владельца 22.10 «назад/✕ в одном месте», Ревизор 22.10): шапка шторки SectionSheetHeader больше не рисует свой ✕ на
 // PressableHybrid — ✕ это общий ScreenCloseButton, а он сам нажимается через PressableHybrid (BackButton). Вход по содержимому тот же,
 // что был у прежнего импорта гибрида в этой шапке; сама шторка (её движение) — у владельца окна.
-const HYBRID_ENTRY = /motionVariant|HybridAlertShell|HybridSheetShell|FullscreenHybridEntrance|useRewardImpactHybrid|MotionModal|KIT_MOTION|KitSheetModal|FriendsAddSheetShell|<ScreenCloseButton\b/;
+// зачем (4 · Темы 28.10, по просьбе координатора; красный контракт на PaywallMSheet): PaywallSwipeSheet — общая шторка пейвола на KIT_MOTION и Reanimated (вход шторки, жест вниз, возврат пружиной —
+// как HybridSheetShell / KitSheetModal); PaywallMSheet целиком лежит в ней и своих окон/анимаций не заводит. Вход по содержимому, а не исключение по имени файла.
+const HYBRID_ENTRY = /motionVariant|HybridAlertShell|HybridSheetShell|FullscreenHybridEntrance|useRewardImpactHybrid|MotionModal|KIT_MOTION|KitSheetModal|FriendsAddSheetShell|PaywallSwipeSheet|<ScreenCloseButton\b/;
 
 function hasHybridEntry(file: string): boolean {
   return /Hybrid\w*\.tsx$/.test(path.basename(file))
@@ -149,6 +151,7 @@ const NOT_A_SURFACE: Readonly<Record<string, string>> = {
   'components/profile-card/ProfileCardBioSheet.tsx': 'содержимое шторки «О себе» визитки: без Modal и анимаций, показывает родитель визитки',
   'components/profile-card/ProfileCardProSheet.tsx': 'содержимое шторки Plus визитки: без Modal и анимаций, показывает родитель визитки',
   'components/paywall/PaywallTrialReminderPrompt.tsx': 'встроенный блок экрана оплаты (напоминание о пробном периоде), не окно и не шторка',
+  'components/home/HomeSheetTextGuard.tsx': 'предохранитель-обёртка (error boundary) вокруг содержимого шторок Главной: без Modal и анимаций, только журнал [TEXT-OUTSIDE]',
   'components/ResponsiveModalScrollView.tsx': 'обёртка прокрутки содержимого окон, сама не окно и не двигается',
 };
 

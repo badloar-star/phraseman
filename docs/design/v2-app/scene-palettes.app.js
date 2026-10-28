@@ -166,7 +166,14 @@ const modeCls = () => (MODE === 'now' ? 'sp-now' : MODE === 'draw' ? 'sp-new sp-
 /* real — ключ экрана для реального кадра Сверки (assets/real/scene_{ключ}_{тема}_{оформление}.png): есть файл — он и есть «сейчас».
    Список имеющихся кадров — window.__REAL (сборщик пишет его из папки assets/real при пересборке), чтобы страница не запрашивала несуществующие файлы */
 const REAL = new Set(window.__REAL || []);
-const realImg = (real, id, ap) => (real && REAL.has(`scene_${real}_${id}_${ap}.png`) ? `<img class="sp-real" src="assets/real/scene_${real}_${id}_${ap}.png" alt="" onload="var l=this.closest('.col');l=l&&l.querySelector('.lbl');if(l)l.dataset.real='1'">` : '');
+/* область сцены на реальном кадре (доля высоты) и дыра маски вокруг героя — чтобы перекраска не тонировала картинку героя
+   (владелец 28.10: «сейчас» — реальный кадр, новая палитра — перекраска сцены НА кадре). Пик — башня целиком, герой не вырезается */
+const REAL_RECT = { home: { h: 46.4, hole: 'radial-gradient(circle at 78% 20%, transparent 11%, #000 15%)' }, season: { h: 46.4, hole: 'radial-gradient(circle at 78% 20%, transparent 11%, #000 15%)' }, dialogs: { h: 46.4, hole: 'radial-gradient(circle at 78% 20%, transparent 11%, #000 15%)' }, peak: { h: 81, hole: 'none' } };
+const realImg = (real, id, ap) => {
+  if (!real || !REAL.has(`scene_${real}_${id}_${ap}.png`)) return '';
+  const r = REAL_RECT[real] || REAL_RECT.home; const p = scenePal(id, ap);
+  return `<img class="sp-real" src="assets/real/scene_${real}_${id}_${ap}.png" alt="" onload="var l=this.closest('.col');l=l&&l.querySelector('.lbl');if(l)l.dataset.real='1'"><div class="sp-real-tint" style="height:${r.h}%;background:${p.bg};-webkit-mask:${r.hole};mask:${r.hole}"></div>`;
+};
 const shell = (id, ap, body, fixed, cls, time = '18:10', real = '') => T(phone(body, { time, inStyle: 'padding:0', fixed }), 'onart')
   .replace(/class="ph th-(ink|marine)([^"]*)"/, (m, th, rest) => `class="ph th-${th}${rest} hs-tok${ap === 'dark' ? ' dk' : ' lt'} ${cls} ${modeCls()}" data-ph="${cls}" style="${uiCss(id, ap)}"`)
   .replace('<div class="hi"></div></div>', `<div class="hi"></div>${realImg(real, id, ap)}</div>`);

@@ -35,8 +35,11 @@
 @keyframes sp-fog { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(14px); } }
 /* реальный кадр эмулятора (Сверка, assets/real/scene_{экран}_{тема}_{оформление}.png): если файл есть — он и есть «сейчас», поверх всего телефона */
 .ph .sp-real { position: absolute; inset: 0; z-index: 90; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .5s var(--sp-out); pointer-events: none; }
-.ph.sp-now .sp-real { opacity: 1; }
-.col > .lbl[data-real]::after { content: ' · сейчас — кадр эмулятора'; color: #8E8E96; }
+.ph.sp-now .sp-real, .ph.sp-new:not(.sp-drawn) .sp-real { opacity: 1; }
+/* перекраска сцены на реальном кадре: слой новой палитры смешивается по цвету (светлота кадра — текст, стекло, тени — остаётся), герой вырезан маской */
+.ph .sp-real-tint { position: absolute; left: 0; right: 0; top: 0; z-index: 91; mix-blend-mode: color; opacity: 0; transition: opacity .5s var(--sp-out); pointer-events: none; }
+.ph.sp-new:not(.sp-drawn) .sp-real-tint { opacity: .92; }
+.col > .lbl[data-real]::after { content: ' · реальный кадр'; color: #8E8E96; }
 /* «сейчас» у обложки Сезона и у Диалогов — свои градиенты приложения; у Главной/Пика/Наборов — токены сцены движка */
 .ph.hs-tok .a-stage.sp-season-now { background: var(--sp-season-now) !important; }
 .ph.hs-tok .a-stage.sp-dlg-now { background: var(--sp-dlg-now) !important; }

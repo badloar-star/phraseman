@@ -83,10 +83,10 @@ I ___ for my picky brother. → **am going to cook** · am cooking · cook
 - She is finding a reliable builder. — *У записі звучить She is going to find a reliable builder.*
 - She are going to find a reliable builder. — *У записі звучить She is going to find a reliable builder.*
 
-**8 · Ваша сестра вирішила знайти будівельника, який дотримується обіцянок і строків. Передайте намір через going to.**
+**8 · Ваша сестра вирішила знайти будівельника, який дотримується обіцянок і строків. Домовленості поки немає. Передайте намір через going to.**
 <!-- interaction_id: en:lesson-15:session-41:i06; family: context_gap_grammar -->
 She ___ a reliable builder. → **is going to find** · is finding · find
-- is finding — *Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to.*
+- is finding — *Is finding — так кажуть про вже узгоджений план. Тут поки лише рішення: is going to find.*
 - find — *Потрібна повна форма: is going to find.*
 
 **9 · Картка слова — sociable**
@@ -105,8 +105,8 @@ She ___ a reliable builder. → **is going to find** · is finding · find
 
 **12 · Ви з чоловіком узгодили зустріч із сусідом, який любить спілкування, на завтра. Передайте домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-41:i09; family: context_gap_grammar -->
-We ___ our sociable neighbour tomorrow. → **are meeting** · are going to meet · meet
-- are going to meet — *Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous.*
+We ___ our sociable neighbour tomorrow. → **are meeting** · are meet · meet
+- are meet — *Після are потрібна форма з -ing: are meeting.*
 - meet — *Потрібна повна форма: are meeting.*
 
 **13 · Картка слова — sensitive**
@@ -125,8 +125,8 @@ We ___ our sociable neighbour tomorrow. → **are meeting** · are going to meet
 
 **16 · Ваші друзі домовилися на суботу про зустріч із другом, який глибоко переживає все, що відбувається. Передайте домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-41:i12; family: context_gap_grammar -->
-They ___ their sensitive friend on Saturday. → **are meeting** · are going to meet · meet
-- are going to meet — *Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous.*
+They ___ their sensitive friend on Saturday. → **are meeting** · are meet · meet
+- are meet — *Після are потрібна форма з -ing: are meeting.*
 - meet — *Потрібна повна форма: are meeting.*
 
 **17 · Поєднайте слова й вирази з перекладом**

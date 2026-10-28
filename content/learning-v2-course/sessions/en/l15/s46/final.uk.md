@@ -63,10 +63,10 @@
 - I am talking to my reckless brother. — *У записі звучить I am going to talk to my reckless brother.*
 - I is going to talk to my reckless brother. — *У записі звучить I am going to talk to my reckless brother.*
 
-**4 · Ви вирішили поговорити з братом, який часто ризикує, не думаючи про наслідки. Передайте намір через going to.**
+**4 · Ви вирішили поговорити з братом, який часто ризикує, не думаючи про наслідки. Домовленості поки немає. Передайте намір через going to.**
 <!-- interaction_id: en:lesson-15:session-46:i03; family: context_gap_grammar -->
 I ___ to my reckless brother. → **am going to talk** · am talking · talk
-- am talking — *Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to.*
+- am talking — *Am talking — так кажуть про вже узгоджений план. Тут поки лише рішення: am going to talk.*
 - talk — *Потрібна повна форма: am going to talk.*
 
 **5 · Картка слова — inflexible**
@@ -83,10 +83,10 @@ I ___ to my reckless brother. → **am going to talk** · am talking · talk
 - She is speaking to her inflexible manager. — *У записі звучить She is going to speak to her inflexible manager.*
 - She are going to speak to her inflexible manager. — *У записі звучить She is going to speak to her inflexible manager.*
 
-**8 · Ваша сестра вирішила попросити змінити розклад у керівника, який не любить змінювати рішення. Передайте намір через going to.**
+**8 · Ваша сестра вирішила попросити змінити розклад у керівника, який не любить змінювати рішення. Домовленості поки немає. Передайте намір через going to.**
 <!-- interaction_id: en:lesson-15:session-46:i06; family: context_gap_grammar -->
 She ___ to her inflexible manager. → **is going to speak** · is speaking · speak
-- is speaking — *Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to.*
+- is speaking — *Is speaking — так кажуть про вже узгоджений план. Тут поки лише рішення: is going to speak.*
 - speak — *Потрібна повна форма: is going to speak.*
 
 **9 · Картка слова — narrow-minded**
@@ -105,8 +105,8 @@ She ___ to her inflexible manager. → **is going to speak** · is speaking · s
 
 **12 · Ви домовилися про завтрашню зустріч із двоюрідним братом; він не любить обговорювати чужі погляди. Передайте домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-46:i09; family: context_gap_grammar -->
-We ___ our narrow-minded cousin tomorrow. → **are meeting** · are going to meet · meet
-- are going to meet — *Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous.*
+We ___ our narrow-minded cousin tomorrow. → **are meeting** · are meet · meet
+- are meet — *Після are потрібна форма з -ing: are meeting.*
 - meet — *Потрібна повна форма: are meeting.*
 
 **13 · Картка слова — ungrateful**
@@ -125,8 +125,8 @@ We ___ our narrow-minded cousin tomorrow. → **are meeting** · are going to me
 
 **16 · Ваші друзі узгодили зустріч на суботу з другом, який не цінує їхньої допомоги. Передайте домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-46:i12; family: context_gap_grammar -->
-They ___ their ungrateful friend on Saturday. → **are meeting** · are going to meet · meet
-- are going to meet — *Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous.*
+They ___ their ungrateful friend on Saturday. → **are meeting** · are meet · meet
+- are meet — *Після are потрібна форма з -ing: are meeting.*
 - meet — *Потрібна повна форма: are meeting.*
 
 **17 · Поєднайте слова й вирази з перекладом**

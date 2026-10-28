@@ -105,8 +105,8 @@ She ___ a party in the next leap year. → **is going to have** · is having · 
 
 **12 · Вы купили билеты на ближайшие каникулы в середине учебного периода. Передайте договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-54:i09; family: context_gap_grammar -->
-We ___ at half-term. → **are travelling** · are going to travel · travel
-- are going to travel — *Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.*
+We ___ at half-term. → **are travelling** · are travel · travel
+- are travel — *После are нужна форма с -ing: are travelling.*
 - travel — *Нужна полная форма: are travelling.*
 
 **13 · Карточка слова — term time**
@@ -125,8 +125,8 @@ We ___ at half-term. → **are travelling** · are going to travel · travel
 
 **16 · Ваши дети записаны на школьную экскурсию в музей; она пройдёт во время учебных занятий. Передайте договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-54:i12; family: context_gap_grammar -->
-They ___ the museum in term time. → **are visiting** · are going to visit · visit
-- are going to visit — *Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.*
+They ___ the museum in term time. → **are visiting** · are visit · visit
+- are visit — *После are нужна форма с -ing: are visiting.*
 - visit — *Нужна полная форма: are visiting.*
 
 **17 · Соедините слова и выражения с переводом**

@@ -63,10 +63,10 @@
 - I am visiting my modest friend. — *В записи звучит I am going to visit my modest friend.*
 - I is going to visit my modest friend. — *В записи звучит I am going to visit my modest friend.*
 
-**4 · Ваш друг выиграл конкурс, но не хвастается; вы решили его навестить. Передайте намерение через going to.**
+**4 · Ваш друг выиграл конкурс, но не хвастается; вы решили его навестить. Договорённости пока нет. Передайте намерение через going to.**
 <!-- interaction_id: en:lesson-15:session-43:i03; family: context_gap_grammar -->
 I ___ my modest friend. → **am going to visit** · am visiting · visit
-- am visiting — *Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.*
+- am visiting — *Am visiting — так говорят об уже согласованном плане. Здесь пока только решение: am going to visit.*
 - visit — *Нужна полная форма: am going to visit.*
 
 **5 · Карточка слова — ambitious**
@@ -83,10 +83,10 @@ I ___ my modest friend. → **am going to visit** · am visiting · visit
 - She is helping her ambitious son. — *В записи звучит She is going to help her ambitious son.*
 - She are going to help her ambitious son. — *В записи звучит She is going to help her ambitious son.*
 
-**8 · Ваша сестра решила помочь сыну, который ставит перед собой большие цели. Передайте намерение через going to.**
+**8 · Ваша сестра решила помочь сыну, который ставит перед собой большие цели. Договорённости пока нет. Передайте намерение через going to.**
 <!-- interaction_id: en:lesson-15:session-43:i06; family: context_gap_grammar -->
 She ___ her ambitious son. → **is going to help** · is helping · help
-- is helping — *Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.*
+- is helping — *Is helping — так говорят об уже согласованном плане. Здесь пока только решение: is going to help.*
 - help — *Нужна полная форма: is going to help.*
 
 **9 · Карточка слова — easy-going**
@@ -105,8 +105,8 @@ She ___ her ambitious son. → **is going to help** · is helping · help
 
 **12 · Билеты на субботу куплены; с вами едет друг, который спокойно относится к мелочам. Передайте договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-43:i09; family: context_gap_grammar -->
-We ___ with our easy-going friend on Saturday. → **are travelling** · are going to travel · travel
-- are going to travel — *Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.*
+We ___ with our easy-going friend on Saturday. → **are travelling** · are travel · travel
+- are travel — *После are нужна форма с -ing: are travelling.*
 - travel — *Нужна полная форма: are travelling.*
 
 **13 · Карточка слова — bossy**
@@ -125,8 +125,8 @@ We ___ with our easy-going friend on Saturday. → **are travelling** · are goi
 
 **16 · Ваши друзья согласовали завтрашнюю встречу с двоюродным братом, который часто всеми командует. Передайте договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-43:i12; family: context_gap_grammar -->
-They ___ their bossy cousin tomorrow. → **are meeting** · are going to meet · meet
-- are going to meet — *Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.*
+They ___ their bossy cousin tomorrow. → **are meeting** · are meet · meet
+- are meet — *После are нужна форма с -ing: are meeting.*
 - meet — *Нужна полная форма: are meeting.*
 
 **17 · Соедините слова и выражения с переводом**

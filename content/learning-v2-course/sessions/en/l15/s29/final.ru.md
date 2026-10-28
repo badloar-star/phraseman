@@ -63,10 +63,10 @@
 - I am buying washer fluid. — *В записи звучит I am going to buy washer fluid.*
 - I is going to buy washer fluid. — *В записи звучит I am going to buy washer fluid.*
 
-**4 · Жидкость для омывателя заканчивается; вы решили купить новую. Передайте намерение через going to.**
+**4 · Жидкость для омывателя заканчивается; вы решили купить новую. Договорённости пока нет. Передайте намерение через going to.**
 <!-- interaction_id: en:lesson-15:session-29:i03; family: context_gap_grammar -->
 I ___ washer fluid. → **am going to buy** · am buying · buy
-- am buying — *Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.*
+- am buying — *Am buying — так говорят об уже согласованном плане. Здесь пока только решение: am going to buy.*
 - buy — *Нужна полная форма: am going to buy.*
 
 **5 · Карточка слова — tyre pressure**
@@ -83,10 +83,10 @@ I ___ washer fluid. → **am going to buy** · am buying · buy
 - She is checking the tyre pressure. — *В записи звучит She is going to check the tyre pressure.*
 - She are going to check the tyre pressure. — *В записи звучит She is going to check the tyre pressure.*
 
-**8 · Ваша сестра решила проверить давление перед дальней поездкой. Передайте намерение через going to.**
+**8 · Ваша сестра решила проверить давление перед дальней поездкой. Договорённости пока нет. Передайте намерение через going to.**
 <!-- interaction_id: en:lesson-15:session-29:i06; family: context_gap_grammar -->
 She ___ the tyre pressure. → **is going to check** · is checking · check
-- is checking — *Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.*
+- is checking — *Is checking — так говорят об уже согласованном плане. Здесь пока только решение: is going to check.*
 - check — *Нужна полная форма: is going to check.*
 
 **9 · Карточка слова — hubcap**
@@ -105,8 +105,8 @@ She ___ the tyre pressure. → **is going to check** · is checking · check
 
 **12 · Магазин подтвердил поступление заказанного колпака и договорился выдать его вам завтра. Передайте договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-29:i09; family: context_gap_grammar -->
-We ___ the hubcap tomorrow. → **are collecting** · are going to collect · collect
-- are going to collect — *Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.*
+We ___ the hubcap tomorrow. → **are collecting** · are collect · collect
+- are collect — *После are нужна форма с -ing: are collecting.*
 - collect — *Нужна полная форма: are collecting.*
 
 **13 · Карточка слова — jump leads**
@@ -125,8 +125,8 @@ We ___ the hubcap tomorrow. → **are collecting** · are going to collect · co
 
 **16 · Друзья согласились привезти вам провода завтра в девять. Передайте договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-29:i12; family: context_gap_grammar -->
-They ___ jump leads at nine tomorrow. → **are bringing** · are going to bring · bring
-- are going to bring — *Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.*
+They ___ jump leads at nine tomorrow. → **are bringing** · are bring · bring
+- are bring — *После are нужна форма с -ing: are bringing.*
 - bring — *Нужна полная форма: are bringing.*
 
 **17 · Соедините слова и выражения с переводом**

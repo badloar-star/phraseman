@@ -63,10 +63,10 @@
 - I am buying turmeric. — *У записі звучить I am going to buy turmeric.*
 - I is going to buy turmeric. — *У записі звучить I am going to buy turmeric.*
 
-**4 · Ви вирішили купити куркуму для нової страви. Передайте намір через going to.**
+**4 · Ви вирішили купити куркуму для нової страви. Домовленості поки немає. Передайте намір через going to.**
 <!-- interaction_id: en:lesson-15:session-38:i03; family: context_gap_grammar -->
 I ___ turmeric. → **am going to buy** · am buying · buy
-- am buying — *Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to.*
+- am buying — *Am buying — так кажуть про вже узгоджений план. Тут поки лише рішення: am going to buy.*
 - buy — *Потрібна повна форма: am going to buy.*
 
 **5 · Картка слова — cardamom**
@@ -83,10 +83,10 @@ I ___ turmeric. → **am going to buy** · am buying · buy
 - She is trying cardamom. — *У записі звучить She is going to try cardamom.*
 - She are going to try cardamom. — *У записі звучить She is going to try cardamom.*
 
-**8 · Ваша подруга вирішила спробувати кардамон у випічці. Передайте намір через going to.**
+**8 · Ваша подруга вирішила спробувати кардамон у випічці. Домовленості поки немає. Передайте намір через going to.**
 <!-- interaction_id: en:lesson-15:session-38:i06; family: context_gap_grammar -->
 She ___ cardamom. → **is going to try** · is trying · try
-- is trying — *Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to.*
+- is trying — *Is trying — так кажуть про вже узгоджений план. Тут поки лише рішення: is going to try.*
 - try — *Потрібна повна форма: is going to try.*
 
 **9 · Картка слова — cloves**
@@ -105,8 +105,8 @@ She ___ cardamom. → **is going to try** · is trying · try
 
 **12 · Магазин відклав для вас пакунок пряної гвоздики й підтвердив отримання на завтра. Передайте домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-38:i09; family: context_gap_grammar -->
-We ___ the cloves tomorrow. → **are collecting** · are going to collect · collect
-- are going to collect — *Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous.*
+We ___ the cloves tomorrow. → **are collecting** · are collect · collect
+- are collect — *Після are потрібна форма з -ing: are collecting.*
 - collect — *Потрібна повна форма: are collecting.*
 
 **13 · Картка слова — nutmeg**
@@ -125,8 +125,8 @@ We ___ the cloves tomorrow. → **are collecting** · are going to collect · co
 
 **16 · Ваші батьки домовилися з продавцем, що заберуть мускатний горіх у п’ятницю. Передайте домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-38:i12; family: context_gap_grammar -->
-They ___ the nutmeg on Friday. → **are collecting** · are going to collect · collect
-- are going to collect — *Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous.*
+They ___ the nutmeg on Friday. → **are collecting** · are collect · collect
+- are collect — *Після are потрібна форма з -ing: are collecting.*
 - collect — *Потрібна повна форма: are collecting.*
 
 **17 · Поєднайте слова й вирази з перекладом**

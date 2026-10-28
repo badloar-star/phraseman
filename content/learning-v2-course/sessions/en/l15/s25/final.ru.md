@@ -105,8 +105,8 @@ She ___ the waiting list. → **is going to join** · is joining · join
 
 **12 · Приём у врача назначен на завтра; администратор попросил взять карточку записи. Передайте договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-25:i09; family: context_gap_grammar -->
-I ___ my appointment card tomorrow. → **am bringing** · am going to bring · bring
-- am going to bring — *Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.*
+I ___ my appointment card tomorrow. → **am bringing** · am bring · bring
+- am bring — *После am нужна форма с -ing: am bringing.*
 - bring — *Нужна полная форма: am bringing.*
 
 **13 · Карточка слова — membership**
@@ -125,8 +125,8 @@ I ___ my appointment card tomorrow. → **am bringing** · am going to bring · 
 
 **16 · Вы с другом согласовали визит в клуб в пятницу для оплаты членства. Передайте договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-25:i12; family: context_gap_grammar -->
-We ___ for our membership on Friday. → **are paying** · are going to pay · pay
-- are going to pay — *Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.*
+We ___ for our membership on Friday. → **are paying** · are pay · pay
+- are pay — *После are нужна форма с -ing: are paying.*
 - pay — *Нужна полная форма: are paying.*
 
 **17 · Соедините слова и выражения с переводом**

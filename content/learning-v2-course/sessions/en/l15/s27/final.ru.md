@@ -63,10 +63,10 @@
 - I am using the launderette. — *В записи звучит I am going to use the launderette.*
 - I is going to use the launderette. — *В записи звучит I am going to use the launderette.*
 
-**4 · Ваша стиральная машина сломалась; вы решили постирать вещи в прачечной. Передайте намерение через going to.**
+**4 · Ваша стиральная машина сломалась; вы решили постирать вещи в прачечной. Договорённости пока нет. Передайте намерение через going to.**
 <!-- interaction_id: en:lesson-15:session-27:i03; family: context_gap_grammar -->
 I ___ the launderette. → **am going to use** · am using · use
-- am using — *Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.*
+- am using — *Am using — так говорят об уже согласованном плане. Здесь пока только решение: am going to use.*
 - use — *Нужна полная форма: am going to use.*
 
 **5 · Карточка слова — dry cleaning**
@@ -105,8 +105,8 @@ She ___ for dry cleaning. → **is going to pay** · is paying · pay
 
 **12 · Мастер подтвердил заказ копии ключа; вы договорились прийти и оплатить его завтра. Передайте договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-27:i09; family: context_gap_grammar -->
-We ___ for key cutting tomorrow. → **are paying** · are going to pay · pay
-- are going to pay — *Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.*
+We ___ for key cutting tomorrow. → **are paying** · are pay · pay
+- are pay — *После are нужна форма с -ing: are paying.*
 - pay — *Нужна полная форма: are paying.*
 
 **13 · Карточка слова — shoe repair**
@@ -125,8 +125,8 @@ We ___ for key cutting tomorrow. → **are paying** · are going to pay · pay
 
 **16 · Ваши родители договорились забрать и оплатить отремонтированную обувь в пятницу. Передайте договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-27:i12; family: context_gap_grammar -->
-They ___ for shoe repair on Friday. → **are paying** · are going to pay · pay
-- are going to pay — *Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.*
+They ___ for shoe repair on Friday. → **are paying** · are pay · pay
+- are pay — *После are нужна форма с -ing: are paying.*
 - pay — *Нужна полная форма: are paying.*
 
 **17 · Соедините слова и выражения с переводом**

@@ -125,8 +125,8 @@ We ___ a pedicure on Saturday. → **are having** · are going to have · have
 
 **16 · Ваши друзья записались на завтрашнее окрашивание; оплату согласовали на день визита. Передайте договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-35:i12; family: context_gap_grammar -->
-They ___ for hair colouring tomorrow. → **are paying** · are going to pay · pay
-- are going to pay — *Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.*
+They ___ for hair colouring tomorrow. → **are paying** · are pay · pay
+- are pay — *После are нужна форма с -ing: are paying.*
 - pay — *Нужна полная форма: are paying.*
 
 **17 · Соедините слова и выражения с переводом**

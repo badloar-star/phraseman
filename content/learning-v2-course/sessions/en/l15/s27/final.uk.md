@@ -63,10 +63,10 @@
 - I am using the launderette. — *У записі звучить I am going to use the launderette.*
 - I is going to use the launderette. — *У записі звучить I am going to use the launderette.*
 
-**4 · Ваша пральна машина зламалася; ви вирішили випрати речі в пральні. Передайте намір через going to.**
+**4 · Ваша пральна машина зламалася; ви вирішили випрати речі в пральні. Домовленості поки немає. Передайте намір через going to.**
 <!-- interaction_id: en:lesson-15:session-27:i03; family: context_gap_grammar -->
 I ___ the launderette. → **am going to use** · am using · use
-- am using — *Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to.*
+- am using — *Am using — так кажуть про вже узгоджений план. Тут поки лише рішення: am going to use.*
 - use — *Потрібна повна форма: am going to use.*
 
 **5 · Картка слова — dry cleaning**
@@ -105,8 +105,8 @@ She ___ for dry cleaning. → **is going to pay** · is paying · pay
 
 **12 · Майстер підтвердив замовлення копії ключа; ви домовилися прийти й оплатити його завтра. Передайте домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-27:i09; family: context_gap_grammar -->
-We ___ for key cutting tomorrow. → **are paying** · are going to pay · pay
-- are going to pay — *Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous.*
+We ___ for key cutting tomorrow. → **are paying** · are pay · pay
+- are pay — *Після are потрібна форма з -ing: are paying.*
 - pay — *Потрібна повна форма: are paying.*
 
 **13 · Картка слова — shoe repair**
@@ -125,8 +125,8 @@ We ___ for key cutting tomorrow. → **are paying** · are going to pay · pay
 
 **16 · Ваші батьки домовилися забрати й оплатити відремонтоване взуття в п’ятницю. Передайте домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-27:i12; family: context_gap_grammar -->
-They ___ for shoe repair on Friday. → **are paying** · are going to pay · pay
-- are going to pay — *Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous.*
+They ___ for shoe repair on Friday. → **are paying** · are pay · pay
+- are pay — *Після are потрібна форма з -ing: are paying.*
 - pay — *Потрібна повна форма: are paying.*
 
 **17 · Поєднайте слова й вирази з перекладом**

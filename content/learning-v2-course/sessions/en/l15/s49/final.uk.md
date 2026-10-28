@@ -105,8 +105,8 @@ She ___ an inland town. → **is going to visit** · is visiting · visit
 
 **12 · Ви забронювали будинок за містом на наступний тиждень; господар підтвердив бронювання. Передайте домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-49:i09; family: context_gap_grammar -->
-We ___ in a rural area next week. → **are staying** · are going to stay · stay
-- are going to stay — *Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous.*
+We ___ in a rural area next week. → **are staying** · are stay · stay
+- are stay — *Після are потрібна форма з -ing: are staying.*
 - stay — *Потрібна повна форма: are staying.*
 
 **13 · Картка слова — urban**
@@ -125,8 +125,8 @@ We ___ in a rural area next week. → **are staying** · are going to stay · st
 
 **16 · Ваші друзі домовилися про завтрашню прогулянку в парку всередині міста. Передайте домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-49:i12; family: context_gap_grammar -->
-They ___ an urban park tomorrow. → **are visiting** · are going to visit · visit
-- are going to visit — *Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous.*
+They ___ an urban park tomorrow. → **are visiting** · are visit · visit
+- are visit — *Після are потрібна форма з -ing: are visiting.*
 - visit — *Потрібна повна форма: are visiting.*
 
 **17 · Поєднайте слова й вирази з перекладом**

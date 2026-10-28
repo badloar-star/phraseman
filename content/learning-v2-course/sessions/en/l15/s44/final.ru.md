@@ -63,10 +63,10 @@
 - I am asking my creative friend for help. — *В записи звучит I am going to ask my creative friend for help.*
 - I is going to ask my creative friend for help. — *В записи звучит I am going to ask my creative friend for help.*
 
-**4 · Вы решили попросить друга придумать оформление праздника: у него много новых идей. Передайте намерение через going to.**
+**4 · Вы решили попросить друга придумать оформление праздника: у него много новых идей. Договорённости пока нет. Передайте намерение через going to.**
 <!-- interaction_id: en:lesson-15:session-44:i03; family: context_gap_grammar -->
 I ___ my creative friend for help. → **am going to ask** · am asking · ask
-- am asking — *Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.*
+- am asking — *Am asking — так говорят об уже согласованном плане. Здесь пока только решение: am going to ask.*
 - ask — *Нужна полная форма: am going to ask.*
 
 **5 · Карточка слова — artistic**
@@ -83,10 +83,10 @@ I ___ my creative friend for help. → **am going to ask** · am asking · ask
 - She is visiting her artistic cousin. — *В записи звучит She is going to visit her artistic cousin.*
 - She are going to visit her artistic cousin. — *В записи звучит She is going to visit her artistic cousin.*
 
-**8 · Ваша подруга решила навестить двоюродную сестру, которая хорошо рисует. Передайте намерение через going to.**
+**8 · Ваша подруга решила навестить двоюродную сестру, которая хорошо рисует. Договорённости пока нет. Передайте намерение через going to.**
 <!-- interaction_id: en:lesson-15:session-44:i06; family: context_gap_grammar -->
 She ___ her artistic cousin. → **is going to visit** · is visiting · visit
-- is visiting — *Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.*
+- is visiting — *Is visiting — так говорят об уже согласованном плане. Здесь пока только решение: is going to visit.*
 - visit — *Нужна полная форма: is going to visit.*
 
 **9 · Карточка слова — musical**
@@ -105,8 +105,8 @@ She ___ her artistic cousin. → **is going to visit** · is visiting · visit
 
 **12 · Вы согласовали завтрашнюю встречу с соседом, который хорошо играет и поёт. Передайте договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-44:i09; family: context_gap_grammar -->
-We ___ our musical neighbour tomorrow. → **are meeting** · are going to meet · meet
-- are going to meet — *Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.*
+We ___ our musical neighbour tomorrow. → **are meeting** · are meet · meet
+- are meet — *После are нужна форма с -ing: are meeting.*
 - meet — *Нужна полная форма: are meeting.*
 
 **13 · Карточка слова — athletic**
@@ -125,8 +125,8 @@ We ___ our musical neighbour tomorrow. → **are meeting** · are going to meet 
 
 **16 · Ваши друзья договорились о воскресной прогулке со спортивным другом. Передайте договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-44:i12; family: context_gap_grammar -->
-They ___ their athletic friend on Sunday. → **are meeting** · are going to meet · meet
-- are going to meet — *Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.*
+They ___ their athletic friend on Sunday. → **are meeting** · are meet · meet
+- are meet — *После are нужна форма с -ing: are meeting.*
 - meet — *Нужна полная форма: are meeting.*
 
 **17 · Соедините слова и выражения с переводом**

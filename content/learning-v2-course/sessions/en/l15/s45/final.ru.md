@@ -83,10 +83,10 @@ I ___ with my adventurous friend. → **am going to travel** · am travelling ·
 - She is asking her resourceful brother for help. — *В записи звучит She is going to ask her resourceful brother for help.*
 - She are going to ask her resourceful brother for help. — *В записи звучит She is going to ask her resourceful brother for help.*
 
-**8 · Ваша подруга решила обратиться к брату: он умеет находить выход из сложных ситуаций. Передайте намерение через going to.**
+**8 · Ваша подруга решила обратиться к брату: он умеет находить выход из сложных ситуаций. Договорённости пока нет. Передайте намерение через going to.**
 <!-- interaction_id: en:lesson-15:session-45:i06; family: context_gap_grammar -->
 She ___ her resourceful brother for help. → **is going to ask** · is asking · ask
-- is asking — *Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.*
+- is asking — *Is asking — так говорят об уже согласованном плане. Здесь пока только решение: is going to ask.*
 - ask — *Нужна полная форма: is going to ask.*
 
 **9 · Карточка слова — cooperative**
@@ -105,8 +105,8 @@ She ___ her resourceful brother for help. → **is going to ask** · is asking �
 
 **12 · Вы с соседом согласовали на завтра совместную работу в саду; он охотно сотрудничает. Передайте договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-45:i09; family: context_gap_grammar -->
-We ___ with our cooperative neighbour tomorrow. → **are working** · are going to work · work
-- are going to work — *Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.*
+We ___ with our cooperative neighbour tomorrow. → **are working** · are work · work
+- are work — *После are нужна форма с -ing: are working.*
 - work — *Нужна полная форма: are working.*
 
 **13 · Карточка слова — supportive**
@@ -125,8 +125,8 @@ We ___ with our cooperative neighbour tomorrow. → **are working** · are going
 
 **16 · Ваши друзья договорились встретиться с учителем в пятницу; он всегда их ободряет. Передайте договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-45:i12; family: context_gap_grammar -->
-They ___ their supportive teacher on Friday. → **are meeting** · are going to meet · meet
-- are going to meet — *Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.*
+They ___ their supportive teacher on Friday. → **are meeting** · are meet · meet
+- are meet — *После are нужна форма с -ing: are meeting.*
 - meet — *Нужна полная форма: are meeting.*
 
 **17 · Соедините слова и выражения с переводом**

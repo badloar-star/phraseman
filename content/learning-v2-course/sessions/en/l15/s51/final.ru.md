@@ -63,10 +63,10 @@
 - I am buying a paisley scarf. — *В записи звучит I am going to buy a paisley scarf.*
 - I is going to buy a paisley scarf. — *В записи звучит I am going to buy a paisley scarf.*
 
-**4 · Вы решили выбрать шарф с характерным узором из изогнутых капель. Передайте намерение через going to.**
+**4 · Вы решили выбрать шарф с характерным узором из изогнутых капель. Договорённости пока нет. Передайте намерение через going to.**
 <!-- interaction_id: en:lesson-15:session-51:i03; family: context_gap_grammar -->
 I ___ a paisley scarf. → **am going to buy** · am buying · buy
-- am buying — *Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.*
+- am buying — *Am buying — так говорят об уже согласованном плане. Здесь пока только решение: am going to buy.*
 - buy — *Нужна полная форма: am going to buy.*
 
 **5 · Карточка слова — tartan**
@@ -83,10 +83,10 @@ I ___ a paisley scarf. → **am going to buy** · am buying · buy
 - She is buying a tartan skirt. — *В записи звучит She is going to buy a tartan skirt.*
 - She are going to buy a tartan skirt. — *В записи звучит She is going to buy a tartan skirt.*
 
-**8 · Ваша сестра решила купить юбку с шотландским клетчатым узором. Передайте намерение через going to.**
+**8 · Ваша сестра решила купить юбку с шотландским клетчатым узором. Договорённости пока нет. Передайте намерение через going to.**
 <!-- interaction_id: en:lesson-15:session-51:i06; family: context_gap_grammar -->
 She ___ a tartan skirt. → **is going to buy** · is buying · buy
-- is buying — *Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.*
+- is buying — *Is buying — так говорят об уже согласованном плане. Здесь пока только решение: is going to buy.*
 - buy — *Нужна полная форма: is going to buy.*
 
 **9 · Карточка слова — polka dots**
@@ -105,8 +105,8 @@ She ___ a tartan skirt. → **is going to buy** · is buying · buy
 
 **12 · Магазин отложил заказанное платье в горошек; вы согласовали получение на завтра. Передайте договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-51:i09; family: context_gap_grammar -->
-We ___ the dress with polka dots tomorrow. → **are collecting** · are going to collect · collect
-- are going to collect — *Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.*
+We ___ the dress with polka dots tomorrow. → **are collecting** · are collect · collect
+- are collect — *После are нужна форма с -ing: are collecting.*
 - collect — *Нужна полная форма: are collecting.*
 
 **13 · Карточка слова — herringbone**
@@ -125,8 +125,8 @@ We ___ the dress with polka dots tomorrow. → **are collecting** · are going t
 
 **16 · Ваши родители заказали пальто с рисунком ёлочкой; магазин подтвердил получение на пятницу. Передайте договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-51:i12; family: context_gap_grammar -->
-They ___ the herringbone coat on Friday. → **are collecting** · are going to collect · collect
-- are going to collect — *Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.*
+They ___ the herringbone coat on Friday. → **are collecting** · are collect · collect
+- are collect — *После are нужна форма с -ing: are collecting.*
 - collect — *Нужна полная форма: are collecting.*
 
 **17 · Соедините слова и выражения с переводом**

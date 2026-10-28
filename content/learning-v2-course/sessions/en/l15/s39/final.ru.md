@@ -105,8 +105,8 @@ She ___ a physiotherapist. → **is going to see** · is seeing · see
 
 **12 · Вы с супругом согласовали встречу с акушеркой на понедельник. Передайте договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-39:i09; family: context_gap_grammar -->
-We ___ the midwife on Monday. → **are meeting** · are going to meet · meet
-- are going to meet — *Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.*
+We ___ the midwife on Monday. → **are meeting** · are meet · meet
+- are meet — *После are нужна форма с -ing: are meeting.*
 - meet — *Нужна полная форма: are meeting.*
 
 **13 · Карточка слова — beautician**
@@ -125,8 +125,8 @@ We ___ the midwife on Monday. → **are meeting** · are going to meet · meet
 
 **16 · Ваши подруги записались в салон на завтра; мастер подтвердил время. Передайте договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-39:i12; family: context_gap_grammar -->
-They ___ the beautician tomorrow. → **are meeting** · are going to meet · meet
-- are going to meet — *Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.*
+They ___ the beautician tomorrow. → **are meeting** · are meet · meet
+- are meet — *После are нужна форма с -ing: are meeting.*
 - meet — *Нужна полная форма: are meeting.*
 
 **17 · Соедините слова и выражения с переводом**

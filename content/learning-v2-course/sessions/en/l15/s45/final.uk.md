@@ -83,10 +83,10 @@ I ___ with my adventurous friend. → **am going to travel** · am travelling ·
 - She is asking her resourceful brother for help. — *У записі звучить She is going to ask her resourceful brother for help.*
 - She are going to ask her resourceful brother for help. — *У записі звучить She is going to ask her resourceful brother for help.*
 
-**8 · Ваша подруга вирішила звернутися до брата: він уміє знаходити вихід зі складних ситуацій. Передайте намір через going to.**
+**8 · Ваша подруга вирішила звернутися до брата: він уміє знаходити вихід зі складних ситуацій. Домовленості поки немає. Передайте намір через going to.**
 <!-- interaction_id: en:lesson-15:session-45:i06; family: context_gap_grammar -->
 She ___ her resourceful brother for help. → **is going to ask** · is asking · ask
-- is asking — *Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to.*
+- is asking — *Is asking — так кажуть про вже узгоджений план. Тут поки лише рішення: is going to ask.*
 - ask — *Потрібна повна форма: is going to ask.*
 
 **9 · Картка слова — cooperative**
@@ -105,8 +105,8 @@ She ___ her resourceful brother for help. → **is going to ask** · is asking �
 
 **12 · Ви із сусідом узгодили на завтра спільну роботу в саду; він охоче співпрацює. Передайте домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-45:i09; family: context_gap_grammar -->
-We ___ with our cooperative neighbour tomorrow. → **are working** · are going to work · work
-- are going to work — *Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous.*
+We ___ with our cooperative neighbour tomorrow. → **are working** · are work · work
+- are work — *Після are потрібна форма з -ing: are working.*
 - work — *Потрібна повна форма: are working.*
 
 **13 · Картка слова — supportive**
@@ -125,8 +125,8 @@ We ___ with our cooperative neighbour tomorrow. → **are working** · are going
 
 **16 · Ваші друзі домовилися зустрітися з учителем у п’ятницю; він завжди їх підбадьорює. Передайте домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-45:i12; family: context_gap_grammar -->
-They ___ their supportive teacher on Friday. → **are meeting** · are going to meet · meet
-- are going to meet — *Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous.*
+They ___ their supportive teacher on Friday. → **are meeting** · are meet · meet
+- are meet — *Після are потрібна форма з -ing: are meeting.*
 - meet — *Потрібна повна форма: are meeting.*
 
 **17 · Поєднайте слова й вирази з перекладом**

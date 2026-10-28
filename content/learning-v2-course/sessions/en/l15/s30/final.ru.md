@@ -63,10 +63,10 @@
 - I am calling my half-brother. — *В записи звучит I am going to call my half-brother.*
 - I is going to call my half-brother. — *В записи звучит I am going to call my half-brother.*
 
-**4 · Вы решили позвонить брату, с которым у вас общая мама, но разные папы. Передайте намерение через going to.**
+**4 · Вы решили позвонить брату, с которым у вас общая мама, но разные папы. Договорённости пока нет. Передайте намерение через going to.**
 <!-- interaction_id: en:lesson-15:session-30:i03; family: context_gap_grammar -->
 I ___ my half-brother. → **am going to call** · am calling · call
-- am calling — *Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.*
+- am calling — *Am calling — так говорят об уже согласованном плане. Здесь пока только решение: am going to call.*
 - call — *Нужна полная форма: am going to call.*
 
 **5 · Карточка слова — half-sister**
@@ -105,8 +105,8 @@ She ___ her half-sister. → **is going to visit** · is visiting · visit
 
 **12 · Вы с супругом договорились встретиться с мужем вашей дочери в воскресенье. Передайте договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-30:i09; family: context_gap_grammar -->
-We ___ our son-in-law on Sunday. → **are meeting** · are going to meet · meet
-- are going to meet — *Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.*
+We ___ our son-in-law on Sunday. → **are meeting** · are meet · meet
+- are meet — *После are нужна форма с -ing: are meeting.*
 - meet — *Нужна полная форма: are meeting.*
 
 **13 · Карточка слова — daughter-in-law**
@@ -125,8 +125,8 @@ We ___ our son-in-law on Sunday. → **are meeting** · are going to meet · mee
 
 **16 · Ваши родители согласовали встречу с женой вашего брата на завтра. Передайте договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-30:i12; family: context_gap_grammar -->
-They ___ their daughter-in-law tomorrow. → **are meeting** · are going to meet · meet
-- are going to meet — *Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.*
+They ___ their daughter-in-law tomorrow. → **are meeting** · are meet · meet
+- are meet — *После are нужна форма с -ing: are meeting.*
 - meet — *Нужна полная форма: are meeting.*
 
 **17 · Соедините слова и выражения с переводом**

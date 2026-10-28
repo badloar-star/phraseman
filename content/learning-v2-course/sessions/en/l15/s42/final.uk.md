@@ -63,10 +63,10 @@
 - I am calling my optimistic friend. — *У записі звучить I am going to call my optimistic friend.*
 - I is going to call my optimistic friend. — *У записі звучить I am going to call my optimistic friend.*
 
-**4 · Ви вирішили обговорити плани з другом, який зазвичай очікує доброго результату. Передайте намір через going to.**
+**4 · Ви вирішили обговорити плани з другом, який зазвичай очікує доброго результату. Домовленості поки немає. Передайте намір через going to.**
 <!-- interaction_id: en:lesson-15:session-42:i03; family: context_gap_grammar -->
 I ___ my optimistic friend. → **am going to call** · am calling · call
-- am calling — *Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to.*
+- am calling — *Am calling — так кажуть про вже узгоджений план. Тут поки лише рішення: am going to call.*
 - call — *Потрібна повна форма: am going to call.*
 
 **5 · Картка слова — pessimistic**
@@ -83,10 +83,10 @@ I ___ my optimistic friend. → **am going to call** · am calling · call
 - She is helping her pessimistic brother. — *У записі звучить She is going to help her pessimistic brother.*
 - She are going to help her pessimistic brother. — *У записі звучить She is going to help her pessimistic brother.*
 
-**8 · Ваша подруга вирішила допомогти братові, який заздалегідь чекає на невдачу. Передайте намір через going to.**
+**8 · Ваша подруга вирішила допомогти братові, який заздалегідь чекає на невдачу. Домовленості поки немає. Передайте намір через going to.**
 <!-- interaction_id: en:lesson-15:session-42:i06; family: context_gap_grammar -->
 She ___ her pessimistic brother. → **is going to help** · is helping · help
-- is helping — *Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to.*
+- is helping — *Is helping — так кажуть про вже узгоджений план. Тут поки лише рішення: is going to help.*
 - help — *Потрібна повна форма: is going to help.*
 
 **9 · Картка слова — indecisive**
@@ -105,8 +105,8 @@ She ___ her pessimistic brother. → **is going to help** · is helping · help
 
 **12 · Ви домовилися в п’ятницю допомогти двоюрідному братові вибрати поїздку; йому важко наважитися. Передайте домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-42:i09; family: context_gap_grammar -->
-We ___ our indecisive cousin on Friday. → **are meeting** · are going to meet · meet
-- are going to meet — *Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous.*
+We ___ our indecisive cousin on Friday. → **are meeting** · are meet · meet
+- are meet — *Після are потрібна форма з -ing: are meeting.*
 - meet — *Потрібна повна форма: are meeting.*
 
 **13 · Картка слова — decisive**
@@ -125,8 +125,8 @@ We ___ our indecisive cousin on Friday. → **are meeting** · are going to meet
 
 **16 · Ваші друзі узгодили зустріч на завтра з тренером, який швидко ухвалює рішення. Передайте домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-42:i12; family: context_gap_grammar -->
-They ___ their decisive coach tomorrow. → **are meeting** · are going to meet · meet
-- are going to meet — *Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous.*
+They ___ their decisive coach tomorrow. → **are meeting** · are meet · meet
+- are meet — *Після are потрібна форма з -ing: are meeting.*
 - meet — *Потрібна повна форма: are meeting.*
 
 **17 · Поєднайте слова й вирази з перекладом**

@@ -63,10 +63,10 @@
 - I am buying a practical coat. — *У записі звучить I am going to buy a practical coat.*
 - I is going to buy a practical coat. — *У записі звучить I am going to buy a practical coat.*
 
-**4 · Ви вирішили вибрати зручне пальто для щоденного носіння, а не лише для краси. Передайте намір через going to.**
+**4 · Ви вирішили вибрати зручне пальто для щоденного носіння, а не лише для краси. Домовленості поки немає. Передайте намір через going to.**
 <!-- interaction_id: en:lesson-15:session-47:i03; family: context_gap_grammar -->
 I ___ a practical coat. → **am going to buy** · am buying · buy
-- am buying — *Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to.*
+- am buying — *Am buying — так кажуть про вже узгоджений план. Тут поки лише рішення: am going to buy.*
 - buy — *Потрібна повна форма: am going to buy.*
 
 **5 · Картка слова — economical**
@@ -83,10 +83,10 @@ I ___ a practical coat. → **am going to buy** · am buying · buy
 - She is buying an economical car. — *У записі звучить She is going to buy an economical car.*
 - She are going to buy an economical car. — *У записі звучить She is going to buy an economical car.*
 
-**8 · Ваша сестра вирішила шукати машину, яка витрачає мало пального. Передайте намір через going to.**
+**8 · Ваша сестра вирішила шукати машину, яка витрачає мало пального. Домовленості поки немає. Передайте намір через going to.**
 <!-- interaction_id: en:lesson-15:session-47:i06; family: context_gap_grammar -->
 She ___ an economical car. → **is going to buy** · is buying · buy
-- is buying — *Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to.*
+- is buying — *Is buying — так кажуть про вже узгоджений план. Тут поки лише рішення: is going to buy.*
 - buy — *Потрібна повна форма: is going to buy.*
 
 **9 · Картка слова — affordable**
@@ -105,8 +105,8 @@ She ___ an economical car. → **is going to buy** · is buying · buy
 
 **12 · Ціна квартири вкладається у ваш бюджет; огляд із господарем узгоджено на завтра. Передайте домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-47:i09; family: context_gap_grammar -->
-We ___ an affordable flat tomorrow. → **are viewing** · are going to view · view
-- are going to view — *Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous.*
+We ___ an affordable flat tomorrow. → **are viewing** · are view · view
+- are view — *Після are потрібна форма з -ing: are viewing.*
 - view — *Потрібна повна форма: are viewing.*
 
 **13 · Картка слова — overpriced**
@@ -125,8 +125,8 @@ We ___ an affordable flat tomorrow. → **are viewing** · are going to view · 
 
 **16 · Друзі вважають ціну квартири завищеною, але вже узгодили огляд на п’ятницю. Передайте домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-47:i12; family: context_gap_grammar -->
-They ___ an overpriced flat on Friday. → **are viewing** · are going to view · view
-- are going to view — *Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous.*
+They ___ an overpriced flat on Friday. → **are viewing** · are view · view
+- are view — *Після are потрібна форма з -ing: are viewing.*
 - view — *Потрібна повна форма: are viewing.*
 
 **17 · Поєднайте слова й вирази з перекладом**

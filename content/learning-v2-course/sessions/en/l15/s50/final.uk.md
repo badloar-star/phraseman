@@ -83,10 +83,10 @@ I ___ a secluded beach. → **am going to find** · am finding · find
 - She is choosing an airy room. — *У записі звучить She is going to choose an airy room.*
 - She are going to choose an airy room. — *У записі звучить She is going to choose an airy room.*
 
-**8 · Ваша сестра вирішила шукати кімнату, де багато світла й легко провітрювати. Передайте намір через going to.**
+**8 · Ваша сестра вирішила шукати кімнату, де багато світла й легко провітрювати. Домовленості поки немає. Передайте намір через going to.**
 <!-- interaction_id: en:lesson-15:session-50:i06; family: context_gap_grammar -->
 She ___ an airy room. → **is going to choose** · is choosing · choose
-- is choosing — *Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to.*
+- is choosing — *Is choosing — так кажуть про вже узгоджений план. Тут поки лише рішення: is going to choose.*
 - choose — *Потрібна повна форма: is going to choose.*
 
 **9 · Картка слова — leafy**
@@ -105,8 +105,8 @@ She ___ an airy room. → **is going to choose** · is choosing · choose
 
 **12 · Бронювання будинку на вулиці з деревами підтверджено на наступний тиждень. Передайте домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-50:i09; family: context_gap_grammar -->
-We ___ on a leafy street next week. → **are staying** · are going to stay · stay
-- are going to stay — *Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous.*
+We ___ on a leafy street next week. → **are staying** · are stay · stay
+- are stay — *Після are потрібна форма з -ing: are staying.*
 - stay — *Потрібна повна форма: are staying.*
 
 **13 · Картка слова — sheltered**
@@ -125,8 +125,8 @@ We ___ on a leafy street next week. → **are staying** · are going to stay · 
 
 **16 · Ваші друзі домовилися зустрітися завтра в саду, де стіни затуляють вітер. Передайте домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-50:i12; family: context_gap_grammar -->
-They ___ in a sheltered garden tomorrow. → **are meeting** · are going to meet · meet
-- are going to meet — *Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous.*
+They ___ in a sheltered garden tomorrow. → **are meeting** · are meet · meet
+- are meet — *Після are потрібна форма з -ing: are meeting.*
 - meet — *Потрібна повна форма: are meeting.*
 
 **17 · Поєднайте слова й вирази з перекладом**

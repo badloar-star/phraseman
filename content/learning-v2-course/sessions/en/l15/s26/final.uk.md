@@ -105,8 +105,8 @@ She ___ a season ticket. → **is going to buy** · is buying · buy
 
 **12 · Денну перепустку до басейну вже оплачено; ви домовилися забрати її завтра. Передайте домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-26:i09; family: context_gap_grammar -->
-We ___ our day pass tomorrow. → **are collecting** · are going to collect · collect
-- are going to collect — *Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous.*
+We ___ our day pass tomorrow. → **are collecting** · are collect · collect
+- are collect — *Після are потрібна форма з -ing: are collecting.*
 - collect — *Потрібна повна форма: are collecting.*
 
 **13 · Картка слова — family pass**
@@ -125,8 +125,8 @@ We ___ our day pass tomorrow. → **are collecting** · are going to collect · 
 
 **16 · Ваші друзі забронювали сімейне відвідування музею на неділю. Передайте домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-26:i12; family: context_gap_grammar -->
-They ___ their family pass on Sunday. → **are using** · are going to use · use
-- are going to use — *Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous.*
+They ___ their family pass on Sunday. → **are using** · are use · use
+- are use — *Після are потрібна форма з -ing: are using.*
 - use — *Потрібна повна форма: are using.*
 
 **17 · Поєднайте слова й вирази з перекладом**

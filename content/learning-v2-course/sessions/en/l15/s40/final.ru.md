@@ -86,7 +86,7 @@ I ___ candle making. → **am going to try** · am trying · try
 **8 · Ваша сестра решила попробовать изготовление мыла на занятии; пока это намерение. Передайте намерение через going to.**
 <!-- interaction_id: en:lesson-15:session-40:i06; family: context_gap_grammar -->
 She ___ soap making. → **is going to try** · is trying · try
-- is trying — *Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.*
+- is trying — *Is trying — так говорят об уже согласованном плане. Здесь пока только решение: is going to try.*
 - try — *Нужна полная форма: is going to try.*
 
 **9 · Карточка слова — model making**
@@ -105,8 +105,8 @@ She ___ soap making. → **is going to try** · is trying · try
 
 **12 · Вы с другом записались на субботнее занятие по изготовлению моделей. Передайте договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-40:i09; family: context_gap_grammar -->
-We ___ model making on Saturday. → **are trying** · are going to try · try
-- are going to try — *Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.*
+We ___ model making on Saturday. → **are trying** · are try · try
+- are try — *После are нужна форма с -ing: are trying.*
 - try — *Нужна полная форма: are trying.*
 
 **13 · Карточка слова — weaving**
@@ -125,8 +125,8 @@ We ___ model making on Saturday. → **are trying** · are going to try · try
 
 **16 · Ваши родители записались на завтрашнее вводное занятие по ткачеству. Передайте договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-40:i12; family: context_gap_grammar -->
-They ___ weaving tomorrow. → **are trying** · are going to try · try
-- are going to try — *Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.*
+They ___ weaving tomorrow. → **are trying** · are try · try
+- are try — *После are нужна форма с -ing: are trying.*
 - try — *Нужна полная форма: are trying.*
 
 **17 · Соедините слова и выражения с переводом**

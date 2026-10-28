@@ -63,10 +63,10 @@
 - I am buying gluten-free bread. — *У записі звучить I am going to buy gluten-free bread.*
 - I is going to buy gluten-free bread. — *У записі звучить I am going to buy gluten-free bread.*
 
-**4 · Ви вирішили купити хліб із написом «без глютену». Передайте намір через going to.**
+**4 · Ви вирішили купити хліб із написом «без глютену». Домовленості поки немає. Передайте намір через going to.**
 <!-- interaction_id: en:lesson-15:session-53:i03; family: context_gap_grammar -->
 I ___ gluten-free bread. → **am going to buy** · am buying · buy
-- am buying — *Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to.*
+- am buying — *Am buying — так кажуть про вже узгоджений план. Тут поки лише рішення: am going to buy.*
 - buy — *Потрібна повна форма: am going to buy.*
 
 **5 · Картка слова — lactose-free**
@@ -83,10 +83,10 @@ I ___ gluten-free bread. → **am going to buy** · am buying · buy
 - She is buying lactose-free milk. — *У записі звучить She is going to buy lactose-free milk.*
 - She are going to buy lactose-free milk. — *У записі звучить She is going to buy lactose-free milk.*
 
-**8 · Ваша сестра вирішила вибрати молоко з написом «без лактози». Передайте намір через going to.**
+**8 · Ваша сестра вирішила вибрати молоко з написом «без лактози». Домовленості поки немає. Передайте намір через going to.**
 <!-- interaction_id: en:lesson-15:session-53:i06; family: context_gap_grammar -->
 She ___ lactose-free milk. → **is going to buy** · is buying · buy
-- is buying — *Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to.*
+- is buying — *Is buying — так кажуть про вже узгоджений план. Тут поки лише рішення: is going to buy.*
 - buy — *Потрібна повна форма: is going to buy.*
 
 **9 · Картка слова — unsweetened**
@@ -105,8 +105,8 @@ She ___ lactose-free milk. → **is going to buy** · is buying · buy
 
 **12 · Ви замовили йогурт без доданих підсолоджувачів; отримання узгоджено на завтра. Передайте домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-53:i09; family: context_gap_grammar -->
-We ___ the unsweetened yoghurt tomorrow. → **are collecting** · are going to collect · collect
-- are going to collect — *Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous.*
+We ___ the unsweetened yoghurt tomorrow. → **are collecting** · are collect · collect
+- are collect — *Після are потрібна форма з -ing: are collecting.*
 - collect — *Потрібна повна форма: are collecting.*
 
 **13 · Картка слова — unsalted**
@@ -125,8 +125,8 @@ We ___ the unsweetened yoghurt tomorrow. → **are collecting** · are going to 
 
 **16 · Ваші батьки замовили масло без доданої солі й узгодили отримання на п’ятницю. Передайте домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-53:i12; family: context_gap_grammar -->
-They ___ the unsalted butter on Friday. → **are collecting** · are going to collect · collect
-- are going to collect — *Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous.*
+They ___ the unsalted butter on Friday. → **are collecting** · are collect · collect
+- are collect — *Після are потрібна форма з -ing: are collecting.*
 - collect — *Потрібна повна форма: are collecting.*
 
 **17 · Поєднайте слова й вирази з перекладом**

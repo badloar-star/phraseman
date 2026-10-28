@@ -86,7 +86,7 @@ I ___ needlework. → **am going to try** · am trying · try
 **8 · Ваша подруга решила оформить альбом о поездке; пока это её намерение. Передайте намерение через going to.**
 <!-- interaction_id: en:lesson-15:session-32:i06; family: context_gap_grammar -->
 She ___ scrapbooking. → **is going to try** · is trying · try
-- is trying — *Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.*
+- is trying — *Is trying — так говорят об уже согласованном плане. Здесь пока только решение: is going to try.*
 - try — *Нужна полная форма: is going to try.*
 
 **9 · Карточка слова — calligraphy**
@@ -105,8 +105,8 @@ She ___ scrapbooking. → **is going to try** · is trying · try
 
 **12 · Вы с другом записались на завтрашнее занятие красивым письмом. Передайте договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-32:i09; family: context_gap_grammar -->
-We ___ calligraphy tomorrow. → **are trying** · are going to try · try
-- are going to try — *Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.*
+We ___ calligraphy tomorrow. → **are trying** · are try · try
+- are try — *После are нужна форма с -ing: are trying.*
 - try — *Нужна полная форма: are trying.*
 
 **13 · Карточка слова — flower pressing**
@@ -125,8 +125,8 @@ We ___ calligraphy tomorrow. → **are trying** · are going to try · try
 
 **16 · Ваши родители подтвердили участие в воскресном занятии по сушке цветов под прессом. Передайте договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-32:i12; family: context_gap_grammar -->
-They ___ flower pressing on Sunday. → **are trying** · are going to try · try
-- are going to try — *Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.*
+They ___ flower pressing on Sunday. → **are trying** · are try · try
+- are try — *После are нужна форма с -ing: are trying.*
 - try — *Нужна полная форма: are trying.*
 
 **17 · Соедините слова и выражения с переводом**

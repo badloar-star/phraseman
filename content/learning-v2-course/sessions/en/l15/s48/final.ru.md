@@ -63,10 +63,10 @@
 - I am turning the handle clockwise. — *В записи звучит I am going to turn the handle clockwise.*
 - I is going to turn the handle clockwise. — *В записи звучит I am going to turn the handle clockwise.*
 
-**4 · Вы решили повернуть ручку в направлении движения стрелок часов. Передайте намерение через going to.**
+**4 · Вы решили повернуть ручку в направлении движения стрелок часов. Договорённости пока нет. Передайте намерение через going to.**
 <!-- interaction_id: en:lesson-15:session-48:i03; family: context_gap_grammar -->
 I ___ the handle clockwise. → **am going to turn** · am turning · turn
-- am turning — *Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.*
+- am turning — *Am turning — так говорят об уже согласованном плане. Здесь пока только решение: am going to turn.*
 - turn — *Нужна полная форма: am going to turn.*
 
 **5 · Карточка слова — anticlockwise**
@@ -83,10 +83,10 @@ I ___ the handle clockwise. → **am going to turn** · am turning · turn
 - She is turning the handle anticlockwise. — *В записи звучит She is going to turn the handle anticlockwise.*
 - She are going to turn the handle anticlockwise. — *В записи звучит She is going to turn the handle anticlockwise.*
 
-**8 · Ваша сестра решила повернуть ручку в направлении, обратном движению стрелок часов. Передайте намерение через going to.**
+**8 · Ваша сестра решила повернуть ручку в направлении, обратном движению стрелок часов. Договорённости пока нет. Передайте намерение через going to.**
 <!-- interaction_id: en:lesson-15:session-48:i06; family: context_gap_grammar -->
 She ___ the handle anticlockwise. → **is going to turn** · is turning · turn
-- is turning — *Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.*
+- is turning — *Is turning — так говорят об уже согласованном плане. Здесь пока только решение: is going to turn.*
 - turn — *Нужна полная форма: is going to turn.*
 
 **9 · Карточка слова — downstairs**
@@ -105,8 +105,8 @@ She ___ the handle anticlockwise. → **is going to turn** · is turning · turn
 
 **12 · Вы с друзьями договорились встретиться завтра на нижнем этаже дома. Передайте договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-48:i09; family: context_gap_grammar -->
-We ___ downstairs tomorrow. → **are meeting** · are going to meet · meet
-- are going to meet — *Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.*
+We ___ downstairs tomorrow. → **are meeting** · are meet · meet
+- are meet — *После are нужна форма с -ing: are meeting.*
 - meet — *Нужна полная форма: are meeting.*
 
 **13 · Карточка слова — overhead**
@@ -125,8 +125,8 @@ We ___ downstairs tomorrow. → **are meeting** · are going to meet · meet
 
 **16 · Ваши друзья согласовали завтрашнее украшение зала: огни будут висеть над гостями. Передайте договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-48:i12; family: context_gap_grammar -->
-They ___ lights overhead tomorrow. → **are hanging** · are going to hang · hang
-- are going to hang — *Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.*
+They ___ lights overhead tomorrow. → **are hanging** · are hang · hang
+- are hang — *После are нужна форма с -ing: are hanging.*
 - hang — *Нужна полная форма: are hanging.*
 
 **17 · Соедините слова и выражения с переводом**

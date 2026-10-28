@@ -63,10 +63,10 @@
 - I am shuffling the cards. — *В записи звучит I am going to shuffle the cards.*
 - I is going to shuffle the cards. — *В записи звучит I am going to shuffle the cards.*
 
-**4 · Вы решили сначала перемешать колоду перед семейной игрой. Передайте намерение через going to.**
+**4 · Вы решили сначала перемешать колоду перед семейной игрой. Договорённости пока нет. Передайте намерение через going to.**
 <!-- interaction_id: en:lesson-15:session-56:i03; family: context_gap_grammar -->
 I ___ the cards. → **am going to shuffle** · am shuffling · shuffle
-- am shuffling — *Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.*
+- am shuffling — *Am shuffling — так говорят об уже согласованном плане. Здесь пока только решение: am going to shuffle.*
 - shuffle — *Нужна полная форма: am going to shuffle.*
 
 **5 · Карточка слова — deal**
@@ -83,10 +83,10 @@ I ___ the cards. → **am going to shuffle** · am shuffling · shuffle
 - She is dealing the cards. — *В записи звучит She is going to deal the cards.*
 - She are going to deal the cards. — *В записи звучит She is going to deal the cards.*
 
-**8 · Ваша сестра решила раздать карты участникам семейной игры. Передайте намерение через going to.**
+**8 · Ваша сестра решила раздать карты участникам семейной игры. Договорённости пока нет. Передайте намерение через going to.**
 <!-- interaction_id: en:lesson-15:session-56:i06; family: context_gap_grammar -->
 She ___ the cards. → **is going to deal** · is dealing · deal
-- is dealing — *Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.*
+- is dealing — *Is dealing — так говорят об уже согласованном плане. Здесь пока только решение: is going to deal.*
 - deal — *Нужна полная форма: is going to deal.*
 
 **9 · Карточка слова — aim**
@@ -105,8 +105,8 @@ She ___ the cards. → **is going to deal** · is dealing · deal
 
 **12 · Вы с другом записались на завтрашнее занятие бросками мяча в цель. Передайте договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-56:i09; family: context_gap_grammar -->
-We ___ to aim tomorrow. → **are learning** · are going to learn · learn
-- are going to learn — *Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.*
+We ___ to aim tomorrow. → **are learning** · are learn · learn
+- are learn — *После are нужна форма с -ing: are learning.*
 - learn — *Нужна полная форма: are learning.*
 
 **13 · Карточка слова — bounce**
@@ -125,8 +125,8 @@ We ___ to aim tomorrow. → **are learning** · are going to learn · learn
 
 **16 · Ваши дети записаны на завтрашнее занятие, где научатся отбивать мяч от пола. Передайте договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-56:i12; family: context_gap_grammar -->
-They ___ to bounce a ball tomorrow. → **are learning** · are going to learn · learn
-- are going to learn — *Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.*
+They ___ to bounce a ball tomorrow. → **are learning** · are learn · learn
+- are learn — *После are нужна форма с -ing: are learning.*
 - learn — *Нужна полная форма: are learning.*
 
 **17 · Соедините слова и выражения с переводом**

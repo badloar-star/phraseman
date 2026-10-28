@@ -86,7 +86,7 @@ I ___ candle making. → **am going to try** · am trying · try
 **8 · Ваша сестра вирішила спробувати виготовлення мила на занятті; поки це намір. Передайте намір через going to.**
 <!-- interaction_id: en:lesson-15:session-40:i06; family: context_gap_grammar -->
 She ___ soap making. → **is going to try** · is trying · try
-- is trying — *Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to.*
+- is trying — *Is trying — так кажуть про вже узгоджений план. Тут поки лише рішення: is going to try.*
 - try — *Потрібна повна форма: is going to try.*
 
 **9 · Картка слова — model making**
@@ -105,8 +105,8 @@ She ___ soap making. → **is going to try** · is trying · try
 
 **12 · Ви з другом записалися на суботнє заняття з виготовлення моделей. Передайте домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-40:i09; family: context_gap_grammar -->
-We ___ model making on Saturday. → **are trying** · are going to try · try
-- are going to try — *Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous.*
+We ___ model making on Saturday. → **are trying** · are try · try
+- are try — *Після are потрібна форма з -ing: are trying.*
 - try — *Потрібна повна форма: are trying.*
 
 **13 · Картка слова — weaving**
@@ -125,8 +125,8 @@ We ___ model making on Saturday. → **are trying** · are going to try · try
 
 **16 · Ваші батьки записалися на завтрашнє вступне заняття з ткацтва. Передайте домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-40:i12; family: context_gap_grammar -->
-They ___ weaving tomorrow. → **are trying** · are going to try · try
-- are going to try — *Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous.*
+They ___ weaving tomorrow. → **are trying** · are try · try
+- are try — *Після are потрібна форма з -ing: are trying.*
 - try — *Потрібна повна форма: are trying.*
 
 **17 · Поєднайте слова й вирази з перекладом**

@@ -63,10 +63,10 @@
 - I am buying gluten-free bread. — *В записи звучит I am going to buy gluten-free bread.*
 - I is going to buy gluten-free bread. — *В записи звучит I am going to buy gluten-free bread.*
 
-**4 · Вы решили купить хлеб с надписью «без глютена». Передайте намерение через going to.**
+**4 · Вы решили купить хлеб с надписью «без глютена». Договорённости пока нет. Передайте намерение через going to.**
 <!-- interaction_id: en:lesson-15:session-53:i03; family: context_gap_grammar -->
 I ___ gluten-free bread. → **am going to buy** · am buying · buy
-- am buying — *Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.*
+- am buying — *Am buying — так говорят об уже согласованном плане. Здесь пока только решение: am going to buy.*
 - buy — *Нужна полная форма: am going to buy.*
 
 **5 · Карточка слова — lactose-free**
@@ -83,10 +83,10 @@ I ___ gluten-free bread. → **am going to buy** · am buying · buy
 - She is buying lactose-free milk. — *В записи звучит She is going to buy lactose-free milk.*
 - She are going to buy lactose-free milk. — *В записи звучит She is going to buy lactose-free milk.*
 
-**8 · Ваша сестра решила выбрать молоко с надписью «без лактозы». Передайте намерение через going to.**
+**8 · Ваша сестра решила выбрать молоко с надписью «без лактозы». Договорённости пока нет. Передайте намерение через going to.**
 <!-- interaction_id: en:lesson-15:session-53:i06; family: context_gap_grammar -->
 She ___ lactose-free milk. → **is going to buy** · is buying · buy
-- is buying — *Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.*
+- is buying — *Is buying — так говорят об уже согласованном плане. Здесь пока только решение: is going to buy.*
 - buy — *Нужна полная форма: is going to buy.*
 
 **9 · Карточка слова — unsweetened**
@@ -105,8 +105,8 @@ She ___ lactose-free milk. → **is going to buy** · is buying · buy
 
 **12 · Вы заказали йогурт без добавленных подсластителей; получение согласовано на завтра. Передайте договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-53:i09; family: context_gap_grammar -->
-We ___ the unsweetened yoghurt tomorrow. → **are collecting** · are going to collect · collect
-- are going to collect — *Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.*
+We ___ the unsweetened yoghurt tomorrow. → **are collecting** · are collect · collect
+- are collect — *После are нужна форма с -ing: are collecting.*
 - collect — *Нужна полная форма: are collecting.*
 
 **13 · Карточка слова — unsalted**
@@ -125,8 +125,8 @@ We ___ the unsweetened yoghurt tomorrow. → **are collecting** · are going to 
 
 **16 · Ваши родители заказали масло без добавленной соли и согласовали получение на пятницу. Передайте договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-53:i12; family: context_gap_grammar -->
-They ___ the unsalted butter on Friday. → **are collecting** · are going to collect · collect
-- are going to collect — *Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.*
+They ___ the unsalted butter on Friday. → **are collecting** · are collect · collect
+- are collect — *После are нужна форма с -ing: are collecting.*
 - collect — *Нужна полная форма: are collecting.*
 
 **17 · Соедините слова и выражения с переводом**

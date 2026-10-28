@@ -63,10 +63,10 @@
 - I am buying a practical coat. — *В записи звучит I am going to buy a practical coat.*
 - I is going to buy a practical coat. — *В записи звучит I am going to buy a practical coat.*
 
-**4 · Вы решили выбрать удобное пальто для ежедневной носки, а не только для красоты. Передайте намерение через going to.**
+**4 · Вы решили выбрать удобное пальто для ежедневной носки, а не только для красоты. Договорённости пока нет. Передайте намерение через going to.**
 <!-- interaction_id: en:lesson-15:session-47:i03; family: context_gap_grammar -->
 I ___ a practical coat. → **am going to buy** · am buying · buy
-- am buying — *Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.*
+- am buying — *Am buying — так говорят об уже согласованном плане. Здесь пока только решение: am going to buy.*
 - buy — *Нужна полная форма: am going to buy.*
 
 **5 · Карточка слова — economical**
@@ -83,10 +83,10 @@ I ___ a practical coat. → **am going to buy** · am buying · buy
 - She is buying an economical car. — *В записи звучит She is going to buy an economical car.*
 - She are going to buy an economical car. — *В записи звучит She is going to buy an economical car.*
 
-**8 · Ваша сестра решила искать машину, которая расходует мало топлива. Передайте намерение через going to.**
+**8 · Ваша сестра решила искать машину, которая расходует мало топлива. Договорённости пока нет. Передайте намерение через going to.**
 <!-- interaction_id: en:lesson-15:session-47:i06; family: context_gap_grammar -->
 She ___ an economical car. → **is going to buy** · is buying · buy
-- is buying — *Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.*
+- is buying — *Is buying — так говорят об уже согласованном плане. Здесь пока только решение: is going to buy.*
 - buy — *Нужна полная форма: is going to buy.*
 
 **9 · Карточка слова — affordable**
@@ -105,8 +105,8 @@ She ___ an economical car. → **is going to buy** · is buying · buy
 
 **12 · Цена квартиры укладывается в ваш бюджет; просмотр с хозяином согласован на завтра. Передайте договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-47:i09; family: context_gap_grammar -->
-We ___ an affordable flat tomorrow. → **are viewing** · are going to view · view
-- are going to view — *Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.*
+We ___ an affordable flat tomorrow. → **are viewing** · are view · view
+- are view — *После are нужна форма с -ing: are viewing.*
 - view — *Нужна полная форма: are viewing.*
 
 **13 · Карточка слова — overpriced**
@@ -125,8 +125,8 @@ We ___ an affordable flat tomorrow. → **are viewing** · are going to view · 
 
 **16 · Друзья считают цену квартиры завышенной, но уже согласовали просмотр на пятницу. Передайте договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-47:i12; family: context_gap_grammar -->
-They ___ an overpriced flat on Friday. → **are viewing** · are going to view · view
-- are going to view — *Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.*
+They ___ an overpriced flat on Friday. → **are viewing** · are view · view
+- are view — *После are нужна форма с -ing: are viewing.*
 - view — *Нужна полная форма: are viewing.*
 
 **17 · Соедините слова и выражения с переводом**

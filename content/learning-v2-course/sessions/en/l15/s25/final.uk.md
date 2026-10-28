@@ -105,8 +105,8 @@ She ___ the waiting list. → **is going to join** · is joining · join
 
 **12 · Прийом у лікаря призначено на завтра; адміністратор попросив узяти картку запису. Передайте домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-25:i09; family: context_gap_grammar -->
-I ___ my appointment card tomorrow. → **am bringing** · am going to bring · bring
-- am going to bring — *Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous.*
+I ___ my appointment card tomorrow. → **am bringing** · am bring · bring
+- am bring — *Після am потрібна форма з -ing: am bringing.*
 - bring — *Потрібна повна форма: am bringing.*
 
 **13 · Картка слова — membership**
@@ -125,8 +125,8 @@ I ___ my appointment card tomorrow. → **am bringing** · am going to bring · 
 
 **16 · Ви з другом узгодили візит до клубу в п’ятницю для оплати членства. Передайте домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-25:i12; family: context_gap_grammar -->
-We ___ for our membership on Friday. → **are paying** · are going to pay · pay
-- are going to pay — *Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous.*
+We ___ for our membership on Friday. → **are paying** · are pay · pay
+- are pay — *Після are потрібна форма з -ing: are paying.*
 - pay — *Потрібна повна форма: are paying.*
 
 **17 · Поєднайте слова й вирази з перекладом**

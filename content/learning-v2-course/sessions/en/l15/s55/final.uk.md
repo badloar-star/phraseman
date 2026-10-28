@@ -63,10 +63,10 @@
 - I am buying a pinstripe suit. — *У записі звучить I am going to buy a pinstripe suit.*
 - I is going to buy a pinstripe suit. — *У записі звучить I am going to buy a pinstripe suit.*
 
-**4 · Ви вирішили вибрати костюм із дуже тонкими поздовжніми смугами. Передайте намір через going to.**
+**4 · Ви вирішили вибрати костюм із дуже тонкими поздовжніми смугами. Домовленості поки немає. Передайте намір через going to.**
 <!-- interaction_id: en:lesson-15:session-55:i03; family: context_gap_grammar -->
 I ___ a pinstripe suit. → **am going to buy** · am buying · buy
-- am buying — *Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to.*
+- am buying — *Am buying — так кажуть про вже узгоджений план. Тут поки лише рішення: am going to buy.*
 - buy — *Потрібна повна форма: am going to buy.*
 
 **5 · Картка слова — patchwork**
@@ -83,10 +83,10 @@ I ___ a pinstripe suit. → **am going to buy** · am buying · buy
 - She is buying a patchwork blanket. — *У записі звучить She is going to buy a patchwork blanket.*
 - She are going to buy a patchwork blanket. — *У записі звучить She is going to buy a patchwork blanket.*
 
-**8 · Ваша сестра вирішила купити ковдру з різнокольорових клаптиків. Передайте намір через going to.**
+**8 · Ваша сестра вирішила купити ковдру з різнокольорових клаптиків. Домовленості поки немає. Передайте намір через going to.**
 <!-- interaction_id: en:lesson-15:session-55:i06; family: context_gap_grammar -->
 She ___ a patchwork blanket. → **is going to buy** · is buying · buy
-- is buying — *Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to.*
+- is buying — *Is buying — так кажуть про вже узгоджений план. Тут поки лише рішення: is going to buy.*
 - buy — *Потрібна повна форма: is going to buy.*
 
 **9 · Картка слова — gingham**
@@ -105,8 +105,8 @@ She ___ a patchwork blanket. → **is going to buy** · is buying · buy
 
 **12 · Ви замовили сорочку в рівну дрібну клітинку; магазин підтвердив отримання на завтра. Передайте домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-55:i09; family: context_gap_grammar -->
-We ___ the gingham shirt tomorrow. → **are collecting** · are going to collect · collect
-- are going to collect — *Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous.*
+We ___ the gingham shirt tomorrow. → **are collecting** · are collect · collect
+- are collect — *Після are потрібна форма з -ing: are collecting.*
 - collect — *Потрібна повна форма: are collecting.*
 
 **13 · Картка слова — houndstooth**
@@ -125,8 +125,8 @@ We ___ the gingham shirt tomorrow. → **are collecting** · are going to collec
 
 **16 · Ваші батьки узгодили отримання замовленого пальта з ламаною клітинкою на суботу. Передайте домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-55:i12; family: context_gap_grammar -->
-They ___ the houndstooth coat on Saturday. → **are collecting** · are going to collect · collect
-- are going to collect — *Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous.*
+They ___ the houndstooth coat on Saturday. → **are collecting** · are collect · collect
+- are collect — *Після are потрібна форма з -ing: are collecting.*
 - collect — *Потрібна повна форма: are collecting.*
 
 **17 · Поєднайте слова й вирази з перекладом**

@@ -63,10 +63,10 @@
 - I am talking to my reckless brother. — *В записи звучит I am going to talk to my reckless brother.*
 - I is going to talk to my reckless brother. — *В записи звучит I am going to talk to my reckless brother.*
 
-**4 · Вы решили поговорить с братом, который часто рискует, не думая о последствиях. Передайте намерение через going to.**
+**4 · Вы решили поговорить с братом, который часто рискует, не думая о последствиях. Договорённости пока нет. Передайте намерение через going to.**
 <!-- interaction_id: en:lesson-15:session-46:i03; family: context_gap_grammar -->
 I ___ to my reckless brother. → **am going to talk** · am talking · talk
-- am talking — *Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.*
+- am talking — *Am talking — так говорят об уже согласованном плане. Здесь пока только решение: am going to talk.*
 - talk — *Нужна полная форма: am going to talk.*
 
 **5 · Карточка слова — inflexible**
@@ -83,10 +83,10 @@ I ___ to my reckless brother. → **am going to talk** · am talking · talk
 - She is speaking to her inflexible manager. — *В записи звучит She is going to speak to her inflexible manager.*
 - She are going to speak to her inflexible manager. — *В записи звучит She is going to speak to her inflexible manager.*
 
-**8 · Ваша сестра решила попросить изменить расписание у руководителя, который не любит менять решения. Передайте намерение через going to.**
+**8 · Ваша сестра решила попросить изменить расписание у руководителя, который не любит менять решения. Договорённости пока нет. Передайте намерение через going to.**
 <!-- interaction_id: en:lesson-15:session-46:i06; family: context_gap_grammar -->
 She ___ to her inflexible manager. → **is going to speak** · is speaking · speak
-- is speaking — *Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.*
+- is speaking — *Is speaking — так говорят об уже согласованном плане. Здесь пока только решение: is going to speak.*
 - speak — *Нужна полная форма: is going to speak.*
 
 **9 · Карточка слова — narrow-minded**
@@ -105,8 +105,8 @@ She ___ to her inflexible manager. → **is going to speak** · is speaking · s
 
 **12 · Вы договорились о завтрашней встрече с двоюродным братом; он не любит обсуждать чужие взгляды. Передайте договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-46:i09; family: context_gap_grammar -->
-We ___ our narrow-minded cousin tomorrow. → **are meeting** · are going to meet · meet
-- are going to meet — *Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.*
+We ___ our narrow-minded cousin tomorrow. → **are meeting** · are meet · meet
+- are meet — *После are нужна форма с -ing: are meeting.*
 - meet — *Нужна полная форма: are meeting.*
 
 **13 · Карточка слова — ungrateful**
@@ -125,8 +125,8 @@ We ___ our narrow-minded cousin tomorrow. → **are meeting** · are going to me
 
 **16 · Ваши друзья согласовали встречу на субботу с другом, который не ценит их помощь. Передайте договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-46:i12; family: context_gap_grammar -->
-They ___ their ungrateful friend on Saturday. → **are meeting** · are going to meet · meet
-- are going to meet — *Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.*
+They ___ their ungrateful friend on Saturday. → **are meeting** · are meet · meet
+- are meet — *После are нужна форма с -ing: are meeting.*
 - meet — *Нужна полная форма: are meeting.*
 
 **17 · Соедините слова и выражения с переводом**

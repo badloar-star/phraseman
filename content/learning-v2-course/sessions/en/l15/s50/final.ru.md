@@ -83,10 +83,10 @@ I ___ a secluded beach. → **am going to find** · am finding · find
 - She is choosing an airy room. — *В записи звучит She is going to choose an airy room.*
 - She are going to choose an airy room. — *В записи звучит She is going to choose an airy room.*
 
-**8 · Ваша сестра решила искать комнату, где много света и легко проветривать. Передайте намерение через going to.**
+**8 · Ваша сестра решила искать комнату, где много света и легко проветривать. Договорённости пока нет. Передайте намерение через going to.**
 <!-- interaction_id: en:lesson-15:session-50:i06; family: context_gap_grammar -->
 She ___ an airy room. → **is going to choose** · is choosing · choose
-- is choosing — *Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.*
+- is choosing — *Is choosing — так говорят об уже согласованном плане. Здесь пока только решение: is going to choose.*
 - choose — *Нужна полная форма: is going to choose.*
 
 **9 · Карточка слова — leafy**
@@ -105,8 +105,8 @@ She ___ an airy room. → **is going to choose** · is choosing · choose
 
 **12 · Бронь дома на улице с деревьями подтверждена на следующую неделю. Передайте договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-50:i09; family: context_gap_grammar -->
-We ___ on a leafy street next week. → **are staying** · are going to stay · stay
-- are going to stay — *Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.*
+We ___ on a leafy street next week. → **are staying** · are stay · stay
+- are stay — *После are нужна форма с -ing: are staying.*
 - stay — *Нужна полная форма: are staying.*
 
 **13 · Карточка слова — sheltered**
@@ -125,8 +125,8 @@ We ___ on a leafy street next week. → **are staying** · are going to stay · 
 
 **16 · Ваши друзья договорились встретиться завтра в саду, где стены закрывают ветер. Передайте договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-50:i12; family: context_gap_grammar -->
-They ___ in a sheltered garden tomorrow. → **are meeting** · are going to meet · meet
-- are going to meet — *Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.*
+They ___ in a sheltered garden tomorrow. → **are meeting** · are meet · meet
+- are meet — *После are нужна форма с -ing: are meeting.*
 - meet — *Нужна полная форма: are meeting.*
 
 **17 · Соедините слова и выражения с переводом**

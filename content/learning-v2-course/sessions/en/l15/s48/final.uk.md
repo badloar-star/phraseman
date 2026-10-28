@@ -63,10 +63,10 @@
 - I am turning the handle clockwise. — *У записі звучить I am going to turn the handle clockwise.*
 - I is going to turn the handle clockwise. — *У записі звучить I am going to turn the handle clockwise.*
 
-**4 · Ви вирішили повернути ручку в напрямку руху стрілок годинника. Передайте намір через going to.**
+**4 · Ви вирішили повернути ручку в напрямку руху стрілок годинника. Домовленості поки немає. Передайте намір через going to.**
 <!-- interaction_id: en:lesson-15:session-48:i03; family: context_gap_grammar -->
 I ___ the handle clockwise. → **am going to turn** · am turning · turn
-- am turning — *Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to.*
+- am turning — *Am turning — так кажуть про вже узгоджений план. Тут поки лише рішення: am going to turn.*
 - turn — *Потрібна повна форма: am going to turn.*
 
 **5 · Картка слова — anticlockwise**
@@ -83,10 +83,10 @@ I ___ the handle clockwise. → **am going to turn** · am turning · turn
 - She is turning the handle anticlockwise. — *У записі звучить She is going to turn the handle anticlockwise.*
 - She are going to turn the handle anticlockwise. — *У записі звучить She is going to turn the handle anticlockwise.*
 
-**8 · Ваша сестра вирішила повернути ручку в напрямку, протилежному руху стрілок годинника. Передайте намір через going to.**
+**8 · Ваша сестра вирішила повернути ручку в напрямку, протилежному руху стрілок годинника. Домовленості поки немає. Передайте намір через going to.**
 <!-- interaction_id: en:lesson-15:session-48:i06; family: context_gap_grammar -->
 She ___ the handle anticlockwise. → **is going to turn** · is turning · turn
-- is turning — *Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to.*
+- is turning — *Is turning — так кажуть про вже узгоджений план. Тут поки лише рішення: is going to turn.*
 - turn — *Потрібна повна форма: is going to turn.*
 
 **9 · Картка слова — downstairs**
@@ -105,8 +105,8 @@ She ___ the handle anticlockwise. → **is going to turn** · is turning · turn
 
 **12 · Ви з друзями домовилися зустрітися завтра на нижньому поверсі будинку. Передайте домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-48:i09; family: context_gap_grammar -->
-We ___ downstairs tomorrow. → **are meeting** · are going to meet · meet
-- are going to meet — *Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous.*
+We ___ downstairs tomorrow. → **are meeting** · are meet · meet
+- are meet — *Після are потрібна форма з -ing: are meeting.*
 - meet — *Потрібна повна форма: are meeting.*
 
 **13 · Картка слова — overhead**
@@ -125,8 +125,8 @@ We ___ downstairs tomorrow. → **are meeting** · are going to meet · meet
 
 **16 · Ваші друзі узгодили завтрашнє прикрашання зали: вогні висітимуть над гостями. Передайте домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-48:i12; family: context_gap_grammar -->
-They ___ lights overhead tomorrow. → **are hanging** · are going to hang · hang
-- are going to hang — *Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous.*
+They ___ lights overhead tomorrow. → **are hanging** · are hang · hang
+- are hang — *Після are потрібна форма з -ing: are hanging.*
 - hang — *Потрібна повна форма: are hanging.*
 
 **17 · Поєднайте слова й вирази з перекладом**

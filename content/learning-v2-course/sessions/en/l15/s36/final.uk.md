@@ -83,10 +83,10 @@ I ___ a guava. → **am going to try** · am trying · try
 - She is buying a persimmon. — *У записі звучить She is going to buy a persimmon.*
 - She are going to buy a persimmon. — *У записі звучить She is going to buy a persimmon.*
 
-**8 · Ваша сестра вирішила купити хурму на десерт; купівля ще попереду. Передайте намір через going to.**
+**8 · Ваша сестра вирішила купити хурму на десерт; купівля ще попереду. Домовленості поки немає. Передайте намір через going to.**
 <!-- interaction_id: en:lesson-15:session-36:i06; family: context_gap_grammar -->
 She ___ a persimmon. → **is going to buy** · is buying · buy
-- is buying — *Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to.*
+- is buying — *Is buying — так кажуть про вже узгоджений план. Тут поки лише рішення: is going to buy.*
 - buy — *Потрібна повна форма: is going to buy.*
 
 **9 · Картка слова — quince**
@@ -105,8 +105,8 @@ She ___ a persimmon. → **is going to buy** · is buying · buy
 
 **12 · Продавець відклав для вас айву; ви домовилися забрати її завтра. Передайте домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-36:i09; family: context_gap_grammar -->
-We ___ the quince tomorrow. → **are collecting** · are going to collect · collect
-- are going to collect — *Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous.*
+We ___ the quince tomorrow. → **are collecting** · are collect · collect
+- are collect — *Після are потрібна форма з -ing: are collecting.*
 - collect — *Потрібна повна форма: are collecting.*
 
 **13 · Картка слова — rhubarb**
@@ -125,8 +125,8 @@ We ___ the quince tomorrow. → **are collecting** · are going to collect · co
 
 **16 · Ваші батьки замовили ревінь для пирога й узгодили отримання на п’ятницю. Передайте домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-36:i12; family: context_gap_grammar -->
-They ___ the rhubarb on Friday. → **are collecting** · are going to collect · collect
-- are going to collect — *Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous.*
+They ___ the rhubarb on Friday. → **are collecting** · are collect · collect
+- are collect — *Після are потрібна форма з -ing: are collecting.*
 - collect — *Потрібна повна форма: are collecting.*
 
 **17 · Поєднайте слова й вирази з перекладом**

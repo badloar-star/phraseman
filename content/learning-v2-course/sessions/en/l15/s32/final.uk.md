@@ -86,7 +86,7 @@ I ___ needlework. → **am going to try** · am trying · try
 **8 · Ваша подруга вирішила оформити альбом про поїздку; поки це її намір. Передайте намір через going to.**
 <!-- interaction_id: en:lesson-15:session-32:i06; family: context_gap_grammar -->
 She ___ scrapbooking. → **is going to try** · is trying · try
-- is trying — *Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to.*
+- is trying — *Is trying — так кажуть про вже узгоджений план. Тут поки лише рішення: is going to try.*
 - try — *Потрібна повна форма: is going to try.*
 
 **9 · Картка слова — calligraphy**
@@ -105,8 +105,8 @@ She ___ scrapbooking. → **is going to try** · is trying · try
 
 **12 · Ви з другом записалися на завтрашнє заняття красивим письмом. Передайте домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-32:i09; family: context_gap_grammar -->
-We ___ calligraphy tomorrow. → **are trying** · are going to try · try
-- are going to try — *Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous.*
+We ___ calligraphy tomorrow. → **are trying** · are try · try
+- are try — *Після are потрібна форма з -ing: are trying.*
 - try — *Потрібна повна форма: are trying.*
 
 **13 · Картка слова — flower pressing**
@@ -125,8 +125,8 @@ We ___ calligraphy tomorrow. → **are trying** · are going to try · try
 
 **16 · Ваші батьки підтвердили участь у недільному занятті із сушіння квітів під пресом. Передайте домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-32:i12; family: context_gap_grammar -->
-They ___ flower pressing on Sunday. → **are trying** · are going to try · try
-- are going to try — *Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous.*
+They ___ flower pressing on Sunday. → **are trying** · are try · try
+- are try — *Після are потрібна форма з -ing: are trying.*
 - try — *Потрібна повна форма: are trying.*
 
 **17 · Поєднайте слова й вирази з перекладом**

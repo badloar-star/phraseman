@@ -105,8 +105,8 @@ She ___ a baby shower. → **is going to have** · is having · have
 
 **12 · Ви з подругою підтвердили запрошення на суботній дівич-вечір. Передайте домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-33:i09; family: context_gap_grammar -->
-We ___ a hen party on Saturday. → **are attending** · are going to attend · attend
-- are going to attend — *Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous.*
+We ___ a hen party on Saturday. → **are attending** · are attend · attend
+- are attend — *Після are потрібна форма з -ing: are attending.*
 - attend — *Потрібна повна форма: are attending.*
 
 **13 · Картка слова — stag party**
@@ -125,8 +125,8 @@ We ___ a hen party on Saturday. → **are attending** · are going to attend · 
 
 **16 · Ваші друзі домовилися прийти на передвесільну вечірку нареченого в п’ятницю. Передайте домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-33:i12; family: context_gap_grammar -->
-They ___ a stag party on Friday. → **are attending** · are going to attend · attend
-- are going to attend — *Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous.*
+They ___ a stag party on Friday. → **are attending** · are attend · attend
+- are attend — *Після are потрібна форма з -ing: are attending.*
 - attend — *Потрібна повна форма: are attending.*
 
 **17 · Поєднайте слова й вирази з перекладом**

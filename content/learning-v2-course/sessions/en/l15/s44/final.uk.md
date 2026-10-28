@@ -63,10 +63,10 @@
 - I am asking my creative friend for help. — *У записі звучить I am going to ask my creative friend for help.*
 - I is going to ask my creative friend for help. — *У записі звучить I am going to ask my creative friend for help.*
 
-**4 · Ви вирішили попросити друга придумати оформлення свята: у нього багато нових ідей. Передайте намір через going to.**
+**4 · Ви вирішили попросити друга придумати оформлення свята: у нього багато нових ідей. Домовленості поки немає. Передайте намір через going to.**
 <!-- interaction_id: en:lesson-15:session-44:i03; family: context_gap_grammar -->
 I ___ my creative friend for help. → **am going to ask** · am asking · ask
-- am asking — *Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to.*
+- am asking — *Am asking — так кажуть про вже узгоджений план. Тут поки лише рішення: am going to ask.*
 - ask — *Потрібна повна форма: am going to ask.*
 
 **5 · Картка слова — artistic**
@@ -83,10 +83,10 @@ I ___ my creative friend for help. → **am going to ask** · am asking · ask
 - She is visiting her artistic cousin. — *У записі звучить She is going to visit her artistic cousin.*
 - She are going to visit her artistic cousin. — *У записі звучить She is going to visit her artistic cousin.*
 
-**8 · Ваша подруга вирішила відвідати двоюрідну сестру, яка добре малює. Передайте намір через going to.**
+**8 · Ваша подруга вирішила відвідати двоюрідну сестру, яка добре малює. Домовленості поки немає. Передайте намір через going to.**
 <!-- interaction_id: en:lesson-15:session-44:i06; family: context_gap_grammar -->
 She ___ her artistic cousin. → **is going to visit** · is visiting · visit
-- is visiting — *Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to.*
+- is visiting — *Is visiting — так кажуть про вже узгоджений план. Тут поки лише рішення: is going to visit.*
 - visit — *Потрібна повна форма: is going to visit.*
 
 **9 · Картка слова — musical**
@@ -105,8 +105,8 @@ She ___ her artistic cousin. → **is going to visit** · is visiting · visit
 
 **12 · Ви узгодили завтрашню зустріч із сусідом, який добре грає й співає. Передайте домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-44:i09; family: context_gap_grammar -->
-We ___ our musical neighbour tomorrow. → **are meeting** · are going to meet · meet
-- are going to meet — *Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous.*
+We ___ our musical neighbour tomorrow. → **are meeting** · are meet · meet
+- are meet — *Після are потрібна форма з -ing: are meeting.*
 - meet — *Потрібна повна форма: are meeting.*
 
 **13 · Картка слова — athletic**
@@ -125,8 +125,8 @@ We ___ our musical neighbour tomorrow. → **are meeting** · are going to meet 
 
 **16 · Ваші друзі домовилися про недільну прогулянку зі спортивним другом. Передайте домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-44:i12; family: context_gap_grammar -->
-They ___ their athletic friend on Sunday. → **are meeting** · are going to meet · meet
-- are going to meet — *Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous.*
+They ___ their athletic friend on Sunday. → **are meeting** · are meet · meet
+- are meet — *Після are потрібна форма з -ing: are meeting.*
 - meet — *Потрібна повна форма: are meeting.*
 
 **17 · Поєднайте слова й вирази з перекладом**

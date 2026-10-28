@@ -83,10 +83,10 @@ I ___ a guava. → **am going to try** · am trying · try
 - She is buying a persimmon. — *В записи звучит She is going to buy a persimmon.*
 - She are going to buy a persimmon. — *В записи звучит She is going to buy a persimmon.*
 
-**8 · Ваша сестра решила купить хурму на десерт; покупка ещё впереди. Передайте намерение через going to.**
+**8 · Ваша сестра решила купить хурму на десерт; покупка ещё впереди. Договорённости пока нет. Передайте намерение через going to.**
 <!-- interaction_id: en:lesson-15:session-36:i06; family: context_gap_grammar -->
 She ___ a persimmon. → **is going to buy** · is buying · buy
-- is buying — *Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.*
+- is buying — *Is buying — так говорят об уже согласованном плане. Здесь пока только решение: is going to buy.*
 - buy — *Нужна полная форма: is going to buy.*
 
 **9 · Карточка слова — quince**
@@ -105,8 +105,8 @@ She ___ a persimmon. → **is going to buy** · is buying · buy
 
 **12 · Продавец отложил для вас айву; вы договорились забрать её завтра. Передайте договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-36:i09; family: context_gap_grammar -->
-We ___ the quince tomorrow. → **are collecting** · are going to collect · collect
-- are going to collect — *Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.*
+We ___ the quince tomorrow. → **are collecting** · are collect · collect
+- are collect — *После are нужна форма с -ing: are collecting.*
 - collect — *Нужна полная форма: are collecting.*
 
 **13 · Карточка слова — rhubarb**
@@ -125,8 +125,8 @@ We ___ the quince tomorrow. → **are collecting** · are going to collect · co
 
 **16 · Ваши родители заказали ревень для пирога и согласовали получение на пятницу. Передайте договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-36:i12; family: context_gap_grammar -->
-They ___ the rhubarb on Friday. → **are collecting** · are going to collect · collect
-- are going to collect — *Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.*
+They ___ the rhubarb on Friday. → **are collecting** · are collect · collect
+- are collect — *После are нужна форма с -ing: are collecting.*
 - collect — *Нужна полная форма: are collecting.*
 
 **17 · Соедините слова и выражения с переводом**

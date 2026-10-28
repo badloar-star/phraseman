@@ -105,8 +105,8 @@ She ___ a party in the next leap year. → **is going to have** · is having · 
 
 **12 · Ви купили квитки на найближчі канікули посеред навчального періоду. Передайте домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-54:i09; family: context_gap_grammar -->
-We ___ at half-term. → **are travelling** · are going to travel · travel
-- are going to travel — *Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous.*
+We ___ at half-term. → **are travelling** · are travel · travel
+- are travel — *Після are потрібна форма з -ing: are travelling.*
 - travel — *Потрібна повна форма: are travelling.*
 
 **13 · Картка слова — term time**
@@ -125,8 +125,8 @@ We ___ at half-term. → **are travelling** · are going to travel · travel
 
 **16 · Ваші діти записані на шкільну екскурсію до музею; вона відбудеться під час навчальних занять. Передайте домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-54:i12; family: context_gap_grammar -->
-They ___ the museum in term time. → **are visiting** · are going to visit · visit
-- are going to visit — *Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous.*
+They ___ the museum in term time. → **are visiting** · are visit · visit
+- are visit — *Після are потрібна форма з -ing: are visiting.*
 - visit — *Потрібна повна форма: are visiting.*
 
 **17 · Поєднайте слова й вирази з перекладом**

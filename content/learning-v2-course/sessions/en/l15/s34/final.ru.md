@@ -125,8 +125,8 @@ We ___ a swimming lesson tomorrow. → **are having** · are going to have · ha
 
 **16 · Ваши родители подтвердили участие в пятничном занятии танцами. Передайте договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-34:i12; family: context_gap_grammar -->
-They ___ a dance class on Friday. → **are attending** · are going to attend · attend
-- are going to attend — *Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.*
+They ___ a dance class on Friday. → **are attending** · are attend · attend
+- are attend — *После are нужна форма с -ing: are attending.*
 - attend — *Нужна полная форма: are attending.*
 
 **17 · Соедините слова и выражения с переводом**

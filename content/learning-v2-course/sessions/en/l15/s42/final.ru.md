@@ -63,10 +63,10 @@
 - I am calling my optimistic friend. — *В записи звучит I am going to call my optimistic friend.*
 - I is going to call my optimistic friend. — *В записи звучит I am going to call my optimistic friend.*
 
-**4 · Вы решили обсудить планы с другом, который обычно ожидает хорошего исхода. Передайте намерение через going to.**
+**4 · Вы решили обсудить планы с другом, который обычно ожидает хорошего исхода. Договорённости пока нет. Передайте намерение через going to.**
 <!-- interaction_id: en:lesson-15:session-42:i03; family: context_gap_grammar -->
 I ___ my optimistic friend. → **am going to call** · am calling · call
-- am calling — *Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.*
+- am calling — *Am calling — так говорят об уже согласованном плане. Здесь пока только решение: am going to call.*
 - call — *Нужна полная форма: am going to call.*
 
 **5 · Карточка слова — pessimistic**
@@ -83,10 +83,10 @@ I ___ my optimistic friend. → **am going to call** · am calling · call
 - She is helping her pessimistic brother. — *В записи звучит She is going to help her pessimistic brother.*
 - She are going to help her pessimistic brother. — *В записи звучит She is going to help her pessimistic brother.*
 
-**8 · Ваша подруга решила помочь брату, который заранее ждёт неудачи. Передайте намерение через going to.**
+**8 · Ваша подруга решила помочь брату, который заранее ждёт неудачи. Договорённости пока нет. Передайте намерение через going to.**
 <!-- interaction_id: en:lesson-15:session-42:i06; family: context_gap_grammar -->
 She ___ her pessimistic brother. → **is going to help** · is helping · help
-- is helping — *Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.*
+- is helping — *Is helping — так говорят об уже согласованном плане. Здесь пока только решение: is going to help.*
 - help — *Нужна полная форма: is going to help.*
 
 **9 · Карточка слова — indecisive**
@@ -105,8 +105,8 @@ She ___ her pessimistic brother. → **is going to help** · is helping · help
 
 **12 · Вы договорились в пятницу помочь двоюродному брату выбрать поездку; ему трудно решиться. Передайте договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-42:i09; family: context_gap_grammar -->
-We ___ our indecisive cousin on Friday. → **are meeting** · are going to meet · meet
-- are going to meet — *Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.*
+We ___ our indecisive cousin on Friday. → **are meeting** · are meet · meet
+- are meet — *После are нужна форма с -ing: are meeting.*
 - meet — *Нужна полная форма: are meeting.*
 
 **13 · Карточка слова — decisive**
@@ -125,8 +125,8 @@ We ___ our indecisive cousin on Friday. → **are meeting** · are going to meet
 
 **16 · Ваши друзья согласовали встречу на завтра с тренером, который быстро принимает решения. Передайте договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-42:i12; family: context_gap_grammar -->
-They ___ their decisive coach tomorrow. → **are meeting** · are going to meet · meet
-- are going to meet — *Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.*
+They ___ their decisive coach tomorrow. → **are meeting** · are meet · meet
+- are meet — *После are нужна форма с -ing: are meeting.*
 - meet — *Нужна полная форма: are meeting.*
 
 **17 · Соедините слова и выражения с переводом**

@@ -105,8 +105,8 @@ She ___ the collection point. → **is going to use** · is using · use
 
 **12 · Магазин подтвердил ваш заказ; время получения назначено на завтра. Передайте договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-28:i09; family: context_gap_grammar -->
-We ___ click and collect tomorrow. → **are using** · are going to use · use
-- are going to use — *Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.*
+We ___ click and collect tomorrow. → **are using** · are use · use
+- are use — *После are нужна форма с -ing: are using.*
 - use — *Нужна полная форма: are using.*
 
 **13 · Карточка слова — photo booth**
@@ -125,8 +125,8 @@ We ___ click and collect tomorrow. → **are using** · are going to use · use
 
 **16 · Ваши друзья согласовали встречу завтра в десять у фотокабины. Передайте договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-28:i12; family: context_gap_grammar -->
-They ___ by the photo booth at ten tomorrow. → **are meeting** · are going to meet · meet
-- are going to meet — *Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.*
+They ___ by the photo booth at ten tomorrow. → **are meeting** · are meet · meet
+- are meet — *После are нужна форма с -ing: are meeting.*
 - meet — *Нужна полная форма: are meeting.*
 
 **17 · Соедините слова и выражения с переводом**

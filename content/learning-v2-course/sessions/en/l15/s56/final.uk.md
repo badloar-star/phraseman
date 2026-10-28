@@ -63,10 +63,10 @@
 - I am shuffling the cards. — *У записі звучить I am going to shuffle the cards.*
 - I is going to shuffle the cards. — *У записі звучить I am going to shuffle the cards.*
 
-**4 · Ви вирішили спочатку перемішати колоду перед сімейною грою. Передайте намір через going to.**
+**4 · Ви вирішили спочатку перемішати колоду перед сімейною грою. Домовленості поки немає. Передайте намір через going to.**
 <!-- interaction_id: en:lesson-15:session-56:i03; family: context_gap_grammar -->
 I ___ the cards. → **am going to shuffle** · am shuffling · shuffle
-- am shuffling — *Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to.*
+- am shuffling — *Am shuffling — так кажуть про вже узгоджений план. Тут поки лише рішення: am going to shuffle.*
 - shuffle — *Потрібна повна форма: am going to shuffle.*
 
 **5 · Картка слова — deal**
@@ -83,10 +83,10 @@ I ___ the cards. → **am going to shuffle** · am shuffling · shuffle
 - She is dealing the cards. — *У записі звучить She is going to deal the cards.*
 - She are going to deal the cards. — *У записі звучить She is going to deal the cards.*
 
-**8 · Ваша сестра вирішила роздати карти учасникам сімейної гри. Передайте намір через going to.**
+**8 · Ваша сестра вирішила роздати карти учасникам сімейної гри. Домовленості поки немає. Передайте намір через going to.**
 <!-- interaction_id: en:lesson-15:session-56:i06; family: context_gap_grammar -->
 She ___ the cards. → **is going to deal** · is dealing · deal
-- is dealing — *Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to.*
+- is dealing — *Is dealing — так кажуть про вже узгоджений план. Тут поки лише рішення: is going to deal.*
 - deal — *Потрібна повна форма: is going to deal.*
 
 **9 · Картка слова — aim**
@@ -105,8 +105,8 @@ She ___ the cards. → **is going to deal** · is dealing · deal
 
 **12 · Ви з другом записалися на завтрашнє заняття кидками м’яча в ціль. Передайте домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-56:i09; family: context_gap_grammar -->
-We ___ to aim tomorrow. → **are learning** · are going to learn · learn
-- are going to learn — *Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous.*
+We ___ to aim tomorrow. → **are learning** · are learn · learn
+- are learn — *Після are потрібна форма з -ing: are learning.*
 - learn — *Потрібна повна форма: are learning.*
 
 **13 · Картка слова — bounce**
@@ -125,8 +125,8 @@ We ___ to aim tomorrow. → **are learning** · are going to learn · learn
 
 **16 · Ваші діти записані на завтрашнє заняття, де навчаться відбивати м’яч від підлоги. Передайте домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-56:i12; family: context_gap_grammar -->
-They ___ to bounce a ball tomorrow. → **are learning** · are going to learn · learn
-- are going to learn — *Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous.*
+They ___ to bounce a ball tomorrow. → **are learning** · are learn · learn
+- are learn — *Після are потрібна форма з -ing: are learning.*
 - learn — *Потрібна повна форма: are learning.*
 
 **17 · Поєднайте слова й вирази з перекладом**

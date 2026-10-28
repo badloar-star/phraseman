@@ -63,10 +63,10 @@
 - I am buying oregano. — *В записи звучит I am going to buy oregano.*
 - I is going to buy oregano. — *В записи звучит I am going to buy oregano.*
 
-**4 · Вы решили купить орегано для домашней пиццы. Передайте намерение через going to.**
+**4 · Вы решили купить орегано для домашней пиццы. Договорённости пока нет. Передайте намерение через going to.**
 <!-- interaction_id: en:lesson-15:session-37:i03; family: context_gap_grammar -->
 I ___ oregano. → **am going to buy** · am buying · buy
-- am buying — *Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.*
+- am buying — *Am buying — так говорят об уже согласованном плане. Здесь пока только решение: am going to buy.*
 - buy — *Нужна полная форма: am going to buy.*
 
 **5 · Карточка слова — sage**
@@ -83,10 +83,10 @@ I ___ oregano. → **am going to buy** · am buying · buy
 - She is buying sage. — *В записи звучит She is going to buy sage.*
 - She are going to buy sage. — *В записи звучит She is going to buy sage.*
 
-**8 · Ваша мама решила купить шалфей для приготовления еды. Передайте намерение через going to.**
+**8 · Ваша мама решила купить шалфей для приготовления еды. Договорённости пока нет. Передайте намерение через going to.**
 <!-- interaction_id: en:lesson-15:session-37:i06; family: context_gap_grammar -->
 She ___ sage. → **is going to buy** · is buying · buy
-- is buying — *Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.*
+- is buying — *Is buying — так говорят об уже согласованном плане. Здесь пока только решение: is going to buy.*
 - buy — *Нужна полная форма: is going to buy.*
 
 **9 · Карточка слова — coriander**
@@ -105,8 +105,8 @@ She ___ sage. → **is going to buy** · is buying · buy
 
 **12 · Продавец подтвердил заказ кориандра и время получения на завтра. Передайте договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-37:i09; family: context_gap_grammar -->
-We ___ the coriander tomorrow. → **are collecting** · are going to collect · collect
-- are going to collect — *Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.*
+We ___ the coriander tomorrow. → **are collecting** · are collect · collect
+- are collect — *После are нужна форма с -ing: are collecting.*
 - collect — *Нужна полная форма: are collecting.*
 
 **13 · Карточка слова — cumin**
@@ -125,8 +125,8 @@ We ___ the coriander tomorrow. → **are collecting** · are going to collect ·
 
 **16 · Ваши родители заказали кумин в магазине приправ и договорились забрать его в субботу. Передайте договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-37:i12; family: context_gap_grammar -->
-They ___ the cumin on Saturday. → **are collecting** · are going to collect · collect
-- are going to collect — *Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.*
+They ___ the cumin on Saturday. → **are collecting** · are collect · collect
+- are collect — *После are нужна форма с -ing: are collecting.*
 - collect — *Нужна полная форма: are collecting.*
 
 **17 · Соедините слова и выражения с переводом**

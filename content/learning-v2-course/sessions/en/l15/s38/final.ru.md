@@ -63,10 +63,10 @@
 - I am buying turmeric. — *В записи звучит I am going to buy turmeric.*
 - I is going to buy turmeric. — *В записи звучит I am going to buy turmeric.*
 
-**4 · Вы решили купить куркуму для нового блюда. Передайте намерение через going to.**
+**4 · Вы решили купить куркуму для нового блюда. Договорённости пока нет. Передайте намерение через going to.**
 <!-- interaction_id: en:lesson-15:session-38:i03; family: context_gap_grammar -->
 I ___ turmeric. → **am going to buy** · am buying · buy
-- am buying — *Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.*
+- am buying — *Am buying — так говорят об уже согласованном плане. Здесь пока только решение: am going to buy.*
 - buy — *Нужна полная форма: am going to buy.*
 
 **5 · Карточка слова — cardamom**
@@ -83,10 +83,10 @@ I ___ turmeric. → **am going to buy** · am buying · buy
 - She is trying cardamom. — *В записи звучит She is going to try cardamom.*
 - She are going to try cardamom. — *В записи звучит She is going to try cardamom.*
 
-**8 · Ваша подруга решила попробовать кардамон в выпечке. Передайте намерение через going to.**
+**8 · Ваша подруга решила попробовать кардамон в выпечке. Договорённости пока нет. Передайте намерение через going to.**
 <!-- interaction_id: en:lesson-15:session-38:i06; family: context_gap_grammar -->
 She ___ cardamom. → **is going to try** · is trying · try
-- is trying — *Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.*
+- is trying — *Is trying — так говорят об уже согласованном плане. Здесь пока только решение: is going to try.*
 - try — *Нужна полная форма: is going to try.*
 
 **9 · Карточка слова — cloves**
@@ -105,8 +105,8 @@ She ___ cardamom. → **is going to try** · is trying · try
 
 **12 · Магазин отложил для вас упаковку пряной гвоздики и подтвердил получение на завтра. Передайте договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-38:i09; family: context_gap_grammar -->
-We ___ the cloves tomorrow. → **are collecting** · are going to collect · collect
-- are going to collect — *Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.*
+We ___ the cloves tomorrow. → **are collecting** · are collect · collect
+- are collect — *После are нужна форма с -ing: are collecting.*
 - collect — *Нужна полная форма: are collecting.*
 
 **13 · Карточка слова — nutmeg**
@@ -125,8 +125,8 @@ We ___ the cloves tomorrow. → **are collecting** · are going to collect · co
 
 **16 · Ваши родители договорились с продавцом, что заберут мускатный орех в пятницу. Передайте договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-38:i12; family: context_gap_grammar -->
-They ___ the nutmeg on Friday. → **are collecting** · are going to collect · collect
-- are going to collect — *Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.*
+They ___ the nutmeg on Friday. → **are collecting** · are collect · collect
+- are collect — *После are нужна форма с -ing: are collecting.*
 - collect — *Нужна полная форма: are collecting.*
 
 **17 · Соедините слова и выражения с переводом**

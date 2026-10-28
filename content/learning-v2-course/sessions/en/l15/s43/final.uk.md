@@ -63,10 +63,10 @@
 - I am visiting my modest friend. — *У записі звучить I am going to visit my modest friend.*
 - I is going to visit my modest friend. — *У записі звучить I am going to visit my modest friend.*
 
-**4 · Ваш друг виграв конкурс, але не вихваляється; ви вирішили його відвідати. Передайте намір через going to.**
+**4 · Ваш друг виграв конкурс, але не вихваляється; ви вирішили його відвідати. Домовленості поки немає. Передайте намір через going to.**
 <!-- interaction_id: en:lesson-15:session-43:i03; family: context_gap_grammar -->
 I ___ my modest friend. → **am going to visit** · am visiting · visit
-- am visiting — *Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to.*
+- am visiting — *Am visiting — так кажуть про вже узгоджений план. Тут поки лише рішення: am going to visit.*
 - visit — *Потрібна повна форма: am going to visit.*
 
 **5 · Картка слова — ambitious**
@@ -83,10 +83,10 @@ I ___ my modest friend. → **am going to visit** · am visiting · visit
 - She is helping her ambitious son. — *У записі звучить She is going to help her ambitious son.*
 - She are going to help her ambitious son. — *У записі звучить She is going to help her ambitious son.*
 
-**8 · Ваша сестра вирішила допомогти синові, який ставить перед собою великі цілі. Передайте намір через going to.**
+**8 · Ваша сестра вирішила допомогти синові, який ставить перед собою великі цілі. Домовленості поки немає. Передайте намір через going to.**
 <!-- interaction_id: en:lesson-15:session-43:i06; family: context_gap_grammar -->
 She ___ her ambitious son. → **is going to help** · is helping · help
-- is helping — *Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to.*
+- is helping — *Is helping — так кажуть про вже узгоджений план. Тут поки лише рішення: is going to help.*
 - help — *Потрібна повна форма: is going to help.*
 
 **9 · Картка слова — easy-going**
@@ -105,8 +105,8 @@ She ___ her ambitious son. → **is going to help** · is helping · help
 
 **12 · Квитки на суботу куплено; з вами їде друг, який спокійно ставиться до дрібниць. Передайте домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-43:i09; family: context_gap_grammar -->
-We ___ with our easy-going friend on Saturday. → **are travelling** · are going to travel · travel
-- are going to travel — *Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous.*
+We ___ with our easy-going friend on Saturday. → **are travelling** · are travel · travel
+- are travel — *Після are потрібна форма з -ing: are travelling.*
 - travel — *Потрібна повна форма: are travelling.*
 
 **13 · Картка слова — bossy**
@@ -125,8 +125,8 @@ We ___ with our easy-going friend on Saturday. → **are travelling** · are goi
 
 **16 · Ваші друзі узгодили завтрашню зустріч із двоюрідним братом, який часто всіма командує. Передайте домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-43:i12; family: context_gap_grammar -->
-They ___ their bossy cousin tomorrow. → **are meeting** · are going to meet · meet
-- are going to meet — *Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous.*
+They ___ their bossy cousin tomorrow. → **are meeting** · are meet · meet
+- are meet — *Після are потрібна форма з -ing: are meeting.*
 - meet — *Потрібна повна форма: are meeting.*
 
 **17 · Поєднайте слова й вирази з перекладом**

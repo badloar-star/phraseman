@@ -63,10 +63,10 @@
 - I am buying washer fluid. — *У записі звучить I am going to buy washer fluid.*
 - I is going to buy washer fluid. — *У записі звучить I am going to buy washer fluid.*
 
-**4 · Рідина для омивача закінчується; ви вирішили купити нову. Передайте намір через going to.**
+**4 · Рідина для омивача закінчується; ви вирішили купити нову. Домовленості поки немає. Передайте намір через going to.**
 <!-- interaction_id: en:lesson-15:session-29:i03; family: context_gap_grammar -->
 I ___ washer fluid. → **am going to buy** · am buying · buy
-- am buying — *Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to.*
+- am buying — *Am buying — так кажуть про вже узгоджений план. Тут поки лише рішення: am going to buy.*
 - buy — *Потрібна повна форма: am going to buy.*
 
 **5 · Картка слова — tyre pressure**
@@ -83,10 +83,10 @@ I ___ washer fluid. → **am going to buy** · am buying · buy
 - She is checking the tyre pressure. — *У записі звучить She is going to check the tyre pressure.*
 - She are going to check the tyre pressure. — *У записі звучить She is going to check the tyre pressure.*
 
-**8 · Ваша сестра вирішила перевірити тиск перед далекою поїздкою. Передайте намір через going to.**
+**8 · Ваша сестра вирішила перевірити тиск перед далекою поїздкою. Домовленості поки немає. Передайте намір через going to.**
 <!-- interaction_id: en:lesson-15:session-29:i06; family: context_gap_grammar -->
 She ___ the tyre pressure. → **is going to check** · is checking · check
-- is checking — *Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to.*
+- is checking — *Is checking — так кажуть про вже узгоджений план. Тут поки лише рішення: is going to check.*
 - check — *Потрібна повна форма: is going to check.*
 
 **9 · Картка слова — hubcap**
@@ -105,8 +105,8 @@ She ___ the tyre pressure. → **is going to check** · is checking · check
 
 **12 · Магазин підтвердив надходження замовленого ковпака й домовився видати його вам завтра. Передайте домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-29:i09; family: context_gap_grammar -->
-We ___ the hubcap tomorrow. → **are collecting** · are going to collect · collect
-- are going to collect — *Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous.*
+We ___ the hubcap tomorrow. → **are collecting** · are collect · collect
+- are collect — *Після are потрібна форма з -ing: are collecting.*
 - collect — *Потрібна повна форма: are collecting.*
 
 **13 · Картка слова — jump leads**
@@ -125,8 +125,8 @@ We ___ the hubcap tomorrow. → **are collecting** · are going to collect · co
 
 **16 · Друзі погодилися привезти вам дроти завтра о дев’ятій. Передайте домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-29:i12; family: context_gap_grammar -->
-They ___ jump leads at nine tomorrow. → **are bringing** · are going to bring · bring
-- are going to bring — *Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous.*
+They ___ jump leads at nine tomorrow. → **are bringing** · are bring · bring
+- are bring — *Після are потрібна форма з -ing: are bringing.*
 - bring — *Потрібна повна форма: are bringing.*
 
 **17 · Поєднайте слова й вирази з перекладом**

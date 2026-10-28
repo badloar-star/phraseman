@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Шаблоны объявлений v1</title>
+<link rel="stylesheet" href="kit.css">
+<style>
+/* ───────── PhraseMan 2.0 · «Шаблоны историй-объявлений» v1 (владелец 28.10 через координатора) ─────────
+   Слова владельца: в админке «Истории» шаблоны объявлений «очень слабые»; нужно больше 30 новых, анимированных, уникальных, на планке 23 шаблонов событий.
+   Что есть сейчас (admin/v2/legacy.html → редактор в srcdoc; modules/story_events/story_announcements_contract.ts; components/stories/AnnouncementSlide.tsx):
+   10 шаблонов (Новый лист, Редакция, Ленты, Манифест, Карточки, На полях, Фокус, Шаг вперёд, Мозаика, Прилив) — текст + тонкая линия-орнамент.
+   Поля объявления: метка (≤ 35), заголовок (≤ 110), до 4 текстовых блоков (≤ 260, кегль 14/16/20, стиль обычный/акцент/цитата), размер заголовка
+   28/34/40, выравнивание, орнамент вкл/выкл, срок жизни (часы/дни, 1–365), длительность кадра 5/8/12/15 с. Картинки, кнопки, фона и ссылки в контракте нет.
+   Здесь — 36 шаблонов: каждый держит короткий и длинный заголовок владельца (переключатель сверху), метку и блоки; арт — только из приложения
+   (3D-значки разделов assets/v2art в тёмном и светлом варианте, монеты, башня Пика, глифы Ionicons); цвета — токены выбранной из 23 тем.
+   Что потребует расширения контракта — помечено в описи (кнопка, выбор арта, дата события). Данные в кадрах — пример текста владельца. */
+@font-face { font-family: IoniconsApp; src: url(assets/Ionicons.ttf); }
+.io { font-family: IoniconsApp; font-style: normal; font-weight: 400; line-height: 1; display: inline-block; }
+:root { color-scheme: dark; }
+html, body { background: #0E0F12; color: #ECECEE; }
+.st-page { max-width: 1840px; margin: 0 auto; padding-block: 28px 110px; padding-left: max(24px, env(safe-area-inset-left, 0px)); padding-right: max(24px, env(safe-area-inset-right, 0px)); font-family: Inter, system-ui, sans-serif; }
+.st-page h1 { font-size: 30px; line-height: 36px; margin: 0 0 8px; letter-spacing: -.4px; font-weight: 800; }
+.st-page h2 { font-size: 22px; line-height: 28px; margin: 44px 0 6px; letter-spacing: -.3px; font-weight: 700; }
+.st-lead { color: #A9A9AE; font-size: 15px; line-height: 23px; max-width: 1120px; margin: 0 0 10px; }
+.st-lead b { color: #ECECEE; font-weight: 600; }
+.st-lead code { font: 13px/18px ui-monospace, Consolas, monospace; color: #A9C7D3; }
+.st-bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 40; display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; padding: 12px 0; margin-top: 10px;
+  background: rgba(14, 15, 18, .92); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
+.st-seg { display: inline-flex; background: #1C1D21; border-radius: 22px; padding: 4px; }
+.st-seg button { font: 600 15px/1 Inter, system-ui, sans-serif; color: #D6D6DA; background: transparent; border: 0; border-radius: 18px; padding: 10px 15px; cursor: pointer; }
+.st-seg button.on { background: #ECECEE; color: #111214; }
+.st-sel { font: 600 15px/1 Inter, system-ui, sans-serif; color: #ECECEE; background: #1C1D21; border: 0; border-radius: 22px; padding: 12px 38px 12px 16px; cursor: pointer; appearance: none; -webkit-appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, #A9A9AE 50%), linear-gradient(135deg, #A9A9AE 50%, transparent 50%); background-position: calc(100% - 20px) 19px, calc(100% - 14px) 19px; background-size: 6px 6px; background-repeat: no-repeat; }
+.st-btn { font: 600 15px/1 Inter, system-ui, sans-serif; color: #ECECEE; background: #1C1D21; border: 0; border-radius: 22px; padding: 12px 16px; cursor: pointer; }
+.st-btn:active { transform: scale(.97); }
+.st-btn:focus-visible, .st-seg button:focus-visible, .st-sel:focus-visible { outline: 2px solid #8FD3A8; outline-offset: 2px; }
+.st-hint { color: #8C8D94; font-size: 13px; line-height: 18px; }
+
+/* ── кадры ── */
+.st-grid { display: flex; flex-wrap: wrap; gap: 44px 34px; margin-top: 20px; align-items: flex-start; }
+.st-col { display: flex; flex-direction: column; gap: 10px; width: 390px; flex: none; max-width: 100%; }
+.st-lbl { font-size: 13px; line-height: 19px; color: #A9A9AE; min-height: 62px; }
+.st-lbl b { display: block; color: #ECECEE; font-size: 16px; line-height: 22px; font-weight: 700; margin-bottom: 1px; }
+.st-lbl .tag { display: inline-block; font-size: 11px; line-height: 16px; font-weight: 700; letter-spacing: .4px; padding: 0 7px; border-radius: 8px; background: #26272C; color: #D6D6DA; margin-left: 6px; vertical-align: 2px; }
+.st-lbl .tag.ext { background: #3A2E1E; color: #E7B07A; }
+.st-row { display: flex; gap: 12px; align-items: center; }
+.st-row .st-btn { padding: 10px 14px; font-size: 14px; }
+.st-row .st-hint { flex: 1; min-width: 0; }
+
+/* ── телефон 390 × 844 с токенами темы ── */
+.st-page .ph { width: 390px; max-width: 100%; height: 844px; margin-top: 0; border-radius: 48px; overflow: hidden; flex: none; position: relative; isolation: isolate; background: var(--bg-mid) !important; color: var(--tx);
+  box-shadow: 0 0 0 10px #0B0B0D, 0 0 0 11px #2B2C31, 0 30px 70px rgba(0, 0, 0, .55); font-family: Inter, system-ui, sans-serif; font-size: 16px; line-height: 21px; }
+.st-page .ph .sb { background: none; color: var(--tx); z-index: 70; height: 44px; padding: 10px 28px 0 36px; font-size: 16px; }
+.st-page .ph .sb .bat { border-color: currentColor; }
+.st-page .ph .sb .bat::after { background: currentColor; }
+.st-page .ph .sb .sys svg { fill: currentColor; }
+.st-page .ph .hi { background: var(--tx); opacity: .9; z-index: 80; }
+
+/* ── просмотр (StoryViewer 1:1) ── */
+.story { position: absolute; inset: 0; z-index: 1; overflow: hidden; color: var(--tx); touch-action: none; user-select: none; -webkit-user-select: none;
+  background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-mid) 55%, var(--bg-bot) 100%); transition: transform 320ms cubic-bezier(.23, 1, .32, 1), opacity 320ms cubic-bezier(.23, 1, .32, 1), border-radius 320ms; }
+.story.enter { animation: stEnter 380ms cubic-bezier(.32, .72, 0, 1) both; }
+@keyframes stEnter { 0% { transform: scale(.2) translate(140px, -300px); opacity: 0; border-radius: 50%; } 100% { transform: none; opacity: 1; border-radius: 0; } }
+.story.closing { transform: translateY(60%) scale(.9); opacity: 0; border-radius: 40px; }
+.story .glow { position: absolute; border-radius: 50%; filter: blur(44px); pointer-events: none; opacity: .95; will-change: transform; }
+.story .g1 { width: 360px; height: 360px; left: -130px; top: 30px; background: radial-gradient(circle, var(--g1) 0%, transparent 68%); animation: stDrift1 26s ease-in-out infinite alternate; }
+.story .g2 { width: 320px; height: 320px; right: -120px; top: 290px; background: radial-gradient(circle, var(--g2) 0%, transparent 68%); animation: stDrift2 31s ease-in-out infinite alternate; }
+.story .g3 { width: 340px; height: 340px; left: 30px; bottom: -150px; background: radial-gradient(circle, var(--g3) 0%, transparent 68%); animation: stDrift3 37s ease-in-out infinite alternate; }
+@keyframes stDrift1 { to { transform: translate(60px, 40px); } }
+@keyframes stDrift2 { to { transform: translate(-50px, -60px); } }
+@keyframes stDrift3 { to { transform: translate(-40px, -30px) scale(1.1); } }
+.story .wash { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(120% 50% at 50% 0%, var(--acc-glow), transparent 62%); opacity: .5; }
+.ph.lt .story .wash { opacity: .35; }
+.story .sbars { position: absolute; left: 12px; right: 12px; top: 54px; display: flex; gap: 4px; z-index: 5; }
+.story .sbars i { flex: 1; height: 3px; border-radius: 2px; background: color-mix(in srgb, var(--tx) 22%, transparent); overflow: hidden; display: block; }
+.story .sbars i b { display: block; height: 100%; width: 0; background: var(--tx); border-radius: 2px; }
+.story .shead { position: absolute; left: 16px; right: 16px; top: 68px; display: flex; align-items: center; gap: 10px; z-index: 5; }
+.story .shead .nm { font-size: 16px; line-height: 21px; font-weight: 700; }
+.story .shead .tm { font-size: 13px; line-height: 17px; color: var(--sec); }
+.story .shead .x { margin-left: auto; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--tx); cursor: pointer; }
+.story .shead .pm { width: 32px; height: 32px; border-radius: 50%; background: var(--cta); color: var(--cta-ink); display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 800; letter-spacing: -.5px; }
+.story .sl { position: absolute; left: 0; right: 0; top: 120px; bottom: 60px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0 28px; z-index: 2; pointer-events: none; }
+.story .sl.left { align-items: flex-start; text-align: left; }
+.story .sl.hascta { bottom: 150px; }
+.story .sl.bottom { justify-content: flex-end; padding-bottom: 16px; }
+.story .sl > * { position: relative; }
+.story .sl > .rain, .story .sl > .snow, .story .sl > .conf, .story .sl > .bgart { position: absolute; inset: 0; height: auto; }
+.story .stap { position: absolute; top: 110px; bottom: 0; z-index: 3; cursor: pointer; }
+.story .stap.l { left: 0; width: 32%; } .story .stap.r { right: 0; width: 68%; }
+.story .scta { position: absolute; left: 28px; right: 28px; bottom: 84px; z-index: 6; display: flex; align-items: center; justify-content: center; gap: 10px; height: 50px; border-radius: 25px;
+  background: var(--cta); color: var(--cta-ink); font-size: 17px; font-weight: 700; cursor: pointer; opacity: 0; animation: stUp 460ms cubic-bezier(.23, 1, .32, 1) both; animation-delay: var(--d, 900ms);
+  box-shadow: 0 12px 28px -12px color-mix(in srgb, var(--sh-tint) 55%, transparent); }
+.story .scta .io { font-size: 18px; }
+.story.paused .sl *, .story.paused .sl, .story.paused .glow, .story.paused .scta, .story.paused .sl *::before, .story.paused .sl *::after { animation-play-state: paused !important; }
+.story .pz { position: absolute; left: 50%; top: 50%; width: 56px; height: 56px; margin: -28px 0 0 -28px; border-radius: 50%; z-index: 7; pointer-events: none; display: flex; align-items: center; justify-content: center;
+  background: color-mix(in srgb, var(--tx) 16%, transparent); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); opacity: 0; transform: scale(.7); transition: opacity 160ms, transform 160ms; }
+.story.paused .pz { opacity: 1; transform: none; }
+.story .pz i { width: 6px; height: 20px; border-radius: 2px; background: var(--tx); display: block; margin: 0 3px; }
+
+/* ── типографика кадра ── */
+.sl .ov { font-size: 13px; line-height: 17px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; color: var(--acc); max-width: 334px; }
+.sl .h1 { margin-top: 8px; font-weight: 800; letter-spacing: -.6px; color: var(--tx); text-wrap: balance; max-width: 334px; }
+.sl .h1.h40 { font-size: 40px; line-height: 44px; letter-spacing: -.9px; }
+.sl .h1.h34 { font-size: 34px; line-height: 40px; }
+.sl .h1.h28 { font-size: 28px; line-height: 34px; letter-spacing: -.4px; }
+.sl .h1.caps { text-transform: uppercase; letter-spacing: -.2px; }
+.sl .p { margin-top: 8px; font-size: 16px; line-height: 22px; color: var(--sec); max-width: 320px; }
+.sl .p.b14 { font-size: 14px; line-height: 20px; } .sl .p.b20 { font-size: 20px; line-height: 27px; color: var(--tx); }
+.sl .blk { margin-top: 14px; max-width: 320px; text-align: inherit; }
+.sl .blk.acc { padding: 12px 16px; border-radius: 14px; background: color-mix(in srgb, var(--tx) 10%, transparent); color: var(--tx); font-weight: 600; }
+.sl .blk.q { display: flex; gap: 12px; align-items: stretch; font-style: italic; color: var(--tx); text-align: left; }
+.sl .blk.q::before { content: ""; width: 2px; border-radius: 1px; background: var(--acc-g); flex: none; }
+.sl .blk.b14 { font-size: 14px; line-height: 20px; } .sl .blk.b16 { font-size: 16px; line-height: 22px; } .sl .blk.b20 { font-size: 20px; line-height: 27px; }
+.sl .big { font-size: 96px; line-height: 96px; font-weight: 800; letter-spacing: -4px; color: var(--tx); font-variant-numeric: tabular-nums; }
+.sl .big.m { font-size: 72px; line-height: 76px; letter-spacing: -3px; }
+.sl .big.s { font-size: 56px; line-height: 60px; letter-spacing: -2px; }
+.sl .art { display: flex; align-items: center; justify-content: center; margin-bottom: 18px; }
+.sl .w { display: inline-block; }
+.sl .stats { display: flex; gap: 10px; margin-top: 18px; flex-wrap: wrap; justify-content: center; }
+.sl .stt { min-width: 92px; padding: 10px 14px; border-radius: 16px; background: color-mix(in srgb, var(--tx) 10%, transparent); }
+.sl .stt b { display: block; font-size: 24px; line-height: 28px; font-weight: 800; letter-spacing: -.5px; font-variant-numeric: tabular-nums; }
+.sl .stt span { display: block; font-size: 13px; line-height: 17px; color: var(--sec); margin-top: 1px; }
+.sl .chip { display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 12px; border-radius: 16px; background: color-mix(in srgb, var(--tx) 12%, transparent); font-size: 14px; font-weight: 700; margin-top: 14px; }
+.sl .chip .io { font-size: 15px; color: var(--acc); }
+.sl .coin { border-radius: 50%; display: block; }
+.sl .v2art { display: block; filter: drop-shadow(0 18px 30px color-mix(in srgb, var(--sh-tint) 55%, transparent)); }
+.sl .caret { display: inline-block; width: 3px; height: .9em; background: var(--acc-g); vertical-align: -.08em; margin-left: 3px; border-radius: 2px; animation: stCaret 900ms steps(1) infinite; }
+@keyframes stCaret { 50% { opacity: 0; } }
+.sl .rule { width: 56px; height: 3px; border-radius: 2px; background: var(--acc-g); transform-origin: left; animation: stGrowX 700ms cubic-bezier(.23, 1, .32, 1) both; animation-delay: var(--d, 200ms); }
+@keyframes stGrowX { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.sl .ico { width: 92px; height: 92px; border-radius: 50%; background: color-mix(in srgb, var(--tx) 12%, transparent); display: flex; align-items: center; justify-content: center; color: var(--acc-g); }
+.sl .ico .io { font-size: 44px; }
+.sl .rows { display: flex; flex-direction: column; gap: 8px; width: 100%; max-width: 320px; margin-top: 16px; }
+.sl .rows .r { display: flex; align-items: center; gap: 12px; padding: 11px 14px; border-radius: 14px; background: color-mix(in srgb, var(--tx) 9%, transparent); font-size: 15px; line-height: 20px; text-align: left; }
+.sl .rows .r .t2 { flex: 1; min-width: 0; }
+.sl .rows .r .ck { width: 26px; height: 26px; border-radius: 50%; background: color-mix(in srgb, var(--tx) 14%, transparent); display: flex; align-items: center; justify-content: center; color: transparent; flex: none; animation: stCheck 300ms ease-out forwards; animation-delay: var(--d); }
+.sl .rows .r .tm2 { font-weight: 800; font-variant-numeric: tabular-nums; min-width: 52px; color: var(--acc); }
+@keyframes stCheck { to { background: var(--acc-g); color: var(--acc-ink); } }
+
+/* ── входы ── */
+.a { opacity: 0; animation: stUp 460ms cubic-bezier(.23, 1, .32, 1) both; animation-delay: var(--d, 0ms); }
+.pop { opacity: 0; animation: stPop 560ms cubic-bezier(.34, 1.56, .64, 1) both; animation-delay: var(--d, 0ms); }
+.fade { opacity: 0; animation: stFade 420ms ease-out both; animation-delay: var(--d, 0ms); }
+.rise { opacity: 0; animation: stRise 700ms cubic-bezier(.23, 1, .32, 1) both; animation-delay: var(--d, 0ms); }
+.slideL { opacity: 0; animation: stSlideL 600ms cubic-bezier(.23, 1, .32, 1) both; animation-delay: var(--d, 0ms); }
+.breathe { animation: stBreathe 2.6s ease-in-out infinite; }
+.float { animation: stFloat 4.2s ease-in-out infinite; }
+.spin { animation: stSpin 18s linear infinite; }
+@keyframes stUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+@keyframes stPop { from { opacity: 0; transform: scale(.6); } to { opacity: 1; transform: none; } }
+@keyframes stFade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes stRise { from { opacity: 0; transform: translateY(40px) scale(.94); } to { opacity: 1; transform: none; } }
+@keyframes stSlideL { from { opacity: 0; transform: translateX(-40px); } to { opacity: 1; transform: none; } }
+@keyframes stBreathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.04); } }
+@keyframes stFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+@keyframes stSpin { to { transform: rotate(360deg); } }
+
+/* ── детали шаблонов ── */
+.ring { position: relative; width: 170px; height: 170px; }
+.ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.ring .rtrk { fill: none; stroke: color-mix(in srgb, var(--tx) 14%, transparent); stroke-width: 12; }
+.ring .prg { fill: none; stroke: var(--acc-g); stroke-width: 12; stroke-linecap: round; stroke-dasharray: 471.24; stroke-dashoffset: 471.24; animation: stRing 1400ms cubic-bezier(.23, 1, .32, 1) 300ms forwards; }
+@keyframes stRing { to { stroke-dashoffset: var(--off); } }
+.ring .c { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.ring .c b { font-size: 52px; line-height: 56px; font-weight: 800; letter-spacing: -2px; font-variant-numeric: tabular-nums; }
+.ring .c span { font-size: 13px; line-height: 17px; color: var(--sec); font-weight: 700; }
+.qmark { font-size: 120px; line-height: 90px; font-weight: 800; color: var(--acc-g); opacity: .9; letter-spacing: -6px; }
+.pulse { width: 14px; height: 14px; border-radius: 50%; background: var(--acc-g); position: relative; margin-bottom: 20px; }
+.pulse::after { content: ""; position: absolute; inset: -6px; border-radius: 50%; border: 2px solid var(--acc-g); animation: stPulse 1.8s ease-out infinite; }
+@keyframes stPulse { 0% { transform: scale(.6); opacity: 1; } 100% { transform: scale(2.2); opacity: 0; } }
+.cal7 { display: flex; gap: 8px; margin-top: 18px; }
+.cal7 .c { width: 38px; height: 50px; border-radius: 12px; background: color-mix(in srgb, var(--tx) 10%, transparent); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 12px; font-weight: 700; color: var(--sec); }
+.cal7 .c .io { font-size: 16px; color: transparent; }
+.cal7 .c.on { background: var(--acc-g); color: var(--acc-ink); } .cal7 .c.on .io { color: var(--acc-ink); }
+.cal7 .c.goal { box-shadow: 0 0 0 2px var(--acc-g); color: var(--tx); }
+.leaf { width: 150px; height: 150px; border-radius: 28px; background: var(--card); box-shadow: 0 22px 50px -20px color-mix(in srgb, var(--sh-tint) 80%, transparent); display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; }
+.leaf .mo { width: 100%; height: 34px; background: var(--acc-g); color: var(--acc-ink); font-size: 13px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; display: flex; align-items: center; justify-content: center; }
+.leaf .dn { flex: 1; display: flex; align-items: center; justify-content: center; font-size: 68px; font-weight: 800; letter-spacing: -3px; color: var(--tx); font-variant-numeric: tabular-nums; }
+.twr { clip-path: inset(100% 0 0 0); animation: stTower 1500ms cubic-bezier(.23, 1, .32, 1) 200ms forwards; position: relative; }
+@keyframes stTower { to { clip-path: inset(0 0 0 0); } }
+.twr svg { display: block; }
+.vs { display: flex; align-items: center; gap: 18px; }
+.vs .coin { width: 84px; height: 84px; }
+.vs .x2 { font-size: 22px; font-weight: 800; color: var(--sec); letter-spacing: 1px; }
+.podium { display: flex; align-items: flex-end; gap: 10px; height: 190px; }
+.podium .pc { width: 88px; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.podium .pc .bar { width: 88px; border-radius: 16px 16px 0 0; background: color-mix(in srgb, var(--tx) 12%, transparent); transform-origin: bottom; animation: stGrow 800ms cubic-bezier(.23, 1, .32, 1) both; animation-delay: var(--d); display: flex; align-items: flex-start; justify-content: center; padding-top: 10px; font-size: 20px; font-weight: 800; color: var(--sec); }
+.podium .pc.me .bar { background: var(--acc-g); color: var(--acc-ink); box-shadow: 0 -10px 40px -10px var(--acc-glow); }
+.podium .pc .nm { font-size: 13px; line-height: 17px; font-weight: 700; max-width: 88px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } .podium .pc .cn { font-size: 12px; line-height: 16px; color: var(--sec); }
+@keyframes stGrow { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+.inv { width: 100%; max-width: 300px; padding: 18px; border-radius: 24px; background: var(--card); box-shadow: 0 18px 44px -18px color-mix(in srgb, var(--sh-tint) 70%, transparent); display: flex; flex-direction: column; align-items: center; gap: 6px; margin-bottom: 22px; }
+.inv .code { font-size: 30px; line-height: 36px; font-weight: 800; letter-spacing: 3px; font-variant-numeric: tabular-nums; }
+.inv .k { font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--sec); }
+.avs { display: flex; justify-content: center; margin-top: 10px; }
+.avs .coin { width: 40px; height: 40px; margin: 0 -6px; box-shadow: 0 0 0 3px var(--bg-mid); }
+.snow { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.snow i { position: absolute; top: -12px; left: var(--x); width: var(--s); height: var(--s); border-radius: 50%; background: var(--tx); opacity: .75; animation: stSnow var(--t) linear infinite; animation-delay: var(--d); }
+@keyframes stSnow { 0% { transform: translateY(0) translateX(0); } 100% { transform: translateY(880px) translateX(var(--sx)); opacity: 0; } }
+.conf { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.conf i { position: absolute; left: 50%; top: 42%; width: 8px; height: 12px; border-radius: 3px; background: var(--cc); opacity: 0; animation: stConf 1700ms cubic-bezier(.2, .7, .3, 1) both; animation-delay: var(--d); }
+@keyframes stConf { 0% { transform: translate(0, 0) rotate(0); opacity: 1; } 100% { transform: translate(var(--dx), var(--dy)) rotate(var(--r)); opacity: 0; } }
+.sparks { position: absolute; inset: 0; pointer-events: none; }
+.sparks .io { position: absolute; left: var(--x); top: var(--y); font-size: var(--s); color: var(--acc-b); opacity: 0; animation: stSpark 2.4s ease-in-out infinite; animation-delay: var(--d); }
+.ph.lt .sparks .io { color: var(--acc-g); }
+@keyframes stSpark { 0%, 100% { opacity: 0; transform: scale(.4) rotate(0); } 50% { opacity: 1; transform: scale(1) rotate(20deg); } }
+.swatch { position: relative; width: 170px; height: 170px; }
+.swatch .core { position: absolute; left: 25px; top: 25px; width: 120px; height: 120px; border-radius: 50%; background: linear-gradient(135deg, var(--grad-a), var(--grad-b)); box-shadow: inset 0 2px 0 rgba(255, 255, 255, .45), 0 20px 50px -20px rgba(0, 0, 0, .6); }
+.swatch svg { position: absolute; inset: 0; width: 100%; height: 100%; animation: stSpin 18s linear infinite; }
+.swatch svg ellipse { fill: none; stroke: var(--acc-g); }
+.plusring { position: relative; width: 150px; height: 150px; display: flex; align-items: center; justify-content: center; }
+.plusring::before { content: ""; position: absolute; inset: 0; border-radius: 50%; background: conic-gradient(from 0deg, var(--acc-g), var(--acc-b), var(--grad-b), var(--acc-g)); -webkit-mask: radial-gradient(circle, transparent 62px, #000 63px); mask: radial-gradient(circle, transparent 62px, #000 63px); animation: stSpin 9s linear infinite; }
+.plusring .t3 { font-size: 40px; font-weight: 800; letter-spacing: -1px; }
+.bgart { display: flex; align-items: flex-start; justify-content: flex-end; pointer-events: none; }
+.bgart img { width: 300px; height: 300px; margin: -40px -70px 0 0; opacity: .5; filter: blur(.4px); }
+.pollopt { width: 100%; max-width: 300px; margin-top: 10px; padding: 14px 16px; border-radius: 16px; background: color-mix(in srgb, var(--tx) 10%, transparent); font-size: 16px; font-weight: 700; display: flex; align-items: center; gap: 12px; text-align: left; }
+.pollopt .n { width: 28px; height: 28px; border-radius: 50%; background: color-mix(in srgb, var(--tx) 14%, transparent); display: flex; align-items: center; justify-content: center; font-size: 13px; color: var(--sec); flex: none; }
+.pollopt.sel { background: var(--acc-g); color: var(--acc-ink); } .pollopt.sel .n { background: color-mix(in srgb, var(--acc-ink) 18%, transparent); color: var(--acc-ink); }
+.hourglass { font-size: 110px; color: var(--acc-g); animation: stTilt 2.8s ease-in-out infinite; transform-origin: 50% 50%; }
+@keyframes stTilt { 0%, 100% { transform: rotate(0); } 50% { transform: rotate(180deg); } }
+.vframe { width: 300px; height: 168px; border-radius: 20px; background: var(--card); box-shadow: 0 22px 50px -20px color-mix(in srgb, var(--sh-tint) 80%, transparent); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+.vframe img { width: 100%; height: 100%; object-fit: cover; opacity: .85; }
+.vframe .pb { position: absolute; width: 64px; height: 64px; border-radius: 50%; background: var(--cta); color: var(--cta-ink); display: flex; align-items: center; justify-content: center; }
+.vframe .pb .io { font-size: 26px; margin-left: 4px; }
+.vframe .dur { position: absolute; right: 10px; bottom: 10px; font-size: 12px; font-weight: 700; padding: 3px 8px; border-radius: 8px; background: rgba(0, 0, 0, .55); color: #fff; }
+.vs2 { display: flex; align-items: center; gap: 14px; }
+.lines { display: flex; flex-direction: column; gap: 4px; align-items: center; }
+.lines .ln { overflow: hidden; } .lines .ln span { display: block; animation: stLine 700ms cubic-bezier(.23, 1, .32, 1) both; animation-delay: var(--d); }
+@keyframes stLine { from { transform: translateY(110%); } to { transform: none; } }
+.ver { font-size: 84px; line-height: 88px; font-weight: 800; letter-spacing: -4px; font-variant-numeric: tabular-nums; }
+.tipbox { width: 100%; max-width: 310px; padding: 18px 20px; border-radius: 22px; background: var(--card); box-shadow: 0 18px 44px -18px color-mix(in srgb, var(--sh-tint) 70%, transparent); text-align: left; margin-top: 18px; }
+.tipbox .k { font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--acc); }
+.tipbox .t { margin-top: 6px; font-size: 19px; line-height: 25px; font-weight: 700; }
+.tipbox .s { margin-top: 6px; font-size: 14px; line-height: 20px; color: var(--sec); }
+.cardst { position: relative; width: 240px; height: 150px; }
+.cardst .cc2 { position: absolute; left: 20px; top: 0; width: 200px; height: 120px; border-radius: 20px; background: var(--card); box-shadow: 0 16px 36px -16px color-mix(in srgb, var(--sh-tint) 70%, transparent); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; opacity: 0; animation: stStack 700ms cubic-bezier(.23, 1, .32, 1) forwards; animation-delay: var(--d); transform: translateY(var(--ty)) scale(var(--sc)); }
+.cardst .cc2 .en { font-size: 22px; font-weight: 800; } .cardst .cc2 .ru { font-size: 13px; color: var(--sec); }
+@keyframes stStack { from { opacity: 0; transform: translateY(40px) scale(.9); } to { opacity: 1; transform: translateY(var(--ty)) scale(var(--sc)); } }
+.wkgoal { display: flex; align-items: flex-end; gap: 9px; height: 110px; }
+.wkgoal .b { width: 30px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; }
+.wkgoal .b i { display: block; width: 100%; height: var(--h); border-radius: 8px; background: color-mix(in srgb, var(--tx) 18%, transparent); transform-origin: bottom; animation: stGrow 700ms cubic-bezier(.23, 1, .32, 1) both; animation-delay: var(--d); }
+.wkgoal .b.on i { background: var(--acc-g); }
+.wkgoal .b span { font-size: 12px; font-weight: 700; color: var(--sec); margin-top: 6px; }
+.heart { font-size: 120px; color: var(--acc-g); animation: stBeat 1.6s ease-in-out infinite; }
+@keyframes stBeat { 0%, 100% { transform: scale(1); } 14% { transform: scale(1.12); } 28% { transform: scale(1); } 42% { transform: scale(1.1); } }
+
+/* ── опись ── */
+.st-map-wrap { overflow-x: auto; margin-top: 12px; border-radius: 16px; background: #17181B; }
+.st-map { width: 100%; min-width: 1100px; border-collapse: collapse; font-size: 13px; line-height: 18px; }
+.st-map th { text-align: left; font-weight: 700; color: #ECECEE; background: #1E1F23; padding: 10px 12px; }
+.st-map td { padding: 8px 12px; vertical-align: top; color: #C9C9CE; border-top: 1px solid rgba(255, 255, 255, .06); }
+.st-map td:first-child { color: #ECECEE; font-weight: 700; white-space: nowrap; }
+.st-map td code { font: 12px/17px ui-monospace, Consolas, monospace; color: #A9C7D3; }
+.st-map .ok { color: #8FD3A8; font-weight: 700; } .st-map .ext { color: #E7B07A; font-weight: 700; }
+
+@media (prefers-reduced-motion: reduce) {
+  .st-page .ph .story, .st-page .ph .story * { animation: none !important; transition: none !important; }
+  .a, .pop, .fade, .rise, .slideL, .story .scta, .cardst .cc2 { opacity: 1 !important; transform: none !important; }
+  .twr { clip-path: none !important; } .ring .prg { stroke-dashoffset: var(--off) !important; } .lines .ln span { transform: none !important; }
+  .rows .r .ck { background: var(--acc-g) !important; color: var(--acc-ink) !important; } .snow, .conf, .sparks { display: none !important; }
+}
+</style>
+</head>
+<body>
+<div class="st-page">
+  <h1>Шаблоны объявлений v1 · 36 кадров</h1>
+  <p class="st-lead">Объявление — история, которую владелец публикует всем из админки («Истории»). Владелец пишет <b>метку</b>, <b>заголовок</b> и до <b>4 блоков текста</b>, выбирает срок и длительность кадра; шаблон даёт раскладку, арт и движение. Каждый телефон ниже — настоящий просмотр: полосы сверху, тап справа и слева, удержание — пауза, свайп вниз — закрыть. Переключатель <b>«Короткий / длинный заголовок»</b> показывает, что шаблон держит и 20, и 100 знаков. Арт — только из приложения (значки разделов, монеты, башня Пика). Цвета — токены любой из 23 тем, тёмное и светлое оформление.</p>
+  <div class="st-bar" id="bar">
+    <select class="st-sel" id="th" aria-label="Тема"></select>
+    <div class="st-seg" role="group" aria-label="Оформление"><button type="button" data-ap="dark" class="on">Тёмное</button><button type="button" data-ap="light">Светлое</button></div>
+    <div class="st-seg" role="group" aria-label="Заголовок"><button type="button" data-len="short" class="on">Короткий заголовок</button><button type="button" data-len="long">Длинный заголовок</button></div>
+    <div class="st-seg" role="group" aria-label="Темп"><button type="button" data-sp="10000" class="on">10 с</button><button type="button" data-sp="4000">4 с · быстро</button></div>
+    <button type="button" class="st-btn" id="mix">Разные темы в галерее</button>
+    <button type="button" class="st-btn" id="replay">Повторить всё</button>
+    <span class="st-hint" id="hint"></span>
+  </div>
+
+  <h2 id="player-h">Плеер · все 36 кадров подряд</h2>
+  <p class="st-lead">Одна очередь, полоса на каждый кадр; после последнего просмотр закрывается и открывается заново.</p>
+  <div class="st-grid" id="player"></div>
+
+  <h2 id="gallery-h">Галерея · по одному шаблону на телефон</h2>
+  <p class="st-lead">Каждый телефон повторяет свой шаблон каждые 10 с. Тап влево и вправо листает соседние шаблоны прямо в телефоне. Под телефоном — какие поля шаблон использует и что ему нужно сверх текущего контракта.</p>
+  <div class="st-grid" id="gallery"></div>
+
+  <h2 id="map-h">Опись шаблонов</h2>
+  <p class="st-lead">Контракт сейчас: <code>templateId · badge ≤ 35 · title ≤ 110 · blocks ≤ 4 (≤ 260, 14/16/20, normal/accent/quote) · titleSize 28/34/40 · align · decoration · lifetime+unit · durationMs</code>. «Нужно в контракте» — что добавить, чтобы шаблон работал как на макете; шаблоны без пометки ложатся на текущие поля.</p>
+  <div class="st-map-wrap"><table class="st-map" id="map"></table></div>
+</div>
+
+<script>window.__THEMES = {"graphite": {"name": "Затмение", "gradient": false, "dark": {"bg": "#070C11", "bgTop": "#192028", "bgBottom": "#091619", "opaqueCard": "#171C22", "opaqueSheet": "#101418", "opaqueControl": "#262C32", "card": "#171C22EB", "text": "#F7FAFE", "secondary": "#C6CBD1", "mutedText": "#A3A8AD", "cta": "#F2F1F6", "ctaInk": "#0B0C0E", "accent": "#ABC0D7", "accentInk": "#11171D", "accentText": "#ABC0D7", "accentBright": "#D0E0F1", "accentSoft": "#4D60749E", "accentGlow": "#74889E8C", "accentGradient": ["#DDE9F6", "#9EB4CA", "#CDE2E8", "#92A7BD"], "bgGlow": ["#617081A8", "#4C626875", "#3F4F5F85"], "shadowTint": "#000000", "isLight": false, "selected": "#A5BAD133"}, "light": {"bg": "#E6EEF7", "bgTop": "#F2F5F9", "bgBottom": "#DCEBEF", "opaqueCard": "#FBFDFF", "opaqueSheet": "#FBFCFD", "opaqueControl": "#D9DFE5", "card": "#FBFDFFED", "text": "#16191C", "secondary": "#575B60", "mutedText": "#5C6064", "cta": "#182029", "ctaInk": "#FFFFFF", "accent": "#4D6C8C", "accentInk": "#FFFFFF", "accentText": "#3F5D7D", "accentBright": "#4D6C8C", "accentSoft": "#E1EDFAF7", "accentGlow": "#44576B66", "accentGradient": ["#597491", "#3B5876", "#507D88", "#365270"], "bgGlow": ["#C2D3E6B3", "#C4DDE399", "#DCE6F080"], "shadowTint": "#2D3C4C29", "isLight": true, "selected": "#252F3A14"}}, "polar": {"name": "Иней", "gradient": false, "dark": {"bg": "#010C18", "bgTop": "#02243B", "bgBottom": "#001920", "opaqueCard": "#0D1D2B", "opaqueSheet": "#0A151E", "opaqueControl": "#1D2D3A", "card": "#0D1D2BEB", "text": "#F7FBFE", "secondary": "#BFCDD9", "mutedText": "#9EA9B3", "cta": "#D2E9F3", "ctaInk": "#01070A", "accent": "#88C5F7", "accentInk": "#061825", "accentText": "#88C5F7", "accentBright": "#B8E4FF", "accentSoft": "#26628F9E", "accentGlow": "#518CBB8C", "accentGradient": ["#88C5F7", "#6ACBDE"], "bgGlow": ["#4480AEC7", "#1B899BB3", "#20517685"], "shadowTint": "#000000", "isLight": false, "selected": "#81BEF033"}, "light": {"bg": "#DEEFFE", "bgTop": "#EEF6FE", "bgBottom": "#D2EEF4", "opaqueCard": "#F9FDFF", "opaqueSheet": "#FAFCFE", "opaqueControl": "#D1E0ED", "card": "#F9FDFFED", "text": "#13191E", "secondary": "#535C64", "mutedText": "#596168", "cta": "#10212F", "ctaInk": "#FFFFFF", "accent": "#166EA8", "accentInk": "#FFFFFF", "accentText": "#006098", "accentBright": "#166EA8", "accentSoft": "#D3EFFFF7", "accentGlow": "#1C5A8666", "accentGradient": ["#166EA8", "#007991"], "bgGlow": ["#A7D7FFB3", "#A4E4F199", "#CDE9FF80"], "shadowTint": "#173E5B29", "isLight": true, "selected": "#1A304214"}}, "slate": {"name": "Шторм", "gradient": false, "dark": {"bg": "#020921", "bgTop": "#061E4D", "bgBottom": "#021133", "opaqueCard": "#0D1B35", "opaqueSheet": "#0A1325", "opaqueControl": "#1D2B45", "card": "#0D1B35EB", "text": "#F8FAFE", "secondary": "#BECBE3", "mutedText": "#9DA8BB", "cta": "#D6E7F6", "ctaInk": "#02060C", "accent": "#88BCFF", "accentInk": "#07152F", "accentText": "#8EBFFF", "accentBright": "#B7DFFF", "accentSoft": "#2B58B19E", "accentGlow": "#5283E08C", "accentGradient": ["#B7DFFF", "#88BCFF", "#5B8FF1"], "bgGlow": ["#4C7DD9D1", "#3B6AC59E", "#24499185"], "shadowTint": "#000000", "isLight": false, "selected": "#82B6FF33"}, "light": {"bg": "#DFEEFF", "bgTop": "#EEF6FF", "bgBottom": "#D8E9FF", "opaqueCard": "#F8FDFF", "opaqueSheet": "#FAFCFF", "opaqueControl": "#D1DFF8", "card": "#F8FDFFED", "text": "#131822", "secondary": "#535B6A", "mutedText": "#59606C", "cta": "#111F37", "ctaInk": "#FFFFFF", "accent": "#2A61CD", "accentInk": "#FFFFFF", "accentText": "#1C52BC", "accentBright": "#2A61CD", "accentSoft": "#D3ECFFF7", "accentGlow": "#224FA766", "accentGradient": ["#336AD7", "#2A61CD", "#154BB5"], "bgGlow": ["#A6D1FFB3", "#B2D8FF99", "#CCE6FF80"], "shadowTint": "#1C386E29", "isLight": true, "selected": "#1C2D4D14"}}, "ink": {"name": "Сумерки", "gradient": false, "dark": {"bg": "#090918", "bgTop": "#1E1E3A", "bgBottom": "#180F22", "opaqueCard": "#191A2A", "opaqueSheet": "#12131E", "opaqueControl": "#292A3A", "card": "#191A2AEB", "text": "#F9FAFE", "secondary": "#C8C9D8", "mutedText": "#A5A6B2", "cta": "#DFE4F8", "ctaInk": "#04050C", "accent": "#C1C4FF", "accentInk": "#141424", "accentText": "#C1C4FF", "accentBright": "#DEE1FF", "accentSoft": "#56578C9E", "accentGlow": "#7E80B88C", "accentGradient": ["#DEE1FF", "#C1C4FF"], "bgGlow": ["#6061A0B3", "#644A8085", "#47487385"], "shadowTint": "#000000", "isLight": false, "selected": "#AEB1ED33"}, "light": {"bg": "#EAEBFE", "bgTop": "#F3F4FD", "bgBottom": "#ECE4F7", "opaqueCard": "#FCFCFF", "opaqueSheet": "#FBFBFE", "opaqueControl": "#DBDDEC", "card": "#FCFCFFED", "text": "#17181E", "secondary": "#595A63", "mutedText": "#5E5F67", "cta": "#1D1D2F", "ctaInk": "#FFFFFF", "accent": "#5F5CB1", "accentInk": "#FFFFFF", "accentText": "#514EA1", "accentBright": "#5F5CB1", "accentSoft": "#E6E9FFF7", "accentGlow": "#4E4F8366", "accentGradient": ["#6765BB", "#4C489B"], "bgGlow": ["#C9CCFDB3", "#E0CEF899", "#E0E2FE80"], "shadowTint": "#36365929", "isLight": true, "selected": "#2A2B4114"}}, "lavender": {"name": "Туманность", "gradient": false, "dark": {"bg": "#11041D", "bgTop": "#2C1144", "bgBottom": "#1C082D", "opaqueCard": "#221430", "opaqueSheet": "#180F22", "opaqueControl": "#312440", "card": "#221430EB", "text": "#FBF9FD", "secondary": "#D0C5DE", "mutedText": "#A79FB3", "cta": "#E7E1F5", "ctaInk": "#07050B", "accent": "#D4A3FF", "accentInk": "#1C0E2A", "accentText": "#D4A3FF", "accentBright": "#EFCCFF", "accentSoft": "#7241A09E", "accentGlow": "#9B6BCE8C", "accentGradient": ["#EFCCFF", "#D4A3FF", "#A976DE"], "bgGlow": ["#9565C7D1", "#8353B39E", "#5E368485"], "shadowTint": "#000000", "isLight": false, "selected": "#CE9DFF33"}, "light": {"bg": "#F3E7FF", "bgTop": "#F8F2FF", "bgBottom": "#EFE1FF", "opaqueCard": "#FFFBFF", "opaqueSheet": "#FCFBFE", "opaqueControl": "#E4D8F3", "card": "#FFFBFFED", "text": "#1A1620", "secondary": "#5E5767", "mutedText": "#625C6A", "cta": "#251832", "ctaInk": "#FFFFFF", "accent": "#8145B9", "accentInk": "#FFFFFF", "accentText": "#7335A8", "accentBright": "#8145B9", "accentSoft": "#F5E1FFF7", "accentGlow": "#69399666", "accentGradient": ["#8A4EC3", "#8145B9", "#6D2FA2"], "bgGlow": ["#E3BDFFB3", "#E7C6FF99", "#EFDAFF80"], "shadowTint": "#472A6429", "isLight": true, "selected": "#35254714"}}, "iris": {"name": "Комета", "gradient": false, "dark": {"bg": "#130611", "bgTop": "#30172D", "bgBottom": "#141024", "opaqueCard": "#241622", "opaqueSheet": "#1A1018", "opaqueControl": "#342632", "card": "#241622EB", "text": "#FDF9FC", "secondary": "#D3C6D0", "mutedText": "#AFA4AD", "cta": "#EDDFF0", "ctaInk": "#080409", "accent": "#ECB7E3", "accentInk": "#1F101D", "accentText": "#ECB7E3", "accentBright": "#FAD9F4", "accentSoft": "#794B739E", "accentGlow": "#A5739D8C", "accentGradient": ["#FAD9F4", "#ECB7E3"], "bgGlow": ["#895382B3", "#594E8685", "#643E5F85"], "shadowTint": "#000000", "isLight": false, "selected": "#D8A4D033"}, "light": {"bg": "#F7E7F4", "bgTop": "#FAF2F9", "bgBottom": "#E8E5FA", "opaqueCard": "#FFFBFF", "opaqueSheet": "#FDFBFD", "opaqueControl": "#E7D9E4", "card": "#FFFBFFED", "text": "#1C161B", "secondary": "#60585F", "mutedText": "#645D63", "cta": "#281926", "ctaInk": "#FFFFFF", "accent": "#93498A", "accentInk": "#FFFFFF", "accentText": "#833A7B", "accentBright": "#93498A", "accentSoft": "#FCE2F7F7", "accentGlow": "#70436A66", "accentGradient": ["#9C5293", "#7D3475"], "bgGlow": ["#ECC1E5B3", "#D8D1FC99", "#F5DCF080"], "shadowTint": "#4D2E4929", "isLight": true, "selected": "#3A263714"}}, "rose": {"name": "Рассвет", "gradient": false, "dark": {"bg": "#150706", "bgTop": "#2D1918", "bgBottom": "#200F04", "opaqueCard": "#271716", "opaqueSheet": "#1C1010", "opaqueControl": "#372626", "card": "#271716EB", "text": "#FEF9F8", "secondary": "#D6C6C5", "mutedText": "#B2A4A3", "cta": "#F4DDE7", "ctaInk": "#0A0406", "accent": "#EAABA8", "accentInk": "#221110", "accentText": "#EAABA8", "accentBright": "#FFD1CE", "accentSoft": "#834C4A9E", "accentGlow": "#AF74728C", "accentGradient": ["#FFDEDC", "#DD9F9C", "#F6D7C1", "#D0928F"], "bgGlow": ["#8E615FA8", "#74564075", "#6C3F3D85"], "shadowTint": "#000000", "isLight": false, "selected": "#E4A5A233"}, "light": {"bg": "#FCE7E6", "bgTop": "#FCF2F2", "bgBottom": "#F6E4D8", "opaqueCard": "#FFFBFB", "opaqueSheet": "#FDFBFB", "opaqueControl": "#EAD9D8", "card": "#FFFBFBED", "text": "#1D1616", "secondary": "#625857", "mutedText": "#665D5C", "cta": "#2C1919", "ctaInk": "#FFFFFF", "accent": "#9A504F", "accentInk": "#FFFFFF", "accentText": "#8A4241", "accentBright": "#9A504F", "accentSoft": "#FFE2E0F7", "accentGlow": "#7A444266", "accentGradient": ["#9E5C5A", "#823D3D", "#986844", "#7C3838"], "bgGlow": ["#F6C2BFB3", "#F3D0B699", "#FBDCDA80"], "shadowTint": "#542E2D29", "isLight": true, "selected": "#3E262614"}}, "terracotta": {"name": "Закат", "gradient": false, "dark": {"bg": "#1C0201", "bgTop": "#420A03", "bgBottom": "#250C00", "opaqueCard": "#2F120C", "opaqueSheet": "#220D09", "opaqueControl": "#40221C", "card": "#2F120CEB", "text": "#FEF9F8", "secondary": "#E0C3BD", "mutedText": "#B59D98", "cta": "#F6DFD7", "ctaInk": "#0B0402", "accent": "#FF9A84", "accentInk": "#2A0B06", "accentText": "#FF9F8A", "accentBright": "#FFC6B4", "accentSoft": "#9D37259E", "accentGlow": "#CC624E8C", "accentGradient": ["#FF9A84", "#F1AA47"], "bgGlow": ["#BF5542C7", "#AC6900B3", "#812E1F85"], "shadowTint": "#000000", "isLight": false, "selected": "#FF937E33"}, "light": {"bg": "#FFE5DE", "bgTop": "#FFF1ED", "bgBottom": "#FAE4CA", "opaqueCard": "#FFFAF8", "opaqueSheet": "#FFFBFA", "opaqueControl": "#F4D6D0", "card": "#FFFAF8ED", "text": "#211513", "secondary": "#685652", "mutedText": "#6B5B59", "cta": "#331610", "ctaInk": "#FFFFFF", "accent": "#B53621", "accentInk": "#FFFFFF", "accentText": "#A4240E", "accentBright": "#B53621", "accentSoft": "#FFDDD2F7", "accentGlow": "#932D1C66", "accentGradient": ["#B53621", "#A15200"], "bgGlow": ["#FFB6A3B3", "#FFCD8F99", "#FFD6CB80"], "shadowTint": "#62231829", "isLight": true, "selected": "#47221A14"}}, "taupe": {"name": "Дюна", "gradient": false, "dark": {"bg": "#150801", "bgTop": "#2D1A0C", "bgBottom": "#1E1100", "opaqueCard": "#27180D", "opaqueSheet": "#1B110A", "opaqueControl": "#36281D", "card": "#27180DEB", "text": "#FDF9F6", "secondary": "#D5C8BE", "mutedText": "#B1A59D", "cta": "#F2E1D2", "ctaInk": "#0A0501", "accent": "#E8B187", "accentInk": "#211207", "accentText": "#E8B187", "accentBright": "#FED5B7", "accentSoft": "#8151299E", "accentGlow": "#AD79518C", "accentGradient": ["#FFE1CA", "#DAA47B", "#F1DBB9", "#CD976F"], "bgGlow": ["#8C6547A8", "#70593675", "#6A422285"], "shadowTint": "#000000", "isLight": false, "selected": "#E1AA8133"}, "light": {"bg": "#FAE9DD", "bgTop": "#FCF3ED", "bgBottom": "#F2E6D4", "opaqueCard": "#FFFCF8", "opaqueSheet": "#FDFBFA", "opaqueControl": "#E9DBD1", "card": "#FFFCF8ED", "text": "#1D1713", "secondary": "#625953", "mutedText": "#665E59", "cta": "#2B1B0F", "ctaInk": "#FFFFFF", "accent": "#97571D", "accentInk": "#FFFFFF", "accentText": "#874807", "accentBright": "#97571D", "accentSoft": "#FFE5D2F7", "accentGlow": "#78482066", "accentGradient": ["#9B6234", "#7F4405", "#916E33", "#793E00"], "bgGlow": ["#F4C7A5B3", "#EED3AC99", "#F9DFCC80"], "shadowTint": "#52321829", "isLight": true, "selected": "#3D291914"}}, "olive": {"name": "Саванна", "gradient": false, "dark": {"bg": "#140800", "bgTop": "#2C1B00", "bgBottom": "#1D1200", "opaqueCard": "#261903", "opaqueSheet": "#1B1204", "opaqueControl": "#362914", "card": "#261903EB", "text": "#FCFAF6", "secondary": "#D5C9B7", "mutedText": "#B0A698", "cta": "#E5E7D2", "ctaInk": "#060601", "accent": "#E6B463", "accentInk": "#211300", "accentText": "#E6B463", "accentBright": "#FDD8A0", "accentSoft": "#8053009E", "accentGlow": "#AC7C268C", "accentGradient": ["#FFE3B9", "#D9A856", "#EEDDAA", "#CC9B49"], "bgGlow": ["#8B682BA8", "#6E5C2175", "#6A450085"], "shadowTint": "#000000", "isLight": false, "selected": "#E0AE5D33"}, "light": {"bg": "#F9EBD6", "bgTop": "#FBF4E9", "bgBottom": "#F0E8CD", "opaqueCard": "#FFFCF6", "opaqueSheet": "#FDFBF9", "opaqueControl": "#E9DCC9", "card": "#FFFCF6ED", "text": "#1C1710", "secondary": "#615A4E", "mutedText": "#655E55", "cta": "#2A1D06", "ctaInk": "#FFFFFF", "accent": "#945B00", "accentInk": "#FFFFFF", "accentText": "#844C00", "accentBright": "#945B00", "accentSoft": "#FFE8C5F7", "accentGlow": "#774B0066", "accentGradient": ["#986600", "#7D4800", "#8C7109", "#774200"], "bgGlow": ["#F2CA8BB3", "#EAD79A99", "#F8E1BF80"], "shadowTint": "#51340029", "isLight": true, "selected": "#3C2A0D14"}}, "sage": {"name": "Мята", "gradient": false, "dark": {"bg": "#001104", "bgTop": "#002D12", "bgBottom": "#001C08", "opaqueCard": "#002313", "opaqueSheet": "#03190E", "opaqueControl": "#133323", "card": "#002313EB", "text": "#F7FBF9", "secondary": "#B9D2C3", "mutedText": "#99AEA2", "cta": "#D8EADB", "ctaInk": "#030703", "accent": "#5ED99E", "accentInk": "#001D0D", "accentText": "#66DBA3", "accentBright": "#A1F3C7", "accentSoft": "#0074419E", "accentGlow": "#019F688C", "accentGradient": ["#A1F3C7", "#5ED99E", "#14AD73"], "bgGlow": ["#009962D1", "#0086519E", "#00603585"], "shadowTint": "#000000", "isLight": false, "selected": "#56D29833"}, "light": {"bg": "#D9F5E4", "bgTop": "#EBF9F1", "bgBottom": "#D1F1DE", "opaqueCard": "#F7FFFA", "opaqueSheet": "#F9FDFB", "opaqueControl": "#CBE6D6", "card": "#F7FFFAED", "text": "#101B15", "secondary": "#4F5F56", "mutedText": "#56645B", "cta": "#052617", "ctaInk": "#FFFFFF", "accent": "#008445", "accentInk": "#FFFFFF", "accentText": "#006B2F", "accentBright": "#008445", "accentSoft": "#C8F9DDF7", "accentGlow": "#006B3866", "accentGradient": ["#008748", "#008445", "#006E32"], "bgGlow": ["#8CE8B8B3", "#9DECC199", "#C1F2D680"], "shadowTint": "#00492929", "isLight": true, "selected": "#0B372314"}}, "eucalyptus": {"name": "Лагуна", "gradient": false, "dark": {"bg": "#00100E", "bgTop": "#002C27", "bgBottom": "#011A03", "opaqueCard": "#00221F", "opaqueSheet": "#011816", "opaqueControl": "#0F322E", "card": "#00221FEB", "text": "#F6FBFB", "secondary": "#B7D1CD", "mutedText": "#98ADAA", "cta": "#D2EBE5", "ctaInk": "#010806", "accent": "#4BD7C9", "accentInk": "#001C19", "accentText": "#54D9CC", "accentBright": "#99F1E6", "accentSoft": "#0072689E", "accentGlow": "#009D918C", "accentGradient": ["#4BD7C9", "#88CF8A"], "bgGlow": ["#009085C7", "#478D4BB3", "#005E5585"], "shadowTint": "#000000", "isLight": false, "selected": "#42D0C333"}, "light": {"bg": "#D6F4F0", "bgTop": "#E9F9F7", "bgBottom": "#D9EFD9", "opaqueCard": "#F6FFFE", "opaqueSheet": "#F9FDFC", "opaqueControl": "#C9E5E1", "card": "#F6FFFEED", "text": "#0F1B19", "secondary": "#4E5F5C", "mutedText": "#556361", "cta": "#002622", "ctaInk": "#FFFFFF", "accent": "#008275", "accentInk": "#FFFFFF", "accentText": "#006A5F", "accentBright": "#008275", "accentSoft": "#C3F8F0F7", "accentGlow": "#00695F66", "accentGradient": ["#008275", "#207E2C"], "bgGlow": ["#82E6DAB3", "#B5E7B699", "#BDF1EA80"], "shadowTint": "#00474129", "isLight": true, "selected": "#01363214"}}, "marine": {"name": "Океан", "gradient": false, "dark": {"bg": "#000F16", "bgTop": "#002936", "bgBottom": "#001B17", "opaqueCard": "#002027", "opaqueSheet": "#03171C", "opaqueControl": "#123037", "card": "#002027EB", "text": "#F6FBFD", "secondary": "#B8CFD6", "mutedText": "#98ACB1", "cta": "#D0EAED", "ctaInk": "#010708", "accent": "#5CCFEB", "accentInk": "#001A22", "accentText": "#64D1EC", "accentBright": "#A0ECFF", "accentSoft": "#006C859E", "accentGlow": "#0196B08C", "accentGradient": ["#5CCFEB", "#58D1C5"], "bgGlow": ["#008AA4C7", "#008F84B3", "#00596D85"], "shadowTint": "#000000", "isLight": false, "selected": "#55C9E433"}, "light": {"bg": "#D7F2FA", "bgTop": "#EAF8FC", "bgBottom": "#CFF0EB", "opaqueCard": "#F7FEFF", "opaqueSheet": "#F9FCFD", "opaqueControl": "#CBE3EA", "card": "#F7FEFFED", "text": "#101A1D", "secondary": "#4F5E62", "mutedText": "#566266", "cta": "#03242B", "ctaInk": "#FFFFFF", "accent": "#007A9A", "accentInk": "#FFFFFF", "accentText": "#006B8B", "accentBright": "#007A9A", "accentSoft": "#C6F4FFF7", "accentGlow": "#00637C66", "accentGradient": ["#007A9A", "#008075"], "bgGlow": ["#8BE0F6B3", "#9CE9DF99", "#C0EEFA80"], "shadowTint": "#00445429", "isLight": true, "selected": "#07343D14"}}, "grad_aurora": {"name": "Аврора", "gradient": true, "dark": {"bg": "#0C0D10", "bgTop": "#181A1F", "bgBottom": "#16181D", "opaqueCard": "#202B29", "opaqueSheet": "#2B3839", "opaqueControl": "#2B3839", "card": "#263532BF", "text": "#FFFFFF", "secondary": "#CACBCE", "mutedText": "#CACBCE", "cta": "#7EF0C8", "ctaInk": "#04261D", "accent": "#7EF0C8", "accentInk": "#04261D", "accentText": "#98F3D3", "accentBright": "#7EF0C8", "accentSoft": "#7EF0C83D", "accentGlow": "#7EF0C88C", "accentGradient": ["#7EF0C8", "#7EF0C8"], "bgGlow": ["#38E0AAB3", "#7C5CFFB3", "#38E0AAB3"], "shadowTint": "#000000", "isLight": false, "selected": "#7EF0C830"}, "light": {"bg": "#DED7F9", "bgTop": "#CCF1E7", "bgBottom": "#DED7F9", "opaqueCard": "#FFFFFF", "opaqueSheet": "#FFFFFF", "opaqueControl": "#ECECEF", "card": "#FFFFFF", "text": "#111114", "secondary": "#5C5C63", "mutedText": "#5B5B62", "cta": "#7EF0C8", "ctaInk": "#04261D", "accent": "#7EF0C8", "accentInk": "#04261D", "accentText": "#185E47", "accentBright": "#185E47", "accentSoft": "#7EF0C84D", "accentGlow": "#7EF0C866", "accentGradient": ["#7EF0C8", "#7EF0C8"], "bgGlow": ["#00000000", "#00000000", "#00000000"], "shadowTint": "#00000038", "isLight": true, "selected": "#7EF0C84D"}}, "grad_iris": {"name": "Ирис", "gradient": true, "dark": {"bg": "#0C0D10", "bgTop": "#181A1F", "bgBottom": "#16181D", "opaqueCard": "#27272E", "opaqueSheet": "#33353E", "opaqueControl": "#33353E", "card": "#2F3039BF", "text": "#FFFFFF", "secondary": "#C6C7CA", "mutedText": "#C6C7CA", "cta": "#C7C9FF", "ctaInk": "#1B1C4A", "accent": "#C7C9FF", "accentInk": "#1B1C4A", "accentText": "#D5D7FF", "accentBright": "#C7C9FF", "accentSoft": "#C7C9FF3D", "accentGlow": "#C7C9FF8C", "accentGradient": ["#C7C9FF", "#C7C9FF"], "bgGlow": ["#788CFFB3", "#FF78C8B3", "#788CFFB3"], "shadowTint": "#000000", "isLight": false, "selected": "#C7C9FF30"}, "light": {"bg": "#F8DDEE", "bgTop": "#DADFFA", "bgBottom": "#F8DDEE", "opaqueCard": "#FFFFFF", "opaqueSheet": "#FFFFFF", "opaqueControl": "#ECECEF", "card": "#FFFFFF", "text": "#111114", "secondary": "#5C5C63", "mutedText": "#606066", "cta": "#C7C9FF", "ctaInk": "#1B1C4A", "accent": "#C7C9FF", "accentInk": "#1B1C4A", "accentText": "#323B6B", "accentBright": "#323B6B", "accentSoft": "#C7C9FF4D", "accentGlow": "#C7C9FF66", "accentGradient": ["#C7C9FF", "#C7C9FF"], "bgGlow": ["#00000000", "#00000000", "#00000000"], "shadowTint": "#00000038", "isLight": true, "selected": "#C7C9FF4D"}}, "grad_magma": {"name": "Магма", "gradient": true, "dark": {"bg": "#0C0D10", "bgTop": "#181A1F", "bgBottom": "#16181D", "opaqueCard": "#2C2521", "opaqueSheet": "#383231", "opaqueControl": "#383231", "card": "#372D28BF", "text": "#FFFFFF", "secondary": "#BFC0C4", "mutedText": "#BFC0C4", "cta": "#FFB27A", "ctaInk": "#3A1204", "accent": "#FFB27A", "accentInk": "#3A1204", "accentText": "#FFC9A2", "accentBright": "#FFB27A", "accentSoft": "#FFB27A3D", "accentGlow": "#FFB27A8C", "accentGradient": ["#FFB27A", "#FFB27A"], "bgGlow": ["#FF5A28B3", "#FFAA3CB3", "#FF5A28B3"], "shadowTint": "#000000", "isLight": false, "selected": "#FFB27A30"}, "light": {"bg": "#F8E7D2", "bgTop": "#F8D4CA", "bgBottom": "#F8E7D2", "opaqueCard": "#FFFFFF", "opaqueSheet": "#FFFFFF", "opaqueControl": "#ECECEF", "card": "#FFFFFF", "text": "#111114", "secondary": "#5C5C63", "mutedText": "#5B5B62", "cta": "#FFB27A", "ctaInk": "#3A1204", "accent": "#FFB27A", "accentInk": "#3A1204", "accentText": "#6B2611", "accentBright": "#6B2611", "accentSoft": "#FFB27A4D", "accentGlow": "#FFB27A66", "accentGradient": ["#FFB27A", "#FFB27A"], "bgGlow": ["#00000000", "#00000000", "#00000000"], "shadowTint": "#00000038", "isLight": true, "selected": "#FFB27A4D"}}, "grad_midnight": {"name": "Полночь", "gradient": true, "dark": {"bg": "#0C0D10", "bgTop": "#181A1F", "bgBottom": "#16181D", "opaqueCard": "#21272E", "opaqueSheet": "#2D343E", "opaqueControl": "#2D343E", "card": "#272F39BF", "text": "#FFFFFF", "secondary": "#BFC0C4", "mutedText": "#BFC0C4", "cta": "#8CC4FF", "ctaInk": "#06224D", "accent": "#8CC4FF", "accentInk": "#06224D", "accentText": "#AFD6FF", "accentBright": "#8CC4FF", "accentSoft": "#8CC4FF3D", "accentGlow": "#8CC4FF8C", "accentGradient": ["#8CC4FF", "#8CC4FF"], "bgGlow": ["#286EFFB3", "#00D2FFB3", "#286EFFB3"], "shadowTint": "#000000", "isLight": false, "selected": "#8CC4FF30"}, "light": {"bg": "#C5EFF9", "bgTop": "#C9D8FA", "bgBottom": "#C5EFF9", "opaqueCard": "#FFFFFF", "opaqueSheet": "#FFFFFF", "opaqueControl": "#ECECEF", "card": "#FFFFFF", "text": "#111114", "secondary": "#5C5C63", "mutedText": "#5B5B62", "cta": "#8CC4FF", "ctaInk": "#06224D", "accent": "#8CC4FF", "accentInk": "#06224D", "accentText": "#112E6B", "accentBright": "#112E6B", "accentSoft": "#8CC4FF4D", "accentGlow": "#8CC4FF66", "accentGradient": ["#8CC4FF", "#8CC4FF"], "bgGlow": ["#00000000", "#00000000", "#00000000"], "shadowTint": "#00000038", "isLight": true, "selected": "#8CC4FF4D"}}, "grad_champagne": {"name": "Шампань", "gradient": true, "dark": {"bg": "#0C0D10", "bgTop": "#181A1F", "bgBottom": "#16181D", "opaqueCard": "#2B2824", "opaqueSheet": "#373634", "opaqueControl": "#373634", "card": "#35312CBF", "text": "#FFFFFF", "secondary": "#CACBCE", "mutedText": "#CACBCE", "cta": "#F3D39A", "ctaInk": "#3A2608", "accent": "#F3D39A", "accentInk": "#3A2608", "accentText": "#F6DEB3", "accentBright": "#F3D39A", "accentSoft": "#F3D39A3D", "accentGlow": "#F3D39A8C", "accentGradient": ["#F3D39A", "#F3D39A"], "bgGlow": ["#F0BE78B3", "#E68296B3", "#F0BE78B3"], "shadowTint": "#000000", "isLight": false, "selected": "#F3D39A30"}, "light": {"bg": "#F3DFE4", "bgTop": "#F5EADC", "bgBottom": "#F3DFE4", "opaqueCard": "#FFFFFF", "opaqueSheet": "#FFFFFF", "opaqueControl": "#ECECEF", "card": "#FFFFFF", "text": "#111114", "secondary": "#5C5C63", "mutedText": "#606066", "cta": "#F3D39A", "ctaInk": "#3A2608", "accent": "#F3D39A", "accentInk": "#3A2608", "accentText": "#655032", "accentBright": "#655032", "accentSoft": "#F3D39A4D", "accentGlow": "#F3D39A66", "accentGradient": ["#F3D39A", "#F3D39A"], "bgGlow": ["#00000000", "#00000000", "#00000000"], "shadowTint": "#00000038", "isLight": true, "selected": "#F3D39A4D"}}, "grad_jade": {"name": "Нефрит", "gradient": true, "dark": {"bg": "#0C0D10", "bgTop": "#181A1F", "bgBottom": "#16181D", "opaqueCard": "#202A2A", "opaqueSheet": "#2B373A", "opaqueControl": "#2B373A", "card": "#263333BF", "text": "#FFFFFF", "secondary": "#C6C7CA", "mutedText": "#C6C7CA", "cta": "#7FE6D2", "ctaInk": "#032A24", "accent": "#7FE6D2", "accentInk": "#032A24", "accentText": "#9FECDD", "accentBright": "#7FE6D2", "accentSoft": "#7FE6D23D", "accentGlow": "#7FE6D28C", "accentGradient": ["#7FE6D2", "#7FE6D2"], "bgGlow": ["#14BEA0B3", "#1E78C8B3", "#14BEA0B3"], "shadowTint": "#000000", "isLight": false, "selected": "#7FE6D230"}, "light": {"bg": "#CBDDEE", "bgTop": "#C4EAE5", "bgBottom": "#CBDDEE", "opaqueCard": "#FFFFFF", "opaqueSheet": "#FFFFFF", "opaqueControl": "#ECECEF", "card": "#FFFFFF", "text": "#111114", "secondary": "#5C5C63", "mutedText": "#5B5B62", "cta": "#7FE6D2", "ctaInk": "#032A24", "accent": "#7FE6D2", "accentInk": "#032A24", "accentText": "#085043", "accentBright": "#085043", "accentSoft": "#7FE6D24D", "accentGlow": "#7FE6D266", "accentGradient": ["#7FE6D2", "#7FE6D2"], "bgGlow": ["#00000000", "#00000000", "#00000000"], "shadowTint": "#00000038", "isLight": true, "selected": "#7FE6D24D"}}, "grad_orchid": {"name": "Орхидея", "gradient": true, "dark": {"bg": "#0C0D10", "bgTop": "#181A1F", "bgBottom": "#16181D", "opaqueCard": "#2A242E", "opaqueSheet": "#36313E", "opaqueControl": "#36313E", "card": "#342B39BF", "text": "#FFFFFF", "secondary": "#BFC0C4", "mutedText": "#BFC0C4", "cta": "#EAA6FF", "ctaInk": "#3A0A4A", "accent": "#EAA6FF", "accentInk": "#3A0A4A", "accentText": "#F0C1FF", "accentBright": "#EAA6FF", "accentSoft": "#EAA6FF3D", "accentGlow": "#EAA6FF8C", "accentGradient": ["#EAA6FF", "#EAA6FF"], "bgGlow": ["#D246FFB3", "#FF3C8CB3", "#D246FFB3"], "shadowTint": "#000000", "isLight": false, "selected": "#EAA6FF30"}, "light": {"bg": "#F8D1E2", "bgTop": "#EECFFA", "bgBottom": "#F8D1E2", "opaqueCard": "#FFFFFF", "opaqueSheet": "#FFFFFF", "opaqueControl": "#ECECEF", "card": "#FFFFFF", "text": "#111114", "secondary": "#58585F", "mutedText": "#57575D", "cta": "#EAA6FF", "ctaInk": "#3A0A4A", "accent": "#EAA6FF", "accentInk": "#3A0A4A", "accentText": "#581D6B", "accentBright": "#581D6B", "accentSoft": "#EAA6FF4D", "accentGlow": "#EAA6FF66", "accentGradient": ["#EAA6FF", "#EAA6FF"], "bgGlow": ["#00000000", "#00000000", "#00000000"], "shadowTint": "#00000038", "isLight": true, "selected": "#EAA6FF4D"}}, "grad_ice": {"name": "Лёд", "gradient": true, "dark": {"bg": "#0C0D10", "bgTop": "#181A1F", "bgBottom": "#16181D", "opaqueCard": "#262A2E", "opaqueSheet": "#32373E", "opaqueControl": "#32373E", "card": "#2E3339BF", "text": "#FFFFFF", "secondary": "#CDCED1", "mutedText": "#CDCED1", "cta": "#BFE6FF", "ctaInk": "#0A2A44", "accent": "#BFE6FF", "accentInk": "#0A2A44", "accentText": "#C9EAFF", "accentBright": "#BFE6FF", "accentSoft": "#BFE6FF3D", "accentGlow": "#BFE6FF8C", "accentGradient": ["#BFE6FF", "#BFE6FF"], "bgGlow": ["#96DCFFB3", "#78A0FFB3", "#96DCFFB3"], "shadowTint": "#000000", "isLight": false, "selected": "#BFE6FF30"}, "light": {"bg": "#DDE5F9", "bgTop": "#E1F0FA", "bgBottom": "#DDE5F9", "opaqueCard": "#FFFFFF", "opaqueSheet": "#FFFFFF", "opaqueControl": "#ECECEF", "card": "#FFFFFF", "text": "#111114", "secondary": "#5C5C63", "mutedText": "#5B5B62", "cta": "#BFE6FF", "ctaInk": "#0A2A44", "accent": "#BFE6FF", "accentInk": "#0A2A44", "accentText": "#3F5C6B", "accentBright": "#3F5C6B", "accentSoft": "#BFE6FF4D", "accentGlow": "#BFE6FF66", "accentGradient": ["#BFE6FF", "#BFE6FF"], "bgGlow": ["#00000000", "#00000000", "#00000000"], "shadowTint": "#00000038", "isLight": true, "selected": "#BFE6FF4D"}}, "grad_coral": {"name": "Коралл", "gradient": true, "dark": {"bg": "#0C0D10", "bgTop": "#181A1F", "bgBottom": "#16181D", "opaqueCard": "#2C2525", "opaqueSheet": "#383235", "opaqueControl": "#383235", "card": "#372C2DBF", "text": "#FFFFFF", "secondary": "#C3C4C7", "mutedText": "#C3C4C7", "cta": "#FFB0A0", "ctaInk": "#4A0F0A", "accent": "#FFB0A0", "accentInk": "#4A0F0A", "accentText": "#FFC8BD", "accentBright": "#FFB0A0", "accentSoft": "#FFB0A03D", "accentGlow": "#FFB0A08C", "accentGradient": ["#FFB0A0", "#FFB0A0"], "bgGlow": ["#FF645AB3", "#FFA046B3", "#FF645AB3"], "shadowTint": "#000000", "isLight": false, "selected": "#FFB0A030"}, "light": {"bg": "#F8E5D4", "bgTop": "#F8D6D5", "bgBottom": "#F8E5D4", "opaqueCard": "#FFFFFF", "opaqueSheet": "#FFFFFF", "opaqueControl": "#ECECEF", "card": "#FFFFFF", "text": "#111114", "secondary": "#5C5C63", "mutedText": "#606066", "cta": "#FFB0A0", "ctaInk": "#4A0F0A", "accent": "#FFB0A0", "accentInk": "#4A0F0A", "accentText": "#6B2A26", "accentBright": "#6B2A26", "accentSoft": "#FFB0A04D", "accentGlow": "#FFB0A066", "accentGradient": ["#FFB0A0", "#FFB0A0"], "bgGlow": ["#00000000", "#00000000", "#00000000"], "shadowTint": "#00000038", "isLight": true, "selected": "#FFB0A04D"}}, "grad_lilac": {"name": "Сирень", "gradient": true, "dark": {"bg": "#0C0D10", "bgTop": "#181A1F", "bgBottom": "#16181D", "opaqueCard": "#28272E", "opaqueSheet": "#34343E", "opaqueControl": "#34343E", "card": "#312F39BF", "text": "#FFFFFF", "secondary": "#C6C7CA", "mutedText": "#C6C7CA", "cta": "#D4C8FF", "ctaInk": "#24164A", "accent": "#D4C8FF", "accentInk": "#24164A", "accentText": "#DFD6FF", "accentBright": "#D4C8FF", "accentSoft": "#D4C8FF3D", "accentGlow": "#D4C8FF8C", "accentGradient": ["#D4C8FF", "#D4C8FF"], "bgGlow": ["#A78BFAB3", "#60A5FAB3", "#A78BFAB3"], "shadowTint": "#000000", "isLight": false, "selected": "#D4C8FF30"}, "light": {"bg": "#D8E6F8", "bgTop": "#E5DEF8", "bgBottom": "#D8E6F8", "opaqueCard": "#FFFFFF", "opaqueSheet": "#FFFFFF", "opaqueControl": "#ECECEF", "card": "#FFFFFF", "text": "#111114", "secondary": "#5C5C63", "mutedText": "#606066", "cta": "#D4C8FF", "ctaInk": "#24164A", "accent": "#D4C8FF", "accentInk": "#24164A", "accentText": "#463A69", "accentBright": "#463A69", "accentSoft": "#D4C8FF4D", "accentGlow": "#D4C8FF66", "accentGradient": ["#D4C8FF", "#D4C8FF"], "bgGlow": ["#00000000", "#00000000", "#00000000"], "shadowTint": "#00000038", "isLight": true, "selected": "#D4C8FF4D"}}};</script>
+<script src="kit.js"></script>
+<script src="spire-tower-render.js"></script>
+<script>
+(() => {
+'use strict';
+const THEMES = window.__THEMES || {};
+const IDS = Object.keys(THEMES);
+const T = window.SpireTowerRender;
+const I = { flame: '', flameO: '', flash: '', trophy: '', sparkles: '', star: '', starO: '', heart: '', people: '', personAdd: '', chats: '', chat: '',
+  check: '', checkCircle: '', close: '', arrowR: '', chevron: '', time: '', lock: '', share: '', mic: '', book: '', copy: '', trend: '',
+  refresh: '', play: '', vol: '', calendar: '', ribbon: '', medal: '', school: '', snow: '', rocket: '', flag: '', layers: '', albums: '',
+  swap: '', language: '', podium: '', cafe: '', palette: '', diamond: '', key: '', unlock: '', shield: '', footsteps: '', hourglass: '',
+  barChart: '', pulse: '', sunny: '', moon: '', infinite: '', bookmark: '', add: '', link: '', send: '', wallet: '', bulb: '', timer: '',
+  stopwatch: '', repeat: '', list: '', leaf: '', planet: '', happy: '', thumbsUp: '', earth: '', gift: '', settings: '', notifications: '', mail: '' };
+const io = (n, s = 22, extra = '') => `<span class="io" style="font-size:${s}px;${extra}">${I[n] || ''}</span>`;
+const sbHtml = (time = '9:41') => `<div class="sb"><span>${time}</span><span class="sys"><svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg><svg width="17" height="12" viewBox="0 0 17 12" fill="currentColor"><path d="M8.5 2.2c2.4 0 4.6.9 6.3 2.5l1.2-1.3A10.8 10.8 0 008.5.5 10.8 10.8 0 001 3.4l1.2 1.3a9 9 0 016.3-2.5zm0 3.6c1.4 0 2.7.5 3.7 1.4l1.2-1.3a7.2 7.2 0 00-9.8 0l1.2 1.3c1-.9 2.3-1.4 3.7-1.4zm0 3.5c.5 0 1 .2 1.3.5L8.5 11.3 7.2 9.8c.3-.3.8-.5 1.3-.5z"/></svg><span class="bat"></span></span></div>`;
+const pad2 = (r) => String(Math.max(0, Math.min(19, r))).padStart(2, '0');
+const coin = (r = 5, s = 48, cls = '', extra = '') => `<img class="coin ${cls}" src="assets/coin_rank_${pad2(r)}.webp" width="${s}" height="${s}" style="width:${s}px;height:${s}px;${extra}" alt="">`;
+const esc = (t) => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const words = (text, d0 = 0, step = 50) => esc(text).split(' ').map((w, i) => `<span class="w a" style="--d:${d0 + i * step}ms">${w}</span>`).join(' ');
+const cnt = (to, d = 300, dur = 900, cls = '', suffix = '') => `<b class="${cls}" data-cnt="${to}" data-d="${d}" data-dur="${dur}" data-suf="${suffix}">0${suffix}</b>`;
+const fmt = (n) => String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const DAYS = ['П', 'В', 'С', 'Ч', 'П', 'С', 'В'];
+const FLOORS = (T && T.FLOORS) || 15;
+const DARK = { good: '#6FD08C', bad: '#F2766B' }, LIGHT = { good: '#2B8A5E', bad: '#C4463C' };
+// зачем: заголовок владельца любой длины — размер подбирается по числу знаков (40 ≤ 28 зн., 34 ≤ 60, иначе 28 — те же три размера, что в контракте)
+const hcls = (t) => (t.length <= 28 ? 'h40' : t.length <= 60 ? 'h34' : 'h28');
+const title = (t, d0 = 300, extra = '') => `<div class="h1 ${hcls(t)} ${extra}">${words(t, d0)}</div>`;
+const badge = (t, d = 200) => (t ? `<div class="ov a" style="--d:${d}ms">${esc(t)}</div>` : '');
+const block = (b, d) => b.style === 'accent' ? `<div class="blk acc b${b.size} a" style="--d:${d}ms">${esc(b.text)}</div>` : b.style === 'quote' ? `<div class="blk q b${b.size} a" style="--d:${d}ms">${esc(b.text)}</div>` : `<div class="p b${b.size} a" style="--d:${d}ms">${esc(b.text)}</div>`;
+const blocks = (list, d0 = 700, step = 160) => (list || []).map((b, i) => block(b, d0 + i * step)).join('');
+const art = (ph, name, size = 150, cls = 'pop float', d = 100) => `<div class="pop" style="--d:${d}ms"><img class="v2art ${cls.replace('pop', '')}" src="assets/v2art/${ph.classList.contains('lt') ? 'light' : 'dark'}/${name}.webp" width="${size}" height="${size}" style="width:${size}px;height:${size}px" alt=""></div>`;
+const confetti = (n = 18, d0 = 700) => `<div class="conf">${Array.from({ length: n }, (_, i) => { const a = (Math.PI * 2 / n) * i + (i % 3) * .3; const r = 120 + (i % 5) * 28; const c = ['var(--acc-b)', 'var(--acc-g)', 'var(--tx)', 'var(--sec)'][i % 4]; return `<i style="--cc:${c};--dx:${Math.round(Math.cos(a) * r)}px;--dy:${Math.round(Math.sin(a) * r + 90)}px;--r:${(i * 97) % 360}deg;--d:${d0 + (i % 6) * 60}ms"></i>`; }).join('')}</div>`;
+const ring = (frac, inner) => `<div class="ring pop" style="--d:100ms"><svg viewBox="0 0 170 170"><circle class="rtrk" cx="85" cy="85" r="75"/><circle class="prg" cx="85" cy="85" r="75" style="--off:${(471.24 * (1 - frac)).toFixed(2)}"/></svg><div class="c">${inner}</div></div>`;
+const tower = (ph, tier, myFloor, width) => { if (!T) return ''; const lite = ph.classList.contains('lt'); const w = Math.min(width || 200, Math.floor(360 * T.TW / T.GEOM.height)); const h = Math.round(T.GEOM.height * w / T.TW); return `<div class="twr" style="width:${w}px;height:${h}px">${T.svg({ tier, myFloor, selected: myFloor, width: w, theme: lite ? 'light' : 'dark', variant: 'tower' })}</div>`; };
+const sparks = (n = 7) => `<div class="sparks">${Array.from({ length: n }, (_, i) => `<span class="io" style="--x:${8 + (i * 13) % 84}%;--y:${10 + (i * 29) % 70}%;--s:${14 + (i % 3) * 8}px;--d:${i * 330}ms">${I.sparkles}</span>`).join('')}</div>`;
+
+/* ── токены темы ── */
+const tokCss = (id, ap) => {
+  const t = THEMES[id][ap]; const g = t.accentGradient || [t.accent, t.accent]; const gl = t.bgGlow || [t.accentGlow, t.accentGlow, t.accentGlow]; const m = t.isLight ? LIGHT : DARK;
+  return [`--bg-top:${t.bgTop}`, `--bg-mid:${t.bg}`, `--bg-bot:${t.bgBottom}`, `--tx:${t.text}`, `--sec:${t.secondary}`, `--mu:${t.mutedText}`,
+    `--acc:${t.accentText}`, `--acc-g:${t.accent}`, `--acc-b:${t.accentBright}`, `--acc-ink:${t.accentInk}`, `--acc-soft:${t.accentSoft}`, `--acc-glow:${t.accentGlow}`,
+    `--g1:${gl[0]}`, `--g2:${gl[1] || gl[0]}`, `--g3:${gl[2] || gl[0]}`, `--card:${t.opaqueCard}`, `--ctl:${t.opaqueControl}`, `--cta:${t.cta}`, `--cta-ink:${t.ctaInk}`,
+    `--sel:${t.selected}`, `--grad-a:${g[0]}`, `--grad-b:${g[g.length - 1]}`, `--sh-tint:${t.shadowTint || '#000000'}`, `--good:${m.good}`, `--bad:${m.bad}`].join(';');
+};
+const applyTheme = (ph, id, ap) => { ph.setAttribute('style', tokCss(id, ap)); ph.classList.toggle('lt', ap === 'light'); ph.classList.toggle('dk', ap !== 'light'); ph.dataset.theme = id; ph.dataset.ap = ap; };
+
+/* ── шаблоны объявлений ──
+   s = пример текста владельца: badge, short, long (заголовок), blocks. render(ph, s, ctx) → кадр; ctx.title — выбранный заголовок. */
+const B = (text, size = 16, style = 'normal') => ({ text, size, style });
+const TPL = [
+  // ── текст и ритм ──
+  { id: 'manifest', name: 'Манифест', group: 'Текст', fields: 'метка · заголовок · 1 блок', ext: '', motion: 'строки заголовка выезжают снизу по одной, капсом',
+    s: { badge: 'От команды', short: 'Больше практики', long: 'Больше живой практики и меньше барьеров: говорите с первого дня, ошибки не страшны', blocks: [B('Новая версия уже у вас', 16)] },
+    render: (ph, s, c) => { const t = c.title; const cls = t.length <= 28 ? 'h40' : t.length <= 60 ? 'h34' : 'h28'; const ws = esc(t).split(' '); const per = t.length <= 28 ? 1 : t.length <= 60 ? 2 : 3; const ls = []; for (let i = 0; i < ws.length; i += per) ls.push(ws.slice(i, i + per).join(' '));
+      return `${badge(s.badge, 100)}<div class="h1 ${cls} caps lines" style="margin-top:12px">${ls.map((l, i) => `<div class="ln"><span style="--d:${250 + i * 110}ms">${l}</span></div>`).join('')}</div>${blocks(s.blocks, 900)}`; } },
+  { id: 'editorial', name: 'Редакция', group: 'Текст', fields: 'метка · заголовок · до 3 блоков · слева', ext: '', motion: 'линия прочерчивается, заголовок и абзацы по лесенке',
+    s: { badge: 'Письмо от PhraseMan', short: 'Что мы сделали за октябрь', long: 'Что мы сделали за октябрь и почему уроки теперь открываются быстрее даже без сети', blocks: [B('Исправили 16 ошибок из ваших писем, добавили удаление ошибок и подсказки в диалогах.', 16), B('Спасибо, что пишете нам', 14)] }, left: true,
+    render: (ph, s, c) => `<div class="rule" style="--d:100ms"></div><div style="height:14px"></div>${badge(s.badge, 200)}${title(c.title, 320)}${blocks(s.blocks, 800)}` },
+  { id: 'quote', name: 'Цитата', group: 'Текст', fields: 'заголовок = цитата · 1 блок = автор', ext: '', motion: 'кавычка всплывает, цитата по словам',
+    s: { badge: '', short: 'Язык — это привычка', long: 'Язык учится не за один вечер, а по десять минут каждый день: именно так появляются ваши 30 дней подряд', blocks: [B('Ирина, учитель испанского · 2 года в PhraseMan', 14)] },
+    render: (ph, s, c) => `<div class="qmark pop" style="--d:80ms">“</div>${title(c.title, 300)}${blocks(s.blocks, 900)}` },
+  { id: 'list3', name: 'Три пункта', group: 'Текст', fields: 'метка · заголовок · до 3 блоков = пункты', ext: '', motion: 'пункты отмечаются один за другим',
+    s: { badge: 'Что нового', short: 'Версия 2.0.2', long: 'Версия 2.0.2 уже в App Store и Google Play: вот три вещи, которые вы заметите сразу', blocks: [B('Ошибки можно удалять', 16), B('Подсказки в диалогах', 16), B('Истории по 10 секунд', 16)] },
+    render: (ph, s, c) => `${badge(s.badge, 100)}${title(c.title, 220)}<div class="rows">${(s.blocks || []).map((b, i) => `<div class="r a" style="--d:${700 + i * 200}ms"><span class="t2">${esc(b.text)}</span><span class="ck" style="--d:${1100 + i * 200}ms">${io('check', 15)}</span></div>`).join('')}</div>` },
+  { id: 'qa', name: 'Вопрос и ответ', group: 'Текст', fields: 'метка = вопрос · заголовок = ответ · 1 блок', ext: '', motion: 'вопрос в плашке, ответ крупно',
+    s: { badge: 'Вопрос недели', short: 'Как не терять серию?', long: 'Как не терять серию, если день совсем не задался и сил на урок нет?', blocks: [B('Любое занятие от 2 минут засчитывает день. Фраза дня тоже считается.', 16, 'accent')] },
+    render: (ph, s, c) => `<div class="chip a" style="--d:100ms;margin-top:0">${io('chat')}${esc(s.badge)}</div>${title(c.title, 300)}${blocks(s.blocks, 900)}` },
+  { id: 'number', name: 'Большая цифра', group: 'Текст', fields: 'метка · заголовок = число · 1 блок', ext: '', motion: 'число считает от нуля',
+    s: { badge: 'За неделю вместе', short: '12 400', long: '12 400', blocks: [B('уроков прошли ученики PhraseMan', 20), B('Рекорд с запуска 2.0', 14)] },
+    render: (ph, s, c) => { const n = Number(String(c.title).replace(/\D/g, '')) || 0; return `${badge(s.badge, 100)}<div class="big ${String(n).length > 5 ? 'm' : ''}" style="margin-top:10px">${cnt(n, 200, 1300)}</div>${blocks(s.blocks, 900)}`; } },
+  // ── срок и событие ──
+  { id: 'countdown', name: 'Обратный отсчёт', group: 'Срок', fields: 'метка · заголовок · срок жизни → «осталось N дней»', ext: '', motion: 'кольцо убывает, число дней считает',
+    s: { badge: 'До конца акции', short: 'Plus за полцены', long: 'Plus за полцены: годовая подписка со скидкой 50 % до конца воскресенья', blocks: [B('Включите в разделе Plus', 16)] },
+    render: (ph, s, c) => `<div class="art">${ring(3 / 7, `<b>${cnt(3, 300, 900)}</b><span>дня осталось</span>`)}</div>${badge(s.badge, 900)}${title(c.title, 960)}${blocks(s.blocks, 1300)}` },
+  { id: 'date', name: 'Дата', group: 'Срок', fields: 'метка = дата · заголовок · 1 блок', ext: 'поле даты события', motion: 'листок календаря всплывает',
+    s: { badge: '12 ноября', short: 'Открываем французский', long: 'Открываем французский: первые 8 уроков, диалоги и фразы дня появятся у всех в один день', blocks: [B('Вторник, 10:00 по Москве', 14)] },
+    render: (ph, s, c) => { const [d, m] = String(s.badge).split(' '); return `<div class="art"><div class="leaf pop" style="--d:100ms"><div class="mo">${esc(m || '')}</div><div class="dn">${esc(d || '')}</div></div></div>${title(c.title, 500)}${blocks(s.blocks, 900)}`; } },
+  { id: 'schedule', name: 'Расписание', group: 'Срок', fields: 'метка · заголовок · блоки «время · событие»', ext: '', motion: 'строки с временем всплывают по порядку',
+    s: { badge: 'Суббота', short: 'День дуэлей', long: 'День дуэлей: три раунда с друзьями и двойные монеты за каждую победу', blocks: [B('12:00 · Раунд 1', 16), B('15:00 · Раунд 2', 16), B('18:00 · Финал', 16)] },
+    render: (ph, s, c) => `${badge(s.badge, 100)}${title(c.title, 220)}<div class="rows">${(s.blocks || []).map((b, i) => { const [tm, ...rest] = b.text.split(' · '); return `<div class="r a" style="--d:${700 + i * 180}ms"><span class="tm2">${esc(tm)}</span><span class="t2">${esc(rest.join(' · '))}</span></div>`; }).join('')}</div>` },
+  { id: 'soon', name: 'Скоро', group: 'Срок', fields: 'метка · заголовок · 1 блок', ext: '', motion: 'точка пульсирует, заголовок по словам',
+    s: { badge: 'Скоро', short: 'Уроки вместе', long: 'Уроки вместе: один урок на двоих, общий таймер и монеты обоим за каждый верный ответ', blocks: [B('Уже в следующем обновлении', 16)] },
+    render: (ph, s, c) => `<div class="pulse"></div>${badge(s.badge, 100)}${title(c.title, 300)}${blocks(s.blocks, 900)}` },
+  { id: 'today24', name: 'Только сегодня', group: 'Срок', fields: 'метка · заголовок · 1 блок · срок 24 ч', ext: '', motion: '«24 ч» всплывает, искры вокруг',
+    s: { badge: 'Только сегодня', short: 'Двойные монеты', long: 'Двойные монеты за каждый урок до полуночи: успейте пройти хотя бы два', blocks: [B('Серия тоже считается', 14)] },
+    render: (ph, s, c) => `${sparks(7)}<div class="big s rise" style="--d:100ms">24 ч</div>${badge(s.badge, 400)}${title(c.title, 500)}${blocks(s.blocks, 900)}` },
+  // ── разделы приложения ──
+  { id: 'lessons', name: 'Новые уроки', group: 'Разделы', fields: 'метка · заголовок · 1 блок · арт «Уроки»', ext: 'выбор арта', motion: 'значок раздела всплывает и парит',
+    s: { badge: 'Уроки', short: '8 новых уроков', long: '8 новых уроков уровня B1: работа, поездки и разговор с врачом', blocks: [B('Глава 7 открыта всем', 16)] },
+    render: (ph, s, c) => `<div class="art">${art(ph, 'lessons', 150)}</div>${badge(s.badge, 400)}${title(c.title, 480)}${blocks(s.blocks, 900)}` },
+  { id: 'dialogs', name: 'Диалоги', group: 'Разделы', fields: 'метка · заголовок · 1 блок · арт «Диалоги»', ext: 'выбор арта', motion: 'пузыри всплывают, заголовок по словам',
+    s: { badge: 'Диалоги', short: 'Подсказки «Можно сказать…»', long: 'Над полем ввода теперь подсказки «Можно сказать…»: три фразы с переводом в каждом диалоге', blocks: [B('Нажмите на фразу — она встанет в поле', 16)] },
+    render: (ph, s, c) => `<div class="art">${art(ph, 'dialogs', 150)}</div>${badge(s.badge, 400)}${title(c.title, 480)}${blocks(s.blocks, 900)}` },
+  { id: 'cards', name: 'Карточки', group: 'Разделы', fields: 'метка · заголовок · 1 блок · арт «Карточки»', ext: 'выбор арта', motion: 'три карточки ложатся стопкой',
+    s: { badge: 'Карточки', short: 'Наборы из видео', long: 'Наборы из видео: фразы из ролика собираются в набор одним нажатием', blocks: [B('Раздел «Видео» на Главной', 16)] },
+    render: (ph, s, c) => `<div class="art"><div class="cardst">${[['hire', 'нанимать', '30px', '.9', 200], ['fire', 'увольнять', '15px', '.95', 360], ['quit', 'уйти с работы', '0px', '1', 520]].map(([en, ru, ty, sc, d]) => `<div class="cc2" style="--ty:${ty};--sc:${sc};--d:${d}ms"><span class="en">${en}</span><span class="ru">${ru}</span></div>`).join('')}</div></div>${badge(s.badge, 800)}${title(c.title, 860)}${blocks(s.blocks, 1200)}` },
+  { id: 'peak', name: 'Пик', group: 'Разделы', fields: 'метка · заголовок · 1 блок · башня', ext: 'выбор арта', motion: 'башня поднимается снизу',
+    s: { badge: 'Пик', short: 'Новая неделя началась', long: 'Новая неделя Пика началась: 15 ступеней, комната из 30 человек и лига выше для первых пяти', blocks: [B('Первая ступень — бесплатно', 16)] },
+    render: (ph, s, c) => `<div class="art">${tower(ph, 1, 5, 170)}</div>${badge(s.badge, 1200)}${title(c.title, 1260)}${blocks(s.blocks, 1600)}` },
+  { id: 'duels', name: 'Дуэли', group: 'Разделы', fields: 'метка · заголовок · 1 блок · две монеты', ext: 'выбор арта', motion: 'монеты съезжаются, между ними «VS»',
+    s: { badge: 'Друзья', short: 'Дуэль на 5 фраз', long: 'Дуэль на 5 фраз: вызовите друга, у кого тот же язык, и узнайте, кто быстрее', blocks: [B('Кнопка в карточке друга', 16)] },
+    render: (ph, s, c) => `<div class="art"><div class="vs"><span class="slideL" style="--d:150ms">${coin(5, 84)}</span><span class="x2 pop" style="--d:600ms">VS</span><span class="a" style="--d:150ms">${coin(8, 84)}</span></div></div>${badge(s.badge, 700)}${title(c.title, 760)}${blocks(s.blocks, 1100)}` },
+  { id: 'phrase', name: 'Фраза дня', group: 'Разделы', fields: 'метка · заголовок = фраза · 1 блок = значение', ext: '', motion: 'фраза печатается по буквам',
+    s: { badge: 'Фраза дня', short: 'Pitch in', long: 'It is not rocket science', blocks: [B('«это не так уж сложно» — так говорят, когда задача проще, чем кажется', 16)] },
+    render: (ph, s, c) => `<div class="art">${art(ph, 'phrase_of_day', 120)}</div>${badge(s.badge, 300)}<div class="h1 h40" data-type="${esc(c.title)}" data-d="500" data-cps="14" style="min-height:44px"></div>${blocks(s.blocks, 1400)}` },
+  { id: 'mistakes', name: 'Ошибки', group: 'Разделы', fields: 'метка · заголовок · 1 блок · арт «Ошибки»', ext: 'выбор арта', motion: 'значок всплывает, текст по лесенке',
+    s: { badge: 'Мои ошибки', short: 'Ошибки можно удалять', long: 'Ошибки теперь можно удалять: одну долгим нажатием или весь список сразу, с кнопкой «Вернуть»', blocks: [B('Раздел «Мои ошибки» на Главной', 16)] },
+    render: (ph, s, c) => `<div class="art">${art(ph, 'mistakes_entry', 150)}</div>${badge(s.badge, 400)}${title(c.title, 480)}${blocks(s.blocks, 900)}` },
+  { id: 'video', name: 'Видео', group: 'Разделы', fields: 'метка · заголовок · 1 блок · кадр видео', ext: 'выбор арта', motion: 'кадр всплывает, кнопка дышит',
+    s: { badge: 'Видео', short: 'Новый плейлист', long: 'Новый плейлист: 12 коротких роликов про работу и собеседование с готовыми наборами фраз', blocks: [B('Раздел «Видео» на Главной', 16)] },
+    render: (ph, s, c) => `<div class="vframe pop" style="--d:100ms"><img src="assets/home_video/en_rail_1.jpg" alt=""><span class="pb breathe">${io('play')}</span><span class="dur">8:42</span></div>${badge(s.badge, 400)}${title(c.title, 480)}${blocks(s.blocks, 900)}` },
+  { id: 'exam', name: 'Экзамен', group: 'Разделы', fields: 'метка · заголовок · 1 блок · арт «Экзамен»', ext: 'выбор арта', motion: 'кристалл всплывает и парит',
+    s: { badge: 'Экзамен главы', short: 'Экзамен открыт', long: 'Экзамен главы открыт всем: 12 вопросов, сдать от 10, пересдача через час', blocks: [B('Кнопка на карте главы', 16)] },
+    render: (ph, s, c) => `<div class="art">${art(ph, 'home_scene_exam_ready', 150)}</div>${badge(s.badge, 400)}${title(c.title, 480)}${blocks(s.blocks, 900)}` },
+  { id: 'ai', name: 'Разговор с ИИ', group: 'Разделы', fields: 'метка · заголовок · 1 блок · арт «ИИ»', ext: 'выбор арта', motion: 'значок всплывает, искра мигает',
+    s: { badge: 'Свободный разговор', short: 'Отвечает быстрее', long: 'Свободный разговор отвечает в два раза быстрее и не зависает без сети', blocks: [B('Включите в разделе «Диалоги»', 16)] },
+    render: (ph, s, c) => `<div class="art">${art(ph, 'intro_ai_dialog', 170)}</div>${badge(s.badge, 400)}${title(c.title, 480)}${blocks(s.blocks, 900)}` },
+  // ── акции и сообщество ──
+  { id: 'plus', name: 'Plus', group: 'Акции', fields: 'метка · заголовок · 1 блок · кольцо Plus', ext: '', motion: 'кольцо Plus вращается, текст по лесенке',
+    s: { badge: 'Phraseman Plus', short: 'Без лимитов на энергию', long: 'Без лимитов на энергию, все диалоги и свободный разговор: месяц Plus дешевле двух кофе', blocks: [B('Первые 7 дней бесплатно', 16, 'accent')] }, cta: { label: 'Открыть Plus', icon: 'sparkles' },
+    render: (ph, s, c) => `<div class="art"><div class="plusring pop" style="--d:100ms"><span class="t3">Plus</span></div></div>${badge(s.badge, 400)}${title(c.title, 480)}${blocks(s.blocks, 900)}` },
+  { id: 'contest', name: 'Набор месяца', group: 'Акции', fields: 'метка · заголовок · блоки = 3 набора', ext: '', motion: 'пьедестал вырастает, авторы — монетами',
+    s: { badge: 'Конкурс', short: 'Набор месяца', long: 'Набор месяца: три набора сообщества, которые добавили чаще всего в октябре', blocks: [B('«Еда и кафе» · Марина', 14), B('«B2 глаголы» · Олег', 14), B('«Поездка» · Тимур', 14)] },
+    render: (ph, s, c) => { const rows = (s.blocks || []).slice(0, 3); const order = [[1, 112, 9, 400], [0, 140, 5, 700], [2, 84, 3, 1000]]; return `<div class="art"><div class="podium">${order.map(([k, h, rank, d], i) => { const b = rows[k] || B(''); const [pk, au] = b.text.split(' · '); return `<div class="pc ${k === 0 ? 'me' : ''}"><span class="pop" style="--d:${d + 200}ms">${coin(rank, 44)}</span><span class="nm">${esc(pk || '')}</span><div class="bar" style="height:${h}px;--d:${d}ms">${k + 1}</div><span class="cn">${esc(au || '')}</span></div>`; }).join('')}</div></div>${badge(s.badge, 1100)}${title(c.title, 1160)}`; } },
+  { id: 'challenge', name: 'Челлендж недели', group: 'Акции', fields: 'метка · заголовок · 1 блок', ext: '', motion: 'семь дней зажигаются, цель обведена',
+    s: { badge: 'Челлендж недели', short: '5 уроков за неделю', long: '5 уроков за неделю: все, кто дойдёт до пятого, получат 500 монет в понедельник', blocks: [B('Уже прошли 2 из 5', 16, 'accent')] },
+    render: (ph, s, c) => `${badge(s.badge, 100)}${title(c.title, 220)}<div class="cal7">${DAYS.map((d, i) => `<div class="c ${i < 2 ? 'on' : i === 4 ? 'goal' : ''} pop" style="--d:${600 + i * 80}ms">${d}${io('check', 16)}</div>`).join('')}</div>${blocks(s.blocks, 1300)}` },
+  { id: 'invite', name: 'Пригласи друзей', group: 'Акции', fields: 'метка · заголовок · 1 блок · код приглашения', ext: 'кнопка «Поделиться»', motion: 'карточка с кодом всплывает',
+    s: { badge: 'Друзья', short: 'Пригласи друга', long: 'Пригласи друга: вы увидите серии друг друга и сможете играть дуэли на 5 фраз', blocks: [B('Код действует 30 дней', 14)] }, cta: { label: 'Поделиться ссылкой', icon: 'share' },
+    render: (ph, s, c) => `<div class="inv rise" style="--d:150ms"><span class="k">Твой код</span><span class="code">PM-7K2Q</span><span class="avs" style="margin-top:8px">${coin(5, 40)}<span class="coin" style="width:40px;height:40px;background:color-mix(in srgb, var(--tx) 14%, transparent);display:flex;align-items:center;justify-content:center;color:var(--tx)">${io('add', 20)}</span></span></div>${badge(s.badge, 600)}${title(c.title, 660)}${blocks(s.blocks, 1000)}` },
+  { id: 'thanks', name: 'Спасибо', group: 'Сообщество', fields: 'метка · заголовок · 1 блок', ext: '', motion: 'сердце бьётся, число считает',
+    s: { badge: 'Нас уже', short: '50 000', long: '50 000', blocks: [B('учеников в PhraseMan', 20), B('Спасибо, что учитесь с нами каждый день', 14)] },
+    render: (ph, s, c) => { const n = Number(String(c.title).replace(/\D/g, '')) || 0; return `<div class="art"><span class="io heart pop" style="--d:100ms">${I.heart}</span></div>${badge(s.badge, 300)}<div class="big m">${cnt(n, 400, 1300)}</div>${blocks(s.blocks, 1000)}`; } },
+  { id: 'poll', name: 'Опрос', group: 'Сообщество', fields: 'метка · заголовок = вопрос · блоки = варианты', ext: 'ответ одним тапом (новое поле)', motion: 'варианты всплывают, выбранный подсвечен',
+    s: { badge: 'Опрос', short: 'Какой язык добавить?', long: 'Какой язык добавить следующим? Мы начнём с того, за который проголосует больше всего людей', blocks: [B('Итальянский', 16), B('Немецкий', 16), B('Португальский', 16)] },
+    render: (ph, s, c) => `${badge(s.badge, 100)}${title(c.title, 220)}<div style="height:8px"></div>${(s.blocks || []).map((b, i) => `<div class="pollopt a ${i === 0 ? 'sel' : ''}" style="--d:${700 + i * 160}ms"><span class="n">${i + 1}</span>${esc(b.text)}</div>`).join('')}` },
+  { id: 'author', name: 'Автор недели', group: 'Сообщество', fields: 'метка · заголовок = автор · блоки = набор и число', ext: '', motion: 'монета автора всплывает, число считает',
+    s: { badge: 'Автор недели', short: 'Марина', long: 'Марина собрала набор, который за неделю добавили себе 214 человек', blocks: [B('«Еда и кафе» · 48 карточек', 16), B('214 добавлений за неделю', 14)] },
+    render: (ph, s, c) => `<div class="art"><span class="pop" style="--d:100ms">${coin(9, 110)}</span></div>${badge(s.badge, 400)}${title(c.title, 480)}${blocks(s.blocks, 900)}` },
+  // ── праздники и настроение ──
+  { id: 'newyear', name: 'Новый год', group: 'Праздник', fields: 'метка · заголовок · 1 блок', ext: '', motion: 'снег в цвете текста темы, год всплывает',
+    s: { badge: '31 декабря', short: 'С Новым годом!', long: 'С Новым годом! Пусть серия не прервётся, а новые слова приходят сами', blocks: [B('Команда PhraseMan', 14)] },
+    render: (ph, s, c) => `<div class="snow">${Array.from({ length: 26 }, (_, i) => `<i style="--x:${(i * 37) % 100}%;--s:${3 + (i % 4)}px;--t:${7 + (i % 5)}s;--d:${-(i * 0.9)}s;--sx:${((i % 3) - 1) * 40}px"></i>`).join('')}</div><div class="big rise" style="--d:150ms">2027</div>${badge(s.badge, 500)}${title(c.title, 560)}${blocks(s.blocks, 900)}` },
+  { id: 'holiday', name: 'Праздник', group: 'Праздник', fields: 'метка · заголовок · 1 блок', ext: '', motion: 'конфетти в тонах темы, заголовок по словам',
+    s: { badge: '8 марта', short: 'С праздником!', long: 'С праздником! Сегодня все диалоги открыты без энергии, а фраза дня — про цветы', blocks: [B('Подарок действует до полуночи', 14)] },
+    render: (ph, s, c) => `${confetti(22, 300)}<div class="ico pop" style="--d:100ms">${io('gift')}</div><div style="height:16px"></div>${badge(s.badge, 400)}${title(c.title, 460)}${blocks(s.blocks, 900)}` },
+  { id: 'birthday', name: 'День рождения', group: 'Праздник', fields: 'метка · заголовок = число лет · 1 блок', ext: '', motion: 'число всплывает, искры мигают',
+    s: { badge: 'PhraseMan', short: '3 года', long: '3 года', blocks: [B('Нам три года. Спасибо, что растёте вместе с нами', 20), B('Весь день — двойные монеты', 14, 'accent')] },
+    render: (ph, s, c) => `${sparks(8)}${badge(s.badge, 100)}<div class="big rise" style="--d:200ms">${esc(c.title)}</div>${blocks(s.blocks, 800)}` },
+  { id: 'theme', name: 'Новая тема', group: 'Праздник', fields: 'метка · заголовок · 1 блок · образец темы', ext: 'выбор темы для образца', motion: 'круг темы всплывает, орбиты вращаются',
+    s: { badge: 'Темы', short: 'Тема «Полночь»', long: 'Тема «Полночь» открыта всем на неделю: включите её в настройках и посмотрите, как выглядит ночной Пик', blocks: [B('Настройки → Темы', 14)] }, cta: { label: 'Включить тему', icon: 'palette' },
+    render: (ph, s, c) => `<div class="art"><div class="swatch pop" style="--d:100ms"><svg viewBox="0 0 170 170"><ellipse cx="85" cy="85" rx="82" ry="36" stroke-width="7" stroke-opacity=".7" transform="rotate(-22 85 85)"/><ellipse cx="85" cy="85" rx="44" ry="66" stroke-width="4" stroke-opacity=".5" transform="rotate(31 85 85)"/></svg><div class="core"></div></div></div>${badge(s.badge, 400)}${title(c.title, 480)}${blocks(s.blocks, 900)}` },
+  { id: 'version', name: 'Обновление', group: 'Праздник', fields: 'метка · заголовок = версия · до 3 блоков', ext: '', motion: 'номер версии всплывает, пункты по порядку',
+    s: { badge: 'Обновление', short: '2.0.2', long: '2.0.2', blocks: [B('Подсказки в диалогах', 16), B('Удаление ошибок', 16), B('Экзамен главы', 16)] },
+    render: (ph, s, c) => `${badge(s.badge, 100)}<div class="ver rise" style="--d:150ms">${esc(c.title)}</div><div class="rows">${(s.blocks || []).map((b, i) => `<div class="r a" style="--d:${600 + i * 180}ms"><span class="ck" style="--d:${900 + i * 180}ms">${io('check', 15)}</span><span class="t2">${esc(b.text)}</span></div>`).join('')}</div>` },
+  // ── служебные ──
+  { id: 'maintenance', name: 'Техработы', group: 'Служебные', fields: 'метка · заголовок · 1 блок', ext: '', motion: 'песочные часы переворачиваются',
+    s: { badge: 'Обслуживание', short: 'Ночью сервер отдыхает', long: 'Ночью с 02:00 до 03:00 сервер отдыхает: уроки работают, а Пик и дуэли подождут час', blocks: [B('Прогресс сохранится', 16)] },
+    render: (ph, s, c) => `<div class="art"><span class="io hourglass pop" style="--d:100ms">${I.hourglass}</span></div>${badge(s.badge, 400)}${title(c.title, 480)}${blocks(s.blocks, 900)}` },
+  { id: 'feedback', name: 'Мы прочитали', group: 'Служебные', fields: 'метка · заголовок · 1 блок = цитата', ext: '', motion: 'пузырь всплывает, цитата по лесенке',
+    s: { badge: 'Ваши письма', short: 'Мы вас услышали', long: 'Мы вас услышали: 16 жалоб за неделю разобраны, вот что исправили', blocks: [B('«Мои ошибки» грузились бесконечно. Теперь открываются за полсекунды.', 16, 'quote')] },
+    render: (ph, s, c) => `<div class="art">${art(ph, 'intro_friends', 170)}</div>${badge(s.badge, 400)}${title(c.title, 480)}${blocks(s.blocks, 900)}` },
+  { id: 'tip', name: 'Совет', group: 'Служебные', fields: 'метка · заголовок · 1 блок', ext: '', motion: 'лампочка всплывает, карточка совета по лесенке',
+    s: { badge: 'Совет', short: 'Учите фразами', long: 'Учите фразами, а не словами: одна карточка в день с фразой дня даёт больше, чем десять слов', blocks: [B('Добавляйте фразу дня в карточки одним нажатием на закладку', 14)] },
+    render: (ph, s, c) => `<div class="ico pop" style="--d:100ms">${io('bulb')}</div><div style="height:16px"></div>${badge(s.badge, 400)}${title(c.title, 460)}${(s.blocks || []).slice(0, 1).map((b) => `<div class="tipbox a" style="--d:900ms"><div class="k">Как сделать</div><div class="s">${esc(b.text)}</div></div>`).join('')}` },
+];
+
+/* ── плеер = просмотр сторис ── */
+let SPEED = 10000; let LONG = false;
+const players = [];
+const ctxFor = (tpl) => ({ title: LONG ? tpl.s.long : tpl.s.short, long: LONG });
+class Player {
+  constructor(ph, o) { this.ph = ph; this.i = o.start || 0; this.mode = o.mode || 'restart'; this.onIndex = o.onIndex || (() => {}); this.alive = true; this.visible = true; this.held = false; this.paused = false; this.closing = false;
+    this.timer = 0; this.raf = 0; this.left = SPEED; this.t0 = 0; this.jobs = []; this.clock = { start: 0, pausedAt: null, lost: 0 }; this.mount(); }
+  now() { const c = this.clock; return (c.pausedAt ?? performance.now()) - c.start - c.lost; }
+  mount() {
+    const st = document.createElement('div'); st.className = 'story'; st.innerHTML = `<div class="glow g1"></div><div class="glow g2"></div><div class="glow g3"></div><div class="wash"></div>
+      <div class="sbars">${TPL.map(() => '<i><b></b></i>').join('')}</div>
+      <div class="shead"><span class="pm">P</span><div><div class="nm">PhraseMan</div><div class="tm">объявление</div></div><span class="x" data-x>${io('close', 22)}</span></div>
+      <div class="sl"></div><span class="stap l" data-prev></span><span class="stap r" data-next></span><div class="pz"><i></i><i></i></div>`;
+    this.ph.appendChild(st); this.st = st; this.sl = st.querySelector('.sl'); this.bars = [...st.querySelectorAll('.sbars b')];
+    st.querySelector('[data-prev]').addEventListener('click', (e) => { if (this.wasHold) { this.wasHold = false; return; } e.stopPropagation(); this.go(this.i - 1); });
+    st.querySelector('[data-next]').addEventListener('click', (e) => { if (this.wasHold) { this.wasHold = false; return; } e.stopPropagation(); this.go(this.i + 1); });
+    st.querySelector('[data-x]').addEventListener('click', (e) => { e.stopPropagation(); this.close(); });
+    let hold = 0, y0 = null, x0 = null;
+    st.addEventListener('pointerdown', (e) => { if (e.target.closest('.scta, [data-x]')) return; y0 = e.clientY; x0 = e.clientX; this.wasHold = false; hold = setTimeout(() => { this.wasHold = true; this.setHeld(true); }, 220); });
+    const end = (e) => { clearTimeout(hold); const dy = y0 == null ? 0 : e.clientY - y0; const dx = x0 == null ? 0 : Math.abs(e.clientX - x0); y0 = null; x0 = null; this.st.style.transform = ''; if (dy > 70 && dx < 60) { this.wasHold = true; this.close(); } this.setHeld(false); };
+    st.addEventListener('pointerup', end); st.addEventListener('pointercancel', end); st.addEventListener('pointerleave', (e) => { if (y0 != null) end(e); });
+    st.addEventListener('pointermove', (e) => { if (y0 == null || this.closing) return; const dy = e.clientY - y0; if (dy > 8) { this.wasHold = true; this.st.style.transform = `translateY(${Math.min(140, dy * .6)}px) scale(${1 - Math.min(.08, dy / 1400)})`; } });
+    this.show(this.i);
+  }
+  go(k) { if (this.closing) return; if (k < 0) k = 0; if (k >= TPL.length) { if (this.mode === 'advance') return this.close(); k = TPL.length - 1; } this.show(k); }
+  show(k) {
+    this.i = k; const tpl = TPL[k]; this.onIndex(k, tpl);
+    this.sl.className = 'sl' + (tpl.cta ? ' hascta' : '') + (tpl.left ? ' left' : ''); this.sl.innerHTML = tpl.render(this.ph, tpl.s, ctxFor(tpl));
+    this.st.querySelector('.scta')?.remove();
+    if (tpl.cta) { const b = document.createElement('div'); b.className = 'scta t'; b.innerHTML = `${io(tpl.cta.icon, 18)}<span>${tpl.cta.label}</span>`; b.addEventListener('click', (e) => e.stopPropagation()); this.st.appendChild(b); }
+    this.bars.forEach((b, j) => { b.style.transition = 'none'; b.style.width = j < k ? '100%' : '0%'; });
+    this.clock = { start: performance.now(), pausedAt: null, lost: 0 };
+    this.jobs = [...this.sl.querySelectorAll('[data-cnt]')].map((el) => ({ el, kind: 'cnt', to: +el.dataset.cnt, d: +el.dataset.d, dur: +el.dataset.dur, suf: el.dataset.suf || '' }))
+      .concat([...this.sl.querySelectorAll('[data-type]')].map((el) => ({ el, kind: 'type', text: el.dataset.type, d: +el.dataset.d, cps: +el.dataset.cps || 12, done: false })));
+    if (reduce) { this.jobs.forEach((j) => { if (j.kind === 'cnt') j.el.textContent = fmt(j.to) + j.suf; else j.el.textContent = j.text; }); this.jobs = []; }
+    this.paused = false; this.st.classList.remove('paused'); cancelAnimationFrame(this.raf); this.tick();
+    this.run(SPEED); this.syncPause();
+  }
+  tick() {
+    if (!this.alive) return; const t = this.now(); let busy = false;
+    for (const j of this.jobs) {
+      if (j.kind === 'cnt') { const p = Math.max(0, Math.min(1, (t - j.d) / j.dur)); const e = 1 - Math.pow(1 - p, 3); j.el.textContent = fmt(j.to * e) + j.suf; if (p < 1) busy = true; }
+      else { const n = Math.max(0, Math.floor((t - j.d) * j.cps / 1000)); const s = j.text.slice(0, n); const over = n >= j.text.length; if (j.last !== s || j.done !== over) { j.last = s; j.done = over; j.el.innerHTML = esc(s) + (over ? '' : '<span class="caret"></span>'); } if (!over) busy = true; }
+    }
+    if (busy) this.raf = requestAnimationFrame(() => this.tick());
+  }
+  run(ms) { clearTimeout(this.timer); if (reduce) { this.bars[this.i].style.width = '100%'; return; } this.left = ms; this.t0 = performance.now(); const b = this.bars[this.i]; void b.offsetWidth; b.style.transition = `width ${ms}ms linear`; b.style.width = '100%';
+    this.timer = setTimeout(() => { if (this.mode === 'advance') this.go(this.i + 1); else this.show(this.i); }, ms); }
+  setHeld(v) { if (this.held === v) return; this.held = v; this.syncPause(); }
+  setVisible(v) { if (this.visible === v) return; this.visible = v; this.syncPause(); }
+  syncPause() { const should = this.held || !this.visible; if (should && !this.paused) { this.paused = true; this.st.classList.toggle('paused', this.held); clearTimeout(this.timer); const b = this.bars[this.i]; const w = getComputedStyle(b).width; b.style.transition = 'none'; b.style.width = w; this.left = Math.max(0, this.left - (performance.now() - this.t0)); this.clock.pausedAt = performance.now(); cancelAnimationFrame(this.raf); if (!this.visible) this.st.classList.add('offscreen'); }
+    else if (!should && this.paused) { this.paused = false; this.st.classList.remove('paused', 'offscreen'); this.clock.lost += performance.now() - this.clock.pausedAt; this.clock.pausedAt = null; this.tick(); this.run(this.left); } }
+  close() { if (this.closing) return; this.closing = true; clearTimeout(this.timer); cancelAnimationFrame(this.raf); this.st.classList.add('closing'); setTimeout(() => { this.st.classList.remove('closing'); this.st.classList.add('enter'); setTimeout(() => this.st.classList.remove('enter'), 400); this.closing = false; this.show(this.mode === 'advance' ? 0 : this.i); }, 420); }
+  restart() { if (this.closing) return; clearTimeout(this.timer); this.show(this.mode === 'advance' ? 0 : this.i); }
+  setTheme(id, ap) { applyTheme(this.ph, id, ap); this.restart(); }
+}
+const vis = new IntersectionObserver((es) => { for (const e of es) { const p = e.target.__player; if (p) p.setVisible(e.isIntersecting); } }, { threshold: .1 });
+const makePhone = (parent, o) => {
+  const col = document.createElement('div'); col.className = 'st-col';
+  const lbl = document.createElement('div'); lbl.className = 'st-lbl'; col.appendChild(lbl);
+  const ph = document.createElement('div'); ph.className = 'ph dk'; ph.dataset.ph = o.key; ph.innerHTML = sbHtml('9:41') + '<div class="hi"></div>'; col.appendChild(ph);
+  const row = document.createElement('div'); row.className = 'st-row'; row.innerHTML = `<button type="button" class="st-btn" data-replay>Повторить</button><span class="st-hint" data-hint></span>`; col.appendChild(row);
+  parent.appendChild(col);
+  applyTheme(ph, state.theme, state.ap);
+  const p = new Player(ph, { start: o.start, mode: o.mode, onIndex: (k, tpl) => { lbl.innerHTML = o.player ? `<b>Кадр ${k + 1} из ${TPL.length} · ${tpl.name}</b>${tpl.fields}` : `<b>${k + 1}. ${tpl.name}${tpl.ext ? `<span class="tag ext">нужно: ${tpl.ext}</span>` : '<span class="tag">текущие поля</span>'}</b>${tpl.fields}`; row.querySelector('[data-hint]').textContent = tpl.motion; } });
+  ph.__player = p; players.push(p); vis.observe(ph);
+  row.querySelector('[data-replay]').addEventListener('click', () => p.restart());
+  return p;
+};
+
+/* ── страница ── */
+const state = { theme: 'ink', ap: 'dark' };
+const sel = document.getElementById('th');
+const grp = (ttl, ids) => { const g = document.createElement('optgroup'); g.label = ttl; ids.forEach((id) => { const op = document.createElement('option'); op.value = id; op.textContent = THEMES[id].name; g.appendChild(op); }); sel.appendChild(g); };
+grp('Однотонные', IDS.filter((id) => !THEMES[id].gradient)); grp('Градиентные', IDS.filter((id) => THEMES[id].gradient)); sel.value = state.theme;
+const hint = document.getElementById('hint');
+const setHint = () => { hint.textContent = `${THEMES[state.theme].name} · ${state.ap === 'dark' ? 'тёмное' : 'светлое'} · ${LONG ? 'длинный' : 'короткий'} заголовок`; };
+const applyAll = () => { players.forEach((p) => p.setTheme(state.theme, state.ap)); setHint(); };
+sel.addEventListener('change', () => { state.theme = sel.value; applyAll(); });
+document.querySelectorAll('[data-ap]').forEach((b) => b.addEventListener('click', () => { document.querySelectorAll('[data-ap]').forEach((x) => x.classList.toggle('on', x === b)); state.ap = b.dataset.ap; applyAll(); }));
+document.querySelectorAll('[data-len]').forEach((b) => b.addEventListener('click', () => { document.querySelectorAll('[data-len]').forEach((x) => x.classList.toggle('on', x === b)); LONG = b.dataset.len === 'long'; players.forEach((p) => p.restart()); setHint(); }));
+document.querySelectorAll('[data-sp]').forEach((b) => b.addEventListener('click', () => { document.querySelectorAll('[data-sp]').forEach((x) => x.classList.toggle('on', x === b)); SPEED = +b.dataset.sp; players.forEach((p) => p.restart()); }));
+document.getElementById('replay').addEventListener('click', () => players.forEach((p) => p.restart()));
+document.getElementById('mix').addEventListener('click', () => { players.forEach((p, k) => { if (k === 0) return; p.setTheme(IDS[(k - 1) % IDS.length], state.ap); }); hint.textContent = `галерея: ${IDS.length} тем по кругу · ${state.ap === 'dark' ? 'тёмное' : 'светлое'}`; });
+
+makePhone(document.getElementById('player'), { key: 'player', start: 0, mode: 'advance', player: true });
+const gal = document.getElementById('gallery');
+TPL.forEach((_, k) => makePhone(gal, { key: String(k), start: k, mode: 'restart' }));
+setHint();
+
+document.getElementById('map').innerHTML = `<tr><th>№</th><th>Шаблон</th><th>Группа</th><th>Какие поля держит</th><th>Нужно в контракте</th><th>Пример текста владельца</th><th>Что движется</th></tr>` +
+  TPL.map((t, k) => `<tr><td>${k + 1}</td><td>${t.name}</td><td>${t.group}</td><td>${t.fields}</td><td class="${t.ext ? 'ext' : 'ok'}">${t.ext || 'ложится на текущие поля'}</td><td>${esc(t.s.badge ? t.s.badge + ' · ' : '')}${esc(t.s.short)}</td><td>${t.motion}</td></tr>`).join('');
+
+window.ST = { TPL, players, IDS, THEMES, setTheme: (id, ap) => { state.theme = id; state.ap = ap; sel.value = id; document.querySelectorAll('[data-ap]').forEach((x) => x.classList.toggle('on', x.dataset.ap === ap)); applyAll(); },
+  phone: (k, id, ap) => { const p = players[k]; if (p) p.setTheme(id, ap); return !!p; }, setLong: (v) => { LONG = !!v; document.querySelectorAll('[data-len]').forEach((x) => x.classList.toggle('on', (x.dataset.len === 'long') === LONG)); players.forEach((p) => p.restart()); setHint(); }, speed: (ms) => { SPEED = ms; }, ready: true };
+})();
+</script>
+</body>
+</html>

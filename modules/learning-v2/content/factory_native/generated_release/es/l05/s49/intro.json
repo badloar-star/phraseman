@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-05:session-49",
+  "learningOutcomeByLocale": {
+    "ru": "спросить о голоде с помощью ¿Tienes hambre? и ответить короткой фразой.",
+    "uk": "запитати про голод за допомогою ¿Tienes hambre? і відповісти короткою фразою."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-05:session-49:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Предложить перерыв",
+        "uk": "Запропонувати перерву"
+      },
+      "bodyByLocale": {
+        "ru": "Вы гуляете с другом и хотите узнать, не проголодался ли он. Спросите `¿Tienes hambre?` — «Ты хочешь есть?» Соберите `¿Tienes` + `hambre?`. Форма tienes относится к собеседнику на «ты». Порядок слов остаётся таким же, как в сообщении Tienes hambre; вопрос передаём интонацией, а на письме ставим ¿ в начале и ? в конце.",
+        "uk": "Ви гуляєте з другом і хочете дізнатися, чи він не зголоднів. Запитайте `¿Tienes hambre?` — «Ти хочеш їсти?» Складіть `¿Tienes` + `hambre?`. Форма tienes стосується співрозмовника на «ти». Порядок слів залишається таким самим, як у повідомленні Tienes hambre; запитання передаємо інтонацією, а на письмі ставимо ¿ на початку й ? у кінці."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-49:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите друга «Ты хочешь есть?». Начните с ¿Tienes, используйте hambre.",
+          "uk": "Запитайте друга «Ти хочеш їсти?». Почніть з ¿Tienes, використайте hambre."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-49:intro1:r1",
+              "text": "¿Tienes hambre?"
+            },
+            {
+              "responseId": "es:lesson-05:session-49:intro1:r2",
+              "text": "¿Tengo hambre?"
+            },
+            {
+              "responseId": "es:lesson-05:session-49:intro1:r3",
+              "text": "¿Eres hambre?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-49:intro1:r1",
+              "text": "¿Tienes hambre?"
+            },
+            {
+              "responseId": "es:lesson-05:session-49:intro1:r2",
+              "text": "¿Tengo hambre?"
+            },
+            {
+              "responseId": "es:lesson-05:session-49:intro1:r3",
+              "text": "¿Eres hambre?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите друга «Ты хочешь есть?». Начните с ¿Tienes, используйте hambre.",
+          "uk": "Запитайте друга «Ти хочеш їсти?». Почніть з ¿Tienes, використайте hambre."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-05:session-49:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Согласиться на обед",
+        "uk": "Погодитися на обід"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спросил, хотите ли вы есть. Вы проголодались: `Sí, tengo hambre` — «Да, я хочу есть». Соберите `Sí,` + `tengo` + `hambre`. В вопросе друга было tienes — о вас как о собеседнике. В своём ответе выбирайте tengo, потому что теперь говорите от себя.",
+        "uk": "Друг запитав, чи хочете ви їсти. Ви зголодніли: `Sí, tengo hambre` — «Так, я хочу їсти». Складіть `Sí,` + `tengo` + `hambre`. У запитанні друга було tienes — про вас як про співрозмовника. У власній відповіді вибирайте tengo, бо тепер говорите від себе."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-49:intro2:q",
+        "promptByLocale": {
+          "ru": "Ответьте «Да, я хочу есть». Начните с Sí, tengo.",
+          "uk": "Дайте відповідь «Так, я хочу їсти». Почніть із Sí, tengo."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-49:intro2:r1",
+              "text": "Sí, tengo hambre."
+            },
+            {
+              "responseId": "es:lesson-05:session-49:intro2:r2",
+              "text": "Sí, tienes hambre."
+            },
+            {
+              "responseId": "es:lesson-05:session-49:intro2:r3",
+              "text": "Sí, soy hambre."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-49:intro2:r1",
+              "text": "Sí, tengo hambre."
+            },
+            {
+              "responseId": "es:lesson-05:session-49:intro2:r2",
+              "text": "Sí, tienes hambre."
+            },
+            {
+              "responseId": "es:lesson-05:session-49:intro2:r3",
+              "text": "Sí, soy hambre."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ответьте «Да, я хочу есть». Начните с Sí, tengo.",
+          "uk": "Дайте відповідь «Так, я хочу їсти». Почніть із Sí, tengo."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-05:session-49:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Пока не хочется есть",
+        "uk": "Поки не хочеться їсти"
+      },
+      "bodyByLocale": {
+        "ru": "Вы недавно поели и отвечаете другу: `No tengo hambre` — «Я не хочу есть». Соберите `No` + `tengo` + `hambre`. Одно no перед глаголом делает всю фразу отрицательной. Это полный ответ, даже без отдельного «нет» в начале.",
+        "uk": "Ви нещодавно поїли й відповідаєте другові: `No tengo hambre` — «Я не хочу їсти». Складіть `No` + `tengo` + `hambre`. Одне no перед дієсловом робить усю фразу заперечною. Це повна відповідь, навіть без окремого «ні» на початку."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-49:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите «Я не хочу есть». Начните с No tengo, используйте hambre.",
+          "uk": "Скажіть «Я не хочу їсти». Почніть з No tengo, використайте hambre."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-49:intro3:r1",
+              "text": "No tengo hambre."
+            },
+            {
+              "responseId": "es:lesson-05:session-49:intro3:r2",
+              "text": "Tengo no hambre."
+            },
+            {
+              "responseId": "es:lesson-05:session-49:intro3:r3",
+              "text": "No tienes hambre."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-49:intro3:r1",
+              "text": "No tengo hambre."
+            },
+            {
+              "responseId": "es:lesson-05:session-49:intro3:r2",
+              "text": "Tengo no hambre."
+            },
+            {
+              "responseId": "es:lesson-05:session-49:intro3:r3",
+              "text": "No tienes hambre."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Я не хочу есть». Начните с No tengo, используйте hambre.",
+          "uk": "Скажіть «Я не хочу їсти». Почніть з No tengo, використайте hambre."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "1f4d28ab3b16696db77ca8d4661037e2fa7b5f01923abd12441a0c424b3bd394"
+}

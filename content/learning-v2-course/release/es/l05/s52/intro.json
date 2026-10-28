@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-05:session-52",
+  "learningOutcomeByLocale": {
+    "ru": "спросить возраст другого человека и назвать его в ответе.",
+    "uk": "запитати вік іншої людини й назвати його у відповіді."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-05:session-52:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Спросить о знакомой",
+        "uk": "Запитати про знайому"
+      },
+      "bodyByLocale": {
+        "ru": "Друг упомянул Ану, и вы хотите узнать её возраст. Спросите `¿Cuántos años tiene Ana?` — «Сколько лет Ане?» Соберите `¿Cuántos años` + `tiene` + `Ana?`. Начало Cuántos años означает «сколько лет», затем идут tiene и имя. Говорите об Ане, поэтому нужна форма tiene, а не tienes.",
+        "uk": "Друг згадав Ану, і ви хочете дізнатися її вік. Запитайте `¿Cuántos años tiene Ana?` — «Скільки років Ані?» Складіть `¿Cuántos años` + `tiene` + `Ana?`. Початок Cuántos años означає «скільки років», далі йдуть tiene та ім’я. Говорите про Ану, тому потрібна форма tiene, а не tienes."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-52:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите «Сколько лет Ане?». Начните с ¿Cuántos años tiene, имя поставьте в конце.",
+          "uk": "Запитайте «Скільки років Ані?». Почніть з ¿Cuántos años tiene, ім’я поставте в кінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-52:intro1:r1",
+              "text": "¿Cuántos años tiene Ana?"
+            },
+            {
+              "responseId": "es:lesson-05:session-52:intro1:r2",
+              "text": "¿Cuántos años tienes Ana?"
+            },
+            {
+              "responseId": "es:lesson-05:session-52:intro1:r3",
+              "text": "¿Cuántas años tiene Ana?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-52:intro1:r1",
+              "text": "¿Cuántos años tiene Ana?"
+            },
+            {
+              "responseId": "es:lesson-05:session-52:intro1:r2",
+              "text": "¿Cuántos años tienes Ana?"
+            },
+            {
+              "responseId": "es:lesson-05:session-52:intro1:r3",
+              "text": "¿Cuántas años tiene Ana?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «Сколько лет Ане?». Начните с ¿Cuántos años tiene, имя поставьте в конце.",
+          "uk": "Запитайте «Скільки років Ані?». Почніть з ¿Cuántos años tiene, ім’я поставте в кінці."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-05:session-52:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Назвать возраст",
+        "uk": "Назвати вік"
+      },
+      "bodyByLocale": {
+        "ru": "Вы знаете, что Ане тридцать. Ответьте `Ana tiene treinta años` — «Ане тридцать лет». Соберите `Ana` + `tiene` + `treinta años`. Сначала назовите человека, затем форму tener, после неё число лет. В испанском возрасте нужен tener; буквально получается «Ана имеет тридцать лет».",
+        "uk": "Ви знаєте, що Ані тридцять. Дайте відповідь `Ana tiene treinta años` — «Ані тридцять років». Складіть `Ana` + `tiene` + `treinta años`. Спочатку назвіть людину, далі форму tener, після неї кількість років. В іспанській для віку потрібне tener; буквально виходить «Ана має тридцять років»."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-52:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «Ане тридцать лет». Начните с Ana tiene.",
+          "uk": "Скажіть «Ані тридцять років». Почніть з Ana tiene."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-52:intro2:r1",
+              "text": "Ana tiene treinta años."
+            },
+            {
+              "responseId": "es:lesson-05:session-52:intro2:r2",
+              "text": "Ana es treinta años."
+            },
+            {
+              "responseId": "es:lesson-05:session-52:intro2:r3",
+              "text": "Ana tiene treinta año."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-52:intro2:r1",
+              "text": "Ana tiene treinta años."
+            },
+            {
+              "responseId": "es:lesson-05:session-52:intro2:r2",
+              "text": "Ana es treinta años."
+            },
+            {
+              "responseId": "es:lesson-05:session-52:intro2:r3",
+              "text": "Ana tiene treinta año."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Ане тридцать лет». Начните с Ana tiene.",
+          "uk": "Скажіть «Ані тридцять років». Почніть з Ana tiene."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-05:session-52:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Не повторять имя",
+        "uk": "Не повторювати ім’я"
+      },
+      "bodyByLocale": {
+        "ru": "Вас только что спросили о возрасте Аны. Уже ясно, о ком речь, поэтому ответ можно сократить: `Tiene treinta años` — «Ей тридцать лет». Соберите `Tiene` + `treinta años`. Имя можно опустить, когда человек понятен из разговора. Сам возраст и форма tiene сохраняются.",
+        "uk": "Вас щойно запитали про вік Ани. Уже зрозуміло, про кого йдеться, тому відповідь можна скоротити: `Tiene treinta años` — «Їй тридцять років». Складіть `Tiene` + `treinta años`. Ім’я можна опустити, коли людина зрозуміла з розмови. Сам вік і форма tiene зберігаються."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-52:intro3:q",
+        "promptByLocale": {
+          "ru": "Ответьте о возрасте Аны без имени: «Ей тридцать лет». Начните с Tiene.",
+          "uk": "Дайте відповідь про вік Ани без імені: «Їй тридцять років». Почніть з Tiene."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-52:intro3:r1",
+              "text": "Tiene treinta años."
+            },
+            {
+              "responseId": "es:lesson-05:session-52:intro3:r2",
+              "text": "Tengo treinta años."
+            },
+            {
+              "responseId": "es:lesson-05:session-52:intro3:r3",
+              "text": "Tienen treinta años."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-52:intro3:r1",
+              "text": "Tiene treinta años."
+            },
+            {
+              "responseId": "es:lesson-05:session-52:intro3:r2",
+              "text": "Tengo treinta años."
+            },
+            {
+              "responseId": "es:lesson-05:session-52:intro3:r3",
+              "text": "Tienen treinta años."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ответьте о возрасте Аны без имени: «Ей тридцать лет». Начните с Tiene.",
+          "uk": "Дайте відповідь про вік Ани без імені: «Їй тридцять років». Почніть з Tiene."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "1b17923c68c8d71c7a621b5054c754641656412d29a22b83350f5697ba5d0434"
+}

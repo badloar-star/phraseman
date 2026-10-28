@@ -1911,4 +1911,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"закрепить бытовые сочетания с tener, меняя только нужное состояние и форму глагола.","uk":"закріпити побутові сполучення з tener, змінюючи лише потрібний стан і форму дієслова."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 5, sessionOrdinal: 49,
+    sourceFingerprint: "bfeae9a50954a7cae50c3ce84f9bfb59b533026cef0752c66de4c5947d3fc19d",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"спросить о голоде с помощью ¿Tienes hambre? и ответить короткой фразой.","uk":"запитати про голод за допомогою ¿Tienes hambre? і відповісти короткою фразою."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 5, sessionOrdinal: 50,
+    sourceFingerprint: "9fa06077870089b08010b8161e2ba2c02f1bf795a17a5f76834873acd56b2e61",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"отрицать жажду с помощью no перед нужной формой tener.","uk":"заперечувати спрагу за допомогою no перед потрібною формою tener."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 5, sessionOrdinal: 51,
+    sourceFingerprint: "f447f9b00f8ae47d477c455c612ef302384e99a5787d1a30da75faeb7948806d",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"говорить об ощущении холода у нескольких людей через tener frío.","uk":"говорити про відчуття холоду в кількох людей через tener frío."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 5, sessionOrdinal: 52,
+    sourceFingerprint: "54bfc2ce1afd0939c57b82934d2d2dbb714868130c62877086df4eff899a7c4a",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"спросить возраст другого человека и назвать его в ответе.","uk":"запитати вік іншої людини й назвати його у відповіді."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
+  }),
 ]);

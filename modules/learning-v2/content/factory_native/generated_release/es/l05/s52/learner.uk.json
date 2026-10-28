@@ -1,0 +1,673 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-05:session-52",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-05:session-52:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте та виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-52:i01:r1",
+          "text": "treinta"
+        },
+        {
+          "responseId": "es:lesson-05:session-52:i01:r2",
+          "text": "veinte"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-52:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте та виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-52:i01:audio",
+          "transcript": "treinta"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-05:session-52:i01:r1",
+            "targetText": "treinta",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-05:session-52:i01:r2",
+            "targetText": "veinte",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-52:i01:r2",
+            "correct": false,
+            "testedDimension": "Послухайте та виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит treinta — тридцать.",
+              "uk": "Звучить treinta — тридцять."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-52:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — скільки років Ані?",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-52:i02:r1",
+          "text": "tiene"
+        },
+        {
+          "responseId": "es:lesson-05:session-52:i02:r2",
+          "text": "tienes"
+        },
+        {
+          "responseId": "es:lesson-05:session-52:i02:r3",
+          "text": "tengo"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — скільки років Ані?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — сколько лет Ане?",
+          "uk": "Вставте слово — скільки років Ані?"
+        },
+        "gappedTargetPhrase": "¿Cuántos años ___ Ana?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-52:i02:r1",
+            "text": "tiene"
+          },
+          {
+            "responseId": "es:lesson-05:session-52:i02:r2",
+            "text": "tienes"
+          },
+          {
+            "responseId": "es:lesson-05:session-52:i02:r3",
+            "text": "tengo"
+          }
+        ],
+        "testedDimension": "Вставте слово — скільки років Ані?",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-52:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — скільки років Ані?",
+            "feedbackByLocale": {
+              "ru": "О другом человеке нужна форма tiene.",
+              "uk": "Про іншу людину потрібна форма tiene."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-52:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — скільки років Ані?",
+            "feedbackByLocale": {
+              "ru": "О себе говорят tengo; об Ане — tiene.",
+              "uk": "Про себе кажуть tengo; про Ану — tiene."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-52:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — скільки років Ані?; почніть з ¿Cuántos años tiene, ім’я поставте в кінці",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-52:i03:r1",
+          "text": "Плитки: Ana?"
+        },
+        {
+          "responseId": "es:lesson-05:session-52:i03:r2",
+          "text": "años"
+        },
+        {
+          "responseId": "es:lesson-05:session-52:i03:r3",
+          "text": "¿Cuántos"
+        },
+        {
+          "responseId": "es:lesson-05:session-52:i03:r4",
+          "text": "tiene"
+        },
+        {
+          "responseId": "es:lesson-05:session-52:i03:r5",
+          "text": "tienes."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — скільки років Ані?; почніть з ¿Cuántos años tiene, ім’я поставте в кінці",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Cuántos años tiene Ana?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — сколько лет Ане?; начните с ¿Cuántos años tiene, имя поставьте в конце",
+          "uk": "Зберіть фразу — скільки років Ані?; почніть з ¿Cuántos años tiene, ім’я поставте в кінці"
+        },
+        "orderedTokens": [
+          "¿Cuántos",
+          "años",
+          "tiene",
+          "Ana"
+        ],
+        "authoredDistractorTokens": [
+          "tienes"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-52:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — скільки років Ані?; почніть з ¿Cuántos años tiene, ім’я поставте в кінці",
+            "feedbackByLocale": {
+              "ru": "об Ане используем tiene.",
+              "uk": "про Ану використовуємо tiene."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-52:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — Ані тридцять років",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-52:i04:r1",
+          "text": "treinta"
+        },
+        {
+          "responseId": "es:lesson-05:session-52:i04:r2",
+          "text": "veinte"
+        },
+        {
+          "responseId": "es:lesson-05:session-52:i04:r3",
+          "text": "quince"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — Ані тридцять років",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — Ане тридцать лет",
+          "uk": "Вставте слово — Ані тридцять років"
+        },
+        "gappedTargetPhrase": "Ana tiene ___ años.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-52:i04:r1",
+            "text": "treinta"
+          },
+          {
+            "responseId": "es:lesson-05:session-52:i04:r2",
+            "text": "veinte"
+          },
+          {
+            "responseId": "es:lesson-05:session-52:i04:r3",
+            "text": "quince"
+          }
+        ],
+        "testedDimension": "Вставте слово — Ані тридцять років",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-52:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — Ані тридцять років",
+            "feedbackByLocale": {
+              "ru": "Это двадцать; нужно treinta — тридцать.",
+              "uk": "Це двадцять; потрібно treinta — тридцять."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-52:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — Ані тридцять років",
+            "feedbackByLocale": {
+              "ru": "Это пятнадцать; нужно treinta.",
+              "uk": "Це п’ятнадцять; потрібно treinta."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-52:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — Ані тридцять років; почніть з Ana tiene",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-52:i05:r1",
+          "text": "Плитки: años"
+        },
+        {
+          "responseId": "es:lesson-05:session-52:i05:r2",
+          "text": "Ana"
+        },
+        {
+          "responseId": "es:lesson-05:session-52:i05:r3",
+          "text": "treinta"
+        },
+        {
+          "responseId": "es:lesson-05:session-52:i05:r4",
+          "text": "tiene"
+        },
+        {
+          "responseId": "es:lesson-05:session-52:i05:r5",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — Ані тридцять років; почніть з Ana tiene",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Ana tiene treinta años.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — Ане тридцать лет; начните с Ana tiene",
+          "uk": "Зберіть фразу — Ані тридцять років; почніть з Ana tiene"
+        },
+        "orderedTokens": [
+          "Ana",
+          "tiene",
+          "treinta",
+          "años"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-52:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — Ані тридцять років; почніть з Ana tiene",
+            "feedbackByLocale": {
+              "ru": "возраст выражаем через tiene.",
+              "uk": "вік виражаємо через tiene."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-52:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — їй тридцять років; без імені, почніть з Tiene",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-52:i06:r1",
+          "text": "Плитки: años"
+        },
+        {
+          "responseId": "es:lesson-05:session-52:i06:r2",
+          "text": "Tiene"
+        },
+        {
+          "responseId": "es:lesson-05:session-52:i06:r3",
+          "text": "treinta"
+        },
+        {
+          "responseId": "es:lesson-05:session-52:i06:r4",
+          "text": "año."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — їй тридцять років; без імені, почніть з Tiene",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Tiene treinta años.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — ей тридцать лет; без имени, начните с Tiene",
+          "uk": "Зберіть фразу — їй тридцять років; без імені, почніть з Tiene"
+        },
+        "orderedTokens": [
+          "Tiene",
+          "treinta",
+          "años"
+        ],
+        "authoredDistractorTokens": [
+          "año"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-52:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — їй тридцять років; без імені, почніть з Tiene",
+            "feedbackByLocale": {
+              "ru": "после treinta нужно años.",
+              "uk": "після treinta потрібно años."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-52:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте та зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-52:i07:r1",
+          "text": "Плитки: ¿Cuántos"
+        },
+        {
+          "responseId": "es:lesson-05:session-52:i07:r2",
+          "text": "años"
+        },
+        {
+          "responseId": "es:lesson-05:session-52:i07:r3",
+          "text": "tiene"
+        },
+        {
+          "responseId": "es:lesson-05:session-52:i07:r4",
+          "text": "Ana?"
+        },
+        {
+          "responseId": "es:lesson-05:session-52:i07:r5",
+          "text": "tengo."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-52:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте та зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-52:i07:audio",
+          "transcript": "¿Cuántos años tiene Ana?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "¿Cuántos años tiene Ana?",
+        "orderedTokens": [
+          "¿Cuántos",
+          "años",
+          "tiene",
+          "Ana"
+        ],
+        "authoredDistractorTokens": [
+          "tengo"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-52:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте та зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "в вопросе звучит tiene.",
+              "uk": "у запитанні звучить tiene."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-52:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — скільки років Ані?",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-52:i08:r1",
+          "text": "Cuántos"
+        },
+        {
+          "responseId": "es:lesson-05:session-52:i08:r2",
+          "text": "Cuántas"
+        },
+        {
+          "responseId": "es:lesson-05:session-52:i08:r3",
+          "text": "Cuánto"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — скільки років Ані?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — сколько лет Ане?",
+          "uk": "Вставте слово — скільки років Ані?"
+        },
+        "gappedTargetPhrase": "¿___ años tiene Ana?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-52:i08:r1",
+            "text": "Cuántos"
+          },
+          {
+            "responseId": "es:lesson-05:session-52:i08:r2",
+            "text": "Cuántas"
+          },
+          {
+            "responseId": "es:lesson-05:session-52:i08:r3",
+            "text": "Cuánto"
+          }
+        ],
+        "testedDimension": "Вставте слово — скільки років Ані?",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-52:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — скільки років Ані?",
+            "feedbackByLocale": {
+              "ru": "Años — мужской род: cuántos.",
+              "uk": "Años — чоловічий рід: cuántos."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-52:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — скільки років Ані?",
+            "feedbackByLocale": {
+              "ru": "Años во множественном числе: cuántos.",
+              "uk": "Años у множині: cuántos."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-52:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — скільки років Ані?; почніть з ¿Cuántos años tiene, ім’я поставте в кінці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-52:i09:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — скільки років Ані?; почніть з ¿Cuántos años tiene, ім’я поставте в кінці",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-52:i09:audio",
+          "transcript": "¿Cuántos años tiene Ana?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Cuántos años tiene Ana?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-52:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — Ані тридцять років; почніть з Ana tiene",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-52:i10:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — Ані тридцять років; почніть з Ana tiene",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-52:i10:audio",
+          "transcript": "Ana tiene treinta años."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Ana tiene treinta años.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-52:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — їй тридцять років; без імені, почніть з Tiene",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-52:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — їй тридцять років; без імені, почніть з Tiene",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-52:i11:audio",
+          "transcript": "Tiene treinta años."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tiene treinta años.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-52:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — в іншій ситуації Ані двадцять років; почніть з Ana tiene",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-52:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — в іншій ситуації Ані двадцять років; почніть з Ana tiene",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-52:i12:audio",
+          "transcript": "Ana tiene veinte años."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Ana tiene veinte años.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "873ccfd05f92a610611d73658204f82884e5a91010385261067f2ea74e70bcf8"
+}

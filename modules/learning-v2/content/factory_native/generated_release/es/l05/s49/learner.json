@@ -1,0 +1,648 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-05:session-49",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-05:session-49:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-49:i01:r1",
+          "text": "hambre"
+        },
+        {
+          "responseId": "es:lesson-05:session-49:i01:r2",
+          "text": "sed"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-49:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-49:i01:audio",
+          "transcript": "hambre"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-05:session-49:i01:r1",
+            "targetText": "hambre",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-05:session-49:i01:r2",
+            "targetText": "sed",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-49:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит hambre — голод, не sed — жажда.",
+              "uk": "Звучить hambre — голод, не sed — спрага."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-49:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — ты хочешь есть?",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-49:i02:r1",
+          "text": "Tienes"
+        },
+        {
+          "responseId": "es:lesson-05:session-49:i02:r2",
+          "text": "Tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-49:i02:r3",
+          "text": "Soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — ты хочешь есть?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — ты хочешь есть?",
+          "uk": "Вставте слово — ти хочеш їсти?"
+        },
+        "gappedTargetPhrase": "¿___ hambre?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-49:i02:r1",
+            "text": "Tienes"
+          },
+          {
+            "responseId": "es:lesson-05:session-49:i02:r2",
+            "text": "Tengo"
+          },
+          {
+            "responseId": "es:lesson-05:session-49:i02:r3",
+            "text": "Soy"
+          }
+        ],
+        "testedDimension": "Вставьте слово — ты хочешь есть?",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-49:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — ты хочешь есть?",
+            "feedbackByLocale": {
+              "ru": "Спрашиваем собеседника: tienes.",
+              "uk": "Запитуємо співрозмовника: tienes."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-49:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — ты хочешь есть?",
+            "feedbackByLocale": {
+              "ru": "Нужно tener: tienes.",
+              "uk": "Потрібно tener: tienes."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-49:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — ты хочешь есть?; начните с ¿Tienes",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-49:i03:r1",
+          "text": "Плитки: hambre?"
+        },
+        {
+          "responseId": "es:lesson-05:session-49:i03:r2",
+          "text": "¿Tienes"
+        },
+        {
+          "responseId": "es:lesson-05:session-49:i03:r3",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — ты хочешь есть?; начните с ¿Tienes",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Tienes hambre?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — ты хочешь есть?; начните с ¿Tienes",
+          "uk": "Зберіть фразу — ти хочеш їсти?; почніть з ¿Tienes"
+        },
+        "orderedTokens": [
+          "¿Tienes",
+          "hambre"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-49:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — ты хочешь есть?; начните с ¿Tienes",
+            "feedbackByLocale": {
+              "ru": "tener hambre употребляем без артикля.",
+              "uk": "tener hambre вживаємо без артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-49:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — да, я хочу есть",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-49:i04:r1",
+          "text": "tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-49:i04:r2",
+          "text": "tienes"
+        },
+        {
+          "responseId": "es:lesson-05:session-49:i04:r3",
+          "text": "tiene"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — да, я хочу есть",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — да, я хочу есть",
+          "uk": "Вставте слово — так, я хочу їсти"
+        },
+        "gappedTargetPhrase": "Sí, ___ hambre.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-49:i04:r1",
+            "text": "tengo"
+          },
+          {
+            "responseId": "es:lesson-05:session-49:i04:r2",
+            "text": "tienes"
+          },
+          {
+            "responseId": "es:lesson-05:session-49:i04:r3",
+            "text": "tiene"
+          }
+        ],
+        "testedDimension": "Вставьте слово — да, я хочу есть",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-49:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — да, я хочу есть",
+            "feedbackByLocale": {
+              "ru": "Отвечаете о себе: tengo.",
+              "uk": "Відповідаєте про себе: tengo."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-49:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — да, я хочу есть",
+            "feedbackByLocale": {
+              "ru": "О себе нужна форма tengo.",
+              "uk": "Про себе потрібна форма tengo."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-49:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — да, я хочу есть; начните с Sí, tengo",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-49:i05:r1",
+          "text": "Плитки: hambre"
+        },
+        {
+          "responseId": "es:lesson-05:session-49:i05:r2",
+          "text": "Sí,"
+        },
+        {
+          "responseId": "es:lesson-05:session-49:i05:r3",
+          "text": "tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-49:i05:r4",
+          "text": "tienes."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — да, я хочу есть; начните с Sí, tengo",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Sí, tengo hambre.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — да, я хочу есть; начните с Sí, tengo",
+          "uk": "Зберіть фразу — так, я хочу їсти; почніть із Sí, tengo"
+        },
+        "orderedTokens": [
+          "Sí,",
+          "tengo",
+          "hambre"
+        ],
+        "authoredDistractorTokens": [
+          "tienes"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-49:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — да, я хочу есть; начните с Sí, tengo",
+            "feedbackByLocale": {
+              "ru": "о себе говорим tengo.",
+              "uk": "про себе говоримо tengo."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-49:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — я не хочу есть; начните с No tengo",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-49:i06:r1",
+          "text": "Плитки: hambre"
+        },
+        {
+          "responseId": "es:lesson-05:session-49:i06:r2",
+          "text": "No"
+        },
+        {
+          "responseId": "es:lesson-05:session-49:i06:r3",
+          "text": "tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-49:i06:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — я не хочу есть; начните с No tengo",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No tengo hambre.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — я не хочу есть; начните с No tengo",
+          "uk": "Зберіть фразу — я не хочу їсти; почніть з No tengo"
+        },
+        "orderedTokens": [
+          "No",
+          "tengo",
+          "hambre"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-49:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — я не хочу есть; начните с No tengo",
+            "feedbackByLocale": {
+              "ru": "здесь нужно tener hambre без артикля.",
+              "uk": "тут потрібно tener hambre без артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-49:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-49:i07:r1",
+          "text": "Плитки: ¿Tienes"
+        },
+        {
+          "responseId": "es:lesson-05:session-49:i07:r2",
+          "text": "hambre?"
+        },
+        {
+          "responseId": "es:lesson-05:session-49:i07:r3",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-49:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-49:i07:audio",
+          "transcript": "¿Tienes hambre?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "¿Tienes hambre?",
+        "orderedTokens": [
+          "¿Tienes",
+          "hambre"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-49:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "её нет в вопросе.",
+              "uk": "її немає в запитанні."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-49:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — я не хочу есть",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-49:i08:r1",
+          "text": "No"
+        },
+        {
+          "responseId": "es:lesson-05:session-49:i08:r2",
+          "text": "Sí"
+        },
+        {
+          "responseId": "es:lesson-05:session-49:i08:r3",
+          "text": "Una"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — я не хочу есть",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — я не хочу есть",
+          "uk": "Вставте слово — я не хочу їсти"
+        },
+        "gappedTargetPhrase": "___ tengo hambre.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-49:i08:r1",
+            "text": "No"
+          },
+          {
+            "responseId": "es:lesson-05:session-49:i08:r2",
+            "text": "Sí"
+          },
+          {
+            "responseId": "es:lesson-05:session-49:i08:r3",
+            "text": "Una"
+          }
+        ],
+        "testedDimension": "Вставьте слово — я не хочу есть",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-49:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — я не хочу есть",
+            "feedbackByLocale": {
+              "ru": "Нужна отрицательная фраза: no перед tengo.",
+              "uk": "Потрібна заперечна фраза: no перед tengo."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-49:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — я не хочу есть",
+            "feedbackByLocale": {
+              "ru": "Отрицание перед глаголом — no.",
+              "uk": "Заперечення перед дієсловом — no."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-49:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — спросите друга, хочет ли он есть; начните с ¿Tienes, используйте hambre",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-49:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — спросите друга, хочет ли он есть; начните с ¿Tienes, используйте hambre",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-49:i09:audio",
+          "transcript": "¿Tienes hambre?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Tienes hambre?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-49:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — да, я хочу есть; начните с Sí, tengo",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-49:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — да, я хочу есть; начните с Sí, tengo",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-49:i10:audio",
+          "transcript": "Sí, tengo hambre."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Sí, tengo hambre.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-49:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — я не хочу есть; начните с No tengo, используйте hambre",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-49:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — я не хочу есть; начните с No tengo, используйте hambre",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-49:i11:audio",
+          "transcript": "No tengo hambre."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No tengo hambre.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-49:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — мы хотим есть; начните с Tenemos, используйте hambre",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-49:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — мы хотим есть; начните с Tenemos, используйте hambre",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-49:i12:audio",
+          "transcript": "Tenemos hambre."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tenemos hambre.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "a0ff9fdad621fc122e2551ee42d38eec713fc70162a075098eb682fc1e946a81"
+}

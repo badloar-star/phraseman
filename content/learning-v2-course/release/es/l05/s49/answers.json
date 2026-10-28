@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-05:session-49:i01",
+    "correctText": "hambre",
+    "correctResponseId": "es:lesson-05:session-49:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-49:i02",
+    "correctText": "Tienes",
+    "correctResponseId": "es:lesson-05:session-49:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-49:i03",
+    "correctText": "¿Tienes hambre?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-49:i04",
+    "correctText": "tengo",
+    "correctResponseId": "es:lesson-05:session-49:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-49:i05",
+    "correctText": "Sí, tengo hambre.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-49:i06",
+    "correctText": "No tengo hambre.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-49:i07",
+    "correctText": "¿Tienes hambre?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-49:i08",
+    "correctText": "No",
+    "correctResponseId": "es:lesson-05:session-49:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-49:i09",
+    "correctText": "¿Tienes hambre?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-49:i10",
+    "correctText": "Sí, tengo hambre.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-49:i11",
+    "correctText": "No tengo hambre.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-49:i12",
+    "correctText": "Tenemos hambre.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-05:session-52",
+  "entries": [
+    {
+      "interactionId": "es:lesson-05:session-52:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-52:intro1:r2": {
+          "ru": "О другом человеке используем tiene.",
+          "uk": "Про іншу людину використовуємо tiene."
+        },
+        "es:lesson-05:session-52:intro1:r3": {
+          "ru": "Años — мужской род, множественное число: cuántos.",
+          "uk": "Años — чоловічий рід, множина: cuántos."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-52:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-52:intro2:r2": {
+          "ru": "Возраст выражаем через tiene.",
+          "uk": "Вік виражаємо через tiene."
+        },
+        "es:lesson-05:session-52:intro2:r3": {
+          "ru": "После treinta нужно множественное años.",
+          "uk": "Після treinta потрібна множина años."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-52:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-52:intro3:r2": {
+          "ru": "Tengo относится к вам; об Ане нужно tiene.",
+          "uk": "Tengo стосується вас; про Ану потрібно tiene."
+        },
+        "es:lesson-05:session-52:intro3:r3": {
+          "ru": "Ана одна, поэтому tiene.",
+          "uk": "Ана одна, тому tiene."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "972484e333bbc569186314ca7503dbbd7560ed0e24e436bb6ae8043ecb349e9a"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-05:session-50",
+  "entries": [
+    {
+      "interactionId": "es:lesson-05:session-50:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-50:intro1:r2": {
+          "ru": "No нужно перед tengo.",
+          "uk": "No потрібно перед tengo."
+        },
+        "es:lesson-05:session-50:intro1:r3": {
+          "ru": "Жажду выражаем через tener: tengo sed.",
+          "uk": "Спрагу виражаємо через tener: tengo sed."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-50:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-50:intro2:r2": {
+          "ru": "О двоих вместе, включая себя, говорим tenemos.",
+          "uk": "Про двох разом, включно із собою, говоримо tenemos."
+        },
+        "es:lesson-05:session-50:intro2:r3": {
+          "ru": "No ставим перед tenemos.",
+          "uk": "No ставимо перед tenemos."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-50:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-50:intro3:r2": {
+          "ru": "No ставим перед tiene.",
+          "uk": "No ставимо перед tiene."
+        },
+        "es:lesson-05:session-50:intro3:r3": {
+          "ru": "Об Ане используем tiene.",
+          "uk": "Про Ану використовуємо tiene."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "21070279ee75af3b1b7e551164e39f8ae887fd7360d8fd7a02796a50ffe8b0a4"
+}

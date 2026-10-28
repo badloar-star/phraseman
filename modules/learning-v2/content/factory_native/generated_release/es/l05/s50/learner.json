@@ -1,0 +1,663 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-05:session-50",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-05:session-50:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-50:i01:r1",
+          "text": "sed"
+        },
+        {
+          "responseId": "es:lesson-05:session-50:i01:r2",
+          "text": "sueño"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-50:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-50:i01:audio",
+          "transcript": "sed"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-05:session-50:i01:r1",
+            "targetText": "sed",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-05:session-50:i01:r2",
+            "targetText": "sueño",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-50:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит sed — жажда, не sueño — сонливость.",
+              "uk": "Звучить sed — спрага, не sueño — сонливість."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-50:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — я не хочу пить",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-50:i02:r1",
+          "text": "sed"
+        },
+        {
+          "responseId": "es:lesson-05:session-50:i02:r2",
+          "text": "hambre"
+        },
+        {
+          "responseId": "es:lesson-05:session-50:i02:r3",
+          "text": "prisa"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — я не хочу пить",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — я не хочу пить",
+          "uk": "Вставте слово — я не хочу пити"
+        },
+        "gappedTargetPhrase": "No tengo ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-50:i02:r1",
+            "text": "sed"
+          },
+          {
+            "responseId": "es:lesson-05:session-50:i02:r2",
+            "text": "hambre"
+          },
+          {
+            "responseId": "es:lesson-05:session-50:i02:r3",
+            "text": "prisa"
+          }
+        ],
+        "testedDimension": "Вставьте слово — я не хочу пить",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-50:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — я не хочу пить",
+            "feedbackByLocale": {
+              "ru": "Для жажды нужно sed.",
+              "uk": "Для спраги потрібно sed."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-50:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — я не хочу пить",
+            "feedbackByLocale": {
+              "ru": "Это спешка; здесь нужно sed.",
+              "uk": "Це поспіх; тут потрібно sed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-50:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — я не хочу пить; начните с No tengo",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-50:i03:r1",
+          "text": "Плитки: sed"
+        },
+        {
+          "responseId": "es:lesson-05:session-50:i03:r2",
+          "text": "No"
+        },
+        {
+          "responseId": "es:lesson-05:session-50:i03:r3",
+          "text": "tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-50:i03:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — я не хочу пить; начните с No tengo",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No tengo sed.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — я не хочу пить; начните с No tengo",
+          "uk": "Зберіть фразу — я не хочу пити; почніть з No tengo"
+        },
+        "orderedTokens": [
+          "No",
+          "tengo",
+          "sed"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-50:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — я не хочу пить; начните с No tengo",
+            "feedbackByLocale": {
+              "ru": "tener sed употребляем без артикля.",
+              "uk": "tener sed вживаємо без артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-50:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — мы не хотим пить",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-50:i04:r1",
+          "text": "tenemos"
+        },
+        {
+          "responseId": "es:lesson-05:session-50:i04:r2",
+          "text": "tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-50:i04:r3",
+          "text": "tienen"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — мы не хотим пить",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — мы не хотим пить",
+          "uk": "Вставте слово — ми не хочемо пити"
+        },
+        "gappedTargetPhrase": "No ___ sed.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-50:i04:r1",
+            "text": "tenemos"
+          },
+          {
+            "responseId": "es:lesson-05:session-50:i04:r2",
+            "text": "tengo"
+          },
+          {
+            "responseId": "es:lesson-05:session-50:i04:r3",
+            "text": "tienen"
+          }
+        ],
+        "testedDimension": "Вставьте слово — мы не хотим пить",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-50:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — мы не хотим пить",
+            "feedbackByLocale": {
+              "ru": "О нас вместе нужна форма tenemos.",
+              "uk": "Про нас разом потрібна форма tenemos."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-50:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — мы не хотим пить",
+            "feedbackByLocale": {
+              "ru": "«Мы» — tenemos, не tienen.",
+              "uk": "«Ми» — tenemos, не tienen."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-50:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — мы не хотим пить; начните с No tenemos",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-50:i05:r1",
+          "text": "Плитки: sed"
+        },
+        {
+          "responseId": "es:lesson-05:session-50:i05:r2",
+          "text": "No"
+        },
+        {
+          "responseId": "es:lesson-05:session-50:i05:r3",
+          "text": "tenemos"
+        },
+        {
+          "responseId": "es:lesson-05:session-50:i05:r4",
+          "text": "tengo."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — мы не хотим пить; начните с No tenemos",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No tenemos sed.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — мы не хотим пить; начните с No tenemos",
+          "uk": "Зберіть фразу — ми не хочемо пити; почніть з No tenemos"
+        },
+        "orderedTokens": [
+          "No",
+          "tenemos",
+          "sed"
+        ],
+        "authoredDistractorTokens": [
+          "tengo"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-50:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — мы не хотим пить; начните с No tenemos",
+            "feedbackByLocale": {
+              "ru": "о нас говорим tenemos.",
+              "uk": "про нас говоримо tenemos."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-50:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — Ана не хочет пить; начните с Ana no tiene",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-50:i06:r1",
+          "text": "Плитки: sed"
+        },
+        {
+          "responseId": "es:lesson-05:session-50:i06:r2",
+          "text": "Ana"
+        },
+        {
+          "responseId": "es:lesson-05:session-50:i06:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-05:session-50:i06:r4",
+          "text": "tiene"
+        },
+        {
+          "responseId": "es:lesson-05:session-50:i06:r5",
+          "text": "tengo."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — Ана не хочет пить; начните с Ana no tiene",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Ana no tiene sed.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — Ана не хочет пить; начните с Ana no tiene",
+          "uk": "Зберіть фразу — Ана не хоче пити; почніть з Ana no tiene"
+        },
+        "orderedTokens": [
+          "Ana",
+          "no",
+          "tiene",
+          "sed"
+        ],
+        "authoredDistractorTokens": [
+          "tengo"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-50:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — Ана не хочет пить; начните с Ana no tiene",
+            "feedbackByLocale": {
+              "ru": "об Ане используем tiene.",
+              "uk": "про Ану використовуємо tiene."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-50:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-50:i07:r1",
+          "text": "Плитки: No"
+        },
+        {
+          "responseId": "es:lesson-05:session-50:i07:r2",
+          "text": "tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-50:i07:r3",
+          "text": "sed"
+        },
+        {
+          "responseId": "es:lesson-05:session-50:i07:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-50:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-50:i07:audio",
+          "transcript": "No tengo sed."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "No tengo sed.",
+        "orderedTokens": [
+          "No",
+          "tengo",
+          "sed"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-50:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "её нет в услышанной фразе.",
+              "uk": "її немає в почутій фразі."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-50:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — Ана не хочет пить",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-50:i08:r1",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-05:session-50:i08:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-05:session-50:i08:r3",
+          "text": "sí"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — Ана не хочет пить",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — Ана не хочет пить",
+          "uk": "Вставте слово — Ана не хоче пити"
+        },
+        "gappedTargetPhrase": "Ana ___ tiene sed.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-50:i08:r1",
+            "text": "no"
+          },
+          {
+            "responseId": "es:lesson-05:session-50:i08:r2",
+            "text": "una"
+          },
+          {
+            "responseId": "es:lesson-05:session-50:i08:r3",
+            "text": "sí"
+          }
+        ],
+        "testedDimension": "Вставьте слово — Ана не хочет пить",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-50:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — Ана не хочет пить",
+            "feedbackByLocale": {
+              "ru": "Отрицание перед tiene — no.",
+              "uk": "Заперечення перед tiene — no."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-50:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — Ана не хочет пить",
+            "feedbackByLocale": {
+              "ru": "Нужно отрицание no.",
+              "uk": "Потрібне заперечення no."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-50:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — я не хочу пить; начните с No tengo, используйте sed",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-50:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — я не хочу пить; начните с No tengo, используйте sed",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-50:i09:audio",
+          "transcript": "No tengo sed."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No tengo sed.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-50:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — мы не хотим пить; начните с No tenemos, используйте sed",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-50:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — мы не хотим пить; начните с No tenemos, используйте sed",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-50:i10:audio",
+          "transcript": "No tenemos sed."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No tenemos sed.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-50:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — Ана не хочет пить; начните с Ana no tiene, используйте sed",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-50:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — Ана не хочет пить; начните с Ana no tiene, используйте sed",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-50:i11:audio",
+          "transcript": "Ana no tiene sed."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Ana no tiene sed.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-50:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — я хочу пить; начните с Tengo, используйте sed",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-50:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — я хочу пить; начните с Tengo, используйте sed",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-50:i12:audio",
+          "transcript": "Tengo sed."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tengo sed.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "d8777907947f6603c82c326b6004d74a6df790c0fd893d6015c1c84f90db8e37"
+}

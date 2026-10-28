@@ -1,0 +1,648 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-05:session-51",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-05:session-51:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-51:i01:r1",
+          "text": "frío"
+        },
+        {
+          "responseId": "es:lesson-05:session-51:i01:r2",
+          "text": "calor"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-51:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-51:i01:audio",
+          "transcript": "frío"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-05:session-51:i01:r1",
+            "targetText": "frío",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-05:session-51:i01:r2",
+            "targetText": "calor",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-51:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит frío — холод, не calor — жара.",
+              "uk": "Звучить frío — холод, не calor — спека."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-51:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — нам холодно",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-51:i02:r1",
+          "text": "Tenemos"
+        },
+        {
+          "responseId": "es:lesson-05:session-51:i02:r2",
+          "text": "Tienen"
+        },
+        {
+          "responseId": "es:lesson-05:session-51:i02:r3",
+          "text": "Tengo"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — нам холодно",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — нам холодно",
+          "uk": "Вставте слово — нам холодно"
+        },
+        "gappedTargetPhrase": "___ frío.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-51:i02:r1",
+            "text": "Tenemos"
+          },
+          {
+            "responseId": "es:lesson-05:session-51:i02:r2",
+            "text": "Tienen"
+          },
+          {
+            "responseId": "es:lesson-05:session-51:i02:r3",
+            "text": "Tengo"
+          }
+        ],
+        "testedDimension": "Вставьте слово — нам холодно",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-51:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — нам холодно",
+            "feedbackByLocale": {
+              "ru": "О нас говорим tenemos.",
+              "uk": "Про нас говоримо tenemos."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-51:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — нам холодно",
+            "feedbackByLocale": {
+              "ru": "Нужно сказать о нескольких людях, включая себя: tenemos.",
+              "uk": "Потрібно сказати про кількох людей, включно із собою: tenemos."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-51:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — нам холодно; начните с Tenemos",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-51:i03:r1",
+          "text": "Плитки: frío"
+        },
+        {
+          "responseId": "es:lesson-05:session-51:i03:r2",
+          "text": "Tenemos"
+        },
+        {
+          "responseId": "es:lesson-05:session-51:i03:r3",
+          "text": "fríos."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — нам холодно; начните с Tenemos",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Tenemos frío.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — нам холодно; начните с Tenemos",
+          "uk": "Зберіть фразу — нам холодно; почніть з Tenemos"
+        },
+        "orderedTokens": [
+          "Tenemos",
+          "frío"
+        ],
+        "authoredDistractorTokens": [
+          "fríos"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-51:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — нам холодно; начните с Tenemos",
+            "feedbackByLocale": {
+              "ru": "в tener frío сохраняем frío.",
+              "uk": "у tener frío зберігаємо frío."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-51:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — им холодно",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-51:i04:r1",
+          "text": "tienen"
+        },
+        {
+          "responseId": "es:lesson-05:session-51:i04:r2",
+          "text": "tenemos"
+        },
+        {
+          "responseId": "es:lesson-05:session-51:i04:r3",
+          "text": "tiene"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — им холодно",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — им холодно",
+          "uk": "Вставте слово — їм холодно"
+        },
+        "gappedTargetPhrase": "Ellos ___ frío.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-51:i04:r1",
+            "text": "tienen"
+          },
+          {
+            "responseId": "es:lesson-05:session-51:i04:r2",
+            "text": "tenemos"
+          },
+          {
+            "responseId": "es:lesson-05:session-51:i04:r3",
+            "text": "tiene"
+          }
+        ],
+        "testedDimension": "Вставьте слово — им холодно",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-51:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — им холодно",
+            "feedbackByLocale": {
+              "ru": "С ellos нужно tienen.",
+              "uk": "З ellos потрібно tienen."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-51:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — им холодно",
+            "feedbackByLocale": {
+              "ru": "Ellos — несколько людей: tienen.",
+              "uk": "Ellos — кілька людей: tienen."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-51:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — им холодно; начните с Ellos tienen",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-51:i05:r1",
+          "text": "Плитки: frío"
+        },
+        {
+          "responseId": "es:lesson-05:session-51:i05:r2",
+          "text": "Ellos"
+        },
+        {
+          "responseId": "es:lesson-05:session-51:i05:r3",
+          "text": "tienen"
+        },
+        {
+          "responseId": "es:lesson-05:session-51:i05:r4",
+          "text": "tenemos."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — им холодно; начните с Ellos tienen",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Ellos tienen frío.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — им холодно; начните с Ellos tienen",
+          "uk": "Зберіть фразу — їм холодно; почніть з Ellos tienen"
+        },
+        "orderedTokens": [
+          "Ellos",
+          "tienen",
+          "frío"
+        ],
+        "authoredDistractorTokens": [
+          "tenemos"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-51:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — им холодно; начните с Ellos tienen",
+            "feedbackByLocale": {
+              "ru": "с ellos используем tienen.",
+              "uk": "з ellos використовуємо tienen."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-51:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — вам холодно?; обращайтесь к нескольким людям, начните с ¿Ustedes",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-51:i06:r1",
+          "text": "Плитки: frío?"
+        },
+        {
+          "responseId": "es:lesson-05:session-51:i06:r2",
+          "text": "tienen"
+        },
+        {
+          "responseId": "es:lesson-05:session-51:i06:r3",
+          "text": "¿Ustedes"
+        },
+        {
+          "responseId": "es:lesson-05:session-51:i06:r4",
+          "text": "tiene."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — вам холодно?; обращайтесь к нескольким людям, начните с ¿Ustedes",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Ustedes tienen frío?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — вам холодно?; обращайтесь к нескольким людям, начните с ¿Ustedes",
+          "uk": "Зберіть фразу — вам холодно?; звертайтеся до кількох людей, почніть з ¿Ustedes"
+        },
+        "orderedTokens": [
+          "¿Ustedes",
+          "tienen",
+          "frío"
+        ],
+        "authoredDistractorTokens": [
+          "tiene"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-51:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — вам холодно?; обращайтесь к нескольким людям, начните с ¿Ustedes",
+            "feedbackByLocale": {
+              "ru": "с ustedes нужно tienen.",
+              "uk": "з ustedes потрібно tienen."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-51:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-51:i07:r1",
+          "text": "Плитки: Tenemos"
+        },
+        {
+          "responseId": "es:lesson-05:session-51:i07:r2",
+          "text": "frío"
+        },
+        {
+          "responseId": "es:lesson-05:session-51:i07:r3",
+          "text": "fríos."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-51:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-51:i07:audio",
+          "transcript": "Tenemos frío."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Tenemos frío.",
+        "orderedTokens": [
+          "Tenemos",
+          "frío"
+        ],
+        "authoredDistractorTokens": [
+          "fríos"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-51:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит frío.",
+              "uk": "звучить frío."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-51:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — нам холодно",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-51:i08:r1",
+          "text": "frío"
+        },
+        {
+          "responseId": "es:lesson-05:session-51:i08:r2",
+          "text": "fríos"
+        },
+        {
+          "responseId": "es:lesson-05:session-51:i08:r3",
+          "text": "fría"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — нам холодно",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — нам холодно",
+          "uk": "Вставте слово — нам холодно"
+        },
+        "gappedTargetPhrase": "Tenemos ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-51:i08:r1",
+            "text": "frío"
+          },
+          {
+            "responseId": "es:lesson-05:session-51:i08:r2",
+            "text": "fríos"
+          },
+          {
+            "responseId": "es:lesson-05:session-51:i08:r3",
+            "text": "fría"
+          }
+        ],
+        "testedDimension": "Вставьте слово — нам холодно",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-51:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — нам холодно",
+            "feedbackByLocale": {
+              "ru": "В tener frío не меняем слово по числу людей.",
+              "uk": "У tener frío не змінюємо слово за кількістю людей."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-51:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — нам холодно",
+            "feedbackByLocale": {
+              "ru": "В этом сочетании используем frío.",
+              "uk": "У цьому сполученні використовуємо frío."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-51:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — нам холодно; начните с Tenemos, используйте frío",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-51:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — нам холодно; начните с Tenemos, используйте frío",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-51:i09:audio",
+          "transcript": "Tenemos frío."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tenemos frío.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-51:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — им холодно; начните с Ellos tienen, используйте frío",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-51:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — им холодно; начните с Ellos tienen, используйте frío",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-51:i10:audio",
+          "transcript": "Ellos tienen frío."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Ellos tienen frío.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-51:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — спросите нескольких гостей, холодно ли им; начните с ¿Ustedes tienen, используйте frío",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-51:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — спросите нескольких гостей, холодно ли им; начните с ¿Ustedes tienen, используйте frío",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-51:i11:audio",
+          "transcript": "¿Ustedes tienen frío?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Ustedes tienen frío?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-51:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — нам не холодно; начните с No tenemos, используйте frío",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-51:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — нам не холодно; начните с No tenemos, используйте frío",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-51:i12:audio",
+          "transcript": "No tenemos frío."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No tenemos frío.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "dcfc58f72b7a37ff22b7877e318ba8e8daf35473bd12b0e942f4d44ba304f47f"
+}

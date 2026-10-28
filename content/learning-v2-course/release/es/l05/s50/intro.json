@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-05:session-50",
+  "learningOutcomeByLocale": {
+    "ru": "отрицать жажду с помощью no перед нужной формой tener.",
+    "uk": "заперечувати спрагу за допомогою no перед потрібною формою tener."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-05:session-50:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Отказаться от воды",
+        "uk": "Відмовитися від води"
+      },
+      "bodyByLocale": {
+        "ru": "Друг предлагает воду, но вы не хотите пить. Скажите `No tengo sed` — «Я не хочу пить». Соберите `No` + `tengo` + `sed`. Sed означает жажду. No ставим перед tengo, чтобы отрицать это состояние; перед sed артикль не нужен.",
+        "uk": "Друг пропонує воду, але ви не хочете пити. Скажіть `No tengo sed` — «Я не хочу пити». Складіть `No` + `tengo` + `sed`. Sed означає спрагу. No ставимо перед tengo, щоб заперечити цей стан; перед sed артикль не потрібен."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-50:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите «Я не хочу пить». Начните с No tengo, используйте sed.",
+          "uk": "Скажіть «Я не хочу пити». Почніть з No tengo, використайте sed."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-50:intro1:r1",
+              "text": "No tengo sed."
+            },
+            {
+              "responseId": "es:lesson-05:session-50:intro1:r2",
+              "text": "Tengo no sed."
+            },
+            {
+              "responseId": "es:lesson-05:session-50:intro1:r3",
+              "text": "No soy sed."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-50:intro1:r1",
+              "text": "No tengo sed."
+            },
+            {
+              "responseId": "es:lesson-05:session-50:intro1:r2",
+              "text": "Tengo no sed."
+            },
+            {
+              "responseId": "es:lesson-05:session-50:intro1:r3",
+              "text": "No soy sed."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Я не хочу пить». Начните с No tengo, используйте sed.",
+          "uk": "Скажіть «Я не хочу пити». Почніть з No tengo, використайте sed."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-05:session-50:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ответить за себя и друга",
+        "uk": "Відповісти за себе й друга"
+      },
+      "bodyByLocale": {
+        "ru": "Вы с другом только что выпили воды. Водитель предлагает ещё, а вы отвечаете за двоих: `No tenemos sed` — «Мы не хотим пить». Соберите `No` + `tenemos` + `sed`. Tenemos уже обозначает «мы», поэтому отдельное nosotros здесь можно не добавлять. No по-прежнему стоит перед глаголом.",
+        "uk": "Ви з другом щойно випили води. Водій пропонує ще, а ви відповідаєте за двох: `No tenemos sed` — «Ми не хочемо пити». Складіть `No` + `tenemos` + `sed`. Tenemos вже означає «ми», тому окреме nosotros тут можна не додавати. No й далі стоїть перед дієсловом."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-50:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «Мы не хотим пить». Начните с No tenemos, используйте sed.",
+          "uk": "Скажіть «Ми не хочемо пити». Почніть з No tenemos, використайте sed."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-50:intro2:r1",
+              "text": "No tenemos sed."
+            },
+            {
+              "responseId": "es:lesson-05:session-50:intro2:r2",
+              "text": "No tengo sed."
+            },
+            {
+              "responseId": "es:lesson-05:session-50:intro2:r3",
+              "text": "Tenemos no sed."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-50:intro2:r1",
+              "text": "No tenemos sed."
+            },
+            {
+              "responseId": "es:lesson-05:session-50:intro2:r2",
+              "text": "No tengo sed."
+            },
+            {
+              "responseId": "es:lesson-05:session-50:intro2:r3",
+              "text": "Tenemos no sed."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Мы не хотим пить». Начните с No tenemos, используйте sed.",
+          "uk": "Скажіть «Ми не хочемо пити». Почніть з No tenemos, використайте sed."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-05:session-50:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Объяснить отказ Аны",
+        "uk": "Пояснити відмову Ани"
+      },
+      "bodyByLocale": {
+        "ru": "Ана сказала вам, что не хочет пить. Передайте это водителю: `Ana no tiene sed` — «Ана не хочет пить». Соберите `Ana` + `no` + `tiene` + `sed`. Имя ставим в начало; no остаётся непосредственно перед tiene. Об Ане нужна форма tiene.",
+        "uk": "Ана сказала вам, що не хоче пити. Передайте це водієві: `Ana no tiene sed` — «Ана не хоче пити». Складіть `Ana` + `no` + `tiene` + `sed`. Ім’я ставимо на початку; no залишається безпосередньо перед tiene. Про Ану потрібна форма tiene."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-50:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите «Ана не хочет пить». Начните с Ana no tiene, используйте sed.",
+          "uk": "Скажіть «Ана не хоче пити». Почніть з Ana no tiene, використайте sed."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-50:intro3:r1",
+              "text": "Ana no tiene sed."
+            },
+            {
+              "responseId": "es:lesson-05:session-50:intro3:r2",
+              "text": "Ana tiene no sed."
+            },
+            {
+              "responseId": "es:lesson-05:session-50:intro3:r3",
+              "text": "Ana no tengo sed."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-50:intro3:r1",
+              "text": "Ana no tiene sed."
+            },
+            {
+              "responseId": "es:lesson-05:session-50:intro3:r2",
+              "text": "Ana tiene no sed."
+            },
+            {
+              "responseId": "es:lesson-05:session-50:intro3:r3",
+              "text": "Ana no tengo sed."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Ана не хочет пить». Начните с Ana no tiene, используйте sed.",
+          "uk": "Скажіть «Ана не хоче пити». Почніть з Ana no tiene, використайте sed."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "4da7eb4896cc1880702c95d4a253ad976e72cf0c31ade024fc051c7987a7af31"
+}

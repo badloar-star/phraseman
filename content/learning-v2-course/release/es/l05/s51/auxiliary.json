@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-05:session-51",
+  "entries": [
+    {
+      "interactionId": "es:lesson-05:session-51:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-51:intro1:r2": {
+          "ru": "В tener frío слово frío не получает окончание множественного числа.",
+          "uk": "У tener frío слово frío не отримує закінчення множини."
+        },
+        "es:lesson-05:session-51:intro1:r3": {
+          "ru": "Ощущение холода выражаем через tenemos frío.",
+          "uk": "Відчуття холоду виражаємо через tenemos frío."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-51:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-51:intro2:r2": {
+          "ru": "С ellos нужна форма tienen.",
+          "uk": "З ellos потрібна форма tienen."
+        },
+        "es:lesson-05:session-51:intro2:r3": {
+          "ru": "В этом сочетании нужно frío.",
+          "uk": "У цьому сполученні потрібно frío."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-51:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-51:intro3:r2": {
+          "ru": "С ustedes нужно tienen.",
+          "uk": "З ustedes потрібно tienen."
+        },
+        "es:lesson-05:session-51:intro3:r3": {
+          "ru": "В tener frío слово frío остаётся неизменным.",
+          "uk": "У tener frío слово frío залишається незмінним."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "aaf3f28ff5156ad7ad379052cd9a2b8e0d487999b20f57c91104056a3b3bbfe3"
+}

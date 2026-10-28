@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-05:session-51",
+  "learningOutcomeByLocale": {
+    "ru": "говорить об ощущении холода у нескольких людей через tener frío.",
+    "uk": "говорити про відчуття холоду в кількох людей через tener frío."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-05:session-51:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сказать за свою компанию",
+        "uk": "Сказати за свою компанію"
+      },
+      "bodyByLocale": {
+        "ru": "Вы с друзьями замёрзли на прогулке. Скажите `Tenemos frío` — «Нам холодно». Соберите `Tenemos` + `frío`. Форма tenemos включает вас и других людей: «мы». В сочетании tener frío слово frío обозначает ощущение холода, поэтому здесь остаётся неизменным, сколько бы людей ни было в компании.",
+        "uk": "Ви з друзями змерзли на прогулянці. Скажіть `Tenemos frío` — «Нам холодно». Складіть `Tenemos` + `frío`. Форма tenemos включає вас та інших людей: «ми». У сполученні tener frío слово frío позначає відчуття холоду, тому тут залишається незмінним, скільки б людей не було в компанії."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-51:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите «Нам холодно». Начните с Tenemos, используйте frío.",
+          "uk": "Скажіть «Нам холодно». Почніть з Tenemos, використайте frío."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-51:intro1:r1",
+              "text": "Tenemos frío."
+            },
+            {
+              "responseId": "es:lesson-05:session-51:intro1:r2",
+              "text": "Tenemos fríos."
+            },
+            {
+              "responseId": "es:lesson-05:session-51:intro1:r3",
+              "text": "Somos frío."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-51:intro1:r1",
+              "text": "Tenemos frío."
+            },
+            {
+              "responseId": "es:lesson-05:session-51:intro1:r2",
+              "text": "Tenemos fríos."
+            },
+            {
+              "responseId": "es:lesson-05:session-51:intro1:r3",
+              "text": "Somos frío."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Нам холодно». Начните с Tenemos, используйте frío.",
+          "uk": "Скажіть «Нам холодно». Почніть з Tenemos, використайте frío."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-05:session-51:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Сообщить о друзьях",
+        "uk": "Повідомити про друзів"
+      },
+      "bodyByLocale": {
+        "ru": "Двое друзей сказали вам, что замёрзли. Передайте это организатору прогулки: `Ellos tienen frío` — «Им холодно». Соберите `Ellos` + `tienen` + `frío`. Ellos указывает на них, без вас. Поэтому выбираем tienen, а frío сохраняем без изменений.",
+        "uk": "Двоє друзів сказали вам, що змерзли. Передайте це організатору прогулянки: `Ellos tienen frío` — «Їм холодно». Складіть `Ellos` + `tienen` + `frío`. Ellos указує на них, без вас. Тому вибираємо tienen, а frío зберігаємо без змін."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-51:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «Им холодно». Начните с Ellos tienen, используйте frío.",
+          "uk": "Скажіть «Їм холодно». Почніть з Ellos tienen, використайте frío."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-51:intro2:r1",
+              "text": "Ellos tienen frío."
+            },
+            {
+              "responseId": "es:lesson-05:session-51:intro2:r2",
+              "text": "Ellos tenemos frío."
+            },
+            {
+              "responseId": "es:lesson-05:session-51:intro2:r3",
+              "text": "Ellos tienen fríos."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-51:intro2:r1",
+              "text": "Ellos tienen frío."
+            },
+            {
+              "responseId": "es:lesson-05:session-51:intro2:r2",
+              "text": "Ellos tenemos frío."
+            },
+            {
+              "responseId": "es:lesson-05:session-51:intro2:r3",
+              "text": "Ellos tienen fríos."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Им холодно». Начните с Ellos tienen, используйте frío.",
+          "uk": "Скажіть «Їм холодно». Почніть з Ellos tienen, використайте frío."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-05:session-51:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Спросить гостей",
+        "uk": "Запитати гостей"
+      },
+      "bodyByLocale": {
+        "ru": "Вы встретили на улице двух гостей и хотите узнать, не замёрзли ли они. Спросите `¿Ustedes tienen frío?` — «Вам холодно?» Соберите `¿Ustedes` + `tienen` + `frío?`. Ustedes обращено сразу к нескольким людям. Для него используем tienen; вопрос отмечаем интонацией и знаками ¿ ... ?.",
+        "uk": "Ви зустріли на вулиці двох гостей і хочете дізнатися, чи вони не змерзли. Запитайте `¿Ustedes tienen frío?` — «Вам холодно?» Складіть `¿Ustedes` + `tienen` + `frío?`. Ustedes звернене одразу до кількох людей. Для нього використовуємо tienen; запитання позначаємо інтонацією та знаками ¿ ... ?."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-51:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите нескольких гостей «Вам холодно?». Начните с ¿Ustedes tienen, используйте frío.",
+          "uk": "Запитайте кількох гостей «Вам холодно?». Почніть з ¿Ustedes tienen, використайте frío."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-51:intro3:r1",
+              "text": "¿Ustedes tienen frío?"
+            },
+            {
+              "responseId": "es:lesson-05:session-51:intro3:r2",
+              "text": "¿Ustedes tiene frío?"
+            },
+            {
+              "responseId": "es:lesson-05:session-51:intro3:r3",
+              "text": "¿Ustedes tienen fríos?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-51:intro3:r1",
+              "text": "¿Ustedes tienen frío?"
+            },
+            {
+              "responseId": "es:lesson-05:session-51:intro3:r2",
+              "text": "¿Ustedes tiene frío?"
+            },
+            {
+              "responseId": "es:lesson-05:session-51:intro3:r3",
+              "text": "¿Ustedes tienen fríos?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите нескольких гостей «Вам холодно?». Начните с ¿Ustedes tienen, используйте frío.",
+          "uk": "Запитайте кількох гостей «Вам холодно?». Почніть з ¿Ustedes tienen, використайте frío."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "48d6d0be47af8222eef612f85c769567f776608e5ea62f865ab36ab60a15fcd4"
+}

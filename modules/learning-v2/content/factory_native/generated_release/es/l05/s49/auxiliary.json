@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-05:session-49",
+  "entries": [
+    {
+      "interactionId": "es:lesson-05:session-49:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-49:intro1:r2": {
+          "ru": "Tengo относится к вам, а о собеседнике спрашиваем tienes.",
+          "uk": "Tengo стосується вас, а про співрозмовника запитуємо tienes."
+        },
+        "es:lesson-05:session-49:intro1:r3": {
+          "ru": "О голоде говорим через tener: tienes hambre.",
+          "uk": "Про голод говоримо через tener: tienes hambre."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-49:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-49:intro2:r2": {
+          "ru": "О себе говорим tengo.",
+          "uk": "Про себе говоримо tengo."
+        },
+        "es:lesson-05:session-49:intro2:r3": {
+          "ru": "Нужно tengo hambre.",
+          "uk": "Потрібно tengo hambre."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-49:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-49:intro3:r2": {
+          "ru": "No ставим перед tengo.",
+          "uk": "No ставимо перед tengo."
+        },
+        "es:lesson-05:session-49:intro3:r3": {
+          "ru": "О себе используем tengo.",
+          "uk": "Про себе використовуємо tengo."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "4c5410b2dbed3c308742852c528a0b3dffdb53cabfd073bf5a2c1ff0fb9483e1"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-04:session-04",
+  "learningOutcomeByLocale": {
+    "ru": "поставить mi перед названием своей книги без артикля.",
+    "uk": "поставити mi перед назвою своєї книжки без артикля."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-04:session-04:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Это моя книга",
+        "uk": "Це моя книжка"
+      },
+      "bodyByLocale": {
+        "ru": "Достали из сумки книгу и узнали свою. Скажите `Es mi libro` — «Это моя книга». Соберите `es` + `mi libro`. Mi уже стоит перед названием вещи, поэтому в этой конструкции не добавляем ни el, ни un. Говорим именно mi libro.",
+        "uk": "Дістали із сумки книжку й упізнали свою. Скажіть `Es mi libro` — «Це моя книжка». Зберіть `es` + `mi libro`. Mi вже стоїть перед назвою речі, тому в цій конструкції не додаємо ні el, ні un. Говоримо саме mi libro."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-04:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите, что это ваша книга, начав с Es.",
+          "uk": "Скажіть, що це ваша книжка, почавши з Es."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-04:intro1:r1",
+              "text": "Es mi libro."
+            },
+            {
+              "responseId": "es:lesson-04:session-04:intro1:r2",
+              "text": "Es el mi libro."
+            },
+            {
+              "responseId": "es:lesson-04:session-04:intro1:r3",
+              "text": "Es un mi libro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-04:intro1:r1",
+              "text": "Es mi libro."
+            },
+            {
+              "responseId": "es:lesson-04:session-04:intro1:r2",
+              "text": "Es el mi libro."
+            },
+            {
+              "responseId": "es:lesson-04:session-04:intro1:r3",
+              "text": "Es un mi libro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что это ваша книга, начав с Es.",
+          "uk": "Скажіть, що це ваша книжка, почавши з Es."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-04:session-04:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Новая книга",
+        "uk": "Нова книжка"
+      },
+      "bodyByLocale": {
+        "ru": "Объясните другу, какую книгу ищете: `Mi libro es nuevo` — «Моя книга новая». Соберите `mi libro` + `es` + `nuevo`. Mi libro может стоять в начале описания без артикля. Nuevo согласуется с испанским мужским libro, а не с русским родом слова «книга».",
+        "uk": "Поясніть другу, яку книжку шукаєте: `Mi libro es nuevo` — «Моя книжка нова». Зберіть `mi libro` + `es` + `nuevo`. Mi libro може стояти на початку опису без артикля. Nuevo узгоджується з іспанським чоловічим libro, а не з українським родом слова «книжка»."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-04:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите, что ваша книга новая, начав с Mi libro.",
+          "uk": "Скажіть, що ваша книжка нова, почавши з Mi libro."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-04:intro2:r1",
+              "text": "Mi libro es nuevo."
+            },
+            {
+              "responseId": "es:lesson-04:session-04:intro2:r2",
+              "text": "Mi libro es nueva."
+            },
+            {
+              "responseId": "es:lesson-04:session-04:intro2:r3",
+              "text": "Mi libro es nuevos."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-04:intro2:r1",
+              "text": "Mi libro es nuevo."
+            },
+            {
+              "responseId": "es:lesson-04:session-04:intro2:r2",
+              "text": "Mi libro es nueva."
+            },
+            {
+              "responseId": "es:lesson-04:session-04:intro2:r3",
+              "text": "Mi libro es nuevos."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что ваша книга новая, начав с Mi libro.",
+          "uk": "Скажіть, що ваша книжка нова, почавши з Mi libro."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-04:session-04:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Книга друга",
+        "uk": "Книжка друга"
+      },
+      "bodyByLocale": {
+        "ru": "Друг протягивает другую книгу. Скажите `No es mi libro` — «Это не моя книга». Соберите `no` + `es` + `mi libro`. При отрицании артикль тоже не появляется. Mi остаётся перед libro, а no — перед es.",
+        "uk": "Друг простягає іншу книжку. Скажіть `No es mi libro` — «Це не моя книжка». Зберіть `no` + `es` + `mi libro`. При запереченні артикль теж не з'являється. Mi залишається перед libro, а no — перед es."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-04:intro3:q",
+        "promptByLocale": {
+          "ru": "Откажитесь от чужой книги: это не моя книга. Начните с No es.",
+          "uk": "Відмовтеся від чужої книжки: це не моя книжка. Почніть з No es."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-04:intro3:r1",
+              "text": "No es mi libro."
+            },
+            {
+              "responseId": "es:lesson-04:session-04:intro3:r2",
+              "text": "No es el mi libro."
+            },
+            {
+              "responseId": "es:lesson-04:session-04:intro3:r3",
+              "text": "No son mi libro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-04:intro3:r1",
+              "text": "No es mi libro."
+            },
+            {
+              "responseId": "es:lesson-04:session-04:intro3:r2",
+              "text": "No es el mi libro."
+            },
+            {
+              "responseId": "es:lesson-04:session-04:intro3:r3",
+              "text": "No son mi libro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Откажитесь от чужой книги: это не моя книга. Начните с No es.",
+          "uk": "Відмовтеся від чужої книжки: це не моя книжка. Почніть з No es."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "149ae71616005d8cf985ec5d9e2de209f1995db9e62cdbea9b8914e0f2cb5588"
+}

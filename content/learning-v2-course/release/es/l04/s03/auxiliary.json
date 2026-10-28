@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-04:session-03",
+  "entries": [
+    {
+      "interactionId": "es:lesson-04:session-03:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-03:intro1:r2": {
+          "ru": "Перед mi здесь не ставим el.",
+          "uk": "Перед mi тут не ставимо el."
+        },
+        "es:lesson-04:session-03:intro1:r3": {
+          "ru": "Сумка одна: bolso.",
+          "uk": "Сумка одна: bolso."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-03:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-03:intro2:r2": {
+          "ru": "Нужен мужской rojo.",
+          "uk": "Потрібне чоловіче rojo."
+        },
+        "es:lesson-04:session-03:intro2:r3": {
+          "ru": "Один bolso: rojo.",
+          "uk": "Один bolso: rojo."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-03:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-03:intro3:r2": {
+          "ru": "Перед mi здесь не нужен la.",
+          "uk": "Перед mi тут не потрібне la."
+        },
+        "es:lesson-04:session-03:intro3:r3": {
+          "ru": "Одна сумка: bolsa.",
+          "uk": "Одна сумка: bolsa."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "b5eed4987ebc62ef2cd9d09ca6e3322c99da12dfc6b72608c387a5b53ceb081f"
+}

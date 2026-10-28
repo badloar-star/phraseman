@@ -1,0 +1,891 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-04:session-01",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-04:session-01:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — hermana",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-01:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — hermana",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-01:i01:audio",
+          "transcript": "hermana"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-04:session-01:i01:r1",
+            "targetText": "hermana",
+            "meaningByLocale": {
+              "ru": "сестра. Начальная h не произносится. 🔊 *hermana*",
+              "uk": "сестра. Початкова h не вимовляється. 🔊 *hermana*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hermana",
+          "definitionByLocale": {
+            "ru": "сестра. Начальная h не произносится. 🔊 *hermana*",
+            "uk": "сестра. Початкова h не вимовляється. 🔊 *hermana*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-01:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-01:i02:r1",
+          "text": "hermana"
+        },
+        {
+          "responseId": "es:lesson-04:session-01:i02:r2",
+          "text": "amiga"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-01:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-01:i02:audio",
+          "transcript": "hermana"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-04:session-01:i02:r1",
+            "targetText": "hermana",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-04:session-01:i02:r2",
+            "targetText": "amiga",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-01:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи hermana — сестра, а не amiga — подруга.",
+              "uk": "У записі hermana — сестра, а не amiga — подруга."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-01:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — mi",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-01:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — mi",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-01:i03:audio",
+          "transcript": "mi"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-04:session-01:i03:r1",
+            "targetText": "mi",
+            "meaningByLocale": {
+              "ru": "мой, моя; перед названием одного человека или предмета: mi hermana — моя сестра. 🔊 *mi*",
+              "uk": "мій, моя; перед назвою однієї людини або предмета: mi hermana — моя сестра. 🔊 *mi*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "mi",
+          "definitionByLocale": {
+            "ru": "мой, моя; перед названием одного человека или предмета: mi hermana — моя сестра. 🔊 *mi*",
+            "uk": "мій, моя; перед назвою однієї людини або предмета: mi hermana — моя сестра. 🔊 *mi*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-01:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-01:i04:r1",
+          "text": "mi"
+        },
+        {
+          "responseId": "es:lesson-04:session-01:i04:r2",
+          "text": "muy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-01:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-01:i04:audio",
+          "transcript": "mi"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-04:session-01:i04:r1",
+            "targetText": "mi",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-04:session-01:i04:r2",
+            "targetText": "muy",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-01:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи mi — моя, а не muy — очень.",
+              "uk": "У записі mi — моя, а не muy — дуже."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-01:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это моя сестра",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-01:i05:r1",
+          "text": "Плитки: hermana"
+        },
+        {
+          "responseId": "es:lesson-04:session-01:i05:r2",
+          "text": "mi"
+        },
+        {
+          "responseId": "es:lesson-04:session-01:i05:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-01:i05:r4",
+          "text": "la."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это моя сестра",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es mi hermana.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это моя сестра",
+          "uk": "Зберіть фразу — це моя сестра"
+        },
+        "orderedTokens": [
+          "Es",
+          "mi",
+          "hermana"
+        ],
+        "authoredDistractorTokens": [
+          "la"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-01:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это моя сестра",
+            "feedbackByLocale": {
+              "ru": "перед mi артикль здесь не нужен.",
+              "uk": "перед mi артикль тут не потрібний."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-01:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — это моя сестра",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-01:i06:r1",
+          "text": "mi"
+        },
+        {
+          "responseId": "es:lesson-04:session-01:i06:r2",
+          "text": "muy"
+        },
+        {
+          "responseId": "es:lesson-04:session-01:i06:r3",
+          "text": "yo"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — это моя сестра",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это моя сестра",
+          "uk": "Вставте слово — це моя сестра"
+        },
+        "gappedTargetPhrase": "Es ___ hermana.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-01:i06:r1",
+            "text": "mi"
+          },
+          {
+            "responseId": "es:lesson-04:session-01:i06:r2",
+            "text": "muy"
+          },
+          {
+            "responseId": "es:lesson-04:session-01:i06:r3",
+            "text": "yo"
+          }
+        ],
+        "testedDimension": "Вставьте слово — это моя сестра",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-01:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это моя сестра",
+            "feedbackByLocale": {
+              "ru": "Muy означает «очень», а принадлежность передаёт mi.",
+              "uk": "Muy означає «дуже», а належність передає mi."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-01:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это моя сестра",
+            "feedbackByLocale": {
+              "ru": "Yo означает «я»; перед hermana нужно mi.",
+              "uk": "Yo означає «я»; перед hermana потрібне mi."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-01:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — моя сестра приветливая",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-01:i07:r1",
+          "text": "Плитки: amable"
+        },
+        {
+          "responseId": "es:lesson-04:session-01:i07:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-01:i07:r3",
+          "text": "hermana"
+        },
+        {
+          "responseId": "es:lesson-04:session-01:i07:r4",
+          "text": "mi"
+        },
+        {
+          "responseId": "es:lesson-04:session-01:i07:r5",
+          "text": "amables."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — моя сестра приветливая",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Mi hermana es amable.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — моя сестра приветливая",
+          "uk": "Зберіть фразу — моя сестра привітна"
+        },
+        "orderedTokens": [
+          "Mi",
+          "hermana",
+          "es",
+          "amable"
+        ],
+        "authoredDistractorTokens": [
+          "amables"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-01:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — моя сестра приветливая",
+            "feedbackByLocale": {
+              "ru": "сестра одна.",
+              "uk": "сестра одна."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-01:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — моя сестра приветливая",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-01:i08:r1",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-01:i08:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-01:i08:r3",
+          "text": "soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — моя сестра приветливая",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — моя сестра приветливая",
+          "uk": "Вставте слово — моя сестра привітна"
+        },
+        "gappedTargetPhrase": "Mi hermana ___ amable.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-01:i08:r1",
+            "text": "es"
+          },
+          {
+            "responseId": "es:lesson-04:session-01:i08:r2",
+            "text": "son"
+          },
+          {
+            "responseId": "es:lesson-04:session-01:i08:r3",
+            "text": "soy"
+          }
+        ],
+        "testedDimension": "Вставьте слово — моя сестра приветливая",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-01:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — моя сестра приветливая",
+            "feedbackByLocale": {
+              "ru": "Одна сестра: es.",
+              "uk": "Одна сестра: es."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-01:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — моя сестра приветливая",
+            "feedbackByLocale": {
+              "ru": "Soy относится к «я», а речь о сестре.",
+              "uk": "Soy стосується «я», а йдеться про сестру."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-01:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это не моя сестра",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-01:i09:r1",
+          "text": "Плитки: hermana"
+        },
+        {
+          "responseId": "es:lesson-04:session-01:i09:r2",
+          "text": "mi"
+        },
+        {
+          "responseId": "es:lesson-04:session-01:i09:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-01:i09:r4",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-04:session-01:i09:r5",
+          "text": "la."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это не моя сестра",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No es mi hermana.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это не моя сестра",
+          "uk": "Зберіть фразу — це не моя сестра"
+        },
+        "orderedTokens": [
+          "No",
+          "es",
+          "mi",
+          "hermana"
+        ],
+        "authoredDistractorTokens": [
+          "la"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-01:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это не моя сестра",
+            "feedbackByLocale": {
+              "ru": "в mi hermana артикля нет.",
+              "uk": "у mi hermana артикля немає."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-01:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-01:i10:r1",
+          "text": "Плитки: amable"
+        },
+        {
+          "responseId": "es:lesson-04:session-01:i10:r2",
+          "text": "muy"
+        },
+        {
+          "responseId": "es:lesson-04:session-01:i10:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-01:i10:r4",
+          "text": "hermana"
+        },
+        {
+          "responseId": "es:lesson-04:session-01:i10:r5",
+          "text": "mi"
+        },
+        {
+          "responseId": "es:lesson-04:session-01:i10:r6",
+          "text": "amables."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-01:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-01:i10:audio",
+          "transcript": "Mi hermana es muy amable."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Mi hermana es muy amable.",
+        "orderedTokens": [
+          "Mi",
+          "hermana",
+          "es",
+          "muy",
+          "amable"
+        ],
+        "authoredDistractorTokens": [
+          "amables"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-01:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит amable.",
+              "uk": "звучить amable."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-01:i11",
+      "ordinal": 14,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — это не моя сестра",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-01:i11:r1",
+          "text": "No"
+        },
+        {
+          "responseId": "es:lesson-04:session-01:i11:r2",
+          "text": "Muy"
+        },
+        {
+          "responseId": "es:lesson-04:session-01:i11:r3",
+          "text": "Mi"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — это не моя сестра",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это не моя сестра",
+          "uk": "Вставте слово — це не моя сестра"
+        },
+        "gappedTargetPhrase": "___ es mi hermana.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-01:i11:r1",
+            "text": "No"
+          },
+          {
+            "responseId": "es:lesson-04:session-01:i11:r2",
+            "text": "Muy"
+          },
+          {
+            "responseId": "es:lesson-04:session-01:i11:r3",
+            "text": "Mi"
+          }
+        ],
+        "testedDimension": "Вставьте слово — это не моя сестра",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-01:i11:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это не моя сестра",
+            "feedbackByLocale": {
+              "ru": "Нужно отрицание no, а не «очень».",
+              "uk": "Потрібне заперечення no, а не «дуже»."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-01:i11:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это не моя сестра",
+            "feedbackByLocale": {
+              "ru": "Mi уже стоит перед hermana; отрицание перед es — no.",
+              "uk": "Mi вже стоїть перед hermana; заперечення перед es — no."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-01:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — моя сестра очень приветливая",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-01:i12:r1",
+          "text": "amable"
+        },
+        {
+          "responseId": "es:lesson-04:session-01:i12:r2",
+          "text": "amables"
+        },
+        {
+          "responseId": "es:lesson-04:session-01:i12:r3",
+          "text": "amabla"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — моя сестра очень приветливая",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — моя сестра очень приветливая",
+          "uk": "Вставте слово — моя сестра дуже привітна"
+        },
+        "gappedTargetPhrase": "Mi hermana es muy ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-01:i12:r1",
+            "text": "amable"
+          },
+          {
+            "responseId": "es:lesson-04:session-01:i12:r2",
+            "text": "amables"
+          },
+          {
+            "responseId": "es:lesson-04:session-01:i12:r3",
+            "text": "amabla"
+          }
+        ],
+        "testedDimension": "Вставьте слово — моя сестра очень приветливая",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-01:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — моя сестра очень приветливая",
+            "feedbackByLocale": {
+              "ru": "Сестра одна: amable.",
+              "uk": "Сестра одна: amable."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-01:i12:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — моя сестра очень приветливая",
+            "feedbackByLocale": {
+              "ru": "Amable сохраняет -e с женским словом.",
+              "uk": "Amable зберігає -e з жіночим словом."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-01:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — это моя сестра; начните с Es",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-01:i13:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — это моя сестра; начните с Es",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-01:i13:audio",
+          "transcript": "Es mi hermana."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es mi hermana.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-01:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — моя сестра приветливая; начните с Mi hermana",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-01:i14:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — моя сестра приветливая; начните с Mi hermana",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-01:i14:audio",
+          "transcript": "Mi hermana es amable."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Mi hermana es amable.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-01:i15",
+      "ordinal": 18,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — это не моя сестра; начните с No es",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-01:i15:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — это не моя сестра; начните с No es",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-01:i15:audio",
+          "transcript": "No es mi hermana."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No es mi hermana.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-01:i16",
+      "ordinal": 19,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — моя сестра очень приветливая; начните с Mi hermana",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-01:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — моя сестра очень приветливая; начните с Mi hermana",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-01:i16:audio",
+          "transcript": "Mi hermana es muy amable."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Mi hermana es muy amable.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 16,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "8b4024d5ed941a714f2cbd50c7a0500c043792d64b65d52e5c2a23a1f7ddb00a"
+}

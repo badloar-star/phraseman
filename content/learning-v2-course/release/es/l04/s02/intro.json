@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-04:session-02",
+  "learningOutcomeByLocale": {
+    "ru": "использовать mi с мужским существительным.",
+    "uk": "використовувати mi з іменником чоловічого роду."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-04:session-02:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Представить брата",
+        "uk": "Представити брата"
+      },
+      "bodyByLocale": {
+        "ru": "Рядом с вами брат. Скажите `Es mi hermano` — «Это мой брат». Hermano значит «брат»; как и в hermana, начальная h не произносится. Соберите `es` + `mi` + `hermano`. Перед мужским hermano остаётся то же mi, что перед женским hermana: mi не меняется по роду.",
+        "uk": "Поруч із вами брат. Скажіть `Es mi hermano` — «Це мій брат». Hermano означає «брат»; як і в hermana, початкова h не вимовляється. Зберіть `es` + `mi` + `hermano`. Перед чоловічим hermano залишається те саме mi, що перед жіночим hermana: mi не змінюється за родом."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-02:intro1:q",
+        "promptByLocale": {
+          "ru": "Представьте своего брата, начав с Es.",
+          "uk": "Представте свого брата, почавши з Es."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-02:intro1:r1",
+              "text": "Es mi hermano."
+            },
+            {
+              "responseId": "es:lesson-04:session-02:intro1:r2",
+              "text": "Es el mi hermano."
+            },
+            {
+              "responseId": "es:lesson-04:session-02:intro1:r3",
+              "text": "Es mi hermanos."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-02:intro1:r1",
+              "text": "Es mi hermano."
+            },
+            {
+              "responseId": "es:lesson-04:session-02:intro1:r2",
+              "text": "Es el mi hermano."
+            },
+            {
+              "responseId": "es:lesson-04:session-02:intro1:r3",
+              "text": "Es mi hermanos."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Представьте своего брата, начав с Es.",
+          "uk": "Представте свого брата, почавши з Es."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-04:session-02:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Высокий брат",
+        "uk": "Високий брат"
+      },
+      "bodyByLocale": {
+        "ru": "Опишите брата: `Mi hermano es alto` — «Мой брат высокий». Соберите `mi hermano` + `es` + `alto`. Alto согласуется с мужским hermano. Слово mi остаётся неизменным; род описываемого человека отражается в прилагательном alto.",
+        "uk": "Опишіть брата: `Mi hermano es alto` — «Мій брат високий». Зберіть `mi hermano` + `es` + `alto`. Alto узгоджується з чоловічим hermano. Слово mi залишається незмінним; рід описуваної людини відображається в прикметнику alto."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-02:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите, что ваш брат высокий, начав с Mi hermano.",
+          "uk": "Скажіть, що ваш брат високий, почавши з Mi hermano."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-02:intro2:r1",
+              "text": "Mi hermano es alto."
+            },
+            {
+              "responseId": "es:lesson-04:session-02:intro2:r2",
+              "text": "Mi hermano es alta."
+            },
+            {
+              "responseId": "es:lesson-04:session-02:intro2:r3",
+              "text": "Mi hermano son alto."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-02:intro2:r1",
+              "text": "Mi hermano es alto."
+            },
+            {
+              "responseId": "es:lesson-04:session-02:intro2:r2",
+              "text": "Mi hermano es alta."
+            },
+            {
+              "responseId": "es:lesson-04:session-02:intro2:r3",
+              "text": "Mi hermano son alto."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что ваш брат высокий, начав с Mi hermano.",
+          "uk": "Скажіть, що ваш брат високий, почавши з Mi hermano."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-04:session-02:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Это другой человек",
+        "uk": "Це інша людина"
+      },
+      "bodyByLocale": {
+        "ru": "Знакомый ошибся и назвал вашим братом другого человека. Исправьте: `No es mi hermano` — «Это не мой брат». Соберите `no` + `es` + `mi hermano`. No ставится перед es. Группа mi hermano не меняется из-за отрицания.",
+        "uk": "Знайомий помилився й назвав вашим братом іншу людину. Виправте: `No es mi hermano` — «Це не мій брат». Зберіть `no` + `es` + `mi hermano`. No ставиться перед es. Група mi hermano не змінюється через заперечення."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-02:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите, что это не ваш брат, начав с No es.",
+          "uk": "Скажіть, що це не ваш брат, почавши з No es."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-02:intro3:r1",
+              "text": "No es mi hermano."
+            },
+            {
+              "responseId": "es:lesson-04:session-02:intro3:r2",
+              "text": "No son mi hermano."
+            },
+            {
+              "responseId": "es:lesson-04:session-02:intro3:r3",
+              "text": "No es el mi hermano."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-02:intro3:r1",
+              "text": "No es mi hermano."
+            },
+            {
+              "responseId": "es:lesson-04:session-02:intro3:r2",
+              "text": "No son mi hermano."
+            },
+            {
+              "responseId": "es:lesson-04:session-02:intro3:r3",
+              "text": "No es el mi hermano."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что это не ваш брат, начав с No es.",
+          "uk": "Скажіть, що це не ваш брат, почавши з No es."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "4183d8a4560de3fb85fe767f5a9be76ba24e82bffdfdbcbe314f2654c74499d1"
+}

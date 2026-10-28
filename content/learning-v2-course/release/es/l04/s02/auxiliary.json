@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-04:session-02",
+  "entries": [
+    {
+      "interactionId": "es:lesson-04:session-02:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-02:intro1:r2": {
+          "ru": "Перед mi здесь не нужен артикль el.",
+          "uk": "Перед mi тут не потрібен артикль el."
+        },
+        "es:lesson-04:session-02:intro1:r3": {
+          "ru": "Один брат: hermano.",
+          "uk": "Один брат: hermano."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-02:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-02:intro2:r2": {
+          "ru": "Нужна мужская форма alto.",
+          "uk": "Потрібна чоловіча форма alto."
+        },
+        "es:lesson-04:session-02:intro2:r3": {
+          "ru": "Один брат: es.",
+          "uk": "Один брат: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-02:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-02:intro3:r2": {
+          "ru": "Один человек: es.",
+          "uk": "Одна людина: es."
+        },
+        "es:lesson-04:session-02:intro3:r3": {
+          "ru": "Перед mi здесь не ставим el.",
+          "uk": "Перед mi тут не ставимо el."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "d48037742ecc22678e5a2314c3d08acc86800981816458aae33e67a0c8d7b5f5"
+}

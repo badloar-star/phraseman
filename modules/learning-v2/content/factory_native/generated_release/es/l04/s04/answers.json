@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-04:session-04:i01",
+    "correctText": "Es mi libro.",
+    "correctResponseId": "es:lesson-04:session-04:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-04:i02",
+    "correctText": "mi",
+    "correctResponseId": "es:lesson-04:session-04:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-04:i03",
+    "correctText": "Es mi libro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-04:i04",
+    "correctText": "nuevo",
+    "correctResponseId": "es:lesson-04:session-04:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-04:i05",
+    "correctText": "Mi libro es nuevo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-04:i06",
+    "correctText": "No es mi libro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-04:i07",
+    "correctText": "Mi libro es grande.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-04:i08",
+    "correctText": "No",
+    "correctResponseId": "es:lesson-04:session-04:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-04:i09",
+    "correctText": "Es mi libro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-04:i10",
+    "correctText": "Mi libro es nuevo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-04:i11",
+    "correctText": "No es mi libro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-04:i12",
+    "correctText": "Mi libro es grande.",
+    "correctResponseId": null
+  }
+]

@@ -1183,4 +1183,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"самостоятельно применять описания из уроков 1–3.","uk":"самостійно застосовувати описи з уроків 1–3."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 4, sessionOrdinal: 1,
+    sourceFingerprint: "0ffdf2b683a104eff794d439c29925164eda840552cf34c07ded43e7be5b0159",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"сказать «моя сестра» с mi.","uk":"сказати «моя сестра» з mi."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 4, sessionOrdinal: 2,
+    sourceFingerprint: "f0b3c7c82f744388e16a20647bcba088ef55749429fd4c7ef0e3741791d279d1",
+    newWordCount: 1,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"использовать mi с мужским существительным.","uk":"використовувати mi з іменником чоловічого роду."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 4, sessionOrdinal: 3,
+    sourceFingerprint: "799c761483c0dbe5a75d9ac5efec1542d99ef7c3358fd614b4d12c893658fb90",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"использовать mi перед названием вещи.","uk":"використовувати mi перед назвою речі."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 4, sessionOrdinal: 4,
+    sourceFingerprint: "5f1ef8f1d5a994f115b311505cb94eada9a48c01b6d9dc7297125f3cbca9c3b9",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"поставить mi перед названием своей книги без артикля.","uk":"поставити mi перед назвою своєї книжки без артикля."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
+  }),
 ]);

@@ -1,0 +1,668 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-04:session-03",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-04:session-03:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-03:i01:r1",
+          "text": "Es mi bolso."
+        },
+        {
+          "responseId": "es:lesson-04:session-03:i01:r2",
+          "text": "Es mi bolsa."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-03:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-03:i01:audio",
+          "transcript": "Es mi bolso."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-04:session-03:i01:r1",
+            "targetText": "Es mi bolso.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-04:session-03:i01:r2",
+            "targetText": "Es mi bolsa.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-03:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи bolso с окончанием -o.",
+              "uk": "У записі bolso із закінченням -o."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-03:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — это моя сумка",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-03:i02:r1",
+          "text": "mi"
+        },
+        {
+          "responseId": "es:lesson-04:session-03:i02:r2",
+          "text": "muy"
+        },
+        {
+          "responseId": "es:lesson-04:session-03:i02:r3",
+          "text": "yo"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — это моя сумка",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это моя сумка",
+          "uk": "Вставте слово — це моя сумка"
+        },
+        "gappedTargetPhrase": "Es ___ bolso.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-03:i02:r1",
+            "text": "mi"
+          },
+          {
+            "responseId": "es:lesson-04:session-03:i02:r2",
+            "text": "muy"
+          },
+          {
+            "responseId": "es:lesson-04:session-03:i02:r3",
+            "text": "yo"
+          }
+        ],
+        "testedDimension": "Вставьте слово — это моя сумка",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-03:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это моя сумка",
+            "feedbackByLocale": {
+              "ru": "Muy означает «очень», а нужно mi — мой.",
+              "uk": "Muy означає «дуже», а потрібне mi — мій."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-03:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это моя сумка",
+            "feedbackByLocale": {
+              "ru": "Yo означает «я», а перед вещью нужно mi.",
+              "uk": "Yo означає «я», а перед річчю потрібне mi."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-03:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это моя сумка; используйте bolso",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-03:i03:r1",
+          "text": "Плитки: bolso"
+        },
+        {
+          "responseId": "es:lesson-04:session-03:i03:r2",
+          "text": "mi"
+        },
+        {
+          "responseId": "es:lesson-04:session-03:i03:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-03:i03:r4",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это моя сумка; используйте bolso",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es mi bolso.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это моя сумка; используйте bolso",
+          "uk": "Зберіть фразу — це моя сумка; використайте bolso"
+        },
+        "orderedTokens": [
+          "Es",
+          "mi",
+          "bolso"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-03:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это моя сумка; используйте bolso",
+            "feedbackByLocale": {
+              "ru": "перед mi здесь нет артикля.",
+              "uk": "перед mi тут немає артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-03:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — моя сумка красная",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-03:i04:r1",
+          "text": "rojo"
+        },
+        {
+          "responseId": "es:lesson-04:session-03:i04:r2",
+          "text": "roja"
+        },
+        {
+          "responseId": "es:lesson-04:session-03:i04:r3",
+          "text": "rojos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — моя сумка красная",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — моя сумка красная",
+          "uk": "Вставте слово — моя сумка червона"
+        },
+        "gappedTargetPhrase": "Mi bolso es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-03:i04:r1",
+            "text": "rojo"
+          },
+          {
+            "responseId": "es:lesson-04:session-03:i04:r2",
+            "text": "roja"
+          },
+          {
+            "responseId": "es:lesson-04:session-03:i04:r3",
+            "text": "rojos"
+          }
+        ],
+        "testedDimension": "Вставьте слово — моя сумка красная",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-03:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — моя сумка красная",
+            "feedbackByLocale": {
+              "ru": "Bolso мужского рода.",
+              "uk": "Bolso чоловічого роду."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-03:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — моя сумка красная",
+            "feedbackByLocale": {
+              "ru": "Сумка одна: rojo.",
+              "uk": "Сумка одна: rojo."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-03:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — моя сумка красная; используйте bolso",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-03:i05:r1",
+          "text": "Плитки: rojo"
+        },
+        {
+          "responseId": "es:lesson-04:session-03:i05:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-03:i05:r3",
+          "text": "bolso"
+        },
+        {
+          "responseId": "es:lesson-04:session-03:i05:r4",
+          "text": "mi"
+        },
+        {
+          "responseId": "es:lesson-04:session-03:i05:r5",
+          "text": "roja."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — моя сумка красная; используйте bolso",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Mi bolso es rojo.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — моя сумка красная; используйте bolso",
+          "uk": "Зберіть фразу — моя сумка червона; використайте bolso"
+        },
+        "orderedTokens": [
+          "Mi",
+          "bolso",
+          "es",
+          "rojo"
+        ],
+        "authoredDistractorTokens": [
+          "roja"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-03:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — моя сумка красная; используйте bolso",
+            "feedbackByLocale": {
+              "ru": "bolso мужского рода.",
+              "uk": "bolso чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-03:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это моя сумка; используйте bolsa",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-03:i06:r1",
+          "text": "Плитки: bolsa"
+        },
+        {
+          "responseId": "es:lesson-04:session-03:i06:r2",
+          "text": "mi"
+        },
+        {
+          "responseId": "es:lesson-04:session-03:i06:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-03:i06:r4",
+          "text": "la."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это моя сумка; используйте bolsa",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es mi bolsa.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это моя сумка; используйте bolsa",
+          "uk": "Зберіть фразу — це моя сумка; використайте bolsa"
+        },
+        "orderedTokens": [
+          "Es",
+          "mi",
+          "bolsa"
+        ],
+        "authoredDistractorTokens": [
+          "la"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-03:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это моя сумка; используйте bolsa",
+            "feedbackByLocale": {
+              "ru": "перед mi здесь нет артикля.",
+              "uk": "перед mi тут немає артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-03:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-03:i07:r1",
+          "text": "Плитки: bolso"
+        },
+        {
+          "responseId": "es:lesson-04:session-03:i07:r2",
+          "text": "mi"
+        },
+        {
+          "responseId": "es:lesson-04:session-03:i07:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-03:i07:r4",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-04:session-03:i07:r5",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-03:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-03:i07:audio",
+          "transcript": "No es mi bolso."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "No es mi bolso.",
+        "orderedTokens": [
+          "No",
+          "es",
+          "mi",
+          "bolso"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-03:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "в записи нет артикля.",
+              "uk": "у записі немає артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-03:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — моя сумка красная",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-03:i08:r1",
+          "text": "roja"
+        },
+        {
+          "responseId": "es:lesson-04:session-03:i08:r2",
+          "text": "rojo"
+        },
+        {
+          "responseId": "es:lesson-04:session-03:i08:r3",
+          "text": "rojas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — моя сумка красная",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — моя сумка красная",
+          "uk": "Вставте слово — моя сумка червона"
+        },
+        "gappedTargetPhrase": "Mi bolsa es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-03:i08:r1",
+            "text": "roja"
+          },
+          {
+            "responseId": "es:lesson-04:session-03:i08:r2",
+            "text": "rojo"
+          },
+          {
+            "responseId": "es:lesson-04:session-03:i08:r3",
+            "text": "rojas"
+          }
+        ],
+        "testedDimension": "Вставьте слово — моя сумка красная",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-03:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — моя сумка красная",
+            "feedbackByLocale": {
+              "ru": "Bolsa женского рода.",
+              "uk": "Bolsa жіночого роду."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-03:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — моя сумка красная",
+            "feedbackByLocale": {
+              "ru": "Сумка одна: roja.",
+              "uk": "Сумка одна: roja."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-03:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — это моя сумка; используйте bolso, начните с Es",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-03:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — это моя сумка; используйте bolso, начните с Es",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-03:i09:audio",
+          "transcript": "Es mi bolso."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es mi bolso.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-03:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — моя сумка красная; начните с Mi bolso",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-03:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — моя сумка красная; начните с Mi bolso",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-03:i10:audio",
+          "transcript": "Mi bolso es rojo."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Mi bolso es rojo.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-03:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — это моя сумка; используйте bolsa, начните с Es",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-03:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — это моя сумка; используйте bolsa, начните с Es",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-03:i11:audio",
+          "transcript": "Es mi bolsa."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es mi bolsa.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-03:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — это не моя сумка; используйте bolso, начните с No es",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-03:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — это не моя сумка; используйте bolso, начните с No es",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-03:i12:audio",
+          "transcript": "No es mi bolso."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No es mi bolso.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "5aada50d2b42a2ba64bb6f3d585abaa7e20adad8047e69cffb89ee6ec86638fc"
+}

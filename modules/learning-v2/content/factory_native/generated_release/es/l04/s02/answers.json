@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-04:session-02:i01",
+    "correctText": "hermano",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-02:i02",
+    "correctText": "hermano",
+    "correctResponseId": "es:lesson-04:session-02:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-02:i03",
+    "correctText": "Es mi hermano.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-02:i04",
+    "correctText": "mi",
+    "correctResponseId": "es:lesson-04:session-02:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-02:i05",
+    "correctText": "Mi hermano es alto.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-02:i06",
+    "correctText": "alto",
+    "correctResponseId": "es:lesson-04:session-02:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-02:i07",
+    "correctText": "No es mi hermano.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-02:i08",
+    "correctText": "Mi hermano es muy alto.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-02:i09",
+    "correctText": "Es mi hermano.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-02:i10",
+    "correctText": "Mi hermano es alto.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-02:i11",
+    "correctText": "No es mi hermano.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-02:i12",
+    "correctText": "Mi hermano es muy alto.",
+    "correctResponseId": null
+  }
+]

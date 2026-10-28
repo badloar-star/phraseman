@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-04:session-04",
+  "entries": [
+    {
+      "interactionId": "es:lesson-04:session-04:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-04:intro1:r2": {
+          "ru": "Перед mi здесь не нужен el.",
+          "uk": "Перед mi тут не потрібне el."
+        },
+        "es:lesson-04:session-04:intro1:r3": {
+          "ru": "Перед mi здесь не нужен un.",
+          "uk": "Перед mi тут не потрібне un."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-04:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-04:intro2:r2": {
+          "ru": "В испанском libro мужского рода.",
+          "uk": "В іспанській libro чоловічого роду."
+        },
+        "es:lesson-04:session-04:intro2:r3": {
+          "ru": "Книга одна: nuevo.",
+          "uk": "Книжка одна: nuevo."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-04:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-04:intro3:r2": {
+          "ru": "Перед mi здесь не нужен el.",
+          "uk": "Перед mi тут не потрібне el."
+        },
+        "es:lesson-04:session-04:intro3:r3": {
+          "ru": "Речь об одной книге: es.",
+          "uk": "Йдеться про одну книжку: es."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "32fc619b3bbf525775d14673a91d8c14d78753583861d9a84f27dbf1db861534"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-04:session-01",
+  "learningOutcomeByLocale": {
+    "ru": "сказать «моя сестра» с mi.",
+    "uk": "сказати «моя сестра» з mi."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-04:session-01:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Кто на фотографии",
+        "uk": "Хто на фотографії"
+      },
+      "bodyByLocale": {
+        "ru": "Покажите сестру и скажите `Es mi hermana` — «Это моя сестра». Hermana значит «сестра», а mi перед названием человека — «мой» или «моя». Соберите `es` + `mi` + `hermana`. Mi показывает, что сестра ваша. Перед mi артикль la здесь не нужен: говорим mi hermana.",
+        "uk": "Покажіть сестру й скажіть `Es mi hermana` — «Це моя сестра». Hermana означає «сестра», а mi перед назвою людини — «мій» або «моя». Зберіть `es` + `mi` + `hermana`. Mi показує, що сестра ваша. Перед mi артикль la тут не потрібний: говоримо mi hermana."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-01:intro1:q",
+        "promptByLocale": {
+          "ru": "Представьте свою сестру, начав с Es.",
+          "uk": "Представте свою сестру, почавши з Es."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-01:intro1:r1",
+              "text": "Es mi hermana."
+            },
+            {
+              "responseId": "es:lesson-04:session-01:intro1:r2",
+              "text": "Es la mi hermana."
+            },
+            {
+              "responseId": "es:lesson-04:session-01:intro1:r3",
+              "text": "Es mi hermanas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-01:intro1:r1",
+              "text": "Es mi hermana."
+            },
+            {
+              "responseId": "es:lesson-04:session-01:intro1:r2",
+              "text": "Es la mi hermana."
+            },
+            {
+              "responseId": "es:lesson-04:session-01:intro1:r3",
+              "text": "Es mi hermanas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Представьте свою сестру, начав с Es.",
+          "uk": "Представте свою сестру, почавши з Es."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-04:session-01:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Какая она",
+        "uk": "Яка вона"
+      },
+      "bodyByLocale": {
+        "ru": "Расскажите, что ваша сестра приветливая: `Mi hermana es amable`. Соберите `mi hermana` + `es` + `amable`. Знакомую схему описания начинаем с двух слов mi hermana — «моя сестра». Amable сохраняет -e с женским hermana.",
+        "uk": "Розкажіть, що ваша сестра привітна: `Mi hermana es amable`. Зберіть `mi hermana` + `es` + `amable`. Знайому схему опису починаємо з двох слів mi hermana — «моя сестра». Amable зберігає -e з жіночим hermana."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-01:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите, что ваша сестра приветливая, начав с Mi hermana.",
+          "uk": "Скажіть, що ваша сестра привітна, почавши з Mi hermana."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-01:intro2:r1",
+              "text": "Mi hermana es amable."
+            },
+            {
+              "responseId": "es:lesson-04:session-01:intro2:r2",
+              "text": "Mi hermana son amable."
+            },
+            {
+              "responseId": "es:lesson-04:session-01:intro2:r3",
+              "text": "Mi hermana es amables."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-01:intro2:r1",
+              "text": "Mi hermana es amable."
+            },
+            {
+              "responseId": "es:lesson-04:session-01:intro2:r2",
+              "text": "Mi hermana son amable."
+            },
+            {
+              "responseId": "es:lesson-04:session-01:intro2:r3",
+              "text": "Mi hermana es amables."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что ваша сестра приветливая, начав с Mi hermana.",
+          "uk": "Скажіть, що ваша сестра привітна, почавши з Mi hermana."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-04:session-01:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Исправить ошибку",
+        "uk": "Виправити помилку"
+      },
+      "bodyByLocale": {
+        "ru": "Знакомый указал на другую женщину на снимке. Скажите `No es mi hermana` — «Это не моя сестра». Соберите `no` + `es` + `mi hermana`. No ставится перед es. Группа mi hermana остаётся той же: вы исправляете ошибку в том, кто изображён.",
+        "uk": "Знайомий указав на іншу жінку на знімку. Скажіть `No es mi hermana` — «Це не моя сестра». Зберіть `no` + `es` + `mi hermana`. No ставиться перед es. Група mi hermana залишається тією самою: ви виправляєте помилку в тому, хто зображений."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-01:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите, что это не ваша сестра, начав с No es.",
+          "uk": "Скажіть, що це не ваша сестра, почавши з No es."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-01:intro3:r1",
+              "text": "No es mi hermana."
+            },
+            {
+              "responseId": "es:lesson-04:session-01:intro3:r2",
+              "text": "No son mi hermana."
+            },
+            {
+              "responseId": "es:lesson-04:session-01:intro3:r3",
+              "text": "No es la mi hermana."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-01:intro3:r1",
+              "text": "No es mi hermana."
+            },
+            {
+              "responseId": "es:lesson-04:session-01:intro3:r2",
+              "text": "No son mi hermana."
+            },
+            {
+              "responseId": "es:lesson-04:session-01:intro3:r3",
+              "text": "No es la mi hermana."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что это не ваша сестра, начав с No es.",
+          "uk": "Скажіть, що це не ваша сестра, почавши з No es."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f8749d8ec4237c55e3c39fafdc63ba87c5fde2328594462ce8482ddaee70f8cd"
+}

@@ -1,0 +1,652 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-04:session-02",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-04:session-02:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — hermano",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-02:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — hermano",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-02:i01:audio",
+          "transcript": "hermano"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-04:session-02:i01:r1",
+            "targetText": "hermano",
+            "meaningByLocale": {
+              "ru": "брат; начальная h не произносится. 🔊 *hermano*",
+              "uk": "брат; початкова h не вимовляється. 🔊 *hermano*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hermano",
+          "definitionByLocale": {
+            "ru": "брат; начальная h не произносится. 🔊 *hermano*",
+            "uk": "брат; початкова h не вимовляється. 🔊 *hermano*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-02:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-02:i02:r1",
+          "text": "hermano"
+        },
+        {
+          "responseId": "es:lesson-04:session-02:i02:r2",
+          "text": "hermana"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-02:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-02:i02:audio",
+          "transcript": "hermano"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-04:session-02:i02:r1",
+            "targetText": "hermano",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-04:session-02:i02:r2",
+            "targetText": "hermana",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-02:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи окончание -o: hermano — брат.",
+              "uk": "У записі закінчення -o: hermano — брат."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-02:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это мой брат",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-02:i03:r1",
+          "text": "Плитки: hermano"
+        },
+        {
+          "responseId": "es:lesson-04:session-02:i03:r2",
+          "text": "mi"
+        },
+        {
+          "responseId": "es:lesson-04:session-02:i03:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-02:i03:r4",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это мой брат",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es mi hermano.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это мой брат",
+          "uk": "Зберіть фразу — це мій брат"
+        },
+        "orderedTokens": [
+          "Es",
+          "mi",
+          "hermano"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-02:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это мой брат",
+            "feedbackByLocale": {
+              "ru": "перед mi здесь нет артикля.",
+              "uk": "перед mi тут немає артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-02:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — это мой брат",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-02:i04:r1",
+          "text": "mi"
+        },
+        {
+          "responseId": "es:lesson-04:session-02:i04:r2",
+          "text": "muy"
+        },
+        {
+          "responseId": "es:lesson-04:session-02:i04:r3",
+          "text": "yo"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — это мой брат",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это мой брат",
+          "uk": "Вставте слово — це мій брат"
+        },
+        "gappedTargetPhrase": "Es ___ hermano.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-02:i04:r1",
+            "text": "mi"
+          },
+          {
+            "responseId": "es:lesson-04:session-02:i04:r2",
+            "text": "muy"
+          },
+          {
+            "responseId": "es:lesson-04:session-02:i04:r3",
+            "text": "yo"
+          }
+        ],
+        "testedDimension": "Вставьте слово — это мой брат",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-02:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это мой брат",
+            "feedbackByLocale": {
+              "ru": "Muy значит «очень», а нужно mi — мой.",
+              "uk": "Muy означає «дуже», а потрібне mi — мій."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-02:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это мой брат",
+            "feedbackByLocale": {
+              "ru": "Yo значит «я»; перед hermano нужно mi.",
+              "uk": "Yo означає «я»; перед hermano потрібне mi."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-02:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — мой брат высокий",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-02:i05:r1",
+          "text": "Плитки: alto"
+        },
+        {
+          "responseId": "es:lesson-04:session-02:i05:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-02:i05:r3",
+          "text": "hermano"
+        },
+        {
+          "responseId": "es:lesson-04:session-02:i05:r4",
+          "text": "mi"
+        },
+        {
+          "responseId": "es:lesson-04:session-02:i05:r5",
+          "text": "alta."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — мой брат высокий",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Mi hermano es alto.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — мой брат высокий",
+          "uk": "Зберіть фразу — мій брат високий"
+        },
+        "orderedTokens": [
+          "Mi",
+          "hermano",
+          "es",
+          "alto"
+        ],
+        "authoredDistractorTokens": [
+          "alta"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-02:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — мой брат высокий",
+            "feedbackByLocale": {
+              "ru": "hermano мужского рода.",
+              "uk": "hermano чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-02:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — мой брат высокий",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-02:i06:r1",
+          "text": "alto"
+        },
+        {
+          "responseId": "es:lesson-04:session-02:i06:r2",
+          "text": "alta"
+        },
+        {
+          "responseId": "es:lesson-04:session-02:i06:r3",
+          "text": "altos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — мой брат высокий",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — мой брат высокий",
+          "uk": "Вставте слово — мій брат високий"
+        },
+        "gappedTargetPhrase": "Mi hermano es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-02:i06:r1",
+            "text": "alto"
+          },
+          {
+            "responseId": "es:lesson-04:session-02:i06:r2",
+            "text": "alta"
+          },
+          {
+            "responseId": "es:lesson-04:session-02:i06:r3",
+            "text": "altos"
+          }
+        ],
+        "testedDimension": "Вставьте слово — мой брат высокий",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-02:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — мой брат высокий",
+            "feedbackByLocale": {
+              "ru": "Hermano мужского рода: alto.",
+              "uk": "Hermano чоловічого роду: alto."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-02:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — мой брат высокий",
+            "feedbackByLocale": {
+              "ru": "Брат один: alto.",
+              "uk": "Брат один: alto."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-02:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это не мой брат",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-02:i07:r1",
+          "text": "Плитки: hermano"
+        },
+        {
+          "responseId": "es:lesson-04:session-02:i07:r2",
+          "text": "mi"
+        },
+        {
+          "responseId": "es:lesson-04:session-02:i07:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-02:i07:r4",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-04:session-02:i07:r5",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это не мой брат",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No es mi hermano.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это не мой брат",
+          "uk": "Зберіть фразу — це не мій брат"
+        },
+        "orderedTokens": [
+          "No",
+          "es",
+          "mi",
+          "hermano"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-02:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это не мой брат",
+            "feedbackByLocale": {
+              "ru": "группа mi hermano без артикля.",
+              "uk": "група mi hermano без артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-02:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-02:i08:r1",
+          "text": "Плитки: alto"
+        },
+        {
+          "responseId": "es:lesson-04:session-02:i08:r2",
+          "text": "muy"
+        },
+        {
+          "responseId": "es:lesson-04:session-02:i08:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-02:i08:r4",
+          "text": "hermano"
+        },
+        {
+          "responseId": "es:lesson-04:session-02:i08:r5",
+          "text": "mi"
+        },
+        {
+          "responseId": "es:lesson-04:session-02:i08:r6",
+          "text": "alta."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-02:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-02:i08:audio",
+          "transcript": "Mi hermano es muy alto."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Mi hermano es muy alto.",
+        "orderedTokens": [
+          "Mi",
+          "hermano",
+          "es",
+          "muy",
+          "alto"
+        ],
+        "authoredDistractorTokens": [
+          "alta"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-02:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит alto.",
+              "uk": "звучить alto."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-02:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — это мой брат; начните с Es",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-02:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — это мой брат; начните с Es",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-02:i09:audio",
+          "transcript": "Es mi hermano."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es mi hermano.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-02:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — мой брат высокий; начните с Mi hermano",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-02:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — мой брат высокий; начните с Mi hermano",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-02:i10:audio",
+          "transcript": "Mi hermano es alto."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Mi hermano es alto.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-02:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — это не мой брат; начните с No es",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-02:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — это не мой брат; начните с No es",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-02:i11:audio",
+          "transcript": "No es mi hermano."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No es mi hermano.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-02:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — мой брат очень высокий; начните с Mi hermano",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-02:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — мой брат очень высокий; начните с Mi hermano",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-02:i12:audio",
+          "transcript": "Mi hermano es muy alto."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Mi hermano es muy alto.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "36c2cbe55c9798d3a5d5c372f1569bdd6c94b57ee88630a78ca30c287256f2e2"
+}

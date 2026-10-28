@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-04:session-03",
+  "learningOutcomeByLocale": {
+    "ru": "использовать mi перед названием вещи.",
+    "uk": "використовувати mi перед назвою речі."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-04:session-03:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Узнали свою вещь",
+        "uk": "Упізнали свою річ"
+      },
+      "bodyByLocale": {
+        "ru": "Нашли свою сумку. Скажите `Es mi bolso` — «Это моя сумка». Соберите `es` + `mi bolso`. Mi подходит не только для родственника: перед вещью оно показывает владельца. Испанское bolso мужского рода, но mi остаётся таким же, как в mi hermana.",
+        "uk": "Знайшли свою сумку. Скажіть `Es mi bolso` — «Це моя сумка». Зберіть `es` + `mi bolso`. Mi підходить не тільки для родича: перед річчю воно показує власника. Іспанське bolso чоловічого роду, але mi залишається таким самим, як у mi hermana."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-03:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите, что это ваша сумка, используя bolso и начав с Es.",
+          "uk": "Скажіть, що це ваша сумка, використовуючи bolso й почавши з Es."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-03:intro1:r1",
+              "text": "Es mi bolso."
+            },
+            {
+              "responseId": "es:lesson-04:session-03:intro1:r2",
+              "text": "Es el mi bolso."
+            },
+            {
+              "responseId": "es:lesson-04:session-03:intro1:r3",
+              "text": "Es mi bolsos."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-03:intro1:r1",
+              "text": "Es mi bolso."
+            },
+            {
+              "responseId": "es:lesson-04:session-03:intro1:r2",
+              "text": "Es el mi bolso."
+            },
+            {
+              "responseId": "es:lesson-04:session-03:intro1:r3",
+              "text": "Es mi bolsos."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что это ваша сумка, используя bolso и начав с Es.",
+          "uk": "Скажіть, що це ваша сумка, використовуючи bolso й почавши з Es."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-04:session-03:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Уточнить по цвету",
+        "uk": "Уточнити за кольором"
+      },
+      "bodyByLocale": {
+        "ru": "Чтобы друг нашёл нужную сумку, скажите `Mi bolso es rojo` — «Моя сумка красная». Соберите `mi bolso` + `es` + `rojo`. Mi называет владельца, rojo описывает цвет. Цвет согласуется с испанским мужским bolso, поэтому rojo, хотя по-русски «сумка красная».",
+        "uk": "Щоб друг знайшов потрібну сумку, скажіть `Mi bolso es rojo` — «Моя сумка червона». Зберіть `mi bolso` + `es` + `rojo`. Mi називає власника, rojo описує колір. Колір узгоджується з іспанським чоловічим bolso, тому rojo, хоча українською «сумка червона»."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-03:intro2:q",
+        "promptByLocale": {
+          "ru": "Опишите цвет своей сумки, начав с Mi bolso.",
+          "uk": "Опишіть колір своєї сумки, почавши з Mi bolso."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-03:intro2:r1",
+              "text": "Mi bolso es rojo."
+            },
+            {
+              "responseId": "es:lesson-04:session-03:intro2:r2",
+              "text": "Mi bolso es roja."
+            },
+            {
+              "responseId": "es:lesson-04:session-03:intro2:r3",
+              "text": "Mi bolso es rojos."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-03:intro2:r1",
+              "text": "Mi bolso es rojo."
+            },
+            {
+              "responseId": "es:lesson-04:session-03:intro2:r2",
+              "text": "Mi bolso es roja."
+            },
+            {
+              "responseId": "es:lesson-04:session-03:intro2:r3",
+              "text": "Mi bolso es rojos."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Опишите цвет своей сумки, начав с Mi bolso.",
+          "uk": "Опишіть колір своєї сумки, почавши з Mi bolso."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-04:session-03:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Сумка, которую называем bolsa",
+        "uk": "Сумка, яку називаємо bolsa"
+      },
+      "bodyByLocale": {
+        "ru": "Ещё одну свою сумку называете словом bolsa. Скажите `Es mi bolsa` — «Это моя сумка». Соберите `es` + `mi bolsa`. Женское bolsa не меняет mi: и mi bolso, и mi bolsa начинаются одинаково. Меняется только название вещи.",
+        "uk": "Ще одну свою сумку називаєте словом bolsa. Скажіть `Es mi bolsa` — «Це моя сумка». Зберіть `es` + `mi bolsa`. Жіноче bolsa не змінює mi: і mi bolso, і mi bolsa починаються однаково. Змінюється тільки назва речі."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-03:intro3:q",
+        "promptByLocale": {
+          "ru": "Назовите свою сумку словом bolsa, начав с Es.",
+          "uk": "Назвіть свою сумку словом bolsa, почавши з Es."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-03:intro3:r1",
+              "text": "Es mi bolsa."
+            },
+            {
+              "responseId": "es:lesson-04:session-03:intro3:r2",
+              "text": "Es la mi bolsa."
+            },
+            {
+              "responseId": "es:lesson-04:session-03:intro3:r3",
+              "text": "Es mi bolsas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-03:intro3:r1",
+              "text": "Es mi bolsa."
+            },
+            {
+              "responseId": "es:lesson-04:session-03:intro3:r2",
+              "text": "Es la mi bolsa."
+            },
+            {
+              "responseId": "es:lesson-04:session-03:intro3:r3",
+              "text": "Es mi bolsas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите свою сумку словом bolsa, начав с Es.",
+          "uk": "Назвіть свою сумку словом bolsa, почавши з Es."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b1d1aea6315a951c27abef826b80f75e7dbe97a5c14849daf7d668b828caeef3"
+}

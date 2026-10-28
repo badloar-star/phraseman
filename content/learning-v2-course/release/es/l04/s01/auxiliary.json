@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-04:session-01",
+  "entries": [
+    {
+      "interactionId": "es:lesson-04:session-01:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-01:intro1:r2": {
+          "ru": "В этой конструкции перед mi не ставим la.",
+          "uk": "У цій конструкції перед mi не ставимо la."
+        },
+        "es:lesson-04:session-01:intro1:r3": {
+          "ru": "Одна сестра: hermana.",
+          "uk": "Одна сестра: hermana."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-01:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-01:intro2:r2": {
+          "ru": "Одна сестра: es.",
+          "uk": "Одна сестра: es."
+        },
+        "es:lesson-04:session-01:intro2:r3": {
+          "ru": "Один человек: amable.",
+          "uk": "Одна людина: amable."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-01:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-01:intro3:r2": {
+          "ru": "Речь об одном человеке: es.",
+          "uk": "Йдеться про одну людину: es."
+        },
+        "es:lesson-04:session-01:intro3:r3": {
+          "ru": "Перед mi здесь не нужен la.",
+          "uk": "Перед mi тут не потрібне la."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "749144914a807b85a6edad12efe78daba5d06dfa5e3bbc60229f941dde87769b"
+}

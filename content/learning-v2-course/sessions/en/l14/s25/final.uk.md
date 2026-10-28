@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть, чим ви займалися, коли вам зателефонували.
 
-**Що ви опануєте:** Past Continuous + when + Past Simple: interrupted action
+**Що ви опануєте:** сказати, що ви робили, коли раптом щось сталося
 **Нові слова:** ankle boots, ballet flats, walking boots, insole
 
 ## Інтро 1

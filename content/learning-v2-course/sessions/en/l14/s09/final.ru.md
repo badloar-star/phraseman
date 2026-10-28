@@ -2,7 +2,7 @@
 
 **Ситуация.** Уточните, чем дети занимались вчера в четыре часа, и исправьте неверное предположение.
 
-**Что вы освоите:** Past Continuous: Was/Were + subject + verb-ing?; wasn’t/weren’t + verb-ing
+**Что вы освоите:** спросить и сказать «не», что происходило в момент прошлого
 **Новые слова:** paddling pool, trampoline, climbing frame, bouncy castle
 
 ## Интро 1

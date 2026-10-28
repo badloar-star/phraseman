@@ -2,7 +2,7 @@
 
 **Ситуація.** Уточніть, чим діти займалися вчора о четвертій годині, та виправте хибне припущення.
 
-**Що ви опануєте:** Past Continuous: Was/Were + subject + verb-ing?; wasn’t/weren’t + verb-ing
+**Що ви опануєте:** запитати й сказати «ні», що відбувалося в момент минулого
 **Нові слова:** paddling pool, trampoline, climbing frame, bouncy castle
 
 ## Інтро 1

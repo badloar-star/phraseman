@@ -2,7 +2,7 @@
 
 **Ситуація.** Почніть розповідь із того, що вже відбувалося біля машини.
 
-**Що ви опануєте:** Past Continuous as background of a past story
+**Що ви опануєте:** описати, що відбувалося навколо, коли сталася історія
 **Нові слова:** flat tyre, spare tyre, windscreen wiper, rear-view mirror
 
 ## Інтро 1

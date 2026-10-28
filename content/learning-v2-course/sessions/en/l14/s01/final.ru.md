@@ -2,7 +2,7 @@
 
 **Ситуация.** Расскажите, что каждый делал вчера в восемь вечера.
 
-**Что вы освоите:** Past Continuous: subject + was/were + verb-ing
+**Что вы освоите:** сказать, что происходило в момент прошлого: was / were + -ing
 **Новые слова:** comic book, jigsaw puzzle, colouring book, picture book
 
 ## Интро 1

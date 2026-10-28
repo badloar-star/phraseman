@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть, що кожен робив учора о восьмій вечора.
 
-**Що ви опануєте:** Past Continuous: subject + was/were + verb-ing
+**Що ви опануєте:** сказати, що відбувалося в момент минулого: was / were + -ing
 **Нові слова:** comic book, jigsaw puzzle, colouring book, picture book
 
 ## Інтро 1

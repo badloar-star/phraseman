@@ -2,7 +2,7 @@
 
 **Ситуация.** Уточните, что происходило в магазине вчера в полдень.
 
-**Что вы освоите:** review: Past Continuous questions and negatives
+**Что вы освоите:** повторить: спросить и сказать «не», что происходило в момент прошлого
 **Новые слова:** checkout counter, shelf label, cash register, conveyor belt
 
 ## Интро 1

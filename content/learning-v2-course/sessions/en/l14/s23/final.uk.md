@@ -2,7 +2,7 @@
 
 **Ситуація.** Опишіть приготування до домашньої випічки.
 
-**Що ви опануєте:** review: Past Continuous as background
+**Що ви опануєте:** повторити: описати, що відбувалося навколо, коли сталася історія
 **Нові слова:** baking powder, baking soda, plain flour, self-raising flour
 
 ## Інтро 1

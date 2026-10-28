@@ -2,7 +2,7 @@
 
 **Ситуація.** Уточніть, що відбувалося в магазині вчора опівдні.
 
-**Що ви опануєте:** review: Past Continuous questions and negatives
+**Що ви опануєте:** повторити: запитати й сказати «ні», що відбувалося в момент минулого
 **Нові слова:** checkout counter, shelf label, cash register, conveyor belt
 
 ## Інтро 1

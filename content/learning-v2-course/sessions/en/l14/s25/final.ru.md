@@ -2,7 +2,7 @@
 
 **Ситуация.** Расскажите, чем вы занимались, когда вам позвонили.
 
-**Что вы освоите:** Past Continuous + when + Past Simple: interrupted action
+**Что вы освоите:** сказать, что вы делали, когда вдруг что-то случилось
 **Новые слова:** ankle boots, ballet flats, walking boots, insole
 
 ## Интро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Начните рассказ с того, что уже происходило у машины.
 
-**Что вы освоите:** Past Continuous as background of a past story
+**Что вы освоите:** описать, что происходило вокруг, когда случилась история
 **Новые слова:** flat tyre, spare tyre, windscreen wiper, rear-view mirror
 
 ## Интро 1

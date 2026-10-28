@@ -83,7 +83,7 @@ The strawberries ___ grown here. → **are** · is · am
 - The cheese is made from cow’s milk. — *В записи звучит The cheese is made from goat’s milk.*
 - The cheese is made from sheep’s milk. — *В записи звучит The cheese is made from goat’s milk.*
 
-**8 · Масло делают здесь. Made — третья форма make. Дополните пассивную форму.**
+**8 · Масло делают здесь. Made — форма слова make. Дополните фразу о том, что делают с маслом.**
 <!-- interaction_id: en:lesson-28:session-01:i08; family: context_gap_grammar -->
 The butter is ___ here. → **made** · make · making
 - make — *В пассивной форме после is нужна made.*

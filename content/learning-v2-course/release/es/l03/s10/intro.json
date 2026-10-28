@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-03:session-10",
+  "learningOutcomeByLocale": {
+    "ru": "описать чёрный цвет и отрицать неподходящий цвет.",
+    "uk": "описати чорний колір і заперечити невідповідний колір."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-03:session-10:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Какого цвета сумка",
+        "uk": "Якого кольору сумка"
+      },
+      "bodyByLocale": {
+        "ru": "Вы знаете, что сумка друга чёрная. `Negro` — «чёрный», для женского рода — negra. Скажите `El bolso es negro` — «Сумка чёрная». Соберите `el bolso` + `es` + `negro`. Испанское bolso мужского рода: negro, хотя русский перевод «сумка» женского.",
+        "uk": "Ви знаєте, що сумка друга чорна. `Negro` — «чорний», для жіночого роду — negra. Скажіть `El bolso es negro` — «Сумка чорна». Складіть `el bolso` + `es` + `negro`. Іспанське bolso чоловічого роду: negro, хоча український переклад «сумка» жіночого."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-10:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите, что сумка чёрная.",
+          "uk": "Скажіть, що сумка чорна."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-10:intro1:r1",
+              "text": "El bolso es negro."
+            },
+            {
+              "responseId": "es:lesson-03:session-10:intro1:r2",
+              "text": "El bolso es negra."
+            },
+            {
+              "responseId": "es:lesson-03:session-10:intro1:r3",
+              "text": "La bolso es negra."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-10:intro1:r1",
+              "text": "El bolso es negro."
+            },
+            {
+              "responseId": "es:lesson-03:session-10:intro1:r2",
+              "text": "El bolso es negra."
+            },
+            {
+              "responseId": "es:lesson-03:session-10:intro1:r3",
+              "text": "La bolso es negra."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что сумка чёрная.",
+          "uk": "Скажіть, що сумка чорна."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-03:session-10:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Рядом чёрный рюкзак",
+        "uk": "Поруч чорний рюкзак"
+      },
+      "bodyByLocale": {
+        "ru": "Возле сумки лежит чёрный рюкзак. Скажите `La mochila es negra` — «Рюкзак чёрный». Соберите `la mochila` + `es` + `negra`. Испанское mochila женского рода, поэтому negra. Окончание выбирайте по mochila, а не по русскому «рюкзак».",
+        "uk": "Біля сумки лежить чорний рюкзак. Скажіть `La mochila es negra` — «Рюкзак чорний». Складіть `la mochila` + `es` + `negra`. Іспанське mochila жіночого роду, тому negra. Закінчення вибирайте за mochila, а не за українським «рюкзак»."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-10:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите, что рюкзак чёрный.",
+          "uk": "Скажіть, що рюкзак чорний."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-10:intro2:r1",
+              "text": "La mochila es negra."
+            },
+            {
+              "responseId": "es:lesson-03:session-10:intro2:r2",
+              "text": "La mochila es negro."
+            },
+            {
+              "responseId": "es:lesson-03:session-10:intro2:r3",
+              "text": "La mochila son negra."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-10:intro2:r1",
+              "text": "La mochila es negra."
+            },
+            {
+              "responseId": "es:lesson-03:session-10:intro2:r2",
+              "text": "La mochila es negro."
+            },
+            {
+              "responseId": "es:lesson-03:session-10:intro2:r3",
+              "text": "La mochila son negra."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что рюкзак чёрный.",
+          "uk": "Скажіть, що рюкзак чорний."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-03:session-10:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Белая сумка не подходит",
+        "uk": "Біла сумка не підходить"
+      },
+      "bodyByLocale": {
+        "ru": "Друг показывает белую сумку, но искомая сумка не белая. Уточните только цвет нужной сумки: `El bolso no es blanco` — «Сумка не белая». Соберите `el bolso` + `no es` + `blanco`. No перед es отрицает белый цвет; форма blanco согласуется с мужским bolso.",
+        "uk": "Друг показує білу сумку, але потрібна сумка не біла. Уточніть лише колір потрібної сумки: `El bolso no es blanco` — «Сумка не біла». Складіть `el bolso` + `no es` + `blanco`. No перед es заперечує білий колір; форма blanco узгоджується з чоловічим bolso."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-10:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите, что нужная сумка не белая.",
+          "uk": "Скажіть, що потрібна сумка не біла."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-10:intro3:r1",
+              "text": "El bolso no es blanco."
+            },
+            {
+              "responseId": "es:lesson-03:session-10:intro3:r2",
+              "text": "El bolso es blanco."
+            },
+            {
+              "responseId": "es:lesson-03:session-10:intro3:r3",
+              "text": "El bolso no es blanca."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-10:intro3:r1",
+              "text": "El bolso no es blanco."
+            },
+            {
+              "responseId": "es:lesson-03:session-10:intro3:r2",
+              "text": "El bolso es blanco."
+            },
+            {
+              "responseId": "es:lesson-03:session-10:intro3:r3",
+              "text": "El bolso no es blanca."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что нужная сумка не белая.",
+          "uk": "Скажіть, що потрібна сумка не біла."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "667c5d0277652760d008751e8c0af179005da61b7d1d63ddab0eedc087b0004b"
+}

@@ -854,4 +854,11 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"описать белый цвет с правильным родом и числом.","uk":"описати білий колір із правильним родом і числом."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 10,
+    sourceFingerprint: "51dccdc252f6935701db2d4fe8f7140a1c933a7f0c6df8760c3ea7a59d48788b",
+    newWordCount: 1,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"описать чёрный цвет и отрицать неподходящий цвет.","uk":"описати чорний колір і заперечити невідповідний колір."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+  }),
 ]);

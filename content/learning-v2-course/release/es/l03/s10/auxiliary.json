@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-03:session-10",
+  "entries": [
+    {
+      "interactionId": "es:lesson-03:session-10:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-10:intro1:r2": {
+          "ru": "Для bolso нужна форма negro.",
+          "uk": "Для bolso потрібна форма negro."
+        },
+        "es:lesson-03:session-10:intro1:r3": {
+          "ru": "Запомните el bolso и negro.",
+          "uk": "Запам'ятайте el bolso та negro."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-10:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-10:intro2:r2": {
+          "ru": "Для mochila нужна форма negra.",
+          "uk": "Для mochila потрібна форма negra."
+        },
+        "es:lesson-03:session-10:intro2:r3": {
+          "ru": "Рюкзак один: es.",
+          "uk": "Рюкзак один: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-10:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-10:intro3:r2": {
+          "ru": "Это утверждение, а нужно отрицание.",
+          "uk": "Це ствердження, а потрібне заперечення."
+        },
+        "es:lesson-03:session-10:intro3:r3": {
+          "ru": "Bolso мужского рода: blanco.",
+          "uk": "Bolso чоловічого роду: blanco."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "1bc4dd55ef3f52913b1d8b480962acc151bcf5ac4e5b4b8b271df981a894c58b"
+}

@@ -1705,4 +1705,18 @@ export const FACTORY_NATIVE_MANIFEST_ES_V1: readonly LearningV2FactoryNativeMani
     loadAnswers: () => require("./generated_release/es/l03/s09/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/es/l03/s09/auxiliary.json") as unknown,
   }),
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 10,
+    sourceFingerprint: "51dccdc252f6935701db2d4fe8f7140a1c933a7f0c6df8760c3ea7a59d48788b",
+    introCorrectChoiceIndexes: Object.freeze([0,0,0]),
+    introPromptByAuthoredLocale: Object.freeze({"ru":["Скажите, что сумка чёрная.","Скажите, что рюкзак чёрный.","Скажите, что нужная сумка не белая."],"uk":["Скажіть, що сумка чорна.","Скажіть, що рюкзак чорний.","Скажіть, що потрібна сумка не біла."]}),
+    introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Для bolso нужна форма negro.","Запомните el bolso и negro."],["Для mochila нужна форма negra.","Рюкзак один: es."],["Это утверждение, а нужно отрицание.","Bolso мужского рода: blanco."]],"uk":[["Для bolso потрібна форма negro.","Запам'ятайте el bolso та negro."],["Для mochila потрібна форма negra.","Рюкзак один: es."],["Це ствердження, а потрібне заперечення.","Bolso чоловічого роду: blanco."]]}),
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"описать чёрный цвет и отрицать неподходящий цвет.","uk":"описати чорний колір і заперечити невідповідний колір."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+    practiceTitlesByAuthoredLocale: Object.freeze({"ru":[{"ordinal":1,"title":"Карточка слова — negro"},{"ordinal":2,"title":"Послушайте и выберите слово"},{"ordinal":3,"title":"Соберите фразу — сумка чёрная; используйте bolso"},{"ordinal":4,"title":"Вставьте слово — рюкзак чёрный"},{"ordinal":5,"title":"Соберите фразу — рюкзак чёрный"},{"ordinal":6,"title":"Вставьте слово — сумка не белая"},{"ordinal":7,"title":"Соберите фразу — сумка не белая; используйте bolso"},{"ordinal":8,"title":"Послушайте и соберите фразу"},{"ordinal":9,"title":"Скажите вслух — сумка чёрная; назовите её словом bolso"},{"ordinal":10,"title":"Вставьте слово — несколько рюкзаков чёрные"},{"ordinal":11,"title":"Скажите вслух — рюкзак чёрный; назовите предмет"},{"ordinal":12,"title":"Скажите вслух — сумка не белая; назовите её словом bolso"}],"uk":[{"ordinal":1,"title":"Картка слова — negro"},{"ordinal":2,"title":"Послухайте й виберіть слово"},{"ordinal":3,"title":"Зберіть фразу — сумка чорна; використайте bolso"},{"ordinal":4,"title":"Вставте слово — рюкзак чорний"},{"ordinal":5,"title":"Зберіть фразу — рюкзак чорний"},{"ordinal":6,"title":"Вставте слово — сумка не біла"},{"ordinal":7,"title":"Зберіть фразу — сумка не біла; використайте bolso"},{"ordinal":8,"title":"Послухайте й зберіть фразу"},{"ordinal":9,"title":"Скажіть уголос — сумка чорна; назвіть її словом bolso"},{"ordinal":10,"title":"Вставте слово — кілька рюкзаків чорні"},{"ordinal":11,"title":"Скажіть уголос — рюкзак чорний; назвіть предмет"},{"ordinal":12,"title":"Скажіть уголос — сумка не біла; назвіть її словом bolso"}]}),
+    loadIntro: () => require("./generated_release/es/l03/s10/intro.json") as unknown,
+    loadLearner: (locale: "ru" | "uk") => locale === "uk" ? require("./generated_release/es/l03/s10/learner.uk.json") as unknown : require("./generated_release/es/l03/s10/learner.json") as unknown,
+    loadAnswers: () => require("./generated_release/es/l03/s10/answers.json") as unknown,
+    loadAuxiliary: () => require("./generated_release/es/l03/s10/auxiliary.json") as unknown,
+  }),
 ]);

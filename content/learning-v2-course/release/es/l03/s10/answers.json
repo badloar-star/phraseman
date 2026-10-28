@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-03:session-10:i01",
+    "correctText": "negro",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-10:i02",
+    "correctText": "negra",
+    "correctResponseId": "es:lesson-03:session-10:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-10:i03",
+    "correctText": "El bolso es negro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-10:i04",
+    "correctText": "negra",
+    "correctResponseId": "es:lesson-03:session-10:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-10:i05",
+    "correctText": "La mochila es negra.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-10:i06",
+    "correctText": "blanco",
+    "correctResponseId": "es:lesson-03:session-10:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-10:i07",
+    "correctText": "El bolso no es blanco.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-10:i08",
+    "correctText": "La mochila es negra.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-10:i09",
+    "correctText": "El bolso es negro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-10:i10",
+    "correctText": "negras",
+    "correctResponseId": "es:lesson-03:session-10:i10:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-10:i11",
+    "correctText": "La mochila es negra.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-10:i12",
+    "correctText": "El bolso no es blanco.",
+    "correctResponseId": null
+  }
+]

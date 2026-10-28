@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-05:session-07",
+  "entries": [
+    {
+      "interactionId": "es:lesson-05:session-07:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-07:intro1:r2": {
+          "ru": "Это означало бы, что времени нет.",
+          "uk": "Це означало б, що часу немає."
+        },
+        "es:lesson-05:session-07:intro1:r3": {
+          "ru": "В этой фразе tiempo без артикля.",
+          "uk": "У цій фразі tiempo без артикля."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-07:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-07:intro2:r2": {
+          "ru": "No изменило бы смысл: времени нет.",
+          "uk": "No змінило б зміст: часу немає."
+        },
+        "es:lesson-05:session-07:intro2:r3": {
+          "ru": "Es между yo и tengo не нужно.",
+          "uk": "Es між yo і tengo не потрібне."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-07:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-07:intro3:r2": {
+          "ru": "Для простого «У меня есть время» здесь используем tiempo без un.",
+          "uk": "Для простого «У мене є час» тут використовуємо tiempo без un."
+        },
+        "es:lesson-05:session-07:intro3:r3": {
+          "ru": "Нужно сказать, что время есть у вас: tengo tiempo.",
+          "uk": "Потрібно сказати, що час є у вас: tengo tiempo."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "2a50c4e9e585180fc7825df09398cada38b5845847093296e2e5e65dfb990ddc"
+}

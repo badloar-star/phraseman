@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-05:session-08",
+  "entries": [
+    {
+      "interactionId": "es:lesson-05:session-08:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-08:intro1:r2": {
+          "ru": "Bolsa женского рода: una.",
+          "uk": "Bolsa жіночого роду: una."
+        },
+        "es:lesson-05:session-08:intro1:r3": {
+          "ru": "Вы не называете себя сумкой; о вещи нужно tengo.",
+          "uk": "Ви не називаєте себе сумкою; про річ потрібно tengo."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-08:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-08:intro2:r2": {
+          "ru": "No ставим перед tengo.",
+          "uk": "No ставимо перед tengo."
+        },
+        "es:lesson-05:session-08:intro2:r3": {
+          "ru": "Без no получилось бы, что машина есть.",
+          "uk": "Без no вийшло б, що машина є."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-08:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-08:intro3:r2": {
+          "ru": "Это означало бы, что времени нет.",
+          "uk": "Це означало б, що часу немає."
+        },
+        "es:lesson-05:session-08:intro3:r3": {
+          "ru": "Для этой фразы артикль не нужен.",
+          "uk": "Для цієї фрази артикль не потрібний."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "682f1295ee1ab73045b0cfdbc1fea2aede23dc490de5f83ba4d3c9d9940fa68f"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-05:session-07",
+  "learningOutcomeByLocale": {
+    "ru": "сказать Tengo tiempo без отрицания и без артикля.",
+    "uk": "сказати Tengo tiempo без заперечення й без артикля."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-05:session-07:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Можно поговорить",
+        "uk": "Можна поговорити"
+      },
+      "bodyByLocale": {
+        "ru": "Друг переживает, что отвлечёт вас от дел. Скажите `Tengo tiempo` — «У меня есть время». Соберите `tengo` + `tiempo`. В отличие от No tengo tiempo здесь нет no: теперь время есть. Tiempo стоит без артикля — речь о времени, которым вы располагаете, а не об одном отдельном предмете.",
+        "uk": "Друг хвилюється, що відверне вас від справ. Скажіть `Tengo tiempo` — «У мене є час». Складіть `tengo` + `tiempo`. На відміну від No tengo tiempo тут немає no: тепер час є. Tiempo стоїть без артикля — ідеться про час, який ви маєте, а не про один окремий предмет."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-07:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите «У меня есть время». Начните с Tengo.",
+          "uk": "Скажіть «У мене є час». Почніть з Tengo."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-07:intro1:r1",
+              "text": "Tengo tiempo."
+            },
+            {
+              "responseId": "es:lesson-05:session-07:intro1:r2",
+              "text": "No tengo tiempo."
+            },
+            {
+              "responseId": "es:lesson-05:session-07:intro1:r3",
+              "text": "Tengo una tiempo."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-07:intro1:r1",
+              "text": "Tengo tiempo."
+            },
+            {
+              "responseId": "es:lesson-05:session-07:intro1:r2",
+              "text": "No tengo tiempo."
+            },
+            {
+              "responseId": "es:lesson-05:session-07:intro1:r3",
+              "text": "Tengo una tiempo."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «У меня есть время». Начните с Tengo.",
+          "uk": "Скажіть «У мене є час». Почніть з Tengo."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-05:session-07:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "У вас есть возможность",
+        "uk": "У вас є можливість"
+      },
+      "bodyByLocale": {
+        "ru": "Другие спешат, но вы можете остаться для разговора. Скажите `Yo tengo tiempo` — «А у меня есть время». Соберите `yo` + `tengo` + `tiempo`. Yo выделяет вас среди остальных. Оно не меняет форму tengo и не требует артикля перед tiempo.",
+        "uk": "Інші поспішають, але ви можете залишитися для розмови. Скажіть `Yo tengo tiempo` — «А в мене є час». Складіть `yo` + `tengo` + `tiempo`. Yo виділяє вас серед інших. Воно не змінює форму tengo й не вимагає артикля перед tiempo."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-07:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «А у меня есть время». Начните с Yo tengo.",
+          "uk": "Скажіть «А в мене є час». Почніть з Yo tengo."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-07:intro2:r1",
+              "text": "Yo tengo tiempo."
+            },
+            {
+              "responseId": "es:lesson-05:session-07:intro2:r2",
+              "text": "Yo no tengo tiempo."
+            },
+            {
+              "responseId": "es:lesson-05:session-07:intro2:r3",
+              "text": "Yo es tengo tiempo."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-07:intro2:r1",
+              "text": "Yo tengo tiempo."
+            },
+            {
+              "responseId": "es:lesson-05:session-07:intro2:r2",
+              "text": "Yo no tengo tiempo."
+            },
+            {
+              "responseId": "es:lesson-05:session-07:intro2:r3",
+              "text": "Yo es tengo tiempo."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «А у меня есть время». Начните с Yo tengo.",
+          "uk": "Скажіть «А в мене є час». Почніть з Yo tengo."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-05:session-07:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Время и книга",
+        "uk": "Час і книжка"
+      },
+      "bodyByLocale": {
+        "ru": "Перед дорогой друг спрашивает, есть ли у вас время почитать. Ответьте `Tengo tiempo` — «У меня есть время». Соберите `tengo` + `tiempo`. Сравните с уже знакомым Tengo un libro: книгу можно назвать как один предмет, поэтому un libro. Время в нашей фразе не считаем предметами, поэтому просто tiempo. Отсутствие артикля здесь не связано с отрицанием: фраза утвердительная.",
+        "uk": "Перед дорогою друг запитує, чи є у вас час почитати. Дайте відповідь `Tengo tiempo` — «У мене є час». Складіть `tengo` + `tiempo`. Порівняйте зі знайомим Tengo un libro: книжку можна назвати як один предмет, тому un libro. Час у нашій фразі не рахуємо предметами, тому просто tiempo. Відсутність артикля тут не пов’язана із запереченням: фраза стверджувальна."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-07:intro3:q",
+        "promptByLocale": {
+          "ru": "Сообщите, что время есть. Скажите «У меня есть время» без yo.",
+          "uk": "Повідомте, що час є. Скажіть «У мене є час» без yo."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-07:intro3:r1",
+              "text": "Tengo tiempo."
+            },
+            {
+              "responseId": "es:lesson-05:session-07:intro3:r2",
+              "text": "Tengo un tiempo."
+            },
+            {
+              "responseId": "es:lesson-05:session-07:intro3:r3",
+              "text": "Es tiempo."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-07:intro3:r1",
+              "text": "Tengo tiempo."
+            },
+            {
+              "responseId": "es:lesson-05:session-07:intro3:r2",
+              "text": "Tengo un tiempo."
+            },
+            {
+              "responseId": "es:lesson-05:session-07:intro3:r3",
+              "text": "Es tiempo."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите, что время есть. Скажите «У меня есть время» без yo.",
+          "uk": "Повідомте, що час є. Скажіть «У мене є час» без yo."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "c9618ccfcdc89216fe0bc731108164de7786124aa738e1f5f5e70edd144ef187"
+}

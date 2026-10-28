@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-05:session-07:i01",
+    "correctText": "tiempo",
+    "correctResponseId": "es:lesson-05:session-07:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-07:i02",
+    "correctText": "Tengo",
+    "correctResponseId": "es:lesson-05:session-07:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-07:i03",
+    "correctText": "Tengo tiempo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-07:i04",
+    "correctText": "tiempo",
+    "correctResponseId": "es:lesson-05:session-07:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-07:i05",
+    "correctText": "Yo tengo tiempo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-07:i06",
+    "correctText": "Tengo tiempo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-07:i07",
+    "correctText": "Yo tengo tiempo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-07:i08",
+    "correctText": "un",
+    "correctResponseId": "es:lesson-05:session-07:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-07:i09",
+    "correctText": "Tengo tiempo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-07:i10",
+    "correctText": "Yo tengo tiempo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-07:i11",
+    "correctText": "No tengo tiempo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-07:i12",
+    "correctText": "Tengo un libro.",
+    "correctResponseId": null
+  }
+]

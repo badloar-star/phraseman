@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-05:session-08",
+  "learningOutcomeByLocale": {
+    "ru": "закрепить tengo с предметами, родственниками и временем, а также отрицание no tengo.",
+    "uk": "закріпити tengo з предметами, родичами й часом, а також заперечення no tengo."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-05:session-08:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Вещь для дороги",
+        "uk": "Річ для дороги"
+      },
+      "bodyByLocale": {
+        "ru": "Вы показываете сумку, в которую положите вещи. Скажите `Tengo una bolsa` — «У меня есть сумка». Соберите `tengo` + `una bolsa`. Tengo сообщает о наличии вещи у вас. Для одной сумки со словом bolsa берём una: испанское слово женского рода.",
+        "uk": "Ви показуєте сумку, у яку покладете речі. Скажіть `Tengo una bolsa` — «У мене є сумка». Складіть `tengo` + `una bolsa`. Tengo повідомляє про наявність речі у вас. Для однієї сумки зі словом bolsa беремо una: іспанське слово жіночого роду."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-08:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите «У меня есть сумка». Начните с Tengo и используйте bolsa.",
+          "uk": "Скажіть «У мене є сумка». Почніть з Tengo й використайте bolsa."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-08:intro1:r1",
+              "text": "Tengo una bolsa."
+            },
+            {
+              "responseId": "es:lesson-05:session-08:intro1:r2",
+              "text": "Tengo un bolsa."
+            },
+            {
+              "responseId": "es:lesson-05:session-08:intro1:r3",
+              "text": "Soy una bolsa."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-08:intro1:r1",
+              "text": "Tengo una bolsa."
+            },
+            {
+              "responseId": "es:lesson-05:session-08:intro1:r2",
+              "text": "Tengo un bolsa."
+            },
+            {
+              "responseId": "es:lesson-05:session-08:intro1:r3",
+              "text": "Soy una bolsa."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «У меня есть сумка». Начните с Tengo и используйте bolsa.",
+          "uk": "Скажіть «У мене є сумка». Почніть з Tengo й використайте bolsa."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-05:session-08:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Поехать на машине друга",
+        "uk": "Поїхати машиною друга"
+      },
+      "bodyByLocale": {
+        "ru": "Знакомый спрашивает, поедете ли вы на своей машине. У вас её нет. Скажите `No tengo carro` — «У меня нет машины». Соберите `no` + `tengo` + `carro`. No стоит перед tengo. В этой простой фразе об отсутствии машины используем carro без артикля.",
+        "uk": "Знайомий запитує, чи поїдете ви на своїй машині. У вас її немає. Скажіть `No tengo carro` — «У мене немає машини». Складіть `no` + `tengo` + `carro`. No стоїть перед tengo. У цій простій фразі про відсутність машини використовуємо carro без артикля."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-08:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «У меня нет машины». Начните с No tengo, используйте carro без артикля.",
+          "uk": "Скажіть «У мене немає машини». Почніть з No tengo, використайте carro без артикля."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-08:intro2:r1",
+              "text": "No tengo carro."
+            },
+            {
+              "responseId": "es:lesson-05:session-08:intro2:r2",
+              "text": "Tengo no carro."
+            },
+            {
+              "responseId": "es:lesson-05:session-08:intro2:r3",
+              "text": "Tengo carro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-08:intro2:r1",
+              "text": "No tengo carro."
+            },
+            {
+              "responseId": "es:lesson-05:session-08:intro2:r2",
+              "text": "Tengo no carro."
+            },
+            {
+              "responseId": "es:lesson-05:session-08:intro2:r3",
+              "text": "Tengo carro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «У меня нет машины». Начните с No tengo, используйте carro без артикля.",
+          "uk": "Скажіть «У мене немає машини». Почніть з No tengo, використайте carro без артикля."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-05:session-08:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Есть время познакомиться",
+        "uk": "Є час познайомитися"
+      },
+      "bodyByLocale": {
+        "ru": "До выхода можно немного поговорить. Скажите `Tengo tiempo` — «У меня есть время». Соберите `tengo` + `tiempo`. Здесь время есть, поэтому no не добавляем. Tiempo в этой фразе используется без артикля: речь не об одном считаемом предмете, как un libro.",
+        "uk": "До виходу можна трохи поговорити. Скажіть `Tengo tiempo` — «У мене є час». Складіть `tengo` + `tiempo`. Тут час є, тому no не додаємо. Tiempo в цій фразі вживається без артикля: ідеться не про один предмет, який можна порахувати, як un libro."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-08:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите «У меня есть время». Начните с Tengo.",
+          "uk": "Скажіть «У мене є час». Почніть з Tengo."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-08:intro3:r1",
+              "text": "Tengo tiempo."
+            },
+            {
+              "responseId": "es:lesson-05:session-08:intro3:r2",
+              "text": "No tengo tiempo."
+            },
+            {
+              "responseId": "es:lesson-05:session-08:intro3:r3",
+              "text": "Tengo una tiempo."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-08:intro3:r1",
+              "text": "Tengo tiempo."
+            },
+            {
+              "responseId": "es:lesson-05:session-08:intro3:r2",
+              "text": "No tengo tiempo."
+            },
+            {
+              "responseId": "es:lesson-05:session-08:intro3:r3",
+              "text": "Tengo una tiempo."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «У меня есть время». Начните с Tengo.",
+          "uk": "Скажіть «У мене є час». Почніть з Tengo."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "1e8714ee7f50df100507d23544a4dbfea6a220a8dedd9d44e06f981692a66673"
+}

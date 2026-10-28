@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-05:session-06:i01",
+    "correctText": "tiempo",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-06:i02",
+    "correctText": "tiempo",
+    "correctResponseId": "es:lesson-05:session-06:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-06:i03",
+    "correctText": "tiempo",
+    "correctResponseId": "es:lesson-05:session-06:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-06:i04",
+    "correctText": "No tengo tiempo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-06:i05",
+    "correctText": "Yo no tengo tiempo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-06:i06",
+    "correctText": "No tengo tiempo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-06:i07",
+    "correctText": "Yo no tengo tiempo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-06:i08",
+    "correctText": "no",
+    "correctResponseId": "es:lesson-05:session-06:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-06:i09",
+    "correctText": "No tengo tiempo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-06:i10",
+    "correctText": "Yo no tengo tiempo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-06:i11",
+    "correctText": "No tengo tiempo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-06:i12",
+    "correctText": "No tengo llave.",
+    "correctResponseId": null
+  }
+]

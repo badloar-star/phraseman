@@ -1,0 +1,651 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-05:session-07",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-05:session-07:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-07:i01:r1",
+          "text": "tiempo"
+        },
+        {
+          "responseId": "es:lesson-05:session-07:i01:r2",
+          "text": "tengo"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-07:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-07:i01:audio",
+          "transcript": "tiempo"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-05:session-07:i01:r1",
+            "targetText": "tiempo",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-05:session-07:i01:r2",
+            "targetText": "tengo",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-07:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит время — tiempo.",
+              "uk": "Звучить час — tiempo."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-07:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — у меня есть время",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-07:i02:r1",
+          "text": "Tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-07:i02:r2",
+          "text": "Soy"
+        },
+        {
+          "responseId": "es:lesson-05:session-07:i02:r3",
+          "text": "Es"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — у меня есть время",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — у меня есть время",
+          "uk": "Вставте слово — у мене є час"
+        },
+        "gappedTargetPhrase": "___ tiempo.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-07:i02:r1",
+            "text": "Tengo"
+          },
+          {
+            "responseId": "es:lesson-05:session-07:i02:r2",
+            "text": "Soy"
+          },
+          {
+            "responseId": "es:lesson-05:session-07:i02:r3",
+            "text": "Es"
+          }
+        ],
+        "testedDimension": "Вставьте слово — у меня есть время",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-07:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у меня есть время",
+            "feedbackByLocale": {
+              "ru": "О наличии времени говорим tengo.",
+              "uk": "Про наявність часу говоримо tengo."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-07:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у меня есть время",
+            "feedbackByLocale": {
+              "ru": "Нужно указать, что время есть у вас: tengo.",
+              "uk": "Потрібно вказати, що час є у вас: tengo."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-07:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — у меня есть время; начните с Tengo",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-07:i03:r1",
+          "text": "Плитки: tiempo"
+        },
+        {
+          "responseId": "es:lesson-05:session-07:i03:r2",
+          "text": "tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-07:i03:r3",
+          "text": "no."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — у меня есть время; начните с Tengo",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Tengo tiempo.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — у меня есть время; начните с Tengo",
+          "uk": "Зберіть фразу — у мене є час; почніть з Tengo"
+        },
+        "orderedTokens": [
+          "Tengo",
+          "tiempo"
+        ],
+        "authoredDistractorTokens": [
+          "no"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-07:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — у меня есть время; начните с Tengo",
+            "feedbackByLocale": {
+              "ru": "время есть.",
+              "uk": "час є."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-07:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — а у меня есть время",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-07:i04:r1",
+          "text": "tiempo"
+        },
+        {
+          "responseId": "es:lesson-05:session-07:i04:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-05:session-07:i04:r3",
+          "text": "un"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — а у меня есть время",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — а у меня есть время",
+          "uk": "Вставте слово — а в мене є час"
+        },
+        "gappedTargetPhrase": "Yo tengo ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-07:i04:r1",
+            "text": "tiempo"
+          },
+          {
+            "responseId": "es:lesson-05:session-07:i04:r2",
+            "text": "una"
+          },
+          {
+            "responseId": "es:lesson-05:session-07:i04:r3",
+            "text": "un"
+          }
+        ],
+        "testedDimension": "Вставьте слово — а у меня есть время",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-07:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — а у меня есть время",
+            "feedbackByLocale": {
+              "ru": "Нужно назвать время: tiempo, без артикля.",
+              "uk": "Потрібно назвати час: tiempo, без артикля."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-07:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — а у меня есть время",
+            "feedbackByLocale": {
+              "ru": "Нужно слово tiempo; un перед ним здесь не ставим.",
+              "uk": "Потрібне слово tiempo; un перед ним тут не ставимо."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-07:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — а у меня есть время; начните с Yo",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-07:i05:r1",
+          "text": "Плитки: tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-07:i05:r2",
+          "text": "yo"
+        },
+        {
+          "responseId": "es:lesson-05:session-07:i05:r3",
+          "text": "tiempo"
+        },
+        {
+          "responseId": "es:lesson-05:session-07:i05:r4",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — а у меня есть время; начните с Yo",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Yo tengo tiempo.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — а у меня есть время; начните с Yo",
+          "uk": "Зберіть фразу — а в мене є час; почніть з Yo"
+        },
+        "orderedTokens": [
+          "Yo",
+          "tengo",
+          "tiempo"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-07:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — а у меня есть время; начните с Yo",
+            "feedbackByLocale": {
+              "ru": "yo соединяется с tengo напрямую.",
+              "uk": "yo з’єднується з tengo безпосередньо."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-07:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-07:i06:r1",
+          "text": "Плитки: tiempo"
+        },
+        {
+          "responseId": "es:lesson-05:session-07:i06:r2",
+          "text": "tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-07:i06:r3",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-07:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-07:i06:audio",
+          "transcript": "Tengo tiempo."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Tengo tiempo.",
+        "orderedTokens": [
+          "Tengo",
+          "tiempo"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-07:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "в записи её нет.",
+              "uk": "у записі її немає."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-07:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-07:i07:r1",
+          "text": "Плитки: yo"
+        },
+        {
+          "responseId": "es:lesson-05:session-07:i07:r2",
+          "text": "tiempo"
+        },
+        {
+          "responseId": "es:lesson-05:session-07:i07:r3",
+          "text": "tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-07:i07:r4",
+          "text": "no."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-07:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-07:i07:audio",
+          "transcript": "Yo tengo tiempo."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Yo tengo tiempo.",
+        "orderedTokens": [
+          "Yo",
+          "tengo",
+          "tiempo"
+        ],
+        "authoredDistractorTokens": [
+          "no"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-07:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "в записи нет отрицания.",
+              "uk": "у записі немає заперечення."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-07:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — повторение: у меня есть одна книга",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-07:i08:r1",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-05:session-07:i08:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-05:session-07:i08:r3",
+          "text": "unas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — повторение: у меня есть одна книга",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — повторение: у меня есть одна книга",
+          "uk": "Вставте слово — повторення: у мене є одна книжка"
+        },
+        "gappedTargetPhrase": "Tengo ___ libro.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-07:i08:r1",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-05:session-07:i08:r2",
+            "text": "una"
+          },
+          {
+            "responseId": "es:lesson-05:session-07:i08:r3",
+            "text": "unas"
+          }
+        ],
+        "testedDimension": "Вставьте слово — повторение: у меня есть одна книга",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-07:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — повторение: у меня есть одна книга",
+            "feedbackByLocale": {
+              "ru": "Libro мужского рода: un.",
+              "uk": "Libro чоловічого роду: un."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-07:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — повторение: у меня есть одна книга",
+            "feedbackByLocale": {
+              "ru": "Книга одна: un libro.",
+              "uk": "Книжка одна: un libro."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-07:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — у меня есть время; начните с Tengo",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-07:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — у меня есть время; начните с Tengo",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-07:i09:audio",
+          "transcript": "Tengo tiempo."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tengo tiempo.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-07:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — а у меня есть время; начните с Yo tengo",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-07:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — а у меня есть время; начните с Yo tengo",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-07:i10:audio",
+          "transcript": "Yo tengo tiempo."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Yo tengo tiempo.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-07:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — у меня нет времени; начните с No tengo",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-07:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — у меня нет времени; начните с No tengo",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-07:i11:audio",
+          "transcript": "No tengo tiempo."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No tengo tiempo.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-07:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — у меня есть книга; начните с Tengo",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-07:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — у меня есть книга; начните с Tengo",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-07:i12:audio",
+          "transcript": "Tengo un libro."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tengo un libro.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "0a51157449b3c9203e2b81a15b29118bb998807205d80ee2b37cdfa342cbc4c6"
+}

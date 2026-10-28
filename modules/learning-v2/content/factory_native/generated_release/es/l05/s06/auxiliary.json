@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-05:session-06",
+  "entries": [
+    {
+      "interactionId": "es:lesson-05:session-06:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-06:intro1:r2": {
+          "ru": "В этой фразе tiempo используется без артикля.",
+          "uk": "У цій фразі tiempo вживається без артикля."
+        },
+        "es:lesson-05:session-06:intro1:r3": {
+          "ru": "No ставим перед tengo.",
+          "uk": "No ставимо перед tengo."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-06:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-06:intro2:r2": {
+          "ru": "В изучаемом порядке yo идёт первым, а no — прямо перед tengo.",
+          "uk": "У порядку, який вивчаємо, yo йде першим, а no — прямо перед tengo."
+        },
+        "es:lesson-05:session-06:intro2:r3": {
+          "ru": "No должно стоять перед tengo.",
+          "uk": "No має стояти перед tengo."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-06:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-06:intro3:r2": {
+          "ru": "Без no получится, что время есть.",
+          "uk": "Без no вийде, що час є."
+        },
+        "es:lesson-05:session-06:intro3:r3": {
+          "ru": "О своём времени говорим no tengo tiempo.",
+          "uk": "Про свій час говоримо no tengo tiempo."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "efac23473e791684af0df9f9325278bafb01b500c9a76acc0f07a25fef5e49f3"
+}

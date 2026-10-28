@@ -1610,4 +1610,25 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"поставить no перед tengo и сказать, что предмета у вас нет.","uk":"поставити no перед tengo й сказати, що предмета у вас немає."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 5, sessionOrdinal: 6,
+    sourceFingerprint: "bdda146bbb3ba55b563a4e706eb2438ca862da061a8c7fa79f1de26fc76bbd02",
+    newWordCount: 1,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"сказать No tengo tiempo без артикля и при необходимости выделить себя словом yo.","uk":"сказати No tengo tiempo без артикля й за потреби виділити себе словом yo."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 5, sessionOrdinal: 7,
+    sourceFingerprint: "c98179963cf16adc594cc84a02bc33411f5ef14e7316b6dd1bdca7b6c1594407",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"сказать Tengo tiempo без отрицания и без артикля.","uk":"сказати Tengo tiempo без заперечення й без артикля."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 5, sessionOrdinal: 8,
+    sourceFingerprint: "fcb54eb08981b12dc9c2c519c08cc8016b6b13e10bacb889c419322015b2f839",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"закрепить tengo с предметами, родственниками и временем, а также отрицание no tengo.","uk":"закріпити tengo з предметами, родичами й часом, а також заперечення no tengo."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
+  }),
 ]);

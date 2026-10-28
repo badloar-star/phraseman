@@ -66,6 +66,12 @@ const okRgb = (L, C, H) => { let c = C; let lin = okLin(L, c, H); for (let i = 0
 /* Главная / Пик / Наборы — homeSceneThemeTokens (эталон sceneTok): тёмное — 30 % градиента акцента над фоном; светлое — OKLCH L .47→.28 от оттенка акцента; «Сумерки» — числа эталона */
 const sceneTok = (id, ap) => {
   const t = THEMES[id][ap]; const g = t.accentGradient || [t.accent, t.accent];
+  const pr = PREMIUM_BY_ID[id];
+  if (pr) { // premiumSceneTop: верх темнеет на 4 % к чёрному, пока белый < 5; низ — sceneBottom; свет — edge 25
+    let top = hx(pr.sceneTop); for (let i = 0; i < 40 && whiteOn(top) < 5; i += 1) top = mixc([0, 0, 0], top, 0.04);
+    const bot = hx(pr.sceneBottom);
+    return { t, top, bot, glow: `${pr.edge}25`, seam: ratioc(bot, hx(t.opaqueCard)) };
+  }
   if (ap === 'dark') {
     const top = mixc(hx(g[0]), hx(t.bgTop), 0.3); const bot = mixc(hx(g[g.length - 1]), hx(t.bg), 0.3);
     const gl = (t.bgGlow && t.bgGlow[0]) || t.accentGlow;
@@ -129,8 +135,26 @@ const RULES = {
   grad_ice: { kind: 'split', off: 210, tune: -10, why: 'лёд: зимнее солнце, свет — лёд' },
   grad_coral: { kind: 'split', off: 150, why: 'коралл: бирюза рифа, свет — коралл' },
   grad_lilac: { kind: 'split', off: 210, tune: 10, chroma: 0.88, why: 'сирень: весенняя листва, свет — сирень' },
+  grad_full_ref_storm_violet: { kind: 'split', off: 210, why: 'аметист: изумрудная ночь, свет — аметист' },
+  grad_full_titanium: { kind: 'comp', why: 'титан: холодная синь, свет — коралл' },
 };
 const KIND_RU = { comp: 'комплементарная', split: 'сплит-комплементарная', analog: 'аналоговая', temp: 'контраст температур' };
+/* премиум-темы (координатор 28.10: отдельным коротким разделом, по одному кадру Главной; движение их шейдеров не показываем):
+   спецификация — constants/premiumThemeVisualSpecs.ts дословно, токены — как premiumThemeTokenOverrides, имена — theme_display_names */
+const PREMIUM = [
+  { id: 'grad_full_olive', name: 'Керамика', dark: ['#10170d', '#424c28', '#333d20', '#586035'], light: ['#e6ead5', '#f5f5de', '#e7edc9', '#c9d3a5'], accent: '#dbe591', ink: '#34410d', edge: '#bac573', sceneTop: '#778624', sceneBottom: '#151e10' },
+  { id: 'grad_full_ref_signal_lime', name: 'Обсидиан', dark: ['#040709', '#1c2613', '#0d120c', '#212c15'], light: ['#f9ffed', '#fdfff9', '#f8ffe9', '#f4ffde'], accent: '#c2ff46', ink: '#445919', edge: '#c2ff46', sceneTop: '#101406', sceneBottom: '#020406' },
+  { id: 'grad_full_ref_storm_violet', name: 'Аметист', dark: ['#040709', '#1e1929', '#0e0c15', '#241e2f'], light: ['#fbf5ff', '#fefcff', '#faf3ff', '#f8ecff'], accent: '#d697ff', ink: '#4b3559', edge: '#d697ff', sceneTop: '#110c14', sceneBottom: '#020406' },
+  { id: 'grad_full_titanium', name: 'Титан', dark: ['#121416', '#3c4248', '#292f34', '#4b5055'], light: ['#e0e3e5', '#f6f7f8', '#dce1e4', '#bfc7ce'], accent: '#ff8c80', ink: '#a92d26', edge: '#c9d1d8', sceneTop: '#34383d', sceneBottom: '#0a0c0f' },
+  { id: 'grad_full_horizon', name: 'Атмосфера', dark: ['#091723', '#2b4659', '#203344', '#395b6c'], light: ['#dde8ef', '#f2f8ff', '#d8e7f2', '#b4cbd8'], accent: '#ffd09a', ink: '#805022', edge: '#8dafc4', sceneTop: '#12385a', sceneBottom: '#060e1a' },
+  { id: 'grad_full_ref_gravity_blue', name: 'Сингулярность', dark: ['#040709', '#142229', '#0a1015', '#19282f'], light: ['#f3fcff', '#fbfeff', '#f0fbff', '#e9f9ff'], accent: '#86dfff', ink: '#2f4e59', edge: '#86dfff', sceneTop: '#0b1214', sceneBottom: '#020406' },
+];
+const PREMIUM_BY_ID = Object.fromEntries(PREMIUM.map((p) => [p.id, p]));
+const premiumTokens = (p, ap) => {
+  const dark = ap === 'dark'; const [bg, from, to] = dark ? p.dark : p.light; const accent = dark ? p.accent : p.ink; const cta = hex(mixc([255, 255, 255], hx(p.accent), 0.82));
+  return { bg, bgTop: bg, bgBottom: bg, opaqueCard: to, opaqueControl: from, text: dark ? '#fff9f6' : '#181a20', secondary: dark ? '#dacfd0' : '#55505b', accent, accentText: accent, cta, ctaInk: p.ink, accentGradient: [accent, accent], accentGlow: `${p.edge}8C`, bgGlow: [`${p.edge}40`], isLight: !dark };
+};
+PREMIUM.forEach((p) => { THEMES[p.id] = { name: p.name, premium: true, dark: premiumTokens(p, 'dark'), light: premiumTokens(p, 'light') }; });
 const scenePal = (id, ap) => {
   const t = THEMES[id][ap]; const [, C, H] = oklchOf(hx(t.accent)); const r = RULES[id] || { kind: 'comp' };
   const S = norm((r.kind === 'temp' ? r.scene : r.kind === 'comp' ? H + 180 : H + r.off) + (r.tune || 0));
@@ -161,8 +185,24 @@ const uiCss = (id, ap) => {
 };
 const T = (h, extra = '') => h.replace('class="ph"', `class="ph th-${TH}${extra ? ' ' + extra : ''}"`);
 /* в отличие от tok эталона — hs-tok ставится всегда (и «Сумеркам» в светлом): значения те же, а слой «новый» нужен каждому телефону */
-const shell = (id, ap, body, fixed, cls, time = '18:10') => T(phone(body, { time, inStyle: 'padding:0', fixed }), 'onart')
-  .replace(/class="ph th-(ink|marine)([^"]*)"/, (m, th, rest) => `class="ph th-${th}${rest} hs-tok${ap === 'dark' ? ' dk' : ' lt'} ${cls} ${MODE === 'new' ? 'sp-new' : 'sp-now'}" data-ph="${cls}" style="${uiCss(id, ap)}"`);
+const modeCls = () => (MODE === 'now' ? 'sp-now' : MODE === 'draw' ? 'sp-new sp-drawn' : 'sp-new');
+/* real — ключ экрана для реального кадра Сверки (assets/real/scene_{ключ}_{тема}_{оформление}.png): есть файл — он и есть «сейчас».
+   Список имеющихся кадров — window.__REAL (сборщик пишет его из папки assets/real при пересборке), чтобы страница не запрашивала несуществующие файлы */
+const REAL = new Set(window.__REAL || []);
+const realImg = (real, id, ap) => (real && REAL.has(`scene_${real}_${id}_${ap}.png`) ? `<img class="sp-real" src="assets/real/scene_${real}_${id}_${ap}.png" alt="" onload="var l=this.closest('.col');l=l&&l.querySelector('.lbl');if(l)l.dataset.real='1'">` : '');
+const shell = (id, ap, body, fixed, cls, time = '18:10', real = '') => T(phone(body, { time, inStyle: 'padding:0', fixed }), 'onart')
+  .replace(/class="ph th-(ink|marine)([^"]*)"/, (m, th, rest) => `class="ph th-${th}${rest} hs-tok${ap === 'dark' ? ' dk' : ' lt'} ${cls} ${modeCls()}" data-ph="${cls}" style="${uiCss(id, ap)}"`)
+  .replace('<div class="hi"></div></div>', `<div class="hi"></div>${realImg(real, id, ap)}</div>`);
+/* текущая тема телефона — для слоя Б внутри сцены (строители сцен не получают id/ap) */
+let CUR = { id: 'marine', ap: 'dark' };
+const cur = (id, ap) => { CUR = { id, ap }; };
+/* вариант Б: солнце/луна в оттенке света темы за дальними холмами, даль — верх сцены с дымкой света, близь — темнее низа, туман у горизонта */
+const drawLayer = (p) => {
+  // три слоя глубины в оттенке самой сцены (смесь с оттенком света давала грязь): дальние горы сквозь дымку, холмы, ближний склон под текстом
+  const S = p.S; const farFar = rgba(okRgb(0.44, 0.10, norm(S - 2)), 0.72); const far = hex(okRgb(0.36, 0.11, norm(S - 8))); const near = hex(okRgb(0.26, 0.10, norm(S - 18)));
+  const sunC = okRgb(0.86, 0.12, p.Lh); const fogC = okRgb(0.80, 0.09, p.Lh);
+  return `<div class="sp-draw"><i class="sun" style="background:radial-gradient(circle, ${rgba(sunC, 0.95)} 0%, ${rgba(sunC, 0.5)} 24%, ${rgba(sunC, 0)} 66%)"></i><svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M0 56 C 14 50 28 50 42 54 S 70 60 84 54 S 94 50 100 52 L100 100 L0 100 Z" fill="${farFar}"/><path d="M0 64 C 12 59 24 58 36 62 S 60 68 72 62 S 90 58 100 61 L100 100 L0 100 Z" fill="${far}"/><path d="M0 74 C 14 70 26 70 40 75 S 66 80 80 74 S 92 70 100 73 L100 100 L0 100 Z" fill="${near}"/></svg><i class="fog" style="background:linear-gradient(to bottom, ${rgba(fogC, 0)} 0%, ${rgba(fogC, 0.34)} 50%, ${rgba(fogC, 0)} 100%)"></i></div>`;
+};
 
 /* ═════ общие детали экранов (разметка эталонов home-scene-states / peak-scene-v2 / community-scene-v3; таббар — значками) ═════ */
 const TABS = ['home-outline', 'book-outline', 'play-circle-outline', 'people-outline', 'settings-outline'];
@@ -173,7 +213,7 @@ const HOME = { streak: '5 дней', coins: '2 340', en: '4' };
 const stats = (s) => `<span class="hm-pill two glass t">${io('flame')}<span class="vv"><b>${s.streak}</b><small>Серия</small></span></span><span class="hm-pill glass t"><img src="${K.coin(5)}" alt="">${s.coins}<i class="dv"></i><span style="display:inline-flex;align-items:center;gap:3px">${io('flash')}${s.en}</span></span>`;
 const head = () => `<div class="hm-top">${stats(HOME)}<span class="hm-sp"></span><span class="qround hm-bell glass t">${io('notifications-outline')}<i class="dot"></i></span>${avatar()}</div>`;
 const row = ([ic, t, sub, n, done]) => `<div class="hm-row${done ? ' done' : ''} t"><span class="ck${done ? ' on' : ''}">${io('checkmark')}</span><span class="ic">${io(ic)}</span><div class="tx"><div class="t">${t}</div>${sub ? `<div class="s">${sub}</div>` : ''}</div><span class="n">${n}</span></div>`;
-const layer = () => '<div class="sp-layer"></div>';
+const layer = () => `<div class="sp-layer"></div>${drawLayer(scenePal(CUR.id, CUR.ap))}`;
 const glow = (right, top, size) => `<div class="a-glow" style="right:${right}px;top:${top}px;width:${size}px;height:${size}px"></div>`;
 const art = (name) => `<img class="sp-art" src="${ART(name)}" alt="">`;
 const body = (kick, title, prog, cta, chips = '') => `<div class="a-kick">${kick}</div><div class="a-title${title.length > 18 ? ' long' : ''}">${title}</div>${prog}<div class="a-cta"><div class="qbtn white t${cta[2] || ''}">${io('play')}${cta[0]}</div></div>${chips ? `<div style="margin-top:12px"><div class="hm-chips">${chips}</div></div>` : ''}`;
@@ -185,7 +225,7 @@ const homeStage = (hero) => `<div class="a-stage">${layer()}${glow(4, 86, 180)}$
 const homeAfter = () => `<div class="a-panel"><div class="hm-h">Сегодня<span>1 из 3</span></div>${[['book-outline', 'Пройти урок', '', '1/1', 1], ['chatbubbles-outline', 'Потренировать диалог', '', '0/1'], ['copy-outline', 'Повторить карточки', 'Не менее 10 слов', '6/10']].map(row).join('')}</div>`
   + `<div class="a-tiles">${[['lessons', 'Уроки'], ['dialogs', 'Диалоги'], ['cards', 'Карточки']].map(([a, t]) => `<div class="a-tile t"><img class="hm-art" src="${ART(a)}" alt="">${t}</div>`).join('')}</div>`
   + `<div class="a-pod t"><img class="hm-art art" src="${ART('phrase_of_day')}" alt=""><div class="tx"><div class="k">Фраза дня</div><div class="p">We are together.</div></div>${io('chevron-forward', 'font-size:18px;color:var(--sec)')}</div><div style="height:140px"></div>`;
-const homePhone = (id, ap, hero = art('home_scene_continue')) => shell(id, ap, `<div class="sp-home">${homeStage(hero)}${homeAfter()}</div>`, tabbar(0), 'sp-home');
+const homePhone = (id, ap, hero = art('home_scene_continue'), layout = '') => (cur(id, ap), shell(id, ap, `<div class="sp-home${layout ? ' ' + layout : ''}">${homeStage(hero)}${homeAfter()}</div>`, tabbar(0), 'sp-home', '18:10', 'home'));
 
 /* ── 2 · Пик (эталон peak-scene-v2, V2 утверждён 22.10): башня — герой сцены, пьедестал 2-1-3, своё место, «Играть» закреплена ── */
 const LEAD = [{ name: 'Аня', coins: 612, rank: 12 }, { name: 'Марк', coins: 538, rank: 9 }, { name: 'Тимур', coins: 470, rank: 11 }];
@@ -201,18 +241,18 @@ const peakStage = () => `<div class="a-stage">${layer()}${glow(12, 150, 260)}${t
   + `<div class="pk2-me" style="left:20px;top:448px"><div class="k">Комната недели · Гранит</div><div class="v">${ci(5, 30)}7 место</div><div class="s">${io('arrow-up')}2 места до повышения</div></div><div class="pk2-link t" style="top:700px">Все участники <small>30</small>${io('chevron-forward')}</div><div class="a-scrim"></div>`
   + `<div class="a-top"><div class="pk-top"><div class="pk-seg"><span class="on t">Пик</span><span class="t">Друзья</span><span class="t">Наборы</span></div><span class="pk-en">${io('flash')}3</span></div></div></div>`;
 const peakAfter = () => `<div class="pk-h2">Друзья на этой неделе</div><div class="pk-fr">${[['Аня', 12, 'Агат'], ['Kirill', 10, 'Гранит'], ['Лидия', 1, 'Базальт']].map(([n, r, st]) => `<span class="c t">${ci(r, 32)}${n}<small>${st}</small></span>`).join('')}</div><div class="pk2-after"></div>`;
-const peakPhone = (id, ap) => shell(id, ap, `<div class="pk2 sp-pk">${peakStage()}</div>${peakAfter()}`, `<div class="pk2-dock"><div class="qbtn solid t">${io('play')}Играть</div></div>${tabbar(3)}`, 'sp-pk');
+const peakPhone = (id, ap) => (cur(id, ap), shell(id, ap, `<div class="pk2 sp-pk">${peakStage()}</div>${peakAfter()}`, `<div class="pk2-dock"><div class="qbtn solid t">${io('play')}Играть</div></div>${tabbar(3)}`, 'sp-pk', '18:10', 'peak'));
 
 /* ── 3 · Уроки · обложка Сезона (scenes-compact «Обучение · Сезон», вариант 2 владельца 22.10) ── */
 const seasonStage = (id, ap) => { const n = nowSeason(id, ap); return `<div class="a-stage sp-season-now" style="--sp-season-now:${n.bg}">${layer()}${glow(4, 86, 180)}${art('lessons')}<div class="a-scrim"></div><div class="a-top">${head()}</div><div class="a-body">${body('Сезон 1 · Глава 2 из 7', 'Кофе с коллегой', bar(38, '3 из 8 эпизодов'), ['Продолжить'], chip('albums-outline', 'Слова') + chip('book-outline', 'Теория'))}</div></div>`; };
 const seasonAfter = () => `<div class="a-panel"><div class="hm-h">Главы сезона<span>7</span></div><div class="sp-cards"><div class="sp-card"><small>Глава 1 · I am (+ not)</small>Первый рабочий день<div class="st">${io('checkmark', 'color:var(--good)')}пройдена</div></div><div class="sp-card cur"><small>Глава 2 · You are (+ not)</small>Кофе с коллегой<div class="st">3 из 8</div></div><div class="sp-card"><small>Глава 3 · He / she is</small>Знакомство с командой<div class="st">${io('lock-closed')}после главы 2</div></div></div></div>`
   + `<div class="a-panel" style="margin-top:12px"><div class="hm-h">Эпизоды главы 2<span>3 из 8</span></div>${[['cafe-outline', 'Эпизод 4 · Заказ на двоих', '', '0/21'], ['cafe-outline', 'Эпизод 5 · Ты сегодня рано', '', '0/20']].map(row).join('')}</div><div style="height:140px"></div>`;
-const seasonPhone = (id, ap) => shell(id, ap, `<div class="sp-season">${seasonStage(id, ap)}${seasonAfter()}</div>`, tabbar(1), 'sp-season', '9:41');
+const seasonPhone = (id, ap) => (cur(id, ap), shell(id, ap, `<div class="sp-season">${seasonStage(id, ap)}${seasonAfter()}</div>`, tabbar(1), 'sp-season', '9:41', 'season'));
 
 /* ── 4 · Диалоги (эталон dialogs-scene-states, герой «следующий диалог») ── */
 const dlgStage = (id, ap) => { const n = nowDialogs(id, ap); return `<div class="a-stage sp-dlg-now" style="--sp-dlg-now:${n.bg}">${layer()}${glow(4, 86, 180)}${art('dialogs_scene_next')}<div class="a-scrim"></div><div class="a-top sp-dlg-ink"><div class="pk-top"><span class="hm-pill glass t">${io('chatbubbles-outline')}18 из 30</span><span style="flex:1"></span>${avatar()}</div></div><div class="a-body sp-dlg-ink">${body('Общение · с Милой', 'Поздороваться после знакомства', bar(33, '2 из 6 целей'), ['Продолжить', '', ' sp-dlg-cta'])}</div></div>`; };
 const dlgAfter = () => `<div class="a-panel"><div class="hm-h">Диалоги<span>76</span></div><div class="sp-wchips"><span class="on">Все</span><span>Дела</span><span>Общение</span><span>Путешествия</span><span>Быт</span></div><div class="sp-cards"><div class="sp-card"><small>Дела · с Мариной</small>Представиться коллеге<div class="st">${io('chatbubbles-outline')}6 целей</div></div><div class="sp-card"><small>Быт</small>Спросить код от двери<div class="st">${io('chatbubbles-outline')}5 целей</div></div></div></div><div style="height:140px"></div>`;
-const dlgPhone = (id, ap) => shell(id, ap, `<div class="sp-dlg">${dlgStage(id, ap)}${dlgAfter()}</div>`, tabbar(1), 'sp-dlg');
+const dlgPhone = (id, ap) => (cur(id, ap), shell(id, ap, `<div class="sp-dlg">${dlgStage(id, ap)}${dlgAfter()}</div>`, tabbar(1), 'sp-dlg', '18:10', 'dialogs'));
 
 /* ── 5 · Наборы (community-scene-v3, утверждён 28.10): веер карточек — по оттенку сцены, «Набор месяца» на пьедестале, плитки ── */
 const FANS = { coral: 'community_02_coral_sunset_fan', violet: 'community_03_violet_nebula_fan', glacier: 'community_07_glacier_blue_fan', obsidian: 'community_11_obsidian_star_fan',
@@ -227,7 +267,7 @@ const packsStage = (id, ap) => `<div class="a-stage">${layer()}${glow(10, 140, 2
   + blk(22, 430, 124, 100, `<span style="height:12px"></span>${pface(2, PACKS[1])}`, '', 240) + blk(153, 406, 124, 124, `<span style="height:22px"></span>${pface(1, PACKS[0])}`, ' first', 320) + blk(284, 450, 124, 80, `<span style="height:12px"></span>${pface(3, PACKS[2])}`, '', 400)
   + coinAt(PACKS[1][2], 65, 410, 38, 240) + coinAt(PACKS[0][2], 191, 380, 48, 320) + coinAt(PACKS[2][2], 327, 430, 38, 400) + '</div>';
 const packsAfter = () => `<div class="a-panel"><div class="hm-h">Наборы<span class="qchip" style="background:var(--solid);color:var(--on-solid);height:32px;padding:0 13px;font-size:14px">Топ</span></div><div class="sp-tiles">${PACKS.slice(0, 2).map((p, i) => `<div class="sp-tile t"><div class="tr"><span class="qchip glass">${io('copy-outline')}${p[4]}</span><span class="rk">${i + 1}</span></div><div class="tt">${p[0]}</div><div class="tb">${ci(p[2], 22)}<span>${p[1]}</span><b>${io('heart-outline')}${p[3]}</b></div></div>`).join('')}</div></div><div style="height:230px"></div>`;
-const packsPhone = (id, ap) => shell(id, ap, `<div class="sp-cs">${packsStage(id, ap)}${packsAfter()}</div>`, `<div class="pk2-dock"><div class="qbtn solid t">${io('add')}Создать набор</div></div>${tabbar(3)}`, 'sp-cs');
+const packsPhone = (id, ap) => (cur(id, ap), shell(id, ap, `<div class="sp-cs">${packsStage(id, ap)}${packsAfter()}</div>`, `<div class="pk2-dock"><div class="qbtn solid t">${io('add')}Создать набор</div></div>${tabbar(3)}`, 'sp-cs'));
 
 /* ═════ раздел 1 · выбранная тема: подпись схемы для координатора + пять экранов ═════ */
 const strip = (p) => {
@@ -260,26 +300,30 @@ const HERO_VARS = [
   ['Вариант 1 · Крупный 224', { size: 224, right: -22, top: 72, cls: 'a' }],
   ['Вариант 2 · Объёмный 256', { size: 256, right: -30, top: 56, cls: 'b' }],
   ['Вариант 3 · Постер 300', { size: 300, right: -66, top: 36, cls: 'c' }],
+  ['Вариант 4 · По центру 240', { size: 240, center: true, top: 100, cls: 'd' }],
 ];
-const heroBig = (v) => `<div class="sp-hero ${v.cls}" data-act="hero" style="width:${v.size}px;height:${v.size}px;right:${v.right}px;top:${v.top}px;--sp-hero-src:url(${ART('home_scene_continue')})"><div class="in"><i class="glow"></i><i class="floor"></i><img src="${ART('home_scene_continue')}" alt=""></div></div>`;
-const section3 = () => `<section class="block" id="sp-hero"><h2>Герои на сцене Главной — крупнее и объёмнее</h2><p class="sp-note">Сейчас герой 160 в правом углу. Варианты: 224 с глубокой тенью; 256 с светом сверху, тенью на полу, лёгким наклоном и парением; 300 «постером» с глубиной и сиянием в цвете света темы. Тап по герою — отскок; «Повторить» — появление заново.</p><div class="phones">${HERO_VARS.map(([label, v], i) => `<div class="col" style="--d:${i * 60}ms">${col(label, homePhone(THEME_ID, AP, v ? heroBig(v) : art('home_scene_continue'))).slice(17)}`).join('')}</div></section>`;
+const heroBig = (v) => `<div class="sp-hero ${v.cls}" data-act="hero" style="width:${v.size}px;height:${v.size}px;${v.center ? `left:calc(50% - ${v.size / 2}px)` : `right:${v.right}px`};top:${v.top}px;--sp-hero-src:url(${ART('home_scene_continue')})"><div class="in"><i class="glow"></i><i class="floor"></i><img src="${ART('home_scene_continue')}" alt=""></div></div>`;
+const section3 = () => `<section class="block" id="sp-hero"><h2>Герои на сцене Главной — крупнее и объёмнее</h2><p class="sp-note">Сейчас герой 160 в правом углу. Варианты: 224 с глубокой тенью; 256 с светом сверху, тенью на полу, лёгким наклоном и парением; 300 «постером» с глубиной и сиянием в цвете света темы; 240 по центру сцены над текстом (сцена выше 46 %). Тап по герою — отскок; «Повторить» — появление заново.</p><div class="phones">${HERO_VARS.map(([label, v], i) => `<div class="col" style="--d:${i * 60}ms">${col(label, homePhone(THEME_ID, AP, v ? heroBig(v) : art('home_scene_continue'), v && v.center ? 'center' : '')).slice(17)}`).join('')}</div></section>`;
+
+/* ═════ раздел 4 · премиум-темы: по одному кадру Главной (видны в выборе тем с условием открытия) ═════ */
+const section4 = () => `<section class="block" id="sp-premium"><h2>Премиум-темы — Главная, ${AP === 'dark' ? 'тёмное' : 'светлое'}</h2><p class="sp-note">Шесть тем с условием открытия (Plus, ранг, серия 365, Пик, 200 часов видео, курс). «Сейчас» — цвета их спецификации без движения шейдера; «Новый» — та же формула от их акцента, схема под телефоном.</p><div class="phones">${PREMIUM.map((p, i) => `<div class="col" style="--d:${i * 60}ms">${col(`${p.name}<br><span style="font-weight:500;color:#8E8E96">${schemeLine(scenePal(p.id, AP))}</span>`, homePhone(p.id, AP)).slice(17)}`).join('')}</div></section>`;
 
 /* ═════ страница ═════ */
 const controls = () => {
   document.getElementById('apList').innerHTML = [['light', 'Светлое'], ['dark', 'Тёмное']].map(([k, n]) => `<span class="chp${AP === k ? ' on' : ''}" data-ap="${k}">${n}</span>`).join('');
-  document.getElementById('modeList').innerHTML = [['now', 'Сейчас'], ['new', 'Новый']].map(([k, n]) => `<span class="chp${MODE === k ? ' on' : ''}" data-mode="${k}">${n}</span>`).join('');
+  document.getElementById('modeList').innerHTML = [['now', 'Сейчас'], ['new', 'Новый А · перекраска'], ['draw', 'Новый Б · отрисовка']].map(([k, n]) => `<span class="chp${MODE === k ? ' on' : ''}" data-mode="${k}">${n}</span>`).join('');
   document.getElementById('thmList').innerHTML = THEME_IDS.map((id) => `<span class="chp${THEME_ID === id ? ' on' : ''}" data-th="${id}">${THEMES[id].name}</span>`).join('');
 };
 const render = (enter = true) => {
   TH = AP === 'light' ? 'ink' : 'marine';
   const root = document.getElementById('root');
   root.className = enter ? 'sp-enter sp-fade' : 'sp-fade'; // смена темы — мягкий кроссфейд 280 мс, без повторного появления
-  root.innerHTML = section1() + section3() + section2();
+  root.innerHTML = section1() + section3() + section2() + section4();
   controls();
   if (R && R.applyScroll) R.applyScroll(root);
   console.log(LOG, 'render', JSON.stringify({ theme: THEME_ID, ap: AP, mode: MODE, pal: schemeLine(scenePal(THEME_ID, AP)) })); // guard-ok: одна строка на перерисовку
 };
-const setMode = (m) => { MODE = m; document.querySelectorAll('.ph[data-ph]').forEach((ph) => { ph.classList.toggle('sp-new', m === 'new'); ph.classList.toggle('sp-now', m !== 'new'); }); document.querySelectorAll('.chp[data-mode]').forEach((c) => c.classList.toggle('on', c.dataset.mode === m)); };
+const setMode = (m) => { MODE = m; document.querySelectorAll('.ph[data-ph]').forEach((ph) => { ph.classList.toggle('sp-now', m === 'now'); ph.classList.toggle('sp-new', m !== 'now'); ph.classList.toggle('sp-drawn', m === 'draw'); }); document.querySelectorAll('.chp[data-mode]').forEach((c) => c.classList.toggle('on', c.dataset.mode === m)); };
 document.body.addEventListener('click', (e) => {
   const h = e.target.closest('[data-act="hero"]'); if (h) { once(h, 'pop'); return; }
   if (e.target.closest('[data-replay]')) { render(true); return; }
@@ -294,7 +338,7 @@ document.body.addEventListener('click', (e) => {
   const q = new URLSearchParams(location.search);
   if (q.get('ap') === 'light' || q.get('ap') === 'dark') AP = q.get('ap');
   if (THEMES[q.get('th')]) THEME_ID = q.get('th');
-  if (q.get('mode') === 'now' || q.get('mode') === 'new') MODE = q.get('mode');
+  if (['now', 'new', 'draw'].includes(q.get('mode'))) MODE = q.get('mode');
 }
 render(true);
 K.init();

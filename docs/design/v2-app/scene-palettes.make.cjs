@@ -26,6 +26,10 @@ if (!themesLine || !icodeLine) throw new Error('[SP-MAKE] в эталоне не
 for (const f of ['scene-palettes.css', 'scene-palettes.app.js', 'spire-tower-render.js', 'kit.css', 'kit.js']) {
   if (!fs.existsSync(path.join(__dirname, f))) throw new Error(`[SP-MAKE] рядом нет ${f}`);
 }
+// реальные кадры Сверки (assets/real/scene_{home|peak|season|dialogs}_{тема}_{light|dark}.png): список в страницу — есть кадр, он и показан в «сейчас»
+const realDir = path.join(__dirname, 'assets', 'real');
+const realFrames = fs.existsSync(realDir) ? fs.readdirSync(realDir).filter((f) => /^scene_(home|peak|season|dialogs)_[a-z_]+_(light|dark)\.png$/.test(f)).sort() : [];
+const realLine = `<script>window.__REAL = ${JSON.stringify(realFrames)};</script>`;
 
 const html = `<!doctype html>
 <html lang="ru">
@@ -56,9 +60,10 @@ ${engineCss}
 <script src="spire-tower-render.js"></script>
 ${themesLine}
 ${icodeLine}
+${realLine}
 <script src="scene-palettes.app.js"></script>
 </body>
 </html>
 `;
 fs.writeFileSync(OUT, html);
-console.log('[SP-MAKE] записан', OUT, html.length, 'байт; движок', engineCss.split('\n').length, 'строк из эталона');
+console.log('[SP-MAKE] записан', OUT, html.length, 'байт; движок', engineCss.split('\n').length, 'строк из эталона; реальных кадров', realFrames.length);

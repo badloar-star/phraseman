@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-04:session-26",
+  "learningOutcomeByLocale": {
+    "ru": "выбирать nuestra перед женским существительным в единственном числе.",
+    "uk": "вибирати nuestra перед іменником жіночого роду в однині."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-04:session-26:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Показать наш дом",
+        "uk": "Показати наш будинок"
+      },
+      "bodyByLocale": {
+        "ru": "Гость впервые приехал к вам. Покажите дом и скажите `Es nuestra casa` — «Это наш дом». Соберите `es` + `nuestra casa`. Испанское casa женского рода, поэтому знакомое nuestro меняет окончание на -a: nuestra. Форму выбираем по слову casa, а не по тому, мужчины или женщины живут в доме.",
+        "uk": "Гість уперше приїхав до вас. Покажіть будинок і скажіть `Es nuestra casa` — «Це наш будинок». Зберіть `es` + `nuestra casa`. Іспанське casa жіночого роду, тому знайоме nuestro змінює закінчення на -a: nuestra. Форму вибираємо за словом casa, а не за тим, чоловіки чи жінки живуть у будинку."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-26:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите гостю: «Это наш дом». Начните с Es.",
+          "uk": "Скажіть гостю: «Це наш будинок». Почніть з Es."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-26:intro1:r1",
+              "text": "Es nuestra casa."
+            },
+            {
+              "responseId": "es:lesson-04:session-26:intro1:r2",
+              "text": "Es nuestro casa."
+            },
+            {
+              "responseId": "es:lesson-04:session-26:intro1:r3",
+              "text": "Es la nuestra casa."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-26:intro1:r1",
+              "text": "Es nuestra casa."
+            },
+            {
+              "responseId": "es:lesson-04:session-26:intro1:r2",
+              "text": "Es nuestro casa."
+            },
+            {
+              "responseId": "es:lesson-04:session-26:intro1:r3",
+              "text": "Es la nuestra casa."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите гостю: «Это наш дом». Начните с Es.",
+          "uk": "Скажіть гостю: «Це наш будинок». Почніть з Es."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-04:session-26:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Белый дом",
+        "uk": "Білий будинок"
+      },
+      "bodyByLocale": {
+        "ru": "Гость видит несколько домов. Уточните цвет вашего: `Nuestra casa es blanca` — «Наш дом белый». Соберите `nuestra casa` + `es` + `blanca`. Женский род casa определяет оба окончания: nuestra и blanca. Дом один, поэтому es.",
+        "uk": "Гість бачить кілька будинків. Уточніть колір вашого: `Nuestra casa es blanca` — «Наш будинок білий». Зберіть `nuestra casa` + `es` + `blanca`. Жіночий рід casa визначає обидва закінчення: nuestra й blanca. Будинок один, тому es."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-26:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите гостю: «Наш дом белый». Начните с Nuestra casa.",
+          "uk": "Скажіть гостю: «Наш будинок білий». Почніть з Nuestra casa."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-26:intro2:r1",
+              "text": "Nuestra casa es blanca."
+            },
+            {
+              "responseId": "es:lesson-04:session-26:intro2:r2",
+              "text": "Nuestra casa es blanco."
+            },
+            {
+              "responseId": "es:lesson-04:session-26:intro2:r3",
+              "text": "Nuestra casa son blanca."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-26:intro2:r1",
+              "text": "Nuestra casa es blanca."
+            },
+            {
+              "responseId": "es:lesson-04:session-26:intro2:r2",
+              "text": "Nuestra casa es blanco."
+            },
+            {
+              "responseId": "es:lesson-04:session-26:intro2:r3",
+              "text": "Nuestra casa son blanca."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите гостю: «Наш дом белый». Начните с Nuestra casa.",
+          "uk": "Скажіть гостю: «Наш будинок білий». Почніть з Nuestra casa."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-04:session-26:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Большой дом",
+        "uk": "Великий будинок"
+      },
+      "bodyByLocale": {
+        "ru": "Гость спрашивает о размере вашего дома. Скажите `Nuestra casa es grande` — «Наш дом большой». Соберите `nuestra casa` + `es` + `grande`. Вместо цвета после es ставим размер. Grande подходит и к мужскому, и к женскому слову без изменения окончания; nuestra сохраняется перед casa.",
+        "uk": "Гість запитує про розмір вашого будинку. Скажіть `Nuestra casa es grande` — «Наш будинок великий». Зберіть `nuestra casa` + `es` + `grande`. Замість кольору після es ставимо розмір. Grande підходить і до чоловічого, і до жіночого слова без зміни закінчення; nuestra зберігається перед casa."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-26:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите гостю: «Наш дом большой». Начните с Nuestra casa.",
+          "uk": "Скажіть гостю: «Наш будинок великий». Почніть з Nuestra casa."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-26:intro3:r1",
+              "text": "Nuestra casa es grande."
+            },
+            {
+              "responseId": "es:lesson-04:session-26:intro3:r2",
+              "text": "Nuestro casa es grande."
+            },
+            {
+              "responseId": "es:lesson-04:session-26:intro3:r3",
+              "text": "Nuestra casa es grandes."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-26:intro3:r1",
+              "text": "Nuestra casa es grande."
+            },
+            {
+              "responseId": "es:lesson-04:session-26:intro3:r2",
+              "text": "Nuestro casa es grande."
+            },
+            {
+              "responseId": "es:lesson-04:session-26:intro3:r3",
+              "text": "Nuestra casa es grandes."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите гостю: «Наш дом большой». Начните с Nuestra casa.",
+          "uk": "Скажіть гостю: «Наш будинок великий». Почніть з Nuestra casa."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "7fea401a6bb726742a2e02a678ddc19f4194a3afb7f72f99bba5aa391df7a292"
+}

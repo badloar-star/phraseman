@@ -1351,4 +1351,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбирать su/sus и согласовывать описание с человеком или вещью.","uk":"вибирати su/sus й узгоджувати опис із людиною або річчю."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 4, sessionOrdinal: 25,
+    sourceFingerprint: "c9c94150a28a552da8fb1d67efa06f2016483e0d88fc0d16e75da17092fd7ea6",
+    newWordCount: 1,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"использовать nuestro перед мужским существительным в единственном числе.","uk":"використовувати nuestro перед іменником чоловічого роду в однині."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 4, sessionOrdinal: 26,
+    sourceFingerprint: "2fb95e94e0ea71a0aa5e566eb73473b016ed9ce623fa76fa2ffa6b10dbeb7d36",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбирать nuestra перед женским существительным в единственном числе.","uk":"вибирати nuestra перед іменником жіночого роду в однині."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
+  }),
 ]);

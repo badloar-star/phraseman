@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-04:session-26",
+  "entries": [
+    {
+      "interactionId": "es:lesson-04:session-26:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-26:intro1:r2": {
+          "ru": "Перед женским casa нужно nuestra.",
+          "uk": "Перед жіночим casa потрібне nuestra."
+        },
+        "es:lesson-04:session-26:intro1:r3": {
+          "ru": "Перед nuestra здесь нет артикля.",
+          "uk": "Перед nuestra тут немає артикля."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-26:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-26:intro2:r2": {
+          "ru": "Согласуйте цвет с casa: blanca.",
+          "uk": "Узгодьте колір із casa: blanca."
+        },
+        "es:lesson-04:session-26:intro2:r3": {
+          "ru": "Дом один: es.",
+          "uk": "Будинок один: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-26:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-26:intro3:r2": {
+          "ru": "Casa требует nuestra.",
+          "uk": "Casa потребує nuestra."
+        },
+        "es:lesson-04:session-26:intro3:r3": {
+          "ru": "Дом один: grande.",
+          "uk": "Будинок один: grande."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "dcc0ce34d8b5b00cd086b1ef3a456965cff96086b253406844b05306b505ec51"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-04:session-25",
+  "entries": [
+    {
+      "interactionId": "es:lesson-04:session-25:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-25:intro1:r2": {
+          "ru": "Mi значит «моя»; нужно явно сказать «наша»: nuestro.",
+          "uk": "Mi означає «моя»; потрібно явно сказати «наша»: nuestro."
+        },
+        "es:lesson-04:session-25:intro1:r3": {
+          "ru": "Перед nuestro здесь не ставим el.",
+          "uk": "Перед nuestro тут не ставимо el."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-25:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-25:intro2:r2": {
+          "ru": "Машина одна: es.",
+          "uk": "Машина одна: es."
+        },
+        "es:lesson-04:session-25:intro2:r3": {
+          "ru": "Испанское carro мужского рода: nuevo.",
+          "uk": "Іспанське carro чоловічого роду: nuevo."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-25:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-25:intro3:r2": {
+          "ru": "Для одной машины нужно azul.",
+          "uk": "Для однієї машини потрібне azul."
+        },
+        "es:lesson-04:session-25:intro3:r3": {
+          "ru": "Машина одна: es.",
+          "uk": "Машина одна: es."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "42dfa003aec43a0a1ea339b2b77887d1c5f804a27ea222f90bdccfbdd20cfed2"
+}

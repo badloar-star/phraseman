@@ -1,0 +1,688 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-03:session-15",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-03:session-15:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — gris",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-15:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — gris",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-15:i01:audio",
+          "transcript": "gris"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-15:i01:r1",
+            "targetText": "gris",
+            "meaningByLocale": {
+              "ru": "серый, серая; grises — форма множественного числа. 🔊 *gris*",
+              "uk": "сірий, сіра; grises — форма множини. 🔊 *gris*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "gris",
+          "definitionByLocale": {
+            "ru": "серый, серая; grises — форма множественного числа. 🔊 *gris*",
+            "uk": "сірий, сіра; grises — форма множини. 🔊 *gris*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-15:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-15:i02:r1",
+          "text": "gris"
+        },
+        {
+          "responseId": "es:lesson-03:session-15:i02:r2",
+          "text": "grises"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-15:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-15:i02:audio",
+          "transcript": "gris"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-15:i02:r1",
+            "targetText": "gris",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-03:session-15:i02:r2",
+            "targetText": "grises",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-15:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи нет дополнительного -es: gris.",
+              "uk": "У записі немає додаткового -es: gris."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-15:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — одна рукавичка сіра",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-15:i03:r1",
+          "text": "Плитки: gris"
+        },
+        {
+          "responseId": "es:lesson-03:session-15:i03:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-15:i03:r3",
+          "text": "guante"
+        },
+        {
+          "responseId": "es:lesson-03:session-15:i03:r4",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-03:session-15:i03:r5",
+          "text": "la."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — одна рукавичка сіра",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "El guante es gris.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — одна перчатка серая",
+          "uk": "Зберіть фразу — одна рукавичка сіра"
+        },
+        "orderedTokens": [
+          "El",
+          "guante",
+          "es",
+          "gris"
+        ],
+        "authoredDistractorTokens": [
+          "la"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-15:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — одна рукавичка сіра",
+            "feedbackByLocale": {
+              "ru": "guante мужского рода.",
+              "uk": "guante чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-15:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — рукавички сірі",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-15:i04:r1",
+          "text": "grises"
+        },
+        {
+          "responseId": "es:lesson-03:session-15:i04:r2",
+          "text": "gris"
+        },
+        {
+          "responseId": "es:lesson-03:session-15:i04:r3",
+          "text": "grisos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — рукавички сірі",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — перчатки серые",
+          "uk": "Вставте слово — рукавички сірі"
+        },
+        "gappedTargetPhrase": "Los guantes son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-15:i04:r1",
+            "text": "grises"
+          },
+          {
+            "responseId": "es:lesson-03:session-15:i04:r2",
+            "text": "gris"
+          },
+          {
+            "responseId": "es:lesson-03:session-15:i04:r3",
+            "text": "grisos"
+          }
+        ],
+        "testedDimension": "Вставте слово — рукавички сірі",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-15:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — рукавички сірі",
+            "feedbackByLocale": {
+              "ru": "Перчаток несколько: grises.",
+              "uk": "Рукавичок кілька: grises."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-15:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — рукавички сірі",
+            "feedbackByLocale": {
+              "ru": "К gris добавляем -es: grises.",
+              "uk": "До gris додаємо -es: grises."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-15:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — рукавички сірі",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-15:i05:r1",
+          "text": "Плитки: grises"
+        },
+        {
+          "responseId": "es:lesson-03:session-15:i05:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-15:i05:r3",
+          "text": "guantes"
+        },
+        {
+          "responseId": "es:lesson-03:session-15:i05:r4",
+          "text": "los"
+        },
+        {
+          "responseId": "es:lesson-03:session-15:i05:r5",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — рукавички сірі",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Los guantes son grises.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — перчатки серые",
+          "uk": "Зберіть фразу — рукавички сірі"
+        },
+        "orderedTokens": [
+          "Los",
+          "guantes",
+          "son",
+          "grises"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-15:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — рукавички сірі",
+            "feedbackByLocale": {
+              "ru": "перчаток несколько.",
+              "uk": "рукавичок кілька."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-15:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — одна кепка сіра",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-15:i06:r1",
+          "text": "gris"
+        },
+        {
+          "responseId": "es:lesson-03:session-15:i06:r2",
+          "text": "grisa"
+        },
+        {
+          "responseId": "es:lesson-03:session-15:i06:r3",
+          "text": "grises"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — одна кепка сіра",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — одна кепка серая",
+          "uk": "Вставте слово — одна кепка сіра"
+        },
+        "gappedTargetPhrase": "La gorra es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-15:i06:r1",
+            "text": "gris"
+          },
+          {
+            "responseId": "es:lesson-03:session-15:i06:r2",
+            "text": "grisa"
+          },
+          {
+            "responseId": "es:lesson-03:session-15:i06:r3",
+            "text": "grises"
+          }
+        ],
+        "testedDimension": "Вставте слово — одна кепка сіра",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-15:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — одна кепка сіра",
+            "feedbackByLocale": {
+              "ru": "Форма для женского рода — gris.",
+              "uk": "Форма для жіночого роду — gris."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-15:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — одна кепка сіра",
+            "feedbackByLocale": {
+              "ru": "Кепка одна: gris.",
+              "uk": "Кепка одна: gris."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-15:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — кепка сіра",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-15:i07:r1",
+          "text": "Плитки: gris"
+        },
+        {
+          "responseId": "es:lesson-03:session-15:i07:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-15:i07:r3",
+          "text": "gorra"
+        },
+        {
+          "responseId": "es:lesson-03:session-15:i07:r4",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-03:session-15:i07:r5",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — кепка сіра",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "La gorra es gris.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — кепка серая",
+          "uk": "Зберіть фразу — кепка сіра"
+        },
+        "orderedTokens": [
+          "La",
+          "gorra",
+          "es",
+          "gris"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-15:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — кепка сіра",
+            "feedbackByLocale": {
+              "ru": "gorra женского рода.",
+              "uk": "gorra жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-15:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-15:i08:r1",
+          "text": "Плитки: grises"
+        },
+        {
+          "responseId": "es:lesson-03:session-15:i08:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-15:i08:r3",
+          "text": "guantes"
+        },
+        {
+          "responseId": "es:lesson-03:session-15:i08:r4",
+          "text": "los"
+        },
+        {
+          "responseId": "es:lesson-03:session-15:i08:r5",
+          "text": "gris."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-15:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-15:i08:audio",
+          "transcript": "Los guantes son grises."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Los guantes son grises.",
+        "orderedTokens": [
+          "Los",
+          "guantes",
+          "son",
+          "grises"
+        ],
+        "authoredDistractorTokens": [
+          "gris"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-15:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит grises.",
+              "uk": "звучить grises."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-15:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — одна рукавичка сіра; назвіть предмет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-15:i09:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — одна рукавичка сіра; назвіть предмет",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-15:i09:audio",
+          "transcript": "El guante es gris."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "El guante es gris.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-15:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — кілька кепок сірі",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-15:i10:r1",
+          "text": "grises"
+        },
+        {
+          "responseId": "es:lesson-03:session-15:i10:r2",
+          "text": "gris"
+        },
+        {
+          "responseId": "es:lesson-03:session-15:i10:r3",
+          "text": "grisas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — кілька кепок сірі",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — несколько кепок серые",
+          "uk": "Вставте слово — кілька кепок сірі"
+        },
+        "gappedTargetPhrase": "Las gorras son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-15:i10:r1",
+            "text": "grises"
+          },
+          {
+            "responseId": "es:lesson-03:session-15:i10:r2",
+            "text": "gris"
+          },
+          {
+            "responseId": "es:lesson-03:session-15:i10:r3",
+            "text": "grisas"
+          }
+        ],
+        "testedDimension": "Вставте слово — кілька кепок сірі",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-15:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — кілька кепок сірі",
+            "feedbackByLocale": {
+              "ru": "Кепок несколько: grises.",
+              "uk": "Кепок кілька: grises."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-15:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — кілька кепок сірі",
+            "feedbackByLocale": {
+              "ru": "Для женского рода тоже нужна форма grises.",
+              "uk": "Для жіночого роду теж потрібна форма grises."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-15:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — рукавички сірі; назвіть предмети",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-15:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — рукавички сірі; назвіть предмети",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-15:i11:audio",
+          "transcript": "Los guantes son grises."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Los guantes son grises.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-15:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — кепка сіра; назвіть предмет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-15:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — кепка сіра; назвіть предмет",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-15:i12:audio",
+          "transcript": "La gorra es gris."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "La gorra es gris.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "2d6b5deede11583f46e5a75a0f5c0afd3a83ce98b0a5370d06695418455e381d"
+}

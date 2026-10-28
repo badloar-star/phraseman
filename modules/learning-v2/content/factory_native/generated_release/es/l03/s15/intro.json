@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-03:session-15",
+  "learningOutcomeByLocale": {
+    "ru": "использовать gris и grises, сохраняя одну форму для обоих родов.",
+    "uk": "використовувати gris і grises, зберігаючи одну форму для обох родів."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-03:session-15:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Нашлась одна перчатка",
+        "uk": "Знайшлася одна рукавичка"
+      },
+      "bodyByLocale": {
+        "ru": "Вы нашли одну серую перчатку. `Gris` — «серый, серая». Скажите `El guante es gris` — «Перчатка серая». Соберите `el guante` + `es` + `gris`. Испанское guante мужского рода, но gris не требует окончания -o.",
+        "uk": "Ви знайшли одну сіру рукавичку. `Gris` — «сірий, сіра». Скажіть `El guante es gris` — «Рукавичка сіра». Складіть `el guante` + `es` + `gris`. Іспанське guante чоловічого роду, але gris не потребує закінчення -o."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-15:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите, что одна перчатка серая.",
+          "uk": "Скажіть, що одна рукавичка сіра."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-15:intro1:r1",
+              "text": "El guante es gris."
+            },
+            {
+              "responseId": "es:lesson-03:session-15:intro1:r2",
+              "text": "El guante es griso."
+            },
+            {
+              "responseId": "es:lesson-03:session-15:intro1:r3",
+              "text": "El guante es grises."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-15:intro1:r1",
+              "text": "El guante es gris."
+            },
+            {
+              "responseId": "es:lesson-03:session-15:intro1:r2",
+              "text": "El guante es griso."
+            },
+            {
+              "responseId": "es:lesson-03:session-15:intro1:r3",
+              "text": "El guante es grises."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что одна перчатка серая.",
+          "uk": "Скажіть, що одна рукавичка сіра."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-03:session-15:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Обе перчатки",
+        "uk": "Обидві рукавички"
+      },
+      "bodyByLocale": {
+        "ru": "Нашлась вторая перчатка: теперь перед вами серые перчатки. Скажите `Los guantes son grises` — «Перчатки серые». Соберите `los guantes` + `son` + `grises`. В слове gris один слог и конечная согласная s; для множественного числа добавьте -es: gris → grises.",
+        "uk": "Знайшлася друга рукавичка: тепер перед вами сірі рукавички. Скажіть `Los guantes son grises` — «Рукавички сірі». Складіть `los guantes` + `son` + `grises`. У слові gris один склад і кінцева приголосна s; для множини додайте -es: gris → grises."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-15:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите, что перчатки серые.",
+          "uk": "Скажіть, що рукавички сірі."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-15:intro2:r1",
+              "text": "Los guantes son grises."
+            },
+            {
+              "responseId": "es:lesson-03:session-15:intro2:r2",
+              "text": "Los guantes son gris."
+            },
+            {
+              "responseId": "es:lesson-03:session-15:intro2:r3",
+              "text": "Los guantes es grises."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-15:intro2:r1",
+              "text": "Los guantes son grises."
+            },
+            {
+              "responseId": "es:lesson-03:session-15:intro2:r2",
+              "text": "Los guantes son gris."
+            },
+            {
+              "responseId": "es:lesson-03:session-15:intro2:r3",
+              "text": "Los guantes es grises."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что перчатки серые.",
+          "uk": "Скажіть, що рукавички сірі."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-03:session-15:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Серая кепка",
+        "uk": "Сіра кепка"
+      },
+      "bodyByLocale": {
+        "ru": "К перчаткам нашли серую кепку. Скажите `La gorra es gris` — «Кепка серая». Соберите `la gorra` + `es` + `gris`. Gorra женского рода, но gris остаётся тем же, что с guante. Окончание -a добавлять не нужно.",
+        "uk": "До рукавичок знайшли сіру кепку. Скажіть `La gorra es gris` — «Кепка сіра». Складіть `la gorra` + `es` + `gris`. Gorra жіночого роду, але gris залишається таким самим, що й із guante. Закінчення -a додавати не потрібно."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-15:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите, что кепка серая.",
+          "uk": "Скажіть, що кепка сіра."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-15:intro3:r1",
+              "text": "La gorra es gris."
+            },
+            {
+              "responseId": "es:lesson-03:session-15:intro3:r2",
+              "text": "La gorra es grisa."
+            },
+            {
+              "responseId": "es:lesson-03:session-15:intro3:r3",
+              "text": "La gorra son gris."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-15:intro3:r1",
+              "text": "La gorra es gris."
+            },
+            {
+              "responseId": "es:lesson-03:session-15:intro3:r2",
+              "text": "La gorra es grisa."
+            },
+            {
+              "responseId": "es:lesson-03:session-15:intro3:r3",
+              "text": "La gorra son gris."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что кепка серая.",
+          "uk": "Скажіть, що кепка сіра."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "33fb27894a76f4f8496fe47727e03ac1f1acde896ba3543fd6c523edf325e14b"
+}

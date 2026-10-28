@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-03:session-12",
+  "learningOutcomeByLocale": {
+    "ru": "описать жёлтый цвет и согласовать его с названием вещи.",
+    "uk": "описати жовтий колір і узгодити його з назвою речі."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-03:session-12:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Коробка для подарка",
+        "uk": "Коробка для подарунка"
+      },
+      "bodyByLocale": {
+        "ru": "Вы выбрали жёлтую коробку. `Amarillo` — «жёлтый», для женского рода — amarilla. Скажите `La caja es amarilla` — «Коробка жёлтая». Соберите `la caja` + `es` + `amarilla`. Caja женского рода: окончание -a.",
+        "uk": "Ви вибрали жовту коробку. `Amarillo` — «жовтий», для жіночого роду — amarilla. Скажіть `La caja es amarilla` — «Коробка жовта». Складіть `la caja` + `es` + `amarilla`. Caja жіночого роду: закінчення -a."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-12:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите, что коробка жёлтая.",
+          "uk": "Скажіть, що коробка жовта."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-12:intro1:r1",
+              "text": "La caja es amarilla."
+            },
+            {
+              "responseId": "es:lesson-03:session-12:intro1:r2",
+              "text": "La caja es amarillo."
+            },
+            {
+              "responseId": "es:lesson-03:session-12:intro1:r3",
+              "text": "La caja es amarillas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-12:intro1:r1",
+              "text": "La caja es amarilla."
+            },
+            {
+              "responseId": "es:lesson-03:session-12:intro1:r2",
+              "text": "La caja es amarillo."
+            },
+            {
+              "responseId": "es:lesson-03:session-12:intro1:r3",
+              "text": "La caja es amarillas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что коробка жёлтая.",
+          "uk": "Скажіть, що коробка жовта."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-03:session-12:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Конверт того же цвета",
+        "uk": "Конверт того самого кольору"
+      },
+      "bodyByLocale": {
+        "ru": "Рядом положили жёлтый конверт. Скажите `El sobre es amarillo` — «Конверт жёлтый». Соберите `el sobre` + `es` + `amarillo`. Знакомое sobre мужского рода, хотя заканчивается на -e. Поэтому выбирайте amarillo с -o.",
+        "uk": "Поруч поклали жовтий конверт. Скажіть `El sobre es amarillo` — «Конверт жовтий». Складіть `el sobre` + `es` + `amarillo`. Знайоме sobre чоловічого роду, хоча закінчується на -e. Тому вибирайте amarillo з -o."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-12:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите, что конверт жёлтый.",
+          "uk": "Скажіть, що конверт жовтий."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-12:intro2:r1",
+              "text": "El sobre es amarillo."
+            },
+            {
+              "responseId": "es:lesson-03:session-12:intro2:r2",
+              "text": "El sobre es amarilla."
+            },
+            {
+              "responseId": "es:lesson-03:session-12:intro2:r3",
+              "text": "La sobre es amarilla."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-12:intro2:r1",
+              "text": "El sobre es amarillo."
+            },
+            {
+              "responseId": "es:lesson-03:session-12:intro2:r2",
+              "text": "El sobre es amarilla."
+            },
+            {
+              "responseId": "es:lesson-03:session-12:intro2:r3",
+              "text": "La sobre es amarilla."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что конверт жёлтый.",
+          "uk": "Скажіть, що конверт жовтий."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-03:session-12:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Уточняете выбор",
+        "uk": "Уточнюєте вибір"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает, белую ли коробку вы выбрали. Ответьте о коробке: `La caja no es blanca` — «Коробка не белая». Соберите `la caja` + `no es` + `blanca`. No отрицает белый цвет. Как и amarilla, знакомое blanca согласуется с женским caja.",
+        "uk": "Друг запитує, чи білу коробку ви вибрали. Дайте відповідь про коробку: `La caja no es blanca` — «Коробка не біла». Складіть `la caja` + `no es` + `blanca`. No заперечує білий колір. Як і amarilla, знайоме blanca узгоджується з жіночим caja."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-12:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите, что коробка не белая.",
+          "uk": "Скажіть, що коробка не біла."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-12:intro3:r1",
+              "text": "La caja no es blanca."
+            },
+            {
+              "responseId": "es:lesson-03:session-12:intro3:r2",
+              "text": "La caja es blanca."
+            },
+            {
+              "responseId": "es:lesson-03:session-12:intro3:r3",
+              "text": "La caja no es blanco."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-12:intro3:r1",
+              "text": "La caja no es blanca."
+            },
+            {
+              "responseId": "es:lesson-03:session-12:intro3:r2",
+              "text": "La caja es blanca."
+            },
+            {
+              "responseId": "es:lesson-03:session-12:intro3:r3",
+              "text": "La caja no es blanco."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что коробка не белая.",
+          "uk": "Скажіть, що коробка не біла."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "1cdb2f4d2494bfc74b97dfaeff7cead5fdd106115177582ecc7f98d0d82f9f81"
+}

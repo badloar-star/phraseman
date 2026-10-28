@@ -868,4 +868,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"описать красный цвет одной и нескольких вещей.","uk":"описати червоний колір однієї та кількох речей."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 12,
+    sourceFingerprint: "32b607623900a48332bfc390c35da063e8a28975a9c14aa4338d63e6aa3ec381",
+    newWordCount: 1,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"описать жёлтый цвет и согласовать его с названием вещи.","uk":"описати жовтий колір і узгодити його з назвою речі."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 13,
+    sourceFingerprint: "304e32a7aa42f94bf7bc1d1f324cec4f18afe9dd887d4ffc5c03a45d5a950b91",
+    newWordCount: 1,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"описать зелёный цвет без изменения окончания по роду.","uk":"описати зелений колір без зміни закінчення за родом."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 14,
+    sourceFingerprint: "9ad27aef263059e9011a4f1c4724b2d07e7c78aa56a514cf654db68bf15a660e",
+    newWordCount: 1,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"использовать azul для обоих родов и azules для нескольких вещей.","uk":"використовувати azul для обох родів та azules для кількох речей."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 15,
+    sourceFingerprint: "501a18373855172e7e4fcc8fb51c5e8bbcc27bdcbada038e162f577820e337ab",
+    newWordCount: 1,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"использовать gris и grises, сохраняя одну форму для обоих родов.","uk":"використовувати gris і grises, зберігаючи одну форму для обох родів."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+  }),
 ]);

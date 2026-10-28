@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-03:session-13",
+  "entries": [
+    {
+      "interactionId": "es:lesson-03:session-13:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-13:intro1:r2": {
+          "ru": "Не меняйте -e на -a: verde.",
+          "uk": "Не змінюйте -e на -a: verde."
+        },
+        "es:lesson-03:session-13:intro1:r3": {
+          "ru": "Рубашка одна: es.",
+          "uk": "Сорочка одна: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-13:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-13:intro2:r2": {
+          "ru": "Не меняйте -e на -o: verde.",
+          "uk": "Не змінюйте -e на -o: verde."
+        },
+        "es:lesson-03:session-13:intro2:r3": {
+          "ru": "Abrigo мужского рода: el.",
+          "uk": "Abrigo чоловічого роду: el."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-13:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-13:intro3:r2": {
+          "ru": "Для нескольких шарфов нужна форма verdes.",
+          "uk": "Для кількох шарфів потрібна форма verdes."
+        },
+        "es:lesson-03:session-13:intro3:r3": {
+          "ru": "Женский род не меняет -e: verdes.",
+          "uk": "Жіночий рід не змінює -e: verdes."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "10061883b0db8cff6c4d059fab69ecdfdd11ade773c49781b17ffe16996ea9fb"
+}

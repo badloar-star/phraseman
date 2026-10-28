@@ -1,0 +1,693 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-03:session-12",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-03:session-12:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — amarillo",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-12:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — amarillo",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-12:i01:audio",
+          "transcript": "amarillo"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-12:i01:r1",
+            "targetText": "amarillo",
+            "meaningByLocale": {
+              "ru": "жёлтый; amarilla — форма женского рода. 🔊 *amarillo*",
+              "uk": "жовтий; amarilla — форма жіночого роду. 🔊 *amarillo*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "amarillo",
+          "definitionByLocale": {
+            "ru": "жёлтый; amarilla — форма женского рода. 🔊 *amarillo*",
+            "uk": "жовтий; amarilla — форма жіночого роду. 🔊 *amarillo*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-12:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-12:i02:r1",
+          "text": "amarilla"
+        },
+        {
+          "responseId": "es:lesson-03:session-12:i02:r2",
+          "text": "amarillo"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-12:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-12:i02:audio",
+          "transcript": "amarilla"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-12:i02:r1",
+            "targetText": "amarilla",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-03:session-12:i02:r2",
+            "targetText": "amarillo",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-12:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В конце слышно -a: amarilla.",
+              "uk": "Наприкінці чути -a: amarilla."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-12:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — коробка жёлтая",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-12:i03:r1",
+          "text": "Плитки: amarilla"
+        },
+        {
+          "responseId": "es:lesson-03:session-12:i03:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-12:i03:r3",
+          "text": "caja"
+        },
+        {
+          "responseId": "es:lesson-03:session-12:i03:r4",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-03:session-12:i03:r5",
+          "text": "amarillo."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — коробка жёлтая",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "La caja es amarilla.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — коробка жёлтая",
+          "uk": "Зберіть фразу — коробка жовта"
+        },
+        "orderedTokens": [
+          "La",
+          "caja",
+          "es",
+          "amarilla"
+        ],
+        "authoredDistractorTokens": [
+          "amarillo"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-12:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — коробка жёлтая",
+            "feedbackByLocale": {
+              "ru": "caja женского рода.",
+              "uk": "caja жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-12:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — конверт жёлтый",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-12:i04:r1",
+          "text": "amarillo"
+        },
+        {
+          "responseId": "es:lesson-03:session-12:i04:r2",
+          "text": "amarilla"
+        },
+        {
+          "responseId": "es:lesson-03:session-12:i04:r3",
+          "text": "amarillos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — конверт жёлтый",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — конверт жёлтый",
+          "uk": "Вставте слово — конверт жовтий"
+        },
+        "gappedTargetPhrase": "El sobre es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-12:i04:r1",
+            "text": "amarillo"
+          },
+          {
+            "responseId": "es:lesson-03:session-12:i04:r2",
+            "text": "amarilla"
+          },
+          {
+            "responseId": "es:lesson-03:session-12:i04:r3",
+            "text": "amarillos"
+          }
+        ],
+        "testedDimension": "Вставьте слово — конверт жёлтый",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-12:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — конверт жёлтый",
+            "feedbackByLocale": {
+              "ru": "Sobre мужского рода: amarillo.",
+              "uk": "Sobre чоловічого роду: amarillo."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-12:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — конверт жёлтый",
+            "feedbackByLocale": {
+              "ru": "Конверт один: amarillo.",
+              "uk": "Конверт один: amarillo."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-12:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — конверт жёлтый",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-12:i05:r1",
+          "text": "Плитки: amarillo"
+        },
+        {
+          "responseId": "es:lesson-03:session-12:i05:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-12:i05:r3",
+          "text": "sobre"
+        },
+        {
+          "responseId": "es:lesson-03:session-12:i05:r4",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-03:session-12:i05:r5",
+          "text": "la."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — конверт жёлтый",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "El sobre es amarillo.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — конверт жёлтый",
+          "uk": "Зберіть фразу — конверт жовтий"
+        },
+        "orderedTokens": [
+          "El",
+          "sobre",
+          "es",
+          "amarillo"
+        ],
+        "authoredDistractorTokens": [
+          "la"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-12:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — конверт жёлтый",
+            "feedbackByLocale": {
+              "ru": "sobre мужского рода.",
+              "uk": "sobre чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-12:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — коробка не белая",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-12:i06:r1",
+          "text": "blanca"
+        },
+        {
+          "responseId": "es:lesson-03:session-12:i06:r2",
+          "text": "blanco"
+        },
+        {
+          "responseId": "es:lesson-03:session-12:i06:r3",
+          "text": "blancas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — коробка не белая",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — коробка не белая",
+          "uk": "Вставте слово — коробка не біла"
+        },
+        "gappedTargetPhrase": "La caja no es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-12:i06:r1",
+            "text": "blanca"
+          },
+          {
+            "responseId": "es:lesson-03:session-12:i06:r2",
+            "text": "blanco"
+          },
+          {
+            "responseId": "es:lesson-03:session-12:i06:r3",
+            "text": "blancas"
+          }
+        ],
+        "testedDimension": "Вставьте слово — коробка не белая",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-12:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — коробка не белая",
+            "feedbackByLocale": {
+              "ru": "Caja женского рода: blanca.",
+              "uk": "Caja жіночого роду: blanca."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-12:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — коробка не белая",
+            "feedbackByLocale": {
+              "ru": "Коробка одна: blanca.",
+              "uk": "Коробка одна: blanca."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-12:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — коробка не белая",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-12:i07:r1",
+          "text": "Плитки: blanca"
+        },
+        {
+          "responseId": "es:lesson-03:session-12:i07:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-12:i07:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-03:session-12:i07:r4",
+          "text": "caja"
+        },
+        {
+          "responseId": "es:lesson-03:session-12:i07:r5",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-03:session-12:i07:r6",
+          "text": "blanco."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — коробка не белая",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "La caja no es blanca.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — коробка не белая",
+          "uk": "Зберіть фразу — коробка не біла"
+        },
+        "orderedTokens": [
+          "La",
+          "caja",
+          "no",
+          "es",
+          "blanca"
+        ],
+        "authoredDistractorTokens": [
+          "blanco"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-12:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — коробка не белая",
+            "feedbackByLocale": {
+              "ru": "caja женского рода.",
+              "uk": "caja жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-12:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-12:i08:r1",
+          "text": "Плитки: amarillo"
+        },
+        {
+          "responseId": "es:lesson-03:session-12:i08:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-12:i08:r3",
+          "text": "sobre"
+        },
+        {
+          "responseId": "es:lesson-03:session-12:i08:r4",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-03:session-12:i08:r5",
+          "text": "amarilla."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-12:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-12:i08:audio",
+          "transcript": "El sobre es amarillo."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "El sobre es amarillo.",
+        "orderedTokens": [
+          "El",
+          "sobre",
+          "es",
+          "amarillo"
+        ],
+        "authoredDistractorTokens": [
+          "amarilla"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-12:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит amarillo.",
+              "uk": "звучить amarillo."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-12:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — коробка жёлтая; назовите предмет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-12:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — коробка жёлтая; назовите предмет",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-12:i09:audio",
+          "transcript": "La caja es amarilla."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "La caja es amarilla.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-12:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — несколько коробок жёлтые",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-12:i10:r1",
+          "text": "amarillas"
+        },
+        {
+          "responseId": "es:lesson-03:session-12:i10:r2",
+          "text": "amarillos"
+        },
+        {
+          "responseId": "es:lesson-03:session-12:i10:r3",
+          "text": "amarilla"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — несколько коробок жёлтые",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — несколько коробок жёлтые",
+          "uk": "Вставте слово — кілька коробок жовті"
+        },
+        "gappedTargetPhrase": "Las cajas son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-12:i10:r1",
+            "text": "amarillas"
+          },
+          {
+            "responseId": "es:lesson-03:session-12:i10:r2",
+            "text": "amarillos"
+          },
+          {
+            "responseId": "es:lesson-03:session-12:i10:r3",
+            "text": "amarilla"
+          }
+        ],
+        "testedDimension": "Вставьте слово — несколько коробок жёлтые",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-12:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — несколько коробок жёлтые",
+            "feedbackByLocale": {
+              "ru": "Cajas женского рода: amarillas.",
+              "uk": "Cajas жіночого роду: amarillas."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-12:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — несколько коробок жёлтые",
+            "feedbackByLocale": {
+              "ru": "Коробок несколько: amarillas.",
+              "uk": "Коробок кілька: amarillas."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-12:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — конверт жёлтый; назовите предмет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-12:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — конверт жёлтый; назовите предмет",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-12:i11:audio",
+          "transcript": "El sobre es amarillo."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "El sobre es amarillo.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-12:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — коробка не белая; назовите предмет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-12:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — коробка не белая; назовите предмет",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-12:i12:audio",
+          "transcript": "La caja no es blanca."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "La caja no es blanca.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "0ac44b22c42e18cc232b0cd1943729639b816902570d3b996d727ac355db3867"
+}

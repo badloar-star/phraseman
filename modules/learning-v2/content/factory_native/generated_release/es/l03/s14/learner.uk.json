@@ -1,0 +1,688 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-03:session-14",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-03:session-14:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — azul",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-14:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — azul",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-14:i01:audio",
+          "transcript": "azul"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-14:i01:r1",
+            "targetText": "azul",
+            "meaningByLocale": {
+              "ru": "синий, синяя, синее; azules — форма множественного числа. 🔊 *azul*",
+              "uk": "синій, синя, синє; azules — форма множини. 🔊 *azul*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "azul",
+          "definitionByLocale": {
+            "ru": "синий, синяя, синее; azules — форма множественного числа. 🔊 *azul*",
+            "uk": "синій, синя, синє; azules — форма множини. 🔊 *azul*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-14:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-14:i02:r1",
+          "text": "azul"
+        },
+        {
+          "responseId": "es:lesson-03:session-14:i02:r2",
+          "text": "azules"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-14:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-14:i02:audio",
+          "transcript": "azul"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-14:i02:r1",
+            "targetText": "azul",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-03:session-14:i02:r2",
+            "targetText": "azules",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-14:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи нет окончания -es: azul.",
+              "uk": "У записі немає закінчення -es: azul."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-14:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — рушник синій",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-14:i03:r1",
+          "text": "Плитки: azul"
+        },
+        {
+          "responseId": "es:lesson-03:session-14:i03:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-14:i03:r3",
+          "text": "toalla"
+        },
+        {
+          "responseId": "es:lesson-03:session-14:i03:r4",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-03:session-14:i03:r5",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — рушник синій",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "La toalla es azul.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — полотенце синее",
+          "uk": "Зберіть фразу — рушник синій"
+        },
+        "orderedTokens": [
+          "La",
+          "toalla",
+          "es",
+          "azul"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-14:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — рушник синій",
+            "feedbackByLocale": {
+              "ru": "toalla женского рода.",
+              "uk": "toalla жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-14:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — кілька рушників сині",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-14:i04:r1",
+          "text": "azules"
+        },
+        {
+          "responseId": "es:lesson-03:session-14:i04:r2",
+          "text": "azul"
+        },
+        {
+          "responseId": "es:lesson-03:session-14:i04:r3",
+          "text": "azulas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — кілька рушників сині",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — несколько полотенец синие",
+          "uk": "Вставте слово — кілька рушників сині"
+        },
+        "gappedTargetPhrase": "Las toallas son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-14:i04:r1",
+            "text": "azules"
+          },
+          {
+            "responseId": "es:lesson-03:session-14:i04:r2",
+            "text": "azul"
+          },
+          {
+            "responseId": "es:lesson-03:session-14:i04:r3",
+            "text": "azulas"
+          }
+        ],
+        "testedDimension": "Вставте слово — кілька рушників сині",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-14:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — кілька рушників сині",
+            "feedbackByLocale": {
+              "ru": "Полотенец несколько: azules.",
+              "uk": "Рушників кілька: azules."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-14:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — кілька рушників сині",
+            "feedbackByLocale": {
+              "ru": "Добавьте -es к azul: azules.",
+              "uk": "Додайте -es до azul: azules."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-14:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — рушники сині",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-14:i05:r1",
+          "text": "Плитки: azules"
+        },
+        {
+          "responseId": "es:lesson-03:session-14:i05:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-14:i05:r3",
+          "text": "toallas"
+        },
+        {
+          "responseId": "es:lesson-03:session-14:i05:r4",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-03:session-14:i05:r5",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — рушники сині",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Las toallas son azules.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — полотенца синие",
+          "uk": "Зберіть фразу — рушники сині"
+        },
+        "orderedTokens": [
+          "Las",
+          "toallas",
+          "son",
+          "azules"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-14:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — рушники сині",
+            "feedbackByLocale": {
+              "ru": "полотенец несколько.",
+              "uk": "рушників кілька."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-14:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — одна щітка синя",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-14:i06:r1",
+          "text": "azul"
+        },
+        {
+          "responseId": "es:lesson-03:session-14:i06:r2",
+          "text": "azulo"
+        },
+        {
+          "responseId": "es:lesson-03:session-14:i06:r3",
+          "text": "azules"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — одна щітка синя",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — одна щётка синяя",
+          "uk": "Вставте слово — одна щітка синя"
+        },
+        "gappedTargetPhrase": "El cepillo es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-14:i06:r1",
+            "text": "azul"
+          },
+          {
+            "responseId": "es:lesson-03:session-14:i06:r2",
+            "text": "azulo"
+          },
+          {
+            "responseId": "es:lesson-03:session-14:i06:r3",
+            "text": "azules"
+          }
+        ],
+        "testedDimension": "Вставте слово — одна щітка синя",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-14:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — одна щітка синя",
+            "feedbackByLocale": {
+              "ru": "Для мужского рода тоже нужно azul.",
+              "uk": "Для чоловічого роду теж потрібно azul."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-14:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — одна щітка синя",
+            "feedbackByLocale": {
+              "ru": "Щётка одна: azul.",
+              "uk": "Щітка одна: azul."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-14:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — щітка синя",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-14:i07:r1",
+          "text": "Плитки: azul"
+        },
+        {
+          "responseId": "es:lesson-03:session-14:i07:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-14:i07:r3",
+          "text": "cepillo"
+        },
+        {
+          "responseId": "es:lesson-03:session-14:i07:r4",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-03:session-14:i07:r5",
+          "text": "la."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — щітка синя",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "El cepillo es azul.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — щётка синяя",
+          "uk": "Зберіть фразу — щітка синя"
+        },
+        "orderedTokens": [
+          "El",
+          "cepillo",
+          "es",
+          "azul"
+        ],
+        "authoredDistractorTokens": [
+          "la"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-14:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — щітка синя",
+            "feedbackByLocale": {
+              "ru": "cepillo мужского рода.",
+              "uk": "cepillo чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-14:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-14:i08:r1",
+          "text": "Плитки: azules"
+        },
+        {
+          "responseId": "es:lesson-03:session-14:i08:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-14:i08:r3",
+          "text": "toallas"
+        },
+        {
+          "responseId": "es:lesson-03:session-14:i08:r4",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-03:session-14:i08:r5",
+          "text": "azul."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-14:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-14:i08:audio",
+          "transcript": "Las toallas son azules."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Las toallas son azules.",
+        "orderedTokens": [
+          "Las",
+          "toallas",
+          "son",
+          "azules"
+        ],
+        "authoredDistractorTokens": [
+          "azul"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-14:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит azules.",
+              "uk": "звучить azules."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-14:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — рушник синій; назвіть предмет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-14:i09:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — рушник синій; назвіть предмет",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-14:i09:audio",
+          "transcript": "La toalla es azul."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "La toalla es azul.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-14:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — кілька щіток сині",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-14:i10:r1",
+          "text": "azules"
+        },
+        {
+          "responseId": "es:lesson-03:session-14:i10:r2",
+          "text": "azul"
+        },
+        {
+          "responseId": "es:lesson-03:session-14:i10:r3",
+          "text": "azulos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — кілька щіток сині",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — несколько щёток синие",
+          "uk": "Вставте слово — кілька щіток сині"
+        },
+        "gappedTargetPhrase": "Los cepillos son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-14:i10:r1",
+            "text": "azules"
+          },
+          {
+            "responseId": "es:lesson-03:session-14:i10:r2",
+            "text": "azul"
+          },
+          {
+            "responseId": "es:lesson-03:session-14:i10:r3",
+            "text": "azulos"
+          }
+        ],
+        "testedDimension": "Вставте слово — кілька щіток сині",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-14:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — кілька щіток сині",
+            "feedbackByLocale": {
+              "ru": "Щёток несколько: azules.",
+              "uk": "Щіток кілька: azules."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-14:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — кілька щіток сині",
+            "feedbackByLocale": {
+              "ru": "Для мужского рода тоже нужно azules.",
+              "uk": "Для чоловічого роду теж потрібно azules."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-14:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — рушники сині; назвіть предмети",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-14:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — рушники сині; назвіть предмети",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-14:i11:audio",
+          "transcript": "Las toallas son azules."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Las toallas son azules.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-14:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — щітка синя; назвіть предмет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-14:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — щітка синя; назвіть предмет",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-14:i12:audio",
+          "transcript": "El cepillo es azul."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "El cepillo es azul.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "54b274901c9ecb00733207c20b8b8917bf1945c5aa928db2370d61abf6865464"
+}

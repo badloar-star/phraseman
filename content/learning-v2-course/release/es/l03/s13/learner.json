@@ -1,0 +1,688 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-03:session-13",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-03:session-13:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — verde",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-13:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — verde",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-13:i01:audio",
+          "transcript": "verde"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-13:i01:r1",
+            "targetText": "verde",
+            "meaningByLocale": {
+              "ru": "зелёный, зелёная. Одинаковая форма для двух родов. 🔊 *verde*",
+              "uk": "зелений, зелена. Однакова форма для двох родів. 🔊 *verde*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "verde",
+          "definitionByLocale": {
+            "ru": "зелёный, зелёная. Одинаковая форма для двух родов. 🔊 *verde*",
+            "uk": "зелений, зелена. Однакова форма для двох родів. 🔊 *verde*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-13:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-13:i02:r1",
+          "text": "verde"
+        },
+        {
+          "responseId": "es:lesson-03:session-13:i02:r2",
+          "text": "grande"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-13:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-13:i02:audio",
+          "transcript": "verde"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-13:i02:r1",
+            "targetText": "verde",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-03:session-13:i02:r2",
+            "targetText": "grande",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-13:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит verde — зелёный, зелёная.",
+              "uk": "Звучить verde — зелений, зелена."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-13:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — рубашка зелёная",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-13:i03:r1",
+          "text": "Плитки: verde"
+        },
+        {
+          "responseId": "es:lesson-03:session-13:i03:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-13:i03:r3",
+          "text": "camisa"
+        },
+        {
+          "responseId": "es:lesson-03:session-13:i03:r4",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-03:session-13:i03:r5",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — рубашка зелёная",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "La camisa es verde.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — рубашка зелёная",
+          "uk": "Зберіть фразу — сорочка зелена"
+        },
+        "orderedTokens": [
+          "La",
+          "camisa",
+          "es",
+          "verde"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-13:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — рубашка зелёная",
+            "feedbackByLocale": {
+              "ru": "camisa женского рода.",
+              "uk": "camisa жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-13:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — пальто зелёное",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-13:i04:r1",
+          "text": "verde"
+        },
+        {
+          "responseId": "es:lesson-03:session-13:i04:r2",
+          "text": "verdo"
+        },
+        {
+          "responseId": "es:lesson-03:session-13:i04:r3",
+          "text": "verdes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — пальто зелёное",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — пальто зелёное",
+          "uk": "Вставте слово — пальто зелене"
+        },
+        "gappedTargetPhrase": "El abrigo es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-13:i04:r1",
+            "text": "verde"
+          },
+          {
+            "responseId": "es:lesson-03:session-13:i04:r2",
+            "text": "verdo"
+          },
+          {
+            "responseId": "es:lesson-03:session-13:i04:r3",
+            "text": "verdes"
+          }
+        ],
+        "testedDimension": "Вставьте слово — пальто зелёное",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-13:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — пальто зелёное",
+            "feedbackByLocale": {
+              "ru": "Форма verde не меняется по роду.",
+              "uk": "Форма verde не змінюється за родом."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-13:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — пальто зелёное",
+            "feedbackByLocale": {
+              "ru": "Пальто одно: verde.",
+              "uk": "Пальто одне: verde."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-13:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — пальто зелёное",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-13:i05:r1",
+          "text": "Плитки: verde"
+        },
+        {
+          "responseId": "es:lesson-03:session-13:i05:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-13:i05:r3",
+          "text": "abrigo"
+        },
+        {
+          "responseId": "es:lesson-03:session-13:i05:r4",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-03:session-13:i05:r5",
+          "text": "la."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — пальто зелёное",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "El abrigo es verde.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — пальто зелёное",
+          "uk": "Зберіть фразу — пальто зелене"
+        },
+        "orderedTokens": [
+          "El",
+          "abrigo",
+          "es",
+          "verde"
+        ],
+        "authoredDistractorTokens": [
+          "la"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-13:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — пальто зелёное",
+            "feedbackByLocale": {
+              "ru": "abrigo мужского рода.",
+              "uk": "abrigo чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-13:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — шарфы зелёные",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-13:i06:r1",
+          "text": "verdes"
+        },
+        {
+          "responseId": "es:lesson-03:session-13:i06:r2",
+          "text": "verde"
+        },
+        {
+          "responseId": "es:lesson-03:session-13:i06:r3",
+          "text": "verdas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — шарфы зелёные",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — шарфы зелёные",
+          "uk": "Вставте слово — шарфи зелені"
+        },
+        "gappedTargetPhrase": "Las bufandas son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-13:i06:r1",
+            "text": "verdes"
+          },
+          {
+            "responseId": "es:lesson-03:session-13:i06:r2",
+            "text": "verde"
+          },
+          {
+            "responseId": "es:lesson-03:session-13:i06:r3",
+            "text": "verdas"
+          }
+        ],
+        "testedDimension": "Вставьте слово — шарфы зелёные",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-13:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — шарфы зелёные",
+            "feedbackByLocale": {
+              "ru": "Шарфов несколько: verdes.",
+              "uk": "Шарфів кілька: verdes."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-13:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — шарфы зелёные",
+            "feedbackByLocale": {
+              "ru": "Для женского рода тоже нужна форма verdes.",
+              "uk": "Для жіночого роду теж потрібна форма verdes."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-13:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — шарфы зелёные",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-13:i07:r1",
+          "text": "Плитки: verdes"
+        },
+        {
+          "responseId": "es:lesson-03:session-13:i07:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-13:i07:r3",
+          "text": "bufandas"
+        },
+        {
+          "responseId": "es:lesson-03:session-13:i07:r4",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-03:session-13:i07:r5",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — шарфы зелёные",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Las bufandas son verdes.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — шарфы зелёные",
+          "uk": "Зберіть фразу — шарфи зелені"
+        },
+        "orderedTokens": [
+          "Las",
+          "bufandas",
+          "son",
+          "verdes"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-13:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — шарфы зелёные",
+            "feedbackByLocale": {
+              "ru": "шарфов несколько.",
+              "uk": "шарфів кілька."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-13:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-13:i08:r1",
+          "text": "Плитки: verde"
+        },
+        {
+          "responseId": "es:lesson-03:session-13:i08:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-13:i08:r3",
+          "text": "camisa"
+        },
+        {
+          "responseId": "es:lesson-03:session-13:i08:r4",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-03:session-13:i08:r5",
+          "text": "blanca."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-13:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-13:i08:audio",
+          "transcript": "La camisa es verde."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "La camisa es verde.",
+        "orderedTokens": [
+          "La",
+          "camisa",
+          "es",
+          "verde"
+        ],
+        "authoredDistractorTokens": [
+          "blanca"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-13:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит verde.",
+              "uk": "звучить verde."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-13:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — рубашка зелёная; назовите предмет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-13:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — рубашка зелёная; назовите предмет",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-13:i09:audio",
+          "transcript": "La camisa es verde."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "La camisa es verde.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-13:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — несколько пальто зелёные",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-13:i10:r1",
+          "text": "verdes"
+        },
+        {
+          "responseId": "es:lesson-03:session-13:i10:r2",
+          "text": "verde"
+        },
+        {
+          "responseId": "es:lesson-03:session-13:i10:r3",
+          "text": "verdos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — несколько пальто зелёные",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — несколько пальто зелёные",
+          "uk": "Вставте слово — кілька пальт зелені"
+        },
+        "gappedTargetPhrase": "Los abrigos son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-13:i10:r1",
+            "text": "verdes"
+          },
+          {
+            "responseId": "es:lesson-03:session-13:i10:r2",
+            "text": "verde"
+          },
+          {
+            "responseId": "es:lesson-03:session-13:i10:r3",
+            "text": "verdos"
+          }
+        ],
+        "testedDimension": "Вставьте слово — несколько пальто зелёные",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-13:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — несколько пальто зелёные",
+            "feedbackByLocale": {
+              "ru": "Пальто несколько: verdes.",
+              "uk": "Пальт кілька: verdes."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-13:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — несколько пальто зелёные",
+            "feedbackByLocale": {
+              "ru": "Для мужского рода тоже нужно verdes.",
+              "uk": "Для чоловічого роду теж потрібно verdes."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-13:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — пальто зелёное; назовите предмет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-13:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — пальто зелёное; назовите предмет",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-13:i11:audio",
+          "transcript": "El abrigo es verde."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "El abrigo es verde.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-13:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — шарфы зелёные; назовите предметы",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-13:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — шарфы зелёные; назовите предметы",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-13:i12:audio",
+          "transcript": "Las bufandas son verdes."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Las bufandas son verdes.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "48d4a1aca3511ad73fae290550be703e13f4c95e373860fa9d9ce4003e275650"
+}

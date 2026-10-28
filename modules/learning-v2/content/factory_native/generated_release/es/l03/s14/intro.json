@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-03:session-14",
+  "learningOutcomeByLocale": {
+    "ru": "использовать azul для обоих родов и azules для нескольких вещей.",
+    "uk": "використовувати azul для обох родів та azules для кількох речей."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-03:session-14:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Одно полотенце",
+        "uk": "Один рушник"
+      },
+      "bodyByLocale": {
+        "ru": "Вы взяли синее полотенце. `Azul` — «синий, синяя, синее». Скажите `La toalla es azul` — «Полотенце синее». Соберите `la toalla` + `es` + `azul`. Слово azul не получает отдельного окончания для женского рода: с toalla оно остаётся azul.",
+        "uk": "Ви взяли синій рушник. `Azul` — «синій, синя, синє». Скажіть `La toalla es azul` — «Рушник синій». Складіть `la toalla` + `es` + `azul`. Слово azul не отримує окремого закінчення для жіночого роду: з toalla воно залишається azul."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-14:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите, что полотенце синее.",
+          "uk": "Скажіть, що рушник синій."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-14:intro1:r1",
+              "text": "La toalla es azul."
+            },
+            {
+              "responseId": "es:lesson-03:session-14:intro1:r2",
+              "text": "La toalla es azula."
+            },
+            {
+              "responseId": "es:lesson-03:session-14:intro1:r3",
+              "text": "La toalla son azul."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-14:intro1:r1",
+              "text": "La toalla es azul."
+            },
+            {
+              "responseId": "es:lesson-03:session-14:intro1:r2",
+              "text": "La toalla es azula."
+            },
+            {
+              "responseId": "es:lesson-03:session-14:intro1:r3",
+              "text": "La toalla son azul."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что полотенце синее.",
+          "uk": "Скажіть, що рушник синій."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-03:session-14:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Полотенца для всей семьи",
+        "uk": "Рушники для всієї родини"
+      },
+      "bodyByLocale": {
+        "ru": "Теперь выбрали несколько синих полотенец. Скажите `Las toallas son azules` — «Полотенца синие». Соберите `las toallas` + `son` + `azules`. Azul заканчивается на согласную l, поэтому для множественного числа добавляем -es: azul → azules.",
+        "uk": "Тепер вибрали кілька синіх рушників. Скажіть `Las toallas son azules` — «Рушники сині». Складіть `las toallas` + `son` + `azules`. Azul закінчується на приголосну l, тому для множини додаємо -es: azul → azules."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-14:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите, что полотенца синие.",
+          "uk": "Скажіть, що рушники сині."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-14:intro2:r1",
+              "text": "Las toallas son azules."
+            },
+            {
+              "responseId": "es:lesson-03:session-14:intro2:r2",
+              "text": "Las toallas son azul."
+            },
+            {
+              "responseId": "es:lesson-03:session-14:intro2:r3",
+              "text": "Las toallas son azulas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-14:intro2:r1",
+              "text": "Las toallas son azules."
+            },
+            {
+              "responseId": "es:lesson-03:session-14:intro2:r2",
+              "text": "Las toallas son azul."
+            },
+            {
+              "responseId": "es:lesson-03:session-14:intro2:r3",
+              "text": "Las toallas son azulas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что полотенца синие.",
+          "uk": "Скажіть, що рушники сині."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-03:session-14:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Щётка того же цвета",
+        "uk": "Щітка того самого кольору"
+      },
+      "bodyByLocale": {
+        "ru": "К полотенцам подбираете синюю щётку. Скажите `El cepillo es azul` — «Щётка синяя». Соберите `el cepillo` + `es` + `azul`. Испанское cepillo мужского рода, но azul остаётся таким же, как с женским toalla. Для одной вещи не добавляйте -es.",
+        "uk": "До рушників добираєте синю щітку. Скажіть `El cepillo es azul` — «Щітка синя». Складіть `el cepillo` + `es` + `azul`. Іспанське cepillo чоловічого роду, але azul залишається таким самим, як із жіночим toalla. Для однієї речі не додавайте -es."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-14:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите, что щётка синяя.",
+          "uk": "Скажіть, що щітка синя."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-14:intro3:r1",
+              "text": "El cepillo es azul."
+            },
+            {
+              "responseId": "es:lesson-03:session-14:intro3:r2",
+              "text": "El cepillo es azulo."
+            },
+            {
+              "responseId": "es:lesson-03:session-14:intro3:r3",
+              "text": "El cepillo es azules."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-14:intro3:r1",
+              "text": "El cepillo es azul."
+            },
+            {
+              "responseId": "es:lesson-03:session-14:intro3:r2",
+              "text": "El cepillo es azulo."
+            },
+            {
+              "responseId": "es:lesson-03:session-14:intro3:r3",
+              "text": "El cepillo es azules."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что щётка синяя.",
+          "uk": "Скажіть, що щітка синя."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ab78b3200d2777c6b0bd192eb3f54173c768b610e872c5d4298f7b7036619805"
+}

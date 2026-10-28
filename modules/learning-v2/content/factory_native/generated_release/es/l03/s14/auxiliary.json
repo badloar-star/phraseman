@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-03:session-14",
+  "entries": [
+    {
+      "interactionId": "es:lesson-03:session-14:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-14:intro1:r2": {
+          "ru": "Не добавляйте -a: azul.",
+          "uk": "Не додавайте -a: azul."
+        },
+        "es:lesson-03:session-14:intro1:r3": {
+          "ru": "Полотенце одно: es.",
+          "uk": "Рушник один: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-14:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-14:intro2:r2": {
+          "ru": "Нужна форма множественного числа azules.",
+          "uk": "Потрібна форма множини azules."
+        },
+        "es:lesson-03:session-14:intro2:r3": {
+          "ru": "Род не меняет основу: azules.",
+          "uk": "Рід не змінює основи: azules."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-14:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-14:intro3:r2": {
+          "ru": "Не добавляйте -o: azul.",
+          "uk": "Не додавайте -o: azul."
+        },
+        "es:lesson-03:session-14:intro3:r3": {
+          "ru": "Щётка одна: azul.",
+          "uk": "Щітка одна: azul."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "783ac9d9fd258efbd0e740205b6bcf6398138530c08f51cbb053b4c983114b4b"
+}

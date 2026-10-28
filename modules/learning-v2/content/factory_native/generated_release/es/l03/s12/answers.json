@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-03:session-12:i01",
+    "correctText": "amarillo",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-12:i02",
+    "correctText": "amarilla",
+    "correctResponseId": "es:lesson-03:session-12:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-12:i03",
+    "correctText": "La caja es amarilla.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-12:i04",
+    "correctText": "amarillo",
+    "correctResponseId": "es:lesson-03:session-12:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-12:i05",
+    "correctText": "El sobre es amarillo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-12:i06",
+    "correctText": "blanca",
+    "correctResponseId": "es:lesson-03:session-12:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-12:i07",
+    "correctText": "La caja no es blanca.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-12:i08",
+    "correctText": "El sobre es amarillo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-12:i09",
+    "correctText": "La caja es amarilla.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-12:i10",
+    "correctText": "amarillas",
+    "correctResponseId": "es:lesson-03:session-12:i10:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-12:i11",
+    "correctText": "El sobre es amarillo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-12:i12",
+    "correctText": "La caja no es blanca.",
+    "correctResponseId": null
+  }
+]

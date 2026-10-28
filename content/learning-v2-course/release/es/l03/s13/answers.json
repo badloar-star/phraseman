@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-03:session-13:i01",
+    "correctText": "verde",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-13:i02",
+    "correctText": "verde",
+    "correctResponseId": "es:lesson-03:session-13:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-13:i03",
+    "correctText": "La camisa es verde.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-13:i04",
+    "correctText": "verde",
+    "correctResponseId": "es:lesson-03:session-13:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-13:i05",
+    "correctText": "El abrigo es verde.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-13:i06",
+    "correctText": "verdes",
+    "correctResponseId": "es:lesson-03:session-13:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-13:i07",
+    "correctText": "Las bufandas son verdes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-13:i08",
+    "correctText": "La camisa es verde.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-13:i09",
+    "correctText": "La camisa es verde.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-13:i10",
+    "correctText": "verdes",
+    "correctResponseId": "es:lesson-03:session-13:i10:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-13:i11",
+    "correctText": "El abrigo es verde.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-13:i12",
+    "correctText": "Las bufandas son verdes.",
+    "correctResponseId": null
+  }
+]

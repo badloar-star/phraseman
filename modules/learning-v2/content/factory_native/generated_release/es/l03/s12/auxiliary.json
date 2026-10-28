@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-03:session-12",
+  "entries": [
+    {
+      "interactionId": "es:lesson-03:session-12:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-12:intro1:r2": {
+          "ru": "Для caja нужна форма amarilla.",
+          "uk": "Для caja потрібна форма amarilla."
+        },
+        "es:lesson-03:session-12:intro1:r3": {
+          "ru": "Коробка одна: amarilla.",
+          "uk": "Коробка одна: amarilla."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-12:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-12:intro2:r2": {
+          "ru": "Для sobre нужна форма amarillo.",
+          "uk": "Для sobre потрібна форма amarillo."
+        },
+        "es:lesson-03:session-12:intro2:r3": {
+          "ru": "Запомните el sobre и amarillo.",
+          "uk": "Запам'ятайте el sobre та amarillo."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-12:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-12:intro3:r2": {
+          "ru": "Это утверждение, а нужно отрицание.",
+          "uk": "Це ствердження, а потрібне заперечення."
+        },
+        "es:lesson-03:session-12:intro3:r3": {
+          "ru": "Для caja нужна форма blanca.",
+          "uk": "Для caja потрібна форма blanca."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ea18520019fb6c409e2534c3f186248e2eea21a23b5d0fb9e731e1cadc34efec"
+}

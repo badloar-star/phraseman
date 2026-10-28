@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-03:session-15",
+  "entries": [
+    {
+      "interactionId": "es:lesson-03:session-15:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-15:intro1:r2": {
+          "ru": "Не добавляйте -o: gris.",
+          "uk": "Не додавайте -o: gris."
+        },
+        "es:lesson-03:session-15:intro1:r3": {
+          "ru": "Перчатка одна: gris.",
+          "uk": "Рукавичка одна: gris."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-15:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-15:intro2:r2": {
+          "ru": "Нужна форма множественного числа grises.",
+          "uk": "Потрібна форма множини grises."
+        },
+        "es:lesson-03:session-15:intro2:r3": {
+          "ru": "Перчаток несколько: son.",
+          "uk": "Рукавичок кілька: son."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-15:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-15:intro3:r2": {
+          "ru": "Не добавляйте -a: gris.",
+          "uk": "Не додавайте -a: gris."
+        },
+        "es:lesson-03:session-15:intro3:r3": {
+          "ru": "Кепка одна: es.",
+          "uk": "Кепка одна: es."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "4a12506eb9f14060e1685b102c58196a27b1ff576c6c177a73e0eb4b0d580d14"
+}

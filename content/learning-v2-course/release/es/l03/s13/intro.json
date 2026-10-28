@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-03:session-13",
+  "learningOutcomeByLocale": {
+    "ru": "описать зелёный цвет без изменения окончания по роду.",
+    "uk": "описати зелений колір без зміни закінчення за родом."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-03:session-13:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Рубашка на вешалке",
+        "uk": "Сорочка на вішалці"
+      },
+      "bodyByLocale": {
+        "ru": "Вам понравилась зелёная рубашка. `Verde` означает «зелёный, зелёная». Скажите `La camisa es verde` — «Рубашка зелёная». Соберите `la camisa` + `es` + `verde`. У blanco женская форма blanca; у verde форма для обоих родов одинаковая.",
+        "uk": "Вам сподобалася зелена сорочка. `Verde` означає «зелений, зелена». Скажіть `La camisa es verde` — «Сорочка зелена». Складіть `la camisa` + `es` + `verde`. У blanco жіноча форма blanca; у verde форма для обох родів однакова."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-13:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите, что рубашка зелёная.",
+          "uk": "Скажіть, що сорочка зелена."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-13:intro1:r1",
+              "text": "La camisa es verde."
+            },
+            {
+              "responseId": "es:lesson-03:session-13:intro1:r2",
+              "text": "La camisa es verda."
+            },
+            {
+              "responseId": "es:lesson-03:session-13:intro1:r3",
+              "text": "La camisa son verde."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-13:intro1:r1",
+              "text": "La camisa es verde."
+            },
+            {
+              "responseId": "es:lesson-03:session-13:intro1:r2",
+              "text": "La camisa es verda."
+            },
+            {
+              "responseId": "es:lesson-03:session-13:intro1:r3",
+              "text": "La camisa son verde."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что рубашка зелёная.",
+          "uk": "Скажіть, що сорочка зелена."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-03:session-13:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Пальто того же цвета",
+        "uk": "Пальто того самого кольору"
+      },
+      "bodyByLocale": {
+        "ru": "Рядом висит зелёное пальто. Скажите `El abrigo es verde` — «Пальто зелёное». Соберите `el abrigo` + `es` + `verde`. Abrigo мужского рода, но форма verde такая же, как с camisa. Для этих двух родов не нужны отдельные окончания.",
+        "uk": "Поруч висить зелене пальто. Скажіть `El abrigo es verde` — «Пальто зелене». Складіть `el abrigo` + `es` + `verde`. Abrigo чоловічого роду, але форма verde така сама, як із camisa. Для цих двох родів не потрібні окремі закінчення."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-13:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите, что пальто зелёное.",
+          "uk": "Скажіть, що пальто зелене."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-13:intro2:r1",
+              "text": "El abrigo es verde."
+            },
+            {
+              "responseId": "es:lesson-03:session-13:intro2:r2",
+              "text": "El abrigo es verdo."
+            },
+            {
+              "responseId": "es:lesson-03:session-13:intro2:r3",
+              "text": "La abrigo es verde."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-13:intro2:r1",
+              "text": "El abrigo es verde."
+            },
+            {
+              "responseId": "es:lesson-03:session-13:intro2:r2",
+              "text": "El abrigo es verdo."
+            },
+            {
+              "responseId": "es:lesson-03:session-13:intro2:r3",
+              "text": "La abrigo es verde."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что пальто зелёное.",
+          "uk": "Скажіть, що пальто зелене."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-03:session-13:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Несколько шарфов на выбор",
+        "uk": "Кілька шарфів на вибір"
+      },
+      "bodyByLocale": {
+        "ru": "К рубашке предлагают несколько зелёных шарфов. Скажите `Las bufandas son verdes` — «Шарфы зелёные». Соберите `las bufandas` + `son` + `verdes`. Verde не меняется по роду, но меняется по числу: для нескольких вещей добавьте -s.",
+        "uk": "До сорочки пропонують кілька зелених шарфів. Скажіть `Las bufandas son verdes` — «Шарфи зелені». Складіть `las bufandas` + `son` + `verdes`. Verde не змінюється за родом, але змінюється за числом: для кількох речей додайте -s."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-13:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите, что шарфы зелёные.",
+          "uk": "Скажіть, що шарфи зелені."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-13:intro3:r1",
+              "text": "Las bufandas son verdes."
+            },
+            {
+              "responseId": "es:lesson-03:session-13:intro3:r2",
+              "text": "Las bufandas son verde."
+            },
+            {
+              "responseId": "es:lesson-03:session-13:intro3:r3",
+              "text": "Las bufandas son verdas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-13:intro3:r1",
+              "text": "Las bufandas son verdes."
+            },
+            {
+              "responseId": "es:lesson-03:session-13:intro3:r2",
+              "text": "Las bufandas son verde."
+            },
+            {
+              "responseId": "es:lesson-03:session-13:intro3:r3",
+              "text": "Las bufandas son verdas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что шарфы зелёные.",
+          "uk": "Скажіть, що шарфи зелені."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "7435a8fe9d627787f705a3738379f0abd6ccea208f2d92ef786519d9bc3f7814"
+}

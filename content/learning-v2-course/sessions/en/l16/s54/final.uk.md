@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви розрізняєте прогнози, наміри й узгоджені майбутні справи.
 
-**Що ви опануєте:** will / going to / Present Continuous: future form contrast
+**Що ви опануєте:** обирати, як сказати про майбутнє: рішення зараз, план чи домовленість
 **Нові слова:** semi-detached, double-glazed, central heating, utility room
 
 ## Інтро 1

@@ -53,7 +53,7 @@ Overdo — сделать что-то чрезмерно. Overdo it — пере
 <!-- interaction_id: en:lesson-23:session-04:word:overwork; family: word_card -->
 > **overwork** — работать слишком много.
 
-**2 · Выберите третью форму после have или has.**
+**2 · Выберите форму слова после have или has.**
 <!-- interaction_id: en:lesson-23:session-04:i01; family: context_gap_grammar -->
 I have ___. → **overworked** · overwork · overworks
 - overwork — *Нужны have/has и третья форма глагола.*
@@ -73,7 +73,7 @@ I have ___. → **overworked** · overwork · overworks
 <!-- interaction_id: en:lesson-23:session-04:word:overdo; family: word_card -->
 > **overdo** — перестараться.
 
-**6 · Выберите третью форму после have или has.**
+**6 · Выберите форму слова после have или has.**
 <!-- interaction_id: en:lesson-23:session-04:i04; family: context_gap_grammar -->
 She has ___ it. → **overdone** · overdo · overdoes
 - overdo — *Нужны have/has и третья форма глагола.*
@@ -93,7 +93,7 @@ She has ___ it. → **overdone** · overdo · overdoes
 <!-- interaction_id: en:lesson-23:session-04:word:underestimate; family: word_card -->
 > **underestimate** — недооценить.
 
-**10 · Выберите третью форму после have или has.**
+**10 · Выберите форму слова после have или has.**
 <!-- interaction_id: en:lesson-23:session-04:i07; family: context_gap_grammar -->
 We have ___ the cost. → **underestimated** · underestimate · underestimates
 - underestimate — *Нужны have/has и третья форма глагола.*
@@ -113,7 +113,7 @@ We have ___ the cost. → **underestimated** · underestimate · underestimates
 <!-- interaction_id: en:lesson-23:session-04:word:exaggerate; family: word_card -->
 > **exaggerate** — преувеличивать.
 
-**14 · Выберите третью форму после have или has.**
+**14 · Выберите форму слова после have или has.**
 <!-- interaction_id: en:lesson-23:session-04:i10; family: context_gap_grammar -->
 He has ___ the problem. → **exaggerated** · exaggerate · exaggerates
 - exaggerate — *Нужны have/has и третья форма глагола.*

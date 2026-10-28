@@ -63,7 +63,7 @@ Scientist — учёный, человек, который занимается 
 - You have just met a scientist. — *В записи звучит I have just met a scientist.*
 - We have just met a scientist. — *В записи звучит I have just met a scientist.*
 
-**4 · Выберите третью форму.**
+**4 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-33:i03; family: context_gap_grammar -->
 I have just ___ a scientist. → **met** · meet · meets
 - meet — *После have или has нужна третья форма met.*
@@ -83,7 +83,7 @@ I have just ___ a scientist. → **met** · meet · meets
 - You have already met an engineer. — *В записи звучит She has already met an engineer.*
 - We have already met an engineer. — *В записи звучит She has already met an engineer.*
 
-**8 · Выберите третью форму.**
+**8 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-33:i06; family: context_gap_grammar -->
 She has already ___ an engineer. → **met** · meet · meets
 - meet — *После have или has нужна третья форма met.*
@@ -103,7 +103,7 @@ She has already ___ an engineer. → **met** · meet · meets
 - They haven't met an architect yet. — *В записи звучит We haven't met an architect yet.*
 - I haven't met an architect yet. — *В записи звучит We haven't met an architect yet.*
 
-**12 · Выберите третью форму.**
+**12 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-33:i09; family: context_gap_grammar -->
 We haven't ___ an architect yet. → **met** · meet · meets
 - meet — *После have или has нужна третья форма met.*
@@ -123,7 +123,7 @@ We haven't ___ an architect yet. → **met** · meet · meets
 - Have they met a builder yet? — *В записи звучит Have you met a builder yet?*
 - Has she met a builder yet? — *В записи звучит Have you met a builder yet?*
 
-**16 · Выберите третью форму.**
+**16 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-33:i12; family: context_gap_grammar -->
 Have you ___ a builder yet? → **met** · meet · meets
 - meet — *После have или has нужна третья форма met.*

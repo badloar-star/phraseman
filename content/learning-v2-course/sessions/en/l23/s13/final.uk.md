@@ -63,7 +63,7 @@
 - You have seen an elephant. — *У записі звучить I have seen an elephant.*
 - They have seen an elephant. — *У записі звучить I have seen an elephant.*
 
-**4 · Виберіть третю форму.**
+**4 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-13:i03; family: context_gap_grammar -->
 I have ___ an elephant. → **seen** · see · saw
 - see — *Після have або has потрібна третя форма дієслова.*
@@ -83,7 +83,7 @@ I have ___ an elephant. → **seen** · see · saw
 - You have taken a photo of a lion. — *У записі звучить She has taken a photo of a lion.*
 - They have taken a photo of a lion. — *У записі звучить She has taken a photo of a lion.*
 
-**8 · Виберіть третю форму.**
+**8 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-13:i06; family: context_gap_grammar -->
 She has ___ a photo of a lion. → **taken** · take · took
 - take — *Після have або has потрібна третя форма дієслова.*
@@ -103,7 +103,7 @@ She has ___ a photo of a lion. → **taken** · take · took
 - You have watched a tiger. — *У записі звучить We have watched a tiger.*
 - They have watched a tiger. — *У записі звучить We have watched a tiger.*
 
-**12 · Виберіть третю форму.**
+**12 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-13:i09; family: context_gap_grammar -->
 We have ___ a tiger. → **watched** · watch · watches
 - watch — *Після have або has потрібна третя форма дієслова.*
@@ -123,7 +123,7 @@ We have ___ a tiger. → **watched** · watch · watches
 - You have drawn a giraffe. — *У записі звучить He has drawn a giraffe.*
 - They have drawn a giraffe. — *У записі звучить He has drawn a giraffe.*
 
-**16 · Виберіть третю форму.**
+**16 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-13:i12; family: context_gap_grammar -->
 He has ___ a giraffe. → **drawn** · draw · drew
 - draw — *Після have або has потрібна третя форма дієслова.*

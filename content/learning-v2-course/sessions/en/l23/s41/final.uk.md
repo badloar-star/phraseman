@@ -63,7 +63,7 @@ Shopkeeper — людина, яка володіє невеликою крамн
 - You have spoken to the shopkeeper. — *У записі звучить I have spoken to the shopkeeper.*
 - They have spoken to the shopkeeper. — *У записі звучить I have spoken to the shopkeeper.*
 
-**4 · Виберіть третю форму.**
+**4 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-41:i03; family: context_gap_grammar -->
 I have ___ to the shopkeeper. → **spoken** · speak · speaks
 - speak — *Потрібна третя форма: spoken.*
@@ -83,7 +83,7 @@ I have ___ to the shopkeeper. → **spoken** · speak · speaks
 - You have called a painter. — *У записі звучить She has called a painter.*
 - They have called a painter. — *У записі звучить She has called a painter.*
 
-**8 · Виберіть третю форму.**
+**8 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-41:i06; family: context_gap_grammar -->
 She has ___ a painter. → **called** · call · calls
 - call — *Потрібна третя форма: called.*
@@ -103,7 +103,7 @@ She has ___ a painter. → **called** · call · calls
 - You have helped a worker. — *У записі звучить We have helped a worker.*
 - They have helped a worker. — *У записі звучить We have helped a worker.*
 
-**12 · Виберіть третю форму.**
+**12 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-41:i09; family: context_gap_grammar -->
 We have ___ a worker. → **helped** · help · helps
 - help — *Потрібна третя форма: helped.*
@@ -123,7 +123,7 @@ We have ___ a worker. → **helped** · help · helps
 - You have found a buyer. — *У записі звучить He has found a buyer.*
 - They have found a buyer. — *У записі звучить He has found a buyer.*
 
-**16 · Виберіть третю форму.**
+**16 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-41:i12; family: context_gap_grammar -->
 He has ___ a buyer. → **found** · find · finds
 - find — *Потрібна третя форма: found.*

@@ -63,7 +63,7 @@ Cruise — туристическая поездка на судне. On a cruis
 - You have visited a desert. — *В записи звучит I have visited a desert.*
 - They have visited a desert. — *В записи звучит I have visited a desert.*
 
-**4 · Выберите третью форму для рассказа об опыте.**
+**4 · Выберите форму слова для рассказа об опыте.**
 <!-- interaction_id: en:lesson-23:session-09:i03; family: context_gap_grammar -->
 I have ___ a desert. → **visited** · visit · visits
 - visit — *Для этого опыта нужны have/has и третья форма.*
@@ -83,7 +83,7 @@ I have ___ a desert. → **visited** · visit · visits
 - You have seen a volcano. — *В записи звучит She has seen a volcano.*
 - They have seen a volcano. — *В записи звучит She has seen a volcano.*
 
-**8 · Выберите третью форму для рассказа об опыте.**
+**8 · Выберите форму слова для рассказа об опыте.**
 <!-- interaction_id: en:lesson-23:session-09:i06; family: context_gap_grammar -->
 She has ___ a volcano. → **seen** · see · saw
 - see — *Для этого опыта нужны have/has и третья форма.*
@@ -103,7 +103,7 @@ She has ___ a volcano. → **seen** · see · saw
 - You have walked through the jungle. — *В записи звучит We have walked through the jungle.*
 - They have walked through the jungle. — *В записи звучит We have walked through the jungle.*
 
-**12 · Выберите третью форму для рассказа об опыте.**
+**12 · Выберите форму слова для рассказа об опыте.**
 <!-- interaction_id: en:lesson-23:session-09:i09; family: context_gap_grammar -->
 We have ___ through the jungle. → **walked** · walk · walks
 - walk — *Для этого опыта нужны have/has и третья форма.*
@@ -123,7 +123,7 @@ We have ___ through the jungle. → **walked** · walk · walks
 - You have been on a cruise. — *В записи звучит He has been on a cruise.*
 - They have been on a cruise. — *В записи звучит He has been on a cruise.*
 
-**16 · Выберите третью форму для рассказа об опыте.**
+**16 · Выберите форму слова для рассказа об опыте.**
 <!-- interaction_id: en:lesson-23:session-09:i12; family: context_gap_grammar -->
 He has ___ on a cruise. → **been** · be · was
 - be — *Для этого опыта нужны have/has и третья форма.*

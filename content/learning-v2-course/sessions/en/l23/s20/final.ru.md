@@ -63,7 +63,7 @@ Lime — лайм, обычно зелёный цитрусовый плод. Sq
 - You have cut an avocado. — *В записи звучит I have cut an avocado.*
 - They have cut an avocado. — *В записи звучит I have cut an avocado.*
 
-**4 · Выберите третью форму.**
+**4 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-20:i03; family: context_gap_grammar -->
 I have ___ an avocado. → **cut** · cuts · cutting
 - cuts — *После have или has нужна третья форма.*
@@ -83,7 +83,7 @@ I have ___ an avocado. → **cut** · cuts · cutting
 - You have grown lettuce. — *В записи звучит She has grown lettuce.*
 - They have grown lettuce. — *В записи звучит She has grown lettuce.*
 
-**8 · Выберите третью форму.**
+**8 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-20:i06; family: context_gap_grammar -->
 She has ___ lettuce. → **grown** · grow · grew
 - grow — *После have или has нужна третья форма.*
@@ -103,7 +103,7 @@ She has ___ lettuce. → **grown** · grow · grew
 - You have peeled a tangerine. — *В записи звучит We have peeled a tangerine.*
 - They have peeled a tangerine. — *В записи звучит We have peeled a tangerine.*
 
-**12 · Выберите третью форму.**
+**12 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-20:i09; family: context_gap_grammar -->
 We have ___ a tangerine. → **peeled** · peel · peels
 - peel — *После have или has нужна третья форма.*
@@ -123,7 +123,7 @@ We have ___ a tangerine. → **peeled** · peel · peels
 - You have squeezed a lime. — *В записи звучит He has squeezed a lime.*
 - They have squeezed a lime. — *В записи звучит He has squeezed a lime.*
 
-**16 · Выберите третью форму.**
+**16 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-20:i12; family: context_gap_grammar -->
 He has ___ a lime. → **squeezed** · squeeze · squeezes
 - squeeze — *После have или has нужна третья форма.*

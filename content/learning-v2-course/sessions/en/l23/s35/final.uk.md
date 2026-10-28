@@ -63,7 +63,7 @@ Firefighter — пожежник: людина, яка гасить пожежі
 - You have met a reporter. — *У записі звучить I have met a reporter.*
 - They have met a reporter. — *У записі звучить I have met a reporter.*
 
-**4 · Виберіть третю форму.**
+**4 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-35:i03; family: context_gap_grammar -->
 I have ___ a reporter. → **met** · meet · meets
 - meet — *Потрібна третя форма: met.*
@@ -83,7 +83,7 @@ I have ___ a reporter. → **met** · meet · meets
 - You have spoken to a journalist. — *У записі звучить She has spoken to a journalist.*
 - They have spoken to a journalist. — *У записі звучить She has spoken to a journalist.*
 
-**8 · Виберіть третю форму.**
+**8 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-35:i06; family: context_gap_grammar -->
 She has ___ to a journalist. → **spoken** · speak · speaks
 - speak — *Потрібна третя форма: spoken.*
@@ -103,7 +103,7 @@ She has ___ to a journalist. → **spoken** · speak · speaks
 - You have met a soldier. — *У записі звучить We have met a soldier.*
 - They have met a soldier. — *У записі звучить We have met a soldier.*
 
-**12 · Виберіть третю форму.**
+**12 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-35:i09; family: context_gap_grammar -->
 We have ___ a soldier. → **met** · meet · meets
 - meet — *Потрібна третя форма: met.*
@@ -123,7 +123,7 @@ We have ___ a soldier. → **met** · meet · meets
 - You have spoken to a firefighter. — *У записі звучить He has spoken to a firefighter.*
 - They have spoken to a firefighter. — *У записі звучить He has spoken to a firefighter.*
 
-**16 · Виберіть третю форму.**
+**16 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-35:i12; family: context_gap_grammar -->
 He has ___ to a firefighter. → **spoken** · speak · speaks
 - speak — *Потрібна третя форма: spoken.*

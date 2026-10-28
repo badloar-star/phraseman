@@ -63,7 +63,7 @@ Illness — болезнь. I have recovered from an illness — я оправи
 - You have recovered from an illness. — *В записи звучит I have recovered from an illness.*
 - They have recovered from an illness. — *В записи звучит I have recovered from an illness.*
 
-**4 · Выберите третью форму.**
+**4 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-56:i03; family: context_gap_grammar -->
 I have ___ from an illness. → **recovered** · recover · recovers
 - recover — *Нужна третья форма: recovered.*
@@ -83,7 +83,7 @@ I have ___ from an illness. → **recovered** · recover · recovers
 - You have had an operation. — *В записи звучит She has had an operation.*
 - They have had an operation. — *В записи звучит She has had an operation.*
 
-**8 · Выберите третью форму.**
+**8 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-56:i06; family: context_gap_grammar -->
 She has ___ an operation. → **had** · have · has
 - have — *Нужна третья форма: had.*
@@ -103,7 +103,7 @@ She has ___ an operation. → **had** · have · has
 - You have asked about the infection. — *В записи звучит We have asked about the infection.*
 - They have asked about the infection. — *В записи звучит We have asked about the infection.*
 
-**12 · Выберите третью форму.**
+**12 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-56:i09; family: context_gap_grammar -->
 We have ___ about the infection. → **asked** · ask · asks
 - ask — *Нужна третья форма: asked.*
@@ -123,7 +123,7 @@ We have ___ about the infection. → **asked** · ask · asks
 - You have recovered from an injury. — *В записи звучит He has recovered from an injury.*
 - They have recovered from an injury. — *В записи звучит He has recovered from an injury.*
 
-**16 · Выберите третью форму.**
+**16 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-56:i12; family: context_gap_grammar -->
 He has ___ from an injury. → **recovered** · recover · recovers
 - recover — *Нужна третья форма: recovered.*

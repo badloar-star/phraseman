@@ -53,7 +53,7 @@ Create — создать. He has created a picture — он создал кар
 <!-- interaction_id: en:lesson-23:session-44:word:discover; family: word_card -->
 > **discover** — обнаружить.
 
-**2 · Выберите третью форму.**
+**2 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-44:i01; family: context_gap_grammar -->
 I have ___ a new cafe. → **discovered** · discover · discovers
 - discover — *Нужна третья форма: discovered.*
@@ -73,7 +73,7 @@ I have ___ a new cafe. → **discovered** · discover · discovers
 <!-- interaction_id: en:lesson-23:session-44:word:invent; family: word_card -->
 > **invent** — придумать, изобрести.
 
-**6 · Выберите третью форму.**
+**6 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-44:i04; family: context_gap_grammar -->
 She has ___ a game. → **invented** · invent · invents
 - invent — *Нужна третья форма: invented.*
@@ -93,7 +93,7 @@ She has ___ a game. → **invented** · invent · invents
 <!-- interaction_id: en:lesson-23:session-44:word:develop; family: word_card -->
 > **develop** — развить, выработать.
 
-**10 · Выберите третью форму.**
+**10 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-44:i07; family: context_gap_grammar -->
 We have ___ a good habit. → **developed** · develop · develops
 - develop — *Нужна третья форма: developed.*
@@ -113,7 +113,7 @@ We have ___ a good habit. → **developed** · develop · develops
 <!-- interaction_id: en:lesson-23:session-44:word:create; family: word_card -->
 > **create** — создать.
 
-**14 · Выберите третью форму.**
+**14 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-44:i10; family: context_gap_grammar -->
 He has ___ a picture. → **created** · create · creates
 - create — *Нужна третья форма: created.*

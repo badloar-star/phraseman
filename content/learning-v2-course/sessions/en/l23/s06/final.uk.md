@@ -53,7 +53,7 @@ Heal — загоюватися. The cut has healed: поріз загоївся
 <!-- interaction_id: en:lesson-23:session-06:word:appear; family: word_card -->
 > **appear** — з’явитися.
 
-**2 · Виберіть третю форму після have або has.**
+**2 · Виберіть форму слова після have або has.**
 <!-- interaction_id: en:lesson-23:session-06:i01; family: context_gap_grammar -->
 Clouds have ___. → **appeared** · appear · appears
 - appear — *Для результату зараз використайте have/has і третю форму.*
@@ -73,7 +73,7 @@ Clouds have ___. → **appeared** · appear · appears
 <!-- interaction_id: en:lesson-23:session-06:word:disappear; family: word_card -->
 > **disappear** — зникнути.
 
-**6 · Виберіть третю форму після have або has.**
+**6 · Виберіть форму слова після have або has.**
 <!-- interaction_id: en:lesson-23:session-06:i04; family: context_gap_grammar -->
 My keys have ___. → **disappeared** · disappear · disappears
 - disappear — *Для результату зараз використайте have/has і третю форму.*
@@ -93,7 +93,7 @@ My keys have ___. → **disappeared** · disappear · disappears
 <!-- interaction_id: en:lesson-23:session-06:word:worsen; family: word_card -->
 > **worsen** — погіршитися.
 
-**10 · Виберіть третю форму після have або has.**
+**10 · Виберіть форму слова після have або has.**
 <!-- interaction_id: en:lesson-23:session-06:i07; family: context_gap_grammar -->
 The weather has ___. → **worsened** · worsen · worsens
 - worsen — *Для результату зараз використайте have/has і третю форму.*
@@ -113,7 +113,7 @@ The weather has ___. → **worsened** · worsen · worsens
 <!-- interaction_id: en:lesson-23:session-06:word:heal; family: word_card -->
 > **heal** — загоюватися.
 
-**14 · Виберіть третю форму після have або has.**
+**14 · Виберіть форму слова після have або has.**
 <!-- interaction_id: en:lesson-23:session-06:i10; family: context_gap_grammar -->
 The cut has ___. → **healed** · heal · heals
 - heal — *Для результату зараз використайте have/has і третю форму.*

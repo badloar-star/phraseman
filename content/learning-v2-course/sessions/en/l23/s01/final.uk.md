@@ -53,7 +53,7 @@
 <!-- interaction_id: en:lesson-23:session-01:word:miscount; family: word_card -->
 > **miscount** — помилитися під час підрахунку.
 
-**2 · Виберіть третю форму після have або has.**
+**2 · Виберіть форму слова після have або has.**
 <!-- interaction_id: en:lesson-23:session-01:i03; family: context_gap_grammar -->
 I have ___ the tickets. → **miscounted** · miscount · miscounts
 - miscount — *Потрібні have/has і третя форма дієслова.*
@@ -73,7 +73,7 @@ I have ___ the tickets. → **miscounted** · miscount · miscounts
 <!-- interaction_id: en:lesson-23:session-01:word:misdial; family: word_card -->
 > **misdial** — неправильно набрати номер.
 
-**6 · Виберіть третю форму після have або has.**
+**6 · Виберіть форму слова після have або has.**
 <!-- interaction_id: en:lesson-23:session-01:i06; family: context_gap_grammar -->
 She has ___ the number. → **misdialled** · misdial · misdials
 - misdial — *Потрібні have/has і третя форма дієслова.*
@@ -93,7 +93,7 @@ She has ___ the number. → **misdialled** · misdial · misdials
 <!-- interaction_id: en:lesson-23:session-01:word:repack; family: word_card -->
 > **repack** — перепакувати речі.
 
-**10 · Виберіть третю форму після have або has.**
+**10 · Виберіть форму слова після have або has.**
 <!-- interaction_id: en:lesson-23:session-01:i09; family: context_gap_grammar -->
 We have ___ the bag. → **repacked** · repack · repacks
 - repack — *Потрібні have/has і третя форма дієслова.*
@@ -113,7 +113,7 @@ We have ___ the bag. → **repacked** · repack · repacks
 <!-- interaction_id: en:lesson-23:session-01:word:rebook; family: word_card -->
 > **rebook** — забронювати заново.
 
-**14 · Виберіть третю форму після have або has.**
+**14 · Виберіть форму слова після have або has.**
 <!-- interaction_id: en:lesson-23:session-01:i12; family: context_gap_grammar -->
 He has ___ the flight. → **rebooked** · rebook · rebooks
 - rebook — *Потрібні have/has і третя форма дієслова.*

@@ -63,7 +63,7 @@ Toe — палец ноги. He has hurt his toe — он повредил па�
 - You have donated blood. — *В записи звучит I have donated blood.*
 - They have donated blood. — *В записи звучит I have donated blood.*
 
-**4 · Выберите третью форму.**
+**4 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-47:i03; family: context_gap_grammar -->
 I have ___ blood. → **donated** · donate · donates
 - donate — *Нужна третья форма: donated.*
@@ -83,7 +83,7 @@ I have ___ blood. → **donated** · donate · donates
 - You have checked my lungs. — *В записи звучит The doctor has checked my lungs.*
 - They have checked my lungs. — *В записи звучит The doctor has checked my lungs.*
 
-**8 · Выберите третью форму.**
+**8 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-47:i06; family: context_gap_grammar -->
 The doctor has ___ my lungs. → **checked** · check · checks
 - check — *Нужна третья форма: checked.*
@@ -103,7 +103,7 @@ The doctor has ___ my lungs. → **checked** · check · checks
 - You have learned about the brain. — *В записи звучит We have learned about the brain.*
 - They have learned about the brain. — *В записи звучит We have learned about the brain.*
 
-**12 · Выберите третью форму.**
+**12 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-47:i09; family: context_gap_grammar -->
 We have ___ about the brain. → **learned** · learn · learns
 - learn — *Нужна третья форма: learned.*
@@ -123,7 +123,7 @@ We have ___ about the brain. → **learned** · learn · learns
 - You have hurt your toe. — *В записи звучит He has hurt his toe.*
 - They have hurt their toes. — *В записи звучит He has hurt his toe.*
 
-**16 · Выберите третью форму.**
+**16 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-47:i12; family: context_gap_grammar -->
 He has ___ his toe. → **hurt** · hurts · hurting
 - hurts — *Нужна третья форма: hurt.*

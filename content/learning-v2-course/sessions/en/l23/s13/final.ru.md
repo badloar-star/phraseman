@@ -63,7 +63,7 @@
 - You have seen an elephant. — *В записи звучит I have seen an elephant.*
 - They have seen an elephant. — *В записи звучит I have seen an elephant.*
 
-**4 · Выберите третью форму.**
+**4 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-13:i03; family: context_gap_grammar -->
 I have ___ an elephant. → **seen** · see · saw
 - see — *После have или has нужна третья форма глагола.*
@@ -83,7 +83,7 @@ I have ___ an elephant. → **seen** · see · saw
 - You have taken a photo of a lion. — *В записи звучит She has taken a photo of a lion.*
 - They have taken a photo of a lion. — *В записи звучит She has taken a photo of a lion.*
 
-**8 · Выберите третью форму.**
+**8 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-13:i06; family: context_gap_grammar -->
 She has ___ a photo of a lion. → **taken** · take · took
 - take — *После have или has нужна третья форма глагола.*
@@ -103,7 +103,7 @@ She has ___ a photo of a lion. → **taken** · take · took
 - You have watched a tiger. — *В записи звучит We have watched a tiger.*
 - They have watched a tiger. — *В записи звучит We have watched a tiger.*
 
-**12 · Выберите третью форму.**
+**12 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-13:i09; family: context_gap_grammar -->
 We have ___ a tiger. → **watched** · watch · watches
 - watch — *После have или has нужна третья форма глагола.*
@@ -123,7 +123,7 @@ We have ___ a tiger. → **watched** · watch · watches
 - You have drawn a giraffe. — *В записи звучит He has drawn a giraffe.*
 - They have drawn a giraffe. — *В записи звучит He has drawn a giraffe.*
 
-**16 · Выберите третью форму.**
+**16 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-13:i12; family: context_gap_grammar -->
 He has ___ a giraffe. → **drawn** · draw · drew
 - draw — *После have или has нужна третья форма глагола.*

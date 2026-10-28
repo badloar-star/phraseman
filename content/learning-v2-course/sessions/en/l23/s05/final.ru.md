@@ -53,7 +53,7 @@ Regret — сожалеть о чём-либо. Regret a decision — сожал
 <!-- interaction_id: en:lesson-23:session-05:word:misjudge; family: word_card -->
 > **misjudge** — неверно оценить.
 
-**2 · Выберите третью форму после have или has.**
+**2 · Выберите форму слова после have или has.**
 <!-- interaction_id: en:lesson-23:session-05:i01; family: context_gap_grammar -->
 I have ___ the distance. → **misjudged** · misjudge · misjudges
 - misjudge — *После have или has нужна третья форма глагола.*
@@ -73,7 +73,7 @@ I have ___ the distance. → **misjudged** · misjudge · misjudges
 <!-- interaction_id: en:lesson-23:session-05:word:overestimate; family: word_card -->
 > **overestimate** — переоценить.
 
-**6 · Выберите третью форму после have или has.**
+**6 · Выберите форму слова после have или has.**
 <!-- interaction_id: en:lesson-23:session-05:i04; family: context_gap_grammar -->
 We have ___ the cost. → **overestimated** · overestimate · overestimates
 - overestimate — *После have или has нужна третья форма глагола.*
@@ -93,7 +93,7 @@ We have ___ the cost. → **overestimated** · overestimate · overestimates
 <!-- interaction_id: en:lesson-23:session-05:word:underpay; family: word_card -->
 > **underpay** — заплатить меньше положенного.
 
-**10 · Выберите третью форму после have или has.**
+**10 · Выберите форму слова после have или has.**
 <!-- interaction_id: en:lesson-23:session-05:i07; family: context_gap_grammar -->
 They have ___ me. → **underpaid** · underpay · underpays
 - underpay — *После have или has нужна третья форма глагола.*
@@ -113,7 +113,7 @@ They have ___ me. → **underpaid** · underpay · underpays
 <!-- interaction_id: en:lesson-23:session-05:word:regret; family: word_card -->
 > **regret** — сожалеть о чём-либо.
 
-**14 · Выберите третью форму после have или has.**
+**14 · Выберите форму слова после have или has.**
 <!-- interaction_id: en:lesson-23:session-05:i10; family: context_gap_grammar -->
 She has ___ her decision. → **regretted** · regret · regrets
 - regret — *После have или has нужна третья форма глагола.*

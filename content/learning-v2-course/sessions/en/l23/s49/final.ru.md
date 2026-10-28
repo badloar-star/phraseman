@@ -63,7 +63,7 @@ Wise — мудрый или разумный, когда речь о решен
 - You have made a wise decision. — *В записи звучит I have made a wise decision.*
 - They have made a wise decision. — *В записи звучит I have made a wise decision.*
 
-**4 · Выберите третью форму.**
+**4 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-49:i03; family: context_gap_grammar -->
 I have ___ a wise decision. → **made** · make · makes
 - make — *Нужна третья форма: made.*
@@ -83,7 +83,7 @@ I have ___ a wise decision. → **made** · make · makes
 - You have made a foolish mistake. — *В записи звучит She has made a foolish mistake.*
 - They have made a foolish mistake. — *В записи звучит She has made a foolish mistake.*
 
-**8 · Выберите третью форму.**
+**8 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-49:i06; family: context_gap_grammar -->
 She has ___ a foolish mistake. → **made** · make · makes
 - make — *Нужна третья форма: made.*
@@ -103,7 +103,7 @@ She has ___ a foolish mistake. → **made** · make · makes
 - You have heard a ridiculous excuse. — *В записи звучит We have heard a ridiculous excuse.*
 - They have heard a ridiculous excuse. — *В записи звучит We have heard a ridiculous excuse.*
 
-**12 · Выберите третью форму.**
+**12 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-49:i09; family: context_gap_grammar -->
 We have ___ a ridiculous excuse. → **heard** · hear · hears
 - hear — *Нужна третья форма: heard.*
@@ -123,7 +123,7 @@ We have ___ a ridiculous excuse. → **heard** · hear · hears
 - You have met an intelligent person. — *В записи звучит He has met an intelligent person.*
 - They have met an intelligent person. — *В записи звучит He has met an intelligent person.*
 
-**16 · Выберите третью форму.**
+**16 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-49:i12; family: context_gap_grammar -->
 He has ___ an intelligent person. → **met** · meet · meets
 - meet — *Нужна третья форма: met.*

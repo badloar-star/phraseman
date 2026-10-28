@@ -63,7 +63,7 @@ Theft — крадіжка, наприклад велосипеда. I have repo
 - You have reported a theft. — *У записі звучить I have reported a theft.*
 - They have reported a theft. — *У записі звучить I have reported a theft.*
 
-**4 · Виберіть третю форму.**
+**4 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-50:i03; family: context_gap_grammar -->
 I have ___ a theft. → **reported** · report · reports
 - report — *Потрібна третя форма: reported.*
@@ -83,7 +83,7 @@ I have ___ a theft. → **reported** · report · reports
 - You have helped a victim. — *У записі звучить She has helped a victim.*
 - They have helped a victim. — *У записі звучить She has helped a victim.*
 
-**8 · Виберіть третю форму.**
+**8 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-50:i06; family: context_gap_grammar -->
 She has ___ a victim. → **helped** · help · helps
 - help — *Потрібна третя форма: helped.*
@@ -103,7 +103,7 @@ She has ___ a victim. → **helped** · help · helps
 - You have seen a thief. — *У записі звучить We have seen a thief.*
 - They have seen a thief. — *У записі звучить We have seen a thief.*
 
-**12 · Виберіть третю форму.**
+**12 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-50:i09; family: context_gap_grammar -->
 We have ___ a thief. → **seen** · see · sees
 - see — *Потрібна третя форма: seen.*
@@ -123,7 +123,7 @@ We have ___ a thief. → **seen** · see · sees
 - You have described a suspect. — *У записі звучить He has described a suspect.*
 - They have described a suspect. — *У записі звучить He has described a suspect.*
 
-**16 · Виберіть третю форму.**
+**16 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-50:i12; family: context_gap_grammar -->
 He has ___ a suspect. → **described** · describe · describes
 - describe — *Потрібна третя форма: described.*

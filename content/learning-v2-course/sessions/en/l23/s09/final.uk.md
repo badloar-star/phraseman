@@ -63,7 +63,7 @@ Cruise — туристична поїздка на судні. On a cruise — 
 - You have visited a desert. — *У записі звучить I have visited a desert.*
 - They have visited a desert. — *У записі звучить I have visited a desert.*
 
-**4 · Виберіть третю форму для розповіді про досвід.**
+**4 · Виберіть форму слова для розповіді про досвід.**
 <!-- interaction_id: en:lesson-23:session-09:i03; family: context_gap_grammar -->
 I have ___ a desert. → **visited** · visit · visits
 - visit — *Для цього досвіду потрібні have/has і третя форма.*
@@ -83,7 +83,7 @@ I have ___ a desert. → **visited** · visit · visits
 - You have seen a volcano. — *У записі звучить She has seen a volcano.*
 - They have seen a volcano. — *У записі звучить She has seen a volcano.*
 
-**8 · Виберіть третю форму для розповіді про досвід.**
+**8 · Виберіть форму слова для розповіді про досвід.**
 <!-- interaction_id: en:lesson-23:session-09:i06; family: context_gap_grammar -->
 She has ___ a volcano. → **seen** · see · saw
 - see — *Для цього досвіду потрібні have/has і третя форма.*
@@ -103,7 +103,7 @@ She has ___ a volcano. → **seen** · see · saw
 - You have walked through the jungle. — *У записі звучить We have walked through the jungle.*
 - They have walked through the jungle. — *У записі звучить We have walked through the jungle.*
 
-**12 · Виберіть третю форму для розповіді про досвід.**
+**12 · Виберіть форму слова для розповіді про досвід.**
 <!-- interaction_id: en:lesson-23:session-09:i09; family: context_gap_grammar -->
 We have ___ through the jungle. → **walked** · walk · walks
 - walk — *Для цього досвіду потрібні have/has і третя форма.*
@@ -123,7 +123,7 @@ We have ___ through the jungle. → **walked** · walk · walks
 - You have been on a cruise. — *У записі звучить He has been on a cruise.*
 - They have been on a cruise. — *У записі звучить He has been on a cruise.*
 
-**16 · Виберіть третю форму для розповіді про досвід.**
+**16 · Виберіть форму слова для розповіді про досвід.**
 <!-- interaction_id: en:lesson-23:session-09:i12; family: context_gap_grammar -->
 He has ___ on a cruise. → **been** · be · was
 - be — *Для цього досвіду потрібні have/has і третя форма.*

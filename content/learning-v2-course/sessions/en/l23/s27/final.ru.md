@@ -63,7 +63,7 @@ Hip — область бедра у тазобедренного сустава
 - You have hurt your elbow. — *В записи звучит I have hurt my elbow.*
 - They have hurt their elbows. — *В записи звучит I have hurt my elbow.*
 
-**4 · Выберите третью форму.**
+**4 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-27:i03; family: context_gap_grammar -->
 I have ___ my elbow. → **hurt** · hurts · hurting
 - hurts — *Нужна третья форма: hurt.*
@@ -83,7 +83,7 @@ I have ___ my elbow. → **hurt** · hurts · hurting
 - You have hurt your knee. — *В записи звучит She has hurt her knee.*
 - They have hurt their knees. — *В записи звучит She has hurt her knee.*
 
-**8 · Выберите третью форму.**
+**8 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-27:i06; family: context_gap_grammar -->
 She has ___ her knee. → **hurt** · hurts · hurting
 - hurts — *Нужна третья форма: hurt.*
@@ -103,7 +103,7 @@ She has ___ her knee. → **hurt** · hurts · hurting
 - You have hurt your hip. — *В записи звучит He has hurt his hip.*
 - They have hurt their hips. — *В записи звучит He has hurt his hip.*
 
-**12 · Выберите третью форму.**
+**12 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-27:i09; family: context_gap_grammar -->
 He has ___ his hip. → **hurt** · hurts · hurting
 - hurts — *Нужна третья форма: hurt.*
@@ -123,7 +123,7 @@ He has ___ his hip. → **hurt** · hurts · hurting
 - You have hurt your neck. — *В записи звучит I have hurt my neck.*
 - They have hurt their necks. — *В записи звучит I have hurt my neck.*
 
-**16 · Выберите третью форму.**
+**16 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-27:i12; family: context_gap_grammar -->
 I have ___ my neck. → **hurt** · hurts · hurting
 - hurts — *Нужна третья форма: hurt.*

@@ -63,7 +63,7 @@ Citizen — гражданин страны. He has become a citizen — он с
 - You have visited a relative. — *В записи звучит I have visited a relative.*
 - They have visited a relative. — *В записи звучит I have visited a relative.*
 
-**4 · Выберите третью форму.**
+**4 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-45:i03; family: context_gap_grammar -->
 I have ___ a relative. → **visited** · visit · visits
 - visit — *Нужна третья форма: visited.*
@@ -83,7 +83,7 @@ I have ___ a relative. → **visited** · visit · visits
 - You have found a photo of an ancestor. — *В записи звучит She has found a photo of an ancestor.*
 - They have found a photo of an ancestor. — *В записи звучит She has found a photo of an ancestor.*
 
-**8 · Выберите третью форму.**
+**8 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-45:i06; family: context_gap_grammar -->
 She has ___ a photo of an ancestor. → **found** · find · finds
 - find — *Нужна третья форма: found.*
@@ -103,7 +103,7 @@ She has ___ a photo of an ancestor. → **found** · find · finds
 - You have met people from another generation. — *В записи звучит We have met people from another generation.*
 - They have met people from another generation. — *В записи звучит We have met people from another generation.*
 
-**12 · Выберите третью форму.**
+**12 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-45:i09; family: context_gap_grammar -->
 We have ___ people from another generation. → **met** · meet · meets
 - meet — *Нужна третья форма: met.*
@@ -123,7 +123,7 @@ We have ___ people from another generation. → **met** · meet · meets
 - You have become a citizen. — *В записи звучит He has become a citizen.*
 - They have become citizens. — *В записи звучит He has become a citizen.*
 
-**16 · Выберите третью форму.**
+**16 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-45:i12; family: context_gap_grammar -->
 He has ___ a citizen. → **become** · became · becomes
 - became — *Нужна третья форма: become.*

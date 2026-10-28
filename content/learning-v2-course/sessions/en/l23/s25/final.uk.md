@@ -63,7 +63,7 @@ Cathedral — собор. I have never visited a cathedral — я ніколи �
 - Have they ever visited a palace? — *У записі звучить Have you ever visited a palace?*
 - Has he ever visited a palace? — *У записі звучить Have you ever visited a palace?*
 
-**4 · Виберіть третю форму.**
+**4 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-25:i03; family: context_gap_grammar -->
 Have you ever ___ a palace? → **visited** · visit · visits
 - visit — *Після have або has потрібна третя форма visited.*
@@ -83,7 +83,7 @@ Have you ever ___ a palace? → **visited** · visit · visits
 - We have never visited a cathedral. — *У записі звучить I have never visited a cathedral.*
 - You have never visited a cathedral. — *У записі звучить I have never visited a cathedral.*
 
-**8 · Виберіть третю форму.**
+**8 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-25:i06; family: context_gap_grammar -->
 I have never ___ a cathedral. → **visited** · visit · visits
 - visit — *Після have або has потрібна третя форма visited.*
@@ -103,7 +103,7 @@ I have never ___ a cathedral. → **visited** · visit · visits
 - Have they ever visited a mosque? — *У записі звучить Have you ever visited a mosque?*
 - Has he ever visited a mosque? — *У записі звучить Have you ever visited a mosque?*
 
-**12 · Виберіть третю форму.**
+**12 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-25:i09; family: context_gap_grammar -->
 Have you ever ___ a mosque? → **visited** · visit · visits
 - visit — *Після have або has потрібна третя форма visited.*
@@ -123,7 +123,7 @@ Have you ever ___ a mosque? → **visited** · visit · visits
 - We have never visited a temple. — *У записі звучить She has never visited a temple.*
 - You have never visited a temple. — *У записі звучить She has never visited a temple.*
 
-**16 · Виберіть третю форму.**
+**16 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-25:i12; family: context_gap_grammar -->
 She has never ___ a temple. → **visited** · visit · visits
 - visit — *Після have або has потрібна третя форма visited.*

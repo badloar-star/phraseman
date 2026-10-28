@@ -53,7 +53,7 @@ Replant — посадити рослину заново або пересади
 <!-- interaction_id: en:lesson-23:session-02:word:reopen; family: word_card -->
 > **reopen** — знову відкрити.
 
-**2 · Виберіть третю форму після have або has.**
+**2 · Виберіть форму слова після have або has.**
 <!-- interaction_id: en:lesson-23:session-02:i03; family: context_gap_grammar -->
 They have ___ the shop. → **reopened** · reopen · reopens
 - reopen — *Після have або has потрібна третя форма: тут це форма на -ed.*
@@ -73,7 +73,7 @@ They have ___ the shop. → **reopened** · reopen · reopens
 <!-- interaction_id: en:lesson-23:session-02:word:reorganise; family: word_card -->
 > **reorganise** — організувати по-новому.
 
-**6 · Виберіть третю форму після have або has.**
+**6 · Виберіть форму слова після have або has.**
 <!-- interaction_id: en:lesson-23:session-02:i06; family: context_gap_grammar -->
 I have ___ the kitchen. → **reorganised** · reorganise · reorganises
 - reorganise — *Після have або has потрібна третя форма: тут це форма на -ed.*
@@ -93,7 +93,7 @@ I have ___ the kitchen. → **reorganised** · reorganise · reorganises
 <!-- interaction_id: en:lesson-23:session-02:word:redecorate; family: word_card -->
 > **redecorate** — заново оздобити кімнату.
 
-**10 · Виберіть третю форму після have або has.**
+**10 · Виберіть форму слова після have або has.**
 <!-- interaction_id: en:lesson-23:session-02:i09; family: context_gap_grammar -->
 We have ___ the bedroom. → **redecorated** · redecorate · redecorates
 - redecorate — *Після have або has потрібна третя форма: тут це форма на -ed.*
@@ -113,7 +113,7 @@ We have ___ the bedroom. → **redecorated** · redecorate · redecorates
 <!-- interaction_id: en:lesson-23:session-02:word:replant; family: word_card -->
 > **replant** — пересадити рослину.
 
-**14 · Виберіть третю форму після have або has.**
+**14 · Виберіть форму слова після have або has.**
 <!-- interaction_id: en:lesson-23:session-02:i12; family: context_gap_grammar -->
 She has ___ the flowers. → **replanted** · replant · replants
 - replant — *Після have або has потрібна третя форма: тут це форма на -ed.*

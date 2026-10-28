@@ -63,7 +63,7 @@ Strawberries — клубника. Одна ягода — a strawberry, нес�
 - You have picked strawberries. — *В записи звучит I have picked strawberries.*
 - They have picked strawberries. — *В записи звучит I have picked strawberries.*
 
-**4 · Выберите третью форму.**
+**4 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-19:i03; family: context_gap_grammar -->
 I have ___ strawberries. → **picked** · pick · picks
 - pick — *После have или has нужна третья форма.*
@@ -83,7 +83,7 @@ I have ___ strawberries. → **picked** · pick · picks
 - You have grown raspberries. — *В записи звучит She has grown raspberries.*
 - They have grown raspberries. — *В записи звучит She has grown raspberries.*
 
-**8 · Выберите третью форму.**
+**8 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-19:i06; family: context_gap_grammar -->
 She has ___ raspberries. → **grown** · grow · grew
 - grow — *После have или has нужна третья форма.*
@@ -103,7 +103,7 @@ She has ___ raspberries. → **grown** · grow · grew
 - You have eaten blueberries. — *В записи звучит We have eaten blueberries.*
 - They have eaten blueberries. — *В записи звучит We have eaten blueberries.*
 
-**12 · Выберите третью форму.**
+**12 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-19:i09; family: context_gap_grammar -->
 We have ___ blueberries. → **eaten** · eat · ate
 - eat — *После have или has нужна третья форма.*
@@ -123,7 +123,7 @@ We have ___ blueberries. → **eaten** · eat · ate
 - You have tried a kiwi. — *В записи звучит He has tried a kiwi.*
 - They have tried a kiwi. — *В записи звучит He has tried a kiwi.*
 
-**16 · Выберите третью форму.**
+**16 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-19:i12; family: context_gap_grammar -->
 He has ___ a kiwi. → **tried** · try · tries
 - try — *После have или has нужна третья форма.*

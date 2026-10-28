@@ -63,7 +63,7 @@ Playgroup — група, де маленькі діти грають разом
 - We have met their newborn. — *У записі звучить I have met their newborn.*
 - They have met their newborn. — *У записі звучить I have met their newborn.*
 
-**4 · Виберіть третю форму.**
+**4 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-08:i03; family: context_gap_grammar -->
 I have ___ their newborn. → **met** · meet · meets
 - meet — *Після have або has потрібна третя форма дієслова.*
@@ -83,7 +83,7 @@ I have ___ their newborn. → **met** · meet · meets
 - The toddler has finished lunch. — *У записі звучить The toddler has finished breakfast.*
 - The toddler has finished dinner. — *У записі звучить The toddler has finished breakfast.*
 
-**8 · Виберіть третю форму.**
+**8 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-08:i06; family: context_gap_grammar -->
 The toddler has ___ breakfast. → **finished** · finish · finishes
 - finish — *Після have або has потрібна третя форма дієслова.*
@@ -103,7 +103,7 @@ The toddler has ___ breakfast. → **finished** · finish · finishes
 - You have found a playgroup. — *У записі звучить We have found a playgroup.*
 - They have found a playgroup. — *У записі звучить We have found a playgroup.*
 
-**12 · Виберіть третю форму.**
+**12 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-08:i09; family: context_gap_grammar -->
 We have ___ a playgroup. → **found** · find · finds
 - find — *Після have або has потрібна третя форма дієслова.*
@@ -123,7 +123,7 @@ We have ___ a playgroup. → **found** · find · finds
 - He has called the childminder. — *У записі звучить She has called the childminder.*
 - We have called the childminder. — *У записі звучить She has called the childminder.*
 
-**16 · Виберіть третю форму.**
+**16 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-08:i12; family: context_gap_grammar -->
 She has ___ the childminder. → **called** · call · calls
 - call — *Після have або has потрібна третя форма дієслова.*

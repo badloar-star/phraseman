@@ -53,7 +53,7 @@ Quit — кинути, припинити. He has quit smoking — він кин
 <!-- interaction_id: en:lesson-23:session-43:word:adopt; family: word_card -->
 > **adopt** — взяти в родину.
 
-**2 · Виберіть третю форму.**
+**2 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-43:i01; family: context_gap_grammar -->
 I have ___ a cat. → **adopted** · adopt · adopts
 - adopt — *Потрібна третя форма: adopted.*
@@ -73,7 +73,7 @@ I have ___ a cat. → **adopted** · adopt · adopts
 <!-- interaction_id: en:lesson-23:session-43:word:rescue; family: word_card -->
 > **rescue** — врятувати від небезпеки.
 
-**6 · Виберіть третю форму.**
+**6 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-43:i04; family: context_gap_grammar -->
 She has ___ a dog. → **rescued** · rescue · rescues
 - rescue — *Потрібна третя форма: rescued.*
@@ -93,7 +93,7 @@ She has ___ a dog. → **rescued** · rescue · rescues
 <!-- interaction_id: en:lesson-23:session-43:word:survive; family: word_card -->
 > **survive** — пережити, вижити.
 
-**10 · Виберіть третю форму.**
+**10 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-43:i07; family: context_gap_grammar -->
 We have ___ a storm. → **survived** · survive · survives
 - survive — *Потрібна третя форма: survived.*
@@ -113,7 +113,7 @@ We have ___ a storm. → **survived** · survive · survives
 <!-- interaction_id: en:lesson-23:session-43:word:quit; family: word_card -->
 > **quit** — кинути, припинити.
 
-**14 · Виберіть третю форму.**
+**14 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-43:i10; family: context_gap_grammar -->
 He has ___ smoking. → **quit** · quits · quitting
 - quits — *Потрібна третя форма: quit.*

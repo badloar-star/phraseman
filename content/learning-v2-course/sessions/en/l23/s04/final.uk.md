@@ -53,7 +53,7 @@ Overdo — зробити щось надмірно. Overdo it — перест�
 <!-- interaction_id: en:lesson-23:session-04:word:overwork; family: word_card -->
 > **overwork** — працювати забагато.
 
-**2 · Виберіть третю форму після have або has.**
+**2 · Виберіть форму слова після have або has.**
 <!-- interaction_id: en:lesson-23:session-04:i01; family: context_gap_grammar -->
 I have ___. → **overworked** · overwork · overworks
 - overwork — *Потрібні have/has і третя форма дієслова.*
@@ -73,7 +73,7 @@ I have ___. → **overworked** · overwork · overworks
 <!-- interaction_id: en:lesson-23:session-04:word:overdo; family: word_card -->
 > **overdo** — перестаратися.
 
-**6 · Виберіть третю форму після have або has.**
+**6 · Виберіть форму слова після have або has.**
 <!-- interaction_id: en:lesson-23:session-04:i04; family: context_gap_grammar -->
 She has ___ it. → **overdone** · overdo · overdoes
 - overdo — *Потрібні have/has і третя форма дієслова.*
@@ -93,7 +93,7 @@ She has ___ it. → **overdone** · overdo · overdoes
 <!-- interaction_id: en:lesson-23:session-04:word:underestimate; family: word_card -->
 > **underestimate** — недооцінити.
 
-**10 · Виберіть третю форму після have або has.**
+**10 · Виберіть форму слова після have або has.**
 <!-- interaction_id: en:lesson-23:session-04:i07; family: context_gap_grammar -->
 We have ___ the cost. → **underestimated** · underestimate · underestimates
 - underestimate — *Потрібні have/has і третя форма дієслова.*
@@ -113,7 +113,7 @@ We have ___ the cost. → **underestimated** · underestimate · underestimates
 <!-- interaction_id: en:lesson-23:session-04:word:exaggerate; family: word_card -->
 > **exaggerate** — перебільшувати.
 
-**14 · Виберіть третю форму після have або has.**
+**14 · Виберіть форму слова після have або has.**
 <!-- interaction_id: en:lesson-23:session-04:i10; family: context_gap_grammar -->
 He has ___ the problem. → **exaggerated** · exaggerate · exaggerates
 - exaggerate — *Потрібні have/has і третя форма дієслова.*

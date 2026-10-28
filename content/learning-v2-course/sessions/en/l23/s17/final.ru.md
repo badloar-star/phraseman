@@ -53,7 +53,7 @@ Fade — выцветать, терять яркость. The colour has faded: 
 <!-- interaction_id: en:lesson-23:session-17:word:tear; family: word_card -->
 > **tear** — рвать.
 
-**2 · Выберите третью форму для результата сейчас.**
+**2 · Выберите форму слова для результата сейчас.**
 <!-- interaction_id: en:lesson-23:session-17:i01; family: context_gap_grammar -->
 I have ___ my shirt. → **torn** · tear · tore
 - tear — *После have или has нужна третья форма.*
@@ -73,7 +73,7 @@ I have ___ my shirt. → **torn** · tear · tore
 <!-- interaction_id: en:lesson-23:session-17:word:shatter; family: word_card -->
 > **shatter** — разбиться на осколки.
 
-**6 · Выберите третью форму для результата сейчас.**
+**6 · Выберите форму слова для результата сейчас.**
 <!-- interaction_id: en:lesson-23:session-17:i04; family: context_gap_grammar -->
 The glass has ___. → **shattered** · shatter · shatters
 - shatter — *После have или has нужна третья форма.*
@@ -93,7 +93,7 @@ The glass has ___. → **shattered** · shatter · shatters
 <!-- interaction_id: en:lesson-23:session-17:word:clog; family: word_card -->
 > **clog** — засоряться.
 
-**10 · Выберите третью форму для результата сейчас.**
+**10 · Выберите форму слова для результата сейчас.**
 <!-- interaction_id: en:lesson-23:session-17:i07; family: context_gap_grammar -->
 The drain has ___. → **clogged** · clog · clogs
 - clog — *После have или has нужна третья форма.*
@@ -113,7 +113,7 @@ The drain has ___. → **clogged** · clog · clogs
 <!-- interaction_id: en:lesson-23:session-17:word:fade; family: word_card -->
 > **fade** — выцветать.
 
-**14 · Выберите третью форму для результата сейчас.**
+**14 · Выберите форму слова для результата сейчас.**
 <!-- interaction_id: en:lesson-23:session-17:i10; family: context_gap_grammar -->
 The colour has ___. → **faded** · fade · fades
 - fade — *После have или has нужна третья форма.*

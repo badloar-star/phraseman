@@ -63,7 +63,7 @@
 - You have bought wheat flour. — *В записи звучит I have bought wheat flour.*
 - They have bought wheat flour. — *В записи звучит I have bought wheat flour.*
 
-**4 · Выберите третью форму.**
+**4 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-46:i03; family: context_gap_grammar -->
 I have ___ wheat flour. → **bought** · buy · buys
 - buy — *Нужна третья форма: bought.*
@@ -83,7 +83,7 @@ I have ___ wheat flour. → **bought** · buy · buys
 - You have cooked oats. — *В записи звучит She has cooked oats.*
 - They have cooked oats. — *В записи звучит She has cooked oats.*
 
-**8 · Выберите третью форму.**
+**8 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-46:i06; family: context_gap_grammar -->
 She has ___ oats. → **cooked** · cook · cooks
 - cook — *Нужна третья форма: cooked.*
@@ -103,7 +103,7 @@ She has ___ oats. → **cooked** · cook · cooks
 - You have added yeast. — *В записи звучит We have added yeast.*
 - They have added yeast. — *В записи звучит We have added yeast.*
 
-**12 · Выберите третью форму.**
+**12 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-46:i09; family: context_gap_grammar -->
 We have ___ yeast. → **added** · add · adds
 - add — *Нужна третья форма: added.*
@@ -123,7 +123,7 @@ We have ___ yeast. → **added** · add · adds
 - You have made pastry. — *В записи звучит He has made pastry.*
 - They have made pastry. — *В записи звучит He has made pastry.*
 
-**16 · Выберите третью форму.**
+**16 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-46:i12; family: context_gap_grammar -->
 He has ___ pastry. → **made** · make · makes
 - make — *Нужна третья форма: made.*

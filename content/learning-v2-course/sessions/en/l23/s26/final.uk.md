@@ -63,7 +63,7 @@ Unfriendly — недружній, протилежність знайомого
 - You have met a clever student. — *У записі звучить I have met a clever student.*
 - They have met a clever student. — *У записі звучить I have met a clever student.*
 
-**4 · Виберіть третю форму.**
+**4 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-26:i03; family: context_gap_grammar -->
 I have ___ a clever student. → **met** · meet · meets
 - meet — *Потрібна третя форма: met.*
@@ -83,7 +83,7 @@ I have ___ a clever student. → **met** · meet · meets
 - You have met a talkative neighbour. — *У записі звучить She has met a talkative neighbour.*
 - They have met a talkative neighbour. — *У записі звучить She has met a talkative neighbour.*
 
-**8 · Виберіть третю форму.**
+**8 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-26:i06; family: context_gap_grammar -->
 She has ___ a talkative neighbour. → **met** · meet · meets
 - meet — *Потрібна третя форма: met.*
@@ -103,7 +103,7 @@ She has ___ a talkative neighbour. → **met** · meet · meets
 - You have met an unfriendly driver. — *У записі звучить We have met an unfriendly driver.*
 - They have met an unfriendly driver. — *У записі звучить We have met an unfriendly driver.*
 
-**12 · Виберіть третю форму.**
+**12 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-26:i09; family: context_gap_grammar -->
 We have ___ an unfriendly driver. → **met** · meet · meets
 - meet — *Потрібна третя форма: met.*
@@ -123,7 +123,7 @@ We have ___ an unfriendly driver. → **met** · meet · meets
 - You have met a cruel person. — *У записі звучить He has met a cruel person.*
 - They have met a cruel person. — *У записі звучить He has met a cruel person.*
 
-**16 · Виберіть третю форму.**
+**16 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-26:i12; family: context_gap_grammar -->
 He has ___ a cruel person. → **met** · meet · meets
 - meet — *Потрібна третя форма: met.*

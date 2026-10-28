@@ -63,7 +63,7 @@ Basketball — баскетбол, гра, у якій м’яч кидають 
 - You have played volleyball. — *У записі звучить I have played volleyball.*
 - They have played volleyball. — *У записі звучить I have played volleyball.*
 
-**4 · Виберіть третю форму.**
+**4 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-21:i03; family: context_gap_grammar -->
 I have ___ volleyball. → **played** · play · plays
 - play — *Після have або has потрібна третя форма played.*
@@ -83,7 +83,7 @@ I have ___ volleyball. → **played** · play · plays
 - You have played badminton. — *У записі звучить She has played badminton.*
 - They have played badminton. — *У записі звучить She has played badminton.*
 
-**8 · Виберіть третю форму.**
+**8 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-21:i06; family: context_gap_grammar -->
 She has ___ badminton. → **played** · play · plays
 - play — *Після have або has потрібна третя форма played.*
@@ -103,7 +103,7 @@ She has ___ badminton. → **played** · play · plays
 - You have played basketball. — *У записі звучить We have played basketball.*
 - They have played basketball. — *У записі звучить We have played basketball.*
 
-**12 · Виберіть третю форму.**
+**12 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-21:i09; family: context_gap_grammar -->
 We have ___ basketball. → **played** · play · plays
 - play — *Після have або has потрібна третя форма played.*
@@ -123,7 +123,7 @@ We have ___ basketball. → **played** · play · plays
 - You have played hockey. — *У записі звучить He has played hockey.*
 - They have played hockey. — *У записі звучить He has played hockey.*
 
-**16 · Виберіть третю форму.**
+**16 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-21:i12; family: context_gap_grammar -->
 He has ___ hockey. → **played** · play · plays
 - play — *Після have або has потрібна третя форма played.*

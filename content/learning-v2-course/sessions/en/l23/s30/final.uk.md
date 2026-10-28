@@ -63,7 +63,7 @@ Worm — черв’як, наприклад дощовий черв’як у �
 - You have seen an ant. — *У записі звучить I have seen an ant.*
 - They have seen an ant. — *У записі звучить I have seen an ant.*
 
-**4 · Виберіть третю форму.**
+**4 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-30:i03; family: context_gap_grammar -->
 I have ___ an ant. → **seen** · see · sees
 - see — *Потрібна третя форма: seen.*
@@ -83,7 +83,7 @@ I have ___ an ant. → **seen** · see · sees
 - You have seen a spider. — *У записі звучить She has seen a spider.*
 - They have seen a spider. — *У записі звучить She has seen a spider.*
 
-**8 · Виберіть третю форму.**
+**8 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-30:i06; family: context_gap_grammar -->
 She has ___ a spider. → **seen** · see · sees
 - see — *Потрібна третя форма: seen.*
@@ -103,7 +103,7 @@ She has ___ a spider. → **seen** · see · sees
 - You have heard a mosquito. — *У записі звучить We have heard a mosquito.*
 - They have heard a mosquito. — *У записі звучить We have heard a mosquito.*
 
-**12 · Виберіть третю форму.**
+**12 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-30:i09; family: context_gap_grammar -->
 We have ___ a mosquito. → **heard** · hear · hears
 - hear — *Потрібна третя форма: heard.*
@@ -123,7 +123,7 @@ We have ___ a mosquito. → **heard** · hear · hears
 - You have found a worm. — *У записі звучить He has found a worm.*
 - They have found a worm. — *У записі звучить He has found a worm.*
 
-**16 · Виберіть третю форму.**
+**16 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-30:i12; family: context_gap_grammar -->
 He has ___ a worm. → **found** · find · finds
 - find — *Потрібна третя форма: found.*

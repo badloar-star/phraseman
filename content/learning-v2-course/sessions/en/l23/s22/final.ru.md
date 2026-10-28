@@ -63,7 +63,7 @@ Flood — наводнение, когда вода затапливает ме�
 - You have heard thunder. — *В записи звучит I have heard thunder.*
 - They have heard thunder. — *В записи звучит I have heard thunder.*
 
-**4 · Выберите третью форму.**
+**4 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-22:i03; family: context_gap_grammar -->
 I have ___ thunder. → **heard** · hear · hears
 - hear — *Нужна третья форма: heard.*
@@ -83,7 +83,7 @@ I have ___ thunder. → **heard** · hear · hears
 - You have seen lightning. — *В записи звучит She has seen lightning.*
 - They have seen lightning. — *В записи звучит She has seen lightning.*
 
-**8 · Выберите третью форму.**
+**8 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-22:i06; family: context_gap_grammar -->
 She has ___ lightning. → **seen** · see · sees
 - see — *Нужна третья форма: seen.*
@@ -103,7 +103,7 @@ She has ___ lightning. → **seen** · see · sees
 - You have seen a flood. — *В записи звучит We have seen a flood.*
 - They have seen a flood. — *В записи звучит We have seen a flood.*
 
-**12 · Выберите третью форму.**
+**12 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-22:i09; family: context_gap_grammar -->
 We have ___ a flood. → **seen** · see · sees
 - see — *Нужна третья форма: seen.*
@@ -123,7 +123,7 @@ We have ___ a flood. → **seen** · see · sees
 - You have felt a breeze. — *В записи звучит He has felt a breeze.*
 - They have felt a breeze. — *В записи звучит He has felt a breeze.*
 
-**16 · Выберите третью форму.**
+**16 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-22:i12; family: context_gap_grammar -->
 He has ___ a breeze. → **felt** · feel · feels
 - feel — *Нужна третья форма: felt.*

@@ -63,7 +63,7 @@ Scientist — науковець, людина, яка займається на
 - You have just met a scientist. — *У записі звучить I have just met a scientist.*
 - We have just met a scientist. — *У записі звучить I have just met a scientist.*
 
-**4 · Виберіть третю форму.**
+**4 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-33:i03; family: context_gap_grammar -->
 I have just ___ a scientist. → **met** · meet · meets
 - meet — *Після have або has потрібна третя форма met.*
@@ -83,7 +83,7 @@ I have just ___ a scientist. → **met** · meet · meets
 - You have already met an engineer. — *У записі звучить She has already met an engineer.*
 - We have already met an engineer. — *У записі звучить She has already met an engineer.*
 
-**8 · Виберіть третю форму.**
+**8 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-33:i06; family: context_gap_grammar -->
 She has already ___ an engineer. → **met** · meet · meets
 - meet — *Після have або has потрібна третя форма met.*
@@ -103,7 +103,7 @@ She has already ___ an engineer. → **met** · meet · meets
 - They haven't met an architect yet. — *У записі звучить We haven't met an architect yet.*
 - I haven't met an architect yet. — *У записі звучить We haven't met an architect yet.*
 
-**12 · Виберіть третю форму.**
+**12 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-33:i09; family: context_gap_grammar -->
 We haven't ___ an architect yet. → **met** · meet · meets
 - meet — *Після have або has потрібна третя форма met.*
@@ -123,7 +123,7 @@ We haven't ___ an architect yet. → **met** · meet · meets
 - Have they met a builder yet? — *У записі звучить Have you met a builder yet?*
 - Has she met a builder yet? — *У записі звучить Have you met a builder yet?*
 
-**16 · Виберіть третю форму.**
+**16 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-33:i12; family: context_gap_grammar -->
 Have you ___ a builder yet? → **met** · meet · meets
 - meet — *Після have або has потрібна третя форма met.*

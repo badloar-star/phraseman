@@ -63,7 +63,7 @@ Basin — умивальник; це звичайне британське сл�
 - You have cleaned the corridor. — *У записі звучить I have cleaned the corridor.*
 - They have cleaned the corridor. — *У записі звучить I have cleaned the corridor.*
 
-**4 · Виберіть третю форму.**
+**4 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-31:i03; family: context_gap_grammar -->
 I have ___ the corridor. → **cleaned** · clean · cleans
 - clean — *Потрібна третя форма: cleaned.*
@@ -83,7 +83,7 @@ I have ___ the corridor. → **cleaned** · clean · cleans
 - You have repaired the cabinet. — *У записі звучить She has repaired the cabinet.*
 - They have repaired the cabinet. — *У записі звучить She has repaired the cabinet.*
 
-**8 · Виберіть третю форму.**
+**8 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-31:i06; family: context_gap_grammar -->
 She has ___ the cabinet. → **repaired** · repair · repairs
 - repair — *Потрібна третя форма: repaired.*
@@ -103,7 +103,7 @@ She has ___ the cabinet. → **repaired** · repair · repairs
 - You have cleaned the basin. — *У записі звучить We have cleaned the basin.*
 - They have cleaned the basin. — *У записі звучить We have cleaned the basin.*
 
-**12 · Виберіть третю форму.**
+**12 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-31:i09; family: context_gap_grammar -->
 We have ___ the basin. → **cleaned** · clean · cleans
 - clean — *Потрібна третя форма: cleaned.*
@@ -123,7 +123,7 @@ We have ___ the basin. → **cleaned** · clean · cleans
 - You have decorated the lounge. — *У записі звучить He has decorated the lounge.*
 - They have decorated the lounge. — *У записі звучить He has decorated the lounge.*
 
-**16 · Виберіть третю форму.**
+**16 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-31:i12; family: context_gap_grammar -->
 He has ___ the lounge. → **decorated** · decorate · decorates
 - decorate — *Потрібна третя форма: decorated.*

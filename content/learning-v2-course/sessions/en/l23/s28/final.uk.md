@@ -63,7 +63,7 @@ Leggings — легінси, еластичні штани, що облягаю�
 - You have washed a blouse. — *У записі звучить I have washed a blouse.*
 - They have washed a blouse. — *У записі звучить I have washed a blouse.*
 
-**4 · Виберіть третю форму.**
+**4 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-28:i03; family: context_gap_grammar -->
 I have ___ a blouse. → **washed** · wash · washes
 - wash — *Потрібна третя форма: washed.*
@@ -83,7 +83,7 @@ I have ___ a blouse. → **washed** · wash · washes
 - You have packed your shorts. — *У записі звучить She has packed her shorts.*
 - They have packed their shorts. — *У записі звучить She has packed her shorts.*
 
-**8 · Виберіть третю форму.**
+**8 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-28:i06; family: context_gap_grammar -->
 She has ___ her shorts. → **packed** · pack · packs
 - pack — *Потрібна третя форма: packed.*
@@ -103,7 +103,7 @@ She has ___ her shorts. → **packed** · pack · packs
 - You have ironed your trousers. — *У записі звучить He has ironed his trousers.*
 - They have ironed their trousers. — *У записі звучить He has ironed his trousers.*
 
-**12 · Виберіть третю форму.**
+**12 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-28:i09; family: context_gap_grammar -->
 He has ___ his trousers. → **ironed** · iron · irons
 - iron — *Потрібна третя форма: ironed.*
@@ -123,7 +123,7 @@ He has ___ his trousers. → **ironed** · iron · irons
 - You have bought new leggings. — *У записі звучить I have bought new leggings.*
 - They have bought new leggings. — *У записі звучить I have bought new leggings.*
 
-**16 · Виберіть третю форму.**
+**16 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-28:i12; family: context_gap_grammar -->
 I have ___ new leggings. → **bought** · buy · buys
 - buy — *Потрібна третя форма: bought.*

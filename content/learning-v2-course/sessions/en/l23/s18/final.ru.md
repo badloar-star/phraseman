@@ -63,7 +63,7 @@ Mango — манго. Peel a mango — очистить манго от кожу
 - You have tried melon. — *В записи звучит I have tried melon.*
 - They have tried melon. — *В записи звучит I have tried melon.*
 
-**4 · Выберите третью форму.**
+**4 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-18:i03; family: context_gap_grammar -->
 I have ___ melon. → **tried** · try · tries
 - try — *После have или has нужна третья форма.*
@@ -83,7 +83,7 @@ I have ___ melon. → **tried** · try · tries
 - You have eaten watermelon. — *В записи звучит She has eaten watermelon.*
 - They have eaten watermelon. — *В записи звучит She has eaten watermelon.*
 
-**8 · Выберите третью форму.**
+**8 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-18:i06; family: context_gap_grammar -->
 She has ___ watermelon. → **eaten** · eat · ate
 - eat — *После have или has нужна третья форма.*
@@ -103,7 +103,7 @@ She has ___ watermelon. → **eaten** · eat · ate
 - You have cut a pineapple. — *В записи звучит We have cut a pineapple.*
 - They have cut a pineapple. — *В записи звучит We have cut a pineapple.*
 
-**12 · Выберите третью форму.**
+**12 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-18:i09; family: context_gap_grammar -->
 We have ___ a pineapple. → **cut** · cuts · cutting
 - cuts — *После have или has нужна третья форма.*
@@ -123,7 +123,7 @@ We have ___ a pineapple. → **cut** · cuts · cutting
 - You have peeled a mango. — *В записи звучит He has peeled a mango.*
 - They have peeled a mango. — *В записи звучит He has peeled a mango.*
 
-**16 · Выберите третью форму.**
+**16 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-18:i12; family: context_gap_grammar -->
 He has ___ a mango. → **peeled** · peel · peels
 - peel — *После have или has нужна третья форма.*

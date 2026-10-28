@@ -63,7 +63,7 @@ Bouquet — букет: кілька квітів, зібраних разом. 
 - The bride has called. — *У записі звучить The bride has arrived.*
 - The bride has left. — *У записі звучить The bride has arrived.*
 
-**4 · Виберіть третю форму.**
+**4 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-07:i03; family: context_gap_grammar -->
 The bride has ___. → **arrived** · arrive · arrives
 - arrive — *Після have або has потрібна третя форма дієслова.*
@@ -83,7 +83,7 @@ The bride has ___. → **arrived** · arrive · arrives
 - The groom has changed his shirt. — *У записі звучить The groom has changed his jacket.*
 - The groom has changed his shoes. — *У записі звучить The groom has changed his jacket.*
 
-**8 · Виберіть третю форму.**
+**8 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-07:i06; family: context_gap_grammar -->
 The groom has ___ his jacket. → **changed** · change · changes
 - change — *Після have або has потрібна третя форма дієслова.*
@@ -103,7 +103,7 @@ The groom has ___ his jacket. → **changed** · change · changes
 - I have received a bouquet. — *У записі звучить I have ordered a bouquet.*
 - I have bought a bouquet. — *У записі звучить I have ordered a bouquet.*
 
-**12 · Виберіть третю форму.**
+**12 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-07:i09; family: context_gap_grammar -->
 I have ___ a bouquet. → **ordered** · order · orders
 - order — *Після have або has потрібна третя форма дієслова.*
@@ -123,7 +123,7 @@ I have ___ a bouquet. → **ordered** · order · orders
 - We have planned our honeymoon. — *У записі звучить We have booked our honeymoon.*
 - We have cancelled our honeymoon. — *У записі звучить We have booked our honeymoon.*
 
-**16 · Виберіть третю форму.**
+**16 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-07:i12; family: context_gap_grammar -->
 We have ___ our honeymoon. → **booked** · book · books
 - book — *Після have або has потрібна третя форма дієслова.*

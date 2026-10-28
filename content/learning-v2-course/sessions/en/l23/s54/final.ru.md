@@ -63,7 +63,7 @@ Accountant — бухгалтер. He has called an accountant — он позв
 - You have asked the librarian. — *В записи звучит I have asked the librarian.*
 - They have asked the librarian. — *В записи звучит I have asked the librarian.*
 
-**4 · Выберите третью форму.**
+**4 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-54:i03; family: context_gap_grammar -->
 I have ___ the librarian. → **asked** · ask · asks
 - ask — *Нужна третья форма: asked.*
@@ -83,7 +83,7 @@ I have ___ the librarian. → **asked** · ask · asks
 - You have found a translator. — *В записи звучит She has found a translator.*
 - They have found a translator. — *В записи звучит She has found a translator.*
 
-**8 · Выберите третью форму.**
+**8 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-54:i06; family: context_gap_grammar -->
 She has ___ a translator. → **found** · find · finds
 - find — *Нужна третья форма: found.*
@@ -103,7 +103,7 @@ She has ___ a translator. → **found** · find · finds
 - You have spoken to an interpreter. — *В записи звучит We have spoken to an interpreter.*
 - They have spoken to an interpreter. — *В записи звучит We have spoken to an interpreter.*
 
-**12 · Выберите третью форму.**
+**12 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-54:i09; family: context_gap_grammar -->
 We have ___ to an interpreter. → **spoken** · speak · speaks
 - speak — *Нужна третья форма: spoken.*
@@ -123,7 +123,7 @@ We have ___ to an interpreter. → **spoken** · speak · speaks
 - You have called an accountant. — *В записи звучит He has called an accountant.*
 - They have called an accountant. — *В записи звучит He has called an accountant.*
 
-**16 · Выберите третью форму.**
+**16 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-54:i12; family: context_gap_grammar -->
 He has ___ an accountant. → **called** · call · calls
 - call — *Нужна третья форма: called.*

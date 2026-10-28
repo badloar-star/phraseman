@@ -63,7 +63,7 @@ Village — деревня или село, небольшое поселени�
 - You have visited a small village. — *В записи звучит I have visited a small village.*
 - They have visited a small village. — *В записи звучит I have visited a small village.*
 
-**4 · Выберите третью форму.**
+**4 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-53:i03; family: context_gap_grammar -->
 I have ___ a small village. → **visited** · visit · visits
 - visit — *Нужна третья форма: visited.*
@@ -83,7 +83,7 @@ I have ___ a small village. → **visited** · visit · visits
 - You have crossed the border. — *В записи звучит She has crossed the border.*
 - They have crossed the border. — *В записи звучит She has crossed the border.*
 
-**8 · Выберите третью форму.**
+**8 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-53:i06; family: context_gap_grammar -->
 She has ___ the border. → **crossed** · cross · crosses
 - cross — *Нужна третья форма: crossed.*
@@ -103,7 +103,7 @@ She has ___ the border. → **crossed** · cross · crosses
 - You have learned about the local population. — *В записи звучит We have learned about the local population.*
 - They have learned about the local population. — *В записи звучит We have learned about the local population.*
 
-**12 · Выберите третью форму.**
+**12 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-53:i09; family: context_gap_grammar -->
 We have ___ about the local population. → **learned** · learn · learns
 - learn — *Нужна третья форма: learned.*
@@ -123,7 +123,7 @@ We have ___ about the local population. → **learned** · learn · learns
 - You have travelled to another continent. — *В записи звучит He has travelled to another continent.*
 - They have travelled to another continent. — *В записи звучит He has travelled to another continent.*
 
-**16 · Выберите третью форму.**
+**16 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-53:i12; family: context_gap_grammar -->
 He has ___ to another continent. → **travelled** · travel · travels
 - travel — *Нужна третья форма: travelled.*

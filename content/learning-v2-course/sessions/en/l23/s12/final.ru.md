@@ -63,7 +63,7 @@ Orchestra — оркестр, группа музыкантов, играющи�
 - You have seen an opera. — *В записи звучит I have seen an opera.*
 - They have seen an opera. — *В записи звучит I have seen an opera.*
 
-**4 · Выберите третью форму для рассказа об опыте.**
+**4 · Выберите форму слова для рассказа об опыте.**
 <!-- interaction_id: en:lesson-23:session-12:i03; family: context_gap_grammar -->
 I have ___ an opera. → **seen** · see · saw
 - see — *После have или has нужна третья форма.*
@@ -83,7 +83,7 @@ I have ___ an opera. → **seen** · see · saw
 - You have heard an orchestra. — *В записи звучит She has heard an orchestra.*
 - They have heard an orchestra. — *В записи звучит She has heard an orchestra.*
 
-**8 · Выберите третью форму для рассказа об опыте.**
+**8 · Выберите форму слова для рассказа об опыте.**
 <!-- interaction_id: en:lesson-23:session-12:i06; family: context_gap_grammar -->
 She has ___ an orchestra. → **heard** · hear · hears
 - hear — *После have или has нужна третья форма.*
@@ -103,7 +103,7 @@ She has ___ an orchestra. → **heard** · hear · hears
 - You have been to a circus. — *В записи звучит We have been to a circus.*
 - They have been to a circus. — *В записи звучит We have been to a circus.*
 
-**12 · Выберите третью форму для рассказа об опыте.**
+**12 · Выберите форму слова для рассказа об опыте.**
 <!-- interaction_id: en:lesson-23:session-12:i09; family: context_gap_grammar -->
 We have ___ to a circus. → **been** · be · was
 - be — *После have или has нужна третья форма.*
@@ -123,7 +123,7 @@ We have ___ to a circus. → **been** · be · was
 - You have visited an exhibition. — *В записи звучит He has visited an exhibition.*
 - They have visited an exhibition. — *В записи звучит He has visited an exhibition.*
 
-**16 · Выберите третью форму для рассказа об опыте.**
+**16 · Выберите форму слова для рассказа об опыте.**
 <!-- interaction_id: en:lesson-23:session-12:i12; family: context_gap_grammar -->
 He has ___ an exhibition. → **visited** · visit · visits
 - visit — *После have или has нужна третья форма.*

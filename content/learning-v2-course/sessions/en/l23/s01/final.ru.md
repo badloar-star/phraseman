@@ -53,7 +53,7 @@
 <!-- interaction_id: en:lesson-23:session-01:word:miscount; family: word_card -->
 > **miscount** — ошибиться при подсчёте.
 
-**2 · Выберите третью форму после have или has.**
+**2 · Выберите форму слова после have или has.**
 <!-- interaction_id: en:lesson-23:session-01:i03; family: context_gap_grammar -->
 I have ___ the tickets. → **miscounted** · miscount · miscounts
 - miscount — *Нужны have/has и третья форма глагола.*
@@ -73,7 +73,7 @@ I have ___ the tickets. → **miscounted** · miscount · miscounts
 <!-- interaction_id: en:lesson-23:session-01:word:misdial; family: word_card -->
 > **misdial** — неправильно набрать номер.
 
-**6 · Выберите третью форму после have или has.**
+**6 · Выберите форму слова после have или has.**
 <!-- interaction_id: en:lesson-23:session-01:i06; family: context_gap_grammar -->
 She has ___ the number. → **misdialled** · misdial · misdials
 - misdial — *Нужны have/has и третья форма глагола.*
@@ -93,7 +93,7 @@ She has ___ the number. → **misdialled** · misdial · misdials
 <!-- interaction_id: en:lesson-23:session-01:word:repack; family: word_card -->
 > **repack** — перепаковать вещи.
 
-**10 · Выберите третью форму после have или has.**
+**10 · Выберите форму слова после have или has.**
 <!-- interaction_id: en:lesson-23:session-01:i09; family: context_gap_grammar -->
 We have ___ the bag. → **repacked** · repack · repacks
 - repack — *Нужны have/has и третья форма глагола.*
@@ -113,7 +113,7 @@ We have ___ the bag. → **repacked** · repack · repacks
 <!-- interaction_id: en:lesson-23:session-01:word:rebook; family: word_card -->
 > **rebook** — забронировать заново.
 
-**14 · Выберите третью форму после have или has.**
+**14 · Выберите форму слова после have или has.**
 <!-- interaction_id: en:lesson-23:session-01:i12; family: context_gap_grammar -->
 He has ___ the flight. → **rebooked** · rebook · rebooks
 - rebook — *Нужны have/has и третья форма глагола.*

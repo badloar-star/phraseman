@@ -53,7 +53,7 @@ Air-dry — сушить на воздухе, без сушилки, в комн
 <!-- interaction_id: en:lesson-23:session-03:word:restock; family: word_card -->
 > **restock** — пополнить запас.
 
-**2 · Выберите третью форму после have или has.**
+**2 · Выберите форму слова после have или has.**
 <!-- interaction_id: en:lesson-23:session-03:i01; family: context_gap_grammar -->
 We have ___ the fridge. → **restocked** · restock · restocks
 - restock — *После have или has используйте третью форму глагола.*
@@ -73,7 +73,7 @@ We have ___ the fridge. → **restocked** · restock · restocks
 <!-- interaction_id: en:lesson-23:session-03:word:disinfect; family: word_card -->
 > **disinfect** — дезинфицировать.
 
-**6 · Выберите третью форму после have или has.**
+**6 · Выберите форму слова после have или has.**
 <!-- interaction_id: en:lesson-23:session-03:i04; family: context_gap_grammar -->
 She has ___ the table. → **disinfected** · disinfect · disinfects
 - disinfect — *После have или has используйте третью форму глагола.*
@@ -93,7 +93,7 @@ She has ___ the table. → **disinfected** · disinfect · disinfects
 <!-- interaction_id: en:lesson-23:session-03:word:bleach; family: word_card -->
 > **bleach** — отбеливать.
 
-**10 · Выберите третью форму после have или has.**
+**10 · Выберите форму слова после have или has.**
 <!-- interaction_id: en:lesson-23:session-03:i07; family: context_gap_grammar -->
 I have ___ the towels. → **bleached** · bleach · bleaches
 - bleach — *После have или has используйте третью форму глагола.*
@@ -113,7 +113,7 @@ I have ___ the towels. → **bleached** · bleach · bleaches
 <!-- interaction_id: en:lesson-23:session-03:word:air-dry; family: word_card -->
 > **air-dry** — сушить без сушилки.
 
-**14 · Выберите третью форму после have или has.**
+**14 · Выберите форму слова после have или has.**
 <!-- interaction_id: en:lesson-23:session-03:i10; family: context_gap_grammar -->
 He has ___ the shirt. → **air-dried** · air-dry · air-dries
 - air-dry — *После have или has используйте третью форму глагола.*

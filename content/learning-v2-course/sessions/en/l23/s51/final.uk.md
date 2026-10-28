@@ -63,7 +63,7 @@ Karate — карате. I have tried karate — я пробував займа�
 - You have tried karate. — *У записі звучить I have tried karate.*
 - They have tried karate. — *У записі звучить I have tried karate.*
 
-**4 · Виберіть третю форму.**
+**4 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-51:i03; family: context_gap_grammar -->
 I have ___ karate. → **tried** · try · tries
 - try — *Потрібна третя форма: tried.*
@@ -83,7 +83,7 @@ I have ___ karate. → **tried** · try · tries
 - You have tried judo. — *У записі звучить She has tried judo.*
 - They have tried judo. — *У записі звучить She has tried judo.*
 
-**8 · Виберіть третю форму.**
+**8 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-51:i06; family: context_gap_grammar -->
 She has ___ judo. → **tried** · try · tries
 - try — *Потрібна третя форма: tried.*
@@ -103,7 +103,7 @@ She has ___ judo. → **tried** · try · tries
 - You have watched gymnastics. — *У записі звучить We have watched gymnastics.*
 - They have watched gymnastics. — *У записі звучить We have watched gymnastics.*
 
-**12 · Виберіть третю форму.**
+**12 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-51:i09; family: context_gap_grammar -->
 We have ___ gymnastics. → **watched** · watch · watches
 - watch — *Потрібна третя форма: watched.*
@@ -123,7 +123,7 @@ We have ___ gymnastics. → **watched** · watch · watches
 - You have watched wrestling. — *У записі звучить He has watched wrestling.*
 - They have watched wrestling. — *У записі звучить He has watched wrestling.*
 
-**16 · Виберіть третю форму.**
+**16 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-51:i12; family: context_gap_grammar -->
 He has ___ wrestling. → **watched** · watch · watches
 - watch — *Потрібна третя форма: watched.*

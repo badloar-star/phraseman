@@ -63,7 +63,7 @@ Campsite — место для палаток или кемпинг. Stay at a c
 - You have travelled in a canoe. — *В записи звучит I have travelled in a canoe.*
 - They have travelled in a canoe. — *В записи звучит I have travelled in a canoe.*
 
-**4 · Выберите третью форму для рассказа об опыте.**
+**4 · Выберите форму слова для рассказа об опыте.**
 <!-- interaction_id: en:lesson-23:session-10:i03; family: context_gap_grammar -->
 I have ___ in a canoe. → **travelled** · travel · travels
 - travel — *После have или has нужна третья форма глагола.*
@@ -83,7 +83,7 @@ I have ___ in a canoe. → **travelled** · travel · travels
 - You have been on a safari. — *В записи звучит She has been on a safari.*
 - They have been on a safari. — *В записи звучит She has been on a safari.*
 
-**8 · Выберите третью форму для рассказа об опыте.**
+**8 · Выберите форму слова для рассказа об опыте.**
 <!-- interaction_id: en:lesson-23:session-10:i06; family: context_gap_grammar -->
 She has ___ on a safari. → **been** · be · was
 - be — *После have или has нужна третья форма глагола.*
@@ -103,7 +103,7 @@ She has ___ on a safari. → **been** · be · was
 - You have visited a carnival. — *В записи звучит We have visited a carnival.*
 - They have visited a carnival. — *В записи звучит We have visited a carnival.*
 
-**12 · Выберите третью форму для рассказа об опыте.**
+**12 · Выберите форму слова для рассказа об опыте.**
 <!-- interaction_id: en:lesson-23:session-10:i09; family: context_gap_grammar -->
 We have ___ a carnival. → **visited** · visit · visits
 - visit — *После have или has нужна третья форма глагола.*
@@ -123,7 +123,7 @@ We have ___ a carnival. → **visited** · visit · visits
 - You have stayed at a campsite. — *В записи звучит He has stayed at a campsite.*
 - They have stayed at a campsite. — *В записи звучит He has stayed at a campsite.*
 
-**16 · Выберите третью форму для рассказа об опыте.**
+**16 · Выберите форму слова для рассказа об опыте.**
 <!-- interaction_id: en:lesson-23:session-10:i12; family: context_gap_grammar -->
 He has ___ at a campsite. → **stayed** · stay · stays
 - stay — *После have или has нужна третья форма глагола.*

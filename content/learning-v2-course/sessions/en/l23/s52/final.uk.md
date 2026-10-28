@@ -63,7 +63,7 @@ Election — вибори. Українською кажемо у множині
 - You have voted in an election. — *У записі звучить I have voted in an election.*
 - They have voted in an election. — *У записі звучить I have voted in an election.*
 
-**4 · Виберіть третю форму.**
+**4 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-52:i03; family: context_gap_grammar -->
 I have ___ in an election. → **voted** · vote · votes
 - vote — *Потрібна третя форма: voted.*
@@ -83,7 +83,7 @@ I have ___ in an election. → **voted** · vote · votes
 - You have met the mayor. — *У записі звучить She has met the mayor.*
 - They have met the mayor. — *У записі звучить She has met the mayor.*
 
-**8 · Виберіть третю форму.**
+**8 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-52:i06; family: context_gap_grammar -->
 She has ___ the mayor. → **met** · meet · meets
 - meet — *Потрібна третя форма: met.*
@@ -103,7 +103,7 @@ She has ___ the mayor. → **met** · meet · meets
 - You have read about the government. — *У записі звучить We have read about the government.*
 - They have read about the government. — *У записі звучить We have read about the government.*
 
-**12 · Виберіть третю форму.**
+**12 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-52:i09; family: context_gap_grammar -->
 We have ___ about the government. → **read** · reads · reading
 - reads — *Потрібна третя форма: read.*
@@ -123,7 +123,7 @@ We have ___ about the government. → **read** · reads · reading
 - You have seen the president on TV. — *У записі звучить He has seen the president on TV.*
 - They have seen the president on TV. — *У записі звучить He has seen the president on TV.*
 
-**16 · Виберіть третю форму.**
+**16 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-52:i12; family: context_gap_grammar -->
 He has ___ the president on TV. → **seen** · see · sees
 - see — *Потрібна третя форма: seen.*

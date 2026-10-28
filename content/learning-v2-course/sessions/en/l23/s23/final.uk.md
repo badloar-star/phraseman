@@ -63,7 +63,7 @@ Salami — салямі, вид ковбаси. He has bought salami — він 
 - You have tried bacon. — *У записі звучить I have tried bacon.*
 - They have tried bacon. — *У записі звучить I have tried bacon.*
 
-**4 · Виберіть третю форму.**
+**4 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-23:i03; family: context_gap_grammar -->
 I have ___ bacon. → **tried** · try · tries
 - try — *Потрібна третя форма: tried.*
@@ -83,7 +83,7 @@ I have ___ bacon. → **tried** · try · tries
 - You have cooked beef. — *У записі звучить She has cooked beef.*
 - They have cooked beef. — *У записі звучить She has cooked beef.*
 
-**8 · Виберіть третю форму.**
+**8 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-23:i06; family: context_gap_grammar -->
 She has ___ beef. → **cooked** · cook · cooks
 - cook — *Потрібна третя форма: cooked.*
@@ -103,7 +103,7 @@ She has ___ beef. → **cooked** · cook · cooks
 - You have tried pork. — *У записі звучить We have tried pork.*
 - They have tried pork. — *У записі звучить We have tried pork.*
 
-**12 · Виберіть третю форму.**
+**12 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-23:i09; family: context_gap_grammar -->
 We have ___ pork. → **tried** · try · tries
 - try — *Потрібна третя форма: tried.*
@@ -123,7 +123,7 @@ We have ___ pork. → **tried** · try · tries
 - You have bought salami. — *У записі звучить He has bought salami.*
 - They have bought salami. — *У записі звучить He has bought salami.*
 
-**16 · Виберіть третю форму.**
+**16 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-23:i12; family: context_gap_grammar -->
 He has ___ salami. → **bought** · buy · buys
 - buy — *Потрібна третя форма: bought.*

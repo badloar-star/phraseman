@@ -63,7 +63,7 @@ Musician — музикант. He has met a musician — він зустріча
 - You have met an actor. — *У записі звучить I have met an actor.*
 - They have met an actor. — *У записі звучить I have met an actor.*
 
-**4 · Виберіть третю форму.**
+**4 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-32:i03; family: context_gap_grammar -->
 I have ___ an actor. → **met** · meet · meets
 - meet — *Потрібна третя форма: met.*
@@ -83,7 +83,7 @@ I have ___ an actor. → **met** · meet · meets
 - You have met a singer. — *У записі звучить She has met a singer.*
 - They have met a singer. — *У записі звучить She has met a singer.*
 
-**8 · Виберіть третю форму.**
+**8 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-32:i06; family: context_gap_grammar -->
 She has ___ a singer. → **met** · meet · meets
 - meet — *Потрібна третя форма: met.*
@@ -103,7 +103,7 @@ She has ___ a singer. → **met** · meet · meets
 - You have met a dancer. — *У записі звучить We have met a dancer.*
 - They have met a dancer. — *У записі звучить We have met a dancer.*
 
-**12 · Виберіть третю форму.**
+**12 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-32:i09; family: context_gap_grammar -->
 We have ___ a dancer. → **met** · meet · meets
 - meet — *Потрібна третя форма: met.*
@@ -123,7 +123,7 @@ We have ___ a dancer. → **met** · meet · meets
 - You have met a musician. — *У записі звучить He has met a musician.*
 - They have met a musician. — *У записі звучить He has met a musician.*
 
-**16 · Виберіть третю форму.**
+**16 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-32:i12; family: context_gap_grammar -->
 He has ___ a musician. → **met** · meet · meets
 - meet — *Потрібна третя форма: met.*

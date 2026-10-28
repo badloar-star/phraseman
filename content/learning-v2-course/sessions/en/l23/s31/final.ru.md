@@ -63,7 +63,7 @@ Basin — раковина для умывания; это обычное бри
 - You have cleaned the corridor. — *В записи звучит I have cleaned the corridor.*
 - They have cleaned the corridor. — *В записи звучит I have cleaned the corridor.*
 
-**4 · Выберите третью форму.**
+**4 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-31:i03; family: context_gap_grammar -->
 I have ___ the corridor. → **cleaned** · clean · cleans
 - clean — *Нужна третья форма: cleaned.*
@@ -83,7 +83,7 @@ I have ___ the corridor. → **cleaned** · clean · cleans
 - You have repaired the cabinet. — *В записи звучит She has repaired the cabinet.*
 - They have repaired the cabinet. — *В записи звучит She has repaired the cabinet.*
 
-**8 · Выберите третью форму.**
+**8 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-31:i06; family: context_gap_grammar -->
 She has ___ the cabinet. → **repaired** · repair · repairs
 - repair — *Нужна третья форма: repaired.*
@@ -103,7 +103,7 @@ She has ___ the cabinet. → **repaired** · repair · repairs
 - You have cleaned the basin. — *В записи звучит We have cleaned the basin.*
 - They have cleaned the basin. — *В записи звучит We have cleaned the basin.*
 
-**12 · Выберите третью форму.**
+**12 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-31:i09; family: context_gap_grammar -->
 We have ___ the basin. → **cleaned** · clean · cleans
 - clean — *Нужна третья форма: cleaned.*
@@ -123,7 +123,7 @@ We have ___ the basin. → **cleaned** · clean · cleans
 - You have decorated the lounge. — *В записи звучит He has decorated the lounge.*
 - They have decorated the lounge. — *В записи звучит He has decorated the lounge.*
 
-**16 · Выберите третью форму.**
+**16 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-31:i12; family: context_gap_grammar -->
 He has ___ the lounge. → **decorated** · decorate · decorates
 - decorate — *Нужна третья форма: decorated.*

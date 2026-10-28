@@ -63,7 +63,7 @@ Orchestra — оркестр, група музикантів, які грают
 - You have seen an opera. — *У записі звучить I have seen an opera.*
 - They have seen an opera. — *У записі звучить I have seen an opera.*
 
-**4 · Виберіть третю форму для розповіді про досвід.**
+**4 · Виберіть форму слова для розповіді про досвід.**
 <!-- interaction_id: en:lesson-23:session-12:i03; family: context_gap_grammar -->
 I have ___ an opera. → **seen** · see · saw
 - see — *Після have або has потрібна третя форма.*
@@ -83,7 +83,7 @@ I have ___ an opera. → **seen** · see · saw
 - You have heard an orchestra. — *У записі звучить She has heard an orchestra.*
 - They have heard an orchestra. — *У записі звучить She has heard an orchestra.*
 
-**8 · Виберіть третю форму для розповіді про досвід.**
+**8 · Виберіть форму слова для розповіді про досвід.**
 <!-- interaction_id: en:lesson-23:session-12:i06; family: context_gap_grammar -->
 She has ___ an orchestra. → **heard** · hear · hears
 - hear — *Після have або has потрібна третя форма.*
@@ -103,7 +103,7 @@ She has ___ an orchestra. → **heard** · hear · hears
 - You have been to a circus. — *У записі звучить We have been to a circus.*
 - They have been to a circus. — *У записі звучить We have been to a circus.*
 
-**12 · Виберіть третю форму для розповіді про досвід.**
+**12 · Виберіть форму слова для розповіді про досвід.**
 <!-- interaction_id: en:lesson-23:session-12:i09; family: context_gap_grammar -->
 We have ___ to a circus. → **been** · be · was
 - be — *Після have або has потрібна третя форма.*
@@ -123,7 +123,7 @@ We have ___ to a circus. → **been** · be · was
 - You have visited an exhibition. — *У записі звучить He has visited an exhibition.*
 - They have visited an exhibition. — *У записі звучить He has visited an exhibition.*
 
-**16 · Виберіть третю форму для розповіді про досвід.**
+**16 · Виберіть форму слова для розповіді про досвід.**
 <!-- interaction_id: en:lesson-23:session-12:i12; family: context_gap_grammar -->
 He has ___ an exhibition. → **visited** · visit · visits
 - visit — *Після have або has потрібна третя форма.*

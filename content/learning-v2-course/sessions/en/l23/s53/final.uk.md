@@ -63,7 +63,7 @@ Village — село, невелике поселення. I have visited a smal
 - You have visited a small village. — *У записі звучить I have visited a small village.*
 - They have visited a small village. — *У записі звучить I have visited a small village.*
 
-**4 · Виберіть третю форму.**
+**4 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-53:i03; family: context_gap_grammar -->
 I have ___ a small village. → **visited** · visit · visits
 - visit — *Потрібна третя форма: visited.*
@@ -83,7 +83,7 @@ I have ___ a small village. → **visited** · visit · visits
 - You have crossed the border. — *У записі звучить She has crossed the border.*
 - They have crossed the border. — *У записі звучить She has crossed the border.*
 
-**8 · Виберіть третю форму.**
+**8 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-53:i06; family: context_gap_grammar -->
 She has ___ the border. → **crossed** · cross · crosses
 - cross — *Потрібна третя форма: crossed.*
@@ -103,7 +103,7 @@ She has ___ the border. → **crossed** · cross · crosses
 - You have learned about the local population. — *У записі звучить We have learned about the local population.*
 - They have learned about the local population. — *У записі звучить We have learned about the local population.*
 
-**12 · Виберіть третю форму.**
+**12 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-53:i09; family: context_gap_grammar -->
 We have ___ about the local population. → **learned** · learn · learns
 - learn — *Потрібна третя форма: learned.*
@@ -123,7 +123,7 @@ We have ___ about the local population. → **learned** · learn · learns
 - You have travelled to another continent. — *У записі звучить He has travelled to another continent.*
 - They have travelled to another continent. — *У записі звучить He has travelled to another continent.*
 
-**16 · Виберіть третю форму.**
+**16 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-53:i12; family: context_gap_grammar -->
 He has ___ to another continent. → **travelled** · travel · travels
 - travel — *Потрібна третя форма: travelled.*

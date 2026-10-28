@@ -53,7 +53,7 @@ Heal — заживать. The cut has healed: порез зажил. Cut зде
 <!-- interaction_id: en:lesson-23:session-06:word:appear; family: word_card -->
 > **appear** — появиться.
 
-**2 · Выберите третью форму после have или has.**
+**2 · Выберите форму слова после have или has.**
 <!-- interaction_id: en:lesson-23:session-06:i01; family: context_gap_grammar -->
 Clouds have ___. → **appeared** · appear · appears
 - appear — *Для результата сейчас используйте have/has и третью форму.*
@@ -73,7 +73,7 @@ Clouds have ___. → **appeared** · appear · appears
 <!-- interaction_id: en:lesson-23:session-06:word:disappear; family: word_card -->
 > **disappear** — исчезнуть.
 
-**6 · Выберите третью форму после have или has.**
+**6 · Выберите форму слова после have или has.**
 <!-- interaction_id: en:lesson-23:session-06:i04; family: context_gap_grammar -->
 My keys have ___. → **disappeared** · disappear · disappears
 - disappear — *Для результата сейчас используйте have/has и третью форму.*
@@ -93,7 +93,7 @@ My keys have ___. → **disappeared** · disappear · disappears
 <!-- interaction_id: en:lesson-23:session-06:word:worsen; family: word_card -->
 > **worsen** — ухудшиться.
 
-**10 · Выберите третью форму после have или has.**
+**10 · Выберите форму слова после have или has.**
 <!-- interaction_id: en:lesson-23:session-06:i07; family: context_gap_grammar -->
 The weather has ___. → **worsened** · worsen · worsens
 - worsen — *Для результата сейчас используйте have/has и третью форму.*
@@ -113,7 +113,7 @@ The weather has ___. → **worsened** · worsen · worsens
 <!-- interaction_id: en:lesson-23:session-06:word:heal; family: word_card -->
 > **heal** — заживать.
 
-**14 · Выберите третью форму после have или has.**
+**14 · Выберите форму слова после have или has.**
 <!-- interaction_id: en:lesson-23:session-06:i10; family: context_gap_grammar -->
 The cut has ___. → **healed** · heal · heals
 - heal — *Для результата сейчас используйте have/has и третью форму.*

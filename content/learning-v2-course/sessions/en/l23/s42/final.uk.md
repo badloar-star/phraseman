@@ -63,7 +63,7 @@ Competitor — учасник змагання. Він може брати уч�
 - You have entered a competition. — *У записі звучить I have entered a competition.*
 - They have entered a competition. — *У записі звучить I have entered a competition.*
 
-**4 · Виберіть третю форму.**
+**4 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-42:i03; family: context_gap_grammar -->
 I have ___ a competition. → **entered** · enter · enters
 - enter — *Потрібна третя форма: entered.*
@@ -83,7 +83,7 @@ I have ___ a competition. → **entered** · enter · enters
 - You have met a champion. — *У записі звучить She has met a champion.*
 - They have met a champion. — *У записі звучить She has met a champion.*
 
-**8 · Виберіть третю форму.**
+**8 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-42:i06; family: context_gap_grammar -->
 She has ___ a champion. → **met** · meet · meets
 - meet — *Потрібна третя форма: met.*
@@ -103,7 +103,7 @@ She has ___ a champion. → **met** · meet · meets
 - You have spoken to an opponent. — *У записі звучить We have spoken to an opponent.*
 - They have spoken to an opponent. — *У записі звучить We have spoken to an opponent.*
 
-**12 · Виберіть третю форму.**
+**12 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-42:i09; family: context_gap_grammar -->
 We have ___ to an opponent. → **spoken** · speak · speaks
 - speak — *Потрібна третя форма: spoken.*
@@ -123,7 +123,7 @@ We have ___ to an opponent. → **spoken** · speak · speaks
 - You have helped a competitor. — *У записі звучить He has helped a competitor.*
 - They have helped a competitor. — *У записі звучить He has helped a competitor.*
 
-**16 · Виберіть третю форму.**
+**16 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-42:i12; family: context_gap_grammar -->
 He has ___ a competitor. → **helped** · help · helps
 - help — *Потрібна третя форма: helped.*

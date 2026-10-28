@@ -63,7 +63,7 @@ Chemistry — хімія: предмет про речовини та їхні �
 - You have studied geography. — *У записі звучить I have studied geography.*
 - They have studied geography. — *У записі звучить I have studied geography.*
 
-**4 · Виберіть третю форму.**
+**4 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-38:i03; family: context_gap_grammar -->
 I have ___ geography. → **studied** · study · studies
 - study — *Потрібна третя форма: studied.*
@@ -83,7 +83,7 @@ I have ___ geography. → **studied** · study · studies
 - You have studied biology. — *У записі звучить She has studied biology.*
 - They have studied biology. — *У записі звучить She has studied biology.*
 
-**8 · Виберіть третю форму.**
+**8 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-38:i06; family: context_gap_grammar -->
 She has ___ biology. → **studied** · study · studies
 - study — *Потрібна третя форма: studied.*
@@ -103,7 +103,7 @@ She has ___ biology. → **studied** · study · studies
 - You have studied chemistry. — *У записі звучить We have studied chemistry.*
 - They have studied chemistry. — *У записі звучить We have studied chemistry.*
 
-**12 · Виберіть третю форму.**
+**12 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-38:i09; family: context_gap_grammar -->
 We have ___ chemistry. → **studied** · study · studies
 - study — *Потрібна третя форма: studied.*
@@ -123,7 +123,7 @@ We have ___ chemistry. → **studied** · study · studies
 - You have studied physics. — *У записі звучить He has studied physics.*
 - They have studied physics. — *У записі звучить He has studied physics.*
 
-**16 · Виберіть третю форму.**
+**16 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-38:i12; family: context_gap_grammar -->
 He has ___ physics. → **studied** · study · studies
 - study — *Потрібна третя форма: studied.*

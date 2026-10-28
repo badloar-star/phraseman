@@ -63,7 +63,7 @@
 - You have bought wheat flour. — *У записі звучить I have bought wheat flour.*
 - They have bought wheat flour. — *У записі звучить I have bought wheat flour.*
 
-**4 · Виберіть третю форму.**
+**4 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-46:i03; family: context_gap_grammar -->
 I have ___ wheat flour. → **bought** · buy · buys
 - buy — *Потрібна третя форма: bought.*
@@ -83,7 +83,7 @@ I have ___ wheat flour. → **bought** · buy · buys
 - You have cooked oats. — *У записі звучить She has cooked oats.*
 - They have cooked oats. — *У записі звучить She has cooked oats.*
 
-**8 · Виберіть третю форму.**
+**8 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-46:i06; family: context_gap_grammar -->
 She has ___ oats. → **cooked** · cook · cooks
 - cook — *Потрібна третя форма: cooked.*
@@ -103,7 +103,7 @@ She has ___ oats. → **cooked** · cook · cooks
 - You have added yeast. — *У записі звучить We have added yeast.*
 - They have added yeast. — *У записі звучить We have added yeast.*
 
-**12 · Виберіть третю форму.**
+**12 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-46:i09; family: context_gap_grammar -->
 We have ___ yeast. → **added** · add · adds
 - add — *Потрібна третя форма: added.*
@@ -123,7 +123,7 @@ We have ___ yeast. → **added** · add · adds
 - You have made pastry. — *У записі звучить He has made pastry.*
 - They have made pastry. — *У записі звучить He has made pastry.*
 
-**16 · Виберіть третю форму.**
+**16 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-46:i12; family: context_gap_grammar -->
 He has ___ pastry. → **made** · make · makes
 - make — *Потрібна третя форма: made.*

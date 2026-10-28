@@ -63,7 +63,7 @@ Toe — палець ноги. He has hurt his toe — він пошкодив �
 - You have donated blood. — *У записі звучить I have donated blood.*
 - They have donated blood. — *У записі звучить I have donated blood.*
 
-**4 · Виберіть третю форму.**
+**4 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-47:i03; family: context_gap_grammar -->
 I have ___ blood. → **donated** · donate · donates
 - donate — *Потрібна третя форма: donated.*
@@ -83,7 +83,7 @@ I have ___ blood. → **donated** · donate · donates
 - You have checked my lungs. — *У записі звучить The doctor has checked my lungs.*
 - They have checked my lungs. — *У записі звучить The doctor has checked my lungs.*
 
-**8 · Виберіть третю форму.**
+**8 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-47:i06; family: context_gap_grammar -->
 The doctor has ___ my lungs. → **checked** · check · checks
 - check — *Потрібна третя форма: checked.*
@@ -103,7 +103,7 @@ The doctor has ___ my lungs. → **checked** · check · checks
 - You have learned about the brain. — *У записі звучить We have learned about the brain.*
 - They have learned about the brain. — *У записі звучить We have learned about the brain.*
 
-**12 · Виберіть третю форму.**
+**12 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-47:i09; family: context_gap_grammar -->
 We have ___ about the brain. → **learned** · learn · learns
 - learn — *Потрібна третя форма: learned.*
@@ -123,7 +123,7 @@ We have ___ about the brain. → **learned** · learn · learns
 - You have hurt your toe. — *У записі звучить He has hurt his toe.*
 - They have hurt their toes. — *У записі звучить He has hurt his toe.*
 
-**16 · Виберіть третю форму.**
+**16 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-47:i12; family: context_gap_grammar -->
 He has ___ his toe. → **hurt** · hurts · hurting
 - hurts — *Потрібна третя форма: hurt.*

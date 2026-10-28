@@ -63,7 +63,7 @@ Ocean — океан. He has seen the ocean — він бачив океан. Se
 - You have visited an island. — *У записі звучить I have visited an island.*
 - They have visited an island. — *У записі звучить I have visited an island.*
 
-**4 · Виберіть третю форму.**
+**4 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-34:i03; family: context_gap_grammar -->
 I have ___ an island. → **visited** · visit · visits
 - visit — *Потрібна третя форма: visited.*
@@ -83,7 +83,7 @@ I have ___ an island. → **visited** · visit · visits
 - You have walked through a forest. — *У записі звучить She has walked through a forest.*
 - They have walked through a forest. — *У записі звучить She has walked through a forest.*
 
-**8 · Виберіть третю форму.**
+**8 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-34:i06; family: context_gap_grammar -->
 She has ___ through a forest. → **walked** · walk · walks
 - walk — *Потрібна третя форма: walked.*
@@ -103,7 +103,7 @@ She has ___ through a forest. → **walked** · walk · walks
 - You have climbed a mountain. — *У записі звучить We have climbed a mountain.*
 - They have climbed a mountain. — *У записі звучить We have climbed a mountain.*
 
-**12 · Виберіть третю форму.**
+**12 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-34:i09; family: context_gap_grammar -->
 We have ___ a mountain. → **climbed** · climb · climbs
 - climb — *Потрібна третя форма: climbed.*
@@ -123,7 +123,7 @@ We have ___ a mountain. → **climbed** · climb · climbs
 - You have seen the ocean. — *У записі звучить He has seen the ocean.*
 - They have seen the ocean. — *У записі звучить He has seen the ocean.*
 
-**16 · Виберіть третю форму.**
+**16 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-34:i12; family: context_gap_grammar -->
 He has ___ the ocean. → **seen** · see · sees
 - see — *Потрібна третя форма: seen.*

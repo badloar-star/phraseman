@@ -63,7 +63,7 @@ Tractor — трактор, який часто використовують н�
 - You have driven a van. — *У записі звучить I have driven a van.*
 - They have driven a van. — *У записі звучить I have driven a van.*
 
-**4 · Виберіть третю форму.**
+**4 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-29:i03; family: context_gap_grammar -->
 I have ___ a van. → **driven** · drive · drives
 - drive — *Потрібна третя форма: driven.*
@@ -83,7 +83,7 @@ I have ___ a van. → **driven** · drive · drives
 - You have ridden a motorbike. — *У записі звучить She has ridden a motorbike.*
 - They have ridden a motorbike. — *У записі звучить She has ridden a motorbike.*
 
-**8 · Виберіть третю форму.**
+**8 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-29:i06; family: context_gap_grammar -->
 She has ___ a motorbike. → **ridden** · ride · rides
 - ride — *Потрібна третя форма: ridden.*
@@ -103,7 +103,7 @@ She has ___ a motorbike. → **ridden** · ride · rides
 - You have seen a helicopter. — *У записі звучить We have seen a helicopter.*
 - They have seen a helicopter. — *У записі звучить We have seen a helicopter.*
 
-**12 · Виберіть третю форму.**
+**12 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-29:i09; family: context_gap_grammar -->
 We have ___ a helicopter. → **seen** · see · sees
 - see — *Потрібна третя форма: seen.*
@@ -123,7 +123,7 @@ We have ___ a helicopter. → **seen** · see · sees
 - You have driven a tractor. — *У записі звучить He has driven a tractor.*
 - They have driven a tractor. — *У записі звучить He has driven a tractor.*
 
-**16 · Виберіть третю форму.**
+**16 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-29:i12; family: context_gap_grammar -->
 He has ___ a tractor. → **driven** · drive · drives
 - drive — *Потрібна третя форма: driven.*

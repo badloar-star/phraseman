@@ -63,7 +63,7 @@ He has drawn a pony — он рисовал пони. Английское pony 
 - You have ridden a horse. — *В записи звучит I have ridden a horse.*
 - They have ridden a horse. — *В записи звучит I have ridden a horse.*
 
-**4 · Выберите третью форму.**
+**4 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-16:i03; family: context_gap_grammar -->
 I have ___ a horse. → **ridden** · ride · rode
 - ride — *После have или has нужна третья форма глагола.*
@@ -83,7 +83,7 @@ I have ___ a horse. → **ridden** · ride · rode
 - You have fed a cow. — *В записи звучит She has fed a cow.*
 - They have fed a cow. — *В записи звучит She has fed a cow.*
 
-**8 · Выберите третью форму.**
+**8 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-16:i06; family: context_gap_grammar -->
 She has ___ a cow. → **fed** · feed · feeds
 - feed — *После have или has нужна третья форма глагола.*
@@ -103,7 +103,7 @@ She has ___ a cow. → **fed** · feed · feeds
 - You have seen a pig. — *В записи звучит We have seen a pig.*
 - They have seen a pig. — *В записи звучит We have seen a pig.*
 
-**12 · Выберите третью форму.**
+**12 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-16:i09; family: context_gap_grammar -->
 We have ___ a pig. → **seen** · see · saw
 - see — *После have или has нужна третья форма глагола.*
@@ -123,7 +123,7 @@ We have ___ a pig. → **seen** · see · saw
 - You have drawn a pony. — *В записи звучит He has drawn a pony.*
 - They have drawn a pony. — *В записи звучит He has drawn a pony.*
 
-**16 · Выберите третью форму.**
+**16 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-16:i12; family: context_gap_grammar -->
 He has ___ a pony. → **drawn** · draw · drew
 - draw — *После have или has нужна третья форма глагола.*

@@ -63,7 +63,7 @@ Playgroup — группа, где маленькие дети вместе иг
 - We have met their newborn. — *В записи звучит I have met their newborn.*
 - They have met their newborn. — *В записи звучит I have met their newborn.*
 
-**4 · Выберите третью форму.**
+**4 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-08:i03; family: context_gap_grammar -->
 I have ___ their newborn. → **met** · meet · meets
 - meet — *После have или has нужна третья форма глагола.*
@@ -83,7 +83,7 @@ I have ___ their newborn. → **met** · meet · meets
 - The toddler has finished lunch. — *В записи звучит The toddler has finished breakfast.*
 - The toddler has finished dinner. — *В записи звучит The toddler has finished breakfast.*
 
-**8 · Выберите третью форму.**
+**8 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-08:i06; family: context_gap_grammar -->
 The toddler has ___ breakfast. → **finished** · finish · finishes
 - finish — *После have или has нужна третья форма глагола.*
@@ -103,7 +103,7 @@ The toddler has ___ breakfast. → **finished** · finish · finishes
 - You have found a playgroup. — *В записи звучит We have found a playgroup.*
 - They have found a playgroup. — *В записи звучит We have found a playgroup.*
 
-**12 · Выберите третью форму.**
+**12 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-08:i09; family: context_gap_grammar -->
 We have ___ a playgroup. → **found** · find · finds
 - find — *После have или has нужна третья форма глагола.*
@@ -123,7 +123,7 @@ We have ___ a playgroup. → **found** · find · finds
 - He has called the childminder. — *В записи звучит She has called the childminder.*
 - We have called the childminder. — *В записи звучит She has called the childminder.*
 
-**16 · Выберите третью форму.**
+**16 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-08:i12; family: context_gap_grammar -->
 She has ___ the childminder. → **called** · call · calls
 - call — *После have или has нужна третья форма глагола.*

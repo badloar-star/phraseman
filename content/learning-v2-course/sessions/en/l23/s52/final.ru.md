@@ -63,7 +63,7 @@ Election — выборы. По-русски говорим во множест�
 - You have voted in an election. — *В записи звучит I have voted in an election.*
 - They have voted in an election. — *В записи звучит I have voted in an election.*
 
-**4 · Выберите третью форму.**
+**4 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-52:i03; family: context_gap_grammar -->
 I have ___ in an election. → **voted** · vote · votes
 - vote — *Нужна третья форма: voted.*
@@ -83,7 +83,7 @@ I have ___ in an election. → **voted** · vote · votes
 - You have met the mayor. — *В записи звучит She has met the mayor.*
 - They have met the mayor. — *В записи звучит She has met the mayor.*
 
-**8 · Выберите третью форму.**
+**8 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-52:i06; family: context_gap_grammar -->
 She has ___ the mayor. → **met** · meet · meets
 - meet — *Нужна третья форма: met.*
@@ -103,7 +103,7 @@ She has ___ the mayor. → **met** · meet · meets
 - You have read about the government. — *В записи звучит We have read about the government.*
 - They have read about the government. — *В записи звучит We have read about the government.*
 
-**12 · Выберите третью форму.**
+**12 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-52:i09; family: context_gap_grammar -->
 We have ___ about the government. → **read** · reads · reading
 - reads — *Нужна третья форма: read.*
@@ -123,7 +123,7 @@ We have ___ about the government. → **read** · reads · reading
 - You have seen the president on TV. — *В записи звучит He has seen the president on TV.*
 - They have seen the president on TV. — *В записи звучит He has seen the president on TV.*
 
-**16 · Выберите третью форму.**
+**16 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-52:i12; family: context_gap_grammar -->
 He has ___ the president on TV. → **seen** · see · sees
 - see — *Нужна третья форма: seen.*

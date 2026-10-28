@@ -63,7 +63,7 @@ Shopkeeper — человек, который владеет небольшим 
 - You have spoken to the shopkeeper. — *В записи звучит I have spoken to the shopkeeper.*
 - They have spoken to the shopkeeper. — *В записи звучит I have spoken to the shopkeeper.*
 
-**4 · Выберите третью форму.**
+**4 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-41:i03; family: context_gap_grammar -->
 I have ___ to the shopkeeper. → **spoken** · speak · speaks
 - speak — *Нужна третья форма: spoken.*
@@ -83,7 +83,7 @@ I have ___ to the shopkeeper. → **spoken** · speak · speaks
 - You have called a painter. — *В записи звучит She has called a painter.*
 - They have called a painter. — *В записи звучит She has called a painter.*
 
-**8 · Выберите третью форму.**
+**8 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-41:i06; family: context_gap_grammar -->
 She has ___ a painter. → **called** · call · calls
 - call — *Нужна третья форма: called.*
@@ -103,7 +103,7 @@ She has ___ a painter. → **called** · call · calls
 - You have helped a worker. — *В записи звучит We have helped a worker.*
 - They have helped a worker. — *В записи звучит We have helped a worker.*
 
-**12 · Выберите третью форму.**
+**12 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-41:i09; family: context_gap_grammar -->
 We have ___ a worker. → **helped** · help · helps
 - help — *Нужна третья форма: helped.*
@@ -123,7 +123,7 @@ We have ___ a worker. → **helped** · help · helps
 - You have found a buyer. — *В записи звучит He has found a buyer.*
 - They have found a buyer. — *В записи звучит He has found a buyer.*
 
-**16 · Выберите третью форму.**
+**16 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-41:i12; family: context_gap_grammar -->
 He has ___ a buyer. → **found** · find · finds
 - find — *Нужна третья форма: found.*

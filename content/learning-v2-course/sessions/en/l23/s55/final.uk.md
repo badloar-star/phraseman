@@ -63,7 +63,7 @@ Flu — грип. I have had flu — я хворів на грип. Перше h
 - You have had flu. — *У записі звучить I have had flu.*
 - They have had flu. — *У записі звучить I have had flu.*
 
-**4 · Виберіть третю форму.**
+**4 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-55:i03; family: context_gap_grammar -->
 I have ___ flu. → **had** · have · has
 - have — *Потрібна третя форма: had.*
@@ -83,7 +83,7 @@ I have ___ flu. → **had** · have · has
 - You have caught a virus. — *У записі звучить She has caught a virus.*
 - They have caught a virus. — *У записі звучить She has caught a virus.*
 
-**8 · Виберіть третю форму.**
+**8 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-55:i06; family: context_gap_grammar -->
 She has ___ a virus. → **caught** · catch · catches
 - catch — *Потрібна третя форма: caught.*
@@ -103,7 +103,7 @@ She has ___ a virus. → **caught** · catch · catches
 - You have described the symptoms. — *У записі звучить We have described the symptoms.*
 - They have described the symptoms. — *У записі звучить We have described the symptoms.*
 
-**12 · Виберіть третю форму.**
+**12 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-55:i09; family: context_gap_grammar -->
 We have ___ the symptoms. → **described** · describe · describes
 - describe — *Потрібна третя форма: described.*
@@ -123,7 +123,7 @@ We have ___ the symptoms. → **described** · describe · describes
 - You have asked about the vaccine. — *У записі звучить He has asked about the vaccine.*
 - They have asked about the vaccine. — *У записі звучить He has asked about the vaccine.*
 
-**16 · Виберіть третю форму.**
+**16 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-55:i12; family: context_gap_grammar -->
 He has ___ about the vaccine. → **asked** · ask · asks
 - ask — *Потрібна третя форма: asked.*

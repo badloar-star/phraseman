@@ -63,7 +63,7 @@ Prince — принц. We have seen a film about a prince — мы смотре�
 - You have read about a king. — *В записи звучит I have read about a king.*
 - They have read about a king. — *В записи звучит I have read about a king.*
 
-**4 · Выберите третью форму.**
+**4 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-36:i03; family: context_gap_grammar -->
 I have ___ about a king. → **read** · reads · reading
 - reads — *Нужна третья форма: read.*
@@ -83,7 +83,7 @@ I have ___ about a king. → **read** · reads · reading
 - You have read about a queen. — *В записи звучит She has read about a queen.*
 - They have read about a queen. — *В записи звучит She has read about a queen.*
 
-**8 · Выберите третью форму.**
+**8 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-36:i06; family: context_gap_grammar -->
 She has ___ about a queen. → **read** · reads · reading
 - reads — *Нужна третья форма: read.*
@@ -103,7 +103,7 @@ She has ___ about a queen. → **read** · reads · reading
 - You have seen a film about a prince. — *В записи звучит We have seen a film about a prince.*
 - They have seen a film about a prince. — *В записи звучит We have seen a film about a prince.*
 
-**12 · Выберите третью форму.**
+**12 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-36:i09; family: context_gap_grammar -->
 We have ___ a film about a prince. → **seen** · see · sees
 - see — *Нужна третья форма: seen.*
@@ -123,7 +123,7 @@ We have ___ a film about a prince. → **seen** · see · sees
 - You have seen a film about a princess. — *В записи звучит He has seen a film about a princess.*
 - They have seen a film about a princess. — *В записи звучит He has seen a film about a princess.*
 
-**16 · Выберите третью форму.**
+**16 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-36:i12; family: context_gap_grammar -->
 He has ___ a film about a princess. → **seen** · see · sees
 - see — *Нужна третья форма: seen.*

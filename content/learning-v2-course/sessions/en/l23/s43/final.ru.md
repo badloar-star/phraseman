@@ -53,7 +53,7 @@ Quit — бросить, прекратить. He has quit smoking — он бр
 <!-- interaction_id: en:lesson-23:session-43:word:adopt; family: word_card -->
 > **adopt** — взять в семью.
 
-**2 · Выберите третью форму.**
+**2 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-43:i01; family: context_gap_grammar -->
 I have ___ a cat. → **adopted** · adopt · adopts
 - adopt — *Нужна третья форма: adopted.*
@@ -73,7 +73,7 @@ I have ___ a cat. → **adopted** · adopt · adopts
 <!-- interaction_id: en:lesson-23:session-43:word:rescue; family: word_card -->
 > **rescue** — спасти из опасности.
 
-**6 · Выберите третью форму.**
+**6 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-43:i04; family: context_gap_grammar -->
 She has ___ a dog. → **rescued** · rescue · rescues
 - rescue — *Нужна третья форма: rescued.*
@@ -93,7 +93,7 @@ She has ___ a dog. → **rescued** · rescue · rescues
 <!-- interaction_id: en:lesson-23:session-43:word:survive; family: word_card -->
 > **survive** — пережить, выжить.
 
-**10 · Выберите третью форму.**
+**10 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-43:i07; family: context_gap_grammar -->
 We have ___ a storm. → **survived** · survive · survives
 - survive — *Нужна третья форма: survived.*
@@ -113,7 +113,7 @@ We have ___ a storm. → **survived** · survive · survives
 <!-- interaction_id: en:lesson-23:session-43:word:quit; family: word_card -->
 > **quit** — бросить, прекратить.
 
-**14 · Выберите третью форму.**
+**14 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-43:i10; family: context_gap_grammar -->
 He has ___ smoking. → **quit** · quits · quitting
 - quits — *Нужна третья форма: quit.*

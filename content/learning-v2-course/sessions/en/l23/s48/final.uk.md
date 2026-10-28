@@ -63,7 +63,7 @@ Valley — долина, низьке місце між пагорбами аб�
 - You have walked through a valley. — *У записі звучить I have walked through a valley.*
 - They have walked through a valley. — *У записі звучить I have walked through a valley.*
 
-**4 · Виберіть третю форму.**
+**4 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-48:i03; family: context_gap_grammar -->
 I have ___ through a valley. → **walked** · walk · walks
 - walk — *Потрібна третя форма: walked.*
@@ -83,7 +83,7 @@ I have ___ through a valley. → **walked** · walk · walks
 - You have crossed a field. — *У записі звучить She has crossed a field.*
 - They have crossed a field. — *У записі звучить She has crossed a field.*
 
-**8 · Виберіть третю форму.**
+**8 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-48:i06; family: context_gap_grammar -->
 She has ___ a field. → **crossed** · cross · crosses
 - cross — *Потрібна третя форма: crossed.*
@@ -103,7 +103,7 @@ She has ___ a field. → **crossed** · cross · crosses
 - You have found a fallen branch. — *У записі звучить We have found a fallen branch.*
 - They have found a fallen branch. — *У записі звучить We have found a fallen branch.*
 
-**12 · Виберіть третю форму.**
+**12 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-48:i09; family: context_gap_grammar -->
 We have ___ a fallen branch. → **found** · find · finds
 - find — *Потрібна третя форма: found.*
@@ -123,7 +123,7 @@ We have ___ a fallen branch. → **found** · find · finds
 - You have taken a photo of a meadow. — *У записі звучить He has taken a photo of a meadow.*
 - They have taken a photo of a meadow. — *У записі звучить He has taken a photo of a meadow.*
 
-**16 · Виберіть третю форму.**
+**16 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-48:i12; family: context_gap_grammar -->
 He has ___ a photo of a meadow. → **taken** · take · takes
 - take — *Потрібна третя форма: taken.*

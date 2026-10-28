@@ -63,7 +63,7 @@ Tongue — язык во рту. Это не language, то есть язык о
 - You have hurt your wrist. — *В записи звучит I have hurt my wrist.*
 - They have hurt their wrists. — *В записи звучит I have hurt my wrist.*
 
-**4 · Выберите третью форму.**
+**4 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-24:i03; family: context_gap_grammar -->
 I have ___ my wrist. → **hurt** · hurts · hurting
 - hurts — *Нужна третья форма: hurt.*
@@ -83,7 +83,7 @@ I have ___ my wrist. → **hurt** · hurts · hurting
 - You have burnt your tongue. — *В записи звучит She has burnt her tongue.*
 - They have burnt their tongues. — *В записи звучит She has burnt her tongue.*
 
-**8 · Выберите третью форму.**
+**8 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-24:i06; family: context_gap_grammar -->
 She has ___ her tongue. → **burnt** · burn · burns
 - burn — *Нужна третья форма: burnt.*
@@ -103,7 +103,7 @@ She has ___ her tongue. → **burnt** · burn · burns
 - You have cut your palm. — *В записи звучит I have cut my palm.*
 - They have cut their palms. — *В записи звучит I have cut my palm.*
 
-**12 · Выберите третью форму.**
+**12 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-24:i09; family: context_gap_grammar -->
 I have ___ my palm. → **cut** · cuts · cutting
 - cuts — *Нужна третья форма: cut.*
@@ -123,7 +123,7 @@ I have ___ my palm. → **cut** · cuts · cutting
 - You have hurt your jaw. — *В записи звучит He has hurt his jaw.*
 - They have hurt their jaws. — *В записи звучит He has hurt his jaw.*
 
-**16 · Выберите третью форму.**
+**16 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-24:i12; family: context_gap_grammar -->
 He has ___ his jaw. → **hurt** · hurts · hurting
 - hurts — *Нужна третья форма: hurt.*

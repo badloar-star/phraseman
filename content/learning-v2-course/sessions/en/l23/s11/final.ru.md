@@ -63,7 +63,7 @@ Seafood — общее название морской еды, включая р
 - You have tried seafood. — *В записи звучит I have tried seafood.*
 - They have tried seafood. — *В записи звучит I have tried seafood.*
 
-**4 · Выберите третью форму.**
+**4 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-11:i03; family: context_gap_grammar -->
 I have ___ seafood. → **tried** · try · tries
 - try — *После have или has нужна третья форма.*
@@ -83,7 +83,7 @@ I have ___ seafood. → **tried** · try · tries
 - You have cooked shellfish. — *В записи звучит She has cooked shellfish.*
 - They have cooked shellfish. — *В записи звучит She has cooked shellfish.*
 
-**8 · Выберите третью форму.**
+**8 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-11:i06; family: context_gap_grammar -->
 She has ___ shellfish. → **cooked** · cook · cooks
 - cook — *После have или has нужна третья форма.*
@@ -103,7 +103,7 @@ She has ___ shellfish. → **cooked** · cook · cooks
 - You have eaten lobster. — *В записи звучит We have eaten lobster.*
 - They have eaten lobster. — *В записи звучит We have eaten lobster.*
 
-**12 · Выберите третью форму.**
+**12 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-11:i09; family: context_gap_grammar -->
 We have ___ lobster. → **eaten** · eat · ate
 - eat — *После have или has нужна третья форма.*
@@ -123,7 +123,7 @@ We have ___ lobster. → **eaten** · eat · ate
 - You have ordered crab. — *В записи звучит He has ordered crab.*
 - They have ordered crab. — *В записи звучит He has ordered crab.*
 
-**16 · Выберите третью форму.**
+**16 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-11:i12; family: context_gap_grammar -->
 He has ___ crab. → **ordered** · order · orders
 - order — *После have или has нужна третья форма.*

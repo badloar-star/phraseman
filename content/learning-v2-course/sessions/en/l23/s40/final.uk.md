@@ -63,7 +63,7 @@ Portuguese — португальська мова. He has studied Portuguese �
 - You have studied Chinese. — *У записі звучить I have studied Chinese.*
 - They have studied Chinese. — *У записі звучить I have studied Chinese.*
 
-**4 · Виберіть третю форму.**
+**4 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-40:i03; family: context_gap_grammar -->
 I have ___ Chinese. → **studied** · study · studies
 - study — *Потрібна третя форма: studied.*
@@ -83,7 +83,7 @@ I have ___ Chinese. → **studied** · study · studies
 - You have studied Japanese. — *У записі звучить She has studied Japanese.*
 - They have studied Japanese. — *У записі звучить She has studied Japanese.*
 
-**8 · Виберіть третю форму.**
+**8 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-40:i06; family: context_gap_grammar -->
 She has ___ Japanese. → **studied** · study · studies
 - study — *Потрібна третя форма: studied.*
@@ -103,7 +103,7 @@ She has ___ Japanese. → **studied** · study · studies
 - You have studied Arabic. — *У записі звучить We have studied Arabic.*
 - They have studied Arabic. — *У записі звучить We have studied Arabic.*
 
-**12 · Виберіть третю форму.**
+**12 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-40:i09; family: context_gap_grammar -->
 We have ___ Arabic. → **studied** · study · studies
 - study — *Потрібна третя форма: studied.*
@@ -123,7 +123,7 @@ We have ___ Arabic. → **studied** · study · studies
 - You have studied Portuguese. — *У записі звучить He has studied Portuguese.*
 - They have studied Portuguese. — *У записі звучить He has studied Portuguese.*
 
-**16 · Виберіть третю форму.**
+**16 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-40:i12; family: context_gap_grammar -->
 He has ___ Portuguese. → **studied** · study · studies
 - study — *Потрібна третя форма: studied.*

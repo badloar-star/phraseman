@@ -63,7 +63,7 @@ Flood — повінь, коли вода затоплює місце. We have s
 - You have heard thunder. — *У записі звучить I have heard thunder.*
 - They have heard thunder. — *У записі звучить I have heard thunder.*
 
-**4 · Виберіть третю форму.**
+**4 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-22:i03; family: context_gap_grammar -->
 I have ___ thunder. → **heard** · hear · hears
 - hear — *Потрібна третя форма: heard.*
@@ -83,7 +83,7 @@ I have ___ thunder. → **heard** · hear · hears
 - You have seen lightning. — *У записі звучить She has seen lightning.*
 - They have seen lightning. — *У записі звучить She has seen lightning.*
 
-**8 · Виберіть третю форму.**
+**8 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-22:i06; family: context_gap_grammar -->
 She has ___ lightning. → **seen** · see · sees
 - see — *Потрібна третя форма: seen.*
@@ -103,7 +103,7 @@ She has ___ lightning. → **seen** · see · sees
 - You have seen a flood. — *У записі звучить We have seen a flood.*
 - They have seen a flood. — *У записі звучить We have seen a flood.*
 
-**12 · Виберіть третю форму.**
+**12 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-22:i09; family: context_gap_grammar -->
 We have ___ a flood. → **seen** · see · sees
 - see — *Потрібна третя форма: seen.*
@@ -123,7 +123,7 @@ We have ___ a flood. → **seen** · see · sees
 - You have felt a breeze. — *У записі звучить He has felt a breeze.*
 - They have felt a breeze. — *У записі звучить He has felt a breeze.*
 
-**16 · Виберіть третю форму.**
+**16 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-22:i12; family: context_gap_grammar -->
 He has ___ a breeze. → **felt** · feel · feels
 - feel — *Потрібна третя форма: felt.*

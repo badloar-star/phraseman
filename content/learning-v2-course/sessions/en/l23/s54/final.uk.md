@@ -63,7 +63,7 @@ Accountant — бухгалтер. He has called an accountant — він зат
 - You have asked the librarian. — *У записі звучить I have asked the librarian.*
 - They have asked the librarian. — *У записі звучить I have asked the librarian.*
 
-**4 · Виберіть третю форму.**
+**4 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-54:i03; family: context_gap_grammar -->
 I have ___ the librarian. → **asked** · ask · asks
 - ask — *Потрібна третя форма: asked.*
@@ -83,7 +83,7 @@ I have ___ the librarian. → **asked** · ask · asks
 - You have found a translator. — *У записі звучить She has found a translator.*
 - They have found a translator. — *У записі звучить She has found a translator.*
 
-**8 · Виберіть третю форму.**
+**8 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-54:i06; family: context_gap_grammar -->
 She has ___ a translator. → **found** · find · finds
 - find — *Потрібна третя форма: found.*
@@ -103,7 +103,7 @@ She has ___ a translator. → **found** · find · finds
 - You have spoken to an interpreter. — *У записі звучить We have spoken to an interpreter.*
 - They have spoken to an interpreter. — *У записі звучить We have spoken to an interpreter.*
 
-**12 · Виберіть третю форму.**
+**12 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-54:i09; family: context_gap_grammar -->
 We have ___ to an interpreter. → **spoken** · speak · speaks
 - speak — *Потрібна третя форма: spoken.*
@@ -123,7 +123,7 @@ We have ___ to an interpreter. → **spoken** · speak · speaks
 - You have called an accountant. — *У записі звучить He has called an accountant.*
 - They have called an accountant. — *У записі звучить He has called an accountant.*
 
-**16 · Виберіть третю форму.**
+**16 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-54:i12; family: context_gap_grammar -->
 He has ___ an accountant. → **called** · call · calls
 - call — *Потрібна третя форма: called.*

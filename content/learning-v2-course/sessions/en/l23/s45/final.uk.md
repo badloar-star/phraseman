@@ -63,7 +63,7 @@ Citizen — громадянин країни. He has become a citizen — ві�
 - You have visited a relative. — *У записі звучить I have visited a relative.*
 - They have visited a relative. — *У записі звучить I have visited a relative.*
 
-**4 · Виберіть третю форму.**
+**4 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-45:i03; family: context_gap_grammar -->
 I have ___ a relative. → **visited** · visit · visits
 - visit — *Потрібна третя форма: visited.*
@@ -83,7 +83,7 @@ I have ___ a relative. → **visited** · visit · visits
 - You have found a photo of an ancestor. — *У записі звучить She has found a photo of an ancestor.*
 - They have found a photo of an ancestor. — *У записі звучить She has found a photo of an ancestor.*
 
-**8 · Виберіть третю форму.**
+**8 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-45:i06; family: context_gap_grammar -->
 She has ___ a photo of an ancestor. → **found** · find · finds
 - find — *Потрібна третя форма: found.*
@@ -103,7 +103,7 @@ She has ___ a photo of an ancestor. → **found** · find · finds
 - You have met people from another generation. — *У записі звучить We have met people from another generation.*
 - They have met people from another generation. — *У записі звучить We have met people from another generation.*
 
-**12 · Виберіть третю форму.**
+**12 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-45:i09; family: context_gap_grammar -->
 We have ___ people from another generation. → **met** · meet · meets
 - meet — *Потрібна третя форма: met.*
@@ -123,7 +123,7 @@ We have ___ people from another generation. → **met** · meet · meets
 - You have become a citizen. — *У записі звучить He has become a citizen.*
 - They have become citizens. — *У записі звучить He has become a citizen.*
 
-**16 · Виберіть третю форму.**
+**16 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-45:i12; family: context_gap_grammar -->
 He has ___ a citizen. → **become** · became · becomes
 - became — *Потрібна третя форма: become.*

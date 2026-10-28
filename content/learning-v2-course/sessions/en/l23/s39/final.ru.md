@@ -63,7 +63,7 @@ Italian — итальянский язык. He has studied Italian — он и�
 - You have studied French. — *В записи звучит I have studied French.*
 - They have studied French. — *В записи звучит I have studied French.*
 
-**4 · Выберите третью форму.**
+**4 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-39:i03; family: context_gap_grammar -->
 I have ___ French. → **studied** · study · studies
 - study — *Нужна третья форма: studied.*
@@ -83,7 +83,7 @@ I have ___ French. → **studied** · study · studies
 - You have studied German. — *В записи звучит She has studied German.*
 - They have studied German. — *В записи звучит She has studied German.*
 
-**8 · Выберите третью форму.**
+**8 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-39:i06; family: context_gap_grammar -->
 She has ___ German. → **studied** · study · studies
 - study — *Нужна третья форма: studied.*
@@ -103,7 +103,7 @@ She has ___ German. → **studied** · study · studies
 - You have studied Spanish. — *В записи звучит We have studied Spanish.*
 - They have studied Spanish. — *В записи звучит We have studied Spanish.*
 
-**12 · Выберите третью форму.**
+**12 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-39:i09; family: context_gap_grammar -->
 We have ___ Spanish. → **studied** · study · studies
 - study — *Нужна третья форма: studied.*
@@ -123,7 +123,7 @@ We have ___ Spanish. → **studied** · study · studies
 - You have studied Italian. — *В записи звучит He has studied Italian.*
 - They have studied Italian. — *В записи звучит He has studied Italian.*
 
-**16 · Выберите третью форму.**
+**16 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-39:i12; family: context_gap_grammar -->
 He has ___ Italian. → **studied** · study · studies
 - study — *Нужна третья форма: studied.*

@@ -53,7 +53,7 @@ Regret — шкодувати про щось. Regret a decision — шкоду�
 <!-- interaction_id: en:lesson-23:session-05:word:misjudge; family: word_card -->
 > **misjudge** — неправильно оцінити.
 
-**2 · Виберіть третю форму після have або has.**
+**2 · Виберіть форму слова після have або has.**
 <!-- interaction_id: en:lesson-23:session-05:i01; family: context_gap_grammar -->
 I have ___ the distance. → **misjudged** · misjudge · misjudges
 - misjudge — *Після have або has потрібна третя форма дієслова.*
@@ -73,7 +73,7 @@ I have ___ the distance. → **misjudged** · misjudge · misjudges
 <!-- interaction_id: en:lesson-23:session-05:word:overestimate; family: word_card -->
 > **overestimate** — переоцінити.
 
-**6 · Виберіть третю форму після have або has.**
+**6 · Виберіть форму слова після have або has.**
 <!-- interaction_id: en:lesson-23:session-05:i04; family: context_gap_grammar -->
 We have ___ the cost. → **overestimated** · overestimate · overestimates
 - overestimate — *Після have або has потрібна третя форма дієслова.*
@@ -93,7 +93,7 @@ We have ___ the cost. → **overestimated** · overestimate · overestimates
 <!-- interaction_id: en:lesson-23:session-05:word:underpay; family: word_card -->
 > **underpay** — заплатити менше, ніж належить.
 
-**10 · Виберіть третю форму після have або has.**
+**10 · Виберіть форму слова після have або has.**
 <!-- interaction_id: en:lesson-23:session-05:i07; family: context_gap_grammar -->
 They have ___ me. → **underpaid** · underpay · underpays
 - underpay — *Після have або has потрібна третя форма дієслова.*
@@ -113,7 +113,7 @@ They have ___ me. → **underpaid** · underpay · underpays
 <!-- interaction_id: en:lesson-23:session-05:word:regret; family: word_card -->
 > **regret** — шкодувати про щось.
 
-**14 · Виберіть третю форму після have або has.**
+**14 · Виберіть форму слова після have або has.**
 <!-- interaction_id: en:lesson-23:session-05:i10; family: context_gap_grammar -->
 She has ___ her decision. → **regretted** · regret · regrets
 - regret — *Після have або has потрібна третя форма дієслова.*

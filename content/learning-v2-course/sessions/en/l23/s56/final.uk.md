@@ -63,7 +63,7 @@ Illness — хвороба. I have recovered from an illness — я одужав
 - You have recovered from an illness. — *У записі звучить I have recovered from an illness.*
 - They have recovered from an illness. — *У записі звучить I have recovered from an illness.*
 
-**4 · Виберіть третю форму.**
+**4 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-56:i03; family: context_gap_grammar -->
 I have ___ from an illness. → **recovered** · recover · recovers
 - recover — *Потрібна третя форма: recovered.*
@@ -83,7 +83,7 @@ I have ___ from an illness. → **recovered** · recover · recovers
 - You have had an operation. — *У записі звучить She has had an operation.*
 - They have had an operation. — *У записі звучить She has had an operation.*
 
-**8 · Виберіть третю форму.**
+**8 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-56:i06; family: context_gap_grammar -->
 She has ___ an operation. → **had** · have · has
 - have — *Потрібна третя форма: had.*
@@ -103,7 +103,7 @@ She has ___ an operation. → **had** · have · has
 - You have asked about the infection. — *У записі звучить We have asked about the infection.*
 - They have asked about the infection. — *У записі звучить We have asked about the infection.*
 
-**12 · Виберіть третю форму.**
+**12 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-56:i09; family: context_gap_grammar -->
 We have ___ about the infection. → **asked** · ask · asks
 - ask — *Потрібна третя форма: asked.*
@@ -123,7 +123,7 @@ We have ___ about the infection. → **asked** · ask · asks
 - You have recovered from an injury. — *У записі звучить He has recovered from an injury.*
 - They have recovered from an injury. — *У записі звучить He has recovered from an injury.*
 
-**16 · Виберіть третю форму.**
+**16 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-56:i12; family: context_gap_grammar -->
 He has ___ from an injury. → **recovered** · recover · recovers
 - recover — *Потрібна третя форма: recovered.*

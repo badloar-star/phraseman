@@ -53,7 +53,7 @@ Replant — посадить растение заново или пересад
 <!-- interaction_id: en:lesson-23:session-02:word:reopen; family: word_card -->
 > **reopen** — снова открыть.
 
-**2 · Выберите третью форму после have или has.**
+**2 · Выберите форму слова после have или has.**
 <!-- interaction_id: en:lesson-23:session-02:i03; family: context_gap_grammar -->
 They have ___ the shop. → **reopened** · reopen · reopens
 - reopen — *После have или has нужна третья форма: здесь это форма на -ed.*
@@ -73,7 +73,7 @@ They have ___ the shop. → **reopened** · reopen · reopens
 <!-- interaction_id: en:lesson-23:session-02:word:reorganise; family: word_card -->
 > **reorganise** — организовать по-новому.
 
-**6 · Выберите третью форму после have или has.**
+**6 · Выберите форму слова после have или has.**
 <!-- interaction_id: en:lesson-23:session-02:i06; family: context_gap_grammar -->
 I have ___ the kitchen. → **reorganised** · reorganise · reorganises
 - reorganise — *После have или has нужна третья форма: здесь это форма на -ed.*
@@ -93,7 +93,7 @@ I have ___ the kitchen. → **reorganised** · reorganise · reorganises
 <!-- interaction_id: en:lesson-23:session-02:word:redecorate; family: word_card -->
 > **redecorate** — заново отделать комнату.
 
-**10 · Выберите третью форму после have или has.**
+**10 · Выберите форму слова после have или has.**
 <!-- interaction_id: en:lesson-23:session-02:i09; family: context_gap_grammar -->
 We have ___ the bedroom. → **redecorated** · redecorate · redecorates
 - redecorate — *После have или has нужна третья форма: здесь это форма на -ed.*
@@ -113,7 +113,7 @@ We have ___ the bedroom. → **redecorated** · redecorate · redecorates
 <!-- interaction_id: en:lesson-23:session-02:word:replant; family: word_card -->
 > **replant** — пересадить растение.
 
-**14 · Выберите третью форму после have или has.**
+**14 · Выберите форму слова после have или has.**
 <!-- interaction_id: en:lesson-23:session-02:i12; family: context_gap_grammar -->
 She has ___ the flowers. → **replanted** · replant · replants
 - replant — *После have или has нужна третья форма: здесь это форма на -ed.*

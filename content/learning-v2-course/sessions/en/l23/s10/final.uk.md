@@ -63,7 +63,7 @@ Campsite — місце для наметів або кемпінг. Stay at a c
 - You have travelled in a canoe. — *У записі звучить I have travelled in a canoe.*
 - They have travelled in a canoe. — *У записі звучить I have travelled in a canoe.*
 
-**4 · Виберіть третю форму для розповіді про досвід.**
+**4 · Виберіть форму слова для розповіді про досвід.**
 <!-- interaction_id: en:lesson-23:session-10:i03; family: context_gap_grammar -->
 I have ___ in a canoe. → **travelled** · travel · travels
 - travel — *Після have або has потрібна третя форма дієслова.*
@@ -83,7 +83,7 @@ I have ___ in a canoe. → **travelled** · travel · travels
 - You have been on a safari. — *У записі звучить She has been on a safari.*
 - They have been on a safari. — *У записі звучить She has been on a safari.*
 
-**8 · Виберіть третю форму для розповіді про досвід.**
+**8 · Виберіть форму слова для розповіді про досвід.**
 <!-- interaction_id: en:lesson-23:session-10:i06; family: context_gap_grammar -->
 She has ___ on a safari. → **been** · be · was
 - be — *Після have або has потрібна третя форма дієслова.*
@@ -103,7 +103,7 @@ She has ___ on a safari. → **been** · be · was
 - You have visited a carnival. — *У записі звучить We have visited a carnival.*
 - They have visited a carnival. — *У записі звучить We have visited a carnival.*
 
-**12 · Виберіть третю форму для розповіді про досвід.**
+**12 · Виберіть форму слова для розповіді про досвід.**
 <!-- interaction_id: en:lesson-23:session-10:i09; family: context_gap_grammar -->
 We have ___ a carnival. → **visited** · visit · visits
 - visit — *Після have або has потрібна третя форма дієслова.*
@@ -123,7 +123,7 @@ We have ___ a carnival. → **visited** · visit · visits
 - You have stayed at a campsite. — *У записі звучить He has stayed at a campsite.*
 - They have stayed at a campsite. — *У записі звучить He has stayed at a campsite.*
 
-**16 · Виберіть третю форму для розповіді про досвід.**
+**16 · Виберіть форму слова для розповіді про досвід.**
 <!-- interaction_id: en:lesson-23:session-10:i12; family: context_gap_grammar -->
 He has ___ at a campsite. → **stayed** · stay · stays
 - stay — *Після have або has потрібна третя форма дієслова.*

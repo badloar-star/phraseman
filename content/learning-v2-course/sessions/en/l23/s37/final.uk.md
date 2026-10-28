@@ -63,7 +63,7 @@ Octopus — восьминіг, морська тварина з вісьмом�
 - You have seen a bear. — *У записі звучить I have seen a bear.*
 - They have seen a bear. — *У записі звучить I have seen a bear.*
 
-**4 · Виберіть третю форму.**
+**4 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-37:i03; family: context_gap_grammar -->
 I have ___ a bear. → **seen** · see · sees
 - see — *Потрібна третя форма: seen.*
@@ -83,7 +83,7 @@ I have ___ a bear. → **seen** · see · sees
 - You have ridden a camel. — *У записі звучить She has ridden a camel.*
 - They have ridden a camel. — *У записі звучить She has ridden a camel.*
 
-**8 · Виберіть третю форму.**
+**8 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-37:i06; family: context_gap_grammar -->
 She has ___ a camel. → **ridden** · ride · rides
 - ride — *Потрібна третя форма: ridden.*
@@ -103,7 +103,7 @@ She has ___ a camel. → **ridden** · ride · rides
 - You have seen a rat. — *У записі звучить We have seen a rat.*
 - They have seen a rat. — *У записі звучить We have seen a rat.*
 
-**12 · Виберіть третю форму.**
+**12 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-37:i09; family: context_gap_grammar -->
 We have ___ a rat. → **seen** · see · sees
 - see — *Потрібна третя форма: seen.*
@@ -123,7 +123,7 @@ We have ___ a rat. → **seen** · see · sees
 - You have seen an octopus. — *У записі звучить He has seen an octopus.*
 - They have seen an octopus. — *У записі звучить He has seen an octopus.*
 
-**16 · Виберіть третю форму.**
+**16 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-37:i12; family: context_gap_grammar -->
 He has ___ an octopus. → **seen** · see · sees
 - see — *Потрібна третя форма: seen.*

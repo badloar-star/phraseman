@@ -119,7 +119,16 @@
     ];
     return `<section class="block" id="dt-evening"><h2>Вечерняя Главная — красная шапка после 20:00</h2><p class="sp-note">Слева — вечер как сейчас (серия под угрозой: тёплый свет справа, угли слева). Три варианта по списку владельца: как днём с красным огоньком · мягче · новый.</p>${row(`${m.file}#evening`, m, variants, 'Главная · вечер')}</section>`;
   };
-  const sectionCards = () => `<section class="block" id="dt-cards"><h2>Карточки и плашки — тон, тень, свет, без рамок</h2><p class="sp-note sp-warn">В работе: варианты карточек «Сегодня» и плиток на кадре Главной (тон в оттенке темы, мягкая тень под карточкой, световая кромка сверху) — следующая публикация по этому же адресу.</p><p class="sp-note">Кольца аватара: по слову владельца остаётся только красное кольцо историй, фиолетовое кольцо Plus уходит — правит Дизайн в коде; на кадрах пока старые кольца.</p></section>`;
+  /* карточки: полоса под сценой до таббара; прямоугольники — из описи кадра (detectCards); варианты — scene-cards.js */
+  const sectionCards = () => {
+    const m = frameOf('home'); const SC = window.SceneCards; const rings = '<p class="sp-note">Кольца аватара: по слову владельца остаётся только красное кольцо историй, фиолетовое кольцо Plus уходит — правит Дизайн в коде; на кадрах пока старые кольца.</p>';
+    if (!m || !SC) return `<section class="block" id="dt-cards"><h2>Карточки и плашки — тон, тень, свет, без рамок</h2>${m ? '' : missing('Главная · карточки', `scene_home_${THEME}_${AP}.png`)}${rings}</section>`;
+    if (!m.cards || !m.cards.length) return `<section class="block" id="dt-cards"><h2>Карточки и плашки — тон, тень, свет, без рамок</h2><p class="sp-note sp-warn">На кадре ${m.file} карточки не найдены описью — пересобрать scene-frames.cjs.</p>${rings}</section>`;
+    const t = THEMES[THEME][AP]; const variants = Object.entries(SC.VARIANTS).map(([k, d]) => ({ key: 'card_' + k, name: d.name, why: d.why, spec: { v: d.v } }));
+    const html = row(`${m.file}#cards`, m, variants, 'Главная · карточки');
+    JOBS[`${m.file}#cards`].cards = { y0: Math.max(0, m.sceneH - 70), y1: m.tab || 2140, rects: m.cards, fill: m.cardFill, accent: C.hx(t.accent) };
+    return `<section class="block" id="dt-cards"><h2>Карточки и плашки — тон, тень, свет, без рамок</h2><p class="sp-note">На кадре найдено ${m.cards.length} карточек (панель «Сегодня», плитки, «Фраза дня»). Меняется только заливка карточек и фон вокруг них: надписи и значки как сняты. Тон — в оттенке темы, тень — мягкая под карточкой, свет — кромка сверху; рамок нет.</p>${html}${rings}</section>`;
+  };
 
   const controls = () => {
     const el = document.getElementById('dtThemes'); if (el) el.innerHTML = THEME_LIST.map((id) => `<span class="chp${THEME === id ? ' on' : ''}${hasFrame(id, AP) ? '' : ' off'}" data-dt-th="${id}" title="${hasFrame(id, AP) ? '' : 'кадр снимается'}">${THEMES[id].name}</span>`).join('');

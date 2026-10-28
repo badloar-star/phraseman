@@ -89,6 +89,40 @@ const HERO = {
   dialogs: { asset: () => path.join(__dirname, 'assets', 'v2art', 'dark', 'dialogs_scene_first.webp'), assetByAp: (ap) => path.join(__dirname, 'assets', 'v2art', ap, 'dialogs_scene_first.webp'), art: () => 'dialogs_scene_first', dir: 'v2art', zone: { x0: 620, y0: 150, bottomGap: 470 }, prior: { day: { size: 418, x: 669, y: 246 } } },
 };
 
+/* карточки Главной под сценой: самый частый цвет полосы (кроме фона страницы — колонка x = 8) — заливка карточек; строки, где он
+   покрывает ≥ 22 % ширины, образуют полосы; в полосе колонки, где он есть в ≥ 50 % строк, дают прямоугольники (плитки в одной полосе
+   разделяются); радиус — 28 dp у панели/плашки, 20 dp у плиток (HomeV2TodayCard sceneCard / HomeV2FeatureTiles sceneTile) */
+function detectCards(buf, ch, sceneH, tab) {
+  const y0 = sceneH - 40; const hist = new Map();
+  for (let y = y0; y < tab; y += 2) { const bg = px(buf, ch, 8, y); for (let x = 20; x < W - 20; x += 2) { const c = px(buf, ch, x, y); if (dist(c, bg) <= 12) continue; const k = c.map((v) => v >> 1 << 1).join(','); hist.set(k, (hist.get(k) || 0) + 1); } }
+  const cands = [...hist.entries()].sort((a, b) => b[1] - a[1]).slice(0, 4).map(([k]) => k.split(',').map(Number));
+  const cards = [];
+  const overlaps = (r) => cards.some((c) => !(r.x1 < c.x0 || r.x0 > c.x1 || r.y1 < c.y0 || r.y0 > c.y1));
+  for (const fill of cands) {
+    const near = (c) => Math.abs(c[0] - fill[0]) <= 7 && Math.abs(c[1] - fill[1]) <= 7 && Math.abs(c[2] - fill[2]) <= 7;
+    const tight = (c) => Math.abs(c[0] - fill[0]) <= 3 && Math.abs(c[1] - fill[1]) <= 3 && Math.abs(c[2] - fill[2]) <= 3; // для края: тень у кромки темнее заливки на 4–8
+    const bands = []; let cur = null;
+    for (let y = y0; y < tab; y += 1) { let n = 0; for (let x = 20; x < W - 20; x += 2) if (near(px(buf, ch, x, y))) n += 1; const ok = n >= (W - 40) / 2 * 0.22; if (ok) { if (cur && y - cur.y1 <= 3) cur.y1 = y; else { if (cur) bands.push(cur); cur = { y0: y, y1: y }; } } }
+    if (cur) bands.push(cur);
+    for (const b of bands) {
+      if (b.y1 - b.y0 < 40) continue;
+      const topRows = []; for (let y = b.y0 + 4; y <= Math.min(b.y1, b.y0 + 16); y += 1) topRows.push(y);
+      const cols = new Int32Array(W); for (const y of topRows) for (let x = 0; x < W; x += 1) if (near(px(buf, ch, x, y))) cols[x] += 1;
+      let run = 0; let start = 0; const rects = [];
+      for (let x = 0; x <= W; x += 1) { const ok = x < W && cols[x] >= topRows.length * 0.6; if (ok) { if (!run) start = x; run += 1; } else if (run) { if (run >= 100) rects.push({ x0: start, x1: x - 1 }); run = 0; } }
+      for (const r of rects) {
+        let x0 = r.x0; let x1 = r.x1;
+        // края: от найденного края идём наружу, пока заливка непрерывна (стоп на первом чужом пикселе — краю карточки или зазоре)
+        for (let y = b.y0 + 30; y <= b.y1 - 30; y += 3) { let x = r.x0; while (x > 0 && tight(px(buf, ch, x - 1, y))) x -= 1; x0 = Math.min(x0, x); x = r.x1; while (x < W - 1 && tight(px(buf, ch, x + 1, y))) x += 1; x1 = Math.max(x1, x); }
+        const wide = x1 - x0 > 700; const h = b.y1 - b.y0 + 1; const kind = wide ? (h < 160 ? 'pod' : 'panel') : 'tile';
+        const rect = { x0, x1, y0: b.y0, y1: b.y1, r: Math.round((kind === 'tile' ? 20 : kind === 'pod' ? 24 : 28) * DP), kind, fill };
+        if (!overlaps(rect)) cards.push(rect);
+      }
+    }
+  }
+  cards.sort((a, b) => a.y0 - b.y0 || a.x0 - b.x0);
+  return { cards };
+}
 async function describe(fp, p) {
   const meta = await sharp(fp).metadata();
   if (meta.width !== W || meta.height !== H) return { ok: false, why: `размер ${meta.width}×${meta.height}, нужен 1080×2400` };
@@ -109,7 +143,8 @@ async function describe(fp, p) {
   // dev-превью сцены (без тела экрана): под сценой Главной нет карточки «Сегодня» цвета opaqueCard темы — такой кадр не настоящий экран
   let preview = false; const t = THEMES[p.theme] && THEMES[p.theme][p.ap];
   if (p.screen === 'home' && t) { const under = px(buf, ch, 540, sceneH + 60); preview = dist(under, hx(t.opaqueCard)) > 14 && dist(under, hx(t.opaqueSheet || t.opaqueCard)) > 14; }
-  return { ok: true, status: 100, tab: 2140, sceneH, evening, preview, buf, ch };
+  const cardsInfo = p.screen === 'home' ? detectCards(buf, ch, sceneH, 2140) : null;
+  return { ok: true, status: 100, tab: 2140, sceneH, evening, preview, buf, ch, cardsInfo };
 }
 
 /* герой: в полосе справа ниже шапки пиксели, отличные от модели фона, — это герой; его рамка против рамки непрозрачных пикселей картинки
@@ -176,9 +211,10 @@ async function fitReport(file) {
   const out = {};
   for (const file of files) {
     const p = parse(file); const fp = path.join(DIR, file); const mtime = fs.statSync(fp).mtimeMs;
-    if (!FORCE && prev[file] && prev[file].mtime === mtime && prev[file].v === 3) { out[file] = prev[file]; continue; }
+    if (!FORCE && prev[file] && prev[file].mtime === mtime && prev[file].v === 5) { out[file] = prev[file]; continue; }
     const d = await describe(fp, p);
-    const rec = Object.assign({ file, mtime, v: 3 }, p, { ok: d.ok, why: d.why || null, status: d.status, tab: d.tab, sceneH: d.sceneH });
+    const rec = Object.assign({ file, mtime, v: 5 }, p, { ok: d.ok, why: d.why || null, status: d.status, tab: d.tab, sceneH: d.sceneH });
+    if (d.cardsInfo) { rec.cards = d.cardsInfo.cards; rec.cardFill = d.cardsInfo.cards.length ? d.cardsInfo.cards[0].fill : null; }
     if (d.ok && (p.screen === 'home' || p.screen === 'dialogs')) {
       rec.state = p.state || (p.screen === 'home' && d.evening ? 'evening' : 'day');
       if (!THEMES[p.theme] || !THEMES[p.theme][p.ap]) { rec.recolor = false; rec.why = `тема «${p.theme}» (${p.ap}) не из снимка тем эталона и премиум-списка`; }

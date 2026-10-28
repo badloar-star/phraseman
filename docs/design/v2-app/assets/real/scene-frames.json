@@ -2,7 +2,7 @@
  "scene_dialogs_eucalyptus_dark.png": {
   "file": "scene_dialogs_eucalyptus_dark.png",
   "mtime": 1793218675645.8499,
-  "v": 3,
+  "v": 5,
   "screen": "dialogs",
   "theme": "eucalyptus",
   "ap": "dark",
@@ -26,7 +26,7 @@
  "scene_dialogs_grad_aurora_dark.png": {
   "file": "scene_dialogs_grad_aurora_dark.png",
   "mtime": 1793218756965.5237,
-  "v": 3,
+  "v": 5,
   "screen": "dialogs",
   "theme": "grad_aurora",
   "ap": "dark",
@@ -50,7 +50,7 @@
  "scene_dialogs_grad_champagne_dark.png": {
   "file": "scene_dialogs_grad_champagne_dark.png",
   "mtime": 1793218929693.0115,
-  "v": 3,
+  "v": 5,
   "screen": "dialogs",
   "theme": "grad_champagne",
   "ap": "dark",
@@ -74,7 +74,7 @@
  "scene_dialogs_grad_coral_dark.png": {
   "file": "scene_dialogs_grad_coral_dark.png",
   "mtime": 1793221200226.7288,
-  "v": 3,
+  "v": 5,
   "screen": "dialogs",
   "theme": "grad_coral",
   "ap": "dark",
@@ -98,7 +98,7 @@
  "scene_dialogs_grad_full_horizon_dark.png": {
   "file": "scene_dialogs_grad_full_horizon_dark.png",
   "mtime": 1793219395376.7263,
-  "v": 3,
+  "v": 5,
   "screen": "dialogs",
   "theme": "grad_full_horizon",
   "ap": "dark",
@@ -122,7 +122,7 @@
  "scene_dialogs_grad_full_olive_dark.png": {
   "file": "scene_dialogs_grad_full_olive_dark.png",
   "mtime": 1793219242545.227,
-  "v": 3,
+  "v": 5,
   "screen": "dialogs",
   "theme": "grad_full_olive",
   "ap": "dark",
@@ -146,7 +146,7 @@
  "scene_dialogs_grad_full_ref_gravity_blue_dark.png": {
   "file": "scene_dialogs_grad_full_ref_gravity_blue_dark.png",
   "mtime": 1793219431669.3389,
-  "v": 3,
+  "v": 5,
   "screen": "dialogs",
   "theme": "grad_full_ref_gravity_blue",
   "ap": "dark",
@@ -170,7 +170,7 @@
  "scene_dialogs_grad_full_ref_signal_lime_dark.png": {
   "file": "scene_dialogs_grad_full_ref_signal_lime_dark.png",
   "mtime": 1793219278721.8523,
-  "v": 3,
+  "v": 5,
   "screen": "dialogs",
   "theme": "grad_full_ref_signal_lime",
   "ap": "dark",
@@ -194,7 +194,7 @@
  "scene_dialogs_grad_full_ref_storm_violet_dark.png": {
   "file": "scene_dialogs_grad_full_ref_storm_violet_dark.png",
   "mtime": 1793219315176.6711,
-  "v": 3,
+  "v": 5,
   "screen": "dialogs",
   "theme": "grad_full_ref_storm_violet",
   "ap": "dark",
@@ -218,7 +218,7 @@
  "scene_dialogs_grad_full_titanium_dark.png": {
   "file": "scene_dialogs_grad_full_titanium_dark.png",
   "mtime": 1793219355436.0696,
-  "v": 3,
+  "v": 5,
   "screen": "dialogs",
   "theme": "grad_full_titanium",
   "ap": "dark",
@@ -242,7 +242,7 @@
  "scene_dialogs_grad_ice_dark.png": {
   "file": "scene_dialogs_grad_ice_dark.png",
   "mtime": 1793219077929.7476,
-  "v": 3,
+  "v": 5,
   "screen": "dialogs",
   "theme": "grad_ice",
   "ap": "dark",
@@ -266,7 +266,7 @@
  "scene_dialogs_grad_iris_dark.png": {
   "file": "scene_dialogs_grad_iris_dark.png",
   "mtime": 1793218798067.422,
-  "v": 3,
+  "v": 5,
   "screen": "dialogs",
   "theme": "grad_iris",
   "ap": "dark",
@@ -290,7 +290,7 @@
  "scene_dialogs_grad_jade_dark.png": {
   "file": "scene_dialogs_grad_jade_dark.png",
   "mtime": 1793218975368.105,
-  "v": 3,
+  "v": 5,
   "screen": "dialogs",
   "theme": "grad_jade",
   "ap": "dark",
@@ -306,7 +306,7 @@
  "scene_dialogs_grad_lilac_dark.png": {
   "file": "scene_dialogs_grad_lilac_dark.png",
   "mtime": 1793219201746.385,
-  "v": 3,
+  "v": 5,
   "screen": "dialogs",
   "theme": "grad_lilac",
   "ap": "dark",
@@ -330,7 +330,7 @@
  "scene_dialogs_grad_magma_dark.png": {
   "file": "scene_dialogs_grad_magma_dark.png",
   "mtime": 1793218841891.4778,
-  "v": 3,
+  "v": 5,
   "screen": "dialogs",
   "theme": "grad_magma",
   "ap": "dark",
@@ -354,7 +354,7 @@
  "scene_dialogs_grad_midnight_dark.png": {
   "file": "scene_dialogs_grad_midnight_dark.png",
   "mtime": 1793218885920.928,
-  "v": 3,
+  "v": 5,
   "screen": "dialogs",
   "theme": "grad_midnight",
   "ap": "dark",
@@ -378,7 +378,7 @@
  "scene_dialogs_grad_orchid_dark.png": {
   "file": "scene_dialogs_grad_orchid_dark.png",
   "mtime": 1793219023465.7222,
-  "v": 3,
+  "v": 5,
   "screen": "dialogs",
   "theme": "grad_orchid",
   "ap": "dark",
@@ -402,7 +402,7 @@
  "scene_dialogs_graphite_dark.png": {
   "file": "scene_dialogs_graphite_dark.png",
   "mtime": 1793218270140.1,
-  "v": 3,
+  "v": 5,
   "screen": "dialogs",
   "theme": "graphite",
   "ap": "dark",
@@ -426,7 +426,7 @@
  "scene_dialogs_ink_dark.png": {
   "file": "scene_dialogs_ink_dark.png",
   "mtime": 1793218384481.7893,
-  "v": 3,
+  "v": 5,
   "screen": "dialogs",
   "theme": "ink",
   "ap": "dark",
@@ -450,7 +450,7 @@
  "scene_dialogs_iris_dark.png": {
   "file": "scene_dialogs_iris_dark.png",
   "mtime": 1793218464626.4873,
-  "v": 3,
+  "v": 5,
   "screen": "dialogs",
   "theme": "iris",
   "ap": "dark",
@@ -474,7 +474,7 @@
  "scene_dialogs_lavender_dark.png": {
   "file": "scene_dialogs_lavender_dark.png",
   "mtime": 1793218422900.5151,
-  "v": 3,
+  "v": 5,
   "screen": "dialogs",
   "theme": "lavender",
   "ap": "dark",
@@ -498,7 +498,7 @@
  "scene_dialogs_marine_dark.png": {
   "file": "scene_dialogs_marine_dark.png",
   "mtime": 1793218716013.1143,
-  "v": 3,
+  "v": 5,
   "screen": "dialogs",
   "theme": "marine",
   "ap": "dark",
@@ -522,7 +522,7 @@
  "scene_dialogs_polar_dark.png": {
   "file": "scene_dialogs_polar_dark.png",
   "mtime": 1793218307949.7205,
-  "v": 3,
+  "v": 5,
   "screen": "dialogs",
   "theme": "polar",
   "ap": "dark",
@@ -546,7 +546,7 @@
  "scene_dialogs_rose_dark.png": {
   "file": "scene_dialogs_rose_dark.png",
   "mtime": 1793218508070.7104,
-  "v": 3,
+  "v": 5,
   "screen": "dialogs",
   "theme": "rose",
   "ap": "dark",
@@ -570,7 +570,7 @@
  "scene_dialogs_sage_dark.png": {
   "file": "scene_dialogs_sage_dark.png",
   "mtime": 1793218630543.4612,
-  "v": 3,
+  "v": 5,
   "screen": "dialogs",
   "theme": "sage",
   "ap": "dark",
@@ -594,7 +594,7 @@
  "scene_dialogs_slate_dark.png": {
   "file": "scene_dialogs_slate_dark.png",
   "mtime": 1793218346912.6655,
-  "v": 3,
+  "v": 5,
   "screen": "dialogs",
   "theme": "slate",
   "ap": "dark",
@@ -618,7 +618,7 @@
  "scene_dialogs_taupe_dark.png": {
   "file": "scene_dialogs_taupe_dark.png",
   "mtime": 1793218589543.5042,
-  "v": 3,
+  "v": 5,
   "screen": "dialogs",
   "theme": "taupe",
   "ap": "dark",
@@ -642,7 +642,7 @@
  "scene_dialogs_terracotta_dark.png": {
   "file": "scene_dialogs_terracotta_dark.png",
   "mtime": 1793218549403.9954,
-  "v": 3,
+  "v": 5,
   "screen": "dialogs",
   "theme": "terracotta",
   "ap": "dark",
@@ -666,7 +666,7 @@
  "scene_home_eucalyptus_dark.png": {
   "file": "scene_home_eucalyptus_dark.png",
   "mtime": 1793218663015.947,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "eucalyptus",
   "ap": "dark",
@@ -675,6 +675,78 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1082,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1750,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     0,
+     34,
+     30
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     0,
+     34,
+     30
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     0,
+     34,
+     30
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     0,
+     34,
+     30
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     0,
+     34,
+     30
+    ]
+   }
+  ],
+  "cardFill": [
+   0,
+   34,
+   30
+  ],
   "state": "day",
   "hero": {
    "x": 870,
@@ -690,7 +762,7 @@
  "scene_home_eucalyptus_light.png": {
   "file": "scene_home_eucalyptus_light.png",
   "mtime": 1793219708998.3008,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "eucalyptus",
   "ap": "light",
@@ -699,6 +771,104 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1081,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1750,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     246,
+     254,
+     254
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     246,
+     254,
+     254
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     246,
+     254,
+     254
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     246,
+     254,
+     254
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     246,
+     254,
+     254
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 358,
+    "y0": 2053,
+    "y1": 2139,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     228,
+     248,
+     246
+    ]
+   },
+   {
+    "x0": 413,
+    "x1": 1046,
+    "y0": 2053,
+    "y1": 2139,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     228,
+     248,
+     246
+    ]
+   }
+  ],
+  "cardFill": [
+   246,
+   254,
+   254
+  ],
   "state": "day",
   "hero": {
    "x": 868,
@@ -714,7 +884,7 @@
  "scene_home_evening_eucalyptus_dark.png": {
   "file": "scene_home_evening_eucalyptus_dark.png",
   "mtime": 1793220724465.4485,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "eucalyptus",
   "ap": "dark",
@@ -724,13 +894,85 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1082,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1607,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     0,
+     34,
+     30
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     0,
+     34,
+     30
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     0,
+     34,
+     30
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     0,
+     34,
+     30
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     0,
+     34,
+     30
+    ]
+   }
+  ],
+  "cardFill": [
+   0,
+   34,
+   30
+  ],
   "hero": null,
   "heroWhy": "герой не совпал с картинкой (точность 0.324 при 216 px в 873,295)"
  },
  "scene_home_evening_grad_aurora_dark.png": {
   "file": "scene_home_evening_grad_aurora_dark.png",
   "mtime": 1793220777228.6213,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "grad_aurora",
   "ap": "dark",
@@ -740,13 +982,85 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1082,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1607,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     32,
+     42,
+     40
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     32,
+     42,
+     40
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     32,
+     42,
+     40
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     32,
+     42,
+     40
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     32,
+     42,
+     40
+    ]
+   }
+  ],
+  "cardFill": [
+   32,
+   42,
+   40
+  ],
   "hero": null,
   "heroWhy": "герой не совпал с картинкой (точность 0.267 при 216 px в 874,295)"
  },
  "scene_home_evening_grad_champagne_dark.png": {
   "file": "scene_home_evening_grad_champagne_dark.png",
   "mtime": 1793220863540.646,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "grad_champagne",
   "ap": "dark",
@@ -756,13 +1070,85 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1082,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1607,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     42,
+     40,
+     36
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     42,
+     40,
+     36
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     42,
+     40,
+     36
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     42,
+     40,
+     36
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     42,
+     40,
+     36
+    ]
+   }
+  ],
+  "cardFill": [
+   42,
+   40,
+   36
+  ],
   "hero": null,
   "heroWhy": "герой не совпал с картинкой (точность 0.579 при 216 px в 873,295)"
  },
  "scene_home_evening_grad_coral_dark.png": {
   "file": "scene_home_evening_grad_coral_dark.png",
   "mtime": 1793220963733.8044,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "grad_coral",
   "ap": "dark",
@@ -772,6 +1158,91 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1082,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1607,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     44,
+     36,
+     36
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     44,
+     36,
+     36
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     44,
+     36,
+     36
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     44,
+     36,
+     36
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     44,
+     36,
+     36
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1910,
+    "y1": 2139,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     26,
+     24,
+     26
+    ]
+   }
+  ],
+  "cardFill": [
+   44,
+   36,
+   36
+  ],
   "hero": {
    "x": 873,
    "y": 297,
@@ -786,7 +1257,7 @@
  "scene_home_evening_grad_full_horizon_dark.png": {
   "file": "scene_home_evening_grad_full_horizon_dark.png",
   "mtime": 1793221131916.3052,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "grad_full_horizon",
   "ap": "dark",
@@ -796,6 +1267,91 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1082,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1750,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     32,
+     50,
+     68
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     32,
+     50,
+     68
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     32,
+     50,
+     68
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     32,
+     50,
+     68
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     32,
+     50,
+     68
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 2053,
+    "y1": 2139,
+    "r": 63,
+    "kind": "pod",
+    "fill": [
+     26,
+     46,
+     62
+    ]
+   }
+  ],
+  "cardFill": [
+   32,
+   50,
+   68
+  ],
   "hero": {
    "x": 677,
    "y": 283,
@@ -810,7 +1366,7 @@
  "scene_home_evening_grad_full_olive_dark.png": {
   "file": "scene_home_evening_grad_full_olive_dark.png",
   "mtime": 1793221017340.5713,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "grad_full_olive",
   "ap": "dark",
@@ -820,13 +1376,98 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1082,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1607,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     50,
+     60,
+     32
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     50,
+     60,
+     32
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     50,
+     60,
+     32
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     50,
+     60,
+     32
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     50,
+     60,
+     32
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1910,
+    "y1": 2139,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     40,
+     48,
+     26
+    ]
+   }
+  ],
+  "cardFill": [
+   50,
+   60,
+   32
+  ],
   "hero": null,
   "heroWhy": "герой не совпал с картинкой (точность 0.121 при 209 px в 682,288)"
  },
  "scene_home_evening_grad_full_ref_gravity_blue_dark.png": {
   "file": "scene_home_evening_grad_full_ref_gravity_blue_dark.png",
   "mtime": 1793221150499.6055,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "grad_full_ref_gravity_blue",
   "ap": "dark",
@@ -836,13 +1477,98 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1082,
+  "cards": [
+   {
+    "x0": 69,
+    "x1": 1008,
+    "y0": 1058,
+    "y1": 1750,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     12,
+     20,
+     24
+    ]
+   },
+   {
+    "x0": 55,
+    "x1": 242,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     12,
+     20,
+     24
+    ]
+   },
+   {
+    "x0": 316,
+    "x1": 503,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     12,
+     20,
+     24
+    ]
+   },
+   {
+    "x0": 576,
+    "x1": 763,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     12,
+     20,
+     24
+    ]
+   },
+   {
+    "x0": 837,
+    "x1": 1024,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     12,
+     20,
+     24
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 2053,
+    "y1": 2139,
+    "r": 63,
+    "kind": "pod",
+    "fill": [
+     12,
+     20,
+     24
+    ]
+   }
+  ],
+  "cardFill": [
+   12,
+   20,
+   24
+  ],
   "hero": null,
   "heroWhy": "герой не совпал с картинкой (точность 0.569 при 217 px в 681,287)"
  },
  "scene_home_evening_grad_full_ref_signal_lime_dark.png": {
   "file": "scene_home_evening_grad_full_ref_signal_lime_dark.png",
   "mtime": 1793225109880.2021,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "grad_full_ref_signal_lime",
   "ap": "dark",
@@ -852,13 +1578,98 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1082,
+  "cards": [
+   {
+    "x0": 69,
+    "x1": 1008,
+    "y0": 1058,
+    "y1": 1750,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     16,
+     22,
+     14
+    ]
+   },
+   {
+    "x0": 55,
+    "x1": 242,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     16,
+     22,
+     14
+    ]
+   },
+   {
+    "x0": 316,
+    "x1": 503,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     16,
+     22,
+     14
+    ]
+   },
+   {
+    "x0": 576,
+    "x1": 763,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     16,
+     22,
+     14
+    ]
+   },
+   {
+    "x0": 837,
+    "x1": 1024,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     16,
+     22,
+     14
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 2053,
+    "y1": 2139,
+    "r": 63,
+    "kind": "pod",
+    "fill": [
+     16,
+     22,
+     14
+    ]
+   }
+  ],
+  "cardFill": [
+   16,
+   22,
+   14
+  ],
   "hero": null,
   "heroWhy": "герой не совпал с картинкой (точность 0.498 при 223 px в 681,287)"
  },
  "scene_home_evening_grad_full_ref_storm_violet_dark.png": {
   "file": "scene_home_evening_grad_full_ref_storm_violet_dark.png",
   "mtime": 1793221093729.09,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "grad_full_ref_storm_violet",
   "ap": "dark",
@@ -868,13 +1679,98 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1082,
+  "cards": [
+   {
+    "x0": 69,
+    "x1": 1008,
+    "y0": 1058,
+    "y1": 1750,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     16,
+     16,
+     24
+    ]
+   },
+   {
+    "x0": 55,
+    "x1": 242,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     16,
+     16,
+     24
+    ]
+   },
+   {
+    "x0": 316,
+    "x1": 503,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     16,
+     16,
+     24
+    ]
+   },
+   {
+    "x0": 576,
+    "x1": 763,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     16,
+     16,
+     24
+    ]
+   },
+   {
+    "x0": 837,
+    "x1": 1024,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     16,
+     16,
+     24
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 2053,
+    "y1": 2139,
+    "r": 63,
+    "kind": "pod",
+    "fill": [
+     16,
+     16,
+     24
+    ]
+   }
+  ],
+  "cardFill": [
+   16,
+   16,
+   24
+  ],
   "hero": null,
   "heroWhy": "герой не совпал с картинкой (точность 0.563 при 219 px в 681,287)"
  },
  "scene_home_evening_grad_full_titanium_dark.png": {
   "file": "scene_home_evening_grad_full_titanium_dark.png",
   "mtime": 1793221112841.9575,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "grad_full_titanium",
   "ap": "dark",
@@ -884,6 +1780,117 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1082,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1750,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     40,
+     46,
+     52
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     40,
+     46,
+     52
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     40,
+     46,
+     52
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     40,
+     46,
+     52
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     40,
+     46,
+     52
+    ]
+   },
+   {
+    "x0": 229,
+    "x1": 330,
+    "y0": 2053,
+    "y1": 2139,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     40,
+     46,
+     52
+    ]
+   },
+   {
+    "x0": 490,
+    "x1": 590,
+    "y0": 2053,
+    "y1": 2139,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     40,
+     46,
+     52
+    ]
+   },
+   {
+    "x0": 750,
+    "x1": 851,
+    "y0": 2053,
+    "y1": 2139,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     40,
+     46,
+     52
+    ]
+   }
+  ],
+  "cardFill": [
+   40,
+   46,
+   52
+  ],
   "hero": {
    "x": 657,
    "y": 267,
@@ -898,7 +1905,7 @@
  "scene_home_evening_grad_ice_dark.png": {
   "file": "scene_home_evening_grad_ice_dark.png",
   "mtime": 1793220937852.3142,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "grad_ice",
   "ap": "dark",
@@ -908,13 +1915,85 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1082,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1607,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     38,
+     42,
+     46
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     38,
+     42,
+     46
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     38,
+     42,
+     46
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     38,
+     42,
+     46
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     38,
+     42,
+     46
+    ]
+   }
+  ],
+  "cardFill": [
+   38,
+   42,
+   46
+  ],
   "hero": null,
   "heroWhy": "герой не совпал с картинкой (точность 0.257 при 215 px в 874,296)"
  },
  "scene_home_evening_grad_iris_dark.png": {
   "file": "scene_home_evening_grad_iris_dark.png",
   "mtime": 1793220798746.263,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "grad_iris",
   "ap": "dark",
@@ -924,13 +2003,85 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1082,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1607,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     38,
+     38,
+     46
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     38,
+     38,
+     46
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     38,
+     38,
+     46
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     38,
+     38,
+     46
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     38,
+     38,
+     46
+    ]
+   }
+  ],
+  "cardFill": [
+   38,
+   38,
+   46
+  ],
   "hero": null,
   "heroWhy": "герой не совпал с картинкой (точность 0.272 при 216 px в 874,295)"
  },
  "scene_home_evening_grad_jade_dark.png": {
   "file": "scene_home_evening_grad_jade_dark.png",
   "mtime": 1793220888262.0996,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "grad_jade",
   "ap": "dark",
@@ -940,13 +2091,98 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1082,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1607,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     32,
+     42,
+     42
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     32,
+     42,
+     42
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     32,
+     42,
+     42
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     32,
+     42,
+     42
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     32,
+     42,
+     42
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1910,
+    "y1": 2139,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     22,
+     26,
+     28
+    ]
+   }
+  ],
+  "cardFill": [
+   32,
+   42,
+   42
+  ],
   "hero": null,
   "heroWhy": "герой не совпал с картинкой (точность 0.255 при 214 px в 875,296)"
  },
  "scene_home_evening_grad_lilac_dark.png": {
   "file": "scene_home_evening_grad_lilac_dark.png",
   "mtime": 1793220990371.9841,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "grad_lilac",
   "ap": "dark",
@@ -956,13 +2192,85 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1082,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1607,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     40,
+     38,
+     46
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     40,
+     38,
+     46
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     40,
+     38,
+     46
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     40,
+     38,
+     46
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     40,
+     38,
+     46
+    ]
+   }
+  ],
+  "cardFill": [
+   40,
+   38,
+   46
+  ],
   "hero": null,
   "heroWhy": "герой не совпал с картинкой (точность 0.278 при 216 px в 874,295)"
  },
  "scene_home_evening_grad_magma_dark.png": {
   "file": "scene_home_evening_grad_magma_dark.png",
   "mtime": 1793220820281.1895,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "grad_magma",
   "ap": "dark",
@@ -972,6 +2280,104 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1082,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1607,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     44,
+     36,
+     32
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     44,
+     36,
+     32
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     44,
+     36,
+     32
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     44,
+     36,
+     32
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     44,
+     36,
+     32
+    ]
+   },
+   {
+    "x0": 113,
+    "x1": 447,
+    "y0": 1910,
+    "y1": 2139,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     28,
+     24,
+     26
+    ]
+   },
+   {
+    "x0": 704,
+    "x1": 897,
+    "y0": 1910,
+    "y1": 2139,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     28,
+     24,
+     26
+    ]
+   }
+  ],
+  "cardFill": [
+   44,
+   36,
+   32
+  ],
   "hero": {
    "x": 873,
    "y": 295,
@@ -986,7 +2392,7 @@
  "scene_home_evening_grad_midnight_dark.png": {
   "file": "scene_home_evening_grad_midnight_dark.png",
   "mtime": 1793220841791.0884,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "grad_midnight",
   "ap": "dark",
@@ -996,13 +2402,85 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1082,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1607,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     32,
+     38,
+     46
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     32,
+     38,
+     46
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     32,
+     38,
+     46
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     32,
+     38,
+     46
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     32,
+     38,
+     46
+    ]
+   }
+  ],
+  "cardFill": [
+   32,
+   38,
+   46
+  ],
   "hero": null,
   "heroWhy": "герой не совпал с картинкой (точность 0.265 при 216 px в 874,295)"
  },
  "scene_home_evening_grad_orchid_dark.png": {
   "file": "scene_home_evening_grad_orchid_dark.png",
   "mtime": 1793220913035.3718,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "grad_orchid",
   "ap": "dark",
@@ -1012,13 +2490,111 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1082,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1607,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     42,
+     36,
+     46
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     42,
+     36,
+     46
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     42,
+     36,
+     46
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     42,
+     36,
+     46
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     42,
+     36,
+     46
+    ]
+   },
+   {
+    "x0": 87,
+    "x1": 474,
+    "y0": 1910,
+    "y1": 2139,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     26,
+     24,
+     30
+    ]
+   },
+   {
+    "x0": 686,
+    "x1": 915,
+    "y0": 1910,
+    "y1": 2139,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     26,
+     24,
+     30
+    ]
+   }
+  ],
+  "cardFill": [
+   42,
+   36,
+   46
+  ],
   "hero": null,
   "heroWhy": "герой не совпал с картинкой (точность 0.346 при 216 px в 874,295)"
  },
  "scene_home_evening_graphite_dark.png": {
   "file": "scene_home_evening_graphite_dark.png",
   "mtime": 1793220497915.8918,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "graphite",
   "ap": "dark",
@@ -1028,13 +2604,85 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1082,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1060,
+    "y0": 1058,
+    "y1": 1607,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     22,
+     28,
+     34
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     22,
+     28,
+     34
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     22,
+     28,
+     34
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     22,
+     28,
+     34
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1078,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     22,
+     28,
+     34
+    ]
+   }
+  ],
+  "cardFill": [
+   22,
+   28,
+   34
+  ],
   "hero": null,
   "heroWhy": "герой не совпал с картинкой (точность 0.248 при 214 px в 875,296)"
  },
  "scene_home_evening_ink_dark.png": {
   "file": "scene_home_evening_ink_dark.png",
   "mtime": 1793220562990.565,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "ink",
   "ap": "dark",
@@ -1044,13 +2692,85 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1082,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1607,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     24,
+     26,
+     42
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     24,
+     26,
+     42
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     24,
+     26,
+     42
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     24,
+     26,
+     42
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1078,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     24,
+     26,
+     42
+    ]
+   }
+  ],
+  "cardFill": [
+   24,
+   26,
+   42
+  ],
   "hero": null,
   "heroWhy": "герой не совпал с картинкой (точность 0.310 при 216 px в 873,295)"
  },
  "scene_home_evening_iris_dark.png": {
   "file": "scene_home_evening_iris_dark.png",
   "mtime": 1793220606340.003,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "iris",
   "ap": "dark",
@@ -1060,6 +2780,78 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1082,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1607,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     36,
+     22,
+     34
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     36,
+     22,
+     34
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     36,
+     22,
+     34
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     36,
+     22,
+     34
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1058,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     36,
+     22,
+     34
+    ]
+   }
+  ],
+  "cardFill": [
+   36,
+   22,
+   34
+  ],
   "hero": {
    "x": 874,
    "y": 297,
@@ -1074,7 +2866,7 @@
  "scene_home_evening_lavender_dark.png": {
   "file": "scene_home_evening_lavender_dark.png",
   "mtime": 1793220584752.746,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "lavender",
   "ap": "dark",
@@ -1084,13 +2876,85 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1082,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1607,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     34,
+     20,
+     48
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     34,
+     20,
+     48
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     34,
+     20,
+     48
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     34,
+     20,
+     48
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     34,
+     20,
+     48
+    ]
+   }
+  ],
+  "cardFill": [
+   34,
+   20,
+   48
+  ],
   "hero": null,
   "heroWhy": "герой не совпал с картинкой (точность 0.381 при 216 px в 873,295)"
  },
  "scene_home_evening_marine_dark.png": {
   "file": "scene_home_evening_marine_dark.png",
   "mtime": 1793220749296.506,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "marine",
   "ap": "dark",
@@ -1100,13 +2964,85 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1082,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1607,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     0,
+     32,
+     38
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     0,
+     32,
+     38
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     0,
+     32,
+     38
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     0,
+     32,
+     38
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1078,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     0,
+     32,
+     38
+    ]
+   }
+  ],
+  "cardFill": [
+   0,
+   32,
+   38
+  ],
   "hero": null,
   "heroWhy": "герой не совпал с картинкой (точность 0.364 при 216 px в 873,295)"
  },
  "scene_home_evening_polar_dark.png": {
   "file": "scene_home_evening_polar_dark.png",
   "mtime": 1793220519729.373,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "polar",
   "ap": "dark",
@@ -1116,13 +3052,85 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1082,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1607,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     12,
+     28,
+     42
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     12,
+     28,
+     42
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     12,
+     28,
+     42
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     12,
+     28,
+     42
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     12,
+     28,
+     42
+    ]
+   }
+  ],
+  "cardFill": [
+   12,
+   28,
+   42
+  ],
   "hero": null,
   "heroWhy": "герой не совпал с картинкой (точность 0.318 при 216 px в 873,295)"
  },
  "scene_home_evening_rose_dark.png": {
   "file": "scene_home_evening_rose_dark.png",
   "mtime": 1793220628088.44,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "rose",
   "ap": "dark",
@@ -1132,6 +3140,78 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1082,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1047,
+    "y0": 1058,
+    "y1": 1607,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     38,
+     22,
+     22
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     38,
+     22,
+     22
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     38,
+     22,
+     22
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     38,
+     22,
+     22
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1078,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     38,
+     22,
+     22
+    ]
+   }
+  ],
+  "cardFill": [
+   38,
+   22,
+   22
+  ],
   "hero": {
    "x": 873,
    "y": 297,
@@ -1146,7 +3226,7 @@
  "scene_home_evening_sage_dark.png": {
   "file": "scene_home_evening_sage_dark.png",
   "mtime": 1793220699615.6096,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "sage",
   "ap": "dark",
@@ -1156,13 +3236,85 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1082,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1607,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     0,
+     34,
+     18
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     0,
+     34,
+     18
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     0,
+     34,
+     18
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     0,
+     34,
+     18
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1078,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     0,
+     34,
+     18
+    ]
+   }
+  ],
+  "cardFill": [
+   0,
+   34,
+   18
+  ],
   "hero": null,
   "heroWhy": "герой не совпал с картинкой (точность 0.510 при 216 px в 873,295)"
  },
  "scene_home_evening_slate_dark.png": {
   "file": "scene_home_evening_slate_dark.png",
   "mtime": 1793220541431.6072,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "slate",
   "ap": "dark",
@@ -1172,13 +3324,85 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1082,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1607,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     12,
+     26,
+     52
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     12,
+     26,
+     52
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     12,
+     26,
+     52
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     12,
+     26,
+     52
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1057,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     12,
+     26,
+     52
+    ]
+   }
+  ],
+  "cardFill": [
+   12,
+   26,
+   52
+  ],
   "hero": null,
   "heroWhy": "герой не совпал с картинкой (точность 0.584 при 216 px в 873,295)"
  },
  "scene_home_evening_taupe_dark.png": {
   "file": "scene_home_evening_taupe_dark.png",
   "mtime": 1793220674482.3413,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "taupe",
   "ap": "dark",
@@ -1188,6 +3412,78 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1082,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1058,
+    "y0": 1058,
+    "y1": 1607,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     38,
+     24,
+     12
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     38,
+     24,
+     12
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     38,
+     24,
+     12
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     38,
+     24,
+     12
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1078,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     38,
+     24,
+     12
+    ]
+   }
+  ],
+  "cardFill": [
+   38,
+   24,
+   12
+  ],
   "hero": {
    "x": 873,
    "y": 295,
@@ -1202,7 +3498,7 @@
  "scene_home_evening_terracotta_dark.png": {
   "file": "scene_home_evening_terracotta_dark.png",
   "mtime": 1793220649727.736,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "terracotta",
   "ap": "dark",
@@ -1212,6 +3508,78 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1082,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1607,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     46,
+     18,
+     12
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     46,
+     18,
+     12
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     46,
+     18,
+     12
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     46,
+     18,
+     12
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     46,
+     18,
+     12
+    ]
+   }
+  ],
+  "cardFill": [
+   46,
+   18,
+   12
+  ],
   "hero": {
    "x": 873,
    "y": 295,
@@ -1226,7 +3594,7 @@
  "scene_home_grad_aurora_dark.png": {
   "file": "scene_home_grad_aurora_dark.png",
   "mtime": 1793218744515.8044,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "grad_aurora",
   "ap": "dark",
@@ -1235,6 +3603,78 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1082,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1750,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     32,
+     42,
+     40
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     32,
+     42,
+     40
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     32,
+     42,
+     40
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     32,
+     42,
+     40
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     32,
+     42,
+     40
+    ]
+   }
+  ],
+  "cardFill": [
+   32,
+   42,
+   40
+  ],
   "state": "day",
   "hero": {
    "x": 869,
@@ -1250,7 +3690,7 @@
  "scene_home_grad_aurora_light.png": {
   "file": "scene_home_grad_aurora_light.png",
   "mtime": 1793219758605.5938,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "grad_aurora",
   "ap": "light",
@@ -1259,6 +3699,104 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1081,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1750,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     254,
+     254,
+     254
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     254,
+     254
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     254,
+     254
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     254,
+     254
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     254,
+     254
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 337,
+    "y0": 2057,
+    "y1": 2139,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     238,
+     234,
+     252
+    ]
+   },
+   {
+    "x0": 413,
+    "x1": 1046,
+    "y0": 2057,
+    "y1": 2139,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     238,
+     234,
+     252
+    ]
+   }
+  ],
+  "cardFill": [
+   254,
+   254,
+   254
+  ],
   "state": "day",
   "hero": {
    "x": 868,
@@ -1274,7 +3812,7 @@
  "scene_home_grad_champagne_dark.png": {
   "file": "scene_home_grad_champagne_dark.png",
   "mtime": 1793218917238.9973,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "grad_champagne",
   "ap": "dark",
@@ -1283,6 +3821,78 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1082,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1750,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     42,
+     40,
+     36
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     42,
+     40,
+     36
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     42,
+     40,
+     36
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     42,
+     40,
+     36
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     42,
+     40,
+     36
+    ]
+   }
+  ],
+  "cardFill": [
+   42,
+   40,
+   36
+  ],
   "state": "day",
   "hero": {
    "x": 869,
@@ -1298,7 +3908,7 @@
  "scene_home_grad_champagne_light.png": {
   "file": "scene_home_grad_champagne_light.png",
   "mtime": 1793219858417.0728,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "grad_champagne",
   "ap": "light",
@@ -1307,6 +3917,104 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1081,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1750,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     254,
+     254,
+     254
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     254,
+     254
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     254,
+     254
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     254,
+     254
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     254,
+     254
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 348,
+    "y0": 2053,
+    "y1": 2139,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     248,
+     238,
+     240
+    ]
+   },
+   {
+    "x0": 413,
+    "x1": 1046,
+    "y0": 2053,
+    "y1": 2139,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     248,
+     238,
+     240
+    ]
+   }
+  ],
+  "cardFill": [
+   254,
+   254,
+   254
+  ],
   "state": "day",
   "hero": {
    "x": 868,
@@ -1322,7 +4030,7 @@
  "scene_home_grad_coral_dark.png": {
   "file": "scene_home_grad_coral_dark.png",
   "mtime": 1793221188333.2634,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "grad_coral",
   "ap": "dark",
@@ -1331,6 +4039,91 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1082,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1607,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     44,
+     36,
+     36
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     44,
+     36,
+     36
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     44,
+     36,
+     36
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     44,
+     36,
+     36
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1639,
+    "y1": 1877,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     44,
+     36,
+     36
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1910,
+    "y1": 2139,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     26,
+     24,
+     26
+    ]
+   }
+  ],
+  "cardFill": [
+   44,
+   36,
+   36
+  ],
   "state": "day",
   "hero": {
    "x": 869,
@@ -1346,7 +4139,7 @@
  "scene_home_grad_coral_light.png": {
   "file": "scene_home_grad_coral_light.png",
   "mtime": 1793219958749.5554,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "grad_coral",
   "ap": "light",
@@ -1355,6 +4148,104 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1081,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1750,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     254,
+     254,
+     254
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     254,
+     254
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     254,
+     254
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     254,
+     254
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     254,
+     254
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 354,
+    "y0": 2053,
+    "y1": 2139,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     250,
+     240,
+     232
+    ]
+   },
+   {
+    "x0": 413,
+    "x1": 1046,
+    "y0": 2053,
+    "y1": 2139,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     250,
+     240,
+     232
+    ]
+   }
+  ],
+  "cardFill": [
+   254,
+   254,
+   254
+  ],
   "state": "day",
   "hero": {
    "x": 868,
@@ -1370,7 +4261,7 @@
  "scene_home_grad_full_horizon_dark.png": {
   "file": "scene_home_grad_full_horizon_dark.png",
   "mtime": 1793219381443.5396,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "grad_full_horizon",
   "ap": "dark",
@@ -1379,6 +4270,91 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1082,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1750,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     32,
+     50,
+     68
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     32,
+     50,
+     68
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     32,
+     50,
+     68
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     32,
+     50,
+     68
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     32,
+     50,
+     68
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 2053,
+    "y1": 2139,
+    "r": 63,
+    "kind": "pod",
+    "fill": [
+     26,
+     46,
+     62
+    ]
+   }
+  ],
+  "cardFill": [
+   32,
+   50,
+   68
+  ],
   "state": "day",
   "hero": null,
   "heroWhy": "герой не совпал с картинкой (точность 0.388 при 278 px в 688,294)"
@@ -1386,7 +4362,7 @@
  "scene_home_grad_full_horizon_light.png": {
   "file": "scene_home_grad_full_horizon_light.png",
   "mtime": 1793220313028.4763,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "grad_full_horizon",
   "ap": "light",
@@ -1395,6 +4371,78 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1081,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1750,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     216,
+     230,
+     242
+    ]
+   },
+   {
+    "x0": 0,
+    "x1": 265,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     216,
+     230,
+     242
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     216,
+     230,
+     242
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     216,
+     230,
+     242
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1078,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     216,
+     230,
+     242
+    ]
+   }
+  ],
+  "cardFill": [
+   216,
+   230,
+   242
+  ],
   "state": "day",
   "hero": null,
   "heroWhy": "герой не совпал с картинкой (точность 0.387 при 281 px в 687,289)"
@@ -1402,7 +4450,7 @@
  "scene_home_grad_full_olive_dark.png": {
   "file": "scene_home_grad_full_olive_dark.png",
   "mtime": 1793219228404.6096,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "grad_full_olive",
   "ap": "dark",
@@ -1411,6 +4459,91 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1082,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1750,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     50,
+     60,
+     32
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     50,
+     60,
+     32
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     50,
+     60,
+     32
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     50,
+     60,
+     32
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     50,
+     60,
+     32
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 2053,
+    "y1": 2139,
+    "r": 63,
+    "kind": "pod",
+    "fill": [
+     40,
+     48,
+     26
+    ]
+   }
+  ],
+  "cardFill": [
+   50,
+   60,
+   32
+  ],
   "state": "day",
   "hero": {
    "x": 866,
@@ -1426,7 +4559,7 @@
  "scene_home_grad_full_olive_light.png": {
   "file": "scene_home_grad_full_olive_light.png",
   "mtime": 1793220013434.9592,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "grad_full_olive",
   "ap": "light",
@@ -1435,6 +4568,78 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1081,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1750,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     230,
+     236,
+     200
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     230,
+     236,
+     200
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     230,
+     236,
+     200
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     230,
+     236,
+     200
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     230,
+     236,
+     200
+    ]
+   }
+  ],
+  "cardFill": [
+   230,
+   236,
+   200
+  ],
   "state": "day",
   "hero": {
    "x": 865,
@@ -1450,7 +4655,7 @@
  "scene_home_grad_full_ref_gravity_blue_dark.png": {
   "file": "scene_home_grad_full_ref_gravity_blue_dark.png",
   "mtime": 1793219420294.924,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "grad_full_ref_gravity_blue",
   "ap": "dark",
@@ -1459,6 +4664,91 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1082,
+  "cards": [
+   {
+    "x0": 69,
+    "x1": 1008,
+    "y0": 1058,
+    "y1": 1750,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     12,
+     20,
+     24
+    ]
+   },
+   {
+    "x0": 55,
+    "x1": 242,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     12,
+     20,
+     24
+    ]
+   },
+   {
+    "x0": 316,
+    "x1": 503,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     12,
+     20,
+     24
+    ]
+   },
+   {
+    "x0": 576,
+    "x1": 763,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     12,
+     20,
+     24
+    ]
+   },
+   {
+    "x0": 837,
+    "x1": 1024,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     12,
+     20,
+     24
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 2053,
+    "y1": 2139,
+    "r": 63,
+    "kind": "pod",
+    "fill": [
+     12,
+     20,
+     24
+    ]
+   }
+  ],
+  "cardFill": [
+   12,
+   20,
+   24
+  ],
   "state": "day",
   "hero": null,
   "heroWhy": "герой не совпал с картинкой (точность 0.676 при 261 px в 865,274)"
@@ -1466,7 +4756,7 @@
  "scene_home_grad_full_ref_gravity_blue_light.png": {
   "file": "scene_home_grad_full_ref_gravity_blue_light.png",
   "mtime": 1793220331550.6848,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "grad_full_ref_gravity_blue",
   "ap": "light",
@@ -1475,6 +4765,117 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1081,
+  "cards": [
+   {
+    "x0": 0,
+    "x1": 1079,
+    "y0": 1058,
+    "y1": 1750,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     240,
+     250,
+     254
+    ]
+   },
+   {
+    "x0": 0,
+    "x1": 265,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     240,
+     250,
+     254
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     240,
+     250,
+     254
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     240,
+     250,
+     254
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1078,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     240,
+     250,
+     254
+    ]
+   },
+   {
+    "x0": 219,
+    "x1": 340,
+    "y0": 2053,
+    "y1": 2139,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     240,
+     250,
+     254
+    ]
+   },
+   {
+    "x0": 480,
+    "x1": 600,
+    "y0": 2053,
+    "y1": 2139,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     240,
+     250,
+     254
+    ]
+   },
+   {
+    "x0": 740,
+    "x1": 861,
+    "y0": 2053,
+    "y1": 2139,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     240,
+     250,
+     254
+    ]
+   }
+  ],
+  "cardFill": [
+   240,
+   250,
+   254
+  ],
   "state": "day",
   "hero": null,
   "heroWhy": "герой не совпал с картинкой (точность 0.645 при 264 px в 863,270)"
@@ -1482,7 +4883,7 @@
  "scene_home_grad_full_ref_signal_lime_dark.png": {
   "file": "scene_home_grad_full_ref_signal_lime_dark.png",
   "mtime": 1793219267477.9878,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "grad_full_ref_signal_lime",
   "ap": "dark",
@@ -1491,6 +4892,91 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1082,
+  "cards": [
+   {
+    "x0": 69,
+    "x1": 1008,
+    "y0": 1058,
+    "y1": 1750,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     16,
+     22,
+     14
+    ]
+   },
+   {
+    "x0": 55,
+    "x1": 242,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     16,
+     22,
+     14
+    ]
+   },
+   {
+    "x0": 316,
+    "x1": 503,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     16,
+     22,
+     14
+    ]
+   },
+   {
+    "x0": 576,
+    "x1": 763,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     16,
+     22,
+     14
+    ]
+   },
+   {
+    "x0": 837,
+    "x1": 1024,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     16,
+     22,
+     14
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 2053,
+    "y1": 2139,
+    "r": 63,
+    "kind": "pod",
+    "fill": [
+     16,
+     22,
+     14
+    ]
+   }
+  ],
+  "cardFill": [
+   16,
+   22,
+   14
+  ],
   "state": "day",
   "hero": {
    "x": 857,
@@ -1506,7 +4992,7 @@
  "scene_home_grad_full_ref_signal_lime_light.png": {
   "file": "scene_home_grad_full_ref_signal_lime_light.png",
   "mtime": 1793220042291.6533,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "grad_full_ref_signal_lime",
   "ap": "light",
@@ -1515,6 +5001,78 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1081,
+  "cards": [
+   {
+    "x0": 28,
+    "x1": 1049,
+    "y0": 1058,
+    "y1": 1750,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     248,
+     254,
+     232
+    ]
+   },
+   {
+    "x0": 0,
+    "x1": 265,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     248,
+     254,
+     232
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     248,
+     254,
+     232
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     248,
+     254,
+     232
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1079,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     248,
+     254,
+     232
+    ]
+   }
+  ],
+  "cardFill": [
+   248,
+   254,
+   232
+  ],
   "state": "day",
   "hero": {
    "x": 860,
@@ -1530,7 +5088,7 @@
  "scene_home_grad_full_ref_storm_violet_dark.png": {
   "file": "scene_home_grad_full_ref_storm_violet_dark.png",
   "mtime": 1793219303584.1694,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "grad_full_ref_storm_violet",
   "ap": "dark",
@@ -1539,6 +5097,91 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1082,
+  "cards": [
+   {
+    "x0": 69,
+    "x1": 1008,
+    "y0": 1058,
+    "y1": 1750,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     16,
+     16,
+     24
+    ]
+   },
+   {
+    "x0": 55,
+    "x1": 242,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     16,
+     16,
+     24
+    ]
+   },
+   {
+    "x0": 316,
+    "x1": 503,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     16,
+     16,
+     24
+    ]
+   },
+   {
+    "x0": 576,
+    "x1": 763,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     16,
+     16,
+     24
+    ]
+   },
+   {
+    "x0": 837,
+    "x1": 1024,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     16,
+     16,
+     24
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 2053,
+    "y1": 2139,
+    "r": 63,
+    "kind": "pod",
+    "fill": [
+     16,
+     16,
+     24
+    ]
+   }
+  ],
+  "cardFill": [
+   16,
+   16,
+   24
+  ],
   "state": "day",
   "hero": {
    "x": 861,
@@ -1554,7 +5197,7 @@
  "scene_home_grad_full_ref_storm_violet_light.png": {
   "file": "scene_home_grad_full_ref_storm_violet_light.png",
   "mtime": 1793220071913.568,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "grad_full_ref_storm_violet",
   "ap": "light",
@@ -1563,6 +5206,117 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1081,
+  "cards": [
+   {
+    "x0": 0,
+    "x1": 1079,
+    "y0": 1058,
+    "y1": 1750,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     250,
+     242,
+     254
+    ]
+   },
+   {
+    "x0": 0,
+    "x1": 265,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     250,
+     242,
+     254
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     250,
+     242,
+     254
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     250,
+     242,
+     254
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1079,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     250,
+     242,
+     254
+    ]
+   },
+   {
+    "x0": 201,
+    "x1": 348,
+    "y0": 2053,
+    "y1": 2139,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     250,
+     242,
+     254
+    ]
+   },
+   {
+    "x0": 462,
+    "x1": 618,
+    "y0": 2053,
+    "y1": 2139,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     250,
+     242,
+     254
+    ]
+   },
+   {
+    "x0": 722,
+    "x1": 879,
+    "y0": 2053,
+    "y1": 2139,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     250,
+     242,
+     254
+    ]
+   }
+  ],
+  "cardFill": [
+   250,
+   242,
+   254
+  ],
   "state": "day",
   "hero": {
    "x": 862,
@@ -1578,7 +5332,7 @@
  "scene_home_grad_full_titanium_dark.png": {
   "file": "scene_home_grad_full_titanium_dark.png",
   "mtime": 1793219341616.3604,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "grad_full_titanium",
   "ap": "dark",
@@ -1587,6 +5341,117 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1082,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1750,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     40,
+     46,
+     52
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     40,
+     46,
+     52
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     40,
+     46,
+     52
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     40,
+     46,
+     52
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     40,
+     46,
+     52
+    ]
+   },
+   {
+    "x0": 229,
+    "x1": 330,
+    "y0": 2053,
+    "y1": 2139,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     40,
+     46,
+     52
+    ]
+   },
+   {
+    "x0": 490,
+    "x1": 590,
+    "y0": 2053,
+    "y1": 2139,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     40,
+     46,
+     52
+    ]
+   },
+   {
+    "x0": 750,
+    "x1": 851,
+    "y0": 2053,
+    "y1": 2139,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     40,
+     46,
+     52
+    ]
+   }
+  ],
+  "cardFill": [
+   40,
+   46,
+   52
+  ],
   "state": "day",
   "hero": {
    "x": 675,
@@ -1602,7 +5467,7 @@
  "scene_home_grad_full_titanium_light.png": {
   "file": "scene_home_grad_full_titanium_light.png",
   "mtime": 1793225154905.9375,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "grad_full_titanium",
   "ap": "light",
@@ -1611,6 +5476,78 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1081,
+  "cards": [
+   {
+    "x0": 26,
+    "x1": 1052,
+    "y0": 1058,
+    "y1": 1750,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     220,
+     224,
+     228
+    ]
+   },
+   {
+    "x0": 0,
+    "x1": 265,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     220,
+     224,
+     228
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     220,
+     224,
+     228
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     220,
+     224,
+     228
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1078,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     220,
+     224,
+     228
+    ]
+   }
+  ],
+  "cardFill": [
+   220,
+   224,
+   228
+  ],
   "state": "day",
   "hero": {
    "x": 673,
@@ -1626,7 +5563,7 @@
  "scene_home_grad_ice_dark.png": {
   "file": "scene_home_grad_ice_dark.png",
   "mtime": 1793219055926.7437,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "grad_ice",
   "ap": "dark",
@@ -1635,6 +5572,78 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1082,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1750,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     38,
+     42,
+     46
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     38,
+     42,
+     46
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     38,
+     42,
+     46
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     38,
+     42,
+     46
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     38,
+     42,
+     46
+    ]
+   }
+  ],
+  "cardFill": [
+   38,
+   42,
+   46
+  ],
   "state": "day",
   "hero": {
    "x": 868,
@@ -1650,7 +5659,7 @@
  "scene_home_grad_ice_light.png": {
   "file": "scene_home_grad_ice_light.png",
   "mtime": 1793219933473.4326,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "grad_ice",
   "ap": "light",
@@ -1659,6 +5668,104 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1081,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1750,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     254,
+     254,
+     254
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     254,
+     254
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     254,
+     254
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     254,
+     254
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     254,
+     254
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 366,
+    "y0": 2053,
+    "y1": 2139,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     236,
+     240,
+     250
+    ]
+   },
+   {
+    "x0": 413,
+    "x1": 1046,
+    "y0": 2053,
+    "y1": 2139,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     236,
+     240,
+     250
+    ]
+   }
+  ],
+  "cardFill": [
+   254,
+   254,
+   254
+  ],
   "state": "day",
   "hero": {
    "x": 868,
@@ -1674,7 +5781,7 @@
  "scene_home_grad_iris_dark.png": {
   "file": "scene_home_grad_iris_dark.png",
   "mtime": 1793218785391.724,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "grad_iris",
   "ap": "dark",
@@ -1683,6 +5790,78 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1082,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1750,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     38,
+     38,
+     46
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     38,
+     38,
+     46
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     38,
+     38,
+     46
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     38,
+     38,
+     46
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     38,
+     38,
+     46
+    ]
+   }
+  ],
+  "cardFill": [
+   38,
+   38,
+   46
+  ],
   "state": "day",
   "hero": {
    "x": 868,
@@ -1698,7 +5877,7 @@
  "scene_home_grad_iris_light.png": {
   "file": "scene_home_grad_iris_light.png",
   "mtime": 1793219783637.106,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "grad_iris",
   "ap": "light",
@@ -1707,6 +5886,104 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1081,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1750,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     254,
+     254,
+     254
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     254,
+     254
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     254,
+     254
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     254,
+     254
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     254,
+     254
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 338,
+    "y0": 2053,
+    "y1": 2139,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     250,
+     238,
+     246
+    ]
+   },
+   {
+    "x0": 413,
+    "x1": 1046,
+    "y0": 2053,
+    "y1": 2139,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     250,
+     238,
+     246
+    ]
+   }
+  ],
+  "cardFill": [
+   254,
+   254,
+   254
+  ],
   "state": "day",
   "hero": {
    "x": 868,
@@ -1722,7 +5999,7 @@
  "scene_home_grad_jade_dark.png": {
   "file": "scene_home_grad_jade_dark.png",
   "mtime": 1793218961735.1704,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "grad_jade",
   "ap": "dark",
@@ -1731,6 +6008,78 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1082,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1750,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     32,
+     42,
+     42
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     32,
+     42,
+     42
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     32,
+     42,
+     42
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     32,
+     42,
+     42
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     32,
+     42,
+     42
+    ]
+   }
+  ],
+  "cardFill": [
+   32,
+   42,
+   42
+  ],
   "state": "day",
   "hero": {
    "x": 870,
@@ -1746,7 +6095,7 @@
  "scene_home_grad_jade_light.png": {
   "file": "scene_home_grad_jade_light.png",
   "mtime": 1793219883066.2852,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "grad_jade",
   "ap": "light",
@@ -1755,6 +6104,104 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1081,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1750,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     254,
+     254,
+     254
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     254,
+     254
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     254,
+     254
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     254,
+     254
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     254,
+     254
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 338,
+    "y0": 2053,
+    "y1": 2139,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     228,
+     238,
+     246
+    ]
+   },
+   {
+    "x0": 413,
+    "x1": 1046,
+    "y0": 2053,
+    "y1": 2139,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     228,
+     238,
+     246
+    ]
+   }
+  ],
+  "cardFill": [
+   254,
+   254,
+   254
+  ],
   "state": "day",
   "hero": {
    "x": 868,
@@ -1770,7 +6217,7 @@
  "scene_home_grad_lilac_dark.png": {
   "file": "scene_home_grad_lilac_dark.png",
   "mtime": 1793219189210.3445,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "grad_lilac",
   "ap": "dark",
@@ -1779,6 +6226,78 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1082,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1750,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     40,
+     38,
+     46
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     40,
+     38,
+     46
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     40,
+     38,
+     46
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     40,
+     38,
+     46
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     40,
+     38,
+     46
+    ]
+   }
+  ],
+  "cardFill": [
+   40,
+   38,
+   46
+  ],
   "state": "day",
   "hero": {
    "x": 868,
@@ -1794,7 +6313,7 @@
  "scene_home_grad_lilac_light.png": {
   "file": "scene_home_grad_lilac_light.png",
   "mtime": 1793219987227.8174,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "grad_lilac",
   "ap": "light",
@@ -1803,6 +6322,104 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1081,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1750,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     254,
+     254,
+     254
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     254,
+     254
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     254,
+     254
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     254,
+     254
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     254,
+     254
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 345,
+    "y0": 2053,
+    "y1": 2139,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     234,
+     242,
+     250
+    ]
+   },
+   {
+    "x0": 413,
+    "x1": 1046,
+    "y0": 2053,
+    "y1": 2139,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     234,
+     242,
+     250
+    ]
+   }
+  ],
+  "cardFill": [
+   254,
+   254,
+   254
+  ],
   "state": "day",
   "hero": {
    "x": 868,
@@ -1818,7 +6435,7 @@
  "scene_home_grad_magma_dark.png": {
   "file": "scene_home_grad_magma_dark.png",
   "mtime": 1793218829674.8328,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "grad_magma",
   "ap": "dark",
@@ -1827,6 +6444,78 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1082,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1750,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     44,
+     36,
+     32
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     44,
+     36,
+     32
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     44,
+     36,
+     32
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     44,
+     36,
+     32
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     44,
+     36,
+     32
+    ]
+   }
+  ],
+  "cardFill": [
+   44,
+   36,
+   32
+  ],
   "state": "day",
   "hero": {
    "x": 869,
@@ -1842,7 +6531,7 @@
  "scene_home_grad_magma_light.png": {
   "file": "scene_home_grad_magma_light.png",
   "mtime": 1793219808636.7874,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "grad_magma",
   "ap": "light",
@@ -1851,6 +6540,104 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1081,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1750,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     254,
+     254,
+     254
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     254,
+     254
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     254,
+     254
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     254,
+     254
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     254,
+     254
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 351,
+    "y0": 2053,
+    "y1": 2139,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     250,
+     242,
+     232
+    ]
+   },
+   {
+    "x0": 413,
+    "x1": 1046,
+    "y0": 2053,
+    "y1": 2139,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     250,
+     242,
+     232
+    ]
+   }
+  ],
+  "cardFill": [
+   254,
+   254,
+   254
+  ],
   "state": "day",
   "hero": {
    "x": 868,
@@ -1866,7 +6653,7 @@
  "scene_home_grad_midnight_dark.png": {
   "file": "scene_home_grad_midnight_dark.png",
   "mtime": 1793218873429.1953,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "grad_midnight",
   "ap": "dark",
@@ -1875,6 +6662,78 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1082,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1750,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     32,
+     38,
+     46
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     32,
+     38,
+     46
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     32,
+     38,
+     46
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     32,
+     38,
+     46
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     32,
+     38,
+     46
+    ]
+   }
+  ],
+  "cardFill": [
+   32,
+   38,
+   46
+  ],
   "state": "day",
   "hero": {
    "x": 869,
@@ -1890,7 +6749,7 @@
  "scene_home_grad_midnight_light.png": {
   "file": "scene_home_grad_midnight_light.png",
   "mtime": 1793219833487.5334,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "grad_midnight",
   "ap": "light",
@@ -1899,6 +6758,104 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1081,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1750,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     254,
+     254,
+     254
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     254,
+     254
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     254,
+     254
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     254,
+     254
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     254,
+     254
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 337,
+    "y0": 2057,
+    "y1": 2139,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     226,
+     246,
+     252
+    ]
+   },
+   {
+    "x0": 413,
+    "x1": 1046,
+    "y0": 2057,
+    "y1": 2139,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     226,
+     246,
+     252
+    ]
+   }
+  ],
+  "cardFill": [
+   254,
+   254,
+   254
+  ],
   "state": "day",
   "hero": {
    "x": 868,
@@ -1914,7 +6871,7 @@
  "scene_home_grad_orchid_dark.png": {
   "file": "scene_home_grad_orchid_dark.png",
   "mtime": 1793219009286.1953,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "grad_orchid",
   "ap": "dark",
@@ -1923,6 +6880,78 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1082,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1750,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     42,
+     36,
+     46
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     42,
+     36,
+     46
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     42,
+     36,
+     46
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     42,
+     36,
+     46
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     42,
+     36,
+     46
+    ]
+   }
+  ],
+  "cardFill": [
+   42,
+   36,
+   46
+  ],
   "state": "day",
   "hero": {
    "x": 868,
@@ -1938,7 +6967,7 @@
  "scene_home_grad_orchid_light.png": {
   "file": "scene_home_grad_orchid_light.png",
   "mtime": 1793219908297.0083,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "grad_orchid",
   "ap": "light",
@@ -1947,6 +6976,104 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1081,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1750,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     254,
+     254,
+     254
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     254,
+     254
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     254,
+     254
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     254,
+     254
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     254,
+     254
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 342,
+    "y0": 2053,
+    "y1": 2139,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     250,
+     232,
+     240
+    ]
+   },
+   {
+    "x0": 413,
+    "x1": 1046,
+    "y0": 2053,
+    "y1": 2139,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     250,
+     232,
+     240
+    ]
+   }
+  ],
+  "cardFill": [
+   254,
+   254,
+   254
+  ],
   "state": "day",
   "hero": {
    "x": 868,
@@ -1962,7 +7089,7 @@
  "scene_home_graphite_dark.png": {
   "file": "scene_home_graphite_dark.png",
   "mtime": 1793218257941.458,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "graphite",
   "ap": "dark",
@@ -1971,6 +7098,78 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1082,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1078,
+    "y0": 1058,
+    "y1": 1750,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     22,
+     28,
+     34
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     22,
+     28,
+     34
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     22,
+     28,
+     34
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     22,
+     28,
+     34
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     22,
+     28,
+     34
+    ]
+   }
+  ],
+  "cardFill": [
+   22,
+   28,
+   34
+  ],
   "state": "day",
   "hero": {
    "x": 869,
@@ -1986,7 +7185,7 @@
  "scene_home_graphite_light.png": {
   "file": "scene_home_graphite_light.png",
   "mtime": 1793219462434.274,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "graphite",
   "ap": "light",
@@ -1995,6 +7194,78 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1081,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1750,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     250,
+     252,
+     254
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     250,
+     252,
+     254
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     250,
+     252,
+     254
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     250,
+     252,
+     254
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     250,
+     252,
+     254
+    ]
+   }
+  ],
+  "cardFill": [
+   250,
+   252,
+   254
+  ],
   "state": "day",
   "hero": {
    "x": 868,
@@ -2010,7 +7281,7 @@
  "scene_home_ink_dark.png": {
   "file": "scene_home_ink_dark.png",
   "mtime": 1793218372299.9473,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "ink",
   "ap": "dark",
@@ -2019,6 +7290,78 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1082,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1750,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     24,
+     26,
+     42
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     24,
+     26,
+     42
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     24,
+     26,
+     42
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     24,
+     26,
+     42
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     24,
+     26,
+     42
+    ]
+   }
+  ],
+  "cardFill": [
+   24,
+   26,
+   42
+  ],
   "state": "day",
   "hero": {
    "x": 868,
@@ -2034,7 +7377,7 @@
  "scene_home_ink_light.png": {
   "file": "scene_home_ink_light.png",
   "mtime": 1793219533067.1768,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "ink",
   "ap": "light",
@@ -2043,6 +7386,78 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1081,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1750,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     252,
+     252,
+     254
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     252,
+     252,
+     254
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     252,
+     252,
+     254
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     252,
+     252,
+     254
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     252,
+     252,
+     254
+    ]
+   }
+  ],
+  "cardFill": [
+   252,
+   252,
+   254
+  ],
   "state": "day",
   "hero": {
    "x": 868,
@@ -2058,7 +7473,7 @@
  "scene_home_iris_dark.png": {
   "file": "scene_home_iris_dark.png",
   "mtime": 1793218451718.1733,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "iris",
   "ap": "dark",
@@ -2067,6 +7482,78 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1082,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1750,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     36,
+     22,
+     34
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     36,
+     22,
+     34
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     36,
+     22,
+     34
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     36,
+     22,
+     34
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     36,
+     22,
+     34
+    ]
+   }
+  ],
+  "cardFill": [
+   36,
+   22,
+   34
+  ],
   "state": "day",
   "hero": {
    "x": 868,
@@ -2082,7 +7569,7 @@
  "scene_home_iris_light.png": {
   "file": "scene_home_iris_light.png",
   "mtime": 1793219583485.654,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "iris",
   "ap": "light",
@@ -2091,6 +7578,78 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1081,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1750,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     254,
+     250,
+     254
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     250,
+     254
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     250,
+     254
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     250,
+     254
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     250,
+     254
+    ]
+   }
+  ],
+  "cardFill": [
+   254,
+   250,
+   254
+  ],
   "state": "day",
   "hero": {
    "x": 868,
@@ -2106,7 +7665,7 @@
  "scene_home_lavender_dark.png": {
   "file": "scene_home_lavender_dark.png",
   "mtime": 1793218410296.5415,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "lavender",
   "ap": "dark",
@@ -2115,6 +7674,78 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1082,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1750,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     34,
+     20,
+     48
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     34,
+     20,
+     48
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     34,
+     20,
+     48
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     34,
+     20,
+     48
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     34,
+     20,
+     48
+    ]
+   }
+  ],
+  "cardFill": [
+   34,
+   20,
+   48
+  ],
   "state": "day",
   "hero": {
    "x": 869,
@@ -2130,7 +7761,7 @@
  "scene_home_lavender_light.png": {
   "file": "scene_home_lavender_light.png",
   "mtime": 1793219558399.368,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "lavender",
   "ap": "light",
@@ -2139,6 +7770,78 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1081,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1750,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     254,
+     250,
+     254
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     250,
+     254
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     250,
+     254
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     250,
+     254
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     250,
+     254
+    ]
+   }
+  ],
+  "cardFill": [
+   254,
+   250,
+   254
+  ],
   "state": "day",
   "hero": {
    "x": 868,
@@ -2154,7 +7857,7 @@
  "scene_home_marine_dark.png": {
   "file": "scene_home_marine_dark.png",
   "mtime": 1793218703824.2834,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "marine",
   "ap": "dark",
@@ -2163,6 +7866,78 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1082,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1750,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     0,
+     32,
+     38
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     0,
+     32,
+     38
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     0,
+     32,
+     38
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     0,
+     32,
+     38
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1078,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     0,
+     32,
+     38
+    ]
+   }
+  ],
+  "cardFill": [
+   0,
+   32,
+   38
+  ],
   "state": "day",
   "hero": {
    "x": 869,
@@ -2178,7 +7953,7 @@
  "scene_home_marine_light.png": {
   "file": "scene_home_marine_light.png",
   "mtime": 1793219733888.2249,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "marine",
   "ap": "light",
@@ -2187,6 +7962,104 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1081,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1750,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     246,
+     254,
+     254
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     246,
+     254,
+     254
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     246,
+     254,
+     254
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     246,
+     254,
+     254
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     246,
+     254,
+     254
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 358,
+    "y0": 2053,
+    "y1": 2139,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     230,
+     246,
+     252
+    ]
+   },
+   {
+    "x0": 413,
+    "x1": 1046,
+    "y0": 2053,
+    "y1": 2139,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     230,
+     246,
+     252
+    ]
+   }
+  ],
+  "cardFill": [
+   246,
+   254,
+   254
+  ],
   "state": "day",
   "hero": {
    "x": 868,
@@ -2202,7 +8075,7 @@
  "scene_home_polar_dark.png": {
   "file": "scene_home_polar_dark.png",
   "mtime": 1793218295724.6792,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "polar",
   "ap": "dark",
@@ -2211,6 +8084,78 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1082,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1750,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     12,
+     28,
+     42
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     12,
+     28,
+     42
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     12,
+     28,
+     42
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     12,
+     28,
+     42
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     12,
+     28,
+     42
+    ]
+   }
+  ],
+  "cardFill": [
+   12,
+   28,
+   42
+  ],
   "state": "day",
   "hero": {
    "x": 869,
@@ -2226,7 +8171,7 @@
  "scene_home_polar_light.png": {
   "file": "scene_home_polar_light.png",
   "mtime": 1793219485030.2053,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "polar",
   "ap": "light",
@@ -2235,6 +8180,104 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1081,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1750,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     248,
+     252,
+     254
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     248,
+     252,
+     254
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     248,
+     252,
+     254
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     248,
+     252,
+     254
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     248,
+     252,
+     254
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 354,
+    "y0": 2053,
+    "y1": 2139,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     234,
+     246,
+     254
+    ]
+   },
+   {
+    "x0": 413,
+    "x1": 1046,
+    "y0": 2053,
+    "y1": 2139,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     234,
+     246,
+     254
+    ]
+   }
+  ],
+  "cardFill": [
+   248,
+   252,
+   254
+  ],
   "state": "day",
   "hero": {
    "x": 868,
@@ -2250,7 +8293,7 @@
  "scene_home_rose_dark.png": {
   "file": "scene_home_rose_dark.png",
   "mtime": 1793218495936.535,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "rose",
   "ap": "dark",
@@ -2259,6 +8302,78 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1082,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1053,
+    "y0": 1058,
+    "y1": 1750,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     38,
+     22,
+     22
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     38,
+     22,
+     22
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     38,
+     22,
+     22
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     38,
+     22,
+     22
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     38,
+     22,
+     22
+    ]
+   }
+  ],
+  "cardFill": [
+   38,
+   22,
+   22
+  ],
   "state": "day",
   "hero": {
    "x": 869,
@@ -2274,7 +8389,7 @@
  "scene_home_rose_light.png": {
   "file": "scene_home_rose_light.png",
   "mtime": 1793219608501.3389,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "rose",
   "ap": "light",
@@ -2283,6 +8398,78 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1081,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1750,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     254,
+     250,
+     250
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     250,
+     250
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     250,
+     250
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     250,
+     250
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     250,
+     250
+    ]
+   }
+  ],
+  "cardFill": [
+   254,
+   250,
+   250
+  ],
   "state": "day",
   "hero": {
    "x": 868,
@@ -2298,7 +8485,7 @@
  "scene_home_sage_dark.png": {
   "file": "scene_home_sage_dark.png",
   "mtime": 1793218617848.335,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "sage",
   "ap": "dark",
@@ -2307,6 +8494,78 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1082,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1059,
+    "y0": 1058,
+    "y1": 1750,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     0,
+     34,
+     18
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     0,
+     34,
+     18
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     0,
+     34,
+     18
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     0,
+     34,
+     18
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1078,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     0,
+     34,
+     18
+    ]
+   }
+  ],
+  "cardFill": [
+   0,
+   34,
+   18
+  ],
   "state": "day",
   "hero": {
    "x": 869,
@@ -2322,7 +8581,7 @@
  "scene_home_sage_light.png": {
   "file": "scene_home_sage_light.png",
   "mtime": 1793219684114.567,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "sage",
   "ap": "light",
@@ -2331,6 +8590,104 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1081,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1750,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     246,
+     254,
+     250
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     246,
+     254,
+     250
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     246,
+     254,
+     250
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     246,
+     254,
+     250
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     246,
+     254,
+     250
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 339,
+    "y0": 2053,
+    "y1": 2139,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     232,
+     250,
+     238
+    ]
+   },
+   {
+    "x0": 413,
+    "x1": 1046,
+    "y0": 2053,
+    "y1": 2139,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     232,
+     250,
+     238
+    ]
+   }
+  ],
+  "cardFill": [
+   246,
+   254,
+   250
+  ],
   "state": "day",
   "hero": {
    "x": 868,
@@ -2346,7 +8703,7 @@
  "scene_home_slate_dark.png": {
   "file": "scene_home_slate_dark.png",
   "mtime": 1793218334260.8022,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "slate",
   "ap": "dark",
@@ -2355,6 +8712,78 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1082,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1750,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     12,
+     26,
+     52
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     12,
+     26,
+     52
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     12,
+     26,
+     52
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     12,
+     26,
+     52
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     12,
+     26,
+     52
+    ]
+   }
+  ],
+  "cardFill": [
+   12,
+   26,
+   52
+  ],
   "state": "day",
   "hero": {
    "x": 869,
@@ -2370,7 +8799,7 @@
  "scene_home_slate_light.png": {
   "file": "scene_home_slate_light.png",
   "mtime": 1793219507310.198,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "slate",
   "ap": "light",
@@ -2379,6 +8808,78 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1081,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1750,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     248,
+     252,
+     254
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     248,
+     252,
+     254
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     248,
+     252,
+     254
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     248,
+     252,
+     254
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     248,
+     252,
+     254
+    ]
+   }
+  ],
+  "cardFill": [
+   248,
+   252,
+   254
+  ],
   "state": "day",
   "hero": {
    "x": 868,
@@ -2394,7 +8895,7 @@
  "scene_home_taupe_dark.png": {
   "file": "scene_home_taupe_dark.png",
   "mtime": 1793218577577.5725,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "taupe",
   "ap": "dark",
@@ -2403,6 +8904,78 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1082,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1078,
+    "y0": 1058,
+    "y1": 1750,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     38,
+     24,
+     12
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     38,
+     24,
+     12
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     38,
+     24,
+     12
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     38,
+     24,
+     12
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     38,
+     24,
+     12
+    ]
+   }
+  ],
+  "cardFill": [
+   38,
+   24,
+   12
+  ],
   "state": "day",
   "hero": {
    "x": 869,
@@ -2418,7 +8991,7 @@
  "scene_home_taupe_light.png": {
   "file": "scene_home_taupe_light.png",
   "mtime": 1793219659077.532,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "taupe",
   "ap": "light",
@@ -2427,6 +9000,104 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1081,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1750,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     254,
+     252,
+     248
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     252,
+     248
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     252,
+     248
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     252,
+     248
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     252,
+     248
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 347,
+    "y0": 2053,
+    "y1": 2139,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     252,
+     242,
+     234
+    ]
+   },
+   {
+    "x0": 413,
+    "x1": 1046,
+    "y0": 2053,
+    "y1": 2139,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     252,
+     242,
+     234
+    ]
+   }
+  ],
+  "cardFill": [
+   254,
+   252,
+   248
+  ],
   "state": "day",
   "hero": {
    "x": 868,
@@ -2442,7 +9113,7 @@
  "scene_home_terracotta_dark.png": {
   "file": "scene_home_terracotta_dark.png",
   "mtime": 1793218536635.768,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "terracotta",
   "ap": "dark",
@@ -2451,6 +9122,78 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1082,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1750,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     46,
+     18,
+     12
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     46,
+     18,
+     12
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     46,
+     18,
+     12
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     46,
+     18,
+     12
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     46,
+     18,
+     12
+    ]
+   }
+  ],
+  "cardFill": [
+   46,
+   18,
+   12
+  ],
   "state": "day",
   "hero": {
    "x": 869,
@@ -2466,7 +9209,7 @@
  "scene_home_terracotta_light.png": {
   "file": "scene_home_terracotta_light.png",
   "mtime": 1793219633779.0515,
-  "v": 3,
+  "v": 5,
   "screen": "home",
   "theme": "terracotta",
   "ap": "light",
@@ -2475,6 +9218,104 @@
   "status": 100,
   "tab": 2140,
   "sceneH": 1081,
+  "cards": [
+   {
+    "x0": 32,
+    "x1": 1046,
+    "y0": 1058,
+    "y1": 1750,
+    "r": 74,
+    "kind": "panel",
+    "fill": [
+     254,
+     250,
+     248
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 265,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     250,
+     248
+    ]
+   },
+   {
+    "x0": 293,
+    "x1": 526,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     250,
+     248
+    ]
+   },
+   {
+    "x0": 553,
+    "x1": 786,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     250,
+     248
+    ]
+   },
+   {
+    "x0": 814,
+    "x1": 1047,
+    "y0": 1783,
+    "y1": 2021,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     250,
+     248
+    ]
+   },
+   {
+    "x0": 32,
+    "x1": 358,
+    "y0": 2053,
+    "y1": 2139,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     238,
+     234
+    ]
+   },
+   {
+    "x0": 413,
+    "x1": 1046,
+    "y0": 2053,
+    "y1": 2139,
+    "r": 53,
+    "kind": "tile",
+    "fill": [
+     254,
+     238,
+     234
+    ]
+   }
+  ],
+  "cardFill": [
+   254,
+   250,
+   248
+  ],
   "state": "day",
   "hero": {
    "x": 868,
@@ -2490,7 +9331,7 @@
  "scene_peak_graphite_dark.png": {
   "file": "scene_peak_graphite_dark.png",
   "mtime": 1793218160135.9185,
-  "v": 3,
+  "v": 5,
   "screen": "peak",
   "theme": "graphite",
   "ap": "dark",
@@ -2503,7 +9344,7 @@
  "scene_peak_ink_dark.png": {
   "file": "scene_peak_ink_dark.png",
   "mtime": 1793220406454.08,
-  "v": 3,
+  "v": 5,
   "screen": "peak",
   "theme": "ink",
   "ap": "dark",
@@ -2516,7 +9357,7 @@
  "scene_peak_marine_dark.png": {
   "file": "scene_peak_marine_dark.png",
   "mtime": 1793220472992.124,
-  "v": 3,
+  "v": 5,
   "screen": "peak",
   "theme": "marine",
   "ap": "dark",
@@ -2529,7 +9370,7 @@
  "scene_season_graphite_dark.png": {
   "file": "scene_season_graphite_dark.png",
   "mtime": 1793218123682.0295,
-  "v": 3,
+  "v": 5,
   "screen": "season",
   "theme": "graphite",
   "ap": "dark",
@@ -2542,7 +9383,7 @@
  "scene_season_ink_dark.png": {
   "file": "scene_season_ink_dark.png",
   "mtime": 1793220370747.0278,
-  "v": 3,
+  "v": 5,
   "screen": "season",
   "theme": "ink",
   "ap": "dark",
@@ -2555,7 +9396,7 @@
  "scene_season_marine_dark.png": {
   "file": "scene_season_marine_dark.png",
   "mtime": 1793220437162.477,
-  "v": 3,
+  "v": 5,
   "screen": "season",
   "theme": "marine",
   "ap": "dark",

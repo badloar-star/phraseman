@@ -23,7 +23,7 @@ const engineCss = RANGES.map(([a, b, head]) => {
 const themesLine = L.find((l) => l.startsWith('<script>window.__THEMES = '));
 const icodeLine = L.find((l) => l.startsWith('<script>window.__ICODE = '));
 if (!themesLine || !icodeLine) throw new Error('[SP-MAKE] в эталоне нет строк __THEMES / __ICODE');
-for (const f of ['scene-palettes.css', 'scene-palettes.app.js', 'spire-tower-render.js', 'kit.css', 'kit.js', 'real-frame.css', 'real-frame.js', 'scene-recolor.js', 'scene-real.js', 'scene-styles.js', 'dark-themes.app.js']) {
+for (const f of ['scene-palettes.css', 'scene-palettes.app.js', 'spire-tower-render.js', 'kit.css', 'kit.js', 'real-frame.css', 'real-frame.js', 'scene-recolor.js', 'scene-real.js', 'scene-styles.js', 'scene-cards.js', 'dark-themes.app.js']) {
   if (!fs.existsSync(path.join(__dirname, f))) throw new Error(`[SP-MAKE] рядом нет ${f}`);
 }
 // реальные кадры Сверки — опись assets/real/scene-frames.json (node scene-frames.cjs: годность, граница сцены, место героя); нет описи — пусто
@@ -69,6 +69,7 @@ ${engineCss}
 <script src="scene-recolor.js"></script>
 <script src="scene-real.js"></script>
 <script src="scene-styles.js"></script>
+<script src="scene-cards.js"></script>
 ${themesLine}
 ${icodeLine}
 ${realLine}

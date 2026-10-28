@@ -65,7 +65,7 @@
 
 **4 · Ідеться про минуле. Виберіть, як сказати «не»**
 <!-- interaction_id: en:lesson-13:session-11:i03; family: context_gap_grammar -->
-I ___ turn up the radio. → **didn't** · don't · doesn't
+I ___ turn up the radio yesterday. → **didn't** · don't · doesn't
 - don't — *Для минулого потрібна форма didn't.*
 - doesn't — *Це не форма минулого. Потрібна didn't.*
 
@@ -85,7 +85,7 @@ I ___ turn up the radio. → **didn't** · don't · doesn't
 
 **8 · Ідеться про минуле. Виберіть, як сказати «не»**
 <!-- interaction_id: en:lesson-13:session-11:i06; family: context_gap_grammar -->
-I ___ turn down the music. → **didn't** · don't · doesn't
+I ___ turn down the music yesterday. → **didn't** · don't · doesn't
 - don't — *Для минулого потрібна форма didn't.*
 - doesn't — *Це не форма минулого. Потрібна didn't.*
 
@@ -105,7 +105,7 @@ I ___ turn down the music. → **didn't** · don't · doesn't
 
 **12 · Ідеться про минуле. Виберіть, як сказати «не»**
 <!-- interaction_id: en:lesson-13:session-11:i09; family: context_gap_grammar -->
-I ___ hang up my coat. → **didn't** · don't · doesn't
+I ___ hang up my coat yesterday. → **didn't** · don't · doesn't
 - don't — *Для минулого потрібна форма didn't.*
 - doesn't — *Це не форма минулого. Потрібна didn't.*
 
@@ -125,7 +125,7 @@ I ___ hang up my coat. → **didn't** · don't · doesn't
 
 **16 · Ідеться про минуле. Виберіть, як сказати «не»**
 <!-- interaction_id: en:lesson-13:session-11:i12; family: context_gap_grammar -->
-I ___ wake up early. → **didn't** · don't · doesn't
+I ___ wake up early yesterday. → **didn't** · don't · doesn't
 - don't — *Для минулого потрібна форма didn't.*
 - doesn't — *Це не форма минулого. Потрібна didn't.*
 

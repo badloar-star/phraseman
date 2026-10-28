@@ -65,7 +65,7 @@
 
 **4 · Речь о прошлом. Выберите, как сказать «не»**
 <!-- interaction_id: en:lesson-13:session-13:i03; family: context_gap_grammar -->
-I ___ get up early. → **didn't** · don't · doesn't
+I ___ get up early yesterday. → **didn't** · don't · doesn't
 - don't — *Для прошлого нужна форма didn't.*
 - doesn't — *Это не форма прошлого. Нужна didn't.*
 
@@ -85,7 +85,7 @@ I ___ get up early. → **didn't** · don't · doesn't
 
 **8 · Речь о прошлом. Выберите, как сказать «не»**
 <!-- interaction_id: en:lesson-13:session-13:i06; family: context_gap_grammar -->
-I ___ sit down. → **didn't** · don't · doesn't
+I ___ sit down yesterday. → **didn't** · don't · doesn't
 - don't — *Для прошлого нужна форма didn't.*
 - doesn't — *Это не форма прошлого. Нужна didn't.*
 
@@ -105,7 +105,7 @@ I ___ sit down. → **didn't** · don't · doesn't
 
 **12 · Речь о прошлом. Выберите, как сказать «не»**
 <!-- interaction_id: en:lesson-13:session-13:i09; family: context_gap_grammar -->
-I ___ stand up. → **didn't** · don't · doesn't
+I ___ stand up yesterday. → **didn't** · don't · doesn't
 - don't — *Для прошлого нужна форма didn't.*
 - doesn't — *Это не форма прошлого. Нужна didn't.*
 
@@ -125,7 +125,7 @@ I ___ stand up. → **didn't** · don't · doesn't
 
 **16 · Речь о прошлом. Выберите, как сказать «не»**
 <!-- interaction_id: en:lesson-13:session-13:i12; family: context_gap_grammar -->
-I ___ dress up for the party. → **didn't** · don't · doesn't
+I ___ dress up for the party yesterday. → **didn't** · don't · doesn't
 - don't — *Для прошлого нужна форма didn't.*
 - doesn't — *Это не форма прошлого. Нужна didn't.*
 

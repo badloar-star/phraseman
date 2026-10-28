@@ -85,7 +85,7 @@ I ___ look after my nephew. → **didn't** · don't · doesn't
 
 **8 · Речь о прошлом. Выберите, как сказать «не»**
 <!-- interaction_id: en:lesson-13:session-15:i06; family: context_gap_grammar -->
-I ___ help out at home. → **didn't** · don't · doesn't
+I ___ help out at home yesterday. → **didn't** · don't · doesn't
 - don't — *Для прошлого нужна форма didn't.*
 - doesn't — *Это не форма прошлого. Нужна didn't.*
 
@@ -105,7 +105,7 @@ I ___ help out at home. → **didn't** · don't · doesn't
 
 **12 · Речь о прошлом. Выберите, как сказать «не»**
 <!-- interaction_id: en:lesson-13:session-15:i09; family: context_gap_grammar -->
-I ___ fill in the form. → **didn't** · don't · doesn't
+I ___ fill in the form yesterday. → **didn't** · don't · doesn't
 - don't — *Для прошлого нужна форма didn't.*
 - doesn't — *Это не форма прошлого. Нужна didn't.*
 
@@ -125,7 +125,7 @@ I ___ fill in the form. → **didn't** · don't · doesn't
 
 **16 · Речь о прошлом. Выберите, как сказать «не»**
 <!-- interaction_id: en:lesson-13:session-15:i12; family: context_gap_grammar -->
-I ___ find out the price. → **didn't** · don't · doesn't
+I ___ find out the price yesterday. → **didn't** · don't · doesn't
 - don't — *Для прошлого нужна форма didn't.*
 - doesn't — *Это не форма прошлого. Нужна didn't.*
 

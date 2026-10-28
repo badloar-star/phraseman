@@ -85,7 +85,7 @@ I ___ put on my coat. → **didn't** · don't · doesn't
 
 **8 · Речь о прошлом. Выберите, как сказать «не»**
 <!-- interaction_id: en:lesson-13:session-16:i06; family: context_gap_grammar -->
-I ___ take off my scarf. → **didn't** · don't · doesn't
+I ___ take off my scarf yesterday. → **didn't** · don't · doesn't
 - don't — *Для прошлого нужна форма didn't.*
 - doesn't — *Это не форма прошлого. Нужна didn't.*
 
@@ -105,7 +105,7 @@ I ___ take off my scarf. → **didn't** · don't · doesn't
 
 **12 · Речь о прошлом. Выберите, как сказать «не»**
 <!-- interaction_id: en:lesson-13:session-16:i09; family: context_gap_grammar -->
-I ___ get on the bus. → **didn't** · don't · doesn't
+I ___ get on the bus yesterday. → **didn't** · don't · doesn't
 - don't — *Для прошлого нужна форма didn't.*
 - doesn't — *Это не форма прошлого. Нужна didn't.*
 
@@ -125,7 +125,7 @@ I ___ get on the bus. → **didn't** · don't · doesn't
 
 **16 · Речь о прошлом. Выберите, как сказать «не»**
 <!-- interaction_id: en:lesson-13:session-16:i12; family: context_gap_grammar -->
-I ___ get off at the station. → **didn't** · don't · doesn't
+I ___ get off at the station yesterday. → **didn't** · don't · doesn't
 - don't — *Для прошлого нужна форма didn't.*
 - doesn't — *Это не форма прошлого. Нужна didn't.*
 

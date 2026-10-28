@@ -65,7 +65,7 @@
 
 **4 · Речь о прошлом. Выберите, как сказать «не»**
 <!-- interaction_id: en:lesson-13:session-19:i03; family: context_gap_grammar -->
-I ___ clean up the kitchen. → **didn't** · don't · doesn't
+I ___ clean up the kitchen yesterday. → **didn't** · don't · doesn't
 - don't — *Для прошлого нужна форма didn't.*
 - doesn't — *Это не форма прошлого. Нужна didn't.*
 
@@ -85,7 +85,7 @@ I ___ clean up the kitchen. → **didn't** · don't · doesn't
 
 **8 · Речь о прошлом. Выберите, как сказать «не»**
 <!-- interaction_id: en:lesson-13:session-19:i06; family: context_gap_grammar -->
-I ___ tidy up my room. → **didn't** · don't · doesn't
+I ___ tidy up my room yesterday. → **didn't** · don't · doesn't
 - don't — *Для прошлого нужна форма didn't.*
 - doesn't — *Это не форма прошлого. Нужна didn't.*
 
@@ -125,7 +125,7 @@ I ___ wash up after dinner. → **didn't** · don't · doesn't
 
 **16 · Речь о прошлом. Выберите, как сказать «не»**
 <!-- interaction_id: en:lesson-13:session-19:i12; family: context_gap_grammar -->
-I ___ dry off with a towel. → **didn't** · don't · doesn't
+I ___ dry off with a towel yesterday. → **didn't** · don't · doesn't
 - don't — *Для прошлого нужна форма didn't.*
 - doesn't — *Это не форма прошлого. Нужна didn't.*
 

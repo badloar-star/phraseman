@@ -65,7 +65,7 @@
 
 **4 · Ідеться про минуле. Виберіть, як сказати «не»**
 <!-- interaction_id: en:lesson-13:session-20:i03; family: context_gap_grammar -->
-I ___ fall over. → **didn't** · don't · doesn't
+I ___ fall over yesterday. → **didn't** · don't · doesn't
 - don't — *Для минулого потрібна форма didn't.*
 - doesn't — *Це не форма минулого. Потрібна didn't.*
 
@@ -85,7 +85,7 @@ I ___ fall over. → **didn't** · don't · doesn't
 
 **8 · Ідеться про минуле. Виберіть, як сказати «не»**
 <!-- interaction_id: en:lesson-13:session-20:i06; family: context_gap_grammar -->
-I ___ trip over the bag. → **didn't** · don't · doesn't
+I ___ trip over the bag yesterday. → **didn't** · don't · doesn't
 - don't — *Для минулого потрібна форма didn't.*
 - doesn't — *Це не форма минулого. Потрібна didn't.*
 
@@ -105,7 +105,7 @@ I ___ trip over the bag. → **didn't** · don't · doesn't
 
 **12 · Ідеться про минуле. Виберіть, як сказати «не»**
 <!-- interaction_id: en:lesson-13:session-20:i09; family: context_gap_grammar -->
-I ___ bump into the table. → **didn't** · don't · doesn't
+I ___ bump into the table yesterday. → **didn't** · don't · doesn't
 - don't — *Для минулого потрібна форма didn't.*
 - doesn't — *Це не форма минулого. Потрібна didn't.*
 
@@ -125,7 +125,7 @@ I ___ bump into the table. → **didn't** · don't · doesn't
 
 **16 · Ідеться про минуле. Виберіть, як сказати «не»**
 <!-- interaction_id: en:lesson-13:session-20:i12; family: context_gap_grammar -->
-I ___ knock over the cup. → **didn't** · don't · doesn't
+I ___ knock over the cup yesterday. → **didn't** · don't · doesn't
 - don't — *Для минулого потрібна форма didn't.*
 - doesn't — *Це не форма минулого. Потрібна didn't.*
 

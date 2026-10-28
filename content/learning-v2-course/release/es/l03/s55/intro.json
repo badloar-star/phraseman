@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-03:session-55",
+  "learningOutcomeByLocale": {
+    "ru": "сказать «не очень» через no и muy.",
+    "uk": "сказати «не дуже» через no і muy."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-03:session-55:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Не очень маленькая",
+        "uk": "Не дуже маленька"
+      },
+      "bodyByLocale": {
+        "ru": "Друг беспокоится, что коробка слишком маленькая. Ответьте `La caja no es muy pequeña` — «Коробка не очень маленькая». Соберите `la caja` + `no es` + `muy pequeña`. No стоит перед es, а muy — перед pequeña. Вы отрицаете сильную степень признака: коробка может быть небольшой, но не очень маленькой.",
+        "uk": "Друг непокоїться, що коробка замаленька. Дайте відповідь `La caja no es muy pequeña` — «Коробка не дуже маленька». Зберіть `la caja` + `no es` + `muy pequeña`. No стоїть перед es, а muy — перед pequeña. Ви заперечуєте сильний ступінь ознаки: коробка може бути невеликою, але не дуже маленькою."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-55:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите, что коробка не очень маленькая.",
+          "uk": "Скажіть, що коробка не дуже маленька."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-55:intro1:r1",
+              "text": "La caja no es muy pequeña."
+            },
+            {
+              "responseId": "es:lesson-03:session-55:intro1:r2",
+              "text": "La caja no es muy pequeño."
+            },
+            {
+              "responseId": "es:lesson-03:session-55:intro1:r3",
+              "text": "La caja no es muy pequeñas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-55:intro1:r1",
+              "text": "La caja no es muy pequeña."
+            },
+            {
+              "responseId": "es:lesson-03:session-55:intro1:r2",
+              "text": "La caja no es muy pequeño."
+            },
+            {
+              "responseId": "es:lesson-03:session-55:intro1:r3",
+              "text": "La caja no es muy pequeñas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что коробка не очень маленькая.",
+          "uk": "Скажіть, що коробка не дуже маленька."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-03:session-55:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Короткая оценка",
+        "uk": "Коротка оцінка"
+      },
+      "bodyByLocale": {
+        "ru": "Та же коробка перед вами, поэтому ответьте без названия: `No es muy pequeña` — «Она не очень маленькая». Соберите `no` + `es` + `muy pequeña`. Опускаем только la caja. Отрицание no и усилитель muy сохраняются на своих местах; pequeña остаётся женским.",
+        "uk": "Та сама коробка перед вами, тому дайте відповідь без назви: `No es muy pequeña` — «Вона не дуже маленька». Зберіть `no` + `es` + `muy pequeña`. Опускаємо тільки la caja. Заперечення no й підсилювач muy залишаються на своїх місцях; pequeña залишається жіночим."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-55:intro2:q",
+        "promptByLocale": {
+          "ru": "Ответьте коротко: она не очень маленькая. Начните с No es.",
+          "uk": "Дайте коротку відповідь: вона не дуже маленька. Почніть з No es."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-55:intro2:r1",
+              "text": "No es muy pequeña."
+            },
+            {
+              "responseId": "es:lesson-03:session-55:intro2:r2",
+              "text": "No es muy pequeño."
+            },
+            {
+              "responseId": "es:lesson-03:session-55:intro2:r3",
+              "text": "No son muy pequeña."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-55:intro2:r1",
+              "text": "No es muy pequeña."
+            },
+            {
+              "responseId": "es:lesson-03:session-55:intro2:r2",
+              "text": "No es muy pequeño."
+            },
+            {
+              "responseId": "es:lesson-03:session-55:intro2:r3",
+              "text": "No son muy pequeña."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ответьте коротко: она не очень маленькая. Начните с No es.",
+          "uk": "Дайте коротку відповідь: вона не дуже маленька. Почніть з No es."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-03:session-55:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Несколько коробок",
+        "uk": "Кілька коробок"
+      },
+      "bodyByLocale": {
+        "ru": "Сравниваете несколько коробок: они не очень большие. Скажите `Las cajas no son muy grandes` — «Коробки не очень большие». Соберите `las cajas` + `no son` + `muy grandes`. Для нескольких коробок выбирайте son и grandes с -s. No и muy не меняются.",
+        "uk": "Порівнюєте кілька коробок: вони не дуже великі. Скажіть `Las cajas no son muy grandes` — «Коробки не дуже великі». Зберіть `las cajas` + `no son` + `muy grandes`. Для кількох коробок вибирайте son і grandes з -s. No і muy не змінюються."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-55:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите, что коробки не очень большие.",
+          "uk": "Скажіть, що коробки не дуже великі."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-55:intro3:r1",
+              "text": "Las cajas no son muy grandes."
+            },
+            {
+              "responseId": "es:lesson-03:session-55:intro3:r2",
+              "text": "Las cajas no es muy grandes."
+            },
+            {
+              "responseId": "es:lesson-03:session-55:intro3:r3",
+              "text": "Las cajas no son muy grande."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-55:intro3:r1",
+              "text": "Las cajas no son muy grandes."
+            },
+            {
+              "responseId": "es:lesson-03:session-55:intro3:r2",
+              "text": "Las cajas no es muy grandes."
+            },
+            {
+              "responseId": "es:lesson-03:session-55:intro3:r3",
+              "text": "Las cajas no son muy grande."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что коробки не очень большие.",
+          "uk": "Скажіть, що коробки не дуже великі."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "22ad8b6f4af6a1521b94b34d5be907a3074967f0c1945cc8f27b9dbf23132ede"
+}

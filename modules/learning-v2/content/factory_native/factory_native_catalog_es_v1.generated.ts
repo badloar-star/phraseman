@@ -1169,4 +1169,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"отдельно задать вопрос об описании и ответить на него.","uk":"окремо поставити запитання про опис і відповісти на нього."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 55,
+    sourceFingerprint: "651518f5d551fabdbe7f1b7ea5633d053e2332c93e8117eaf59d752afc05551c",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"сказать «не очень» через no и muy.","uk":"сказати «не дуже» через no і muy."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 56,
+    sourceFingerprint: "5f1af6f15ff92280e9448131e2e6a8b372fbf750b18955d03a7ec8493d6ee082",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"самостоятельно применять описания из уроков 1–3.","uk":"самостійно застосовувати описи з уроків 1–3."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+  }),
 ]);

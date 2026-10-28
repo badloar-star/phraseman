@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-03:session-56",
+  "entries": [
+    {
+      "interactionId": "es:lesson-03:session-56:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-56:intro1:r2": {
+          "ru": "Дом один: es.",
+          "uk": "Будинок один: es."
+        },
+        "es:lesson-03:session-56:intro1:r3": {
+          "ru": "Casa женского рода: la.",
+          "uk": "Casa жіночого роду: la."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-56:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-56:intro2:r2": {
+          "ru": "Нужно rojo.",
+          "uk": "Потрібне rojo."
+        },
+        "es:lesson-03:session-56:intro2:r3": {
+          "ru": "Нужен артикль un.",
+          "uk": "Потрібен артикль un."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-56:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-56:intro3:r2": {
+          "ru": "Нужно son.",
+          "uk": "Потрібне son."
+        },
+        "es:lesson-03:session-56:intro3:r3": {
+          "ru": "Нужно множественное amables.",
+          "uk": "Потрібна множина amables."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5e0a9245bf9270c02e1816e3cbbed79b09d4c8b474f781295e80b75c7f54c5ac"
+}

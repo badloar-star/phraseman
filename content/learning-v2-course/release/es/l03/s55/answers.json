@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-03:session-55:i01",
+    "correctText": "No es muy pequeña.",
+    "correctResponseId": "es:lesson-03:session-55:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-55:i02",
+    "correctText": "no",
+    "correctResponseId": "es:lesson-03:session-55:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-55:i03",
+    "correctText": "La caja no es muy pequeña.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-55:i04",
+    "correctText": "pequeña",
+    "correctResponseId": "es:lesson-03:session-55:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-55:i05",
+    "correctText": "No es muy pequeña.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-55:i06",
+    "correctText": "Las cajas no son muy grandes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-55:i07",
+    "correctText": "Las cajas no son muy pequeñas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-55:i08",
+    "correctText": "son",
+    "correctResponseId": "es:lesson-03:session-55:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-55:i09",
+    "correctText": "La caja no es muy pequeña.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-55:i10",
+    "correctText": "No es muy pequeña.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-55:i11",
+    "correctText": "Las cajas no son muy grandes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-55:i12",
+    "correctText": "Las cajas no son muy pequeñas.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,708 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-03:session-55",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-03:session-55:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-55:i01:r1",
+          "text": "No es muy pequeña."
+        },
+        {
+          "responseId": "es:lesson-03:session-55:i01:r2",
+          "text": "Es muy pequeña."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-55:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-55:i01:audio",
+          "transcript": "No es muy pequeña."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-55:i01:r1",
+            "targetText": "No es muy pequeña.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-03:session-55:i01:r2",
+            "targetText": "Es muy pequeña.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-55:i01:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи есть no: не очень маленькая.",
+              "uk": "У записі є no: не дуже маленька."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-55:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — коробка не дуже маленька",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-55:i02:r1",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-03:session-55:i02:r2",
+          "text": "muy"
+        },
+        {
+          "responseId": "es:lesson-03:session-55:i02:r3",
+          "text": "son"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — коробка не дуже маленька",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — коробка не очень маленькая",
+          "uk": "Вставте слово — коробка не дуже маленька"
+        },
+        "gappedTargetPhrase": "La caja ___ es muy pequeña.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-55:i02:r1",
+            "text": "no"
+          },
+          {
+            "responseId": "es:lesson-03:session-55:i02:r2",
+            "text": "muy"
+          },
+          {
+            "responseId": "es:lesson-03:session-55:i02:r3",
+            "text": "son"
+          }
+        ],
+        "testedDimension": "Вставте слово — коробка не дуже маленька",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-55:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — коробка не дуже маленька",
+            "feedbackByLocale": {
+              "ru": "Перед es нужно отрицание no.",
+              "uk": "Перед es потрібне заперечення no."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-55:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — коробка не дуже маленька",
+            "feedbackByLocale": {
+              "ru": "Son не передаёт отрицания.",
+              "uk": "Son не передає заперечення."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-55:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — коробка не дуже маленька",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-55:i03:r1",
+          "text": "Плитки: pequeña"
+        },
+        {
+          "responseId": "es:lesson-03:session-55:i03:r2",
+          "text": "muy"
+        },
+        {
+          "responseId": "es:lesson-03:session-55:i03:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-55:i03:r4",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-03:session-55:i03:r5",
+          "text": "caja"
+        },
+        {
+          "responseId": "es:lesson-03:session-55:i03:r6",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-03:session-55:i03:r7",
+          "text": "pequeño."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — коробка не дуже маленька",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "La caja no es muy pequeña.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — коробка не очень маленькая",
+          "uk": "Зберіть фразу — коробка не дуже маленька"
+        },
+        "orderedTokens": [
+          "La",
+          "caja",
+          "no",
+          "es",
+          "muy",
+          "pequeña"
+        ],
+        "authoredDistractorTokens": [
+          "pequeño"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-55:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — коробка не дуже маленька",
+            "feedbackByLocale": {
+              "ru": "caja женского рода.",
+              "uk": "caja жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-55:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — вона не дуже маленька, йдеться про коробку",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-55:i04:r1",
+          "text": "pequeña"
+        },
+        {
+          "responseId": "es:lesson-03:session-55:i04:r2",
+          "text": "pequeño"
+        },
+        {
+          "responseId": "es:lesson-03:session-55:i04:r3",
+          "text": "pequeñas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — вона не дуже маленька, йдеться про коробку",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — она не очень маленькая, речь о коробке",
+          "uk": "Вставте слово — вона не дуже маленька, йдеться про коробку"
+        },
+        "gappedTargetPhrase": "No es muy ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-55:i04:r1",
+            "text": "pequeña"
+          },
+          {
+            "responseId": "es:lesson-03:session-55:i04:r2",
+            "text": "pequeño"
+          },
+          {
+            "responseId": "es:lesson-03:session-55:i04:r3",
+            "text": "pequeñas"
+          }
+        ],
+        "testedDimension": "Вставте слово — вона не дуже маленька, йдеться про коробку",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-55:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — вона не дуже маленька, йдеться про коробку",
+            "feedbackByLocale": {
+              "ru": "Подразумевается женское caja.",
+              "uk": "Мається на увазі жіноче caja."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-55:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — вона не дуже маленька, йдеться про коробку",
+            "feedbackByLocale": {
+              "ru": "Коробка одна: pequeña.",
+              "uk": "Коробка одна: pequeña."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-55:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — вона не дуже маленька, йдеться про коробку",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-55:i05:r1",
+          "text": "Плитки: pequeña"
+        },
+        {
+          "responseId": "es:lesson-03:session-55:i05:r2",
+          "text": "muy"
+        },
+        {
+          "responseId": "es:lesson-03:session-55:i05:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-55:i05:r4",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-03:session-55:i05:r5",
+          "text": "pequeño."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — вона не дуже маленька, йдеться про коробку",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No es muy pequeña.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — она не очень маленькая, речь о коробке",
+          "uk": "Зберіть фразу — вона не дуже маленька, йдеться про коробку"
+        },
+        "orderedTokens": [
+          "No",
+          "es",
+          "muy",
+          "pequeña"
+        ],
+        "authoredDistractorTokens": [
+          "pequeño"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-55:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — вона не дуже маленька, йдеться про коробку",
+            "feedbackByLocale": {
+              "ru": "речь о женском caja.",
+              "uk": "йдеться про жіноче caja."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-55:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — коробки не дуже великі",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-55:i06:r1",
+          "text": "Плитки: grandes"
+        },
+        {
+          "responseId": "es:lesson-03:session-55:i06:r2",
+          "text": "muy"
+        },
+        {
+          "responseId": "es:lesson-03:session-55:i06:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-55:i06:r4",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-03:session-55:i06:r5",
+          "text": "cajas"
+        },
+        {
+          "responseId": "es:lesson-03:session-55:i06:r6",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-03:session-55:i06:r7",
+          "text": "grande."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — коробки не дуже великі",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Las cajas no son muy grandes.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — коробки не очень большие",
+          "uk": "Зберіть фразу — коробки не дуже великі"
+        },
+        "orderedTokens": [
+          "Las",
+          "cajas",
+          "no",
+          "son",
+          "muy",
+          "grandes"
+        ],
+        "authoredDistractorTokens": [
+          "grande"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-55:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — коробки не дуже великі",
+            "feedbackByLocale": {
+              "ru": "коробок несколько.",
+              "uk": "коробок кілька."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-55:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-55:i07:r1",
+          "text": "Плитки: pequeñas"
+        },
+        {
+          "responseId": "es:lesson-03:session-55:i07:r2",
+          "text": "muy"
+        },
+        {
+          "responseId": "es:lesson-03:session-55:i07:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-55:i07:r4",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-03:session-55:i07:r5",
+          "text": "cajas"
+        },
+        {
+          "responseId": "es:lesson-03:session-55:i07:r6",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-03:session-55:i07:r7",
+          "text": "pequeña."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-55:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-55:i07:audio",
+          "transcript": "Las cajas no son muy pequeñas."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Las cajas no son muy pequeñas.",
+        "orderedTokens": [
+          "Las",
+          "cajas",
+          "no",
+          "son",
+          "muy",
+          "pequeñas"
+        ],
+        "authoredDistractorTokens": [
+          "pequeña"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-55:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит pequeñas.",
+              "uk": "звучить pequeñas."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-55:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — коробки не дуже великі",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-55:i08:r1",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-55:i08:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-55:i08:r3",
+          "text": "soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — коробки не дуже великі",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — коробки не очень большие",
+          "uk": "Вставте слово — коробки не дуже великі"
+        },
+        "gappedTargetPhrase": "Las cajas no ___ muy grandes.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-55:i08:r1",
+            "text": "son"
+          },
+          {
+            "responseId": "es:lesson-03:session-55:i08:r2",
+            "text": "es"
+          },
+          {
+            "responseId": "es:lesson-03:session-55:i08:r3",
+            "text": "soy"
+          }
+        ],
+        "testedDimension": "Вставте слово — коробки не дуже великі",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-55:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — коробки не дуже великі",
+            "feedbackByLocale": {
+              "ru": "Коробок несколько: son.",
+              "uk": "Коробок кілька: son."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-55:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — коробки не дуже великі",
+            "feedbackByLocale": {
+              "ru": "Soy относится к «я».",
+              "uk": "Soy стосується «я»."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-55:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — коробка не дуже маленька; назвіть предмет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-55:i09:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — коробка не дуже маленька; назвіть предмет",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-55:i09:audio",
+          "transcript": "La caja no es muy pequeña."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "La caja no es muy pequeña.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-55:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — вона не дуже маленька, йдеться про коробку; почніть з No es",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-55:i10:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — вона не дуже маленька, йдеться про коробку; почніть з No es",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-55:i10:audio",
+          "transcript": "No es muy pequeña."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No es muy pequeña.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-55:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — коробки не дуже великі; назвіть предмети",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-55:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — коробки не дуже великі; назвіть предмети",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-55:i11:audio",
+          "transcript": "Las cajas no son muy grandes."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Las cajas no son muy grandes.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-55:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — коробки не дуже маленькі; назвіть предмети",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-55:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — коробки не дуже маленькі; назвіть предмети",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-55:i12:audio",
+          "transcript": "Las cajas no son muy pequeñas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Las cajas no son muy pequeñas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "c58014cdd81466acf44f202e6dbfe91072996cf129a8ce9b0851d0600c3dac07"
+}

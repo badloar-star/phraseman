@@ -1,0 +1,102 @@
+[
+  {
+    "interactionId": "es:lesson-03:session-56:i01",
+    "correctText": "¿Cómo es la casa?",
+    "correctResponseId": "es:lesson-03:session-56:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-56:i02",
+    "correctText": "¿Cómo es la casa?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-56:i03",
+    "correctText": "Es grande.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-56:i04",
+    "correctText": "blanca",
+    "correctResponseId": "es:lesson-03:session-56:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-56:i05",
+    "correctText": "Es un bolso rojo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-56:i06",
+    "correctText": "son",
+    "correctResponseId": "es:lesson-03:session-56:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-56:i07",
+    "correctText": "Las amigas son pacientes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-56:i08",
+    "correctText": "Las cajas no son muy grandes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-56:i09",
+    "correctText": "poco",
+    "correctResponseId": "es:lesson-03:session-56:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-56:i10",
+    "correctText": "caros",
+    "correctResponseId": "es:lesson-03:session-56:i10:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-56:i11",
+    "correctText": "bonitas",
+    "correctResponseId": "es:lesson-03:session-56:i11:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-56:i12",
+    "correctText": "bonitas",
+    "correctResponseId": "es:lesson-03:session-56:i12:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-56:i13",
+    "correctText": "¿Cómo es?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-56:i14",
+    "correctText": "Es grande.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-56:i15",
+    "correctText": "Es un bolso rojo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-56:i16",
+    "correctText": "Los amigos son amables.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-56:i17",
+    "correctText": "No es muy pequeña.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-56:i18",
+    "correctText": "La habitación es bastante grande.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-56:i19",
+    "correctText": "La silla es poco cómoda.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-56:i20",
+    "correctText": "Las fotos son muy bonitas.",
+    "correctResponseId": null
+  }
+]

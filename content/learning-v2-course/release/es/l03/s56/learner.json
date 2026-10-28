@@ -1,0 +1,1072 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-03:session-56",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-03:session-56:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-56:i01:r1",
+          "text": "¿Cómo es la casa?"
+        },
+        {
+          "responseId": "es:lesson-03:session-56:i01:r2",
+          "text": "¿Cómo es?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-56:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-56:i01:audio",
+          "transcript": "¿Cómo es la casa?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-56:i01:r1",
+            "targetText": "¿Cómo es la casa?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-03:session-56:i01:r2",
+            "targetText": "¿Cómo es?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-56:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи также назван дом: la casa.",
+              "uk": "У записі також названо будинок: la casa."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-56:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — спросите, какой дом; используйте casa",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-56:i02:r1",
+          "text": "Плитки: casa?"
+        },
+        {
+          "responseId": "es:lesson-03:session-56:i02:r2",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-03:session-56:i02:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-56:i02:r4",
+          "text": "¿Cómo"
+        },
+        {
+          "responseId": "es:lesson-03:session-56:i02:r5",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — спросите, какой дом; используйте casa",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Cómo es la casa?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — спросите, какой дом; используйте casa",
+          "uk": "Зберіть фразу — запитайте, який будинок; використайте casa"
+        },
+        "orderedTokens": [
+          "¿Cómo",
+          "es",
+          "la",
+          "casa"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-56:i02:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — спросите, какой дом; используйте casa",
+            "feedbackByLocale": {
+              "ru": "дом один.",
+              "uk": "будинок один."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-56:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — ответьте: он большой, речь о доме",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-56:i03:r1",
+          "text": "Плитки: grande"
+        },
+        {
+          "responseId": "es:lesson-03:session-56:i03:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-56:i03:r3",
+          "text": "grandes."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — ответьте: он большой, речь о доме",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es grande.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — ответьте: он большой, речь о доме",
+          "uk": "Зберіть фразу — дайте відповідь: він великий, йдеться про будинок"
+        },
+        "orderedTokens": [
+          "Es",
+          "grande"
+        ],
+        "authoredDistractorTokens": [
+          "grandes"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-56:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — ответьте: он большой, речь о доме",
+            "feedbackByLocale": {
+              "ru": "один дом.",
+              "uk": "один будинок."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-56:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — дом белый",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-56:i04:r1",
+          "text": "blanca"
+        },
+        {
+          "responseId": "es:lesson-03:session-56:i04:r2",
+          "text": "blanco"
+        },
+        {
+          "responseId": "es:lesson-03:session-56:i04:r3",
+          "text": "blancas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — дом белый",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — дом белый",
+          "uk": "Вставте слово — будинок білий"
+        },
+        "gappedTargetPhrase": "La casa es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-56:i04:r1",
+            "text": "blanca"
+          },
+          {
+            "responseId": "es:lesson-03:session-56:i04:r2",
+            "text": "blanco"
+          },
+          {
+            "responseId": "es:lesson-03:session-56:i04:r3",
+            "text": "blancas"
+          }
+        ],
+        "testedDimension": "Вставьте слово — дом белый",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-56:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — дом белый",
+            "feedbackByLocale": {
+              "ru": "Casa женского рода.",
+              "uk": "Casa жіночого роду."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-56:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — дом белый",
+            "feedbackByLocale": {
+              "ru": "Дом один: blanca.",
+              "uk": "Будинок один: blanca."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-56:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это красная сумка; используйте bolso, цвет после предмета",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-56:i05:r1",
+          "text": "Плитки: rojo"
+        },
+        {
+          "responseId": "es:lesson-03:session-56:i05:r2",
+          "text": "bolso"
+        },
+        {
+          "responseId": "es:lesson-03:session-56:i05:r3",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-03:session-56:i05:r4",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-56:i05:r5",
+          "text": "roja."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это красная сумка; используйте bolso, цвет после предмета",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es un bolso rojo.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это красная сумка; используйте bolso, цвет после предмета",
+          "uk": "Зберіть фразу — це червона сумка; використайте bolso, колір після предмета"
+        },
+        "orderedTokens": [
+          "Es",
+          "un",
+          "bolso",
+          "rojo"
+        ],
+        "authoredDistractorTokens": [
+          "roja"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-56:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это красная сумка; используйте bolso, цвет после предмета",
+            "feedbackByLocale": {
+              "ru": "bolso мужского рода.",
+              "uk": "bolso чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-56:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — друзья приветливые",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-56:i06:r1",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-56:i06:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-56:i06:r3",
+          "text": "soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — друзья приветливые",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — друзья приветливые",
+          "uk": "Вставте слово — друзі привітні"
+        },
+        "gappedTargetPhrase": "Los amigos ___ amables.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-56:i06:r1",
+            "text": "son"
+          },
+          {
+            "responseId": "es:lesson-03:session-56:i06:r2",
+            "text": "es"
+          },
+          {
+            "responseId": "es:lesson-03:session-56:i06:r3",
+            "text": "soy"
+          }
+        ],
+        "testedDimension": "Вставьте слово — друзья приветливые",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-56:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — друзья приветливые",
+            "feedbackByLocale": {
+              "ru": "Друзей несколько: son.",
+              "uk": "Друзів кілька: son."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-56:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — друзья приветливые",
+            "feedbackByLocale": {
+              "ru": "Soy относится к «я».",
+              "uk": "Soy стосується «я»."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-56:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — подруги терпеливые",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-56:i07:r1",
+          "text": "Плитки: pacientes"
+        },
+        {
+          "responseId": "es:lesson-03:session-56:i07:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-56:i07:r3",
+          "text": "amigas"
+        },
+        {
+          "responseId": "es:lesson-03:session-56:i07:r4",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-03:session-56:i07:r5",
+          "text": "paciente."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — подруги терпеливые",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Las amigas son pacientes.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — подруги терпеливые",
+          "uk": "Зберіть фразу — подруги терплячі"
+        },
+        "orderedTokens": [
+          "Las",
+          "amigas",
+          "son",
+          "pacientes"
+        ],
+        "authoredDistractorTokens": [
+          "paciente"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-56:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — подруги терпеливые",
+            "feedbackByLocale": {
+              "ru": "подруг несколько.",
+              "uk": "подруг кілька."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-56:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-56:i08:r1",
+          "text": "Плитки: grandes"
+        },
+        {
+          "responseId": "es:lesson-03:session-56:i08:r2",
+          "text": "muy"
+        },
+        {
+          "responseId": "es:lesson-03:session-56:i08:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-56:i08:r4",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-03:session-56:i08:r5",
+          "text": "cajas"
+        },
+        {
+          "responseId": "es:lesson-03:session-56:i08:r6",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-03:session-56:i08:r7",
+          "text": "grande."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-56:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-56:i08:audio",
+          "transcript": "Las cajas no son muy grandes."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Las cajas no son muy grandes.",
+        "orderedTokens": [
+          "Las",
+          "cajas",
+          "no",
+          "son",
+          "muy",
+          "grandes"
+        ],
+        "authoredDistractorTokens": [
+          "grande"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-56:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит grandes.",
+              "uk": "звучить grandes."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-56:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — стул не очень удобный, используйте poco",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-56:i09:r1",
+          "text": "poco"
+        },
+        {
+          "responseId": "es:lesson-03:session-56:i09:r2",
+          "text": "poca"
+        },
+        {
+          "responseId": "es:lesson-03:session-56:i09:r3",
+          "text": "pocas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — стул не очень удобный, используйте poco",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — стул не очень удобный, используйте poco",
+          "uk": "Вставте слово — стілець не дуже зручний, використайте poco"
+        },
+        "gappedTargetPhrase": "La silla es ___ cómoda.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-56:i09:r1",
+            "text": "poco"
+          },
+          {
+            "responseId": "es:lesson-03:session-56:i09:r2",
+            "text": "poca"
+          },
+          {
+            "responseId": "es:lesson-03:session-56:i09:r3",
+            "text": "pocas"
+          }
+        ],
+        "testedDimension": "Вставьте слово — стул не очень удобный, используйте poco",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-56:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — стул не очень удобный, используйте poco",
+            "feedbackByLocale": {
+              "ru": "Перед прилагательным poco не меняет род.",
+              "uk": "Перед прикметником poco не змінює роду."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-56:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — стул не очень удобный, используйте poco",
+            "feedbackByLocale": {
+              "ru": "Здесь poco не меняет число.",
+              "uk": "Тут poco не змінює числа."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-56:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — туфли довольно дорогие",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-56:i10:r1",
+          "text": "caros"
+        },
+        {
+          "responseId": "es:lesson-03:session-56:i10:r2",
+          "text": "caro"
+        },
+        {
+          "responseId": "es:lesson-03:session-56:i10:r3",
+          "text": "caras"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — туфли довольно дорогие",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — туфли довольно дорогие",
+          "uk": "Вставте слово — туфлі досить дорогі"
+        },
+        "gappedTargetPhrase": "Los zapatos son bastante ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-56:i10:r1",
+            "text": "caros"
+          },
+          {
+            "responseId": "es:lesson-03:session-56:i10:r2",
+            "text": "caro"
+          },
+          {
+            "responseId": "es:lesson-03:session-56:i10:r3",
+            "text": "caras"
+          }
+        ],
+        "testedDimension": "Вставьте слово — туфли довольно дорогие",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-56:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — туфли довольно дорогие",
+            "feedbackByLocale": {
+              "ru": "Zapatos во множественном числе.",
+              "uk": "Zapatos у множині."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-56:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — туфли довольно дорогие",
+            "feedbackByLocale": {
+              "ru": "Zapatos мужского рода.",
+              "uk": "Zapatos чоловічого роду."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-56:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-56:i11:r1",
+          "text": "bonitas"
+        },
+        {
+          "responseId": "es:lesson-03:session-56:i11:r2",
+          "text": "bonitos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-56:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-56:i11:audio",
+          "transcript": "bonitas"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-56:i11:r1",
+            "targetText": "bonitas",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-03:session-56:i11:r2",
+            "targetText": "bonitos",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-56:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи окончание -as: bonitas.",
+              "uk": "У записі закінчення -as: bonitas."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-56:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — фотографии очень красивые",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-56:i12:r1",
+          "text": "bonitas"
+        },
+        {
+          "responseId": "es:lesson-03:session-56:i12:r2",
+          "text": "bonita"
+        },
+        {
+          "responseId": "es:lesson-03:session-56:i12:r3",
+          "text": "bonitos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — фотографии очень красивые",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — фотографии очень красивые",
+          "uk": "Вставте слово — фотографії дуже гарні"
+        },
+        "gappedTargetPhrase": "Las fotos son muy ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-56:i12:r1",
+            "text": "bonitas"
+          },
+          {
+            "responseId": "es:lesson-03:session-56:i12:r2",
+            "text": "bonita"
+          },
+          {
+            "responseId": "es:lesson-03:session-56:i12:r3",
+            "text": "bonitos"
+          }
+        ],
+        "testedDimension": "Вставьте слово — фотографии очень красивые",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-56:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — фотографии очень красивые",
+            "feedbackByLocale": {
+              "ru": "Фотографий несколько: bonitas.",
+              "uk": "Фотографій кілька: bonitas."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-56:i12:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — фотографии очень красивые",
+            "feedbackByLocale": {
+              "ru": "Foto женского рода.",
+              "uk": "Foto жіночого роду."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-56:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — спросите коротко, какой дом, без названия предмета",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-56:i13:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — спросите коротко, какой дом, без названия предмета",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-56:i13:audio",
+          "transcript": "¿Cómo es?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Cómo es?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-56:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — ответьте: он большой, речь о доме; начните с Es",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-56:i14:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — ответьте: он большой, речь о доме; начните с Es",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-56:i14:audio",
+          "transcript": "Es grande."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es grande.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-56:i15",
+      "ordinal": 18,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — это красная сумка; начните с Es un, используйте bolso, цвет после предмета",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-56:i15:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — это красная сумка; начните с Es un, используйте bolso, цвет после предмета",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-56:i15:audio",
+          "transcript": "Es un bolso rojo."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es un bolso rojo.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-56:i16",
+      "ordinal": 19,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — друзья приветливые; назовите их словом amigos",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-56:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — друзья приветливые; назовите их словом amigos",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-56:i16:audio",
+          "transcript": "Los amigos son amables."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Los amigos son amables.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-56:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — она не очень маленькая, речь о коробке; начните с No es",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-56:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — она не очень маленькая, речь о коробке; начните с No es",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-56:i17:audio",
+          "transcript": "No es muy pequeña."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No es muy pequeña.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-56:i18",
+      "ordinal": 21,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — комната довольно большая; назовите комнату словом habitación и используйте bastante",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-56:i18:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — комната довольно большая; назовите комнату словом habitación и используйте bastante",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-56:i18:audio",
+          "transcript": "La habitación es bastante grande."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "La habitación es bastante grande.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-56:i19",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — стул не очень удобный; назовите его словом silla и используйте poco",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-56:i19:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — стул не очень удобный; назовите его словом silla и используйте poco",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-56:i19:audio",
+          "transcript": "La silla es poco cómoda."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "La silla es poco cómoda.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-56:i20",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — фотографии очень красивые; назовите предметы",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-56:i20:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — фотографии очень красивые; назовите предметы",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-56:i20:audio",
+          "transcript": "Las fotos son muy bonitas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Las fotos son muy bonitas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 20,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "ba1e7e4596a968c31a8e631f7a1671710446413295d9eb62188758f686d9db73"
+}

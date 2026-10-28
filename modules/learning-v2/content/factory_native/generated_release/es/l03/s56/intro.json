@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-03:session-56",
+  "learningOutcomeByLocale": {
+    "ru": "самостоятельно применять описания из уроков 1–3.",
+    "uk": "самостійно застосовувати описи з уроків 1–3."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-03:session-56:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Вопрос о доме",
+        "uk": "Запитання про будинок"
+      },
+      "bodyByLocale": {
+        "ru": "Друг выбрал дом для отдыха. Узнайте его описание: `¿Cómo es la casa?` — «Какой дом?» Соберите `cómo` + `es` + `la casa`, добавьте вопросительную интонацию. Вы просите описать дом, а не назвать его владельца или адрес.",
+        "uk": "Друг вибрав будинок для відпочинку. Дізнайтеся його опис: `¿Cómo es la casa?` — «Який будинок?» Зберіть `cómo` + `es` + `la casa`, додайте питальну інтонацію. Ви просите описати будинок, а не назвати його власника чи адресу."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-56:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите, какой дом, назвав предмет словом casa.",
+          "uk": "Запитайте, який будинок, назвавши предмет словом casa."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-56:intro1:r1",
+              "text": "¿Cómo es la casa?"
+            },
+            {
+              "responseId": "es:lesson-03:session-56:intro1:r2",
+              "text": "¿Cómo son la casa?"
+            },
+            {
+              "responseId": "es:lesson-03:session-56:intro1:r3",
+              "text": "¿Cómo es el casa?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-56:intro1:r1",
+              "text": "¿Cómo es la casa?"
+            },
+            {
+              "responseId": "es:lesson-03:session-56:intro1:r2",
+              "text": "¿Cómo son la casa?"
+            },
+            {
+              "responseId": "es:lesson-03:session-56:intro1:r3",
+              "text": "¿Cómo es el casa?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите, какой дом, назвав предмет словом casa.",
+          "uk": "Запитайте, який будинок, назвавши предмет словом casa."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-03:session-56:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Найти свою вещь по описанию",
+        "uk": "Знайти свою річ за описом"
+      },
+      "bodyByLocale": {
+        "ru": "Среди вещей видите красную сумку. Назовите её: `Es un bolso rojo` — «Это красная сумка». Соберите `es` + `un bolso` + `rojo`. Цвет поставьте после названия. Мужское bolso требует un и rojo, даже если русское «сумка» женского рода.",
+        "uk": "Серед речей бачите червону сумку. Назвіть її: `Es un bolso rojo` — «Це червона сумка». Зберіть `es` + `un bolso` + `rojo`. Колір поставте після назви. Чоловіче bolso потребує un і rojo, навіть якщо українське «сумка» жіночого роду."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-56:intro2:q",
+        "promptByLocale": {
+          "ru": "Назовите красную сумку словом bolso, начав с Es un; цвет после предмета.",
+          "uk": "Назвіть червону сумку словом bolso, почавши з Es un; колір після предмета."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-56:intro2:r1",
+              "text": "Es un bolso rojo."
+            },
+            {
+              "responseId": "es:lesson-03:session-56:intro2:r2",
+              "text": "Es un bolso roja."
+            },
+            {
+              "responseId": "es:lesson-03:session-56:intro2:r3",
+              "text": "Es una bolso rojo."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-56:intro2:r1",
+              "text": "Es un bolso rojo."
+            },
+            {
+              "responseId": "es:lesson-03:session-56:intro2:r2",
+              "text": "Es un bolso roja."
+            },
+            {
+              "responseId": "es:lesson-03:session-56:intro2:r3",
+              "text": "Es una bolso rojo."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите красную сумку словом bolso, начав с Es un; цвет после предмета.",
+          "uk": "Назвіть червону сумку словом bolso, почавши з Es un; колір після предмета."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-03:session-56:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Друзья, которые едут с вами",
+        "uk": "Друзі, які їдуть із вами"
+      },
+      "bodyByLocale": {
+        "ru": "Расскажите, что друзья приветливые: `Los amigos son amables` — «Друзья приветливые». Соберите `los amigos` + `son` + `amables`. Для нескольких друзей нужен son; к amable добавляется -s. В этой реплике вы описываете характер друзей.",
+        "uk": "Розкажіть, що друзі привітні: `Los amigos son amables` — «Друзі привітні». Зберіть `los amigos` + `son` + `amables`. Для кількох друзів потрібне son; до amable додається -s. У цій репліці ви описуєте характер друзів."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-56:intro3:q",
+        "promptByLocale": {
+          "ru": "Опишите приветливых друзей, назвав их словом amigos.",
+          "uk": "Опишіть привітних друзів, назвавши їх словом amigos."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-56:intro3:r1",
+              "text": "Los amigos son amables."
+            },
+            {
+              "responseId": "es:lesson-03:session-56:intro3:r2",
+              "text": "Los amigos es amables."
+            },
+            {
+              "responseId": "es:lesson-03:session-56:intro3:r3",
+              "text": "Los amigos son amable."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-56:intro3:r1",
+              "text": "Los amigos son amables."
+            },
+            {
+              "responseId": "es:lesson-03:session-56:intro3:r2",
+              "text": "Los amigos es amables."
+            },
+            {
+              "responseId": "es:lesson-03:session-56:intro3:r3",
+              "text": "Los amigos son amable."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Опишите приветливых друзей, назвав их словом amigos.",
+          "uk": "Опишіть привітних друзів, назвавши їх словом amigos."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e38f13fac7db51d65e6662fe89b21919f86b80f551bb73542022de816423e28b"
+}

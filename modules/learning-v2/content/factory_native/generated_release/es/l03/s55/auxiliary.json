@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-03:session-55",
+  "entries": [
+    {
+      "interactionId": "es:lesson-03:session-55:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-55:intro1:r2": {
+          "ru": "Caja женского рода: pequeña.",
+          "uk": "Caja жіночого роду: pequeña."
+        },
+        "es:lesson-03:session-55:intro1:r3": {
+          "ru": "Коробка одна: pequeña.",
+          "uk": "Коробка одна: pequeña."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-55:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-55:intro2:r2": {
+          "ru": "О коробке caja говорим pequeña.",
+          "uk": "Про коробку caja говоримо pequeña."
+        },
+        "es:lesson-03:session-55:intro2:r3": {
+          "ru": "Одна коробка: es.",
+          "uk": "Одна коробка: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-55:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-55:intro3:r2": {
+          "ru": "Нужно son.",
+          "uk": "Потрібне son."
+        },
+        "es:lesson-03:session-55:intro3:r3": {
+          "ru": "Нужно множественное grandes.",
+          "uk": "Потрібна множина grandes."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "8018cd8bc62fd1605d5248478d8f62c86260a488239de4d943ccc830d553be87"
+}

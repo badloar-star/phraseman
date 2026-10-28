@@ -4,6 +4,7 @@ jest.mock('../app/account_generation', () => ({}));
 
 /* eslint-disable import/first */
 import { mergeSpireFlushWallet, type SpireFlushWalletDeps } from '../app/spire/spire_flush_wallet';
+import { __resetSpirePendingCoinsForTests, addSpirePendingCoins, peekSpirePendingEntries, spireGoldPendingId } from '../app/spire/spire_pending_coins';
 /* eslint-enable import/first */
 
 const token = { stableId: 'user-1' } as never;
@@ -54,5 +55,35 @@ describe('[MOMENT-REWARD] spire:flush → кошелёк Главной', () => 
     const failing = { ...deps, merge: async () => { throw new Error('level_spin_star_identity_changed'); } };
     const r = await mergeSpireFlushWallet(token, { ok: true, stars: 110, starsSeq: 8 }, failing);
     expect(r).toMatchObject({ merged: false, reason: 'merge_failed:level_spin_star_identity_changed' });
+  });
+
+  // зачем (координатор 28.10, второй путь вниз): принятый отчёт ушёл из очереди, а баланс не влился — строки помечаются
+  // «ждут баланса», иначе чистка сирот снимет монеты, которых ещё нет в кошельке.
+  describe('принят, но баланс не влился → строки ждут баланса', () => {
+    beforeEach(() => { __resetSpirePendingCoinsForTests(); });
+    const results = [{ reportId: 'acc', verdict: 'accepted' }, { reportId: 'rej', verdict: 'rejected' }];
+
+    it('merge_failed → принятые (и их золото) помечены с seq ответа', async () => {
+      addSpirePendingCoins('user-1', 'acc', 60, 1);
+      addSpirePendingCoins('user-1', spireGoldPendingId('acc'), 10, 1);
+      addSpirePendingCoins('user-1', 'other', 20, 1);
+      const { deps } = makeDeps(7, 100);
+      const failing = { ...deps, merge: async () => { throw new Error('boom'); } };
+      await mergeSpireFlushWallet(token, { ok: true, stars: 170, starsSeq: 8, results }, failing);
+      const marked = peekSpirePendingEntries('user-1').filter((e) => e.acceptedAtMs !== undefined);
+      expect(marked.map((e) => [e.reportId, e.acceptedMinSeq, e.acceptedWhy])).toEqual([
+        ['acc', 8, 'merge_failed'],
+        [spireGoldPendingId('acc'), 8, 'merge_failed'],
+      ]);
+    });
+
+    it('ответ без stars → принятые помечены с seq «новее нынешнего локального», золото не держим', async () => {
+      addSpirePendingCoins('user-1', 'acc', 60, 1);
+      addSpirePendingCoins('user-1', spireGoldPendingId('acc'), 10, 1);
+      const { deps } = makeDeps(7, 100);
+      await mergeSpireFlushWallet(token, { ok: true, coinsGranted: 60, results }, deps);
+      const marked = peekSpirePendingEntries('user-1').filter((e) => e.acceptedAtMs !== undefined);
+      expect(marked.map((e) => [e.reportId, e.acceptedMinSeq, e.acceptedWhy])).toEqual([['acc', 8, 'no_server_stars']]);
+    });
   });
 });

@@ -22,7 +22,18 @@ const SUMMIT_FLOOR = 15;
 
 export type SpirePendingCoinsConfig = Readonly<{ perStep: number; perFloorPerLevel: number; guardianMultiplier: number; summitBonus: number }>;
 /** base — баланс кошелька в момент засчёта: облако прибавило base + coins и больше → монеты уже в балансе (Ревизор 24.10). */
-export type SpirePendingEntry = Readonly<{ reportId: string; coins: number; atMs: number; base?: number }>;
+export type SpirePendingEntry = Readonly<{
+  reportId: string;
+  coins: number;
+  atMs: number;
+  base?: number;
+  /** Сервер ПРИНЯЛ отчёт (ушёл из очереди), а баланс из ответа не влился — строка ждёт кошелька (markSpirePendingAccepted). */
+  acceptedAtMs?: number;
+  /** Монеты в кошельке, когда локальный серверный seq дорос до этого (null/нет — seq неизвестен, ждём роста баланса или 24 ч). */
+  acceptedMinSeq?: number;
+  /** Почему баланс не влился: merge_failed / no_server_stars. */
+  acceptedWhy?: string;
+}>;
 
 /** Целое ≥1 — как spireCoinAmount сервера (предел журнала сервер держит сам; здесь суммы конфига малы). */
 function amount(raw: number): number {
@@ -170,6 +181,36 @@ export function settleSpirePendingCoins(
     return false;
   });
   if (next.length !== list.length) publish(owner, next, `settle_verdicts:balanceApplied=${String(balanceApplied)}`);
+}
+
+/**
+ * Сервер принял отчёты (accepted/duplicate), а баланс из ответа не влился (merge_failed, ответ без stars) — помечаем их строки
+ * «принята, ждёт баланса». зачем (координатор 28.10, жалоба «прошла ступени — очки не изменились, потом уменьшились»): отчёт
+ * уходит из очереди, и через 2 мин чистка сирот снимала строку, хотя монет в кошельке ещё не было. Помеченную чистка держит до
+ * снимка облака с seq ≥ minSeq / роста кошелька, максимум 24 ч (spire_pending_orphans.ts). withGold — и строку золота ступени.
+ */
+export function markSpirePendingAccepted(
+  owner: string,
+  results: readonly Readonly<{ reportId: string; verdict: string }>[],
+  why: string,
+  minSeq: number | null,
+  withGold: boolean,
+  nowMs: number = Date.now(),
+): number {
+  const list = memory.get(owner) ?? [];
+  const accepted = new Set(results.filter((r) => r.verdict === 'accepted' || r.verdict === 'duplicate').map((r) => r.reportId));
+  const goldPrefix = spireGoldPendingId('');
+  let marked = 0;
+  const next = list.map((e) => {
+    const gold = e.reportId.startsWith(goldPrefix);
+    const stepId = gold ? e.reportId.slice(goldPrefix.length) : e.reportId;
+    if (!accepted.has(stepId) || (gold && !withGold) || e.acceptedAtMs !== undefined) return e;
+    marked += 1;
+    return { ...e, acceptedAtMs: nowMs, acceptedWhy: why, ...(minSeq !== null ? { acceptedMinSeq: minSeq } : {}) };
+  });
+  console.log(`${SPIRE}[SPIRE-COINS] mark:accepted ${JSON.stringify({ why, owner: owner.slice(0, 6), minSeq, withGold, accepted: accepted.size, rows: list.length, marked })}`); // guard-ok: какие строки ждут баланса и почему
+  if (marked > 0) publish(owner, next, `mark_accepted:${why}`);
+  return marked;
 }
 
 /**

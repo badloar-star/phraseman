@@ -5,7 +5,7 @@
 // Поздний ответ не затирает свежий баланс: seq не новее локального — не вливаем вовсе. Нет полей (старый сервер) — ничего не делаем.
 // Новых запросов нет: ответ уже пришёл. Журнал [MOMENT-REWARD] spire:flush merged=… reason=… на каждый ответ.
 import type { AccountGenerationToken } from '../account_generation';
-import { settleSpirePendingCoins } from './spire_pending_coins';
+import { markSpirePendingAccepted, settleSpirePendingCoins } from './spire_pending_coins';
 import { settleSpireGoldFromFlush } from './spire_gold_settle';
 
 export type SpireFlushWalletResult = Readonly<{ merged: boolean; reason: string; balanceBefore: number | null; balanceAfter: number | null }>;
@@ -22,20 +22,41 @@ export type SpireFlushWalletDeps = Readonly<{
 const SPIRE = '[SPIRE]';
 const isCount = (v: unknown): v is number => typeof v === 'number' && Number.isSafeInteger(v) && v >= 0;
 
+/** Серверный seq кошелька, уже влитый на телефоне (проекция mergeLevelSpinServerStars). Нет записи — 0. Бросает при сбое диска. */
+export async function readSpireWalletLocalSeq(stableId: string): Promise<number> {
+  const grants = await import('../level_spin_star_grants');
+  const AsyncStorage = (await import('@react-native-async-storage/async-storage')).default;
+  const raw = await AsyncStorage.getItem(grants.levelSpinStarProjectionKey(stableId));
+  const seq = raw ? Number((JSON.parse(raw) as { serverSeq?: unknown }).serverSeq) : 0;
+  return Number.isSafeInteger(seq) ? seq : 0;
+}
+
 async function defaultDeps(): Promise<SpireFlushWalletDeps> {
   const grants = await import('../level_spin_star_grants');
   const { peekRunes, runDisplayedRunesBatch } = await import('../runes_system');
-  const AsyncStorage = (await import('@react-native-async-storage/async-storage')).default;
   return {
     batch: runDisplayedRunesBatch,
     merge: (token, observation) => grants.mergeLevelSpinServerStars(token, observation),
-    readLocalSeq: async (stableId) => {
-      const raw = await AsyncStorage.getItem(grants.levelSpinStarProjectionKey(stableId));
-      const seq = raw ? Number((JSON.parse(raw) as { serverSeq?: unknown }).serverSeq) : 0;
-      return Number.isSafeInteger(seq) ? seq : 0;
-    },
+    readLocalSeq: readSpireWalletLocalSeq,
     peekBalance: () => peekRunes(),
   };
+}
+
+type FlushVerdict = Readonly<{ reportId: string; verdict: string; reason?: string }>;
+const verdictsOf = (d: Readonly<Record<string, unknown>>): readonly FlushVerdict[] =>
+  Array.isArray(d.results) ? (d.results as FlushVerdict[]).filter((r) => r && typeof r.reportId === 'string') : [];
+
+/**
+ * Отчёт принят сервером, баланс не влился → строки «ждут баланса», чистка сирот их не снимает (до 24 ч).
+ * зачем (координатор 28.10, второй путь вниз): иначе принятый отчёт ушёл из очереди, и через 2 мин его монеты снимались как сироты.
+ * Никогда не бросает: причина — в журнале.
+ */
+function holdAcceptedAwaitingBalance(stableId: string, d: Readonly<Record<string, unknown>>, why: string, minSeq: number | null, withGold: boolean): void {
+  try {
+    markSpirePendingAccepted(stableId, verdictsOf(d), why, minSeq, withGold);
+  } catch (error) {
+    console.warn(`${SPIRE}[SPIRE-COINS] mark:accepted_failed ${JSON.stringify({ why, error: error instanceof Error ? error.message : String(error) })}`); // guard-ok: catch с причиной
+  }
 }
 
 function log(result: SpireFlushWalletResult, extra: Readonly<Record<string, unknown>>): SpireFlushWalletResult {
@@ -48,7 +69,21 @@ export async function mergeSpireFlushWallet(token: AccountGenerationToken, data:
   const d = (data ?? {}) as Readonly<Record<string, unknown>>;
   const extra = { ok: d.ok ?? null, coinsGranted: d.coinsGranted ?? null, serverBalance: d.stars ?? null, serverSeq: d.starsSeq ?? null };
   if (d.ok !== true) return log({ merged: false, reason: `not_ok:${String(d.reason ?? 'unknown')}`, balanceBefore: null, balanceAfter: null }, extra);
-  if (!isCount(d.stars) || !isCount(d.starsSeq)) return log({ merged: false, reason: 'no_server_stars', balanceBefore: null, balanceAfter: null }, extra);
+  if (!isCount(d.stars) || !isCount(d.starsSeq)) {
+    const owner = token.stableId?.trim();
+    if (owner) {
+      // seq, с которым монеты точно в кошельке, неизвестен: любой снимок облака новее нынешнего локального (после ответа — уже с ними)
+      let minSeq: number | null = null;
+      try {
+        minSeq = (await (injected?.readLocalSeq ?? readSpireWalletLocalSeq)(owner)) + 1;
+      } catch (error) {
+        console.warn(`${SPIRE}[SPIRE-COINS] mark:local_seq_failed ${error instanceof Error ? error.message : String(error)} → ждём роста баланса или 24 ч`); // guard-ok: catch с причиной
+      }
+      // золото без поля gold (старый сервер) снимает settleSpireGoldFromFlush — здесь его не держим
+      holdAcceptedAwaitingBalance(owner, d, 'no_server_stars', minSeq, false);
+    }
+    return log({ merged: false, reason: 'no_server_stars', balanceBefore: null, balanceAfter: null }, extra);
+  }
   const stableId = token.stableId?.trim();
   if (!stableId) return log({ merged: false, reason: 'no_account', balanceBefore: null, balanceAfter: null }, extra);
   let deps: SpireFlushWalletDeps;
@@ -78,7 +113,7 @@ async function mergeInsideBatch(
     const localSeq = await deps.readLocalSeq(stableId);
     // зачем ([PEAK-COINS], контракт Ядра 24.10): «ожидающие» монеты ступеней гасим в том же шаге, где вливаем баланс — цифра не прыгает;
     // older_seq — баланс телефона уже новее и включает их, тоже гасим
-    const verdicts = Array.isArray(d.results) ? (d.results as Readonly<{ reportId: string; verdict: string; reason?: string }>[]).filter((r) => r && typeof r.reportId === 'string') : [];
+    const verdicts = verdictsOf(d);
     if (server.starsSeq <= localSeq) {
       settleSpirePendingCoins(stableId, verdicts, true, balanceBefore, balanceBefore);
       settleSpireGoldFromFlush(stableId, d, verdicts, balanceBefore, balanceBefore); // [SPIRE-GOLD] золото — своя строка
@@ -90,6 +125,8 @@ async function mergeInsideBatch(
     settleSpireGoldFromFlush(stableId, d, verdicts, balanceBefore, visible.balance); // [SPIRE-GOLD] золото — своя строка
     return log({ merged: true, reason: `newer_seq:${server.starsSeq}>${localSeq}`, balanceBefore, balanceAfter: visible.balance }, extra);
   } catch (error) {
+    // монеты уже в серверном балансе с seq = server.starsSeq: строка ждёт снимка облака с этим seq (или роста кошелька, ≤24 ч)
+    holdAcceptedAwaitingBalance(stableId, d, 'merge_failed', server.starsSeq, true);
     return log({ merged: false, reason: `merge_failed:${error instanceof Error ? error.message : String(error)}`, balanceBefore, balanceAfter: null }, extra);
   }
 }

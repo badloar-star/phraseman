@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-05:session-21",
+  "entries": [
+    {
+      "interactionId": "es:lesson-05:session-21:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-21:intro1:r2": {
+          "ru": "Спрашиваете об Ане, не обращаетесь к ней: tiene.",
+          "uk": "Питаєте про Ану, не звертаєтеся до неї: tiene."
+        },
+        "es:lesson-05:session-21:intro1:r3": {
+          "ru": "Tengo относится к говорящему, здесь нужно tiene.",
+          "uk": "Tengo стосується мовця, тут потрібно tiene."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-21:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-21:intro2:r2": {
+          "ru": "Перед llave нужно una.",
+          "uk": "Перед llave потрібно una."
+        },
+        "es:lesson-05:session-21:intro2:r3": {
+          "ru": "В вопросе нужна личная форма tiene.",
+          "uk": "У запитанні потрібна особова форма tiene."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-21:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-21:intro3:r2": {
+          "ru": "О Педро говорим tiene, без s.",
+          "uk": "Про Педро кажемо tiene, без s."
+        },
+        "es:lesson-05:session-21:intro3:r3": {
+          "ru": "Libro мужского рода: un.",
+          "uk": "Libro чоловічого роду: un."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "69d3a27b8efdf4acaf49cbf823d28a379d65a3d9b05d820271ee1060a35a1701"
+}

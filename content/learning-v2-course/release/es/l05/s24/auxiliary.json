@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-05:session-24",
+  "entries": [
+    {
+      "interactionId": "es:lesson-05:session-24:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-24:intro1:r2": {
+          "ru": "Вопрос об Ане, а не обращение к ней: tiene.",
+          "uk": "Запитання про Ану, а не звернення до неї: tiene."
+        },
+        "es:lesson-05:session-24:intro1:r3": {
+          "ru": "Tengo — о себе; об Ане нужно tiene.",
+          "uk": "Tengo — про себе; про Ану потрібно tiene."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-24:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-24:intro2:r2": {
+          "ru": "No ставим перед tiene.",
+          "uk": "No ставимо перед tiene."
+        },
+        "es:lesson-05:session-24:intro2:r3": {
+          "ru": "О Педро говорим tiene.",
+          "uk": "Про Педро кажемо tiene."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-24:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-24:intro3:r2": {
+          "ru": "С usted нужно tiene.",
+          "uk": "З usted потрібно tiene."
+        },
+        "es:lesson-05:session-24:intro3:r3": {
+          "ru": "Llave женского рода: una.",
+          "uk": "Llave жіночого роду: una."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "3465981661f3132f917b39222611dcf8bcbeaadd01c48a33eaf69252eb18b2b6"
+}

@@ -1,0 +1,668 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-05:session-23",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-05:session-23:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-23:i01:r1",
+          "text": "tienes"
+        },
+        {
+          "responseId": "es:lesson-05:session-23:i01:r2",
+          "text": "tiene"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-23:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-23:i01:audio",
+          "transcript": "tienes"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-05:session-23:i01:r1",
+            "targetText": "tienes",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-05:session-23:i01:r2",
+            "targetText": "tiene",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-23:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи слышно конечное s: tienes.",
+              "uk": "У записі чути кінцеве s: tienes."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-23:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — у тебя есть время?",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-23:i02:r1",
+          "text": "tienes"
+        },
+        {
+          "responseId": "es:lesson-05:session-23:i02:r2",
+          "text": "tiene"
+        },
+        {
+          "responseId": "es:lesson-05:session-23:i02:r3",
+          "text": "tengo"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — у тебя есть время?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — у тебя есть время?",
+          "uk": "Вставте слово — ти маєш час?"
+        },
+        "gappedTargetPhrase": "¿Tú ___ tiempo?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-23:i02:r1",
+            "text": "tienes"
+          },
+          {
+            "responseId": "es:lesson-05:session-23:i02:r2",
+            "text": "tiene"
+          },
+          {
+            "responseId": "es:lesson-05:session-23:i02:r3",
+            "text": "tengo"
+          }
+        ],
+        "testedDimension": "Вставьте слово — у тебя есть время?",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-23:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у тебя есть время?",
+            "feedbackByLocale": {
+              "ru": "После tú нужна форма tienes.",
+              "uk": "Після tú потрібна форма tienes."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-23:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у тебя есть время?",
+            "feedbackByLocale": {
+              "ru": "Tengo — о себе, здесь обращение к другу.",
+              "uk": "Tengo — про себе, тут звернення до друга."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-23:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — у тебя есть время? Начните с ¿Tú",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-23:i03:r1",
+          "text": "Плитки: tiempo?"
+        },
+        {
+          "responseId": "es:lesson-05:session-23:i03:r2",
+          "text": "¿Tú"
+        },
+        {
+          "responseId": "es:lesson-05:session-23:i03:r3",
+          "text": "tienes"
+        },
+        {
+          "responseId": "es:lesson-05:session-23:i03:r4",
+          "text": "tiene."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — у тебя есть время? Начните с ¿Tú",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Tú tienes tiempo?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — у тебя есть время? Начните с ¿Tú",
+          "uk": "Зберіть фразу — ти маєш час? Почніть з ¿Tú"
+        },
+        "orderedTokens": [
+          "¿Tú",
+          "tienes",
+          "tiempo"
+        ],
+        "authoredDistractorTokens": [
+          "tiene"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-23:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — у тебя есть время? Начните с ¿Tú",
+            "feedbackByLocale": {
+              "ru": "с tú используем tienes.",
+              "uk": "з tú використовуємо tienes."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-23:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — у вас есть ключ? Обращение на «вы»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-23:i04:r1",
+          "text": "tiene"
+        },
+        {
+          "responseId": "es:lesson-05:session-23:i04:r2",
+          "text": "tienes"
+        },
+        {
+          "responseId": "es:lesson-05:session-23:i04:r3",
+          "text": "tengo"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — у вас есть ключ? Обращение на «вы»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — у вас есть ключ? Обращение на «вы»",
+          "uk": "Вставте слово — ви маєте ключ? Звернення на «ви»"
+        },
+        "gappedTargetPhrase": "¿Usted ___ una llave?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-23:i04:r1",
+            "text": "tiene"
+          },
+          {
+            "responseId": "es:lesson-05:session-23:i04:r2",
+            "text": "tienes"
+          },
+          {
+            "responseId": "es:lesson-05:session-23:i04:r3",
+            "text": "tengo"
+          }
+        ],
+        "testedDimension": "Вставьте слово — у вас есть ключ? Обращение на «вы»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-23:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у вас есть ключ? Обращение на «вы»",
+            "feedbackByLocale": {
+              "ru": "С usted нужно tiene.",
+              "uk": "З usted потрібно tiene."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-23:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у вас есть ключ? Обращение на «вы»",
+            "feedbackByLocale": {
+              "ru": "Tengo — о себе; с usted нужно tiene.",
+              "uk": "Tengo — про себе; з usted потрібно tiene."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-23:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — у вас есть ключ? Начните с ¿Usted",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-23:i05:r1",
+          "text": "Плитки: una"
+        },
+        {
+          "responseId": "es:lesson-05:session-23:i05:r2",
+          "text": "¿Usted"
+        },
+        {
+          "responseId": "es:lesson-05:session-23:i05:r3",
+          "text": "tiene"
+        },
+        {
+          "responseId": "es:lesson-05:session-23:i05:r4",
+          "text": "llave?"
+        },
+        {
+          "responseId": "es:lesson-05:session-23:i05:r5",
+          "text": "tienes."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — у вас есть ключ? Начните с ¿Usted",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Usted tiene una llave?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — у вас есть ключ? Начните с ¿Usted",
+          "uk": "Зберіть фразу — ви маєте ключ? Почніть з ¿Usted"
+        },
+        "orderedTokens": [
+          "¿Usted",
+          "tiene",
+          "una",
+          "llave"
+        ],
+        "authoredDistractorTokens": [
+          "tienes"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-23:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — у вас есть ключ? Начните с ¿Usted",
+            "feedbackByLocale": {
+              "ru": "с usted используется tiene.",
+              "uk": "з usted використовується tiene."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-23:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — у тебя есть книга? Начните с ¿Tú",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-23:i06:r1",
+          "text": "Плитки: libro?"
+        },
+        {
+          "responseId": "es:lesson-05:session-23:i06:r2",
+          "text": "tienes"
+        },
+        {
+          "responseId": "es:lesson-05:session-23:i06:r3",
+          "text": "¿Tú"
+        },
+        {
+          "responseId": "es:lesson-05:session-23:i06:r4",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-05:session-23:i06:r5",
+          "text": "tiene."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — у тебя есть книга? Начните с ¿Tú",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Tú tienes un libro?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — у тебя есть книга? Начните с ¿Tú",
+          "uk": "Зберіть фразу — ти маєш книжку? Почніть з ¿Tú"
+        },
+        "orderedTokens": [
+          "¿Tú",
+          "tienes",
+          "un",
+          "libro"
+        ],
+        "authoredDistractorTokens": [
+          "tiene"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-23:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — у тебя есть книга? Начните с ¿Tú",
+            "feedbackByLocale": {
+              "ru": "с tú нужно tienes.",
+              "uk": "з tú потрібно tienes."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-23:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-23:i07:r1",
+          "text": "Плитки: tienes"
+        },
+        {
+          "responseId": "es:lesson-05:session-23:i07:r2",
+          "text": "tiempo?"
+        },
+        {
+          "responseId": "es:lesson-05:session-23:i07:r3",
+          "text": "¿Tú"
+        },
+        {
+          "responseId": "es:lesson-05:session-23:i07:r4",
+          "text": "tiene."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-23:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-23:i07:audio",
+          "transcript": "¿Tú tienes tiempo?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "¿Tú tienes tiempo?",
+        "orderedTokens": [
+          "¿Tú",
+          "tienes",
+          "tiempo"
+        ],
+        "authoredDistractorTokens": [
+          "tiene"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-23:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит tienes.",
+              "uk": "звучить tienes."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-23:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — у вас есть время? Обращение на «вы»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-23:i08:r1",
+          "text": "tiene"
+        },
+        {
+          "responseId": "es:lesson-05:session-23:i08:r2",
+          "text": "tienes"
+        },
+        {
+          "responseId": "es:lesson-05:session-23:i08:r3",
+          "text": "tener"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — у вас есть время? Обращение на «вы»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — у вас есть время? Обращение на «вы»",
+          "uk": "Вставте слово — ви маєте час? Звернення на «ви»"
+        },
+        "gappedTargetPhrase": "¿Usted ___ tiempo?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-23:i08:r1",
+            "text": "tiene"
+          },
+          {
+            "responseId": "es:lesson-05:session-23:i08:r2",
+            "text": "tienes"
+          },
+          {
+            "responseId": "es:lesson-05:session-23:i08:r3",
+            "text": "tener"
+          }
+        ],
+        "testedDimension": "Вставьте слово — у вас есть время? Обращение на «вы»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-23:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у вас есть время? Обращение на «вы»",
+            "feedbackByLocale": {
+              "ru": "С usted нужна форма tiene.",
+              "uk": "З usted потрібна форма tiene."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-23:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у вас есть время? Обращение на «вы»",
+            "feedbackByLocale": {
+              "ru": "Нужна личная форма tiene.",
+              "uk": "Потрібна особова форма tiene."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-23:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — у тебя есть время? Начните с ¿Tú tienes",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-23:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — у тебя есть время? Начните с ¿Tú tienes",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-23:i09:audio",
+          "transcript": "¿Tú tienes tiempo?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Tú tienes tiempo?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-23:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — у вас есть ключ? Начните с ¿Usted tiene",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-23:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — у вас есть ключ? Начните с ¿Usted tiene",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-23:i10:audio",
+          "transcript": "¿Usted tiene una llave?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Usted tiene una llave?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-23:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — у тебя есть книга? Начните с ¿Tú tienes",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-23:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — у тебя есть книга? Начните с ¿Tú tienes",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-23:i11:audio",
+          "transcript": "¿Tú tienes un libro?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Tú tienes un libro?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-23:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — у вас есть время? Начните с ¿Usted tiene",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-23:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — у вас есть время? Начните с ¿Usted tiene",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-23:i12:audio",
+          "transcript": "¿Usted tiene tiempo?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Usted tiene tiempo?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "e0078c3861236f7ae3eb9fcff845f8a511bbad4ae61876ad7c24ecee00f24e73"
+}

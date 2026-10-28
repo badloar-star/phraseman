@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-05:session-22",
+  "learningOutcomeByLocale": {
+    "ru": "соединить usted с tiene в вопросе.",
+    "uk": "поєднати usted із tiene в запитанні."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-05:session-22:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Минута для разговора",
+        "uk": "Хвилина для розмови"
+      },
+      "bodyByLocale": {
+        "ru": "Хотите поговорить с новым соседом и обращаетесь к нему на «вы»: `¿Usted tiene tiempo?` — «У вас есть время?» Соберите `¿Usted` + `tiene` + `tiempo?`. Usted — вежливое обращение к одному человеку. Хотя вопрос адресован собеседнику, с usted нужна форма tiene, без s. Здесь не tienes, которое сочетается с tú.",
+        "uk": "Хочете поговорити з новим сусідом і звертаєтеся до нього на «ви»: `¿Usted tiene tiempo?` — «Ви маєте час?» Зберіть `¿Usted` + `tiene` + `tiempo?`. Usted — ввічливе звернення до однієї людини. Хоча запитання адресоване співрозмовнику, з usted потрібна форма tiene, без s. Тут не tienes, що поєднується з tú."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-22:intro1:q",
+        "promptByLocale": {
+          "ru": "Вежливо спросите одного человека «У вас есть время?» Начните с ¿Usted.",
+          "uk": "Ввічливо запитайте одну людину «Ви маєте час?» Почніть з ¿Usted."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-22:intro1:r1",
+              "text": "¿Usted tiene tiempo?"
+            },
+            {
+              "responseId": "es:lesson-05:session-22:intro1:r2",
+              "text": "¿Usted tienes tiempo?"
+            },
+            {
+              "responseId": "es:lesson-05:session-22:intro1:r3",
+              "text": "¿Usted tengo tiempo?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-22:intro1:r1",
+              "text": "¿Usted tiene tiempo?"
+            },
+            {
+              "responseId": "es:lesson-05:session-22:intro1:r2",
+              "text": "¿Usted tienes tiempo?"
+            },
+            {
+              "responseId": "es:lesson-05:session-22:intro1:r3",
+              "text": "¿Usted tengo tiempo?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вежливо спросите одного человека «У вас есть время?» Начните с ¿Usted.",
+          "uk": "Ввічливо запитайте одну людину «Ви маєте час?» Почніть з ¿Usted."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-05:session-22:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ключ у соседа",
+        "uk": "Ключ у сусіда"
+      },
+      "bodyByLocale": {
+        "ru": "Стоите с соседом у общей двери и вежливо спрашиваете `¿Usted tiene una llave?` — «У вас есть ключ?» Соберите `¿Usted` + `tiene` + `una llave?`. Сохраняем начало usted tiene и добавляем нужную вещь. Llave женского рода, поэтому una llave. Вопрос адресован одному человеку.",
+        "uk": "Стоїте із сусідом біля спільних дверей і ввічливо питаєте `¿Usted tiene una llave?` — «Ви маєте ключ?» Зберіть `¿Usted` + `tiene` + `una llave?`. Зберігаємо початок usted tiene й додаємо потрібну річ. Llave жіночого роду, тому una llave. Запитання адресоване одній людині."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-22:intro2:q",
+        "promptByLocale": {
+          "ru": "Вежливо спросите «У вас есть ключ?» Начните с ¿Usted tiene.",
+          "uk": "Ввічливо запитайте «Ви маєте ключ?» Почніть з ¿Usted tiene."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-22:intro2:r1",
+              "text": "¿Usted tiene una llave?"
+            },
+            {
+              "responseId": "es:lesson-05:session-22:intro2:r2",
+              "text": "¿Usted tiene un llave?"
+            },
+            {
+              "responseId": "es:lesson-05:session-22:intro2:r3",
+              "text": "¿Usted tener una llave?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-22:intro2:r1",
+              "text": "¿Usted tiene una llave?"
+            },
+            {
+              "responseId": "es:lesson-05:session-22:intro2:r2",
+              "text": "¿Usted tiene un llave?"
+            },
+            {
+              "responseId": "es:lesson-05:session-22:intro2:r3",
+              "text": "¿Usted tener una llave?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вежливо спросите «У вас есть ключ?» Начните с ¿Usted tiene.",
+          "uk": "Ввічливо запитайте «Ви маєте ключ?» Почніть з ¿Usted tiene."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-05:session-22:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Книга для чтения",
+        "uk": "Книжка для читання"
+      },
+      "bodyByLocale": {
+        "ru": "Обращаетесь к одному новому знакомому на «вы» и уточняете, есть ли у него книга: `¿Usted tiene un libro?` — «У вас есть книга?» Соберите `¿Usted` + `tiene` + `un libro?`. После usted tiene называем предмет: un libro. В этой форме обращения пол собеседника ничего не меняет.",
+        "uk": "Звертаєтеся до одного нового знайомого на «ви» й уточнюєте, чи має він книжку: `¿Usted tiene un libro?` — «Ви маєте книжку?» Зберіть `¿Usted` + `tiene` + `un libro?`. Після usted tiene називаємо предмет: un libro. У цій формі звернення стать співрозмовника нічого не змінює."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-22:intro3:q",
+        "promptByLocale": {
+          "ru": "Вежливо спросите «У вас есть книга?» Начните с ¿Usted tiene.",
+          "uk": "Ввічливо запитайте «Ви маєте книжку?» Почніть з ¿Usted tiene."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-22:intro3:r1",
+              "text": "¿Usted tiene un libro?"
+            },
+            {
+              "responseId": "es:lesson-05:session-22:intro3:r2",
+              "text": "¿Usted tienes un libro?"
+            },
+            {
+              "responseId": "es:lesson-05:session-22:intro3:r3",
+              "text": "¿Usted tiene una libro?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-22:intro3:r1",
+              "text": "¿Usted tiene un libro?"
+            },
+            {
+              "responseId": "es:lesson-05:session-22:intro3:r2",
+              "text": "¿Usted tienes un libro?"
+            },
+            {
+              "responseId": "es:lesson-05:session-22:intro3:r3",
+              "text": "¿Usted tiene una libro?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вежливо спросите «У вас есть книга?» Начните с ¿Usted tiene.",
+          "uk": "Ввічливо запитайте «Ви маєте книжку?» Почніть з ¿Usted tiene."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a47e1ebd603d57a8e1e746c47990ea834a05dd25c1df4309c9f20fe5c60110ad"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-05:session-23",
+  "learningOutcomeByLocale": {
+    "ru": "подобрать форму tienes к tú или tiene к usted.",
+    "uk": "дібрати форму tienes до tú або tiene до usted."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-05:session-23:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Вопрос другу",
+        "uk": "Запитання другові"
+      },
+      "bodyByLocale": {
+        "ru": "С другом вы общаетесь на «ты». Спросите `¿Tú tienes tiempo?` — «У тебя есть время?» Соберите `¿Tú` + `tienes` + `tiempo?`. В этом занятии называем обращение явно: после tú нужна форма tienes с s на конце. Выбранное «ты» определяет форму глагола.",
+        "uk": "З другом ви спілкуєтеся на «ти». Запитайте `¿Tú tienes tiempo?` — «Ти маєш час?» Зберіть `¿Tú` + `tienes` + `tiempo?`. У цьому занятті називаємо звернення явно: після tú потрібна форма tienes із s наприкінці. Обране «ти» визначає форму дієслова."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-23:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите друга о времени. Начните с ¿Tú tienes.",
+          "uk": "Запитайте друга про час. Почніть з ¿Tú tienes."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-23:intro1:r1",
+              "text": "¿Tú tienes tiempo?"
+            },
+            {
+              "responseId": "es:lesson-05:session-23:intro1:r2",
+              "text": "¿Tú tiene tiempo?"
+            },
+            {
+              "responseId": "es:lesson-05:session-23:intro1:r3",
+              "text": "¿Tú tengo tiempo?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-23:intro1:r1",
+              "text": "¿Tú tienes tiempo?"
+            },
+            {
+              "responseId": "es:lesson-05:session-23:intro1:r2",
+              "text": "¿Tú tiene tiempo?"
+            },
+            {
+              "responseId": "es:lesson-05:session-23:intro1:r3",
+              "text": "¿Tú tengo tiempo?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите друга о времени. Начните с ¿Tú tienes.",
+          "uk": "Запитайте друга про час. Почніть з ¿Tú tienes."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-05:session-23:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Новый сосед",
+        "uk": "Новий сусід"
+      },
+      "bodyByLocale": {
+        "ru": "С новым соседом вы пока общаетесь на «вы». У двери спросите `¿Usted tiene una llave?` — «У вас есть ключ?» Соберите `¿Usted` + `tiene` + `una llave?`. Для выбранного вежливого обращения к одному человеку используем usted tiene, без s у глагола. Не смешиваем usted и tienes.",
+        "uk": "З новим сусідом ви поки спілкуєтеся на «ви». Біля дверей запитайте `¿Usted tiene una llave?` — «Ви маєте ключ?» Зберіть `¿Usted` + `tiene` + `una llave?`. Для обраного ввічливого звернення до однієї людини використовуємо usted tiene, без s у дієслова. Не змішуємо usted і tienes."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-23:intro2:q",
+        "promptByLocale": {
+          "ru": "Спросите соседа о ключе на «вы». Начните с ¿Usted tiene.",
+          "uk": "Запитайте сусіда про ключ на «ви». Почніть з ¿Usted tiene."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-23:intro2:r1",
+              "text": "¿Usted tiene una llave?"
+            },
+            {
+              "responseId": "es:lesson-05:session-23:intro2:r2",
+              "text": "¿Usted tienes una llave?"
+            },
+            {
+              "responseId": "es:lesson-05:session-23:intro2:r3",
+              "text": "¿Usted tiene un llave?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-23:intro2:r1",
+              "text": "¿Usted tiene una llave?"
+            },
+            {
+              "responseId": "es:lesson-05:session-23:intro2:r2",
+              "text": "¿Usted tienes una llave?"
+            },
+            {
+              "responseId": "es:lesson-05:session-23:intro2:r3",
+              "text": "¿Usted tiene un llave?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите соседа о ключе на «вы». Начните с ¿Usted tiene.",
+          "uk": "Запитайте сусіда про ключ на «ви». Почніть з ¿Usted tiene."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-05:session-23:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Книга у подруги",
+        "uk": "Книжка в подруги"
+      },
+      "bodyByLocale": {
+        "ru": "С подругой вы на «ты». Спросите `¿Tú tienes un libro?` — «У тебя есть книга?» Соберите `¿Tú` + `tienes` + `un libro?`. После tú снова выбираем tienes. Пол собеседника не меняет эту форму: и другу, и подруге при обращении на «ты» говорим tú tienes.",
+        "uk": "З подругою ви на «ти». Запитайте `¿Tú tienes un libro?` — «Ти маєш книжку?» Зберіть `¿Tú` + `tienes` + `un libro?`. Після tú знову обираємо tienes. Стать співрозмовника не змінює цієї форми: і другові, і подрузі при зверненні на «ти» кажемо tú tienes."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-23:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите подругу о книге. Начните с ¿Tú tienes.",
+          "uk": "Запитайте подругу про книжку. Почніть з ¿Tú tienes."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-23:intro3:r1",
+              "text": "¿Tú tienes un libro?"
+            },
+            {
+              "responseId": "es:lesson-05:session-23:intro3:r2",
+              "text": "¿Tú tiene un libro?"
+            },
+            {
+              "responseId": "es:lesson-05:session-23:intro3:r3",
+              "text": "¿Tú tienes una libro?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-23:intro3:r1",
+              "text": "¿Tú tienes un libro?"
+            },
+            {
+              "responseId": "es:lesson-05:session-23:intro3:r2",
+              "text": "¿Tú tiene un libro?"
+            },
+            {
+              "responseId": "es:lesson-05:session-23:intro3:r3",
+              "text": "¿Tú tienes una libro?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите подругу о книге. Начните с ¿Tú tienes.",
+          "uk": "Запитайте подругу про книжку. Почніть з ¿Tú tienes."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "9fc58828120066f142cc90bd7206f4ce58fc098aafdbf548ef16cd5aa9bed8c2"
+}

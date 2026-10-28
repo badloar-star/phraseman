@@ -1715,4 +1715,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"поставить no перед tiene в рассказе о другом человеке.","uk":"поставити no перед tiene в розповіді про іншу людину."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 5, sessionOrdinal: 21,
+    sourceFingerprint: "dd0f863f6eb4ed09afc91d663ecbe2cffa505f931abb296257578970e04cb483",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"задать вопрос с именем и tiene.","uk":"поставити запитання з ім’ям і tiene."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 5, sessionOrdinal: 22,
+    sourceFingerprint: "6495adbe5264d47b75802b49c1a900ed010893320b25399a1e3d54ebff48cdbf",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"соединить usted с tiene в вопросе.","uk":"поєднати usted із tiene в запитанні."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 5, sessionOrdinal: 23,
+    sourceFingerprint: "8817a91cf44096911deb297513af3077ac4cd0e84d25f2eaa8a6d43eae3c3904",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"подобрать форму tienes к tú или tiene к usted.","uk":"дібрати форму tienes до tú або tiene до usted."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 5, sessionOrdinal: 24,
+    sourceFingerprint: "474ff2f3ab89a8f863a1081669ac2bc524e4fc882728b2dfb36d4e309c205d3d",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"закрепить tiene о другом человеке и в обращении usted, отличая его от tienes с tú.","uk":"закріпити tiene про іншу людину й у зверненні usted, відрізняючи його від tienes із tú."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
+  }),
 ]);

@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-05:session-23:i01",
+    "correctText": "tienes",
+    "correctResponseId": "es:lesson-05:session-23:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-23:i02",
+    "correctText": "tienes",
+    "correctResponseId": "es:lesson-05:session-23:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-23:i03",
+    "correctText": "¿Tú tienes tiempo?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-23:i04",
+    "correctText": "tiene",
+    "correctResponseId": "es:lesson-05:session-23:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-23:i05",
+    "correctText": "¿Usted tiene una llave?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-23:i06",
+    "correctText": "¿Tú tienes un libro?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-23:i07",
+    "correctText": "¿Tú tienes tiempo?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-23:i08",
+    "correctText": "tiene",
+    "correctResponseId": "es:lesson-05:session-23:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-23:i09",
+    "correctText": "¿Tú tienes tiempo?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-23:i10",
+    "correctText": "¿Usted tiene una llave?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-23:i11",
+    "correctText": "¿Tú tienes un libro?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-23:i12",
+    "correctText": "¿Usted tiene tiempo?",
+    "correctResponseId": null
+  }
+]

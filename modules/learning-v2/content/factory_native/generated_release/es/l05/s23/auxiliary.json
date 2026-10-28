@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-05:session-23",
+  "entries": [
+    {
+      "interactionId": "es:lesson-05:session-23:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-23:intro1:r2": {
+          "ru": "С tú нужна форма tienes с s.",
+          "uk": "З tú потрібна форма tienes із s."
+        },
+        "es:lesson-05:session-23:intro1:r3": {
+          "ru": "Tengo — о себе, а вы спрашиваете друга.",
+          "uk": "Tengo — про себе, а ви питаєте друга."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-23:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-23:intro2:r2": {
+          "ru": "С usted нужна форма tiene.",
+          "uk": "З usted потрібна форма tiene."
+        },
+        "es:lesson-05:session-23:intro2:r3": {
+          "ru": "Llave женского рода: una.",
+          "uk": "Llave жіночого роду: una."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-23:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-23:intro3:r2": {
+          "ru": "С tú нужно tienes.",
+          "uk": "З tú потрібно tienes."
+        },
+        "es:lesson-05:session-23:intro3:r3": {
+          "ru": "Libro мужского рода: un.",
+          "uk": "Libro чоловічого роду: un."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c42fa03b88261f4dc6dfa188898e9bdda0ca58800e197717fa7db21d0373d2ad"
+}

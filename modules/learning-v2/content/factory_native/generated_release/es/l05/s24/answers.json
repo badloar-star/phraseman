@@ -1,0 +1,92 @@
+[
+  {
+    "interactionId": "es:lesson-05:session-24:i01",
+    "correctText": "tiene",
+    "correctResponseId": "es:lesson-05:session-24:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-24:i02",
+    "correctText": "tiene",
+    "correctResponseId": "es:lesson-05:session-24:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-24:i03",
+    "correctText": "¿Ana tiene tiempo?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-24:i04",
+    "correctText": "no",
+    "correctResponseId": "es:lesson-05:session-24:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-24:i05",
+    "correctText": "Pedro no tiene carro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-24:i06",
+    "correctText": "¿Usted tiene una llave?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-24:i07",
+    "correctText": "¿Ana tiene tiempo?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-24:i08",
+    "correctText": "tienes",
+    "correctResponseId": "es:lesson-05:session-24:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-24:i09",
+    "correctText": "¿Ana tiene tiempo?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-24:i10",
+    "correctText": "Pedro no tiene carro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-24:i11",
+    "correctText": "¿Usted tiene una llave?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-24:i12",
+    "correctText": "¿Tú tienes un libro?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-24:i13",
+    "correctText": "tiene",
+    "correctResponseId": "es:lesson-05:session-24:i13:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-24:i14",
+    "correctText": "Ella tiene una caja.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-24:i15",
+    "correctText": "tiene",
+    "correctResponseId": "es:lesson-05:session-24:i15:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-24:i16",
+    "correctText": "Él no tiene tiempo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-24:i17",
+    "correctText": "Ella tiene una caja.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-24:i18",
+    "correctText": "Él no tiene tiempo.",
+    "correctResponseId": null
+  }
+]

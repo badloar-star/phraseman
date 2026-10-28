@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-05:session-22",
+  "entries": [
+    {
+      "interactionId": "es:lesson-05:session-22:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-22:intro1:r2": {
+          "ru": "С usted нужна форма tiene.",
+          "uk": "З usted потрібна форма tiene."
+        },
+        "es:lesson-05:session-22:intro1:r3": {
+          "ru": "Tengo — о себе; с usted нужно tiene.",
+          "uk": "Tengo — про себе; з usted потрібно tiene."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-22:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-22:intro2:r2": {
+          "ru": "Перед llave нужно una.",
+          "uk": "Перед llave потрібно una."
+        },
+        "es:lesson-05:session-22:intro2:r3": {
+          "ru": "Нужна личная форма tiene.",
+          "uk": "Потрібна особова форма tiene."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-22:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-22:intro3:r2": {
+          "ru": "После usted — tiene без s.",
+          "uk": "Після usted — tiene без s."
+        },
+        "es:lesson-05:session-22:intro3:r3": {
+          "ru": "Libro мужского рода: un.",
+          "uk": "Libro чоловічого роду: un."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "31b5601c1587b09407a76668c6c764c2f9102aa3b66d08f0dc423e327bf2528d"
+}

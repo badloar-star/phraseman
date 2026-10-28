@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-03:session-34:i01",
+    "correctText": "joven",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-34:i02",
+    "correctText": "joven",
+    "correctResponseId": "es:lesson-03:session-34:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-34:i03",
+    "correctText": "Ana es joven.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-34:i04",
+    "correctText": "joven",
+    "correctResponseId": "es:lesson-03:session-34:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-34:i05",
+    "correctText": "Luis es joven.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-34:i06",
+    "correctText": "jóvenes",
+    "correctResponseId": "es:lesson-03:session-34:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-34:i07",
+    "correctText": "Son jóvenes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-34:i08",
+    "correctText": "Son muy jóvenes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-34:i09",
+    "correctText": "Ana es joven.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-34:i10",
+    "correctText": "Luis es joven.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-34:i11",
+    "correctText": "Son jóvenes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-34:i12",
+    "correctText": "Son muy jóvenes.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,92 @@
+[
+  {
+    "interactionId": "es:lesson-03:session-32:i01",
+    "correctText": "ligera",
+    "correctResponseId": "es:lesson-03:session-32:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-32:i02",
+    "correctText": "La maleta es ligera.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-32:i03",
+    "correctText": "resistente",
+    "correctResponseId": "es:lesson-03:session-32:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-32:i04",
+    "correctText": "El bolso es resistente.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-32:i05",
+    "correctText": "frágiles",
+    "correctResponseId": "es:lesson-03:session-32:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-32:i06",
+    "correctText": "Las tazas son frágiles.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-32:i07",
+    "correctText": "suave",
+    "correctResponseId": "es:lesson-03:session-32:i07:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-32:i08",
+    "correctText": "dura",
+    "correctResponseId": "es:lesson-03:session-32:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-32:i09",
+    "correctText": "La caja no es pesada.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-32:i10",
+    "correctText": "caros",
+    "correctResponseId": "es:lesson-03:session-32:i10:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-32:i11",
+    "correctText": "baratas",
+    "correctResponseId": "es:lesson-03:session-32:i11:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-32:i12",
+    "correctText": "cómodos",
+    "correctResponseId": "es:lesson-03:session-32:i12:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-32:i13",
+    "correctText": "La maleta es ligera.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-32:i14",
+    "correctText": "El bolso es resistente.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-32:i15",
+    "correctText": "Las tazas son frágiles.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-32:i16",
+    "correctText": "La almohada es suave.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-32:i17",
+    "correctText": "La caja no es pesada.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-32:i18",
+    "correctText": "Los zapatos son cómodos.",
+    "correctResponseId": null
+  }
+]

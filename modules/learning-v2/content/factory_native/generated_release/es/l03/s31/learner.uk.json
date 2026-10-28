@@ -1,0 +1,699 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-03:session-31",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-03:session-31:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — про la caja: вона не маленька",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-31:i01:r1",
+          "text": "pequeña"
+        },
+        {
+          "responseId": "es:lesson-03:session-31:i01:r2",
+          "text": "pequeño"
+        },
+        {
+          "responseId": "es:lesson-03:session-31:i01:r3",
+          "text": "pequeñas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — про la caja: вона не маленька",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — о la caja: она не маленькая",
+          "uk": "Вставте слово — про la caja: вона не маленька"
+        },
+        "gappedTargetPhrase": "No es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-31:i01:r1",
+            "text": "pequeña"
+          },
+          {
+            "responseId": "es:lesson-03:session-31:i01:r2",
+            "text": "pequeño"
+          },
+          {
+            "responseId": "es:lesson-03:session-31:i01:r3",
+            "text": "pequeñas"
+          }
+        ],
+        "testedDimension": "Вставте слово — про la caja: вона не маленька",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-31:i01:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — про la caja: вона не маленька",
+            "feedbackByLocale": {
+              "ru": "Caja женского рода: pequeña.",
+              "uk": "Caja жіночого роду: pequeña."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-31:i01:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — про la caja: вона не маленька",
+            "feedbackByLocale": {
+              "ru": "Коробка одна: pequeña.",
+              "uk": "Коробка одна: pequeña."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-31:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — про la caja: вона не маленька; без назви предмета",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-31:i02:r1",
+          "text": "Плитки: pequeña"
+        },
+        {
+          "responseId": "es:lesson-03:session-31:i02:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-31:i02:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-03:session-31:i02:r4",
+          "text": "pequeño."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — про la caja: вона не маленька; без назви предмета",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No es pequeña.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — о la caja: она не маленькая; без названия предмета",
+          "uk": "Зберіть фразу — про la caja: вона не маленька; без назви предмета"
+        },
+        "orderedTokens": [
+          "No",
+          "es",
+          "pequeña"
+        ],
+        "authoredDistractorTokens": [
+          "pequeño"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-31:i02:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — про la caja: вона не маленька; без назви предмета",
+            "feedbackByLocale": {
+              "ru": "описываем caja.",
+              "uk": "описуємо caja."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-31:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — коробка не важка",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-31:i03:r1",
+          "text": "pesada"
+        },
+        {
+          "responseId": "es:lesson-03:session-31:i03:r2",
+          "text": "pesado"
+        },
+        {
+          "responseId": "es:lesson-03:session-31:i03:r3",
+          "text": "pesadas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — коробка не важка",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — коробка не тяжёлая",
+          "uk": "Вставте слово — коробка не важка"
+        },
+        "gappedTargetPhrase": "La caja no es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-31:i03:r1",
+            "text": "pesada"
+          },
+          {
+            "responseId": "es:lesson-03:session-31:i03:r2",
+            "text": "pesado"
+          },
+          {
+            "responseId": "es:lesson-03:session-31:i03:r3",
+            "text": "pesadas"
+          }
+        ],
+        "testedDimension": "Вставте слово — коробка не важка",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-31:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — коробка не важка",
+            "feedbackByLocale": {
+              "ru": "Caja женского рода: pesada.",
+              "uk": "Caja жіночого роду: pesada."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-31:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — коробка не важка",
+            "feedbackByLocale": {
+              "ru": "Коробка одна: pesada.",
+              "uk": "Коробка одна: pesada."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-31:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — коробка не важка",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-31:i04:r1",
+          "text": "Плитки: pesada"
+        },
+        {
+          "responseId": "es:lesson-03:session-31:i04:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-31:i04:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-03:session-31:i04:r4",
+          "text": "caja"
+        },
+        {
+          "responseId": "es:lesson-03:session-31:i04:r5",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-03:session-31:i04:r6",
+          "text": "pesado."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — коробка не важка",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "La caja no es pesada.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — коробка не тяжёлая",
+          "uk": "Зберіть фразу — коробка не важка"
+        },
+        "orderedTokens": [
+          "La",
+          "caja",
+          "no",
+          "es",
+          "pesada"
+        ],
+        "authoredDistractorTokens": [
+          "pesado"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-31:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — коробка не важка",
+            "feedbackByLocale": {
+              "ru": "caja женского рода.",
+              "uk": "caja жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-31:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — коробки не великі",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-31:i05:r1",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-31:i05:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-31:i05:r3",
+          "text": "soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — коробки не великі",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — коробки не большие",
+          "uk": "Вставте слово — коробки не великі"
+        },
+        "gappedTargetPhrase": "Las cajas no ___ grandes.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-31:i05:r1",
+            "text": "son"
+          },
+          {
+            "responseId": "es:lesson-03:session-31:i05:r2",
+            "text": "es"
+          },
+          {
+            "responseId": "es:lesson-03:session-31:i05:r3",
+            "text": "soy"
+          }
+        ],
+        "testedDimension": "Вставте слово — коробки не великі",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-31:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — коробки не великі",
+            "feedbackByLocale": {
+              "ru": "Коробок несколько: son.",
+              "uk": "Коробок кілька: son."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-31:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — коробки не великі",
+            "feedbackByLocale": {
+              "ru": "Речь о коробках, не о себе: son.",
+              "uk": "Йдеться про коробки, не про себе: son."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-31:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — коробки не великі",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-31:i06:r1",
+          "text": "Плитки: grandes"
+        },
+        {
+          "responseId": "es:lesson-03:session-31:i06:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-31:i06:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-03:session-31:i06:r4",
+          "text": "cajas"
+        },
+        {
+          "responseId": "es:lesson-03:session-31:i06:r5",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-03:session-31:i06:r6",
+          "text": "grande."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — коробки не великі",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Las cajas no son grandes.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — коробки не большие",
+          "uk": "Зберіть фразу — коробки не великі"
+        },
+        "orderedTokens": [
+          "Las",
+          "cajas",
+          "no",
+          "son",
+          "grandes"
+        ],
+        "authoredDistractorTokens": [
+          "grande"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-31:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — коробки не великі",
+            "feedbackByLocale": {
+              "ru": "коробок несколько.",
+              "uk": "коробок кілька."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-31:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-31:i07:r1",
+          "text": "Плитки: pesadas"
+        },
+        {
+          "responseId": "es:lesson-03:session-31:i07:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-31:i07:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-03:session-31:i07:r4",
+          "text": "cajas"
+        },
+        {
+          "responseId": "es:lesson-03:session-31:i07:r5",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-03:session-31:i07:r6",
+          "text": "pesada."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-31:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-31:i07:audio",
+          "transcript": "Las cajas no son pesadas."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Las cajas no son pesadas.",
+        "orderedTokens": [
+          "Las",
+          "cajas",
+          "no",
+          "son",
+          "pesadas"
+        ],
+        "authoredDistractorTokens": [
+          "pesada"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-31:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит pesadas.",
+              "uk": "звучить pesadas."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-31:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — кілька коробок не важкі",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-31:i08:r1",
+          "text": "pesadas"
+        },
+        {
+          "responseId": "es:lesson-03:session-31:i08:r2",
+          "text": "pesados"
+        },
+        {
+          "responseId": "es:lesson-03:session-31:i08:r3",
+          "text": "pesada"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — кілька коробок не важкі",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — несколько коробок не тяжёлые",
+          "uk": "Вставте слово — кілька коробок не важкі"
+        },
+        "gappedTargetPhrase": "Las cajas no son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-31:i08:r1",
+            "text": "pesadas"
+          },
+          {
+            "responseId": "es:lesson-03:session-31:i08:r2",
+            "text": "pesados"
+          },
+          {
+            "responseId": "es:lesson-03:session-31:i08:r3",
+            "text": "pesada"
+          }
+        ],
+        "testedDimension": "Вставте слово — кілька коробок не важкі",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-31:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — кілька коробок не важкі",
+            "feedbackByLocale": {
+              "ru": "Cajas женского рода: pesadas.",
+              "uk": "Cajas жіночого роду: pesadas."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-31:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — кілька коробок не важкі",
+            "feedbackByLocale": {
+              "ru": "Коробок несколько: pesadas.",
+              "uk": "Коробок кілька: pesadas."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-31:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — про la caja: вона не маленька; без назви предмета",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-31:i09:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — про la caja: вона не маленька; без назви предмета",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-31:i09:audio",
+          "transcript": "No es pequeña."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No es pequeña.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-31:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — коробка не важка; назвіть предмет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-31:i10:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — коробка не важка; назвіть предмет",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-31:i10:audio",
+          "transcript": "La caja no es pesada."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "La caja no es pesada.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-31:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — коробки не великі; назвіть предмети",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-31:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — коробки не великі; назвіть предмети",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-31:i11:audio",
+          "transcript": "Las cajas no son grandes."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Las cajas no son grandes.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-31:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — коробки не важкі; назвіть предмети",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-31:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — коробки не важкі; назвіть предмети",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-31:i12:audio",
+          "transcript": "Las cajas no son pesadas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Las cajas no son pesadas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "af0b806ceee90926769c26fc1f5a5c05d406eb93477cca589780b381a421b65c"
+}

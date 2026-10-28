@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-03:session-32",
+  "learningOutcomeByLocale": {
+    "ru": "самостоятельно описать вес, прочность и другие качества вещей.",
+    "uk": "самостійно описувати вагу, міцність та інші якості речей."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-03:session-32:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Чемодан удобно нести",
+        "uk": "Валізу зручно нести"
+      },
+      "bodyByLocale": {
+        "ru": "Выбрали лёгкий пустой чемодан. Скажите `La maleta es ligera` — «Чемодан лёгкий». Соберите `la maleta` + `es` + `ligera`. Maleta женского рода, поэтому у ligero окончание -a. Название вещи определяет форму признака.",
+        "uk": "Обрали легку порожню валізу. Скажіть `La maleta es ligera` — «Валіза легка». Зберіть `la maleta` + `es` + `ligera`. Maleta жіночого роду, тому ligero має закінчення -a. Назва речі визначає форму ознаки."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-32:intro1:q",
+        "promptByLocale": {
+          "ru": "Опишите лёгкий чемодан.",
+          "uk": "Опишіть легку валізу."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-32:intro1:r1",
+              "text": "La maleta es ligera."
+            },
+            {
+              "responseId": "es:lesson-03:session-32:intro1:r2",
+              "text": "La maleta es ligero."
+            },
+            {
+              "responseId": "es:lesson-03:session-32:intro1:r3",
+              "text": "La maleta es ligeras."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-32:intro1:r1",
+              "text": "La maleta es ligera."
+            },
+            {
+              "responseId": "es:lesson-03:session-32:intro1:r2",
+              "text": "La maleta es ligero."
+            },
+            {
+              "responseId": "es:lesson-03:session-32:intro1:r3",
+              "text": "La maleta es ligeras."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Опишите лёгкий чемодан.",
+          "uk": "Опишіть легку валізу."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-03:session-32:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Сумка выдержит вещи",
+        "uk": "Сумка витримає речі"
+      },
+      "bodyByLocale": {
+        "ru": "Для дополнительных вещей берёте прочную сумку — el bolso. Скажите `El bolso es resistente` — «Сумка прочная». Соберите `el bolso` + `es` + `resistente`. У resistente одна форма для обоих родов. С мужским bolso не нужно менять -e на -o.",
+        "uk": "Для додаткових речей берете міцну сумку — el bolso. Скажіть `El bolso es resistente` — «Сумка міцна». Зберіть `el bolso` + `es` + `resistente`. У resistente одна форма для обох родів. Із чоловічим bolso не потрібно змінювати -e на -o."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-32:intro2:q",
+        "promptByLocale": {
+          "ru": "Опишите прочную сумку словом bolso.",
+          "uk": "Опишіть міцну сумку словом bolso."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-32:intro2:r1",
+              "text": "El bolso es resistente."
+            },
+            {
+              "responseId": "es:lesson-03:session-32:intro2:r2",
+              "text": "El bolso es resistento."
+            },
+            {
+              "responseId": "es:lesson-03:session-32:intro2:r3",
+              "text": "El bolso es resistentes."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-32:intro2:r1",
+              "text": "El bolso es resistente."
+            },
+            {
+              "responseId": "es:lesson-03:session-32:intro2:r2",
+              "text": "El bolso es resistento."
+            },
+            {
+              "responseId": "es:lesson-03:session-32:intro2:r3",
+              "text": "El bolso es resistentes."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Опишите прочную сумку словом bolso.",
+          "uk": "Опишіть міцну сумку словом bolso."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-03:session-32:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Чашки нужно защитить",
+        "uk": "Чашки потрібно захистити"
+      },
+      "bodyByLocale": {
+        "ru": "Везёте друзьям чашки. Напомните тому, кто помогает собираться: `Las tazas son frágiles` — «Чашки хрупкие». Соберите `las tazas` + `son` + `frágiles`. Чашек несколько, поэтому son и множественное frágiles. Женский род не меняет frágiles на форму с -as.",
+        "uk": "Везете друзям чашки. Нагадайте тому, хто допомагає збиратися: `Las tazas son frágiles` — «Чашки крихкі». Зберіть `las tazas` + `son` + `frágiles`. Чашок кілька, тому son і множинне frágiles. Жіночий рід не змінює frágiles на форму з -as."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-32:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите, что чашки хрупкие.",
+          "uk": "Скажіть, що чашки крихкі."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-32:intro3:r1",
+              "text": "Las tazas son frágiles."
+            },
+            {
+              "responseId": "es:lesson-03:session-32:intro3:r2",
+              "text": "Las tazas son frágil."
+            },
+            {
+              "responseId": "es:lesson-03:session-32:intro3:r3",
+              "text": "Las tazas son frágilas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-32:intro3:r1",
+              "text": "Las tazas son frágiles."
+            },
+            {
+              "responseId": "es:lesson-03:session-32:intro3:r2",
+              "text": "Las tazas son frágil."
+            },
+            {
+              "responseId": "es:lesson-03:session-32:intro3:r3",
+              "text": "Las tazas son frágilas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что чашки хрупкие.",
+          "uk": "Скажіть, що чашки крихкі."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "602d4a69245153cf2a832c6a3e2e78f61c3b71aea7cd540399e5fb4915d328b6"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-03:session-33",
+  "learningOutcomeByLocale": {
+    "ru": "использовать alto и bajo, согласуя описание с человеком.",
+    "uk": "використовувати alto і bajo, узгоджуючи опис із людиною."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-03:session-33:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Высокая Ана",
+        "uk": "Висока Ана"
+      },
+      "bodyByLocale": {
+        "ru": "На фотографии рядом стоят ваши друзья. Показываете Ану и говорите `Ana es alta` — «Ана высокая». Alto значит «высокий»; о женщине здесь говорим alta. Соберите `Ana` + `es` + `alta`. Перед именем в этой фразе артикль не нужен.",
+        "uk": "На фотографії поруч стоять ваші друзі. Показуєте Ану й кажете `Ana es alta` — «Ана висока». Alto означає «високий»; про жінку тут кажемо alta. Зберіть `Ana` + `es` + `alta`. Перед ім'ям у цій фразі артикль не потрібний."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-33:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите, что Ана высокая.",
+          "uk": "Скажіть, що Ана висока."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-33:intro1:r1",
+              "text": "Ana es alta."
+            },
+            {
+              "responseId": "es:lesson-03:session-33:intro1:r2",
+              "text": "Ana es alto."
+            },
+            {
+              "responseId": "es:lesson-03:session-33:intro1:r3",
+              "text": "Ana es altas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-33:intro1:r1",
+              "text": "Ana es alta."
+            },
+            {
+              "responseId": "es:lesson-03:session-33:intro1:r2",
+              "text": "Ana es alto."
+            },
+            {
+              "responseId": "es:lesson-03:session-33:intro1:r3",
+              "text": "Ana es altas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что Ана высокая.",
+          "uk": "Скажіть, що Ана висока."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-03:session-33:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Луис невысокого роста",
+        "uk": "Луїс невисокого зросту"
+      },
+      "bodyByLocale": {
+        "ru": "Знакомый спрашивает о Луисе на том же снимке. Скажите `Luis es bajo` — «Луис невысокого роста». Bajo в описании роста значит «низкий, невысокий». Соберите `Luis` + `es` + `bajo`. О мужчине используйте мужское bajo. Это описание роста, не оценка человека.",
+        "uk": "Знайомий запитує про Луїса на тому самому знімку. Скажіть `Luis es bajo` — «Луїс невисокого зросту». Bajo в описі зросту означає «низький, невисокий». Зберіть `Luis` + `es` + `bajo`. Про чоловіка використовуйте чоловіче bajo. Це опис зросту, не оцінка людини."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-33:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите, что Луис невысокого роста, используя bajo.",
+          "uk": "Скажіть, що Луїс невисокого зросту, використовуючи bajo."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-33:intro2:r1",
+              "text": "Luis es bajo."
+            },
+            {
+              "responseId": "es:lesson-03:session-33:intro2:r2",
+              "text": "Luis es baja."
+            },
+            {
+              "responseId": "es:lesson-03:session-33:intro2:r3",
+              "text": "Luis es bajos."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-33:intro2:r1",
+              "text": "Luis es bajo."
+            },
+            {
+              "responseId": "es:lesson-03:session-33:intro2:r2",
+              "text": "Luis es baja."
+            },
+            {
+              "responseId": "es:lesson-03:session-33:intro2:r3",
+              "text": "Luis es bajos."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что Луис невысокого роста, используя bajo.",
+          "uk": "Скажіть, що Луїс невисокого зросту, використовуючи bajo."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-03:session-33:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Не очень высокий",
+        "uk": "Не дуже високий"
+      },
+      "bodyByLocale": {
+        "ru": "Если хотите описать рост Луиса мягче, скажите `Luis no es muy alto` — «Луис не очень высокий». Соберите `Luis` + `no es` + `muy alto`. No перед es отрицает «очень высокий». Alto согласуется с Луисом, а muy не меняется.",
+        "uk": "Якщо хочете описати зріст Луїса м'якше, скажіть `Luis no es muy alto` — «Луїс не дуже високий». Зберіть `Luis` + `no es` + `muy alto`. No перед es заперечує «дуже високий». Alto узгоджується з Луїсом, а muy не змінюється."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-33:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите, что Луис не очень высокий.",
+          "uk": "Скажіть, що Луїс не дуже високий."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-33:intro3:r1",
+              "text": "Luis no es muy alto."
+            },
+            {
+              "responseId": "es:lesson-03:session-33:intro3:r2",
+              "text": "Luis no es muy alta."
+            },
+            {
+              "responseId": "es:lesson-03:session-33:intro3:r3",
+              "text": "Luis no son muy alto."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-33:intro3:r1",
+              "text": "Luis no es muy alto."
+            },
+            {
+              "responseId": "es:lesson-03:session-33:intro3:r2",
+              "text": "Luis no es muy alta."
+            },
+            {
+              "responseId": "es:lesson-03:session-33:intro3:r3",
+              "text": "Luis no son muy alto."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что Луис не очень высокий.",
+          "uk": "Скажіть, що Луїс не дуже високий."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "aae96f0f34a42632fe52759e364c5d625f1b1a74d7727eb4395fc1a416ba1c57"
+}

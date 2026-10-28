@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-03:session-32",
+  "entries": [
+    {
+      "interactionId": "es:lesson-03:session-32:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-32:intro1:r2": {
+          "ru": "Нужна форма ligera.",
+          "uk": "Потрібна форма ligera."
+        },
+        "es:lesson-03:session-32:intro1:r3": {
+          "ru": "Чемодан один: ligera.",
+          "uk": "Валіза одна: ligera."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-32:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-32:intro2:r2": {
+          "ru": "Не добавляйте мужское окончание: resistente.",
+          "uk": "Не додавайте чоловіче закінчення: resistente."
+        },
+        "es:lesson-03:session-32:intro2:r3": {
+          "ru": "Сумка одна: resistente.",
+          "uk": "Сумка одна: resistente."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-32:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-32:intro3:r2": {
+          "ru": "Нужна форма множественного числа.",
+          "uk": "Потрібна форма множини."
+        },
+        "es:lesson-03:session-32:intro3:r3": {
+          "ru": "Frágiles одинаково для обоих родов.",
+          "uk": "Frágiles однакове для обох родів."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "353a75ba13784590bb72097a28f10ff4bdf52249a32cc78fc8bfd27afecf7f15"
+}

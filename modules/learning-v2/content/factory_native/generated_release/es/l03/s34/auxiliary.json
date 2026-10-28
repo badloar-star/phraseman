@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-03:session-34",
+  "entries": [
+    {
+      "interactionId": "es:lesson-03:session-34:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-34:intro1:r2": {
+          "ru": "Формы jovena нет: joven.",
+          "uk": "Форми jovena немає: joven."
+        },
+        "es:lesson-03:session-34:intro1:r3": {
+          "ru": "Один человек: joven.",
+          "uk": "Одна людина: joven."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-34:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-34:intro2:r2": {
+          "ru": "Не добавляйте -o: joven.",
+          "uk": "Не додавайте -o: joven."
+        },
+        "es:lesson-03:session-34:intro2:r3": {
+          "ru": "Один человек: es.",
+          "uk": "Одна людина: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-34:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-34:intro3:r2": {
+          "ru": "Людей несколько: jóvenes.",
+          "uk": "Людей кілька: jóvenes."
+        },
+        "es:lesson-03:session-34:intro3:r3": {
+          "ru": "Для нескольких людей нужно son.",
+          "uk": "Для кількох людей потрібне son."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5e0726ccae428ff7187083d81f1aa2f09f18218d431229c818ac033437890a0f"
+}

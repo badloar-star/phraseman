@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-03:session-31",
+  "entries": [
+    {
+      "interactionId": "es:lesson-03:session-31:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-31:intro1:r2": {
+          "ru": "Подразумеваем caja женского рода: pequeña.",
+          "uk": "Маємо на увазі caja жіночого роду: pequeña."
+        },
+        "es:lesson-03:session-31:intro1:r3": {
+          "ru": "Коробка одна: es pequeña.",
+          "uk": "Коробка одна: es pequeña."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-31:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-31:intro2:r2": {
+          "ru": "Caja женского рода: pesada.",
+          "uk": "Caja жіночого роду: pesada."
+        },
+        "es:lesson-03:session-31:intro2:r3": {
+          "ru": "Коробка одна: es.",
+          "uk": "Коробка одна: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-31:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-31:intro3:r2": {
+          "ru": "Коробок несколько: son.",
+          "uk": "Коробок кілька: son."
+        },
+        "es:lesson-03:session-31:intro3:r3": {
+          "ru": "Несколько коробок: grandes.",
+          "uk": "Кілька коробок: grandes."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "7dded4a0fd58272476362e83c4cb99891a0b25870ccd00c1eb38592dd67903cb"
+}

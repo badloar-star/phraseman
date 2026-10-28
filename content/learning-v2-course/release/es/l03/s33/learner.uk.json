@@ -1,0 +1,886 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-03:session-33",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-03:session-33:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — alto",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-33:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — alto",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-33:i01:audio",
+          "transcript": "alto"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-33:i01:r1",
+            "targetText": "alto",
+            "meaningByLocale": {
+              "ru": "высокий; alta — женская форма. 🔊 *alto*",
+              "uk": "високий; alta — жіноча форма. 🔊 *alto*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "alto",
+          "definitionByLocale": {
+            "ru": "высокий; alta — женская форма. 🔊 *alto*",
+            "uk": "високий; alta — жіноча форма. 🔊 *alto*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-33:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-33:i02:r1",
+          "text": "alto"
+        },
+        {
+          "responseId": "es:lesson-03:session-33:i02:r2",
+          "text": "alta"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-33:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-33:i02:audio",
+          "transcript": "alto"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-33:i02:r1",
+            "targetText": "alto",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-03:session-33:i02:r2",
+            "targetText": "alta",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-33:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи окончание -o: alto.",
+              "uk": "У записі закінчення -o: alto."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-33:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — Ана висока",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-33:i03:r1",
+          "text": "Плитки: alta"
+        },
+        {
+          "responseId": "es:lesson-03:session-33:i03:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-33:i03:r3",
+          "text": "Ana"
+        },
+        {
+          "responseId": "es:lesson-03:session-33:i03:r4",
+          "text": "alto."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — Ана висока",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Ana es alta.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — Ана высокая",
+          "uk": "Зберіть фразу — Ана висока"
+        },
+        "orderedTokens": [
+          "Ana",
+          "es",
+          "alta"
+        ],
+        "authoredDistractorTokens": [
+          "alto"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-33:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — Ана висока",
+            "feedbackByLocale": {
+              "ru": "описываем женщину.",
+              "uk": "описуємо жінку."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-33:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — Ана висока",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-33:i04:r1",
+          "text": "alta"
+        },
+        {
+          "responseId": "es:lesson-03:session-33:i04:r2",
+          "text": "alto"
+        },
+        {
+          "responseId": "es:lesson-03:session-33:i04:r3",
+          "text": "altas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — Ана висока",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — Ана высокая",
+          "uk": "Вставте слово — Ана висока"
+        },
+        "gappedTargetPhrase": "Ana es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-33:i04:r1",
+            "text": "alta"
+          },
+          {
+            "responseId": "es:lesson-03:session-33:i04:r2",
+            "text": "alto"
+          },
+          {
+            "responseId": "es:lesson-03:session-33:i04:r3",
+            "text": "altas"
+          }
+        ],
+        "testedDimension": "Вставте слово — Ана висока",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-33:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — Ана висока",
+            "feedbackByLocale": {
+              "ru": "О женщине: alta.",
+              "uk": "Про жінку: alta."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-33:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — Ана висока",
+            "feedbackByLocale": {
+              "ru": "Один человек: alta.",
+              "uk": "Одна людина: alta."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-33:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bajo",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-33:i05:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bajo",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-33:i05:audio",
+          "transcript": "bajo"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-33:i05:r1",
+            "targetText": "bajo",
+            "meaningByLocale": {
+              "ru": "низкий, невысокий по росту; baja — женская форма. 🔊 *bajo*",
+              "uk": "низький, невисокий на зріст; baja — жіноча форма. 🔊 *bajo*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bajo",
+          "definitionByLocale": {
+            "ru": "низкий, невысокий по росту; baja — женская форма. 🔊 *bajo*",
+            "uk": "низький, невисокий на зріст; baja — жіноча форма. 🔊 *bajo*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-33:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-33:i06:r1",
+          "text": "bajo"
+        },
+        {
+          "responseId": "es:lesson-03:session-33:i06:r2",
+          "text": "alto"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-33:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-33:i06:audio",
+          "transcript": "bajo"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-33:i06:r1",
+            "targetText": "bajo",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-03:session-33:i06:r2",
+            "targetText": "alto",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-33:i06:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи слово начинается с ba: bajo.",
+              "uk": "У записі слово починається з ba: bajo."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-33:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — Луїс невисокого зросту; використайте bajo",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-33:i07:r1",
+          "text": "Плитки: bajo"
+        },
+        {
+          "responseId": "es:lesson-03:session-33:i07:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-33:i07:r3",
+          "text": "Luis"
+        },
+        {
+          "responseId": "es:lesson-03:session-33:i07:r4",
+          "text": "baja."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — Луїс невисокого зросту; використайте bajo",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Luis es bajo.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — Луис невысокого роста; используйте bajo",
+          "uk": "Зберіть фразу — Луїс невисокого зросту; використайте bajo"
+        },
+        "orderedTokens": [
+          "Luis",
+          "es",
+          "bajo"
+        ],
+        "authoredDistractorTokens": [
+          "baja"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-33:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — Луїс невисокого зросту; використайте bajo",
+            "feedbackByLocale": {
+              "ru": "описываем мужчину.",
+              "uk": "описуємо чоловіка."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-33:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — Луїс невисокого зросту",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-33:i08:r1",
+          "text": "bajo"
+        },
+        {
+          "responseId": "es:lesson-03:session-33:i08:r2",
+          "text": "baja"
+        },
+        {
+          "responseId": "es:lesson-03:session-33:i08:r3",
+          "text": "bajos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — Луїс невисокого зросту",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — Луис невысокого роста",
+          "uk": "Вставте слово — Луїс невисокого зросту"
+        },
+        "gappedTargetPhrase": "Luis es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-33:i08:r1",
+            "text": "bajo"
+          },
+          {
+            "responseId": "es:lesson-03:session-33:i08:r2",
+            "text": "baja"
+          },
+          {
+            "responseId": "es:lesson-03:session-33:i08:r3",
+            "text": "bajos"
+          }
+        ],
+        "testedDimension": "Вставте слово — Луїс невисокого зросту",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-33:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — Луїс невисокого зросту",
+            "feedbackByLocale": {
+              "ru": "О мужчине: bajo.",
+              "uk": "Про чоловіка: bajo."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-33:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — Луїс невисокого зросту",
+            "feedbackByLocale": {
+              "ru": "Один человек: bajo.",
+              "uk": "Одна людина: bajo."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-33:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — Луїс не дуже високий",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-33:i09:r1",
+          "text": "Плитки: alto"
+        },
+        {
+          "responseId": "es:lesson-03:session-33:i09:r2",
+          "text": "muy"
+        },
+        {
+          "responseId": "es:lesson-03:session-33:i09:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-33:i09:r4",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-03:session-33:i09:r5",
+          "text": "Luis"
+        },
+        {
+          "responseId": "es:lesson-03:session-33:i09:r6",
+          "text": "alta."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — Луїс не дуже високий",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Luis no es muy alto.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — Луис не очень высокий",
+          "uk": "Зберіть фразу — Луїс не дуже високий"
+        },
+        "orderedTokens": [
+          "Luis",
+          "no",
+          "es",
+          "muy",
+          "alto"
+        ],
+        "authoredDistractorTokens": [
+          "alta"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-33:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — Луїс не дуже високий",
+            "feedbackByLocale": {
+              "ru": "описываем Луиса.",
+              "uk": "описуємо Луїса."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-33:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-33:i10:r1",
+          "text": "Плитки: alta"
+        },
+        {
+          "responseId": "es:lesson-03:session-33:i10:r2",
+          "text": "muy"
+        },
+        {
+          "responseId": "es:lesson-03:session-33:i10:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-33:i10:r4",
+          "text": "Ana"
+        },
+        {
+          "responseId": "es:lesson-03:session-33:i10:r5",
+          "text": "alto."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-33:i10:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-33:i10:audio",
+          "transcript": "Ana es muy alta."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Ana es muy alta.",
+        "orderedTokens": [
+          "Ana",
+          "es",
+          "muy",
+          "alta"
+        ],
+        "authoredDistractorTokens": [
+          "alto"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-33:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит alta.",
+              "uk": "звучить alta."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-33:i11",
+      "ordinal": 14,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — Луїс не дуже високий",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-33:i11:r1",
+          "text": "alto"
+        },
+        {
+          "responseId": "es:lesson-03:session-33:i11:r2",
+          "text": "alta"
+        },
+        {
+          "responseId": "es:lesson-03:session-33:i11:r3",
+          "text": "altos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — Луїс не дуже високий",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — Луис не очень высокий",
+          "uk": "Вставте слово — Луїс не дуже високий"
+        },
+        "gappedTargetPhrase": "Luis no es muy ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-33:i11:r1",
+            "text": "alto"
+          },
+          {
+            "responseId": "es:lesson-03:session-33:i11:r2",
+            "text": "alta"
+          },
+          {
+            "responseId": "es:lesson-03:session-33:i11:r3",
+            "text": "altos"
+          }
+        ],
+        "testedDimension": "Вставте слово — Луїс не дуже високий",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-33:i11:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — Луїс не дуже високий",
+            "feedbackByLocale": {
+              "ru": "О мужчине: alto.",
+              "uk": "Про чоловіка: alto."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-33:i11:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — Луїс не дуже високий",
+            "feedbackByLocale": {
+              "ru": "Один человек: alto.",
+              "uk": "Одна людина: alto."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-33:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — Ана дуже висока",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-33:i12:r1",
+          "text": "alta"
+        },
+        {
+          "responseId": "es:lesson-03:session-33:i12:r2",
+          "text": "alto"
+        },
+        {
+          "responseId": "es:lesson-03:session-33:i12:r3",
+          "text": "altas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — Ана дуже висока",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — Ана очень высокая",
+          "uk": "Вставте слово — Ана дуже висока"
+        },
+        "gappedTargetPhrase": "Ana es muy ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-33:i12:r1",
+            "text": "alta"
+          },
+          {
+            "responseId": "es:lesson-03:session-33:i12:r2",
+            "text": "alto"
+          },
+          {
+            "responseId": "es:lesson-03:session-33:i12:r3",
+            "text": "altas"
+          }
+        ],
+        "testedDimension": "Вставте слово — Ана дуже висока",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-33:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — Ана дуже висока",
+            "feedbackByLocale": {
+              "ru": "О женщине: alta.",
+              "uk": "Про жінку: alta."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-33:i12:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — Ана дуже висока",
+            "feedbackByLocale": {
+              "ru": "Один человек: alta.",
+              "uk": "Одна людина: alta."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-33:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — Ана висока; назвіть її на ім'я",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-33:i13:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — Ана висока; назвіть її на ім'я",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-33:i13:audio",
+          "transcript": "Ana es alta."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Ana es alta.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-33:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — Луїс невисокого зросту; назвіть його на ім'я й використайте bajo",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-33:i14:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — Луїс невисокого зросту; назвіть його на ім'я й використайте bajo",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-33:i14:audio",
+          "transcript": "Luis es bajo."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Luis es bajo.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-33:i15",
+      "ordinal": 18,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — Луїс не дуже високий; назвіть його на ім'я",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-33:i15:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — Луїс не дуже високий; назвіть його на ім'я",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-33:i15:audio",
+          "transcript": "Luis no es muy alto."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Luis no es muy alto.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-33:i16",
+      "ordinal": 19,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — Ана дуже висока; назвіть її на ім'я",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-33:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — Ана дуже висока; назвіть її на ім'я",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-33:i16:audio",
+          "transcript": "Ana es muy alta."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Ana es muy alta.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 16,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "26d958ab935e5b0ca0a50dc7ac3de10874a69a322a684e88df22a7efdfeec0b9"
+}

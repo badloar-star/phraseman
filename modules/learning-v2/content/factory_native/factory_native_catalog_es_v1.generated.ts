@@ -1001,4 +1001,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"описать удобство нескольких вещей женского рода.","uk":"описувати зручність кількох речей жіночого роду."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 31,
+    sourceFingerprint: "f9e34956820aafa1dfe80785b59b9a2384ed4165ea623b86300ad91a3172f1f0",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"отрицать признак, не меняя согласование прилагательного.","uk":"заперечувати ознаку, не змінюючи узгодження прикметника."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 32,
+    sourceFingerprint: "1d5592e410a73ed59255750e67c5c37dfc30b79159158853acdf68521d592670",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"самостоятельно описать вес, прочность и другие качества вещей.","uk":"самостійно описувати вагу, міцність та інші якості речей."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 33,
+    sourceFingerprint: "5ff9181389c1d4d99004ed62a16d13c43da2b1e9cebac7664c2ab0fbc990c3ba",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"использовать alto и bajo, согласуя описание с человеком.","uk":"використовувати alto і bajo, узгоджуючи опис із людиною."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 34,
+    sourceFingerprint: "bd6a459b86022eb89a23042aca500ba4819bc6fe45242a411d9a738b9610531e",
+    newWordCount: 1,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"описать человека словом joven и нескольких людей словом jóvenes.","uk":"описувати людину словом joven і кількох людей словом jóvenes."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+  }),
 ]);

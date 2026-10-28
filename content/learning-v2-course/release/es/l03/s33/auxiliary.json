@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-03:session-33",
+  "entries": [
+    {
+      "interactionId": "es:lesson-03:session-33:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-33:intro1:r2": {
+          "ru": "Нужна женская форма alta.",
+          "uk": "Потрібна жіноча форма alta."
+        },
+        "es:lesson-03:session-33:intro1:r3": {
+          "ru": "Речь об одной Ане: alta.",
+          "uk": "Йдеться про одну Ану: alta."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-33:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-33:intro2:r2": {
+          "ru": "Нужна мужская форма bajo.",
+          "uk": "Потрібна чоловіча форма bajo."
+        },
+        "es:lesson-03:session-33:intro2:r3": {
+          "ru": "Речь об одном Луисе: bajo.",
+          "uk": "Йдеться про одного Луїса: bajo."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-33:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-33:intro3:r2": {
+          "ru": "О Луисе: alto.",
+          "uk": "Про Луїса: alto."
+        },
+        "es:lesson-03:session-33:intro3:r3": {
+          "ru": "Один человек: es.",
+          "uk": "Одна людина: es."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "d59e57a56e96d7ccd59139ff1b8782f67b151180729e2cb35221c516c62b0948"
+}

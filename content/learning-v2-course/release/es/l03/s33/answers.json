@@ -1,0 +1,82 @@
+[
+  {
+    "interactionId": "es:lesson-03:session-33:i01",
+    "correctText": "alto",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-33:i02",
+    "correctText": "alto",
+    "correctResponseId": "es:lesson-03:session-33:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-33:i03",
+    "correctText": "Ana es alta.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-33:i04",
+    "correctText": "alta",
+    "correctResponseId": "es:lesson-03:session-33:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-33:i05",
+    "correctText": "bajo",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-33:i06",
+    "correctText": "bajo",
+    "correctResponseId": "es:lesson-03:session-33:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-33:i07",
+    "correctText": "Luis es bajo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-33:i08",
+    "correctText": "bajo",
+    "correctResponseId": "es:lesson-03:session-33:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-33:i09",
+    "correctText": "Luis no es muy alto.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-33:i10",
+    "correctText": "Ana es muy alta.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-33:i11",
+    "correctText": "alto",
+    "correctResponseId": "es:lesson-03:session-33:i11:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-33:i12",
+    "correctText": "alta",
+    "correctResponseId": "es:lesson-03:session-33:i12:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-33:i13",
+    "correctText": "Ana es alta.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-33:i14",
+    "correctText": "Luis es bajo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-33:i15",
+    "correctText": "Luis no es muy alto.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-33:i16",
+    "correctText": "Ana es muy alta.",
+    "correctResponseId": null
+  }
+]

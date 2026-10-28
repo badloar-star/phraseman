@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-03:session-48",
+  "learningOutcomeByLocale": {
+    "ru": "самостоятельно описать знакомую еду и вещи.",
+    "uk": "самостійно описати знайому їжу й речі."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-03:session-48:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Печенье к сыру",
+        "uk": "Печиво до сиру"
+      },
+      "bodyByLocale": {
+        "ru": "Показываете гостю несладкие печенья к сыру. Вспомните `Las galletas son saladas` — «Печенья солёные». Соберите `las galletas` + `son` + `saladas`. У galletas женский род и множественное число, поэтому saladas. Описываем вкус выбранного вида по рецепту.",
+        "uk": "Показуєте гостю несолодке печиво до сиру. Згадайте `Las galletas son saladas` — «Ці штуки печива солоні». Зберіть `las galletas` + `son` + `saladas`. У galletas жіночий рід і множина, тому saladas. Описуємо смак вибраного виду за рецептом."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-48:intro1:q",
+        "promptByLocale": {
+          "ru": "Опишите солёные печенья.",
+          "uk": "Опишіть кілька штук солоного печива."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-48:intro1:r1",
+              "text": "Las galletas son saladas."
+            },
+            {
+              "responseId": "es:lesson-03:session-48:intro1:r2",
+              "text": "Las galletas son salados."
+            },
+            {
+              "responseId": "es:lesson-03:session-48:intro1:r3",
+              "text": "Las galletas son salada."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-48:intro1:r1",
+              "text": "Las galletas son saladas."
+            },
+            {
+              "responseId": "es:lesson-03:session-48:intro1:r2",
+              "text": "Las galletas son salados."
+            },
+            {
+              "responseId": "es:lesson-03:session-48:intro1:r3",
+              "text": "Las galletas son salada."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Опишите солёные печенья.",
+          "uk": "Опишіть кілька штук солоного печива."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-03:session-48:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Подходящий соус",
+        "uk": "Відповідний соус"
+      },
+      "bodyByLocale": {
+        "ru": "Для гостя, который не любит острое, выбираете неострый вид соуса. Скажите `La salsa no es picante` — «Соус не острый». Соберите `la salsa` + `no es` + `picante`. Отрицание no ставится перед es; само picante не меняется из-за отрицания.",
+        "uk": "Для гостя, який не любить гострого, вибираєте негострий вид соусу. Скажіть `La salsa no es picante` — «Соус не гострий». Зберіть `la salsa` + `no es` + `picante`. Заперечення no ставиться перед es; саме picante не змінюється через заперечення."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-48:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите, что соус не острый.",
+          "uk": "Скажіть, що соус не гострий."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-48:intro2:r1",
+              "text": "La salsa no es picante."
+            },
+            {
+              "responseId": "es:lesson-03:session-48:intro2:r2",
+              "text": "La salsa no son picante."
+            },
+            {
+              "responseId": "es:lesson-03:session-48:intro2:r3",
+              "text": "La salsa no es picantes."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-48:intro2:r1",
+              "text": "La salsa no es picante."
+            },
+            {
+              "responseId": "es:lesson-03:session-48:intro2:r2",
+              "text": "La salsa no son picante."
+            },
+            {
+              "responseId": "es:lesson-03:session-48:intro2:r3",
+              "text": "La salsa no es picantes."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что соус не острый.",
+          "uk": "Скажіть, що соус не гострий."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-03:session-48:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Одеяла на вечер",
+        "uk": "Ковдри на вечір"
+      },
+      "bodyByLocale": {
+        "ru": "Когда гости выйдут на террасу, им пригодятся тёплые одеяла. Опишите их свойство: `Las mantas son cálidas` — «Одеяла тёплые». Соберите `las mantas` + `son` + `cálidas`. Несколько женских mantas требуют женского множественного cálidas. Речь о том, что одеяла хорошо согревают.",
+        "uk": "Коли гості вийдуть на терасу, їм знадобляться теплі ковдри. Опишіть їхню властивість: `Las mantas son cálidas` — «Ковдри теплі». Зберіть `las mantas` + `son` + `cálidas`. Кілька жіночих mantas потребують жіночої множини cálidas. Йдеться про те, що ковдри добре зігрівають."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-48:intro3:q",
+        "promptByLocale": {
+          "ru": "Опишите тёплые одеяла.",
+          "uk": "Опишіть теплі ковдри."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-48:intro3:r1",
+              "text": "Las mantas son cálidas."
+            },
+            {
+              "responseId": "es:lesson-03:session-48:intro3:r2",
+              "text": "Las mantas son cálidos."
+            },
+            {
+              "responseId": "es:lesson-03:session-48:intro3:r3",
+              "text": "Las mantas es cálidas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-48:intro3:r1",
+              "text": "Las mantas son cálidas."
+            },
+            {
+              "responseId": "es:lesson-03:session-48:intro3:r2",
+              "text": "Las mantas son cálidos."
+            },
+            {
+              "responseId": "es:lesson-03:session-48:intro3:r3",
+              "text": "Las mantas es cálidas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Опишите тёплые одеяла.",
+          "uk": "Опишіть теплі ковдри."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e51b6486407c121940b6c063f2ba44fa705b1952245922764ef90de58ea89728"
+}

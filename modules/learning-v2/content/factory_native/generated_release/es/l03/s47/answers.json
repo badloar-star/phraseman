@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-03:session-47:i01",
+    "correctText": "La salsa no es picante.",
+    "correctResponseId": "es:lesson-03:session-47:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-47:i02",
+    "correctText": "no",
+    "correctResponseId": "es:lesson-03:session-47:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-47:i03",
+    "correctText": "La salsa no es picante.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-47:i04",
+    "correctText": "salada",
+    "correctResponseId": "es:lesson-03:session-47:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-47:i05",
+    "correctText": "La salsa no es salada.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-47:i06",
+    "correctText": "Las salsas no son picantes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-47:i07",
+    "correctText": "Las salsas no son saladas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-47:i08",
+    "correctText": "son",
+    "correctResponseId": "es:lesson-03:session-47:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-47:i09",
+    "correctText": "La salsa no es picante.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-47:i10",
+    "correctText": "La salsa no es salada.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-47:i11",
+    "correctText": "Las salsas no son picantes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-47:i12",
+    "correctText": "Las salsas no son saladas.",
+    "correctResponseId": null
+  }
+]

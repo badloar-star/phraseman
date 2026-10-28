@@ -1,0 +1,698 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-03:session-47",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-03:session-47:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-47:i01:r1",
+          "text": "La salsa no es picante."
+        },
+        {
+          "responseId": "es:lesson-03:session-47:i01:r2",
+          "text": "La salsa es picante."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-47:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-47:i01:audio",
+          "transcript": "La salsa no es picante."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-47:i01:r1",
+            "targetText": "La salsa no es picante.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-03:session-47:i01:r2",
+            "targetText": "La salsa es picante.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-47:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи есть отрицание no.",
+              "uk": "У записі є заперечення no."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-47:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — соус не острый",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-47:i02:r1",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-03:session-47:i02:r2",
+          "text": "muy"
+        },
+        {
+          "responseId": "es:lesson-03:session-47:i02:r3",
+          "text": "son"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — соус не острый",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — соус не острый",
+          "uk": "Вставте слово — соус не гострий"
+        },
+        "gappedTargetPhrase": "La salsa ___ es picante.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-47:i02:r1",
+            "text": "no"
+          },
+          {
+            "responseId": "es:lesson-03:session-47:i02:r2",
+            "text": "muy"
+          },
+          {
+            "responseId": "es:lesson-03:session-47:i02:r3",
+            "text": "son"
+          }
+        ],
+        "testedDimension": "Вставьте слово — соус не острый",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-47:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — соус не острый",
+            "feedbackByLocale": {
+              "ru": "Muy означает «очень», а нужно отрицание no.",
+              "uk": "Muy означає «дуже», а потрібне заперечення no."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-47:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — соус не острый",
+            "feedbackByLocale": {
+              "ru": "Перед es здесь нужно no.",
+              "uk": "Перед es тут потрібне no."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-47:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — соус не острый",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-47:i03:r1",
+          "text": "Плитки: picante"
+        },
+        {
+          "responseId": "es:lesson-03:session-47:i03:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-47:i03:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-03:session-47:i03:r4",
+          "text": "salsa"
+        },
+        {
+          "responseId": "es:lesson-03:session-47:i03:r5",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-03:session-47:i03:r6",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — соус не острый",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "La salsa no es picante.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — соус не острый",
+          "uk": "Зберіть фразу — соус не гострий"
+        },
+        "orderedTokens": [
+          "La",
+          "salsa",
+          "no",
+          "es",
+          "picante"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-47:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — соус не острый",
+            "feedbackByLocale": {
+              "ru": "речь об одной salsa.",
+              "uk": "йдеться про одну salsa."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-47:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — соус не солёный",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-47:i04:r1",
+          "text": "salada"
+        },
+        {
+          "responseId": "es:lesson-03:session-47:i04:r2",
+          "text": "salado"
+        },
+        {
+          "responseId": "es:lesson-03:session-47:i04:r3",
+          "text": "saladas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — соус не солёный",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — соус не солёный",
+          "uk": "Вставте слово — соус не солоний"
+        },
+        "gappedTargetPhrase": "La salsa no es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-47:i04:r1",
+            "text": "salada"
+          },
+          {
+            "responseId": "es:lesson-03:session-47:i04:r2",
+            "text": "salado"
+          },
+          {
+            "responseId": "es:lesson-03:session-47:i04:r3",
+            "text": "saladas"
+          }
+        ],
+        "testedDimension": "Вставьте слово — соус не солёный",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-47:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — соус не солёный",
+            "feedbackByLocale": {
+              "ru": "Salsa женского рода: salada.",
+              "uk": "Salsa жіночого роду: salada."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-47:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — соус не солёный",
+            "feedbackByLocale": {
+              "ru": "Здесь один соус: salada.",
+              "uk": "Тут один соус: salada."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-47:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — соус не солёный",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-47:i05:r1",
+          "text": "Плитки: salada"
+        },
+        {
+          "responseId": "es:lesson-03:session-47:i05:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-47:i05:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-03:session-47:i05:r4",
+          "text": "salsa"
+        },
+        {
+          "responseId": "es:lesson-03:session-47:i05:r5",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-03:session-47:i05:r6",
+          "text": "salado."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — соус не солёный",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "La salsa no es salada.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — соус не солёный",
+          "uk": "Зберіть фразу — соус не солоний"
+        },
+        "orderedTokens": [
+          "La",
+          "salsa",
+          "no",
+          "es",
+          "salada"
+        ],
+        "authoredDistractorTokens": [
+          "salado"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-47:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — соус не солёный",
+            "feedbackByLocale": {
+              "ru": "salsa женского рода.",
+              "uk": "salsa жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-47:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — соусы не острые",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-47:i06:r1",
+          "text": "Плитки: picantes"
+        },
+        {
+          "responseId": "es:lesson-03:session-47:i06:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-47:i06:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-03:session-47:i06:r4",
+          "text": "salsas"
+        },
+        {
+          "responseId": "es:lesson-03:session-47:i06:r5",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-03:session-47:i06:r6",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — соусы не острые",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Las salsas no son picantes.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — соусы не острые",
+          "uk": "Зберіть фразу — соуси не гострі"
+        },
+        "orderedTokens": [
+          "Las",
+          "salsas",
+          "no",
+          "son",
+          "picantes"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-47:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — соусы не острые",
+            "feedbackByLocale": {
+              "ru": "соусов несколько.",
+              "uk": "соусів кілька."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-47:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-47:i07:r1",
+          "text": "Плитки: saladas"
+        },
+        {
+          "responseId": "es:lesson-03:session-47:i07:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-47:i07:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-03:session-47:i07:r4",
+          "text": "salsas"
+        },
+        {
+          "responseId": "es:lesson-03:session-47:i07:r5",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-03:session-47:i07:r6",
+          "text": "salada."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-47:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-47:i07:audio",
+          "transcript": "Las salsas no son saladas."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Las salsas no son saladas.",
+        "orderedTokens": [
+          "Las",
+          "salsas",
+          "no",
+          "son",
+          "saladas"
+        ],
+        "authoredDistractorTokens": [
+          "salada"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-47:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит множественное saladas.",
+              "uk": "звучить множина saladas."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-47:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — соусы не острые",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-47:i08:r1",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-47:i08:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-47:i08:r3",
+          "text": "soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — соусы не острые",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — соусы не острые",
+          "uk": "Вставте слово — соуси не гострі"
+        },
+        "gappedTargetPhrase": "Las salsas no ___ picantes.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-47:i08:r1",
+            "text": "son"
+          },
+          {
+            "responseId": "es:lesson-03:session-47:i08:r2",
+            "text": "es"
+          },
+          {
+            "responseId": "es:lesson-03:session-47:i08:r3",
+            "text": "soy"
+          }
+        ],
+        "testedDimension": "Вставьте слово — соусы не острые",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-47:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — соусы не острые",
+            "feedbackByLocale": {
+              "ru": "Соусов несколько: son.",
+              "uk": "Соусів кілька: son."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-47:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — соусы не острые",
+            "feedbackByLocale": {
+              "ru": "Soy относится к «я».",
+              "uk": "Soy стосується «я»."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-47:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — соус не острый; назовите соус",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-47:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — соус не острый; назовите соус",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-47:i09:audio",
+          "transcript": "La salsa no es picante."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "La salsa no es picante.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-47:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — соус не солёный; назовите соус",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-47:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — соус не солёный; назовите соус",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-47:i10:audio",
+          "transcript": "La salsa no es salada."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "La salsa no es salada.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-47:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — соусы не острые; назовите соусы",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-47:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — соусы не острые; назовите соусы",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-47:i11:audio",
+          "transcript": "Las salsas no son picantes."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Las salsas no son picantes.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-47:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — соусы не солёные; назовите соусы",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-47:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — соусы не солёные; назовите соусы",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-47:i12:audio",
+          "transcript": "Las salsas no son saladas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Las salsas no son saladas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "40f18d4b896ca2d23b4cf6797ffc8bc8db47c780ed133ca473443bbc490774a5"
+}

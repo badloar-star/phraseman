@@ -1,0 +1,92 @@
+[
+  {
+    "interactionId": "es:lesson-03:session-48:i01",
+    "correctText": "saladas",
+    "correctResponseId": "es:lesson-03:session-48:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-48:i02",
+    "correctText": "saladas",
+    "correctResponseId": "es:lesson-03:session-48:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-48:i03",
+    "correctText": "Las galletas son dulces.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-48:i04",
+    "correctText": "La salsa no es picante.",
+    "correctResponseId": "es:lesson-03:session-48:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-48:i05",
+    "correctText": "La salsa no es picante.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-48:i06",
+    "correctText": "saladas",
+    "correctResponseId": "es:lesson-03:session-48:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-48:i07",
+    "correctText": "El limón es ácido.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-48:i08",
+    "correctText": "ácidos",
+    "correctResponseId": "es:lesson-03:session-48:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-48:i09",
+    "correctText": "Es una sopa fría.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-48:i10",
+    "correctText": "Las mantas son muy cálidas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-48:i11",
+    "correctText": "cálida",
+    "correctResponseId": "es:lesson-03:session-48:i11:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-48:i12",
+    "correctText": "limones",
+    "correctResponseId": "es:lesson-03:session-48:i12:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-48:i13",
+    "correctText": "Las galletas son saladas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-48:i14",
+    "correctText": "La salsa no es picante.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-48:i15",
+    "correctText": "El limón es ácido.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-48:i16",
+    "correctText": "Es una sopa fría.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-48:i17",
+    "correctText": "Las mantas son cálidas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-48:i18",
+    "correctText": "Las galletas son muy dulces.",
+    "correctResponseId": null
+  }
+]

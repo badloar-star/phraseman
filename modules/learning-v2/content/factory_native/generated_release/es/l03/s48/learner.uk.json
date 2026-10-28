@@ -1,0 +1,1005 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-03:session-48",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-03:session-48:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-48:i01:r1",
+          "text": "saladas"
+        },
+        {
+          "responseId": "es:lesson-03:session-48:i01:r2",
+          "text": "salados"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-48:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-48:i01:audio",
+          "transcript": "saladas"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-48:i01:r1",
+            "targetText": "saladas",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-03:session-48:i01:r2",
+            "targetText": "salados",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-48:i01:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи окончание -as: saladas.",
+              "uk": "У записі закінчення -as: saladas."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-48:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — ці штуки печива солоні за рецептом",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-48:i02:r1",
+          "text": "saladas"
+        },
+        {
+          "responseId": "es:lesson-03:session-48:i02:r2",
+          "text": "salada"
+        },
+        {
+          "responseId": "es:lesson-03:session-48:i02:r3",
+          "text": "salados"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — ці штуки печива солоні за рецептом",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — печенья солёные по рецепту",
+          "uk": "Вставте слово — ці штуки печива солоні за рецептом"
+        },
+        "gappedTargetPhrase": "Las galletas son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-48:i02:r1",
+            "text": "saladas"
+          },
+          {
+            "responseId": "es:lesson-03:session-48:i02:r2",
+            "text": "salada"
+          },
+          {
+            "responseId": "es:lesson-03:session-48:i02:r3",
+            "text": "salados"
+          }
+        ],
+        "testedDimension": "Вставте слово — ці штуки печива солоні за рецептом",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-48:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — ці штуки печива солоні за рецептом",
+            "feedbackByLocale": {
+              "ru": "Несколько galletas: saladas.",
+              "uk": "Кілька galletas: saladas."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-48:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — ці штуки печива солоні за рецептом",
+            "feedbackByLocale": {
+              "ru": "Galletas женского рода.",
+              "uk": "Galletas жіночого роду."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-48:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — ці штуки печива солодкі за рецептом",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-48:i03:r1",
+          "text": "Плитки: dulces"
+        },
+        {
+          "responseId": "es:lesson-03:session-48:i03:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-48:i03:r3",
+          "text": "galletas"
+        },
+        {
+          "responseId": "es:lesson-03:session-48:i03:r4",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-03:session-48:i03:r5",
+          "text": "dulce."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — ці штуки печива солодкі за рецептом",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Las galletas son dulces.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — печенья сладкие по рецепту",
+          "uk": "Зберіть фразу — ці штуки печива солодкі за рецептом"
+        },
+        "orderedTokens": [
+          "Las",
+          "galletas",
+          "son",
+          "dulces"
+        ],
+        "authoredDistractorTokens": [
+          "dulce"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-48:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — ці штуки печива солодкі за рецептом",
+            "feedbackByLocale": {
+              "ru": "несколько galletas.",
+              "uk": "кілька galletas."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-48:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-48:i04:r1",
+          "text": "La salsa no es picante."
+        },
+        {
+          "responseId": "es:lesson-03:session-48:i04:r2",
+          "text": "La salsa es picante."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-48:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-48:i04:audio",
+          "transcript": "La salsa no es picante."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-48:i04:r1",
+            "targetText": "La salsa no es picante.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-03:session-48:i04:r2",
+            "targetText": "La salsa es picante.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-48:i04:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи есть no.",
+              "uk": "У записі є no."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-48:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — соус не гострий",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-48:i05:r1",
+          "text": "Плитки: picante"
+        },
+        {
+          "responseId": "es:lesson-03:session-48:i05:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-48:i05:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-03:session-48:i05:r4",
+          "text": "salsa"
+        },
+        {
+          "responseId": "es:lesson-03:session-48:i05:r5",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-03:session-48:i05:r6",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — соус не гострий",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "La salsa no es picante.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — соус не острый",
+          "uk": "Зберіть фразу — соус не гострий"
+        },
+        "orderedTokens": [
+          "La",
+          "salsa",
+          "no",
+          "es",
+          "picante"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-48:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — соус не гострий",
+            "feedbackByLocale": {
+              "ru": "одна salsa.",
+              "uk": "одна salsa."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-48:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — соуси не солоні за рецептом",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-48:i06:r1",
+          "text": "saladas"
+        },
+        {
+          "responseId": "es:lesson-03:session-48:i06:r2",
+          "text": "salada"
+        },
+        {
+          "responseId": "es:lesson-03:session-48:i06:r3",
+          "text": "salados"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — соуси не солоні за рецептом",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — соусы не солёные по рецепту",
+          "uk": "Вставте слово — соуси не солоні за рецептом"
+        },
+        "gappedTargetPhrase": "Las salsas no son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-48:i06:r1",
+            "text": "saladas"
+          },
+          {
+            "responseId": "es:lesson-03:session-48:i06:r2",
+            "text": "salada"
+          },
+          {
+            "responseId": "es:lesson-03:session-48:i06:r3",
+            "text": "salados"
+          }
+        ],
+        "testedDimension": "Вставте слово — соуси не солоні за рецептом",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-48:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — соуси не солоні за рецептом",
+            "feedbackByLocale": {
+              "ru": "Нужно множественное saladas.",
+              "uk": "Потрібна множина saladas."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-48:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — соуси не солоні за рецептом",
+            "feedbackByLocale": {
+              "ru": "Salsas женского рода.",
+              "uk": "Salsas жіночого роду."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-48:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — лимон кислий",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-48:i07:r1",
+          "text": "Плитки: ácido"
+        },
+        {
+          "responseId": "es:lesson-03:session-48:i07:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-48:i07:r3",
+          "text": "limón"
+        },
+        {
+          "responseId": "es:lesson-03:session-48:i07:r4",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-03:session-48:i07:r5",
+          "text": "ácida."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — лимон кислий",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "El limón es ácido.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — лимон кислый",
+          "uk": "Зберіть фразу — лимон кислий"
+        },
+        "orderedTokens": [
+          "El",
+          "limón",
+          "es",
+          "ácido"
+        ],
+        "authoredDistractorTokens": [
+          "ácida"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-48:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — лимон кислий",
+            "feedbackByLocale": {
+              "ru": "limón мужского рода.",
+              "uk": "limón чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-48:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — лимони кислі",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-48:i08:r1",
+          "text": "ácidos"
+        },
+        {
+          "responseId": "es:lesson-03:session-48:i08:r2",
+          "text": "ácido"
+        },
+        {
+          "responseId": "es:lesson-03:session-48:i08:r3",
+          "text": "ácidas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — лимони кислі",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — лимоны кислые",
+          "uk": "Вставте слово — лимони кислі"
+        },
+        "gappedTargetPhrase": "Los limones son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-48:i08:r1",
+            "text": "ácidos"
+          },
+          {
+            "responseId": "es:lesson-03:session-48:i08:r2",
+            "text": "ácido"
+          },
+          {
+            "responseId": "es:lesson-03:session-48:i08:r3",
+            "text": "ácidas"
+          }
+        ],
+        "testedDimension": "Вставте слово — лимони кислі",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-48:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — лимони кислі",
+            "feedbackByLocale": {
+              "ru": "Несколько limones: ácidos.",
+              "uk": "Кілька limones: ácidos."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-48:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — лимони кислі",
+            "feedbackByLocale": {
+              "ru": "Limones мужского рода.",
+              "uk": "Limones чоловічого роду."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-48:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це холодний суп за рецептом; почніть з Es una, ознака після sopa",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-48:i09:r1",
+          "text": "Плитки: fría"
+        },
+        {
+          "responseId": "es:lesson-03:session-48:i09:r2",
+          "text": "sopa"
+        },
+        {
+          "responseId": "es:lesson-03:session-48:i09:r3",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-03:session-48:i09:r4",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-48:i09:r5",
+          "text": "frío."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це холодний суп за рецептом; почніть з Es una, ознака після sopa",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es una sopa fría.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это холодный суп по рецепту; начните с Es una, признак после sopa",
+          "uk": "Зберіть фразу — це холодний суп за рецептом; почніть з Es una, ознака після sopa"
+        },
+        "orderedTokens": [
+          "Es",
+          "una",
+          "sopa",
+          "fría"
+        ],
+        "authoredDistractorTokens": [
+          "frío"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-48:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це холодний суп за рецептом; почніть з Es una, ознака після sopa",
+            "feedbackByLocale": {
+              "ru": "sopa женского рода.",
+              "uk": "sopa жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-48:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-48:i10:r1",
+          "text": "Плитки: cálidas"
+        },
+        {
+          "responseId": "es:lesson-03:session-48:i10:r2",
+          "text": "muy"
+        },
+        {
+          "responseId": "es:lesson-03:session-48:i10:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-48:i10:r4",
+          "text": "mantas"
+        },
+        {
+          "responseId": "es:lesson-03:session-48:i10:r5",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-03:session-48:i10:r6",
+          "text": "cálida."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-48:i10:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-48:i10:audio",
+          "transcript": "Las mantas son muy cálidas."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Las mantas son muy cálidas.",
+        "orderedTokens": [
+          "Las",
+          "mantas",
+          "son",
+          "muy",
+          "cálidas"
+        ],
+        "authoredDistractorTokens": [
+          "cálida"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-48:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит cálidas.",
+              "uk": "звучить cálidas."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-48:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — ковдра тепла за своїми властивостями",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-48:i11:r1",
+          "text": "cálida"
+        },
+        {
+          "responseId": "es:lesson-03:session-48:i11:r2",
+          "text": "cálido"
+        },
+        {
+          "responseId": "es:lesson-03:session-48:i11:r3",
+          "text": "cálidas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — ковдра тепла за своїми властивостями",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — одеяло тёплое по своим свойствам",
+          "uk": "Вставте слово — ковдра тепла за своїми властивостями"
+        },
+        "gappedTargetPhrase": "La manta es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-48:i11:r1",
+            "text": "cálida"
+          },
+          {
+            "responseId": "es:lesson-03:session-48:i11:r2",
+            "text": "cálido"
+          },
+          {
+            "responseId": "es:lesson-03:session-48:i11:r3",
+            "text": "cálidas"
+          }
+        ],
+        "testedDimension": "Вставте слово — ковдра тепла за своїми властивостями",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-48:i11:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — ковдра тепла за своїми властивостями",
+            "feedbackByLocale": {
+              "ru": "Manta женского рода.",
+              "uk": "Manta жіночого роду."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-48:i11:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — ковдра тепла за своїми властивостями",
+            "feedbackByLocale": {
+              "ru": "Одно одеяло: cálida.",
+              "uk": "Одна ковдра: cálida."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-48:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-48:i12:r1",
+          "text": "limones"
+        },
+        {
+          "responseId": "es:lesson-03:session-48:i12:r2",
+          "text": "limón"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-48:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-48:i12:audio",
+          "transcript": "limones"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-48:i12:r1",
+            "targetText": "limones",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-03:session-48:i12:r2",
+            "targetText": "limón",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-48:i12:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи множественное limones.",
+              "uk": "У записі множина limones."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-48:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — ці штуки печива солоні за рецептом; назвіть предмети",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-48:i13:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — ці штуки печива солоні за рецептом; назвіть предмети",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-48:i13:audio",
+          "transcript": "Las galletas son saladas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Las galletas son saladas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-48:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — соус не гострий; назвіть соус",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-48:i14:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — соус не гострий; назвіть соус",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-48:i14:audio",
+          "transcript": "La salsa no es picante."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "La salsa no es picante.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-48:i15",
+      "ordinal": 18,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — лимон кислий; назвіть фрукт",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-48:i15:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — лимон кислий; назвіть фрукт",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-48:i15:audio",
+          "transcript": "El limón es ácido."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "El limón es ácido.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-48:i16",
+      "ordinal": 19,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — це холодний суп за рецептом; почніть з Es una, ознака після sopa",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-48:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — це холодний суп за рецептом; почніть з Es una, ознака після sopa",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-48:i16:audio",
+          "transcript": "Es una sopa fría."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es una sopa fría.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-48:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — ковдри теплі за своїми властивостями; назвіть предмети",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-48:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — ковдри теплі за своїми властивостями; назвіть предмети",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-48:i17:audio",
+          "transcript": "Las mantas son cálidas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Las mantas son cálidas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-48:i18",
+      "ordinal": 21,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — ці штуки печива дуже солодкі за рецептом; назвіть предмети",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-48:i18:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — ці штуки печива дуже солодкі за рецептом; назвіть предмети",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-48:i18:audio",
+          "transcript": "Las galletas son muy dulces."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Las galletas son muy dulces.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 18,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "0ba5195665bcba75cb77ab4d21e8b3f12bc7f41301acd6e20eb913f9efb411c3"
+}

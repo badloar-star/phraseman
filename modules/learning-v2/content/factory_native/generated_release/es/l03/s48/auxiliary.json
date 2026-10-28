@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-03:session-48",
+  "entries": [
+    {
+      "interactionId": "es:lesson-03:session-48:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-48:intro1:r2": {
+          "ru": "Galletas женского рода.",
+          "uk": "Galletas жіночого роду."
+        },
+        "es:lesson-03:session-48:intro1:r3": {
+          "ru": "Предметов несколько: saladas.",
+          "uk": "Предметів кілька: saladas."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-48:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-48:intro2:r2": {
+          "ru": "Один соус: es.",
+          "uk": "Один соус: es."
+        },
+        "es:lesson-03:session-48:intro2:r3": {
+          "ru": "Один соус: picante.",
+          "uk": "Один соус: picante."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-48:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-48:intro3:r2": {
+          "ru": "Mantas женского рода: cálidas.",
+          "uk": "Mantas жіночого роду: cálidas."
+        },
+        "es:lesson-03:session-48:intro3:r3": {
+          "ru": "Для нескольких одеял нужен son.",
+          "uk": "Для кількох ковдр потрібне son."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "0311a93fb7a90931fe64b4b7b74710bc8eb9be71325d673b0a0c0eb6114fd9c8"
+}

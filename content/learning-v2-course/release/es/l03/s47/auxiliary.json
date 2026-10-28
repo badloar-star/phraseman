@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-03:session-47",
+  "entries": [
+    {
+      "interactionId": "es:lesson-03:session-47:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-47:intro1:r2": {
+          "ru": "Для этой фразы поставьте no перед es.",
+          "uk": "Для цієї фрази поставте no перед es."
+        },
+        "es:lesson-03:session-47:intro1:r3": {
+          "ru": "Одна salsa: es.",
+          "uk": "Одна salsa: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-47:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-47:intro2:r2": {
+          "ru": "Нужна женская форма salada.",
+          "uk": "Потрібна жіноча форма salada."
+        },
+        "es:lesson-03:session-47:intro2:r3": {
+          "ru": "Один соус: salada.",
+          "uk": "Один соус: salada."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-47:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-47:intro3:r2": {
+          "ru": "Множественное число требует son.",
+          "uk": "Множина потребує son."
+        },
+        "es:lesson-03:session-47:intro3:r3": {
+          "ru": "Нужно согласованное picantes.",
+          "uk": "Потрібне узгоджене picantes."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "707a52c283247d7b832e64f3cf45706aaa00f14209960297418c60bdb0227c89"
+}

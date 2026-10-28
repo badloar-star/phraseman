@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-03:session-47",
+  "learningOutcomeByLocale": {
+    "ru": "отрицать свойство с no es и no son.",
+    "uk": "заперечувати властивість із no es і no son."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-03:session-47:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Не острый",
+        "uk": "Не гострий"
+      },
+      "bodyByLocale": {
+        "ru": "Гость не любит острые соусы. Покажите подходящий вид: `La salsa no es picante` — «Соус не острый». Соберите `la salsa` + `no es` + `picante`. No ставится прямо перед es. Вы объясняете свойство этого вида соуса по рецепту.",
+        "uk": "Гість не любить гострі соуси. Покажіть відповідний вид: `La salsa no es picante` — «Соус не гострий». Зберіть `la salsa` + `no es` + `picante`. No ставиться безпосередньо перед es. Ви пояснюєте властивість цього виду соусу за рецептом."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-47:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите, что соус не острый.",
+          "uk": "Скажіть, що соус не гострий."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-47:intro1:r1",
+              "text": "La salsa no es picante."
+            },
+            {
+              "responseId": "es:lesson-03:session-47:intro1:r2",
+              "text": "La salsa es no picante."
+            },
+            {
+              "responseId": "es:lesson-03:session-47:intro1:r3",
+              "text": "La salsa no son picante."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-47:intro1:r1",
+              "text": "La salsa no es picante."
+            },
+            {
+              "responseId": "es:lesson-03:session-47:intro1:r2",
+              "text": "La salsa es no picante."
+            },
+            {
+              "responseId": "es:lesson-03:session-47:intro1:r3",
+              "text": "La salsa no son picante."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что соус не острый.",
+          "uk": "Скажіть, що соус не гострий."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-03:session-47:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Не солёный",
+        "uk": "Не солоний"
+      },
+      "bodyByLocale": {
+        "ru": "Гость спрашивает и о солёном вкусе. Скажите `La salsa no es salada` — «Соус не солёный». Сохраните начало `la salsa no es` и добавьте `salada`. В испанском salsa женского рода: salada на -a. Отрицание не меняет правила согласования.",
+        "uk": "Гість запитує і про солоний смак. Скажіть `La salsa no es salada` — «Соус не солоний». Збережіть початок `la salsa no es` і додайте `salada`. В іспанській salsa жіночого роду: salada на -a. Заперечення не змінює правила узгодження."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-47:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите, что этот вид соуса не солёный.",
+          "uk": "Скажіть, що цей вид соусу не солоний."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-47:intro2:r1",
+              "text": "La salsa no es salada."
+            },
+            {
+              "responseId": "es:lesson-03:session-47:intro2:r2",
+              "text": "La salsa no es salado."
+            },
+            {
+              "responseId": "es:lesson-03:session-47:intro2:r3",
+              "text": "La salsa no es saladas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-47:intro2:r1",
+              "text": "La salsa no es salada."
+            },
+            {
+              "responseId": "es:lesson-03:session-47:intro2:r2",
+              "text": "La salsa no es salado."
+            },
+            {
+              "responseId": "es:lesson-03:session-47:intro2:r3",
+              "text": "La salsa no es saladas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что этот вид соуса не солёный.",
+          "uk": "Скажіть, що цей вид соусу не солоний."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-03:session-47:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Несколько подходящих соусов",
+        "uk": "Кілька відповідних соусів"
+      },
+      "bodyByLocale": {
+        "ru": "Предлагаете гостю два неострых соуса. Скажите `Las salsas no son picantes` — «Соусы не острые». Соберите `las salsas` + `no son` + `picantes`. Для нескольких соусов нужен son, а к picante добавляется -s. No по-прежнему стоит перед глаголом.",
+        "uk": "Пропонуєте гостю два негострі соуси. Скажіть `Las salsas no son picantes` — «Соуси не гострі». Зберіть `las salsas` + `no son` + `picantes`. Для кількох соусів потрібне son, а до picante додається -s. No, як і раніше, стоїть перед дієсловом."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-47:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите, что соусы не острые.",
+          "uk": "Скажіть, що соуси не гострі."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-47:intro3:r1",
+              "text": "Las salsas no son picantes."
+            },
+            {
+              "responseId": "es:lesson-03:session-47:intro3:r2",
+              "text": "Las salsas no es picantes."
+            },
+            {
+              "responseId": "es:lesson-03:session-47:intro3:r3",
+              "text": "Las salsas no son picante."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-47:intro3:r1",
+              "text": "Las salsas no son picantes."
+            },
+            {
+              "responseId": "es:lesson-03:session-47:intro3:r2",
+              "text": "Las salsas no es picantes."
+            },
+            {
+              "responseId": "es:lesson-03:session-47:intro3:r3",
+              "text": "Las salsas no son picante."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что соусы не острые.",
+          "uk": "Скажіть, що соуси не гострі."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e8c89a8e0d529dfb046416759afdff65069c0f71bc68ac7e2930770723caa3fb"
+}

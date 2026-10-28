@@ -1113,4 +1113,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"описать тёплое одеяло в единственном и множественном числе.","uk":"описати теплу ковдру в однині та множині."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 47,
+    sourceFingerprint: "7e0d30a074adac03b422a88323c47f5d62b5336c9275d4e4dd455c97f22d8c98",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"отрицать свойство с no es и no son.","uk":"заперечувати властивість із no es і no son."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 48,
+    sourceFingerprint: "60c1533c6eee5cf46bb0294cb8a1556dde38939dee7d4d4c3df4854505da2e08",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"самостоятельно описать знакомую еду и вещи.","uk":"самостійно описати знайому їжу й речі."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+  }),
 ]);

@@ -63,7 +63,7 @@
 - This hot meal is cheap than that one. — *В записи звучит This hot meal is cheaper than that one.*
 - This hot meal is cheaper that that one. — *В записи звучит This hot meal is cheaper than that one.*
 
-**4 · Выберите сравнительную форму.**
+**4 · Выберите форму для сравнения.**
 <!-- interaction_id: en:lesson-18:session-04:i03; family: context_gap_grammar -->
 This hot meal is ___ than that one. → **cheaper** · cheap · more cheaper
 - cheap — *Для сравнения нужна форма cheaper.*
@@ -83,7 +83,7 @@ This hot meal is ___ than that one. → **cheaper** · cheap · more cheaper
 - Your cold drink is cold than mine. — *В записи звучит Your cold drink is colder than mine.*
 - Your cold drink is colder that mine. — *В записи звучит Your cold drink is colder than mine.*
 
-**8 · Выберите сравнительную форму.**
+**8 · Выберите форму для сравнения.**
 <!-- interaction_id: en:lesson-18:session-04:i06; family: context_gap_grammar -->
 Your cold drink is ___ than mine. → **colder** · cold · more colder
 - cold — *Для сравнения нужна форма colder.*
@@ -103,7 +103,7 @@ Your cold drink is ___ than mine. → **colder** · cold · more colder
 - This soft drink is sweet than the juice. — *В записи звучит This soft drink is sweeter than the juice.*
 - This soft drink is sweeter that the juice. — *В записи звучит This soft drink is sweeter than the juice.*
 
-**12 · Выберите сравнительную форму.**
+**12 · Выберите форму для сравнения.**
 <!-- interaction_id: en:lesson-18:session-04:i09; family: context_gap_grammar -->
 This soft drink is ___ than the juice. → **sweeter** · sweet · more sweeter
 - sweet — *Для сравнения нужна форма sweeter.*
@@ -123,7 +123,7 @@ This soft drink is ___ than the juice. → **sweeter** · sweet · more sweeter
 - The still water is cheap than the juice. — *В записи звучит The still water is cheaper than the juice.*
 - The still water is cheaper that the juice. — *В записи звучит The still water is cheaper than the juice.*
 
-**16 · Выберите сравнительную форму.**
+**16 · Выберите форму для сравнения.**
 <!-- interaction_id: en:lesson-18:session-04:i12; family: context_gap_grammar -->
 The still water is ___ than the juice. → **cheaper** · cheap · more cheaper
 - cheap — *Для сравнения нужна форма cheaper.*

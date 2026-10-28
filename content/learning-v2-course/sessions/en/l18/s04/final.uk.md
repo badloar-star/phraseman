@@ -63,7 +63,7 @@
 - This hot meal is cheap than that one. — *У записі звучить This hot meal is cheaper than that one.*
 - This hot meal is cheaper that that one. — *У записі звучить This hot meal is cheaper than that one.*
 
-**4 · Виберіть порівняльну форму.**
+**4 · Виберіть форму для порівняння.**
 <!-- interaction_id: en:lesson-18:session-04:i03; family: context_gap_grammar -->
 This hot meal is ___ than that one. → **cheaper** · cheap · more cheaper
 - cheap — *Для порівняння потрібна форма cheaper.*
@@ -83,7 +83,7 @@ This hot meal is ___ than that one. → **cheaper** · cheap · more cheaper
 - Your cold drink is cold than mine. — *У записі звучить Your cold drink is colder than mine.*
 - Your cold drink is colder that mine. — *У записі звучить Your cold drink is colder than mine.*
 
-**8 · Виберіть порівняльну форму.**
+**8 · Виберіть форму для порівняння.**
 <!-- interaction_id: en:lesson-18:session-04:i06; family: context_gap_grammar -->
 Your cold drink is ___ than mine. → **colder** · cold · more colder
 - cold — *Для порівняння потрібна форма colder.*
@@ -103,7 +103,7 @@ Your cold drink is ___ than mine. → **colder** · cold · more colder
 - This soft drink is sweet than the juice. — *У записі звучить This soft drink is sweeter than the juice.*
 - This soft drink is sweeter that the juice. — *У записі звучить This soft drink is sweeter than the juice.*
 
-**12 · Виберіть порівняльну форму.**
+**12 · Виберіть форму для порівняння.**
 <!-- interaction_id: en:lesson-18:session-04:i09; family: context_gap_grammar -->
 This soft drink is ___ than the juice. → **sweeter** · sweet · more sweeter
 - sweet — *Для порівняння потрібна форма sweeter.*
@@ -123,7 +123,7 @@ This soft drink is ___ than the juice. → **sweeter** · sweet · more sweeter
 - The still water is cheap than the juice. — *У записі звучить The still water is cheaper than the juice.*
 - The still water is cheaper that the juice. — *У записі звучить The still water is cheaper than the juice.*
 
-**16 · Виберіть порівняльну форму.**
+**16 · Виберіть форму для порівняння.**
 <!-- interaction_id: en:lesson-18:session-04:i12; family: context_gap_grammar -->
 The still water is ___ than the juice. → **cheaper** · cheap · more cheaper
 - cheap — *Для порівняння потрібна форма cheaper.*

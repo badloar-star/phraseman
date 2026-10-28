@@ -63,7 +63,7 @@
 - The airport bus is slow than a taxi. — *В записи звучит The airport bus is slower than a taxi.*
 - The airport bus is slower that a taxi. — *В записи звучит The airport bus is slower than a taxi.*
 
-**4 · Выберите сравнительную форму.**
+**4 · Выберите форму для сравнения.**
 <!-- interaction_id: en:lesson-18:session-08:i03; family: context_gap_grammar -->
 The airport bus is ___ than a taxi. → **slower** · slow · more slower
 - slow — *Для сравнения нужна форма slower.*
@@ -83,7 +83,7 @@ The airport bus is ___ than a taxi. → **slower** · slow · more slower
 - The airport train is fast than the airport bus. — *В записи звучит The airport train is faster than the airport bus.*
 - The airport train is faster that the airport bus. — *В записи звучит The airport train is faster than the airport bus.*
 
-**8 · Выберите сравнительную форму.**
+**8 · Выберите форму для сравнения.**
 <!-- interaction_id: en:lesson-18:session-08:i06; family: context_gap_grammar -->
 The airport train is ___ than the airport bus. → **faster** · fast · more faster
 - fast — *Для сравнения нужна форма faster.*
@@ -103,7 +103,7 @@ The airport train is ___ than the airport bus. → **faster** · fast · more fa
 - The taxi fare is high than we expected. — *В записи звучит The taxi fare is higher than we expected.*
 - The taxi fare is higher that we expected. — *В записи звучит The taxi fare is higher than we expected.*
 
-**12 · Выберите сравнительную форму.**
+**12 · Выберите форму для сравнения.**
 <!-- interaction_id: en:lesson-18:session-08:i09; family: context_gap_grammar -->
 The taxi fare is ___ than we expected. → **higher** · high · more higher
 - high — *Для сравнения нужна форма higher.*
@@ -123,7 +123,7 @@ The taxi fare is ___ than we expected. → **higher** · high · more higher
 - This travel pass is cheap than those tickets. — *В записи звучит This travel pass is cheaper than those tickets.*
 - This travel pass is cheaper that those tickets. — *В записи звучит This travel pass is cheaper than those tickets.*
 
-**16 · Выберите сравнительную форму.**
+**16 · Выберите форму для сравнения.**
 <!-- interaction_id: en:lesson-18:session-08:i12; family: context_gap_grammar -->
 This travel pass is ___ than those tickets. → **cheaper** · cheap · more cheaper
 - cheap — *Для сравнения нужна форма cheaper.*

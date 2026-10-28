@@ -63,7 +63,7 @@
 - The top floor is quiet than this floor. — *В записи звучит The top floor is quieter than this floor.*
 - The top floor is quieter that this floor. — *В записи звучит The top floor is quieter than this floor.*
 
-**4 · Выберите сравнительную форму.**
+**4 · Выберите форму для сравнения.**
 <!-- interaction_id: en:lesson-18:session-02:i03; family: context_gap_grammar -->
 The top floor is ___ than this floor. → **quieter** · quiet · more quieter
 - quiet — *Для сравнения нужна форма quieter.*
@@ -83,7 +83,7 @@ The top floor is ___ than this floor. → **quieter** · quiet · more quieter
 - This ground-floor flat is warm than ours. — *В записи звучит This ground-floor flat is warmer than ours.*
 - This ground-floor flat is warmer that ours. — *В записи звучит This ground-floor flat is warmer than ours.*
 
-**8 · Выберите сравнительную форму.**
+**8 · Выберите форму для сравнения.**
 <!-- interaction_id: en:lesson-18:session-02:i06; family: context_gap_grammar -->
 This ground-floor flat is ___ than ours. → **warmer** · warm · more warmer
 - warm — *Для сравнения нужна форма warmer.*
@@ -103,7 +103,7 @@ This ground-floor flat is ___ than ours. → **warmer** · warm · more warmer
 - This garden view is nice than ours. — *В записи звучит This garden view is nicer than ours.*
 - This garden view is nicer that ours. — *В записи звучит This garden view is nicer than ours.*
 
-**12 · Выберите сравнительную форму.**
+**12 · Выберите форму для сравнения.**
 <!-- interaction_id: en:lesson-18:session-02:i09; family: context_gap_grammar -->
 This garden view is ___ than ours. → **nicer** · nice · more nicer
 - nice — *Для сравнения нужна форма nicer.*
@@ -123,7 +123,7 @@ This garden view is ___ than ours. → **nicer** · nice · more nicer
 - The city view is clear than before. — *В записи звучит The city view is clearer than before.*
 - The city view is clearer that before. — *В записи звучит The city view is clearer than before.*
 
-**16 · Выберите сравнительную форму.**
+**16 · Выберите форму для сравнения.**
 <!-- interaction_id: en:lesson-18:session-02:i12; family: context_gap_grammar -->
 The city view is ___ than before. → **clearer** · clear · more clearer
 - clear — *Для сравнения нужна форма clearer.*

@@ -63,7 +63,7 @@
 - The sale price is low than before. — *У записі звучить The sale price is lower than before.*
 - The sale price is lower that before. — *У записі звучить The sale price is lower than before.*
 
-**4 · Виберіть порівняльну форму.**
+**4 · Виберіть форму для порівняння.**
 <!-- interaction_id: en:lesson-18:session-05:i03; family: context_gap_grammar -->
 The sale price is ___ than before. → **lower** · low · more lower
 - low — *Для порівняння потрібна форма lower.*
@@ -83,7 +83,7 @@ The sale price is ___ than before. → **lower** · low · more lower
 - The regular price is high than before. — *У записі звучить The regular price is higher than before.*
 - The regular price is higher that before. — *У записі звучить The regular price is higher than before.*
 
-**8 · Виберіть порівняльну форму.**
+**8 · Виберіть форму для порівняння.**
 <!-- interaction_id: en:lesson-18:session-05:i06; family: context_gap_grammar -->
 The regular price is ___ than before. → **higher** · high · more higher
 - high — *Для порівняння потрібна форма higher.*
@@ -103,7 +103,7 @@ The regular price is ___ than before. → **higher** · high · more higher
 - The total cost is low than we expected. — *У записі звучить The total cost is lower than we expected.*
 - The total cost is lower that we expected. — *У записі звучить The total cost is lower than we expected.*
 
-**12 · Виберіть порівняльну форму.**
+**12 · Виберіть форму для порівняння.**
 <!-- interaction_id: en:lesson-18:session-05:i09; family: context_gap_grammar -->
 The total cost is ___ than we expected. → **lower** · low · more lower
 - low — *Для порівняння потрібна форма lower.*
@@ -123,7 +123,7 @@ The total cost is ___ than we expected. → **lower** · low · more lower
 - The unit price is high in this shop than in that shop. — *У записі звучить The unit price is higher in this shop than in that shop.*
 - The unit price is higher in this shop that in that shop. — *У записі звучить The unit price is higher in this shop than in that shop.*
 
-**16 · Виберіть порівняльну форму.**
+**16 · Виберіть форму для порівняння.**
 <!-- interaction_id: en:lesson-18:session-05:i12; family: context_gap_grammar -->
 The unit price is ___ in this shop than in that shop. → **higher** · high · more higher
 - high — *Для порівняння потрібна форма higher.*

@@ -63,7 +63,7 @@ Hotel room — номер у готелі. Ви порівнюєте його з
 - This hotel room is cheap than ours. — *У записі звучить This hotel room is cheaper than ours.*
 - This hotel room is cheaper that ours. — *У записі звучить This hotel room is cheaper than ours.*
 
-**4 · Виберіть порівняльну форму.**
+**4 · Виберіть форму для порівняння.**
 <!-- interaction_id: en:lesson-18:session-01:i03; family: context_gap_grammar -->
 This hotel room is ___ than ours. → **cheaper** · cheap · more cheaper
 - cheap — *Порівнюємо: потрібна форма cheaper.*
@@ -83,7 +83,7 @@ This hotel room is ___ than ours. → **cheaper** · cheap · more cheaper
 - The shared bathroom is clean than before. — *У записі звучить The shared bathroom is cleaner than before.*
 - The shared bathroom is cleaner that before. — *У записі звучить The shared bathroom is cleaner than before.*
 
-**8 · Виберіть порівняльну форму.**
+**8 · Виберіть форму для порівняння.**
 <!-- interaction_id: en:lesson-18:session-01:i06; family: context_gap_grammar -->
 The shared bathroom is ___ than before. → **cleaner** · clean · more cleaner
 - clean — *Порівнюємо: потрібна форма cleaner.*
@@ -103,7 +103,7 @@ The shared bathroom is ___ than before. → **cleaner** · clean · more cleaner
 - The private bathroom is large than ours. — *У записі звучить The private bathroom is larger than ours.*
 - The private bathroom is larger that ours. — *У записі звучить The private bathroom is larger than ours.*
 
-**12 · Виберіть порівняльну форму.**
+**12 · Виберіть форму для порівняння.**
 <!-- interaction_id: en:lesson-18:session-01:i09; family: context_gap_grammar -->
 The private bathroom is ___ than ours. → **larger** · large · more larger
 - large — *Порівнюємо: потрібна форма larger.*
@@ -123,7 +123,7 @@ The private bathroom is ___ than ours. → **larger** · large · more larger
 - This living space is bright than ours. — *У записі звучить This living space is brighter than ours.*
 - This living space is brighter that ours. — *У записі звучить This living space is brighter than ours.*
 
-**16 · Виберіть порівняльну форму.**
+**16 · Виберіть форму для порівняння.**
 <!-- interaction_id: en:lesson-18:session-01:i12; family: context_gap_grammar -->
 This living space is ___ than ours. → **brighter** · bright · more brighter
 - bright — *Порівнюємо: потрібна форма brighter.*

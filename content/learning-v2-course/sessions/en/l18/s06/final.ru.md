@@ -63,7 +63,7 @@
 - This cotton shirt is light than mine. — *В записи звучит This cotton shirt is lighter than mine.*
 - This cotton shirt is lighter that mine. — *В записи звучит This cotton shirt is lighter than mine.*
 
-**4 · Выберите сравнительную форму.**
+**4 · Выберите форму для сравнения.**
 <!-- interaction_id: en:lesson-18:session-06:i03; family: context_gap_grammar -->
 This cotton shirt is ___ than mine. → **lighter** · light · more lighter
 - light — *Для сравнения нужна форма lighter.*
@@ -83,7 +83,7 @@ This cotton shirt is ___ than mine. → **lighter** · light · more lighter
 - This wool jumper is warm than mine. — *В записи звучит This wool jumper is warmer than mine.*
 - This wool jumper is warmer that mine. — *В записи звучит This wool jumper is warmer than mine.*
 
-**8 · Выберите сравнительную форму.**
+**8 · Выберите форму для сравнения.**
 <!-- interaction_id: en:lesson-18:session-06:i06; family: context_gap_grammar -->
 This wool jumper is ___ than mine. → **warmer** · warm · more warmer
 - warm — *Для сравнения нужна форма warmer.*
@@ -103,7 +103,7 @@ This wool jumper is ___ than mine. → **warmer** · warm · more warmer
 - Your winter coat is long than mine. — *В записи звучит Your winter coat is longer than mine.*
 - Your winter coat is longer that mine. — *В записи звучит Your winter coat is longer than mine.*
 
-**12 · Выберите сравнительную форму.**
+**12 · Выберите форму для сравнения.**
 <!-- interaction_id: en:lesson-18:session-06:i09; family: context_gap_grammar -->
 Your winter coat is ___ than mine. → **longer** · long · more longer
 - long — *Для сравнения нужна форма longer.*
@@ -123,7 +123,7 @@ Your winter coat is ___ than mine. → **longer** · long · more longer
 - This summer dress is short than that one. — *В записи звучит This summer dress is shorter than that one.*
 - This summer dress is shorter that that one. — *В записи звучит This summer dress is shorter than that one.*
 
-**16 · Выберите сравнительную форму.**
+**16 · Выберите форму для сравнения.**
 <!-- interaction_id: en:lesson-18:session-06:i12; family: context_gap_grammar -->
 This summer dress is ___ than that one. → **shorter** · short · more shorter
 - short — *Для сравнения нужна форма shorter.*

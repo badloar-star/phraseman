@@ -63,7 +63,7 @@
 - The airport bus is slow than a taxi. — *У записі звучить The airport bus is slower than a taxi.*
 - The airport bus is slower that a taxi. — *У записі звучить The airport bus is slower than a taxi.*
 
-**4 · Виберіть порівняльну форму.**
+**4 · Виберіть форму для порівняння.**
 <!-- interaction_id: en:lesson-18:session-08:i03; family: context_gap_grammar -->
 The airport bus is ___ than a taxi. → **slower** · slow · more slower
 - slow — *Для порівняння потрібна форма slower.*
@@ -83,7 +83,7 @@ The airport bus is ___ than a taxi. → **slower** · slow · more slower
 - The airport train is fast than the airport bus. — *У записі звучить The airport train is faster than the airport bus.*
 - The airport train is faster that the airport bus. — *У записі звучить The airport train is faster than the airport bus.*
 
-**8 · Виберіть порівняльну форму.**
+**8 · Виберіть форму для порівняння.**
 <!-- interaction_id: en:lesson-18:session-08:i06; family: context_gap_grammar -->
 The airport train is ___ than the airport bus. → **faster** · fast · more faster
 - fast — *Для порівняння потрібна форма faster.*
@@ -103,7 +103,7 @@ The airport train is ___ than the airport bus. → **faster** · fast · more fa
 - The taxi fare is high than we expected. — *У записі звучить The taxi fare is higher than we expected.*
 - The taxi fare is higher that we expected. — *У записі звучить The taxi fare is higher than we expected.*
 
-**12 · Виберіть порівняльну форму.**
+**12 · Виберіть форму для порівняння.**
 <!-- interaction_id: en:lesson-18:session-08:i09; family: context_gap_grammar -->
 The taxi fare is ___ than we expected. → **higher** · high · more higher
 - high — *Для порівняння потрібна форма higher.*
@@ -123,7 +123,7 @@ The taxi fare is ___ than we expected. → **higher** · high · more higher
 - This travel pass is cheap than those tickets. — *У записі звучить This travel pass is cheaper than those tickets.*
 - This travel pass is cheaper that those tickets. — *У записі звучить This travel pass is cheaper than those tickets.*
 
-**16 · Виберіть порівняльну форму.**
+**16 · Виберіть форму для порівняння.**
 <!-- interaction_id: en:lesson-18:session-08:i12; family: context_gap_grammar -->
 This travel pass is ___ than those tickets. → **cheaper** · cheap · more cheaper
 - cheap — *Для порівняння потрібна форма cheaper.*

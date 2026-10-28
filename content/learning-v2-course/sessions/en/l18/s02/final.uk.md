@@ -63,7 +63,7 @@
 - The top floor is quiet than this floor. — *У записі звучить The top floor is quieter than this floor.*
 - The top floor is quieter that this floor. — *У записі звучить The top floor is quieter than this floor.*
 
-**4 · Виберіть порівняльну форму.**
+**4 · Виберіть форму для порівняння.**
 <!-- interaction_id: en:lesson-18:session-02:i03; family: context_gap_grammar -->
 The top floor is ___ than this floor. → **quieter** · quiet · more quieter
 - quiet — *Для порівняння потрібна форма quieter.*
@@ -83,7 +83,7 @@ The top floor is ___ than this floor. → **quieter** · quiet · more quieter
 - This ground-floor flat is warm than ours. — *У записі звучить This ground-floor flat is warmer than ours.*
 - This ground-floor flat is warmer that ours. — *У записі звучить This ground-floor flat is warmer than ours.*
 
-**8 · Виберіть порівняльну форму.**
+**8 · Виберіть форму для порівняння.**
 <!-- interaction_id: en:lesson-18:session-02:i06; family: context_gap_grammar -->
 This ground-floor flat is ___ than ours. → **warmer** · warm · more warmer
 - warm — *Для порівняння потрібна форма warmer.*
@@ -103,7 +103,7 @@ This ground-floor flat is ___ than ours. → **warmer** · warm · more warmer
 - This garden view is nice than ours. — *У записі звучить This garden view is nicer than ours.*
 - This garden view is nicer that ours. — *У записі звучить This garden view is nicer than ours.*
 
-**12 · Виберіть порівняльну форму.**
+**12 · Виберіть форму для порівняння.**
 <!-- interaction_id: en:lesson-18:session-02:i09; family: context_gap_grammar -->
 This garden view is ___ than ours. → **nicer** · nice · more nicer
 - nice — *Для порівняння потрібна форма nicer.*
@@ -123,7 +123,7 @@ This garden view is ___ than ours. → **nicer** · nice · more nicer
 - The city view is clear than before. — *У записі звучить The city view is clearer than before.*
 - The city view is clearer that before. — *У записі звучить The city view is clearer than before.*
 
-**16 · Виберіть порівняльну форму.**
+**16 · Виберіть форму для порівняння.**
 <!-- interaction_id: en:lesson-18:session-02:i12; family: context_gap_grammar -->
 The city view is ___ than before. → **clearer** · clear · more clearer
 - clear — *Для порівняння потрібна форма clearer.*

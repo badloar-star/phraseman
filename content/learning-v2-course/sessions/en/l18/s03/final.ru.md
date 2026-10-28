@@ -63,7 +63,7 @@
 - The train journey is short than ours. — *В записи звучит The train journey is shorter than ours.*
 - The train journey is shorter that ours. — *В записи звучит The train journey is shorter than ours.*
 
-**4 · Выберите сравнительную форму.**
+**4 · Выберите форму для сравнения.**
 <!-- interaction_id: en:lesson-18:session-03:i03; family: context_gap_grammar -->
 The train journey is ___ than ours. → **shorter** · short · more shorter
 - short — *Для сравнения нужна форма shorter.*
@@ -83,7 +83,7 @@ The train journey is ___ than ours. → **shorter** · short · more shorter
 - The bus journey is cheap than the train journey. — *В записи звучит The bus journey is cheaper than the train journey.*
 - The bus journey is cheaper that the train journey. — *В записи звучит The bus journey is cheaper than the train journey.*
 
-**8 · Выберите сравнительную форму.**
+**8 · Выберите форму для сравнения.**
 <!-- interaction_id: en:lesson-18:session-03:i06; family: context_gap_grammar -->
 The bus journey is ___ than the train journey. → **cheaper** · cheap · more cheaper
 - cheap — *Для сравнения нужна форма cheaper.*
@@ -103,7 +103,7 @@ The bus journey is ___ than the train journey. → **cheaper** · cheap · more 
 - This car journey is long than ours. — *В записи звучит This car journey is longer than ours.*
 - This car journey is longer that ours. — *В записи звучит This car journey is longer than ours.*
 
-**12 · Выберите сравнительную форму.**
+**12 · Выберите форму для сравнения.**
 <!-- interaction_id: en:lesson-18:session-03:i09; family: context_gap_grammar -->
 This car journey is ___ than ours. → **longer** · long · more longer
 - long — *Для сравнения нужна форма longer.*
@@ -123,7 +123,7 @@ This car journey is ___ than ours. → **longer** · long · more longer
 - This walking route is safe than that one. — *В записи звучит This walking route is safer than that one.*
 - This walking route is safer that that one. — *В записи звучит This walking route is safer than that one.*
 
-**16 · Выберите сравнительную форму.**
+**16 · Выберите форму для сравнения.**
 <!-- interaction_id: en:lesson-18:session-03:i12; family: context_gap_grammar -->
 This walking route is ___ than that one. → **safer** · safe · more safer
 - safe — *Для сравнения нужна форма safer.*

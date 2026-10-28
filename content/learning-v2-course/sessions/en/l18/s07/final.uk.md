@@ -63,7 +63,7 @@
 - These sports shoes are wide than mine. — *У записі звучить These sports shoes are wider than mine.*
 - These sports shoes are wider that mine. — *У записі звучить These sports shoes are wider than mine.*
 
-**4 · Виберіть порівняльну форму.**
+**4 · Виберіть форму для порівняння.**
 <!-- interaction_id: en:lesson-18:session-07:i03; family: context_gap_grammar -->
 These sports shoes are ___ than mine. → **wider** · wide · more wider
 - wide — *Для порівняння потрібна форма wider.*
@@ -83,7 +83,7 @@ These sports shoes are ___ than mine. → **wider** · wide · more wider
 - These running shoes are light than mine. — *У записі звучить These running shoes are lighter than mine.*
 - These running shoes are lighter that mine. — *У записі звучить These running shoes are lighter than mine.*
 
-**8 · Виберіть порівняльну форму.**
+**8 · Виберіть форму для порівняння.**
 <!-- interaction_id: en:lesson-18:session-07:i06; family: context_gap_grammar -->
 These running shoes are ___ than mine. → **lighter** · light · more lighter
 - light — *Для порівняння потрібна форма lighter.*
@@ -103,7 +103,7 @@ These running shoes are ___ than mine. → **lighter** · light · more lighter
 - These leather shoes are soft than that pair. — *У записі звучить These leather shoes are softer than that pair.*
 - These leather shoes are softer that that pair. — *У записі звучить These leather shoes are softer than that pair.*
 
-**12 · Виберіть порівняльну форму.**
+**12 · Виберіть форму для порівняння.**
 <!-- interaction_id: en:lesson-18:session-07:i09; family: context_gap_grammar -->
 These leather shoes are ___ than that pair. → **softer** · soft · more softer
 - soft — *Для порівняння потрібна форма softer.*
@@ -123,7 +123,7 @@ These leather shoes are ___ than that pair. → **softer** · soft · more softe
 - These flat shoes are cheap than that pair. — *У записі звучить These flat shoes are cheaper than that pair.*
 - These flat shoes are cheaper that that pair. — *У записі звучить These flat shoes are cheaper than that pair.*
 
-**16 · Виберіть порівняльну форму.**
+**16 · Виберіть форму для порівняння.**
 <!-- interaction_id: en:lesson-18:session-07:i12; family: context_gap_grammar -->
 These flat shoes are ___ than that pair. → **cheaper** · cheap · more cheaper
 - cheap — *Для порівняння потрібна форма cheaper.*

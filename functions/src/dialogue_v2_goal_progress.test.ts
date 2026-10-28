@@ -49,6 +49,14 @@ describe('распознавание вопроса ученика', () => {
     expect(detectLearnerQuestion(text, lang).question).toBe(false);
   });
 
+  // зачем (Ревизор 28.10): один знак без слова цель не закрывает.
+  it('«?» и «??» без слова — не вопрос; «ok?» — вопрос', () => {
+    expect(detectLearnerQuestion('?', 'en')).toEqual({ question: false, rule: 'none' });
+    expect(detectLearnerQuestion('??', 'en')).toEqual({ question: false, rule: 'none' });
+    expect(detectLearnerQuestion('¿?', 'es')).toEqual({ question: false, rule: 'none' });
+    expect(detectLearnerQuestion('ok?', 'en')).toEqual({ question: true, rule: 'question_mark' });
+  });
+
   it('NFD (диакритика отдельным символом) распознаётся так же', () => {
     expect(detectLearnerQuestion('Où est la gare'.normalize('NFD'), 'fr')).toEqual({ question: true, rule: 'wh:où' });
     expect(detectLearnerQuestion('donde esta'.normalize('NFD'), 'es').question).toBe(true);

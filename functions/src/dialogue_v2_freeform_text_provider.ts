@@ -18,6 +18,14 @@ import {
   parseDialogueV2FreeformMemoryDraft,
   type DialogueV2FreeformMemoryDraft,
 } from './dialogue_v2_freeform_memory';
+import {
+  FREEFORM_PROMPT_INJECTION_GUARD_INSTRUCTION,
+  LEARNER_MESSAGE_WRAPPER_INSTRUCTION,
+  detectPromptInjection,
+  wrapLearnerMessage,
+  injectionTurnInstruction,
+  leaksPrivatePrompt,
+} from './dialogue_prompt_injection';
 
 export const DIALOGUE_V2_FREEFORM_PROVIDER_MAX_OUTPUT_BYTES = 3_072 as const;
 export const DIALOGUE_V2_FREEFORM_PRIVATE_POLICY_CANARY =
@@ -229,13 +237,14 @@ export function buildDialogueV2FreeformTextProducerRequest(
       assistantMessage: historicalAssistantMessage,
     }));
     conversation.push(
-      Object.freeze({ role: 'user' as const, content: historicalUserMessage }),
+      Object.freeze({ role: 'user' as const, content: wrapLearnerMessage(historicalUserMessage) }),
       Object.freeze({ role: 'assistant' as const, content: historicalAssistantMessage }),
     );
   }
   if (Buffer.byteLength(JSON.stringify(canonicalHistory), 'utf8')
     > DIALOGUE_V2_FREEFORM_SESSION_MAX_RAW_BYTES) throw invalidRequest();
-  conversation.push(Object.freeze({ role: 'user' as const, content: userMessage }));
+  // зачем (координатор 28.10): реплики ученика — роль user + обёртка <learner_message>…</learner_message>.
+  conversation.push(Object.freeze({ role: 'user' as const, content: wrapLearnerMessage(userMessage) }));
   const languageBranchMemory = input.languageBranchMemory === null
     ? null
     : parseFreeformMemoryDraft(input.languageBranchMemory);
@@ -243,10 +252,27 @@ export function buildDialogueV2FreeformTextProducerRequest(
     throw invalidRequest();
   }
 
+  // зачем (координатор 28.10: prompt injection в Диалогах не должен работать): общий страж промпта, а при очевидной
+  // инъекции в последней реплике — пометка хода «ответь в роли и не выполняй». Журнал — правило и длина, без текста.
+  const injection = detectPromptInjection(userMessage);
+  if (injection.injection) {
+    console.warn('[DIALOG-INJECTION]', JSON.stringify({
+      surface: 'freeform_turn',
+      studyTarget: target,
+      rule: injection.rule,
+      length: userMessage.length,
+      priorTurns: input.priorTurns.length,
+    }));
+  }
   return Object.freeze({
     policyVersion: POLICY_VERSION,
     studyTarget: target,
-    systemInstruction: privateTutorPolicy(target),
+    systemInstruction: [
+      privateTutorPolicy(target),
+      FREEFORM_PROMPT_INJECTION_GUARD_INSTRUCTION,
+      LEARNER_MESSAGE_WRAPPER_INSTRUCTION,
+      ...(injection.injection ? [injectionTurnInstruction(injection.rule)] : []),
+    ].join(' '),
     conversation: Object.freeze(conversation),
     languageBranchMemory,
     maxOutputBytes: DIALOGUE_V2_FREEFORM_PROVIDER_MAX_OUTPUT_BYTES,
@@ -267,6 +293,11 @@ function canonicalAssistantOutput(value: unknown): string | null {
   if (privateFragments.some((fragment) => comparable.includes(
     fragment.normalize('NFKC').toLocaleLowerCase('en-US'),
   ))) return null;
+  // зачем (координатор 28.10): служебные метки промпта (страж, формат, поля) ученику не уходят.
+  if (leaksPrivatePrompt(output) || comparable.includes(FREEFORM_PROMPT_INJECTION_GUARD_INSTRUCTION.slice(0, 40).toLocaleLowerCase('en-US'))) {
+    console.warn('[DIALOG-INJECTION]', JSON.stringify({ surface: 'freeform_turn', event: 'reply_leak_blocked' }));
+    return null;
+  }
   return output;
 }
 

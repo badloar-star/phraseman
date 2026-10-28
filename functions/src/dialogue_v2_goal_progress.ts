@@ -105,7 +105,8 @@ function detectClause(clause: string, studyTarget: string): string | null {
 export function detectLearnerQuestion(text: string, studyTarget: string): DialogueV2QuestionDetection {
   // NFC: в NFD диакритика — отдельный символ, и «où»/«dónde» не совпали бы (урок 26.10, сторож пушей).
   const value = String(text ?? '').normalize('NFC');
-  if (/[?？¿]/u.test(value)) return { question: true, rule: 'question_mark' };
+  // зачем (Ревизор 28.10): реплика из одних «?» / «??» — не вопрос; рядом со знаком нужно хотя бы одно слово («ok?» — вопрос).
+  if (/[?？¿]/u.test(value) && /\p{L}{2,}/u.test(value)) return { question: true, rule: 'question_mark' };
   for (const sentence of sentences(value)) {
     const rule = detectSentence(sentence, studyTarget);
     if (rule) return { question: true, rule };

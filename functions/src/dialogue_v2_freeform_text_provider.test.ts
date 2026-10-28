@@ -47,9 +47,10 @@ describe('Dialogue V2 Plus freeform provider boundary', () => {
       conversation: [
         // Готовая открывающая фраза (владелец 01.10) — первым ходом собеседника.
         { role: 'assistant', content: DIALOGUE_V2_FREEFORM_OPENINGS.en },
-        { role: 'user', content: 'Hi! I want to practise introductions.' },
+        { role: 'user', content: '<learner_message>Hi! I want to practise introductions.</learner_message>' },
         { role: 'assistant', content: 'Great — what would you say first?' },
-        { role: 'user', content: 'How would a local say this naturally?' },
+        // зачем (координатор 28.10): реплики ученика — роль user + обёртка <learner_message> (защита от инъекций).
+        { role: 'user', content: '<learner_message>How would a local say this naturally?</learner_message>' },
       ],
       languageBranchMemory: null,
       maxOutputBytes: DIALOGUE_V2_FREEFORM_PROVIDER_MAX_OUTPUT_BYTES,

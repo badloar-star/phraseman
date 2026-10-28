@@ -8,6 +8,7 @@ import type { DialogueV2StudyTarget } from '../../shared/dialogue_v2_language_pa
 import { resolveStableUidForAuth } from './auth_identity';
 import { ENFORCE_APP_CHECK_OPENAI } from './callable_options';
 import { assertDialogueStudyLanguage } from './dialogue_ai_language_contract';
+import { LEARNER_MESSAGE_WRAPPER_INSTRUCTION, wrapLearnerMessage } from './dialogue_prompt_injection';
 import {
   recordDialogueV2Billing,
   reportDialogueV2Usage,
@@ -374,9 +375,12 @@ function providerMessages(
     || (expiresAtMs as number) - nowMs > DIALOGUE_V2_SESSION_TTL_MS) {
     throw new Error('provider_context_invalid');
   }
+  // зачем (координатор 28.10: prompt injection в Диалогах не должен работать): реплики ученика — роль `user` и обёртка
+  // <learner_message>…</learner_message> (теги внутри текста обезврежены), объяснение обёртки — в системном промпте.
+  const promptWithWrapper = `${request.systemPrompt}\n${LEARNER_MESSAGE_WRAPPER_INSTRUCTION}`;
   const systemPrompt = context.length > 0
-    ? `${request.systemPrompt}\n${SERVER_CONTEXT_INSTRUCTION}`
-    : request.systemPrompt;
+    ? `${promptWithWrapper}\n${SERVER_CONTEXT_INSTRUCTION}`
+    : promptWithWrapper;
   const opening = safeServerOpening(request.serverOpening);
   return Object.freeze([
     Object.freeze({ role: 'system' as const, content: systemPrompt }),
@@ -386,13 +390,13 @@ function providerMessages(
       ? [Object.freeze({ role: 'assistant' as const, content: JSON.stringify({ replies: [opening] }) })]
       : []),
     ...context.flatMap((turn) => [
-      Object.freeze({ role: 'user' as const, content: turn.userMessage }),
+      Object.freeze({ role: 'user' as const, content: wrapLearnerMessage(turn.userMessage) }),
       Object.freeze({
         role: 'assistant' as const,
         content: JSON.stringify({ replies: turn.assistantReplies }),
       }),
     ]),
-    Object.freeze({ role: 'user' as const, content: request.userMessage }),
+    Object.freeze({ role: 'user' as const, content: wrapLearnerMessage(request.userMessage) }),
   ]);
 }
 

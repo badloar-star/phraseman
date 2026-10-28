@@ -248,6 +248,12 @@ export type DialogueV2CoachingParseResult = Readonly<{
   droppedFields: readonly string[];
   /** Решение по цели этого хода (для журнала [DIALOG-GOAL]); нет — подписей целей не передали. */
   goal?: Readonly<DialogueV2GoalAdvance & { modelActiveObjectiveId: string | null }>;
+  /**
+   * Все цели выполнены: модель ЯВНО прислала `activeObjectiveId: null`, а цели в сценарии есть. Отдельно от `coaching`:
+   * клиенты 2.0.x разбирают ключи разбора по точному списку, поле уходит только клиенту с coachingVersion 2.
+   * зачем (координатор 28.10): null в activeObjectiveId неоднозначен — «все выполнены» и «поле отброшено» выглядели одинаково.
+   */
+  allObjectivesComplete: boolean;
 }>;
 
 /**
@@ -260,7 +266,7 @@ export function parseDialogueV2TurnCoaching(
 ): DialogueV2CoachingParseResult {
   const raw = plainRecord(value);
   if (!raw) {
-    return Object.freeze({ coaching: DIALOGUE_V2_EMPTY_COACHING, droppedFields: Object.freeze(['coaching']) });
+    return Object.freeze({ coaching: DIALOGUE_V2_EMPTY_COACHING, droppedFields: Object.freeze(['coaching']), allObjectivesComplete: false });
   }
   const dropped: string[] = [];
   const replyTranslations = alignedTexts(raw.replyTranslations, context.replyCount, MAX_TRANSLATION_LENGTH);
@@ -344,5 +350,6 @@ export function parseDialogueV2TurnCoaching(
     }),
     droppedFields: Object.freeze(dropped),
     ...(goal ? { goal: Object.freeze({ ...goal, modelActiveObjectiveId }) } : {}),
+    allObjectivesComplete: raw.activeObjectiveId === null && context.objectiveIds.length > 0,
   });
 }

@@ -55,11 +55,27 @@ export async function shouldBlockLessonAccess(lessonId: number, studyTarget?: Ru
 /**
  * Последнее решение охранника lesson1 по уроку — чтобы меню при своём замке могло сверить, не разошлись ли два решения (Ревизор 3bed5434c: расхождение = риск петли по нажатиям).
  */
-const lastGateDecisions = new Map<number, { gate: string; atMs: number }>();
+const lastGateDecisions = new Map<number, { gate: string; atMs: number; source?: 'list' }>();
 
-export function peekLessonGateDecision(lessonId: number): { gate: string; ageMs: number } | null {
+export function peekLessonGateDecision(lessonId: number): { gate: string; ageMs: number; source?: 'list' } | null {
   const saved = lastGateDecisions.get(lessonId);
-  return saved ? { gate: saved.gate, ageMs: Date.now() - saved.atMs } : null;
+  return saved ? { gate: saved.gate, ageMs: Date.now() - saved.atMs, ...(saved.source ? { source: saved.source } : {}) } : null;
+}
+
+/** Окно, в течение которого меню доверяет решению списка «урок открыт» (тап → меню занимает доли секунды). */
+export const LESSON_LIST_DECISION_TRUST_MS = 60_000;
+
+// зачем (координатор 28.10, видео пользователя 2.0.3: A1 8 из 8 на 3★, тап по пройденному уроку уводит на Главную или карту V2):
+// список решал «открыт» по своим данным, а меню перепроверяло замок по ДРУГИМ ключам хранилища, решало «закрыто» и делало replace
+// на вкладку — вкладки пересоздавались, человек видел Главную/карту V2 вместо урока. Решение списка теперь видно меню.
+export function rememberLessonListDecision(lessonId: number, access: string): void {
+  lastGateDecisions.set(lessonId, { gate: access, atMs: Date.now(), source: 'list' });
+}
+
+/** Список только что открыл этот урок тапом (свежее решение «available»). */
+export function lessonListJustOpened(lessonId: number): boolean {
+  const saved = peekLessonGateDecision(lessonId);
+  return saved !== null && saved.source === 'list' && saved.gate === 'available' && saved.ageMs < LESSON_LIST_DECISION_TRUST_MS;
 }
 
 export function openLessonAccessGate(

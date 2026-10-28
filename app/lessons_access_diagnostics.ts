@@ -61,7 +61,23 @@ export function noteV2SessionUnavailable(target: string, lesson: number, session
   void recordSupportDiagnostic({ event: 'feature_action', action, screen: '/learning_v2_session', result: 'blocked', subject: 'app', atMs: nowMs });
 }
 
-export type LessonMenuLockBy = 'premium_course' | 'earned_progress' | 'error_fail_closed';
+/** Тап по карточке классического урока и решение списка (available / premium_required / locked). */
+export function classicTapAction(lessonId: number, access: string, isPremium: boolean): string {
+  return `classic:tap:l${count(lessonId)}:${tag(access)}:p${isPremium ? 1 : 0}`;
+}
+
+// зачем (координатор 28.10, видео: тап по пройденному уроку → Главная / карта V2): первое звено цепочки [CLASSIC-TAP] в журнале обращений.
+export function noteClassicTap(lessonId: number, access: string, isPremium: boolean, nowMs: number = Date.now()): void {
+  void recordSupportDiagnostic({ event: 'feature_action', action: classicTapAction(lessonId, access, isPremium), screen: '/lessons', result: 'info', subject: 'app', atMs: nowMs });
+}
+
+/** Меню поверило свежему решению списка «открыт» вопреки своей перепроверке (расхождение двух замков). */
+export function noteLessonMenuTrustedList(lessonId: number, by: 'premium_course' | 'earned_progress', nowMs: number = Date.now()): void {
+  console.warn('[LESSON-LOCK] menu:trust_list', by, lessonId); // guard-ok: расхождение замков; warn — переживает прод-сборку
+  void recordSupportDiagnostic({ event: 'feature_action', action: `lessonlock:trust_list:${by}:l${count(lessonId)}`, screen: '/lesson_menu', result: 'info', subject: 'app', atMs: nowMs });
+}
+
+export type LessonMenuLockBy ='premium_course' | 'earned_progress' | 'error_fail_closed';
 
 /** Меню урока решило «закрыто». gate — что решал список/охранник перед входом (available = список считал урок открытым: расхождение). */
 export function lessonMenuLockAction(by: LessonMenuLockBy, lessonId: number, isPremium: boolean, gate: string | null): string {

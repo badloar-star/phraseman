@@ -171,7 +171,8 @@ import {
 import { featureIntroById } from "../feature_intro_registry";
 import { featureIntroLater } from "../feature_intro_copy";
 import { lessonNamesForStudyTarget } from "../lesson_titles_for_study_target";
-import { noteClassicLessonsShown } from "../lessons_access_diagnostics";
+import { noteClassicLessonsShown, noteClassicTap } from "../lessons_access_diagnostics";
+import { rememberLessonListDecision } from "../lesson_premium_gate";
 import {
   examContentAvailableForTarget,
   frenchExamGateCopy,
@@ -4447,6 +4448,9 @@ export default function LessonsTab({
         purchased: purchasedLessons.includes(num), unlocked: Boolean(unlockedLessons[num - 1]),
         cap: effectiveLegacyFreeLessonCap ?? null, levelLockedByExam: false,
       });
+      // зачем (координатор 28.10, видео 2.0.3: тап по пройденному уроку не открывал меню): решение списка видит меню урока, тап — в журнале обращений
+      rememberLessonListDecision(num, access);
+      noteClassicTap(num, access, isPremium);
       if (access === "available") {
         // зачем (аудит Optimistic UI Уроков, 13.10): два быстрых тапа по карточке открывали два меню урока — синхронный замок на ключ урока.
         if (!navOnce(`lessons:menu:${num}`)) return;

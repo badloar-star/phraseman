@@ -49,8 +49,8 @@ import { effectiveLessonStarScore } from './lesson_star_score';
 import { perfScreenMount } from './perf-monitor';
 import { GlassAlertDialog } from '../components/v2/GlassAlertDialog';
 import { actionToastTri, emitAppEvent, onAppEvent } from './events';
-import { peekLessonGateDecision } from './lesson_premium_gate';
-import { noteLessonMenuBounce, noteLessonMenuLock } from './lessons_access_diagnostics';
+import { lessonListJustOpened, peekLessonGateDecision } from './lesson_premium_gate';
+import { noteLessonMenuBounce, noteLessonMenuLock, noteLessonMenuTrustedList } from './lessons_access_diagnostics';
 import { isLessonFinishedOnce } from './mastery';
 import { getVerifiedPremiumStatus, isTesterNoLimitsActive } from './premium_guard';
 import { isAlwaysOpenLesson } from './main_course_access';
@@ -694,6 +694,15 @@ function LessonMenu() {
           const premiumUnlocked = await isLessonUnlockedByPremiumCourse(lessonId, studyTarget);
           console.log(`[LESSON-MENU] lock:resolved ${JSON.stringify({ lessonId, studyTarget, locked: !premiumUnlocked, by: 'premium_course', premiumNow })}`);
           if (!premiumUnlocked) noteLessonMenuLock('premium_course', lessonId, true, peekLessonGateDecision(lessonId)?.gate ?? null);
+          // зачем (координатор 28.10, видео 2.0.3: тап по пройденному уроку уводил на Главную/карту V2): список только что открыл урок
+          // по своим данным — меню не спорит с ним и не выкидывает (правило владельца: тап по уроку ВСЕГДА открывает его меню).
+          if (!premiumUnlocked && lessonListJustOpened(lessonId)) {
+            noteLessonMenuTrustedList(lessonId, 'premium_course');
+            gatedSetLocked(false);
+            gatedSetReason('progress');
+            gatedSetInfo(null);
+            return;
+          }
           gatedSetLocked(!premiumUnlocked);
           gatedSetReason('progress');
           gatedSetInfo(premiumUnlocked ? null : await getLessonLockInfo(lessonId, studyTarget));
@@ -726,6 +735,11 @@ function LessonMenu() {
 
         console.log(`[LESSON-MENU] lock:resolved ${JSON.stringify({ lessonId, studyTarget, locked: !unlocked, by: 'earned_progress' })}`);
         if (!unlocked) noteLessonMenuLock('earned_progress', lessonId, false, peekLessonGateDecision(lessonId)?.gate ?? null);
+        // зачем: то же правило, что в ветке Plus выше — свежее «открыт» от списка побеждает расхождение перепроверки по прогрессу
+        if (!unlocked && lessonListJustOpened(lessonId)) {
+          noteLessonMenuTrustedList(lessonId, 'earned_progress');
+          unlocked = true;
+        }
         gatedSetLocked(!unlocked);
         if (!unlocked) {
           gatedSetReason('progress');

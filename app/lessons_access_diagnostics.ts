@@ -61,6 +61,30 @@ export function noteV2SessionUnavailable(target: string, lesson: number, session
   void recordSupportDiagnostic({ event: 'feature_action', action, screen: '/learning_v2_session', result: 'blocked', subject: 'app', atMs: nowMs });
 }
 
+export type LessonMenuLockBy = 'premium_course' | 'earned_progress' | 'error_fail_closed';
+
+/** Меню урока решило «закрыто». gate — что решал список/охранник перед входом (available = список считал урок открытым: расхождение). */
+export function lessonMenuLockAction(by: LessonMenuLockBy, lessonId: number, isPremium: boolean, gate: string | null): string {
+  return `lessonlock:${by}:l${count(lessonId)}:p${isPremium ? 1 : 0}:g_${tag(gate ?? 'none')}`;
+}
+
+/** Меню урока выкинуло на список (bounce) — с тостом или подавленный предохранителем. */
+export function lessonMenuBounceAction(lessonId: number, kind: 'level' | 'threshold' | 'progress' | 'suppressed'): string {
+  return `lessonlock:bounce:${kind}:l${count(lessonId)}`;
+}
+
+// зачем (координатор 28.10, жалоба #3 uk Plus: /lessons → /lesson_menu → /hint → /lesson_menu → /lessons ×5, до /lesson1 ни разу): строки
+// [LESSON-LOCK] в меню — console.log, в релизе их нет. Решение замка и выкидывание на список пишем в журнал обращений.
+export function noteLessonMenuLock(by: LessonMenuLockBy, lessonId: number, isPremium: boolean, gate: string | null, nowMs: number = Date.now()): void {
+  const action = lessonMenuLockAction(by, lessonId, isPremium, gate);
+  console.warn('[LESSON-LOCK] menu:locked', action); // guard-ok: решение замка; warn — переживает прод-сборку
+  void recordSupportDiagnostic({ event: 'feature_action', action, screen: '/lesson_menu', result: 'blocked', subject: 'app', atMs: nowMs });
+}
+
+export function noteLessonMenuBounce(lessonId: number, kind: 'level' | 'threshold' | 'progress' | 'suppressed', nowMs: number = Date.now()): void {
+  void recordSupportDiagnostic({ event: 'feature_action', action: lessonMenuBounceAction(lessonId, kind), screen: '/lesson_menu', result: 'blocked', subject: 'app', atMs: nowMs });
+}
+
 export function resetLessonsAccessDiagnosticsForTests(): void {
   lastClassicShown = '';
 }

@@ -53,3 +53,10 @@ test('the classic list is recorded once per outcome, not per render or per searc
   ]);
   expect(recorded.map((event) => event.result)).toEqual(['info', 'info', 'blocked']);
 });
+
+test('lesson menu lock and bounce actions pass the whitelist', () => {
+  const { lessonMenuLockAction, lessonMenuBounceAction } = jest.requireActual('../app/lessons_access_diagnostics');
+  const actions = [lessonMenuLockAction('premium_course', 7, true, 'available'), lessonMenuLockAction('error_fail_closed', 32, false, null), lessonMenuBounceAction(7, 'suppressed')];
+  expect(actions).toEqual(['lessonlock:premium_course:l7:p1:g_available', 'lessonlock:error_fail_closed:l32:p0:g_none', 'lessonlock:bounce:suppressed:l7']);
+  for (const action of actions) expect(passes(action)).toBe(true);
+});

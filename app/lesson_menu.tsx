@@ -50,6 +50,7 @@ import { perfScreenMount } from './perf-monitor';
 import { GlassAlertDialog } from '../components/v2/GlassAlertDialog';
 import { actionToastTri, emitAppEvent, onAppEvent } from './events';
 import { peekLessonGateDecision } from './lesson_premium_gate';
+import { noteLessonMenuBounce, noteLessonMenuLock } from './lessons_access_diagnostics';
 import { isLessonFinishedOnce } from './mastery';
 import { getVerifiedPremiumStatus, isTesterNoLimitsActive } from './premium_guard';
 import { isAlwaysOpenLesson } from './main_course_access';
@@ -513,6 +514,7 @@ function LessonMenu() {
     if (lastBounceAt !== undefined && nowMs - lastBounceAt < LESSON_LOCK_BOUNCE_FUSE_MS) {
       // зачем (Ревизор 3bed5434c 🟡 (1)): подавленный bounce не должен оставлять человека на меню запертого урока — уходим на список в любом случае, только без тоста
       console.log('[LESSON-LOCK] menu:bounce_suppressed', JSON.stringify({ lessonId, sinceLastMs: nowMs - lastBounceAt, fuseMs: LESSON_LOCK_BOUNCE_FUSE_MS, action: 'replace_without_toast' })); // guard-ok: предохранитель цикла
+      noteLessonMenuBounce(lessonId, 'suppressed');
       router.replace('/(tabs)/lessons' as never);
       return;
     }
@@ -523,6 +525,7 @@ function LessonMenu() {
     const toastKind: 'level' | 'threshold' | 'progress' = lockReason === 'level' ? 'level' : lockInfo?.requiredScore ? 'threshold' : 'progress';
     emitAppEvent('action_toast', actionToastTri('info', LESSON_LOCK_TOAST[toastKind]));
     console.log('[LESSON-LOCK] menu:bounce_replace', JSON.stringify({ lessonId, toastKind, to: '/(tabs)/lessons', canGoBack: router.canGoBack() })); // guard-ok: один replace на список
+    noteLessonMenuBounce(lessonId, toastKind);
     router.replace('/(tabs)/lessons' as never);
   }, [lockStateLoaded, isLessonLocked, lockReason, lessonId, lockInfo, router]);
 
@@ -690,6 +693,7 @@ function LessonMenu() {
         if (premiumNow) {
           const premiumUnlocked = await isLessonUnlockedByPremiumCourse(lessonId, studyTarget);
           console.log(`[LESSON-MENU] lock:resolved ${JSON.stringify({ lessonId, studyTarget, locked: !premiumUnlocked, by: 'premium_course', premiumNow })}`);
+          if (!premiumUnlocked) noteLessonMenuLock('premium_course', lessonId, true, peekLessonGateDecision(lessonId)?.gate ?? null);
           gatedSetLocked(!premiumUnlocked);
           gatedSetReason('progress');
           gatedSetInfo(premiumUnlocked ? null : await getLessonLockInfo(lessonId, studyTarget));
@@ -721,6 +725,7 @@ function LessonMenu() {
         }
 
         console.log(`[LESSON-MENU] lock:resolved ${JSON.stringify({ lessonId, studyTarget, locked: !unlocked, by: 'earned_progress' })}`);
+        if (!unlocked) noteLessonMenuLock('earned_progress', lessonId, false, peekLessonGateDecision(lessonId)?.gate ?? null);
         gatedSetLocked(!unlocked);
         if (!unlocked) {
           gatedSetReason('progress');
@@ -732,6 +737,7 @@ function LessonMenu() {
       } catch (error) {
         // Ошибка AsyncStorage/entitlement-проверки не является разрешением.
         console.warn(`[LESSON-MENU] lock:resolved ${JSON.stringify({ lessonId, studyTarget, locked: true, by: 'error_fail_closed', error: error instanceof Error ? error.message : String(error) })}`);
+        noteLessonMenuLock('error_fail_closed', lessonId, false, peekLessonGateDecision(lessonId)?.gate ?? null);
         gatedSetLocked(true);
         gatedSetReason('progress');
         gatedSetInfo(null);

@@ -1,0 +1,688 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-03:session-43",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-03:session-43:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-43:i01:r1",
+          "text": "dulces"
+        },
+        {
+          "responseId": "es:lesson-03:session-43:i01:r2",
+          "text": "dulce"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-43:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-43:i01:audio",
+          "transcript": "dulces"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-43:i01:r1",
+            "targetText": "dulces",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-03:session-43:i01:r2",
+            "targetText": "dulce",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-43:i01:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи слышно конечное -s: dulces.",
+              "uk": "У записі чути кінцеве -s: dulces."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-43:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — одна штука печива солодка за рецептом",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-43:i02:r1",
+          "text": "dulce"
+        },
+        {
+          "responseId": "es:lesson-03:session-43:i02:r2",
+          "text": "dulces"
+        },
+        {
+          "responseId": "es:lesson-03:session-43:i02:r3",
+          "text": "dulca"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — одна штука печива солодка за рецептом",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — одна штука печенья сладкая по рецепту",
+          "uk": "Вставте слово — одна штука печива солодка за рецептом"
+        },
+        "gappedTargetPhrase": "La galleta es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-43:i02:r1",
+            "text": "dulce"
+          },
+          {
+            "responseId": "es:lesson-03:session-43:i02:r2",
+            "text": "dulces"
+          },
+          {
+            "responseId": "es:lesson-03:session-43:i02:r3",
+            "text": "dulca"
+          }
+        ],
+        "testedDimension": "Вставте слово — одна штука печива солодка за рецептом",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-43:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — одна штука печива солодка за рецептом",
+            "feedbackByLocale": {
+              "ru": "Один предмет: dulce.",
+              "uk": "Один предмет: dulce."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-43:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — одна штука печива солодка за рецептом",
+            "feedbackByLocale": {
+              "ru": "Dulce не меняет -e на -a.",
+              "uk": "Dulce не змінює -e на -a."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-43:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — печиво солодке за рецептом",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-43:i03:r1",
+          "text": "Плитки: dulce"
+        },
+        {
+          "responseId": "es:lesson-03:session-43:i03:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-43:i03:r3",
+          "text": "galleta"
+        },
+        {
+          "responseId": "es:lesson-03:session-43:i03:r4",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-03:session-43:i03:r5",
+          "text": "dulces."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — печиво солодке за рецептом",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "La galleta es dulce.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — печенье сладкое по рецепту",
+          "uk": "Зберіть фразу — печиво солодке за рецептом"
+        },
+        "orderedTokens": [
+          "La",
+          "galleta",
+          "es",
+          "dulce"
+        ],
+        "authoredDistractorTokens": [
+          "dulces"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-43:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — печиво солодке за рецептом",
+            "feedbackByLocale": {
+              "ru": "одна galleta.",
+              "uk": "одна galleta."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-43:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — кілька штук печива солодкі за рецептом",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-43:i04:r1",
+          "text": "dulces"
+        },
+        {
+          "responseId": "es:lesson-03:session-43:i04:r2",
+          "text": "dulce"
+        },
+        {
+          "responseId": "es:lesson-03:session-43:i04:r3",
+          "text": "dulcas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — кілька штук печива солодкі за рецептом",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — несколько печений сладкие по рецепту",
+          "uk": "Вставте слово — кілька штук печива солодкі за рецептом"
+        },
+        "gappedTargetPhrase": "Las galletas son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-43:i04:r1",
+            "text": "dulces"
+          },
+          {
+            "responseId": "es:lesson-03:session-43:i04:r2",
+            "text": "dulce"
+          },
+          {
+            "responseId": "es:lesson-03:session-43:i04:r3",
+            "text": "dulcas"
+          }
+        ],
+        "testedDimension": "Вставте слово — кілька штук печива солодкі за рецептом",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-43:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — кілька штук печива солодкі за рецептом",
+            "feedbackByLocale": {
+              "ru": "Предметов несколько: dulces.",
+              "uk": "Предметів кілька: dulces."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-43:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — кілька штук печива солодкі за рецептом",
+            "feedbackByLocale": {
+              "ru": "Окончание -e сохраняется: dulces.",
+              "uk": "Закінчення -e зберігається: dulces."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-43:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — ці штуки печива солодкі за рецептом",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-43:i05:r1",
+          "text": "Плитки: dulces"
+        },
+        {
+          "responseId": "es:lesson-03:session-43:i05:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-43:i05:r3",
+          "text": "galletas"
+        },
+        {
+          "responseId": "es:lesson-03:session-43:i05:r4",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-03:session-43:i05:r5",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — ці штуки печива солодкі за рецептом",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Las galletas son dulces.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — печенья сладкие по рецепту",
+          "uk": "Зберіть фразу — ці штуки печива солодкі за рецептом"
+        },
+        "orderedTokens": [
+          "Las",
+          "galletas",
+          "son",
+          "dulces"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-43:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — ці штуки печива солодкі за рецептом",
+            "feedbackByLocale": {
+              "ru": "несколько предметов требуют son.",
+              "uk": "кілька предметів потребують son."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-43:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — ці штуки печива дуже солодкі за рецептом",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-43:i06:r1",
+          "text": "Плитки: dulces"
+        },
+        {
+          "responseId": "es:lesson-03:session-43:i06:r2",
+          "text": "muy"
+        },
+        {
+          "responseId": "es:lesson-03:session-43:i06:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-43:i06:r4",
+          "text": "galletas"
+        },
+        {
+          "responseId": "es:lesson-03:session-43:i06:r5",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-03:session-43:i06:r6",
+          "text": "dulce."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — ці штуки печива дуже солодкі за рецептом",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Las galletas son muy dulces.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — печенья очень сладкие по рецепту",
+          "uk": "Зберіть фразу — ці штуки печива дуже солодкі за рецептом"
+        },
+        "orderedTokens": [
+          "Las",
+          "galletas",
+          "son",
+          "muy",
+          "dulces"
+        ],
+        "authoredDistractorTokens": [
+          "dulce"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-43:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — ці штуки печива дуже солодкі за рецептом",
+            "feedbackByLocale": {
+              "ru": "несколько galletas.",
+              "uk": "кілька galletas."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-43:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-43:i07:r1",
+          "text": "Плитки: dulce"
+        },
+        {
+          "responseId": "es:lesson-03:session-43:i07:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-43:i07:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-03:session-43:i07:r4",
+          "text": "galleta"
+        },
+        {
+          "responseId": "es:lesson-03:session-43:i07:r5",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-03:session-43:i07:r6",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-43:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-43:i07:audio",
+          "transcript": "La galleta no es dulce."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "La galleta no es dulce.",
+        "orderedTokens": [
+          "La",
+          "galleta",
+          "no",
+          "es",
+          "dulce"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-43:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит es.",
+              "uk": "звучить es."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-43:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — ці штуки печива дуже солодкі",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-43:i08:r1",
+          "text": "muy"
+        },
+        {
+          "responseId": "es:lesson-03:session-43:i08:r2",
+          "text": "muys"
+        },
+        {
+          "responseId": "es:lesson-03:session-43:i08:r3",
+          "text": "mucha"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — ці штуки печива дуже солодкі",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — печенья очень сладкие",
+          "uk": "Вставте слово — ці штуки печива дуже солодкі"
+        },
+        "gappedTargetPhrase": "Las galletas son ___ dulces.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-43:i08:r1",
+            "text": "muy"
+          },
+          {
+            "responseId": "es:lesson-03:session-43:i08:r2",
+            "text": "muys"
+          },
+          {
+            "responseId": "es:lesson-03:session-43:i08:r3",
+            "text": "mucha"
+          }
+        ],
+        "testedDimension": "Вставте слово — ці штуки печива дуже солодкі",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-43:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — ці штуки печива дуже солодкі",
+            "feedbackByLocale": {
+              "ru": "Muy не меняется по числу.",
+              "uk": "Muy не змінюється за числом."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-43:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — ці штуки печива дуже солодкі",
+            "feedbackByLocale": {
+              "ru": "Перед прилагательным значение «очень» передаёт muy.",
+              "uk": "Перед прикметником значення «дуже» передає muy."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-43:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — одна штука печива солодка за рецептом; назвіть предмет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-43:i09:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — одна штука печива солодка за рецептом; назвіть предмет",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-43:i09:audio",
+          "transcript": "La galleta es dulce."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "La galleta es dulce.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-43:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — ці штуки печива солодкі за рецептом; назвіть предмети",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-43:i10:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — ці штуки печива солодкі за рецептом; назвіть предмети",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-43:i10:audio",
+          "transcript": "Las galletas son dulces."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Las galletas son dulces.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-43:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — ці штуки печива дуже солодкі за рецептом; назвіть предмети",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-43:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — ці штуки печива дуже солодкі за рецептом; назвіть предмети",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-43:i11:audio",
+          "transcript": "Las galletas son muy dulces."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Las galletas son muy dulces.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-43:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — ці штуки печива не солодкі за рецептом; назвіть предмети",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-43:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — ці штуки печива не солодкі за рецептом; назвіть предмети",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-43:i12:audio",
+          "transcript": "Las galletas no son dulces."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Las galletas no son dulces.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "6048892b395d1e1682eb2cbb39f7a623e29e5edd3038a5e3a9d51ec772b6e8ae"
+}

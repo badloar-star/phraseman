@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-03:session-46:i01",
+    "correctText": "cálido",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-46:i02",
+    "correctText": "cálida",
+    "correctResponseId": "es:lesson-03:session-46:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-46:i03",
+    "correctText": "La manta es cálida.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-46:i04",
+    "correctText": "cálida",
+    "correctResponseId": "es:lesson-03:session-46:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-46:i05",
+    "correctText": "Las mantas son cálidas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-46:i06",
+    "correctText": "cálidas",
+    "correctResponseId": "es:lesson-03:session-46:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-46:i07",
+    "correctText": "Las mantas son muy cálidas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-46:i08",
+    "correctText": "La manta no es cálida.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-46:i09",
+    "correctText": "La manta es cálida.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-46:i10",
+    "correctText": "Las mantas son cálidas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-46:i11",
+    "correctText": "Las mantas son muy cálidas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-46:i12",
+    "correctText": "La manta no es cálida.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-03:session-43:i01",
+    "correctText": "dulces",
+    "correctResponseId": "es:lesson-03:session-43:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-43:i02",
+    "correctText": "dulce",
+    "correctResponseId": "es:lesson-03:session-43:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-43:i03",
+    "correctText": "La galleta es dulce.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-43:i04",
+    "correctText": "dulces",
+    "correctResponseId": "es:lesson-03:session-43:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-43:i05",
+    "correctText": "Las galletas son dulces.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-43:i06",
+    "correctText": "Las galletas son muy dulces.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-43:i07",
+    "correctText": "La galleta no es dulce.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-43:i08",
+    "correctText": "muy",
+    "correctResponseId": "es:lesson-03:session-43:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-43:i09",
+    "correctText": "La galleta es dulce.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-43:i10",
+    "correctText": "Las galletas son dulces.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-43:i11",
+    "correctText": "Las galletas son muy dulces.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-43:i12",
+    "correctText": "Las galletas no son dulces.",
+    "correctResponseId": null
+  }
+]

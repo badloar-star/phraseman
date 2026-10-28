@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-03:session-44",
+  "entries": [
+    {
+      "interactionId": "es:lesson-03:session-44:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-44:intro1:r2": {
+          "ru": "Перед limón нужен un.",
+          "uk": "Перед limón потрібне un."
+        },
+        "es:lesson-03:session-44:intro1:r3": {
+          "ru": "Один лимон: un limón.",
+          "uk": "Один лимон: un limón."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-44:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-44:intro2:r2": {
+          "ru": "С limón нужна мужская форма ácido.",
+          "uk": "З limón потрібна чоловіча форма ácido."
+        },
+        "es:lesson-03:session-44:intro2:r3": {
+          "ru": "Здесь один limón: ácido.",
+          "uk": "Тут один limón: ácido."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-44:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-44:intro3:r2": {
+          "ru": "Прилагательному тоже нужно -s: ácidos.",
+          "uk": "Прикметнику теж потрібне -s: ácidos."
+        },
+        "es:lesson-03:session-44:intro3:r3": {
+          "ru": "Для нескольких предметов нужно son.",
+          "uk": "Для кількох предметів потрібне son."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "89dc7cc4ab821d7dedc7ecdb2b1691bd5e3118fae9ccfdf19cd011869320d5b0"
+}

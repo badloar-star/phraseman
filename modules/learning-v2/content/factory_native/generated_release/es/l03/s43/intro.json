@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-03:session-43",
+  "learningOutcomeByLocale": {
+    "ru": "согласовать dulce с одним предметом и несколькими.",
+    "uk": "узгодити dulce з одним предметом і кількома."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-03:session-43:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Одно печенье",
+        "uk": "Одне печиво"
+      },
+      "bodyByLocale": {
+        "ru": "Вы показываете гостю сладкий вид печенья. Скажите `La galleta es dulce` — «Печенье сладкое». Соберите `la galleta` + `es` + `dulce`. Знакомое dulce оканчивается на -e: с женским galleta оно остаётся dulce. Речь о вкусе этого вида по рецепту.",
+        "uk": "Ви показуєте гостю солодкий вид печива. Скажіть `La galleta es dulce` — «Печиво солодке». Зберіть `la galleta` + `es` + `dulce`. Знайоме dulce закінчується на -e: з іспанським жіночим galleta воно залишається dulce. Йдеться про смак цього виду за рецептом."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-43:intro1:q",
+        "promptByLocale": {
+          "ru": "Опишите одну штуку сладкого печенья.",
+          "uk": "Опишіть одну штуку солодкого печива."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-43:intro1:r1",
+              "text": "La galleta es dulce."
+            },
+            {
+              "responseId": "es:lesson-03:session-43:intro1:r2",
+              "text": "La galleta es dulca."
+            },
+            {
+              "responseId": "es:lesson-03:session-43:intro1:r3",
+              "text": "La galleta es dulces."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-43:intro1:r1",
+              "text": "La galleta es dulce."
+            },
+            {
+              "responseId": "es:lesson-03:session-43:intro1:r2",
+              "text": "La galleta es dulca."
+            },
+            {
+              "responseId": "es:lesson-03:session-43:intro1:r3",
+              "text": "La galleta es dulces."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Опишите одну штуку сладкого печенья.",
+          "uk": "Опишіть одну штуку солодкого печива."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-03:session-43:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Несколько печений",
+        "uk": "Кілька штук печива"
+      },
+      "bodyByLocale": {
+        "ru": "Выкладываете такие печенья на тарелку. Скажите `Las galletas son dulces` — «Печенья сладкие». Соберите `las galletas` + `son` + `dulces`. Предметов несколько, поэтому es меняется на son, а к dulce прибавляется -s. Окончание -e сохраняется: dulces.",
+        "uk": "Викладаєте таке печиво на тарілку. Скажіть `Las galletas son dulces` — «Ці штуки печива солодкі». Зберіть `las galletas` + `son` + `dulces`. Предметів кілька, тому es змінюється на son, а до dulce додається -s. Закінчення -e зберігається: dulces."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-43:intro2:q",
+        "promptByLocale": {
+          "ru": "Опишите несколько сладких печений.",
+          "uk": "Опишіть кілька штук солодкого печива."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-43:intro2:r1",
+              "text": "Las galletas son dulces."
+            },
+            {
+              "responseId": "es:lesson-03:session-43:intro2:r2",
+              "text": "Las galletas son dulce."
+            },
+            {
+              "responseId": "es:lesson-03:session-43:intro2:r3",
+              "text": "Las galletas son dulcas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-43:intro2:r1",
+              "text": "Las galletas son dulces."
+            },
+            {
+              "responseId": "es:lesson-03:session-43:intro2:r2",
+              "text": "Las galletas son dulce."
+            },
+            {
+              "responseId": "es:lesson-03:session-43:intro2:r3",
+              "text": "Las galletas son dulcas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Опишите несколько сладких печений.",
+          "uk": "Опишіть кілька штук солодкого печива."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-03:session-43:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Очень сладкий вид",
+        "uk": "Дуже солодкий вид"
+      },
+      "bodyByLocale": {
+        "ru": "Гость любит менее сладкие угощения. Предупредите о выбранном виде: `Las galletas son muy dulces` — «Печенья очень сладкие». К знакомой фразе добавьте muy непосредственно перед dulces: `las galletas` + `son` + `muy dulces`. Muy не меняется, даже когда печений несколько.",
+        "uk": "Гість любить менш солодкі ласощі. Попередьте про вибраний вид: `Las galletas son muy dulces` — «Ці штуки печива дуже солодкі». До знайомої фрази додайте muy безпосередньо перед dulces: `las galletas` + `son` + `muy dulces`. Muy не змінюється, навіть коли штук печива кілька."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-43:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите, что печенья очень сладкие по рецепту.",
+          "uk": "Скажіть, що ці штуки печива дуже солодкі за рецептом."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-43:intro3:r1",
+              "text": "Las galletas son muy dulces."
+            },
+            {
+              "responseId": "es:lesson-03:session-43:intro3:r2",
+              "text": "Las galletas son muys dulces."
+            },
+            {
+              "responseId": "es:lesson-03:session-43:intro3:r3",
+              "text": "Las galletas son muy dulce."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-43:intro3:r1",
+              "text": "Las galletas son muy dulces."
+            },
+            {
+              "responseId": "es:lesson-03:session-43:intro3:r2",
+              "text": "Las galletas son muys dulces."
+            },
+            {
+              "responseId": "es:lesson-03:session-43:intro3:r3",
+              "text": "Las galletas son muy dulce."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что печенья очень сладкие по рецепту.",
+          "uk": "Скажіть, що ці штуки печива дуже солодкі за рецептом."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f1ac1a43594f7b0bf1ae6fa20a4f9254bae6eee16c45ee204c770ce45cc5e453"
+}

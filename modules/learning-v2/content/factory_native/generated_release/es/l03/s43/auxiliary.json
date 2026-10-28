@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-03:session-43",
+  "entries": [
+    {
+      "interactionId": "es:lesson-03:session-43:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-43:intro1:r2": {
+          "ru": "Нужна форма dulce.",
+          "uk": "Потрібна форма dulce."
+        },
+        "es:lesson-03:session-43:intro1:r3": {
+          "ru": "Одна штука: dulce.",
+          "uk": "Одна штука: dulce."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-43:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-43:intro2:r2": {
+          "ru": "Нужно множественное dulces.",
+          "uk": "Потрібна множина dulces."
+        },
+        "es:lesson-03:session-43:intro2:r3": {
+          "ru": "Форма множественного числа — dulces.",
+          "uk": "Форма множини — dulces."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-43:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-43:intro3:r2": {
+          "ru": "У muy нет окончания -s.",
+          "uk": "У muy немає закінчення -s."
+        },
+        "es:lesson-03:session-43:intro3:r3": {
+          "ru": "Несколько печений: dulces.",
+          "uk": "Кілька штук печива: dulces."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ecf3da40b50e2244f7c9603409e2b911cc98709428076a6c1fa4d949ad68aad4"
+}

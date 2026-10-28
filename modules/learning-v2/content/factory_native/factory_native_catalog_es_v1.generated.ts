@@ -1085,4 +1085,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"описать остроту соуса и согласовать picante по числу.","uk":"описувати гостроту соусу й узгоджувати picante за числом."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 43,
+    sourceFingerprint: "495837a06ac65d38495372cbfa22575f1b9af886334ba62add85bec9fd806633",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"согласовать dulce с одним предметом и несколькими.","uk":"узгодити dulce з одним предметом і кількома."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 44,
+    sourceFingerprint: "521b83f513ebe796a09cfce567303ed8963bae63326be902770bf73a8e571867",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"назвать лимон и описать его кислый вкус.","uk":"назвати лимон і описати його кислий смак."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 45,
+    sourceFingerprint: "be077ffe006c844b5c9dcfc7c01db2480e796d147ffad63836b9c6d52ba92c19",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"назвать блюдо и добавить признак после существительного.","uk":"назвати страву й додати ознаку після іменника."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 46,
+    sourceFingerprint: "94e3b78133cbb683de937a02cd29b0c95b46e71e763666b79e587d211eccf995",
+    newWordCount: 1,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"описать тёплое одеяло в единственном и множественном числе.","uk":"описати теплу ковдру в однині та множині."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+  }),
 ]);

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-03:session-44",
+  "learningOutcomeByLocale": {
+    "ru": "назвать лимон и описать его кислый вкус.",
+    "uk": "назвати лимон і описати його кислий смак."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-03:session-44:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Что это за фрукт",
+        "uk": "Що це за фрукт"
+      },
+      "bodyByLocale": {
+        "ru": "Гость спрашивает о фрукте на столе. Ответьте `Es un limón` — «Это лимон». Limón значит «лимон», ударение на последнем слоге. Соберите `es` + `un` + `limón`. Limón мужского рода, поэтому un. Полное предложение уже готово: отдельное слово для «это» здесь не нужно.",
+        "uk": "Гість запитує про фрукт на столі. Дайте відповідь `Es un limón` — «Це лимон». Limón означає «лимон», наголос на останньому складі. Зберіть `es` + `un` + `limón`. Limón чоловічого роду, тому un. Повне речення вже готове: окреме слово для «це» тут не потрібне."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-44:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите фрукт, начав с Es un.",
+          "uk": "Назвіть фрукт, почавши з Es un."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-44:intro1:r1",
+              "text": "Es un limón."
+            },
+            {
+              "responseId": "es:lesson-03:session-44:intro1:r2",
+              "text": "Es una limón."
+            },
+            {
+              "responseId": "es:lesson-03:session-44:intro1:r3",
+              "text": "Es unos limón."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-44:intro1:r1",
+              "text": "Es un limón."
+            },
+            {
+              "responseId": "es:lesson-03:session-44:intro1:r2",
+              "text": "Es una limón."
+            },
+            {
+              "responseId": "es:lesson-03:session-44:intro1:r3",
+              "text": "Es unos limón."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите фрукт, начав с Es un.",
+          "uk": "Назвіть фрукт, почавши з Es un."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-03:session-44:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Какой у него вкус",
+        "uk": "Який у нього смак"
+      },
+      "bodyByLocale": {
+        "ru": "Объясните обычный вкус лимона: `El limón es ácido` — «Лимон кислый». Ácido значит «кислый», ударение на первом слоге. Соберите `el limón` + `es` + `ácido`. С мужским limón выбираем ácido на -o. Это характерный вкус фрукта.",
+        "uk": "Поясніть звичайний смак лимона: `El limón es ácido` — «Лимон кислий». Ácido означає «кислий», наголос на першому складі. Зберіть `el limón` + `es` + `ácido`. З чоловічим limón вибираємо ácido на -o. Це характерний смак фрукта."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-44:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите, что лимон кислый.",
+          "uk": "Скажіть, що лимон кислий."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-44:intro2:r1",
+              "text": "El limón es ácido."
+            },
+            {
+              "responseId": "es:lesson-03:session-44:intro2:r2",
+              "text": "El limón es ácida."
+            },
+            {
+              "responseId": "es:lesson-03:session-44:intro2:r3",
+              "text": "El limón es ácidos."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-44:intro2:r1",
+              "text": "El limón es ácido."
+            },
+            {
+              "responseId": "es:lesson-03:session-44:intro2:r2",
+              "text": "El limón es ácida."
+            },
+            {
+              "responseId": "es:lesson-03:session-44:intro2:r3",
+              "text": "El limón es ácidos."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что лимон кислый.",
+          "uk": "Скажіть, що лимон кислий."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-03:session-44:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Лимоны этого сорта",
+        "uk": "Лимони цього сорту"
+      },
+      "bodyByLocale": {
+        "ru": "На столе несколько лимонов одного сорта. Опишите их: `Los limones son ácidos` — «Лимоны кислые». Соберите `los limones` + `son` + `ácidos`. Limón оканчивается на согласную: во множественном числе добавьте -es — limones. В limones ударение остаётся на той же гласной o, но знак ударения исчезает. К ácido добавьте -s.",
+        "uk": "На столі кілька лимонів одного сорту. Опишіть їх: `Los limones son ácidos` — «Лимони кислі». Зберіть `los limones` + `son` + `ácidos`. Limón закінчується на приголосну: у множині додайте -es — limones. У limones наголос залишається на тій самій голосній o, але знак наголосу зникає. До ácido додайте -s."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-44:intro3:q",
+        "promptByLocale": {
+          "ru": "Опишите кислые лимоны.",
+          "uk": "Опишіть кислі лимони."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-44:intro3:r1",
+              "text": "Los limones son ácidos."
+            },
+            {
+              "responseId": "es:lesson-03:session-44:intro3:r2",
+              "text": "Los limones son ácido."
+            },
+            {
+              "responseId": "es:lesson-03:session-44:intro3:r3",
+              "text": "Los limones es ácidos."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-44:intro3:r1",
+              "text": "Los limones son ácidos."
+            },
+            {
+              "responseId": "es:lesson-03:session-44:intro3:r2",
+              "text": "Los limones son ácido."
+            },
+            {
+              "responseId": "es:lesson-03:session-44:intro3:r3",
+              "text": "Los limones es ácidos."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Опишите кислые лимоны.",
+          "uk": "Опишіть кислі лимони."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "7c592ea54ffb5e8200f1433a3444e0d0cf5458b5c601c177971d308b4ff192f1"
+}

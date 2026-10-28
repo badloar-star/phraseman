@@ -1,0 +1,82 @@
+[
+  {
+    "interactionId": "es:lesson-03:session-45:i01",
+    "correctText": "sopa",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-45:i02",
+    "correctText": "sopa",
+    "correctResponseId": "es:lesson-03:session-45:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-45:i03",
+    "correctText": "Es una sopa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-45:i04",
+    "correctText": "una",
+    "correctResponseId": "es:lesson-03:session-45:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-45:i05",
+    "correctText": "frío",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-45:i06",
+    "correctText": "fría",
+    "correctResponseId": "es:lesson-03:session-45:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-45:i07",
+    "correctText": "Es una sopa fría.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-45:i08",
+    "correctText": "fría",
+    "correctResponseId": "es:lesson-03:session-45:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-45:i09",
+    "correctText": "Son unas sopas frías.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-45:i10",
+    "correctText": "No es una sopa fría.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-45:i11",
+    "correctText": "frías",
+    "correctResponseId": "es:lesson-03:session-45:i11:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-45:i12",
+    "correctText": "Son",
+    "correctResponseId": "es:lesson-03:session-45:i12:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-45:i13",
+    "correctText": "Es una sopa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-45:i14",
+    "correctText": "Es una sopa fría.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-45:i15",
+    "correctText": "Son unas sopas frías.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-45:i16",
+    "correctText": "No es una sopa fría.",
+    "correctResponseId": null
+  }
+]

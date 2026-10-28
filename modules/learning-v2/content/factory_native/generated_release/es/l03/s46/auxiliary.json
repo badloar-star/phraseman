@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-03:session-46",
+  "entries": [
+    {
+      "interactionId": "es:lesson-03:session-46:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-46:intro1:r2": {
+          "ru": "Нужна женская форма cálida.",
+          "uk": "Потрібна жіноча форма cálida."
+        },
+        "es:lesson-03:session-46:intro1:r3": {
+          "ru": "Одно одеяло: cálida.",
+          "uk": "Одна ковдра: cálida."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-46:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-46:intro2:r2": {
+          "ru": "Mantas женского рода: cálidas.",
+          "uk": "Mantas жіночого роду: cálidas."
+        },
+        "es:lesson-03:session-46:intro2:r3": {
+          "ru": "Нужно множественное cálidas.",
+          "uk": "Потрібна множина cálidas."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-46:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-46:intro3:r2": {
+          "ru": "Muy не получает -s.",
+          "uk": "Muy не отримує -s."
+        },
+        "es:lesson-03:session-46:intro3:r3": {
+          "ru": "Одеял несколько: cálidas.",
+          "uk": "Ковдр кілька: cálidas."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "3ce814b62cb5b960114415a7bf1b93f10e45a45de78762ce8270b4dadf0d7f8a"
+}

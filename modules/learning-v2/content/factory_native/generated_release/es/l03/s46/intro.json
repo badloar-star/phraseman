@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-03:session-46",
+  "learningOutcomeByLocale": {
+    "ru": "описать тёплое одеяло в единственном и множественном числе.",
+    "uk": "описати теплу ковдру в однині та множині."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-03:session-46:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Хорошо согревает",
+        "uk": "Добре зігріває"
+      },
+      "bodyByLocale": {
+        "ru": "Продавец показывает подходящее одеяло. Скажите `La manta es cálida` — «Одеяло тёплое». Cálido значит «тёплый». Соберите `la manta` + `es` + `cálida`. В испанском manta женского рода, поэтому cálida. Вы описываете свойство одеяла согревать, а не то, что его только что нагрели.",
+        "uk": "Продавець показує відповідну ковдру. Скажіть `La manta es cálida` — «Ковдра тепла». Cálido означає «теплий». Зберіть `la manta` + `es` + `cálida`. В іспанській manta жіночого роду, тому cálida. Ви описуєте властивість ковдри зігрівати, а не те, що її щойно нагріли."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-46:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите, что одеяло тёплое по своим свойствам.",
+          "uk": "Скажіть, що ковдра тепла за своїми властивостями."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-46:intro1:r1",
+              "text": "La manta es cálida."
+            },
+            {
+              "responseId": "es:lesson-03:session-46:intro1:r2",
+              "text": "La manta es cálido."
+            },
+            {
+              "responseId": "es:lesson-03:session-46:intro1:r3",
+              "text": "La manta es cálidas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-46:intro1:r1",
+              "text": "La manta es cálida."
+            },
+            {
+              "responseId": "es:lesson-03:session-46:intro1:r2",
+              "text": "La manta es cálido."
+            },
+            {
+              "responseId": "es:lesson-03:session-46:intro1:r3",
+              "text": "La manta es cálidas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что одеяло тёплое по своим свойствам.",
+          "uk": "Скажіть, що ковдра тепла за своїми властивостями."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-03:session-46:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Одеяла для всей семьи",
+        "uk": "Ковдри для всієї родини"
+      },
+      "bodyByLocale": {
+        "ru": "Выбираете несколько таких одеял. Скажите `Las mantas son cálidas` — «Одеяла тёплые». Соберите `las mantas` + `son` + `cálidas`. Несколько одеял требуют son. К женской форме cálida добавьте -s, чтобы признак тоже стоял во множественном числе.",
+        "uk": "Вибираєте кілька таких ковдр. Скажіть `Las mantas son cálidas` — «Ковдри теплі». Зберіть `las mantas` + `son` + `cálidas`. Кілька ковдр потребують son. До жіночої форми cálida додайте -s, щоб ознака теж стояла в множині."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-46:intro2:q",
+        "promptByLocale": {
+          "ru": "Опишите несколько тёплых одеял.",
+          "uk": "Опишіть кілька теплих ковдр."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-46:intro2:r1",
+              "text": "Las mantas son cálidas."
+            },
+            {
+              "responseId": "es:lesson-03:session-46:intro2:r2",
+              "text": "Las mantas son cálidos."
+            },
+            {
+              "responseId": "es:lesson-03:session-46:intro2:r3",
+              "text": "Las mantas son cálida."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-46:intro2:r1",
+              "text": "Las mantas son cálidas."
+            },
+            {
+              "responseId": "es:lesson-03:session-46:intro2:r2",
+              "text": "Las mantas son cálidos."
+            },
+            {
+              "responseId": "es:lesson-03:session-46:intro2:r3",
+              "text": "Las mantas son cálida."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Опишите несколько тёплых одеял.",
+          "uk": "Опишіть кілька теплих ковдр."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-03:session-46:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Особенно тёплые",
+        "uk": "Особливо теплі"
+      },
+      "bodyByLocale": {
+        "ru": "Нужны одеяла для прохладных ночей. Подчеркните, что выбранные очень тёплые: `Las mantas son muy cálidas`. Соберите `las mantas` + `son` + `muy cálidas`. Знакомое muy ставится перед признаком. Оно остаётся неизменным; число показывает окончание cálidas.",
+        "uk": "Потрібні ковдри для прохолодних ночей. Підкресліть, що вибрані дуже теплі: `Las mantas son muy cálidas`. Зберіть `las mantas` + `son` + `muy cálidas`. Знайоме muy ставиться перед ознакою. Воно залишається незмінним; число показує закінчення cálidas."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-46:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите, что одеяла очень тёплые по своим свойствам.",
+          "uk": "Скажіть, що ковдри дуже теплі за своїми властивостями."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-46:intro3:r1",
+              "text": "Las mantas son muy cálidas."
+            },
+            {
+              "responseId": "es:lesson-03:session-46:intro3:r2",
+              "text": "Las mantas son muys cálidas."
+            },
+            {
+              "responseId": "es:lesson-03:session-46:intro3:r3",
+              "text": "Las mantas son muy cálida."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-46:intro3:r1",
+              "text": "Las mantas son muy cálidas."
+            },
+            {
+              "responseId": "es:lesson-03:session-46:intro3:r2",
+              "text": "Las mantas son muys cálidas."
+            },
+            {
+              "responseId": "es:lesson-03:session-46:intro3:r3",
+              "text": "Las mantas son muy cálida."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что одеяла очень тёплые по своим свойствам.",
+          "uk": "Скажіть, що ковдри дуже теплі за своїми властивостями."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "56abf42ca6e504bde859683197506f9295d94826814acf6130ae63cdd50ac75c"
+}

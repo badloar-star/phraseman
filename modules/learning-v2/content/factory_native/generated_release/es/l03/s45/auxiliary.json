@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-03:session-45",
+  "entries": [
+    {
+      "interactionId": "es:lesson-03:session-45:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-45:intro1:r2": {
+          "ru": "В испанском нужен женский артикль una.",
+          "uk": "В іспанській потрібен жіночий артикль una."
+        },
+        "es:lesson-03:session-45:intro1:r3": {
+          "ru": "Здесь одно блюдо: una sopa.",
+          "uk": "Тут одна страва: una sopa."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-45:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-45:intro2:r2": {
+          "ru": "Нужна женская форма fría.",
+          "uk": "Потрібна жіноча форма fría."
+        },
+        "es:lesson-03:session-45:intro2:r3": {
+          "ru": "Одно блюдо: fría.",
+          "uk": "Одна страва: fría."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-45:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-45:intro3:r2": {
+          "ru": "Sopas женского рода: frías.",
+          "uk": "Sopas жіночого роду: frías."
+        },
+        "es:lesson-03:session-45:intro3:r3": {
+          "ru": "Предметов несколько: frías.",
+          "uk": "Предметів кілька: frías."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5f5de8a4f77e4cb1e81669cc7a284ecf6d533727cd22219e3fda8a72ffc48d57"
+}

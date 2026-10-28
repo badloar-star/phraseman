@@ -1,0 +1,891 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-03:session-44",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-03:session-44:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — limón",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-44:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — limón",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-44:i01:audio",
+          "transcript": "limón"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-44:i01:r1",
+            "targetText": "limón",
+            "meaningByLocale": {
+              "ru": "лимон; мужской род. Несколько лимонов — limones. 🔊 *limón*",
+              "uk": "лимон; чоловічий рід. Кілька лимонів — limones. 🔊 *limón*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "limón",
+          "definitionByLocale": {
+            "ru": "лимон; мужской род. Несколько лимонов — limones. 🔊 *limón*",
+            "uk": "лимон; чоловічий рід. Кілька лимонів — limones. 🔊 *limón*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-44:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-44:i02:r1",
+          "text": "limón"
+        },
+        {
+          "responseId": "es:lesson-03:session-44:i02:r2",
+          "text": "limones"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-44:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-44:i02:audio",
+          "transcript": "limón"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-44:i02:r1",
+            "targetText": "limón",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-03:session-44:i02:r2",
+            "targetText": "limones",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-44:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи один limón, без окончания -es.",
+              "uk": "У записі один limón, без закінчення -es."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-44:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це лимон; почніть з Es un",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-44:i03:r1",
+          "text": "Плитки: limón"
+        },
+        {
+          "responseId": "es:lesson-03:session-44:i03:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-03:session-44:i03:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-44:i03:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це лимон; почніть з Es un",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es un limón.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это лимон; начните с Es un",
+          "uk": "Зберіть фразу — це лимон; почніть з Es un"
+        },
+        "orderedTokens": [
+          "Es",
+          "un",
+          "limón"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-44:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це лимон; почніть з Es un",
+            "feedbackByLocale": {
+              "ru": "limón мужского рода.",
+              "uk": "limón чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-44:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — це лимон",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-44:i04:r1",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-03:session-44:i04:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-03:session-44:i04:r3",
+          "text": "unos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — це лимон",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это лимон",
+          "uk": "Вставте слово — це лимон"
+        },
+        "gappedTargetPhrase": "Es ___ limón.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-44:i04:r1",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-03:session-44:i04:r2",
+            "text": "una"
+          },
+          {
+            "responseId": "es:lesson-03:session-44:i04:r3",
+            "text": "unos"
+          }
+        ],
+        "testedDimension": "Вставте слово — це лимон",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-44:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — це лимон",
+            "feedbackByLocale": {
+              "ru": "Limón мужского рода: un.",
+              "uk": "Limón чоловічого роду: un."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-44:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — це лимон",
+            "feedbackByLocale": {
+              "ru": "Один фрукт: un.",
+              "uk": "Один фрукт: un."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-44:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — ácido",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-44:i05:audio"
+      ],
+      "accessibilityLabel": "Картка слова — ácido",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-44:i05:audio",
+          "transcript": "ácido"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-44:i05:r1",
+            "targetText": "ácido",
+            "meaningByLocale": {
+              "ru": "кислый; ácida — женская форма. 🔊 *ácido*",
+              "uk": "кислий; ácida — жіноча форма. 🔊 *ácido*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ácido",
+          "definitionByLocale": {
+            "ru": "кислый; ácida — женская форма. 🔊 *ácido*",
+            "uk": "кислий; ácida — жіноча форма. 🔊 *ácido*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-44:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-44:i06:r1",
+          "text": "ácido"
+        },
+        {
+          "responseId": "es:lesson-03:session-44:i06:r2",
+          "text": "ácida"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-44:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-44:i06:audio",
+          "transcript": "ácido"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-44:i06:r1",
+            "targetText": "ácido",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-03:session-44:i06:r2",
+            "targetText": "ácida",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-44:i06:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи окончание -o: ácido.",
+              "uk": "У записі закінчення -o: ácido."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-44:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — лимон кислий",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-44:i07:r1",
+          "text": "Плитки: ácido"
+        },
+        {
+          "responseId": "es:lesson-03:session-44:i07:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-44:i07:r3",
+          "text": "limón"
+        },
+        {
+          "responseId": "es:lesson-03:session-44:i07:r4",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-03:session-44:i07:r5",
+          "text": "ácida."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — лимон кислий",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "El limón es ácido.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — лимон кислый",
+          "uk": "Зберіть фразу — лимон кислий"
+        },
+        "orderedTokens": [
+          "El",
+          "limón",
+          "es",
+          "ácido"
+        ],
+        "authoredDistractorTokens": [
+          "ácida"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-44:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — лимон кислий",
+            "feedbackByLocale": {
+              "ru": "limón мужского рода.",
+              "uk": "limón чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-44:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — лимон кислий",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-44:i08:r1",
+          "text": "ácido"
+        },
+        {
+          "responseId": "es:lesson-03:session-44:i08:r2",
+          "text": "ácida"
+        },
+        {
+          "responseId": "es:lesson-03:session-44:i08:r3",
+          "text": "ácidos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — лимон кислий",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — лимон кислый",
+          "uk": "Вставте слово — лимон кислий"
+        },
+        "gappedTargetPhrase": "El limón es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-44:i08:r1",
+            "text": "ácido"
+          },
+          {
+            "responseId": "es:lesson-03:session-44:i08:r2",
+            "text": "ácida"
+          },
+          {
+            "responseId": "es:lesson-03:session-44:i08:r3",
+            "text": "ácidos"
+          }
+        ],
+        "testedDimension": "Вставте слово — лимон кислий",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-44:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — лимон кислий",
+            "feedbackByLocale": {
+              "ru": "Нужна мужская форма ácido.",
+              "uk": "Потрібна чоловіча форма ácido."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-44:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — лимон кислий",
+            "feedbackByLocale": {
+              "ru": "Один limón: ácido.",
+              "uk": "Один limón: ácido."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-44:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — лимони кислі",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-44:i09:r1",
+          "text": "Плитки: ácidos"
+        },
+        {
+          "responseId": "es:lesson-03:session-44:i09:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-44:i09:r3",
+          "text": "limones"
+        },
+        {
+          "responseId": "es:lesson-03:session-44:i09:r4",
+          "text": "los"
+        },
+        {
+          "responseId": "es:lesson-03:session-44:i09:r5",
+          "text": "ácido."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — лимони кислі",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Los limones son ácidos.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — лимоны кислые",
+          "uk": "Зберіть фразу — лимони кислі"
+        },
+        "orderedTokens": [
+          "Los",
+          "limones",
+          "son",
+          "ácidos"
+        ],
+        "authoredDistractorTokens": [
+          "ácido"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-44:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — лимони кислі",
+            "feedbackByLocale": {
+              "ru": "несколько limones.",
+              "uk": "кілька limones."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-44:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-44:i10:r1",
+          "text": "Плитки: ácido"
+        },
+        {
+          "responseId": "es:lesson-03:session-44:i10:r2",
+          "text": "muy"
+        },
+        {
+          "responseId": "es:lesson-03:session-44:i10:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-44:i10:r4",
+          "text": "limón"
+        },
+        {
+          "responseId": "es:lesson-03:session-44:i10:r5",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-03:session-44:i10:r6",
+          "text": "ácidos."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-44:i10:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-44:i10:audio",
+          "transcript": "El limón es muy ácido."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "El limón es muy ácido.",
+        "orderedTokens": [
+          "El",
+          "limón",
+          "es",
+          "muy",
+          "ácido"
+        ],
+        "authoredDistractorTokens": [
+          "ácidos"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-44:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит ácido.",
+              "uk": "звучить ácido."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-44:i11",
+      "ordinal": 14,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — лимони кислі",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-44:i11:r1",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-44:i11:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-44:i11:r3",
+          "text": "soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — лимони кислі",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — лимоны кислые",
+          "uk": "Вставте слово — лимони кислі"
+        },
+        "gappedTargetPhrase": "Los limones ___ ácidos.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-44:i11:r1",
+            "text": "son"
+          },
+          {
+            "responseId": "es:lesson-03:session-44:i11:r2",
+            "text": "es"
+          },
+          {
+            "responseId": "es:lesson-03:session-44:i11:r3",
+            "text": "soy"
+          }
+        ],
+        "testedDimension": "Вставте слово — лимони кислі",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-44:i11:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — лимони кислі",
+            "feedbackByLocale": {
+              "ru": "Несколько limones: son.",
+              "uk": "Кілька limones: son."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-44:i11:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — лимони кислі",
+            "feedbackByLocale": {
+              "ru": "Soy относится к «я».",
+              "uk": "Soy стосується «я»."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-44:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — кілька лимонів",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-44:i12:r1",
+          "text": "limones"
+        },
+        {
+          "responseId": "es:lesson-03:session-44:i12:r2",
+          "text": "limón"
+        },
+        {
+          "responseId": "es:lesson-03:session-44:i12:r3",
+          "text": "limóns"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — кілька лимонів",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — несколько лимонов",
+          "uk": "Вставте слово — кілька лимонів"
+        },
+        "gappedTargetPhrase": "Los ___ son ácidos.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-44:i12:r1",
+            "text": "limones"
+          },
+          {
+            "responseId": "es:lesson-03:session-44:i12:r2",
+            "text": "limón"
+          },
+          {
+            "responseId": "es:lesson-03:session-44:i12:r3",
+            "text": "limóns"
+          }
+        ],
+        "testedDimension": "Вставте слово — кілька лимонів",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-44:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — кілька лимонів",
+            "feedbackByLocale": {
+              "ru": "Нужна форма множественного числа limones.",
+              "uk": "Потрібна форма множини limones."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-44:i12:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — кілька лимонів",
+            "feedbackByLocale": {
+              "ru": "После согласной добавляем -es: limones.",
+              "uk": "Після приголосної додаємо -es: limones."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-44:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — це лимон; почніть з Es un",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-44:i13:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — це лимон; почніть з Es un",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-44:i13:audio",
+          "transcript": "Es un limón."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es un limón.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-44:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — лимон кислий; назвіть фрукт",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-44:i14:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — лимон кислий; назвіть фрукт",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-44:i14:audio",
+          "transcript": "El limón es ácido."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "El limón es ácido.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-44:i15",
+      "ordinal": 18,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — лимони кислі; назвіть фрукти",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-44:i15:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — лимони кислі; назвіть фрукти",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-44:i15:audio",
+          "transcript": "Los limones son ácidos."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Los limones son ácidos.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-44:i16",
+      "ordinal": 19,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — лимон дуже кислий; назвіть фрукт",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-44:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — лимон дуже кислий; назвіть фрукт",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-44:i16:audio",
+          "transcript": "El limón es muy ácido."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "El limón es muy ácido.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 16,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "e40be23959ce59e36076f262685ec6d7bb4b3b6a52216d702b8c5ffaf434c39d"
+}

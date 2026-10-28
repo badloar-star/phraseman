@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-03:session-45",
+  "learningOutcomeByLocale": {
+    "ru": "назвать блюдо и добавить признак после существительного.",
+    "uk": "назвати страву й додати ознаку після іменника."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-03:session-45:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Название блюда",
+        "uk": "Назва страви"
+      },
+      "bodyByLocale": {
+        "ru": "Вам показывают незнакомое блюдо. Объясните, что это суп: `Es una sopa` — «Это суп». Sopa значит «суп». Соберите `es` + `una` + `sopa`. Испанское sopa женского рода, хотя русское «суп» мужского. Поэтому используйте una.",
+        "uk": "Вам показують незнайому страву. Поясніть, що це суп: `Es una sopa` — «Це суп». Sopa означає «суп». Зберіть `es` + `una` + `sopa`. Іспанське sopa жіночого роду, хоча українське «суп» чоловічого. Тому використовуйте una."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-45:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите блюдо, начав с Es una.",
+          "uk": "Назвіть страву, почавши з Es una."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-45:intro1:r1",
+              "text": "Es una sopa."
+            },
+            {
+              "responseId": "es:lesson-03:session-45:intro1:r2",
+              "text": "Es un sopa."
+            },
+            {
+              "responseId": "es:lesson-03:session-45:intro1:r3",
+              "text": "Es unas sopa."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-45:intro1:r1",
+              "text": "Es una sopa."
+            },
+            {
+              "responseId": "es:lesson-03:session-45:intro1:r2",
+              "text": "Es un sopa."
+            },
+            {
+              "responseId": "es:lesson-03:session-45:intro1:r3",
+              "text": "Es unas sopa."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите блюдо, начав с Es una.",
+          "uk": "Назвіть страву, почавши з Es una."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-03:session-45:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Особенность рецепта",
+        "uk": "Особливість рецепта"
+      },
+      "bodyByLocale": {
+        "ru": "Это вид супа, который принято есть холодным. Скажите `Es una sopa fría` — «Это холодный суп». Frío значит «холодный». Добавьте признак после названия: `es` + `una sopa` + `fría`. С женским sopa нужна форма fría. Здесь es описывает тип блюда; вы не сообщаете, что горячий суп остыл.",
+        "uk": "Це вид супу, який заведено їсти холодним. Скажіть `Es una sopa fría` — «Це холодний суп». Frío означає «холодний». Додайте ознаку після назви: `es` + `una sopa` + `fría`. З жіночим sopa потрібна форма fría. Тут es описує тип страви; ви не повідомляєте, що гарячий суп охолов."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-45:intro2:q",
+        "promptByLocale": {
+          "ru": "Назовите холодный суп; поставьте признак после sopa.",
+          "uk": "Назвіть холодний суп; поставте ознаку після sopa."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-45:intro2:r1",
+              "text": "Es una sopa fría."
+            },
+            {
+              "responseId": "es:lesson-03:session-45:intro2:r2",
+              "text": "Es una sopa frío."
+            },
+            {
+              "responseId": "es:lesson-03:session-45:intro2:r3",
+              "text": "Es una sopa frías."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-45:intro2:r1",
+              "text": "Es una sopa fría."
+            },
+            {
+              "responseId": "es:lesson-03:session-45:intro2:r2",
+              "text": "Es una sopa frío."
+            },
+            {
+              "responseId": "es:lesson-03:session-45:intro2:r3",
+              "text": "Es una sopa frías."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите холодный суп; поставьте признак после sopa.",
+          "uk": "Назвіть холодний суп; поставте ознаку після sopa."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-03:session-45:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Два вида на выбор",
+        "uk": "Два види на вибір"
+      },
+      "bodyByLocale": {
+        "ru": "В меню несколько холодных супов. Представьте их вместе: `Son unas sopas frías` — «Это холодные супы». Соберите `son` + `unas sopas` + `frías`. Все названные супы относятся к холодным блюдам. Для нескольких sopa получаем sopas, una меняем на unas, а fría — на frías.",
+        "uk": "У меню кілька холодних супів. Представте їх разом: `Son unas sopas frías` — «Це холодні супи». Зберіть `son` + `unas sopas` + `frías`. Усі названі супи належать до холодних страв. Для кількох sopa отримуємо sopas, una змінюємо на unas, а fría — на frías."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-45:intro3:q",
+        "promptByLocale": {
+          "ru": "Представьте несколько холодных супов, начав с Son unas. Признак поставьте после sopas.",
+          "uk": "Представте кілька холодних супів, почавши з Son unas. Ознаку поставте після sopas."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-45:intro3:r1",
+              "text": "Son unas sopas frías."
+            },
+            {
+              "responseId": "es:lesson-03:session-45:intro3:r2",
+              "text": "Son unas sopas fríos."
+            },
+            {
+              "responseId": "es:lesson-03:session-45:intro3:r3",
+              "text": "Son unas sopas fría."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-45:intro3:r1",
+              "text": "Son unas sopas frías."
+            },
+            {
+              "responseId": "es:lesson-03:session-45:intro3:r2",
+              "text": "Son unas sopas fríos."
+            },
+            {
+              "responseId": "es:lesson-03:session-45:intro3:r3",
+              "text": "Son unas sopas fría."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Представьте несколько холодных супов, начав с Son unas. Признак поставьте после sopas.",
+          "uk": "Представте кілька холодних супів, почавши з Son unas. Ознаку поставте після sopas."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "04eb95bf20226094c972478c99288c00900143830fcf40664dc9e8fbf02a7d2a"
+}

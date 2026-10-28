@@ -1,0 +1,891 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-03:session-45",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-03:session-45:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — sopa",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-45:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — sopa",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-45:i01:audio",
+          "transcript": "sopa"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-45:i01:r1",
+            "targetText": "sopa",
+            "meaningByLocale": {
+              "ru": "суп; в испанском женский род. 🔊 *sopa*",
+              "uk": "суп; в іспанській жіночий рід. 🔊 *sopa*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sopa",
+          "definitionByLocale": {
+            "ru": "суп; в испанском женский род. 🔊 *sopa*",
+            "uk": "суп; в іспанській жіночий рід. 🔊 *sopa*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-45:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-45:i02:r1",
+          "text": "sopa"
+        },
+        {
+          "responseId": "es:lesson-03:session-45:i02:r2",
+          "text": "salsa"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-45:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-45:i02:audio",
+          "transcript": "sopa"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-45:i02:r1",
+            "targetText": "sopa",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-03:session-45:i02:r2",
+            "targetText": "salsa",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-45:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи sopa — суп.",
+              "uk": "У записі sopa — суп."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-45:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це суп; почніть з Es una",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-45:i03:r1",
+          "text": "Плитки: sopa"
+        },
+        {
+          "responseId": "es:lesson-03:session-45:i03:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-03:session-45:i03:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-45:i03:r4",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це суп; почніть з Es una",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es una sopa.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это суп; начните с Es una",
+          "uk": "Зберіть фразу — це суп; почніть з Es una"
+        },
+        "orderedTokens": [
+          "Es",
+          "una",
+          "sopa"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-45:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це суп; почніть з Es una",
+            "feedbackByLocale": {
+              "ru": "sopa женского рода.",
+              "uk": "sopa жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-45:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — це суп",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-45:i04:r1",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-03:session-45:i04:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-03:session-45:i04:r3",
+          "text": "unas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — це суп",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это суп",
+          "uk": "Вставте слово — це суп"
+        },
+        "gappedTargetPhrase": "Es ___ sopa.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-45:i04:r1",
+            "text": "una"
+          },
+          {
+            "responseId": "es:lesson-03:session-45:i04:r2",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-03:session-45:i04:r3",
+            "text": "unas"
+          }
+        ],
+        "testedDimension": "Вставте слово — це суп",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-45:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — це суп",
+            "feedbackByLocale": {
+              "ru": "Нужна женская форма una.",
+              "uk": "Потрібна жіноча форма una."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-45:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — це суп",
+            "feedbackByLocale": {
+              "ru": "Одно блюдо: una.",
+              "uk": "Одна страва: una."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-45:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — frío",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-45:i05:audio"
+      ],
+      "accessibilityLabel": "Картка слова — frío",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-45:i05:audio",
+          "transcript": "frío"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-45:i05:r1",
+            "targetText": "frío",
+            "meaningByLocale": {
+              "ru": "холодный; fría — женская форма. 🔊 *frío*",
+              "uk": "холодний; fría — жіноча форма. 🔊 *frío*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "frío",
+          "definitionByLocale": {
+            "ru": "холодный; fría — женская форма. 🔊 *frío*",
+            "uk": "холодний; fría — жіноча форма. 🔊 *frío*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-45:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-45:i06:r1",
+          "text": "fría"
+        },
+        {
+          "responseId": "es:lesson-03:session-45:i06:r2",
+          "text": "frío"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-45:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-45:i06:audio",
+          "transcript": "fría"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-45:i06:r1",
+            "targetText": "fría",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-03:session-45:i06:r2",
+            "targetText": "frío",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-45:i06:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи женское окончание -a: fría.",
+              "uk": "У записі жіноче закінчення -a: fría."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-45:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це холодний суп за рецептом; ознака після sopa",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-45:i07:r1",
+          "text": "Плитки: fría"
+        },
+        {
+          "responseId": "es:lesson-03:session-45:i07:r2",
+          "text": "sopa"
+        },
+        {
+          "responseId": "es:lesson-03:session-45:i07:r3",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-03:session-45:i07:r4",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-45:i07:r5",
+          "text": "frío."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це холодний суп за рецептом; ознака після sopa",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es una sopa fría.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это холодный суп по рецепту; признак после sopa",
+          "uk": "Зберіть фразу — це холодний суп за рецептом; ознака після sopa"
+        },
+        "orderedTokens": [
+          "Es",
+          "una",
+          "sopa",
+          "fría"
+        ],
+        "authoredDistractorTokens": [
+          "frío"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-45:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це холодний суп за рецептом; ознака після sopa",
+            "feedbackByLocale": {
+              "ru": "sopa женского рода.",
+              "uk": "sopa жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-45:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — це вид холодного супу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-45:i08:r1",
+          "text": "fría"
+        },
+        {
+          "responseId": "es:lesson-03:session-45:i08:r2",
+          "text": "frío"
+        },
+        {
+          "responseId": "es:lesson-03:session-45:i08:r3",
+          "text": "frías"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — це вид холодного супу",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это вид холодного супа",
+          "uk": "Вставте слово — це вид холодного супу"
+        },
+        "gappedTargetPhrase": "Es una sopa ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-45:i08:r1",
+            "text": "fría"
+          },
+          {
+            "responseId": "es:lesson-03:session-45:i08:r2",
+            "text": "frío"
+          },
+          {
+            "responseId": "es:lesson-03:session-45:i08:r3",
+            "text": "frías"
+          }
+        ],
+        "testedDimension": "Вставте слово — це вид холодного супу",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-45:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — це вид холодного супу",
+            "feedbackByLocale": {
+              "ru": "Sopa женского рода: fría.",
+              "uk": "Sopa жіночого роду: fría."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-45:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — це вид холодного супу",
+            "feedbackByLocale": {
+              "ru": "Одна sopa: fría.",
+              "uk": "Одна sopa: fría."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-45:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це холодні супи за рецептом; почніть з Son unas, ознака після sopas",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-45:i09:r1",
+          "text": "Плитки: frías"
+        },
+        {
+          "responseId": "es:lesson-03:session-45:i09:r2",
+          "text": "sopas"
+        },
+        {
+          "responseId": "es:lesson-03:session-45:i09:r3",
+          "text": "unas"
+        },
+        {
+          "responseId": "es:lesson-03:session-45:i09:r4",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-45:i09:r5",
+          "text": "fríos."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це холодні супи за рецептом; почніть з Son unas, ознака після sopas",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son unas sopas frías.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это холодные супы по рецепту; начните с Son unas, признак после sopas",
+          "uk": "Зберіть фразу — це холодні супи за рецептом; почніть з Son unas, ознака після sopas"
+        },
+        "orderedTokens": [
+          "Son",
+          "unas",
+          "sopas",
+          "frías"
+        ],
+        "authoredDistractorTokens": [
+          "fríos"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-45:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це холодні супи за рецептом; почніть з Son unas, ознака після sopas",
+            "feedbackByLocale": {
+              "ru": "sopas женского рода.",
+              "uk": "sopas жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-45:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-45:i10:r1",
+          "text": "Плитки: fría"
+        },
+        {
+          "responseId": "es:lesson-03:session-45:i10:r2",
+          "text": "sopa"
+        },
+        {
+          "responseId": "es:lesson-03:session-45:i10:r3",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-03:session-45:i10:r4",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-45:i10:r5",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-03:session-45:i10:r6",
+          "text": "frío."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-45:i10:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-45:i10:audio",
+          "transcript": "No es una sopa fría."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "No es una sopa fría.",
+        "orderedTokens": [
+          "No",
+          "es",
+          "una",
+          "sopa",
+          "fría"
+        ],
+        "authoredDistractorTokens": [
+          "frío"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-45:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит fría.",
+              "uk": "звучить fría."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-45:i11",
+      "ordinal": 14,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — це холодні супи за рецептом",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-45:i11:r1",
+          "text": "frías"
+        },
+        {
+          "responseId": "es:lesson-03:session-45:i11:r2",
+          "text": "fría"
+        },
+        {
+          "responseId": "es:lesson-03:session-45:i11:r3",
+          "text": "fríos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — це холодні супи за рецептом",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это холодные супы по рецепту",
+          "uk": "Вставте слово — це холодні супи за рецептом"
+        },
+        "gappedTargetPhrase": "Son unas sopas ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-45:i11:r1",
+            "text": "frías"
+          },
+          {
+            "responseId": "es:lesson-03:session-45:i11:r2",
+            "text": "fría"
+          },
+          {
+            "responseId": "es:lesson-03:session-45:i11:r3",
+            "text": "fríos"
+          }
+        ],
+        "testedDimension": "Вставте слово — це холодні супи за рецептом",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-45:i11:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — це холодні супи за рецептом",
+            "feedbackByLocale": {
+              "ru": "Несколько sopas: frías.",
+              "uk": "Кілька sopas: frías."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-45:i11:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — це холодні супи за рецептом",
+            "feedbackByLocale": {
+              "ru": "Нужно женское множественное frías.",
+              "uk": "Потрібна жіноча множина frías."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-45:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — це холодні супи за рецептом",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-45:i12:r1",
+          "text": "Son"
+        },
+        {
+          "responseId": "es:lesson-03:session-45:i12:r2",
+          "text": "Es"
+        },
+        {
+          "responseId": "es:lesson-03:session-45:i12:r3",
+          "text": "Soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — це холодні супи за рецептом",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это холодные супы по рецепту",
+          "uk": "Вставте слово — це холодні супи за рецептом"
+        },
+        "gappedTargetPhrase": "___ unas sopas frías.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-45:i12:r1",
+            "text": "Son"
+          },
+          {
+            "responseId": "es:lesson-03:session-45:i12:r2",
+            "text": "Es"
+          },
+          {
+            "responseId": "es:lesson-03:session-45:i12:r3",
+            "text": "Soy"
+          }
+        ],
+        "testedDimension": "Вставте слово — це холодні супи за рецептом",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-45:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — це холодні супи за рецептом",
+            "feedbackByLocale": {
+              "ru": "Несколько супов: son.",
+              "uk": "Кілька супів: son."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-45:i12:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — це холодні супи за рецептом",
+            "feedbackByLocale": {
+              "ru": "Soy означает «я являюсь».",
+              "uk": "Soy означає «я є»."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-45:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — це суп; почніть з Es una",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-45:i13:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — це суп; почніть з Es una",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-45:i13:audio",
+          "transcript": "Es una sopa."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es una sopa.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-45:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — це холодний суп за рецептом; почніть з Es una, ознака після sopa",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-45:i14:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — це холодний суп за рецептом; почніть з Es una, ознака після sopa",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-45:i14:audio",
+          "transcript": "Es una sopa fría."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es una sopa fría.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-45:i15",
+      "ordinal": 18,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — це холодні супи за рецептом; почніть з Son unas, ознака після sopas",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-45:i15:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — це холодні супи за рецептом; почніть з Son unas, ознака після sopas",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-45:i15:audio",
+          "transcript": "Son unas sopas frías."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son unas sopas frías.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-45:i16",
+      "ordinal": 19,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — це не холодний суп за рецептом; почніть з No es una, ознака після sopa",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-45:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — це не холодний суп за рецептом; почніть з No es una, ознака після sopa",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-45:i16:audio",
+          "transcript": "No es una sopa fría."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No es una sopa fría.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 16,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "02d4236ade4553e215afd0e088ec977a9dd1a72fd0baf30d58ec74c8b96487d5"
+}

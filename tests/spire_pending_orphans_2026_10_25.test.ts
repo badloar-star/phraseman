@@ -14,6 +14,7 @@ import {
   __resetSpirePendingCoinsForTests,
   addSpirePendingCoins,
   peekSpirePendingEntries,
+  spireGoldPendingId,
   spirePendingCoinsTotal,
 } from '../app/spire/spire_pending_coins';
 import { SPIRE_PENDING_ORPHAN_GRACE_MS, reconcileSpirePendingOrphans } from '../app/spire/spire_pending_orphans';
@@ -50,6 +51,21 @@ describe('reconcileSpirePendingOrphans', () => {
     expect(removed).toBe(1);
     expect(peekSpirePendingEntries(OWNER).map((e) => e.reportId)).toEqual(['sent-await']);
     expect(spirePendingCoinsTotal(OWNER, NOW)).toBe(30);
+  });
+
+  // зачем (координатор 28.10, жалоба «двойные очки, потом с общего счёта сняли 50»): строка золота spire_gold:{reportId} раньше
+  // всегда считалась сиротой (в очереди лежит {reportId}) и снималась через 2 мин, хотя ступень ждала отправки.
+  it('золото ступени, которая ещё в очереди, → остаётся; золото ступени без отчёта → снимается', async () => {
+    jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+    jest.spyOn(console, 'log').mockImplementation(() => undefined);
+    addSpirePendingCoins(OWNER, 'step-live', 50, OLD);
+    addSpirePendingCoins(OWNER, spireGoldPendingId('step-live'), 50, OLD);
+    addSpirePendingCoins(OWNER, spireGoldPendingId('step-gone'), 50, OLD);
+    const removed = await reconcileSpirePendingOrphans(OWNER, 'test', queue({ en: ['step-live'] }), NOW);
+    expect(removed).toBe(1);
+    expect(peekSpirePendingEntries(OWNER).map((e) => e.reportId)).toEqual(['step-live', spireGoldPendingId('step-live')]);
+    expect(spirePendingCoinsTotal(OWNER, NOW)).toBe(100);
+    jest.restoreAllMocks();
   });
 
   it('свежая строка без отчёта на диске (ещё пишется) → остаётся', async () => {

@@ -62,6 +62,8 @@ export function spireRunStepCloseTail(tail: SpireStepCloseTail): void {
  */
 export function spireStepCoinsNow(i: Readonly<{ owner: string | null | undefined; reportId: string; t0: number; coins: SpirePendingCoinsConfig | null | undefined; passedNew: boolean; floorBefore: number; floorCleared: boolean; golden?: boolean }>): boolean {
   if (!i.passedNew || !i.owner || !i.coins) {
+    // зачем (координатор 28.10, жалоба «прошла ступени — очки не изменились»): почему монеты ступени не показаны — в релизе видно.
+    console.log(`${LOG}[SPIRE-COINS] step:no_coins ${JSON.stringify({ report: i.reportId, passedNew: i.passedNew, owner: i.owner ? 'yes' : 'no', config: i.coins ? 'yes' : 'no', floorBefore: i.floorBefore, floorCleared: i.floorCleared })}`); // guard-ok: ранний выход с причиной
     spireCloseMark(i.reportId, i.t0, `монеты сразу: нет (новая пройденная=${String(i.passedNew)} владелец=${i.owner ? 'есть' : 'нет'} конфиг=${i.coins ? 'есть' : 'нет'})`);
     return false;
   }
@@ -70,6 +72,7 @@ export function spireStepCoinsNow(i: Readonly<{ owner: string | null | undefined
   const gold = i.golden ? spireStepPendingCoins(i.coins, i.floorBefore, false) : 0;
   const amount = spireStepPendingCoins(i.coins, i.floorBefore, i.floorCleared) + gold;
   const base = peekRunes();
+  console.log(`${LOG}[SPIRE-COINS] step:coins ${JSON.stringify({ report: i.reportId, floorBefore: i.floorBefore, floorCleared: i.floorCleared, summit: i.floorCleared && i.floorBefore === 15, golden: gold > 0, stepAndFloor: amount - gold, gold, total: amount, walletBase: base })}`); // guard-ok: что положено за ступень и из чего
   addSpirePendingCoins(i.owner, i.reportId, amount - gold, Date.now(), base);
   if (gold > 0) addSpirePendingCoins(i.owner, spireGoldPendingId(i.reportId), gold, Date.now(), base);
   spireCloseMark(i.reportId, i.t0, `монеты сразу: +${amount} (этаж до=${i.floorBefore} этаж закрыт=${String(i.floorCleared)} золото=${gold > 0 ? `+${gold}` : 'нет'}) до записи на диск`);

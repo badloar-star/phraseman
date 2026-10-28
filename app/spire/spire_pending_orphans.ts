@@ -6,12 +6,14 @@
 // одного языка. Отправленные и ждущие вердикта лежат в той же очереди до ответа — их не трогаем (иначе число нырнёт, потом прыгнет).
 // Свежие строки (моложе GRACE) не трогаем: монеты ступени показываются в момент итога, до записи отчёта на диск.
 // Firebase-экономия: только диск телефона (по ключу недели на язык), без сети и без чтений Firestore.
-import { removeSpirePendingCoins, peekSpirePendingEntries } from './spire_pending_coins';
+import { removeSpirePendingCoins, peekSpirePendingEntries, spireGoldPendingId } from './spire_pending_coins';
 import type { SpireLang } from '../../modules/spire/report_queue';
 
 const SPIRE = '[SPIRE]';
 const LANGS: readonly SpireLang[] = ['en', 'es', 'de', 'fr', 'it'];
 export const SPIRE_PENDING_ORPHAN_GRACE_MS = 2 * 60 * 1000;
+/** Приставка строки золота — из того же источника, что и сама строка (spireGoldPendingId). */
+const SPIRE_GOLD_PREFIX = spireGoldPendingId('');
 
 export type SpirePendingOrphanDeps = Readonly<{
   /** Живая очередь отчётов недели на языке: reportId строк pending (null — недели нет; бросок — чтение не удалось). */
@@ -59,8 +61,13 @@ export function reconcileSpirePendingOrphans(owner: string | null | undefined, t
     let removedCoins = 0;
     let young = 0;
     for (const entry of entries) {
-      if (live.has(entry.reportId)) continue;
+      // зачем (координатор 28.10, жалоба «двойные очки, потом с общего счёта сняли 50»): строка золота хранится как
+      // spire_gold:{reportId}, а в очереди лежит {reportId} — раньше золото ВСЕГДА выглядело сиротой и через 2 мин снималось,
+      // хотя ступень ждала отправки (потом сервер засчитывал золото, и число прыгало обратно). Сверяем по id ступени.
+      const stepId = entry.reportId.startsWith(SPIRE_GOLD_PREFIX) ? entry.reportId.slice(SPIRE_GOLD_PREFIX.length) : entry.reportId;
+      if (live.has(stepId)) continue;
       if (nowMs - entry.atMs < SPIRE_PENDING_ORPHAN_GRACE_MS) { young += 1; continue; }
+      console.warn(`${SPIRE}[SPIRE-COINS] orphan:remove ${JSON.stringify({ trigger, report: entry.reportId, stepId, gold: stepId !== entry.reportId, coins: entry.coins, ageMs: nowMs - entry.atMs, liveReports: live.size })}`); // guard-ok: что снято как сирота и почему
       removeSpirePendingCoins(owner, entry.reportId, 'orphan');
       removed += 1;
       removedCoins += entry.coins;

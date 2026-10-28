@@ -61,7 +61,21 @@ function fresh(list: readonly SpirePendingEntry[], nowMs: number, owner: string)
   return kept;
 }
 
-function publish(owner: string, list: readonly SpirePendingEntry[]): void {
+const sumOf = (list: readonly SpirePendingEntry[]): number => list.reduce((s, e) => s + e.coins, 0);
+
+/**
+ * [SPIRE-COINS] каждое изменение ожидающих — console.log (виден в релизе; DebugLogger.info/warn в релизе молчат).
+ * зачем (координатор 28.10, жалобы «двойные очки, потом сняли 50», «очки уменьшились»): видно, КТО и ПОЧЕМУ поменял число.
+ */
+function publish(owner: string, list: readonly SpirePendingEntry[], cause: string): void {
+  const prev = memory.get(owner) ?? [];
+  const before = sumOf(prev);
+  const after = sumOf(list);
+  const added = list.filter((e) => !prev.some((p) => p.reportId === e.reportId)).map((e) => `${e.reportId}:+${e.coins}`);
+  const removed = prev.filter((p) => !list.some((e) => e.reportId === p.reportId)).map((p) => `${p.reportId}:-${p.coins}`);
+  const line = JSON.stringify({ cause, owner: owner.slice(0, 6), before, after, delta: after - before, rows: list.length, added, removed });
+  if (after < before) console.warn(`${SPIRE}[SPIRE-COINS] pending:decrease ${line}`); // guard-ok: снятие ожидающих — с причиной
+  else console.log(`${SPIRE}[SPIRE-COINS] pending ${line}`); // guard-ok: изменение ожидающих — с причиной
   memory.set(owner, list); // guard-ok: Map в памяти — показ ожидающих, не баланс и не Firestore
   for (const listener of listeners) listener();
   void AsyncStorage.setItem(`${KEY}::${owner}`, JSON.stringify(list)).catch((e: unknown) => { // guard-ok: локальная копия показа, сбой — в журнал; баланс пишет только кошелёк
@@ -81,7 +95,7 @@ export async function hydrateSpirePendingCoins(owner: string, nowMs: number = Da
     const merged = [...mem, ...disk.filter((d) => !mem.some((m) => m.reportId === d.reportId))];
     const list = fresh(merged, nowMs, owner);
     DebugLogger.info(SPIRE, `${PEAK_COINS} hydrate owner=${owner.slice(0, 6)} disk=${disk.length} kept=${list.length} Σ=${list.reduce((s, e) => s + e.coins, 0)}`);
-    if (list.length !== mem.length || list.some((e, i) => e !== mem[i])) publish(owner, list);
+    if (list.length !== mem.length || list.some((e, i) => e !== mem[i])) publish(owner, list, 'hydrate_disk_ttl');
   } catch (e) {
     DebugLogger.warn(SPIRE, `${PEAK_COINS} hydrate failed owner=${owner.slice(0, 6)} → без ожидающих: ${e instanceof Error ? e.message : String(e)}`);
   }
@@ -91,16 +105,19 @@ export async function hydrateSpirePendingCoins(owner: string, nowMs: number = Da
 export function addSpirePendingCoins(owner: string, reportId: string, coins: number, nowMs: number = Date.now(), base?: number): void {
   if (!owner || !reportId || !Number.isSafeInteger(coins) || coins <= 0) {
     DebugLogger.warn(SPIRE, `${PEAK_COINS} add skip reason=bad_input owner=${owner ? 'yes' : 'no'} report=${reportId || '-'} coins=${coins}`);
+    console.warn(`${SPIRE}[SPIRE-COINS] add:skip ${JSON.stringify({ reason: 'bad_input', owner: owner ? 'yes' : 'no', report: reportId || null, coins })}`); // guard-ok: ранний выход с причиной
     return;
   }
   const list = memory.get(owner) ?? [];
   if (list.some((e) => e.reportId === reportId)) {
     DebugLogger.info(SPIRE, `${PEAK_COINS} add skip reason=duplicate report=${reportId}`);
+    // зачем (координатор 28.10): двойной тап / повтор отправки — тот же reportId второй раз не добавляет монет; видно в релизе.
+    console.log(`${SPIRE}[SPIRE-COINS] add:skip ${JSON.stringify({ reason: 'duplicate', report: reportId, coins })}`); // guard-ok: ранний выход с причиной
     return;
   }
   const next = [...list, { reportId, coins, atMs: nowMs, ...(Number.isSafeInteger(base) && (base as number) >= 0 ? { base } : {}) }];
   DebugLogger.info(SPIRE, `${PEAK_COINS} add report=${reportId} coins=${coins} base=${base ?? '-'} Σ=${next.reduce((s, e) => s + e.coins, 0)}`);
-  publish(owner, next);
+  publish(owner, next, 'add_step');
 }
 
 /**
@@ -121,7 +138,7 @@ export function removeSpirePendingCoins(owner: string | null | undefined, report
   }
   const next = list.filter((e) => e.reportId !== reportId);
   DebugLogger.warn(SPIRE, `${PEAK_COINS} settle reason=${reason} late=${String(late)} report=${reportId} coins=${hit.coins} Σ=${next.reduce((s, e) => s + e.coins, 0)}`);
-  publish(owner, next);
+  publish(owner, next, `remove:${reason}`);
 }
 
 /**
@@ -152,7 +169,7 @@ export function settleSpirePendingCoins(
     DebugLogger.info(SPIRE, `${PEAK_COINS} settle reason=verdict_${v.verdict} report=${e.reportId} coins=${e.coins} balanceBefore=${balanceBefore ?? '-'} balanceAfter=${balanceAfter ?? '-'}`);
     return false;
   });
-  if (next.length !== list.length) publish(owner, next);
+  if (next.length !== list.length) publish(owner, next, `settle_verdicts:balanceApplied=${String(balanceApplied)}`);
 }
 
 /**
@@ -175,7 +192,7 @@ export function settleSpirePendingByBalance(owner: string | null | undefined, ba
   for (const e of list) {
     if (settled.has(e.reportId)) DebugLogger.info(SPIRE, `${PEAK_COINS} settle reason=balance_grew report=${e.reportId} coins=${e.coins} base=${e.base} balance=${balance}`);
   }
-  publish(owner, list.filter((e) => !settled.has(e.reportId)));
+  publish(owner, list.filter((e) => !settled.has(e.reportId)), `settle_balance_grew:balance=${balance}`);
 }
 
 /** Строки ожидающих владельца как есть (только чтение) — для сверки с живой очередью отчётов (spire_pending_orphans.ts). */

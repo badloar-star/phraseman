@@ -352,10 +352,31 @@ function scheduleOrphanReconcile(trigger: string): void {
   });
 }
 
+/**
+ * [SPIRE-COINS] смена показанного числа монет — одна строка на новое значение (сколько бы экранов ни подписалось), с разбивкой.
+ * зачем (координатор 28.10, жалобы «сняли с общего счёта 50», «очки уменьшились»): уменьшение видно отдельной строкой; причину
+ * (кошелёк или ожидающие) даёт разбивка, а КТО снял ожидающие — строка [SPIRE-COINS] pending:decrease рядом.
+ */
+let lastSpireCoinsDisplayed: number | null = null;
+function noteSpireCoinsDisplayed(value: number): void {
+  if (lastSpireCoinsDisplayed === value) return;
+  const owner = captureAccountGeneration().stableId?.trim();
+  const wallet = readFromSnapshot().balance;
+  const spirePending = pendingCoins().spirePendingCoinsTotal(owner);
+  const line = JSON.stringify({ from: lastSpireCoinsDisplayed, to: value, delta: lastSpireCoinsDisplayed === null ? null : value - lastSpireCoinsDisplayed, wallet, spirePending });
+  if (lastSpireCoinsDisplayed !== null && value < lastSpireCoinsDisplayed) console.warn(`[SPIRE-COINS] display:decrease ${line}`); // guard-ok: уменьшение показанного числа — с разбивкой
+  else console.log(`[SPIRE-COINS] display ${line}`); // guard-ok: смена показанного числа — с разбивкой
+  lastSpireCoinsDisplayed = value;
+}
+
 /** Подписка на показ монет: меняется и кошелёк, и ожидающие. Рост кошелька гасит ожидающие, которые в нём уже есть. */
 export function subscribeDisplayedRunes(listener: (value: number) => void): () => void {
   const pending = pendingCoins();
-  const deliver = (): void => listener(peekDisplayedRunes());
+  const deliver = (): void => {
+    const value = peekDisplayedRunes();
+    noteSpireCoinsDisplayed(value);
+    listener(value);
+  };
   const emit = (): void => {
     if (displayBatchDepth > 0) { displayBatchDirty = true; return; }
     deliver();

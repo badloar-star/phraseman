@@ -1,0 +1,673 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-04:session-15",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-04:session-15:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-15:i01:r1",
+          "text": "llaves"
+        },
+        {
+          "responseId": "es:lesson-04:session-15:i01:r2",
+          "text": "llave"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-15:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-15:i01:audio",
+          "transcript": "llaves"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-04:session-15:i01:r1",
+            "targetText": "llaves",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-04:session-15:i01:r2",
+            "targetText": "llave",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-15:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит множественное llaves.",
+              "uk": "Звучить множина llaves."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-15:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — это не твой ключ, один",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-15:i02:r1",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-15:i02:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-15:i02:r3",
+          "text": "soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — это не твой ключ, один",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это не твой ключ, один",
+          "uk": "Вставте слово — це не твій ключ, один"
+        },
+        "gappedTargetPhrase": "No ___ tu llave.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-15:i02:r1",
+            "text": "es"
+          },
+          {
+            "responseId": "es:lesson-04:session-15:i02:r2",
+            "text": "son"
+          },
+          {
+            "responseId": "es:lesson-04:session-15:i02:r3",
+            "text": "soy"
+          }
+        ],
+        "testedDimension": "Вставьте слово — это не твой ключ, один",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-15:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это не твой ключ, один",
+            "feedbackByLocale": {
+              "ru": "Один ключ: es.",
+              "uk": "Один ключ: es."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-15:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это не твой ключ, один",
+            "feedbackByLocale": {
+              "ru": "Речь о ключе, а не «я»: es.",
+              "uk": "Йдеться про ключ, а не «я»: es."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-15:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это не твой ключ",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-15:i03:r1",
+          "text": "Плитки: llave"
+        },
+        {
+          "responseId": "es:lesson-04:session-15:i03:r2",
+          "text": "tu"
+        },
+        {
+          "responseId": "es:lesson-04:session-15:i03:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-15:i03:r4",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-04:session-15:i03:r5",
+          "text": "tus."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это не твой ключ",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No es tu llave.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это не твой ключ",
+          "uk": "Зберіть фразу — це не твій ключ"
+        },
+        "orderedTokens": [
+          "No",
+          "es",
+          "tu",
+          "llave"
+        ],
+        "authoredDistractorTokens": [
+          "tus"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-15:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это не твой ключ",
+            "feedbackByLocale": {
+              "ru": "ключ один.",
+              "uk": "ключ один."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-15:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — это не твои ключи",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-15:i04:r1",
+          "text": "tus"
+        },
+        {
+          "responseId": "es:lesson-04:session-15:i04:r2",
+          "text": "tu"
+        },
+        {
+          "responseId": "es:lesson-04:session-15:i04:r3",
+          "text": "mis"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — это не твои ключи",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это не твои ключи",
+          "uk": "Вставте слово — це не твої ключі"
+        },
+        "gappedTargetPhrase": "No son ___ llaves.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-15:i04:r1",
+            "text": "tus"
+          },
+          {
+            "responseId": "es:lesson-04:session-15:i04:r2",
+            "text": "tu"
+          },
+          {
+            "responseId": "es:lesson-04:session-15:i04:r3",
+            "text": "mis"
+          }
+        ],
+        "testedDimension": "Вставьте слово — это не твои ключи",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-15:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это не твои ключи",
+            "feedbackByLocale": {
+              "ru": "Ключей несколько: tus.",
+              "uk": "Ключів кілька: tus."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-15:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это не твои ключи",
+            "feedbackByLocale": {
+              "ru": "Нужно «твои», а не «мои».",
+              "uk": "Потрібно «твої», а не «мої»."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-15:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это не твои ключи",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-15:i05:r1",
+          "text": "Плитки: llaves"
+        },
+        {
+          "responseId": "es:lesson-04:session-15:i05:r2",
+          "text": "tus"
+        },
+        {
+          "responseId": "es:lesson-04:session-15:i05:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-15:i05:r4",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-04:session-15:i05:r5",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это не твои ключи",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No son tus llaves.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это не твои ключи",
+          "uk": "Зберіть фразу — це не твої ключі"
+        },
+        "orderedTokens": [
+          "No",
+          "son",
+          "tus",
+          "llaves"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-15:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это не твои ключи",
+            "feedbackByLocale": {
+              "ru": "для нескольких ключей нужно son.",
+              "uk": "для кількох ключів потрібне son."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-15:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это мои ключи",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-15:i06:r1",
+          "text": "Плитки: llaves"
+        },
+        {
+          "responseId": "es:lesson-04:session-15:i06:r2",
+          "text": "mis"
+        },
+        {
+          "responseId": "es:lesson-04:session-15:i06:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-15:i06:r4",
+          "text": "mi."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это мои ключи",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son mis llaves.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это мои ключи",
+          "uk": "Зберіть фразу — це мої ключі"
+        },
+        "orderedTokens": [
+          "Son",
+          "mis",
+          "llaves"
+        ],
+        "authoredDistractorTokens": [
+          "mi"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-15:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это мои ключи",
+            "feedbackByLocale": {
+              "ru": "ключей несколько.",
+              "uk": "ключів кілька."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-15:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-15:i07:r1",
+          "text": "Плитки: tus"
+        },
+        {
+          "responseId": "es:lesson-04:session-15:i07:r2",
+          "text": "llaves"
+        },
+        {
+          "responseId": "es:lesson-04:session-15:i07:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-04:session-15:i07:r4",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-15:i07:r5",
+          "text": "mis."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-15:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-15:i07:audio",
+          "transcript": "No son tus llaves."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "No son tus llaves.",
+        "orderedTokens": [
+          "No",
+          "son",
+          "tus",
+          "llaves"
+        ],
+        "authoredDistractorTokens": [
+          "mis"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-15:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит tus.",
+              "uk": "звучить tus."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-15:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — это мои ключи",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-15:i08:r1",
+          "text": "mis"
+        },
+        {
+          "responseId": "es:lesson-04:session-15:i08:r2",
+          "text": "mi"
+        },
+        {
+          "responseId": "es:lesson-04:session-15:i08:r3",
+          "text": "tus"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — это мои ключи",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это мои ключи",
+          "uk": "Вставте слово — це мої ключі"
+        },
+        "gappedTargetPhrase": "Son ___ llaves.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-15:i08:r1",
+            "text": "mis"
+          },
+          {
+            "responseId": "es:lesson-04:session-15:i08:r2",
+            "text": "mi"
+          },
+          {
+            "responseId": "es:lesson-04:session-15:i08:r3",
+            "text": "tus"
+          }
+        ],
+        "testedDimension": "Вставьте слово — это мои ключи",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-15:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это мои ключи",
+            "feedbackByLocale": {
+              "ru": "Ключей несколько: mis.",
+              "uk": "Ключів кілька: mis."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-15:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это мои ключи",
+            "feedbackByLocale": {
+              "ru": "Говорите о своих ключах: mis.",
+              "uk": "Говорите про свої ключі: mis."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-15:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — это не твой ключ; начните с No es",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-15:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — это не твой ключ; начните с No es",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-15:i09:audio",
+          "transcript": "No es tu llave."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No es tu llave.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-15:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — это не твои ключи; начните с No son",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-15:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — это не твои ключи; начните с No son",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-15:i10:audio",
+          "transcript": "No son tus llaves."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No son tus llaves.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-15:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — это мои ключи; начните с Son",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-15:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — это мои ключи; начните с Son",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-15:i11:audio",
+          "transcript": "Son mis llaves."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son mis llaves.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-15:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — это твой ключ; начните с Es",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-15:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — это твой ключ; начните с Es",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-15:i12:audio",
+          "transcript": "Es tu llave."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es tu llave.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "f10035712c502423232c4892faa10ecaf4c236e5ec85f2db363d977e33ea81e1"
+}

@@ -2559,4 +2559,18 @@ export const FACTORY_NATIVE_MANIFEST_ES_V1: readonly LearningV2FactoryNativeMani
     loadAnswers: () => require("./generated_release/es/l04/s14/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/es/l04/s14/auxiliary.json") as unknown,
   }),
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
+    lessonOrdinal: 4, sessionOrdinal: 15,
+    sourceFingerprint: "67119950df125d07088fba16baf764a749b195ede356f0c6ae3f5a8113d4d9ab",
+    introCorrectChoiceIndexes: Object.freeze([0,0,0]),
+    introPromptByAuthoredLocale: Object.freeze({"ru":["Остановите друга словами «Это не твой ключ». Начните с No es.","Скажите другу: «Это не твои ключи». Начните с No son.","Скажите другу: «Это мои ключи». Начните с Son."],"uk":["Зупиніть друга словами «Це не твій ключ». Почніть з No es.","Скажіть другу: «Це не твої ключі». Почніть з No son.","Скажіть другу: «Це мої ключі». Почніть з Son."]}),
+    introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Один ключ: es.","Одна вещь: tu llave."],["Для нескольких ключей нужно son.","Перед llaves нужно tus."],["Tus означает «твои», а нужны «мои».","Ключей несколько: mis."]],"uk":[["Один ключ: es.","Одна річ: tu llave."],["Для кількох ключів потрібне son.","Перед llaves потрібне tus."],["Tus означає «твої», а потрібні «мої».","Ключів кілька: mis."]]}),
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"отрицать принадлежность одной вещи и нескольких вещей собеседнику.","uk":"заперечувати належність однієї речі та кількох речей співрозмовнику."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
+    practiceTitlesByAuthoredLocale: Object.freeze({"ru":[{"ordinal":1,"title":"Послушайте и выберите слово"},{"ordinal":2,"title":"Вставьте слово — это не твой ключ, один"},{"ordinal":3,"title":"Соберите фразу — это не твой ключ"},{"ordinal":4,"title":"Вставьте слово — это не твои ключи"},{"ordinal":5,"title":"Соберите фразу — это не твои ключи"},{"ordinal":6,"title":"Соберите фразу — это мои ключи"},{"ordinal":7,"title":"Послушайте и соберите фразу"},{"ordinal":8,"title":"Вставьте слово — это мои ключи"},{"ordinal":9,"title":"Скажите вслух — это не твой ключ; начните с No es"},{"ordinal":10,"title":"Скажите вслух — это не твои ключи; начните с No son"},{"ordinal":11,"title":"Скажите вслух — это мои ключи; начните с Son"},{"ordinal":12,"title":"Скажите вслух — это твой ключ; начните с Es"}],"uk":[{"ordinal":1,"title":"Послухайте й виберіть слово"},{"ordinal":2,"title":"Вставте слово — це не твій ключ, один"},{"ordinal":3,"title":"Зберіть фразу — це не твій ключ"},{"ordinal":4,"title":"Вставте слово — це не твої ключі"},{"ordinal":5,"title":"Зберіть фразу — це не твої ключі"},{"ordinal":6,"title":"Зберіть фразу — це мої ключі"},{"ordinal":7,"title":"Послухайте й зберіть фразу"},{"ordinal":8,"title":"Вставте слово — це мої ключі"},{"ordinal":9,"title":"Скажіть уголос — це не твій ключ; почніть з No es"},{"ordinal":10,"title":"Скажіть уголос — це не твої ключі; почніть з No son"},{"ordinal":11,"title":"Скажіть уголос — це мої ключі; почніть з Son"},{"ordinal":12,"title":"Скажіть уголос — це твій ключ; почніть з Es"}]}),
+    loadIntro: () => require("./generated_release/es/l04/s15/intro.json") as unknown,
+    loadLearner: (locale: "ru" | "uk") => locale === "uk" ? require("./generated_release/es/l04/s15/learner.uk.json") as unknown : require("./generated_release/es/l04/s15/learner.json") as unknown,
+    loadAnswers: () => require("./generated_release/es/l04/s15/answers.json") as unknown,
+    loadAuxiliary: () => require("./generated_release/es/l04/s15/auxiliary.json") as unknown,
+  }),
 ]);

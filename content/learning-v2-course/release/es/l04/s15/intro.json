@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-04:session-15",
+  "learningOutcomeByLocale": {
+    "ru": "отрицать принадлежность одной вещи и нескольких вещей собеседнику.",
+    "uk": "заперечувати належність однієї речі та кількох речей співрозмовнику."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-04:session-15:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Один чужой ключ",
+        "uk": "Один чужий ключ"
+      },
+      "bodyByLocale": {
+        "ru": "Друг протянул руку к чужому ключу. Скажите `No es tu llave` — «Это не твой ключ». Возьмите знакомое `Es tu llave` и поставьте no перед es. Соберите `no` + `es` + `tu llave`. Вещь одна, поэтому es и tu. Испанское llave женского рода, но tu от рода не меняется.",
+        "uk": "Друг простягнув руку до чужого ключа. Скажіть `No es tu llave` — «Це не твій ключ». Візьміть знайоме `Es tu llave` і поставте no перед es. Зберіть `no` + `es` + `tu llave`. Річ одна, тому es і tu. Іспанське llave жіночого роду, але tu від роду не змінюється."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-15:intro1:q",
+        "promptByLocale": {
+          "ru": "Остановите друга словами «Это не твой ключ». Начните с No es.",
+          "uk": "Зупиніть друга словами «Це не твій ключ». Почніть з No es."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-15:intro1:r1",
+              "text": "No es tu llave."
+            },
+            {
+              "responseId": "es:lesson-04:session-15:intro1:r2",
+              "text": "No son tu llave."
+            },
+            {
+              "responseId": "es:lesson-04:session-15:intro1:r3",
+              "text": "No es tus llave."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-15:intro1:r1",
+              "text": "No es tu llave."
+            },
+            {
+              "responseId": "es:lesson-04:session-15:intro1:r2",
+              "text": "No son tu llave."
+            },
+            {
+              "responseId": "es:lesson-04:session-15:intro1:r3",
+              "text": "No es tus llave."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Остановите друга словами «Это не твой ключ». Начните с No es.",
+          "uk": "Зупиніть друга словами «Це не твій ключ». Почніть з No es."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-04:session-15:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Чужая связка",
+        "uk": "Чужа в'язка"
+      },
+      "bodyByLocale": {
+        "ru": "Друг взял связку чужих ключей. Скажите `No son tus llaves` — «Это не твои ключи». Соберите `no` + `son` + `tus llaves`. Для нескольких ключей нужны son и tus, а no по-прежнему стоит перед глаголом. Собеседнику говорим на «ты»; множественное число относится к ключам.",
+        "uk": "Друг узяв в'язку чужих ключів. Скажіть `No son tus llaves` — «Це не твої ключі». Зберіть `no` + `son` + `tus llaves`. Для кількох ключів потрібні son і tus, а no й далі стоїть перед дієсловом. До співрозмовника звертаємося на «ти»; множина стосується ключів."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-15:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите другу: «Это не твои ключи». Начните с No son.",
+          "uk": "Скажіть другу: «Це не твої ключі». Почніть з No son."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-15:intro2:r1",
+              "text": "No son tus llaves."
+            },
+            {
+              "responseId": "es:lesson-04:session-15:intro2:r2",
+              "text": "No es tus llaves."
+            },
+            {
+              "responseId": "es:lesson-04:session-15:intro2:r3",
+              "text": "No son tu llaves."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-15:intro2:r1",
+              "text": "No son tus llaves."
+            },
+            {
+              "responseId": "es:lesson-04:session-15:intro2:r2",
+              "text": "No es tus llaves."
+            },
+            {
+              "responseId": "es:lesson-04:session-15:intro2:r3",
+              "text": "No son tu llaves."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите другу: «Это не твои ключи». Начните с No son.",
+          "uk": "Скажіть другу: «Це не твої ключі». Почніть з No son."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-04:session-15:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ваши ключи",
+        "uk": "Ваші ключі"
+      },
+      "bodyByLocale": {
+        "ru": "Вы узнали свои ключи в руке друга. Скажите отдельной фразой `Son mis llaves` — «Это мои ключи». Соберите `son` + `mis llaves`. Son и llaves сохраняются, а tus замените на mis: теперь называете себя владельцем. Здесь нет no — вы подтверждаете, чьи это ключи.",
+        "uk": "Ви впізнали свої ключі в руці друга. Скажіть окремою фразою `Son mis llaves` — «Це мої ключі». Зберіть `son` + `mis llaves`. Son і llaves зберігаються, а tus замініть на mis: тепер називаєте себе власником. Тут немає no — ви підтверджуєте, чиї це ключі."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-15:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите другу: «Это мои ключи». Начните с Son.",
+          "uk": "Скажіть другу: «Це мої ключі». Почніть з Son."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-15:intro3:r1",
+              "text": "Son mis llaves."
+            },
+            {
+              "responseId": "es:lesson-04:session-15:intro3:r2",
+              "text": "Son tus llaves."
+            },
+            {
+              "responseId": "es:lesson-04:session-15:intro3:r3",
+              "text": "Son mi llaves."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-15:intro3:r1",
+              "text": "Son mis llaves."
+            },
+            {
+              "responseId": "es:lesson-04:session-15:intro3:r2",
+              "text": "Son tus llaves."
+            },
+            {
+              "responseId": "es:lesson-04:session-15:intro3:r3",
+              "text": "Son mi llaves."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите другу: «Это мои ключи». Начните с Son.",
+          "uk": "Скажіть другу: «Це мої ключі». Почніть з Son."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a3f82c896d3e88e215c6fb815d9efb96c8e0372f741db5d49287c4af4426d9b0"
+}

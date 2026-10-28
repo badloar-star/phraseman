@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-04:session-15",
+  "entries": [
+    {
+      "interactionId": "es:lesson-04:session-15:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-15:intro1:r2": {
+          "ru": "Один ключ: es.",
+          "uk": "Один ключ: es."
+        },
+        "es:lesson-04:session-15:intro1:r3": {
+          "ru": "Одна вещь: tu llave.",
+          "uk": "Одна річ: tu llave."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-15:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-15:intro2:r2": {
+          "ru": "Для нескольких ключей нужно son.",
+          "uk": "Для кількох ключів потрібне son."
+        },
+        "es:lesson-04:session-15:intro2:r3": {
+          "ru": "Перед llaves нужно tus.",
+          "uk": "Перед llaves потрібне tus."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-15:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-15:intro3:r2": {
+          "ru": "Tus означает «твои», а нужны «мои».",
+          "uk": "Tus означає «твої», а потрібні «мої»."
+        },
+        "es:lesson-04:session-15:intro3:r3": {
+          "ru": "Ключей несколько: mis.",
+          "uk": "Ключів кілька: mis."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "4ead3bd7076c0303b54ebf16c97f763dbb4241d9a59e586905da28bf9a63b88d"
+}

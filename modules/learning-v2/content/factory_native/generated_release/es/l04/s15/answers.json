@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-04:session-15:i01",
+    "correctText": "llaves",
+    "correctResponseId": "es:lesson-04:session-15:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-15:i02",
+    "correctText": "es",
+    "correctResponseId": "es:lesson-04:session-15:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-15:i03",
+    "correctText": "No es tu llave.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-15:i04",
+    "correctText": "tus",
+    "correctResponseId": "es:lesson-04:session-15:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-15:i05",
+    "correctText": "No son tus llaves.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-15:i06",
+    "correctText": "Son mis llaves.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-15:i07",
+    "correctText": "No son tus llaves.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-15:i08",
+    "correctText": "mis",
+    "correctResponseId": "es:lesson-04:session-15:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-15:i09",
+    "correctText": "No es tu llave.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-15:i10",
+    "correctText": "No son tus llaves.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-15:i11",
+    "correctText": "Son mis llaves.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-15:i12",
+    "correctText": "Es tu llave.",
+    "correctResponseId": null
+  }
+]

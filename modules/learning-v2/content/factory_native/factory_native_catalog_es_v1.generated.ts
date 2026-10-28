@@ -1281,4 +1281,11 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"использовать tus с существительным женского рода во множественном числе.","uk":"використовувати tus з іменником жіночого роду в множині."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 4, sessionOrdinal: 15,
+    sourceFingerprint: "67119950df125d07088fba16baf764a749b195ede356f0c6ae3f5a8113d4d9ab",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"отрицать принадлежность одной вещи и нескольких вещей собеседнику.","uk":"заперечувати належність однієї речі та кількох речей співрозмовнику."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
+  }),
 ]);

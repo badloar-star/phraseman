@@ -6,7 +6,6 @@ import { ListenBuildDictationModeV1 } from "../modules/learning-v2/modes/listen_
 import { ListenChooseModeV1 } from "../modules/learning-v2/modes/listen_choose_mode_v1";
 import { PhraseBuilderModeV1 } from "../modules/learning-v2/modes/phrase_builder_mode_v1";
 import { ScriptedRepeatCompareModeV1 } from "../modules/learning-v2/modes/scripted_repeat_compare_mode_v1";
-import { SoundContrastModeV1 } from "../modules/learning-v2/modes/sound_contrast_mode_v1";
 
 jest.mock("react-native", () => ({
   View: "View",
@@ -230,27 +229,6 @@ test("every full-phrase audio surface stays replayable after answer feedback", a
   await repeat.unmount();
 });
 
-test("sound contrast option audio remains independent from the resolved answer card", async () => {
-  const optionReplay = jest.fn();
-  const screen = await render(
-    <SoundContrastModeV1
-      {...commonProps}
-      family="sound_contrast"
-      onPlaySelectableAudio={optionReplay}
-      modePayload={{ family: "sound_contrast", ipaA: "/sɪd/", ipaB: "/siːd/" } as never}
-    />,
-  );
-  const buttons = screen.getAllByTestId("learning-v2-audio-replay-button");
-  expect(buttons).toHaveLength(2);
-  await fireEvent(buttons[0], "pressIn");
-  await fireEvent.press(buttons[0]);
-  await fireEvent(buttons[0], "pressOut");
-  await fireEvent.press(buttons[0]);
-  expect(optionReplay).toHaveBeenNthCalledWith(1, "r1");
-  expect(optionReplay).toHaveBeenNthCalledWith(2, "r1");
-  await screen.unmount();
-});
-
 // зачем (владелец 22.10): «все кнопки плей в занятиях — динамик и всегда можно нажать повторно».
 type HostNode = { type?: unknown; props?: { name?: string }; children?: unknown[] };
 // Значки внутри кнопки: обход дерева хост-элементов (Ionicons замокан строкой "Ionicons").
@@ -267,14 +245,24 @@ const iconNames = (node: HostNode): (string | undefined)[] => {
 };
 
 test("every replay button shows a speaker, never play/pause or a note", async () => {
+  // зачем (28.10): режим sound_contrast удалён (sound_contrast_retired_2026_10_26) — правило владельца проверяем на живом listen_choose
   const screen = await render(
-    <SoundContrastModeV1
+    <ListenChooseModeV1
       {...commonProps}
-      family="sound_contrast"
-      onPlaySelectableAudio={jest.fn()}
-      modePayload={{ family: "sound_contrast", ipaA: "/sɪd/", ipaB: "/siːd/" } as never}
+      family="listen_choose"
+      referenceAudioState="playing"
+      onPlayFullPhraseAudio={jest.fn()}
+      modePayload={{
+        family: "listen_choose",
+        referenceAudio: { audioTargetId: "phrase", transcript: "I am sad" },
+        localizedMeaningChoices: [
+          { responseId: "r1", meaningByLocale: { ru: "Мне грустно", uk: "Мені сумно" } },
+          { responseId: "r2", meaningByLocale: { ru: "Я счастлив", uk: "Я щасливий" } },
+        ],
+      } as never}
     />,
   );
+  expect(screen.getAllByTestId("learning-v2-audio-replay-button").length).toBeGreaterThan(0);
   for (const button of screen.getAllByTestId("learning-v2-audio-replay-button")) {
     expect(iconNames(button as never)).toEqual(["volume-high"]);
   }

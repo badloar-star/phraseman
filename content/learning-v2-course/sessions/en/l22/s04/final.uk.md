@@ -63,7 +63,7 @@
 - We want to support her. — *У записі звучить I want to support her.*
 - They want to support her. — *У записі звучить I want to support her.*
 
-**4 · Виберіть потрібне слово для цієї фрази.**
+**4 · Виберіть, як тут сказати «її / їй».**
 <!-- interaction_id: en:lesson-22:session-04:i03; family: context_gap_grammar -->
 I want to support ___. → **her** · she · hers
 - she — *Після цього дієслова потрібна об’єктна форма займенника.*
@@ -83,7 +83,7 @@ I want to support ___. → **her** · she · hers
 - We want to praise him. — *У записі звучить I want to praise him.*
 - They want to praise him. — *У записі звучить I want to praise him.*
 
-**8 · Виберіть потрібне слово для цієї фрази.**
+**8 · Виберіть, як тут сказати «його / йому».**
 <!-- interaction_id: en:lesson-22:session-04:i06; family: context_gap_grammar -->
 I want to praise ___. → **him** · he · his
 - he — *Після цього дієслова потрібна об’єктна форма займенника.*
@@ -103,7 +103,7 @@ I want to praise ___. → **him** · he · his
 - We want to compliment you. — *У записі звучить I want to compliment you.*
 - They want to compliment you. — *У записі звучить I want to compliment you.*
 
-**12 · Виберіть потрібне слово для цієї фрази.**
+**12 · Виберіть, як тут сказати «тебе / тобі».**
 <!-- interaction_id: en:lesson-22:session-04:i09; family: context_gap_grammar -->
 I want to compliment ___. → **you** · your · yours
 - your — *Після цього дієслова потрібна об’єктна форма займенника.*
@@ -123,7 +123,7 @@ I want to compliment ___. → **you** · your · yours
 - We appreciate them. — *У записі звучить I appreciate them.*
 - They appreciate them. — *У записі звучить I appreciate them.*
 
-**16 · Виберіть потрібне слово для цієї фрази.**
+**16 · Виберіть, як тут сказати «їх / їм».**
 <!-- interaction_id: en:lesson-22:session-04:i12; family: context_gap_grammar -->
 I appreciate ___. → **them** · they · their
 - they — *Після цього дієслова потрібна об’єктна форма займенника.*

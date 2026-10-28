@@ -63,7 +63,7 @@
 - We can advise him. — *У записі звучить I can advise him.*
 - They can advise him. — *У записі звучить I can advise him.*
 
-**4 · Виберіть потрібне слово для цієї фрази.**
+**4 · Виберіть, як тут сказати «його / йому».**
 <!-- interaction_id: en:lesson-22:session-01:i03; family: context_gap_grammar -->
 I can advise ___. → **him** · he · his
 - he — *Після цього дієслова потрібна об’єктна форма займенника.*
@@ -83,7 +83,7 @@ I can advise ___. → **him** · he · his
 - We want to congratulate her. — *У записі звучить I want to congratulate her.*
 - They want to congratulate her. — *У записі звучить I want to congratulate her.*
 
-**8 · Виберіть потрібне слово для цієї фрази.**
+**8 · Виберіть, як тут сказати «її / їй».**
 <!-- interaction_id: en:lesson-22:session-01:i06; family: context_gap_grammar -->
 I want to congratulate ___. → **her** · she · hers
 - she — *Після цього дієслова потрібна об’єктна форма займенника.*
@@ -103,7 +103,7 @@ I want to congratulate ___. → **her** · she · hers
 - We do not want to annoy them. — *У записі звучить I do not want to annoy them.*
 - They do not want to annoy them. — *У записі звучить I do not want to annoy them.*
 
-**12 · Виберіть потрібне слово для цієї фрази.**
+**12 · Виберіть, як тут сказати «їх / їм».**
 <!-- interaction_id: en:lesson-22:session-01:i09; family: context_gap_grammar -->
 I do not want to annoy ___. → **them** · they · their
 - they — *Після цього дієслова потрібна об’єктна форма займенника.*
@@ -123,7 +123,7 @@ I do not want to annoy ___. → **them** · they · their
 - We do not want to disappoint you. — *У записі звучить I do not want to disappoint you.*
 - They do not want to disappoint you. — *У записі звучить I do not want to disappoint you.*
 
-**16 · Виберіть потрібне слово для цієї фрази.**
+**16 · Виберіть, як тут сказати «тебе / тобі».**
 <!-- interaction_id: en:lesson-22:session-01:i12; family: context_gap_grammar -->
 I do not want to disappoint ___. → **you** · your · yours
 - your — *Після цього дієслова потрібна об’єктна форма займенника.*

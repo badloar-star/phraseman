@@ -63,7 +63,7 @@
 - Could you scrape it off? — *В записи звучит Could I scrape it off?*
 - Could we scrape it off? — *В записи звучит Could I scrape it off?*
 
-**4 · Выберите нужное слово для этой фразы.**
+**4 · Выберите, как здесь сказать «его / её» о предмете.**
 <!-- interaction_id: en:lesson-22:session-07:i03; family: context_gap_grammar -->
 Could I scrape ___ off? → **it** · its · it's
 - its — *После этого глагола нужна объектная форма местоимения.*
@@ -83,7 +83,7 @@ Could I scrape ___ off? → **it** · its · it's
 - Could you strain it? — *В записи звучит Could I strain it?*
 - Could we strain it? — *В записи звучит Could I strain it?*
 
-**8 · Выберите нужное слово для этой фразы.**
+**8 · Выберите, как здесь сказать «его / её» о предмете.**
 <!-- interaction_id: en:lesson-22:session-07:i06; family: context_gap_grammar -->
 Could I strain ___? → **it** · its · it's
 - its — *После этого глагола нужна объектная форма местоимения.*
@@ -103,7 +103,7 @@ Could I strain ___? → **it** · its · it's
 - Could you chill them? — *В записи звучит Could I chill them?*
 - Could we chill them? — *В записи звучит Could I chill them?*
 
-**12 · Выберите нужное слово для этой фразы.**
+**12 · Выберите, как здесь сказать «их / им».**
 <!-- interaction_id: en:lesson-22:session-07:i09; family: context_gap_grammar -->
 Could I chill ___? → **them** · they · their
 - they — *После этого глагола нужна объектная форма местоимения.*
@@ -123,7 +123,7 @@ Could I chill ___? → **them** · they · their
 - Could you drain them? — *В записи звучит Could I drain them?*
 - Could we drain them? — *В записи звучит Could I drain them?*
 
-**16 · Выберите нужное слово для этой фразы.**
+**16 · Выберите, как здесь сказать «их / им».**
 <!-- interaction_id: en:lesson-22:session-07:i12; family: context_gap_grammar -->
 Could I drain ___? → **them** · they · their
 - they — *После этого глагола нужна объектная форма местоимения.*

@@ -63,7 +63,7 @@
 - That phone case is mine. — *У записі звучить This phone case is mine.*
 - This phone case is not mine. — *У записі звучить This phone case is mine.*
 
-**4 · Виберіть потрібне слово для цієї фрази.**
+**4 · Виберіть, як сказати «мій», не називаючи предмет.**
 <!-- interaction_id: en:lesson-22:session-09:i03; family: context_gap_grammar -->
 This phone case is ___. → **mine** · my · me
 - my — *Тут потрібна самостійна присвійна форма без іменника.*
@@ -83,7 +83,7 @@ This phone case is ___. → **mine** · my · me
 - That travel mug is yours. — *У записі звучить This travel mug is yours.*
 - This travel mug is not yours. — *У записі звучить This travel mug is yours.*
 
-**8 · Виберіть потрібне слово для цієї фрази.**
+**8 · Виберіть, як сказати «твій», не називаючи предмет.**
 <!-- interaction_id: en:lesson-22:session-09:i06; family: context_gap_grammar -->
 This travel mug is ___. → **yours** · your · you
 - your — *Тут потрібна самостійна присвійна форма без іменника.*
@@ -103,7 +103,7 @@ This travel mug is ___. → **yours** · your · you
 - That woolly hat is hers. — *У записі звучить This woolly hat is hers.*
 - This woolly hat is not hers. — *У записі звучить This woolly hat is hers.*
 
-**12 · Виберіть потрібне слово для цієї фрази.**
+**12 · Виберіть, як сказати «її», не називаючи предмет.**
 <!-- interaction_id: en:lesson-22:session-09:i09; family: context_gap_grammar -->
 This woolly hat is ___. → **hers** · her · she
 - her — *Тут потрібна самостійна присвійна форма без іменника.*
@@ -123,7 +123,7 @@ This woolly hat is ___. → **hers** · her · she
 - That rain jacket is ours. — *У записі звучить This rain jacket is ours.*
 - This rain jacket is not ours. — *У записі звучить This rain jacket is ours.*
 
-**16 · Виберіть потрібне слово для цієї фрази.**
+**16 · Виберіть, як сказати «наш», не називаючи предмет.**
 <!-- interaction_id: en:lesson-22:session-09:i12; family: context_gap_grammar -->
 This rain jacket is ___. → **ours** · our · us
 - our — *Тут потрібна самостійна присвійна форма без іменника.*

@@ -63,7 +63,7 @@
 - You can calculate it. — *У записі звучить I can calculate it.*
 - We can calculate it. — *У записі звучить I can calculate it.*
 
-**4 · Виберіть потрібне слово для цієї фрази.**
+**4 · Виберіть, як тут сказати «його / її» про предмет.**
 <!-- interaction_id: en:lesson-22:session-08:i03; family: context_gap_grammar -->
 I can calculate ___. → **it** · its · it's
 - its — *Після цього дієслова потрібна об’єктна форма займенника.*
@@ -83,7 +83,7 @@ I can calculate ___. → **it** · its · it's
 - You can estimate it. — *У записі звучить I can estimate it.*
 - We can estimate it. — *У записі звучить I can estimate it.*
 
-**8 · Виберіть потрібне слово для цієї фрази.**
+**8 · Виберіть, як тут сказати «його / її» про предмет.**
 <!-- interaction_id: en:lesson-22:session-08:i06; family: context_gap_grammar -->
 I can estimate ___. → **it** · its · it's
 - its — *Після цього дієслова потрібна об’єктна форма займенника.*
@@ -103,7 +103,7 @@ I can estimate ___. → **it** · its · it's
 - You can add them up. — *У записі звучить I can add them up.*
 - We can add them up. — *У записі звучить I can add them up.*
 
-**12 · Виберіть потрібне слово для цієї фрази.**
+**12 · Виберіть, як тут сказати «їх / їм».**
 <!-- interaction_id: en:lesson-22:session-08:i09; family: context_gap_grammar -->
 I can add ___ up. → **them** · they · their
 - they — *Після цього дієслова потрібна об’єктна форма займенника.*
@@ -123,7 +123,7 @@ I can add ___ up. → **them** · they · their
 - You can round it down. — *У записі звучить I can round it down.*
 - We can round it down. — *У записі звучить I can round it down.*
 
-**16 · Виберіть потрібне слово для цієї фрази.**
+**16 · Виберіть, як тут сказати «його / її» про предмет.**
 <!-- interaction_id: en:lesson-22:session-08:i12; family: context_gap_grammar -->
 I can round ___ down. → **it** · its · it's
 - its — *Після цього дієслова потрібна об’єктна форма займенника.*

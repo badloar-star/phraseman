@@ -63,7 +63,7 @@
 - That camping chair is ours. — *У записі звучить This camping chair is ours.*
 - This camping chair is not ours. — *У записі звучить This camping chair is ours.*
 
-**4 · Виберіть потрібне слово для цієї фрази.**
+**4 · Виберіть, як сказати «наш», не називаючи предмет.**
 <!-- interaction_id: en:lesson-22:session-10:i03; family: context_gap_grammar -->
 This camping chair is ___. → **ours** · our · us
 - our — *Тут потрібна самостійна присвійна форма без іменника.*
@@ -83,7 +83,7 @@ This camping chair is ___. → **ours** · our · us
 - That gym bag is yours. — *У записі звучить This gym bag is yours.*
 - This gym bag is not yours. — *У записі звучить This gym bag is yours.*
 
-**8 · Виберіть потрібне слово для цієї фрази.**
+**8 · Виберіть, як сказати «твій», не називаючи предмет.**
 <!-- interaction_id: en:lesson-22:session-10:i06; family: context_gap_grammar -->
 This gym bag is ___. → **yours** · your · you
 - your — *Тут потрібна самостійна присвійна форма без іменника.*
@@ -103,7 +103,7 @@ This gym bag is ___. → **yours** · your · you
 - Those trainers are mine. — *У записі звучить These trainers are mine.*
 - These trainers are not mine. — *У записі звучить These trainers are mine.*
 
-**12 · Виберіть потрібне слово для цієї фрази.**
+**12 · Виберіть, як сказати «мій», не називаючи предмет.**
 <!-- interaction_id: en:lesson-22:session-10:i09; family: context_gap_grammar -->
 These trainers are ___. → **mine** · my · me
 - my — *Тут потрібна самостійна присвійна форма без іменника.*
@@ -123,7 +123,7 @@ These trainers are ___. → **mine** · my · me
 - That yoga mat is hers. — *У записі звучить This yoga mat is hers.*
 - This yoga mat is not hers. — *У записі звучить This yoga mat is hers.*
 
-**16 · Виберіть потрібне слово для цієї фрази.**
+**16 · Виберіть, як сказати «її», не називаючи предмет.**
 <!-- interaction_id: en:lesson-22:session-10:i12; family: context_gap_grammar -->
 This yoga mat is ___. → **hers** · her · she
 - her — *Тут потрібна самостійна присвійна форма без іменника.*

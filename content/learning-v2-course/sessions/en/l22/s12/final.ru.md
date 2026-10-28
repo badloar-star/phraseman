@@ -63,7 +63,7 @@
 - That wash bag is mine. — *В записи звучит This wash bag is mine.*
 - This wash bag is not mine. — *В записи звучит This wash bag is mine.*
 
-**4 · Выберите нужное слово для этой фразы.**
+**4 · Выберите, как сказать «мой», не называя предмет.**
 <!-- interaction_id: en:lesson-22:session-12:i03; family: context_gap_grammar -->
 This wash bag is ___. → **mine** · my · me
 - my — *Здесь нужна самостоятельная притяжательная форма без существительного.*
@@ -83,7 +83,7 @@ This wash bag is ___. → **mine** · my · me
 - That overnight bag is yours. — *В записи звучит This overnight bag is yours.*
 - This overnight bag is not yours. — *В записи звучит This overnight bag is yours.*
 
-**8 · Выберите нужное слово для этой фразы.**
+**8 · Выберите, как сказать «твой», не называя предмет.**
 <!-- interaction_id: en:lesson-22:session-12:i06; family: context_gap_grammar -->
 This overnight bag is ___. → **yours** · your · you
 - your — *Здесь нужна самостоятельная притяжательная форма без существительного.*
@@ -103,7 +103,7 @@ This overnight bag is ___. → **yours** · your · you
 - That tote bag is hers. — *В записи звучит This tote bag is hers.*
 - This tote bag is not hers. — *В записи звучит This tote bag is hers.*
 
-**12 · Выберите нужное слово для этой фразы.**
+**12 · Выберите, как сказать «её», не называя предмет.**
 <!-- interaction_id: en:lesson-22:session-12:i09; family: context_gap_grammar -->
 This tote bag is ___. → **hers** · her · she
 - her — *Здесь нужна самостоятельная притяжательная форма без существительного.*
@@ -123,7 +123,7 @@ This tote bag is ___. → **hers** · her · she
 - That eye mask is his. — *В записи звучит This eye mask is his.*
 - This eye mask is not his. — *В записи звучит This eye mask is his.*
 
-**16 · Выберите нужное слово для этой фразы.**
+**16 · Выберите, как здесь сказать «его» — чей?**
 <!-- interaction_id: en:lesson-22:session-12:i12; family: context_gap_grammar -->
 This eye mask is ___. → **his** · him · he
 - him — *Здесь нужна самостоятельная притяжательная форма без существительного.*

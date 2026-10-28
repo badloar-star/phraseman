@@ -63,7 +63,7 @@
 - Could you untangle them? — *У записі звучить Could I untangle them?*
 - Could we untangle them? — *У записі звучить Could I untangle them?*
 
-**4 · Виберіть потрібне слово для цієї фрази.**
+**4 · Виберіть, як тут сказати «їх / їм».**
 <!-- interaction_id: en:lesson-22:session-05:i03; family: context_gap_grammar -->
 Could I untangle ___? → **them** · they · their
 - they — *Після цього дієслова потрібна об’єктна форма займенника.*
@@ -83,7 +83,7 @@ Could I untangle ___? → **them** · they · their
 - Could you unscrew it? — *У записі звучить Could I unscrew it?*
 - Could we unscrew it? — *У записі звучить Could I unscrew it?*
 
-**8 · Виберіть потрібне слово для цієї фрази.**
+**8 · Виберіть, як тут сказати «його / її» про предмет.**
 <!-- interaction_id: en:lesson-22:session-05:i06; family: context_gap_grammar -->
 Could I unscrew ___? → **it** · its · it's
 - its — *Після цього дієслова потрібна об’єктна форма займенника.*
@@ -103,7 +103,7 @@ Could I unscrew ___? → **it** · its · it's
 - Could you unroll it? — *У записі звучить Could I unroll it?*
 - Could we unroll it? — *У записі звучить Could I unroll it?*
 
-**12 · Виберіть потрібне слово для цієї фрази.**
+**12 · Виберіть, як тут сказати «його / її» про предмет.**
 <!-- interaction_id: en:lesson-22:session-05:i09; family: context_gap_grammar -->
 Could I unroll ___? → **it** · its · it's
 - its — *Після цього дієслова потрібна об’єктна форма займенника.*
@@ -123,7 +123,7 @@ Could I unroll ___? → **it** · its · it's
 - Could you tape it? — *У записі звучить Could I tape it?*
 - Could we tape it? — *У записі звучить Could I tape it?*
 
-**16 · Виберіть потрібне слово для цієї фрази.**
+**16 · Виберіть, як тут сказати «його / її» про предмет.**
 <!-- interaction_id: en:lesson-22:session-05:i12; family: context_gap_grammar -->
 Could I tape ___? → **it** · its · it's
 - its — *Після цього дієслова потрібна об’єктна форма займенника.*

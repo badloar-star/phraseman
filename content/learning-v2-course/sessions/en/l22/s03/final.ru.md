@@ -63,7 +63,7 @@
 - We can convince her. — *В записи звучит I can convince her.*
 - They can convince her. — *В записи звучит I can convince her.*
 
-**4 · Выберите нужное слово для этой фразы.**
+**4 · Выберите, как здесь сказать «её / ей».**
 <!-- interaction_id: en:lesson-22:session-03:i03; family: context_gap_grammar -->
 I can convince ___. → **her** · she · hers
 - she — *После этого глагола нужна объектная форма местоимения.*
@@ -83,7 +83,7 @@ I can convince ___. → **her** · she · hers
 - We do not want to misunderstand him. — *В записи звучит I do not want to misunderstand him.*
 - They do not want to misunderstand him. — *В записи звучит I do not want to misunderstand him.*
 
-**8 · Выберите нужное слово для этой фразы.**
+**8 · Выберите, как здесь сказать «его / ему».**
 <!-- interaction_id: en:lesson-22:session-03:i06; family: context_gap_grammar -->
 I do not want to misunderstand ___. → **him** · he · his
 - he — *После этого глагола нужна объектная форма местоимения.*
@@ -103,7 +103,7 @@ I do not want to misunderstand ___. → **him** · he · his
 - We dislike it. — *В записи звучит I dislike it.*
 - They dislike it. — *В записи звучит I dislike it.*
 
-**12 · Выберите нужное слово для этой фразы.**
+**12 · Выберите, как здесь сказать «его / её» о предмете.**
 <!-- interaction_id: en:lesson-22:session-03:i09; family: context_gap_grammar -->
 I dislike ___. → **it** · its · it's
 - its — *После этого глагола нужна объектная форма местоимения.*
@@ -123,7 +123,7 @@ I dislike ___. → **it** · its · it's
 - We admire them. — *В записи звучит I admire them.*
 - They admire them. — *В записи звучит I admire them.*
 
-**16 · Выберите нужное слово для этой фразы.**
+**16 · Выберите, как здесь сказать «их / им».**
 <!-- interaction_id: en:lesson-22:session-03:i12; family: context_gap_grammar -->
 I admire ___. → **them** · they · their
 - they — *После этого глагола нужна объектная форма местоимения.*

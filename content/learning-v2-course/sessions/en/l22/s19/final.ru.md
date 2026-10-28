@@ -63,7 +63,7 @@
 - I can teach myself. — *В записи звучит You can teach yourself.*
 - We can teach ourselves. — *В записи звучит You can teach yourself.*
 
-**4 · Выберите нужное слово для этой фразы.**
+**4 · Выберите, как сказать «сам / себя».**
 <!-- interaction_id: en:lesson-22:session-19:i03; family: context_gap_grammar -->
 You can teach ___. → **yourself** · you · your
 - you — *Действие относится к самому собеседнику: нужно yourself.*
@@ -83,7 +83,7 @@ You can teach ___. → **yourself** · you · your
 - I need to prepare myself. — *В записи звучит You need to prepare yourself.*
 - We need to prepare ourselves. — *В записи звучит You need to prepare yourself.*
 
-**8 · Выберите нужное слово для этой фразы.**
+**8 · Выберите, как сказать «сам / себя».**
 <!-- interaction_id: en:lesson-22:session-19:i06; family: context_gap_grammar -->
 You need to prepare ___. → **yourself** · you · your
 - you — *Действие относится к самому собеседнику: нужно yourself.*
@@ -103,7 +103,7 @@ You need to prepare ___. → **yourself** · you · your
 - I can remind myself. — *В записи звучит You can remind yourself.*
 - We can remind ourselves. — *В записи звучит You can remind yourself.*
 
-**12 · Выберите нужное слово для этой фразы.**
+**12 · Выберите, как сказать «сам / себя».**
 <!-- interaction_id: en:lesson-22:session-19:i09; family: context_gap_grammar -->
 You can remind ___. → **yourself** · you · your
 - you — *Действие относится к самому собеседнику: нужно yourself.*
@@ -123,7 +123,7 @@ You can remind ___. → **yourself** · you · your
 - I can forgive myself. — *В записи звучит You can forgive yourself.*
 - We can forgive ourselves. — *В записи звучит You can forgive yourself.*
 
-**16 · Выберите нужное слово для этой фразы.**
+**16 · Выберите, как сказать «сам / себя».**
 <!-- interaction_id: en:lesson-22:session-19:i12; family: context_gap_grammar -->
 You can forgive ___. → **yourself** · you · your
 - you — *Действие относится к самому собеседнику: нужно yourself.*

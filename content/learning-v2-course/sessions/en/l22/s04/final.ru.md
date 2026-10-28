@@ -63,7 +63,7 @@
 - We want to support her. — *В записи звучит I want to support her.*
 - They want to support her. — *В записи звучит I want to support her.*
 
-**4 · Выберите нужное слово для этой фразы.**
+**4 · Выберите, как здесь сказать «её / ей».**
 <!-- interaction_id: en:lesson-22:session-04:i03; family: context_gap_grammar -->
 I want to support ___. → **her** · she · hers
 - she — *После этого глагола нужна объектная форма местоимения.*
@@ -83,7 +83,7 @@ I want to support ___. → **her** · she · hers
 - We want to praise him. — *В записи звучит I want to praise him.*
 - They want to praise him. — *В записи звучит I want to praise him.*
 
-**8 · Выберите нужное слово для этой фразы.**
+**8 · Выберите, как здесь сказать «его / ему».**
 <!-- interaction_id: en:lesson-22:session-04:i06; family: context_gap_grammar -->
 I want to praise ___. → **him** · he · his
 - he — *После этого глагола нужна объектная форма местоимения.*
@@ -103,7 +103,7 @@ I want to praise ___. → **him** · he · his
 - We want to compliment you. — *В записи звучит I want to compliment you.*
 - They want to compliment you. — *В записи звучит I want to compliment you.*
 
-**12 · Выберите нужное слово для этой фразы.**
+**12 · Выберите, как здесь сказать «тебя / тебе».**
 <!-- interaction_id: en:lesson-22:session-04:i09; family: context_gap_grammar -->
 I want to compliment ___. → **you** · your · yours
 - your — *После этого глагола нужна объектная форма местоимения.*
@@ -123,7 +123,7 @@ I want to compliment ___. → **you** · your · yours
 - We appreciate them. — *В записи звучит I appreciate them.*
 - They appreciate them. — *В записи звучит I appreciate them.*
 
-**16 · Выберите нужное слово для этой фразы.**
+**16 · Выберите, как здесь сказать «их / им».**
 <!-- interaction_id: en:lesson-22:session-04:i12; family: context_gap_grammar -->
 I appreciate ___. → **them** · they · their
 - they — *После этого глагола нужна объектная форма местоимения.*

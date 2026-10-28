@@ -63,7 +63,7 @@
 - Could you untangle them? — *В записи звучит Could I untangle them?*
 - Could we untangle them? — *В записи звучит Could I untangle them?*
 
-**4 · Выберите нужное слово для этой фразы.**
+**4 · Выберите, как здесь сказать «их / им».**
 <!-- interaction_id: en:lesson-22:session-05:i03; family: context_gap_grammar -->
 Could I untangle ___? → **them** · they · their
 - they — *После этого глагола нужна объектная форма местоимения.*
@@ -83,7 +83,7 @@ Could I untangle ___? → **them** · they · their
 - Could you unscrew it? — *В записи звучит Could I unscrew it?*
 - Could we unscrew it? — *В записи звучит Could I unscrew it?*
 
-**8 · Выберите нужное слово для этой фразы.**
+**8 · Выберите, как здесь сказать «его / её» о предмете.**
 <!-- interaction_id: en:lesson-22:session-05:i06; family: context_gap_grammar -->
 Could I unscrew ___? → **it** · its · it's
 - its — *После этого глагола нужна объектная форма местоимения.*
@@ -103,7 +103,7 @@ Could I unscrew ___? → **it** · its · it's
 - Could you unroll it? — *В записи звучит Could I unroll it?*
 - Could we unroll it? — *В записи звучит Could I unroll it?*
 
-**12 · Выберите нужное слово для этой фразы.**
+**12 · Выберите, как здесь сказать «его / её» о предмете.**
 <!-- interaction_id: en:lesson-22:session-05:i09; family: context_gap_grammar -->
 Could I unroll ___? → **it** · its · it's
 - its — *После этого глагола нужна объектная форма местоимения.*
@@ -123,7 +123,7 @@ Could I unroll ___? → **it** · its · it's
 - Could you tape it? — *В записи звучит Could I tape it?*
 - Could we tape it? — *В записи звучит Could I tape it?*
 
-**16 · Выберите нужное слово для этой фразы.**
+**16 · Выберите, как здесь сказать «его / её» о предмете.**
 <!-- interaction_id: en:lesson-22:session-05:i12; family: context_gap_grammar -->
 Could I tape ___? → **it** · its · it's
 - its — *После этого глагола нужна объектная форма местоимения.*

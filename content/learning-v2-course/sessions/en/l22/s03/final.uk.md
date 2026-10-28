@@ -63,7 +63,7 @@
 - We can convince her. — *У записі звучить I can convince her.*
 - They can convince her. — *У записі звучить I can convince her.*
 
-**4 · Виберіть потрібне слово для цієї фрази.**
+**4 · Виберіть, як тут сказати «її / їй».**
 <!-- interaction_id: en:lesson-22:session-03:i03; family: context_gap_grammar -->
 I can convince ___. → **her** · she · hers
 - she — *Після цього дієслова потрібна об’єктна форма займенника.*
@@ -83,7 +83,7 @@ I can convince ___. → **her** · she · hers
 - We do not want to misunderstand him. — *У записі звучить I do not want to misunderstand him.*
 - They do not want to misunderstand him. — *У записі звучить I do not want to misunderstand him.*
 
-**8 · Виберіть потрібне слово для цієї фрази.**
+**8 · Виберіть, як тут сказати «його / йому».**
 <!-- interaction_id: en:lesson-22:session-03:i06; family: context_gap_grammar -->
 I do not want to misunderstand ___. → **him** · he · his
 - he — *Після цього дієслова потрібна об’єктна форма займенника.*
@@ -103,7 +103,7 @@ I do not want to misunderstand ___. → **him** · he · his
 - We dislike it. — *У записі звучить I dislike it.*
 - They dislike it. — *У записі звучить I dislike it.*
 
-**12 · Виберіть потрібне слово для цієї фрази.**
+**12 · Виберіть, як тут сказати «його / її» про предмет.**
 <!-- interaction_id: en:lesson-22:session-03:i09; family: context_gap_grammar -->
 I dislike ___. → **it** · its · it's
 - its — *Після цього дієслова потрібна об’єктна форма займенника.*
@@ -123,7 +123,7 @@ I dislike ___. → **it** · its · it's
 - We admire them. — *У записі звучить I admire them.*
 - They admire them. — *У записі звучить I admire them.*
 
-**16 · Виберіть потрібне слово для цієї фрази.**
+**16 · Виберіть, як тут сказати «їх / їм».**
 <!-- interaction_id: en:lesson-22:session-03:i12; family: context_gap_grammar -->
 I admire ___. → **them** · they · their
 - they — *Після цього дієслова потрібна об’єктна форма займенника.*

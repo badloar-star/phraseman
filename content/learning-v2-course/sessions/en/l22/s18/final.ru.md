@@ -63,7 +63,7 @@
 - I can express myself. — *В записи звучит You can express yourself.*
 - We can express ourselves. — *В записи звучит You can express yourself.*
 
-**4 · Выберите нужное слово для этой фразы.**
+**4 · Выберите, как сказать «сам / себя».**
 <!-- interaction_id: en:lesson-22:session-18:i03; family: context_gap_grammar -->
 You can express ___. → **yourself** · you · your
 - you — *Действие относится к самому собеседнику: нужно yourself.*
@@ -83,7 +83,7 @@ You can express ___. → **yourself** · you · your
 - I do not need to push myself. — *В записи звучит You do not need to push yourself.*
 - We do not need to push ourselves. — *В записи звучит You do not need to push yourself.*
 
-**8 · Выберите нужное слово для этой фразы.**
+**8 · Выберите, как сказать «сам / себя».**
 <!-- interaction_id: en:lesson-22:session-18:i06; family: context_gap_grammar -->
 You do not need to push ___. → **yourself** · you · your
 - you — *Действие относится к самому собеседнику: нужно yourself.*
@@ -103,7 +103,7 @@ You do not need to push ___. → **yourself** · you · your
 - I can treat myself. — *В записи звучит You can treat yourself.*
 - We can treat ourselves. — *В записи звучит You can treat yourself.*
 
-**12 · Выберите нужное слово для этой фразы.**
+**12 · Выберите, как сказать «сам / себя».**
 <!-- interaction_id: en:lesson-22:session-18:i09; family: context_gap_grammar -->
 You can treat ___. → **yourself** · you · your
 - you — *Действие относится к самому собеседнику: нужно yourself.*
@@ -123,7 +123,7 @@ You can treat ___. → **yourself** · you · your
 - I can defend myself. — *В записи звучит You can defend yourself.*
 - We can defend ourselves. — *В записи звучит You can defend yourself.*
 
-**16 · Выберите нужное слово для этой фразы.**
+**16 · Выберите, как сказать «сам / себя».**
 <!-- interaction_id: en:lesson-22:session-18:i12; family: context_gap_grammar -->
 You can defend ___. → **yourself** · you · your
 - you — *Действие относится к самому собеседнику: нужно yourself.*

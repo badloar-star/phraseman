@@ -63,7 +63,7 @@
 - I can be myself. — *В записи звучит You can be yourself.*
 - We can be ourselves. — *В записи звучит You can be yourself.*
 
-**4 · Выберите нужное слово для этой фразы.**
+**4 · Выберите, как сказать «сам / себя».**
 <!-- interaction_id: en:lesson-22:session-20:i03; family: context_gap_grammar -->
 You can be ___. → **yourself** · yourselfs · your
 - yourselfs — *Действие относится к самому собеседнику: нужно yourself.*
@@ -83,7 +83,7 @@ You can be ___. → **yourself** · yourselfs · your
 - I can think for myself. — *В записи звучит You can think for yourself.*
 - We can think for ourselves. — *В записи звучит You can think for yourself.*
 
-**8 · Выберите нужное слово для этой фразы.**
+**8 · Выберите, как сказать «сам / себя».**
 <!-- interaction_id: en:lesson-22:session-20:i06; family: context_gap_grammar -->
 You can think for ___. → **yourself** · you · your
 - you — *Действие относится к самому собеседнику: нужно yourself.*
@@ -103,7 +103,7 @@ You can think for ___. → **yourself** · you · your
 - I can keep to myself. — *В записи звучит You can keep to yourself.*
 - We can keep to ourselves. — *В записи звучит You can keep to yourself.*
 
-**12 · Выберите нужное слово для этой фразы.**
+**12 · Выберите, как сказать «сам / себя».**
 <!-- interaction_id: en:lesson-22:session-20:i09; family: context_gap_grammar -->
 You can keep to ___. → **yourself** · you · your
 - you — *Действие относится к самому собеседнику: нужно yourself.*
@@ -123,7 +123,7 @@ You can keep to ___. → **yourself** · you · your
 - I can speak for myself. — *В записи звучит You can speak for yourself.*
 - We can speak for ourselves. — *В записи звучит You can speak for yourself.*
 
-**16 · Выберите нужное слово для этой фразы.**
+**16 · Выберите, как сказать «сам / себя».**
 <!-- interaction_id: en:lesson-22:session-20:i12; family: context_gap_grammar -->
 You can speak for ___. → **yourself** · you · your
 - you — *Действие относится к самому собеседнику: нужно yourself.*

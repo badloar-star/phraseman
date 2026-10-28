@@ -63,7 +63,7 @@
 - Could you scrape it off? — *У записі звучить Could I scrape it off?*
 - Could we scrape it off? — *У записі звучить Could I scrape it off?*
 
-**4 · Виберіть потрібне слово для цієї фрази.**
+**4 · Виберіть, як тут сказати «його / її» про предмет.**
 <!-- interaction_id: en:lesson-22:session-07:i03; family: context_gap_grammar -->
 Could I scrape ___ off? → **it** · its · it's
 - its — *Після цього дієслова потрібна об’єктна форма займенника.*
@@ -83,7 +83,7 @@ Could I scrape ___ off? → **it** · its · it's
 - Could you strain it? — *У записі звучить Could I strain it?*
 - Could we strain it? — *У записі звучить Could I strain it?*
 
-**8 · Виберіть потрібне слово для цієї фрази.**
+**8 · Виберіть, як тут сказати «його / її» про предмет.**
 <!-- interaction_id: en:lesson-22:session-07:i06; family: context_gap_grammar -->
 Could I strain ___? → **it** · its · it's
 - its — *Після цього дієслова потрібна об’єктна форма займенника.*
@@ -103,7 +103,7 @@ Could I strain ___? → **it** · its · it's
 - Could you chill them? — *У записі звучить Could I chill them?*
 - Could we chill them? — *У записі звучить Could I chill them?*
 
-**12 · Виберіть потрібне слово для цієї фрази.**
+**12 · Виберіть, як тут сказати «їх / їм».**
 <!-- interaction_id: en:lesson-22:session-07:i09; family: context_gap_grammar -->
 Could I chill ___? → **them** · they · their
 - they — *Після цього дієслова потрібна об’єктна форма займенника.*
@@ -123,7 +123,7 @@ Could I chill ___? → **them** · they · their
 - Could you drain them? — *У записі звучить Could I drain them?*
 - Could we drain them? — *У записі звучить Could I drain them?*
 
-**16 · Виберіть потрібне слово для цієї фрази.**
+**16 · Виберіть, як тут сказати «їх / їм».**
 <!-- interaction_id: en:lesson-22:session-07:i12; family: context_gap_grammar -->
 Could I drain ___? → **them** · they · their
 - they — *Після цього дієслова потрібна об’єктна форма займенника.*

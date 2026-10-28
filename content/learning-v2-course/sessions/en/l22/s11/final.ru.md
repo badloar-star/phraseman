@@ -63,7 +63,7 @@
 - That electric toothbrush is mine. — *В записи звучит This electric toothbrush is mine.*
 - This electric toothbrush is not mine. — *В записи звучит This electric toothbrush is mine.*
 
-**4 · Выберите нужное слово для этой фразы.**
+**4 · Выберите, как сказать «мой», не называя предмет.**
 <!-- interaction_id: en:lesson-22:session-11:i03; family: context_gap_grammar -->
 This electric toothbrush is ___. → **mine** · my · me
 - my — *Здесь нужна самостоятельная притяжательная форма без существительного.*
@@ -83,7 +83,7 @@ This electric toothbrush is ___. → **mine** · my · me
 - That electric razor is his. — *В записи звучит This electric razor is his.*
 - This electric razor is not his. — *В записи звучит This electric razor is his.*
 
-**8 · Выберите нужное слово для этой фразы.**
+**8 · Выберите, как здесь сказать «его» — чей?**
 <!-- interaction_id: en:lesson-22:session-11:i06; family: context_gap_grammar -->
 This electric razor is ___. → **his** · him · he
 - him — *Здесь нужна самостоятельная притяжательная форма без существительного.*
@@ -103,7 +103,7 @@ This electric razor is ___. → **his** · him · he
 - Those hair straighteners are hers. — *В записи звучит These hair straighteners are hers.*
 - These hair straighteners are not hers. — *В записи звучит These hair straighteners are hers.*
 
-**12 · Выберите нужное слово для этой фразы.**
+**12 · Выберите, как сказать «её», не называя предмет.**
 <!-- interaction_id: en:lesson-22:session-11:i09; family: context_gap_grammar -->
 These hair straighteners are ___. → **hers** · her · she
 - her — *Здесь нужна самостоятельная притяжательная форма без существительного.*
@@ -123,7 +123,7 @@ These hair straighteners are ___. → **hers** · her · she
 - That travel adapter is ours. — *В записи звучит This travel adapter is ours.*
 - This travel adapter is not ours. — *В записи звучит This travel adapter is ours.*
 
-**16 · Выберите нужное слово для этой фразы.**
+**16 · Выберите, как сказать «наш», не называя предмет.**
 <!-- interaction_id: en:lesson-22:session-11:i12; family: context_gap_grammar -->
 This travel adapter is ___. → **ours** · our · us
 - our — *Здесь нужна самостоятельная притяжательная форма без существительного.*

@@ -178,8 +178,13 @@
 - **Именно b9773b2ca покраснил 2**: `learning_v2_session_runtime_contract` и `learning_v2_system_tts_only` (на b9773b2ca^ оба зелёные) —
   они ищут строки в исходнике плеера `app/learning_v2_direct_session_player_v1.tsx`, которые ты переписал под прогрессивное аудио.
   Исправление: перезакрепить по смыслу (системный голос остаётся запасным путём, выход / возобновление занятия прежние), не ослабляя.
-- **Остальные 6 были красными ещё до b9773b2ca** — источник проверяется на cab8c99b6^ (переделка модалок курса); итог допишу сюда.
-- `season_shared_modal.test.tsx` запускается конфигом `jest.rntl.config.cjs` (`npm run test:rntl`) — проверять им.
+- **Остальные 6 были красными ещё до b9773b2ca.** Сверка на cab8c99b6^ (до переделки модалок курса):
+  - `test_runner_coverage_contract` — красный и там: старая поломка, не из этих коммитов;
+  - `season_shared_modal.test.tsx` — до cab8c99b6 файла не было; запускать конфигом `jest.rntl.config.cjs` (`npm run test:rntl`);
+  - **покраснели между cab8c99b6 и b9773b2ca** (4): `learning_v2_episode_exit_resume_contract`, `lesson_exit_sheet_contract`,
+    `season_wire_contract`, `study_speech_locale_contract`. По исходникам, которые они читают, из коммитов кода в этом окне их трогали только
+    **82cfea233** (испанский: `lesson_exit_sheet`, `study_speech_locale`, `season_wire`, `episode_resume`) и **cab8c99b6**
+    (`season_wire`, выход из занятия). Перезакрепить по смыслу под эти две правки, не ослабляя.
 
 ### 15. Достижения Пика: 2 красных в `tests/spire_game_source_contract.test.mjs`
 - Файлы — твои новые, не отслеживаются git (созданы 28.10 в 08:54 и 09:02, до возвращения сессий Claude):

@@ -22,11 +22,12 @@ jest.mock('../app/cloud_sync', () => ({
 const h = (value: string) => sha256Utf8(value);
 const localized = (prefix: string) => Object.fromEntries(LEARNING_V2_INTERFACE_LOCALES.map((locale) => [locale, `${prefix} ${locale}`])) as any;
 // зачем: английский каталог в 2.0 встроен в приложение (bundled_factory) и
-// сервер не вызывает; сетевой путь + LKG проверяем на не-английском курсе.
+// сервер не вызывает; сетевой путь + LKG проверяем на курсе, которого в бандле нет.
+// Перепин 28.10: с 82cfea233 испанский тоже встроен (isBundledFactoryTarget en|es) — берём французский.
 const locator = Object.freeze({
   environment: 'lab' as const,
-  targetLanguage: 'es',
-  studyTarget: 'es',
+  targetLanguage: 'fr',
+  studyTarget: 'fr',
   learnerSourceLocale: 'ru',
   interfaceLocale: 'ru' as const,
   seasonId: 'neutral-course',

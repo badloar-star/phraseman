@@ -12,12 +12,9 @@ const SOURCE = path.join(ROOT, 'content/learning-v2-course/sessions/en');
 /** Дыры на 22.10 (передано координатору). Исправил — вычеркни строку; новых сюда не добавлять. */
 // зачем: 7 из 12 исправлены и перенесены 22.10 (вычитка Теории); эти 5 исправлены в фабрике, но ждут озвучки новой фразы —
 // перенос в приложение после звука (scripts/learning_v2_transfer_pending.v1.json)
-const KNOWN_HOLES = new Set<string>([
-  'l01/s44:ancient', 'l01/s48:sticky',
-  'l02/s54:dramatic',
-  'l03/s08:bucket',
-  'l06/s40:doorstep',
-]);
+// зачем (перепин 28.10): все 5 прежних дыр (l01/s44 ancient, l01/s48 sticky, l02/s54 dramatic, l03/s08 bucket, l06/s40 doorstep)
+// закрыты правками курса — список только сокращается, теперь пуст
+const KNOWN_HOLES = new Set<string>([]);
 
 type Payload = Readonly<{
   family?: string;

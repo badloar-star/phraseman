@@ -79,16 +79,28 @@ describe("bundled Learning V2 session material (no network)", () => {
     }
   });
 
-  // зачем: в 2.0 встроены уроки 1–3 (фабричный контент); «нет локального
-  // контента» проверяем на последнем уроке курса, которого в бандле нет.
+  // зачем (перепин 28.10): с cf3e41b2b английский курс в бандле целиком (32 × 56), урок 32 больше не «пустой».
+  // «Нет локального контента → null» проверяем на испанском уроке 32: испанский курс в бандле ещё не дописан.
   test("returns null for a lesson that has no local content", () => {
+    expect(
+      bundledLearningV2CourseSessionMaterialV3({
+        ...LOCATOR,
+        targetLanguage: "es",
+        studyTarget: "es",
+        lessonOrdinal: 32,
+        sessionOrdinal: 1,
+      }),
+    ).toBeNull();
+  });
+
+  test("the last English lesson is bundled now", () => {
     expect(
       bundledLearningV2CourseSessionMaterialV3({
         ...LOCATOR,
         lessonOrdinal: 32,
         sessionOrdinal: 1,
-      }),
-    ).toBeNull();
+      })?.courseSessionId,
+    ).toBe("lesson-32:session:01");
   });
 
   test("rejects a session coordinate beyond the 56-session topology", () => {

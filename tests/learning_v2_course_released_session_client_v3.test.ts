@@ -70,10 +70,11 @@ const storage = new Map<string, string>();
 // зачем: английский курс в 2.0 берётся только из встроенного контента
 // (bundled_factory) и сервер не вызывает; сетевой путь + LKG проверяем на
 // не-английском курсе, а английский — отдельным тестом ниже.
+// Перепин 28.10: с 82cfea233 испанский тоже только из бандла (en/es → learning_v2_factory_session_unavailable без сети) — берём французский.
 const locator = Object.freeze({
   environment: "lab" as const,
-  targetLanguage: "es",
-  studyTarget: "es",
+  targetLanguage: "fr",
+  studyTarget: "fr",
   learnerSourceLocale: "ru",
   seasonId: "season-1",
   lessonOrdinal: 32,
@@ -150,12 +151,12 @@ describe("Learning V2 composite text+audio app client v3", () => {
     } as never);
     const projectedLearner = {
       courseSessionId,
-      targetLanguage: "es",
+      targetLanguage: "fr",
       learnerFingerprint: h("9"),
     } as never;
     const boundLearner = {
       courseSessionId,
-      targetLanguage: "es",
+      targetLanguage: "fr",
       learnerFingerprint: h("2"),
     } as never;
     jest.mocked(parseLearningV2CourseSessionLearnerChildV1).mockReturnValue(projectedLearner);

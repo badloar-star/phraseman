@@ -28,12 +28,12 @@ describe("Learning V2 episode exit and resume (№22б)", () => {
     expect(at).toBeGreaterThan(-1);
     const body = player.slice(at, player.indexOf("}, [exitLearningV2Session,", at));
     expect(body).toContain("const snapshot = hasProgress ? snapshotResume() : null;");
-    expect(body.indexOf("saveLearningV2EpisodeResumeV1(resumeOwner, snapshot)")).toBeGreaterThan(-1);
-    expect(body.indexOf("saveLearningV2EpisodeResumeV1(resumeOwner, snapshot)")).toBeLessThan(body.indexOf("exitLearningV2Session();"));
+    expect(body.indexOf("saveLearningV2EpisodeResumeV1(resumeOwner, snapshot, progressTargetLanguage)")).toBeGreaterThan(-1);
+    expect(body.indexOf("saveLearningV2EpisodeResumeV1(resumeOwner, snapshot, progressTargetLanguage)")).toBeLessThan(body.indexOf("exitLearningV2Session();"));
   });
 
   test("the episode is saved, offered back and cleared at the right moments", () => {
-    expect(player).toContain("saveLearningV2EpisodeResumeV1(resumeOwner, snapshot)");
+    expect(player).toContain("saveLearningV2EpisodeResumeV1(resumeOwner, snapshot, progressTargetLanguage)");
     expect(player).toContain("loadLearningV2EpisodeResumeV1({ owner: resumeOwner");
     expect(player).toContain('void clearResumeRef.current("finished");');
     expect(player).toContain('void clearResumeRef.current("restart_run");');

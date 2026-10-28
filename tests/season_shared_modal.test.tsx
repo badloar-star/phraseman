@@ -10,6 +10,15 @@ const mockReplace = jest.fn();
 jest.mock('expo-router', () => ({
   useRouter: () => ({ dismissTo: mockDismissTo, replace: mockReplace }),
   useLocalSearchParams: () => ({ result: 'l1:s1', stars: '3' }),
+  // перепин 28.10 (b9773b2ca): экран курса ждёт готовности корневой навигации — в тесте она готова сразу
+  useRootNavigationState: () => ({ key: 'root' }),
+}));
+// перепин 28.10 (b9773b2ca): переход откладывается до конца взаимодействий — здесь проверяем КУДА, а не когда
+jest.mock('../app/paywall_navigation', () => ({
+  scheduleAfterRootNavigationReady: (navigate: () => void) => {
+    navigate();
+    return { cancel: () => undefined };
+  },
 }));
 jest.mock('../app/navigation_back', () => ({
   dismissToTabRoute: (router: { dismissTo: (route: string) => void }, route: string) => router.dismissTo(route),

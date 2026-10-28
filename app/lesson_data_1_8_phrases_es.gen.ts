@@ -519,7 +519,7 @@ export const LESSON_1_PHRASES: LessonPhrase[] = [
     wordsEn: [
       { text: 'You', correct: 'You', distractors: ['your', 'yours', 'u', 'ye', 'yew'], category: 'pronoun' },
       { text: 'are', correct: 'are', distractors: ['am', 'is', 'be', 'been', 'being'], category: 'to-be' },
-      { text: 'okay', correct: 'okay', distractors: ['fine', 'OK', 'alright', 'wrong', 'bad'], category: 'adjective' }
+      { text: 'okay', correct: 'okay', distractors: ['finely', 'OK', 'alright', 'wrong', 'bad'], category: 'adjective' }
     ],
   },
   {
@@ -7371,7 +7371,7 @@ export const LESSON_8_PHRASES: LessonPhrase[] = [
     wordsEn: [
       { text: 'We', correct: 'We', distractors: ['I', 'They', 'She', 'our', 'us'] },
       { text: 'have', correct: 'have', distractors: ['has', 'had', 'gave', 'save', 'wave'] },
-      { text: 'class', correct: 'class', distractors: ['classes', 'glass', 'clash', 'clap', 'pass'] },
+      { text: 'class', correct: 'class', distractors: ['classy', 'glass', 'clash', 'clap', 'pass'] },
       { text: 'on', correct: 'on', distractors: ['in', 'at', 'to', 'of', 'by'], category: 'preposition' },
       { text: 'Tuesdays', correct: 'Tuesdays', distractors: ['Tuesday', 'Mondays', 'Wednesdays', 'today', 'toolbox'] },
     ],

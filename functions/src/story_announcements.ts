@@ -111,6 +111,16 @@ export const adminStoryAnnouncementCommand = onCall(
           msg,
         );
       }
+      // зачем (владелец 28.10: «новая история заменяет предыдущую»; координатор: сперва логи): по строке на команду — тот ли это id, что уже
+      // в показе (повторная публикация того же id = замена), сколько историй в ленте до и после. Без uid и текста истории.
+      const liveBefore = liveAnnouncements(feed.data()?.items ?? [], next.document.updatedAtMs);
+      console.log("[STORY-POST] command", JSON.stringify({
+        id: command.id.slice(0, 8), action: command.action, expectedRevision: command.expectedRevision, revision: next.document.revision,
+        previousStatus: before?.status ?? "none", replacesLiveSameId: command.action === "publish" && liveBefore.some((x) => x.id === command.id),
+        feedBefore: liveBefore.length, feedAfter: next.items.length,
+        publishedAt: next.document.publishedAtMs ? new Date(next.document.publishedAtMs).toISOString() : null,
+        expiresAt: next.document.expiresAtMs ? new Date(next.document.expiresAtMs).toISOString() : null,
+      }));
       const result = {
         id: command.id,
         revision: next.document.revision,
@@ -156,5 +166,9 @@ export const storyAnnouncementsGet = onCall(options, async (request) => {
     .collection("story_announcement_feed")
     .doc("current")
     .get();
-  return { items: liveAnnouncements(feed.data()?.items ?? [], nowMs), nowMs };
+  const projected = { items: liveAnnouncements(feed.data()?.items ?? [], nowMs), nowMs };
+  // зачем (28.10): видно, что лента отдаёт человеку — сколько историй и самая свежая; 1 чтение документа на вызов
+  const newest = projected.items[projected.items.length - 1];
+  console.log("[STORY-POST] get", JSON.stringify({ live: projected.items.length, newestPublishedAt: newest ? new Date(newest.publishedAtMs).toISOString() : null }));
+  return projected;
 });

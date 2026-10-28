@@ -1,5 +1,6 @@
-// Опрос объявлений в историях (Ревизор 24.10, Firebase-экономия; решение координатора: срок обновления 6 ч).
-// Свежий кэш → 0 вызовов storyAnnouncementsGet; просроченный или пустой → ровно 1; возврат из фона в пределах срока → 0; таймера-опросника нет.
+// Опрос объявлений в историях (Ревизор 24.10, Firebase-экономия). Владелец 28.10: «истории при отправке должны уходить СРАЗУ, а не через много
+// часов» — срок 6 ч заменён защитой в 1 минуту: запрос при каждом входе и возвращении в приложение, кроме повтора в пределах минуты.
+// Свежий кэш → 0 вызовов storyAnnouncementsGet; просроченный или пустой → ровно 1; возврат из фона в пределах минуты → 0; таймера-опросника нет.
 import fs from 'node:fs';
 import path from 'node:path';
 import { act, renderHook } from '@testing-library/react-native';
@@ -43,6 +44,7 @@ import {
 
 const CACHE_KEY = 'story_announcements_cache_v1:u1';
 const HOUR = 60 * 60 * 1000;
+const MIN = 60 * 1000;
 let clockShift = 0;
 const realNow = Date.now.bind(Date);
 const seedCache = (ageMs: number) => {
@@ -65,11 +67,11 @@ describe('объявления: когда ходим в сеть', () => {
   });
   afterEach(() => { jest.restoreAllMocks(); });
 
-  it('срок обновления — 6 часов', () => {
-    expect(ANNOUNCEMENTS_REFRESH_TTL_MS).toBe(6 * HOUR);
+  it('повторный запрос — не раньше чем через минуту (было 6 часов)', () => {
+    expect(ANNOUNCEMENTS_REFRESH_TTL_MS).toBe(MIN);
     expect(announcementRefreshDue(null, 1000)).toBe(true);
-    expect(announcementRefreshDue(1000, 1000 + 6 * HOUR - 1)).toBe(false);
-    expect(announcementRefreshDue(1000, 1000 + 6 * HOUR)).toBe(true);
+    expect(announcementRefreshDue(1000, 1000 + MIN - 1)).toBe(false);
+    expect(announcementRefreshDue(1000, 1000 + MIN)).toBe(true);
     expect(announcementRefreshDue(5000, 1000)).toBe(true);
   });
 
@@ -80,34 +82,57 @@ describe('объявления: когда ходим в сеть', () => {
     await hook.unmount();
   });
 
-  it('свежий кэш (1 ч) → 0 вызовов', async () => {
-    seedCache(HOUR);
+  it('свежий кэш (30 с) → 0 вызовов', async () => {
+    seedCache(30 * 1000);
     const hook = await renderHook(() => useAnnouncementStories(true));
     await flush();
     expect(mockCall).toHaveBeenCalledTimes(0);
     await hook.unmount();
   });
 
-  it('просроченный кэш (7 ч) → ровно 1 вызов', async () => {
-    seedCache(7 * HOUR);
+  it('кэш старше минуты (2 мин) → ровно 1 вызов', async () => {
+    seedCache(2 * MIN);
     const hook = await renderHook(() => useAnnouncementStories(true));
     await flush();
     expect(mockCall).toHaveBeenCalledTimes(1);
     await hook.unmount();
   });
 
-  it('возврат из фона в пределах срока → 0 новых вызовов; после срока → ещё 1', async () => {
+  it('возврат из фона в пределах минуты → 0 новых вызовов; позже → ещё 1', async () => {
     const hook = await renderHook(() => useAnnouncementStories(true));
     await flush();
     expect(mockCall).toHaveBeenCalledTimes(1);
-    clockShift = 2 * HOUR;
+    clockShift = 30 * 1000;
     await act(async () => { mockAppStateListener?.('active'); });
     await flush();
     expect(mockCall).toHaveBeenCalledTimes(1);
-    clockShift = 7 * HOUR;
+    clockShift = 2 * MIN;
     await act(async () => { mockAppStateListener?.('active'); });
     await flush();
     expect(mockCall).toHaveBeenCalledTimes(2);
+    await hook.unmount();
+  });
+
+  // зачем (владелец 28.10): опубликованная история доходит при следующем возвращении в приложение, и истории не заменяют друг друга
+  const story = (id: string, publishedAgoMs: number) => {
+    const now = realNow() + clockShift;
+    return { templateId: 'leaf', badge: '', title: `T ${id}`, blocks: [], titleSize: 28, align: 'left', decoration: false, lifetime: 24, unit: 'hours',
+      durationMs: 5000, id, revision: 1, status: 'published', publishedAtMs: now - publishedAgoMs, expiresAtMs: now - publishedAgoMs + 24 * HOUR };
+  };
+  it('история, опубликованная пока приложение в фоне, появляется при возвращении; две истории живут рядом', async () => {
+    const hook = await renderHook(() => useAnnouncementStories(true));
+    await flush();
+    expect(hook.result.current.stories).toHaveLength(0);
+    clockShift = 2 * MIN;
+    mockCall.mockImplementationOnce(async () => ({ data: { items: [story('first', 60 * 1000)], nowMs: realNow() + clockShift } }));
+    await act(async () => { mockAppStateListener?.('active'); });
+    await flush();
+    expect(hook.result.current.stories.map((x) => x.id)).toEqual(['announcement:first:1']);
+    clockShift = 4 * MIN;
+    mockCall.mockImplementationOnce(async () => ({ data: { items: [story('first', 3 * MIN), story('second', 1000)], nowMs: realNow() + clockShift } }));
+    await act(async () => { mockAppStateListener?.('active'); });
+    await flush();
+    expect(hook.result.current.stories.map((x) => x.id)).toEqual(['announcement:first:1', 'announcement:second:1']);
     await hook.unmount();
   });
 

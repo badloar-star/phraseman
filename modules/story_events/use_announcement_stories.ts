@@ -7,6 +7,7 @@ import {
   subscribeAccountGeneration,
 } from "../../app/account_generation";
 import {
+  ANNOUNCEMENTS_REFRESH_TTL_MS,
   announcementRefreshDue,
   parseAnnouncementsCache,
   serializeAnnouncementsCache,
@@ -18,12 +19,16 @@ import {
 } from "./story_announcements_contract";
 import type { StoryEventList } from "./story_events_core";
 const EMPTY: StoryEventList = Object.freeze([]);
-const LOG = "[STORY-ANNOUNCE]";
+// зачем (координатор 28.10, «сперва логи»): [STORY-POST] — сквозной префикс пути «опубликовали → дошло до человека»; [STORY-ANNOUNCE] оставлен для старых поисков
+const LOG = "[STORY-ANNOUNCE] [STORY-POST]";
+/** Короткая сводка истории для журнала: начало id (UUID, не данные человека), ревизия, когда опубликована и когда истечёт. */
+const brief = (a: PublishedAnnouncement) => `${a.id.slice(0, 8)}@r${a.revision} pub=${new Date(a.publishedAtMs).toISOString()} exp=${new Date(a.expiresAtMs).toISOString()}`;
 /**
  * Separate from personal events: announcement expiry is server-defined, never the seven-day TTL.
  *
  * зачем (Ревизор 24.10, Firebase-экономия): прежний опрос раз в 60 с у всех пользователей заменён кэшем на телефоне + запросом при входе и при
- * возвращении в приложение не чаще раза в 30 мин (announcement_fetch_policy). Кэш показывается с первого кадра, свежий ответ догоняет фоном.
+ * возвращении в приложение (с 28.10 — каждый раз, кроме повтора в пределах минуты; announcement_fetch_policy). Кэш показывается с первого кадра,
+ * свежий ответ догоняет фоном.
  */
 export function useAnnouncementStories(enabled: boolean) {
   const [token, setToken] = useState(captureAccountGeneration);
@@ -83,7 +88,7 @@ export function useAnnouncementStories(enabled: boolean) {
       if (!valid() || inFlight || AppState.currentState !== "active") return;
       // зачем: в сеть не чаще раза в TTL — иначе берём то, что уже на телефоне (кэш + локальное истечение)
       if (!announcementRefreshDue(lastFetchedAtMs, Date.now())) {
-        console.log(LOG, "запрос пропущен: кэш свежий", JSON.stringify({ why, ageMs: Date.now() - (lastFetchedAtMs ?? 0), rows: rows.length })); // guard-ok: ветка и значение, которое её решило
+        console.log(LOG, "запрос пропущен: кэш свежий", JSON.stringify({ why, ageMs: Date.now() - (lastFetchedAtMs ?? 0), minRefetchMs: ANNOUNCEMENTS_REFRESH_TTL_MS, rows: rows.length })); // guard-ok: ветка и значение, которое её решило
         return;
       }
       inFlight = true;
@@ -109,10 +114,15 @@ export function useAnnouncementStories(enabled: boolean) {
         )
           throw new Error("invalid_story_response");
         offset = response.data.nowMs - Date.now();
+        const before = new Map(rows.map((a) => [a.id, a.revision]));
         rows = liveAnnouncements(response.data.items, response.data.nowMs);
         const fetchedAtMs = Date.now();
+        const sinceLastMs = lastFetchedAtMs === null ? null : fetchedAtMs - lastFetchedAtMs;
         lastFetchedAtMs = fetchedAtMs;
-        console.log(LOG, "ответ получен", JSON.stringify({ why, items: response.data.items.length, live: rows.length, tookMs: Date.now() - startedAt })); // guard-ok: что вернулось и сколько заняло
+        // зачем (28.10): видно, пришли ли НОВЫЕ истории (id, которого не было), обновилась ли старая (тот же id, новая ревизия — так выглядит «замена»)
+        console.log(LOG, "ответ получен", JSON.stringify({ why, items: response.data.items.length, live: rows.length, tookMs: Date.now() - startedAt, sinceLastFetchMs: sinceLastMs, clockOffsetMs: offset,
+          added: rows.filter((a) => !before.has(a.id)).map(brief), revised: rows.filter((a) => before.has(a.id) && before.get(a.id) !== a.revision).map(brief),
+          gone: [...before.keys()].filter((id) => !rows.some((a) => a.id === id)).map((id) => id.slice(0, 8)), all: rows.map(brief) })); // guard-ok: что вернулось и сколько заняло
         const cacheValue = serializeAnnouncementsCache({ fetchedAtMs, serverNowMs: response.data.nowMs, items: response.data.items });
         writes = writes
           .then(() => AsyncStorage.setItem(cacheKey, cacheValue))
@@ -151,7 +161,7 @@ export function useAnnouncementStories(enabled: boolean) {
           lastFetchedAtMs = cache.fetchedAtMs;
           offset = cache.serverNowMs - cache.fetchedAtMs;
           rows = liveAnnouncements(cache.items, Date.now() + offset);
-          console.log(LOG, "кэш прочитан", JSON.stringify({ ageMs: Date.now() - cache.fetchedAtMs, live: rows.length })); // guard-ok: показываем кэш с первого кадра
+          console.log(LOG, "кэш прочитан", JSON.stringify({ ageMs: Date.now() - cache.fetchedAtMs, live: rows.length, all: rows.map(brief) })); // guard-ok: показываем кэш с первого кадра
           emit();
         } else if (cacheRaw) {
           console.warn(LOG, "кэш объявлений повреждён — игнорируем, идём в сеть");

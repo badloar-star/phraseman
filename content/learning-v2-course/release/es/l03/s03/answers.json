@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-03:session-03:i01",
+    "correctText": "grandes",
+    "correctResponseId": "es:lesson-03:session-03:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-03:i02",
+    "correctText": "Los libros son grandes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-03:i03",
+    "correctText": "grandes",
+    "correctResponseId": "es:lesson-03:session-03:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-03:i04",
+    "correctText": "Las cajas son grandes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-03:i05",
+    "correctText": "pequeños",
+    "correctResponseId": "es:lesson-03:session-03:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-03:i06",
+    "correctText": "Los libros son pequeños.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-03:i07",
+    "correctText": "Las cajas son grandes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-03:i08",
+    "correctText": "son",
+    "correctResponseId": "es:lesson-03:session-03:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-03:i09",
+    "correctText": "Los libros son grandes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-03:i10",
+    "correctText": "grande",
+    "correctResponseId": "es:lesson-03:session-03:i10:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-03:i11",
+    "correctText": "Las cajas son grandes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-03:i12",
+    "correctText": "Los libros son pequeños.",
+    "correctResponseId": null
+  }
+]

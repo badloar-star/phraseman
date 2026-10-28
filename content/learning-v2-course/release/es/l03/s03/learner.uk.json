@@ -1,0 +1,725 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-03:session-03",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-03:session-03:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — книги великі",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-03:i01:r1",
+          "text": "grandes"
+        },
+        {
+          "responseId": "es:lesson-03:session-03:i01:r2",
+          "text": "grande"
+        },
+        {
+          "responseId": "es:lesson-03:session-03:i01:r3",
+          "text": "grandas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — книги великі",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — книги большие",
+          "uk": "Вставте слово — книги великі"
+        },
+        "gappedTargetPhrase": "Los libros son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-03:i01:r1",
+            "text": "grandes"
+          },
+          {
+            "responseId": "es:lesson-03:session-03:i01:r2",
+            "text": "grande"
+          },
+          {
+            "responseId": "es:lesson-03:session-03:i01:r3",
+            "text": "grandas"
+          }
+        ],
+        "testedDimension": "Вставте слово — книги великі",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-03:i01:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — книги великі",
+            "feedbackByLocale": {
+              "ru": "Книг несколько: grandes.",
+              "uk": "Книг кілька: grandes."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-03:i01:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — книги великі",
+            "feedbackByLocale": {
+              "ru": "Форма grande не меняется по роду; во множественном числе grandes.",
+              "uk": "Форма grande не змінюється за родом; у множині grandes."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-03:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — книги великі",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-03:i02:r1",
+          "text": "Плитки: grandes"
+        },
+        {
+          "responseId": "es:lesson-03:session-03:i02:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-03:i02:r3",
+          "text": "libros"
+        },
+        {
+          "responseId": "es:lesson-03:session-03:i02:r4",
+          "text": "los"
+        },
+        {
+          "responseId": "es:lesson-03:session-03:i02:r5",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — книги великі",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Los libros son grandes.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — книги большие",
+          "uk": "Зберіть фразу — книги великі"
+        },
+        "orderedTokens": [
+          "Los",
+          "libros",
+          "son",
+          "grandes"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-03:i02:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — книги великі",
+            "feedbackByLocale": {
+              "ru": "книг несколько.",
+              "uk": "книг кілька."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-03:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — коробки великі",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-03:i03:r1",
+          "text": "grandes"
+        },
+        {
+          "responseId": "es:lesson-03:session-03:i03:r2",
+          "text": "grande"
+        },
+        {
+          "responseId": "es:lesson-03:session-03:i03:r3",
+          "text": "grandas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — коробки великі",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — коробки большие",
+          "uk": "Вставте слово — коробки великі"
+        },
+        "gappedTargetPhrase": "Las cajas son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-03:i03:r1",
+            "text": "grandes"
+          },
+          {
+            "responseId": "es:lesson-03:session-03:i03:r2",
+            "text": "grande"
+          },
+          {
+            "responseId": "es:lesson-03:session-03:i03:r3",
+            "text": "grandas"
+          }
+        ],
+        "testedDimension": "Вставте слово — коробки великі",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-03:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — коробки великі",
+            "feedbackByLocale": {
+              "ru": "Коробок несколько: grandes.",
+              "uk": "Коробок кілька: grandes."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-03:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — коробки великі",
+            "feedbackByLocale": {
+              "ru": "Для женского рода тоже нужно grandes.",
+              "uk": "Для жіночого роду теж потрібно grandes."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-03:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — коробки великі",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-03:i04:r1",
+          "text": "Плитки: grandes"
+        },
+        {
+          "responseId": "es:lesson-03:session-03:i04:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-03:i04:r3",
+          "text": "cajas"
+        },
+        {
+          "responseId": "es:lesson-03:session-03:i04:r4",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-03:session-03:i04:r5",
+          "text": "los."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — коробки великі",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Las cajas son grandes.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — коробки большие",
+          "uk": "Зберіть фразу — коробки великі"
+        },
+        "orderedTokens": [
+          "Las",
+          "cajas",
+          "son",
+          "grandes"
+        ],
+        "authoredDistractorTokens": [
+          "los"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-03:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — коробки великі",
+            "feedbackByLocale": {
+              "ru": "cajas женского рода.",
+              "uk": "cajas жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-03:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — книги маленькі",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-03:i05:r1",
+          "text": "pequeños"
+        },
+        {
+          "responseId": "es:lesson-03:session-03:i05:r2",
+          "text": "pequeño"
+        },
+        {
+          "responseId": "es:lesson-03:session-03:i05:r3",
+          "text": "pequeñas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — книги маленькі",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — книги маленькие",
+          "uk": "Вставте слово — книги маленькі"
+        },
+        "gappedTargetPhrase": "Los libros son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-03:i05:r1",
+            "text": "pequeños"
+          },
+          {
+            "responseId": "es:lesson-03:session-03:i05:r2",
+            "text": "pequeño"
+          },
+          {
+            "responseId": "es:lesson-03:session-03:i05:r3",
+            "text": "pequeñas"
+          }
+        ],
+        "testedDimension": "Вставте слово — книги маленькі",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-03:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — книги маленькі",
+            "feedbackByLocale": {
+              "ru": "Книг несколько: pequeños.",
+              "uk": "Книг кілька: pequeños."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-03:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — книги маленькі",
+            "feedbackByLocale": {
+              "ru": "Libros мужского рода: pequeños.",
+              "uk": "Libros чоловічого роду: pequeños."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-03:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — книги маленькі",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-03:i06:r1",
+          "text": "Плитки: pequeños"
+        },
+        {
+          "responseId": "es:lesson-03:session-03:i06:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-03:i06:r3",
+          "text": "libros"
+        },
+        {
+          "responseId": "es:lesson-03:session-03:i06:r4",
+          "text": "los"
+        },
+        {
+          "responseId": "es:lesson-03:session-03:i06:r5",
+          "text": "pequeño."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — книги маленькі",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Los libros son pequeños.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — книги маленькие",
+          "uk": "Зберіть фразу — книги маленькі"
+        },
+        "orderedTokens": [
+          "Los",
+          "libros",
+          "son",
+          "pequeños"
+        ],
+        "authoredDistractorTokens": [
+          "pequeño"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-03:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — книги маленькі",
+            "feedbackByLocale": {
+              "ru": "книг несколько.",
+              "uk": "книг кілька."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-03:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-03:i07:r1",
+          "text": "Плитки: grandes"
+        },
+        {
+          "responseId": "es:lesson-03:session-03:i07:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-03:i07:r3",
+          "text": "cajas"
+        },
+        {
+          "responseId": "es:lesson-03:session-03:i07:r4",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-03:session-03:i07:r5",
+          "text": "los."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-03:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-03:i07:audio",
+          "transcript": "Las cajas son grandes."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Las cajas son grandes.",
+        "orderedTokens": [
+          "Las",
+          "cajas",
+          "son",
+          "grandes"
+        ],
+        "authoredDistractorTokens": [
+          "los"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-03:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит las.",
+              "uk": "звучить las."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-03:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — кілька книг маленькі",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-03:i08:r1",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-03:i08:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-03:i08:r3",
+          "text": "soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — кілька книг маленькі",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — несколько книг маленькие",
+          "uk": "Вставте слово — кілька книг маленькі"
+        },
+        "gappedTargetPhrase": "Los libros ___ pequeños.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-03:i08:r1",
+            "text": "son"
+          },
+          {
+            "responseId": "es:lesson-03:session-03:i08:r2",
+            "text": "es"
+          },
+          {
+            "responseId": "es:lesson-03:session-03:i08:r3",
+            "text": "soy"
+          }
+        ],
+        "testedDimension": "Вставте слово — кілька книг маленькі",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-03:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — кілька книг маленькі",
+            "feedbackByLocale": {
+              "ru": "Книг несколько: son.",
+              "uk": "Книг кілька: son."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-03:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — кілька книг маленькі",
+            "feedbackByLocale": {
+              "ru": "Речь о книгах: son.",
+              "uk": "Мова про книги: son."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-03:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — книги великі; назвіть предмети",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-03:i09:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — книги великі; назвіть предмети",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-03:i09:audio",
+          "transcript": "Los libros son grandes."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Los libros son grandes.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-03:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — одна книга велика",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-03:i10:r1",
+          "text": "grande"
+        },
+        {
+          "responseId": "es:lesson-03:session-03:i10:r2",
+          "text": "grandes"
+        },
+        {
+          "responseId": "es:lesson-03:session-03:i10:r3",
+          "text": "grandas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — одна книга велика",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — одна книга большая",
+          "uk": "Вставте слово — одна книга велика"
+        },
+        "gappedTargetPhrase": "El libro es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-03:i10:r1",
+            "text": "grande"
+          },
+          {
+            "responseId": "es:lesson-03:session-03:i10:r2",
+            "text": "grandes"
+          },
+          {
+            "responseId": "es:lesson-03:session-03:i10:r3",
+            "text": "grandas"
+          }
+        ],
+        "testedDimension": "Вставте слово — одна книга велика",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-03:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — одна книга велика",
+            "feedbackByLocale": {
+              "ru": "Книга одна: grande.",
+              "uk": "Книга одна: grande."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-03:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — одна книга велика",
+            "feedbackByLocale": {
+              "ru": "Нужна форма grande, без изменения по роду.",
+              "uk": "Потрібна форма grande, без зміни за родом."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-03:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — коробки великі; назвіть предмети",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-03:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — коробки великі; назвіть предмети",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-03:i11:audio",
+          "transcript": "Las cajas son grandes."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Las cajas son grandes.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-03:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — книги маленькі; назвіть предмети",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-03:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — книги маленькі; назвіть предмети",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-03:i12:audio",
+          "transcript": "Los libros son pequeños."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Los libros son pequeños.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "d6e2f5ff3913a87c7ef9233ad4b39e34749dcbc2d44b430e548f987e605a8f06"
+}

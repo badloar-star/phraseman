@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-03:session-03",
+  "entries": [
+    {
+      "interactionId": "es:lesson-03:session-03:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-03:intro1:r2": {
+          "ru": "Нужна множественная форма grandes.",
+          "uk": "Потрібна форма множини grandes."
+        },
+        "es:lesson-03:session-03:intro1:r3": {
+          "ru": "С libros используйте son.",
+          "uk": "З libros використовуйте son."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-03:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-03:intro2:r2": {
+          "ru": "Не заменяйте -e на -a: grandes.",
+          "uk": "Не замінюйте -e на -a: grandes."
+        },
+        "es:lesson-03:session-03:intro2:r3": {
+          "ru": "Коробок несколько: grandes.",
+          "uk": "Коробок кілька: grandes."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-03:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-03:intro3:r2": {
+          "ru": "Книг несколько: pequeños.",
+          "uk": "Книг кілька: pequeños."
+        },
+        "es:lesson-03:session-03:intro3:r3": {
+          "ru": "Для мужского libros нужно pequeños.",
+          "uk": "Для чоловічого libros потрібно pequeños."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5f079929d234c40f1f4611b7c7fbd78e99f37e48df7b4e359a53d1ec2250628c"
+}

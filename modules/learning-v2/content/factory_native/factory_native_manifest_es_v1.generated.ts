@@ -1607,4 +1607,18 @@ export const FACTORY_NATIVE_MANIFEST_ES_V1: readonly LearningV2FactoryNativeMani
     loadAnswers: () => require("./generated_release/es/l03/s02/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/es/l03/s02/auxiliary.json") as unknown,
   }),
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 3,
+    sourceFingerprint: "fad1fe4a4244316657cc22f3f3d34699c6f0985bcad3831e3d9eb80dffda83a1",
+    introCorrectChoiceIndexes: Object.freeze([0,0,0]),
+    introPromptByAuthoredLocale: Object.freeze({"ru":["Скажите, что книги большие.","Скажите, что коробки большие.","Скажите, что книги маленькие."],"uk":["Скажіть, що книги великі.","Скажіть, що коробки великі.","Скажіть, що книги маленькі."]}),
+    introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Нужна множественная форма grandes.","С libros используйте son."],["Не заменяйте -e на -a: grandes.","Коробок несколько: grandes."],["Книг несколько: pequeños.","Для мужского libros нужно pequeños."]],"uk":[["Потрібна форма множини grandes.","З libros використовуйте son."],["Не замінюйте -e на -a: grandes.","Коробок кілька: grandes."],["Книг кілька: pequeños.","Для чоловічого libros потрібно pequeños."]]}),
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"согласовать размер с несколькими предметами.","uk":"узгодити розмір із кількома предметами."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+    practiceTitlesByAuthoredLocale: Object.freeze({"ru":[{"ordinal":1,"title":"Вставьте слово — книги большие"},{"ordinal":2,"title":"Соберите фразу — книги большие"},{"ordinal":3,"title":"Вставьте слово — коробки большие"},{"ordinal":4,"title":"Соберите фразу — коробки большие"},{"ordinal":5,"title":"Вставьте слово — книги маленькие"},{"ordinal":6,"title":"Соберите фразу — книги маленькие"},{"ordinal":7,"title":"Послушайте и соберите фразу"},{"ordinal":8,"title":"Вставьте слово — несколько книг маленькие"},{"ordinal":9,"title":"Скажите вслух — книги большие; назовите предметы"},{"ordinal":10,"title":"Вставьте слово — одна книга большая"},{"ordinal":11,"title":"Скажите вслух — коробки большие; назовите предметы"},{"ordinal":12,"title":"Скажите вслух — книги маленькие; назовите предметы"}],"uk":[{"ordinal":1,"title":"Вставте слово — книги великі"},{"ordinal":2,"title":"Зберіть фразу — книги великі"},{"ordinal":3,"title":"Вставте слово — коробки великі"},{"ordinal":4,"title":"Зберіть фразу — коробки великі"},{"ordinal":5,"title":"Вставте слово — книги маленькі"},{"ordinal":6,"title":"Зберіть фразу — книги маленькі"},{"ordinal":7,"title":"Послухайте й зберіть фразу"},{"ordinal":8,"title":"Вставте слово — кілька книг маленькі"},{"ordinal":9,"title":"Скажіть уголос — книги великі; назвіть предмети"},{"ordinal":10,"title":"Вставте слово — одна книга велика"},{"ordinal":11,"title":"Скажіть уголос — коробки великі; назвіть предмети"},{"ordinal":12,"title":"Скажіть уголос — книги маленькі; назвіть предмети"}]}),
+    loadIntro: () => require("./generated_release/es/l03/s03/intro.json") as unknown,
+    loadLearner: (locale: "ru" | "uk") => locale === "uk" ? require("./generated_release/es/l03/s03/learner.uk.json") as unknown : require("./generated_release/es/l03/s03/learner.json") as unknown,
+    loadAnswers: () => require("./generated_release/es/l03/s03/answers.json") as unknown,
+    loadAuxiliary: () => require("./generated_release/es/l03/s03/auxiliary.json") as unknown,
+  }),
 ]);

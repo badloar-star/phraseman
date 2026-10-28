@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-03:session-03",
+  "learningOutcomeByLocale": {
+    "ru": "согласовать размер с несколькими предметами.",
+    "uk": "узгодити розмір із кількома предметами."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-03:session-03:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Книги крупные",
+        "uk": "Книги великі"
+      },
+      "bodyByLocale": {
+        "ru": "Перед вами несколько больших книг. Скажите `Los libros son grandes` — «Книги большие». Соберите `los libros` + `son` + `grandes`. Книг несколько: es заменяется на son, а к grande добавляется -s. Окончание -s показывает, что признак относится к нескольким предметам.",
+        "uk": "Перед вами кілька великих книг. Скажіть `Los libros son grandes` — «Книги великі». Складіть `los libros` + `son` + `grandes`. Книг кілька: es замінюється на son, а до grande додається -s. Закінчення -s показує, що ознака стосується кількох предметів."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-03:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите, что книги большие.",
+          "uk": "Скажіть, що книги великі."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-03:intro1:r1",
+              "text": "Los libros son grandes."
+            },
+            {
+              "responseId": "es:lesson-03:session-03:intro1:r2",
+              "text": "Los libros son grande."
+            },
+            {
+              "responseId": "es:lesson-03:session-03:intro1:r3",
+              "text": "Los libros es grandes."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-03:intro1:r1",
+              "text": "Los libros son grandes."
+            },
+            {
+              "responseId": "es:lesson-03:session-03:intro1:r2",
+              "text": "Los libros son grande."
+            },
+            {
+              "responseId": "es:lesson-03:session-03:intro1:r3",
+              "text": "Los libros es grandes."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что книги большие.",
+          "uk": "Скажіть, що книги великі."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-03:session-03:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Коробки тоже большие",
+        "uk": "Коробки теж великі"
+      },
+      "bodyByLocale": {
+        "ru": "Друг принёс большие коробки для этих книг. Скажите `Las cajas son grandes` — «Коробки большие». Соберите `las cajas` + `son` + `grandes`. Cajas женского рода, но форма grandes такая же, как с мужским libros: grande не меняется по роду, только по числу.",
+        "uk": "Друг приніс великі коробки для цих книг. Скажіть `Las cajas son grandes` — «Коробки великі». Складіть `las cajas` + `son` + `grandes`. Cajas жіночого роду, але форма grandes така сама, як із чоловічим libros: grande не змінюється за родом, лише за числом."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-03:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите, что коробки большие.",
+          "uk": "Скажіть, що коробки великі."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-03:intro2:r1",
+              "text": "Las cajas son grandes."
+            },
+            {
+              "responseId": "es:lesson-03:session-03:intro2:r2",
+              "text": "Las cajas son grandas."
+            },
+            {
+              "responseId": "es:lesson-03:session-03:intro2:r3",
+              "text": "Las cajas son grande."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-03:intro2:r1",
+              "text": "Las cajas son grandes."
+            },
+            {
+              "responseId": "es:lesson-03:session-03:intro2:r2",
+              "text": "Las cajas son grandas."
+            },
+            {
+              "responseId": "es:lesson-03:session-03:intro2:r3",
+              "text": "Las cajas son grande."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что коробки большие.",
+          "uk": "Скажіть, що коробки великі."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-03:session-03:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Остались небольшие книги",
+        "uk": "Залишилися невеликі книги"
+      },
+      "bodyByLocale": {
+        "ru": "Большие книги уже упаковали. Оставшиеся книги маленькие. Скажите `Los libros son pequeños` — «Книги маленькие». Соберите `los libros` + `son` + `pequeños`. К мужской форме pequeño добавьте -s. Здесь нужны и мужской род, и множественное число: pequeños.",
+        "uk": "Великі книги вже упакували. Решта книг маленькі. Скажіть `Los libros son pequeños` — «Книги маленькі». Складіть `los libros` + `son` + `pequeños`. До чоловічої форми pequeño додайте -s. Тут потрібні й чоловічий рід, і множина: pequeños."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-03:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите, что книги маленькие.",
+          "uk": "Скажіть, що книги маленькі."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-03:intro3:r1",
+              "text": "Los libros son pequeños."
+            },
+            {
+              "responseId": "es:lesson-03:session-03:intro3:r2",
+              "text": "Los libros son pequeño."
+            },
+            {
+              "responseId": "es:lesson-03:session-03:intro3:r3",
+              "text": "Los libros son pequeñas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-03:intro3:r1",
+              "text": "Los libros son pequeños."
+            },
+            {
+              "responseId": "es:lesson-03:session-03:intro3:r2",
+              "text": "Los libros son pequeño."
+            },
+            {
+              "responseId": "es:lesson-03:session-03:intro3:r3",
+              "text": "Los libros son pequeñas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что книги маленькие.",
+          "uk": "Скажіть, що книги маленькі."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "88fd765cfe8e4a4bbe2260095884315438c42611691422dba366f4f9a35a178c"
+}

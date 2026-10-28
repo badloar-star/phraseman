@@ -1,0 +1,673 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-04:session-50",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-04:session-50:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-50:i01:r1",
+          "text": "suya"
+        },
+        {
+          "responseId": "es:lesson-04:session-50:i01:r2",
+          "text": "suyo"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-50:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-50:i01:audio",
+          "transcript": "suya"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-04:session-50:i01:r1",
+            "targetText": "suya",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-04:session-50:i01:r2",
+            "targetText": "suyo",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-50:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит конечное a: suya.",
+              "uk": "Звучить кінцеве a: suya."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-50:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — речь об Ане и её коробке caja",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-50:i02:r1",
+          "text": "suya"
+        },
+        {
+          "responseId": "es:lesson-04:session-50:i02:r2",
+          "text": "suyo"
+        },
+        {
+          "responseId": "es:lesson-04:session-50:i02:r3",
+          "text": "su"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — речь об Ане и её коробке caja",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — речь об Ане и её коробке caja",
+          "uk": "Вставте слово — йдеться про Ану та її коробку caja"
+        },
+        "gappedTargetPhrase": "Es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-50:i02:r1",
+            "text": "suya"
+          },
+          {
+            "responseId": "es:lesson-04:session-50:i02:r2",
+            "text": "suyo"
+          },
+          {
+            "responseId": "es:lesson-04:session-50:i02:r3",
+            "text": "su"
+          }
+        ],
+        "testedDimension": "Вставьте слово — речь об Ане и её коробке caja",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-50:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — речь об Ане и её коробке caja",
+            "feedbackByLocale": {
+              "ru": "Подразумевается женское caja: suya.",
+              "uk": "Мається на увазі жіноче caja: suya."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-50:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — речь об Ане и её коробке caja",
+            "feedbackByLocale": {
+              "ru": "После es без названия вещи нужно suya.",
+              "uk": "Після es без назви речі потрібне suya."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-50:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — коробка caja принадлежит Ане; короткий ответ, начните с Es и используйте suya",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-50:i03:r1",
+          "text": "Плитки: suya"
+        },
+        {
+          "responseId": "es:lesson-04:session-50:i03:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-50:i03:r3",
+          "text": "suyo."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — коробка caja принадлежит Ане; короткий ответ, начните с Es и используйте suya",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es suya.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — коробка caja принадлежит Ане; короткий ответ, начните с Es и используйте suya",
+          "uk": "Зберіть фразу — коробка caja належить Ані; коротка відповідь, почніть з Es і використайте suya"
+        },
+        "orderedTokens": [
+          "Es",
+          "suya"
+        ],
+        "authoredDistractorTokens": [
+          "suyo"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-50:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — коробка caja принадлежит Ане; короткий ответ, начните с Es и используйте suya",
+            "feedbackByLocale": {
+              "ru": "речь о женском caja.",
+              "uk": "йдеться про жіноче caja."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-50:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — речь об Ане, коробка её",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-50:i04:r1",
+          "text": "suya"
+        },
+        {
+          "responseId": "es:lesson-04:session-50:i04:r2",
+          "text": "suyo"
+        },
+        {
+          "responseId": "es:lesson-04:session-50:i04:r3",
+          "text": "sus"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — речь об Ане, коробка её",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — речь об Ане, коробка её",
+          "uk": "Вставте слово — йдеться про Ану, коробка її"
+        },
+        "gappedTargetPhrase": "La caja es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-50:i04:r1",
+            "text": "suya"
+          },
+          {
+            "responseId": "es:lesson-04:session-50:i04:r2",
+            "text": "suyo"
+          },
+          {
+            "responseId": "es:lesson-04:session-50:i04:r3",
+            "text": "sus"
+          }
+        ],
+        "testedDimension": "Вставьте слово — речь об Ане, коробка её",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-50:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — речь об Ане, коробка её",
+            "feedbackByLocale": {
+              "ru": "Caja женского рода: suya.",
+              "uk": "Caja жіночого роду: suya."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-50:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — речь об Ане, коробка её",
+            "feedbackByLocale": {
+              "ru": "После es здесь нужно самостоятельное suya.",
+              "uk": "Після es тут потрібне самостійне suya."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-50:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — речь об Ане: коробка её; начните с La caja и используйте suya",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-50:i05:r1",
+          "text": "Плитки: suya"
+        },
+        {
+          "responseId": "es:lesson-04:session-50:i05:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-50:i05:r3",
+          "text": "caja"
+        },
+        {
+          "responseId": "es:lesson-04:session-50:i05:r4",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-04:session-50:i05:r5",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — речь об Ане: коробка её; начните с La caja и используйте suya",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "La caja es suya.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — речь об Ане: коробка её; начните с La caja и используйте suya",
+          "uk": "Зберіть фразу — йдеться про Ану: коробка її; почніть з La caja й використайте suya"
+        },
+        "orderedTokens": [
+          "La",
+          "caja",
+          "es",
+          "suya"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-50:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — речь об Ане: коробка её; начните с La caja и используйте suya",
+            "feedbackByLocale": {
+              "ru": "caja женского рода.",
+              "uk": "caja жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-50:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — речь об Ане: сумка не её; начните с La bolsa и используйте suya",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-50:i06:r1",
+          "text": "Плитки: suya"
+        },
+        {
+          "responseId": "es:lesson-04:session-50:i06:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-50:i06:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-04:session-50:i06:r4",
+          "text": "bolsa"
+        },
+        {
+          "responseId": "es:lesson-04:session-50:i06:r5",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-04:session-50:i06:r6",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — речь об Ане: сумка не её; начните с La bolsa и используйте suya",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "La bolsa no es suya.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — речь об Ане: сумка не её; начните с La bolsa и используйте suya",
+          "uk": "Зберіть фразу — йдеться про Ану: сумка не її; почніть з La bolsa й використайте suya"
+        },
+        "orderedTokens": [
+          "La",
+          "bolsa",
+          "no",
+          "es",
+          "suya"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-50:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — речь об Ане: сумка не её; начните с La bolsa и используйте suya",
+            "feedbackByLocale": {
+              "ru": "сумка одна.",
+              "uk": "сумка одна."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-50:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-50:i07:r1",
+          "text": "Плитки: caja"
+        },
+        {
+          "responseId": "es:lesson-04:session-50:i07:r2",
+          "text": "suya"
+        },
+        {
+          "responseId": "es:lesson-04:session-50:i07:r3",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-04:session-50:i07:r4",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-50:i07:r5",
+          "text": "suyo."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-50:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-50:i07:audio",
+          "transcript": "La caja es suya."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "La caja es suya.",
+        "orderedTokens": [
+          "La",
+          "caja",
+          "es",
+          "suya"
+        ],
+        "authoredDistractorTokens": [
+          "suyo"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-50:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит suya.",
+              "uk": "звучить suya."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-50:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — речь об Ане: сумка не её",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-50:i08:r1",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-04:session-50:i08:r2",
+          "text": "mi"
+        },
+        {
+          "responseId": "es:lesson-04:session-50:i08:r3",
+          "text": "muy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — речь об Ане: сумка не её",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — речь об Ане: сумка не её",
+          "uk": "Вставте слово — йдеться про Ану: сумка не її"
+        },
+        "gappedTargetPhrase": "La bolsa ___ es suya.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-50:i08:r1",
+            "text": "no"
+          },
+          {
+            "responseId": "es:lesson-04:session-50:i08:r2",
+            "text": "mi"
+          },
+          {
+            "responseId": "es:lesson-04:session-50:i08:r3",
+            "text": "muy"
+          }
+        ],
+        "testedDimension": "Вставьте слово — речь об Ане: сумка не её",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-50:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — речь об Ане: сумка не её",
+            "feedbackByLocale": {
+              "ru": "Для отрицания нужно no.",
+              "uk": "Для заперечення потрібне no."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-50:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — речь об Ане: сумка не её",
+            "feedbackByLocale": {
+              "ru": "Принадлежность отрицаем с помощью no перед es.",
+              "uk": "Належність заперечуємо за допомогою no перед es."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-50:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — речь об Ане и её коробке caja: «Это её»; начните с Es и используйте suya",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-50:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — речь об Ане и её коробке caja: «Это её»; начните с Es и используйте suya",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-50:i09:audio",
+          "transcript": "Es suya."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es suya.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-50:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — речь об Ане: «Коробка её»; начните с La caja и используйте suya",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-50:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — речь об Ане: «Коробка её»; начните с La caja и используйте suya",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-50:i10:audio",
+          "transcript": "La caja es suya."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "La caja es suya.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-50:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — речь об Ане: «Сумка не её»; начните с La bolsa и используйте suya",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-50:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — речь об Ане: «Сумка не её»; начните с La bolsa и используйте suya",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-50:i11:audio",
+          "transcript": "La bolsa no es suya."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "La bolsa no es suya.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-50:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — речь о Педро и его коробке caja: «Это его»; начните с Es и используйте suya",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-50:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — речь о Педро и его коробке caja: «Это его»; начните с Es и используйте suya",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-50:i12:audio",
+          "transcript": "Es suya."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es suya.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "f80e8d533ef56087c6bacf9a2c4dd62ed89969c5fd01ce8974aa4e5021a24cec"
+}

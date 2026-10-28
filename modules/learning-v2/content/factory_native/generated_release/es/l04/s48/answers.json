@@ -1,0 +1,92 @@
+[
+  {
+    "interactionId": "es:lesson-04:session-48:i01",
+    "correctText": "eso",
+    "correctResponseId": "es:lesson-04:session-48:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-48:i02",
+    "correctText": "Qué",
+    "correctResponseId": "es:lesson-04:session-48:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-48:i03",
+    "correctText": "¿Qué es eso?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-48:i04",
+    "correctText": "Eso es un libro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-48:i05",
+    "correctText": "Eso no es un bolso.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-48:i06",
+    "correctText": "De",
+    "correctResponseId": "es:lesson-04:session-48:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-48:i07",
+    "correctText": "¿De quién es el bolso?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-48:i08",
+    "correctText": "son",
+    "correctResponseId": "es:lesson-04:session-48:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-48:i09",
+    "correctText": "¿De quién son las llaves?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-48:i10",
+    "correctText": "Es de Ana.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-48:i11",
+    "correctText": "Son de Pedro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-48:i12",
+    "correctText": "de",
+    "correctResponseId": "es:lesson-04:session-48:i12:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-48:i13",
+    "correctText": "¿Qué es eso?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-48:i14",
+    "correctText": "Eso no es una caja.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-48:i15",
+    "correctText": "¿De quién es el libro?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-48:i16",
+    "correctText": "¿De quién son las llaves?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-48:i17",
+    "correctText": "Es de Ana.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-48:i18",
+    "correctText": "Son de Pedro.",
+    "correctResponseId": null
+  }
+]

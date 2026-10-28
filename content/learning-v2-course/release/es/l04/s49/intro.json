@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-04:session-49",
+  "learningOutcomeByLocale": {
+    "ru": "заменить de Pedro на suyo после es, когда владелец уже известен.",
+    "uk": "замінити de Pedro на suyo після es, коли власник уже відомий."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-04:session-49:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сумка Педро",
+        "uk": "Сумка Педро"
+      },
+      "bodyByLocale": {
+        "ru": "Вы с другом говорите о Педро. Друг показывает на его сумку и спрашивает о владельце. Ответьте `Es suyo` — «Это его». Соберите `es` + `suyo`. Здесь suyo заменяет de Pedro: вы оба знаете, о ком речь. Само suyo не называет Педро и без контекста может относиться к разным владельцам. Форма на -o согласуется с подразумеваемым мужским bolso, а не с полом Педро.",
+        "uk": "Ви з другом говорите про Педро. Друг показує на його сумку й запитує про власника. Дайте відповідь `Es suyo` — «Це його». Складіть `es` + `suyo`. Тут suyo замінює de Pedro: ви обоє знаєте, про кого йдеться. Саме suyo не називає Педро й без контексту може стосуватися різних власників. Форма на -o узгоджується з чоловічим bolso, яке мається на увазі, а не зі статтю Педро."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-49:intro1:q",
+        "promptByLocale": {
+          "ru": "Вы говорите о Педро и его сумке bolso. Ответьте «Это его». Начните с Es и используйте suyo.",
+          "uk": "Ви говорите про Педро та його сумку bolso. Дайте відповідь «Це його». Почніть з Es і використайте suyo."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-49:intro1:r1",
+              "text": "Es suyo."
+            },
+            {
+              "responseId": "es:lesson-04:session-49:intro1:r2",
+              "text": "Es su."
+            },
+            {
+              "responseId": "es:lesson-04:session-49:intro1:r3",
+              "text": "Son suyo."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-49:intro1:r1",
+              "text": "Es suyo."
+            },
+            {
+              "responseId": "es:lesson-04:session-49:intro1:r2",
+              "text": "Es su."
+            },
+            {
+              "responseId": "es:lesson-04:session-49:intro1:r3",
+              "text": "Son suyo."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы говорите о Педро и его сумке bolso. Ответьте «Это его». Начните с Es и используйте suyo.",
+          "uk": "Ви говорите про Педро та його сумку bolso. Дайте відповідь «Це його». Почніть з Es і використайте suyo."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-04:session-49:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Назвать книгу",
+        "uk": "Назвати книжку"
+      },
+      "bodyByLocale": {
+        "ru": "Вы всё ещё говорите о Педро. На столе несколько вещей; уточните, что книга принадлежит ему: `El libro es suyo` — «Книга его». Соберите `el libro` + `es` + `suyo`. Назовите книгу перед es, а после es поставьте suyo вместо de Pedro. Suyo согласуется с мужским libro.",
+        "uk": "Ви й далі говорите про Педро. На столі кілька речей; уточніть, що книжка належить йому: `El libro es suyo` — «Книжка його». Складіть `el libro` + `es` + `suyo`. Назвіть книжку перед es, а після es поставте suyo замість de Pedro. Suyo узгоджується з чоловічим libro."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-49:intro2:q",
+        "promptByLocale": {
+          "ru": "Речь о Педро. Скажите «Книга его». Начните с El libro и используйте suyo.",
+          "uk": "Йдеться про Педро. Скажіть «Книжка його». Почніть з El libro й використайте suyo."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-49:intro2:r1",
+              "text": "El libro es suyo."
+            },
+            {
+              "responseId": "es:lesson-04:session-49:intro2:r2",
+              "text": "El libro es su."
+            },
+            {
+              "responseId": "es:lesson-04:session-49:intro2:r3",
+              "text": "La libro es suyo."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-49:intro2:r1",
+              "text": "El libro es suyo."
+            },
+            {
+              "responseId": "es:lesson-04:session-49:intro2:r2",
+              "text": "El libro es su."
+            },
+            {
+              "responseId": "es:lesson-04:session-49:intro2:r3",
+              "text": "La libro es suyo."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Речь о Педро. Скажите «Книга его». Начните с El libro и используйте suyo.",
+          "uk": "Йдеться про Педро. Скажіть «Книжка його». Почніть з El libro й використайте suyo."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-04:session-49:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Не его сумка",
+        "uk": "Не його сумка"
+      },
+      "bodyByLocale": {
+        "ru": "Друг думает, что другая сумка на стуле тоже принадлежит Педро. Вы знаете, что это не так. Скажите `El bolso no es suyo` — «Сумка не его». Соберите `el bolso` + `no es` + `suyo`. Поставьте no перед es. Владелец в разговоре тот же — Педро; вы отрицаете принадлежность ему этой сумки.",
+        "uk": "Друг думає, що інша сумка на стільці теж належить Педро. Ви знаєте, що це не так. Скажіть `El bolso no es suyo` — «Сумка не його». Складіть `el bolso` + `no es` + `suyo`. Поставте no перед es. Власник у розмові той самий — Педро; ви заперечуєте належність йому цієї сумки."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-49:intro3:q",
+        "promptByLocale": {
+          "ru": "Речь о Педро. Скажите «Сумка не его». Начните с El bolso и используйте suyo.",
+          "uk": "Йдеться про Педро. Скажіть «Сумка не його». Почніть з El bolso й використайте suyo."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-49:intro3:r1",
+              "text": "El bolso no es suyo."
+            },
+            {
+              "responseId": "es:lesson-04:session-49:intro3:r2",
+              "text": "El bolso es no suyo."
+            },
+            {
+              "responseId": "es:lesson-04:session-49:intro3:r3",
+              "text": "El bolso no son suyo."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-49:intro3:r1",
+              "text": "El bolso no es suyo."
+            },
+            {
+              "responseId": "es:lesson-04:session-49:intro3:r2",
+              "text": "El bolso es no suyo."
+            },
+            {
+              "responseId": "es:lesson-04:session-49:intro3:r3",
+              "text": "El bolso no son suyo."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Речь о Педро. Скажите «Сумка не его». Начните с El bolso и используйте suyo.",
+          "uk": "Йдеться про Педро. Скажіть «Сумка не його». Почніть з El bolso й використайте suyo."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "71f7c80aab669c95159e4ce31fc377f9ca52ed092621ed60af07c83046da047d"
+}

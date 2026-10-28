@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-04:session-48",
+  "learningOutcomeByLocale": {
+    "ru": "закрепить вопросы о предмете и владельце, короткие ответы с de.",
+    "uk": "закріпити запитання про предмет і власника, короткі відповіді з de."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-04:session-48:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Что за предмет",
+        "uk": "Що за предмет"
+      },
+      "bodyByLocale": {
+        "ru": "Друг держит предмет, который вы не можете разглядеть. Спросите `¿Qué es eso?` — «Что это?» Соберите `qué` + `es` + `eso`. Qué спрашивает о названии предмета. Eso указывает на то, что находится возле друга, и стоит в конце вопроса. Здесь вы ещё не спрашиваете о владельце.",
+        "uk": "Друг тримає предмет, який ви не можете розгледіти. Запитайте `¿Qué es eso?` — «Що це?» Складіть `qué` + `es` + `eso`. Qué запитує про назву предмета. Eso вказує на те, що перебуває біля друга, і стоїть у кінці запитання. Тут ви ще не запитуєте про власника."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-48:intro1:q",
+        "promptByLocale": {
+          "ru": "Узнайте, что за предмет у друга. Спросите «Что это?» с eso.",
+          "uk": "Дізнайтеся, що за предмет у друга. Запитайте «Що це?» з eso."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-48:intro1:r1",
+              "text": "¿Qué es eso?"
+            },
+            {
+              "responseId": "es:lesson-04:session-48:intro1:r2",
+              "text": "¿Quién es eso?"
+            },
+            {
+              "responseId": "es:lesson-04:session-48:intro1:r3",
+              "text": "¿Qué son eso?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-48:intro1:r1",
+              "text": "¿Qué es eso?"
+            },
+            {
+              "responseId": "es:lesson-04:session-48:intro1:r2",
+              "text": "¿Quién es eso?"
+            },
+            {
+              "responseId": "es:lesson-04:session-48:intro1:r3",
+              "text": "¿Qué son eso?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Узнайте, что за предмет у друга. Спросите «Что это?» с eso.",
+          "uk": "Дізнайтеся, що за предмет у друга. Запитайте «Що це?» з eso."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-04:session-48:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Чьи вещи",
+        "uk": "Чиї речі"
+      },
+      "bodyByLocale": {
+        "ru": "Теперь вы видите оставленные ключи на столе. Спросите `¿De quién son las llaves?` — «Чьи это ключи?» Соберите `de quién` + `son` + `las llaves`. De quién спрашивает уже о владельце. Son выбираем по числу ключей, а не хозяев: ключей несколько, даже если они принадлежат одному человеку.",
+        "uk": "Тепер ви бачите залишені ключі на столі. Запитайте `¿De quién son las llaves?` — «Чиї це ключі?» Складіть `de quién` + `son` + `las llaves`. De quién запитує вже про власника. Son вибираємо за кількістю ключів, а не власників: ключів кілька, навіть якщо вони належать одній людині."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-48:intro2:q",
+        "promptByLocale": {
+          "ru": "Спросите, чьи ключи остались на столе. Начните с De quién.",
+          "uk": "Запитайте, чиї ключі залишилися на столі. Почніть з De quién."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-48:intro2:r1",
+              "text": "¿De quién son las llaves?"
+            },
+            {
+              "responseId": "es:lesson-04:session-48:intro2:r2",
+              "text": "¿De quién es las llaves?"
+            },
+            {
+              "responseId": "es:lesson-04:session-48:intro2:r3",
+              "text": "¿De quién son los llaves?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-48:intro2:r1",
+              "text": "¿De quién son las llaves?"
+            },
+            {
+              "responseId": "es:lesson-04:session-48:intro2:r2",
+              "text": "¿De quién es las llaves?"
+            },
+            {
+              "responseId": "es:lesson-04:session-48:intro2:r3",
+              "text": "¿De quién son los llaves?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите, чьи ключи остались на столе. Начните с De quién.",
+          "uk": "Запитайте, чиї ключі залишилися на столі. Почніть з De quién."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-04:session-48:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Назвать хозяина",
+        "uk": "Назвати власника"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает, чья книга осталась на столе. Вы знаете, что она принадлежит Ане. Ответьте `Es de Ana` — «Это Анина». Соберите `es` + `de Ana`. Книга одна, поэтому es. De перед именем называет владельца. Книгу не нужно называть повторно: она уже понятна из вопроса.",
+        "uk": "Друг запитує, чия книжка залишилася на столі. Ви знаєте, що вона належить Ані. Дайте відповідь `Es de Ana` — «Це Анина». Складіть `es` + `de Ana`. Книжка одна, тому es. De перед іменем називає власника. Книжку не потрібно називати повторно: вона вже зрозуміла із запитання."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-48:intro3:q",
+        "promptByLocale": {
+          "ru": "Ответьте о книге: «Это Анина». Начните с Es и назовите Ana.",
+          "uk": "Дайте відповідь про книжку: «Це Анина». Почніть з Es і назвіть Ana."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-48:intro3:r1",
+              "text": "Es de Ana."
+            },
+            {
+              "responseId": "es:lesson-04:session-48:intro3:r2",
+              "text": "Son de Ana."
+            },
+            {
+              "responseId": "es:lesson-04:session-48:intro3:r3",
+              "text": "Es Ana."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-48:intro3:r1",
+              "text": "Es de Ana."
+            },
+            {
+              "responseId": "es:lesson-04:session-48:intro3:r2",
+              "text": "Son de Ana."
+            },
+            {
+              "responseId": "es:lesson-04:session-48:intro3:r3",
+              "text": "Es Ana."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ответьте о книге: «Это Анина». Начните с Es и назовите Ana.",
+          "uk": "Дайте відповідь про книжку: «Це Анина». Почніть з Es і назвіть Ana."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "1733a741fbeda9d6f117ef05f0ebc2d513a292cdafb6bb0197ffee7aad6688bf"
+}

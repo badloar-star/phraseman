@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-04:session-47",
+  "learningOutcomeByLocale": {
+    "ru": "назвать владельца нескольких вещей с помощью son de.",
+    "uk": "назвати власника кількох речей за допомогою son de."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-04:session-47:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Чьи ключи",
+        "uk": "Чиї ключі"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает, чьи ключи остались на столе. Вы знаете хозяина: Педро. Ответьте `Son de Pedro` — «Они принадлежат Педро». Соберите `son` + `de` + `Pedro`. Son выбираем потому, что ключей несколько, хотя Педро один. De Pedro называет владельца. Ключи можно не называть повторно: они уже понятны из вопроса.",
+        "uk": "Друг запитує, чиї ключі залишилися на столі. Ви знаєте власника: Педро. Дайте відповідь `Son de Pedro` — «Вони належать Педро». Складіть `son` + `de` + `Pedro`. Son вибираємо тому, що ключів кілька, хоча Педро один. De Pedro називає власника. Ключі можна не називати повторно: вони вже зрозумілі із запитання."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-47:intro1:q",
+        "promptByLocale": {
+          "ru": "Ответьте о ключах: «Они принадлежат Педро». Начните с Son.",
+          "uk": "Дайте відповідь про ключі: «Вони належать Педро». Почніть з Son."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-47:intro1:r1",
+              "text": "Son de Pedro."
+            },
+            {
+              "responseId": "es:lesson-04:session-47:intro1:r2",
+              "text": "Es de Pedro."
+            },
+            {
+              "responseId": "es:lesson-04:session-47:intro1:r3",
+              "text": "Son Pedro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-47:intro1:r1",
+              "text": "Son de Pedro."
+            },
+            {
+              "responseId": "es:lesson-04:session-47:intro1:r2",
+              "text": "Es de Pedro."
+            },
+            {
+              "responseId": "es:lesson-04:session-47:intro1:r3",
+              "text": "Son Pedro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ответьте о ключах: «Они принадлежат Педро». Начните с Son.",
+          "uk": "Дайте відповідь про ключі: «Вони належать Педро». Почніть з Son."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-04:session-47:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Уточнить вещи",
+        "uk": "Уточнити речі"
+      },
+      "bodyByLocale": {
+        "ru": "На столе лежат разные вещи; уточните, что именно книги принадлежат Педро. Скажите `Los libros son de Pedro` — «Книги принадлежат Педро». Соберите `los libros` + `son` + `de Pedro`. В начале назовите книги с артиклем los. Son de Pedro сохраняется: это несколько вещей одного владельца.",
+        "uk": "На столі лежать різні речі; уточніть, що саме книжки належать Педро. Скажіть `Los libros son de Pedro` — «Книжки належать Педро». Складіть `los libros` + `son` + `de Pedro`. На початку назвіть книжки з артиклем los. Son de Pedro зберігається: це кілька речей одного власника."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-47:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите, что книги принадлежат Педро. Начните с Los libros.",
+          "uk": "Скажіть, що книжки належать Педро. Почніть з Los libros."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-47:intro2:r1",
+              "text": "Los libros son de Pedro."
+            },
+            {
+              "responseId": "es:lesson-04:session-47:intro2:r2",
+              "text": "Los libros es de Pedro."
+            },
+            {
+              "responseId": "es:lesson-04:session-47:intro2:r3",
+              "text": "Las libros son de Pedro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-47:intro2:r1",
+              "text": "Los libros son de Pedro."
+            },
+            {
+              "responseId": "es:lesson-04:session-47:intro2:r2",
+              "text": "Los libros es de Pedro."
+            },
+            {
+              "responseId": "es:lesson-04:session-47:intro2:r3",
+              "text": "Las libros son de Pedro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что книги принадлежат Педро. Начните с Los libros.",
+          "uk": "Скажіть, що книжки належать Педро. Почніть з Los libros."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-04:session-47:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Сумки Ани",
+        "uk": "Сумки Ани"
+      },
+      "bodyByLocale": {
+        "ru": "У двери остались сумки Ани. Назовите их женским словом bolsas: `Las bolsas son de Ana` — «Сумки принадлежат Ане». Соберите `las bolsas` + `son` + `de Ana`. Las согласуется с bolsas. После de поставьте Ana, чтобы назвать хозяйку; само de не меняется.",
+        "uk": "Біля дверей залишилися сумки Ани. Назвіть їх жіночим словом bolsas: `Las bolsas son de Ana` — «Сумки належать Ані». Складіть `las bolsas` + `son` + `de Ana`. Las узгоджується з bolsas. Після de поставте Ana, щоб назвати власницю; саме de не змінюється."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-47:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите, что сумки принадлежат Ане. Начните с Las bolsas.",
+          "uk": "Скажіть, що сумки належать Ані. Почніть з Las bolsas."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-47:intro3:r1",
+              "text": "Las bolsas son de Ana."
+            },
+            {
+              "responseId": "es:lesson-04:session-47:intro3:r2",
+              "text": "Los bolsas son de Ana."
+            },
+            {
+              "responseId": "es:lesson-04:session-47:intro3:r3",
+              "text": "Las bolsas son Ana."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-47:intro3:r1",
+              "text": "Las bolsas son de Ana."
+            },
+            {
+              "responseId": "es:lesson-04:session-47:intro3:r2",
+              "text": "Los bolsas son de Ana."
+            },
+            {
+              "responseId": "es:lesson-04:session-47:intro3:r3",
+              "text": "Las bolsas son Ana."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что сумки принадлежат Ане. Начните с Las bolsas.",
+          "uk": "Скажіть, що сумки належать Ані. Почніть з Las bolsas."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "bd22dd98b86ee72b38f6ff867b9ea1c3dc0a1a2cf8c419651e5a46a886b57351"
+}

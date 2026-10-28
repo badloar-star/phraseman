@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-04:session-47",
+  "entries": [
+    {
+      "interactionId": "es:lesson-04:session-47:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-47:intro1:r2": {
+          "ru": "Ключей несколько: son.",
+          "uk": "Ключів кілька: son."
+        },
+        "es:lesson-04:session-47:intro1:r3": {
+          "ru": "Перед именем владельца нужно de.",
+          "uk": "Перед іменем власника потрібне de."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-47:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-47:intro2:r2": {
+          "ru": "Книг несколько: son.",
+          "uk": "Книжок кілька: son."
+        },
+        "es:lesson-04:session-47:intro2:r3": {
+          "ru": "Libros мужского рода: los.",
+          "uk": "Libros чоловічого роду: los."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-47:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-47:intro3:r2": {
+          "ru": "Bolsas женского рода: las.",
+          "uk": "Bolsas жіночого роду: las."
+        },
+        "es:lesson-04:session-47:intro3:r3": {
+          "ru": "Для принадлежности перед именем нужно de.",
+          "uk": "Для належності перед іменем потрібне de."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "cf88a34ad3453e4dce18fbbc43055960ef07880fe5f35f5c4f048ea63a50a142"
+}

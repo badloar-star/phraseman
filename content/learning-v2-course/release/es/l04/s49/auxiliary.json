@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-04:session-49",
+  "entries": [
+    {
+      "interactionId": "es:lesson-04:session-49:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-49:intro1:r2": {
+          "ru": "После es без названия вещи нужна форма suyo.",
+          "uk": "Після es без назви речі потрібна форма suyo."
+        },
+        "es:lesson-04:session-49:intro1:r3": {
+          "ru": "Сумка одна: es.",
+          "uk": "Сумка одна: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-49:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-49:intro2:r2": {
+          "ru": "После es здесь нужно самостоятельное suyo.",
+          "uk": "Після es тут потрібне самостійне suyo."
+        },
+        "es:lesson-04:session-49:intro2:r3": {
+          "ru": "Libro мужского рода: el.",
+          "uk": "Libro чоловічого роду: el."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-49:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-49:intro3:r2": {
+          "ru": "В этой схеме no нужно перед es.",
+          "uk": "У цій схемі no потрібне перед es."
+        },
+        "es:lesson-04:session-49:intro3:r3": {
+          "ru": "Сумка одна: es.",
+          "uk": "Сумка одна: es."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "8636b89551d1c12ca3ef4420c63e556773e6fdeaaec2d05be39366c974d7de7f"
+}

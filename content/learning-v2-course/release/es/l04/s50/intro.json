@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-04:session-50",
+  "learningOutcomeByLocale": {
+    "ru": "выбирать suya для одной вещи женского рода.",
+    "uk": "вибирати suya для однієї речі жіночого роду."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-04:session-50:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Коробка Аны",
+        "uk": "Коробка Ани"
+      },
+      "bodyByLocale": {
+        "ru": "Вы с другом говорите об Ане и её коробке. Ответьте о коробке `Es suya` — «Это её». Соберите `es` + `suya`. Suya — женская форма знакомого suyo: подразумеваемое caja женского рода. Окончание -a выбираем по коробке, а не потому, что хозяйка женщина. При той же коробке Педро форма тоже была бы suya.",
+        "uk": "Ви з другом говорите про Ану та її коробку. Дайте відповідь про коробку `Es suya` — «Це її». Складіть `es` + `suya`. Suya — жіноча форма знайомого suyo: мається на увазі caja жіночого роду. Закінчення -a вибираємо за коробкою, а не тому, що власниця жінка. Для такої самої коробки Педро форма теж була б suya."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-50:intro1:q",
+        "promptByLocale": {
+          "ru": "Речь об Ане и её коробке caja. Ответьте «Это её». Начните с Es и используйте suya.",
+          "uk": "Йдеться про Ану та її коробку caja. Дайте відповідь «Це її». Почніть з Es і використайте suya."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-50:intro1:r1",
+              "text": "Es suya."
+            },
+            {
+              "responseId": "es:lesson-04:session-50:intro1:r2",
+              "text": "Es suyo."
+            },
+            {
+              "responseId": "es:lesson-04:session-50:intro1:r3",
+              "text": "Es su."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-50:intro1:r1",
+              "text": "Es suya."
+            },
+            {
+              "responseId": "es:lesson-04:session-50:intro1:r2",
+              "text": "Es suyo."
+            },
+            {
+              "responseId": "es:lesson-04:session-50:intro1:r3",
+              "text": "Es su."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Речь об Ане и её коробке caja. Ответьте «Это её». Начните с Es и используйте suya.",
+          "uk": "Йдеться про Ану та її коробку caja. Дайте відповідь «Це її». Почніть з Es і використайте suya."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-04:session-50:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Назвать коробку",
+        "uk": "Назвати коробку"
+      },
+      "bodyByLocale": {
+        "ru": "Среди вещей на столе выделите коробку Аны. Скажите `La caja es suya` — «Коробка её». Соберите `la caja` + `es` + `suya`. Сначала назовите вещь, затем es и suya. Вы по-прежнему говорите об Ане, поэтому suya здесь означает «её»; само слово без контекста не указывает, кто владелец.",
+        "uk": "Серед речей на столі виділіть коробку Ани. Скажіть `La caja es suya` — «Коробка її». Складіть `la caja` + `es` + `suya`. Спочатку назвіть річ, потім es і suya. Ви й далі говорите про Ану, тому suya тут означає «її»; саме слово без контексту не вказує, хто власник."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-50:intro2:q",
+        "promptByLocale": {
+          "ru": "Речь об Ане. Скажите «Коробка её». Начните с La caja и используйте suya.",
+          "uk": "Йдеться про Ану. Скажіть «Коробка її». Почніть з La caja й використайте suya."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-50:intro2:r1",
+              "text": "La caja es suya."
+            },
+            {
+              "responseId": "es:lesson-04:session-50:intro2:r2",
+              "text": "La caja es suyo."
+            },
+            {
+              "responseId": "es:lesson-04:session-50:intro2:r3",
+              "text": "El caja es suya."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-50:intro2:r1",
+              "text": "La caja es suya."
+            },
+            {
+              "responseId": "es:lesson-04:session-50:intro2:r2",
+              "text": "La caja es suyo."
+            },
+            {
+              "responseId": "es:lesson-04:session-50:intro2:r3",
+              "text": "El caja es suya."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Речь об Ане. Скажите «Коробка её». Начните с La caja и используйте suya.",
+          "uk": "Йдеться про Ану. Скажіть «Коробка її». Почніть з La caja й використайте suya."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-04:session-50:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Не её сумка",
+        "uk": "Не її сумка"
+      },
+      "bodyByLocale": {
+        "ru": "Друг думает, что сумка у двери тоже принадлежит Ане. Вы знаете, что это не так. Назовите сумку женским словом bolsa: `La bolsa no es suya` — «Сумка не её». Соберите `la bolsa` + `no es` + `suya`. No перед es отрицает принадлежность Ане, а suya согласуется с женским bolsa.",
+        "uk": "Друг думає, що сумка біля дверей теж належить Ані. Ви знаєте, що це не так. Назвіть сумку жіночим словом bolsa: `La bolsa no es suya` — «Сумка не її». Складіть `la bolsa` + `no es` + `suya`. No перед es заперечує належність Ані, а suya узгоджується з жіночим bolsa."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-50:intro3:q",
+        "promptByLocale": {
+          "ru": "Речь об Ане. Скажите «Сумка не её». Начните с La bolsa и используйте suya.",
+          "uk": "Йдеться про Ану. Скажіть «Сумка не її». Почніть з La bolsa й використайте suya."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-50:intro3:r1",
+              "text": "La bolsa no es suya."
+            },
+            {
+              "responseId": "es:lesson-04:session-50:intro3:r2",
+              "text": "La bolsa no es suyo."
+            },
+            {
+              "responseId": "es:lesson-04:session-50:intro3:r3",
+              "text": "La bolsa no son suya."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-50:intro3:r1",
+              "text": "La bolsa no es suya."
+            },
+            {
+              "responseId": "es:lesson-04:session-50:intro3:r2",
+              "text": "La bolsa no es suyo."
+            },
+            {
+              "responseId": "es:lesson-04:session-50:intro3:r3",
+              "text": "La bolsa no son suya."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Речь об Ане. Скажите «Сумка не её». Начните с La bolsa и используйте suya.",
+          "uk": "Йдеться про Ану. Скажіть «Сумка не її». Почніть з La bolsa й використайте suya."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "3fb0afdff3a0fd8fd10fbb6ac4f5eec5d5b5c6eb58059a670f8fd8db133b265d"
+}

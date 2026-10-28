@@ -1505,4 +1505,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"использовать son в вопросе о нескольких предметах.","uk":"використовувати son у запитанні про кілька предметів."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 4, sessionOrdinal: 47,
+    sourceFingerprint: "ef73b7036c17a8460a01c0bd95a86dc1a269d81deee671507eedc1ff9d251960",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"назвать владельца нескольких вещей с помощью son de.","uk":"назвати власника кількох речей за допомогою son de."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 4, sessionOrdinal: 48,
+    sourceFingerprint: "3f401ac568c2dfd049857971fe29efedd0b3538fc54497f1cd2649666de07a5f",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"закрепить вопросы о предмете и владельце, короткие ответы с de.","uk":"закріпити запитання про предмет і власника, короткі відповіді з de."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 4, sessionOrdinal: 49,
+    sourceFingerprint: "433dec1f1b9438fd6dc5795e6ecf922651d3da5f77afbff673a92d70b696abe4",
+    newWordCount: 1,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"заменить de Pedro на suyo после es, когда владелец уже известен.","uk":"замінити de Pedro на suyo після es, коли власник уже відомий."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 4, sessionOrdinal: 50,
+    sourceFingerprint: "7a35bdbd561479f7c701051307562d3cbc73963f9d116e0d1922455274216ebd",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбирать suya для одной вещи женского рода.","uk":"вибирати suya для однієї речі жіночого роду."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
+  }),
 ]);

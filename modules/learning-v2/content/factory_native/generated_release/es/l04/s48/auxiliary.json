@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-04:session-48",
+  "entries": [
+    {
+      "interactionId": "es:lesson-04:session-48:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-48:intro1:r2": {
+          "ru": "Для вопроса о предмете нужно qué.",
+          "uk": "Для запитання про предмет потрібне qué."
+        },
+        "es:lesson-04:session-48:intro1:r3": {
+          "ru": "В этой схеме с eso нужно es.",
+          "uk": "У цій схемі з eso потрібне es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-48:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-48:intro2:r2": {
+          "ru": "Нужно son, потому что ключей несколько.",
+          "uk": "Потрібне son, бо ключів кілька."
+        },
+        "es:lesson-04:session-48:intro2:r3": {
+          "ru": "Llaves женского рода: las.",
+          "uk": "Llaves жіночого роду: las."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-48:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-48:intro3:r2": {
+          "ru": "Книга одна: es.",
+          "uk": "Книжка одна: es."
+        },
+        "es:lesson-04:session-48:intro3:r3": {
+          "ru": "Перед именем владельца нужно de.",
+          "uk": "Перед іменем власника потрібне de."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c2d11b49b927ece00fa162ea3ee5b0d34092a881701208b802d2db7619be58ed"
+}

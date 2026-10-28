@@ -1148,4 +1148,11 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"оценить размер с bastante.","uk":"оцінити розмір із bastante."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 52,
+    sourceFingerprint: "2723c1718f3987c537134dc1c4f9e42c8f068fc6c23851b3c3a2ad3f2c842442",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"сохранить bastante при смене рода и числа.","uk":"зберегти bastante при зміні роду й числа."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+  }),
 ]);

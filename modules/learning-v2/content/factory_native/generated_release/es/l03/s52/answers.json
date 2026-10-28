@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-03:session-52:i01",
+    "correctText": "caros",
+    "correctResponseId": "es:lesson-03:session-52:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-52:i02",
+    "correctText": "bastante",
+    "correctResponseId": "es:lesson-03:session-52:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-52:i03",
+    "correctText": "Los zapatos son bastante caros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-52:i04",
+    "correctText": "caro",
+    "correctResponseId": "es:lesson-03:session-52:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-52:i05",
+    "correctText": "El bolso es bastante caro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-52:i06",
+    "correctText": "Las bolsas son bastante caras.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-52:i07",
+    "correctText": "Son bastante caros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-52:i08",
+    "correctText": "caras",
+    "correctResponseId": "es:lesson-03:session-52:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-52:i09",
+    "correctText": "Los zapatos son bastante caros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-52:i10",
+    "correctText": "El bolso es bastante caro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-52:i11",
+    "correctText": "Las bolsas son bastante caras.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-52:i12",
+    "correctText": "Son bastante caros.",
+    "correctResponseId": null
+  }
+]

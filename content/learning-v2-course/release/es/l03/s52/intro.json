@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-03:session-52",
+  "learningOutcomeByLocale": {
+    "ru": "сохранить bastante при смене рода и числа.",
+    "uk": "зберегти bastante при зміні роду й числа."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-03:session-52:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Дорогая обувь",
+        "uk": "Дороге взуття"
+      },
+      "bodyByLocale": {
+        "ru": "Смотрите на пару обуви и замечаете: `Los zapatos son bastante caros` — «Туфли довольно дорогие». Соберите `los zapatos` + `son` + `bastante caros`. Caros согласуется с мужским множественным zapatos. Bastante перед прилагательным не получает -s: это оценка степени дороговизны.",
+        "uk": "Дивитеся на пару взуття й зауважуєте: `Los zapatos son bastante caros` — «Туфлі досить дорогі». Зберіть `los zapatos` + `son` + `bastante caros`. Caros узгоджується з чоловічою множиною zapatos. Bastante перед прикметником не отримує -s: це оцінка ступеня дорожнечі."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-52:intro1:q",
+        "promptByLocale": {
+          "ru": "Опишите довольно дорогую обувь через bastante.",
+          "uk": "Опишіть досить дорогі туфлі через bastante."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-52:intro1:r1",
+              "text": "Los zapatos son bastante caros."
+            },
+            {
+              "responseId": "es:lesson-03:session-52:intro1:r2",
+              "text": "Los zapatos son bastantes caros."
+            },
+            {
+              "responseId": "es:lesson-03:session-52:intro1:r3",
+              "text": "Los zapatos son bastante caro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-52:intro1:r1",
+              "text": "Los zapatos son bastante caros."
+            },
+            {
+              "responseId": "es:lesson-03:session-52:intro1:r2",
+              "text": "Los zapatos son bastantes caros."
+            },
+            {
+              "responseId": "es:lesson-03:session-52:intro1:r3",
+              "text": "Los zapatos son bastante caro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Опишите довольно дорогую обувь через bastante.",
+          "uk": "Опишіть досить дорогі туфлі через bastante."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-03:session-52:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Одна сумка",
+        "uk": "Одна сумка"
+      },
+      "bodyByLocale": {
+        "ru": "Переводите взгляд на одну сумку. Скажите `El bolso es bastante caro` — «Сумка довольно дорогая». Соберите `el bolso` + `es` + `bastante caro`. В испанском bolso мужского рода: caro. В единственном числе вместо son используйте es, но bastante менять не нужно.",
+        "uk": "Переводите погляд на одну сумку. Скажіть `El bolso es bastante caro` — «Сумка досить дорога». Зберіть `el bolso` + `es` + `bastante caro`. В іспанській bolso чоловічого роду: caro. В однині замість son використовуйте es, але bastante змінювати не потрібно."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-52:intro2:q",
+        "promptByLocale": {
+          "ru": "Назовите довольно дорогую сумку словом bolso, используя bastante.",
+          "uk": "Назвіть досить дорогу сумку словом bolso, використовуючи bastante."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-52:intro2:r1",
+              "text": "El bolso es bastante caro."
+            },
+            {
+              "responseId": "es:lesson-03:session-52:intro2:r2",
+              "text": "El bolso es bastante cara."
+            },
+            {
+              "responseId": "es:lesson-03:session-52:intro2:r3",
+              "text": "El bolso es bastante caros."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-52:intro2:r1",
+              "text": "El bolso es bastante caro."
+            },
+            {
+              "responseId": "es:lesson-03:session-52:intro2:r2",
+              "text": "El bolso es bastante cara."
+            },
+            {
+              "responseId": "es:lesson-03:session-52:intro2:r3",
+              "text": "El bolso es bastante caros."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите довольно дорогую сумку словом bolso, используя bastante.",
+          "uk": "Назвіть досить дорогу сумку словом bolso, використовуючи bastante."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-03:session-52:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Другие сумки",
+        "uk": "Інші сумки"
+      },
+      "bodyByLocale": {
+        "ru": "Рядом несколько сумок, которые здесь называем bolsas. Скажите `Las bolsas son bastante caras` — «Сумки довольно дорогие». Соберите `las bolsas` + `son` + `bastante caras`. Bolsa женского рода, поэтому во множественном числе caras. Перед ним по-прежнему bastante: ни род, ни число предметов его не меняют.",
+        "uk": "Поруч кілька сумок, які тут називаємо bolsas. Скажіть `Las bolsas son bastante caras` — «Сумки досить дорогі». Зберіть `las bolsas` + `son` + `bastante caras`. Bolsa жіночого роду, тому в множині caras. Перед ним, як і раніше, bastante: ні рід, ні число предметів його не змінюють."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-52:intro3:q",
+        "promptByLocale": {
+          "ru": "Опишите довольно дорогие сумки словом bolsas, используя bastante.",
+          "uk": "Опишіть досить дорогі сумки словом bolsas, використовуючи bastante."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-52:intro3:r1",
+              "text": "Las bolsas son bastante caras."
+            },
+            {
+              "responseId": "es:lesson-03:session-52:intro3:r2",
+              "text": "Las bolsas son bastantes caras."
+            },
+            {
+              "responseId": "es:lesson-03:session-52:intro3:r3",
+              "text": "Las bolsas son bastante caros."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-52:intro3:r1",
+              "text": "Las bolsas son bastante caras."
+            },
+            {
+              "responseId": "es:lesson-03:session-52:intro3:r2",
+              "text": "Las bolsas son bastantes caras."
+            },
+            {
+              "responseId": "es:lesson-03:session-52:intro3:r3",
+              "text": "Las bolsas son bastante caros."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Опишите довольно дорогие сумки словом bolsas, используя bastante.",
+          "uk": "Опишіть досить дорогі сумки словом bolsas, використовуючи bastante."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "8e974665fdd2786f4be8e322527ae6aaf0724b896150308a65d1cb081ed9da1d"
+}

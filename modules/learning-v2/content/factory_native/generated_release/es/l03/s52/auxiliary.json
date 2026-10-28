@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-03:session-52",
+  "entries": [
+    {
+      "interactionId": "es:lesson-03:session-52:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-52:intro1:r2": {
+          "ru": "Перед прилагательным достаточно формы bastante.",
+          "uk": "Перед прикметником достатньо форми bastante."
+        },
+        "es:lesson-03:session-52:intro1:r3": {
+          "ru": "Zapatos во множественном числе: caros.",
+          "uk": "Zapatos у множині: caros."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-52:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-52:intro2:r2": {
+          "ru": "Bolso мужского рода: caro.",
+          "uk": "Bolso чоловічого роду: caro."
+        },
+        "es:lesson-03:session-52:intro2:r3": {
+          "ru": "Сумка одна: caro.",
+          "uk": "Сумка одна: caro."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-52:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-52:intro3:r2": {
+          "ru": "Перед прилагательным нужно bastante.",
+          "uk": "Перед прикметником потрібне bastante."
+        },
+        "es:lesson-03:session-52:intro3:r3": {
+          "ru": "Bolsas женского рода: caras.",
+          "uk": "Bolsas жіночого роду: caras."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "744b26acdbfa4a35b4547112a911a4d7f8dc3500cf78fa18638815d9b57b15a3"
+}

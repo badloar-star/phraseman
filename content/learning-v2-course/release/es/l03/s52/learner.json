@@ -1,0 +1,688 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-03:session-52",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-03:session-52:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-52:i01:r1",
+          "text": "caros"
+        },
+        {
+          "responseId": "es:lesson-03:session-52:i01:r2",
+          "text": "caras"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-52:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-52:i01:audio",
+          "transcript": "caros"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-52:i01:r1",
+            "targetText": "caros",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-03:session-52:i01:r2",
+            "targetText": "caras",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-52:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи окончание -os: caros.",
+              "uk": "У записі закінчення -os: caros."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-52:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — туфли довольно дорогие, используйте bastante",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-52:i02:r1",
+          "text": "bastante"
+        },
+        {
+          "responseId": "es:lesson-03:session-52:i02:r2",
+          "text": "bastantes"
+        },
+        {
+          "responseId": "es:lesson-03:session-52:i02:r3",
+          "text": "bastanta"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — туфли довольно дорогие, используйте bastante",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — туфли довольно дорогие, используйте bastante",
+          "uk": "Вставте слово — туфлі досить дорогі, використайте bastante"
+        },
+        "gappedTargetPhrase": "Los zapatos son ___ caros.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-52:i02:r1",
+            "text": "bastante"
+          },
+          {
+            "responseId": "es:lesson-03:session-52:i02:r2",
+            "text": "bastantes"
+          },
+          {
+            "responseId": "es:lesson-03:session-52:i02:r3",
+            "text": "bastanta"
+          }
+        ],
+        "testedDimension": "Вставьте слово — туфли довольно дорогие, используйте bastante",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-52:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — туфли довольно дорогие, используйте bastante",
+            "feedbackByLocale": {
+              "ru": "Перед прилагательным bastante не меняется по числу.",
+              "uk": "Перед прикметником bastante не змінюється за числом."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-52:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — туфли довольно дорогие, используйте bastante",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна форма bastante.",
+              "uk": "Тут потрібна форма bastante."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-52:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — туфли довольно дорогие, используйте bastante",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-52:i03:r1",
+          "text": "Плитки: caros"
+        },
+        {
+          "responseId": "es:lesson-03:session-52:i03:r2",
+          "text": "bastante"
+        },
+        {
+          "responseId": "es:lesson-03:session-52:i03:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-52:i03:r4",
+          "text": "zapatos"
+        },
+        {
+          "responseId": "es:lesson-03:session-52:i03:r5",
+          "text": "los"
+        },
+        {
+          "responseId": "es:lesson-03:session-52:i03:r6",
+          "text": "caro."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — туфли довольно дорогие, используйте bastante",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Los zapatos son bastante caros.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — туфли довольно дорогие, используйте bastante",
+          "uk": "Зберіть фразу — туфлі досить дорогі, використайте bastante"
+        },
+        "orderedTokens": [
+          "Los",
+          "zapatos",
+          "son",
+          "bastante",
+          "caros"
+        ],
+        "authoredDistractorTokens": [
+          "caro"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-52:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — туфли довольно дорогие, используйте bastante",
+            "feedbackByLocale": {
+              "ru": "zapatos во множественном числе.",
+              "uk": "zapatos у множині."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-52:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — сумка довольно дорогая",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-52:i04:r1",
+          "text": "caro"
+        },
+        {
+          "responseId": "es:lesson-03:session-52:i04:r2",
+          "text": "cara"
+        },
+        {
+          "responseId": "es:lesson-03:session-52:i04:r3",
+          "text": "caros"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — сумка довольно дорогая",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — сумка довольно дорогая",
+          "uk": "Вставте слово — сумка досить дорога"
+        },
+        "gappedTargetPhrase": "El bolso es bastante ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-52:i04:r1",
+            "text": "caro"
+          },
+          {
+            "responseId": "es:lesson-03:session-52:i04:r2",
+            "text": "cara"
+          },
+          {
+            "responseId": "es:lesson-03:session-52:i04:r3",
+            "text": "caros"
+          }
+        ],
+        "testedDimension": "Вставьте слово — сумка довольно дорогая",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-52:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — сумка довольно дорогая",
+            "feedbackByLocale": {
+              "ru": "Bolso мужского рода.",
+              "uk": "Bolso чоловічого роду."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-52:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — сумка довольно дорогая",
+            "feedbackByLocale": {
+              "ru": "Сумка одна: caro.",
+              "uk": "Сумка одна: caro."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-52:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — сумка довольно дорогая; используйте bolso и bastante",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-52:i05:r1",
+          "text": "Плитки: caro"
+        },
+        {
+          "responseId": "es:lesson-03:session-52:i05:r2",
+          "text": "bastante"
+        },
+        {
+          "responseId": "es:lesson-03:session-52:i05:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-52:i05:r4",
+          "text": "bolso"
+        },
+        {
+          "responseId": "es:lesson-03:session-52:i05:r5",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-03:session-52:i05:r6",
+          "text": "cara."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — сумка довольно дорогая; используйте bolso и bastante",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "El bolso es bastante caro.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — сумка довольно дорогая; используйте bolso и bastante",
+          "uk": "Зберіть фразу — сумка досить дорога; використайте bolso і bastante"
+        },
+        "orderedTokens": [
+          "El",
+          "bolso",
+          "es",
+          "bastante",
+          "caro"
+        ],
+        "authoredDistractorTokens": [
+          "cara"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-52:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — сумка довольно дорогая; используйте bolso и bastante",
+            "feedbackByLocale": {
+              "ru": "bolso мужского рода.",
+              "uk": "bolso чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-52:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — сумки довольно дорогие; используйте bolsas и bastante",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-52:i06:r1",
+          "text": "Плитки: caras"
+        },
+        {
+          "responseId": "es:lesson-03:session-52:i06:r2",
+          "text": "bastante"
+        },
+        {
+          "responseId": "es:lesson-03:session-52:i06:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-52:i06:r4",
+          "text": "bolsas"
+        },
+        {
+          "responseId": "es:lesson-03:session-52:i06:r5",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-03:session-52:i06:r6",
+          "text": "caros."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — сумки довольно дорогие; используйте bolsas и bastante",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Las bolsas son bastante caras.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — сумки довольно дорогие; используйте bolsas и bastante",
+          "uk": "Зберіть фразу — сумки досить дорогі; використайте bolsas і bastante"
+        },
+        "orderedTokens": [
+          "Las",
+          "bolsas",
+          "son",
+          "bastante",
+          "caras"
+        ],
+        "authoredDistractorTokens": [
+          "caros"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-52:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — сумки довольно дорогие; используйте bolsas и bastante",
+            "feedbackByLocale": {
+              "ru": "bolsas женского рода.",
+              "uk": "bolsas жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-52:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-52:i07:r1",
+          "text": "Плитки: caros"
+        },
+        {
+          "responseId": "es:lesson-03:session-52:i07:r2",
+          "text": "bastante"
+        },
+        {
+          "responseId": "es:lesson-03:session-52:i07:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-52:i07:r4",
+          "text": "caro."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-52:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-52:i07:audio",
+          "transcript": "Son bastante caros."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Son bastante caros.",
+        "orderedTokens": [
+          "Son",
+          "bastante",
+          "caros"
+        ],
+        "authoredDistractorTokens": [
+          "caro"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-52:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит caros.",
+              "uk": "звучить caros."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-52:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — сумки довольно дорогие",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-52:i08:r1",
+          "text": "caras"
+        },
+        {
+          "responseId": "es:lesson-03:session-52:i08:r2",
+          "text": "cara"
+        },
+        {
+          "responseId": "es:lesson-03:session-52:i08:r3",
+          "text": "caros"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — сумки довольно дорогие",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — сумки довольно дорогие",
+          "uk": "Вставте слово — сумки досить дорогі"
+        },
+        "gappedTargetPhrase": "Las bolsas son bastante ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-52:i08:r1",
+            "text": "caras"
+          },
+          {
+            "responseId": "es:lesson-03:session-52:i08:r2",
+            "text": "cara"
+          },
+          {
+            "responseId": "es:lesson-03:session-52:i08:r3",
+            "text": "caros"
+          }
+        ],
+        "testedDimension": "Вставьте слово — сумки довольно дорогие",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-52:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — сумки довольно дорогие",
+            "feedbackByLocale": {
+              "ru": "Сумок несколько: caras.",
+              "uk": "Сумок кілька: caras."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-52:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — сумки довольно дорогие",
+            "feedbackByLocale": {
+              "ru": "Bolsas женского рода.",
+              "uk": "Bolsas жіночого роду."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-52:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — туфли довольно дорогие; назовите предметы и используйте bastante",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-52:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — туфли довольно дорогие; назовите предметы и используйте bastante",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-52:i09:audio",
+          "transcript": "Los zapatos son bastante caros."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Los zapatos son bastante caros.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-52:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — сумка довольно дорогая; назовите её словом bolso и используйте bastante",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-52:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — сумка довольно дорогая; назовите её словом bolso и используйте bastante",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-52:i10:audio",
+          "transcript": "El bolso es bastante caro."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "El bolso es bastante caro.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-52:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — сумки довольно дорогие; назовите их словом bolsas и используйте bastante",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-52:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — сумки довольно дорогие; назовите их словом bolsas и используйте bastante",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-52:i11:audio",
+          "transcript": "Las bolsas son bastante caras."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Las bolsas son bastante caras.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-52:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — они довольно дорогие, речь о zapatos; начните с Son и используйте bastante",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-52:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — они довольно дорогие, речь о zapatos; начните с Son и используйте bastante",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-52:i12:audio",
+          "transcript": "Son bastante caros."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son bastante caros.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "b3257dfe78b090f817d7de3c753c9e7c19634bf9c09e7fa431534b5bbd85227b"
+}

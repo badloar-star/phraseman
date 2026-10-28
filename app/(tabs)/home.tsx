@@ -155,6 +155,7 @@ import { ENABLE_DEV_TOOLS } from '../config';
 import { LEARNING_V2_HIDDEN, isLearningV2Hidden, isLearningV2OpenForUiLangV1 } from '../learning_v2_visibility_switch';
 import { peekResolvedUiLang } from '../ui_lang_resolved';
 import { requestLessonsV2Page } from '../lessons_open_v2_request';
+import { noteLessonsOpenStart } from '../lessons_tab_diagnostics';
 import { markHomeFirstPaint } from '../home_paint_marker';
 import { peekStreakDayState, subscribeStreakDayState } from '../streak_day_signal';
 
@@ -2511,6 +2512,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 void hapticTap();
                 return;
             }
+            noteLessonsOpenStart('home_tile');
             if (!v2Hidden) requestLessonsV2Page('home_tile');
             goToTab(1);
             void hapticTap();
@@ -2725,7 +2727,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
               <HomeV2Header
                 tone={tone}
                 // зачем (координатор 22.10: кольцо Plus на Главной — в эталоне A): свой статус Plus, вводный доступ кольца не даёт (как useIsPlus)
-                avatarPlus={tone === 'scene' ? { plus: isPremium || isVip || isPro, surface: surface ?? homeV2Palette.bg } : undefined}
                 refreshing={cloudProfileRefreshing}
                 // зачем (координатор 18.10, [HOME-CHILD-COST]): активность и счётчик фокусов уходят колокольчику через контекст (HomeBellStateContext, провайдер ниже) — элемент не меняется, шапка не перерисовывается на возврате
                 bellSlot={<NotificationCenterButton />}
@@ -2737,6 +2738,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     coinSource={homeCoinRankSource}
                     placeholderColor={t.bgSurface2}
                     onOpenProfile={stableOpenHomeProfile}
+                    // зачем (ЗАМОК ВЛАДЕЛЬЦА 28.10 20:05, «два кольца сразу не может быть»): кольцо Plus рисует сам слот и только когда нет непросмотренной истории
+                    plusSurface={tone === 'scene' && (isPremium || isVip || isPro) ? (surface ?? homeV2Palette.bg) : null}
                     profileLabel={triLang(lang, { ru: 'Мой профиль', uk: 'Мій профіль', en: 'My profile', es: 'Mi perfil', 'pt-BR': 'Meu perfil', vi: 'Hồ sơ của tôi', id: 'Profil saya', tr: 'Profilim', pl: 'Mój profil' })}
                   />
                 )}

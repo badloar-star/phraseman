@@ -19,6 +19,7 @@ import type { StoryEventList } from '../../modules/story_events/story_events_cor
 import { STORY_RING_COIN, STORY_RING_SLOT } from './story_ring_constants';
 import type { StoryOrigin } from './StoryViewer';
 import { storyText } from './story_strings';
+import { PlusAvatarRing } from '../plus/PlusAvatarRing';
 
 const LOG = '[STORY-RING]';
 const AVATAR_LOG = '[AVATAR-TAP]';
@@ -55,15 +56,22 @@ export type StoryAvatarSlotProps = Readonly<{
   onOpenProfile: () => void;
   /** Прежняя подпись кнопки профиля. */
   profileLabel: string;
+  /**
+   * Кольцо Plus вокруг монеты: цвет поверхности под аватаром (для обводки значка); null/нет — у человека нет Plus.
+   * зачем (ЗАМОК ВЛАДЕЛЬЦА 28.10 20:05, «два кольца сразу не может быть»): рисуется ТОЛЬКО когда нет непросмотренной истории — иначе остаётся одно красное кольцо историй.
+   */
+  plusSurface?: string | null;
 }>;
 
 type ViewerState = Readonly<{ events: StoryEventList; origin: StoryOrigin | null }>;
 
-function StoryAvatarSlot({ lang, coinRank, coinSource, placeholderColor, onOpenProfile, profileLabel }: StoryAvatarSlotProps) {
+function StoryAvatarSlot({ lang, coinRank, coinSource, placeholderColor, onOpenProfile, profileLabel, plusSurface = null }: StoryAvatarSlotProps) {
   const { enabled, unseenCount, playback, stories, markSeen } = useStoryEvents();
   const buttonRef = useRef<React.ElementRef<typeof TouchableOpacity> | null>(null);
   const [viewer, setViewer] = useState<ViewerState | null>(null);
   const ring = enabled && unseenCount > 0;
+  // ЗАМОК ВЛАДЕЛЬЦА 28.10 20:05: одно кольцо. Есть непросмотренная история → только кольцо историй; иначе кольцо Plus по статусу; иначе без кольца.
+  const ringKind: 'story' | 'plus' | 'none' = ring ? 'story' : plusSurface !== null ? 'plus' : 'none';
   // Владелец 26.10: новые истории — обычным тапом; просмотренные повторяются удержанием.
   // Повтор идёт от старых к новым: список хранилища отдаёт новые первыми.
   const queue = useMemo<StoryEventList>(() => (ring ? playback : enabled ? [...stories].reverse() : []), [enabled, playback, ring, stories]);
@@ -80,6 +88,13 @@ function StoryAvatarSlot({ lang, coinRank, coinSource, placeholderColor, onOpenP
   // зачем (владелец 24.10: «истории должны открываться»; правило «сперва логи»): почему кольцо есть или его нет — флаг, число непросмотренных, очередь просмотра и живых событий; одной строкой на изменение
   const decisionKey = `${String(enabled)}|${unseenCount}|${playback.length}|${stories.length}|${String(ring)}|${queue.length}`;
   const decisionLoggedRef = useRef('');
+  // [AVATAR-RING] (владелец 28.10: «два кольца сразу»): какое кольцо нарисовано и что решило — флаг историй, непросмотренные, есть ли Plus.
+  const ringLoggedRef = useRef('');
+  const ringKey = `${ringKind}|${String(enabled)}|${unseenCount}|${String(plusSurface !== null)}`;
+  if (ringLoggedRef.current !== ringKey) {
+    ringLoggedRef.current = ringKey;
+    DebugLogger.info('[AVATAR-RING]', `нарисовано=${ringKind} stories_enabled=${String(enabled)} unseenCount=${unseenCount} plus=${String(plusSurface !== null)} (история перекрывает Plus: ${String(ring && plusSurface !== null)})`);
+  }
   if (decisionLoggedRef.current !== decisionKey) {
     decisionLoggedRef.current = decisionKey;
     DebugLogger.info('[STORIES]', `кольцо: флаг=${String(enabled)} непросмотрено=${unseenCount} очередь=${queue.length} к просмотру=${playback.length} живых=${stories.length} → ${ring ? 'кольцо горит' : 'кольца нет'}, тап ведёт ${ring && opensStories ? 'в просмотр непросмотренных' : 'в профиль'}`);
@@ -175,7 +190,7 @@ function StoryAvatarSlot({ lang, coinRank, coinSource, placeholderColor, onOpenP
           accessibilityLabel={ring ? storyText(lang, 'ringLabel') : profileLabel}
           hitSlop={6}
         >
-          {Ring ? <Ring>{coin(STORY_RING_COIN)}</Ring> : coin(STORY_RING_SLOT)}
+          {Ring ? <Ring>{coin(STORY_RING_COIN)}</Ring> : plusSurface !== null ? <PlusAvatarRing plus size={STORY_RING_SLOT} surface={plusSurface}>{coin(STORY_RING_SLOT)}</PlusAvatarRing> : coin(STORY_RING_SLOT)}
         </TouchableOpacity>
       </View>
       {viewer && Viewer ? (

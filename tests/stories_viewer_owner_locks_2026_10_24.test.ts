@@ -55,7 +55,11 @@ describe('Замок: просмотр историй — 10 секунд на �
   it('тап по аватару открывает истории и после просмотра: очередь — непросмотренные, иначе все живые', () => {
     expect(slot).toContain('(ring ? playback : enabled ? [...stories].reverse() : [])');
     expect(slot).toContain('const opensStories = queue.length > 0;');
-    expect(slot).toContain("if (opensStories) open(); else onOpenProfile();");
+    // слово владельца 26.10 (меняет 24.10 «тап ВСЕГДА открывает»): обычный тап открывает просмотр, только пока горит кольцо; просмотренные повторяются удержанием 2 с
+    expect(slot).toContain("if (ring && opensStories) open(); else onOpenProfile();");
+    expect(slot).toContain('onLongPress={opensStories ? onLongPress : undefined}');
+    expect(slot).toContain('delayLongPress={2000}');
+    expect(slot).toMatch(/const onLongPress = useCallback\(\(\) => \{[\s\S]*?if \(opensStories\) open\(\);/);
   });
 
   // ЗАМОК ВЛАДЕЛЬЦА 24.10: «истории должны открываться» — правило «сперва логи»: причина «кольца нет / куда ведёт тап» пишется одной строкой [STORIES]
@@ -63,7 +67,8 @@ describe('Замок: просмотр историй — 10 секунд на �
     expect(slot).toContain("DebugLogger.info('[STORIES]'");
     expect(slot).toContain('кольца нет');
     expect(slot).toContain("'в просмотр непросмотренных'");
-    expect(slot).toContain("'в просмотр с первого слайда'");
+    // повтор просмотренных (удержание) пишет в журнал «недавние», просмотр непросмотренных — «непросмотренные»
+    expect(slot).toContain('тап → просмотр (${ring ? \'непросмотренные\' : \'недавние\'})');
     expect(slot).toContain("'в профиль'");
   });
 });

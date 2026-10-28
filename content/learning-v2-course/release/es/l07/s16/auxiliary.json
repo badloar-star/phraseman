@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-07:session-16",
+  "entries": [
+    {
+      "interactionId": "es:lesson-07:session-16:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-16:intro1:r2": {
+          "ru": "Книг одиннадцать: libros.",
+          "uk": "Книжок одинадцять: libros."
+        },
+        "es:lesson-07:session-16:intro1:r3": {
+          "ru": "По условию одиннадцать: once.",
+          "uk": "За умовою одинадцять: once."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-07:session-16:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-16:intro2:r2": {
+          "ru": "Перед libros нужна veintiún.",
+          "uk": "Перед libros потрібна veintiún."
+        },
+        "es:lesson-07:session-16:intro2:r3": {
+          "ru": "Нужно множественное число libros.",
+          "uk": "Потрібна множина libros."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-07:session-16:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-16:intro3:r2": {
+          "ru": "Silla женского рода: veintiuna.",
+          "uk": "Silla жіночого роду: veintiuna."
+        },
+        "es:lesson-07:session-16:intro3:r3": {
+          "ru": "Предметов больше одного: sillas.",
+          "uk": "Предметів більше одного: sillas."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9e6363aa998c3e4ead8d2cd1cc26ec29302bebc3b607dab6330bb6f4542f947e"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-07:session-14",
+  "entries": [
+    {
+      "interactionId": "es:lesson-07:session-14:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-14:intro1:r2": {
+          "ru": "Veinte — двадцать, а нужно двадцать один.",
+          "uk": "Veinte — двадцять, а потрібно двадцять один."
+        },
+        "es:lesson-07:session-14:intro1:r3": {
+          "ru": "Эта короткая форма нужна перед существительным мужского рода.",
+          "uk": "Ця коротка форма потрібна перед іменником чоловічого роду."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-07:session-14:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-14:intro2:r2": {
+          "ru": "Перед libros нужна короткая форма veintiún.",
+          "uk": "Перед libros потрібна коротка форма veintiún."
+        },
+        "es:lesson-07:session-14:intro2:r3": {
+          "ru": "Книг двадцать одна: в испанском здесь множественное число libros.",
+          "uk": "Книжок двадцять одна: в іспанській тут множина libros."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-07:session-14:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-14:intro3:r2": {
+          "ru": "Перед libros нужна veintiún.",
+          "uk": "Перед libros потрібна veintiún."
+        },
+        "es:lesson-07:session-14:intro3:r3": {
+          "ru": "Нужно множественное число libros.",
+          "uk": "Потрібна множина libros."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "96b2fc89e3d6c1b7715fe0b8ffbd7765cdf8b26092ab449ca7636e0eab4056d4"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-07:session-16",
+  "learningOutcomeByLocale": {
+    "ru": "различать числа 11–21 и согласовывать формы числа 21.",
+    "uk": "розрізняти числа 11–21 та узгоджувати форми числа 21."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-07:session-16:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Одиннадцать экземпляров",
+        "uk": "Одинадцять примірників"
+      },
+      "bodyByLocale": {
+        "ru": "Вы пересчитали книги первой группы: их одиннадцать. Скажите `Hay once libros` — «Есть одиннадцать книг». Соберите `Hay` + `once` + `libros`. Once — одно слово, libros во множественном числе. Число стоит перед предметами.",
+        "uk": "Ви перерахували книжки першої групи: їх одинадцять. Скажіть `Hay once libros` — «Є одинадцять книжок». Складіть `Hay` + `once` + `libros`. Once — одне слово, libros у множині. Число стоїть перед предметами."
+      },
+      "question": {
+        "interactionId": "es:lesson-07:session-16:intro1:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Есть одиннадцать книг». Начните с Hay, число поставьте перед libros.",
+          "uk": "Повідомте «Є одинадцять книжок». Почніть з Hay, число поставте перед libros."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-07:session-16:intro1:r1",
+              "text": "Hay once libros."
+            },
+            {
+              "responseId": "es:lesson-07:session-16:intro1:r2",
+              "text": "Hay once libro."
+            },
+            {
+              "responseId": "es:lesson-07:session-16:intro1:r3",
+              "text": "Hay doce libros."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-07:session-16:intro1:r1",
+              "text": "Hay once libros."
+            },
+            {
+              "responseId": "es:lesson-07:session-16:intro1:r2",
+              "text": "Hay once libro."
+            },
+            {
+              "responseId": "es:lesson-07:session-16:intro1:r3",
+              "text": "Hay doce libros."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Есть одиннадцать книг». Начните с Hay, число поставьте перед libros.",
+          "uk": "Повідомте «Є одинадцять книжок». Почніть з Hay, число поставте перед libros."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-07:session-16:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Двадцать одна книга",
+        "uk": "Двадцять одна книжка"
+      },
+      "bodyByLocale": {
+        "ru": "Для следующей группы нужен двадцать один экземпляр. Назовите запись в списке `Veintiún libros` — «Двадцать одна книга». Соберите `Veintiún` + `libros`. Перед существительным мужского рода veintiuno сокращается до veintiún. Libros остаётся во множественном числе: книг больше одной.",
+        "uk": "Для наступної групи потрібен двадцять один примірник. Назвіть запис у списку `Veintiún libros` — «Двадцять одна книжка». Складіть `Veintiún` + `libros`. Перед іменником чоловічого роду veintiuno скорочується до veintiún. Libros залишається в множині: книжок більше однієї."
+      },
+      "question": {
+        "interactionId": "es:lesson-07:session-16:intro2:q",
+        "promptByLocale": {
+          "ru": "Назовите «Двадцать одна книга». Используйте veintiún перед libros, без hay.",
+          "uk": "Назвіть «Двадцять одна книжка». Використайте veintiún перед libros, без hay."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-07:session-16:intro2:r1",
+              "text": "Veintiún libros."
+            },
+            {
+              "responseId": "es:lesson-07:session-16:intro2:r2",
+              "text": "Veintiuno libros."
+            },
+            {
+              "responseId": "es:lesson-07:session-16:intro2:r3",
+              "text": "Veintiún libro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-07:session-16:intro2:r1",
+              "text": "Veintiún libros."
+            },
+            {
+              "responseId": "es:lesson-07:session-16:intro2:r2",
+              "text": "Veintiuno libros."
+            },
+            {
+              "responseId": "es:lesson-07:session-16:intro2:r3",
+              "text": "Veintiún libro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите «Двадцать одна книга». Используйте veintiún перед libros, без hay.",
+          "uk": "Назвіть «Двадцять одна книжка». Використайте veintiún перед libros, без hay."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-07:session-16:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Двадцать один стул",
+        "uk": "Двадцять один стілець"
+      },
+      "bodyByLocale": {
+        "ru": "Теперь в списке идут стулья: их тоже двадцать один. Скажите `Veintiuna sillas` — «Двадцать один стул». Соберите `Veintiuna` + `sillas`. Silla женского рода, поэтому veintiuna, а не veintiún. Sillas во множественном числе. Количество то же, но испанский род предмета изменился.",
+        "uk": "Тепер у списку йдуть стільці: їх теж двадцять один. Скажіть `Veintiuna sillas` — «Двадцять один стілець». Складіть `Veintiuna` + `sillas`. Silla жіночого роду, тому veintiuna, а не veintiún. Sillas у множині. Кількість та сама, але іспанський рід предмета змінився."
+      },
+      "question": {
+        "interactionId": "es:lesson-07:session-16:intro3:q",
+        "promptByLocale": {
+          "ru": "Назовите «Двадцать один стул». Используйте veintiuna перед sillas, без hay.",
+          "uk": "Назвіть «Двадцять один стілець». Використайте veintiuna перед sillas, без hay."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-07:session-16:intro3:r1",
+              "text": "Veintiuna sillas."
+            },
+            {
+              "responseId": "es:lesson-07:session-16:intro3:r2",
+              "text": "Veintiún sillas."
+            },
+            {
+              "responseId": "es:lesson-07:session-16:intro3:r3",
+              "text": "Veintiuna silla."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-07:session-16:intro3:r1",
+              "text": "Veintiuna sillas."
+            },
+            {
+              "responseId": "es:lesson-07:session-16:intro3:r2",
+              "text": "Veintiún sillas."
+            },
+            {
+              "responseId": "es:lesson-07:session-16:intro3:r3",
+              "text": "Veintiuna silla."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите «Двадцать один стул». Используйте veintiuna перед sillas, без hay.",
+          "uk": "Назвіть «Двадцять один стілець». Використайте veintiuna перед sillas, без hay."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "c32c18325954b02e42bb670124df1184096e345d646df51bf229add8a874ca29"
+}

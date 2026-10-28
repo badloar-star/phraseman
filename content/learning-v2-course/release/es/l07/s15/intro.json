@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-07:session-15",
+  "learningOutcomeByLocale": {
+    "ru": "использовать veintiuna перед sillas.",
+    "uk": "використовувати veintiuna перед sillas."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-07:session-15:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Число перед женским родом",
+        "uk": "Число перед жіночим родом"
+      },
+      "bodyByLocale": {
+        "ru": "Вы насчитали двадцать один стул. Назовите количество с предметом: `Veintiuna sillas` — «Двадцать один стул». Соберите `Veintiuna` + `sillas`. Silla женского рода, поэтому veintiuna с a в конце. Sillas во множественном числе: предметов больше одного. Ориентируемся на испанское silla, а не на русский «стул».",
+        "uk": "Ви нарахували двадцять один стілець. Назвіть кількість із предметом: `Veintiuna sillas` — «Двадцять один стілець». Складіть `Veintiuna` + `sillas`. Silla жіночого роду, тому veintiuna з a наприкінці. Sillas у множині: предметів більше одного. Орієнтуємося на іспанське silla, а не на українське «стілець»."
+      },
+      "question": {
+        "interactionId": "es:lesson-07:session-15:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите «Двадцать один стул». Используйте veintiuna перед sillas, без hay.",
+          "uk": "Назвіть «Двадцять один стілець». Використайте veintiuna перед sillas, без hay."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-07:session-15:intro1:r1",
+              "text": "Veintiuna sillas."
+            },
+            {
+              "responseId": "es:lesson-07:session-15:intro1:r2",
+              "text": "Veintiún sillas."
+            },
+            {
+              "responseId": "es:lesson-07:session-15:intro1:r3",
+              "text": "Veintiuna silla."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-07:session-15:intro1:r1",
+              "text": "Veintiuna sillas."
+            },
+            {
+              "responseId": "es:lesson-07:session-15:intro1:r2",
+              "text": "Veintiún sillas."
+            },
+            {
+              "responseId": "es:lesson-07:session-15:intro1:r3",
+              "text": "Veintiuna silla."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите «Двадцать один стул». Используйте veintiuna перед sillas, без hay.",
+          "uk": "Назвіть «Двадцять один стілець». Використайте veintiuna перед sillas, без hay."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-07:session-15:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Места приготовлены здесь",
+        "uk": "Місця підготовлені тут"
+      },
+      "bodyByLocale": {
+        "ru": "Вы показываете организатору подготовленные места. Сообщите `Hay veintiuna sillas aquí` — «Здесь есть двадцать один стул». Соберите `Hay` + `veintiuna sillas` + `aquí`. Согласование сохраняется внутри предложения; место ставим в конце. Даже последний участник сможет сесть.",
+        "uk": "Ви показуєте організатору підготовлені місця. Повідомте `Hay veintiuna sillas aquí` — «Тут є двадцять один стілець». Складіть `Hay` + `veintiuna sillas` + `aquí`. Узгодження зберігається всередині речення; місце ставимо наприкінці. Навіть останній учасник зможе сісти."
+      },
+      "question": {
+        "interactionId": "es:lesson-07:session-15:intro2:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Здесь есть двадцать один стул». Начните с Hay, используйте veintiuna перед sillas, место поставьте в конце.",
+          "uk": "Повідомте «Тут є двадцять один стілець». Почніть з Hay, використайте veintiuna перед sillas, місце поставте наприкінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-07:session-15:intro2:r1",
+              "text": "Hay veintiuna sillas aquí."
+            },
+            {
+              "responseId": "es:lesson-07:session-15:intro2:r2",
+              "text": "Hay veintiún sillas aquí."
+            },
+            {
+              "responseId": "es:lesson-07:session-15:intro2:r3",
+              "text": "Hay veintiuna silla aquí."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-07:session-15:intro2:r1",
+              "text": "Hay veintiuna sillas aquí."
+            },
+            {
+              "responseId": "es:lesson-07:session-15:intro2:r2",
+              "text": "Hay veintiún sillas aquí."
+            },
+            {
+              "responseId": "es:lesson-07:session-15:intro2:r3",
+              "text": "Hay veintiuna silla aquí."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Здесь есть двадцать один стул». Начните с Hay, используйте veintiuna перед sillas, место поставьте в конце.",
+          "uk": "Повідомте «Тут є двадцять один стілець». Почніть з Hay, використайте veintiuna перед sillas, місце поставте наприкінці."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-07:session-15:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Спросить о местах",
+        "uk": "Запитати про місця"
+      },
+      "bodyByLocale": {
+        "ru": "Друг готовит комнату для такой же группы. Уточните `¿Hay veintiuna sillas?` — «Есть двадцать один стул?» Соберите `¿Hay` + `veintiuna` + `sillas?`. Вопрос не меняет род и число: по-прежнему veintiuna sillas. Число ставим перед предметами.",
+        "uk": "Друг готує кімнату для такої самої групи. Уточніть `¿Hay veintiuna sillas?` — «Є двадцять один стілець?» Складіть `¿Hay` + `veintiuna` + `sillas?`. Запитання не змінює рід і число: як і раніше, veintiuna sillas. Число ставимо перед предметами."
+      },
+      "question": {
+        "interactionId": "es:lesson-07:session-15:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите «Есть двадцать один стул?». Начните с ¿Hay, используйте veintiuna перед sillas.",
+          "uk": "Запитайте «Є двадцять один стілець?». Почніть з ¿Hay, використайте veintiuna перед sillas."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-07:session-15:intro3:r1",
+              "text": "¿Hay veintiuna sillas?"
+            },
+            {
+              "responseId": "es:lesson-07:session-15:intro3:r2",
+              "text": "¿Hay veintiuno sillas?"
+            },
+            {
+              "responseId": "es:lesson-07:session-15:intro3:r3",
+              "text": "¿Hay veintiuna silla?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-07:session-15:intro3:r1",
+              "text": "¿Hay veintiuna sillas?"
+            },
+            {
+              "responseId": "es:lesson-07:session-15:intro3:r2",
+              "text": "¿Hay veintiuno sillas?"
+            },
+            {
+              "responseId": "es:lesson-07:session-15:intro3:r3",
+              "text": "¿Hay veintiuna silla?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «Есть двадцать один стул?». Начните с ¿Hay, используйте veintiuna перед sillas.",
+          "uk": "Запитайте «Є двадцять один стілець?». Почніть з ¿Hay, використайте veintiuna перед sillas."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "3beb816ff0f9bb7f432b8dc0dfee1957b8d86d9ee1796fcb04d7899195fa27f0"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-07:session-14",
+  "learningOutcomeByLocale": {
+    "ru": "использовать veintiuno отдельно и veintiún перед libros.",
+    "uk": "використовувати veintiuno окремо та veintiún перед libros."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-07:session-14:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Назвать итог счёта",
+        "uk": "Назвати підсумок лічби"
+      },
+      "bodyByLocale": {
+        "ru": "Вы закончили пересчитывать книги: получилось двадцать один. Назовите число отдельно: `Veintiuno` — «Двадцать один». Это одно слово. Пока не произносим существительное, сохраняем окончание uno, как в знакомом числе один.",
+        "uk": "Ви закінчили перераховувати книжки: вийшло двадцять один. Назвіть число окремо: `Veintiuno` — «Двадцять один». Це одне слово. Поки не вимовляємо іменник, зберігаємо закінчення uno, як у знайомому числі один."
+      },
+      "question": {
+        "interactionId": "es:lesson-07:session-14:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите число «двадцать один» одним словом, без существительного.",
+          "uk": "Назвіть число «двадцять один» одним словом, без іменника."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-07:session-14:intro1:r1",
+              "text": "Veintiuno."
+            },
+            {
+              "responseId": "es:lesson-07:session-14:intro1:r2",
+              "text": "Veinte."
+            },
+            {
+              "responseId": "es:lesson-07:session-14:intro1:r3",
+              "text": "Veintiún."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-07:session-14:intro1:r1",
+              "text": "Veintiuno."
+            },
+            {
+              "responseId": "es:lesson-07:session-14:intro1:r2",
+              "text": "Veinte."
+            },
+            {
+              "responseId": "es:lesson-07:session-14:intro1:r3",
+              "text": "Veintiún."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите число «двадцать один» одним словом, без существительного.",
+          "uk": "Назвіть число «двадцять один» одним словом, без іменника."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-07:session-14:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Добавить предмет",
+        "uk": "Додати предмет"
+      },
+      "bodyByLocale": {
+        "ru": "Теперь укажите, что речь о книгах: `Veintiún libros` — «Двадцать одна книга». Соберите `Veintiún` + `libros`. Перед существительным мужского рода veintiuno сокращается до veintiún; в письме нужен знак ú. Libros при этом во множественном числе: книг больше одной. Русское окончание «одна книга» не переносим в испанскую фразу.",
+        "uk": "Тепер укажіть, що йдеться про книжки: `Veintiún libros` — «Двадцять одна книжка». Складіть `Veintiún` + `libros`. Перед іменником чоловічого роду veintiuno скорочується до veintiún; на письмі потрібен знак ú. Libros при цьому в множині: книжок більше однієї. Українське закінчення «одна книжка» не переносимо в іспанську фразу."
+      },
+      "question": {
+        "interactionId": "es:lesson-07:session-14:intro2:q",
+        "promptByLocale": {
+          "ru": "Назовите «Двадцать одна книга». Используйте veintiún перед libros, без hay.",
+          "uk": "Назвіть «Двадцять одна книжка». Використайте veintiún перед libros, без hay."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-07:session-14:intro2:r1",
+              "text": "Veintiún libros."
+            },
+            {
+              "responseId": "es:lesson-07:session-14:intro2:r2",
+              "text": "Veintiuno libros."
+            },
+            {
+              "responseId": "es:lesson-07:session-14:intro2:r3",
+              "text": "Veintiún libro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-07:session-14:intro2:r1",
+              "text": "Veintiún libros."
+            },
+            {
+              "responseId": "es:lesson-07:session-14:intro2:r2",
+              "text": "Veintiuno libros."
+            },
+            {
+              "responseId": "es:lesson-07:session-14:intro2:r3",
+              "text": "Veintiún libro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите «Двадцать одна книга». Используйте veintiún перед libros, без hay.",
+          "uk": "Назвіть «Двадцять одна книжка». Використайте veintiún перед libros, без hay."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-07:session-14:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Сообщить о наличии",
+        "uk": "Повідомити про наявність"
+      },
+      "bodyByLocale": {
+        "ru": "Вы показываете организатору все подготовленные книги. Скажите `Hay veintiún libros aquí` — «Здесь есть двадцать одна книга». Соберите `Hay` + `veintiún libros` + `aquí`. Короткая форма остаётся перед libros и внутри предложения; место ставим в конце. На одну книгу больше двадцати — и никто не останется без экземпляра.",
+        "uk": "Ви показуєте організатору всі підготовлені книжки. Скажіть `Hay veintiún libros aquí` — «Тут є двадцять одна книжка». Складіть `Hay` + `veintiún libros` + `aquí`. Коротка форма залишається перед libros і всередині речення; місце ставимо наприкінці. На одну книжку більше двадцяти — і ніхто не залишиться без примірника."
+      },
+      "question": {
+        "interactionId": "es:lesson-07:session-14:intro3:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Здесь есть двадцать одна книга». Начните с Hay, используйте veintiún перед libros, место поставьте в конце.",
+          "uk": "Повідомте «Тут є двадцять одна книжка». Почніть з Hay, використайте veintiún перед libros, місце поставте наприкінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-07:session-14:intro3:r1",
+              "text": "Hay veintiún libros aquí."
+            },
+            {
+              "responseId": "es:lesson-07:session-14:intro3:r2",
+              "text": "Hay veintiuno libros aquí."
+            },
+            {
+              "responseId": "es:lesson-07:session-14:intro3:r3",
+              "text": "Hay veintiún libro aquí."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-07:session-14:intro3:r1",
+              "text": "Hay veintiún libros aquí."
+            },
+            {
+              "responseId": "es:lesson-07:session-14:intro3:r2",
+              "text": "Hay veintiuno libros aquí."
+            },
+            {
+              "responseId": "es:lesson-07:session-14:intro3:r3",
+              "text": "Hay veintiún libro aquí."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Здесь есть двадцать одна книга». Начните с Hay, используйте veintiún перед libros, место поставьте в конце.",
+          "uk": "Повідомте «Тут є двадцять одна книжка». Почніть з Hay, використайте veintiún перед libros, місце поставте наприкінці."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "fa44cd86ca4485ee206dea610c138b131ccf7aac71688f264d298f005fa32211"
+}

@@ -1,0 +1,72 @@
+[
+  {
+    "interactionId": "es:lesson-07:session-14:i01",
+    "correctText": "veintiuno",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-14:i02",
+    "correctText": "veintiuno",
+    "correctResponseId": "es:lesson-07:session-14:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-14:i03",
+    "correctText": "Veintiún",
+    "correctResponseId": "es:lesson-07:session-14:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-14:i04",
+    "correctText": "Veintiún libros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-14:i05",
+    "correctText": "libros",
+    "correctResponseId": "es:lesson-07:session-14:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-14:i06",
+    "correctText": "Hay veintiún libros aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-14:i07",
+    "correctText": "¿Hay veintiún libros?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-14:i08",
+    "correctText": "Hay veintiún libros aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-14:i09",
+    "correctText": "veintiún",
+    "correctResponseId": "es:lesson-07:session-14:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-14:i10",
+    "correctText": "Veintiuno.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-14:i11",
+    "correctText": "Veintiún libros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-14:i12",
+    "correctText": "Hay veintiún libros aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-14:i13",
+    "correctText": "¿Hay veintiún libros?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-14:i14",
+    "correctText": "Hay veintiún libros.",
+    "correctResponseId": null
+  }
+]

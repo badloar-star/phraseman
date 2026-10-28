@@ -1,0 +1,739 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-07:session-14",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-07:session-14:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — veintiuno",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-14:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — veintiuno",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-14:i01:audio",
+          "transcript": "veintiuno"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-07:session-14:i01:r1",
+            "targetText": "veintiuno",
+            "meaningByLocale": {
+              "ru": "двадцать один, 21; перед libros: veintiún libros. 🔊 *veintiuno*",
+              "uk": "двадцять один, 21; перед libros: veintiún libros. 🔊 *veintiuno*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "veintiuno",
+          "definitionByLocale": {
+            "ru": "двадцать один, 21; перед libros: veintiún libros. 🔊 *veintiuno*",
+            "uk": "двадцять один, 21; перед libros: veintiún libros. 🔊 *veintiuno*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-14:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-14:i02:r1",
+          "text": "veintiuno"
+        },
+        {
+          "responseId": "es:lesson-07:session-14:i02:r2",
+          "text": "veinte"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-14:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-14:i02:audio",
+          "transcript": "veintiuno"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-07:session-14:i02:r1",
+            "targetText": "veintiuno",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-07:session-14:i02:r2",
+            "targetText": "veinte",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-07:session-14:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит veintiuno — двадцать один.",
+              "uk": "Звучить veintiuno — двадцять один."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-14:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — двадцять одна книжка",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-14:i03:r1",
+          "text": "Veintiún"
+        },
+        {
+          "responseId": "es:lesson-07:session-14:i03:r2",
+          "text": "Veintiuno"
+        },
+        {
+          "responseId": "es:lesson-07:session-14:i03:r3",
+          "text": "Veinte"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — двадцять одна книжка",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — двадцать одна книга",
+          "uk": "Вставте слово — двадцять одна книжка"
+        },
+        "gappedTargetPhrase": "___ libros.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-07:session-14:i03:r1",
+            "text": "Veintiún"
+          },
+          {
+            "responseId": "es:lesson-07:session-14:i03:r2",
+            "text": "Veintiuno"
+          },
+          {
+            "responseId": "es:lesson-07:session-14:i03:r3",
+            "text": "Veinte"
+          }
+        ],
+        "testedDimension": "Вставте слово — двадцять одна книжка",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-07:session-14:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — двадцять одна книжка",
+            "feedbackByLocale": {
+              "ru": "Перед libros нужна veintiún.",
+              "uk": "Перед libros потрібна veintiún."
+            }
+          },
+          {
+            "responseId": "es:lesson-07:session-14:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — двадцять одна книжка",
+            "feedbackByLocale": {
+              "ru": "Veinte — двадцать, а нужно двадцать один.",
+              "uk": "Veinte — двадцять, а потрібно двадцять один."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-14:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — двадцять одна книжка; використайте veintiún перед libros, без hay",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-14:i04:r1",
+          "text": "Плитки: libros"
+        },
+        {
+          "responseId": "es:lesson-07:session-14:i04:r2",
+          "text": "Veintiún"
+        },
+        {
+          "responseId": "es:lesson-07:session-14:i04:r3",
+          "text": "Veintiuno."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — двадцять одна книжка; використайте veintiún перед libros, без hay",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Veintiún libros.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — двадцать одна книга; используйте veintiún перед libros, без hay",
+          "uk": "Зберіть фразу — двадцять одна книжка; використайте veintiún перед libros, без hay"
+        },
+        "orderedTokens": [
+          "Veintiún",
+          "libros"
+        ],
+        "authoredDistractorTokens": [
+          "Veintiuno"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-07:session-14:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — двадцять одна книжка; використайте veintiún перед libros, без hay",
+            "feedbackByLocale": {
+              "ru": "перед libros нужна короткая форма.",
+              "uk": "перед libros потрібна коротка форма."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-14:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — тут є двадцять одна книжка",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-14:i05:r1",
+          "text": "libros"
+        },
+        {
+          "responseId": "es:lesson-07:session-14:i05:r2",
+          "text": "libro"
+        },
+        {
+          "responseId": "es:lesson-07:session-14:i05:r3",
+          "text": "silla"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — тут є двадцять одна книжка",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — здесь есть двадцать одна книга",
+          "uk": "Вставте слово — тут є двадцять одна книжка"
+        },
+        "gappedTargetPhrase": "Hay veintiún ___ aquí.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-07:session-14:i05:r1",
+            "text": "libros"
+          },
+          {
+            "responseId": "es:lesson-07:session-14:i05:r2",
+            "text": "libro"
+          },
+          {
+            "responseId": "es:lesson-07:session-14:i05:r3",
+            "text": "silla"
+          }
+        ],
+        "testedDimension": "Вставте слово — тут є двадцять одна книжка",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-07:session-14:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — тут є двадцять одна книжка",
+            "feedbackByLocale": {
+              "ru": "Книг больше одной: libros.",
+              "uk": "Книжок більше однієї: libros."
+            }
+          },
+          {
+            "responseId": "es:lesson-07:session-14:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — тут є двадцять одна книжка",
+            "feedbackByLocale": {
+              "ru": "Речь о книгах: libros.",
+              "uk": "Ідеться про книжки: libros."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-14:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — тут є двадцять одна книжка; почніть з Hay, використайте veintiún перед libros, місце поставте наприкінці",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-14:i06:r1",
+          "text": "Плитки: aquí"
+        },
+        {
+          "responseId": "es:lesson-07:session-14:i06:r2",
+          "text": "libros"
+        },
+        {
+          "responseId": "es:lesson-07:session-14:i06:r3",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-07:session-14:i06:r4",
+          "text": "veintiún"
+        },
+        {
+          "responseId": "es:lesson-07:session-14:i06:r5",
+          "text": "veintiuno."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — тут є двадцять одна книжка; почніть з Hay, використайте veintiún перед libros, місце поставте наприкінці",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Hay veintiún libros aquí.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — здесь есть двадцать одна книга; начните с Hay, используйте veintiún перед libros, место поставьте в конце",
+          "uk": "Зберіть фразу — тут є двадцять одна книжка; почніть з Hay, використайте veintiún перед libros, місце поставте наприкінці"
+        },
+        "orderedTokens": [
+          "Hay",
+          "veintiún",
+          "libros",
+          "aquí"
+        ],
+        "authoredDistractorTokens": [
+          "veintiuno"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-07:session-14:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — тут є двадцять одна книжка; почніть з Hay, використайте veintiún перед libros, місце поставте наприкінці",
+            "feedbackByLocale": {
+              "ru": "перед libros нужна veintiún.",
+              "uk": "перед libros потрібна veintiún."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-14:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — є двадцять одна книжка?; почніть з ¿Hay, використайте veintiún перед libros",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-14:i07:r1",
+          "text": "Плитки: libros?"
+        },
+        {
+          "responseId": "es:lesson-07:session-14:i07:r2",
+          "text": "veintiún"
+        },
+        {
+          "responseId": "es:lesson-07:session-14:i07:r3",
+          "text": "¿Hay"
+        },
+        {
+          "responseId": "es:lesson-07:session-14:i07:r4",
+          "text": "veintiuno."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — є двадцять одна книжка?; почніть з ¿Hay, використайте veintiún перед libros",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Hay veintiún libros?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — есть двадцать одна книга?; начните с ¿Hay, используйте veintiún перед libros",
+          "uk": "Зберіть фразу — є двадцять одна книжка?; почніть з ¿Hay, використайте veintiún перед libros"
+        },
+        "orderedTokens": [
+          "¿Hay",
+          "veintiún",
+          "libros"
+        ],
+        "authoredDistractorTokens": [
+          "veintiuno"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-07:session-14:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — є двадцять одна книжка?; почніть з ¿Hay, використайте veintiún перед libros",
+            "feedbackByLocale": {
+              "ru": "перед libros нужна veintiún.",
+              "uk": "перед libros потрібна veintiún."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-14:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-14:i08:r1",
+          "text": "Плитки: Hay"
+        },
+        {
+          "responseId": "es:lesson-07:session-14:i08:r2",
+          "text": "veintiún"
+        },
+        {
+          "responseId": "es:lesson-07:session-14:i08:r3",
+          "text": "libros"
+        },
+        {
+          "responseId": "es:lesson-07:session-14:i08:r4",
+          "text": "aquí"
+        },
+        {
+          "responseId": "es:lesson-07:session-14:i08:r5",
+          "text": "libro."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-14:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-14:i08:audio",
+          "transcript": "Hay veintiún libros aquí."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Hay veintiún libros aquí.",
+        "orderedTokens": [
+          "Hay",
+          "veintiún",
+          "libros",
+          "aquí"
+        ],
+        "authoredDistractorTokens": [
+          "libro"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-07:session-14:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит libros.",
+              "uk": "звучить libros."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-14:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — є двадцять одна книжка?",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-14:i09:r1",
+          "text": "veintiún"
+        },
+        {
+          "responseId": "es:lesson-07:session-14:i09:r2",
+          "text": "veintiuno"
+        },
+        {
+          "responseId": "es:lesson-07:session-14:i09:r3",
+          "text": "veinte"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — є двадцять одна книжка?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — есть двадцать одна книга?",
+          "uk": "Вставте слово — є двадцять одна книжка?"
+        },
+        "gappedTargetPhrase": "¿Hay ___ libros?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-07:session-14:i09:r1",
+            "text": "veintiún"
+          },
+          {
+            "responseId": "es:lesson-07:session-14:i09:r2",
+            "text": "veintiuno"
+          },
+          {
+            "responseId": "es:lesson-07:session-14:i09:r3",
+            "text": "veinte"
+          }
+        ],
+        "testedDimension": "Вставте слово — є двадцять одна книжка?",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-07:session-14:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — є двадцять одна книжка?",
+            "feedbackByLocale": {
+              "ru": "Перед libros нужна veintiún.",
+              "uk": "Перед libros потрібна veintiún."
+            }
+          },
+          {
+            "responseId": "es:lesson-07:session-14:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — є двадцять одна книжка?",
+            "feedbackByLocale": {
+              "ru": "Нужно двадцать один, не двадцать.",
+              "uk": "Потрібно двадцять один, не двадцять."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-14:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — число двадцять один окремо, без іменника",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-14:i10:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — число двадцять один окремо, без іменника",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-14:i10:audio",
+          "transcript": "Veintiuno."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Veintiuno.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-14:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — двадцять одна книжка; використайте veintiún перед libros, без hay",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-14:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — двадцять одна книжка; використайте veintiún перед libros, без hay",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-14:i11:audio",
+          "transcript": "Veintiún libros."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Veintiún libros.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-14:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — тут є двадцять одна книжка; почніть з Hay, використайте veintiún перед libros, місце поставте наприкінці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-14:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — тут є двадцять одна книжка; почніть з Hay, використайте veintiún перед libros, місце поставте наприкінці",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-14:i12:audio",
+          "transcript": "Hay veintiún libros aquí."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay veintiún libros aquí.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-14:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — є двадцять одна книжка?; почніть з ¿Hay, використайте veintiún перед libros",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-14:i13:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — є двадцять одна книжка?; почніть з ¿Hay, використайте veintiún перед libros",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-14:i13:audio",
+          "transcript": "¿Hay veintiún libros?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Hay veintiún libros?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-14:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — є двадцять одна книжка; почніть з Hay, використайте veintiún перед libros",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-14:i14:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — є двадцять одна книжка; почніть з Hay, використайте veintiún перед libros",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-14:i14:audio",
+          "transcript": "Hay veintiún libros."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay veintiún libros.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 14,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "92e68598e3fc313a4cc933e203a7be315896e0858a1e7992a891b5c3b71bf315"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-07:session-13",
+  "entries": [
+    {
+      "interactionId": "es:lesson-07:session-13:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-13:intro1:r2": {
+          "ru": "Книг девятнадцать: libros.",
+          "uk": "Книжок дев'ятнадцять: libros."
+        },
+        "es:lesson-07:session-13:intro1:r3": {
+          "ru": "Dieciocho — восемнадцать, а нужно diecinueve.",
+          "uk": "Dieciocho — вісімнадцять, а потрібно diecinueve."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-07:session-13:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-13:intro2:r2": {
+          "ru": "После veinte нужно libros.",
+          "uk": "Після veinte потрібно libros."
+        },
+        "es:lesson-07:session-13:intro2:r3": {
+          "ru": "Для этой группы двадцать: veinte.",
+          "uk": "Для цієї групи двадцять: veinte."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-07:session-13:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-13:intro3:r2": {
+          "ru": "Книг несколько: libros.",
+          "uk": "Книжок кілька: libros."
+        },
+        "es:lesson-07:session-13:intro3:r3": {
+          "ru": "Уточняем двадцать: veinte.",
+          "uk": "Уточнюємо двадцять: veinte."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "3f935f9a09c7e770b04c5d22779d2c27cac94acc9aa4b25bce99c2602d9a56a4"
+}

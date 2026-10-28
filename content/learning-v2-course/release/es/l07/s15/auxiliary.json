@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-07:session-15",
+  "entries": [
+    {
+      "interactionId": "es:lesson-07:session-15:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-15:intro1:r2": {
+          "ru": "Veintiún подходит перед мужским родом, а sillas женского рода.",
+          "uk": "Veintiún підходить перед чоловічим родом, а sillas жіночого роду."
+        },
+        "es:lesson-07:session-15:intro1:r3": {
+          "ru": "Предметов двадцать один: нужно множественное число sillas.",
+          "uk": "Предметів двадцять один: потрібна множина sillas."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-07:session-15:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-15:intro2:r2": {
+          "ru": "Silla женского рода: veintiuna.",
+          "uk": "Silla жіночого роду: veintiuna."
+        },
+        "es:lesson-07:session-15:intro2:r3": {
+          "ru": "Нужно множественное число sillas.",
+          "uk": "Потрібна множина sillas."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-07:session-15:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-15:intro3:r2": {
+          "ru": "Перед sillas нужна женская форма veintiuna.",
+          "uk": "Перед sillas потрібна жіноча форма veintiuna."
+        },
+        "es:lesson-07:session-15:intro3:r3": {
+          "ru": "Стульев несколько: sillas.",
+          "uk": "Стільців кілька: sillas."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "42dd1c8a1004ffb935d7cb96fe0d42a9211869595743fb93537b783682fca979"
+}

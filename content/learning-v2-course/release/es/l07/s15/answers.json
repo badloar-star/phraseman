@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-07:session-15:i01",
+    "correctText": "veintiuna",
+    "correctResponseId": "es:lesson-07:session-15:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-15:i02",
+    "correctText": "Veintiuna",
+    "correctResponseId": "es:lesson-07:session-15:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-15:i03",
+    "correctText": "Veintiuna sillas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-15:i04",
+    "correctText": "Veintiún",
+    "correctResponseId": "es:lesson-07:session-15:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-15:i05",
+    "correctText": "Hay veintiuna sillas aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-15:i06",
+    "correctText": "¿Hay veintiuna sillas?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-15:i07",
+    "correctText": "Hay veintiuna sillas aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-15:i08",
+    "correctText": "sillas",
+    "correctResponseId": "es:lesson-07:session-15:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-15:i09",
+    "correctText": "Veintiuna sillas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-15:i10",
+    "correctText": "Hay veintiuna sillas aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-15:i11",
+    "correctText": "¿Hay veintiuna sillas?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-15:i12",
+    "correctText": "Veintiún libros.",
+    "correctResponseId": null
+  }
+]

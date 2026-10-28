@@ -1,0 +1,92 @@
+[
+  {
+    "interactionId": "es:lesson-07:session-16:i01",
+    "correctText": "dieciséis",
+    "correctResponseId": "es:lesson-07:session-16:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-16:i02",
+    "correctText": "once",
+    "correctResponseId": "es:lesson-07:session-16:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-16:i03",
+    "correctText": "Hay doce sillas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-16:i04",
+    "correctText": "trece",
+    "correctResponseId": "es:lesson-07:session-16:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-16:i05",
+    "correctText": "Hay catorce sillas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-16:i06",
+    "correctText": "quince",
+    "correctResponseId": "es:lesson-07:session-16:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-16:i07",
+    "correctText": "Hay dieciséis libros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-16:i08",
+    "correctText": "diecisiete",
+    "correctResponseId": "es:lesson-07:session-16:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-16:i09",
+    "correctText": "Hay dieciocho libros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-16:i10",
+    "correctText": "diecinueve",
+    "correctResponseId": "es:lesson-07:session-16:i10:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-16:i11",
+    "correctText": "Hay veinte libros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-16:i12",
+    "correctText": "Veintiún",
+    "correctResponseId": "es:lesson-07:session-16:i12:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-16:i13",
+    "correctText": "Veintiuna sillas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-16:i14",
+    "correctText": "Veintiuno.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-16:i15",
+    "correctText": "Hay once libros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-16:i16",
+    "correctText": "Veintiún libros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-16:i17",
+    "correctText": "Veintiuna sillas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-16:i18",
+    "correctText": "¿Hay veintiún libros?",
+    "correctResponseId": null
+  }
+]

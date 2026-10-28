@@ -93,7 +93,7 @@ My cheek ___ dirty. → **is** · are · am
 <!-- interaction_id: en:lesson-10:session-33:word:lip; family: word_card -->
 > **lip** — «губа», lips — «губы». My lips are dry. — «У меня сухие губы».
 
-**10 · Одна губа сухая. Скажите об этом, используя lip в единственном числе**
+**10 · Одна губа сухая. Скажите об этом, используя lip — одна губа**
 <!-- interaction_id: en:lesson-10:session-33:i07; family: phrase_builder -->
 Плитки: `dry` `is` `lip` `My` → **My lip is dry.**
 

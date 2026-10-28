@@ -8,6 +8,7 @@ Governance-ID: TG-9D40ED2C614E
 Governance-ID: TG-5378D2F54510
 Governance-ID: TG-B62B3E7952A1
 Governance-ID: TG-437AD8E384BB
+Governance-ID: TG-828A65079542
 Governance-ID: TG-536A6AF5D1DF
 Governance-ID: TG-1FC32CC3CE19
 
@@ -20,6 +21,8 @@ Governance-ID: TG-1FC32CC3CE19
 Дополнение 28.10 (координатор, отчёт по сборке 147): события диагностики обращений по вкладке «Уроки» — app/lessons_tab_diagnostics.ts: feature_action, screen /lessons, action lessons:leave:<reason> (hidden_tab_redirect | back_button | tab_bar_tap | route_param | tab_switch) и lessons:first_frame_ms:<lt1s|1to3s|3to8s|gt8s> с durationMs; белый список сервера safeDiagnosticAction проходят (замок в тесте). Данные: только метка действия и миллисекунды, без идентификаторов и текстов; пишется только когда диагностика поддержки включена (isSupportDiagnosticsEnabled) — новых категорий данных нет, политика не меняется. Строки для _layout.tsx (файл Codex) — патчем координатору.
 
 Дополнение 28.10 (владелец 20:05, через координатора): «два кольца сразу не может быть» — вокруг монеты на Главной одно кольцо: непросмотренная история → только кольцо историй, иначе кольцо Plus по статусу (StoryAvatarSlot, [AVATAR-RING], замок OWNER_LOCKS, сторож). Заодно: замки stories_viewer_owner_locks_2026_10_24 перепривязать к поведению (тап → просмотр с первого слайда, без историй → профиль), не ослабляя.
+
+Дополнение 28.10 (жалоба #3, диагностика прод): lesson:exit_trace в журнале обращений не показывает причину и id урока — пишем действие lesson:exit:<reason>:l<id> (feature_action) в app/lesson_exit_trace.ts; трассы корневого лейаута (layout:*) относим к экрану «/», а не lesson1. Находка: 4 серии по 3 exit_trace перед navigation "/" — это трассы корня (layout:pathname_root_or_empty и др.), а не выходы из урока.
 
 ## Outcome
 1. Кнопка «Уроки» на Главной: сперва журнал `[HOME-LESSONS-BTN]` (вызвался ли onPress, какая ветка, значения гардов, какой маршрут ушёл в router, проглотил ли тап guard двойного нажатия, дошёл ли маршрут курса до вкладки), затем диагноз по фактам и починка. Файлы Codex (`app/(tabs)/_layout.tsx` — незакоммиченный рефакторинг) НЕ правятся: причина и точный фикс уходят координатору.

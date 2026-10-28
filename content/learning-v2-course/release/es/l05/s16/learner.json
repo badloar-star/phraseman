@@ -1,0 +1,989 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-05:session-16",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-05:session-16:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-16:i01:r1",
+          "text": "tienes"
+        },
+        {
+          "responseId": "es:lesson-05:session-16:i01:r2",
+          "text": "tengo"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-16:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-16:i01:audio",
+          "transcript": "tienes"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-05:session-16:i01:r1",
+            "targetText": "tienes",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-05:session-16:i01:r2",
+            "targetText": "tengo",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-16:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит tienes — форма для «ты».",
+              "uk": "Звучить tienes — форма для «ти»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-16:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — у тебя есть книга",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-16:i02:r1",
+          "text": "Tienes"
+        },
+        {
+          "responseId": "es:lesson-05:session-16:i02:r2",
+          "text": "Tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-16:i02:r3",
+          "text": "Soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — у тебя есть книга",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — у тебя есть книга",
+          "uk": "Вставте слово — у тебе є книжка"
+        },
+        "gappedTargetPhrase": "___ un libro.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-16:i02:r1",
+            "text": "Tienes"
+          },
+          {
+            "responseId": "es:lesson-05:session-16:i02:r2",
+            "text": "Tengo"
+          },
+          {
+            "responseId": "es:lesson-05:session-16:i02:r3",
+            "text": "Soy"
+          }
+        ],
+        "testedDimension": "Вставьте слово — у тебя есть книга",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-16:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у тебя есть книга",
+            "feedbackByLocale": {
+              "ru": "Говорите о друге: tienes.",
+              "uk": "Говорите про друга: tienes."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-16:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у тебя есть книга",
+            "feedbackByLocale": {
+              "ru": "Наличие книги у друга выражает tienes.",
+              "uk": "Наявність книжки у друга виражає tienes."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-16:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — у тебя есть сумка; начните с Tienes и используйте bolsa",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-16:i03:r1",
+          "text": "Плитки: una"
+        },
+        {
+          "responseId": "es:lesson-05:session-16:i03:r2",
+          "text": "tienes"
+        },
+        {
+          "responseId": "es:lesson-05:session-16:i03:r3",
+          "text": "bolsa"
+        },
+        {
+          "responseId": "es:lesson-05:session-16:i03:r4",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — у тебя есть сумка; начните с Tienes и используйте bolsa",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Tienes una bolsa.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — у тебя есть сумка; начните с Tienes и используйте bolsa",
+          "uk": "Зберіть фразу — у тебе є сумка; почніть з Tienes і використайте bolsa"
+        },
+        "orderedTokens": [
+          "Tienes",
+          "una",
+          "bolsa"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-16:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — у тебя есть сумка; начните с Tienes и используйте bolsa",
+            "feedbackByLocale": {
+              "ru": "bolsa женского рода.",
+              "uk": "bolsa жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-16:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — у тебя есть время?",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-16:i04:r1",
+          "text": "Tienes"
+        },
+        {
+          "responseId": "es:lesson-05:session-16:i04:r2",
+          "text": "Tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-16:i04:r3",
+          "text": "Soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — у тебя есть время?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — у тебя есть время?",
+          "uk": "Вставте слово — у тебе є час?"
+        },
+        "gappedTargetPhrase": "¿___ tiempo?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-16:i04:r1",
+            "text": "Tienes"
+          },
+          {
+            "responseId": "es:lesson-05:session-16:i04:r2",
+            "text": "Tengo"
+          },
+          {
+            "responseId": "es:lesson-05:session-16:i04:r3",
+            "text": "Soy"
+          }
+        ],
+        "testedDimension": "Вставьте слово — у тебя есть время?",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-16:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у тебя есть время?",
+            "feedbackByLocale": {
+              "ru": "Вопрос о друге: tienes.",
+              "uk": "Запитання про друга: tienes."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-16:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у тебя есть время?",
+            "feedbackByLocale": {
+              "ru": "Спрашиваете о наличии времени: tienes.",
+              "uk": "Запитуєте про наявність часу: tienes."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-16:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — у тебя есть время?; начните с Tienes",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-16:i05:r1",
+          "text": "Плитки: tiempo?"
+        },
+        {
+          "responseId": "es:lesson-05:session-16:i05:r2",
+          "text": "¿tienes"
+        },
+        {
+          "responseId": "es:lesson-05:session-16:i05:r3",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — у тебя есть время?; начните с Tienes",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Tienes tiempo?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — у тебя есть время?; начните с Tienes",
+          "uk": "Зберіть фразу — у тебе є час?; почніть з Tienes"
+        },
+        "orderedTokens": [
+          "¿Tienes",
+          "tiempo"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-16:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — у тебя есть время?; начните с Tienes",
+            "feedbackByLocale": {
+              "ru": "tiempo здесь без артикля.",
+              "uk": "tiempo тут без артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-16:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — ответьте о себе: да, у меня есть книга",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-16:i06:r1",
+          "text": "tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-16:i06:r2",
+          "text": "tienes"
+        },
+        {
+          "responseId": "es:lesson-05:session-16:i06:r3",
+          "text": "tener"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — ответьте о себе: да, у меня есть книга",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — ответьте о себе: да, у меня есть книга",
+          "uk": "Вставте слово — дайте відповідь про себе: так, у мене є книжка"
+        },
+        "gappedTargetPhrase": "Sí, ___ un libro.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-16:i06:r1",
+            "text": "tengo"
+          },
+          {
+            "responseId": "es:lesson-05:session-16:i06:r2",
+            "text": "tienes"
+          },
+          {
+            "responseId": "es:lesson-05:session-16:i06:r3",
+            "text": "tener"
+          }
+        ],
+        "testedDimension": "Вставьте слово — ответьте о себе: да, у меня есть книга",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-16:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — ответьте о себе: да, у меня есть книга",
+            "feedbackByLocale": {
+              "ru": "Ответ о себе: tengo.",
+              "uk": "Відповідь про себе: tengo."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-16:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — ответьте о себе: да, у меня есть книга",
+            "feedbackByLocale": {
+              "ru": "Нужна личная форма tengo.",
+              "uk": "Потрібна особова форма tengo."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-16:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — да, у меня есть книга; начните с Sí",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-16:i07:r1",
+          "text": "Плитки: libro"
+        },
+        {
+          "responseId": "es:lesson-05:session-16:i07:r2",
+          "text": "sí,"
+        },
+        {
+          "responseId": "es:lesson-05:session-16:i07:r3",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-05:session-16:i07:r4",
+          "text": "tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-16:i07:r5",
+          "text": "tienes."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — да, у меня есть книга; начните с Sí",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Sí, tengo un libro.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — да, у меня есть книга; начните с Sí",
+          "uk": "Зберіть фразу — так, у мене є книжка; почніть з Sí"
+        },
+        "orderedTokens": [
+          "Sí,",
+          "tengo",
+          "un",
+          "libro"
+        ],
+        "authoredDistractorTokens": [
+          "tienes"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-16:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — да, у меня есть книга; начните с Sí",
+            "feedbackByLocale": {
+              "ru": "отвечаете о себе.",
+              "uk": "відповідаєте про себе."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-16:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-16:i08:r1",
+          "text": "Плитки: no,"
+        },
+        {
+          "responseId": "es:lesson-05:session-16:i08:r2",
+          "text": "tiempo"
+        },
+        {
+          "responseId": "es:lesson-05:session-16:i08:r3",
+          "text": "tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-16:i08:r4",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-05:session-16:i08:r5",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-16:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-16:i08:audio",
+          "transcript": "No, no tengo tiempo."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "No, no tengo tiempo.",
+        "orderedTokens": [
+          "No,",
+          "no",
+          "tengo",
+          "tiempo"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-16:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "tiempo здесь без артикля.",
+              "uk": "tiempo тут без артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-16:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — у тебя нет машины",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-16:i09:r1",
+          "text": "tienes"
+        },
+        {
+          "responseId": "es:lesson-05:session-16:i09:r2",
+          "text": "tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-16:i09:r3",
+          "text": "soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — у тебя нет машины",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — у тебя нет машины",
+          "uk": "Вставте слово — у тебе немає машини"
+        },
+        "gappedTargetPhrase": "No ___ carro.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-16:i09:r1",
+            "text": "tienes"
+          },
+          {
+            "responseId": "es:lesson-05:session-16:i09:r2",
+            "text": "tengo"
+          },
+          {
+            "responseId": "es:lesson-05:session-16:i09:r3",
+            "text": "soy"
+          }
+        ],
+        "testedDimension": "Вставьте слово — у тебя нет машины",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-16:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у тебя нет машины",
+            "feedbackByLocale": {
+              "ru": "Говорите о собеседнике: tienes.",
+              "uk": "Говорите про співрозмовника: tienes."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-16:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у тебя нет машины",
+            "feedbackByLocale": {
+              "ru": "Отсутствие машины у друга выражает no tienes.",
+              "uk": "Відсутність машини у друга виражає no tienes."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-16:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — у тебя есть сестра?; начните с Tienes",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-16:i10:r1",
+          "text": "Плитки: hermana?"
+        },
+        {
+          "responseId": "es:lesson-05:session-16:i10:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-05:session-16:i10:r3",
+          "text": "¿tienes"
+        },
+        {
+          "responseId": "es:lesson-05:session-16:i10:r4",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — у тебя есть сестра?; начните с Tienes",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Tienes una hermana?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — у тебя есть сестра?; начните с Tienes",
+          "uk": "Зберіть фразу — у тебе є сестра?; почніть з Tienes"
+        },
+        "orderedTokens": [
+          "¿Tienes",
+          "una",
+          "hermana"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-16:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — у тебя есть сестра?; начните с Tienes",
+            "feedbackByLocale": {
+              "ru": "hermana женского рода.",
+              "uk": "hermana жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-16:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — нет, у меня нет ключа",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-16:i11:r1",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-05:session-16:i11:r2",
+          "text": "sí"
+        },
+        {
+          "responseId": "es:lesson-05:session-16:i11:r3",
+          "text": "una"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — нет, у меня нет ключа",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — нет, у меня нет ключа",
+          "uk": "Вставте слово — ні, у мене немає ключа"
+        },
+        "gappedTargetPhrase": "No, ___ tengo llave.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-16:i11:r1",
+            "text": "no"
+          },
+          {
+            "responseId": "es:lesson-05:session-16:i11:r2",
+            "text": "sí"
+          },
+          {
+            "responseId": "es:lesson-05:session-16:i11:r3",
+            "text": "una"
+          }
+        ],
+        "testedDimension": "Вставьте слово — нет, у меня нет ключа",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-16:i11:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — нет, у меня нет ключа",
+            "feedbackByLocale": {
+              "ru": "Ключа нет, поэтому перед tengo нужно no.",
+              "uk": "Ключа немає, тому перед tengo потрібно no."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-16:i11:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — нет, у меня нет ключа",
+            "feedbackByLocale": {
+              "ru": "Для отрицания перед tengo ставим no.",
+              "uk": "Для заперечення перед tengo ставимо no."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-16:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — у тебя нет времени; начните с No tienes",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-16:i12:r1",
+          "text": "Плитки: tienes"
+        },
+        {
+          "responseId": "es:lesson-05:session-16:i12:r2",
+          "text": "tiempo"
+        },
+        {
+          "responseId": "es:lesson-05:session-16:i12:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-05:session-16:i12:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — у тебя нет времени; начните с No tienes",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No tienes tiempo.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — у тебя нет времени; начните с No tienes",
+          "uk": "Зберіть фразу — у тебе немає часу; почніть з No tienes"
+        },
+        "orderedTokens": [
+          "No",
+          "tienes",
+          "tiempo"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-16:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — у тебя нет времени; начните с No tienes",
+            "feedbackByLocale": {
+              "ru": "tiempo здесь без артикля.",
+              "uk": "tiempo тут без артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-16:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — у тебя есть время?; начните с Tienes",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-16:i13:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — у тебя есть время?; начните с Tienes",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-16:i13:audio",
+          "transcript": "¿Tienes tiempo?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Tienes tiempo?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-16:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — да, у меня есть время; начните с Sí, tengo",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-16:i14:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — да, у меня есть время; начните с Sí, tengo",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-16:i14:audio",
+          "transcript": "Sí, tengo tiempo."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Sí, tengo tiempo.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-16:i15",
+      "ordinal": 18,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — нет, у меня нет ключа; начните с No, no tengo, используйте llave без артикля",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-16:i15:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — нет, у меня нет ключа; начните с No, no tengo, используйте llave без артикля",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-16:i15:audio",
+          "transcript": "No, no tengo llave."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No, no tengo llave.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-16:i16",
+      "ordinal": 19,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — у тебя нет машины; начните с No tienes, используйте carro без артикля",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-16:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — у тебя нет машины; начните с No tienes, используйте carro без артикля",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-16:i16:audio",
+          "transcript": "No tienes carro."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No tienes carro.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-16:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — у тебя есть брат?; начните с Tienes",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-16:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — у тебя есть брат?; начните с Tienes",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-16:i17:audio",
+          "transcript": "¿Tienes un hermano?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Tienes un hermano?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-16:i18",
+      "ordinal": 21,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — да, у меня есть сестра; начните с Sí, tengo",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-16:i18:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — да, у меня есть сестра; начните с Sí, tengo",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-16:i18:audio",
+          "transcript": "Sí, tengo una hermana."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Sí, tengo una hermana.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 18,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "354a91fd6cefb90931ccbf5a8f77e3825307909fffa296b33320857898ae8e73"
+}

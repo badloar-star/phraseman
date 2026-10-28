@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-05:session-14",
+  "learningOutcomeByLocale": {
+    "ru": "поставить no перед tienes, когда говорите другу об отсутствии вещи или времени.",
+    "uk": "поставити no перед tienes, коли говорите другу про відсутність речі або часу."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-05:session-14:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Поехать вместе",
+        "uk": "Поїхати разом"
+      },
+      "bodyByLocale": {
+        "ru": "Вы обсуждаете, как добраться до места. У друга нет машины, и вы напоминаете `No tienes carro` — «У тебя нет машины». Соберите `no` + `tienes` + `carro`. Tienes относится к собеседнику на «ты», а no перед ним отрицает наличие. В этой фразе об отсутствии машины carro используем без артикля.",
+        "uk": "Ви обговорюєте, як дістатися до місця. У друга немає машини, і ви нагадуєте `No tienes carro` — «У тебе немає машини». Складіть `no` + `tienes` + `carro`. Tienes стосується співрозмовника на «ти», а no перед ним заперечує наявність. У цій фразі про відсутність машини carro використовуємо без артикля."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-14:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите другу «У тебя нет машины». Начните с No tienes, используйте carro без артикля.",
+          "uk": "Скажіть другу «У тебе немає машини». Почніть з No tienes, використайте carro без артикля."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-14:intro1:r1",
+              "text": "No tienes carro."
+            },
+            {
+              "responseId": "es:lesson-05:session-14:intro1:r2",
+              "text": "No tengo carro."
+            },
+            {
+              "responseId": "es:lesson-05:session-14:intro1:r3",
+              "text": "Tienes no carro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-14:intro1:r1",
+              "text": "No tienes carro."
+            },
+            {
+              "responseId": "es:lesson-05:session-14:intro1:r2",
+              "text": "No tengo carro."
+            },
+            {
+              "responseId": "es:lesson-05:session-14:intro1:r3",
+              "text": "Tienes no carro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите другу «У тебя нет машины». Начните с No tienes, используйте carro без артикля.",
+          "uk": "Скажіть другу «У тебе немає машини». Почніть з No tienes, використайте carro без артикля."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-05:session-14:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ключ остался дома",
+        "uk": "Ключ залишився вдома"
+      },
+      "bodyByLocale": {
+        "ru": "Друг сообщает, что оставил свой ключ дома. Вы уточняете положение перед выходом: `No tienes llave` — «У тебя нет ключа». Соберите `no` + `tienes` + `llave`. Форма tienes остаётся обращением к другу. В изучаемой фразе об отсутствии ключа слово llave стоит без артикля.",
+        "uk": "Друг повідомляє, що залишив свій ключ удома. Ви уточнюєте становище перед виходом: `No tienes llave` — «У тебе немає ключа». Складіть `no` + `tienes` + `llave`. Форма tienes залишається звертанням до друга. У фразі про відсутність ключа, яку вивчаємо, слово llave стоїть без артикля."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-14:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите другу «У тебя нет ключа». Начните с No tienes, используйте llave без артикля.",
+          "uk": "Скажіть другу «У тебе немає ключа». Почніть з No tienes, використайте llave без артикля."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-14:intro2:r1",
+              "text": "No tienes llave."
+            },
+            {
+              "responseId": "es:lesson-05:session-14:intro2:r2",
+              "text": "No tengo llave."
+            },
+            {
+              "responseId": "es:lesson-05:session-14:intro2:r3",
+              "text": "Tienes no llave."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-14:intro2:r1",
+              "text": "No tienes llave."
+            },
+            {
+              "responseId": "es:lesson-05:session-14:intro2:r2",
+              "text": "No tengo llave."
+            },
+            {
+              "responseId": "es:lesson-05:session-14:intro2:r3",
+              "text": "Tienes no llave."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите другу «У тебя нет ключа». Начните с No tienes, используйте llave без артикля.",
+          "uk": "Скажіть другу «У тебе немає ключа». Почніть з No tienes, використайте llave без артикля."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-05:session-14:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Друг спешит",
+        "uk": "Друг поспішає"
+      },
+      "bodyByLocale": {
+        "ru": "Друг объясняет, что ему уже пора уходить. Вы подводите итог: `No tienes tiempo` — «У тебя нет времени». Соберите `no` + `tienes` + `tiempo`. No отрицает наличие времени у друга, а tienes показывает, к кому вы обращаетесь. Перед tiempo в этой фразе артикль не нужен.",
+        "uk": "Друг пояснює, що йому вже час іти. Ви підсумовуєте: `No tienes tiempo` — «У тебе немає часу». Складіть `no` + `tienes` + `tiempo`. No заперечує наявність часу у друга, а tienes показує, до кого ви звертаєтеся. Перед tiempo в цій фразі артикль не потрібний."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-14:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите другу «У тебя нет времени». Начните с No tienes.",
+          "uk": "Скажіть другу «У тебе немає часу». Почніть з No tienes."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-14:intro3:r1",
+              "text": "No tienes tiempo."
+            },
+            {
+              "responseId": "es:lesson-05:session-14:intro3:r2",
+              "text": "No tengo tiempo."
+            },
+            {
+              "responseId": "es:lesson-05:session-14:intro3:r3",
+              "text": "No tienes una tiempo."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-14:intro3:r1",
+              "text": "No tienes tiempo."
+            },
+            {
+              "responseId": "es:lesson-05:session-14:intro3:r2",
+              "text": "No tengo tiempo."
+            },
+            {
+              "responseId": "es:lesson-05:session-14:intro3:r3",
+              "text": "No tienes una tiempo."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите другу «У тебя нет времени». Начните с No tienes.",
+          "uk": "Скажіть другу «У тебе немає часу». Почніть з No tienes."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b6eb36582c7f3771f45844229ed10cccd222361b38cbb6dfc4fd3c9cc3c11baf"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-05:session-15",
+  "entries": [
+    {
+      "interactionId": "es:lesson-05:session-15:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-15:intro1:r2": {
+          "ru": "Спрашиваете о собеседнике: tienes.",
+          "uk": "Запитуєте про співрозмовника: tienes."
+        },
+        "es:lesson-05:session-15:intro1:r3": {
+          "ru": "Hermana женского рода: una.",
+          "uk": "Hermana жіночого роду: una."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-15:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-15:intro2:r2": {
+          "ru": "Hermano мужского рода: un.",
+          "uk": "Hermano чоловічого роду: un."
+        },
+        "es:lesson-05:session-15:intro2:r3": {
+          "ru": "Вопрос о собеседнике требует tienes.",
+          "uk": "Запитання про співрозмовника потребує tienes."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-15:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-15:intro3:r2": {
+          "ru": "Hijo мужского рода: un.",
+          "uk": "Hijo чоловічого роду: un."
+        },
+        "es:lesson-05:session-15:intro3:r3": {
+          "ru": "Спрашиваете собеседника о его семье: tienes.",
+          "uk": "Запитуєте співрозмовника про його родину: tienes."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "54ce9e59daacb0721b4ef0b369fe1f4a01096583a769747176cb1d76e2be8eab"
+}

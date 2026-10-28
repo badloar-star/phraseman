@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-05:session-14:i01",
+    "correctText": "tienes",
+    "correctResponseId": "es:lesson-05:session-14:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-14:i02",
+    "correctText": "tienes",
+    "correctResponseId": "es:lesson-05:session-14:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-14:i03",
+    "correctText": "No tienes carro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-14:i04",
+    "correctText": "No",
+    "correctResponseId": "es:lesson-05:session-14:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-14:i05",
+    "correctText": "No tienes llave.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-14:i06",
+    "correctText": "No tienes tiempo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-14:i07",
+    "correctText": "No tienes carro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-14:i08",
+    "correctText": "tienes",
+    "correctResponseId": "es:lesson-05:session-14:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-14:i09",
+    "correctText": "No tienes carro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-14:i10",
+    "correctText": "No tienes llave.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-14:i11",
+    "correctText": "No tienes tiempo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-14:i12",
+    "correctText": "No tienes bolso.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-05:session-15",
+  "learningOutcomeByLocale": {
+    "ru": "спрашивать о родственниках с ¿Tienes…? и подходящим артиклем.",
+    "uk": "запитувати про родичів із ¿Tienes…? і відповідним артиклем."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-05:session-15:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Узнать о сестре",
+        "uk": "Дізнатися про сестру"
+      },
+      "bodyByLocale": {
+        "ru": "Попутчик показывает семейное фото. Спросите `¿Tienes una hermana?` — «У тебя есть сестра?». Соберите `tienes` + `una hermana` и произнесите вопрос. Tienes относится к собеседнику, а una согласуется с hermana. На письме поставьте ¿ перед Tienes и ? в конце.",
+        "uk": "Попутник показує родинне фото. Запитайте `¿Tienes una hermana?` — «У тебе є сестра?». Складіть `tienes` + `una hermana` й вимовте запитання. Tienes стосується співрозмовника, а una узгоджується з hermana. На письмі поставте ¿ перед Tienes і ? у кінці."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-15:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите «У тебя есть сестра?». Начните с Tienes.",
+          "uk": "Запитайте «У тебе є сестра?». Почніть з Tienes."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-15:intro1:r1",
+              "text": "¿Tienes una hermana?"
+            },
+            {
+              "responseId": "es:lesson-05:session-15:intro1:r2",
+              "text": "¿Tengo una hermana?"
+            },
+            {
+              "responseId": "es:lesson-05:session-15:intro1:r3",
+              "text": "¿Tienes un hermana?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-15:intro1:r1",
+              "text": "¿Tienes una hermana?"
+            },
+            {
+              "responseId": "es:lesson-05:session-15:intro1:r2",
+              "text": "¿Tengo una hermana?"
+            },
+            {
+              "responseId": "es:lesson-05:session-15:intro1:r3",
+              "text": "¿Tienes un hermana?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «У тебя есть сестра?». Начните с Tienes.",
+          "uk": "Запитайте «У тебе є сестра?». Почніть з Tienes."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-05:session-15:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Узнать о брате",
+        "uk": "Дізнатися про брата"
+      },
+      "bodyByLocale": {
+        "ru": "В разговоре о семье вы хотите узнать, есть ли у попутчика брат. Спросите `¿Tienes un hermano?` — «У тебя есть брат?». Соберите `tienes` + `un hermano` и задайте вопрос. Перед hermano нужен un: слово мужского рода. Форма tienes остаётся той же, что в вопросе о сестре.",
+        "uk": "У розмові про родину ви хочете дізнатися, чи є у попутника брат. Запитайте `¿Tienes un hermano?` — «У тебе є брат?». Складіть `tienes` + `un hermano` й поставте запитання. Перед hermano потрібен un: слово чоловічого роду. Форма tienes залишається тією самою, що в запитанні про сестру."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-15:intro2:q",
+        "promptByLocale": {
+          "ru": "Спросите «У тебя есть брат?». Начните с Tienes.",
+          "uk": "Запитайте «У тебе є брат?». Почніть з Tienes."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-15:intro2:r1",
+              "text": "¿Tienes un hermano?"
+            },
+            {
+              "responseId": "es:lesson-05:session-15:intro2:r2",
+              "text": "¿Tienes una hermano?"
+            },
+            {
+              "responseId": "es:lesson-05:session-15:intro2:r3",
+              "text": "¿Tengo un hermano?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-15:intro2:r1",
+              "text": "¿Tienes un hermano?"
+            },
+            {
+              "responseId": "es:lesson-05:session-15:intro2:r2",
+              "text": "¿Tienes una hermano?"
+            },
+            {
+              "responseId": "es:lesson-05:session-15:intro2:r3",
+              "text": "¿Tengo un hermano?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «У тебя есть брат?». Начните с Tienes.",
+          "uk": "Запитайте «У тебе є брат?». Почніть з Tienes."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-05:session-15:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Узнать о сыне",
+        "uk": "Дізнатися про сина"
+      },
+      "bodyByLocale": {
+        "ru": "Попутчик рассказывает о детях. Вы уточняете `¿Tienes un hijo?` — «У тебя есть сын?». Соберите `tienes` + `un hijo` и произнесите вопрос. Tienes относится к собеседнику, hijo называет сына. Перед hijo ставим un; mi здесь не добавляем, ведь вопрос о семье другого человека.",
+        "uk": "Попутник розповідає про дітей. Ви уточнюєте `¿Tienes un hijo?` — «У тебе є син?». Складіть `tienes` + `un hijo` й вимовте запитання. Tienes стосується співрозмовника, hijo називає сина. Перед hijo ставимо un; mi тут не додаємо, адже запитання про родину іншої людини."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-15:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите «У тебя есть сын?». Начните с Tienes.",
+          "uk": "Запитайте «У тебе є син?». Почніть з Tienes."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-15:intro3:r1",
+              "text": "¿Tienes un hijo?"
+            },
+            {
+              "responseId": "es:lesson-05:session-15:intro3:r2",
+              "text": "¿Tienes una hijo?"
+            },
+            {
+              "responseId": "es:lesson-05:session-15:intro3:r3",
+              "text": "¿Tengo un hijo?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-15:intro3:r1",
+              "text": "¿Tienes un hijo?"
+            },
+            {
+              "responseId": "es:lesson-05:session-15:intro3:r2",
+              "text": "¿Tienes una hijo?"
+            },
+            {
+              "responseId": "es:lesson-05:session-15:intro3:r3",
+              "text": "¿Tengo un hijo?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «У тебя есть сын?». Начните с Tienes.",
+          "uk": "Запитайте «У тебе є син?». Почніть з Tienes."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d7c9dbd186d9ec326315d61c9d983fbf9e5d7fca438d548bb8a99325c7a84c96"
+}

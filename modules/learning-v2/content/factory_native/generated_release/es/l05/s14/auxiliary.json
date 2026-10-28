@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-05:session-14",
+  "entries": [
+    {
+      "interactionId": "es:lesson-05:session-14:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-14:intro1:r2": {
+          "ru": "Tengo говорило бы о вас, а здесь речь о друге.",
+          "uk": "Tengo говорило б про вас, а тут ідеться про друга."
+        },
+        "es:lesson-05:session-14:intro1:r3": {
+          "ru": "No ставим перед tienes.",
+          "uk": "No ставимо перед tienes."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-14:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-14:intro2:r2": {
+          "ru": "Вы говорите о ключе собеседника: tienes.",
+          "uk": "Ви говорите про ключ співрозмовника: tienes."
+        },
+        "es:lesson-05:session-14:intro2:r3": {
+          "ru": "Отрицание no ставим перед tienes.",
+          "uk": "Заперечення no ставимо перед tienes."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-14:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-14:intro3:r2": {
+          "ru": "Это было бы о вашем времени; о друге — tienes.",
+          "uk": "Це було б про ваш час; про друга — tienes."
+        },
+        "es:lesson-05:session-14:intro3:r3": {
+          "ru": "Tiempo в этой фразе без артикля.",
+          "uk": "Tiempo в цій фразі без артикля."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "7eb85ca9bf2b6e24329153a9bc29d8ee064dd20b8249aa029cb4739928b14ee1"
+}

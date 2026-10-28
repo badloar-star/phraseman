@@ -1,0 +1,658 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-05:session-14",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-05:session-14:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-14:i01:r1",
+          "text": "tienes"
+        },
+        {
+          "responseId": "es:lesson-05:session-14:i01:r2",
+          "text": "tengo"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-14:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-14:i01:audio",
+          "transcript": "tienes"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-05:session-14:i01:r1",
+            "targetText": "tienes",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-05:session-14:i01:r2",
+            "targetText": "tengo",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-14:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит tienes — форма для «ты».",
+              "uk": "Звучить tienes — форма для «ти»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-14:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — у тебя нет машины",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-14:i02:r1",
+          "text": "tienes"
+        },
+        {
+          "responseId": "es:lesson-05:session-14:i02:r2",
+          "text": "tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-14:i02:r3",
+          "text": "tener"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — у тебя нет машины",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — у тебя нет машины",
+          "uk": "Вставте слово — у тебе немає машини"
+        },
+        "gappedTargetPhrase": "No ___ carro.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-14:i02:r1",
+            "text": "tienes"
+          },
+          {
+            "responseId": "es:lesson-05:session-14:i02:r2",
+            "text": "tengo"
+          },
+          {
+            "responseId": "es:lesson-05:session-14:i02:r3",
+            "text": "tener"
+          }
+        ],
+        "testedDimension": "Вставьте слово — у тебя нет машины",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-14:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у тебя нет машины",
+            "feedbackByLocale": {
+              "ru": "Речь о собеседнике: tienes.",
+              "uk": "Ідеться про співрозмовника: tienes."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-14:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у тебя нет машины",
+            "feedbackByLocale": {
+              "ru": "Нужна личная форма для «ты»: tienes.",
+              "uk": "Потрібна особова форма для «ти»: tienes."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-14:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — у тебя нет машины; начните с No tienes, используйте carro без артикля",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-14:i03:r1",
+          "text": "Плитки: carro"
+        },
+        {
+          "responseId": "es:lesson-05:session-14:i03:r2",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-05:session-14:i03:r3",
+          "text": "tienes"
+        },
+        {
+          "responseId": "es:lesson-05:session-14:i03:r4",
+          "text": "tengo."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — у тебя нет машины; начните с No tienes, используйте carro без артикля",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No tienes carro.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — у тебя нет машины; начните с No tienes, используйте carro без артикля",
+          "uk": "Зберіть фразу — у тебе немає машини; почніть з No tienes, використайте carro без артикля"
+        },
+        "orderedTokens": [
+          "No",
+          "tienes",
+          "carro"
+        ],
+        "authoredDistractorTokens": [
+          "tengo"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-14:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — у тебя нет машины; начните с No tienes, используйте carro без артикля",
+            "feedbackByLocale": {
+              "ru": "говорите о собеседнике.",
+              "uk": "говорите про співрозмовника."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-14:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — у тебя нет ключа",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-14:i04:r1",
+          "text": "No"
+        },
+        {
+          "responseId": "es:lesson-05:session-14:i04:r2",
+          "text": "Sí"
+        },
+        {
+          "responseId": "es:lesson-05:session-14:i04:r3",
+          "text": "Yo"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — у тебя нет ключа",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — у тебя нет ключа",
+          "uk": "Вставте слово — у тебе немає ключа"
+        },
+        "gappedTargetPhrase": "___ tienes llave.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-14:i04:r1",
+            "text": "No"
+          },
+          {
+            "responseId": "es:lesson-05:session-14:i04:r2",
+            "text": "Sí"
+          },
+          {
+            "responseId": "es:lesson-05:session-14:i04:r3",
+            "text": "Yo"
+          }
+        ],
+        "testedDimension": "Вставьте слово — у тебя нет ключа",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-14:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у тебя нет ключа",
+            "feedbackByLocale": {
+              "ru": "Ключа нет: нужно no.",
+              "uk": "Ключа немає: потрібно no."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-14:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у тебя нет ключа",
+            "feedbackByLocale": {
+              "ru": "Для отрицания перед tienes нужно no.",
+              "uk": "Для заперечення перед tienes потрібно no."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-14:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — у тебя нет ключа; начните с No tienes, используйте llave без артикля",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-14:i05:r1",
+          "text": "Плитки: tienes"
+        },
+        {
+          "responseId": "es:lesson-05:session-14:i05:r2",
+          "text": "llave"
+        },
+        {
+          "responseId": "es:lesson-05:session-14:i05:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-05:session-14:i05:r4",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — у тебя нет ключа; начните с No tienes, используйте llave без артикля",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No tienes llave.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — у тебя нет ключа; начните с No tienes, используйте llave без артикля",
+          "uk": "Зберіть фразу — у тебе немає ключа; почніть з No tienes, використайте llave без артикля"
+        },
+        "orderedTokens": [
+          "No",
+          "tienes",
+          "llave"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-14:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — у тебя нет ключа; начните с No tienes, используйте llave без артикля",
+            "feedbackByLocale": {
+              "ru": "отсутствие выражает no tienes.",
+              "uk": "відсутність виражає no tienes."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-14:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — у тебя нет времени; начните с No tienes",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-14:i06:r1",
+          "text": "Плитки: tiempo"
+        },
+        {
+          "responseId": "es:lesson-05:session-14:i06:r2",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-05:session-14:i06:r3",
+          "text": "tienes"
+        },
+        {
+          "responseId": "es:lesson-05:session-14:i06:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — у тебя нет времени; начните с No tienes",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No tienes tiempo.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — у тебя нет времени; начните с No tienes",
+          "uk": "Зберіть фразу — у тебе немає часу; почніть з No tienes"
+        },
+        "orderedTokens": [
+          "No",
+          "tienes",
+          "tiempo"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-14:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — у тебя нет времени; начните с No tienes",
+            "feedbackByLocale": {
+              "ru": "tiempo здесь без артикля.",
+              "uk": "tiempo тут без артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-14:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-14:i07:r1",
+          "text": "Плитки: no"
+        },
+        {
+          "responseId": "es:lesson-05:session-14:i07:r2",
+          "text": "carro"
+        },
+        {
+          "responseId": "es:lesson-05:session-14:i07:r3",
+          "text": "tienes"
+        },
+        {
+          "responseId": "es:lesson-05:session-14:i07:r4",
+          "text": "yo."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-14:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-14:i07:audio",
+          "transcript": "No tienes carro."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "No tienes carro.",
+        "orderedTokens": [
+          "No",
+          "tienes",
+          "carro"
+        ],
+        "authoredDistractorTokens": [
+          "yo"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-14:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "в записи её нет.",
+              "uk": "у записі її немає."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-14:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — у тебя нет времени",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-14:i08:r1",
+          "text": "tienes"
+        },
+        {
+          "responseId": "es:lesson-05:session-14:i08:r2",
+          "text": "tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-14:i08:r3",
+          "text": "soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — у тебя нет времени",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — у тебя нет времени",
+          "uk": "Вставте слово — у тебе немає часу"
+        },
+        "gappedTargetPhrase": "No ___ tiempo.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-14:i08:r1",
+            "text": "tienes"
+          },
+          {
+            "responseId": "es:lesson-05:session-14:i08:r2",
+            "text": "tengo"
+          },
+          {
+            "responseId": "es:lesson-05:session-14:i08:r3",
+            "text": "soy"
+          }
+        ],
+        "testedDimension": "Вставьте слово — у тебя нет времени",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-14:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у тебя нет времени",
+            "feedbackByLocale": {
+              "ru": "О собеседнике говорим tienes.",
+              "uk": "Про співрозмовника говоримо tienes."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-14:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у тебя нет времени",
+            "feedbackByLocale": {
+              "ru": "Наличие времени выражаем формой tienes.",
+              "uk": "Наявність часу виражаємо формою tienes."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-14:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — у тебя нет машины; начните с No tienes, используйте carro без артикля",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-14:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — у тебя нет машины; начните с No tienes, используйте carro без артикля",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-14:i09:audio",
+          "transcript": "No tienes carro."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No tienes carro.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-14:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — у тебя нет ключа; начните с No tienes, используйте llave без артикля",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-14:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — у тебя нет ключа; начните с No tienes, используйте llave без артикля",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-14:i10:audio",
+          "transcript": "No tienes llave."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No tienes llave.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-14:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — у тебя нет времени; начните с No tienes",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-14:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — у тебя нет времени; начните с No tienes",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-14:i11:audio",
+          "transcript": "No tienes tiempo."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No tienes tiempo.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-14:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — у тебя нет сумки; начните с No tienes, используйте bolso без артикля",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-14:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — у тебя нет сумки; начните с No tienes, используйте bolso без артикля",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-14:i12:audio",
+          "transcript": "No tienes bolso."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No tienes bolso.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "dee5ffa139f1194bc4bc49cc16f0cb111785fc6610fd32a8f0c1edf38e2da212"
+}

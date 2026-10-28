@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-05:session-13",
+  "learningOutcomeByLocale": {
+    "ru": "дать отдельный отрицательный ответ No, no tengo…",
+    "uk": "дати окрему заперечну відповідь No, no tengo…"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-05:session-13:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ответить на предложение поговорить",
+        "uk": "Відповісти на пропозицію поговорити"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает `¿Tienes tiempo?`. Времени нет. Ответьте `No, no tengo tiempo` — «Нет, у меня нет времени». Соберите первое `no` — ответ «нет», затем `no tengo tiempo` — объяснение. Второе no стоит прямо перед tengo и отрицает наличие времени. Два no выполняют разные задачи, поэтому оба остаются.",
+        "uk": "Друг запитує `¿Tienes tiempo?`. Часу немає. Дайте відповідь `No, no tengo tiempo` — «Ні, у мене немає часу». Складіть перше `no` — відповідь «ні», потім `no tengo tiempo` — пояснення. Друге no стоїть прямо перед tengo й заперечує наявність часу. Два no виконують різні завдання, тому обидва залишаються."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-13:intro1:q",
+        "promptByLocale": {
+          "ru": "Ответьте «Нет, у меня нет времени». Начните с No, no tengo.",
+          "uk": "Дайте відповідь «Ні, у мене немає часу». Почніть з No, no tengo."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-13:intro1:r1",
+              "text": "No, no tengo tiempo."
+            },
+            {
+              "responseId": "es:lesson-05:session-13:intro1:r2",
+              "text": "No, tengo tiempo."
+            },
+            {
+              "responseId": "es:lesson-05:session-13:intro1:r3",
+              "text": "No, no tienes tiempo."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-13:intro1:r1",
+              "text": "No, no tengo tiempo."
+            },
+            {
+              "responseId": "es:lesson-05:session-13:intro1:r2",
+              "text": "No, tengo tiempo."
+            },
+            {
+              "responseId": "es:lesson-05:session-13:intro1:r3",
+              "text": "No, no tienes tiempo."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ответьте «Нет, у меня нет времени». Начните с No, no tengo.",
+          "uk": "Дайте відповідь «Ні, у мене немає часу». Почніть з No, no tengo."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-05:session-13:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Машины нет",
+        "uk": "Машини немає"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает, есть ли у вас машина. Ответьте `No, no tengo carro` — «Нет, у меня нет машины». Соберите `no` + `no tengo` + `carro`. Первое no отвечает на вопрос, а no tengo сообщает об отсутствии машины у вас. В этой фразе используем carro без артикля.",
+        "uk": "Друг запитує, чи є у вас машина. Дайте відповідь `No, no tengo carro` — «Ні, у мене немає машини». Складіть `no` + `no tengo` + `carro`. Перше no відповідає на запитання, а no tengo повідомляє про відсутність машини у вас. У цій фразі використовуємо carro без артикля."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-13:intro2:q",
+        "promptByLocale": {
+          "ru": "Ответьте «Нет, у меня нет машины». Начните с No, no tengo, используйте carro без артикля.",
+          "uk": "Дайте відповідь «Ні, у мене немає машини». Почніть з No, no tengo, використайте carro без артикля."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-13:intro2:r1",
+              "text": "No, no tengo carro."
+            },
+            {
+              "responseId": "es:lesson-05:session-13:intro2:r2",
+              "text": "No, no tienes carro."
+            },
+            {
+              "responseId": "es:lesson-05:session-13:intro2:r3",
+              "text": "No, tengo no carro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-13:intro2:r1",
+              "text": "No, no tengo carro."
+            },
+            {
+              "responseId": "es:lesson-05:session-13:intro2:r2",
+              "text": "No, no tienes carro."
+            },
+            {
+              "responseId": "es:lesson-05:session-13:intro2:r3",
+              "text": "No, tengo no carro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ответьте «Нет, у меня нет машины». Начните с No, no tengo, используйте carro без артикля.",
+          "uk": "Дайте відповідь «Ні, у мене немає машини». Почніть з No, no tengo, використайте carro без артикля."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-05:session-13:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ключа нет",
+        "uk": "Ключа немає"
+      },
+      "bodyByLocale": {
+        "ru": "У двери друг спрашивает `¿Tienes una llave?`. Ключа у вас нет. Ответьте `No, no tengo llave` — «Нет, у меня нет ключа». Соберите `no` + `no tengo` + `llave`. Вопрос был о вас с tienes, а ответ о себе строим с tengo. В изучаемой фразе об отсутствии ключа слово llave стоит без артикля.",
+        "uk": "Біля дверей друг запитує `¿Tienes una llave?`. Ключа у вас немає. Дайте відповідь `No, no tengo llave` — «Ні, у мене немає ключа». Складіть `no` + `no tengo` + `llave`. Запитання було про вас із tienes, а відповідь про себе будуємо з tengo. У фразі про відсутність ключа, яку вивчаємо, слово llave стоїть без артикля."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-13:intro3:q",
+        "promptByLocale": {
+          "ru": "Ответьте «Нет, у меня нет ключа». Начните с No, no tengo, используйте llave без артикля.",
+          "uk": "Дайте відповідь «Ні, у мене немає ключа». Почніть з No, no tengo, використайте llave без артикля."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-13:intro3:r1",
+              "text": "No, no tengo llave."
+            },
+            {
+              "responseId": "es:lesson-05:session-13:intro3:r2",
+              "text": "No, no tienes llave."
+            },
+            {
+              "responseId": "es:lesson-05:session-13:intro3:r3",
+              "text": "No, tengo llave."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-13:intro3:r1",
+              "text": "No, no tengo llave."
+            },
+            {
+              "responseId": "es:lesson-05:session-13:intro3:r2",
+              "text": "No, no tienes llave."
+            },
+            {
+              "responseId": "es:lesson-05:session-13:intro3:r3",
+              "text": "No, tengo llave."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ответьте «Нет, у меня нет ключа». Начните с No, no tengo, используйте llave без артикля.",
+          "uk": "Дайте відповідь «Ні, у мене немає ключа». Почніть з No, no tengo, використайте llave без артикля."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "0d85a9e9da0b6b054705b4e7d3cb9b9f9bfcbaf5ad79f19df56903bebfd883e7"
+}

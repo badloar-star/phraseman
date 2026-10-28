@@ -1659,4 +1659,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"отвечать Sí, tengo… от своего лица на вопрос с tienes.","uk":"відповідати Sí, tengo… від свого імені на запитання з tienes."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 5, sessionOrdinal: 13,
+    sourceFingerprint: "7267966f175e7d949f477834b1d0a249cbcdf5d82c34452946416615046a965b",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"дать отдельный отрицательный ответ No, no tengo…","uk":"дати окрему заперечну відповідь No, no tengo…"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 5, sessionOrdinal: 14,
+    sourceFingerprint: "95b2a5e02a10824ec8c53b28abab90e5ac751a5351762e13f122a5e7d1d54597",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"поставить no перед tienes, когда говорите другу об отсутствии вещи или времени.","uk":"поставити no перед tienes, коли говорите другу про відсутність речі або часу."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 5, sessionOrdinal: 15,
+    sourceFingerprint: "671bdcd625e1c56f933e2aa1baf723b4e37d2707e33a0d36f5509cf765c5bf32",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"спрашивать о родственниках с ¿Tienes…? и подходящим артиклем.","uk":"запитувати про родичів із ¿Tienes…? і відповідним артиклем."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 5, sessionOrdinal: 16,
+    sourceFingerprint: "224bc050f1cfca7de22e901a2db81ab7191be0be59f8d5200b8591a891476f6d",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"закрепить вопросы с tienes и отдельные ответы с tengo.","uk":"закріпити запитання з tienes й окремі відповіді з tengo."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
+  }),
 ]);

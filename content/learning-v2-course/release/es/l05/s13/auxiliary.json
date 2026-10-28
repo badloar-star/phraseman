@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-05:session-13",
+  "entries": [
+    {
+      "interactionId": "es:lesson-05:session-13:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-13:intro1:r2": {
+          "ru": "После запятой получилось бы «у меня есть время», а его нет.",
+          "uk": "Після коми вийшло б «у мене є час», а його немає."
+        },
+        "es:lesson-05:session-13:intro1:r3": {
+          "ru": "Отвечаете о себе: tengo.",
+          "uk": "Відповідаєте про себе: tengo."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-13:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-13:intro2:r2": {
+          "ru": "О себе отвечаете tengo.",
+          "uk": "Про себе відповідаєте tengo."
+        },
+        "es:lesson-05:session-13:intro2:r3": {
+          "ru": "В пояснении no должно стоять перед tengo.",
+          "uk": "У поясненні no має стояти перед tengo."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-13:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-13:intro3:r2": {
+          "ru": "Tienes относится к собеседнику; здесь нужен tengo.",
+          "uk": "Tienes стосується співрозмовника; тут потрібне tengo."
+        },
+        "es:lesson-05:session-13:intro3:r3": {
+          "ru": "Так после запятой получилось бы, что ключ есть.",
+          "uk": "Так після коми вийшло б, що ключ є."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9bd6057cfcfde0dfc69f368d194473a5e383f30a9d524ecf83c4ab26b5017b34"
+}

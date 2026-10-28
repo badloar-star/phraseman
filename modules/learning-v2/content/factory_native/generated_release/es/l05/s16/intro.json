@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-05:session-16",
+  "learningOutcomeByLocale": {
+    "ru": "закрепить вопросы с tienes и отдельные ответы с tengo.",
+    "uk": "закріпити запитання з tienes й окремі відповіді з tengo."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-05:session-16:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Есть ли время",
+        "uk": "Чи є час"
+      },
+      "bodyByLocale": {
+        "ru": "Вы хотите поговорить перед выходом. Спросите друга `¿Tienes tiempo?` — «У тебя есть время?». Соберите `tienes` + `tiempo` и произнесите вопрос. Tienes относится к другу, к которому обращаетесь на «ты». Tiempo в этой фразе без артикля. В письме обозначьте вопрос знаками ¿ и ?.",
+        "uk": "Ви хочете поговорити перед виходом. Запитайте друга `¿Tienes tiempo?` — «У тебе є час?». Складіть `tienes` + `tiempo` й вимовте запитання. Tienes стосується друга, до якого звертаєтеся на «ти». Tiempo в цій фразі без артикля. На письмі позначте запитання знаками ¿ і ?."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-16:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите «У тебя есть время?». Начните с Tienes.",
+          "uk": "Запитайте «У тебе є час?». Почніть з Tienes."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-16:intro1:r1",
+              "text": "¿Tienes tiempo?"
+            },
+            {
+              "responseId": "es:lesson-05:session-16:intro1:r2",
+              "text": "¿Tengo tiempo?"
+            },
+            {
+              "responseId": "es:lesson-05:session-16:intro1:r3",
+              "text": "¿Tienes una tiempo?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-16:intro1:r1",
+              "text": "¿Tienes tiempo?"
+            },
+            {
+              "responseId": "es:lesson-05:session-16:intro1:r2",
+              "text": "¿Tengo tiempo?"
+            },
+            {
+              "responseId": "es:lesson-05:session-16:intro1:r3",
+              "text": "¿Tienes una tiempo?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «У тебя есть время?». Начните с Tienes.",
+          "uk": "Запитайте «У тебе є час?». Почніть з Tienes."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-05:session-16:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Книга у вас",
+        "uk": "Книжка у вас"
+      },
+      "bodyByLocale": {
+        "ru": "Теперь друг спрашивает, есть ли книга у вас. Ответьте `Sí, tengo un libro` — «Да, у меня есть книга». Соберите `sí` + `tengo` + `un libro`. Sí подтверждает, а tengo относится уже к вам, отвечающему. Un перед libro сохраняем: говорим об одной книге.",
+        "uk": "Тепер друг запитує, чи є книжка у вас. Дайте відповідь `Sí, tengo un libro` — «Так, у мене є книжка». Складіть `sí` + `tengo` + `un libro`. Sí підтверджує, а tengo стосується вже вас, того, хто відповідає. Un перед libro зберігаємо: говоримо про одну книжку."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-16:intro2:q",
+        "promptByLocale": {
+          "ru": "Ответьте «Да, у меня есть книга». Начните с Sí, tengo.",
+          "uk": "Дайте відповідь «Так, у мене є книжка». Почніть з Sí, tengo."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-16:intro2:r1",
+              "text": "Sí, tengo un libro."
+            },
+            {
+              "responseId": "es:lesson-05:session-16:intro2:r2",
+              "text": "Sí, tienes un libro."
+            },
+            {
+              "responseId": "es:lesson-05:session-16:intro2:r3",
+              "text": "Sí, tengo una libro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-16:intro2:r1",
+              "text": "Sí, tengo un libro."
+            },
+            {
+              "responseId": "es:lesson-05:session-16:intro2:r2",
+              "text": "Sí, tienes un libro."
+            },
+            {
+              "responseId": "es:lesson-05:session-16:intro2:r3",
+              "text": "Sí, tengo una libro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ответьте «Да, у меня есть книга». Начните с Sí, tengo.",
+          "uk": "Дайте відповідь «Так, у мене є книжка». Почніть з Sí, tengo."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-05:session-16:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ключа у вас нет",
+        "uk": "Ключа у вас немає"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает о вашем ключе. Ответьте `No, no tengo llave` — «Нет, у меня нет ключа». Соберите первое `no` — ответ «нет», затем `no tengo llave`. Второе no ставим перед tengo для отрицания. В этой фразе об отсутствии ключа используем llave без артикля.",
+        "uk": "Друг запитує про ваш ключ. Дайте відповідь `No, no tengo llave` — «Ні, у мене немає ключа». Складіть перше `no` — відповідь «ні», потім `no tengo llave`. Друге no ставимо перед tengo для заперечення. У цій фразі про відсутність ключа використовуємо llave без артикля."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-16:intro3:q",
+        "promptByLocale": {
+          "ru": "Ответьте «Нет, у меня нет ключа». Начните с No, no tengo, используйте llave без артикля.",
+          "uk": "Дайте відповідь «Ні, у мене немає ключа». Почніть з No, no tengo, використайте llave без артикля."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-16:intro3:r1",
+              "text": "No, no tengo llave."
+            },
+            {
+              "responseId": "es:lesson-05:session-16:intro3:r2",
+              "text": "No, tengo llave."
+            },
+            {
+              "responseId": "es:lesson-05:session-16:intro3:r3",
+              "text": "No, no tienes llave."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-16:intro3:r1",
+              "text": "No, no tengo llave."
+            },
+            {
+              "responseId": "es:lesson-05:session-16:intro3:r2",
+              "text": "No, tengo llave."
+            },
+            {
+              "responseId": "es:lesson-05:session-16:intro3:r3",
+              "text": "No, no tienes llave."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ответьте «Нет, у меня нет ключа». Начните с No, no tengo, используйте llave без артикля.",
+          "uk": "Дайте відповідь «Ні, у мене немає ключа». Почніть з No, no tengo, використайте llave без артикля."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "97300dea5e5702abaa9721743ee0639262195ebffb670f98b15f439620027b9f"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-05:session-16",
+  "entries": [
+    {
+      "interactionId": "es:lesson-05:session-16:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-16:intro1:r2": {
+          "ru": "Tengo было бы о вас, а спрашиваете друга.",
+          "uk": "Tengo було б про вас, а запитуєте друга."
+        },
+        "es:lesson-05:session-16:intro1:r3": {
+          "ru": "Здесь tiempo без артикля.",
+          "uk": "Тут tiempo без артикля."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-16:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-16:intro2:r2": {
+          "ru": "Tienes говорило бы о собеседнике.",
+          "uk": "Tienes говорило б про співрозмовника."
+        },
+        "es:lesson-05:session-16:intro2:r3": {
+          "ru": "Libro мужского рода: un.",
+          "uk": "Libro чоловічого роду: un."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-16:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-16:intro3:r2": {
+          "ru": "После запятой получилось бы, что ключ есть.",
+          "uk": "Після коми вийшло б, що ключ є."
+        },
+        "es:lesson-05:session-16:intro3:r3": {
+          "ru": "Отвечаете о себе: tengo.",
+          "uk": "Відповідаєте про себе: tengo."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "829880602c221cc6909c2697c8441bd3d004fc3290aa39583c161e1d10a58499"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-06:session-11",
+  "entries": [
+    {
+      "interactionId": "es:lesson-06:session-11:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-11:intro1:r2": {
+          "ru": "Baño мужского рода: un.",
+          "uk": "Baño чоловічого роду: un."
+        },
+        "es:lesson-06:session-11:intro1:r3": {
+          "ru": "Спрашиваем о наличии в месте: hay.",
+          "uk": "Запитуємо про наявність у місці: hay."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-11:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-11:intro2:r2": {
+          "ru": "Вы спрашиваете «здесь», поэтому aquí.",
+          "uk": "Ви запитуєте «тут», тому aquí."
+        },
+        "es:lesson-06:session-11:intro2:r3": {
+          "ru": "С baño нужен un.",
+          "uk": "З baño потрібен un."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-11:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-11:intro3:r2": {
+          "ru": "Silla женского рода: una.",
+          "uk": "Silla жіночого роду: una."
+        },
+        "es:lesson-06:session-11:intro3:r3": {
+          "ru": "Нужно спросить «здесь» — aquí.",
+          "uk": "Потрібно запитати «тут» — aquí."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "df51721e34abff5939d4d9c4c9dd4dbd3c236030fe838447d03475d3ec751b20"
+}

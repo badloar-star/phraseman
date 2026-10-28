@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-06:session-09",
+  "learningOutcomeByLocale": {
+    "ru": "поставить no перед hay, чтобы отрицать наличие.",
+    "uk": "поставити no перед hay, щоб заперечити наявність."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-06:session-09:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Не найти ни одного стула",
+        "uk": "Не знайти жодного стільця"
+      },
+      "bodyByLocale": {
+        "ru": "Друг надеялся сесть рядом с вами, но здесь нет ни одного стула. Скажите `No hay una silla aquí` — «Здесь нет ни одного стула». Соберите `No` + `hay una silla` + `aquí`. Отрицание no ставим прямо перед hay. В этой фразе una подчёркивает, что не нашлось даже одного стула. Одно короткое no меняет весь результат поисков.",
+        "uk": "Друг сподівався сісти поруч із вами, але тут немає жодного стільця. Скажіть `No hay una silla aquí` — «Тут немає жодного стільця». Складіть `No` + `hay una silla` + `aquí`. Заперечення no ставимо безпосередньо перед hay. У цій фразі una підкреслює, що не знайшлося навіть одного стільця. Одне коротке no змінює весь результат пошуків."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-09:intro1:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Здесь нет ни одного стула». Начните с No hay, используйте una silla, место поставьте в конце.",
+          "uk": "Повідомте «Тут немає жодного стільця». Почніть з No hay, використайте una silla, місце поставте в кінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-09:intro1:r1",
+              "text": "No hay una silla aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-09:intro1:r2",
+              "text": "Hay no una silla aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-09:intro1:r3",
+              "text": "No tengo una silla aquí."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-09:intro1:r1",
+              "text": "No hay una silla aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-09:intro1:r2",
+              "text": "Hay no una silla aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-09:intro1:r3",
+              "text": "No tengo una silla aquí."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Здесь нет ни одного стула». Начните с No hay, используйте una silla, место поставьте в конце.",
+          "uk": "Повідомте «Тут немає жодного стільця». Почніть з No hay, використайте una silla, місце поставте в кінці."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-06:session-09:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Не найти стол",
+        "uk": "Не знайти стіл"
+      },
+      "bodyByLocale": {
+        "ru": "Вы проверяете другой пустой угол: поставить вещи некуда, стола здесь нет. Скажите `No hay una mesa aquí` — «Здесь нет ни одного стола». Соберите `No` + `hay una mesa` + `aquí`. Слово mesa заменяет silla, но порядок no hay сохраняется. Перед mesa нужна una.",
+        "uk": "Ви перевіряєте інший порожній куток: поставити речі нікуди, стола тут немає. Скажіть `No hay una mesa aquí` — «Тут немає жодного стола». Складіть `No` + `hay una mesa` + `aquí`. Слово mesa замінює silla, але порядок no hay зберігається. Перед mesa потрібна una."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-09:intro2:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Здесь нет ни одного стола». Начните с No hay, используйте una mesa, место поставьте в конце.",
+          "uk": "Повідомте «Тут немає жодного стола». Почніть з No hay, використайте una mesa, місце поставте в кінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-09:intro2:r1",
+              "text": "No hay una mesa aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-09:intro2:r2",
+              "text": "Hay no una mesa aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-09:intro2:r3",
+              "text": "No hay un mesa aquí."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-09:intro2:r1",
+              "text": "No hay una mesa aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-09:intro2:r2",
+              "text": "Hay no una mesa aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-09:intro2:r3",
+              "text": "No hay un mesa aquí."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Здесь нет ни одного стола». Начните с No hay, используйте una mesa, место поставьте в конце.",
+          "uk": "Повідомте «Тут немає жодного стола». Почніть з No hay, використайте una mesa, місце поставте в кінці."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-06:session-09:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Не найти книгу",
+        "uk": "Не знайти книгу"
+      },
+      "bodyByLocale": {
+        "ru": "Вы заглянули на пустую полку возле себя: почитать нечего. Скажите `No hay un libro aquí` — «Здесь нет ни одной книги». Соберите `No` + `hay un libro` + `aquí`. С libro нужен un, потому что испанское слово мужского рода. Отрицание всё так же стоит перед hay.",
+        "uk": "Ви зазирнули на порожню полицю біля себе: почитати нічого. Скажіть `No hay un libro aquí` — «Тут немає жодної книги». Складіть `No` + `hay un libro` + `aquí`. З libro потрібен un, бо іспанське слово чоловічого роду. Заперечення так само стоїть перед hay."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-09:intro3:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Здесь нет ни одной книги». Начните с No hay, используйте un libro, место поставьте в конце.",
+          "uk": "Повідомте «Тут немає жодної книги». Почніть з No hay, використайте un libro, місце поставте в кінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-09:intro3:r1",
+              "text": "No hay un libro aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-09:intro3:r2",
+              "text": "Hay no un libro aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-09:intro3:r3",
+              "text": "No hay una libro aquí."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-09:intro3:r1",
+              "text": "No hay un libro aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-09:intro3:r2",
+              "text": "Hay no un libro aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-09:intro3:r3",
+              "text": "No hay una libro aquí."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Здесь нет ни одной книги». Начните с No hay, используйте un libro, место поставьте в конце.",
+          "uk": "Повідомте «Тут немає жодної книги». Почніть з No hay, використайте un libro, місце поставте в кінці."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "993cc38f75a5381b413d1fb6c7f64ebda8cccf15607ae0ab3779ba72fe62ebd2"
+}

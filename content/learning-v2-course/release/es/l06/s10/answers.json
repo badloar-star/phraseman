@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-06:session-10:i01",
+    "correctText": "sillas",
+    "correctResponseId": "es:lesson-06:session-10:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-10:i02",
+    "correctText": "No",
+    "correctResponseId": "es:lesson-06:session-10:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-10:i03",
+    "correctText": "No hay sillas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-10:i04",
+    "correctText": "mesas",
+    "correctResponseId": "es:lesson-06:session-10:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-10:i05",
+    "correctText": "No hay mesas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-10:i06",
+    "correctText": "No hay libros aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-10:i07",
+    "correctText": "No hay sillas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-10:i08",
+    "correctText": "hay",
+    "correctResponseId": "es:lesson-06:session-10:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-10:i09",
+    "correctText": "No hay sillas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-10:i10",
+    "correctText": "No hay mesas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-10:i11",
+    "correctText": "No hay libros aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-10:i12",
+    "correctText": "No hay sillas allí.",
+    "correctResponseId": null
+  }
+]

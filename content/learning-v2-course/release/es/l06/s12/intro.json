@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-06:session-12",
+  "learningOutcomeByLocale": {
+    "ru": "спросить о наличии нескольких предметов с помощью ¿Hay...?",
+    "uk": "запитати про наявність кількох предметів за допомогою ¿Hay...?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-06:session-12:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Узнать о местах для гостей",
+        "uk": "Дізнатися про місця для гостей"
+      },
+      "bodyByLocale": {
+        "ru": "Вы ещё не видели комнату и спрашиваете организатора `¿Hay sillas aquí?` — «Здесь есть стулья?» Соберите `¿Hay` + `sillas` + `aquí?`. Для нескольких предметов hay остаётся тем же. В этой общей фразе sillas стоит без артикля. Стульев может быть много, но дополнительная s к hay всё равно не нужна.",
+        "uk": "Ви ще не бачили кімнату й запитуєте організатора `¿Hay sillas aquí?` — «Тут є стільці?» Складіть `¿Hay` + `sillas` + `aquí?`. Для кількох предметів hay залишається тим самим. У цій загальній фразі sillas стоїть без артикля. Стільців може бути багато, але додаткова s до hay все одно не потрібна."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-12:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите «Здесь есть стулья?» без артикля. Начните с ¿Hay, место поставьте в конце.",
+          "uk": "Запитайте «Тут є стільці?» без артикля. Почніть з ¿Hay, місце поставте в кінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-12:intro1:r1",
+              "text": "¿Hay sillas aquí?"
+            },
+            {
+              "responseId": "es:lesson-06:session-12:intro1:r2",
+              "text": "¿Hay una sillas aquí?"
+            },
+            {
+              "responseId": "es:lesson-06:session-12:intro1:r3",
+              "text": "¿Hay sillas allí?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-12:intro1:r1",
+              "text": "¿Hay sillas aquí?"
+            },
+            {
+              "responseId": "es:lesson-06:session-12:intro1:r2",
+              "text": "¿Hay una sillas aquí?"
+            },
+            {
+              "responseId": "es:lesson-06:session-12:intro1:r3",
+              "text": "¿Hay sillas allí?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «Здесь есть стулья?» без артикля. Начните с ¿Hay, место поставьте в конце.",
+          "uk": "Запитайте «Тут є стільці?» без артикля. Почніть з ¿Hay, місце поставте в кінці."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-06:session-12:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Спросить о столах в другой комнате",
+        "uk": "Запитати про столи в іншій кімнаті"
+      },
+      "bodyByLocale": {
+        "ru": "Вы показываете на соседнюю комнату и спрашиваете `¿Hay mesas allí?` — «Там есть столы?» Соберите `¿Hay` + `mesas` + `allí?`. Allí означает «там». Вопрос сообщает, какие предметы и какое место вас интересуют; точное количество сейчас не требуется.",
+        "uk": "Ви показуєте на сусідню кімнату й запитуєте `¿Hay mesas allí?` — «Там є столи?» Складіть `¿Hay` + `mesas` + `allí?`. Allí означає «там». Запитання повідомляє, які предмети та яке місце вас цікавлять; точна кількість зараз не потрібна."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-12:intro2:q",
+        "promptByLocale": {
+          "ru": "Спросите «Там есть столы?» без артикля. Начните с ¿Hay, место поставьте в конце.",
+          "uk": "Запитайте «Там є столи?» без артикля. Почніть з ¿Hay, місце поставте в кінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-12:intro2:r1",
+              "text": "¿Hay mesas allí?"
+            },
+            {
+              "responseId": "es:lesson-06:session-12:intro2:r2",
+              "text": "¿Hay una mesas allí?"
+            },
+            {
+              "responseId": "es:lesson-06:session-12:intro2:r3",
+              "text": "¿Hay mesas aquí?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-12:intro2:r1",
+              "text": "¿Hay mesas allí?"
+            },
+            {
+              "responseId": "es:lesson-06:session-12:intro2:r2",
+              "text": "¿Hay una mesas allí?"
+            },
+            {
+              "responseId": "es:lesson-06:session-12:intro2:r3",
+              "text": "¿Hay mesas aquí?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «Там есть столы?» без артикля. Начните с ¿Hay, место поставьте в конце.",
+          "uk": "Запитайте «Там є столи?» без артикля. Почніть з ¿Hay, місце поставте в кінці."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-06:session-12:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Узнать о книгах",
+        "uk": "Дізнатися про книги"
+      },
+      "bodyByLocale": {
+        "ru": "Вы ищете, что почитать, и спрашиваете сотрудника комнаты отдыха `¿Hay libros aquí?` — «Здесь есть книги?» Соберите `¿Hay` + `libros` + `aquí?`. Сначала hay, затем название нескольких предметов, в конце место. Для вопроса нужны интонация и знаки ¿ ... ?, но сам порядок слов не меняется.",
+        "uk": "Ви шукаєте, що почитати, й запитуєте працівника кімнати відпочинку `¿Hay libros aquí?` — «Тут є книги?» Складіть `¿Hay` + `libros` + `aquí?`. Спочатку hay, далі назва кількох предметів, у кінці місце. Для запитання потрібні інтонація та знаки ¿ ... ?, але сам порядок слів не змінюється."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-12:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите «Здесь есть книги?» без артикля. Начните с ¿Hay, место поставьте в конце.",
+          "uk": "Запитайте «Тут є книги?» без артикля. Почніть з ¿Hay, місце поставте в кінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-12:intro3:r1",
+              "text": "¿Hay libros aquí?"
+            },
+            {
+              "responseId": "es:lesson-06:session-12:intro3:r2",
+              "text": "¿Hay un libros aquí?"
+            },
+            {
+              "responseId": "es:lesson-06:session-12:intro3:r3",
+              "text": "¿Hay libros allí?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-12:intro3:r1",
+              "text": "¿Hay libros aquí?"
+            },
+            {
+              "responseId": "es:lesson-06:session-12:intro3:r2",
+              "text": "¿Hay un libros aquí?"
+            },
+            {
+              "responseId": "es:lesson-06:session-12:intro3:r3",
+              "text": "¿Hay libros allí?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «Здесь есть книги?» без артикля. Начните с ¿Hay, место поставьте в конце.",
+          "uk": "Запитайте «Тут є книги?» без артикля. Почніть з ¿Hay, місце поставте в кінці."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "6c295cd93a2d44f07082f1b1de69833b97d37c7abe0822f318f32cacce839c81"
+}

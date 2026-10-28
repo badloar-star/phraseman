@@ -1,0 +1,711 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-06:session-11",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-06:session-11:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — baño",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-11:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — baño",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-11:i01:audio",
+          "transcript": "baño"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-06:session-11:i01:r1",
+            "targetText": "baño",
+            "meaningByLocale": {
+              "ru": "туалет, ванная комната. В вопросе в кафе: un baño — туалет, уборная. 🔊 *baño*",
+              "uk": "туалет, ванна кімната. У запитанні в кафе: un baño — туалет, вбиральня. 🔊 *baño*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "baño",
+          "definitionByLocale": {
+            "ru": "туалет, ванная комната. В вопросе в кафе: un baño — туалет, уборная. 🔊 *baño*",
+            "uk": "туалет, ванна кімната. У запитанні в кафе: un baño — туалет, вбиральня. 🔊 *baño*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-11:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте та виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-11:i02:r1",
+          "text": "baño"
+        },
+        {
+          "responseId": "es:lesson-06:session-11:i02:r2",
+          "text": "libro"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-11:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте та виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-11:i02:audio",
+          "transcript": "baño"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-06:session-11:i02:r1",
+            "targetText": "baño",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-06:session-11:i02:r2",
+            "targetText": "libro",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-11:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте та виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит baño — туалет.",
+              "uk": "Звучить baño — туалет."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-11:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — є туалет?",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-11:i03:r1",
+          "text": "baño"
+        },
+        {
+          "responseId": "es:lesson-06:session-11:i03:r2",
+          "text": "libro"
+        },
+        {
+          "responseId": "es:lesson-06:session-11:i03:r3",
+          "text": "bolso"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — є туалет?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — есть туалет?",
+          "uk": "Вставте слово — є туалет?"
+        },
+        "gappedTargetPhrase": "¿Hay un ___?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-11:i03:r1",
+            "text": "baño"
+          },
+          {
+            "responseId": "es:lesson-06:session-11:i03:r2",
+            "text": "libro"
+          },
+          {
+            "responseId": "es:lesson-06:session-11:i03:r3",
+            "text": "bolso"
+          }
+        ],
+        "testedDimension": "Вставте слово — є туалет?",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-11:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — є туалет?",
+            "feedbackByLocale": {
+              "ru": "Это книга; туалет — baño.",
+              "uk": "Це книга; туалет — baño."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-11:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — є туалет?",
+            "feedbackByLocale": {
+              "ru": "Это сумка; нужно baño.",
+              "uk": "Це сумка; потрібно baño."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-11:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — є туалет?; почніть з ¿Hay",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-11:i04:r1",
+          "text": "Плитки: baño?"
+        },
+        {
+          "responseId": "es:lesson-06:session-11:i04:r2",
+          "text": "¿Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-11:i04:r3",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-06:session-11:i04:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — є туалет?; почніть з ¿Hay",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Hay un baño?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — есть туалет?; начните с ¿Hay",
+          "uk": "Зберіть фразу — є туалет?; почніть з ¿Hay"
+        },
+        "orderedTokens": [
+          "¿Hay",
+          "un",
+          "baño"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-11:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — є туалет?; почніть з ¿Hay",
+            "feedbackByLocale": {
+              "ru": "baño мужского рода.",
+              "uk": "baño чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-11:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — тут є туалет?",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-11:i05:r1",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-06:session-11:i05:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-06:session-11:i05:r3",
+          "text": "unas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — тут є туалет?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — здесь есть туалет?",
+          "uk": "Вставте слово — тут є туалет?"
+        },
+        "gappedTargetPhrase": "¿Hay ___ baño aquí?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-11:i05:r1",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-06:session-11:i05:r2",
+            "text": "una"
+          },
+          {
+            "responseId": "es:lesson-06:session-11:i05:r3",
+            "text": "unas"
+          }
+        ],
+        "testedDimension": "Вставте слово — тут є туалет?",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-11:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — тут є туалет?",
+            "feedbackByLocale": {
+              "ru": "Baño мужского рода: un.",
+              "uk": "Baño чоловічого роду: un."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-11:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — тут є туалет?",
+            "feedbackByLocale": {
+              "ru": "Одно помещение baño: un.",
+              "uk": "Одне приміщення baño: un."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-11:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — тут є туалет?; почніть з ¿Hay, місце поставте в кінці",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-11:i06:r1",
+          "text": "Плитки: aquí?"
+        },
+        {
+          "responseId": "es:lesson-06:session-11:i06:r2",
+          "text": "baño"
+        },
+        {
+          "responseId": "es:lesson-06:session-11:i06:r3",
+          "text": "¿Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-11:i06:r4",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-06:session-11:i06:r5",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — тут є туалет?; почніть з ¿Hay, місце поставте в кінці",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Hay un baño aquí?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — здесь есть туалет?; начните с ¿Hay, место поставьте в конце",
+          "uk": "Зберіть фразу — тут є туалет?; почніть з ¿Hay, місце поставте в кінці"
+        },
+        "orderedTokens": [
+          "¿Hay",
+          "un",
+          "baño",
+          "aquí"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-11:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — тут є туалет?; почніть з ¿Hay, місце поставте в кінці",
+            "feedbackByLocale": {
+              "ru": "с baño нужен un.",
+              "uk": "з baño потрібен un."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-11:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — тут є стілець?; почніть з ¿Hay, місце поставте в кінці",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-11:i07:r1",
+          "text": "Плитки: aquí?"
+        },
+        {
+          "responseId": "es:lesson-06:session-11:i07:r2",
+          "text": "silla"
+        },
+        {
+          "responseId": "es:lesson-06:session-11:i07:r3",
+          "text": "¿Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-11:i07:r4",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-06:session-11:i07:r5",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — тут є стілець?; почніть з ¿Hay, місце поставте в кінці",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Hay una silla aquí?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — здесь есть стул?; начните с ¿Hay, место поставьте в конце",
+          "uk": "Зберіть фразу — тут є стілець?; почніть з ¿Hay, місце поставте в кінці"
+        },
+        "orderedTokens": [
+          "¿Hay",
+          "una",
+          "silla",
+          "aquí"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-11:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — тут є стілець?; почніть з ¿Hay, місце поставте в кінці",
+            "feedbackByLocale": {
+              "ru": "с silla нужна una.",
+              "uk": "з silla потрібна una."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-11:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте та зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-11:i08:r1",
+          "text": "Плитки: ¿Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-11:i08:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-06:session-11:i08:r3",
+          "text": "baño?"
+        },
+        {
+          "responseId": "es:lesson-06:session-11:i08:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-11:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте та зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-11:i08:audio",
+          "transcript": "¿Hay un baño?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "¿Hay un baño?",
+        "orderedTokens": [
+          "¿Hay",
+          "un",
+          "baño"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-11:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте та зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит un.",
+              "uk": "звучить un."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-11:i09",
+      "ordinal": 12,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — тут є стілець?",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-11:i09:r1",
+          "text": "aquí"
+        },
+        {
+          "responseId": "es:lesson-06:session-11:i09:r2",
+          "text": "allí"
+        },
+        {
+          "responseId": "es:lesson-06:session-11:i09:r3",
+          "text": "tiempo"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — тут є стілець?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — здесь есть стул?",
+          "uk": "Вставте слово — тут є стілець?"
+        },
+        "gappedTargetPhrase": "¿Hay una silla ___?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-11:i09:r1",
+            "text": "aquí"
+          },
+          {
+            "responseId": "es:lesson-06:session-11:i09:r2",
+            "text": "allí"
+          },
+          {
+            "responseId": "es:lesson-06:session-11:i09:r3",
+            "text": "tiempo"
+          }
+        ],
+        "testedDimension": "Вставте слово — тут є стілець?",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-11:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — тут є стілець?",
+            "feedbackByLocale": {
+              "ru": "Нужно «здесь» — aquí.",
+              "uk": "Потрібно «тут» — aquí."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-11:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — тут є стілець?",
+            "feedbackByLocale": {
+              "ru": "Это время; место «здесь» — aquí.",
+              "uk": "Це час; місце «тут» — aquí."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-11:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — є туалет?; почніть з ¿Hay, використайте un baño",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-11:i10:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — є туалет?; почніть з ¿Hay, використайте un baño",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-11:i10:audio",
+          "transcript": "¿Hay un baño?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Hay un baño?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-11:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — тут є туалет?; почніть з ¿Hay, використайте un baño, місце поставте в кінці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-11:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — тут є туалет?; почніть з ¿Hay, використайте un baño, місце поставте в кінці",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-11:i11:audio",
+          "transcript": "¿Hay un baño aquí?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Hay un baño aquí?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-11:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — тут є стілець?; почніть з ¿Hay, місце поставте в кінці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-11:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — тут є стілець?; почніть з ¿Hay, місце поставте в кінці",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-11:i12:audio",
+          "transcript": "¿Hay una silla aquí?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Hay una silla aquí?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-11:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — тут є стіл?; почніть з ¿Hay, місце поставте в кінці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-11:i13:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — тут є стіл?; почніть з ¿Hay, місце поставте в кінці",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-11:i13:audio",
+          "transcript": "¿Hay una mesa aquí?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Hay una mesa aquí?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 13,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "a96469cb56d0aacc5b791c585463a95b6c8e273e0138b72a285625eae434c35c"
+}

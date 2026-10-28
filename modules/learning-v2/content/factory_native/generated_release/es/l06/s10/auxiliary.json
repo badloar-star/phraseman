@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-06:session-10",
+  "entries": [
+    {
+      "interactionId": "es:lesson-06:session-10:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-10:intro1:r2": {
+          "ru": "No ставим перед hay.",
+          "uk": "No ставимо перед hay."
+        },
+        "es:lesson-06:session-10:intro1:r3": {
+          "ru": "В этой фразе sillas без артикля; una не подходит к нескольким предметам.",
+          "uk": "У цій фразі sillas без артикля; una не підходить до кількох предметів."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-10:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-10:intro2:r2": {
+          "ru": "Нужен порядок no hay.",
+          "uk": "Потрібен порядок no hay."
+        },
+        "es:lesson-06:session-10:intro2:r3": {
+          "ru": "В выбранной фразе используем mesas без артикля.",
+          "uk": "У вибраній фразі використовуємо mesas без артикля."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-10:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-10:intro3:r2": {
+          "ru": "No ставим перед hay.",
+          "uk": "No ставимо перед hay."
+        },
+        "es:lesson-06:session-10:intro3:r3": {
+          "ru": "Un не подходит к libros; в этой фразе артикля нет.",
+          "uk": "Un не підходить до libros; у цій фразі артикля немає."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "954c501622b81d695dcac3e50b7fdb4b438b80de22b30e114db715594a4f2b85"
+}

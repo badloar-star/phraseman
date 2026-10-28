@@ -2023,4 +2023,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"соединить hay с предметом, количеством и знакомым указанием места.","uk":"поєднати hay з предметом, кількістю та знайомим зазначенням місця."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 6","uk":"Іспанська · Урок 6"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 6, sessionOrdinal: 9,
+    sourceFingerprint: "c5baed46508acef2690af4ae4ef9bbc3facb2b0c7060e963706fbcefa7be6924",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"поставить no перед hay, чтобы отрицать наличие.","uk":"поставити no перед hay, щоб заперечити наявність."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 6","uk":"Іспанська · Урок 6"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 6, sessionOrdinal: 10,
+    sourceFingerprint: "5880803e14c905bd4b3cdf2cc72fa2e120e82c2a1d669a123ced655daae4f137",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"после no hay назвать отсутствующие предметы во множественном числе.","uk":"після no hay назвати відсутні предмети у множині."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 6","uk":"Іспанська · Урок 6"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 6, sessionOrdinal: 11,
+    sourceFingerprint: "213e7994548366284e7d8a9b5a6dd06b42bb76b132d47bfb49dce97dc0f28d86",
+    newWordCount: 1,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"превратить сообщение с hay в вопрос о наличии одного предмета или помещения.","uk":"перетворити повідомлення з hay на запитання про наявність одного предмета чи приміщення."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 6","uk":"Іспанська · Урок 6"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 6, sessionOrdinal: 12,
+    sourceFingerprint: "53d7e978a123f9fb2e43a330ab9f1e538b04d1367221f5d41c940b8c9460e584",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"спросить о наличии нескольких предметов с помощью ¿Hay...?","uk":"запитати про наявність кількох предметів за допомогою ¿Hay...?"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 6","uk":"Іспанська · Урок 6"}),
+  }),
 ]);

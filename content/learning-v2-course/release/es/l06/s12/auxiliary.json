@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-06:session-12",
+  "entries": [
+    {
+      "interactionId": "es:lesson-06:session-12:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-12:intro1:r2": {
+          "ru": "Una не подходит к sillas; здесь артикль не используем.",
+          "uk": "Una не підходить до sillas; тут артикль не використовуємо."
+        },
+        "es:lesson-06:session-12:intro1:r3": {
+          "ru": "Спрашиваем «здесь» — aquí.",
+          "uk": "Запитуємо «тут» — aquí."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-12:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-12:intro2:r2": {
+          "ru": "Перед mesas в этой фразе артикля нет.",
+          "uk": "Перед mesas у цій фразі артикля немає."
+        },
+        "es:lesson-06:session-12:intro2:r3": {
+          "ru": "По ситуации спрашиваем «там» — allí.",
+          "uk": "За ситуацією запитуємо «там» — allí."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-12:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-12:intro3:r2": {
+          "ru": "Un не подходит к libros; здесь артикля нет.",
+          "uk": "Un не підходить до libros; тут артикля немає."
+        },
+        "es:lesson-06:session-12:intro3:r3": {
+          "ru": "Нужно «здесь» — aquí.",
+          "uk": "Потрібно «тут» — aquí."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9473fcd298593b0e87297418c22bacb04528c9a7e7989d20d326641425638b9c"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-06:session-09",
+  "entries": [
+    {
+      "interactionId": "es:lesson-06:session-09:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-09:intro1:r2": {
+          "ru": "No ставим перед hay.",
+          "uk": "No ставимо перед hay."
+        },
+        "es:lesson-06:session-09:intro1:r3": {
+          "ru": "Здесь речь об отсутствии в месте, не о том, что есть у вас: no hay.",
+          "uk": "Тут ідеться про відсутність у місці, не про те, що є у вас: no hay."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-09:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-09:intro2:r2": {
+          "ru": "Отрицание ставим перед hay.",
+          "uk": "Заперечення ставимо перед hay."
+        },
+        "es:lesson-06:session-09:intro2:r3": {
+          "ru": "Mesa женского рода: una.",
+          "uk": "Mesa жіночого роду: una."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-09:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-09:intro3:r2": {
+          "ru": "No нужно перед hay.",
+          "uk": "No потрібно перед hay."
+        },
+        "es:lesson-06:session-09:intro3:r3": {
+          "ru": "Libro мужского рода: un.",
+          "uk": "Libro чоловічого роду: un."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ab8c5647ecb042327ac2ffe99b359770d5e7f62c0477ff3550c173f97aa8b347"
+}

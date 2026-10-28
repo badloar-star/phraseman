@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-06:session-11",
+  "learningOutcomeByLocale": {
+    "ru": "превратить сообщение с hay в вопрос о наличии одного предмета или помещения.",
+    "uk": "перетворити повідомлення з hay на запитання про наявність одного предмета чи приміщення."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-06:session-11:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Задать короткий вопрос",
+        "uk": "Поставити коротке запитання"
+      },
+      "bodyByLocale": {
+        "ru": "В кафе вы хотите узнать, есть ли туалет. Спросите `¿Hay un baño?` — «Есть туалет?» Соберите `¿Hay` + `un baño?`. Baño здесь означает туалет или уборную; слово мужского рода, поэтому un. Hay остаётся тем же, а вопрос передаём интонацией и знаками ¿ ... ?. Переставлять мебель в предложении не нужно — порядок слов сохраняется.",
+        "uk": "У кафе ви хочете дізнатися, чи є туалет. Запитайте `¿Hay un baño?` — «Є туалет?» Складіть `¿Hay` + `un baño?`. Baño тут означає туалет або вбиральню; слово чоловічого роду, тому un. Hay залишається тим самим, а запитання передаємо інтонацією та знаками ¿ ... ?. Переставляти меблі в реченні не потрібно — порядок слів зберігається."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-11:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите «Есть туалет?». Начните с ¿Hay, используйте un baño.",
+          "uk": "Запитайте «Є туалет?». Почніть з ¿Hay, використайте un baño."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-11:intro1:r1",
+              "text": "¿Hay un baño?"
+            },
+            {
+              "responseId": "es:lesson-06:session-11:intro1:r2",
+              "text": "¿Hay una baño?"
+            },
+            {
+              "responseId": "es:lesson-06:session-11:intro1:r3",
+              "text": "¿Tengo un baño?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-11:intro1:r1",
+              "text": "¿Hay un baño?"
+            },
+            {
+              "responseId": "es:lesson-06:session-11:intro1:r2",
+              "text": "¿Hay una baño?"
+            },
+            {
+              "responseId": "es:lesson-06:session-11:intro1:r3",
+              "text": "¿Tengo un baño?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «Есть туалет?». Начните с ¿Hay, используйте un baño.",
+          "uk": "Запитайте «Є туалет?». Почніть з ¿Hay, використайте un baño."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-06:session-11:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Уточнить «здесь»",
+        "uk": "Уточнити «тут»"
+      },
+      "bodyByLocale": {
+        "ru": "Вы обращаетесь к сотруднику в незнакомом здании. Спросите `¿Hay un baño aquí?` — «Здесь есть туалет?» Соберите `¿Hay` + `un baño` + `aquí?`. Aquí уточняет, что вас интересует это место. В выбранной сборке ставим aquí в конец вопроса.",
+        "uk": "Ви звертаєтеся до працівника в незнайомій будівлі. Запитайте `¿Hay un baño aquí?` — «Тут є туалет?» Складіть `¿Hay` + `un baño` + `aquí?`. Aquí уточнює, що вас цікавить це місце. У вибраній збірці ставимо aquí в кінець запитання."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-11:intro2:q",
+        "promptByLocale": {
+          "ru": "Спросите «Здесь есть туалет?». Начните с ¿Hay, используйте un baño, место поставьте в конце.",
+          "uk": "Запитайте «Тут є туалет?». Почніть з ¿Hay, використайте un baño, місце поставте в кінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-11:intro2:r1",
+              "text": "¿Hay un baño aquí?"
+            },
+            {
+              "responseId": "es:lesson-06:session-11:intro2:r2",
+              "text": "¿Hay un baño allí?"
+            },
+            {
+              "responseId": "es:lesson-06:session-11:intro2:r3",
+              "text": "¿Hay una baño aquí?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-11:intro2:r1",
+              "text": "¿Hay un baño aquí?"
+            },
+            {
+              "responseId": "es:lesson-06:session-11:intro2:r2",
+              "text": "¿Hay un baño allí?"
+            },
+            {
+              "responseId": "es:lesson-06:session-11:intro2:r3",
+              "text": "¿Hay una baño aquí?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «Здесь есть туалет?». Начните с ¿Hay, используйте un baño, место поставьте в конце.",
+          "uk": "Запитайте «Тут є туалет?». Почніть з ¿Hay, використайте un baño, місце поставте в кінці."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-06:session-11:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Спросить о стуле",
+        "uk": "Запитати про стілець"
+      },
+      "bodyByLocale": {
+        "ru": "Теперь другая ситуация: вы пришли на встречу и ищете, где сесть. Спросите `¿Hay una silla aquí?` — «Здесь есть стул?» Соберите `¿Hay` + `una silla` + `aquí?`. Вопрос строится так же, но перед silla нужен артикль una. Hay от замены слова не меняется.",
+        "uk": "Тепер інша ситуація: ви прийшли на зустріч і шукаєте, де сісти. Запитайте `¿Hay una silla aquí?` — «Тут є стілець?» Складіть `¿Hay` + `una silla` + `aquí?`. Запитання будується так само, але перед silla потрібен артикль una. Hay від заміни слова не змінюється."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-11:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите «Здесь есть стул?». Начните с ¿Hay, место поставьте в конце.",
+          "uk": "Запитайте «Тут є стілець?». Почніть з ¿Hay, місце поставте в кінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-11:intro3:r1",
+              "text": "¿Hay una silla aquí?"
+            },
+            {
+              "responseId": "es:lesson-06:session-11:intro3:r2",
+              "text": "¿Hay un silla aquí?"
+            },
+            {
+              "responseId": "es:lesson-06:session-11:intro3:r3",
+              "text": "¿Hay una silla allí?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-11:intro3:r1",
+              "text": "¿Hay una silla aquí?"
+            },
+            {
+              "responseId": "es:lesson-06:session-11:intro3:r2",
+              "text": "¿Hay un silla aquí?"
+            },
+            {
+              "responseId": "es:lesson-06:session-11:intro3:r3",
+              "text": "¿Hay una silla allí?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «Здесь есть стул?». Начните с ¿Hay, место поставьте в конце.",
+          "uk": "Запитайте «Тут є стілець?». Почніть з ¿Hay, місце поставте в кінці."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d4ebef8dd338256f61cdc1c547d9910e5169bc3485e1d5d08179ab5e6650b860"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-06:session-10",
+  "learningOutcomeByLocale": {
+    "ru": "после no hay назвать отсутствующие предметы во множественном числе.",
+    "uk": "після no hay назвати відсутні предмети у множині."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-06:session-10:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сообщить об отсутствии стульев",
+        "uk": "Повідомити про відсутність стільців"
+      },
+      "bodyByLocale": {
+        "ru": "Комната пустая, а гостям нужно где-то сесть. Скажите `No hay sillas` — «Стульев нет». Соберите `No` + `hay` + `sillas`. Здесь sillas называет предметы вообще, без артикля. No перед hay отрицает наличие. В таком сообщении не нужно пересчитывать пустые места: no hay уже говорит, что стульев не нашлось.",
+        "uk": "Кімната порожня, а гостям потрібно десь сісти. Скажіть `No hay sillas` — «Стільців немає». Складіть `No` + `hay` + `sillas`. Тут sillas називає предмети загалом, без артикля. No перед hay заперечує наявність. У такому повідомленні не потрібно перераховувати порожні місця: no hay уже говорить, що стільців не знайшлося."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-10:intro1:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Стульев нет» без артикля. Начните с No hay.",
+          "uk": "Повідомте «Стільців немає» без артикля. Почніть з No hay."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-10:intro1:r1",
+              "text": "No hay sillas."
+            },
+            {
+              "responseId": "es:lesson-06:session-10:intro1:r2",
+              "text": "Hay no sillas."
+            },
+            {
+              "responseId": "es:lesson-06:session-10:intro1:r3",
+              "text": "No hay una sillas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-10:intro1:r1",
+              "text": "No hay sillas."
+            },
+            {
+              "responseId": "es:lesson-06:session-10:intro1:r2",
+              "text": "Hay no sillas."
+            },
+            {
+              "responseId": "es:lesson-06:session-10:intro1:r3",
+              "text": "No hay una sillas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Стульев нет» без артикля. Начните с No hay.",
+          "uk": "Повідомте «Стільців немає» без артикля. Почніть з No hay."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-06:session-10:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Сообщить об отсутствии столов",
+        "uk": "Повідомити про відсутність столів"
+      },
+      "bodyByLocale": {
+        "ru": "В другой комнате вы ищете место для работы, но столов там нет. Скажите `No hay mesas` — «Столов нет». Соберите `No` + `hay` + `mesas`. Смените название предметов, сохранив no hay. В этой общей отрицательной фразе перед mesas артикль не нужен.",
+        "uk": "В іншій кімнаті ви шукаєте місце для роботи, але столів там немає. Скажіть `No hay mesas` — «Столів немає». Складіть `No` + `hay` + `mesas`. Змініть назву предметів, зберігши no hay. У цій загальній заперечній фразі перед mesas артикль не потрібен."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-10:intro2:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Столов нет» без артикля. Начните с No hay.",
+          "uk": "Повідомте «Столів немає» без артикля. Почніть з No hay."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-10:intro2:r1",
+              "text": "No hay mesas."
+            },
+            {
+              "responseId": "es:lesson-06:session-10:intro2:r2",
+              "text": "Hay no mesas."
+            },
+            {
+              "responseId": "es:lesson-06:session-10:intro2:r3",
+              "text": "No hay una mesas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-10:intro2:r1",
+              "text": "No hay mesas."
+            },
+            {
+              "responseId": "es:lesson-06:session-10:intro2:r2",
+              "text": "Hay no mesas."
+            },
+            {
+              "responseId": "es:lesson-06:session-10:intro2:r3",
+              "text": "No hay una mesas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Столов нет» без артикля. Начните с No hay.",
+          "uk": "Повідомте «Столів немає» без артикля. Почніть з No hay."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-06:session-10:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Уточнить, где нет книг",
+        "uk": "Уточнити, де немає книг"
+      },
+      "bodyByLocale": {
+        "ru": "Друг ищет чтение в комнате рядом с вами, но книг здесь нет. Скажите `No hay libros aquí` — «Здесь нет книг». Соберите `No hay` + `libros` + `aquí`. Добавьте aquí в конце, чтобы ограничить сообщение этим местом. В другой комнате книги вполне могут быть.",
+        "uk": "Друг шукає читання в кімнаті поруч із вами, але книг тут немає. Скажіть `No hay libros aquí` — «Тут немає книг». Складіть `No hay` + `libros` + `aquí`. Додайте aquí в кінці, щоб обмежити повідомлення цим місцем. В іншій кімнаті книги цілком можуть бути."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-10:intro3:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Здесь нет книг» без артикля. Начните с No hay, место поставьте в конце.",
+          "uk": "Повідомте «Тут немає книг» без артикля. Почніть з No hay, місце поставте в кінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-10:intro3:r1",
+              "text": "No hay libros aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-10:intro3:r2",
+              "text": "Hay no libros aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-10:intro3:r3",
+              "text": "No hay un libros aquí."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-10:intro3:r1",
+              "text": "No hay libros aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-10:intro3:r2",
+              "text": "Hay no libros aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-10:intro3:r3",
+              "text": "No hay un libros aquí."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Здесь нет книг» без артикля. Начните с No hay, место поставьте в конце.",
+          "uk": "Повідомте «Тут немає книг» без артикля. Почніть з No hay, місце поставте в кінці."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ae370ae1dd2f34c6d4f61af6961de20506a43cd8cace71d6cf0e2f0ee35e9d82"
+}

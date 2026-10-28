@@ -1,0 +1,67 @@
+[
+  {
+    "interactionId": "es:lesson-06:session-11:i01",
+    "correctText": "baño",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-11:i02",
+    "correctText": "baño",
+    "correctResponseId": "es:lesson-06:session-11:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-11:i03",
+    "correctText": "baño",
+    "correctResponseId": "es:lesson-06:session-11:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-11:i04",
+    "correctText": "¿Hay un baño?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-11:i05",
+    "correctText": "un",
+    "correctResponseId": "es:lesson-06:session-11:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-11:i06",
+    "correctText": "¿Hay un baño aquí?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-11:i07",
+    "correctText": "¿Hay una silla aquí?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-11:i08",
+    "correctText": "¿Hay un baño?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-11:i09",
+    "correctText": "aquí",
+    "correctResponseId": "es:lesson-06:session-11:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-11:i10",
+    "correctText": "¿Hay un baño?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-11:i11",
+    "correctText": "¿Hay un baño aquí?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-11:i12",
+    "correctText": "¿Hay una silla aquí?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-11:i13",
+    "correctText": "¿Hay una mesa aquí?",
+    "correctResponseId": null
+  }
+]

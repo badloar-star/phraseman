@@ -1591,7 +1591,7 @@ export default function FlashcardsBlitzSession() {
                   dataId={`flashcard_${question.card.id}`}
                   dataText={`EN: ${question.card.en}\nRU: ${question.card.translation}`}
                   variant="icon-flag"
-                  accessibilityLabel={triLang(lang, { ru: 'Сообщить об ошибке в карточке', uk: 'Повідомити про помилку в картці', en: 'Report an error in the card', es: 'Informar de un error en la tarjeta', 'pt-BR': 'Reportar um erro no cartão', vi: 'Báo lỗi trong thẻ', id: 'Laporkan kesalahan di kartu', tr: 'Karttaki hatayı bildir', pl: 'Zgłoś błąd w fiszce' })}
+                  accessibilityLabel={triLang(lang, { ru: 'Сообщить об ошибке в карточке', uk: 'Повідомити про помилку в картці', en: 'Report an error in the card', es: 'Informar de un error en la tarjeta', 'pt-BR': 'Relatar erro no cartão', vi: 'Báo lỗi trong thẻ', id: 'Laporkan kesalahan di kartu', tr: 'Karttaki hatayı bildir', pl: 'Zgłoś błąd w karcie' })}
                   testID="fc-blitz-report"
                   style={{ position: 'absolute', top: 6, right: 6 }}
                   onOpenChange={onReportOpenChange}

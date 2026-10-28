@@ -4,8 +4,9 @@
 // (он пропускает Главную и Learning V2 по прежним запретам), здесь смотрим ВСЁ, что видит человек, и сортируем по заметности:
 // Главная → занятие → Пик → Plus → остальное. Только чтение кода; ничего не правит.
 // Колонка «чей модуль» — по последнему коммиту в файле (область из заголовка коммита: fix(spire), [HOME-SCENE] …).
-import { readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs';
-import { join, relative, sep } from 'node:path';
+import { writeFileSync } from 'node:fs';
+import { join } from 'node:path';
+import { scanColorLiterals } from './color_literal_scan.mjs';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
@@ -13,22 +14,8 @@ const ROOT = fileURLToPath(new URL('..', import.meta.url));
 // зачем (Моменты 25.10: прогон для сверки перезаписал отчёт с ручными разделами): по умолчанию пишем сырую таблицу в отдельный файл,
 // а docs/work/color-literal-census-2026-10-25.md с ручной сводкой правится только руками
 const OUT = process.argv[2] ?? '.codex-tmp/color-literal-census.raw.md';
-const DIRS = ['app', 'components', 'modules'];
+const scan = scanColorLiterals(ROOT);
 
-// не экран: токены и палитры тем (источник цветов), dev-витрины, тесты, админка, контент-данные
-const SKIP = [
-  /(^|\/)dev\//, /dev_hub/i, /DevHub/, /motion_showcase/, /_preview\.tsx?$/, /_smoke\.tsx?$/, /learning-v2-lab\//, /DevBotsSheet/,
-  /\.test\./, /\.generated\./, /^app\/v2_kit_preview/, /admin/i, /\/__tests__\//,
-  /learning-v2\/content\//, /^modules\/learning-v2\/(content|factory)/, /_authoring_/,
-  /^app\/(lesson_data|idioms_data|theory_content|lesson_intro)/,
-];
-// файлы, которые САМИ являются токенами/палитрами — их литералы и есть тема
-const TOKEN_FILE = /(tokens?|palette|Palette|_colors?|Colors?|theme_|Theme(Context|Palette)|glassTone|plateAlpha|ink\b|_ink\.ts$|InkTokens)/;
-
-const NAMED = 'white|black|red|green|blue|yellow|orange|gray|grey|purple|pink|gold|silver|cyan|magenta|navy|teal';
-const reHex = /(['"`])#(?:[0-9A-Fa-f]{8}|[0-9A-Fa-f]{6}|[0-9A-Fa-f]{3,4})\1/g;
-const reRgb = /rgba?\(\s*\d+\s*,\s*\d+\s*,\s*\d+(?:\s*,\s*[\d.]+)?\s*\)/g;
-const reNamed = new RegExp(`(?:[cC]olor|[fF]ill|[sS]troke|tintColor|shadowColor)\\s*[:=]\\s*\\{?\\s*['"](${NAMED})['"]`, 'g');
 
 const AREAS = [
   ['1 · Главная', /^components\/home\/|^app\/\(tabs\)\/home\.tsx$|^app\/home_/],
@@ -42,15 +29,6 @@ const AREAS = [
 ];
 const areaOf = (f) => (AREAS.find(([, re]) => re.test(f)) ?? ['9 · Прочее'])[0];
 
-function walk(dir, out) {
-  for (const name of readdirSync(dir)) {
-    if (name === 'node_modules') continue;
-    const p = join(dir, name);
-    if (statSync(p).isDirectory()) walk(p, out);
-    else if (/\.(tsx|ts)$/.test(name)) out.push(p);
-  }
-  return out;
-}
 
 const rgbaOf = (c) => { const m = /rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)(?:\s*,\s*([\d.]+))?/.exec(c); return m ? { r: +m[1], g: +m[2], b: +m[3], a: m[4] === undefined ? 1 : +m[4] } : null; };
 const hexOf = (c) => {
@@ -101,33 +79,8 @@ function ownerOf(file) {
   return v;
 }
 
-const rows = [];
-let filesScanned = 0, exemptLines = 0;
-for (const dir of DIRS) for (const abs of walk(join(ROOT, dir), [])) {
-  const file = relative(ROOT, abs).split(sep).join('/');
-  if (SKIP.some((re) => re.test(file))) continue;
-  const base = file.split('/').pop();
-  if (TOKEN_FILE.test(base)) continue;
-  filesScanned++;
-  const lines = readFileSync(abs, 'utf8').replace(/\r\n/g, '\n').split('\n');
-  let inBlock = false;
-  lines.forEach((l, i) => {
-    const t = l.trim();
-    if (inBlock) { if (t.includes('*/')) inBlock = false; return; }
-    if (t.startsWith('/*') && !t.includes('*/')) { inBlock = true; return; }
-    if (t.startsWith('//') || t.startsWith('*') || t.startsWith('/*')) return;
-    if (/theme-exempt:\s*\S/.test(l)) { if (reHex.test(l) || reRgb.test(l)) exemptLines++; reHex.lastIndex = 0; reRgb.lastIndex = 0; return; }
-    if (/console\.(log|warn|error)/.test(l)) return; // цвет в журнале — не на экране
-    const code = l.replace(/\/\/.*$/, '');
-    for (const re of [reHex, reRgb, reNamed]) {
-      re.lastIndex = 0; let m;
-      while ((m = re.exec(code))) {
-        const color = (re === reNamed ? m[1] : m[0]).replace(/^['"`]|['"`]$/g, '');
-        rows.push({ area: areaOf(file), file, line: i + 1, color, role: roleOf(t), token: tokenFor(color, t, file), text: t.slice(0, 90) });
-      }
-    }
-  });
-}
+const rows = scan.rows.map((r) => ({ area: areaOf(r.file), file: r.file, line: r.line, color: r.color, role: roleOf(r.text), token: tokenFor(r.color, r.text, r.file), text: r.text.slice(0, 90) }));
+const filesScanned = scan.filesScanned, exemptLines = scan.exemptLines;
 
 const byArea = {};
 for (const r of rows) byArea[r.area] = (byArea[r.area] ?? 0) + 1;

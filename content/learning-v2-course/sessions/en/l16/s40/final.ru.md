@@ -113,7 +113,7 @@ I ___ a non-stick pan. → **am going to buy** · am buying · be
 <!-- interaction_id: en:lesson-16:session-40:word:foldable; family: word_card -->
 > **foldable** — складной.
 
-**14 · Вы согласовали с продавцом получение складного стола на завтра. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Мы забираем складной стол завтра».**
+**14 · Вы договорились с продавцом, что заберёте складной стол завтра. Передайте договорённость через Present Continuous. Скажите: «Мы забираем складной стол завтра».**
 <!-- interaction_id: en:lesson-16:session-40:i10; family: phrase_builder -->
 Плитки: `tomorrow` `table` `foldable` `a` `collecting` `are` `We` → **We are collecting a foldable table tomorrow.**
 
@@ -123,7 +123,7 @@ I ___ a non-stick pan. → **am going to buy** · am buying · be
 - We are going to collect a foldable table tomorrow. — *В записи звучит We are collecting a foldable table tomorrow.*
 - We is collecting a foldable table tomorrow. — *В записи звучит We are collecting a foldable table tomorrow.*
 
-**16 · Вы согласовали с продавцом получение складного стола на завтра. Передайте подтверждённую договорённость через Present Continuous.**
+**16 · Вы договорились с продавцом, что заберёте складной стол завтра. Передайте договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-16:session-40:i12; family: context_gap_grammar -->
 We ___ a foldable table tomorrow. → **are collecting** · are going to collect · be
 - are going to collect — *Форма возможна, но здесь нужна указанная. Передайте подтверждённую договорённость через Present Continuous.*

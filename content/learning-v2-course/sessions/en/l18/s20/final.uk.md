@@ -63,7 +63,7 @@
 - This lunch menu is as cheaper as that one. — *У записі звучить This lunch menu is as cheap as that one.*
 - This lunch menu is as cheap than that one. — *У записі звучить This lunch menu is as cheap as that one.*
 
-**4 · Висловіть однакову якість.**
+**4 · Скажіть, що вони однакові.**
 <!-- interaction_id: en:lesson-18:session-20:i03; family: context_gap_grammar -->
 This lunch menu is ___ that one. → **as cheap as** · as cheaper as · as cheap than
 - as cheaper as — *Потрібна звичайна форма cheap.*
@@ -83,7 +83,7 @@ This lunch menu is ___ that one. → **as cheap as** · as cheaper as · as chea
 - The vegetarian option is as tastier as the chicken. — *У записі звучить The vegetarian option is as tasty as the chicken.*
 - The vegetarian option is as tasty than the chicken. — *У записі звучить The vegetarian option is as tasty as the chicken.*
 
-**8 · Висловіть однакову якість.**
+**8 · Скажіть, що вони однакові.**
 <!-- interaction_id: en:lesson-18:session-20:i06; family: context_gap_grammar -->
 The vegetarian option is ___ the chicken. → **as tasty as** · as tastier as · as tasty than
 - as tastier as — *Потрібна звичайна форма tasty.*
@@ -103,7 +103,7 @@ The vegetarian option is ___ the chicken. → **as tasty as** · as tastier as �
 - The daily special is as fresher as the salad. — *У записі звучить The daily special is as fresh as the salad.*
 - The daily special is as fresh than the salad. — *У записі звучить The daily special is as fresh as the salad.*
 
-**12 · Висловіть однакову якість.**
+**12 · Скажіть, що вони однакові.**
 <!-- interaction_id: en:lesson-18:session-20:i09; family: context_gap_grammar -->
 The daily special is ___ the salad. → **as fresh as** · as fresher as · as fresh than
 - as fresher as — *Потрібна звичайна форма fresh.*
@@ -123,7 +123,7 @@ The daily special is ___ the salad. → **as fresh as** · as fresher as · as f
 - This takeaway meal is as hotter as yours. — *У записі звучить This takeaway meal is as hot as yours.*
 - This takeaway meal is as hot than yours. — *У записі звучить This takeaway meal is as hot as yours.*
 
-**16 · Висловіть однакову якість.**
+**16 · Скажіть, що вони однакові.**
 <!-- interaction_id: en:lesson-18:session-20:i12; family: context_gap_grammar -->
 This takeaway meal is ___ yours. → **as hot as** · as hotter as · as hot than
 - as hotter as — *Потрібна звичайна форма hot.*

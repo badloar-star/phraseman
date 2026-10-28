@@ -63,7 +63,7 @@
 - This electric kettle is as faster as ours. — *В записи звучит This electric kettle is as fast as ours.*
 - This electric kettle is as fast than ours. — *В записи звучит This electric kettle is as fast as ours.*
 
-**4 · Выразите одинаковое качество.**
+**4 · Скажите, что они одинаковые.**
 <!-- interaction_id: en:lesson-18:session-22:i03; family: context_gap_grammar -->
 This electric kettle is ___ ours. → **as fast as** · as faster as · as fast than
 - as faster as — *Нужна обычная форма fast.*
@@ -83,7 +83,7 @@ This electric kettle is ___ ours. → **as fast as** · as faster as · as fast 
 - This electric oven is as larger as ours. — *В записи звучит This electric oven is as large as ours.*
 - This electric oven is as large than ours. — *В записи звучит This electric oven is as large as ours.*
 
-**8 · Выразите одинаковое качество.**
+**8 · Скажите, что они одинаковые.**
 <!-- interaction_id: en:lesson-18:session-22:i06; family: context_gap_grammar -->
 This electric oven is ___ ours. → **as large as** · as larger as · as large than
 - as larger as — *Нужна обычная форма large.*
@@ -103,7 +103,7 @@ This electric oven is ___ ours. → **as large as** · as larger as · as large 
 - This gas cooker is as wider as ours. — *В записи звучит This gas cooker is as wide as ours.*
 - This gas cooker is as wide than ours. — *В записи звучит This gas cooker is as wide as ours.*
 
-**12 · Выразите одинаковое качество.**
+**12 · Скажите, что они одинаковые.**
 <!-- interaction_id: en:lesson-18:session-22:i09; family: context_gap_grammar -->
 This gas cooker is ___ ours. → **as wide as** · as wider as · as wide than
 - as wider as — *Нужна обычная форма wide.*
@@ -123,7 +123,7 @@ This gas cooker is ___ ours. → **as wide as** · as wider as · as wide than
 - This electric hob is as cheaper as that one. — *В записи звучит This electric hob is as cheap as that one.*
 - This electric hob is as cheap than that one. — *В записи звучит This electric hob is as cheap as that one.*
 
-**16 · Выразите одинаковое качество.**
+**16 · Скажите, что они одинаковые.**
 <!-- interaction_id: en:lesson-18:session-22:i12; family: context_gap_grammar -->
 This electric hob is ___ that one. → **as cheap as** · as cheaper as · as cheap than
 - as cheaper as — *Нужна обычная форма cheap.*

@@ -63,7 +63,7 @@
 - These reading glasses are as lighter as mine. — *В записи звучит These reading glasses are as light as mine.*
 - These reading glasses are as light than mine. — *В записи звучит These reading glasses are as light as mine.*
 
-**4 · Выразите одинаковое качество.**
+**4 · Скажите, что они одинаковые.**
 <!-- interaction_id: en:lesson-18:session-19:i03; family: context_gap_grammar -->
 These reading glasses are ___ mine. → **as light as** · as lighter as · as light than
 - as lighter as — *Нужна обычная форма light.*
@@ -83,7 +83,7 @@ These reading glasses are ___ mine. → **as light as** · as lighter as · as l
 - These contact lenses are as cheaper as mine. — *В записи звучит These contact lenses are as cheap as mine.*
 - These contact lenses are as cheap than mine. — *В записи звучит These contact lenses are as cheap as mine.*
 
-**8 · Выразите одинаковое качество.**
+**8 · Скажите, что они одинаковые.**
 <!-- interaction_id: en:lesson-18:session-19:i06; family: context_gap_grammar -->
 These contact lenses are ___ mine. → **as cheap as** · as cheaper as · as cheap than
 - as cheaper as — *Нужна обычная форма cheap.*
@@ -103,7 +103,7 @@ These contact lenses are ___ mine. → **as cheap as** · as cheaper as · as ch
 - These eye drops are as more expensive as those ones. — *В записи звучит These eye drops are as expensive as those ones.*
 - These eye drops are as expensive than those ones. — *В записи звучит These eye drops are as expensive as those ones.*
 
-**12 · Выразите одинаковое качество.**
+**12 · Скажите, что они одинаковые.**
 <!-- interaction_id: en:lesson-18:session-19:i09; family: context_gap_grammar -->
 These eye drops are ___ those ones. → **as expensive as** · as more expensive as · as expensive than
 - as more expensive as — *Нужна обычная форма expensive.*
@@ -123,7 +123,7 @@ These eye drops are ___ those ones. → **as expensive as** · as more expensive
 - This glasses case is as softer as mine. — *В записи звучит This glasses case is as soft as mine.*
 - This glasses case is as soft than mine. — *В записи звучит This glasses case is as soft as mine.*
 
-**16 · Выразите одинаковое качество.**
+**16 · Скажите, что они одинаковые.**
 <!-- interaction_id: en:lesson-18:session-19:i12; family: context_gap_grammar -->
 This glasses case is ___ mine. → **as soft as** · as softer as · as soft than
 - as softer as — *Нужна обычная форма soft.*

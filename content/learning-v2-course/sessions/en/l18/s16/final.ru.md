@@ -63,7 +63,7 @@
 - We booked earliest home visit. — *В записи звучит We booked the earliest home visit.*
 - We booked the earlier home visit. — *В записи звучит We booked the earliest home visit.*
 
-**4 · Выберите значение «самый» в этой группе.**
+**4 · Выберите, как сказать «самый».**
 <!-- interaction_id: en:lesson-18:session-16:i03; family: context_gap_grammar -->
 We booked ___ home visit. → **the earliest** · earliest · the earlier
 - earliest — *В этой конструкции нужно the.*
@@ -83,7 +83,7 @@ We booked ___ home visit. → **the earliest** · earliest · the earlier
 - This phone appointment is shortest. — *В записи звучит This phone appointment is the shortest.*
 - This phone appointment is the shorter. — *В записи звучит This phone appointment is the shortest.*
 
-**8 · Выберите значение «самый» в этой группе.**
+**8 · Выберите, как сказать «самый».**
 <!-- interaction_id: en:lesson-18:session-16:i06; family: context_gap_grammar -->
 This phone appointment is ___. → **the shortest** · shortest · the shorter
 - shortest — *В этой конструкции нужно the.*
@@ -103,7 +103,7 @@ This phone appointment is ___. → **the shortest** · shortest · the shorter
 - We booked latest dental appointment. — *В записи звучит We booked the latest dental appointment.*
 - We booked the later dental appointment. — *В записи звучит We booked the latest dental appointment.*
 
-**12 · Выберите значение «самый» в этой группе.**
+**12 · Выберите, как сказать «самый».**
 <!-- interaction_id: en:lesson-18:session-16:i09; family: context_gap_grammar -->
 We booked ___ dental appointment. → **the latest** · latest · the later
 - latest — *В этой конструкции нужно the.*
@@ -123,7 +123,7 @@ We booked ___ dental appointment. → **the latest** · latest · the later
 - This is earliest appointment time. — *В записи звучит This is the earliest appointment time.*
 - This is the earlier appointment time. — *В записи звучит This is the earliest appointment time.*
 
-**16 · Выберите значение «самый» в этой группе.**
+**16 · Выберите, как сказать «самый».**
 <!-- interaction_id: en:lesson-18:session-16:i12; family: context_gap_grammar -->
 This is ___ appointment time. → **the earliest** · earliest · the earlier
 - earliest — *В этой конструкции нужно the.*

@@ -63,7 +63,7 @@
 - We booked earliest home visit. — *У записі звучить We booked the earliest home visit.*
 - We booked the earlier home visit. — *У записі звучить We booked the earliest home visit.*
 
-**4 · Виберіть значення «най-» у цій групі.**
+**4 · Виберіть, як сказати «най-».**
 <!-- interaction_id: en:lesson-18:session-16:i03; family: context_gap_grammar -->
 We booked ___ home visit. → **the earliest** · earliest · the earlier
 - earliest — *У цій конструкції потрібне the.*
@@ -83,7 +83,7 @@ We booked ___ home visit. → **the earliest** · earliest · the earlier
 - This phone appointment is shortest. — *У записі звучить This phone appointment is the shortest.*
 - This phone appointment is the shorter. — *У записі звучить This phone appointment is the shortest.*
 
-**8 · Виберіть значення «най-» у цій групі.**
+**8 · Виберіть, як сказати «най-».**
 <!-- interaction_id: en:lesson-18:session-16:i06; family: context_gap_grammar -->
 This phone appointment is ___. → **the shortest** · shortest · the shorter
 - shortest — *У цій конструкції потрібне the.*
@@ -103,7 +103,7 @@ This phone appointment is ___. → **the shortest** · shortest · the shorter
 - We booked latest dental appointment. — *У записі звучить We booked the latest dental appointment.*
 - We booked the later dental appointment. — *У записі звучить We booked the latest dental appointment.*
 
-**12 · Виберіть значення «най-» у цій групі.**
+**12 · Виберіть, як сказати «най-».**
 <!-- interaction_id: en:lesson-18:session-16:i09; family: context_gap_grammar -->
 We booked ___ dental appointment. → **the latest** · latest · the later
 - latest — *У цій конструкції потрібне the.*
@@ -123,7 +123,7 @@ We booked ___ dental appointment. → **the latest** · latest · the later
 - This is earliest appointment time. — *У записі звучить This is the earliest appointment time.*
 - This is the earlier appointment time. — *У записі звучить This is the earliest appointment time.*
 
-**16 · Виберіть значення «най-» у цій групі.**
+**16 · Виберіть, як сказати «най-».**
 <!-- interaction_id: en:lesson-18:session-16:i12; family: context_gap_grammar -->
 This is ___ appointment time. → **the earliest** · earliest · the earlier
 - earliest — *У цій конструкції потрібне the.*

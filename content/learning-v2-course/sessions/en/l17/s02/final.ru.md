@@ -63,7 +63,7 @@
 - This is an shallot. — *В записи звучит This is a shallot.*
 - This is shallot. — *В записи звучит This is a shallot.*
 
-**4 · Выберите форму для указанного количества или общего названия.**
+**4 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-02:i03; family: context_gap_grammar -->
 This is ___ shallot. → **a** · an · the two
 - an — *Shallot начинается с согласного звука: a shallot.*
@@ -83,7 +83,7 @@ This is ___ shallot. → **a** · an · the two
 - There are two peppercorn in the bowl. — *В записи звучит There are two peppercorns in the bowl.*
 - There are a two peppercorns in the bowl. — *В записи звучит There are two peppercorns in the bowl.*
 
-**8 · Выберите форму для указанного количества или общего названия.**
+**8 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-02:i06; family: context_gap_grammar -->
 There are two ___ in the bowl. → **peppercorns** · peppercorn · a peppercorn
 - peppercorn — *После two нужно множественное peppercorns.*
@@ -103,7 +103,7 @@ There are two ___ in the bowl. → **peppercorns** · peppercorn · a peppercorn
 - This bulgur are dry. — *В записи звучит This bulgur is dry.*
 - These bulgurs are dry. — *В записи звучит This bulgur is dry.*
 
-**12 · Выберите форму для указанного количества или общего названия.**
+**12 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-02:i09; family: context_gap_grammar -->
 This bulgur ___ dry. → **is** · are · am
 - are — *Bulgur как название крупы — неисчисляемое слово: is.*
@@ -123,7 +123,7 @@ This bulgur ___ dry. → **is** · are · am
 - We need a barley. — *В записи звучит We need barley.*
 - We need barleys. — *В записи звучит We need barley.*
 
-**16 · Выберите форму для указанного количества или общего названия.**
+**16 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-02:i12; family: context_gap_grammar -->
 We need ___. → **barley** · a barley · barleys
 - a barley — *Barley как название зерна — без a и без множественного -s.*

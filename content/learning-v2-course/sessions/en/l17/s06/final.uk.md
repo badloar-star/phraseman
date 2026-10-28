@@ -63,7 +63,7 @@
 - This is a errand. — *У записі звучить This is an errand.*
 - This is errand. — *У записі звучить This is an errand.*
 
-**4 · Виберіть форму для вказаної кількості або загальної назви.**
+**4 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-06:i03; family: context_gap_grammar -->
 This is ___ errand. → **an** · a · the two
 - a — *Errand починається з голосного звука: an errand.*
@@ -83,7 +83,7 @@ This is ___ errand. → **an** · a · the two
 - There are two replacement in the shop. — *У записі звучить There are two replacements in the shop.*
 - There are a two replacements in the shop. — *У записі звучить There are two replacements in the shop.*
 
-**8 · Виберіть форму для вказаної кількості або загальної назви.**
+**8 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-06:i06; family: context_gap_grammar -->
 There are two ___ in the shop. → **replacements** · replacement · a replacement
 - replacement — *Після two потрібна множина replacements.*
@@ -103,7 +103,7 @@ There are two ___ in the shop. → **replacements** · replacement · a replacem
 - This housework are tiring. — *У записі звучить This housework is tiring.*
 - These houseworks are tiring. — *У записі звучить This housework is tiring.*
 
-**12 · Виберіть форму для вказаної кількості або загальної назви.**
+**12 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-06:i09; family: context_gap_grammar -->
 This housework ___ tiring. → **is** · are · am
 - are — *Housework — незлічуване слово: is. Окремі хатні справи можна порахувати, але загальна назва housework не має множинного -s.*
@@ -123,7 +123,7 @@ This housework ___ tiring. → **is** · are · am
 - We use a public transport. — *У записі звучить We use public transport.*
 - We use public transports. — *У записі звучить We use public transport.*
 
-**16 · Виберіть форму для вказаної кількості або загальної назви.**
+**16 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-06:i12; family: context_gap_grammar -->
 We use ___. → **public transport** · a public transport · public transports
 - a public transport — *Public transport — загальна незлічувана назва: без a. Окремий автобус можна порахувати, транспорт загалом — ні.*

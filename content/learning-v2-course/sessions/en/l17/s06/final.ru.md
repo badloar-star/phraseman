@@ -63,7 +63,7 @@
 - This is a errand. — *В записи звучит This is an errand.*
 - This is errand. — *В записи звучит This is an errand.*
 
-**4 · Выберите форму для указанного количества или общего названия.**
+**4 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-06:i03; family: context_gap_grammar -->
 This is ___ errand. → **an** · a · the two
 - a — *Errand начинается с гласного звука: an errand.*
@@ -83,7 +83,7 @@ This is ___ errand. → **an** · a · the two
 - There are two replacement in the shop. — *В записи звучит There are two replacements in the shop.*
 - There are a two replacements in the shop. — *В записи звучит There are two replacements in the shop.*
 
-**8 · Выберите форму для указанного количества или общего названия.**
+**8 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-06:i06; family: context_gap_grammar -->
 There are two ___ in the shop. → **replacements** · replacement · a replacement
 - replacement — *После two нужно множественное replacements.*
@@ -103,7 +103,7 @@ There are two ___ in the shop. → **replacements** · replacement · a replacem
 - This housework are tiring. — *В записи звучит This housework is tiring.*
 - These houseworks are tiring. — *В записи звучит This housework is tiring.*
 
-**12 · Выберите форму для указанного количества или общего названия.**
+**12 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-06:i09; family: context_gap_grammar -->
 This housework ___ tiring. → **is** · are · am
 - are — *Housework — неисчисляемое слово: is. Отдельные домашние дела можно посчитать, но у общего названия housework нет множественного -s.*
@@ -123,7 +123,7 @@ This housework ___ tiring. → **is** · are · am
 - We use a public transport. — *В записи звучит We use public transport.*
 - We use public transports. — *В записи звучит We use public transport.*
 
-**16 · Выберите форму для указанного количества или общего названия.**
+**16 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-06:i12; family: context_gap_grammar -->
 We use ___. → **public transport** · a public transport · public transports
 - a public transport — *Public transport — общее неисчисляемое название: без a. Отдельный автобус можно посчитать, транспорт в целом — нет.*

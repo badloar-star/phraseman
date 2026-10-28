@@ -113,7 +113,7 @@ I ___ a non-stick pan. → **am going to buy** · am buying · be
 <!-- interaction_id: en:lesson-16:session-40:word:foldable; family: word_card -->
 > **foldable** — складаний.
 
-**14 · Ви узгодили з продавцем отримання складаного столу на завтра. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Ми забираємо складаний стіл завтра».**
+**14 · Ви домовилися з продавцем, що заберете складаний стіл завтра. Передайте домовленість через Present Continuous. Скажіть: «Ми забираємо складаний стіл завтра».**
 <!-- interaction_id: en:lesson-16:session-40:i10; family: phrase_builder -->
 Плитки: `tomorrow` `table` `foldable` `a` `collecting` `are` `We` → **We are collecting a foldable table tomorrow.**
 
@@ -123,7 +123,7 @@ I ___ a non-stick pan. → **am going to buy** · am buying · be
 - We are going to collect a foldable table tomorrow. — *У записі звучить We are collecting a foldable table tomorrow.*
 - We is collecting a foldable table tomorrow. — *У записі звучить We are collecting a foldable table tomorrow.*
 
-**16 · Ви узгодили з продавцем отримання складаного столу на завтра. Передайте підтверджену домовленість через Present Continuous.**
+**16 · Ви домовилися з продавцем, що заберете складаний стіл завтра. Передайте домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-16:session-40:i12; family: context_gap_grammar -->
 We ___ a foldable table tomorrow. → **are collecting** · are going to collect · be
 - are going to collect — *Форма можлива, але тут потрібна вказана. Передайте підтверджену домовленість через Present Continuous.*

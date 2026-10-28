@@ -63,7 +63,7 @@
 - This dog food is as cheaper as ours. — *В записи звучит This dog food is as cheap as ours.*
 - This dog food is as cheap than ours. — *В записи звучит This dog food is as cheap as ours.*
 
-**4 · Выразите одинаковое качество.**
+**4 · Скажите, что они одинаковые.**
 <!-- interaction_id: en:lesson-18:session-21:i03; family: context_gap_grammar -->
 This dog food is ___ ours. → **as cheap as** · as cheaper as · as cheap than
 - as cheaper as — *Нужна обычная форма cheap.*
@@ -83,7 +83,7 @@ This dog food is ___ ours. → **as cheap as** · as cheaper as · as cheap than
 - This cat food is as fresher as yours. — *В записи звучит This cat food is as fresh as yours.*
 - This cat food is as fresh than yours. — *В записи звучит This cat food is as fresh as yours.*
 
-**8 · Выразите одинаковое качество.**
+**8 · Скажите, что они одинаковые.**
 <!-- interaction_id: en:lesson-18:session-21:i06; family: context_gap_grammar -->
 This cat food is ___ yours. → **as fresh as** · as fresher as · as fresh than
 - as fresher as — *Нужна обычная форма fresh.*
@@ -103,7 +103,7 @@ This cat food is ___ yours. → **as fresh as** · as fresher as · as fresh tha
 - This cat litter is as cheaper as that one. — *В записи звучит This cat litter is as cheap as that one.*
 - This cat litter is as cheap than that one. — *В записи звучит This cat litter is as cheap as that one.*
 
-**12 · Выразите одинаковое качество.**
+**12 · Скажите, что они одинаковые.**
 <!-- interaction_id: en:lesson-18:session-21:i09; family: context_gap_grammar -->
 This cat litter is ___ that one. → **as cheap as** · as cheaper as · as cheap than
 - as cheaper as — *Нужна обычная форма cheap.*
@@ -123,7 +123,7 @@ This cat litter is ___ that one. → **as cheap as** · as cheaper as · as chea
 - This litter tray is as wider as ours. — *В записи звучит This litter tray is as wide as ours.*
 - This litter tray is as wide than ours. — *В записи звучит This litter tray is as wide as ours.*
 
-**16 · Выразите одинаковое качество.**
+**16 · Скажите, что они одинаковые.**
 <!-- interaction_id: en:lesson-18:session-21:i12; family: context_gap_grammar -->
 This litter tray is ___ ours. → **as wide as** · as wider as · as wide than
 - as wider as — *Нужна обычная форма wide.*

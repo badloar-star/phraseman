@@ -63,7 +63,7 @@
 - This is an wrapper. — *У записі звучить This is a wrapper.*
 - This is wrapper. — *У записі звучить This is a wrapper.*
 
-**4 · Виберіть форму для вказаної кількості або загальної назви.**
+**4 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-05:i03; family: context_gap_grammar -->
 This is ___ wrapper. → **a** · an · the two
 - an — *Wrapper починається з приголосного звука: a wrapper; літера w не вимовляється.*
@@ -83,7 +83,7 @@ This is ___ wrapper. → **a** · an · the two
 - There are two cigarette end on the ground. — *У записі звучить There are two cigarette ends on the ground.*
 - There are a two cigarette ends on the ground. — *У записі звучить There are two cigarette ends on the ground.*
 
-**8 · Виберіть форму для вказаної кількості або загальної назви.**
+**8 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-05:i06; family: context_gap_grammar -->
 There are two ___ on the ground. → **cigarette ends** · cigarette end · a cigarette end
 - cigarette end — *Після two потрібна множина cigarette ends.*
@@ -103,7 +103,7 @@ There are two ___ on the ground. → **cigarette ends** · cigarette end · a ci
 - This litter are dangerous. — *У записі звучить This litter is dangerous.*
 - These litters are dangerous. — *У записі звучить This litter is dangerous.*
 
-**12 · Виберіть форму для вказаної кількості або загальної назви.**
+**12 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-05:i09; family: context_gap_grammar -->
 This litter ___ dangerous. → **is** · are · am
 - are — *Litter у значенні сміття — незлічуване слово: is.*
@@ -123,7 +123,7 @@ This litter ___ dangerous. → **is** · are · am
 - We are clearing a clutter. — *У записі звучить We are clearing clutter.*
 - We are clearing clutters. — *У записі звучить We are clearing clutter.*
 
-**16 · Виберіть форму для вказаної кількості або загальної назви.**
+**16 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-05:i12; family: context_gap_grammar -->
 We are clearing ___. → **clutter** · a clutter · clutters
 - a clutter — *Clutter як скупчення зайвих речей — без a та без множинного -s.*

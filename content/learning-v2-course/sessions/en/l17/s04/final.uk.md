@@ -63,7 +63,7 @@
 - She is an candidate. — *У записі звучить She is a candidate.*
 - She is candidate. — *У записі звучить She is a candidate.*
 
-**4 · Виберіть форму для вказаної кількості або загальної назви.**
+**4 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-04:i03; family: context_gap_grammar -->
 She is ___ candidate. → **a** · an · the two
 - an — *Candidate починається з приголосного звука: a candidate.*
@@ -83,7 +83,7 @@ She is ___ candidate. → **a** · an · the two
 - There are two vacancy in this shop. — *У записі звучить There are two vacancies in this shop.*
 - There are a two vacancies in this shop. — *У записі звучить There are two vacancies in this shop.*
 
-**8 · Виберіть форму для вказаної кількості або загальної назви.**
+**8 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-04:i06; family: context_gap_grammar -->
 There are two ___ in this shop. → **vacancies** · vacancy · a vacancy
 - vacancy — *У vacancy у множині y змінюється на ies: vacancies.*
@@ -103,7 +103,7 @@ There are two ___ in this shop. → **vacancies** · vacancy · a vacancy
 - This paperwork are important. — *У записі звучить This paperwork is important.*
 - These paperworks are important. — *У записі звучить This paperwork is important.*
 
-**12 · Виберіть форму для вказаної кількості або загальної назви.**
+**12 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-04:i09; family: context_gap_grammar -->
 This paperwork ___ important. → **is** · are · am
 - are — *Paperwork — незлічуване слово: is, не are.*
@@ -123,7 +123,7 @@ This paperwork ___ important. → **is** · are · am
 - We need a training. — *У записі звучить We need training.*
 - We need trainings. — *У записі звучить We need training.*
 
-**16 · Виберіть форму для вказаної кількості або загальної назви.**
+**16 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-04:i12; family: context_gap_grammar -->
 We need ___. → **training** · a training · trainings
 - a training — *Training у значенні навчання загалом — без a та без множинного -s.*

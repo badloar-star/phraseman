@@ -63,7 +63,7 @@
 - This local shop is nearest. — *В записи звучит This local shop is the nearest.*
 - This local shop is the nearer. — *В записи звучит This local shop is the nearest.*
 
-**4 · Выберите значение «самый» в этой группе.**
+**4 · Выберите, как сказать «самый».**
 <!-- interaction_id: en:lesson-18:session-10:i03; family: context_gap_grammar -->
 This local shop is ___. → **the nearest** · nearest · the nearer
 - nearest — *В этой конструкции нужно the.*
@@ -83,7 +83,7 @@ This local shop is ___. → **the nearest** · nearest · the nearer
 - This online shop is cheapest option. — *В записи звучит This online shop is the cheapest option.*
 - This online shop is the cheaper option. — *В записи звучит This online shop is the cheapest option.*
 
-**8 · Выберите значение «самый» в этой группе.**
+**8 · Выберите, как сказать «самый».**
 <!-- interaction_id: en:lesson-18:session-10:i06; family: context_gap_grammar -->
 This online shop is ___ option. → **the cheapest** · cheapest · the cheaper
 - cheapest — *В этой конструкции нужно the.*
@@ -103,7 +103,7 @@ This online shop is ___ option. → **the cheapest** · cheapest · the cheaper
 - This chain store is largest. — *В записи звучит This chain store is the largest.*
 - This chain store is the larger. — *В записи звучит This chain store is the largest.*
 
-**12 · Выберите значение «самый» в этой группе.**
+**12 · Выберите, как сказать «самый».**
 <!-- interaction_id: en:lesson-18:session-10:i09; family: context_gap_grammar -->
 This chain store is ___. → **the largest** · largest · the larger
 - largest — *В этой конструкции нужно the.*
@@ -123,7 +123,7 @@ This chain store is ___. → **the largest** · largest · the larger
 - This repair shop is oldest. — *В записи звучит This repair shop is the oldest.*
 - This repair shop is the older. — *В записи звучит This repair shop is the oldest.*
 
-**16 · Выберите значение «самый» в этой группе.**
+**16 · Выберите, как сказать «самый».**
 <!-- interaction_id: en:lesson-18:session-10:i12; family: context_gap_grammar -->
 This repair shop is ___. → **the oldest** · oldest · the older
 - oldest — *В этой конструкции нужно the.*

@@ -63,7 +63,7 @@
 - She is an candidate. — *В записи звучит She is a candidate.*
 - She is candidate. — *В записи звучит She is a candidate.*
 
-**4 · Выберите форму для указанного количества или общего названия.**
+**4 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-04:i03; family: context_gap_grammar -->
 She is ___ candidate. → **a** · an · the two
 - an — *Candidate начинается с согласного звука: a candidate.*
@@ -83,7 +83,7 @@ She is ___ candidate. → **a** · an · the two
 - There are two vacancy in this shop. — *В записи звучит There are two vacancies in this shop.*
 - There are a two vacancies in this shop. — *В записи звучит There are two vacancies in this shop.*
 
-**8 · Выберите форму для указанного количества или общего названия.**
+**8 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-04:i06; family: context_gap_grammar -->
 There are two ___ in this shop. → **vacancies** · vacancy · a vacancy
 - vacancy — *У vacancy во множественном числе y меняется на ies: vacancies.*
@@ -103,7 +103,7 @@ There are two ___ in this shop. → **vacancies** · vacancy · a vacancy
 - This paperwork are important. — *В записи звучит This paperwork is important.*
 - These paperworks are important. — *В записи звучит This paperwork is important.*
 
-**12 · Выберите форму для указанного количества или общего названия.**
+**12 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-04:i09; family: context_gap_grammar -->
 This paperwork ___ important. → **is** · are · am
 - are — *Paperwork — неисчисляемое слово: is, не are.*
@@ -123,7 +123,7 @@ This paperwork ___ important. → **is** · are · am
 - We need a training. — *В записи звучит We need training.*
 - We need trainings. — *В записи звучит We need training.*
 
-**16 · Выберите форму для указанного количества или общего названия.**
+**16 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-04:i12; family: context_gap_grammar -->
 We need ___. → **training** · a training · trainings
 - a training — *Training в значении обучения в целом — без a и без множественного -s.*

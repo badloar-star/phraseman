@@ -63,7 +63,7 @@
 - This front garden is smallest. — *В записи звучит This front garden is the smallest.*
 - This front garden is the smaller. — *В записи звучит This front garden is the smallest.*
 
-**4 · Выберите значение «самый» в этой группе.**
+**4 · Выберите, как сказать «самый».**
 <!-- interaction_id: en:lesson-18:session-11:i03; family: context_gap_grammar -->
 This front garden is ___. → **the smallest** · smallest · the smaller
 - smallest — *В этой конструкции нужно the.*
@@ -83,7 +83,7 @@ This front garden is ___. → **the smallest** · smallest · the smaller
 - This back garden is largest. — *В записи звучит This back garden is the largest.*
 - This back garden is the larger. — *В записи звучит This back garden is the largest.*
 
-**8 · Выберите значение «самый» в этой группе.**
+**8 · Выберите, как сказать «самый».**
 <!-- interaction_id: en:lesson-18:session-11:i06; family: context_gap_grammar -->
 This back garden is ___. → **the largest** · largest · the larger
 - largest — *В этой конструкции нужно the.*
@@ -103,7 +103,7 @@ This back garden is ___. → **the largest** · largest · the larger
 - This front gate is widest. — *В записи звучит This front gate is the widest.*
 - This front gate is the wider. — *В записи звучит This front gate is the widest.*
 
-**12 · Выберите значение «самый» в этой группе.**
+**12 · Выберите, как сказать «самый».**
 <!-- interaction_id: en:lesson-18:session-11:i09; family: context_gap_grammar -->
 This front gate is ___. → **the widest** · widest · the wider
 - widest — *В этой конструкции нужно the.*
@@ -123,7 +123,7 @@ This front gate is ___. → **the widest** · widest · the wider
 - This back gate is narrowest. — *В записи звучит This back gate is the narrowest.*
 - This back gate is the narrower. — *В записи звучит This back gate is the narrowest.*
 
-**16 · Выберите значение «самый» в этой группе.**
+**16 · Выберите, как сказать «самый».**
 <!-- interaction_id: en:lesson-18:session-11:i12; family: context_gap_grammar -->
 This back gate is ___. → **the narrowest** · narrowest · the narrower
 - narrowest — *В этой конструкции нужно the.*

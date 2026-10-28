@@ -63,7 +63,7 @@
 - The live music is such loud. — *В записи звучит The live music is so loud.*
 - The live music is much loud. — *В записи звучит The live music is so loud.*
 
-**4 · Подчеркните качество с so или such.**
+**4 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-36:i03; family: context_gap_grammar -->
 The live music is ___ loud. → **so** · such · much
 - such — *После пропуска прилагательное без существительного: so.*
@@ -83,7 +83,7 @@ The live music is ___ loud. → **so** · such · much
 - We are at so a great live concert. — *В записи звучит We are at such a great live concert.*
 - We are at much a great live concert. — *В записи звучит We are at such a great live concert.*
 
-**8 · Подчеркните качество с so или such.**
+**8 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-36:i06; family: context_gap_grammar -->
 We are at ___ a great live concert. → **such** · so · much
 - so — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.*
@@ -103,7 +103,7 @@ We are at ___ a great live concert. → **such** · so · much
 - The street performance is such funny. — *В записи звучит The street performance is so funny.*
 - The street performance is much funny. — *В записи звучит The street performance is so funny.*
 
-**12 · Подчеркните качество с so или such.**
+**12 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-36:i09; family: context_gap_grammar -->
 The street performance is ___ funny. → **so** · such · much
 - such — *После пропуска прилагательное без существительного: so.*
@@ -123,7 +123,7 @@ The street performance is ___ funny. → **so** · such · much
 - This is so a big music festival. — *В записи звучит This is such a big music festival.*
 - This is much a big music festival. — *В записи звучит This is such a big music festival.*
 
-**16 · Подчеркните качество с so или such.**
+**16 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-36:i12; family: context_gap_grammar -->
 This is ___ a big music festival. → **such** · so · much
 - so — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.*

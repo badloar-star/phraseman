@@ -63,7 +63,7 @@
 - This is an biography. — *У записі звучить This is a biography.*
 - This is biography. — *У записі звучить This is a biography.*
 
-**4 · Виберіть форму для вказаної кількості або загальної назви.**
+**4 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-03:i03; family: context_gap_grammar -->
 This is ___ biography. → **a** · an · the two
 - an — *Biography починається з приголосного звука: a biography.*
@@ -83,7 +83,7 @@ This is ___ biography. → **a** · an · the two
 - There are two autobiography on the shelf. — *У записі звучить There are two autobiographies on the shelf.*
 - There are a two autobiographies on the shelf. — *У записі звучить There are two autobiographies on the shelf.*
 
-**8 · Виберіть форму для вказаної кількості або загальної назви.**
+**8 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-03:i06; family: context_gap_grammar -->
 There are two ___ on the shelf. → **autobiographies** · autobiography · an autobiography
 - autobiography — *У autobiography у множині y змінюється на ies: autobiographies.*
@@ -103,7 +103,7 @@ There are two ___ on the shelf. → **autobiographies** · autobiography · an a
 - This fiction are interesting. — *У записі звучить This fiction is interesting.*
 - These fictions are interesting. — *У записі звучить This fiction is interesting.*
 
-**12 · Виберіть форму для вказаної кількості або загальної назви.**
+**12 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-03:i09; family: context_gap_grammar -->
 This fiction ___ interesting. → **is** · are · am
 - are — *Fiction як вид літератури — незлічуване слово: is.*
@@ -123,7 +123,7 @@ This fiction ___ interesting. → **is** · are · am
 - We need a non-fiction. — *У записі звучить We need non-fiction.*
 - We need non-fictions. — *У записі звучить We need non-fiction.*
 
-**16 · Виберіть форму для вказаної кількості або загальної назви.**
+**16 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-03:i12; family: context_gap_grammar -->
 We need ___. → **non-fiction** · a non-fiction · non-fictions
 - a non-fiction — *Non-fiction як вид літератури — без a та без множинного -s.*

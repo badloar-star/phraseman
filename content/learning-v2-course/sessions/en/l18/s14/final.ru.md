@@ -63,7 +63,7 @@
 - Standard delivery is slowest option here. — *В записи звучит Standard delivery is the slowest option here.*
 - Standard delivery is the slower option here. — *В записи звучит Standard delivery is the slowest option here.*
 
-**4 · Выберите значение «самый» в этой группе.**
+**4 · Выберите, как сказать «самый».**
 <!-- interaction_id: en:lesson-18:session-14:i03; family: context_gap_grammar -->
 Standard delivery is ___ option here. → **the slowest** · slowest · the slower
 - slowest — *В этой конструкции нужно the.*
@@ -83,7 +83,7 @@ Standard delivery is ___ option here. → **the slowest** · slowest · the slow
 - Express delivery is fastest option here. — *В записи звучит Express delivery is the fastest option here.*
 - Express delivery is the faster option here. — *В записи звучит Express delivery is the fastest option here.*
 
-**8 · Выберите значение «самый» в этой группе.**
+**8 · Выберите, как сказать «самый».**
 <!-- interaction_id: en:lesson-18:session-14:i06; family: context_gap_grammar -->
 Express delivery is ___ option here. → **the fastest** · fastest · the faster
 - fastest — *В этой конструкции нужно the.*
@@ -103,7 +103,7 @@ Express delivery is ___ option here. → **the fastest** · fastest · the faste
 - This shop has cheapest next-day delivery. — *В записи звучит This shop has the cheapest next-day delivery.*
 - This shop has the cheaper next-day delivery. — *В записи звучит This shop has the cheapest next-day delivery.*
 
-**12 · Выберите значение «самый» в этой группе.**
+**12 · Выберите, как сказать «самый».**
 <!-- interaction_id: en:lesson-18:session-14:i09; family: context_gap_grammar -->
 This shop has ___ next-day delivery. → **the cheapest** · cheapest · the cheaper
 - cheapest — *В этой конструкции нужно the.*
@@ -123,7 +123,7 @@ This shop has ___ next-day delivery. → **the cheapest** · cheapest · the che
 - Free collection is cheapest option here. — *В записи звучит Free collection is the cheapest option here.*
 - Free collection is the cheaper option here. — *В записи звучит Free collection is the cheapest option here.*
 
-**16 · Выберите значение «самый» в этой группе.**
+**16 · Выберите, как сказать «самый».**
 <!-- interaction_id: en:lesson-18:session-14:i12; family: context_gap_grammar -->
 Free collection is ___ option here. → **the cheapest** · cheapest · the cheaper
 - cheapest — *В этой конструкции нужно the.*

@@ -63,7 +63,7 @@
 - This is an biography. — *В записи звучит This is a biography.*
 - This is biography. — *В записи звучит This is a biography.*
 
-**4 · Выберите форму для указанного количества или общего названия.**
+**4 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-03:i03; family: context_gap_grammar -->
 This is ___ biography. → **a** · an · the two
 - an — *Biography начинается с согласного звука: a biography.*
@@ -83,7 +83,7 @@ This is ___ biography. → **a** · an · the two
 - There are two autobiography on the shelf. — *В записи звучит There are two autobiographies on the shelf.*
 - There are a two autobiographies on the shelf. — *В записи звучит There are two autobiographies on the shelf.*
 
-**8 · Выберите форму для указанного количества или общего названия.**
+**8 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-03:i06; family: context_gap_grammar -->
 There are two ___ on the shelf. → **autobiographies** · autobiography · an autobiography
 - autobiography — *У autobiography во множественном числе y меняется на ies: autobiographies.*
@@ -103,7 +103,7 @@ There are two ___ on the shelf. → **autobiographies** · autobiography · an a
 - This fiction are interesting. — *В записи звучит This fiction is interesting.*
 - These fictions are interesting. — *В записи звучит This fiction is interesting.*
 
-**12 · Выберите форму для указанного количества или общего названия.**
+**12 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-03:i09; family: context_gap_grammar -->
 This fiction ___ interesting. → **is** · are · am
 - are — *Fiction как вид литературы — неисчисляемое слово: is.*
@@ -123,7 +123,7 @@ This fiction ___ interesting. → **is** · are · am
 - We need a non-fiction. — *В записи звучит We need non-fiction.*
 - We need non-fictions. — *В записи звучит We need non-fiction.*
 
-**16 · Выберите форму для указанного количества или общего названия.**
+**16 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-03:i12; family: context_gap_grammar -->
 We need ___. → **non-fiction** · a non-fiction · non-fictions
 - a non-fiction — *Non-fiction как вид литературы — без a и без множественного -s.*

@@ -63,7 +63,7 @@
 - This is an bookend. — *В записи звучит This is a bookend.*
 - This is bookend. — *В записи звучит This is a bookend.*
 
-**4 · Выберите форму для указанного количества или общего названия.**
+**4 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-01:i03; family: context_gap_grammar -->
 This is ___ bookend. → **a** · an · the two
 - an — *Один предмет: перед согласным звуком нужен a.*
@@ -83,7 +83,7 @@ This is ___ bookend. → **a** · an · the two
 - There are two ottoman in the room. — *В записи звучит There are two ottomans in the room.*
 - There are a two ottomans in the room. — *В записи звучит There are two ottomans in the room.*
 
-**8 · Выберите форму для указанного количества или общего названия.**
+**8 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-01:i06; family: context_gap_grammar -->
 There are two ___ in the room. → **ottomans** · ottoman · an ottoman
 - ottoman — *После two нужно множественное число: ottomans.*
@@ -103,7 +103,7 @@ There are two ___ in the room. → **ottomans** · ottoman · an ottoman
 - This crockery are new. — *В записи звучит This crockery is new.*
 - These crockeries are new. — *В записи звучит This crockery is new.*
 
-**12 · Выберите форму для указанного количества или общего названия.**
+**12 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-01:i09; family: context_gap_grammar -->
 This crockery ___ new. → **is** · are · am
 - are — *Crockery — неисчисляемое слово; согласуем с is, не are.*
@@ -123,7 +123,7 @@ This crockery ___ new. → **is** · are · am
 - We need a bedding. — *В записи звучит We need bedding.*
 - We need beddings. — *В записи звучит We need bedding.*
 
-**16 · Выберите форму для указанного количества или общего названия.**
+**16 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-01:i12; family: context_gap_grammar -->
 We need ___. → **bedding** · a bedding · beddings
 - a bedding — *Bedding — неисчисляемое слово: без a и без окончания -s.*

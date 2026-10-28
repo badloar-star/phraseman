@@ -63,7 +63,7 @@
 - My close friend is such kind. — *У записі звучить My close friend is so kind.*
 - My close friend is much kind. — *У записі звучить My close friend is so kind.*
 
-**4 · Підкресліть якість із so або such.**
+**4 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-33:i03; family: context_gap_grammar -->
 My close friend is ___ kind. → **so** · such · much
 - such — *Після пропуску прикметник без іменника: so.*
@@ -83,7 +83,7 @@ My close friend is ___ kind. → **so** · such · much
 - Our mutual friend is so a helpful person. — *У записі звучить Our mutual friend is such a helpful person.*
 - Our mutual friend is much a helpful person. — *У записі звучить Our mutual friend is such a helpful person.*
 
-**8 · Підкресліть якість із so або such.**
+**8 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-33:i06; family: context_gap_grammar -->
 Our mutual friend is ___ a helpful person. → **such** · so · much
 - so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.*
@@ -103,7 +103,7 @@ Our mutual friend is ___ a helpful person. → **such** · so · much
 - My childhood friend is such funny. — *У записі звучить My childhood friend is so funny.*
 - My childhood friend is much funny. — *У записі звучить My childhood friend is so funny.*
 
-**12 · Підкресліть якість із so або such.**
+**12 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-33:i09; family: context_gap_grammar -->
 My childhood friend is ___ funny. → **so** · such · much
 - such — *Після пропуску прикметник без іменника: so.*
@@ -123,7 +123,7 @@ My childhood friend is ___ funny. → **so** · such · much
 - My next-door neighbour is so a kind person. — *У записі звучить My next-door neighbour is such a kind person.*
 - My next-door neighbour is much a kind person. — *У записі звучить My next-door neighbour is such a kind person.*
 
-**16 · Підкресліть якість із so або such.**
+**16 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-33:i12; family: context_gap_grammar -->
 My next-door neighbour is ___ a kind person. → **such** · so · much
 - so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.*

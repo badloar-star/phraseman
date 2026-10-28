@@ -63,7 +63,7 @@
 - This dining chair is lightest. — *У записі звучить This dining chair is the lightest.*
 - This dining chair is the lighter. — *У записі звучить This dining chair is the lightest.*
 
-**4 · Виберіть значення «най-» у цій групі.**
+**4 · Виберіть, як сказати «най-».**
 <!-- interaction_id: en:lesson-18:session-15:i03; family: context_gap_grammar -->
 This dining chair is ___. → **the lightest** · lightest · the lighter
 - lightest — *У цій конструкції потрібне the.*
@@ -83,7 +83,7 @@ This dining chair is ___. → **the lightest** · lightest · the lighter
 - This office chair is softest. — *У записі звучить This office chair is the softest.*
 - This office chair is the softer. — *У записі звучить This office chair is the softest.*
 
-**8 · Виберіть значення «най-» у цій групі.**
+**8 · Виберіть, як сказати «най-».**
 <!-- interaction_id: en:lesson-18:session-15:i06; family: context_gap_grammar -->
 This office chair is ___. → **the softest** · softest · the softer
 - softest — *У цій конструкції потрібне the.*
@@ -103,7 +103,7 @@ This office chair is ___. → **the softest** · softest · the softer
 - This kitchen table is smallest. — *У записі звучить This kitchen table is the smallest.*
 - This kitchen table is the smaller. — *У записі звучить This kitchen table is the smallest.*
 
-**12 · Виберіть значення «най-» у цій групі.**
+**12 · Виберіть, як сказати «най-».**
 <!-- interaction_id: en:lesson-18:session-15:i09; family: context_gap_grammar -->
 This kitchen table is ___. → **the smallest** · smallest · the smaller
 - smallest — *У цій конструкції потрібне the.*
@@ -123,7 +123,7 @@ This kitchen table is ___. → **the smallest** · smallest · the smaller
 - This dining table is widest. — *У записі звучить This dining table is the widest.*
 - This dining table is the wider. — *У записі звучить This dining table is the widest.*
 
-**16 · Виберіть значення «най-» у цій групі.**
+**16 · Виберіть, як сказати «най-».**
 <!-- interaction_id: en:lesson-18:session-15:i12; family: context_gap_grammar -->
 This dining table is ___. → **the widest** · widest · the wider
 - widest — *У цій конструкції потрібне the.*

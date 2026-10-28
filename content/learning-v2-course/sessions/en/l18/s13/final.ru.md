@@ -63,7 +63,7 @@
 - This school bus is oldest. — *В записи звучит This school bus is the oldest.*
 - This school bus is the older. — *В записи звучит This school bus is the oldest.*
 
-**4 · Выберите значение «самый» в этой группе.**
+**4 · Выберите, как сказать «самый».**
 <!-- interaction_id: en:lesson-18:session-13:i03; family: context_gap_grammar -->
 This school bus is ___. → **the oldest** · oldest · the older
 - oldest — *В этой конструкции нужно the.*
@@ -83,7 +83,7 @@ This school bus is ___. → **the oldest** · oldest · the older
 - This school gate is widest. — *В записи звучит This school gate is the widest.*
 - This school gate is the wider. — *В записи звучит This school gate is the widest.*
 
-**8 · Выберите значение «самый» в этой группе.**
+**8 · Выберите, как сказать «самый».**
 <!-- interaction_id: en:lesson-18:session-13:i06; family: context_gap_grammar -->
 This school gate is ___. → **the widest** · widest · the wider
 - widest — *В этой конструкции нужно the.*
@@ -103,7 +103,7 @@ This school gate is ___. → **the widest** · widest · the wider
 - This school entrance is safest. — *В записи звучит This school entrance is the safest.*
 - This school entrance is the safer. — *В записи звучит This school entrance is the safest.*
 
-**12 · Выберите значение «самый» в этой группе.**
+**12 · Выберите, как сказать «самый».**
 <!-- interaction_id: en:lesson-18:session-13:i09; family: context_gap_grammar -->
 This school entrance is ___. → **the safest** · safest · the safer
 - safest — *В этой конструкции нужно the.*
@@ -123,7 +123,7 @@ This school entrance is ___. → **the safest** · safest · the safer
 - This school office is smallest. — *В записи звучит This school office is the smallest.*
 - This school office is the smaller. — *В записи звучит This school office is the smallest.*
 
-**16 · Выберите значение «самый» в этой группе.**
+**16 · Выберите, как сказать «самый».**
 <!-- interaction_id: en:lesson-18:session-13:i12; family: context_gap_grammar -->
 This school office is ___. → **the smallest** · smallest · the smaller
 - smallest — *В этой конструкции нужно the.*

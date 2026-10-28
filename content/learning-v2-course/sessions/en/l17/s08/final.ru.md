@@ -63,7 +63,7 @@
 - This is a appliance. — *В записи звучит This is an appliance.*
 - This is appliance. — *В записи звучит This is an appliance.*
 
-**4 · Выберите форму для указанного количества или общего названия.**
+**4 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-08:i03; family: context_gap_grammar -->
 This is ___ appliance. → **an** · a · the two
 - a — *Appliance начинается с гласного звука: an appliance.*
@@ -83,7 +83,7 @@ This is ___ appliance. → **an** · a · the two
 - There are two estimate on the table. — *В записи звучит There are two estimates on the table.*
 - There are a two estimates on the table. — *В записи звучит There are two estimates on the table.*
 
-**8 · Выберите форму для указанного количества или общего названия.**
+**8 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-08:i06; family: context_gap_grammar -->
 There are two ___ on the table. → **estimates** · estimate · an estimate
 - estimate — *После two нужно множественное estimates.*
@@ -103,7 +103,7 @@ There are two ___ on the table. → **estimates** · estimate · an estimate
 - This packaging are wet. — *В записи звучит This packaging is wet.*
 - These packagings are wet. — *В записи звучит This packaging is wet.*
 
-**12 · Выберите форму для указанного количества или общего названия.**
+**12 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-08:i09; family: context_gap_grammar -->
 This packaging ___ wet. → **is** · are · am
 - are — *Packaging как упаковочные материалы — неисчисляемое слово: is.*
@@ -123,7 +123,7 @@ This packaging ___ wet. → **is** · are · am
 - We can see a damage. — *В записи звучит We can see damage.*
 - We can see damages. — *В записи звучит We can see damage.*
 
-**16 · Выберите форму для указанного количества или общего названия.**
+**16 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-08:i12; family: context_gap_grammar -->
 We can see ___. → **damage** · a damage · damages
 - a damage — *Damage в значении повреждения вещей — неисчисляемое: без a и без множественного -s.*

@@ -63,7 +63,7 @@
 - This front garden is smallest. — *У записі звучить This front garden is the smallest.*
 - This front garden is the smaller. — *У записі звучить This front garden is the smallest.*
 
-**4 · Виберіть значення «най-» у цій групі.**
+**4 · Виберіть, як сказати «най-».**
 <!-- interaction_id: en:lesson-18:session-11:i03; family: context_gap_grammar -->
 This front garden is ___. → **the smallest** · smallest · the smaller
 - smallest — *У цій конструкції потрібне the.*
@@ -83,7 +83,7 @@ This front garden is ___. → **the smallest** · smallest · the smaller
 - This back garden is largest. — *У записі звучить This back garden is the largest.*
 - This back garden is the larger. — *У записі звучить This back garden is the largest.*
 
-**8 · Виберіть значення «най-» у цій групі.**
+**8 · Виберіть, як сказати «най-».**
 <!-- interaction_id: en:lesson-18:session-11:i06; family: context_gap_grammar -->
 This back garden is ___. → **the largest** · largest · the larger
 - largest — *У цій конструкції потрібне the.*
@@ -103,7 +103,7 @@ This back garden is ___. → **the largest** · largest · the larger
 - This front gate is widest. — *У записі звучить This front gate is the widest.*
 - This front gate is the wider. — *У записі звучить This front gate is the widest.*
 
-**12 · Виберіть значення «най-» у цій групі.**
+**12 · Виберіть, як сказати «най-».**
 <!-- interaction_id: en:lesson-18:session-11:i09; family: context_gap_grammar -->
 This front gate is ___. → **the widest** · widest · the wider
 - widest — *У цій конструкції потрібне the.*
@@ -123,7 +123,7 @@ This front gate is ___. → **the widest** · widest · the wider
 - This back gate is narrowest. — *У записі звучить This back gate is the narrowest.*
 - This back gate is the narrower. — *У записі звучить This back gate is the narrowest.*
 
-**16 · Виберіть значення «най-» у цій групі.**
+**16 · Виберіть, як сказати «най-».**
 <!-- interaction_id: en:lesson-18:session-11:i12; family: context_gap_grammar -->
 This back gate is ___. → **the narrowest** · narrowest · the narrower
 - narrowest — *У цій конструкції потрібне the.*

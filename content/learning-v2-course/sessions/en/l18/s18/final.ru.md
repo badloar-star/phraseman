@@ -63,7 +63,7 @@
 - This fabric softener is as cheaper as yours. — *В записи звучит This fabric softener is as cheap as yours.*
 - This fabric softener is as cheap than yours. — *В записи звучит This fabric softener is as cheap as yours.*
 
-**4 · Выразите одинаковое качество.**
+**4 · Скажите, что они одинаковые.**
 <!-- interaction_id: en:lesson-18:session-18:i03; family: context_gap_grammar -->
 This fabric softener is ___ yours. → **as cheap as** · as cheaper as · as cheap than
 - as cheaper as — *Нужна обычная форма cheap.*
@@ -83,7 +83,7 @@ This fabric softener is ___ yours. → **as cheap as** · as cheaper as · as ch
 - This stain remover is as more expensive as that one. — *В записи звучит This stain remover is as expensive as that one.*
 - This stain remover is as expensive than that one. — *В записи звучит This stain remover is as expensive as that one.*
 
-**8 · Выразите одинаковое качество.**
+**8 · Скажите, что они одинаковые.**
 <!-- interaction_id: en:lesson-18:session-18:i06; family: context_gap_grammar -->
 This stain remover is ___ that one. → **as expensive as** · as more expensive as · as expensive than
 - as more expensive as — *Нужна обычная форма expensive.*
@@ -103,7 +103,7 @@ This stain remover is ___ that one. → **as expensive as** · as more expensive
 - This laundry detergent is as cheaper as that one. — *В записи звучит This laundry detergent is as cheap as that one.*
 - This laundry detergent is as cheap than that one. — *В записи звучит This laundry detergent is as cheap as that one.*
 
-**12 · Выразите одинаковое качество.**
+**12 · Скажите, что они одинаковые.**
 <!-- interaction_id: en:lesson-18:session-18:i09; family: context_gap_grammar -->
 This laundry detergent is ___ that one. → **as cheap as** · as cheaper as · as cheap than
 - as cheaper as — *Нужна обычная форма cheap.*
@@ -123,7 +123,7 @@ This laundry detergent is ___ that one. → **as cheap as** · as cheaper as · 
 - This cleaning spray is as stronger as that one. — *В записи звучит This cleaning spray is as strong as that one.*
 - This cleaning spray is as strong than that one. — *В записи звучит This cleaning spray is as strong as that one.*
 
-**16 · Выразите одинаковое качество.**
+**16 · Скажите, что они одинаковые.**
 <!-- interaction_id: en:lesson-18:session-18:i12; family: context_gap_grammar -->
 This cleaning spray is ___ that one. → **as strong as** · as stronger as · as strong than
 - as stronger as — *Нужна обычная форма strong.*

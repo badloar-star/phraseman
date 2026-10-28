@@ -63,7 +63,7 @@
 - I was cutting feta while you were cooking. — *В записи звучит You were cutting feta while you were cooking.*
 - They were cutting feta while you were cooking. — *В записи звучит You were cutting feta while you were cooking.*
 
-**4 · В тот момент прошлого. Выберите was или were**
+**4 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-56:i03; family: context_gap_grammar -->
 I ___ cutting feta while you were cooking. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -83,7 +83,7 @@ I ___ cutting feta while you were cooking. → **was** · were · is
 - They were cutting mozzarella when I arrived. — *В записи звучит You were cutting mozzarella when I arrived.*
 - She was cutting mozzarella when I arrived. — *В записи звучит You were cutting mozzarella when I arrived.*
 
-**8 · В тот момент прошлого. Выберите was или were**
+**8 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-56:i06; family: context_gap_grammar -->
 They ___ cutting mozzarella when I arrived. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*
@@ -103,7 +103,7 @@ They ___ cutting mozzarella when I arrived. → **were** · was · are
 - She was cutting cheddar while I was talking. — *В записи звучит You were cutting cheddar while I was talking.*
 - They were cutting cheddar while I was talking. — *В записи звучит You were cutting cheddar while I was talking.*
 
-**12 · В тот момент прошлого. Выберите was или were**
+**12 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-56:i09; family: context_gap_grammar -->
 She ___ cutting cheddar while I was talking. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -123,7 +123,7 @@ She ___ cutting cheddar while I was talking. → **was** · were · is
 - We were adding parmesan when you called. — *В записи звучит You were adding parmesan when you called.*
 - She was adding parmesan when you called. — *В записи звучит You were adding parmesan when you called.*
 
-**16 · В тот момент прошлого. Выберите was или were**
+**16 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-56:i12; family: context_gap_grammar -->
 We ___ adding parmesan when you called. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*

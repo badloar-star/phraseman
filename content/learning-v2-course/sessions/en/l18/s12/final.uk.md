@@ -63,7 +63,7 @@
 - The fresh fruit is cheapest snack here. — *У записі звучить The fresh fruit is the cheapest snack here.*
 - The fresh fruit is the cheaper snack here. — *У записі звучить The fresh fruit is the cheapest snack here.*
 
-**4 · Виберіть значення «най-» у цій групі.**
+**4 · Виберіть, як сказати «най-».**
 <!-- interaction_id: en:lesson-18:session-12:i03; family: context_gap_grammar -->
 The fresh fruit is ___ snack here. → **the cheapest** · cheapest · the cheaper
 - cheapest — *У цій конструкції потрібне the.*
@@ -83,7 +83,7 @@ The fresh fruit is ___ snack here. → **the cheapest** · cheapest · the cheap
 - The dried fruit is sweetest snack here. — *У записі звучить The dried fruit is the sweetest snack here.*
 - The dried fruit is the sweeter snack here. — *У записі звучить The dried fruit is the sweetest snack here.*
 
-**8 · Виберіть значення «най-» у цій групі.**
+**8 · Виберіть, як сказати «най-».**
 <!-- interaction_id: en:lesson-18:session-12:i06; family: context_gap_grammar -->
 The dried fruit is ___ snack here. → **the sweetest** · sweetest · the sweeter
 - sweetest — *У цій конструкції потрібне the.*
@@ -103,7 +103,7 @@ The dried fruit is ___ snack here. → **the sweetest** · sweetest · the sweet
 - This bag of mixed nuts is largest. — *У записі звучить This bag of mixed nuts is the largest.*
 - This bag of mixed nuts is the larger. — *У записі звучить This bag of mixed nuts is the largest.*
 
-**12 · Виберіть значення «най-» у цій групі.**
+**12 · Виберіть, як сказати «най-».**
 <!-- interaction_id: en:lesson-18:session-12:i09; family: context_gap_grammar -->
 This bag of mixed nuts is ___. → **the largest** · largest · the larger
 - largest — *У цій конструкції потрібне the.*
@@ -123,7 +123,7 @@ This bag of mixed nuts is ___. → **the largest** · largest · the larger
 - The plain yoghurt is cheapest option. — *У записі звучить The plain yoghurt is the cheapest option.*
 - The plain yoghurt is the cheaper option. — *У записі звучить The plain yoghurt is the cheapest option.*
 
-**16 · Виберіть значення «най-» у цій групі.**
+**16 · Виберіть, як сказати «най-».**
 <!-- interaction_id: en:lesson-18:session-12:i12; family: context_gap_grammar -->
 The plain yoghurt is ___ option. → **the cheapest** · cheapest · the cheaper
 - cheapest — *У цій конструкції потрібне the.*

@@ -63,7 +63,7 @@
 - My close friend is such kind. — *В записи звучит My close friend is so kind.*
 - My close friend is much kind. — *В записи звучит My close friend is so kind.*
 
-**4 · Подчеркните качество с so или such.**
+**4 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-33:i03; family: context_gap_grammar -->
 My close friend is ___ kind. → **so** · such · much
 - such — *После пропуска прилагательное без существительного: so.*
@@ -83,7 +83,7 @@ My close friend is ___ kind. → **so** · such · much
 - Our mutual friend is so a helpful person. — *В записи звучит Our mutual friend is such a helpful person.*
 - Our mutual friend is much a helpful person. — *В записи звучит Our mutual friend is such a helpful person.*
 
-**8 · Подчеркните качество с so или such.**
+**8 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-33:i06; family: context_gap_grammar -->
 Our mutual friend is ___ a helpful person. → **such** · so · much
 - so — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.*
@@ -103,7 +103,7 @@ Our mutual friend is ___ a helpful person. → **such** · so · much
 - My childhood friend is such funny. — *В записи звучит My childhood friend is so funny.*
 - My childhood friend is much funny. — *В записи звучит My childhood friend is so funny.*
 
-**12 · Подчеркните качество с so или such.**
+**12 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-33:i09; family: context_gap_grammar -->
 My childhood friend is ___ funny. → **so** · such · much
 - such — *После пропуска прилагательное без существительного: so.*
@@ -123,7 +123,7 @@ My childhood friend is ___ funny. → **so** · such · much
 - My next-door neighbour is so a kind person. — *В записи звучит My next-door neighbour is such a kind person.*
 - My next-door neighbour is much a kind person. — *В записи звучит My next-door neighbour is such a kind person.*
 
-**16 · Подчеркните качество с so или such.**
+**16 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-33:i12; family: context_gap_grammar -->
 My next-door neighbour is ___ a kind person. → **such** · so · much
 - so — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.*

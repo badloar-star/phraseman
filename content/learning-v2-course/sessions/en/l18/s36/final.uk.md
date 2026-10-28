@@ -63,7 +63,7 @@
 - The live music is such loud. — *У записі звучить The live music is so loud.*
 - The live music is much loud. — *У записі звучить The live music is so loud.*
 
-**4 · Підкресліть якість із so або such.**
+**4 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-36:i03; family: context_gap_grammar -->
 The live music is ___ loud. → **so** · such · much
 - such — *Після пропуску прикметник без іменника: so.*
@@ -83,7 +83,7 @@ The live music is ___ loud. → **so** · such · much
 - We are at so a great live concert. — *У записі звучить We are at such a great live concert.*
 - We are at much a great live concert. — *У записі звучить We are at such a great live concert.*
 
-**8 · Підкресліть якість із so або such.**
+**8 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-36:i06; family: context_gap_grammar -->
 We are at ___ a great live concert. → **such** · so · much
 - so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.*
@@ -103,7 +103,7 @@ We are at ___ a great live concert. → **such** · so · much
 - The street performance is such funny. — *У записі звучить The street performance is so funny.*
 - The street performance is much funny. — *У записі звучить The street performance is so funny.*
 
-**12 · Підкресліть якість із so або such.**
+**12 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-36:i09; family: context_gap_grammar -->
 The street performance is ___ funny. → **so** · such · much
 - such — *Після пропуску прикметник без іменника: so.*
@@ -123,7 +123,7 @@ The street performance is ___ funny. → **so** · such · much
 - This is so a big music festival. — *У записі звучить This is such a big music festival.*
 - This is much a big music festival. — *У записі звучить This is such a big music festival.*
 
-**16 · Підкресліть якість із so або such.**
+**16 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-36:i12; family: context_gap_grammar -->
 This is ___ a big music festival. → **such** · so · much
 - so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.*

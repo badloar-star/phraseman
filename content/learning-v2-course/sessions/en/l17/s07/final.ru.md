@@ -63,7 +63,7 @@
 - This is an sapling. — *В записи звучит This is a sapling.*
 - This is sapling. — *В записи звучит This is a sapling.*
 
-**4 · Выберите форму для указанного количества или общего названия.**
+**4 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-07:i03; family: context_gap_grammar -->
 This is ___ sapling. → **a** · an · the two
 - an — *Sapling начинается с согласного звука: a sapling.*
@@ -83,7 +83,7 @@ This is ___ sapling. → **a** · an · the two
 - There are two planter by the door. — *В записи звучит There are two planters by the door.*
 - There are a two planters by the door. — *В записи звучит There are two planters by the door.*
 
-**8 · Выберите форму для указанного количества или общего названия.**
+**8 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-07:i06; family: context_gap_grammar -->
 There are two ___ by the door. → **planters** · planter · a planter
 - planter — *После two нужно множественное planters.*
@@ -103,7 +103,7 @@ There are two ___ by the door. → **planters** · planter · a planter
 - This gravel are clean. — *В записи звучит This gravel is clean.*
 - These gravels are clean. — *В записи звучит This gravel is clean.*
 
-**12 · Выберите форму для указанного количества или общего названия.**
+**12 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-07:i09; family: context_gap_grammar -->
 This gravel ___ clean. → **is** · are · am
 - are — *Gravel как материал — неисчисляемое слово: is.*
@@ -123,7 +123,7 @@ This gravel ___ clean. → **is** · are · am
 - We need an equipment. — *В записи звучит We need equipment.*
 - We need equipments. — *В записи звучит We need equipment.*
 
-**16 · Выберите форму для указанного количества или общего названия.**
+**16 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-07:i12; family: context_gap_grammar -->
 We need ___. → **equipment** · an equipment · equipments
 - an equipment — *Equipment — неисчисляемое слово: без an и без множественного -s.*

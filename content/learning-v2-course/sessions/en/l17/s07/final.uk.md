@@ -63,7 +63,7 @@
 - This is an sapling. — *У записі звучить This is a sapling.*
 - This is sapling. — *У записі звучить This is a sapling.*
 
-**4 · Виберіть форму для вказаної кількості або загальної назви.**
+**4 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-07:i03; family: context_gap_grammar -->
 This is ___ sapling. → **a** · an · the two
 - an — *Sapling починається з приголосного звука: a sapling.*
@@ -83,7 +83,7 @@ This is ___ sapling. → **a** · an · the two
 - There are two planter by the door. — *У записі звучить There are two planters by the door.*
 - There are a two planters by the door. — *У записі звучить There are two planters by the door.*
 
-**8 · Виберіть форму для вказаної кількості або загальної назви.**
+**8 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-07:i06; family: context_gap_grammar -->
 There are two ___ by the door. → **planters** · planter · a planter
 - planter — *Після two потрібна множина planters.*
@@ -103,7 +103,7 @@ There are two ___ by the door. → **planters** · planter · a planter
 - This gravel are clean. — *У записі звучить This gravel is clean.*
 - These gravels are clean. — *У записі звучить This gravel is clean.*
 
-**12 · Виберіть форму для вказаної кількості або загальної назви.**
+**12 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-07:i09; family: context_gap_grammar -->
 This gravel ___ clean. → **is** · are · am
 - are — *Gravel як матеріал — незлічуване слово: is.*
@@ -123,7 +123,7 @@ This gravel ___ clean. → **is** · are · am
 - We need an equipment. — *У записі звучить We need equipment.*
 - We need equipments. — *У записі звучить We need equipment.*
 
-**16 · Виберіть форму для вказаної кількості або загальної назви.**
+**16 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-07:i12; family: context_gap_grammar -->
 We need ___. → **equipment** · an equipment · equipments
 - an equipment — *Equipment — незлічуване слово: без an та без множинного -s.*

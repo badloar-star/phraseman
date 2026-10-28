@@ -63,7 +63,7 @@
 - This dining chair is lightest. — *В записи звучит This dining chair is the lightest.*
 - This dining chair is the lighter. — *В записи звучит This dining chair is the lightest.*
 
-**4 · Выберите значение «самый» в этой группе.**
+**4 · Выберите, как сказать «самый».**
 <!-- interaction_id: en:lesson-18:session-15:i03; family: context_gap_grammar -->
 This dining chair is ___. → **the lightest** · lightest · the lighter
 - lightest — *В этой конструкции нужно the.*
@@ -83,7 +83,7 @@ This dining chair is ___. → **the lightest** · lightest · the lighter
 - This office chair is softest. — *В записи звучит This office chair is the softest.*
 - This office chair is the softer. — *В записи звучит This office chair is the softest.*
 
-**8 · Выберите значение «самый» в этой группе.**
+**8 · Выберите, как сказать «самый».**
 <!-- interaction_id: en:lesson-18:session-15:i06; family: context_gap_grammar -->
 This office chair is ___. → **the softest** · softest · the softer
 - softest — *В этой конструкции нужно the.*
@@ -103,7 +103,7 @@ This office chair is ___. → **the softest** · softest · the softer
 - This kitchen table is smallest. — *В записи звучит This kitchen table is the smallest.*
 - This kitchen table is the smaller. — *В записи звучит This kitchen table is the smallest.*
 
-**12 · Выберите значение «самый» в этой группе.**
+**12 · Выберите, как сказать «самый».**
 <!-- interaction_id: en:lesson-18:session-15:i09; family: context_gap_grammar -->
 This kitchen table is ___. → **the smallest** · smallest · the smaller
 - smallest — *В этой конструкции нужно the.*
@@ -123,7 +123,7 @@ This kitchen table is ___. → **the smallest** · smallest · the smaller
 - This dining table is widest. — *В записи звучит This dining table is the widest.*
 - This dining table is the wider. — *В записи звучит This dining table is the widest.*
 
-**16 · Выберите значение «самый» в этой группе.**
+**16 · Выберите, как сказать «самый».**
 <!-- interaction_id: en:lesson-18:session-15:i12; family: context_gap_grammar -->
 This dining table is ___. → **the widest** · widest · the wider
 - widest — *В этой конструкции нужно the.*

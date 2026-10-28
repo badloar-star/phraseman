@@ -63,7 +63,7 @@
 - This is an shallot. — *У записі звучить This is a shallot.*
 - This is shallot. — *У записі звучить This is a shallot.*
 
-**4 · Виберіть форму для вказаної кількості або загальної назви.**
+**4 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-02:i03; family: context_gap_grammar -->
 This is ___ shallot. → **a** · an · the two
 - an — *Shallot починається з приголосного звука: a shallot.*
@@ -83,7 +83,7 @@ This is ___ shallot. → **a** · an · the two
 - There are two peppercorn in the bowl. — *У записі звучить There are two peppercorns in the bowl.*
 - There are a two peppercorns in the bowl. — *У записі звучить There are two peppercorns in the bowl.*
 
-**8 · Виберіть форму для вказаної кількості або загальної назви.**
+**8 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-02:i06; family: context_gap_grammar -->
 There are two ___ in the bowl. → **peppercorns** · peppercorn · a peppercorn
 - peppercorn — *Після two потрібна множина peppercorns.*
@@ -103,7 +103,7 @@ There are two ___ in the bowl. → **peppercorns** · peppercorn · a peppercorn
 - This bulgur are dry. — *У записі звучить This bulgur is dry.*
 - These bulgurs are dry. — *У записі звучить This bulgur is dry.*
 
-**12 · Виберіть форму для вказаної кількості або загальної назви.**
+**12 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-02:i09; family: context_gap_grammar -->
 This bulgur ___ dry. → **is** · are · am
 - are — *Bulgur як назва крупи — незлічуване слово: is.*
@@ -123,7 +123,7 @@ This bulgur ___ dry. → **is** · are · am
 - We need a barley. — *У записі звучить We need barley.*
 - We need barleys. — *У записі звучить We need barley.*
 
-**16 · Виберіть форму для вказаної кількості або загальної назви.**
+**16 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-02:i12; family: context_gap_grammar -->
 We need ___. → **barley** · a barley · barleys
 - a barley — *Barley як назва зерна — без a та без множинного -s.*

@@ -63,7 +63,7 @@
 - Your weekend break is as longer as ours. — *У записі звучить Your weekend break is as long as ours.*
 - Your weekend break is as long than ours. — *У записі звучить Your weekend break is as long as ours.*
 
-**4 · Висловіть однакову якість.**
+**4 · Скажіть, що вони однакові.**
 <!-- interaction_id: en:lesson-18:session-24:i03; family: context_gap_grammar -->
 Your weekend break is ___ ours. → **as long as** · as longer as · as long than
 - as longer as — *Потрібна звичайна форма long.*
@@ -83,7 +83,7 @@ Your weekend break is ___ ours. → **as long as** · as longer as · as long th
 - This city break is as cheaper as ours. — *У записі звучить This city break is as cheap as ours.*
 - This city break is as cheap than ours. — *У записі звучить This city break is as cheap as ours.*
 
-**8 · Висловіть однакову якість.**
+**8 · Скажіть, що вони однакові.**
 <!-- interaction_id: en:lesson-18:session-24:i06; family: context_gap_grammar -->
 This city break is ___ ours. → **as cheap as** · as cheaper as · as cheap than
 - as cheaper as — *Потрібна звичайна форма cheap.*
@@ -103,7 +103,7 @@ This city break is ___ ours. → **as cheap as** · as cheaper as · as cheap th
 - This camping trip is as shorter as ours. — *У записі звучить This camping trip is as short as ours.*
 - This camping trip is as short than ours. — *У записі звучить This camping trip is as short as ours.*
 
-**12 · Висловіть однакову якість.**
+**12 · Скажіть, що вони однакові.**
 <!-- interaction_id: en:lesson-18:session-24:i09; family: context_gap_grammar -->
 This camping trip is ___ ours. → **as short as** · as shorter as · as short than
 - as shorter as — *Потрібна звичайна форма short.*
@@ -123,7 +123,7 @@ This camping trip is ___ ours. → **as short as** · as shorter as · as short 
 - Your beach holiday is as quieter as ours. — *У записі звучить Your beach holiday is as quiet as ours.*
 - Your beach holiday is as quiet than ours. — *У записі звучить Your beach holiday is as quiet as ours.*
 
-**16 · Висловіть однакову якість.**
+**16 · Скажіть, що вони однакові.**
 <!-- interaction_id: en:lesson-18:session-24:i12; family: context_gap_grammar -->
 Your beach holiday is ___ ours. → **as quiet as** · as quieter as · as quiet than
 - as quieter as — *Потрібна звичайна форма quiet.*

@@ -63,7 +63,7 @@
 - I was cutting feta while you were cooking. — *У записі звучить You were cutting feta while you were cooking.*
 - They were cutting feta while you were cooking. — *У записі звучить You were cutting feta while you were cooking.*
 
-**4 · У той момент минулого. Виберіть was або were**
+**4 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-56:i03; family: context_gap_grammar -->
 I ___ cutting feta while you were cooking. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
@@ -83,7 +83,7 @@ I ___ cutting feta while you were cooking. → **was** · were · is
 - They were cutting mozzarella when I arrived. — *У записі звучить You were cutting mozzarella when I arrived.*
 - She was cutting mozzarella when I arrived. — *У записі звучить You were cutting mozzarella when I arrived.*
 
-**8 · У той момент минулого. Виберіть was або were**
+**8 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-56:i06; family: context_gap_grammar -->
 They ___ cutting mozzarella when I arrived. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*
@@ -103,7 +103,7 @@ They ___ cutting mozzarella when I arrived. → **were** · was · are
 - She was cutting cheddar while I was talking. — *У записі звучить You were cutting cheddar while I was talking.*
 - They were cutting cheddar while I was talking. — *У записі звучить You were cutting cheddar while I was talking.*
 
-**12 · У той момент минулого. Виберіть was або were**
+**12 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-56:i09; family: context_gap_grammar -->
 She ___ cutting cheddar while I was talking. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
@@ -123,7 +123,7 @@ She ___ cutting cheddar while I was talking. → **was** · were · is
 - We were adding parmesan when you called. — *У записі звучить You were adding parmesan when you called.*
 - She was adding parmesan when you called. — *У записі звучить You were adding parmesan when you called.*
 
-**16 · У той момент минулого. Виберіть was або were**
+**16 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-56:i12; family: context_gap_grammar -->
 We ___ adding parmesan when you called. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*

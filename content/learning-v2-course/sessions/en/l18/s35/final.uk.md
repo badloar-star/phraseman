@@ -63,7 +63,7 @@
 - The heavy rain is such loud. — *У записі звучить The heavy rain is so loud.*
 - The heavy rain is much loud. — *У записі звучить The heavy rain is so loud.*
 
-**4 · Підкресліть якість із so або such.**
+**4 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-35:i03; family: context_gap_grammar -->
 The heavy rain is ___ loud. → **so** · such · much
 - such — *Після пропуску прикметник без іменника: so.*
@@ -83,7 +83,7 @@ The heavy rain is ___ loud. → **so** · such · much
 - The strong wind is so a problem. — *У записі звучить The strong wind is such a problem.*
 - The strong wind is much a problem. — *У записі звучить The strong wind is such a problem.*
 
-**8 · Підкресліть якість із so або such.**
+**8 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-35:i06; family: context_gap_grammar -->
 The strong wind is ___ a problem. → **such** · so · much
 - so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.*
@@ -103,7 +103,7 @@ The strong wind is ___ a problem. → **such** · so · much
 - The thick fog is such bad. — *У записі звучить The thick fog is so bad.*
 - The thick fog is much bad. — *У записі звучить The thick fog is so bad.*
 
-**12 · Підкресліть якість із so або such.**
+**12 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-35:i09; family: context_gap_grammar -->
 The thick fog is ___ bad. → **so** · such · much
 - such — *Після пропуску прикметник без іменника: so.*
@@ -123,7 +123,7 @@ The thick fog is ___ bad. → **so** · such · much
 - The deep snow is so a surprise. — *У записі звучить The deep snow is such a surprise.*
 - The deep snow is much a surprise. — *У записі звучить The deep snow is such a surprise.*
 
-**16 · Підкресліть якість із so або such.**
+**16 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-35:i12; family: context_gap_grammar -->
 The deep snow is ___ a surprise. → **such** · so · much
 - so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.*

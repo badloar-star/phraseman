@@ -63,7 +63,7 @@
 - This is a appliance. — *У записі звучить This is an appliance.*
 - This is appliance. — *У записі звучить This is an appliance.*
 
-**4 · Виберіть форму для вказаної кількості або загальної назви.**
+**4 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-08:i03; family: context_gap_grammar -->
 This is ___ appliance. → **an** · a · the two
 - a — *Appliance починається з голосного звука: an appliance.*
@@ -83,7 +83,7 @@ This is ___ appliance. → **an** · a · the two
 - There are two estimate on the table. — *У записі звучить There are two estimates on the table.*
 - There are a two estimates on the table. — *У записі звучить There are two estimates on the table.*
 
-**8 · Виберіть форму для вказаної кількості або загальної назви.**
+**8 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-08:i06; family: context_gap_grammar -->
 There are two ___ on the table. → **estimates** · estimate · an estimate
 - estimate — *Після two потрібна множина estimates.*
@@ -103,7 +103,7 @@ There are two ___ on the table. → **estimates** · estimate · an estimate
 - This packaging are wet. — *У записі звучить This packaging is wet.*
 - These packagings are wet. — *У записі звучить This packaging is wet.*
 
-**12 · Виберіть форму для вказаної кількості або загальної назви.**
+**12 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-08:i09; family: context_gap_grammar -->
 This packaging ___ wet. → **is** · are · am
 - are — *Packaging як пакувальні матеріали — незлічуване слово: is.*
@@ -123,7 +123,7 @@ This packaging ___ wet. → **is** · are · am
 - We can see a damage. — *У записі звучить We can see damage.*
 - We can see damages. — *У записі звучить We can see damage.*
 
-**16 · Виберіть форму для вказаної кількості або загальної назви.**
+**16 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-08:i12; family: context_gap_grammar -->
 We can see ___. → **damage** · a damage · damages
 - a damage — *Damage у значенні пошкодження речей — незлічуване: без a та без множинного -s.*

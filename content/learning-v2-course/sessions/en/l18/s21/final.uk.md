@@ -63,7 +63,7 @@
 - This dog food is as cheaper as ours. — *У записі звучить This dog food is as cheap as ours.*
 - This dog food is as cheap than ours. — *У записі звучить This dog food is as cheap as ours.*
 
-**4 · Висловіть однакову якість.**
+**4 · Скажіть, що вони однакові.**
 <!-- interaction_id: en:lesson-18:session-21:i03; family: context_gap_grammar -->
 This dog food is ___ ours. → **as cheap as** · as cheaper as · as cheap than
 - as cheaper as — *Потрібна звичайна форма cheap.*
@@ -83,7 +83,7 @@ This dog food is ___ ours. → **as cheap as** · as cheaper as · as cheap than
 - This cat food is as fresher as yours. — *У записі звучить This cat food is as fresh as yours.*
 - This cat food is as fresh than yours. — *У записі звучить This cat food is as fresh as yours.*
 
-**8 · Висловіть однакову якість.**
+**8 · Скажіть, що вони однакові.**
 <!-- interaction_id: en:lesson-18:session-21:i06; family: context_gap_grammar -->
 This cat food is ___ yours. → **as fresh as** · as fresher as · as fresh than
 - as fresher as — *Потрібна звичайна форма fresh.*
@@ -103,7 +103,7 @@ This cat food is ___ yours. → **as fresh as** · as fresher as · as fresh tha
 - This cat litter is as cheaper as that one. — *У записі звучить This cat litter is as cheap as that one.*
 - This cat litter is as cheap than that one. — *У записі звучить This cat litter is as cheap as that one.*
 
-**12 · Висловіть однакову якість.**
+**12 · Скажіть, що вони однакові.**
 <!-- interaction_id: en:lesson-18:session-21:i09; family: context_gap_grammar -->
 This cat litter is ___ that one. → **as cheap as** · as cheaper as · as cheap than
 - as cheaper as — *Потрібна звичайна форма cheap.*
@@ -123,7 +123,7 @@ This cat litter is ___ that one. → **as cheap as** · as cheaper as · as chea
 - This litter tray is as wider as ours. — *У записі звучить This litter tray is as wide as ours.*
 - This litter tray is as wide than ours. — *У записі звучить This litter tray is as wide as ours.*
 
-**16 · Висловіть однакову якість.**
+**16 · Скажіть, що вони однакові.**
 <!-- interaction_id: en:lesson-18:session-21:i12; family: context_gap_grammar -->
 This litter tray is ___ ours. → **as wide as** · as wider as · as wide than
 - as wider as — *Потрібна звичайна форма wide.*

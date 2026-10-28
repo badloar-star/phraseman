@@ -63,7 +63,7 @@
 - This school bus is oldest. — *У записі звучить This school bus is the oldest.*
 - This school bus is the older. — *У записі звучить This school bus is the oldest.*
 
-**4 · Виберіть значення «най-» у цій групі.**
+**4 · Виберіть, як сказати «най-».**
 <!-- interaction_id: en:lesson-18:session-13:i03; family: context_gap_grammar -->
 This school bus is ___. → **the oldest** · oldest · the older
 - oldest — *У цій конструкції потрібне the.*
@@ -83,7 +83,7 @@ This school bus is ___. → **the oldest** · oldest · the older
 - This school gate is widest. — *У записі звучить This school gate is the widest.*
 - This school gate is the wider. — *У записі звучить This school gate is the widest.*
 
-**8 · Виберіть значення «най-» у цій групі.**
+**8 · Виберіть, як сказати «най-».**
 <!-- interaction_id: en:lesson-18:session-13:i06; family: context_gap_grammar -->
 This school gate is ___. → **the widest** · widest · the wider
 - widest — *У цій конструкції потрібне the.*
@@ -103,7 +103,7 @@ This school gate is ___. → **the widest** · widest · the wider
 - This school entrance is safest. — *У записі звучить This school entrance is the safest.*
 - This school entrance is the safer. — *У записі звучить This school entrance is the safest.*
 
-**12 · Виберіть значення «най-» у цій групі.**
+**12 · Виберіть, як сказати «най-».**
 <!-- interaction_id: en:lesson-18:session-13:i09; family: context_gap_grammar -->
 This school entrance is ___. → **the safest** · safest · the safer
 - safest — *У цій конструкції потрібне the.*
@@ -123,7 +123,7 @@ This school entrance is ___. → **the safest** · safest · the safer
 - This school office is smallest. — *У записі звучить This school office is the smallest.*
 - This school office is the smaller. — *У записі звучить This school office is the smallest.*
 
-**16 · Виберіть значення «най-» у цій групі.**
+**16 · Виберіть, як сказати «най-».**
 <!-- interaction_id: en:lesson-18:session-13:i12; family: context_gap_grammar -->
 This school office is ___. → **the smallest** · smallest · the smaller
 - smallest — *У цій конструкції потрібне the.*

@@ -63,7 +63,7 @@
 - The heavy rain is such loud. — *В записи звучит The heavy rain is so loud.*
 - The heavy rain is much loud. — *В записи звучит The heavy rain is so loud.*
 
-**4 · Подчеркните качество с so или such.**
+**4 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-35:i03; family: context_gap_grammar -->
 The heavy rain is ___ loud. → **so** · such · much
 - such — *После пропуска прилагательное без существительного: so.*
@@ -83,7 +83,7 @@ The heavy rain is ___ loud. → **so** · such · much
 - The strong wind is so a problem. — *В записи звучит The strong wind is such a problem.*
 - The strong wind is much a problem. — *В записи звучит The strong wind is such a problem.*
 
-**8 · Подчеркните качество с so или such.**
+**8 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-35:i06; family: context_gap_grammar -->
 The strong wind is ___ a problem. → **such** · so · much
 - so — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.*
@@ -103,7 +103,7 @@ The strong wind is ___ a problem. → **such** · so · much
 - The thick fog is such bad. — *В записи звучит The thick fog is so bad.*
 - The thick fog is much bad. — *В записи звучит The thick fog is so bad.*
 
-**12 · Подчеркните качество с so или such.**
+**12 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-35:i09; family: context_gap_grammar -->
 The thick fog is ___ bad. → **so** · such · much
 - such — *После пропуска прилагательное без существительного: so.*
@@ -123,7 +123,7 @@ The thick fog is ___ bad. → **so** · such · much
 - The deep snow is so a surprise. — *В записи звучит The deep snow is such a surprise.*
 - The deep snow is much a surprise. — *В записи звучит The deep snow is such a surprise.*
 
-**16 · Подчеркните качество с so или such.**
+**16 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-35:i12; family: context_gap_grammar -->
 The deep snow is ___ a surprise. → **such** · so · much
 - so — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.*

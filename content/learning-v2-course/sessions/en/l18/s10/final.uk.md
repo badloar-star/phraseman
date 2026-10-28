@@ -63,7 +63,7 @@
 - This local shop is nearest. — *У записі звучить This local shop is the nearest.*
 - This local shop is the nearer. — *У записі звучить This local shop is the nearest.*
 
-**4 · Виберіть значення «най-» у цій групі.**
+**4 · Виберіть, як сказати «най-».**
 <!-- interaction_id: en:lesson-18:session-10:i03; family: context_gap_grammar -->
 This local shop is ___. → **the nearest** · nearest · the nearer
 - nearest — *У цій конструкції потрібне the.*
@@ -83,7 +83,7 @@ This local shop is ___. → **the nearest** · nearest · the nearer
 - This online shop is cheapest option. — *У записі звучить This online shop is the cheapest option.*
 - This online shop is the cheaper option. — *У записі звучить This online shop is the cheapest option.*
 
-**8 · Виберіть значення «най-» у цій групі.**
+**8 · Виберіть, як сказати «най-».**
 <!-- interaction_id: en:lesson-18:session-10:i06; family: context_gap_grammar -->
 This online shop is ___ option. → **the cheapest** · cheapest · the cheaper
 - cheapest — *У цій конструкції потрібне the.*
@@ -103,7 +103,7 @@ This online shop is ___ option. → **the cheapest** · cheapest · the cheaper
 - This chain store is largest. — *У записі звучить This chain store is the largest.*
 - This chain store is the larger. — *У записі звучить This chain store is the largest.*
 
-**12 · Виберіть значення «най-» у цій групі.**
+**12 · Виберіть, як сказати «най-».**
 <!-- interaction_id: en:lesson-18:session-10:i09; family: context_gap_grammar -->
 This chain store is ___. → **the largest** · largest · the larger
 - largest — *У цій конструкції потрібне the.*
@@ -123,7 +123,7 @@ This chain store is ___. → **the largest** · largest · the larger
 - This repair shop is oldest. — *У записі звучить This repair shop is the oldest.*
 - This repair shop is the older. — *У записі звучить This repair shop is the oldest.*
 
-**16 · Виберіть значення «най-» у цій групі.**
+**16 · Виберіть, як сказати «най-».**
 <!-- interaction_id: en:lesson-18:session-10:i12; family: context_gap_grammar -->
 This repair shop is ___. → **the oldest** · oldest · the older
 - oldest — *У цій конструкції потрібне the.*

@@ -63,7 +63,7 @@
 - The birthday party is such noisy. — *В записи звучит The birthday party is so noisy.*
 - The birthday party is much noisy. — *В записи звучит The birthday party is so noisy.*
 
-**4 · Подчеркните качество с so или such.**
+**4 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-34:i03; family: context_gap_grammar -->
 The birthday party is ___ noisy. → **so** · such · much
 - such — *После пропуска прилагательное без существительного: so.*
@@ -83,7 +83,7 @@ The birthday party is ___ noisy. → **so** · such · much
 - Our wedding anniversary is so a special day. — *В записи звучит Our wedding anniversary is such a special day.*
 - Our wedding anniversary is much a special day. — *В записи звучит Our wedding anniversary is such a special day.*
 
-**8 · Подчеркните качество с so или such.**
+**8 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-34:i06; family: context_gap_grammar -->
 Our wedding anniversary is ___ a special day. → **such** · so · much
 - so — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.*
@@ -103,7 +103,7 @@ Our wedding anniversary is ___ a special day. → **such** · so · much
 - This family dinner is such lovely. — *В записи звучит This family dinner is so lovely.*
 - This family dinner is much lovely. — *В записи звучит This family dinner is so lovely.*
 
-**12 · Подчеркните качество с so или such.**
+**12 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-34:i09; family: context_gap_grammar -->
 This family dinner is ___ lovely. → **so** · such · much
 - such — *После пропуска прилагательное без существительного: so.*
@@ -123,7 +123,7 @@ This family dinner is ___ lovely. → **so** · such · much
 - We are having so a happy family reunion. — *В записи звучит We are having such a happy family reunion.*
 - We are having much a happy family reunion. — *В записи звучит We are having such a happy family reunion.*
 
-**16 · Подчеркните качество с so или such.**
+**16 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-34:i12; family: context_gap_grammar -->
 We are having ___ a happy family reunion. → **such** · so · much
 - so — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.*

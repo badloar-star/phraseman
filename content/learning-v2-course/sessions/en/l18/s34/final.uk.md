@@ -63,7 +63,7 @@
 - The birthday party is such noisy. — *У записі звучить The birthday party is so noisy.*
 - The birthday party is much noisy. — *У записі звучить The birthday party is so noisy.*
 
-**4 · Підкресліть якість із so або such.**
+**4 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-34:i03; family: context_gap_grammar -->
 The birthday party is ___ noisy. → **so** · such · much
 - such — *Після пропуску прикметник без іменника: so.*
@@ -83,7 +83,7 @@ The birthday party is ___ noisy. → **so** · such · much
 - Our wedding anniversary is so a special day. — *У записі звучить Our wedding anniversary is such a special day.*
 - Our wedding anniversary is much a special day. — *У записі звучить Our wedding anniversary is such a special day.*
 
-**8 · Підкресліть якість із so або such.**
+**8 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-34:i06; family: context_gap_grammar -->
 Our wedding anniversary is ___ a special day. → **such** · so · much
 - so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.*
@@ -103,7 +103,7 @@ Our wedding anniversary is ___ a special day. → **such** · so · much
 - This family dinner is such lovely. — *У записі звучить This family dinner is so lovely.*
 - This family dinner is much lovely. — *У записі звучить This family dinner is so lovely.*
 
-**12 · Підкресліть якість із so або such.**
+**12 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-34:i09; family: context_gap_grammar -->
 This family dinner is ___ lovely. → **so** · such · much
 - such — *Після пропуску прикметник без іменника: so.*
@@ -123,7 +123,7 @@ This family dinner is ___ lovely. → **so** · such · much
 - We are having so a happy family reunion. — *У записі звучить We are having such a happy family reunion.*
 - We are having much a happy family reunion. — *У записі звучить We are having such a happy family reunion.*
 
-**16 · Підкресліть якість із so або such.**
+**16 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-34:i12; family: context_gap_grammar -->
 We are having ___ a happy family reunion. → **such** · so · much
 - so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.*

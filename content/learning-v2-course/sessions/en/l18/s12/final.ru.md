@@ -63,7 +63,7 @@
 - The fresh fruit is cheapest snack here. — *В записи звучит The fresh fruit is the cheapest snack here.*
 - The fresh fruit is the cheaper snack here. — *В записи звучит The fresh fruit is the cheapest snack here.*
 
-**4 · Выберите значение «самый» в этой группе.**
+**4 · Выберите, как сказать «самый».**
 <!-- interaction_id: en:lesson-18:session-12:i03; family: context_gap_grammar -->
 The fresh fruit is ___ snack here. → **the cheapest** · cheapest · the cheaper
 - cheapest — *В этой конструкции нужно the.*
@@ -83,7 +83,7 @@ The fresh fruit is ___ snack here. → **the cheapest** · cheapest · the cheap
 - The dried fruit is sweetest snack here. — *В записи звучит The dried fruit is the sweetest snack here.*
 - The dried fruit is the sweeter snack here. — *В записи звучит The dried fruit is the sweetest snack here.*
 
-**8 · Выберите значение «самый» в этой группе.**
+**8 · Выберите, как сказать «самый».**
 <!-- interaction_id: en:lesson-18:session-12:i06; family: context_gap_grammar -->
 The dried fruit is ___ snack here. → **the sweetest** · sweetest · the sweeter
 - sweetest — *В этой конструкции нужно the.*
@@ -103,7 +103,7 @@ The dried fruit is ___ snack here. → **the sweetest** · sweetest · the sweet
 - This bag of mixed nuts is largest. — *В записи звучит This bag of mixed nuts is the largest.*
 - This bag of mixed nuts is the larger. — *В записи звучит This bag of mixed nuts is the largest.*
 
-**12 · Выберите значение «самый» в этой группе.**
+**12 · Выберите, как сказать «самый».**
 <!-- interaction_id: en:lesson-18:session-12:i09; family: context_gap_grammar -->
 This bag of mixed nuts is ___. → **the largest** · largest · the larger
 - largest — *В этой конструкции нужно the.*
@@ -123,7 +123,7 @@ This bag of mixed nuts is ___. → **the largest** · largest · the larger
 - The plain yoghurt is cheapest option. — *В записи звучит The plain yoghurt is the cheapest option.*
 - The plain yoghurt is the cheaper option. — *В записи звучит The plain yoghurt is the cheapest option.*
 
-**16 · Выберите значение «самый» в этой группе.**
+**16 · Выберите, как сказать «самый».**
 <!-- interaction_id: en:lesson-18:session-12:i12; family: context_gap_grammar -->
 The plain yoghurt is ___ option. → **the cheapest** · cheapest · the cheaper
 - cheapest — *В этой конструкции нужно the.*

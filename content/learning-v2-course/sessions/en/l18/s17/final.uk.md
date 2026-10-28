@@ -63,7 +63,7 @@ Green tea — зелений чай. Два вибрані чаї однаков
 - This instant coffee is as stronger as yours. — *У записі звучить This instant coffee is as strong as yours.*
 - This instant coffee is as strong than yours. — *У записі звучить This instant coffee is as strong as yours.*
 
-**4 · Висловіть однакову якість.**
+**4 · Скажіть, що вони однакові.**
 <!-- interaction_id: en:lesson-18:session-17:i03; family: context_gap_grammar -->
 This instant coffee is ___ yours. → **as strong as** · as stronger as · as strong than
 - as stronger as — *Потрібна звичайна форма strong.*
@@ -83,7 +83,7 @@ This instant coffee is ___ yours. → **as strong as** · as stronger as · as s
 - This ground coffee is as fresher as yours. — *У записі звучить This ground coffee is as fresh as yours.*
 - This ground coffee is as fresh than yours. — *У записі звучить This ground coffee is as fresh as yours.*
 
-**8 · Висловіть однакову якість.**
+**8 · Скажіть, що вони однакові.**
 <!-- interaction_id: en:lesson-18:session-17:i06; family: context_gap_grammar -->
 This ground coffee is ___ yours. → **as fresh as** · as fresher as · as fresh than
 - as fresher as — *Потрібна звичайна форма fresh.*
@@ -103,7 +103,7 @@ This ground coffee is ___ yours. → **as fresh as** · as fresher as · as fres
 - This black tea is as hotter as yours. — *У записі звучить This black tea is as hot as yours.*
 - This black tea is as hot than yours. — *У записі звучить This black tea is as hot as yours.*
 
-**12 · Висловіть однакову якість.**
+**12 · Скажіть, що вони однакові.**
 <!-- interaction_id: en:lesson-18:session-17:i09; family: context_gap_grammar -->
 This black tea is ___ yours. → **as hot as** · as hotter as · as hot than
 - as hotter as — *Потрібна звичайна форма hot.*
@@ -123,7 +123,7 @@ This black tea is ___ yours. → **as hot as** · as hotter as · as hot than
 - This green tea is as cheaper as that one. — *У записі звучить This green tea is as cheap as that one.*
 - This green tea is as cheap than that one. — *У записі звучить This green tea is as cheap as that one.*
 
-**16 · Висловіть однакову якість.**
+**16 · Скажіть, що вони однакові.**
 <!-- interaction_id: en:lesson-18:session-17:i12; family: context_gap_grammar -->
 This green tea is ___ that one. → **as cheap as** · as cheaper as · as cheap than
 - as cheaper as — *Потрібна звичайна форма cheap.*

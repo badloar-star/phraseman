@@ -63,7 +63,7 @@
 - This is an bookend. — *У записі звучить This is a bookend.*
 - This is bookend. — *У записі звучить This is a bookend.*
 
-**4 · Виберіть форму для вказаної кількості або загальної назви.**
+**4 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-01:i03; family: context_gap_grammar -->
 This is ___ bookend. → **a** · an · the two
 - an — *Один предмет: перед приголосним звуком потрібен a.*
@@ -83,7 +83,7 @@ This is ___ bookend. → **a** · an · the two
 - There are two ottoman in the room. — *У записі звучить There are two ottomans in the room.*
 - There are a two ottomans in the room. — *У записі звучить There are two ottomans in the room.*
 
-**8 · Виберіть форму для вказаної кількості або загальної назви.**
+**8 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-01:i06; family: context_gap_grammar -->
 There are two ___ in the room. → **ottomans** · ottoman · an ottoman
 - ottoman — *Після two потрібна множина: ottomans.*
@@ -103,7 +103,7 @@ There are two ___ in the room. → **ottomans** · ottoman · an ottoman
 - This crockery are new. — *У записі звучить This crockery is new.*
 - These crockeries are new. — *У записі звучить This crockery is new.*
 
-**12 · Виберіть форму для вказаної кількості або загальної назви.**
+**12 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-01:i09; family: context_gap_grammar -->
 This crockery ___ new. → **is** · are · am
 - are — *Crockery — незлічуване слово; узгоджуємо з is, не are.*
@@ -123,7 +123,7 @@ This crockery ___ new. → **is** · are · am
 - We need a bedding. — *У записі звучить We need bedding.*
 - We need beddings. — *У записі звучить We need bedding.*
 
-**16 · Виберіть форму для вказаної кількості або загальної назви.**
+**16 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-01:i12; family: context_gap_grammar -->
 We need ___. → **bedding** · a bedding · beddings
 - a bedding — *Bedding — незлічуване слово: без a та без закінчення -s.*

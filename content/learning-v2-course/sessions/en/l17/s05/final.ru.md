@@ -63,7 +63,7 @@
 - This is an wrapper. — *В записи звучит This is a wrapper.*
 - This is wrapper. — *В записи звучит This is a wrapper.*
 
-**4 · Выберите форму для указанного количества или общего названия.**
+**4 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-05:i03; family: context_gap_grammar -->
 This is ___ wrapper. → **a** · an · the two
 - an — *Wrapper начинается с согласного звука: a wrapper; буква w не произносится.*
@@ -83,7 +83,7 @@ This is ___ wrapper. → **a** · an · the two
 - There are two cigarette end on the ground. — *В записи звучит There are two cigarette ends on the ground.*
 - There are a two cigarette ends on the ground. — *В записи звучит There are two cigarette ends on the ground.*
 
-**8 · Выберите форму для указанного количества или общего названия.**
+**8 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-05:i06; family: context_gap_grammar -->
 There are two ___ on the ground. → **cigarette ends** · cigarette end · a cigarette end
 - cigarette end — *После two нужно множественное cigarette ends.*
@@ -103,7 +103,7 @@ There are two ___ on the ground. → **cigarette ends** · cigarette end · a ci
 - This litter are dangerous. — *В записи звучит This litter is dangerous.*
 - These litters are dangerous. — *В записи звучит This litter is dangerous.*
 
-**12 · Выберите форму для указанного количества или общего названия.**
+**12 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-05:i09; family: context_gap_grammar -->
 This litter ___ dangerous. → **is** · are · am
 - are — *Litter в значении мусора — неисчисляемое слово: is.*
@@ -123,7 +123,7 @@ This litter ___ dangerous. → **is** · are · am
 - We are clearing a clutter. — *В записи звучит We are clearing clutter.*
 - We are clearing clutters. — *В записи звучит We are clearing clutter.*
 
-**16 · Выберите форму для указанного количества или общего названия.**
+**16 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-05:i12; family: context_gap_grammar -->
 We are clearing ___. → **clutter** · a clutter · clutters
 - a clutter — *Clutter как скопление лишних вещей — без a и без множественного -s.*

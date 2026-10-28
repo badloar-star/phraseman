@@ -63,7 +63,7 @@
 - This glass jar is as larger as yours. — *У записі звучить This glass jar is as large as yours.*
 - This glass jar is as large than yours. — *У записі звучить This glass jar is as large as yours.*
 
-**4 · Висловіть однакову якість.**
+**4 · Скажіть, що вони однакові.**
 <!-- interaction_id: en:lesson-18:session-23:i03; family: context_gap_grammar -->
 This glass jar is ___ yours. → **as large as** · as larger as · as large than
 - as larger as — *Потрібна звичайна форма large.*
@@ -83,7 +83,7 @@ This glass jar is ___ yours. → **as large as** · as larger as · as large tha
 - This water jug is as heavier as yours. — *У записі звучить This water jug is as heavy as yours.*
 - This water jug is as heavy than yours. — *У записі звучить This water jug is as heavy as yours.*
 
-**8 · Висловіть однакову якість.**
+**8 · Скажіть, що вони однакові.**
 <!-- interaction_id: en:lesson-18:session-23:i06; family: context_gap_grammar -->
 This water jug is ___ yours. → **as heavy as** · as heavier as · as heavy than
 - as heavier as — *Потрібна звичайна форма heavy.*
@@ -103,7 +103,7 @@ This water jug is ___ yours. → **as heavy as** · as heavier as · as heavy th
 - This storage box is as stronger as ours. — *У записі звучить This storage box is as strong as ours.*
 - This storage box is as strong than ours. — *У записі звучить This storage box is as strong as ours.*
 
-**12 · Висловіть однакову якість.**
+**12 · Скажіть, що вони однакові.**
 <!-- interaction_id: en:lesson-18:session-23:i09; family: context_gap_grammar -->
 This storage box is ___ ours. → **as strong as** · as stronger as · as strong than
 - as stronger as — *Потрібна звичайна форма strong.*
@@ -123,7 +123,7 @@ This storage box is ___ ours. → **as strong as** · as stronger as · as stron
 - This lunch bag is as lighter as mine. — *У записі звучить This lunch bag is as light as mine.*
 - This lunch bag is as light than mine. — *У записі звучить This lunch bag is as light as mine.*
 
-**16 · Висловіть однакову якість.**
+**16 · Скажіть, що вони однакові.**
 <!-- interaction_id: en:lesson-18:session-23:i12; family: context_gap_grammar -->
 This lunch bag is ___ mine. → **as light as** · as lighter as · as light than
 - as lighter as — *Потрібна звичайна форма light.*

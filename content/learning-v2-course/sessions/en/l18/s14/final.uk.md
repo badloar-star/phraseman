@@ -63,7 +63,7 @@
 - Standard delivery is slowest option here. — *У записі звучить Standard delivery is the slowest option here.*
 - Standard delivery is the slower option here. — *У записі звучить Standard delivery is the slowest option here.*
 
-**4 · Виберіть значення «най-» у цій групі.**
+**4 · Виберіть, як сказати «най-».**
 <!-- interaction_id: en:lesson-18:session-14:i03; family: context_gap_grammar -->
 Standard delivery is ___ option here. → **the slowest** · slowest · the slower
 - slowest — *У цій конструкції потрібне the.*
@@ -83,7 +83,7 @@ Standard delivery is ___ option here. → **the slowest** · slowest · the slow
 - Express delivery is fastest option here. — *У записі звучить Express delivery is the fastest option here.*
 - Express delivery is the faster option here. — *У записі звучить Express delivery is the fastest option here.*
 
-**8 · Виберіть значення «най-» у цій групі.**
+**8 · Виберіть, як сказати «най-».**
 <!-- interaction_id: en:lesson-18:session-14:i06; family: context_gap_grammar -->
 Express delivery is ___ option here. → **the fastest** · fastest · the faster
 - fastest — *У цій конструкції потрібне the.*
@@ -103,7 +103,7 @@ Express delivery is ___ option here. → **the fastest** · fastest · the faste
 - This shop has cheapest next-day delivery. — *У записі звучить This shop has the cheapest next-day delivery.*
 - This shop has the cheaper next-day delivery. — *У записі звучить This shop has the cheapest next-day delivery.*
 
-**12 · Виберіть значення «най-» у цій групі.**
+**12 · Виберіть, як сказати «най-».**
 <!-- interaction_id: en:lesson-18:session-14:i09; family: context_gap_grammar -->
 This shop has ___ next-day delivery. → **the cheapest** · cheapest · the cheaper
 - cheapest — *У цій конструкції потрібне the.*
@@ -123,7 +123,7 @@ This shop has ___ next-day delivery. → **the cheapest** · cheapest · the che
 - Free collection is cheapest option here. — *У записі звучить Free collection is the cheapest option here.*
 - Free collection is the cheaper option here. — *У записі звучить Free collection is the cheapest option here.*
 
-**16 · Виберіть значення «най-» у цій групі.**
+**16 · Виберіть, як сказати «най-».**
 <!-- interaction_id: en:lesson-18:session-14:i12; family: context_gap_grammar -->
 Free collection is ___ option here. → **the cheapest** · cheapest · the cheaper
 - cheapest — *У цій конструкції потрібне the.*

@@ -1,0 +1,663 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-05:session-09",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-05:session-09:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-09:i01:r1",
+          "text": "tienes"
+        },
+        {
+          "responseId": "es:lesson-05:session-09:i01:r2",
+          "text": "tengo"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-09:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-09:i01:audio",
+          "transcript": "tienes"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-05:session-09:i01:r1",
+            "targetText": "tienes",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-05:session-09:i01:r2",
+            "targetText": "tengo",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-09:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит tienes — форма для «ты».",
+              "uk": "Звучить tienes — форма для «ти»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-09:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — у тебя есть книга",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-09:i02:r1",
+          "text": "Tienes"
+        },
+        {
+          "responseId": "es:lesson-05:session-09:i02:r2",
+          "text": "Tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-09:i02:r3",
+          "text": "Soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — у тебя есть книга",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — у тебя есть книга",
+          "uk": "Вставте слово — у тебе є книжка"
+        },
+        "gappedTargetPhrase": "___ un libro.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-09:i02:r1",
+            "text": "Tienes"
+          },
+          {
+            "responseId": "es:lesson-05:session-09:i02:r2",
+            "text": "Tengo"
+          },
+          {
+            "responseId": "es:lesson-05:session-09:i02:r3",
+            "text": "Soy"
+          }
+        ],
+        "testedDimension": "Вставьте слово — у тебя есть книга",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-09:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у тебя есть книга",
+            "feedbackByLocale": {
+              "ru": "Говорите собеседнику о его вещи: tienes.",
+              "uk": "Говорите співрозмовнику про його річ: tienes."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-09:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у тебя есть книга",
+            "feedbackByLocale": {
+              "ru": "О наличии вещи у собеседника нужно tienes.",
+              "uk": "Про наявність речі у співрозмовника потрібно tienes."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-09:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — у тебя есть книга; начните с Tienes",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-09:i03:r1",
+          "text": "Плитки: libro"
+        },
+        {
+          "responseId": "es:lesson-05:session-09:i03:r2",
+          "text": "tienes"
+        },
+        {
+          "responseId": "es:lesson-05:session-09:i03:r3",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-05:session-09:i03:r4",
+          "text": "tengo."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — у тебя есть книга; начните с Tienes",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Tienes un libro.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — у тебя есть книга; начните с Tienes",
+          "uk": "Зберіть фразу — у тебе є книжка; почніть з Tienes"
+        },
+        "orderedTokens": [
+          "Tienes",
+          "un",
+          "libro"
+        ],
+        "authoredDistractorTokens": [
+          "tengo"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-09:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — у тебя есть книга; начните с Tienes",
+            "feedbackByLocale": {
+              "ru": "речь о собеседнике.",
+              "uk": "ідеться про співрозмовника."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-09:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — у тебя есть сумка, используйте bolso",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-09:i04:r1",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-05:session-09:i04:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-05:session-09:i04:r3",
+          "text": "unas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — у тебя есть сумка, используйте bolso",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — у тебя есть сумка, используйте bolso",
+          "uk": "Вставте слово — у тебе є сумка, використайте bolso"
+        },
+        "gappedTargetPhrase": "Tienes ___ bolso.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-09:i04:r1",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-05:session-09:i04:r2",
+            "text": "una"
+          },
+          {
+            "responseId": "es:lesson-05:session-09:i04:r3",
+            "text": "unas"
+          }
+        ],
+        "testedDimension": "Вставьте слово — у тебя есть сумка, используйте bolso",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-09:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у тебя есть сумка, используйте bolso",
+            "feedbackByLocale": {
+              "ru": "Bolso мужского рода: un.",
+              "uk": "Bolso чоловічого роду: un."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-09:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у тебя есть сумка, используйте bolso",
+            "feedbackByLocale": {
+              "ru": "Одна сумка, слово мужского рода: un bolso.",
+              "uk": "Одна сумка, слово чоловічого роду: un bolso."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-09:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — у тебя есть сумка; начните с Tienes и используйте bolso",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-09:i05:r1",
+          "text": "Плитки: un"
+        },
+        {
+          "responseId": "es:lesson-05:session-09:i05:r2",
+          "text": "bolso"
+        },
+        {
+          "responseId": "es:lesson-05:session-09:i05:r3",
+          "text": "tienes"
+        },
+        {
+          "responseId": "es:lesson-05:session-09:i05:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — у тебя есть сумка; начните с Tienes и используйте bolso",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Tienes un bolso.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — у тебя есть сумка; начните с Tienes и используйте bolso",
+          "uk": "Зберіть фразу — у тебе є сумка; почніть з Tienes і використайте bolso"
+        },
+        "orderedTokens": [
+          "Tienes",
+          "un",
+          "bolso"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-09:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — у тебя есть сумка; начните с Tienes и используйте bolso",
+            "feedbackByLocale": {
+              "ru": "bolso мужского рода.",
+              "uk": "bolso чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-09:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — у тебя есть машина; начните с Tú tienes и используйте carro",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-09:i06:r1",
+          "text": "Плитки: carro"
+        },
+        {
+          "responseId": "es:lesson-05:session-09:i06:r2",
+          "text": "tú"
+        },
+        {
+          "responseId": "es:lesson-05:session-09:i06:r3",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-05:session-09:i06:r4",
+          "text": "tienes"
+        },
+        {
+          "responseId": "es:lesson-05:session-09:i06:r5",
+          "text": "tengo."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — у тебя есть машина; начните с Tú tienes и используйте carro",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Tú tienes un carro.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — у тебя есть машина; начните с Tú tienes и используйте carro",
+          "uk": "Зберіть фразу — у тебе є машина; почніть з Tú tienes і використайте carro"
+        },
+        "orderedTokens": [
+          "Tú",
+          "tienes",
+          "un",
+          "carro"
+        ],
+        "authoredDistractorTokens": [
+          "tengo"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-09:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — у тебя есть машина; начните с Tú tienes и используйте carro",
+            "feedbackByLocale": {
+              "ru": "с tú нужна форма tienes.",
+              "uk": "із tú потрібна форма tienes."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-09:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-09:i07:r1",
+          "text": "Плитки: un"
+        },
+        {
+          "responseId": "es:lesson-05:session-09:i07:r2",
+          "text": "tienes"
+        },
+        {
+          "responseId": "es:lesson-05:session-09:i07:r3",
+          "text": "libro"
+        },
+        {
+          "responseId": "es:lesson-05:session-09:i07:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-09:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-09:i07:audio",
+          "transcript": "Tienes un libro."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Tienes un libro.",
+        "orderedTokens": [
+          "Tienes",
+          "un",
+          "libro"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-09:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит un.",
+              "uk": "звучить un."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-09:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — у тебя есть машина",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-09:i08:r1",
+          "text": "tienes"
+        },
+        {
+          "responseId": "es:lesson-05:session-09:i08:r2",
+          "text": "tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-09:i08:r3",
+          "text": "tener"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — у тебя есть машина",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — у тебя есть машина",
+          "uk": "Вставте слово — у тебе є машина"
+        },
+        "gappedTargetPhrase": "Tú ___ un carro.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-09:i08:r1",
+            "text": "tienes"
+          },
+          {
+            "responseId": "es:lesson-05:session-09:i08:r2",
+            "text": "tengo"
+          },
+          {
+            "responseId": "es:lesson-05:session-09:i08:r3",
+            "text": "tener"
+          }
+        ],
+        "testedDimension": "Вставьте слово — у тебя есть машина",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-09:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у тебя есть машина",
+            "feedbackByLocale": {
+              "ru": "Tengo относится к «я», а здесь tú.",
+              "uk": "Tengo стосується «я», а тут tú."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-09:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у тебя есть машина",
+            "feedbackByLocale": {
+              "ru": "Нужна личная форма для tú: tienes.",
+              "uk": "Потрібна особова форма для tú: tienes."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-09:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — у тебя есть книга; начните с Tienes",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-09:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — у тебя есть книга; начните с Tienes",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-09:i09:audio",
+          "transcript": "Tienes un libro."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tienes un libro.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-09:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — у тебя есть сумка; начните с Tienes и используйте bolso",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-09:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — у тебя есть сумка; начните с Tienes и используйте bolso",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-09:i10:audio",
+          "transcript": "Tienes un bolso."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tienes un bolso.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-09:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — у тебя есть машина; начните с Tú tienes и используйте carro",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-09:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — у тебя есть машина; начните с Tú tienes и используйте carro",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-09:i11:audio",
+          "transcript": "Tú tienes un carro."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tú tienes un carro.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-09:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — у тебя есть брат; начните с Tienes",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-09:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — у тебя есть брат; начните с Tienes",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-09:i12:audio",
+          "transcript": "Tienes un hermano."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tienes un hermano.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "4dcb8605fdfa734a268df23e7eb8c49c14609f1382ba9fa51a1f08dd86e1fdbe"
+}

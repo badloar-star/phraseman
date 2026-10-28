@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-05:session-09",
+  "entries": [
+    {
+      "interactionId": "es:lesson-05:session-09:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-09:intro1:r2": {
+          "ru": "Tengo говорило бы о вашей книге, а здесь речь о друге.",
+          "uk": "Tengo говорило б про вашу книжку, а тут ідеться про друга."
+        },
+        "es:lesson-05:session-09:intro1:r3": {
+          "ru": "Libro мужского рода: un.",
+          "uk": "Libro чоловічого роду: un."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-09:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-09:intro2:r2": {
+          "ru": "Tengo относилось бы к вам, а говорите о сумке друга.",
+          "uk": "Tengo стосувалося б вас, а говорите про сумку друга."
+        },
+        "es:lesson-05:session-09:intro2:r3": {
+          "ru": "Bolso мужского рода: un.",
+          "uk": "Bolso чоловічого роду: un."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-09:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-09:intro3:r2": {
+          "ru": "Tengo — форма для «я»; с tú нужно tienes.",
+          "uk": "Tengo — форма для «я»; із tú потрібно tienes."
+        },
+        "es:lesson-05:session-09:intro3:r3": {
+          "ru": "Carro мужского рода: un.",
+          "uk": "Carro чоловічого роду: un."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "fb089cbd940220627bdb739a22bf0d6c9cab4292e035e66479f692168aec27f1"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-05:session-11",
+  "entries": [
+    {
+      "interactionId": "es:lesson-05:session-11:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-11:intro1:r2": {
+          "ru": "Tengo спрашивало бы о вашем времени, а здесь речь о друге.",
+          "uk": "Tengo запитувало б про ваш час, а тут ідеться про друга."
+        },
+        "es:lesson-05:session-11:intro1:r3": {
+          "ru": "В этой фразе tiempo без артикля.",
+          "uk": "У цій фразі tiempo без артикля."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-11:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-11:intro2:r2": {
+          "ru": "Спрашиваете о друге: tienes.",
+          "uk": "Запитуєте про друга: tienes."
+        },
+        "es:lesson-05:session-11:intro2:r3": {
+          "ru": "Libro мужского рода: un.",
+          "uk": "Libro чоловічого роду: un."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-11:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-11:intro3:r2": {
+          "ru": "Llave женского рода: una.",
+          "uk": "Llave жіночого роду: una."
+        },
+        "es:lesson-05:session-11:intro3:r3": {
+          "ru": "Вопрос другу о его ключе: tienes.",
+          "uk": "Запитання другу про його ключ: tienes."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "132ad958558bdbc9808fc6c00a13f629a59d52a1dc84708b218dbb3e0757fc3e"
+}

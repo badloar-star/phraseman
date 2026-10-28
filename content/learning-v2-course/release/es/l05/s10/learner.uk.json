@@ -1,0 +1,658 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-05:session-10",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-05:session-10:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-10:i01:r1",
+          "text": "bolsa"
+        },
+        {
+          "responseId": "es:lesson-05:session-10:i01:r2",
+          "text": "bolso"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-10:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-10:i01:audio",
+          "transcript": "bolsa"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-05:session-10:i01:r1",
+            "targetText": "bolsa",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-05:session-10:i01:r2",
+            "targetText": "bolso",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-10:i01:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В конце звучит a: bolsa.",
+              "uk": "Наприкінці звучить a: bolsa."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-10:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — у тебе є сумка, використайте bolsa",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-10:i02:r1",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-05:session-10:i02:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-05:session-10:i02:r3",
+          "text": "unas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — у тебе є сумка, використайте bolsa",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — у тебя есть сумка, используйте bolsa",
+          "uk": "Вставте слово — у тебе є сумка, використайте bolsa"
+        },
+        "gappedTargetPhrase": "Tienes ___ bolsa.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-10:i02:r1",
+            "text": "una"
+          },
+          {
+            "responseId": "es:lesson-05:session-10:i02:r2",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-05:session-10:i02:r3",
+            "text": "unas"
+          }
+        ],
+        "testedDimension": "Вставте слово — у тебе є сумка, використайте bolsa",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-10:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — у тебе є сумка, використайте bolsa",
+            "feedbackByLocale": {
+              "ru": "Bolsa женского рода: una.",
+              "uk": "Bolsa жіночого роду: una."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-10:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — у тебе є сумка, використайте bolsa",
+            "feedbackByLocale": {
+              "ru": "Сумка одна: una bolsa.",
+              "uk": "Сумка одна: una bolsa."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-10:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — у тебе є сумка; почніть з Tienes і використайте bolsa",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-10:i03:r1",
+          "text": "Плитки: bolsa"
+        },
+        {
+          "responseId": "es:lesson-05:session-10:i03:r2",
+          "text": "tienes"
+        },
+        {
+          "responseId": "es:lesson-05:session-10:i03:r3",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-05:session-10:i03:r4",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — у тебе є сумка; почніть з Tienes і використайте bolsa",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Tienes una bolsa.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — у тебя есть сумка; начните с Tienes и используйте bolsa",
+          "uk": "Зберіть фразу — у тебе є сумка; почніть з Tienes і використайте bolsa"
+        },
+        "orderedTokens": [
+          "Tienes",
+          "una",
+          "bolsa"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-10:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — у тебе є сумка; почніть з Tienes і використайте bolsa",
+            "feedbackByLocale": {
+              "ru": "bolsa женского рода.",
+              "uk": "bolsa жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-10:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — у тебе є коробка",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-10:i04:r1",
+          "text": "Tienes"
+        },
+        {
+          "responseId": "es:lesson-05:session-10:i04:r2",
+          "text": "Tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-10:i04:r3",
+          "text": "Soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — у тебе є коробка",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — у тебя есть коробка",
+          "uk": "Вставте слово — у тебе є коробка"
+        },
+        "gappedTargetPhrase": "___ una caja.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-10:i04:r1",
+            "text": "Tienes"
+          },
+          {
+            "responseId": "es:lesson-05:session-10:i04:r2",
+            "text": "Tengo"
+          },
+          {
+            "responseId": "es:lesson-05:session-10:i04:r3",
+            "text": "Soy"
+          }
+        ],
+        "testedDimension": "Вставте слово — у тебе є коробка",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-10:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — у тебе є коробка",
+            "feedbackByLocale": {
+              "ru": "Говорите собеседнику: tienes.",
+              "uk": "Говорите співрозмовнику: tienes."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-10:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — у тебе є коробка",
+            "feedbackByLocale": {
+              "ru": "О наличии вещи у друга нужно tienes.",
+              "uk": "Про наявність речі у друга потрібно tienes."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-10:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — у тебе є коробка; почніть з Tienes",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-10:i05:r1",
+          "text": "Плитки: una"
+        },
+        {
+          "responseId": "es:lesson-05:session-10:i05:r2",
+          "text": "caja"
+        },
+        {
+          "responseId": "es:lesson-05:session-10:i05:r3",
+          "text": "tienes"
+        },
+        {
+          "responseId": "es:lesson-05:session-10:i05:r4",
+          "text": "tengo."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — у тебе є коробка; почніть з Tienes",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Tienes una caja.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — у тебя есть коробка; начните с Tienes",
+          "uk": "Зберіть фразу — у тебе є коробка; почніть з Tienes"
+        },
+        "orderedTokens": [
+          "Tienes",
+          "una",
+          "caja"
+        ],
+        "authoredDistractorTokens": [
+          "tengo"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-10:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — у тебе є коробка; почніть з Tienes",
+            "feedbackByLocale": {
+              "ru": "речь о собеседнике, а не о вас.",
+              "uk": "ідеться про співрозмовника, а не про вас."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-10:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — у тебе є ключ; почніть з Tienes",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-10:i06:r1",
+          "text": "Плитки: llave"
+        },
+        {
+          "responseId": "es:lesson-05:session-10:i06:r2",
+          "text": "tienes"
+        },
+        {
+          "responseId": "es:lesson-05:session-10:i06:r3",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-05:session-10:i06:r4",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — у тебе є ключ; почніть з Tienes",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Tienes una llave.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — у тебя есть ключ; начните с Tienes",
+          "uk": "Зберіть фразу — у тебе є ключ; почніть з Tienes"
+        },
+        "orderedTokens": [
+          "Tienes",
+          "una",
+          "llave"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-10:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — у тебе є ключ; почніть з Tienes",
+            "feedbackByLocale": {
+              "ru": "llave женского рода.",
+              "uk": "llave жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-10:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-10:i07:r1",
+          "text": "Плитки: una"
+        },
+        {
+          "responseId": "es:lesson-05:session-10:i07:r2",
+          "text": "tienes"
+        },
+        {
+          "responseId": "es:lesson-05:session-10:i07:r3",
+          "text": "bolsa"
+        },
+        {
+          "responseId": "es:lesson-05:session-10:i07:r4",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-10:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-10:i07:audio",
+          "transcript": "Tienes una bolsa."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Tienes una bolsa.",
+        "orderedTokens": [
+          "Tienes",
+          "una",
+          "bolsa"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-10:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит una.",
+              "uk": "звучить una."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-10:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — у тебе є один ключ",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-10:i08:r1",
+          "text": "llave"
+        },
+        {
+          "responseId": "es:lesson-05:session-10:i08:r2",
+          "text": "llaves"
+        },
+        {
+          "responseId": "es:lesson-05:session-10:i08:r3",
+          "text": "libro"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — у тебе є один ключ",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — у тебя есть один ключ",
+          "uk": "Вставте слово — у тебе є один ключ"
+        },
+        "gappedTargetPhrase": "Tienes una ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-10:i08:r1",
+            "text": "llave"
+          },
+          {
+            "responseId": "es:lesson-05:session-10:i08:r2",
+            "text": "llaves"
+          },
+          {
+            "responseId": "es:lesson-05:session-10:i08:r3",
+            "text": "libro"
+          }
+        ],
+        "testedDimension": "Вставте слово — у тебе є один ключ",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-10:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — у тебе є один ключ",
+            "feedbackByLocale": {
+              "ru": "Один ключ: llave.",
+              "uk": "Один ключ: llave."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-10:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — у тебе є один ключ",
+            "feedbackByLocale": {
+              "ru": "Нужно назвать ключ: llave.",
+              "uk": "Потрібно назвати ключ: llave."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-10:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — у тебе є сумка; почніть з Tienes і використайте bolsa",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-10:i09:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — у тебе є сумка; почніть з Tienes і використайте bolsa",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-10:i09:audio",
+          "transcript": "Tienes una bolsa."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tienes una bolsa.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-10:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — у тебе є коробка; почніть з Tienes",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-10:i10:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — у тебе є коробка; почніть з Tienes",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-10:i10:audio",
+          "transcript": "Tienes una caja."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tienes una caja.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-10:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — у тебе є ключ; почніть з Tienes",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-10:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — у тебе є ключ; почніть з Tienes",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-10:i11:audio",
+          "transcript": "Tienes una llave."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tienes una llave.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-10:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — у тебе є маленька коробка; почніть з Tienes una caja",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-10:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — у тебе є маленька коробка; почніть з Tienes una caja",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-10:i12:audio",
+          "transcript": "Tienes una caja pequeña."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tienes una caja pequeña.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "7ba9df68a0282819e82a1453fd2327a541489ad8925dbd318cca72e374b724fb"
+}

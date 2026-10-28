@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-05:session-10",
+  "learningOutcomeByLocale": {
+    "ru": "соединить tienes с una и названием вещи женского рода.",
+    "uk": "поєднати tienes з una й назвою речі жіночого роду."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-05:session-10:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Во что положить вещи",
+        "uk": "У що покласти речі"
+      },
+      "bodyByLocale": {
+        "ru": "Друг ищет, во что сложить покупки. Напомните `Tienes una bolsa` — «У тебя есть сумка». Соберите `tienes` + `una bolsa`. Tienes относится к собеседнику на «ты». Перед bolsa берём una, потому что это слово женского рода. Форма tienes от рода вещи не меняется.",
+        "uk": "Друг шукає, у що скласти покупки. Нагадайте `Tienes una bolsa` — «У тебе є сумка». Складіть `tienes` + `una bolsa`. Tienes стосується співрозмовника на «ти». Перед bolsa беремо una, тому що це слово жіночого роду. Форма tienes від роду речі не змінюється."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-10:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите другу «У тебя есть сумка». Начните с Tienes и используйте bolsa.",
+          "uk": "Скажіть другу «У тебе є сумка». Почніть з Tienes і використайте bolsa."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-10:intro1:r1",
+              "text": "Tienes una bolsa."
+            },
+            {
+              "responseId": "es:lesson-05:session-10:intro1:r2",
+              "text": "Tienes un bolsa."
+            },
+            {
+              "responseId": "es:lesson-05:session-10:intro1:r3",
+              "text": "Tengo una bolsa."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-10:intro1:r1",
+              "text": "Tienes una bolsa."
+            },
+            {
+              "responseId": "es:lesson-05:session-10:intro1:r2",
+              "text": "Tienes un bolsa."
+            },
+            {
+              "responseId": "es:lesson-05:session-10:intro1:r3",
+              "text": "Tengo una bolsa."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите другу «У тебя есть сумка». Начните с Tienes и используйте bolsa.",
+          "uk": "Скажіть другу «У тебе є сумка». Почніть з Tienes і використайте bolsa."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-05:session-10:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Коробка для мелочей",
+        "uk": "Коробка для дрібниць"
+      },
+      "bodyByLocale": {
+        "ru": "Друг ищет, куда сложить мелкие вещи. Вы видите его коробку и говорите `Tienes una caja` — «У тебя есть коробка». Соберите `tienes` + `una caja`. Меняем название предмета на caja. Это тоже женский род, поэтому una сохраняется. Tienes показывает, что коробка есть у собеседника.",
+        "uk": "Друг шукає, куди скласти дрібні речі. Ви бачите його коробку й говорите `Tienes una caja` — «У тебе є коробка». Складіть `tienes` + `una caja`. Міняємо назву предмета на caja. Це теж жіночий рід, тому una зберігається. Tienes показує, що коробка є у співрозмовника."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-10:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите другу «У тебя есть коробка». Начните с Tienes.",
+          "uk": "Скажіть другу «У тебе є коробка». Почніть з Tienes."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-10:intro2:r1",
+              "text": "Tienes una caja."
+            },
+            {
+              "responseId": "es:lesson-05:session-10:intro2:r2",
+              "text": "Tienes un caja."
+            },
+            {
+              "responseId": "es:lesson-05:session-10:intro2:r3",
+              "text": "Tengo una caja."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-10:intro2:r1",
+              "text": "Tienes una caja."
+            },
+            {
+              "responseId": "es:lesson-05:session-10:intro2:r2",
+              "text": "Tienes un caja."
+            },
+            {
+              "responseId": "es:lesson-05:session-10:intro2:r3",
+              "text": "Tengo una caja."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите другу «У тебя есть коробка». Начните с Tienes.",
+          "uk": "Скажіть другу «У тебе є коробка». Почніть з Tienes."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-05:session-10:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Напомнить о ключе",
+        "uk": "Нагадати про ключ"
+      },
+      "bodyByLocale": {
+        "ru": "Друг собирается выйти и ищет ключ, который уже положил в карман. Напомните `Tienes una llave` — «У тебя есть ключ». Соберите `tienes` + `una llave`. Русское слово «ключ» мужского рода, но испанское llave — женского. Артикль выбираем по испанскому слову: una llave.",
+        "uk": "Друг збирається вийти й шукає ключ, який уже поклав у кишеню. Нагадайте `Tienes una llave` — «У тебе є ключ». Складіть `tienes` + `una llave`. Українське слово «ключ» чоловічого роду, але іспанське llave — жіночого. Артикль вибираємо за іспанським словом: una llave."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-10:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите другу «У тебя есть ключ». Начните с Tienes.",
+          "uk": "Скажіть другу «У тебе є ключ». Почніть з Tienes."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-10:intro3:r1",
+              "text": "Tienes una llave."
+            },
+            {
+              "responseId": "es:lesson-05:session-10:intro3:r2",
+              "text": "Tienes un llave."
+            },
+            {
+              "responseId": "es:lesson-05:session-10:intro3:r3",
+              "text": "Tienes una llaves."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-10:intro3:r1",
+              "text": "Tienes una llave."
+            },
+            {
+              "responseId": "es:lesson-05:session-10:intro3:r2",
+              "text": "Tienes un llave."
+            },
+            {
+              "responseId": "es:lesson-05:session-10:intro3:r3",
+              "text": "Tienes una llaves."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите другу «У тебя есть ключ». Начните с Tienes.",
+          "uk": "Скажіть другу «У тебе є ключ». Почніть з Tienes."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "00a4f64d348d3e9fb92432e22290303f60d316d391f32f3d71e83e0d3d186190"
+}

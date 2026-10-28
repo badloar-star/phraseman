@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-05:session-09:i01",
+    "correctText": "tienes",
+    "correctResponseId": "es:lesson-05:session-09:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-09:i02",
+    "correctText": "Tienes",
+    "correctResponseId": "es:lesson-05:session-09:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-09:i03",
+    "correctText": "Tienes un libro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-09:i04",
+    "correctText": "un",
+    "correctResponseId": "es:lesson-05:session-09:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-09:i05",
+    "correctText": "Tienes un bolso.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-09:i06",
+    "correctText": "Tú tienes un carro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-09:i07",
+    "correctText": "Tienes un libro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-09:i08",
+    "correctText": "tienes",
+    "correctResponseId": "es:lesson-05:session-09:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-09:i09",
+    "correctText": "Tienes un libro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-09:i10",
+    "correctText": "Tienes un bolso.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-09:i11",
+    "correctText": "Tú tienes un carro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-09:i12",
+    "correctText": "Tienes un hermano.",
+    "correctResponseId": null
+  }
+]

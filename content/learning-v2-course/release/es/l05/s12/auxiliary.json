@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-05:session-12",
+  "entries": [
+    {
+      "interactionId": "es:lesson-05:session-12:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-12:intro1:r2": {
+          "ru": "Tienes вернуло бы разговор к собеседнику; ответ о вас: tengo.",
+          "uk": "Tienes повернуло б розмову до співрозмовника; відповідь про вас: tengo."
+        },
+        "es:lesson-05:session-12:intro1:r3": {
+          "ru": "В этой фразе tiempo без артикля.",
+          "uk": "У цій фразі tiempo без артикля."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-12:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-12:intro2:r2": {
+          "ru": "Ответ о себе требует tengo.",
+          "uk": "Відповідь про себе потребує tengo."
+        },
+        "es:lesson-05:session-12:intro2:r3": {
+          "ru": "Libro мужского рода: un.",
+          "uk": "Libro чоловічого роду: un."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-12:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-12:intro3:r2": {
+          "ru": "Llave женского рода: una.",
+          "uk": "Llave жіночого роду: una."
+        },
+        "es:lesson-05:session-12:intro3:r3": {
+          "ru": "Говорите о себе: tengo.",
+          "uk": "Говорите про себе: tengo."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "cc9a7aaccfcbe5946ca164cd0e1c265b7954fcf3953d4de23bded79ff0c2f73e"
+}

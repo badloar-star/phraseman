@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-05:session-09",
+  "learningOutcomeByLocale": {
+    "ru": "использовать tienes, когда говорите собеседнику на «ты» о том, что у него есть.",
+    "uk": "використовувати tienes, коли говорите співрозмовнику на «ти» про те, що в нього є."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-05:session-09:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Книга друга",
+        "uk": "Книжка друга"
+      },
+      "bodyByLocale": {
+        "ru": "Друг ищет, что почитать, хотя уже положил книгу в сумку. Напомните `Tienes un libro` — «У тебя есть книга». Соберите `tienes` + `un libro`. О себе вы говорили tengo, а собеседнику на «ты» говорим tienes. Отдельное tú можно не произносить: форма tienes уже указывает на собеседника.",
+        "uk": "Друг шукає, що почитати, хоча вже поклав книжку в сумку. Нагадайте `Tienes un libro` — «У тебе є книжка». Складіть `tienes` + `un libro`. Про себе ви говорили tengo, а співрозмовнику на «ти» говоримо tienes. Окреме tú можна не вимовляти: форма tienes уже вказує на співрозмовника."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-09:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите другу «У тебя есть книга». Начните с Tienes.",
+          "uk": "Скажіть другу «У тебе є книжка». Почніть з Tienes."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-09:intro1:r1",
+              "text": "Tienes un libro."
+            },
+            {
+              "responseId": "es:lesson-05:session-09:intro1:r2",
+              "text": "Tengo un libro."
+            },
+            {
+              "responseId": "es:lesson-05:session-09:intro1:r3",
+              "text": "Tienes una libro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-09:intro1:r1",
+              "text": "Tienes un libro."
+            },
+            {
+              "responseId": "es:lesson-05:session-09:intro1:r2",
+              "text": "Tengo un libro."
+            },
+            {
+              "responseId": "es:lesson-05:session-09:intro1:r3",
+              "text": "Tienes una libro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите другу «У тебя есть книга». Начните с Tienes.",
+          "uk": "Скажіть другу «У тебе є книжка». Почніть з Tienes."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-05:session-09:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Сумка друга",
+        "uk": "Сумка друга"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает, во что положить книгу, и вы напоминаете о его сумке: `Tienes un bolso` — «У тебя есть сумка». Соберите `tienes` + `un bolso`. Вещь друга меняется, но обращение остаётся тем же: tienes. Перед bolso нужен un, потому что испанское слово мужского рода.",
+        "uk": "Друг запитує, у що покласти книжку, і ви нагадуєте про його сумку: `Tienes un bolso` — «У тебе є сумка». Складіть `tienes` + `un bolso`. Річ друга змінюється, але звертання залишається тим самим: tienes. Перед bolso потрібен un, тому що іспанське слово чоловічого роду."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-09:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите другу «У тебя есть сумка». Начните с Tienes и используйте bolso.",
+          "uk": "Скажіть другу «У тебе є сумка». Почніть з Tienes і використайте bolso."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-09:intro2:r1",
+              "text": "Tienes un bolso."
+            },
+            {
+              "responseId": "es:lesson-05:session-09:intro2:r2",
+              "text": "Tengo un bolso."
+            },
+            {
+              "responseId": "es:lesson-05:session-09:intro2:r3",
+              "text": "Tienes una bolso."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-09:intro2:r1",
+              "text": "Tienes un bolso."
+            },
+            {
+              "responseId": "es:lesson-05:session-09:intro2:r2",
+              "text": "Tengo un bolso."
+            },
+            {
+              "responseId": "es:lesson-05:session-09:intro2:r3",
+              "text": "Tienes una bolso."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите другу «У тебя есть сумка». Начните с Tienes и используйте bolso.",
+          "uk": "Скажіть другу «У тебе є сумка». Почніть з Tienes і використайте bolso."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-05:session-09:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Машина друга",
+        "uk": "Машина друга"
+      },
+      "bodyByLocale": {
+        "ru": "Вы обсуждаете дорогу и напоминаете другу о его машине: `Tú tienes un carro` — «У тебя есть машина». Соберите `tú` + `tienes` + `un carro`. Tú явно называет собеседника. С tú нужна та же форма tienes; tengo осталось бы формой для «я». В обычной фразе tú можно опустить, а здесь намеренно выделяем друга.",
+        "uk": "Ви обговорюєте дорогу й нагадуєте другу про його машину: `Tú tienes un carro` — «У тебе є машина». Складіть `tú` + `tienes` + `un carro`. Tú явно називає співрозмовника. Із tú потрібна та сама форма tienes; tengo залишилося б формою для «я». У звичайній фразі tú можна опустити, а тут навмисно виділяємо друга."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-09:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите другу «У тебя есть машина». Начните с Tú tienes и используйте carro.",
+          "uk": "Скажіть другу «У тебе є машина». Почніть з Tú tienes і використайте carro."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-09:intro3:r1",
+              "text": "Tú tienes un carro."
+            },
+            {
+              "responseId": "es:lesson-05:session-09:intro3:r2",
+              "text": "Tú tengo un carro."
+            },
+            {
+              "responseId": "es:lesson-05:session-09:intro3:r3",
+              "text": "Tú tienes una carro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-09:intro3:r1",
+              "text": "Tú tienes un carro."
+            },
+            {
+              "responseId": "es:lesson-05:session-09:intro3:r2",
+              "text": "Tú tengo un carro."
+            },
+            {
+              "responseId": "es:lesson-05:session-09:intro3:r3",
+              "text": "Tú tienes una carro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите другу «У тебя есть машина». Начните с Tú tienes и используйте carro.",
+          "uk": "Скажіть другу «У тебе є машина». Почніть з Tú tienes і використайте carro."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "9f4341d982132889335c0935076f3c7acd1398e1f9601398a6d666e6a3a86883"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-05:session-12",
+  "learningOutcomeByLocale": {
+    "ru": "отвечать Sí, tengo… от своего лица на вопрос с tienes.",
+    "uk": "відповідати Sí, tengo… від свого імені на запитання з tienes."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-05:session-12:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Подтвердить, что время есть",
+        "uk": "Підтвердити, що час є"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает `¿Tienes tiempo?` — «У тебя есть время?». Ответьте отдельной репликой `Sí, tengo tiempo` — «Да, у меня есть время». Соберите `sí` + `tengo` + `tiempo`. В вопросе друг обращался к вам: tienes. В ответе вы говорите о себе, поэтому tengo. Sí со знаком ударения означает «да».",
+        "uk": "Друг запитує `¿Tienes tiempo?` — «У тебе є час?». Дайте відповідь окремою реплікою `Sí, tengo tiempo` — «Так, у мене є час». Складіть `sí` + `tengo` + `tiempo`. У запитанні друг звертався до вас: tienes. У відповіді ви говорите про себе, тому tengo. Sí зі знаком наголосу означає «так»."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-12:intro1:q",
+        "promptByLocale": {
+          "ru": "Ответьте «Да, у меня есть время». Начните с Sí, tengo.",
+          "uk": "Дайте відповідь «Так, у мене є час». Почніть з Sí, tengo."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-12:intro1:r1",
+              "text": "Sí, tengo tiempo."
+            },
+            {
+              "responseId": "es:lesson-05:session-12:intro1:r2",
+              "text": "Sí, tienes tiempo."
+            },
+            {
+              "responseId": "es:lesson-05:session-12:intro1:r3",
+              "text": "Sí, tengo una tiempo."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-12:intro1:r1",
+              "text": "Sí, tengo tiempo."
+            },
+            {
+              "responseId": "es:lesson-05:session-12:intro1:r2",
+              "text": "Sí, tienes tiempo."
+            },
+            {
+              "responseId": "es:lesson-05:session-12:intro1:r3",
+              "text": "Sí, tengo una tiempo."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ответьте «Да, у меня есть время». Начните с Sí, tengo.",
+          "uk": "Дайте відповідь «Так, у мене є час». Почніть з Sí, tengo."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-05:session-12:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Книга с собой",
+        "uk": "Книжка із собою"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает, есть ли у вас книга: `¿Tienes un libro?`. Ответьте `Sí, tengo un libro` — «Да, у меня есть книга». Соберите `sí` + `tengo` + `un libro`. Отвечая о себе, меняем tienes на tengo. Название вещи с артиклем остаётся: un libro.",
+        "uk": "Друг запитує, чи є у вас книжка: `¿Tienes un libro?`. Дайте відповідь `Sí, tengo un libro` — «Так, у мене є книжка». Складіть `sí` + `tengo` + `un libro`. Відповідаючи про себе, міняємо tienes на tengo. Назва речі з артиклем залишається: un libro."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-12:intro2:q",
+        "promptByLocale": {
+          "ru": "Ответьте «Да, у меня есть книга». Начните с Sí, tengo.",
+          "uk": "Дайте відповідь «Так, у мене є книжка». Почніть з Sí, tengo."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-12:intro2:r1",
+              "text": "Sí, tengo un libro."
+            },
+            {
+              "responseId": "es:lesson-05:session-12:intro2:r2",
+              "text": "Sí, tienes un libro."
+            },
+            {
+              "responseId": "es:lesson-05:session-12:intro2:r3",
+              "text": "Sí, tengo una libro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-12:intro2:r1",
+              "text": "Sí, tengo un libro."
+            },
+            {
+              "responseId": "es:lesson-05:session-12:intro2:r2",
+              "text": "Sí, tienes un libro."
+            },
+            {
+              "responseId": "es:lesson-05:session-12:intro2:r3",
+              "text": "Sí, tengo una libro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ответьте «Да, у меня есть книга». Начните с Sí, tengo.",
+          "uk": "Дайте відповідь «Так, у мене є книжка». Почніть з Sí, tengo."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-05:session-12:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ключ у вас",
+        "uk": "Ключ у вас"
+      },
+      "bodyByLocale": {
+        "ru": "У двери друг спрашивает `¿Tienes una llave?`. У вас есть ключ. Ответьте `Sí, tengo una llave` — «Да, у меня есть ключ». Соберите `sí` + `tengo` + `una llave`. Sí подтверждает наличие ключа, а tengo сообщает, что он у вас. Для llave сохраняем una, потому что слово женского рода.",
+        "uk": "Біля дверей друг запитує `¿Tienes una llave?`. У вас є ключ. Дайте відповідь `Sí, tengo una llave` — «Так, у мене є ключ». Складіть `sí` + `tengo` + `una llave`. Sí підтверджує наявність ключа, а tengo повідомляє, що він у вас. Для llave зберігаємо una, тому що слово жіночого роду."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-12:intro3:q",
+        "promptByLocale": {
+          "ru": "Ответьте «Да, у меня есть ключ». Начните с Sí, tengo.",
+          "uk": "Дайте відповідь «Так, у мене є ключ». Почніть з Sí, tengo."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-12:intro3:r1",
+              "text": "Sí, tengo una llave."
+            },
+            {
+              "responseId": "es:lesson-05:session-12:intro3:r2",
+              "text": "Sí, tengo un llave."
+            },
+            {
+              "responseId": "es:lesson-05:session-12:intro3:r3",
+              "text": "Sí, tienes una llave."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-12:intro3:r1",
+              "text": "Sí, tengo una llave."
+            },
+            {
+              "responseId": "es:lesson-05:session-12:intro3:r2",
+              "text": "Sí, tengo un llave."
+            },
+            {
+              "responseId": "es:lesson-05:session-12:intro3:r3",
+              "text": "Sí, tienes una llave."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ответьте «Да, у меня есть ключ». Начните с Sí, tengo.",
+          "uk": "Дайте відповідь «Так, у мене є ключ». Почніть з Sí, tengo."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b9bd77f00789d06c3266ea73f462afdeb2c747133de21d3dde41b25bdc755850"
+}

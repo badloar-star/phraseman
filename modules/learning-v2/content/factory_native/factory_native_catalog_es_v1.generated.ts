@@ -1631,4 +1631,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"закрепить tengo с предметами, родственниками и временем, а также отрицание no tengo.","uk":"закріпити tengo з предметами, родичами й часом, а також заперечення no tengo."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 5, sessionOrdinal: 9,
+    sourceFingerprint: "b2c15c9bc02cb01d3ab9850efa813afd1855c1f13abd61a80a58d8347b018f99",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"использовать tienes, когда говорите собеседнику на «ты» о том, что у него есть.","uk":"використовувати tienes, коли говорите співрозмовнику на «ти» про те, що в нього є."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 5, sessionOrdinal: 10,
+    sourceFingerprint: "8fcf31bd3a6aba0da2c0ebace74a35316bc4850f74d10c9c693f3c97662fd2ce",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"соединить tienes с una и названием вещи женского рода.","uk":"поєднати tienes з una й назвою речі жіночого роду."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 5, sessionOrdinal: 11,
+    sourceFingerprint: "860fab29bb4c823152e39c52da5f814684cfe30755f027679040af68cc2ac6a7",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"превратить знакомую фразу с tienes в вопрос.","uk":"перетворити знайому фразу з tienes на запитання."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 5, sessionOrdinal: 12,
+    sourceFingerprint: "bb16e20fe6184a34614410fa1e4ab0621ce586283302fb948d744511f5bc0c46",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"отвечать Sí, tengo… от своего лица на вопрос с tienes.","uk":"відповідати Sí, tengo… від свого імені на запитання з tienes."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
+  }),
 ]);

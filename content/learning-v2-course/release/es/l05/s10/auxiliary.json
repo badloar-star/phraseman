@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-05:session-10",
+  "entries": [
+    {
+      "interactionId": "es:lesson-05:session-10:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-10:intro1:r2": {
+          "ru": "Bolsa женского рода: una.",
+          "uk": "Bolsa жіночого роду: una."
+        },
+        "es:lesson-05:session-10:intro1:r3": {
+          "ru": "Tengo говорило бы о вас, а здесь речь о друге.",
+          "uk": "Tengo говорило б про вас, а тут ідеться про друга."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-10:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-10:intro2:r2": {
+          "ru": "Перед caja нужно una.",
+          "uk": "Перед caja потрібно una."
+        },
+        "es:lesson-05:session-10:intro2:r3": {
+          "ru": "Говорите не о себе, а о друге: tienes.",
+          "uk": "Говорите не про себе, а про друга: tienes."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-10:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-10:intro3:r2": {
+          "ru": "Нужно una, несмотря на род русского слова.",
+          "uk": "Потрібно una, попри рід українського слова."
+        },
+        "es:lesson-05:session-10:intro3:r3": {
+          "ru": "Называем один ключ: llave без s.",
+          "uk": "Називаємо один ключ: llave без s."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "d5a3a4bc5592ffcf243b08935e1f6a55604d5aeb8001c2c3c178770ed5631610"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-05:session-11",
+  "learningOutcomeByLocale": {
+    "ru": "превратить знакомую фразу с tienes в вопрос.",
+    "uk": "перетворити знайому фразу з tienes на запитання."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-05:session-11:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Начать разговор",
+        "uk": "Почати розмову"
+      },
+      "bodyByLocale": {
+        "ru": "Вы встречаете друга и хотите немного поговорить. Спросите `¿Tienes tiempo?` — «У тебя есть время?». Соберите `tienes` + `tiempo`, а всю фразу произнесите как вопрос. В письме поставьте ¿ в начале и ? в конце. Дополнительное слово для вопроса не нужно: сохраняем tienes и tiempo, меняем интонацию.",
+        "uk": "Ви зустрічаєте друга й хочете трохи поговорити. Запитайте `¿Tienes tiempo?` — «У тебе є час?». Складіть `tienes` + `tiempo`, а всю фразу вимовте як запитання. На письмі поставте ¿ на початку й ? у кінці. Додаткове слово для запитання не потрібне: зберігаємо tienes і tiempo, змінюємо інтонацію."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-11:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите друга «У тебя есть время?». Начните с Tienes.",
+          "uk": "Запитайте друга «У тебе є час?». Почніть з Tienes."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-11:intro1:r1",
+              "text": "¿Tienes tiempo?"
+            },
+            {
+              "responseId": "es:lesson-05:session-11:intro1:r2",
+              "text": "¿Tengo tiempo?"
+            },
+            {
+              "responseId": "es:lesson-05:session-11:intro1:r3",
+              "text": "¿Tienes una tiempo?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-11:intro1:r1",
+              "text": "¿Tienes tiempo?"
+            },
+            {
+              "responseId": "es:lesson-05:session-11:intro1:r2",
+              "text": "¿Tengo tiempo?"
+            },
+            {
+              "responseId": "es:lesson-05:session-11:intro1:r3",
+              "text": "¿Tienes una tiempo?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите друга «У тебя есть время?». Начните с Tienes.",
+          "uk": "Запитайте друга «У тебе є час?». Почніть з Tienes."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-05:session-11:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Книга для дороги",
+        "uk": "Книжка для дороги"
+      },
+      "bodyByLocale": {
+        "ru": "Перед поездкой вы хотите узнать, взял ли друг книгу. Спросите `¿Tienes un libro?` — «У тебя есть книга?». Соберите `tienes` + `un libro` и произнесите вопрос. Вопрос не убирает артикль: перед одной неопределённой книгой сохраняем un. На письме вопрос охватывают знаки ¿ и ?.",
+        "uk": "Перед поїздкою ви хочете дізнатися, чи взяв друг книжку. Запитайте `¿Tienes un libro?` — «У тебе є книжка?». Складіть `tienes` + `un libro` і вимовте запитання. Запитання не прибирає артикль: перед однією невизначеною книжкою зберігаємо un. На письмі запитання охоплюють знаки ¿ і ?."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-11:intro2:q",
+        "promptByLocale": {
+          "ru": "Спросите друга «У тебя есть книга?». Начните с Tienes.",
+          "uk": "Запитайте друга «У тебе є книжка?». Почніть з Tienes."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-11:intro2:r1",
+              "text": "¿Tienes un libro?"
+            },
+            {
+              "responseId": "es:lesson-05:session-11:intro2:r2",
+              "text": "¿Tengo un libro?"
+            },
+            {
+              "responseId": "es:lesson-05:session-11:intro2:r3",
+              "text": "¿Tienes una libro?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-11:intro2:r1",
+              "text": "¿Tienes un libro?"
+            },
+            {
+              "responseId": "es:lesson-05:session-11:intro2:r2",
+              "text": "¿Tengo un libro?"
+            },
+            {
+              "responseId": "es:lesson-05:session-11:intro2:r3",
+              "text": "¿Tienes una libro?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите друга «У тебя есть книга?». Начните с Tienes.",
+          "uk": "Запитайте друга «У тебе є книжка?». Почніть з Tienes."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-05:session-11:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ключ перед выходом",
+        "uk": "Ключ перед виходом"
+      },
+      "bodyByLocale": {
+        "ru": "Вы уже у двери и хотите узнать, есть ли ключ у друга. Спросите `¿Tienes una llave?` — «У тебя есть ключ?». Соберите `tienes` + `una llave` и задайте вопрос интонацией. Перед llave нужна una: род слова не меняется от того, утверждаете вы что-то или спрашиваете.",
+        "uk": "Ви вже біля дверей і хочете дізнатися, чи є ключ у друга. Запитайте `¿Tienes una llave?` — «У тебе є ключ?». Складіть `tienes` + `una llave` і поставте запитання інтонацією. Перед llave потрібна una: рід слова не змінюється від того, стверджуєте ви щось чи запитуєте."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-11:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите друга «У тебя есть ключ?». Начните с Tienes.",
+          "uk": "Запитайте друга «У тебе є ключ?». Почніть з Tienes."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-11:intro3:r1",
+              "text": "¿Tienes una llave?"
+            },
+            {
+              "responseId": "es:lesson-05:session-11:intro3:r2",
+              "text": "¿Tienes un llave?"
+            },
+            {
+              "responseId": "es:lesson-05:session-11:intro3:r3",
+              "text": "¿Tengo una llave?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-11:intro3:r1",
+              "text": "¿Tienes una llave?"
+            },
+            {
+              "responseId": "es:lesson-05:session-11:intro3:r2",
+              "text": "¿Tienes un llave?"
+            },
+            {
+              "responseId": "es:lesson-05:session-11:intro3:r3",
+              "text": "¿Tengo una llave?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите друга «У тебя есть ключ?». Начните с Tienes.",
+          "uk": "Запитайте друга «У тебе є ключ?». Почніть з Tienes."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "21c0b2322766f2234e0ea3d9bf385f1815c6a6754801829bee7b0fafd5d589d2"
+}

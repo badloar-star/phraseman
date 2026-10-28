@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-05:session-12:i01",
+    "correctText": "sí",
+    "correctResponseId": "es:lesson-05:session-12:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-12:i02",
+    "correctText": "tengo",
+    "correctResponseId": "es:lesson-05:session-12:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-12:i03",
+    "correctText": "Sí, tengo tiempo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-12:i04",
+    "correctText": "un",
+    "correctResponseId": "es:lesson-05:session-12:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-12:i05",
+    "correctText": "Sí, tengo un libro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-12:i06",
+    "correctText": "Sí, tengo una llave.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-12:i07",
+    "correctText": "Sí, tengo tiempo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-12:i08",
+    "correctText": "tengo",
+    "correctResponseId": "es:lesson-05:session-12:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-12:i09",
+    "correctText": "Sí, tengo tiempo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-12:i10",
+    "correctText": "Sí, tengo un libro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-12:i11",
+    "correctText": "Sí, tengo una llave.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-12:i12",
+    "correctText": "Sí, tengo una bolsa.",
+    "correctResponseId": null
+  }
+]

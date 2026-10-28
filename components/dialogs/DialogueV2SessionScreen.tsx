@@ -47,6 +47,7 @@ import DialogWhySheet from './DialogWhySheet';
 import { useDialogInputLayoutTrace } from './glass/useDialogInputLayoutTrace';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 import { DialogueGlassExitSheet } from './glass/DialogueGlassExitSheet';
+import ContentReportFlag from '../ContentReportFlag';
 
 // зачем (владелец 2026-09-30): сессия V2 «1 в 1» по макету dialogs.html C1–C24 (Liquid Glass):
 // шапка `.dh` (круглая «‹», название сцены + настроение собеседника, пилюля месячного остатка
@@ -135,6 +136,19 @@ export type DialogueV2WhyTarget = Readonly<{
   }> | null;
 }>;
 
+/**
+ * Жалоба «Пожаловаться» в диалоге (координатор 28.10): флажок на реплике собеседника и пункт «Сообщить об ошибке» в меню «⋯» (жалоба на диалог целиком).
+ * Нет пропса — флажков и пункта нет (старые экраны, фикстуры). Контекст отчёта: id диалога, текст реплики/диалога, язык контента.
+ */
+export type DialogueV2SessionReport = Readonly<{
+  /** Машинный id диалога для админки: сцена и язык обучения. */
+  dialogId: string;
+  /** Изучаемый язык («en», «es», …). */
+  contentLang: string;
+  /** Подпись (9 языков): флажок реплики и пункт меню. */
+  label: string;
+}>;
+
 export type DialogueV2SessionScreenProps = Readonly<{
   title: string;
   messages: readonly DialogueV2SessionMessage[];
@@ -202,6 +216,7 @@ export type DialogueV2SessionScreenProps = Readonly<{
   onPlayVoice: (uri: string) => void;
   onPlayPreparedBotVoice: (messageId: string) => void;
   onComplete: () => void;
+  report?: DialogueV2SessionReport;
 }>;
 
 const EMPTY_SET: ReadonlySet<string> = new Set<string>();
@@ -258,8 +273,15 @@ export function DialogueV2SessionScreen({
   onPlayVoice,
   onPlayPreparedBotVoice,
   onComplete,
+  report,
 }: DialogueV2SessionScreenProps) {
   const glass = useDialogueGlass();
+  // зачем (координатор 28.10): жалоба на диалог целиком открывается из пункта меню «⋯»; в отчёт — последние реплики подряд (потолок текста — в content_report_v1)
+  const dialogReportOpenRef = React.useRef<(() => void) | null>(null);
+  const dialogTranscript = React.useMemo(() => {
+    if (!report) return '';
+    return messages.slice(-12).map((message) => `${message.author === 'learner' ? 'user' : 'bot'}: ${message.text}`).join('\n');
+  }, [messages, report]);
   const [menuOpen, setMenuOpen] = React.useState(false);
   const [goalsOpen, setGoalsOpen] = React.useState(false);
   const [hintOpen, setHintOpen] = React.useState(false);
@@ -621,6 +643,17 @@ export function DialogueV2SessionScreen({
               ) : undefined;
               const hasPersonaActions = !learner && (!!message.preparedBotVoice
                 || (!!coachingLabels && (!!message.translation || !!message.explanation)));
+              // зачем (координатор 28.10): флажок «Пожаловаться» на реплику собеседника — тот же ReportErrorButton, что в уроках; контекст — id диалога и реплики, текст, язык
+              const reportFlag = !learner && report && message.text ? (
+                <ContentReportFlag
+                  screen="dialogue_v2_session"
+                  dataId={`${report.dialogId}:${message.id}`}
+                  dataText={message.text}
+                  contentLang={report.contentLang}
+                  label={report.label}
+                  testID={`dialogue-v2-report-${message.id}`}
+                />
+              ) : null;
               return (
                 <DialogueGlassBubble
                   key={message.id}
@@ -629,7 +662,7 @@ export function DialogueV2SessionScreen({
                   avatar={!learner}
                   avatarIcon={personaIcon}
                   who={learner ? labels.you : message.authorLabel}
-                  actions={learner ? learnerActions : hasPersonaActions ? personaActions : undefined}
+                  actions={learner ? learnerActions : hasPersonaActions || reportFlag ? <>{hasPersonaActions ? personaActions : null}{reportFlag}</> : undefined}
                   note={learner && message.unsent && coachingLabels ? coachingLabels.unsent : undefined}
                   testID={`dialogue-v2-message-${message.id}`}
                 >
@@ -810,7 +843,20 @@ export function DialogueV2SessionScreen({
         onComplete={onComplete}
         tasksLabel={goalRows.length > 0 ? labels.tasks : undefined}
         onOpenTasks={goalRows.length > 0 ? openGoals : undefined}
+        reportLabel={report?.label}
+        onReport={report ? () => { dialogReportOpenRef.current?.(); } : undefined}
       />
+      {report ? (
+        <ContentReportFlag
+          screen="dialogue_v2_session"
+          dataId={report.dialogId}
+          dataText={dialogTranscript}
+          contentLang={report.contentLang}
+          label={report.label}
+          hideTrigger
+          openRef={dialogReportOpenRef}
+        />
+      ) : null}
       <DialogGoalsSheet
         visible={goalsOpen}
         onClose={() => setGoalsOpen(false)}

@@ -9,8 +9,9 @@ import { nestedBoxShadow } from '../../v2/ShadowSurface';
 
 // зачем (владелец 2026-09-30, макет dialogs.html, шторка «Диалог» за кнопкой «⋯»):
 // «Завершить» переехал из шапки в шторку, как в макете, — заголовок сцены в шапке больше
-// не обрезается. Пункт «Сообщить об ошибке» из макета НЕ рисуется: V2-маршрут не поставляет
-// жалобу, а мёртвых пунктов не показываем. Завершение — то же действие, что и раньше.
+// не обрезается. Завершение — то же действие, что и раньше.
+// зачем (координатор 28.10, слово владельца: «Пожаловаться везде, где её нет — Диалоги во время диалога»): пункт «Сообщить об ошибке» из макета теперь рисуется, когда экран поставляет жалобу
+// (onReport) — открывает форму тем же ContentReportFlag; без onReport пункта нет (мёртвых пунктов не показываем).
 
 export interface DialogueGlassMenuSheetProps {
   glass: DialogueGlass;
@@ -24,15 +25,18 @@ export interface DialogueGlassMenuSheetProps {
   /** Пункт «Задания» (шторка со списком заданий сцены); без обоих пропсов не рисуется. */
   tasksLabel?: string;
   onOpenTasks?: () => void;
+  /** Пункт «Сообщить об ошибке» (жалоба на диалог целиком); без обоих пропсов не рисуется. */
+  reportLabel?: string;
+  onReport?: () => void;
 }
 
 export function DialogueGlassMenuSheet({
   glass, visible, onClose, title, closeLabel, completeLabel, completeDisabled, onComplete,
-  tasksLabel, onOpenTasks,
+  tasksLabel, onOpenTasks, reportLabel, onReport,
 }: DialogueGlassMenuSheetProps) {
   // зачем: переход к итогу / открытие «Заданий» — только когда нативная шторка реально
   // закрылась (onDismissed), иначе две модалки наложатся друг на друга.
-  const pendingRef = React.useRef<'complete' | 'tasks' | null>(null);
+  const pendingRef = React.useRef<'complete' | 'tasks' | 'report' | null>(null);
   return (
     <HybridSheetShell
       visible={visible}
@@ -42,6 +46,7 @@ export function DialogueGlassMenuSheet({
         pendingRef.current = null;
         if (pending === 'complete') onComplete();
         else if (pending === 'tasks') onOpenTasks?.();
+        else if (pending === 'report') onReport?.(); // зачем: форма жалобы — своя модалка, открываем её только когда шторка реально закрылась
       }}
       closeLabel={closeLabel}
       testID="dialogue-v2-session-menu"
@@ -105,6 +110,29 @@ export function DialogueGlassMenuSheet({
             <Text maxFontSizeMultiplier={1.3} style={[styles.itemText, { color: glass.text }]}>{completeLabel}</Text>
             <Ionicons name="chevron-forward" size={20} color={glass.secondary} />
           </PressableHybrid>
+          {reportLabel && onReport ? (
+            <>
+              <View testID="dialogue-v2-session-menu-report-divider" style={[styles.divider, { backgroundColor: glass.dividerTone }]} />
+              <PressableHybrid
+                testID="dialogue-v2-session-menu-report"
+                variant="secondary"
+                withSound={false}
+                accessibilityRole="button"
+                accessibilityLabel={reportLabel}
+                onPress={() => {
+                  pendingRef.current = 'report';
+                  requestDismiss();
+                }}
+                contentStyle={styles.item}
+              >
+                <View style={[styles.tile, { backgroundColor: glass.opaqueControl, boxShadow: nestedBoxShadow(glass) }]}>
+                  <Ionicons name="flag-outline" size={20} color={glass.text} />
+                </View>
+                <Text maxFontSizeMultiplier={1.3} style={[styles.itemText, { color: glass.text }]}>{reportLabel}</Text>
+                <Ionicons name="chevron-forward" size={20} color={glass.secondary} />
+              </PressableHybrid>
+            </>
+          ) : null}
         </View>
       )}
     </HybridSheetShell>

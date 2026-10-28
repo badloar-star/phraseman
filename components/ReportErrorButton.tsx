@@ -1,6 +1,6 @@
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import { ENABLE_DEV_TOOLS } from '../app/config';
-import React, { memo, useRef, useState } from 'react';
+import React, { memo, useCallback, useRef, useState } from 'react';
 import {
   ActivityIndicator,
   ScrollView,
@@ -28,6 +28,7 @@ import {
   ERROR_REPORT_FREE_TEXT_CATEGORY,
   submitErrorReport,
 } from '../app/error_report';
+import { submitContentReportV1 } from '../app/content_report_v1';
 
 export type ReportErrorSubmitOverride = (input: Readonly<{
   comment: string;
@@ -575,7 +576,26 @@ function ReportErrorButton({
  */
 export const REPORT_ERROR_ENABLED: boolean = ENABLE_DEV_TOOLS;
 
+/**
+ * зачем (координатор 28.10, слово владельца: «Пожаловаться» везде, где её нет — упражнения, карточки, диалоги): флажок без подписи (variant icon-flag) — это рабочая функция «пожаловаться на
+ * задание» для ВСЕХ людей (так сделаны уроки Learning V2, решение владельца 21.10), а не тестерская «Нашёл ошибку?». Без своего транспорта ему даётся общий (submitContentReportV1: долговечная
+ * очередь, «Спасибо» сразу, дослать без сети), поэтому он виден и в сборке магазина. Текстовая «Нашёл ошибку?» (variant default) по-прежнему только тестерам — решение владельца 05.10.
+ * Откат одной строкой: REPORT_ERROR_FLAG_FOR_ALL = false.
+ */
+export const REPORT_ERROR_FLAG_FOR_ALL = true;
+
+function ReportErrorFlagForAll(props: Props) {
+  const { lang } = useLang();
+  const { screen, dataId, dataText, userAnswer } = props;
+  const submit: ReportErrorSubmitOverride = useCallback(({ comment }) => submitContentReportV1({ screen, dataId, dataText: dataText ?? dataId, userAnswer, comment, lang }), [screen, dataId, dataText, userAnswer, lang]);
+  return <ReportErrorButton {...props} submitOverride={submit} />;
+}
+
 function ReportErrorButtonGate(props: Props) {
+  // Флажок для всех: общий транспорт, виден в любой сборке (см. REPORT_ERROR_FLAG_FOR_ALL)
+  if (REPORT_ERROR_FLAG_FOR_ALL && props.variant === 'icon-flag' && !props.submitOverride && !props.hideTrigger) {
+    return <ReportErrorFlagForAll {...props} />;
+  }
   // Исключение: свой транспорт (submitOverride) — это не «Нашёл ошибку?», а рабочая функция режима
   // (Шпиль убирает плохое задание из забега), её не прячем.
   if (!REPORT_ERROR_ENABLED && !props.submitOverride) {

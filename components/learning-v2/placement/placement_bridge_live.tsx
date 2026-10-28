@@ -38,6 +38,7 @@ export function createLivePlacementBridge(deps: LiveDeps): PlacementBridgeV1 {
         onNext={onNext}
         header={header}
         promptOverride={question.promptOverride}
+        reportScreen="learning_v2_placement"
       />
     );
   }

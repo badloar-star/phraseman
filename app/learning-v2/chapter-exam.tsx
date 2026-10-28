@@ -47,6 +47,8 @@ import { stableShuffleLearningV2OptionsV1 } from '../../modules/learning-v2/runt
 import { resolveLearningV2CourseSessionDeviceSpeechTextV1 } from '../../modules/learning-v2/runtime/course_session_device_speech_text_v1';
 import type { V2LocalEvaluatorResponseV1 } from '../../modules/learning-v2/runtime/local_evaluator_capsule_v1';
 import type { LearningV2InterfaceLocale } from '../../modules/learning-v2/content/generator_course_contract';
+import ContentReportFlag from '../../components/ContentReportFlag';
+import { triLang } from '../../constants/i18n';
 import {
   checkLearningV2ChapterExamAnswerV1,
   finishLearningV2ChapterExamV1,
@@ -303,10 +305,12 @@ type QuestionProps = Readonly<{
   header?: React.ReactNode;
   /** Условие вместо `interaction.prompt` (входной тест, урок 15: подсказка формы отрезана). У экзамена главы не задаётся. */
   promptOverride?: string | null;
+  /** Экран-источник жалобы для админки: у экзамена главы — по умолчанию, у входного теста его ставит мост (координатор 28.10). */
+  reportScreen?: string;
 }>;
 
 // зачем (координатор 24.10, Learning V2 разрешила 24.10): вопрос входного теста рисуется ТЕМ ЖЕ компонентом, что вопрос экзамена главы — поведение не меняю, только экспорт и два необязательных входа (header, promptOverride)
-export function ChapterExamQuestion({ ordinal, question, lessonOrdinal, locale, interfaceLocale, bottomInset, onAnswered, onNext, header, promptOverride }: QuestionProps) {
+export function ChapterExamQuestion({ ordinal, question, lessonOrdinal, locale, interfaceLocale, bottomInset, onAnswered, onNext, header, promptOverride, reportScreen = 'learning_v2_chapter_exam' }: QuestionProps) {
   const g = useLv2Glass();
   const t = lv2TaskTokens(g);
   const reducedMotion = useReducedMotion();
@@ -389,6 +393,23 @@ export function ChapterExamQuestion({ ordinal, question, lessonOrdinal, locale, 
   const canSubmit = verdict === null && (interaction?.inputMode === 'single_choice' ? selectedChoiceId !== null : orderedIds.length > 0);
   const answered = verdict !== null || !interaction?.modePayload;
   const ctaLabel = answered ? learningV2ChapterExamCopy(interfaceLocale, 'next') : learningV2ModeCheckLabelV1(interfaceLocale);
+  // зачем (координатор 28.10, слово владельца: «Пожаловаться» в тесте уровня — в каждом задании): флажок виден всем, тот же ReportErrorButton, что в уроках; контекст — урок, эпизод, тип, id,
+  // текст условия с вариантами и то, что человек уже выбрал/собрал (вариант ответа до проверки — текущий выбор)
+  const reportData = useMemo(() => {
+    if (!interaction) return null;
+    const promptText = sanitizeLearningV2LearnerPromptV1(promptOverride ?? interaction.prompt);
+    const optionTexts = options.map((o) => o.text).join(' | ');
+    return {
+      dataId: `lv2:l${lessonOrdinal}:s${question.sessionOrdinal}:${question.family}:${question.interactionId}`,
+      dataText: `Урок ${lessonOrdinal} · Эпизод ${question.sessionOrdinal} · ${question.family}
+${promptText}${optionTexts ? `
+[${optionTexts}]` : ''}`,
+    };
+  }, [interaction, lessonOrdinal, options, promptOverride, question.family, question.interactionId, question.sessionOrdinal]);
+  const reportAnswer = interaction?.inputMode === 'single_choice'
+    ? (options.find((o) => o.responseId === selectedChoiceId)?.text ?? undefined)
+    : (orderedText || undefined);
+  const reportLabel = triLang(interfaceLocale as never, { ru: 'Сообщить об ошибке в задании', uk: 'Повідомити про помилку в завданні', en: 'Report an error in the task', es: 'Informar de un error en la tarea', 'pt-BR': 'Relatar erro na tarefa', vi: 'Báo lỗi trong bài tập', id: 'Laporkan kesalahan dalam tugas', tr: 'Görevdeki hatayı bildir', pl: 'Zgłoś błąd w zadaniu' });
 
   return (
     <>
@@ -449,6 +470,19 @@ export function ChapterExamQuestion({ ordinal, question, lessonOrdinal, locale, 
           <Text style={[styles.ctaText, { color: t.ctaInk }]}>{ctaLabel}</Text>
         </V2Pressable>
       </View>
+      {reportData ? (
+        <View style={[styles.reportDock, { bottom: 98 + bottomInset + 8 }]} pointerEvents="box-none">
+          <ContentReportFlag
+            screen={reportScreen}
+            dataId={reportData.dataId}
+            dataText={reportData.dataText}
+            userAnswer={reportAnswer}
+            contentLang={studyTarget}
+            label={reportLabel}
+            testID="chapter-exam-report"
+          />
+        </View>
+      ) : null}
     </>
   );
 }
@@ -468,6 +502,7 @@ const styles = StyleSheet.create({
   progressText: { marginTop: 5, fontSize: 13, lineHeight: 17, fontWeight: '700' },
   body: { flex: 1, paddingTop: 8, paddingHorizontal: 20 },
   foot: { paddingTop: 12, paddingHorizontal: 20 },
+  reportDock: { position: 'absolute', right: 16, zIndex: 20 },
   cta: { height: 52, borderRadius: 26, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 },
   ctaText: { fontSize: 16, fontWeight: '700' },
 });

@@ -1008,6 +1008,13 @@ function SessionContent() {
       onStopVoice={voice.stop}
       onDiscardVoice={voice.discard}
       onPlayVoice={voice.play}
+      // зачем (координатор 28.10, слово владельца: «Пожаловаться» в Диалогах во время диалога — на реплику собеседника и на диалог целиком): id сцены и язык обучения в отчёте;
+      // подпись — та же на 9 языках, что у флажка в прежнем ИИ-диалоге (новых переводов нет)
+      report={scenarioId && supportedTarget(studyTarget) ? {
+        dialogId: `dialogue_v2:${studyTarget}:${scenarioId}`,
+        contentLang: studyTarget,
+        label: triLang(lang, { ru: 'Сообщить об ошибке в диалоге', uk: 'Повідомити про помилку в діалозі', en: 'Report an error in the dialogue', es: 'Informar de un error en el diálogo', 'pt-BR': 'Relatar erro no diálogo', vi: 'Báo lỗi trong hội thoại', id: 'Laporkan kesalahan dalam dialog', tr: 'Diyalogdaki hatayı bildir', pl: 'Zgłoś błąd w dialogu' }),
+      } : undefined}
       onPlayPreparedBotVoice={preparedBotVoice.play}
       onComplete={() => openSummary('manual')}
     />

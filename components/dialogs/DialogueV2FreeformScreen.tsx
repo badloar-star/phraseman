@@ -17,6 +17,7 @@ import { useDialogKeyboardLog } from './use_dialog_keyboard_log';
 import { DialogueGlassReplyAction } from './glass/DialogueGlassSessionParts';
 import { useDialogSayHintInput } from './hints/use_dialog_say_hint_input';
 import type { DialogSayHint } from './hints/dialog_say_hints_model';
+import ContentReportFlag from '../ContentReportFlag';
 import {
   DialogueGlassBubble,
   DialogueGlassBubbleText,
@@ -42,6 +43,12 @@ export type DialogueV2FreeformMessage = Readonly<{
   /** Replay-only local learner attachment. Its transcript never leaves the route. */
   voice?: Readonly<{ uri: string }>;
 }>;
+
+/**
+ * Жалоба «Пожаловаться» в свободном разговоре (координатор 28.10): флажок на реплике собеседника и флажок в шапке — на разговор целиком.
+ * Нет пропса — флажков нет (фикстуры). Контекст отчёта: id разговора, текст реплики/разговора, язык контента.
+ */
+export type DialogueV2FreeformReport = Readonly<{ dialogId: string; contentLang: string; label: string }>;
 
 export type DialogueV2FreeformScreenProps = Readonly<{
   title: string;
@@ -86,6 +93,7 @@ export type DialogueV2FreeformScreenProps = Readonly<{
   onRequestTranslation?: (message: DialogueV2FreeformMessage) => Promise<string | null>;
   /** «Можно сказать…» над полем ввода: 1–3 фразы на изучаемом языке со смыслом (владелец 24.10 «постоянно должны быть подсказки»). */
   sayHints?: readonly DialogSayHint[];
+  report?: DialogueV2FreeformReport;
 }>;
 
 const NO_SAY_HINTS: readonly DialogSayHint[] = Object.freeze([]);
@@ -115,7 +123,13 @@ export function DialogueV2FreeformScreen({
   connectionNotice = null,
   translateLabels,
   onRequestTranslation,
+  report,
 }: DialogueV2FreeformScreenProps) {
+  // зачем (координатор 28.10): жалоба на разговор целиком — флажок в шапке; в отчёт — последние реплики подряд (потолок текста — в content_report_v1)
+  const dialogTranscript = React.useMemo(() => {
+    if (!report) return '';
+    return messages.slice(-12).map((message) => `${message.author === 'learner' ? 'user' : 'bot'}: ${message.text}`).join('\n');
+  }, [messages, report]);
   // зачем (жалоба владельца 25.10 «нет кнопки Перевести»): перевод — под репликой по тапу, повторный тап скрывает; состояние — на экране
   const [shownTranslations, setShownTranslations] = React.useState<ReadonlySet<string>>(() => new Set());
   const toggleTranslation = React.useCallback((id: string) => {
@@ -193,6 +207,16 @@ export function DialogueV2FreeformScreen({
           <View style={styles.headerText}>
             <Text accessibilityRole="header" maxFontSizeMultiplier={1.3} style={[styles.title, { color: glass.text }]}>{title}</Text>
           </View>
+          {report ? (
+            <ContentReportFlag
+              screen="dialogue_v2_freeform"
+              dataId={report.dialogId}
+              dataText={dialogTranscript}
+              contentLang={report.contentLang}
+              label={report.label}
+              testID="dialogue-v2-freeform-report"
+            />
+          ) : null}
         </View>
 
         <ScrollView
@@ -229,15 +253,30 @@ export function DialogueV2FreeformScreen({
                 key={message.id}
                 glass={glass}
                 author={author}
-                actions={canTranslate && translateLabels ? (
-                  <DialogueGlassReplyAction
-                    glass={glass}
-                    testID={`dialogue-v2-freeform-translate-${message.id}`}
-                    icon="language-outline"
-                    label={translating ? `${translateLabels.show}…` : translationShown ? translateLabels.hide : translateLabels.show}
-                    active={translationShown || translating}
-                    onPress={() => (translation ? toggleTranslation(message.id) : requestTranslation(message))}
-                  />
+                actions={canTranslate && translateLabels || (author === 'assistant' && report && message.text) ? (
+                  <>
+                    {canTranslate && translateLabels ? (
+                      <DialogueGlassReplyAction
+                        glass={glass}
+                        testID={`dialogue-v2-freeform-translate-${message.id}`}
+                        icon="language-outline"
+                        label={translating ? `${translateLabels.show}…` : translationShown ? translateLabels.hide : translateLabels.show}
+                        active={translationShown || translating}
+                        onPress={() => (translation ? toggleTranslation(message.id) : requestTranslation(message))}
+                      />
+                    ) : null}
+                    {/* зачем (координатор 28.10): флажок «Пожаловаться» на реплику собеседника — тот же ReportErrorButton, что в уроках */}
+                    {author === 'assistant' && report && message.text ? (
+                      <ContentReportFlag
+                        screen="dialogue_v2_freeform"
+                        dataId={`${report.dialogId}:${message.id}`}
+                        dataText={message.text}
+                        contentLang={report.contentLang}
+                        label={report.label}
+                        testID={`dialogue-v2-freeform-report-${message.id}`}
+                      />
+                    ) : null}
+                  </>
                 ) : undefined}
               >
                 {message.voice ? (

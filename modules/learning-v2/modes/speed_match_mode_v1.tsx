@@ -15,7 +15,7 @@
  * раз в кадр-с-изменением-секунды, а не каждый кадр.
  */
 
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   AccessibilityInfo,
   Pressable,
@@ -56,6 +56,11 @@ import {
 } from "./speed_match_runtime_v1";
 
 const EASE = Easing.bezier(0.23, 1, 0.32, 1);
+
+/** Журнал [SPEED-MATCH-PERF] (жалоба «тормозит», 28.10): счётчики перерисовок на один тап и зазоры кадров после него. */
+const PERF = "[SPEED-MATCH-PERF]";
+const nowMs = (): number => (typeof performance !== "undefined" && typeof performance.now === "function" ? performance.now() : Date.now());
+const speedMatchPerf = { mainRenders: 0, cardRenders: 0 };
 /** Лимит раунда. Источник: 07-speed-match.html witness build использует
  * настраиваемый таймер; фиксируем разумный дефолт под один prompt вместо
  * полноценной сетки (см. комментарий "зачем" вверху файла). */
@@ -109,25 +114,65 @@ function useSpeedMatchTimerV1(
   return secondsLeft;
 }
 
-function SpeedMatchCardV1({
+/** Читалка таймера: секунды живут ЗДЕСЬ, а не в главном компоненте — тик раз в секунду перерисовывает только значок и цифру, а не всю сетку пар. */
+const SpeedMatchTimerReadoutV1 = memo(function SpeedMatchTimerReadoutV1({
+  active,
+  resetToken,
+  onExpire,
+  suffix,
+  normalColor,
+  lowColor,
+  textStyle,
+}: {
+  readonly active: boolean;
+  readonly resetToken: number;
+  readonly onExpire: () => void;
+  readonly suffix: string;
+  readonly normalColor: string;
+  readonly lowColor: string;
+  readonly textStyle: React.ComponentProps<typeof Text>["style"];
+}) {
+  // зачем: колбэк истечения запоминается при создании кадрового обратного вызова — через ref он всегда свежий (собранные пары, раунд)
+  const onExpireRef = useRef(onExpire);
+  onExpireRef.current = onExpire;
+  const stableExpire = useCallback(() => onExpireRef.current(), []);
+  const secondsLeft = useSpeedMatchTimerV1(active, resetToken, stableExpire);
+  const low = secondsLeft <= 5;
+  return (
+    <>
+      <Ionicons name="time-outline" size={16} color={low ? lowColor : normalColor} />
+      <Text style={[textStyle, { color: low ? lowColor : normalColor }]}>
+        {secondsLeft}{suffix}
+      </Text>
+    </>
+  );
+});
+
+const SpeedMatchCardV1 = memo(function SpeedMatchCardV1({
+  pairId,
   label,
   side,
   picked,
   verdict,
   reducedMotion,
   disabled,
-  onPress,
+  onPickPair,
 }: {
+  readonly pairId: string;
   readonly label: string;
   readonly side: "left" | "right";
   readonly picked: boolean;
   readonly verdict: "none" | "ok" | "bad";
   readonly reducedMotion: boolean;
   readonly disabled: boolean;
-  readonly onPress: () => void;
+  readonly onPickPair: (pairId: string) => void;
 }) {
+  speedMatchPerf.cardRenders += 1;
   const compact = useLearningV2CompactPractice();
   const lh = useLineScale();
+  // зачем (perf 28.10): плитка — memo, поэтому onPress и массивы стилей обязаны быть стабильными, иначе Lv2Option перерисовывается зря
+  const handlePress = useCallback(() => onPickPair(pairId), [onPickPair, pairId]);
+  const lineHeight = lh(21);
   const scale = useSharedValue(1);
   const opacity = useSharedValue(1);
 
@@ -156,6 +201,8 @@ function SpeedMatchCardV1({
   }));
 
   const right = side === "right";
+  const optionStyle = useMemo(() => [styles.card, compact && styles.cardCompact, right ? styles.cardRight : styles.cardLeft], [compact, right]);
+  const optionTextStyle = useMemo(() => [styles.cardText, right ? styles.cardTextRight : styles.cardTextLeft, { lineHeight }], [right, lineHeight]);
   return (
     <Animated.View style={[styles.tileFrame, right ? styles.frameRight : styles.frameLeft, style]}>
       {/* зачем (эталон speed-match-long-pairs.html, вариант 2, владелец 21.10): слово — узкая колонка 36 %, перевод — широкая;
@@ -165,17 +212,17 @@ function SpeedMatchCardV1({
         compact={compact}
         accessibilityLabel={label}
         disabled={disabled || verdict === "ok"}
-        onPress={onPress}
+        onPress={handlePress}
         selected={picked}
         showMark={false}
-        style={[styles.card, compact && styles.cardCompact, right ? styles.cardRight : styles.cardLeft]}
-        textStyle={[styles.cardText, right ? styles.cardTextRight : styles.cardTextLeft, { lineHeight: lh(21) }]}
+        style={optionStyle}
+        textStyle={optionTextStyle}
         verdict={verdict === "bad" ? "bad" : "idle"}
         label={label}
       />
     </Animated.View>
   );
-}
+});
 
 export function SpeedMatchModeV1(props: LearningV2ModeCommonPropsV1) {
   const compact = useLearningV2CompactPractice();
@@ -221,7 +268,7 @@ export function SpeedMatchModeV1(props: LearningV2ModeCommonPropsV1) {
   const clearMismatch = useCallback(() => {
     if (mismatchResetRef.current) clearTimeout(mismatchResetRef.current);
     mismatchResetRef.current = null;
-    setWrongPairIds(new Set());
+    setWrongPairIds((current) => (current.size === 0 ? current : new Set()));
     setMismatchExplanation(null);
   }, []);
 
@@ -255,11 +302,11 @@ export function SpeedMatchModeV1(props: LearningV2ModeCommonPropsV1) {
   const [timerResetToken, setTimerResetToken] = useState(0);
   const canPick = learningV2SpeedMatchCanPickV1(round);
   const active = !resolved && phase !== "success" && canPick && round.timerEnabled;
-  const secondsLeft = useSpeedMatchTimerV1(active, timerResetToken, () => {
+  const onTimerExpire = () => {
     // зачем (баг сброса пар, журнал [V2-PAIRS]): момент истечения таймера и сколько пар к этому времени было собрано
     console.warn("[V2-PAIRS] timer: время вышло", JSON.stringify({ matched: [...matchedRef.current], total: payload.pairGrid.length })); // guard-ok: состояние пар на истечении таймера
     setRound((current) => current.expire());
-  });
+  };
 
   // зачем (баг «Сверки» 21.10: после «Продолжить без таймера» все собранные пары сбросились в начало; правило «сперва логи»):
   // «Ещё раунд» начинает раунд заново (пары сбрасываются), а «Продолжить без таймера» ТОЛЬКО снимает таймер — найденные пары остаются.
@@ -292,9 +339,41 @@ export function SpeedMatchModeV1(props: LearningV2ModeCommonPropsV1) {
     if (phase !== "success") announcedRef.current = false;
   }, [phase, reducedMotion, prompt]);
 
-  const timerLow = secondsLeft <= 5;
+  speedMatchPerf.mainRenders += 1;
+  const tapRef = useRef<{ at: number; side: string; pairId: string; mainAt: number; cardAt: number } | null>(null);
+  const perfTap = (side: string, pairId: string) => {
+    tapRef.current = { at: nowMs(), side, pairId, mainAt: speedMatchPerf.mainRenders, cardAt: speedMatchPerf.cardRenders };
+  };
+  const perfTapIgnored = (side: string, pairId: string, reason: string) => {
+    tapRef.current = null;
+    console.log(`${PERF} tap_ignored`, JSON.stringify({ side, pairId, reason })); // guard-ok: ранний выход пишет причину
+  };
+  // зачем (жалоба «тормозит»): после каждого коммита, вызванного тапом, пишем мс тап→коммит, число перерисовок страницы/плиток и зазоры 8 кадров
+  useEffect(() => {
+    const tap = tapRef.current;
+    if (!tap) return;
+    tapRef.current = null;
+    const commitMs = Math.round((nowMs() - tap.at) * 10) / 10;
+    console.log(`${PERF} tap`, JSON.stringify({ side: tap.side, pairId: tap.pairId, commitMs, mainRenders: speedMatchPerf.mainRenders - tap.mainAt, cardRenders: speedMatchPerf.cardRenders - tap.cardAt, tiles: payload.pairGrid.length * 2, matched: matchedPairIds.size, timerEnabled: round.timerEnabled })); // guard-ok: одна строка на тап
+    let last = nowMs();
+    const gaps: number[] = [];
+    const step = () => {
+      const t = nowMs();
+      gaps.push(t - last);
+      last = t;
+      if (gaps.length < 8) { requestAnimationFrame(step); return; }
+      const max = Math.max(...gaps);
+      console.log(`${PERF} frames_after_tap`, JSON.stringify({ maxGapMs: Math.round(max * 10) / 10, avgGapMs: Math.round((gaps.reduce((a, b) => a + b, 0) / gaps.length) * 10) / 10, over34: gaps.filter((g) => g > 34).length })); // guard-ok: итог замера кадров после тапа
+    };
+    requestAnimationFrame(step);
+  });
+  useEffect(() => {
+    console.log(`${PERF} mount`, JSON.stringify({ tiles: payload.pairGrid.length * 2, timerEnabled: round.timerEnabled, compact })); // guard-ok: один раз на показ упражнения
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const chooseLeft = (pairId: string) => {
-    if (matchedPairIds.has(pairId)) return;
+    perfTap("left", pairId);
+    if (matchedPairIds.has(pairId)) { perfTapIgnored("left", pairId, "already_matched"); return; }
     clearMismatch();
     setPickedLeft(pairId);
     if (!pickedRight) return;
@@ -313,7 +392,8 @@ export function SpeedMatchModeV1(props: LearningV2ModeCommonPropsV1) {
     }
   };
   const chooseRight = (pairId: string) => {
-    if (matchedPairIds.has(pairId)) return;
+    perfTap("right", pairId);
+    if (matchedPairIds.has(pairId)) { perfTapIgnored("right", pairId, "already_matched"); return; }
     clearMismatch();
     setPickedRight(pairId);
     if (!pickedLeft) return;
@@ -332,6 +412,12 @@ export function SpeedMatchModeV1(props: LearningV2ModeCommonPropsV1) {
     }
   };
 
+  // зачем (perf 28.10): стабильные для memo-плиток обработчики; свежие chooseLeft/chooseRight берём через ref
+  const pickRef = useRef({ left: chooseLeft, right: chooseRight });
+  pickRef.current = { left: chooseLeft, right: chooseRight };
+  const onPickLeft = useCallback((pairId: string) => pickRef.current.left(pairId), []);
+  const onPickRight = useCallback((pairId: string) => pickRef.current.right(pairId), []);
+
   const sx = useScaledTextStyles(styles);
   return (
     // зачем (сверка с learning-v2.html sm, 05.10): заголовок 600, фраза 10, сетка пар 22 (gap 10), разбор 18;
@@ -346,10 +432,7 @@ export function SpeedMatchModeV1(props: LearningV2ModeCommonPropsV1) {
         testID="learning-v2-speed-match-title"
         // зачем (владелец 22.10, 1:1): `.timer { background: var(--ctl) }` — заливка таймера = токен controlSoft макета, а не общий opaqueControl
         trailing={round.timerEnabled ? <View style={[sx.timerPill, { backgroundColor: lv2TaskTokens(g).controlSoft }]}>
-          <Ionicons name="time-outline" size={16} color={timerLow ? g.bad : g.text} />
-          <Text style={[sx.timerText, { color: timerLow ? g.bad : g.text }]}>
-            {secondsLeft}{copy.secondsSuffix}
-          </Text>
+          <SpeedMatchTimerReadoutV1 active={active} resetToken={timerResetToken} onExpire={onTimerExpire} suffix={copy.secondsSuffix} normalColor={g.text} lowColor={g.bad} textStyle={sx.timerText} />
         </View> : null}
       />
       <View style={styles.titleGap} />
@@ -373,23 +456,25 @@ export function SpeedMatchModeV1(props: LearningV2ModeCommonPropsV1) {
             // строка сама выравнивает высоту обеих плиток, поэтому длинный перевод не разводит колонки.
             <View key={`row-${leftPair.pairId}`} style={[styles.row, compact && { gap: 6 }]}>
               <SpeedMatchCardV1
+                pairId={leftPair.pairId}
                 label={leftPair.target}
                 side="left"
                 picked={pickedLeft === leftPair.pairId}
                 verdict={verdictOf(leftPair.pairId)}
                 reducedMotion={reducedMotion}
                 disabled={disabled}
-                onPress={() => chooseLeft(leftPair.pairId)}
+                onPickPair={onPickLeft}
               />
               {rightPair ? (
                 <SpeedMatchCardV1
+                  pairId={rightPair.pairId}
                   label={rightPair.meaningByLocale[interfaceLocale]}
                   side="right"
                   picked={pickedRight === rightPair.pairId}
                   verdict={verdictOf(rightPair.pairId)}
                   reducedMotion={reducedMotion}
                   disabled={disabled}
-                  onPress={() => chooseRight(rightPair.pairId)}
+                  onPickPair={onPickRight}
                 />
               ) : null}
             </View>

@@ -270,7 +270,7 @@
 2. `tests/light_accent_graphics_ratchet` — сырой accent вместо `accentGraphic`/`accentTextSafe`: CommunityWinnerDialog.tsx (2), CommunityPackCheckScene.tsx (+1 «глубокий» accentBorder/accentText).
 3. `tests/modal_status_bar_translucent_ratchet` — прозрачный `<Modal>` без `statusBarTranslucent` в CommunityScene.tsx и CommunityWinnerDialog.tsx.
 
-Не твоё (для сведения, чтобы не искать): FriendEventMarker.tsx:78, LearningV2SessionOutcomeSheet.tsx:291, lesson1.tsx, SpireGhostLayer.tsx (+3) — закоммичены другими сессиями; `components/stories/templates/` (story_template_palette.ts:50) — новая неотслеживаемая папка от 28.10, владелец уточняется. `tests/i18n-design-zone` красный от старых файлов Пика (spire_scene_preview_fixtures 24, spire_oddity_prompt 3, spire_outcome_host_trace 2) — тоже не твоё.
+Не твоё (для сведения, чтобы не искать): FriendEventMarker.tsx:78, LearningV2SessionOutcomeSheet.tsx:291, lesson1.tsx, SpireGhostLayer.tsx (+3) — закоммичены другими сессиями; `components/stories/templates/` (story_template_palette.ts:56, `accG: t.accent`) — закоммичено Моментами в 01cf3cb27, исправляют они. `tests/i18n-design-zone` красный от старых файлов Пика (spire_scene_preview_fixtures 24, spire_oddity_prompt 3, spire_outcome_host_trace 2) — тоже не твоё.
 
 Хвосты цвета Тем закрыты: 1343 → 511 (`tests/color_literal_census_ratchet.test.mjs`, база 511).
 

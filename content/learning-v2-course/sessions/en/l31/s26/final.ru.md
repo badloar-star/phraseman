@@ -60,7 +60,7 @@
 - I ate because I was bored. — *В записи звучит I ate because I was hungry.*
 - I ate because I was cold. — *В записи звучит I ate because I was hungry.*
 
-**3 · Вы поели, потому что были голодны. Выберите связку.**
+**3 · Вы поели, потому что были голодны. Выберите, чем связать части фразы.**
 <!-- interaction_id: en:lesson-31:session-26:i03; family: context_gap_grammar -->
 I ate ___ I was hungry. → **because** · because of · of
 - because of — *Перед целой частью I was hungry нужно because без of.*

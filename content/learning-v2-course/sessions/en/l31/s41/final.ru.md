@@ -78,7 +78,7 @@ I went to the shop to ___ bread. → **buy** · bought · buying
 <!-- interaction_id: en:lesson-31:session-41:i06; family: scripted_repeat_compare -->
 🎙 **I wrote the address so that I could remember it.**
 
-**7 · Вы записали адрес, чтобы помнить его. Выберите связку перед I could remember it.**
+**7 · Вы записали адрес, чтобы помнить его. Выберите, чем связать части фразы перед I could remember it.**
 <!-- interaction_id: en:lesson-31:session-41:i07; family: context_gap_grammar -->
 I wrote the address ___ I could remember it. → **so that** · to · for
 - to — *Перед отдельным I could remember it нужно so that.*

@@ -60,7 +60,7 @@
 - We stopped playing because of the snow. — *У записі звучить We stopped playing because of the rain.*
 - We stopped playing because of the heat. — *У записі звучить We stopped playing because of the rain.*
 
-**3 · Ви з друзями перестали грати через дощ. Виберіть сполуку.**
+**3 · Ви з друзями перестали грати через дощ. Виберіть, чим поєднати частини фрази.**
 <!-- interaction_id: en:lesson-31:session-31:i03; family: context_gap_grammar -->
 We stopped playing ___ the rain. → **because of** · because · of
 - because — *Перед назвою причини the rain потрібне because of.*

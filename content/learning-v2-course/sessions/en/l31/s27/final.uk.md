@@ -60,7 +60,7 @@
 - I stayed home because I was tired. — *У записі звучить I stayed home because I was ill.*
 - I stayed home because I was busy. — *У записі звучить I stayed home because I was ill.*
 
-**3 · Ви залишилися вдома, бо хворіли. Виберіть сполучник.**
+**3 · Ви залишилися вдома, бо хворіли. Виберіть, чим поєднати частини фрази.**
 <!-- interaction_id: en:lesson-31:session-27:i03; family: context_gap_grammar -->
 I stayed home ___ I was ill. → **because** · because of · of
 - because of — *Перед цілою частиною I was ill потрібне because без of.*

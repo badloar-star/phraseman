@@ -60,7 +60,7 @@
 - I took the shoes back because they were too big. — *В записи звучит I took the shoes back because they were too small.*
 - I took the shoes back because they were too expensive. — *В записи звучит I took the shoes back because they were too small.*
 
-**3 · Вы вернули обувь, потому что она была мала. Выберите связку.**
+**3 · Вы вернули обувь, потому что она была мала. Выберите, чем связать части фразы.**
 <!-- interaction_id: en:lesson-31:session-28:i03; family: context_gap_grammar -->
 I took the shoes back ___ they were too small. → **because** · because of · of
 - because of — *Перед целой частью they were too small нужен because.*

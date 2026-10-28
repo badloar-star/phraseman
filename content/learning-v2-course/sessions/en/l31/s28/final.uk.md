@@ -60,7 +60,7 @@
 - I took the shoes back because they were too big. — *У записі звучить I took the shoes back because they were too small.*
 - I took the shoes back because they were too expensive. — *У записі звучить I took the shoes back because they were too small.*
 
-**3 · Ви повернули взуття, бо воно було замале. Виберіть сполучник.**
+**3 · Ви повернули взуття, бо воно було замале. Виберіть, чим поєднати частини фрази.**
 <!-- interaction_id: en:lesson-31:session-28:i03; family: context_gap_grammar -->
 I took the shoes back ___ they were too small. → **because** · because of · of
 - because of — *Перед цілою частиною they were too small потрібне because.*

@@ -64,7 +64,7 @@
 <!-- interaction_id: en:lesson-31:session-30:i03; family: word_card -->
 > **lamp** — Лампа. Повторение знакомого слова.
 
-**4 · В комнате было темно, потому что лампа была сломана. Выберите связку.**
+**4 · В комнате было темно, потому что лампа была сломана. Выберите, чем связать части фразы.**
 <!-- interaction_id: en:lesson-31:session-30:i04; family: context_gap_grammar -->
 The room was dark ___ the lamp was broken. → **because** · because of · of
 - because of — *Перед целой частью the lamp was broken нужен because.*

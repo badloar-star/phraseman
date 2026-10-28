@@ -96,7 +96,7 @@ Ben said he ___ free. → **was** · is · be
 <!-- interaction_id: en:lesson-31:session-46:i10; family: scripted_repeat_compare -->
 🎙 **Ben is coming, isn’t he?**
 
-**11 · Вы говорили медленно, чтобы Бен понял вас. Выберите связку перед Ben could understand me.**
+**11 · Вы говорили медленно, чтобы Бен понял вас. Выберите, чем связать части фразы перед Ben could understand me.**
 <!-- interaction_id: en:lesson-31:session-46:i11; family: context_gap_grammar -->
 I spoke slowly ___ Ben could understand me. → **so that** · to · for
 - to — *Перед Ben could understand me нужно so that.*

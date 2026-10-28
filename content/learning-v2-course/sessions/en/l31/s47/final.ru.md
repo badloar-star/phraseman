@@ -120,7 +120,7 @@ The list was written ___ Ben. → **by** · at · to
 <!-- interaction_id: en:lesson-31:session-47:i15; family: phrase_builder -->
 Плитки: `milk` `the` `forgot` `I` `because` `list` `a` `made` `I` → **I made a list because I forgot the milk.**
 
-**16 · Список поможет Анне купить хлеб. Выберите связку перед she could buy the bread.**
+**16 · Список поможет Анне купить хлеб. Выберите, чем связать части фразы перед she could buy the bread.**
 <!-- interaction_id: en:lesson-31:session-47:i16; family: context_gap_grammar -->
 I gave Anna the list ___ she could buy the bread. → **so that** · to · for
 - to — *Перед she could buy the bread нужно so that.*

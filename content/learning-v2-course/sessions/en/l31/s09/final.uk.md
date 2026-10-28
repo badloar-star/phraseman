@@ -88,7 +88,7 @@ The bag isn't heavy, is ___? → **it** · they · she
 <!-- interaction_id: en:lesson-31:session-09:i08; family: scripted_repeat_compare -->
 🎙 **She doesn't drive, does she?**
 
-**9 · Анна не водить машину. Після заперечення додайте стверджувальне уточнення.**
+**9 · Анна не водить машину. Після «не» додайте уточнення без «не».**
 <!-- interaction_id: en:lesson-31:session-09:i09; family: context_gap_grammar -->
 She doesn't drive, ___ she? → **does** · do · is
 - do — *З she потрібен does.*
@@ -141,7 +141,7 @@ The bus is late, isn't ___? → **it** · they · we
 <!-- interaction_id: en:lesson-31:session-09:i19; family: listen_build_dictation -->
 🔊 *The bag isn't heavy, is it?* Плитки: `it` `is` `heavy,` `isn't` `bag` `The` → **The bag isn't heavy, is it?**
 
-**20 · Друг не водить машину. У короткому запитанні приберіть заперечення з doesn’t.**
+**20 · Друг не водить машину. У короткому запитанні приберіть «не» з doesn’t.**
 <!-- interaction_id: en:lesson-31:session-09:i20; family: context_gap_grammar -->
 He doesn't drive, ___ he? → **does** · do · are
 - do — *З he потрібен does.*

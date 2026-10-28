@@ -120,7 +120,7 @@ The card was found ___ Ben. → **by** · at · to
 <!-- interaction_id: en:lesson-31:session-48:i15; family: phrase_builder -->
 Плитки: `card` `my` `forgot` `I` `because` `back` `went` `I` → **I went back because I forgot my card.**
 
-**16 · Карта нужна Анне для входа. Выберите связку перед she could get in.**
+**16 · Карта нужна Анне для входа. Выберите, чем связать части фразы перед she could get in.**
 <!-- interaction_id: en:lesson-31:session-48:i16; family: context_gap_grammar -->
 I gave Anna her card ___ she could get in. → **so that** · to · for
 - to — *Перед she could get in нужна связка so that.*

@@ -120,7 +120,7 @@ The soup was made ___ Anna. → **by** · at · to
 <!-- interaction_id: en:lesson-31:session-44:i15; family: phrase_builder -->
 Плитки: `hot` `is` `soup` `the` `because` `waiting` `am` `I` → **I am waiting because the soup is hot.**
 
-**16 · Ви читаєте вголос, щоб допомогти Анні почути вас. Виберіть сполуку.**
+**16 · Ви читаєте вголос, щоб допомогти Анні почути вас. Виберіть, чим поєднати частини фрази.**
 <!-- interaction_id: en:lesson-31:session-44:i16; family: context_gap_grammar -->
 I am reading aloud ___ Anna can hear me. → **so that** · to · for
 - to — *Перед Anna can hear me потрібна сполука so that.*

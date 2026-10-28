@@ -60,7 +60,7 @@
 - The baby is crying because he is tired. — *В записи звучит The baby is crying because he is hungry.*
 - The baby is crying because he is cold. — *В записи звучит The baby is crying because he is hungry.*
 
-**3 · Малыш плачет, потому что голоден. Выберите связку.**
+**3 · Малыш плачет, потому что голоден. Выберите, чем связать части фразы.**
 <!-- interaction_id: en:lesson-31:session-32:i03; family: context_gap_grammar -->
 The baby is crying ___ he is hungry. → **because** · because of · of
 - because of — *Перед целой частью he is hungry нужен because.*

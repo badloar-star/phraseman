@@ -120,7 +120,7 @@ Dinner was cooked ___ Ben. → **by** · at · to
 <!-- interaction_id: en:lesson-31:session-43:i15; family: phrase_builder -->
 Плитки: `time` `the` `forgot` `I` `because` `called` `I` → **I called because I forgot the time.**
 
-**16 · Вы записали время, чтобы запомнить. Выберите связку перед I could remember it.**
+**16 · Вы записали время, чтобы запомнить. Выберите, чем связать части фразы перед I could remember it.**
 <!-- interaction_id: en:lesson-31:session-43:i16; family: context_gap_grammar -->
 I wrote it down ___ I could remember it. → **so that** · to · for
 - to — *Перед целой частью I could remember it нужно so that.*

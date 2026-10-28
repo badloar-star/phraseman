@@ -120,7 +120,7 @@ The note was written ___ Ben. → **by** · at · to
 <!-- interaction_id: en:lesson-31:session-42:i15; family: phrase_builder -->
 Плитки: `is` `note` `the` `where` `me` `tell` `you` `Could` → **Could you tell me where the note is?**
 
-**16 · Записка потрібна Анні для пошуку ключа. Виберіть сполуку перед Anna could find the key.**
+**16 · Записка потрібна Анні для пошуку ключа. Виберіть, чим поєднати частини фрази перед Anna could find the key.**
 <!-- interaction_id: en:lesson-31:session-42:i16; family: context_gap_grammar -->
 I wrote a note ___ Anna could find the key. → **so that** · to · for
 - to — *Перед цілою частиною з Anna потрібне so that.*

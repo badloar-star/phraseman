@@ -64,7 +64,7 @@
 <!-- interaction_id: en:lesson-31:session-30:i03; family: word_card -->
 > **lamp** — Лампа. Повторення знайомого слова.
 
-**4 · У кімнаті було темно, бо лампа була зламана. Виберіть сполучник.**
+**4 · У кімнаті було темно, бо лампа була зламана. Виберіть, чим поєднати частини фрази.**
 <!-- interaction_id: en:lesson-31:session-30:i04; family: context_gap_grammar -->
 The room was dark ___ the lamp was broken. → **because** · because of · of
 - because of — *Перед цілою частиною the lamp was broken потрібне because.*

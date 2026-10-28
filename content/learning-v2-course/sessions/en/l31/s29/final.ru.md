@@ -64,7 +64,7 @@
 <!-- interaction_id: en:lesson-31:session-29:i03; family: word_card -->
 > **snow** — Снег. Повторение знакомого слова.
 
-**4 · Поезд опоздал из-за снега. Выберите связку перед the snow.**
+**4 · Поезд опоздал из-за снега. Выберите, чем связать части фразы перед the snow.**
 <!-- interaction_id: en:lesson-31:session-29:i04; family: context_gap_grammar -->
 The train was late ___ the snow. → **because of** · because · of
 - because — *Перед названием причины нужно because of.*

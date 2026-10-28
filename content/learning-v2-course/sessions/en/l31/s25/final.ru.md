@@ -64,7 +64,7 @@
 <!-- interaction_id: en:lesson-31:session-25:i03; family: word_card -->
 > **tired** — Уставший. Повторение знакомого слова.
 
-**4 · Вы остались дома, потому что устали. Выберите связку перед I was tired.**
+**4 · Вы остались дома, потому что устали. Выберите, чем связать части фразы перед I was tired.**
 <!-- interaction_id: en:lesson-31:session-25:i04; family: context_gap_grammar -->
 I stayed home ___ I was tired. → **because** · because of · of
 - because of — *Перед целой частью I was tired используем because без of.*
@@ -82,7 +82,7 @@ I stayed home ___ I was tired. → **because** · because of · of
 <!-- interaction_id: en:lesson-31:session-25:i07; family: scripted_repeat_compare -->
 🎙 **I stayed home because of the rain.**
 
-**8 · Причина названа словами the rain. Выберите связку.**
+**8 · Причина названа словами the rain. Выберите, чем связать части фразы.**
 <!-- interaction_id: en:lesson-31:session-25:i08; family: context_gap_grammar -->
 I stayed home ___ the rain. → **because of** · because · of
 - because — *Перед названием причины the rain нужно because of.*
@@ -100,7 +100,7 @@ I stayed home ___ the rain. → **because of** · because · of
 <!-- interaction_id: en:lesson-31:session-25:i11; family: scripted_repeat_compare -->
 🎙 **I went home because I was tired.**
 
-**12 · Объясните опоздание задержкой автобуса. Выберите связку перед the bus was late.**
+**12 · Объясните опоздание задержкой автобуса. Выберите, чем связать части фразы перед the bus was late.**
 <!-- interaction_id: en:lesson-31:session-25:i12; family: context_gap_grammar -->
 I was late ___ the bus was late. → **because** · because of · of
 - because of — *Перед целой частью the bus was late нужно because.*

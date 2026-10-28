@@ -64,7 +64,7 @@
 <!-- interaction_id: en:lesson-31:session-25:i03; family: word_card -->
 > **tired** — Втомлений. Повторення знайомого слова.
 
-**4 · Ви залишилися вдома, бо втомилися. Виберіть сполучник перед I was tired.**
+**4 · Ви залишилися вдома, бо втомилися. Виберіть, чим поєднати частини фрази перед I was tired.**
 <!-- interaction_id: en:lesson-31:session-25:i04; family: context_gap_grammar -->
 I stayed home ___ I was tired. → **because** · because of · of
 - because of — *Перед цілою частиною I was tired використовуємо because без of.*
@@ -82,7 +82,7 @@ I stayed home ___ I was tired. → **because** · because of · of
 <!-- interaction_id: en:lesson-31:session-25:i07; family: scripted_repeat_compare -->
 🎙 **I stayed home because of the rain.**
 
-**8 · Причину названо словами the rain. Виберіть сполуку.**
+**8 · Причину названо словами the rain. Виберіть, чим поєднати частини фрази.**
 <!-- interaction_id: en:lesson-31:session-25:i08; family: context_gap_grammar -->
 I stayed home ___ the rain. → **because of** · because · of
 - because — *Перед назвою причини the rain потрібне because of.*
@@ -100,7 +100,7 @@ I stayed home ___ the rain. → **because of** · because · of
 <!-- interaction_id: en:lesson-31:session-25:i11; family: scripted_repeat_compare -->
 🎙 **I went home because I was tired.**
 
-**12 · Поясніть запізнення затримкою автобуса. Виберіть сполучник перед the bus was late.**
+**12 · Поясніть запізнення затримкою автобуса. Виберіть, чим поєднати частини фрази перед the bus was late.**
 <!-- interaction_id: en:lesson-31:session-25:i12; family: context_gap_grammar -->
 I was late ___ the bus was late. → **because** · because of · of
 - because of — *Перед цілою частиною the bus was late потрібне because.*

@@ -60,7 +60,7 @@
 - I ate because I was bored. — *У записі звучить I ate because I was hungry.*
 - I ate because I was cold. — *У записі звучить I ate because I was hungry.*
 
-**3 · Ви поїли, бо були голодні. Виберіть сполучник.**
+**3 · Ви поїли, бо були голодні. Виберіть, чим поєднати частини фрази.**
 <!-- interaction_id: en:lesson-31:session-26:i03; family: context_gap_grammar -->
 I ate ___ I was hungry. → **because** · because of · of
 - because of — *Перед цілою частиною I was hungry потрібне because без of.*

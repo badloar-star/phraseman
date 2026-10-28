@@ -120,7 +120,7 @@ He said the box ___ heavy. → **was** · is · be
 <!-- interaction_id: en:lesson-31:session-45:i15; family: phrase_builder -->
 Плитки: `label` `the` `read` `she` `because` `cups` `the` `found` `Anna` → **Anna found the cups because she read the label.**
 
-**16 · Подпись должна помочь Анне найти чашки. Выберите связку перед Anna could find the cups.**
+**16 · Подпись должна помочь Анне найти чашки. Выберите, чем связать части фразы перед Anna could find the cups.**
 <!-- interaction_id: en:lesson-31:session-45:i16; family: context_gap_grammar -->
 I labelled the box ___ Anna could find the cups. → **so that** · to · for
 - to — *Перед целой частью с Anna нужно so that.*

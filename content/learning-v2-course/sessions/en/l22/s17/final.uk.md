@@ -63,7 +63,7 @@ Introduce yourself — відрекомендуватися, назвати се
 - You can introduce him. — *У записі звучить You can introduce yourself.*
 - You can introduce her. — *У записі звучить You can introduce yourself.*
 
-**4 · Виберіть займенник для цієї фрази.**
+**4 · Виберіть потрібне слово для цієї фрази.**
 <!-- interaction_id: en:lesson-22:session-17:i03; family: context_gap_grammar -->
 You can introduce ___. → **yourself** · you · your
 - you — *Дія стосується самого співрозмовника: потрібно yourself.*
@@ -83,7 +83,7 @@ You can introduce ___. → **yourself** · you · your
 - You need to look after him. — *У записі звучить You need to look after yourself.*
 - You need to look after her. — *У записі звучить You need to look after yourself.*
 
-**8 · Виберіть займенник для цієї фрази.**
+**8 · Виберіть потрібне слово для цієї фрази.**
 <!-- interaction_id: en:lesson-22:session-17:i06; family: context_gap_grammar -->
 You need to look after ___. → **yourself** · you · your
 - you — *Дія стосується самого співрозмовника: потрібно yourself.*
@@ -103,7 +103,7 @@ You need to look after ___. → **yourself** · you · your
 - You can believe in him. — *У записі звучить You can believe in yourself.*
 - You can believe in her. — *У записі звучить You can believe in yourself.*
 
-**12 · Виберіть займенник для цієї фрази.**
+**12 · Виберіть потрібне слово для цієї фрази.**
 <!-- interaction_id: en:lesson-22:session-17:i09; family: context_gap_grammar -->
 You can believe in ___. → **yourself** · you · your
 - you — *Дія стосується самого співрозмовника: потрібно yourself.*
@@ -123,7 +123,7 @@ You can believe in ___. → **yourself** · you · your
 - You should not blame him. — *У записі звучить You should not blame yourself.*
 - You should not blame her. — *У записі звучить You should not blame yourself.*
 
-**16 · Виберіть займенник для цієї фрази.**
+**16 · Виберіть потрібне слово для цієї фрази.**
 <!-- interaction_id: en:lesson-22:session-17:i12; family: context_gap_grammar -->
 You should not blame ___. → **yourself** · you · your
 - you — *Дія стосується самого співрозмовника: потрібно yourself.*

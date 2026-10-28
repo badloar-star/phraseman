@@ -63,7 +63,7 @@
 - Could you separate them? — *В записи звучит Could I separate them?*
 - Could we separate them? — *В записи звучит Could I separate them?*
 
-**4 · Выберите местоимение для этой фразы.**
+**4 · Выберите нужное слово для этой фразы.**
 <!-- interaction_id: en:lesson-22:session-06:i03; family: context_gap_grammar -->
 Could I separate ___? → **them** · they · their
 - they — *После этого глагола нужна объектная форма местоимения.*
@@ -83,7 +83,7 @@ Could I separate ___? → **them** · they · their
 - Could you divide it? — *В записи звучит Could I divide it?*
 - Could we divide it? — *В записи звучит Could I divide it?*
 
-**8 · Выберите местоимение для этой фразы.**
+**8 · Выберите нужное слово для этой фразы.**
 <!-- interaction_id: en:lesson-22:session-06:i06; family: context_gap_grammar -->
 Could I divide ___? → **it** · its · it's
 - its — *После этого глагола нужна объектная форма местоимения.*
@@ -103,7 +103,7 @@ Could I divide ___? → **it** · its · it's
 - Could you organise them? — *В записи звучит Could I organise them?*
 - Could we organise them? — *В записи звучит Could I organise them?*
 
-**12 · Выберите местоимение для этой фразы.**
+**12 · Выберите нужное слово для этой фразы.**
 <!-- interaction_id: en:lesson-22:session-06:i09; family: context_gap_grammar -->
 Could I organise ___? → **them** · they · their
 - they — *После этого глагола нужна объектная форма местоимения.*
@@ -123,7 +123,7 @@ Could I organise ___? → **them** · they · their
 - Could you flatten them? — *В записи звучит Could I flatten them?*
 - Could we flatten them? — *В записи звучит Could I flatten them?*
 
-**16 · Выберите местоимение для этой фразы.**
+**16 · Выберите нужное слово для этой фразы.**
 <!-- interaction_id: en:lesson-22:session-06:i12; family: context_gap_grammar -->
 Could I flatten ___? → **them** · they · their
 - they — *После этого глагола нужна объектная форма местоимения.*

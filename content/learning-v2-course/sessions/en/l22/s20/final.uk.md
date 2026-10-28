@@ -63,7 +63,7 @@
 - I can be myself. — *У записі звучить You can be yourself.*
 - We can be ourselves. — *У записі звучить You can be yourself.*
 
-**4 · Виберіть займенник для цієї фрази.**
+**4 · Виберіть потрібне слово для цієї фрази.**
 <!-- interaction_id: en:lesson-22:session-20:i03; family: context_gap_grammar -->
 You can be ___. → **yourself** · yourselfs · your
 - yourselfs — *Дія стосується самого співрозмовника: потрібно yourself.*
@@ -83,7 +83,7 @@ You can be ___. → **yourself** · yourselfs · your
 - I can think for myself. — *У записі звучить You can think for yourself.*
 - We can think for ourselves. — *У записі звучить You can think for yourself.*
 
-**8 · Виберіть займенник для цієї фрази.**
+**8 · Виберіть потрібне слово для цієї фрази.**
 <!-- interaction_id: en:lesson-22:session-20:i06; family: context_gap_grammar -->
 You can think for ___. → **yourself** · you · your
 - you — *Дія стосується самого співрозмовника: потрібно yourself.*
@@ -103,7 +103,7 @@ You can think for ___. → **yourself** · you · your
 - I can keep to myself. — *У записі звучить You can keep to yourself.*
 - We can keep to ourselves. — *У записі звучить You can keep to yourself.*
 
-**12 · Виберіть займенник для цієї фрази.**
+**12 · Виберіть потрібне слово для цієї фрази.**
 <!-- interaction_id: en:lesson-22:session-20:i09; family: context_gap_grammar -->
 You can keep to ___. → **yourself** · you · your
 - you — *Дія стосується самого співрозмовника: потрібно yourself.*
@@ -123,7 +123,7 @@ You can keep to ___. → **yourself** · you · your
 - I can speak for myself. — *У записі звучить You can speak for yourself.*
 - We can speak for ourselves. — *У записі звучить You can speak for yourself.*
 
-**16 · Виберіть займенник для цієї фрази.**
+**16 · Виберіть потрібне слово для цієї фрази.**
 <!-- interaction_id: en:lesson-22:session-20:i12; family: context_gap_grammar -->
 You can speak for ___. → **yourself** · you · your
 - you — *Дія стосується самого співрозмовника: потрібно yourself.*

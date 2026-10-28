@@ -63,7 +63,7 @@
 - We want to comfort her. — *У записі звучить I want to comfort her.*
 - They want to comfort her. — *У записі звучить I want to comfort her.*
 
-**4 · Виберіть займенник для цієї фрази.**
+**4 · Виберіть потрібне слово для цієї фрази.**
 <!-- interaction_id: en:lesson-22:session-02:i03; family: context_gap_grammar -->
 I want to comfort ___. → **her** · she · hers
 - she — *Після цього дієслова потрібна об’єктна форма займенника.*
@@ -83,7 +83,7 @@ I want to comfort ___. → **her** · she · hers
 - That story can amuse them. — *У записі звучить This story can amuse them.*
 - These stories can amuse them. — *У записі звучить This story can amuse them.*
 
-**8 · Виберіть займенник для цієї фрази.**
+**8 · Виберіть потрібне слово для цієї фрази.**
 <!-- interaction_id: en:lesson-22:session-02:i06; family: context_gap_grammar -->
 This story can amuse ___. → **them** · they · their
 - they — *Після цього дієслова потрібна об’єктна форма займенника.*
@@ -103,7 +103,7 @@ This story can amuse ___. → **them** · they · their
 - We want to impress him. — *У записі звучить I want to impress him.*
 - They want to impress him. — *У записі звучить I want to impress him.*
 
-**12 · Виберіть займенник для цієї фрази.**
+**12 · Виберіть потрібне слово для цієї фрази.**
 <!-- interaction_id: en:lesson-22:session-02:i09; family: context_gap_grammar -->
 I want to impress ___. → **him** · he · his
 - he — *Після цього дієслова потрібна об’єктна форма займенника.*
@@ -123,7 +123,7 @@ I want to impress ___. → **him** · he · his
 - We do not want to upset you. — *У записі звучить I do not want to upset you.*
 - They do not want to upset you. — *У записі звучить I do not want to upset you.*
 
-**16 · Виберіть займенник для цієї фрази.**
+**16 · Виберіть потрібне слово для цієї фрази.**
 <!-- interaction_id: en:lesson-22:session-02:i12; family: context_gap_grammar -->
 I do not want to upset ___. → **you** · your · yours
 - your — *Після цього дієслова потрібна об’єктна форма займенника.*

@@ -63,7 +63,7 @@
 - That electric toothbrush is mine. — *У записі звучить This electric toothbrush is mine.*
 - This electric toothbrush is not mine. — *У записі звучить This electric toothbrush is mine.*
 
-**4 · Виберіть займенник для цієї фрази.**
+**4 · Виберіть потрібне слово для цієї фрази.**
 <!-- interaction_id: en:lesson-22:session-11:i03; family: context_gap_grammar -->
 This electric toothbrush is ___. → **mine** · my · me
 - my — *Тут потрібна самостійна присвійна форма без іменника.*
@@ -83,7 +83,7 @@ This electric toothbrush is ___. → **mine** · my · me
 - That electric razor is his. — *У записі звучить This electric razor is his.*
 - This electric razor is not his. — *У записі звучить This electric razor is his.*
 
-**8 · Виберіть займенник для цієї фрази.**
+**8 · Виберіть потрібне слово для цієї фрази.**
 <!-- interaction_id: en:lesson-22:session-11:i06; family: context_gap_grammar -->
 This electric razor is ___. → **his** · him · he
 - him — *Тут потрібна самостійна присвійна форма без іменника.*
@@ -103,7 +103,7 @@ This electric razor is ___. → **his** · him · he
 - Those hair straighteners are hers. — *У записі звучить These hair straighteners are hers.*
 - These hair straighteners are not hers. — *У записі звучить These hair straighteners are hers.*
 
-**12 · Виберіть займенник для цієї фрази.**
+**12 · Виберіть потрібне слово для цієї фрази.**
 <!-- interaction_id: en:lesson-22:session-11:i09; family: context_gap_grammar -->
 These hair straighteners are ___. → **hers** · her · she
 - her — *Тут потрібна самостійна присвійна форма без іменника.*
@@ -123,7 +123,7 @@ These hair straighteners are ___. → **hers** · her · she
 - That travel adapter is ours. — *У записі звучить This travel adapter is ours.*
 - This travel adapter is not ours. — *У записі звучить This travel adapter is ours.*
 
-**16 · Виберіть займенник для цієї фрази.**
+**16 · Виберіть потрібне слово для цієї фрази.**
 <!-- interaction_id: en:lesson-22:session-11:i12; family: context_gap_grammar -->
 This travel adapter is ___. → **ours** · our · us
 - our — *Тут потрібна самостійна присвійна форма без іменника.*

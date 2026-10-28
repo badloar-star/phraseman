@@ -63,7 +63,7 @@
 - That camping chair is ours. — *В записи звучит This camping chair is ours.*
 - This camping chair is not ours. — *В записи звучит This camping chair is ours.*
 
-**4 · Выберите местоимение для этой фразы.**
+**4 · Выберите нужное слово для этой фразы.**
 <!-- interaction_id: en:lesson-22:session-10:i03; family: context_gap_grammar -->
 This camping chair is ___. → **ours** · our · us
 - our — *Здесь нужна самостоятельная притяжательная форма без существительного.*
@@ -83,7 +83,7 @@ This camping chair is ___. → **ours** · our · us
 - That gym bag is yours. — *В записи звучит This gym bag is yours.*
 - This gym bag is not yours. — *В записи звучит This gym bag is yours.*
 
-**8 · Выберите местоимение для этой фразы.**
+**8 · Выберите нужное слово для этой фразы.**
 <!-- interaction_id: en:lesson-22:session-10:i06; family: context_gap_grammar -->
 This gym bag is ___. → **yours** · your · you
 - your — *Здесь нужна самостоятельная притяжательная форма без существительного.*
@@ -103,7 +103,7 @@ This gym bag is ___. → **yours** · your · you
 - Those trainers are mine. — *В записи звучит These trainers are mine.*
 - These trainers are not mine. — *В записи звучит These trainers are mine.*
 
-**12 · Выберите местоимение для этой фразы.**
+**12 · Выберите нужное слово для этой фразы.**
 <!-- interaction_id: en:lesson-22:session-10:i09; family: context_gap_grammar -->
 These trainers are ___. → **mine** · my · me
 - my — *Здесь нужна самостоятельная притяжательная форма без существительного.*
@@ -123,7 +123,7 @@ These trainers are ___. → **mine** · my · me
 - That yoga mat is hers. — *В записи звучит This yoga mat is hers.*
 - This yoga mat is not hers. — *В записи звучит This yoga mat is hers.*
 
-**16 · Выберите местоимение для этой фразы.**
+**16 · Выберите нужное слово для этой фразы.**
 <!-- interaction_id: en:lesson-22:session-10:i12; family: context_gap_grammar -->
 This yoga mat is ___. → **hers** · her · she
 - her — *Здесь нужна самостоятельная притяжательная форма без существительного.*

@@ -63,7 +63,7 @@
 - I can teach myself. — *У записі звучить You can teach yourself.*
 - We can teach ourselves. — *У записі звучить You can teach yourself.*
 
-**4 · Виберіть займенник для цієї фрази.**
+**4 · Виберіть потрібне слово для цієї фрази.**
 <!-- interaction_id: en:lesson-22:session-19:i03; family: context_gap_grammar -->
 You can teach ___. → **yourself** · you · your
 - you — *Дія стосується самого співрозмовника: потрібно yourself.*
@@ -83,7 +83,7 @@ You can teach ___. → **yourself** · you · your
 - I need to prepare myself. — *У записі звучить You need to prepare yourself.*
 - We need to prepare ourselves. — *У записі звучить You need to prepare yourself.*
 
-**8 · Виберіть займенник для цієї фрази.**
+**8 · Виберіть потрібне слово для цієї фрази.**
 <!-- interaction_id: en:lesson-22:session-19:i06; family: context_gap_grammar -->
 You need to prepare ___. → **yourself** · you · your
 - you — *Дія стосується самого співрозмовника: потрібно yourself.*
@@ -103,7 +103,7 @@ You need to prepare ___. → **yourself** · you · your
 - I can remind myself. — *У записі звучить You can remind yourself.*
 - We can remind ourselves. — *У записі звучить You can remind yourself.*
 
-**12 · Виберіть займенник для цієї фрази.**
+**12 · Виберіть потрібне слово для цієї фрази.**
 <!-- interaction_id: en:lesson-22:session-19:i09; family: context_gap_grammar -->
 You can remind ___. → **yourself** · you · your
 - you — *Дія стосується самого співрозмовника: потрібно yourself.*
@@ -123,7 +123,7 @@ You can remind ___. → **yourself** · you · your
 - I can forgive myself. — *У записі звучить You can forgive yourself.*
 - We can forgive ourselves. — *У записі звучить You can forgive yourself.*
 
-**16 · Виберіть займенник для цієї фрази.**
+**16 · Виберіть потрібне слово для цієї фрази.**
 <!-- interaction_id: en:lesson-22:session-19:i12; family: context_gap_grammar -->
 You can forgive ___. → **yourself** · you · your
 - you — *Дія стосується самого співрозмовника: потрібно yourself.*

@@ -63,7 +63,7 @@
 - We can advise him. — *В записи звучит I can advise him.*
 - They can advise him. — *В записи звучит I can advise him.*
 
-**4 · Выберите местоимение для этой фразы.**
+**4 · Выберите нужное слово для этой фразы.**
 <!-- interaction_id: en:lesson-22:session-01:i03; family: context_gap_grammar -->
 I can advise ___. → **him** · he · his
 - he — *После этого глагола нужна объектная форма местоимения.*
@@ -83,7 +83,7 @@ I can advise ___. → **him** · he · his
 - We want to congratulate her. — *В записи звучит I want to congratulate her.*
 - They want to congratulate her. — *В записи звучит I want to congratulate her.*
 
-**8 · Выберите местоимение для этой фразы.**
+**8 · Выберите нужное слово для этой фразы.**
 <!-- interaction_id: en:lesson-22:session-01:i06; family: context_gap_grammar -->
 I want to congratulate ___. → **her** · she · hers
 - she — *После этого глагола нужна объектная форма местоимения.*
@@ -103,7 +103,7 @@ I want to congratulate ___. → **her** · she · hers
 - We do not want to annoy them. — *В записи звучит I do not want to annoy them.*
 - They do not want to annoy them. — *В записи звучит I do not want to annoy them.*
 
-**12 · Выберите местоимение для этой фразы.**
+**12 · Выберите нужное слово для этой фразы.**
 <!-- interaction_id: en:lesson-22:session-01:i09; family: context_gap_grammar -->
 I do not want to annoy ___. → **them** · they · their
 - they — *После этого глагола нужна объектная форма местоимения.*
@@ -123,7 +123,7 @@ I do not want to annoy ___. → **them** · they · their
 - We do not want to disappoint you. — *В записи звучит I do not want to disappoint you.*
 - They do not want to disappoint you. — *В записи звучит I do not want to disappoint you.*
 
-**16 · Выберите местоимение для этой фразы.**
+**16 · Выберите нужное слово для этой фразы.**
 <!-- interaction_id: en:lesson-22:session-01:i12; family: context_gap_grammar -->
 I do not want to disappoint ___. → **you** · your · yours
 - your — *После этого глагола нужна объектная форма местоимения.*

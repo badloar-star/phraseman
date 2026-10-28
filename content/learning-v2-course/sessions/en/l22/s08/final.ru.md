@@ -63,7 +63,7 @@
 - You can calculate it. — *В записи звучит I can calculate it.*
 - We can calculate it. — *В записи звучит I can calculate it.*
 
-**4 · Выберите местоимение для этой фразы.**
+**4 · Выберите нужное слово для этой фразы.**
 <!-- interaction_id: en:lesson-22:session-08:i03; family: context_gap_grammar -->
 I can calculate ___. → **it** · its · it's
 - its — *После этого глагола нужна объектная форма местоимения.*
@@ -83,7 +83,7 @@ I can calculate ___. → **it** · its · it's
 - You can estimate it. — *В записи звучит I can estimate it.*
 - We can estimate it. — *В записи звучит I can estimate it.*
 
-**8 · Выберите местоимение для этой фразы.**
+**8 · Выберите нужное слово для этой фразы.**
 <!-- interaction_id: en:lesson-22:session-08:i06; family: context_gap_grammar -->
 I can estimate ___. → **it** · its · it's
 - its — *После этого глагола нужна объектная форма местоимения.*
@@ -103,7 +103,7 @@ I can estimate ___. → **it** · its · it's
 - You can add them up. — *В записи звучит I can add them up.*
 - We can add them up. — *В записи звучит I can add them up.*
 
-**12 · Выберите местоимение для этой фразы.**
+**12 · Выберите нужное слово для этой фразы.**
 <!-- interaction_id: en:lesson-22:session-08:i09; family: context_gap_grammar -->
 I can add ___ up. → **them** · they · their
 - they — *После этого глагола нужна объектная форма местоимения.*
@@ -123,7 +123,7 @@ I can add ___ up. → **them** · they · their
 - You can round it down. — *В записи звучит I can round it down.*
 - We can round it down. — *В записи звучит I can round it down.*
 
-**16 · Выберите местоимение для этой фразы.**
+**16 · Выберите нужное слово для этой фразы.**
 <!-- interaction_id: en:lesson-22:session-08:i12; family: context_gap_grammar -->
 I can round ___ down. → **it** · its · it's
 - its — *После этого глагола нужна объектная форма местоимения.*

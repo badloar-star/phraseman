@@ -63,7 +63,7 @@
 - That phone case is mine. — *В записи звучит This phone case is mine.*
 - This phone case is not mine. — *В записи звучит This phone case is mine.*
 
-**4 · Выберите местоимение для этой фразы.**
+**4 · Выберите нужное слово для этой фразы.**
 <!-- interaction_id: en:lesson-22:session-09:i03; family: context_gap_grammar -->
 This phone case is ___. → **mine** · my · me
 - my — *Здесь нужна самостоятельная притяжательная форма без существительного.*
@@ -83,7 +83,7 @@ This phone case is ___. → **mine** · my · me
 - That travel mug is yours. — *В записи звучит This travel mug is yours.*
 - This travel mug is not yours. — *В записи звучит This travel mug is yours.*
 
-**8 · Выберите местоимение для этой фразы.**
+**8 · Выберите нужное слово для этой фразы.**
 <!-- interaction_id: en:lesson-22:session-09:i06; family: context_gap_grammar -->
 This travel mug is ___. → **yours** · your · you
 - your — *Здесь нужна самостоятельная притяжательная форма без существительного.*
@@ -103,7 +103,7 @@ This travel mug is ___. → **yours** · your · you
 - That woolly hat is hers. — *В записи звучит This woolly hat is hers.*
 - This woolly hat is not hers. — *В записи звучит This woolly hat is hers.*
 
-**12 · Выберите местоимение для этой фразы.**
+**12 · Выберите нужное слово для этой фразы.**
 <!-- interaction_id: en:lesson-22:session-09:i09; family: context_gap_grammar -->
 This woolly hat is ___. → **hers** · her · she
 - her — *Здесь нужна самостоятельная притяжательная форма без существительного.*
@@ -123,7 +123,7 @@ This woolly hat is ___. → **hers** · her · she
 - That rain jacket is ours. — *В записи звучит This rain jacket is ours.*
 - This rain jacket is not ours. — *В записи звучит This rain jacket is ours.*
 
-**16 · Выберите местоимение для этой фразы.**
+**16 · Выберите нужное слово для этой фразы.**
 <!-- interaction_id: en:lesson-22:session-09:i12; family: context_gap_grammar -->
 This rain jacket is ___. → **ours** · our · us
 - our — *Здесь нужна самостоятельная притяжательная форма без существительного.*

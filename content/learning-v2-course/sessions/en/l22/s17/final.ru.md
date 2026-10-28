@@ -63,7 +63,7 @@ Introduce yourself — представиться, назвать себя но�
 - You can introduce him. — *В записи звучит You can introduce yourself.*
 - You can introduce her. — *В записи звучит You can introduce yourself.*
 
-**4 · Выберите местоимение для этой фразы.**
+**4 · Выберите нужное слово для этой фразы.**
 <!-- interaction_id: en:lesson-22:session-17:i03; family: context_gap_grammar -->
 You can introduce ___. → **yourself** · you · your
 - you — *Действие относится к самому собеседнику: нужно yourself.*
@@ -83,7 +83,7 @@ You can introduce ___. → **yourself** · you · your
 - You need to look after him. — *В записи звучит You need to look after yourself.*
 - You need to look after her. — *В записи звучит You need to look after yourself.*
 
-**8 · Выберите местоимение для этой фразы.**
+**8 · Выберите нужное слово для этой фразы.**
 <!-- interaction_id: en:lesson-22:session-17:i06; family: context_gap_grammar -->
 You need to look after ___. → **yourself** · you · your
 - you — *Действие относится к самому собеседнику: нужно yourself.*
@@ -103,7 +103,7 @@ You need to look after ___. → **yourself** · you · your
 - You can believe in him. — *В записи звучит You can believe in yourself.*
 - You can believe in her. — *В записи звучит You can believe in yourself.*
 
-**12 · Выберите местоимение для этой фразы.**
+**12 · Выберите нужное слово для этой фразы.**
 <!-- interaction_id: en:lesson-22:session-17:i09; family: context_gap_grammar -->
 You can believe in ___. → **yourself** · you · your
 - you — *Действие относится к самому собеседнику: нужно yourself.*
@@ -123,7 +123,7 @@ You can believe in ___. → **yourself** · you · your
 - You should not blame him. — *В записи звучит You should not blame yourself.*
 - You should not blame her. — *В записи звучит You should not blame yourself.*
 
-**16 · Выберите местоимение для этой фразы.**
+**16 · Выберите нужное слово для этой фразы.**
 <!-- interaction_id: en:lesson-22:session-17:i12; family: context_gap_grammar -->
 You should not blame ___. → **yourself** · you · your
 - you — *Действие относится к самому собеседнику: нужно yourself.*

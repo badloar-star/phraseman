@@ -63,7 +63,7 @@
 - That wash bag is mine. — *У записі звучить This wash bag is mine.*
 - This wash bag is not mine. — *У записі звучить This wash bag is mine.*
 
-**4 · Виберіть займенник для цієї фрази.**
+**4 · Виберіть потрібне слово для цієї фрази.**
 <!-- interaction_id: en:lesson-22:session-12:i03; family: context_gap_grammar -->
 This wash bag is ___. → **mine** · my · me
 - my — *Тут потрібна самостійна присвійна форма без іменника.*
@@ -83,7 +83,7 @@ This wash bag is ___. → **mine** · my · me
 - That overnight bag is yours. — *У записі звучить This overnight bag is yours.*
 - This overnight bag is not yours. — *У записі звучить This overnight bag is yours.*
 
-**8 · Виберіть займенник для цієї фрази.**
+**8 · Виберіть потрібне слово для цієї фрази.**
 <!-- interaction_id: en:lesson-22:session-12:i06; family: context_gap_grammar -->
 This overnight bag is ___. → **yours** · your · you
 - your — *Тут потрібна самостійна присвійна форма без іменника.*
@@ -103,7 +103,7 @@ This overnight bag is ___. → **yours** · your · you
 - That tote bag is hers. — *У записі звучить This tote bag is hers.*
 - This tote bag is not hers. — *У записі звучить This tote bag is hers.*
 
-**12 · Виберіть займенник для цієї фрази.**
+**12 · Виберіть потрібне слово для цієї фрази.**
 <!-- interaction_id: en:lesson-22:session-12:i09; family: context_gap_grammar -->
 This tote bag is ___. → **hers** · her · she
 - her — *Тут потрібна самостійна присвійна форма без іменника.*
@@ -123,7 +123,7 @@ This tote bag is ___. → **hers** · her · she
 - That eye mask is his. — *У записі звучить This eye mask is his.*
 - This eye mask is not his. — *У записі звучить This eye mask is his.*
 
-**16 · Виберіть займенник для цієї фрази.**
+**16 · Виберіть потрібне слово для цієї фрази.**
 <!-- interaction_id: en:lesson-22:session-12:i12; family: context_gap_grammar -->
 This eye mask is ___. → **his** · him · he
 - him — *Тут потрібна самостійна присвійна форма без іменника.*

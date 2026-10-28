@@ -63,7 +63,7 @@
 - Could you separate them? — *У записі звучить Could I separate them?*
 - Could we separate them? — *У записі звучить Could I separate them?*
 
-**4 · Виберіть займенник для цієї фрази.**
+**4 · Виберіть потрібне слово для цієї фрази.**
 <!-- interaction_id: en:lesson-22:session-06:i03; family: context_gap_grammar -->
 Could I separate ___? → **them** · they · their
 - they — *Після цього дієслова потрібна об’єктна форма займенника.*
@@ -83,7 +83,7 @@ Could I separate ___? → **them** · they · their
 - Could you divide it? — *У записі звучить Could I divide it?*
 - Could we divide it? — *У записі звучить Could I divide it?*
 
-**8 · Виберіть займенник для цієї фрази.**
+**8 · Виберіть потрібне слово для цієї фрази.**
 <!-- interaction_id: en:lesson-22:session-06:i06; family: context_gap_grammar -->
 Could I divide ___? → **it** · its · it's
 - its — *Після цього дієслова потрібна об’єктна форма займенника.*
@@ -103,7 +103,7 @@ Could I divide ___? → **it** · its · it's
 - Could you organise them? — *У записі звучить Could I organise them?*
 - Could we organise them? — *У записі звучить Could I organise them?*
 
-**12 · Виберіть займенник для цієї фрази.**
+**12 · Виберіть потрібне слово для цієї фрази.**
 <!-- interaction_id: en:lesson-22:session-06:i09; family: context_gap_grammar -->
 Could I organise ___? → **them** · they · their
 - they — *Після цього дієслова потрібна об’єктна форма займенника.*
@@ -123,7 +123,7 @@ Could I organise ___? → **them** · they · their
 - Could you flatten them? — *У записі звучить Could I flatten them?*
 - Could we flatten them? — *У записі звучить Could I flatten them?*
 
-**16 · Виберіть займенник для цієї фрази.**
+**16 · Виберіть потрібне слово для цієї фрази.**
 <!-- interaction_id: en:lesson-22:session-06:i12; family: context_gap_grammar -->
 Could I flatten ___? → **them** · they · their
 - they — *Після цього дієслова потрібна об’єктна форма займенника.*

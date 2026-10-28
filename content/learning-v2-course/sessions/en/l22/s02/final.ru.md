@@ -63,7 +63,7 @@
 - We want to comfort her. — *В записи звучит I want to comfort her.*
 - They want to comfort her. — *В записи звучит I want to comfort her.*
 
-**4 · Выберите местоимение для этой фразы.**
+**4 · Выберите нужное слово для этой фразы.**
 <!-- interaction_id: en:lesson-22:session-02:i03; family: context_gap_grammar -->
 I want to comfort ___. → **her** · she · hers
 - she — *После этого глагола нужна объектная форма местоимения.*
@@ -83,7 +83,7 @@ I want to comfort ___. → **her** · she · hers
 - That story can amuse them. — *В записи звучит This story can amuse them.*
 - These stories can amuse them. — *В записи звучит This story can amuse them.*
 
-**8 · Выберите местоимение для этой фразы.**
+**8 · Выберите нужное слово для этой фразы.**
 <!-- interaction_id: en:lesson-22:session-02:i06; family: context_gap_grammar -->
 This story can amuse ___. → **them** · they · their
 - they — *После этого глагола нужна объектная форма местоимения.*
@@ -103,7 +103,7 @@ This story can amuse ___. → **them** · they · their
 - We want to impress him. — *В записи звучит I want to impress him.*
 - They want to impress him. — *В записи звучит I want to impress him.*
 
-**12 · Выберите местоимение для этой фразы.**
+**12 · Выберите нужное слово для этой фразы.**
 <!-- interaction_id: en:lesson-22:session-02:i09; family: context_gap_grammar -->
 I want to impress ___. → **him** · he · his
 - he — *После этого глагола нужна объектная форма местоимения.*
@@ -123,7 +123,7 @@ I want to impress ___. → **him** · he · his
 - We do not want to upset you. — *В записи звучит I do not want to upset you.*
 - They do not want to upset you. — *В записи звучит I do not want to upset you.*
 
-**16 · Выберите местоимение для этой фразы.**
+**16 · Выберите нужное слово для этой фразы.**
 <!-- interaction_id: en:lesson-22:session-02:i12; family: context_gap_grammar -->
 I do not want to upset ___. → **you** · your · yours
 - your — *После этого глагола нужна объектная форма местоимения.*

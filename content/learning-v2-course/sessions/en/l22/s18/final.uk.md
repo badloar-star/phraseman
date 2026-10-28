@@ -63,7 +63,7 @@
 - I can express myself. — *У записі звучить You can express yourself.*
 - We can express ourselves. — *У записі звучить You can express yourself.*
 
-**4 · Виберіть займенник для цієї фрази.**
+**4 · Виберіть потрібне слово для цієї фрази.**
 <!-- interaction_id: en:lesson-22:session-18:i03; family: context_gap_grammar -->
 You can express ___. → **yourself** · you · your
 - you — *Дія стосується самого співрозмовника: потрібно yourself.*
@@ -83,7 +83,7 @@ You can express ___. → **yourself** · you · your
 - I do not need to push myself. — *У записі звучить You do not need to push yourself.*
 - We do not need to push ourselves. — *У записі звучить You do not need to push yourself.*
 
-**8 · Виберіть займенник для цієї фрази.**
+**8 · Виберіть потрібне слово для цієї фрази.**
 <!-- interaction_id: en:lesson-22:session-18:i06; family: context_gap_grammar -->
 You do not need to push ___. → **yourself** · you · your
 - you — *Дія стосується самого співрозмовника: потрібно yourself.*
@@ -103,7 +103,7 @@ You do not need to push ___. → **yourself** · you · your
 - I can treat myself. — *У записі звучить You can treat yourself.*
 - We can treat ourselves. — *У записі звучить You can treat yourself.*
 
-**12 · Виберіть займенник для цієї фрази.**
+**12 · Виберіть потрібне слово для цієї фрази.**
 <!-- interaction_id: en:lesson-22:session-18:i09; family: context_gap_grammar -->
 You can treat ___. → **yourself** · you · your
 - you — *Дія стосується самого співрозмовника: потрібно yourself.*
@@ -123,7 +123,7 @@ You can treat ___. → **yourself** · you · your
 - I can defend myself. — *У записі звучить You can defend yourself.*
 - We can defend ourselves. — *У записі звучить You can defend yourself.*
 
-**16 · Виберіть займенник для цієї фрази.**
+**16 · Виберіть потрібне слово для цієї фрази.**
 <!-- interaction_id: en:lesson-22:session-18:i12; family: context_gap_grammar -->
 You can defend ___. → **yourself** · you · your
 - you — *Дія стосується самого співрозмовника: потрібно yourself.*

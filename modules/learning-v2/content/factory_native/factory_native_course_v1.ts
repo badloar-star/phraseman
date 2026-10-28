@@ -33,6 +33,7 @@ import {
 import { hashCanonicalBody, sha256Utf8 } from "../../policies/decision_registry";
 import { getTranscription } from "../../../../app/transcription";
 import { projectLearnerVisiblePromptV1 } from "../learner_visible_text_v1";
+import { phraseBuilderAcceptedOrdersV1 } from "../phrase_order_variants_v1";
 
 
 // зачем (координатор, 2026-10-01, решение по §43): транскрипцию на карточках
@@ -1124,7 +1125,8 @@ function materializeFactoryNativeLearningV2SessionV1Uncached(input: FactoryNativ
     let acceptedResponses: readonly string[];
     if (interaction.inputMode === "single_choice") acceptedResponses = [remapId(answer.correctResponseId, oldPrefix, courseSessionId)];
     else if (interaction.inputMode === "pair_grid") acceptedResponses = ["all_pairs_matched"];
-    else if (interaction.modePayload?.family === "phrase_builder") acceptedResponses = [interaction.modePayload.orderedTokens.join(" ")];
+    // зачем (координатор 28.10): обстоятельство времени / места в начале или в конце — оба порядка верны (диктант не трогаем: порядок задан звуком)
+    else if (interaction.modePayload?.family === "phrase_builder") acceptedResponses = phraseBuilderAcceptedOrdersV1(interaction.modePayload.orderedTokens, interaction.interactionId);
     else if (interaction.modePayload?.family === "listen_build_dictation") acceptedResponses = [interaction.modePayload.orderedTokens.join(" ")];
     else acceptedResponses = [String(answer.correctText)];
     evaluatorEntries.push({

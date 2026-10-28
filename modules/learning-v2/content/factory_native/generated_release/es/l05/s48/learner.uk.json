@@ -1,0 +1,967 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-05:session-48",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-05:session-48:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-48:i01:r1",
+          "text": "hambre"
+        },
+        {
+          "responseId": "es:lesson-05:session-48:i01:r2",
+          "text": "sed"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-48:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-48:i01:audio",
+          "transcript": "hambre"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-05:session-48:i01:r1",
+            "targetText": "hambre",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-05:session-48:i01:r2",
+            "targetText": "sed",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-48:i01:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит hambre — голод, не жажда.",
+              "uk": "Звучить hambre — голод, не спрага."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-48:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — я хочу їсти",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-48:i02:r1",
+          "text": "hambre"
+        },
+        {
+          "responseId": "es:lesson-05:session-48:i02:r2",
+          "text": "sed"
+        },
+        {
+          "responseId": "es:lesson-05:session-48:i02:r3",
+          "text": "sueño"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — я хочу їсти",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — я хочу есть",
+          "uk": "Вставте слово — я хочу їсти"
+        },
+        "gappedTargetPhrase": "Tengo ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-48:i02:r1",
+            "text": "hambre"
+          },
+          {
+            "responseId": "es:lesson-05:session-48:i02:r2",
+            "text": "sed"
+          },
+          {
+            "responseId": "es:lesson-05:session-48:i02:r3",
+            "text": "sueño"
+          }
+        ],
+        "testedDimension": "Вставте слово — я хочу їсти",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-48:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — я хочу їсти",
+            "feedbackByLocale": {
+              "ru": "Это жажда; нужен голод: hambre.",
+              "uk": "Це спрага; потрібен голод: hambre."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-48:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — я хочу їсти",
+            "feedbackByLocale": {
+              "ru": "Это сонливость; нужно hambre.",
+              "uk": "Це сонливість; потрібно hambre."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-48:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — я хочу їсти; почніть з Tengo, використайте hambre",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-48:i03:r1",
+          "text": "Плитки: hambre"
+        },
+        {
+          "responseId": "es:lesson-05:session-48:i03:r2",
+          "text": "Tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-48:i03:r3",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — я хочу їсти; почніть з Tengo, використайте hambre",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Tengo hambre.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — я хочу есть; начните с Tengo, используйте hambre",
+          "uk": "Зберіть фразу — я хочу їсти; почніть з Tengo, використайте hambre"
+        },
+        "orderedTokens": [
+          "Tengo",
+          "hambre"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-48:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — я хочу їсти; почніть з Tengo, використайте hambre",
+            "feedbackByLocale": {
+              "ru": "здесь hambre без артикля.",
+              "uk": "тут hambre без артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-48:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — я не хочу спати",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-48:i04:r1",
+          "text": "No"
+        },
+        {
+          "responseId": "es:lesson-05:session-48:i04:r2",
+          "text": "Un"
+        },
+        {
+          "responseId": "es:lesson-05:session-48:i04:r3",
+          "text": "Una"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — я не хочу спати",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — я не хочу спать",
+          "uk": "Вставте слово — я не хочу спати"
+        },
+        "gappedTargetPhrase": "___ tengo sueño.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-48:i04:r1",
+            "text": "No"
+          },
+          {
+            "responseId": "es:lesson-05:session-48:i04:r2",
+            "text": "Un"
+          },
+          {
+            "responseId": "es:lesson-05:session-48:i04:r3",
+            "text": "Una"
+          }
+        ],
+        "testedDimension": "Вставте слово — я не хочу спати",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-48:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — я не хочу спати",
+            "feedbackByLocale": {
+              "ru": "Нужно отрицание no.",
+              "uk": "Потрібне заперечення no."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-48:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — я не хочу спати",
+            "feedbackByLocale": {
+              "ru": "Артикль не отрицает состояние: нужно no.",
+              "uk": "Артикль не заперечує стану: потрібно no."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-48:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — я не хочу спати; почніть з No, використайте sueño",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-48:i05:r1",
+          "text": "Плитки: sueño"
+        },
+        {
+          "responseId": "es:lesson-05:session-48:i05:r2",
+          "text": "No"
+        },
+        {
+          "responseId": "es:lesson-05:session-48:i05:r3",
+          "text": "tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-48:i05:r4",
+          "text": "soy."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — я не хочу спати; почніть з No, використайте sueño",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No tengo sueño.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — я не хочу спать; начните с No, используйте sueño",
+          "uk": "Зберіть фразу — я не хочу спати; почніть з No, використайте sueño"
+        },
+        "orderedTokens": [
+          "No",
+          "tengo",
+          "sueño"
+        ],
+        "authoredDistractorTokens": [
+          "soy"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-48:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — я не хочу спати; почніть з No, використайте sueño",
+            "feedbackByLocale": {
+              "ru": "используем tener sueño.",
+              "uk": "використовуємо tener sueño."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-48:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — Ана поспішає; почніть з Ana, використайте prisa",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-48:i06:r1",
+          "text": "Плитки: tiene"
+        },
+        {
+          "responseId": "es:lesson-05:session-48:i06:r2",
+          "text": "Ana"
+        },
+        {
+          "responseId": "es:lesson-05:session-48:i06:r3",
+          "text": "prisa"
+        },
+        {
+          "responseId": "es:lesson-05:session-48:i06:r4",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — Ана поспішає; почніть з Ana, використайте prisa",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Ana tiene prisa.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — Ана спешит; начните с Ana, используйте prisa",
+          "uk": "Зберіть фразу — Ана поспішає; почніть з Ana, використайте prisa"
+        },
+        "orderedTokens": [
+          "Ana",
+          "tiene",
+          "prisa"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-48:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — Ана поспішає; почніть з Ana, використайте prisa",
+            "feedbackByLocale": {
+              "ru": "используем tiene prisa.",
+              "uk": "використовуємо tiene prisa."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-48:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-48:i07:r1",
+          "text": "Плитки: Tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-48:i07:r2",
+          "text": "hambre"
+        },
+        {
+          "responseId": "es:lesson-05:session-48:i07:r3",
+          "text": "sed."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-48:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-48:i07:audio",
+          "transcript": "Tengo hambre."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Tengo hambre.",
+        "orderedTokens": [
+          "Tengo",
+          "hambre"
+        ],
+        "authoredDistractorTokens": [
+          "sed"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-48:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит hambre.",
+              "uk": "звучить hambre."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-48:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — мені холодно",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-48:i08:r1",
+          "text": "frío"
+        },
+        {
+          "responseId": "es:lesson-05:session-48:i08:r2",
+          "text": "fría"
+        },
+        {
+          "responseId": "es:lesson-05:session-48:i08:r3",
+          "text": "calor"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — мені холодно",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — мне холодно",
+          "uk": "Вставте слово — мені холодно"
+        },
+        "gappedTargetPhrase": "Tengo ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-48:i08:r1",
+            "text": "frío"
+          },
+          {
+            "responseId": "es:lesson-05:session-48:i08:r2",
+            "text": "fría"
+          },
+          {
+            "responseId": "es:lesson-05:session-48:i08:r3",
+            "text": "calor"
+          }
+        ],
+        "testedDimension": "Вставте слово — мені холодно",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-48:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — мені холодно",
+            "feedbackByLocale": {
+              "ru": "В tener frío слово не меняется по полу человека.",
+              "uk": "У tener frío слово не змінюється за статтю людини."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-48:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — мені холодно",
+            "feedbackByLocale": {
+              "ru": "Это жара, а нужно холод: frío.",
+              "uk": "Це спека, а потрібен холод: frío."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-48:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — я хочу їсти; почніть з Tengo, використайте hambre",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-48:i09:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — я хочу їсти; почніть з Tengo, використайте hambre",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-48:i09:audio",
+          "transcript": "Tengo hambre."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tengo hambre.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-48:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — я не хочу спати; почніть з No tengo, використайте sueño",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-48:i10:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — я не хочу спати; почніть з No tengo, використайте sueño",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-48:i10:audio",
+          "transcript": "No tengo sueño."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No tengo sueño.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-48:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — Ана поспішає; почніть з Ana tiene, використайте prisa",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-48:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — Ана поспішає; почніть з Ana tiene, використайте prisa",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-48:i11:audio",
+          "transcript": "Ana tiene prisa."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Ana tiene prisa.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-48:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — мені холодно; почніть з Tengo",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-48:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — мені холодно; почніть з Tengo",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-48:i12:audio",
+          "transcript": "Tengo frío."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tengo frío.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-48:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — я хочу пити",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-48:i13:r1",
+          "text": "sed"
+        },
+        {
+          "responseId": "es:lesson-05:session-48:i13:r2",
+          "text": "hambre"
+        },
+        {
+          "responseId": "es:lesson-05:session-48:i13:r3",
+          "text": "prisa"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — я хочу пити",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — я хочу пить",
+          "uk": "Вставте слово — я хочу пити"
+        },
+        "gappedTargetPhrase": "Tengo ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-48:i13:r1",
+            "text": "sed"
+          },
+          {
+            "responseId": "es:lesson-05:session-48:i13:r2",
+            "text": "hambre"
+          },
+          {
+            "responseId": "es:lesson-05:session-48:i13:r3",
+            "text": "prisa"
+          }
+        ],
+        "testedDimension": "Вставте слово — я хочу пити",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-48:i13:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — я хочу пити",
+            "feedbackByLocale": {
+              "ru": "Это голод; жажда — sed.",
+              "uk": "Це голод; спрага — sed."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-48:i13:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — я хочу пити",
+            "feedbackByLocale": {
+              "ru": "Это спешка; нужно sed.",
+              "uk": "Це поспіх; потрібно sed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-48:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — мені жарко; почніть з Tengo, використайте calor",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-48:i14:r1",
+          "text": "Плитки: calor"
+        },
+        {
+          "responseId": "es:lesson-05:session-48:i14:r2",
+          "text": "Tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-48:i14:r3",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — мені жарко; почніть з Tengo, використайте calor",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Tengo calor.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — мне жарко; начните с Tengo, используйте calor",
+          "uk": "Зберіть фразу — мені жарко; почніть з Tengo, використайте calor"
+        },
+        "orderedTokens": [
+          "Tengo",
+          "calor"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-48:i14:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — мені жарко; почніть з Tengo, використайте calor",
+            "feedbackByLocale": {
+              "ru": "в этой простой фразе нет артикля.",
+              "uk": "у цій простій фразі немає артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-48:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — ти маєш рацію",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-48:i15:r1",
+          "text": "razón"
+        },
+        {
+          "responseId": "es:lesson-05:session-48:i15:r2",
+          "text": "prisa"
+        },
+        {
+          "responseId": "es:lesson-05:session-48:i15:r3",
+          "text": "calor"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — ти маєш рацію",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — ты прав / права",
+          "uk": "Вставте слово — ти маєш рацію"
+        },
+        "gappedTargetPhrase": "Tienes ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-48:i15:r1",
+            "text": "razón"
+          },
+          {
+            "responseId": "es:lesson-05:session-48:i15:r2",
+            "text": "prisa"
+          },
+          {
+            "responseId": "es:lesson-05:session-48:i15:r3",
+            "text": "calor"
+          }
+        ],
+        "testedDimension": "Вставте слово — ти маєш рацію",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-48:i15:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — ти маєш рацію",
+            "feedbackByLocale": {
+              "ru": "Это спешка; для правоты нужно razón.",
+              "uk": "Це поспіх; для правоти потрібно razón."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-48:i15:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — ти маєш рацію",
+            "feedbackByLocale": {
+              "ru": "Это жара; нужно razón.",
+              "uk": "Це спека; потрібно razón."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-48:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-48:i16:r1",
+          "text": "Плитки: razón"
+        },
+        {
+          "responseId": "es:lesson-05:session-48:i16:r2",
+          "text": "Tienes"
+        },
+        {
+          "responseId": "es:lesson-05:session-48:i16:r3",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-48:i16:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-48:i16:audio",
+          "transcript": "Tienes razón."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Tienes razón.",
+        "orderedTokens": [
+          "Tienes",
+          "razón"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-48:i16:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "её нет в записи.",
+              "uk": "її немає в записі."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-48:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — ми хочемо пити; почніть з Tenemos, використайте sed",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-48:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — ми хочемо пити; почніть з Tenemos, використайте sed",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-48:i17:audio",
+          "transcript": "Tenemos sed."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tenemos sed.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-48:i18",
+      "ordinal": 21,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — ти маєш рацію; почніть з Tienes",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-48:i18:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — ти маєш рацію; почніть з Tienes",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-48:i18:audio",
+          "transcript": "Tienes razón."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tienes razón.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 18,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "0ddeb7865f51852004afca67ea9d67a9951254c652cb793bf63704e71a8f709d"
+}

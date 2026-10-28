@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-05:session-48",
+  "learningOutcomeByLocale": {
+    "ru": "закрепить бытовые сочетания с tener, меняя только нужное состояние и форму глагола.",
+    "uk": "закріпити побутові сполучення з tener, змінюючи лише потрібний стан і форму дієслова."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-05:session-48:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Перерыв на еду",
+        "uk": "Перерва на їжу"
+      },
+      "bodyByLocale": {
+        "ru": "После прогулки вы проголодались. Скажите `Tengo hambre` — «Я хочу есть». Соберите `Tengo` + `hambre`. Слово hambre называет голод, а tengo относится к вам. В этой простой фразе нет артикля; форма подходит и мужчине, и женщине.",
+        "uk": "Після прогулянки ви зголодніли. Скажіть `Tengo hambre` — «Я хочу їсти». Зберіть `Tengo` + `hambre`. Слово hambre називає голод, а tengo стосується вас. У цій простій фразі немає артикля; форма підходить і чоловікові, і жінці."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-48:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите «Я хочу есть» с помощью hambre. Начните с Tengo.",
+          "uk": "Скажіть «Я хочу їсти» за допомогою hambre. Почніть з Tengo."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-48:intro1:r1",
+              "text": "Tengo hambre."
+            },
+            {
+              "responseId": "es:lesson-05:session-48:intro1:r2",
+              "text": "Soy hambre."
+            },
+            {
+              "responseId": "es:lesson-05:session-48:intro1:r3",
+              "text": "Tengo una hambre."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-48:intro1:r1",
+              "text": "Tengo hambre."
+            },
+            {
+              "responseId": "es:lesson-05:session-48:intro1:r2",
+              "text": "Soy hambre."
+            },
+            {
+              "responseId": "es:lesson-05:session-48:intro1:r3",
+              "text": "Tengo una hambre."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Я хочу есть» с помощью hambre. Начните с Tengo.",
+          "uk": "Скажіть «Я хочу їсти» за допомогою hambre. Почніть з Tengo."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-05:session-48:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Спать пока не хочется",
+        "uk": "Спати поки не хочеться"
+      },
+      "bodyByLocale": {
+        "ru": "Вечером вам предлагают отдохнуть, но вы ещё бодры. Скажите `No tengo sueño` — «Я не хочу спать». Соберите `No` + `tengo` + `sueño`. No ставим перед tengo. Sueño здесь означает сонливость, поэтому не добавляем un.",
+        "uk": "Увечері вам пропонують відпочити, але ви ще бадьорі. Скажіть `No tengo sueño` — «Я не хочу спати». Зберіть `No` + `tengo` + `sueño`. No ставимо перед tengo. Sueño тут означає сонливість, тому не додаємо un."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-48:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «Я не хочу спать» с помощью sueño. Начните с No tengo.",
+          "uk": "Скажіть «Я не хочу спати» за допомогою sueño. Почніть з No tengo."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-48:intro2:r1",
+              "text": "No tengo sueño."
+            },
+            {
+              "responseId": "es:lesson-05:session-48:intro2:r2",
+              "text": "Tengo no sueño."
+            },
+            {
+              "responseId": "es:lesson-05:session-48:intro2:r3",
+              "text": "No soy sueño."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-48:intro2:r1",
+              "text": "No tengo sueño."
+            },
+            {
+              "responseId": "es:lesson-05:session-48:intro2:r2",
+              "text": "Tengo no sueño."
+            },
+            {
+              "responseId": "es:lesson-05:session-48:intro2:r3",
+              "text": "No soy sueño."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Я не хочу спать» с помощью sueño. Начните с No tengo.",
+          "uk": "Скажіть «Я не хочу спати» за допомогою sueño. Почніть з No tengo."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-05:session-48:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ана торопится",
+        "uk": "Ана поспішає"
+      },
+      "bodyByLocale": {
+        "ru": "Ане пора уходить на встречу. Объясните другу `Ana tiene prisa` — «Ана спешит». Соберите `Ana` + `tiene` + `prisa`. Вместо tengo выбираем tiene, потому что говорим об Ане. Само prisa не меняется и остаётся без артикля.",
+        "uk": "Ані час іти на зустріч. Поясніть другові `Ana tiene prisa` — «Ана поспішає». Зберіть `Ana` + `tiene` + `prisa`. Замість tengo обираємо tiene, бо кажемо про Ану. Саме prisa не змінюється й залишається без артикля."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-48:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите «Ана спешит» с помощью prisa. Начните с Ana tiene.",
+          "uk": "Скажіть «Ана поспішає» за допомогою prisa. Почніть з Ana tiene."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-48:intro3:r1",
+              "text": "Ana tiene prisa."
+            },
+            {
+              "responseId": "es:lesson-05:session-48:intro3:r2",
+              "text": "Ana tengo prisa."
+            },
+            {
+              "responseId": "es:lesson-05:session-48:intro3:r3",
+              "text": "Ana es prisa."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-48:intro3:r1",
+              "text": "Ana tiene prisa."
+            },
+            {
+              "responseId": "es:lesson-05:session-48:intro3:r2",
+              "text": "Ana tengo prisa."
+            },
+            {
+              "responseId": "es:lesson-05:session-48:intro3:r3",
+              "text": "Ana es prisa."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Ана спешит» с помощью prisa. Начните с Ana tiene.",
+          "uk": "Скажіть «Ана поспішає» за допомогою prisa. Почніть з Ana tiene."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d5935dda81ea6345e81c4650da1c0b5f08a389abc66eb3139b73a2ab87d8988a"
+}

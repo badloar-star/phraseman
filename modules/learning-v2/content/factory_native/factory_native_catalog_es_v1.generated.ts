@@ -1897,4 +1897,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"сказать, что спешите, сочетанием tener prisa.","uk":"сказати, що поспішаєте, сполученням tener prisa."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 5, sessionOrdinal: 47,
+    sourceFingerprint: "1488f23ef6b17292592f42986a134d9568702ecb209ef4c9300f9026fce423d9",
+    newWordCount: 1,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выразить правоту сочетанием tener razón.","uk":"виразити правоту сполученням tener razón."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 5, sessionOrdinal: 48,
+    sourceFingerprint: "2083b8911c70bdd86e50aa2e3e705294393cfc44e59154bfd93d1032f78310c1",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"закрепить бытовые сочетания с tener, меняя только нужное состояние и форму глагола.","uk":"закріпити побутові сполучення з tener, змінюючи лише потрібний стан і форму дієслова."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
+  }),
 ]);

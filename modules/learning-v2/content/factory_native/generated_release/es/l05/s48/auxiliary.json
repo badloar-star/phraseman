@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-05:session-48",
+  "entries": [
+    {
+      "interactionId": "es:lesson-05:session-48:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-48:intro1:r2": {
+          "ru": "Используем tengo hambre.",
+          "uk": "Використовуємо tengo hambre."
+        },
+        "es:lesson-05:session-48:intro1:r3": {
+          "ru": "В этой простой фразе нет артикля.",
+          "uk": "У цій простій фразі немає артикля."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-48:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-48:intro2:r2": {
+          "ru": "No ставим перед tengo.",
+          "uk": "No ставимо перед tengo."
+        },
+        "es:lesson-05:session-48:intro2:r3": {
+          "ru": "Для состояния нужна форма tengo.",
+          "uk": "Для стану потрібна форма tengo."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-48:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-48:intro3:r2": {
+          "ru": "Об Ане нужно tiene.",
+          "uk": "Про Ану потрібно tiene."
+        },
+        "es:lesson-05:session-48:intro3:r3": {
+          "ru": "Используем tiene prisa.",
+          "uk": "Використовуємо tiene prisa."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "3fc7b2e9432802d2f8a642eababf1a6aabcbe3da2255d70041a383c918409b89"
+}

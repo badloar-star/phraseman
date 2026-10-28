@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-05:session-47",
+  "learningOutcomeByLocale": {
+    "ru": "выразить правоту сочетанием tener razón.",
+    "uk": "виразити правоту сполученням tener razón."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-05:session-47:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Друг правильно вспомнил дорогу",
+        "uk": "Друг правильно згадав дорогу"
+      },
+      "bodyByLocale": {
+        "ru": "Вы проверили адрес и убедились, что друг предложил верный поворот. Скажите ему `Tienes razón` — «Ты прав» или «Ты права». Соберите `Tienes` + `razón`. Razón в сочетании tener razón передаёт правоту. Это готовый способ согласиться, что человек прав; перед razón не нужен артикль. Tienes подходит обращению к одному человеку на «ты».",
+        "uk": "Ви перевірили адресу й переконалися, що друг запропонував правильний поворот. Скажіть йому `Tienes razón` — «Ти маєш рацію». Зберіть `Tienes` + `razón`. Razón у сполученні tener razón передає правоту. Це готовий спосіб погодитися, що людина має рацію; перед razón не потрібен артикль. Tienes підходить для звернення до однієї людини на «ти»."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-47:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите другу «Ты прав / права» с помощью razón. Начните с Tienes.",
+          "uk": "Скажіть другові «Ти маєш рацію». Почніть з Tienes."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-47:intro1:r1",
+              "text": "Tienes razón."
+            },
+            {
+              "responseId": "es:lesson-05:session-47:intro1:r2",
+              "text": "Eres razón."
+            },
+            {
+              "responseId": "es:lesson-05:session-47:intro1:r3",
+              "text": "Tienes una razón."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-47:intro1:r1",
+              "text": "Tienes razón."
+            },
+            {
+              "responseId": "es:lesson-05:session-47:intro1:r2",
+              "text": "Eres razón."
+            },
+            {
+              "responseId": "es:lesson-05:session-47:intro1:r3",
+              "text": "Tienes una razón."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите другу «Ты прав / права» с помощью razón. Начните с Tienes.",
+          "uk": "Скажіть другові «Ти маєш рацію». Почніть з Tienes."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-05:session-47:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Вежливо согласиться",
+        "uk": "Ввічливо погодитися"
+      },
+      "bodyByLocale": {
+        "ru": "Новый сосед уточнил номер нужного дома, и вы убедились, что он прав. Обратитесь к нему на «вы»: `Usted tiene razón` — «Вы правы». Соберите `Usted` + `tiene` + `razón`. С usted нужна форма tiene без s. Слово razón остаётся тем же; здесь адресат один.",
+        "uk": "Новий сусід уточнив номер потрібного будинку, й ви переконалися, що він має рацію. Зверніться до нього на «ви»: `Usted tiene razón` — «Ви маєте рацію». Зберіть `Usted` + `tiene` + `razón`. З usted потрібна форма tiene без s. Слово razón залишається тим самим; тут адресат один."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-47:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите одному человеку на «вы»: «Вы правы». Начните с Usted tiene.",
+          "uk": "Скажіть одній людині на «ви»: «Ви маєте рацію». Почніть з Usted tiene."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-47:intro2:r1",
+              "text": "Usted tiene razón."
+            },
+            {
+              "responseId": "es:lesson-05:session-47:intro2:r2",
+              "text": "Usted tienes razón."
+            },
+            {
+              "responseId": "es:lesson-05:session-47:intro2:r3",
+              "text": "Usted es razón."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-47:intro2:r1",
+              "text": "Usted tiene razón."
+            },
+            {
+              "responseId": "es:lesson-05:session-47:intro2:r2",
+              "text": "Usted tienes razón."
+            },
+            {
+              "responseId": "es:lesson-05:session-47:intro2:r3",
+              "text": "Usted es razón."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите одному человеку на «вы»: «Вы правы». Начните с Usted tiene.",
+          "uk": "Скажіть одній людині на «ви»: «Ви маєте рацію». Почніть з Usted tiene."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-05:session-47:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ана оказалась права",
+        "uk": "Ана мала рацію"
+      },
+      "bodyByLocale": {
+        "ru": "Ана верно вспомнила время встречи. Сообщите другу `Ana tiene razón` — «Ана права». Соберите `Ana` + `tiene` + `razón`. Об одном другом человеке используем tiene. Razón — существительное, поэтому не меняем его из-за женского пола Аны.",
+        "uk": "Ана правильно згадала час зустрічі. Повідомте другові `Ana tiene razón` — «Ана має рацію». Зберіть `Ana` + `tiene` + `razón`. Про одну іншу людину використовуємо tiene. Razón — іменник, тому не змінюємо його через жіночу стать Ани."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-47:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите «Ана права» с помощью razón. Начните с Ana tiene.",
+          "uk": "Скажіть «Ана має рацію». Почніть з Ana tiene."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-47:intro3:r1",
+              "text": "Ana tiene razón."
+            },
+            {
+              "responseId": "es:lesson-05:session-47:intro3:r2",
+              "text": "Ana tengo razón."
+            },
+            {
+              "responseId": "es:lesson-05:session-47:intro3:r3",
+              "text": "Ana es razón."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-47:intro3:r1",
+              "text": "Ana tiene razón."
+            },
+            {
+              "responseId": "es:lesson-05:session-47:intro3:r2",
+              "text": "Ana tengo razón."
+            },
+            {
+              "responseId": "es:lesson-05:session-47:intro3:r3",
+              "text": "Ana es razón."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Ана права» с помощью razón. Начните с Ana tiene.",
+          "uk": "Скажіть «Ана має рацію». Почніть з Ana tiene."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "bf245181f0b2e6fca017be7148ff4fa517e4784d0eba457fde5effc27ec46594"
+}

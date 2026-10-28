@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-05:session-47",
+  "entries": [
+    {
+      "interactionId": "es:lesson-05:session-47:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-47:intro1:r2": {
+          "ru": "Используем tener razón: tienes razón.",
+          "uk": "Використовуємо tener razón: tienes razón."
+        },
+        "es:lesson-05:session-47:intro1:r3": {
+          "ru": "Здесь нужно признать правоту, а не назвать одну причину: без una.",
+          "uk": "Тут потрібно визнати правоту, а не назвати одну причину: без una."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-47:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-47:intro2:r2": {
+          "ru": "С usted нужна форма tiene.",
+          "uk": "З usted потрібна форма tiene."
+        },
+        "es:lesson-05:session-47:intro2:r3": {
+          "ru": "Правоту выражаем через tiene razón.",
+          "uk": "Правоту виражаємо через tiene razón."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-47:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-47:intro3:r2": {
+          "ru": "Об Ане нужна форма tiene.",
+          "uk": "Про Ану потрібна форма tiene."
+        },
+        "es:lesson-05:session-47:intro3:r3": {
+          "ru": "Используем tiene razón.",
+          "uk": "Використовуємо tiene razón."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "408b94996aa34698705d09478aed325b64e89762d3649180756144f9b9ccb084"
+}

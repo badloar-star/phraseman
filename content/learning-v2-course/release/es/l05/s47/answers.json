@@ -1,0 +1,67 @@
+[
+  {
+    "interactionId": "es:lesson-05:session-47:i01",
+    "correctText": "razón",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-47:i02",
+    "correctText": "razón",
+    "correctResponseId": "es:lesson-05:session-47:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-47:i03",
+    "correctText": "razón",
+    "correctResponseId": "es:lesson-05:session-47:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-47:i04",
+    "correctText": "Tienes razón.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-47:i05",
+    "correctText": "tiene",
+    "correctResponseId": "es:lesson-05:session-47:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-47:i06",
+    "correctText": "Usted tiene razón.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-47:i07",
+    "correctText": "Ana tiene razón.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-47:i08",
+    "correctText": "Tienes razón.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-47:i09",
+    "correctText": "tiene",
+    "correctResponseId": "es:lesson-05:session-47:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-47:i10",
+    "correctText": "Tienes razón.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-47:i11",
+    "correctText": "Usted tiene razón.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-47:i12",
+    "correctText": "Ana tiene razón.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-47:i13",
+    "correctText": "Tenemos razón.",
+    "correctResponseId": null
+  }
+]

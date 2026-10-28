@@ -1,0 +1,92 @@
+[
+  {
+    "interactionId": "es:lesson-05:session-48:i01",
+    "correctText": "hambre",
+    "correctResponseId": "es:lesson-05:session-48:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-48:i02",
+    "correctText": "hambre",
+    "correctResponseId": "es:lesson-05:session-48:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-48:i03",
+    "correctText": "Tengo hambre.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-48:i04",
+    "correctText": "No",
+    "correctResponseId": "es:lesson-05:session-48:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-48:i05",
+    "correctText": "No tengo sueño.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-48:i06",
+    "correctText": "Ana tiene prisa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-48:i07",
+    "correctText": "Tengo hambre.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-48:i08",
+    "correctText": "frío",
+    "correctResponseId": "es:lesson-05:session-48:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-48:i09",
+    "correctText": "Tengo hambre.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-48:i10",
+    "correctText": "No tengo sueño.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-48:i11",
+    "correctText": "Ana tiene prisa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-48:i12",
+    "correctText": "Tengo frío.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-48:i13",
+    "correctText": "sed",
+    "correctResponseId": "es:lesson-05:session-48:i13:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-48:i14",
+    "correctText": "Tengo calor.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-48:i15",
+    "correctText": "razón",
+    "correctResponseId": "es:lesson-05:session-48:i15:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-48:i16",
+    "correctText": "Tienes razón.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-48:i17",
+    "correctText": "Tenemos sed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-48:i18",
+    "correctText": "Tienes razón.",
+    "correctResponseId": null
+  }
+]

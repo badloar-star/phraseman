@@ -1,0 +1,691 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-05:session-47",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-05:session-47:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — razón",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-47:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — razón",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-47:i01:audio",
+          "transcript": "razón"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-05:session-47:i01:r1",
+            "targetText": "razón",
+            "meaningByLocale": {
+              "ru": "причина, основание; в tener razón — правота. Tener razón означает «быть правым». 🔊 *razón*",
+              "uk": "причина, підстава; у tener razón — правота. Tener razón означає «мати рацію». 🔊 *razón*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "razón",
+          "definitionByLocale": {
+            "ru": "причина, основание; в tener razón — правота. Tener razón означает «быть правым». 🔊 *razón*",
+            "uk": "причина, підстава; у tener razón — правота. Tener razón означає «мати рацію». 🔊 *razón*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-47:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-47:i02:r1",
+          "text": "razón"
+        },
+        {
+          "responseId": "es:lesson-05:session-47:i02:r2",
+          "text": "calor"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-47:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-47:i02:audio",
+          "transcript": "razón"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-05:session-47:i02:r1",
+            "targetText": "razón",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-05:session-47:i02:r2",
+            "targetText": "calor",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-47:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит razón, не calor — жара.",
+              "uk": "Звучить razón, не calor — спека."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-47:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — ты прав / права",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-47:i03:r1",
+          "text": "razón"
+        },
+        {
+          "responseId": "es:lesson-05:session-47:i03:r2",
+          "text": "prisa"
+        },
+        {
+          "responseId": "es:lesson-05:session-47:i03:r3",
+          "text": "sed"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — ты прав / права",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — ты прав / права",
+          "uk": "Вставте слово — ти маєш рацію"
+        },
+        "gappedTargetPhrase": "Tienes ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-47:i03:r1",
+            "text": "razón"
+          },
+          {
+            "responseId": "es:lesson-05:session-47:i03:r2",
+            "text": "prisa"
+          },
+          {
+            "responseId": "es:lesson-05:session-47:i03:r3",
+            "text": "sed"
+          }
+        ],
+        "testedDimension": "Вставьте слово — ты прав / права",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-47:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — ты прав / права",
+            "feedbackByLocale": {
+              "ru": "Это спешка; для правоты нужно razón.",
+              "uk": "Це поспіх; для правоти потрібно razón."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-47:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — ты прав / права",
+            "feedbackByLocale": {
+              "ru": "Это жажда; нужно razón.",
+              "uk": "Це спрага; потрібно razón."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-47:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — ты прав / права; начните с Tienes, используйте razón",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-47:i04:r1",
+          "text": "Плитки: razón"
+        },
+        {
+          "responseId": "es:lesson-05:session-47:i04:r2",
+          "text": "Tienes"
+        },
+        {
+          "responseId": "es:lesson-05:session-47:i04:r3",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — ты прав / права; начните с Tienes, используйте razón",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Tienes razón.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — ты прав / права; начните с Tienes, используйте razón",
+          "uk": "Зберіть фразу — ти маєш рацію; почніть з Tienes"
+        },
+        "orderedTokens": [
+          "Tienes",
+          "razón"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-47:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — ты прав / права; начните с Tienes, используйте razón",
+            "feedbackByLocale": {
+              "ru": "признание правоты — tener razón без артикля.",
+              "uk": "визнання правоти — tener razón без артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-47:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — вы правы; обращение к одному человеку",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-47:i05:r1",
+          "text": "tiene"
+        },
+        {
+          "responseId": "es:lesson-05:session-47:i05:r2",
+          "text": "tienes"
+        },
+        {
+          "responseId": "es:lesson-05:session-47:i05:r3",
+          "text": "es"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — вы правы; обращение к одному человеку",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вы правы; обращение к одному человеку",
+          "uk": "Вставте слово — ви маєте рацію; звернення до однієї людини"
+        },
+        "gappedTargetPhrase": "Usted ___ razón.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-47:i05:r1",
+            "text": "tiene"
+          },
+          {
+            "responseId": "es:lesson-05:session-47:i05:r2",
+            "text": "tienes"
+          },
+          {
+            "responseId": "es:lesson-05:session-47:i05:r3",
+            "text": "es"
+          }
+        ],
+        "testedDimension": "Вставьте слово — вы правы; обращение к одному человеку",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-47:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы правы; обращение к одному человеку",
+            "feedbackByLocale": {
+              "ru": "С usted нужно tiene.",
+              "uk": "З usted потрібно tiene."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-47:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы правы; обращение к одному человеку",
+            "feedbackByLocale": {
+              "ru": "Используем tener razón.",
+              "uk": "Використовуємо tener razón."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-47:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — вы правы; начните с Usted",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-47:i06:r1",
+          "text": "Плитки: tiene"
+        },
+        {
+          "responseId": "es:lesson-05:session-47:i06:r2",
+          "text": "Usted"
+        },
+        {
+          "responseId": "es:lesson-05:session-47:i06:r3",
+          "text": "razón"
+        },
+        {
+          "responseId": "es:lesson-05:session-47:i06:r4",
+          "text": "tienes."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — вы правы; начните с Usted",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Usted tiene razón.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — вы правы; начните с Usted",
+          "uk": "Зберіть фразу — ви маєте рацію; почніть з Usted"
+        },
+        "orderedTokens": [
+          "Usted",
+          "tiene",
+          "razón"
+        ],
+        "authoredDistractorTokens": [
+          "tienes"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-47:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — вы правы; начните с Usted",
+            "feedbackByLocale": {
+              "ru": "с usted нужно tiene.",
+              "uk": "з usted потрібно tiene."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-47:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — Ана права; начните с Ana, используйте razón",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-47:i07:r1",
+          "text": "Плитки: razón"
+        },
+        {
+          "responseId": "es:lesson-05:session-47:i07:r2",
+          "text": "Ana"
+        },
+        {
+          "responseId": "es:lesson-05:session-47:i07:r3",
+          "text": "tiene"
+        },
+        {
+          "responseId": "es:lesson-05:session-47:i07:r4",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — Ана права; начните с Ana, используйте razón",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Ana tiene razón.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — Ана права; начните с Ana, используйте razón",
+          "uk": "Зберіть фразу — Ана має рацію; почніть з Ana"
+        },
+        "orderedTokens": [
+          "Ana",
+          "tiene",
+          "razón"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-47:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — Ана права; начните с Ana, используйте razón",
+            "feedbackByLocale": {
+              "ru": "используем tiene razón.",
+              "uk": "використовуємо tiene razón."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-47:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-47:i08:r1",
+          "text": "Плитки: Tienes"
+        },
+        {
+          "responseId": "es:lesson-05:session-47:i08:r2",
+          "text": "razón"
+        },
+        {
+          "responseId": "es:lesson-05:session-47:i08:r3",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-47:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-47:i08:audio",
+          "transcript": "Tienes razón."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Tienes razón.",
+        "orderedTokens": [
+          "Tienes",
+          "razón"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-47:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "её нет в записи.",
+              "uk": "її немає в записі."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-47:i09",
+      "ordinal": 12,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — Ана права",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-47:i09:r1",
+          "text": "tiene"
+        },
+        {
+          "responseId": "es:lesson-05:session-47:i09:r2",
+          "text": "tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-47:i09:r3",
+          "text": "tienen"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — Ана права",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — Ана права",
+          "uk": "Вставте слово — Ана має рацію"
+        },
+        "gappedTargetPhrase": "Ana ___ razón.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-47:i09:r1",
+            "text": "tiene"
+          },
+          {
+            "responseId": "es:lesson-05:session-47:i09:r2",
+            "text": "tengo"
+          },
+          {
+            "responseId": "es:lesson-05:session-47:i09:r3",
+            "text": "tienen"
+          }
+        ],
+        "testedDimension": "Вставьте слово — Ана права",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-47:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — Ана права",
+            "feedbackByLocale": {
+              "ru": "Об Ане нужно tiene.",
+              "uk": "Про Ану потрібно tiene."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-47:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — Ана права",
+            "feedbackByLocale": {
+              "ru": "Ана одна: tiene.",
+              "uk": "Ана одна: tiene."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-47:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — ты прав / права; начните с Tienes, используйте razón",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-47:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — ты прав / права; начните с Tienes, используйте razón",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-47:i10:audio",
+          "transcript": "Tienes razón."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tienes razón.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-47:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — вы правы; начните с Usted tiene, используйте razón",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-47:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — вы правы; начните с Usted tiene, используйте razón",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-47:i11:audio",
+          "transcript": "Usted tiene razón."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Usted tiene razón.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-47:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — Ана права; начните с Ana tiene, используйте razón",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-47:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — Ана права; начните с Ana tiene, используйте razón",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-47:i12:audio",
+          "transcript": "Ana tiene razón."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Ana tiene razón.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-47:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — мы правы; начните с Tenemos, используйте razón",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-47:i13:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — мы правы; начните с Tenemos, используйте razón",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-47:i13:audio",
+          "transcript": "Tenemos razón."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tenemos razón.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 13,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "53b7504256dee133ad27f52bd3b78129b9ecf13690c49ef86b7aeedefbc49de4"
+}

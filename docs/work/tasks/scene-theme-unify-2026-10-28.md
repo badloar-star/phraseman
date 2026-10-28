@@ -42,3 +42,10 @@ Governance-ID: TG-C0015AB320F9
 
 Outcome: цвета ролей грамматики (разбор теории, интро урока) и панели награды опроса — оттенки/сдвиги тона от акцента ТЕКУЩЕЙ темы вместо фиолетового #6D28D9/#C4B5FD; текст >= 4,5:1 на карточке, роли различимы между собой (OKLab); guard по всем темам.
 Scope: components/lesson_help_theory_ui.tsx, components/lesson_intro_rich.tsx, components/survey/SurveyRewardPanel.tsx, новый чистый модуль палитры ролей, guard-тест. Architecture/Security/Debt/Verification/Rollback — как выше (цвета, данные не затронуты; откат — revert).
+
+## Значки плеера Learning V2 (28.10)
+
+Governance-ID: TG-D7699E1469EE
+
+Outcome: значки «прослушать» и микрофона в плеере урока видны (>= 3:1 к фону) на всех 23 темах x светлое/тёмное; цвета — токены темы; guard по всем темам.
+Scope: измерение, правка значков через токены темы (только если файл свободен от чужих правок), guard-тест. Architecture/Security/Debt/Verification/Rollback — как в этом пакете выше (цвета, данные не затронуты; откат — revert).

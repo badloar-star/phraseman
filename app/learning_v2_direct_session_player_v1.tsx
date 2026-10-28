@@ -3695,7 +3695,7 @@ function LearningV2DirectSessionPlayerV1() {
                   <Ionicons
                     name={MODE_ICONS[practice.family]}
                     size={22}
-                    color={g.cta}
+                    color={g.accentGraphic} // зачем (владелец 28.10, значки плеера почти не видны): g.cta на opaqueControl до 1,01:1 в светлых темах; accentGraphic ≥ 4,45:1 во всех 23 темах
                   />
                 </View>
                 <View style={styles.modeCopy}>
@@ -3881,7 +3881,7 @@ function LearningV2DirectSessionPlayerV1() {
                       modeVoiceStatus === "listening" ? "mic" : "mic-outline"
                     }
                     size={30}
-                    color={g.cta}
+                    color={g.accentGraphic} // зачем (владелец 28.10): g.cta на opaqueCard/selected до 1,01:1 в светлых темах; accentGraphic ≥ 4,45:1 во всех темах
                   />
                   <Text style={[styles.speechTitle, { color: g.text }]}>
                     {modeVoiceStatus === "listening"

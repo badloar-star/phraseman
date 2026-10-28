@@ -93,7 +93,7 @@ She ___ scrapbooking. → **is going to try** · is trying · try
 <!-- interaction_id: en:lesson-15:session-32:word:calligraphy; family: word_card -->
 > **calligraphy** — искусство красивого письма.
 
-**10 · Вы с другом записались на завтрашнее занятие красивым письмом. Скажите, что это уже решено. Скажите: «Мы пробуем каллиграфию завтра».**
+**10 · Вы с другом записались на завтрашнее занятие красивым письмом. Это уже решено. Скажите: «Мы пробуем каллиграфию завтра».**
 <!-- interaction_id: en:lesson-15:session-32:i07; family: phrase_builder -->
 Плитки: `tomorrow` `calligraphy` `trying` `are` `We` → **We are trying calligraphy tomorrow.**
 
@@ -113,7 +113,7 @@ We ___ calligraphy tomorrow. → **are trying** · are try · try
 <!-- interaction_id: en:lesson-15:session-32:word:flower-pressing; family: word_card -->
 > **flower pressing** — высушивание цветов под прессом для сохранения формы.
 
-**14 · Ваши родители подтвердили участие в воскресном занятии по сушке цветов под прессом. Скажите, что это уже решено. Скажите: «Они пробуют сушить цветы под прессом в воскресенье».**
+**14 · Ваши родители подтвердили участие в воскресном занятии по сушке цветов под прессом. Это уже решено. Скажите: «Они пробуют сушить цветы под прессом в воскресенье».**
 <!-- interaction_id: en:lesson-15:session-32:i10; family: phrase_builder -->
 Плитки: `Sunday` `on` `pressing` `flower` `trying` `are` `They` → **They are trying flower pressing on Sunday.**
 

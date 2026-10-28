@@ -93,7 +93,7 @@ She ___ lactose-free milk. → **is going to buy** · is buying · buy
 <!-- interaction_id: en:lesson-15:session-53:word:unsweetened; family: word_card -->
 > **unsweetened** — без доданого цукру або інших підсолоджувачів.
 
-**10 · Ви замовили йогурт без доданих підсолоджувачів; отримання узгоджено на завтра. Скажіть, що це вже вирішено. Скажіть: «Ми забираємо йогурт без доданого підсолоджування завтра».**
+**10 · Ви замовили йогурт без доданих підсолоджувачів; отримання узгоджено на завтра. Це вже вирішено. Скажіть: «Ми забираємо йогурт без доданого підсолоджування завтра».**
 <!-- interaction_id: en:lesson-15:session-53:i07; family: phrase_builder -->
 Плитки: `tomorrow` `yoghurt` `unsweetened` `the` `collecting` `are` `We` → **We are collecting the unsweetened yoghurt tomorrow.**
 
@@ -113,7 +113,7 @@ We ___ the unsweetened yoghurt tomorrow. → **are collecting** · are collect �
 <!-- interaction_id: en:lesson-15:session-53:word:unsalted; family: word_card -->
 > **unsalted** — без доданої солі.
 
-**14 · Ваші батьки замовили масло без доданої солі й узгодили отримання на п’ятницю. Скажіть, що це вже вирішено. Скажіть: «Вони забирають несолоне масло в п’ятницю».**
+**14 · Ваші батьки замовили масло без доданої солі й узгодили отримання на п’ятницю. Це вже вирішено. Скажіть: «Вони забирають несолоне масло в п’ятницю».**
 <!-- interaction_id: en:lesson-15:session-53:i10; family: phrase_builder -->
 Плитки: `Friday` `on` `butter` `unsalted` `the` `collecting` `are` `They` → **They are collecting the unsalted butter on Friday.**
 

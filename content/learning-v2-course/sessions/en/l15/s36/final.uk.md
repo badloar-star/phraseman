@@ -93,7 +93,7 @@ She ___ a persimmon. → **is going to buy** · is buying · buy
 <!-- interaction_id: en:lesson-15:session-36:word:quince; family: word_card -->
 > **quince** — айва.
 
-**10 · Продавець відклав для вас айву; ви домовилися забрати її завтра. Скажіть, що це вже вирішено. Скажіть: «Ми забираємо айву завтра».**
+**10 · Продавець відклав для вас айву; ви домовилися забрати її завтра. Це вже вирішено. Скажіть: «Ми забираємо айву завтра».**
 <!-- interaction_id: en:lesson-15:session-36:i07; family: phrase_builder -->
 Плитки: `tomorrow` `quince` `the` `collecting` `are` `We` → **We are collecting the quince tomorrow.**
 
@@ -113,7 +113,7 @@ We ___ the quince tomorrow. → **are collecting** · are collect · collect
 <!-- interaction_id: en:lesson-15:session-36:word:rhubarb; family: word_card -->
 > **rhubarb** — ревінь, рослина з кислими їстівними стеблами.
 
-**14 · Ваші батьки замовили ревінь для пирога й узгодили отримання на п’ятницю. Скажіть, що це вже вирішено. Скажіть: «Вони забирають ревінь у п’ятницю».**
+**14 · Ваші батьки замовили ревінь для пирога й узгодили отримання на п’ятницю. Це вже вирішено. Скажіть: «Вони забирають ревінь у п’ятницю».**
 <!-- interaction_id: en:lesson-15:session-36:i10; family: phrase_builder -->
 Плитки: `Friday` `on` `rhubarb` `the` `collecting` `are` `They` → **They are collecting the rhubarb on Friday.**
 

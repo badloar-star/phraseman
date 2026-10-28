@@ -93,7 +93,7 @@ She ___ a baby shower. → **is going to have** · is having · have
 <!-- interaction_id: en:lesson-15:session-33:word:hen-party; family: word_card -->
 > **hen party** — передвесільна вечірка нареченої, дівич-вечір.
 
-**10 · Ви з подругою підтвердили запрошення на суботній дівич-вечір. Скажіть, що це вже вирішено. Скажіть: «Ми йдемо на дівич-вечір у суботу».**
+**10 · Ви з подругою підтвердили запрошення на суботній дівич-вечір. Це вже вирішено. Скажіть: «Ми йдемо на дівич-вечір у суботу».**
 <!-- interaction_id: en:lesson-15:session-33:i07; family: phrase_builder -->
 Плитки: `Saturday` `on` `party` `hen` `a` `attending` `are` `We` → **We are attending a hen party on Saturday.**
 
@@ -113,7 +113,7 @@ We ___ a hen party on Saturday. → **are attending** · are attend · attend
 <!-- interaction_id: en:lesson-15:session-33:word:stag-party; family: word_card -->
 > **stag party** — передвесільна вечірка нареченого, парубоча вечірка.
 
-**14 · Ваші друзі домовилися прийти на передвесільну вечірку нареченого в п’ятницю. Скажіть, що це вже вирішено. Скажіть: «Вони йдуть на парубочу вечірку в п’ятницю».**
+**14 · Ваші друзі домовилися прийти на передвесільну вечірку нареченого в п’ятницю. Це вже вирішено. Скажіть: «Вони йдуть на парубочу вечірку в п’ятницю».**
 <!-- interaction_id: en:lesson-15:session-33:i10; family: phrase_builder -->
 Плитки: `Friday` `on` `party` `stag` `a` `attending` `are` `They` → **They are attending a stag party on Friday.**
 

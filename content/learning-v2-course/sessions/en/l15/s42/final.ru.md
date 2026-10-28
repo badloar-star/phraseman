@@ -93,7 +93,7 @@ She ___ her pessimistic brother. → **is going to help** · is helping · help
 <!-- interaction_id: en:lesson-15:session-42:word:indecisive; family: word_card -->
 > **indecisive** — нерешительный, которому трудно сделать выбор.
 
-**10 · Вы договорились в пятницу помочь двоюродному брату выбрать поездку; ему трудно решиться. Скажите, что это уже решено. Скажите: «Мы встречаемся с нерешительным двоюродным братом в пятницу».**
+**10 · Вы договорились в пятницу помочь двоюродному брату выбрать поездку; ему трудно решиться. Это уже решено. Скажите: «Мы встречаемся с нерешительным двоюродным братом в пятницу».**
 <!-- interaction_id: en:lesson-15:session-42:i07; family: phrase_builder -->
 Плитки: `Friday` `on` `cousin` `indecisive` `our` `meeting` `are` `We` → **We are meeting our indecisive cousin on Friday.**
 
@@ -113,7 +113,7 @@ We ___ our indecisive cousin on Friday. → **are meeting** · are meet · meet
 <!-- interaction_id: en:lesson-15:session-42:word:decisive; family: word_card -->
 > **decisive** — решительный, способный быстро принять ясное решение.
 
-**14 · Ваши друзья согласовали встречу на завтра с тренером, который быстро принимает решения. Скажите, что это уже решено. Скажите: «Они встречаются с решительным тренером завтра».**
+**14 · Ваши друзья согласовали встречу на завтра с тренером, который быстро принимает решения. Это уже решено. Скажите: «Они встречаются с решительным тренером завтра».**
 <!-- interaction_id: en:lesson-15:session-42:i10; family: phrase_builder -->
 Плитки: `tomorrow` `coach` `decisive` `their` `meeting` `are` `They` → **They are meeting their decisive coach tomorrow.**
 

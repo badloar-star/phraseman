@@ -93,7 +93,7 @@ She ___ cardamom. → **is going to try** · is trying · try
 <!-- interaction_id: en:lesson-15:session-38:word:cloves; family: word_card -->
 > **cloves** — гвоздика, пряность из высушенных бутонов.
 
-**10 · Магазин отложил для вас упаковку пряной гвоздики и подтвердил получение на завтра. Скажите, что это уже решено. Скажите: «Мы забираем гвоздику завтра».**
+**10 · Магазин отложил для вас упаковку пряной гвоздики и подтвердил получение на завтра. Это уже решено. Скажите: «Мы забираем гвоздику завтра».**
 <!-- interaction_id: en:lesson-15:session-38:i07; family: phrase_builder -->
 Плитки: `tomorrow` `cloves` `the` `collecting` `are` `We` → **We are collecting the cloves tomorrow.**
 
@@ -113,7 +113,7 @@ We ___ the cloves tomorrow. → **are collecting** · are collect · collect
 <!-- interaction_id: en:lesson-15:session-38:word:nutmeg; family: word_card -->
 > **nutmeg** — мускатный орех, пряность.
 
-**14 · Ваши родители договорились с продавцом, что заберут мускатный орех в пятницу. Скажите, что это уже решено. Скажите: «Они забирают мускатный орех в пятницу».**
+**14 · Ваши родители договорились с продавцом, что заберут мускатный орех в пятницу. Это уже решено. Скажите: «Они забирают мускатный орех в пятницу».**
 <!-- interaction_id: en:lesson-15:session-38:i10; family: phrase_builder -->
 Плитки: `Friday` `on` `nutmeg` `the` `collecting` `are` `They` → **They are collecting the nutmeg on Friday.**
 

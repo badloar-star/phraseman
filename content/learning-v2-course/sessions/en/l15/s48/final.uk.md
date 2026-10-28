@@ -93,7 +93,7 @@ She ___ the handle anticlockwise. → **is going to turn** · is turning · turn
 <!-- interaction_id: en:lesson-15:session-48:word:downstairs; family: word_card -->
 > **downstairs** — внизу, на нижньому поверсі.
 
-**10 · Ви з друзями домовилися зустрітися завтра на нижньому поверсі будинку. Скажіть, що це вже вирішено. Скажіть: «Ми зустрічаємося внизу завтра».**
+**10 · Ви з друзями домовилися зустрітися завтра на нижньому поверсі будинку. Це вже вирішено. Скажіть: «Ми зустрічаємося внизу завтра».**
 <!-- interaction_id: en:lesson-15:session-48:i07; family: phrase_builder -->
 Плитки: `tomorrow` `downstairs` `meeting` `are` `We` → **We are meeting downstairs tomorrow.**
 
@@ -113,7 +113,7 @@ We ___ downstairs tomorrow. → **are meeting** · are meet · meet
 <!-- interaction_id: en:lesson-15:session-48:word:overhead; family: word_card -->
 > **overhead** — над головою, згори.
 
-**14 · Ваші друзі узгодили завтрашнє прикрашання зали: вогні висітимуть над гостями. Скажіть, що це вже вирішено. Скажіть: «Вони вішають вогні над головою завтра».**
+**14 · Ваші друзі узгодили завтрашнє прикрашання зали: вогні висітимуть над гостями. Це вже вирішено. Скажіть: «Вони вішають вогні над головою завтра».**
 <!-- interaction_id: en:lesson-15:session-48:i10; family: phrase_builder -->
 Плитки: `tomorrow` `overhead` `lights` `hanging` `are` `They` → **They are hanging lights overhead tomorrow.**
 

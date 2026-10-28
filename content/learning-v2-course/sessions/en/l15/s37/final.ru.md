@@ -93,7 +93,7 @@ She ___ sage. → **is going to buy** · is buying · buy
 <!-- interaction_id: en:lesson-15:session-37:word:coriander; family: word_card -->
 > **coriander** — кориандр, растение, листья и семена которого используют как приправу.
 
-**10 · Продавец подтвердил заказ кориандра и время получения на завтра. Скажите, что это уже решено. Скажите: «Мы забираем кориандр завтра».**
+**10 · Продавец подтвердил заказ кориандра и время получения на завтра. Это уже решено. Скажите: «Мы забираем кориандр завтра».**
 <!-- interaction_id: en:lesson-15:session-37:i07; family: phrase_builder -->
 Плитки: `tomorrow` `coriander` `the` `collecting` `are` `We` → **We are collecting the coriander tomorrow.**
 
@@ -113,7 +113,7 @@ We ___ the coriander tomorrow. → **are collecting** · are collect · collect
 <!-- interaction_id: en:lesson-15:session-37:word:cumin; family: word_card -->
 > **cumin** — кумин, зира, пряность из семян.
 
-**14 · Ваши родители заказали кумин в магазине приправ и договорились забрать его в субботу. Скажите, что это уже решено. Скажите: «Они забирают кумин в субботу».**
+**14 · Ваши родители заказали кумин в магазине приправ и договорились забрать его в субботу. Это уже решено. Скажите: «Они забирают кумин в субботу».**
 <!-- interaction_id: en:lesson-15:session-37:i10; family: phrase_builder -->
 Плитки: `Saturday` `on` `cumin` `the` `collecting` `are` `They` → **They are collecting the cumin on Saturday.**
 

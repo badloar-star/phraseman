@@ -93,7 +93,7 @@ She ___ her ambitious son. → **is going to help** · is helping · help
 <!-- interaction_id: en:lesson-15:session-43:word:easy-going; family: word_card -->
 > **easy-going** — спокійний і невибагливий у спілкуванні.
 
-**10 · Квитки на суботу куплено; з вами їде друг, який спокійно ставиться до дрібниць. Скажіть, що це вже вирішено. Скажіть: «Ми їдемо з нашим легким у спілкуванні другом у суботу».**
+**10 · Квитки на суботу куплено; з вами їде друг, який спокійно ставиться до дрібниць. Це вже вирішено. Скажіть: «Ми їдемо з нашим легким у спілкуванні другом у суботу».**
 <!-- interaction_id: en:lesson-15:session-43:i07; family: phrase_builder -->
 Плитки: `Saturday` `on` `friend` `easy-going` `our` `with` `travelling` `are` `We` → **We are travelling with our easy-going friend on Saturday.**
 
@@ -113,7 +113,7 @@ We ___ with our easy-going friend on Saturday. → **are travelling** · are tra
 <!-- interaction_id: en:lesson-15:session-43:word:bossy; family: word_card -->
 > **bossy** — який любить командувати іншими.
 
-**14 · Ваші друзі узгодили завтрашню зустріч із двоюрідним братом, який часто всіма командує. Скажіть, що це вже вирішено. Скажіть: «Вони зустрічаються з двоюрідним братом, який любить командувати, завтра».**
+**14 · Ваші друзі узгодили завтрашню зустріч із двоюрідним братом, який часто всіма командує. Це вже вирішено. Скажіть: «Вони зустрічаються з двоюрідним братом, який любить командувати, завтра».**
 <!-- interaction_id: en:lesson-15:session-43:i10; family: phrase_builder -->
 Плитки: `tomorrow` `cousin` `bossy` `their` `meeting` `are` `They` → **They are meeting their bossy cousin tomorrow.**
 

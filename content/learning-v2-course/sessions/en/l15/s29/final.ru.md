@@ -93,7 +93,7 @@ She ___ the tyre pressure. → **is going to check** · is checking · check
 <!-- interaction_id: en:lesson-15:session-29:word:hubcap; family: word_card -->
 > **hubcap** — декоративный колпак автомобильного колеса.
 
-**10 · Магазин подтвердил поступление заказанного колпака и договорился выдать его вам завтра. Скажите, что это уже решено. Скажите: «Мы забираем колпак колеса завтра».**
+**10 · Магазин подтвердил поступление заказанного колпака и договорился выдать его вам завтра. Это уже решено. Скажите: «Мы забираем колпак колеса завтра».**
 <!-- interaction_id: en:lesson-15:session-29:i07; family: phrase_builder -->
 Плитки: `tomorrow` `hubcap` `the` `collecting` `are` `We` → **We are collecting the hubcap tomorrow.**
 
@@ -113,7 +113,7 @@ We ___ the hubcap tomorrow. → **are collecting** · are collect · collect
 <!-- interaction_id: en:lesson-15:session-29:word:jump-leads; family: word_card -->
 > **jump leads** — провода для запуска автомобиля от другого аккумулятора.
 
-**14 · Друзья согласились привезти вам провода завтра в девять. Скажите, что это уже решено. Скажите: «Они привозят провода для запуска машины завтра в девять».**
+**14 · Друзья согласились привезти вам провода завтра в девять. Это уже решено. Скажите: «Они привозят провода для запуска машины завтра в девять».**
 <!-- interaction_id: en:lesson-15:session-29:i10; family: phrase_builder -->
 Плитки: `tomorrow` `nine` `at` `leads` `jump` `bringing` `are` `They` → **They are bringing jump leads at nine tomorrow.**
 

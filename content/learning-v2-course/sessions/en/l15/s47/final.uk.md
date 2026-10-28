@@ -93,7 +93,7 @@ She ___ an economical car. → **is going to buy** · is buying · buy
 <!-- interaction_id: en:lesson-15:session-47:word:affordable; family: word_card -->
 > **affordable** — доступний за ціною для свого бюджету.
 
-**10 · Ціна квартири вкладається у ваш бюджет; огляд із господарем узгоджено на завтра. Скажіть, що це вже вирішено. Скажіть: «Ми оглядаємо доступну нам за ціною квартиру завтра».**
+**10 · Ціна квартири вкладається у ваш бюджет; огляд із господарем узгоджено на завтра. Це вже вирішено. Скажіть: «Ми оглядаємо доступну нам за ціною квартиру завтра».**
 <!-- interaction_id: en:lesson-15:session-47:i07; family: phrase_builder -->
 Плитки: `tomorrow` `flat` `affordable` `an` `viewing` `are` `We` → **We are viewing an affordable flat tomorrow.**
 
@@ -113,7 +113,7 @@ We ___ an affordable flat tomorrow. → **are viewing** · are view · view
 <!-- interaction_id: en:lesson-15:session-47:word:overpriced; family: word_card -->
 > **overpriced** — із завищеною ціною порівняно з цінністю речі.
 
-**14 · Друзі вважають ціну квартири завищеною, але вже узгодили огляд на п’ятницю. Скажіть, що це вже вирішено. Скажіть: «Вони оглядають квартиру із завищеною ціною в п’ятницю».**
+**14 · Друзі вважають ціну квартири завищеною, але вже узгодили огляд на п’ятницю. Це вже вирішено. Скажіть: «Вони оглядають квартиру із завищеною ціною в п’ятницю».**
 <!-- interaction_id: en:lesson-15:session-47:i10; family: phrase_builder -->
 Плитки: `Friday` `on` `flat` `overpriced` `an` `viewing` `are` `They` → **They are viewing an overpriced flat on Friday.**
 

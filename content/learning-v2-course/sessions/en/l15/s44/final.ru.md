@@ -93,7 +93,7 @@ She ___ her artistic cousin. → **is going to visit** · is visiting · visit
 <!-- interaction_id: en:lesson-15:session-44:word:musical; family: word_card -->
 > **musical** — имеющий способности к музыке.
 
-**10 · Вы согласовали завтрашнюю встречу с соседом, который хорошо играет и поёт. Скажите, что это уже решено. Скажите: «Мы встречаемся с музыкально одарённым соседом завтра».**
+**10 · Вы согласовали завтрашнюю встречу с соседом, который хорошо играет и поёт. Это уже решено. Скажите: «Мы встречаемся с музыкально одарённым соседом завтра».**
 <!-- interaction_id: en:lesson-15:session-44:i07; family: phrase_builder -->
 Плитки: `tomorrow` `neighbour` `musical` `our` `meeting` `are` `We` → **We are meeting our musical neighbour tomorrow.**
 
@@ -113,7 +113,7 @@ We ___ our musical neighbour tomorrow. → **are meeting** · are meet · meet
 <!-- interaction_id: en:lesson-15:session-44:word:athletic; family: word_card -->
 > **athletic** — спортивный, физически сильный и ловкий.
 
-**14 · Ваши друзья договорились о воскресной прогулке со спортивным другом. Скажите, что это уже решено. Скажите: «Они встречаются со своим спортивным другом в воскресенье».**
+**14 · Ваши друзья договорились о воскресной прогулке со спортивным другом. Это уже решено. Скажите: «Они встречаются со своим спортивным другом в воскресенье».**
 <!-- interaction_id: en:lesson-15:session-44:i10; family: phrase_builder -->
 Плитки: `Sunday` `on` `friend` `athletic` `their` `meeting` `are` `They` → **They are meeting their athletic friend on Sunday.**
 

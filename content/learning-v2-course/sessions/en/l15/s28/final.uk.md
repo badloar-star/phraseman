@@ -93,7 +93,7 @@ She ___ the collection point. → **is going to use** · is using · use
 <!-- interaction_id: en:lesson-15:session-28:word:click-and-collect; family: word_card -->
 > **click and collect** — замовлення через інтернет з отриманням у магазині.
 
-**10 · Магазин підтвердив ваше замовлення; час отримання призначено на завтра. Скажіть, що це вже вирішено. Скажіть: «Ми отримуємо інтернет-замовлення в магазині завтра».**
+**10 · Магазин підтвердив ваше замовлення; час отримання призначено на завтра. Це вже вирішено. Скажіть: «Ми отримуємо інтернет-замовлення в магазині завтра».**
 <!-- interaction_id: en:lesson-15:session-28:i07; family: phrase_builder -->
 Плитки: `tomorrow` `collect` `and` `click` `using` `are` `We` → **We are using click and collect tomorrow.**
 
@@ -113,7 +113,7 @@ We ___ click and collect tomorrow. → **are using** · are use · use
 <!-- interaction_id: en:lesson-15:session-28:word:photo-booth; family: word_card -->
 > **photo booth** — кабіна для автоматичного фотографування.
 
-**14 · Ваші друзі узгодили зустріч завтра о десятій біля фотокабіни. Скажіть, що це вже вирішено. Скажіть: «Вони зустрічаються біля фотокабіни завтра о десятій».**
+**14 · Ваші друзі узгодили зустріч завтра о десятій біля фотокабіни. Це вже вирішено. Скажіть: «Вони зустрічаються біля фотокабіни завтра о десятій».**
 <!-- interaction_id: en:lesson-15:session-28:i10; family: phrase_builder -->
 Плитки: `tomorrow` `ten` `at` `booth` `photo` `the` `by` `meeting` `are` `They` → **They are meeting by the photo booth at ten tomorrow.**
 

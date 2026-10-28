@@ -93,7 +93,7 @@ She ___ a driving lesson. → **is going to book** · is booking · book
 <!-- interaction_id: en:lesson-15:session-34:word:swimming-lesson; family: word_card -->
 > **swimming lesson** — занятие по обучению плаванию.
 
-**10 · Вы с другом записались на завтрашнее занятие в бассейне; инструктор подтвердил время. Скажите, что это уже решено. Скажите: «У нас занятие по плаванию завтра».**
+**10 · Вы с другом записались на завтрашнее занятие в бассейне; инструктор подтвердил время. Это уже решено. Скажите: «У нас занятие по плаванию завтра».**
 <!-- interaction_id: en:lesson-15:session-34:i07; family: phrase_builder -->
 Плитки: `tomorrow` `lesson` `swimming` `a` `having` `are` `We` → **We are having a swimming lesson tomorrow.**
 
@@ -113,7 +113,7 @@ We ___ a swimming lesson tomorrow. → **are having** · are going to have · ha
 <!-- interaction_id: en:lesson-15:session-34:word:dance-class; family: word_card -->
 > **dance class** — занятие танцами.
 
-**14 · Ваши родители подтвердили участие в пятничном занятии танцами. Скажите, что это уже решено. Скажите: «Они идут на занятие танцами в пятницу».**
+**14 · Ваши родители подтвердили участие в пятничном занятии танцами. Это уже решено. Скажите: «Они идут на занятие танцами в пятницу».**
 <!-- interaction_id: en:lesson-15:session-34:i10; family: phrase_builder -->
 Плитки: `Friday` `on` `class` `dance` `a` `attending` `are` `They` → **They are attending a dance class on Friday.**
 

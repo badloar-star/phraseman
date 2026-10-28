@@ -93,7 +93,7 @@ She ___ a manicure. → **is going to book** · is booking · book
 <!-- interaction_id: en:lesson-15:session-35:word:pedicure; family: word_card -->
 > **pedicure** — уход за ногтями ног, педикюр.
 
-**10 · Вы с подругой записались на педикюр в субботу; салон подтвердил обе записи. Скажите, что это уже решено. Скажите: «Мы идём на педикюр в субботу».**
+**10 · Вы с подругой записались на педикюр в субботу; салон подтвердил обе записи. Это уже решено. Скажите: «Мы идём на педикюр в субботу».**
 <!-- interaction_id: en:lesson-15:session-35:i07; family: phrase_builder -->
 Плитки: `Saturday` `on` `pedicure` `a` `having` `are` `We` → **We are having a pedicure on Saturday.**
 
@@ -113,7 +113,7 @@ We ___ a pedicure on Saturday. → **are having** · are going to have · have
 <!-- interaction_id: en:lesson-15:session-35:word:hair-colouring; family: word_card -->
 > **hair colouring** — окрашивание волос.
 
-**14 · Ваши друзья записались на завтрашнее окрашивание; оплату согласовали на день визита. Скажите, что это уже решено. Скажите: «Они оплачивают окрашивание волос завтра».**
+**14 · Ваши друзья записались на завтрашнее окрашивание; оплату согласовали на день визита. Это уже решено. Скажите: «Они оплачивают окрашивание волос завтра».**
 <!-- interaction_id: en:lesson-15:session-35:i10; family: phrase_builder -->
 Плитки: `tomorrow` `colouring` `hair` `for` `paying` `are` `They` → **They are paying for hair colouring tomorrow.**
 

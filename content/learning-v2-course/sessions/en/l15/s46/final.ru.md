@@ -93,7 +93,7 @@ She ___ to her inflexible manager. → **is going to speak** · is speaking · s
 <!-- interaction_id: en:lesson-15:session-46:word:narrow-minded; family: word_card -->
 > **narrow-minded** — не желающий рассматривать другие взгляды.
 
-**10 · Вы договорились о завтрашней встрече с двоюродным братом; он не любит обсуждать чужие взгляды. Скажите, что это уже решено. Скажите: «Мы встречаемся с двоюродным братом, который не принимает другие взгляды, завтра».**
+**10 · Вы договорились о завтрашней встрече с двоюродным братом; он не любит обсуждать чужие взгляды. Это уже решено. Скажите: «Мы встречаемся с двоюродным братом, который не принимает другие взгляды, завтра».**
 <!-- interaction_id: en:lesson-15:session-46:i07; family: phrase_builder -->
 Плитки: `tomorrow` `cousin` `narrow-minded` `our` `meeting` `are` `We` → **We are meeting our narrow-minded cousin tomorrow.**
 
@@ -113,7 +113,7 @@ We ___ our narrow-minded cousin tomorrow. → **are meeting** · are meet · mee
 <!-- interaction_id: en:lesson-15:session-46:word:ungrateful; family: word_card -->
 > **ungrateful** — неблагодарный, не ценящий сделанное для него.
 
-**14 · Ваши друзья согласовали встречу на субботу с другом, который не ценит их помощь. Скажите, что это уже решено. Скажите: «Они встречаются с неблагодарным другом в субботу».**
+**14 · Ваши друзья согласовали встречу на субботу с другом, который не ценит их помощь. Это уже решено. Скажите: «Они встречаются с неблагодарным другом в субботу».**
 <!-- interaction_id: en:lesson-15:session-46:i10; family: phrase_builder -->
 Плитки: `Saturday` `on` `friend` `ungrateful` `their` `meeting` `are` `They` → **They are meeting their ungrateful friend on Saturday.**
 

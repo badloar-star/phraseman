@@ -93,7 +93,7 @@ She ___ lactose-free milk. → **is going to buy** · is buying · buy
 <!-- interaction_id: en:lesson-15:session-53:word:unsweetened; family: word_card -->
 > **unsweetened** — без добавленного сахара или других подсластителей.
 
-**10 · Вы заказали йогурт без добавленных подсластителей; получение согласовано на завтра. Скажите, что это уже решено. Скажите: «Мы забираем йогурт без добавленного подслащивания завтра».**
+**10 · Вы заказали йогурт без добавленных подсластителей; получение согласовано на завтра. Это уже решено. Скажите: «Мы забираем йогурт без добавленного подслащивания завтра».**
 <!-- interaction_id: en:lesson-15:session-53:i07; family: phrase_builder -->
 Плитки: `tomorrow` `yoghurt` `unsweetened` `the` `collecting` `are` `We` → **We are collecting the unsweetened yoghurt tomorrow.**
 
@@ -113,7 +113,7 @@ We ___ the unsweetened yoghurt tomorrow. → **are collecting** · are collect �
 <!-- interaction_id: en:lesson-15:session-53:word:unsalted; family: word_card -->
 > **unsalted** — без добавленной соли.
 
-**14 · Ваши родители заказали масло без добавленной соли и согласовали получение на пятницу. Скажите, что это уже решено. Скажите: «Они забирают несолёное масло в пятницу».**
+**14 · Ваши родители заказали масло без добавленной соли и согласовали получение на пятницу. Это уже решено. Скажите: «Они забирают несолёное масло в пятницу».**
 <!-- interaction_id: en:lesson-15:session-53:i10; family: phrase_builder -->
 Плитки: `Friday` `on` `butter` `unsalted` `the` `collecting` `are` `They` → **They are collecting the unsalted butter on Friday.**
 

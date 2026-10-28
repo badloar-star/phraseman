@@ -93,7 +93,7 @@ She ___ a season ticket. → **is going to buy** · is buying · buy
 <!-- interaction_id: en:lesson-15:session-26:word:day-pass; family: word_card -->
 > **day pass** — квиток або перепустка, що діє один день.
 
-**10 · Денну перепустку до басейну вже оплачено; ви домовилися забрати її завтра. Скажіть, що це вже вирішено. Скажіть: «Ми забираємо свою денну перепустку завтра».**
+**10 · Денну перепустку до басейну вже оплачено; ви домовилися забрати її завтра. Це вже вирішено. Скажіть: «Ми забираємо свою денну перепустку завтра».**
 <!-- interaction_id: en:lesson-15:session-26:i07; family: phrase_builder -->
 Плитки: `tomorrow` `pass` `day` `our` `collecting` `are` `We` → **We are collecting our day pass tomorrow.**
 
@@ -113,7 +113,7 @@ We ___ our day pass tomorrow. → **are collecting** · are collect · collect
 <!-- interaction_id: en:lesson-15:session-26:word:family-pass; family: word_card -->
 > **family pass** — спільний квиток або перепустка для сім’ї.
 
-**14 · Ваші друзі забронювали сімейне відвідування музею на неділю. Скажіть, що це вже вирішено. Скажіть: «Вони користуються сімейним квитком у неділю».**
+**14 · Ваші друзі забронювали сімейне відвідування музею на неділю. Це вже вирішено. Скажіть: «Вони користуються сімейним квитком у неділю».**
 <!-- interaction_id: en:lesson-15:session-26:i10; family: phrase_builder -->
 Плитки: `Sunday` `on` `pass` `family` `their` `using` `are` `They` → **They are using their family pass on Sunday.**
 

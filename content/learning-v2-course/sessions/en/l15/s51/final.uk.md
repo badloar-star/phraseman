@@ -93,7 +93,7 @@ She ___ a tartan skirt. → **is going to buy** · is buying · buy
 <!-- interaction_id: en:lesson-15:session-51:word:polka-dots; family: word_card -->
 > **polka dots** — візерунок із круглих горошин.
 
-**10 · Магазин відклав замовлену сукню в горошок; ви узгодили отримання на завтра. Скажіть, що це вже вирішено. Скажіть: «Ми забираємо сукню в горошок завтра».**
+**10 · Магазин відклав замовлену сукню в горошок; ви узгодили отримання на завтра. Це вже вирішено. Скажіть: «Ми забираємо сукню в горошок завтра».**
 <!-- interaction_id: en:lesson-15:session-51:i07; family: phrase_builder -->
 Плитки: `tomorrow` `dots` `polka` `with` `dress` `the` `collecting` `are` `We` → **We are collecting the dress with polka dots tomorrow.**
 
@@ -113,7 +113,7 @@ We ___ the dress with polka dots tomorrow. → **are collecting** · are collect
 <!-- interaction_id: en:lesson-15:session-51:word:herringbone; family: word_card -->
 > **herringbone** — візерунок або переплетення ялинкою.
 
-**14 · Ваші батьки замовили пальто з візерунком ялинкою; магазин підтвердив отримання на п’ятницю. Скажіть, що це вже вирішено. Скажіть: «Вони забирають пальто з візерунком ялинкою у п’ятницю».**
+**14 · Ваші батьки замовили пальто з візерунком ялинкою; магазин підтвердив отримання на п’ятницю. Це вже вирішено. Скажіть: «Вони забирають пальто з візерунком ялинкою у п’ятницю».**
 <!-- interaction_id: en:lesson-15:session-51:i10; family: phrase_builder -->
 Плитки: `Friday` `on` `coat` `herringbone` `the` `collecting` `are` `They` → **They are collecting the herringbone coat on Friday.**
 

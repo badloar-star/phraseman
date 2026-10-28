@@ -93,7 +93,7 @@ She ___ a reliable builder. → **is going to find** · is finding · find
 <!-- interaction_id: en:lesson-15:session-41:word:sociable; family: word_card -->
 > **sociable** — общительный, любящий проводить время с людьми.
 
-**10 · Вы с супругом согласовали встречу с соседом, который любит общение, на завтра. Скажите, что это уже решено. Скажите: «Мы встречаемся с общительным соседом завтра».**
+**10 · Вы с супругом согласовали встречу с соседом, который любит общение, на завтра. Это уже решено. Скажите: «Мы встречаемся с общительным соседом завтра».**
 <!-- interaction_id: en:lesson-15:session-41:i07; family: phrase_builder -->
 Плитки: `tomorrow` `neighbour` `sociable` `our` `meeting` `are` `We` → **We are meeting our sociable neighbour tomorrow.**
 
@@ -113,7 +113,7 @@ We ___ our sociable neighbour tomorrow. → **are meeting** · are meet · meet
 <!-- interaction_id: en:lesson-15:session-41:word:sensitive; family: word_card -->
 > **sensitive** — чувствительный, глубоко переживающий слова и события.
 
-**14 · Ваши друзья договорились на субботу о встрече с другом, который глубоко переживает всё происходящее. Скажите, что это уже решено. Скажите: «Они встречаются с чувствительным другом в субботу».**
+**14 · Ваши друзья договорились на субботу о встрече с другом, который глубоко переживает всё происходящее. Это уже решено. Скажите: «Они встречаются с чувствительным другом в субботу».**
 <!-- interaction_id: en:lesson-15:session-41:i10; family: phrase_builder -->
 Плитки: `Saturday` `on` `friend` `sensitive` `their` `meeting` `are` `They` → **They are meeting their sensitive friend on Saturday.**
 

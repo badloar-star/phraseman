@@ -93,7 +93,7 @@ She ___ corduroy trousers. → **is going to buy** · is buying · buy
 <!-- interaction_id: en:lesson-15:session-52:word:flannel; family: word_card -->
 > **flannel** — фланель, м’яка тканина з легким начосом.
 
-**10 · Магазин підтвердив замовлення м’якої фланелевої сорочки й отримання на завтра. Скажіть, що це вже вирішено. Скажіть: «Ми забираємо фланелеву сорочку завтра».**
+**10 · Магазин підтвердив замовлення м’якої фланелевої сорочки й отримання на завтра. Це вже вирішено. Скажіть: «Ми забираємо фланелеву сорочку завтра».**
 <!-- interaction_id: en:lesson-15:session-52:i07; family: phrase_builder -->
 Плитки: `tomorrow` `shirt` `flannel` `the` `collecting` `are` `We` → **We are collecting the flannel shirt tomorrow.**
 
@@ -113,7 +113,7 @@ We ___ the flannel shirt tomorrow. → **are collecting** · are collect · coll
 <!-- interaction_id: en:lesson-15:session-52:word:muslin; family: word_card -->
 > **muslin** — муслін, тонка легка тканина, часто бавовняна.
 
-**14 · Ваші батьки замовили тонку муслінову тканину й узгодили отримання на суботу. Скажіть, що це вже вирішено. Скажіть: «Вони забирають муслінову тканину в суботу».**
+**14 · Ваші батьки замовили тонку муслінову тканину й узгодили отримання на суботу. Це вже вирішено. Скажіть: «Вони забирають муслінову тканину в суботу».**
 <!-- interaction_id: en:lesson-15:session-52:i10; family: phrase_builder -->
 Плитки: `Saturday` `on` `cloth` `muslin` `the` `collecting` `are` `They` → **They are collecting the muslin cloth on Saturday.**
 

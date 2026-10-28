@@ -93,7 +93,7 @@ She ___ a patchwork blanket. → **is going to buy** · is buying · buy
 <!-- interaction_id: en:lesson-15:session-55:word:gingham; family: word_card -->
 > **gingham** — дрібна рівна клітинка, зазвичай кольорова з білим.
 
-**10 · Ви замовили сорочку в рівну дрібну клітинку; магазин підтвердив отримання на завтра. Скажіть, що це вже вирішено. Скажіть: «Ми забираємо сорочку в дрібну клітинку завтра».**
+**10 · Ви замовили сорочку в рівну дрібну клітинку; магазин підтвердив отримання на завтра. Це вже вирішено. Скажіть: «Ми забираємо сорочку в дрібну клітинку завтра».**
 <!-- interaction_id: en:lesson-15:session-55:i07; family: phrase_builder -->
 Плитки: `tomorrow` `shirt` `gingham` `the` `collecting` `are` `We` → **We are collecting the gingham shirt tomorrow.**
 
@@ -113,7 +113,7 @@ We ___ the gingham shirt tomorrow. → **are collecting** · are collect · coll
 <!-- interaction_id: en:lesson-15:session-55:word:houndstooth; family: word_card -->
 > **houndstooth** — ламаний картатий візерунок «гусяча лапка».
 
-**14 · Ваші батьки узгодили отримання замовленого пальта з ламаною клітинкою на суботу. Скажіть, що це вже вирішено. Скажіть: «Вони забирають пальто з візерунком «гусяча лапка» в суботу».**
+**14 · Ваші батьки узгодили отримання замовленого пальта з ламаною клітинкою на суботу. Це вже вирішено. Скажіть: «Вони забирають пальто з візерунком «гусяча лапка» в суботу».**
 <!-- interaction_id: en:lesson-15:session-55:i10; family: phrase_builder -->
 Плитки: `Saturday` `on` `coat` `houndstooth` `the` `collecting` `are` `They` → **They are collecting the houndstooth coat on Saturday.**
 

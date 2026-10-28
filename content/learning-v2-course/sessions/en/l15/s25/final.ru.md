@@ -93,7 +93,7 @@ She ___ the waiting list. → **is going to join** · is joining · join
 <!-- interaction_id: en:lesson-15:session-25:word:appointment-card; family: word_card -->
 > **appointment card** — карточка с датой и временем назначенного приёма.
 
-**10 · Приём у врача назначен на завтра; администратор попросил взять карточку записи. Скажите, что это уже решено. Скажите: «Я приношу карточку с записью на приём завтра».**
+**10 · Приём у врача назначен на завтра; администратор попросил взять карточку записи. Это уже решено. Скажите: «Я приношу карточку с записью на приём завтра».**
 <!-- interaction_id: en:lesson-15:session-25:i07; family: phrase_builder -->
 Плитки: `tomorrow` `card` `appointment` `my` `bringing` `am` `I` → **I am bringing my appointment card tomorrow.**
 
@@ -113,7 +113,7 @@ I ___ my appointment card tomorrow. → **am bringing** · am bring · bring
 <!-- interaction_id: en:lesson-15:session-25:word:membership; family: word_card -->
 > **membership** — членство в клубе или организации.
 
-**14 · Вы с другом согласовали визит в клуб в пятницу для оплаты членства. Скажите, что это уже решено. Скажите: «Мы оплачиваем членство в пятницу».**
+**14 · Вы с другом согласовали визит в клуб в пятницу для оплаты членства. Это уже решено. Скажите: «Мы оплачиваем членство в пятницу».**
 <!-- interaction_id: en:lesson-15:session-25:i10; family: phrase_builder -->
 Плитки: `Friday` `on` `membership` `our` `for` `paying` `are` `We` → **We are paying for our membership on Friday.**
 

@@ -93,7 +93,7 @@ She ___ an airy room. → **is going to choose** · is choosing · choose
 <!-- interaction_id: en:lesson-15:session-50:word:leafy; family: word_card -->
 > **leafy** — с множеством деревьев и зелени.
 
-**10 · Бронь дома на улице с деревьями подтверждена на следующую неделю. Скажите, что это уже решено. Скажите: «Мы останавливаемся на зелёной улице со множеством деревьев на следующей неделе».**
+**10 · Бронь дома на улице с деревьями подтверждена на следующую неделю. Это уже решено. Скажите: «Мы останавливаемся на зелёной улице со множеством деревьев на следующей неделе».**
 <!-- interaction_id: en:lesson-15:session-50:i07; family: phrase_builder -->
 Плитки: `week` `next` `street` `leafy` `a` `on` `staying` `are` `We` → **We are staying on a leafy street next week.**
 
@@ -113,7 +113,7 @@ We ___ on a leafy street next week. → **are staying** · are stay · stay
 <!-- interaction_id: en:lesson-15:session-50:word:sheltered; family: word_card -->
 > **sheltered** — защищённый от ветра и непогоды.
 
-**14 · Ваши друзья договорились встретиться завтра в саду, где стены закрывают ветер. Скажите, что это уже решено. Скажите: «Они встречаются в защищённом от ветра саду завтра».**
+**14 · Ваши друзья договорились встретиться завтра в саду, где стены закрывают ветер. Это уже решено. Скажите: «Они встречаются в защищённом от ветра саду завтра».**
 <!-- interaction_id: en:lesson-15:session-50:i10; family: phrase_builder -->
 Плитки: `tomorrow` `garden` `sheltered` `a` `in` `meeting` `are` `They` → **They are meeting in a sheltered garden tomorrow.**
 

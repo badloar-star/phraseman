@@ -93,7 +93,7 @@ She ___ a party in the next leap year. → **is going to have** · is having · 
 <!-- interaction_id: en:lesson-15:session-54:word:half-term; family: word_card -->
 > **half-term** — шкільні канікули посеред навчального періоду.
 
-**10 · Ви купили квитки на найближчі канікули посеред навчального періоду. Скажіть, що це вже вирішено. Скажіть: «Ми їдемо на канікули посеред навчального періоду».**
+**10 · Ви купили квитки на найближчі канікули посеред навчального періоду. Це вже вирішено. Скажіть: «Ми їдемо на канікули посеред навчального періоду».**
 <!-- interaction_id: en:lesson-15:session-54:i07; family: phrase_builder -->
 Плитки: `half-term` `at` `travelling` `are` `We` → **We are travelling at half-term.**
 
@@ -113,7 +113,7 @@ We ___ at half-term. → **are travelling** · are travel · travel
 <!-- interaction_id: en:lesson-15:session-54:word:term-time; family: word_card -->
 > **term time** — час навчальних занять, не канікули.
 
-**14 · Ваші діти записані на шкільну екскурсію до музею; вона відбудеться під час навчальних занять. Скажіть, що це вже вирішено. Скажіть: «Вони відвідують музей під час навчального періоду».**
+**14 · Ваші діти записані на шкільну екскурсію до музею; вона відбудеться під час навчальних занять. Це вже вирішено. Скажіть: «Вони відвідують музей під час навчального періоду».**
 <!-- interaction_id: en:lesson-15:session-54:i10; family: phrase_builder -->
 Плитки: `time` `term` `in` `museum` `the` `visiting` `are` `They` → **They are visiting the museum in term time.**
 

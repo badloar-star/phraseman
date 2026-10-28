@@ -93,7 +93,7 @@ She ___ a physiotherapist. → **is going to see** · is seeing · see
 <!-- interaction_id: en:lesson-15:session-39:word:midwife; family: word_card -->
 > **midwife** — акушерка, специалист, помогающий во время беременности и родов.
 
-**10 · Вы с супругом согласовали встречу с акушеркой на понедельник. Скажите, что это уже решено. Скажите: «Мы встречаемся с акушеркой в понедельник».**
+**10 · Вы с супругом согласовали встречу с акушеркой на понедельник. Это уже решено. Скажите: «Мы встречаемся с акушеркой в понедельник».**
 <!-- interaction_id: en:lesson-15:session-39:i07; family: phrase_builder -->
 Плитки: `Monday` `on` `midwife` `the` `meeting` `are` `We` → **We are meeting the midwife on Monday.**
 
@@ -113,7 +113,7 @@ We ___ the midwife on Monday. → **are meeting** · are meet · meet
 <!-- interaction_id: en:lesson-15:session-39:word:beautician; family: word_card -->
 > **beautician** — специалист по косметическому уходу за внешностью.
 
-**14 · Ваши подруги записались в салон на завтра; мастер подтвердил время. Скажите, что это уже решено. Скажите: «Они встречаются со специалистом по косметическому уходу завтра».**
+**14 · Ваши подруги записались в салон на завтра; мастер подтвердил время. Это уже решено. Скажите: «Они встречаются со специалистом по косметическому уходу завтра».**
 <!-- interaction_id: en:lesson-15:session-39:i10; family: phrase_builder -->
 Плитки: `tomorrow` `beautician` `the` `meeting` `are` `They` → **They are meeting the beautician tomorrow.**
 

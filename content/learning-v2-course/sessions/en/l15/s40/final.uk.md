@@ -93,7 +93,7 @@ She ___ soap making. → **is going to try** · is trying · try
 <!-- interaction_id: en:lesson-15:session-40:word:model-making; family: word_card -->
 > **model making** — виготовлення зменшених моделей предметів.
 
-**10 · Ви з другом записалися на суботнє заняття з виготовлення моделей. Скажіть, що це вже вирішено. Скажіть: «Ми пробуємо виготовлення моделей у суботу».**
+**10 · Ви з другом записалися на суботнє заняття з виготовлення моделей. Це вже вирішено. Скажіть: «Ми пробуємо виготовлення моделей у суботу».**
 <!-- interaction_id: en:lesson-15:session-40:i07; family: phrase_builder -->
 Плитки: `Saturday` `on` `making` `model` `trying` `are` `We` → **We are trying model making on Saturday.**
 
@@ -113,7 +113,7 @@ We ___ model making on Saturday. → **are trying** · are try · try
 <!-- interaction_id: en:lesson-15:session-40:word:weaving; family: word_card -->
 > **weaving** — ткацтво, створення полотна переплетенням ниток.
 
-**14 · Ваші батьки записалися на завтрашнє вступне заняття з ткацтва. Скажіть, що це вже вирішено. Скажіть: «Вони пробують ткацтво завтра».**
+**14 · Ваші батьки записалися на завтрашнє вступне заняття з ткацтва. Це вже вирішено. Скажіть: «Вони пробують ткацтво завтра».**
 <!-- interaction_id: en:lesson-15:session-40:i10; family: phrase_builder -->
 Плитки: `tomorrow` `weaving` `trying` `are` `They` → **They are trying weaving tomorrow.**
 

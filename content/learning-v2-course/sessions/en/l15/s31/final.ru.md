@@ -93,7 +93,7 @@ She ___ woodworking. → **is going to learn** · is learning · learn
 <!-- interaction_id: en:lesson-15:session-31:word:birdwatching; family: word_card -->
 > **birdwatching** — наблюдение за птицами.
 
-**10 · Вы с друзьями договорились о субботней прогулке для наблюдения за птицами. Скажите, что это уже решено. Скажите: «Мы идём наблюдать за птицами в субботу».**
+**10 · Вы с друзьями договорились о субботней прогулке для наблюдения за птицами. Это уже решено. Скажите: «Мы идём наблюдать за птицами в субботу».**
 <!-- interaction_id: en:lesson-15:session-31:i07; family: phrase_builder -->
 Плитки: `Saturday` `on` `birdwatching` `going` `are` `We` → **We are going birdwatching on Saturday.**
 
@@ -113,7 +113,7 @@ We ___ birdwatching on Saturday. → **are going** · are going to go · go
 <!-- interaction_id: en:lesson-15:session-31:word:stargazing; family: word_card -->
 > **stargazing** — наблюдение за звёздами.
 
-**14 · Ваши родители согласовали встречу с клубом любителей звёзд на этот вечер. Скажите, что это уже решено. Скажите: «Они идут наблюдать за звёздами сегодня вечером».**
+**14 · Ваши родители согласовали встречу с клубом любителей звёзд на этот вечер. Это уже решено. Скажите: «Они идут наблюдать за звёздами сегодня вечером».**
 <!-- interaction_id: en:lesson-15:session-31:i10; family: phrase_builder -->
 Плитки: `tonight` `stargazing` `going` `are` `They` → **They are going stargazing tonight.**
 

@@ -93,7 +93,7 @@ She ___ her resourceful brother for help. → **is going to ask** · is asking �
 <!-- interaction_id: en:lesson-15:session-45:word:cooperative; family: word_card -->
 > **cooperative** — готовый сотрудничать и делать дело вместе.
 
-**10 · Вы с соседом согласовали на завтра совместную работу в саду; он охотно сотрудничает. Скажите, что это уже решено. Скажите: «Мы работаем с нашим готовым сотрудничать соседом завтра».**
+**10 · Вы с соседом согласовали на завтра совместную работу в саду; он охотно сотрудничает. Это уже решено. Скажите: «Мы работаем с нашим готовым сотрудничать соседом завтра».**
 <!-- interaction_id: en:lesson-15:session-45:i07; family: phrase_builder -->
 Плитки: `tomorrow` `neighbour` `cooperative` `our` `with` `working` `are` `We` → **We are working with our cooperative neighbour tomorrow.**
 
@@ -113,7 +113,7 @@ We ___ with our cooperative neighbour tomorrow. → **are working** · are work 
 <!-- interaction_id: en:lesson-15:session-45:word:supportive; family: word_card -->
 > **supportive** — оказывающий поддержку и ободряющий.
 
-**14 · Ваши друзья договорились встретиться с учителем в пятницу; он всегда их ободряет. Скажите, что это уже решено. Скажите: «Они встречаются с учителем, который их поддерживает, в пятницу».**
+**14 · Ваши друзья договорились встретиться с учителем в пятницу; он всегда их ободряет. Это уже решено. Скажите: «Они встречаются с учителем, который их поддерживает, в пятницу».**
 <!-- interaction_id: en:lesson-15:session-45:i10; family: phrase_builder -->
 Плитки: `Friday` `on` `teacher` `supportive` `their` `meeting` `are` `They` → **They are meeting their supportive teacher on Friday.**
 

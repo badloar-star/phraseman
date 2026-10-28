@@ -93,7 +93,7 @@ She ___ her half-sister. → **is going to visit** · is visiting · visit
 <!-- interaction_id: en:lesson-15:session-30:word:son-in-law; family: word_card -->
 > **son-in-law** — чоловік доньки, зять.
 
-**10 · Ви з чоловіком домовилися зустрітися з чоловіком вашої доньки в неділю. Скажіть, що це вже вирішено. Скажіть: «Ми зустрічаємося із зятем у неділю».**
+**10 · Ви з чоловіком домовилися зустрітися з чоловіком вашої доньки в неділю. Це вже вирішено. Скажіть: «Ми зустрічаємося із зятем у неділю».**
 <!-- interaction_id: en:lesson-15:session-30:i07; family: phrase_builder -->
 Плитки: `Sunday` `on` `son-in-law` `our` `meeting` `are` `We` → **We are meeting our son-in-law on Sunday.**
 
@@ -113,7 +113,7 @@ We ___ our son-in-law on Sunday. → **are meeting** · are meet · meet
 <!-- interaction_id: en:lesson-15:session-30:word:daughter-in-law; family: word_card -->
 > **daughter-in-law** — дружина сина, невістка.
 
-**14 · Ваші батьки узгодили зустріч із дружиною вашого брата на завтра. Скажіть, що це вже вирішено. Скажіть: «Вони зустрічаються з невісткою завтра».**
+**14 · Ваші батьки узгодили зустріч із дружиною вашого брата на завтра. Це вже вирішено. Скажіть: «Вони зустрічаються з невісткою завтра».**
 <!-- interaction_id: en:lesson-15:session-30:i10; family: phrase_builder -->
 Плитки: `tomorrow` `daughter-in-law` `their` `meeting` `are` `They` → **They are meeting their daughter-in-law tomorrow.**
 

@@ -93,7 +93,7 @@ She ___ for dry cleaning. → **is going to pay** · is paying · pay
 <!-- interaction_id: en:lesson-15:session-27:word:key-cutting; family: word_card -->
 > **key cutting** — изготовление копии ключа.
 
-**10 · Мастер подтвердил заказ копии ключа; вы договорились прийти и оплатить его завтра. Скажите, что это уже решено. Скажите: «Мы оплачиваем изготовление копии ключа завтра».**
+**10 · Мастер подтвердил заказ копии ключа; вы договорились прийти и оплатить его завтра. Это уже решено. Скажите: «Мы оплачиваем изготовление копии ключа завтра».**
 <!-- interaction_id: en:lesson-15:session-27:i07; family: phrase_builder -->
 Плитки: `tomorrow` `cutting` `key` `for` `paying` `are` `We` → **We are paying for key cutting tomorrow.**
 
@@ -113,7 +113,7 @@ We ___ for key cutting tomorrow. → **are paying** · are pay · pay
 <!-- interaction_id: en:lesson-15:session-27:word:shoe-repair; family: word_card -->
 > **shoe repair** — ремонт обуви.
 
-**14 · Ваши родители договорились забрать и оплатить отремонтированную обувь в пятницу. Скажите, что это уже решено. Скажите: «Они оплачивают ремонт обуви в пятницу».**
+**14 · Ваши родители договорились забрать и оплатить отремонтированную обувь в пятницу. Это уже решено. Скажите: «Они оплачивают ремонт обуви в пятницу».**
 <!-- interaction_id: en:lesson-15:session-27:i10; family: phrase_builder -->
 Плитки: `Friday` `on` `repair` `shoe` `for` `paying` `are` `They` → **They are paying for shoe repair on Friday.**
 

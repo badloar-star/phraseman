@@ -93,7 +93,7 @@ She ___ an economical car. → **is going to buy** · is buying · buy
 <!-- interaction_id: en:lesson-15:session-47:word:affordable; family: word_card -->
 > **affordable** — доступный по цене для своего бюджета.
 
-**10 · Цена квартиры укладывается в ваш бюджет; просмотр с хозяином согласован на завтра. Скажите, что это уже решено. Скажите: «Мы смотрим доступную нам по цене квартиру завтра».**
+**10 · Цена квартиры укладывается в ваш бюджет; просмотр с хозяином согласован на завтра. Это уже решено. Скажите: «Мы смотрим доступную нам по цене квартиру завтра».**
 <!-- interaction_id: en:lesson-15:session-47:i07; family: phrase_builder -->
 Плитки: `tomorrow` `flat` `affordable` `an` `viewing` `are` `We` → **We are viewing an affordable flat tomorrow.**
 
@@ -113,7 +113,7 @@ We ___ an affordable flat tomorrow. → **are viewing** · are view · view
 <!-- interaction_id: en:lesson-15:session-47:word:overpriced; family: word_card -->
 > **overpriced** — с завышенной ценой по сравнению с ценностью вещи.
 
-**14 · Друзья считают цену квартиры завышенной, но уже согласовали просмотр на пятницу. Скажите, что это уже решено. Скажите: «Они смотрят квартиру с завышенной ценой в пятницу».**
+**14 · Друзья считают цену квартиры завышенной, но уже согласовали просмотр на пятницу. Это уже решено. Скажите: «Они смотрят квартиру с завышенной ценой в пятницу».**
 <!-- interaction_id: en:lesson-15:session-47:i10; family: phrase_builder -->
 Плитки: `Friday` `on` `flat` `overpriced` `an` `viewing` `are` `They` → **They are viewing an overpriced flat on Friday.**
 

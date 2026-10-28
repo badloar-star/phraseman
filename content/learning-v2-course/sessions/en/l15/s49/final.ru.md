@@ -93,7 +93,7 @@ She ___ an inland town. → **is going to visit** · is visiting · visit
 <!-- interaction_id: en:lesson-15:session-49:word:rural; family: word_card -->
 > **rural** — сельский, относящийся к местности за городами.
 
-**10 · Вы забронировали дом за городом на следующую неделю; хозяин подтвердил бронь. Скажите, что это уже решено. Скажите: «Мы останавливаемся в сельской местности на следующей неделе».**
+**10 · Вы забронировали дом за городом на следующую неделю; хозяин подтвердил бронь. Это уже решено. Скажите: «Мы останавливаемся в сельской местности на следующей неделе».**
 <!-- interaction_id: en:lesson-15:session-49:i07; family: phrase_builder -->
 Плитки: `week` `next` `area` `rural` `a` `in` `staying` `are` `We` → **We are staying in a rural area next week.**
 
@@ -113,7 +113,7 @@ We ___ in a rural area next week. → **are staying** · are stay · stay
 <!-- interaction_id: en:lesson-15:session-49:word:urban; family: word_card -->
 > **urban** — городской, относящийся к городу.
 
-**14 · Ваши друзья договорились о завтрашней прогулке в парке внутри города. Скажите, что это уже решено. Скажите: «Они посещают городской парк завтра».**
+**14 · Ваши друзья договорились о завтрашней прогулке в парке внутри города. Это уже решено. Скажите: «Они посещают городской парк завтра».**
 <!-- interaction_id: en:lesson-15:session-49:i10; family: phrase_builder -->
 Плитки: `tomorrow` `park` `urban` `an` `visiting` `are` `They` → **They are visiting an urban park tomorrow.**
 

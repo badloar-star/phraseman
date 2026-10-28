@@ -93,7 +93,7 @@ She ___ the cards. → **is going to deal** · is dealing · deal
 <!-- interaction_id: en:lesson-15:session-56:word:aim; family: word_card -->
 > **aim** — целиться, направлять бросок в выбранную цель.
 
-**10 · Вы с другом записались на завтрашнее занятие бросками мяча в цель. Скажите, что это уже решено. Скажите: «Мы учимся целиться завтра».**
+**10 · Вы с другом записались на завтрашнее занятие бросками мяча в цель. Это уже решено. Скажите: «Мы учимся целиться завтра».**
 <!-- interaction_id: en:lesson-15:session-56:i07; family: phrase_builder -->
 Плитки: `tomorrow` `aim` `to` `learning` `are` `We` → **We are learning to aim tomorrow.**
 
@@ -113,7 +113,7 @@ We ___ to aim tomorrow. → **are learning** · are learn · learn
 <!-- interaction_id: en:lesson-15:session-56:word:bounce; family: word_card -->
 > **bounce** — отбивать мяч от пола или другой поверхности.
 
-**14 · Ваши дети записаны на завтрашнее занятие, где научатся отбивать мяч от пола. Скажите, что это уже решено. Скажите: «Они учатся отбивать мяч от пола завтра».**
+**14 · Ваши дети записаны на завтрашнее занятие, где научатся отбивать мяч от пола. Это уже решено. Скажите: «Они учатся отбивать мяч от пола завтра».**
 <!-- interaction_id: en:lesson-15:session-56:i10; family: phrase_builder -->
 Плитки: `tomorrow` `ball` `a` `bounce` `to` `learning` `are` `They` → **They are learning to bounce a ball tomorrow.**
 

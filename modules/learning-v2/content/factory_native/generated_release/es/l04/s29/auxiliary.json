@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-04:session-29",
+  "entries": [
+    {
+      "interactionId": "es:lesson-04:session-29:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-29:intro1:r2": {
+          "ru": "Наш выбор зависит от bolso: nuestro.",
+          "uk": "Наш вибір залежить від bolso: nuestro."
+        },
+        "es:lesson-04:session-29:intro1:r3": {
+          "ru": "Перед nuestro здесь не нужен el.",
+          "uk": "Перед nuestro тут не потрібен el."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-29:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-29:intro2:r2": {
+          "ru": "Род bolsa женский: nuestra.",
+          "uk": "Рід bolsa жіночий: nuestra."
+        },
+        "es:lesson-04:session-29:intro2:r3": {
+          "ru": "Перед nuestra здесь не нужен la.",
+          "uk": "Перед nuestra тут не потрібен la."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-29:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-29:intro3:r2": {
+          "ru": "Цвет согласуется с bolsa: negra.",
+          "uk": "Колір узгоджується з bolsa: negra."
+        },
+        "es:lesson-04:session-29:intro3:r3": {
+          "ru": "Перед bolsa нужно nuestra.",
+          "uk": "Перед bolsa потрібне nuestra."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "26551d4e422c2e082a39eb14c689027a96b129d7e40a668042ac5197b57fc6d9"
+}

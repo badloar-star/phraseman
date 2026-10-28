@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-04:session-31",
+  "learningOutcomeByLocale": {
+    "ru": "отрицать общую принадлежность с nuestro и nuestra.",
+    "uk": "заперечувати спільну належність із nuestro й nuestra."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-04:session-31:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Чужая машина",
+        "uk": "Чужа машина"
+      },
+      "bodyByLocale": {
+        "ru": "Гость подошёл к чужой машине. Скажите `No es nuestro carro` — «Это не наша машина». Соберите `no` + `es` + `nuestro carro`. Добавьте no перед es к знакомому Es nuestro carro. Отрицание не меняет форму nuestro: она согласуется с мужским carro.",
+        "uk": "Гість підійшов до чужої машини. Скажіть `No es nuestro carro` — «Це не наша машина». Зберіть `no` + `es` + `nuestro carro`. Додайте no перед es до знайомого Es nuestro carro. Заперечення не змінює форми nuestro: вона узгоджується з чоловічим carro."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-31:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите гостю: «Это не наша машина». Начните с No es, используйте carro.",
+          "uk": "Скажіть гостю: «Це не наша машина». Почніть з No es, використайте carro."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-31:intro1:r1",
+              "text": "No es nuestro carro."
+            },
+            {
+              "responseId": "es:lesson-04:session-31:intro1:r2",
+              "text": "No es nuestra carro."
+            },
+            {
+              "responseId": "es:lesson-04:session-31:intro1:r3",
+              "text": "No son nuestro carro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-31:intro1:r1",
+              "text": "No es nuestro carro."
+            },
+            {
+              "responseId": "es:lesson-04:session-31:intro1:r2",
+              "text": "No es nuestra carro."
+            },
+            {
+              "responseId": "es:lesson-04:session-31:intro1:r3",
+              "text": "No son nuestro carro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите гостю: «Это не наша машина». Начните с No es, используйте carro.",
+          "uk": "Скажіть гостю: «Це не наша машина». Почніть з No es, використайте carro."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-04:session-31:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Не наша сумка",
+        "uk": "Не наша сумка"
+      },
+      "bodyByLocale": {
+        "ru": "Гость показывает сумку, которую вы с семьёй не брали. Здесь называем её bolsa. Скажите `No es nuestra bolsa` — «Это не наша сумка». Соберите `no` + `es` + `nuestra bolsa`. Женское bolsa требует nuestra. No остаётся перед es, независимо от рода вещи.",
+        "uk": "Гість показує сумку, якої ви з родиною не брали. Тут називаємо її bolsa. Скажіть `No es nuestra bolsa` — «Це не наша сумка». Зберіть `no` + `es` + `nuestra bolsa`. Жіноче bolsa потребує nuestra. No залишається перед es незалежно від роду речі."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-31:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите: «Это не наша сумка». Начните с No es, используйте bolsa.",
+          "uk": "Скажіть: «Це не наша сумка». Почніть з No es, використайте bolsa."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-31:intro2:r1",
+              "text": "No es nuestra bolsa."
+            },
+            {
+              "responseId": "es:lesson-04:session-31:intro2:r2",
+              "text": "No es nuestro bolsa."
+            },
+            {
+              "responseId": "es:lesson-04:session-31:intro2:r3",
+              "text": "No es la nuestra bolsa."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-31:intro2:r1",
+              "text": "No es nuestra bolsa."
+            },
+            {
+              "responseId": "es:lesson-04:session-31:intro2:r2",
+              "text": "No es nuestro bolsa."
+            },
+            {
+              "responseId": "es:lesson-04:session-31:intro2:r3",
+              "text": "No es la nuestra bolsa."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите: «Это не наша сумка». Начните с No es, используйте bolsa.",
+          "uk": "Скажіть: «Це не наша сумка». Почніть з No es, використайте bolsa."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-04:session-31:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Цвет вашей машины",
+        "uk": "Колір вашої машини"
+      },
+      "bodyByLocale": {
+        "ru": "Чтобы гость нашёл вашу машину, напомните: `Nuestro carro es azul` — «Наша машина синяя». Соберите `nuestro carro` + `es` + `azul`. Это отдельное утверждение о вашей машине: no здесь не нужно. Название вещи идёт сначала, затем es и цвет.",
+        "uk": "Щоб гість знайшов вашу машину, нагадайте: `Nuestro carro es azul` — «Наша машина синя». Зберіть `nuestro carro` + `es` + `azul`. Це окреме твердження про вашу машину: no тут не потрібне. Назва речі йде спочатку, потім es і колір."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-31:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите гостю: «Наша машина синяя». Начните с Nuestro carro.",
+          "uk": "Скажіть гостю: «Наша машина синя». Почніть з Nuestro carro."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-31:intro3:r1",
+              "text": "Nuestro carro es azul."
+            },
+            {
+              "responseId": "es:lesson-04:session-31:intro3:r2",
+              "text": "Nuestro carro son azul."
+            },
+            {
+              "responseId": "es:lesson-04:session-31:intro3:r3",
+              "text": "Nuestro carro es azules."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-31:intro3:r1",
+              "text": "Nuestro carro es azul."
+            },
+            {
+              "responseId": "es:lesson-04:session-31:intro3:r2",
+              "text": "Nuestro carro son azul."
+            },
+            {
+              "responseId": "es:lesson-04:session-31:intro3:r3",
+              "text": "Nuestro carro es azules."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите гостю: «Наша машина синяя». Начните с Nuestro carro.",
+          "uk": "Скажіть гостю: «Наша машина синя». Почніть з Nuestro carro."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e86646dba1505d144b1e67a745b1b60c6e713dc07841e4f7bc9734e10058f9ad"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-04:session-31",
+  "entries": [
+    {
+      "interactionId": "es:lesson-04:session-31:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-31:intro1:r2": {
+          "ru": "Carro мужского рода: nuestro.",
+          "uk": "Carro чоловічого роду: nuestro."
+        },
+        "es:lesson-04:session-31:intro1:r3": {
+          "ru": "Машина одна: es.",
+          "uk": "Машина одна: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-31:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-31:intro2:r2": {
+          "ru": "Перед bolsa нужно nuestra.",
+          "uk": "Перед bolsa потрібне nuestra."
+        },
+        "es:lesson-04:session-31:intro2:r3": {
+          "ru": "Перед nuestra здесь нет артикля.",
+          "uk": "Перед nuestra тут немає артикля."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-31:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-31:intro3:r2": {
+          "ru": "Машина одна: es.",
+          "uk": "Машина одна: es."
+        },
+        "es:lesson-04:session-31:intro3:r3": {
+          "ru": "Для одной машины нужно azul.",
+          "uk": "Для однієї машини потрібне azul."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "b02adf81df2b5400b83037c47243b0ae04b06cca19a8e658c54ed1aa65c0417b"
+}

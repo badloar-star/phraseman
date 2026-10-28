@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-04:session-30:i01",
+    "correctText": "grande",
+    "correctResponseId": "es:lesson-04:session-30:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-30:i02",
+    "correctText": "Nuestra",
+    "correctResponseId": "es:lesson-04:session-30:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-30:i03",
+    "correctText": "Nuestra casa es grande.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-30:i04",
+    "correctText": "muy",
+    "correctResponseId": "es:lesson-04:session-30:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-30:i05",
+    "correctText": "Nuestra casa es muy grande.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-30:i06",
+    "correctText": "Nuestra casa es blanca.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-30:i07",
+    "correctText": "Nuestra casa es muy grande.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-30:i08",
+    "correctText": "blanca",
+    "correctResponseId": "es:lesson-04:session-30:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-30:i09",
+    "correctText": "Nuestra casa es grande.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-30:i10",
+    "correctText": "Nuestra casa es muy grande.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-30:i11",
+    "correctText": "Nuestra casa es blanca.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-30:i12",
+    "correctText": "Es nuestra casa.",
+    "correctResponseId": null
+  }
+]

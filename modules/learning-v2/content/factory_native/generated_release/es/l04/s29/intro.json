@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-04:session-29",
+  "learningOutcomeByLocale": {
+    "ru": "выбирать nuestro или nuestra по роду испанского названия вещи.",
+    "uk": "вибирати nuestro або nuestra за родом іспанської назви речі."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-04:session-29:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сумка: bolso",
+        "uk": "Сумка: bolso"
+      },
+      "bodyByLocale": {
+        "ru": "Покажите встречающему вашу общую дорожную сумку. Здесь называем её bolso. Скажите `Es nuestro bolso` — «Это наша сумка». Соберите `es` + `nuestro bolso`. Bolso мужского рода, поэтому nuestro. Кто именно пользуется сумкой — мужчины или женщины — не определяет эту форму.",
+        "uk": "Покажіть людині, яка вас зустрічає, вашу спільну дорожню сумку. Тут називаємо її bolso. Скажіть `Es nuestro bolso` — «Це наша сумка». Зберіть `es` + `nuestro bolso`. Bolso чоловічого роду, тому nuestro. Хто саме користується сумкою — чоловіки чи жінки — не визначає цієї форми."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-29:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите: «Это наша сумка». Начните с Es и используйте мужское bolso.",
+          "uk": "Скажіть: «Це наша сумка». Почніть з Es і використайте чоловіче bolso."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-29:intro1:r1",
+              "text": "Es nuestro bolso."
+            },
+            {
+              "responseId": "es:lesson-04:session-29:intro1:r2",
+              "text": "Es nuestra bolso."
+            },
+            {
+              "responseId": "es:lesson-04:session-29:intro1:r3",
+              "text": "Es el nuestro bolso."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-29:intro1:r1",
+              "text": "Es nuestro bolso."
+            },
+            {
+              "responseId": "es:lesson-04:session-29:intro1:r2",
+              "text": "Es nuestra bolso."
+            },
+            {
+              "responseId": "es:lesson-04:session-29:intro1:r3",
+              "text": "Es el nuestro bolso."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите: «Это наша сумка». Начните с Es и используйте мужское bolso.",
+          "uk": "Скажіть: «Це наша сумка». Почніть з Es і використайте чоловіче bolso."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-04:session-29:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Сумка: bolsa",
+        "uk": "Сумка: bolsa"
+      },
+      "bodyByLocale": {
+        "ru": "Теперь покажите другую вашу сумку, которую здесь называем bolsa. Скажите `Es nuestra bolsa` — «Это наша сумка». Соберите `es` + `nuestra bolsa`. Женское bolsa требует nuestra. Вы с братом остались теми же людьми; форма изменилась из-за рода названия вещи.",
+        "uk": "Тепер покажіть іншу вашу сумку, яку тут називаємо bolsa. Скажіть `Es nuestra bolsa` — «Це наша сумка». Зберіть `es` + `nuestra bolsa`. Жіноче bolsa потребує nuestra. Ви з братом залишилися тими самими людьми; форма змінилася через рід назви речі."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-29:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите: «Это наша сумка». Начните с Es и используйте женское bolsa.",
+          "uk": "Скажіть: «Це наша сумка». Почніть з Es і використайте жіноче bolsa."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-29:intro2:r1",
+              "text": "Es nuestra bolsa."
+            },
+            {
+              "responseId": "es:lesson-04:session-29:intro2:r2",
+              "text": "Es nuestro bolsa."
+            },
+            {
+              "responseId": "es:lesson-04:session-29:intro2:r3",
+              "text": "Es la nuestra bolsa."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-29:intro2:r1",
+              "text": "Es nuestra bolsa."
+            },
+            {
+              "responseId": "es:lesson-04:session-29:intro2:r2",
+              "text": "Es nuestro bolsa."
+            },
+            {
+              "responseId": "es:lesson-04:session-29:intro2:r3",
+              "text": "Es la nuestra bolsa."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите: «Это наша сумка». Начните с Es и используйте женское bolsa.",
+          "uk": "Скажіть: «Це наша сумка». Почніть з Es і використайте жіноче bolsa."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-04:session-29:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Чёрная сумка",
+        "uk": "Чорна сумка"
+      },
+      "bodyByLocale": {
+        "ru": "Встречающий не понял, какую из сумок вы назвали bolsa. Уточните: `Nuestra bolsa es negra` — «Наша сумка чёрная». Соберите `nuestra bolsa` + `es` + `negra`. Женское bolsa определяет и nuestra, и negra. Согласовываем оба слова с названием сумки.",
+        "uk": "Людина, яка вас зустрічає, не зрозуміла, яку із сумок ви назвали bolsa. Уточніть: `Nuestra bolsa es negra` — «Наша сумка чорна». Зберіть `nuestra bolsa` + `es` + `negra`. Жіноче bolsa визначає і nuestra, і negra. Узгоджуємо обидва слова з назвою сумки."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-29:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите: «Наша сумка чёрная». Начните с Nuestra bolsa.",
+          "uk": "Скажіть: «Наша сумка чорна». Почніть з Nuestra bolsa."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-29:intro3:r1",
+              "text": "Nuestra bolsa es negra."
+            },
+            {
+              "responseId": "es:lesson-04:session-29:intro3:r2",
+              "text": "Nuestra bolsa es negro."
+            },
+            {
+              "responseId": "es:lesson-04:session-29:intro3:r3",
+              "text": "Nuestro bolsa es negra."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-29:intro3:r1",
+              "text": "Nuestra bolsa es negra."
+            },
+            {
+              "responseId": "es:lesson-04:session-29:intro3:r2",
+              "text": "Nuestra bolsa es negro."
+            },
+            {
+              "responseId": "es:lesson-04:session-29:intro3:r3",
+              "text": "Nuestro bolsa es negra."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите: «Наша сумка чёрная». Начните с Nuestra bolsa.",
+          "uk": "Скажіть: «Наша сумка чорна». Почніть з Nuestra bolsa."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "42d751a2c2d40cc9dfae1856b090cc7109cd0568853b2ecc764dd2ad8e7ba76b"
+}

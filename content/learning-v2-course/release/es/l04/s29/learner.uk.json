@@ -1,0 +1,663 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-04:session-29",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-04:session-29:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-29:i01:r1",
+          "text": "bolsa"
+        },
+        {
+          "responseId": "es:lesson-04:session-29:i01:r2",
+          "text": "bolso"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-29:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-29:i01:audio",
+          "transcript": "bolsa"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-04:session-29:i01:r1",
+            "targetText": "bolsa",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-04:session-29:i01:r2",
+            "targetText": "bolso",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-29:i01:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит конечное a: bolsa.",
+              "uk": "Звучить кінцеве a: bolsa."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-29:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — це наша сумка, називаємо її bolso",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-29:i02:r1",
+          "text": "nuestro"
+        },
+        {
+          "responseId": "es:lesson-04:session-29:i02:r2",
+          "text": "nuestra"
+        },
+        {
+          "responseId": "es:lesson-04:session-29:i02:r3",
+          "text": "nuestros"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — це наша сумка, називаємо її bolso",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это наша сумка, называем её bolso",
+          "uk": "Вставте слово — це наша сумка, називаємо її bolso"
+        },
+        "gappedTargetPhrase": "Es ___ bolso.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-29:i02:r1",
+            "text": "nuestro"
+          },
+          {
+            "responseId": "es:lesson-04:session-29:i02:r2",
+            "text": "nuestra"
+          },
+          {
+            "responseId": "es:lesson-04:session-29:i02:r3",
+            "text": "nuestros"
+          }
+        ],
+        "testedDimension": "Вставте слово — це наша сумка, називаємо її bolso",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-29:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — це наша сумка, називаємо її bolso",
+            "feedbackByLocale": {
+              "ru": "Bolso мужского рода: nuestro.",
+              "uk": "Bolso чоловічого роду: nuestro."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-29:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — це наша сумка, називаємо її bolso",
+            "feedbackByLocale": {
+              "ru": "Сумка одна: nuestro.",
+              "uk": "Сумка одна: nuestro."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-29:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це наша сумка; використайте bolso",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-29:i03:r1",
+          "text": "Плитки: bolso"
+        },
+        {
+          "responseId": "es:lesson-04:session-29:i03:r2",
+          "text": "nuestro"
+        },
+        {
+          "responseId": "es:lesson-04:session-29:i03:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-29:i03:r4",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це наша сумка; використайте bolso",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es nuestro bolso.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это наша сумка; используйте bolso",
+          "uk": "Зберіть фразу — це наша сумка; використайте bolso"
+        },
+        "orderedTokens": [
+          "Es",
+          "nuestro",
+          "bolso"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-29:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це наша сумка; використайте bolso",
+            "feedbackByLocale": {
+              "ru": "перед nuestro здесь нет артикля.",
+              "uk": "перед nuestro тут немає артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-29:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — це наша сумка, називаємо її bolsa",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-29:i04:r1",
+          "text": "nuestra"
+        },
+        {
+          "responseId": "es:lesson-04:session-29:i04:r2",
+          "text": "nuestro"
+        },
+        {
+          "responseId": "es:lesson-04:session-29:i04:r3",
+          "text": "nuestras"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — це наша сумка, називаємо її bolsa",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это наша сумка, называем её bolsa",
+          "uk": "Вставте слово — це наша сумка, називаємо її bolsa"
+        },
+        "gappedTargetPhrase": "Es ___ bolsa.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-29:i04:r1",
+            "text": "nuestra"
+          },
+          {
+            "responseId": "es:lesson-04:session-29:i04:r2",
+            "text": "nuestro"
+          },
+          {
+            "responseId": "es:lesson-04:session-29:i04:r3",
+            "text": "nuestras"
+          }
+        ],
+        "testedDimension": "Вставте слово — це наша сумка, називаємо її bolsa",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-29:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — це наша сумка, називаємо її bolsa",
+            "feedbackByLocale": {
+              "ru": "Bolsa женского рода: nuestra.",
+              "uk": "Bolsa жіночого роду: nuestra."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-29:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — це наша сумка, називаємо її bolsa",
+            "feedbackByLocale": {
+              "ru": "Сумка одна: nuestra.",
+              "uk": "Сумка одна: nuestra."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-29:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це наша сумка; використайте bolsa",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-29:i05:r1",
+          "text": "Плитки: bolsa"
+        },
+        {
+          "responseId": "es:lesson-04:session-29:i05:r2",
+          "text": "nuestra"
+        },
+        {
+          "responseId": "es:lesson-04:session-29:i05:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-29:i05:r4",
+          "text": "la."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це наша сумка; використайте bolsa",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es nuestra bolsa.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это наша сумка; используйте bolsa",
+          "uk": "Зберіть фразу — це наша сумка; використайте bolsa"
+        },
+        "orderedTokens": [
+          "Es",
+          "nuestra",
+          "bolsa"
+        ],
+        "authoredDistractorTokens": [
+          "la"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-29:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це наша сумка; використайте bolsa",
+            "feedbackByLocale": {
+              "ru": "перед nuestra здесь нет артикля.",
+              "uk": "перед nuestra тут немає артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-29:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — наша сумка чорна; почніть з Nuestra bolsa",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-29:i06:r1",
+          "text": "Плитки: negra"
+        },
+        {
+          "responseId": "es:lesson-04:session-29:i06:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-29:i06:r3",
+          "text": "bolsa"
+        },
+        {
+          "responseId": "es:lesson-04:session-29:i06:r4",
+          "text": "nuestra"
+        },
+        {
+          "responseId": "es:lesson-04:session-29:i06:r5",
+          "text": "negro."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — наша сумка чорна; почніть з Nuestra bolsa",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Nuestra bolsa es negra.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — наша сумка чёрная; начните с Nuestra bolsa",
+          "uk": "Зберіть фразу — наша сумка чорна; почніть з Nuestra bolsa"
+        },
+        "orderedTokens": [
+          "Nuestra",
+          "bolsa",
+          "es",
+          "negra"
+        ],
+        "authoredDistractorTokens": [
+          "negro"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-29:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — наша сумка чорна; почніть з Nuestra bolsa",
+            "feedbackByLocale": {
+              "ru": "bolsa женского рода.",
+              "uk": "bolsa жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-29:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-29:i07:r1",
+          "text": "Плитки: nuestro"
+        },
+        {
+          "responseId": "es:lesson-04:session-29:i07:r2",
+          "text": "bolso"
+        },
+        {
+          "responseId": "es:lesson-04:session-29:i07:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-29:i07:r4",
+          "text": "nuestra."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-29:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-29:i07:audio",
+          "transcript": "Es nuestro bolso."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Es nuestro bolso.",
+        "orderedTokens": [
+          "Es",
+          "nuestro",
+          "bolso"
+        ],
+        "authoredDistractorTokens": [
+          "nuestra"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-29:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит nuestro.",
+              "uk": "звучить nuestro."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-29:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — наша сумка чорна, називаємо її bolso",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-29:i08:r1",
+          "text": "negro"
+        },
+        {
+          "responseId": "es:lesson-04:session-29:i08:r2",
+          "text": "negra"
+        },
+        {
+          "responseId": "es:lesson-04:session-29:i08:r3",
+          "text": "negros"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — наша сумка чорна, називаємо її bolso",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — наша сумка чёрная, называем её bolso",
+          "uk": "Вставте слово — наша сумка чорна, називаємо її bolso"
+        },
+        "gappedTargetPhrase": "Nuestro bolso es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-29:i08:r1",
+            "text": "negro"
+          },
+          {
+            "responseId": "es:lesson-04:session-29:i08:r2",
+            "text": "negra"
+          },
+          {
+            "responseId": "es:lesson-04:session-29:i08:r3",
+            "text": "negros"
+          }
+        ],
+        "testedDimension": "Вставте слово — наша сумка чорна, називаємо її bolso",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-29:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — наша сумка чорна, називаємо її bolso",
+            "feedbackByLocale": {
+              "ru": "Bolso мужского рода: negro.",
+              "uk": "Bolso чоловічого роду: negro."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-29:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — наша сумка чорна, називаємо її bolso",
+            "feedbackByLocale": {
+              "ru": "Сумка одна: negro.",
+              "uk": "Сумка одна: negro."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-29:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — це наша сумка; почніть з Es, використайте bolso",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-29:i09:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — це наша сумка; почніть з Es, використайте bolso",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-29:i09:audio",
+          "transcript": "Es nuestro bolso."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es nuestro bolso.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-29:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — це наша сумка; почніть з Es, використайте bolsa",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-29:i10:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — це наша сумка; почніть з Es, використайте bolsa",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-29:i10:audio",
+          "transcript": "Es nuestra bolsa."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es nuestra bolsa.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-29:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — наша сумка чорна; почніть з Nuestra bolsa",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-29:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — наша сумка чорна; почніть з Nuestra bolsa",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-29:i11:audio",
+          "transcript": "Nuestra bolsa es negra."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Nuestra bolsa es negra.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-29:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — наша сумка велика; почніть з Nuestro bolso",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-29:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — наша сумка велика; почніть з Nuestro bolso",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-29:i12:audio",
+          "transcript": "Nuestro bolso es grande."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Nuestro bolso es grande.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "c3126452d3ed88636cc576e62e858c86ccbd189b60194970494898062b64aca1"
+}

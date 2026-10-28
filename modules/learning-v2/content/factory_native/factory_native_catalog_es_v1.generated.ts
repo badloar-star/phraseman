@@ -1379,4 +1379,25 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбирать nuestras перед женским существительным во множественном числе.","uk":"вибирати nuestras перед іменником жіночого роду в множині."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 4, sessionOrdinal: 29,
+    sourceFingerprint: "e1ab5aaf10b5b78f9124a2c39649927641529108932c6e7050c53d2cf6208e5b",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбирать nuestro или nuestra по роду испанского названия вещи.","uk":"вибирати nuestro або nuestra за родом іспанської назви речі."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 4, sessionOrdinal: 30,
+    sourceFingerprint: "c4c66ccd09ba7c716d004ecb739af8a09d2acb96521e17e6e2c5e82d6d0113fe",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"собрать описание дома с nuestra и усилить знакомый признак словом muy.","uk":"скласти опис будинку з nuestra й підсилити знайому ознаку словом muy."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 4, sessionOrdinal: 31,
+    sourceFingerprint: "ae9001d0329fc5a042e5e2ff28048854c0c9babfe755ada85c3ece3d02ba2d09",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"отрицать общую принадлежность с nuestro и nuestra.","uk":"заперечувати спільну належність із nuestro й nuestra."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
+  }),
 ]);

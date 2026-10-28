@@ -1,0 +1,678 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-04:session-31",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-04:session-31:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-31:i01:r1",
+          "text": "carro"
+        },
+        {
+          "responseId": "es:lesson-04:session-31:i01:r2",
+          "text": "casa"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-31:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-31:i01:audio",
+          "transcript": "carro"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-04:session-31:i01:r1",
+            "targetText": "carro",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-04:session-31:i01:r2",
+            "targetText": "casa",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-31:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит carro — машина.",
+              "uk": "Звучить carro — машина."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-31:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — это не наша машина",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-31:i02:r1",
+          "text": "nuestro"
+        },
+        {
+          "responseId": "es:lesson-04:session-31:i02:r2",
+          "text": "nuestra"
+        },
+        {
+          "responseId": "es:lesson-04:session-31:i02:r3",
+          "text": "nuestros"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — это не наша машина",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это не наша машина",
+          "uk": "Вставте слово — це не наша машина"
+        },
+        "gappedTargetPhrase": "No es ___ carro.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-31:i02:r1",
+            "text": "nuestro"
+          },
+          {
+            "responseId": "es:lesson-04:session-31:i02:r2",
+            "text": "nuestra"
+          },
+          {
+            "responseId": "es:lesson-04:session-31:i02:r3",
+            "text": "nuestros"
+          }
+        ],
+        "testedDimension": "Вставьте слово — это не наша машина",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-31:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это не наша машина",
+            "feedbackByLocale": {
+              "ru": "Carro мужского рода.",
+              "uk": "Carro чоловічого роду."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-31:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это не наша машина",
+            "feedbackByLocale": {
+              "ru": "Машина одна: nuestro.",
+              "uk": "Машина одна: nuestro."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-31:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это не наша машина; используйте carro",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-31:i03:r1",
+          "text": "Плитки: carro"
+        },
+        {
+          "responseId": "es:lesson-04:session-31:i03:r2",
+          "text": "nuestro"
+        },
+        {
+          "responseId": "es:lesson-04:session-31:i03:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-31:i03:r4",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-04:session-31:i03:r5",
+          "text": "nuestra."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это не наша машина; используйте carro",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No es nuestro carro.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это не наша машина; используйте carro",
+          "uk": "Зберіть фразу — це не наша машина; використайте carro"
+        },
+        "orderedTokens": [
+          "No",
+          "es",
+          "nuestro",
+          "carro"
+        ],
+        "authoredDistractorTokens": [
+          "nuestra"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-31:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это не наша машина; используйте carro",
+            "feedbackByLocale": {
+              "ru": "carro мужского рода.",
+              "uk": "carro чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-31:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — это не наша сумка, называем её bolsa",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-31:i04:r1",
+          "text": "nuestra"
+        },
+        {
+          "responseId": "es:lesson-04:session-31:i04:r2",
+          "text": "nuestro"
+        },
+        {
+          "responseId": "es:lesson-04:session-31:i04:r3",
+          "text": "nuestras"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — это не наша сумка, называем её bolsa",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это не наша сумка, называем её bolsa",
+          "uk": "Вставте слово — це не наша сумка, називаємо її bolsa"
+        },
+        "gappedTargetPhrase": "No es ___ bolsa.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-31:i04:r1",
+            "text": "nuestra"
+          },
+          {
+            "responseId": "es:lesson-04:session-31:i04:r2",
+            "text": "nuestro"
+          },
+          {
+            "responseId": "es:lesson-04:session-31:i04:r3",
+            "text": "nuestras"
+          }
+        ],
+        "testedDimension": "Вставьте слово — это не наша сумка, называем её bolsa",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-31:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это не наша сумка, называем её bolsa",
+            "feedbackByLocale": {
+              "ru": "Bolsa женского рода.",
+              "uk": "Bolsa жіночого роду."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-31:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это не наша сумка, называем её bolsa",
+            "feedbackByLocale": {
+              "ru": "Сумка одна: nuestra.",
+              "uk": "Сумка одна: nuestra."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-31:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это не наша сумка; используйте bolsa",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-31:i05:r1",
+          "text": "Плитки: bolsa"
+        },
+        {
+          "responseId": "es:lesson-04:session-31:i05:r2",
+          "text": "nuestra"
+        },
+        {
+          "responseId": "es:lesson-04:session-31:i05:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-31:i05:r4",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-04:session-31:i05:r5",
+          "text": "la."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это не наша сумка; используйте bolsa",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No es nuestra bolsa.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это не наша сумка; используйте bolsa",
+          "uk": "Зберіть фразу — це не наша сумка; використайте bolsa"
+        },
+        "orderedTokens": [
+          "No",
+          "es",
+          "nuestra",
+          "bolsa"
+        ],
+        "authoredDistractorTokens": [
+          "la"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-31:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это не наша сумка; используйте bolsa",
+            "feedbackByLocale": {
+              "ru": "перед nuestra здесь нет артикля.",
+              "uk": "перед nuestra тут немає артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-31:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — наша машина синяя; начните с Nuestro carro",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-31:i06:r1",
+          "text": "Плитки: azul"
+        },
+        {
+          "responseId": "es:lesson-04:session-31:i06:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-31:i06:r3",
+          "text": "carro"
+        },
+        {
+          "responseId": "es:lesson-04:session-31:i06:r4",
+          "text": "nuestro"
+        },
+        {
+          "responseId": "es:lesson-04:session-31:i06:r5",
+          "text": "azules."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — наша машина синяя; начните с Nuestro carro",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Nuestro carro es azul.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — наша машина синяя; начните с Nuestro carro",
+          "uk": "Зберіть фразу — наша машина синя; почніть з Nuestro carro"
+        },
+        "orderedTokens": [
+          "Nuestro",
+          "carro",
+          "es",
+          "azul"
+        ],
+        "authoredDistractorTokens": [
+          "azules"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-31:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — наша машина синяя; начните с Nuestro carro",
+            "feedbackByLocale": {
+              "ru": "машина одна.",
+              "uk": "машина одна."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-31:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-31:i07:r1",
+          "text": "Плитки: nuestro"
+        },
+        {
+          "responseId": "es:lesson-04:session-31:i07:r2",
+          "text": "carro"
+        },
+        {
+          "responseId": "es:lesson-04:session-31:i07:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-04:session-31:i07:r4",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-31:i07:r5",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-31:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-31:i07:audio",
+          "transcript": "No es nuestro carro."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "No es nuestro carro.",
+        "orderedTokens": [
+          "No",
+          "es",
+          "nuestro",
+          "carro"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-31:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит es.",
+              "uk": "звучить es."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-31:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — наша машина синяя",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-31:i08:r1",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-31:i08:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-31:i08:r3",
+          "text": "soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — наша машина синяя",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — наша машина синяя",
+          "uk": "Вставте слово — наша машина синя"
+        },
+        "gappedTargetPhrase": "Nuestro carro ___ azul.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-31:i08:r1",
+            "text": "es"
+          },
+          {
+            "responseId": "es:lesson-04:session-31:i08:r2",
+            "text": "son"
+          },
+          {
+            "responseId": "es:lesson-04:session-31:i08:r3",
+            "text": "soy"
+          }
+        ],
+        "testedDimension": "Вставьте слово — наша машина синяя",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-31:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — наша машина синяя",
+            "feedbackByLocale": {
+              "ru": "Машина одна: es.",
+              "uk": "Машина одна: es."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-31:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — наша машина синяя",
+            "feedbackByLocale": {
+              "ru": "Речь о машине, а не о говорящем.",
+              "uk": "Йдеться про машину, а не про мовця."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-31:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — это не наша машина; начните с No es, используйте carro",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-31:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — это не наша машина; начните с No es, используйте carro",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-31:i09:audio",
+          "transcript": "No es nuestro carro."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No es nuestro carro.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-31:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — это не наша сумка; начните с No es, используйте bolsa",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-31:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — это не наша сумка; начните с No es, используйте bolsa",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-31:i10:audio",
+          "transcript": "No es nuestra bolsa."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No es nuestra bolsa.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-31:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — наша машина синяя; начните с Nuestro carro",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-31:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — наша машина синяя; начните с Nuestro carro",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-31:i11:audio",
+          "transcript": "Nuestro carro es azul."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Nuestro carro es azul.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-31:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — это наша машина; начните с Es, используйте carro",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-31:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — это наша машина; начните с Es, используйте carro",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-31:i12:audio",
+          "transcript": "Es nuestro carro."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es nuestro carro.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "c6097ff4e44a77eec9a8178be2e0c1c6a0a055bf45b96d49140490bad7561a4c"
+}

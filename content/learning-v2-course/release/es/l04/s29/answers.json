@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-04:session-29:i01",
+    "correctText": "bolsa",
+    "correctResponseId": "es:lesson-04:session-29:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-29:i02",
+    "correctText": "nuestro",
+    "correctResponseId": "es:lesson-04:session-29:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-29:i03",
+    "correctText": "Es nuestro bolso.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-29:i04",
+    "correctText": "nuestra",
+    "correctResponseId": "es:lesson-04:session-29:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-29:i05",
+    "correctText": "Es nuestra bolsa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-29:i06",
+    "correctText": "Nuestra bolsa es negra.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-29:i07",
+    "correctText": "Es nuestro bolso.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-29:i08",
+    "correctText": "negro",
+    "correctResponseId": "es:lesson-04:session-29:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-29:i09",
+    "correctText": "Es nuestro bolso.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-29:i10",
+    "correctText": "Es nuestra bolsa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-29:i11",
+    "correctText": "Nuestra bolsa es negra.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-29:i12",
+    "correctText": "Nuestro bolso es grande.",
+    "correctResponseId": null
+  }
+]

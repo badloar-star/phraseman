@@ -1,0 +1,688 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-04:session-30",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-04:session-30:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-30:i01:r1",
+          "text": "grande"
+        },
+        {
+          "responseId": "es:lesson-04:session-30:i01:r2",
+          "text": "grandes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-30:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-30:i01:audio",
+          "transcript": "grande"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-04:session-30:i01:r1",
+            "targetText": "grande",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-04:session-30:i01:r2",
+            "targetText": "grandes",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-30:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит единственное grande, без конечного s.",
+              "uk": "Звучить однина grande, без кінцевого s."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-30:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — наш дом большой",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-30:i02:r1",
+          "text": "Nuestra"
+        },
+        {
+          "responseId": "es:lesson-04:session-30:i02:r2",
+          "text": "Nuestro"
+        },
+        {
+          "responseId": "es:lesson-04:session-30:i02:r3",
+          "text": "Nuestras"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — наш дом большой",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — наш дом большой",
+          "uk": "Вставте слово — наш будинок великий"
+        },
+        "gappedTargetPhrase": "___ casa es grande.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-30:i02:r1",
+            "text": "Nuestra"
+          },
+          {
+            "responseId": "es:lesson-04:session-30:i02:r2",
+            "text": "Nuestro"
+          },
+          {
+            "responseId": "es:lesson-04:session-30:i02:r3",
+            "text": "Nuestras"
+          }
+        ],
+        "testedDimension": "Вставьте слово — наш дом большой",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-30:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — наш дом большой",
+            "feedbackByLocale": {
+              "ru": "Casa женского рода: nuestra.",
+              "uk": "Casa жіночого роду: nuestra."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-30:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — наш дом большой",
+            "feedbackByLocale": {
+              "ru": "Дом один: nuestra.",
+              "uk": "Будинок один: nuestra."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-30:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — наш дом большой; начните с Nuestra casa",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-30:i03:r1",
+          "text": "Плитки: grande"
+        },
+        {
+          "responseId": "es:lesson-04:session-30:i03:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-30:i03:r3",
+          "text": "casa"
+        },
+        {
+          "responseId": "es:lesson-04:session-30:i03:r4",
+          "text": "nuestra"
+        },
+        {
+          "responseId": "es:lesson-04:session-30:i03:r5",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — наш дом большой; начните с Nuestra casa",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Nuestra casa es grande.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — наш дом большой; начните с Nuestra casa",
+          "uk": "Зберіть фразу — наш будинок великий; почніть з Nuestra casa"
+        },
+        "orderedTokens": [
+          "Nuestra",
+          "casa",
+          "es",
+          "grande"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-30:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — наш дом большой; начните с Nuestra casa",
+            "feedbackByLocale": {
+              "ru": "дом один.",
+              "uk": "будинок один."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-30:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — наш дом очень большой",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-30:i04:r1",
+          "text": "muy"
+        },
+        {
+          "responseId": "es:lesson-04:session-30:i04:r2",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-04:session-30:i04:r3",
+          "text": "nuestra"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — наш дом очень большой",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — наш дом очень большой",
+          "uk": "Вставте слово — наш будинок дуже великий"
+        },
+        "gappedTargetPhrase": "Nuestra casa es ___ grande.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-30:i04:r1",
+            "text": "muy"
+          },
+          {
+            "responseId": "es:lesson-04:session-30:i04:r2",
+            "text": "no"
+          },
+          {
+            "responseId": "es:lesson-04:session-30:i04:r3",
+            "text": "nuestra"
+          }
+        ],
+        "testedDimension": "Вставьте слово — наш дом очень большой",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-30:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — наш дом очень большой",
+            "feedbackByLocale": {
+              "ru": "Нужно усилить размер: muy grande.",
+              "uk": "Потрібно підкреслити розмір: muy grande."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-30:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — наш дом очень большой",
+            "feedbackByLocale": {
+              "ru": "Nuestra уже стоит перед casa; перед grande нужно muy.",
+              "uk": "Nuestra вже стоїть перед casa; перед grande потрібне muy."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-30:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — наш дом очень большой; начните с Nuestra casa",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-30:i05:r1",
+          "text": "Плитки: grande"
+        },
+        {
+          "responseId": "es:lesson-04:session-30:i05:r2",
+          "text": "muy"
+        },
+        {
+          "responseId": "es:lesson-04:session-30:i05:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-30:i05:r4",
+          "text": "casa"
+        },
+        {
+          "responseId": "es:lesson-04:session-30:i05:r5",
+          "text": "nuestra"
+        },
+        {
+          "responseId": "es:lesson-04:session-30:i05:r6",
+          "text": "grandes."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — наш дом очень большой; начните с Nuestra casa",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Nuestra casa es muy grande.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — наш дом очень большой; начните с Nuestra casa",
+          "uk": "Зберіть фразу — наш будинок дуже великий; почніть з Nuestra casa"
+        },
+        "orderedTokens": [
+          "Nuestra",
+          "casa",
+          "es",
+          "muy",
+          "grande"
+        ],
+        "authoredDistractorTokens": [
+          "grandes"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-30:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — наш дом очень большой; начните с Nuestra casa",
+            "feedbackByLocale": {
+              "ru": "дом один.",
+              "uk": "будинок один."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-30:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — наш дом белый; начните с Nuestra casa",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-30:i06:r1",
+          "text": "Плитки: blanca"
+        },
+        {
+          "responseId": "es:lesson-04:session-30:i06:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-30:i06:r3",
+          "text": "casa"
+        },
+        {
+          "responseId": "es:lesson-04:session-30:i06:r4",
+          "text": "nuestra"
+        },
+        {
+          "responseId": "es:lesson-04:session-30:i06:r5",
+          "text": "blanco."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — наш дом белый; начните с Nuestra casa",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Nuestra casa es blanca.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — наш дом белый; начните с Nuestra casa",
+          "uk": "Зберіть фразу — наш будинок білий; почніть з Nuestra casa"
+        },
+        "orderedTokens": [
+          "Nuestra",
+          "casa",
+          "es",
+          "blanca"
+        ],
+        "authoredDistractorTokens": [
+          "blanco"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-30:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — наш дом белый; начните с Nuestra casa",
+            "feedbackByLocale": {
+              "ru": "casa женского рода.",
+              "uk": "casa жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-30:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-30:i07:r1",
+          "text": "Плитки: casa"
+        },
+        {
+          "responseId": "es:lesson-04:session-30:i07:r2",
+          "text": "nuestra"
+        },
+        {
+          "responseId": "es:lesson-04:session-30:i07:r3",
+          "text": "grande"
+        },
+        {
+          "responseId": "es:lesson-04:session-30:i07:r4",
+          "text": "muy"
+        },
+        {
+          "responseId": "es:lesson-04:session-30:i07:r5",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-30:i07:r6",
+          "text": "nuestro."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-30:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-30:i07:audio",
+          "transcript": "Nuestra casa es muy grande."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Nuestra casa es muy grande.",
+        "orderedTokens": [
+          "Nuestra",
+          "casa",
+          "es",
+          "muy",
+          "grande"
+        ],
+        "authoredDistractorTokens": [
+          "nuestro"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-30:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит nuestra.",
+              "uk": "звучить nuestra."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-30:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — наш дом белый",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-30:i08:r1",
+          "text": "blanca"
+        },
+        {
+          "responseId": "es:lesson-04:session-30:i08:r2",
+          "text": "blanco"
+        },
+        {
+          "responseId": "es:lesson-04:session-30:i08:r3",
+          "text": "blancas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — наш дом белый",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — наш дом белый",
+          "uk": "Вставте слово — наш будинок білий"
+        },
+        "gappedTargetPhrase": "Nuestra casa es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-30:i08:r1",
+            "text": "blanca"
+          },
+          {
+            "responseId": "es:lesson-04:session-30:i08:r2",
+            "text": "blanco"
+          },
+          {
+            "responseId": "es:lesson-04:session-30:i08:r3",
+            "text": "blancas"
+          }
+        ],
+        "testedDimension": "Вставьте слово — наш дом белый",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-30:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — наш дом белый",
+            "feedbackByLocale": {
+              "ru": "Casa женского рода.",
+              "uk": "Casa жіночого роду."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-30:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — наш дом белый",
+            "feedbackByLocale": {
+              "ru": "Дом один: blanca.",
+              "uk": "Будинок один: blanca."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-30:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — наш дом большой; начните с Nuestra casa",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-30:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — наш дом большой; начните с Nuestra casa",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-30:i09:audio",
+          "transcript": "Nuestra casa es grande."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Nuestra casa es grande.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-30:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — наш дом очень большой; начните с Nuestra casa",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-30:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — наш дом очень большой; начните с Nuestra casa",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-30:i10:audio",
+          "transcript": "Nuestra casa es muy grande."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Nuestra casa es muy grande.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-30:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — наш дом белый; начните с Nuestra casa",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-30:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — наш дом белый; начните с Nuestra casa",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-30:i11:audio",
+          "transcript": "Nuestra casa es blanca."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Nuestra casa es blanca.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-30:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — это наш дом; начните с Es",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-30:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — это наш дом; начните с Es",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-30:i12:audio",
+          "transcript": "Es nuestra casa."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es nuestra casa.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "ea50c106fd9088cec86c9fca43970b535ff68a9d332b296f59fb8dab3c560a3d"
+}

@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-04:session-31:i01",
+    "correctText": "carro",
+    "correctResponseId": "es:lesson-04:session-31:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-31:i02",
+    "correctText": "nuestro",
+    "correctResponseId": "es:lesson-04:session-31:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-31:i03",
+    "correctText": "No es nuestro carro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-31:i04",
+    "correctText": "nuestra",
+    "correctResponseId": "es:lesson-04:session-31:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-31:i05",
+    "correctText": "No es nuestra bolsa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-31:i06",
+    "correctText": "Nuestro carro es azul.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-31:i07",
+    "correctText": "No es nuestro carro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-31:i08",
+    "correctText": "es",
+    "correctResponseId": "es:lesson-04:session-31:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-31:i09",
+    "correctText": "No es nuestro carro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-31:i10",
+    "correctText": "No es nuestra bolsa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-31:i11",
+    "correctText": "Nuestro carro es azul.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-31:i12",
+    "correctText": "Es nuestro carro.",
+    "correctResponseId": null
+  }
+]

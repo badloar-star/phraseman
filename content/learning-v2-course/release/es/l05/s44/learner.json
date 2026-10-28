@@ -1,0 +1,648 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-05:session-44",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-05:session-44:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-44:i01:r1",
+          "text": "frío"
+        },
+        {
+          "responseId": "es:lesson-05:session-44:i01:r2",
+          "text": "fría"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-44:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-44:i01:audio",
+          "transcript": "frío"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-05:session-44:i01:r1",
+            "targetText": "frío",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-05:session-44:i01:r2",
+            "targetText": "fría",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-44:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи окончание o: frío.",
+              "uk": "У записі закінчення o: frío."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-44:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — мне холодно",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-44:i02:r1",
+          "text": "frío"
+        },
+        {
+          "responseId": "es:lesson-05:session-44:i02:r2",
+          "text": "fría"
+        },
+        {
+          "responseId": "es:lesson-05:session-44:i02:r3",
+          "text": "hambre"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — мне холодно",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — мне холодно",
+          "uk": "Вставте слово — мені холодно"
+        },
+        "gappedTargetPhrase": "Tengo ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-44:i02:r1",
+            "text": "frío"
+          },
+          {
+            "responseId": "es:lesson-05:session-44:i02:r2",
+            "text": "fría"
+          },
+          {
+            "responseId": "es:lesson-05:session-44:i02:r3",
+            "text": "hambre"
+          }
+        ],
+        "testedDimension": "Вставьте слово — мне холодно",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-44:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — мне холодно",
+            "feedbackByLocale": {
+              "ru": "В tener frío слово не меняется по полу говорящего.",
+              "uk": "У tener frío слово не змінюється за статтю мовця."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-44:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — мне холодно",
+            "feedbackByLocale": {
+              "ru": "Это голод, а нужно ощущение холода: frío.",
+              "uk": "Це голод, а потрібне відчуття холоду: frío."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-44:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — мне холодно; начните с Tengo",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-44:i03:r1",
+          "text": "Плитки: frío"
+        },
+        {
+          "responseId": "es:lesson-05:session-44:i03:r2",
+          "text": "Tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-44:i03:r3",
+          "text": "fría."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — мне холодно; начните с Tengo",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Tengo frío.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — мне холодно; начните с Tengo",
+          "uk": "Зберіть фразу — мені холодно; почніть з Tengo"
+        },
+        "orderedTokens": [
+          "Tengo",
+          "frío"
+        ],
+        "authoredDistractorTokens": [
+          "fría"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-44:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — мне холодно; начните с Tengo",
+            "feedbackByLocale": {
+              "ru": "используем tener frío.",
+              "uk": "використовуємо tener frío."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-44:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — Ане холодно",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-44:i04:r1",
+          "text": "tiene"
+        },
+        {
+          "responseId": "es:lesson-05:session-44:i04:r2",
+          "text": "tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-44:i04:r3",
+          "text": "tienen"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — Ане холодно",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — Ане холодно",
+          "uk": "Вставте слово — Ані холодно"
+        },
+        "gappedTargetPhrase": "Ana ___ frío.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-44:i04:r1",
+            "text": "tiene"
+          },
+          {
+            "responseId": "es:lesson-05:session-44:i04:r2",
+            "text": "tengo"
+          },
+          {
+            "responseId": "es:lesson-05:session-44:i04:r3",
+            "text": "tienen"
+          }
+        ],
+        "testedDimension": "Вставьте слово — Ане холодно",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-44:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — Ане холодно",
+            "feedbackByLocale": {
+              "ru": "Об Ане нужна форма tiene.",
+              "uk": "Про Ану потрібна форма tiene."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-44:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — Ане холодно",
+            "feedbackByLocale": {
+              "ru": "Ана одна: tiene.",
+              "uk": "Ана одна: tiene."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-44:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — Ане холодно; начните с Ana",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-44:i05:r1",
+          "text": "Плитки: tiene"
+        },
+        {
+          "responseId": "es:lesson-05:session-44:i05:r2",
+          "text": "frío"
+        },
+        {
+          "responseId": "es:lesson-05:session-44:i05:r3",
+          "text": "Ana"
+        },
+        {
+          "responseId": "es:lesson-05:session-44:i05:r4",
+          "text": "fría."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — Ане холодно; начните с Ana",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Ana tiene frío.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — Ане холодно; начните с Ana",
+          "uk": "Зберіть фразу — Ані холодно; почніть з Ana"
+        },
+        "orderedTokens": [
+          "Ana",
+          "tiene",
+          "frío"
+        ],
+        "authoredDistractorTokens": [
+          "fría"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-44:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — Ане холодно; начните с Ana",
+            "feedbackByLocale": {
+              "ru": "слово frío здесь не согласуется с полом человека.",
+              "uk": "слово frío тут не узгоджується зі статтю людини."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-44:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — мне не холодно; начните с No",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-44:i06:r1",
+          "text": "Плитки: frío"
+        },
+        {
+          "responseId": "es:lesson-05:session-44:i06:r2",
+          "text": "No"
+        },
+        {
+          "responseId": "es:lesson-05:session-44:i06:r3",
+          "text": "tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-44:i06:r4",
+          "text": "fría."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — мне не холодно; начните с No",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No tengo frío.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — мне не холодно; начните с No",
+          "uk": "Зберіть фразу — мені не холодно; почніть з No"
+        },
+        "orderedTokens": [
+          "No",
+          "tengo",
+          "frío"
+        ],
+        "authoredDistractorTokens": [
+          "fría"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-44:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — мне не холодно; начните с No",
+            "feedbackByLocale": {
+              "ru": "используем tener frío.",
+              "uk": "використовуємо tener frío."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-44:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-44:i07:r1",
+          "text": "Плитки: Tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-44:i07:r2",
+          "text": "frío"
+        },
+        {
+          "responseId": "es:lesson-05:session-44:i07:r3",
+          "text": "fría."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-44:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-44:i07:audio",
+          "transcript": "Tengo frío."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Tengo frío.",
+        "orderedTokens": [
+          "Tengo",
+          "frío"
+        ],
+        "authoredDistractorTokens": [
+          "fría"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-44:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит frío.",
+              "uk": "звучить frío."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-44:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — мне не холодно",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-44:i08:r1",
+          "text": "No"
+        },
+        {
+          "responseId": "es:lesson-05:session-44:i08:r2",
+          "text": "Un"
+        },
+        {
+          "responseId": "es:lesson-05:session-44:i08:r3",
+          "text": "Una"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — мне не холодно",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — мне не холодно",
+          "uk": "Вставте слово — мені не холодно"
+        },
+        "gappedTargetPhrase": "___ tengo frío.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-44:i08:r1",
+            "text": "No"
+          },
+          {
+            "responseId": "es:lesson-05:session-44:i08:r2",
+            "text": "Un"
+          },
+          {
+            "responseId": "es:lesson-05:session-44:i08:r3",
+            "text": "Una"
+          }
+        ],
+        "testedDimension": "Вставьте слово — мне не холодно",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-44:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — мне не холодно",
+            "feedbackByLocale": {
+              "ru": "Для отрицания нужен no.",
+              "uk": "Для заперечення потрібне no."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-44:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — мне не холодно",
+            "feedbackByLocale": {
+              "ru": "Артикль не отрицает состояние: нужно no.",
+              "uk": "Артикль не заперечує стану: потрібно no."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-44:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — мне холодно; начните с Tengo",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-44:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — мне холодно; начните с Tengo",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-44:i09:audio",
+          "transcript": "Tengo frío."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tengo frío.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-44:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — Ане холодно; начните с Ana tiene",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-44:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — Ане холодно; начните с Ana tiene",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-44:i10:audio",
+          "transcript": "Ana tiene frío."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Ana tiene frío.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-44:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — мне не холодно; начните с No tengo",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-44:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — мне не холодно; начните с No tengo",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-44:i11:audio",
+          "transcript": "No tengo frío."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No tengo frío.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-44:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — нам холодно; начните с Tenemos",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-44:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — нам холодно; начните с Tenemos",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-44:i12:audio",
+          "transcript": "Tenemos frío."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tenemos frío.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "259075436b490c18c6401c4ff3fb857df66aeeb736edc4cfea494abfbbdc5007"
+}

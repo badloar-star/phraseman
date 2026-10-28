@@ -1869,4 +1869,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выразить жажду сочетанием tener sed.","uk":"виразити спрагу сполученням tener sed."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 5, sessionOrdinal: 43,
+    sourceFingerprint: "a90ed681e1e65cae25a5ec991da7296004c607b03de6bbe599ec532f47ca26f1",
+    newWordCount: 1,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выразить сонливость сочетанием tener sueño.","uk":"виразити сонливість сполученням tener sueño."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 5, sessionOrdinal: 44,
+    sourceFingerprint: "f913540b1ec67add9825feb70172698c71faf2933cc41e9aa0ee39cc801b9f0f",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выразить ощущение холода сочетанием tener frío.","uk":"виразити відчуття холоду сполученням tener frío."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
+  }),
 ]);

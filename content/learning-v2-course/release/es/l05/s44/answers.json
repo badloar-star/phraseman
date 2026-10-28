@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-05:session-44:i01",
+    "correctText": "frío",
+    "correctResponseId": "es:lesson-05:session-44:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-44:i02",
+    "correctText": "frío",
+    "correctResponseId": "es:lesson-05:session-44:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-44:i03",
+    "correctText": "Tengo frío.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-44:i04",
+    "correctText": "tiene",
+    "correctResponseId": "es:lesson-05:session-44:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-44:i05",
+    "correctText": "Ana tiene frío.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-44:i06",
+    "correctText": "No tengo frío.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-44:i07",
+    "correctText": "Tengo frío.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-44:i08",
+    "correctText": "No",
+    "correctResponseId": "es:lesson-05:session-44:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-44:i09",
+    "correctText": "Tengo frío.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-44:i10",
+    "correctText": "Ana tiene frío.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-44:i11",
+    "correctText": "No tengo frío.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-44:i12",
+    "correctText": "Tenemos frío.",
+    "correctResponseId": null
+  }
+]

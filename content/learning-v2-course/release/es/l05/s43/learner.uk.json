@@ -1,0 +1,691 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-05:session-43",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-05:session-43:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — sueño",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-43:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — sueño",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-43:i01:audio",
+          "transcript": "sueño"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-05:session-43:i01:r1",
+            "targetText": "sueño",
+            "meaningByLocale": {
+              "ru": "сон; в tener sueño — сонливость, желание спать. Сохраняйте букву ñ. 🔊 *sueño*",
+              "uk": "сон; у tener sueño — сонливість, бажання спати. Зберігайте літеру ñ. 🔊 *sueño*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sueño",
+          "definitionByLocale": {
+            "ru": "сон; в tener sueño — сонливость, желание спать. Сохраняйте букву ñ. 🔊 *sueño*",
+            "uk": "сон; у tener sueño — сонливість, бажання спати. Зберігайте літеру ñ. 🔊 *sueño*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-43:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-43:i02:r1",
+          "text": "sueño"
+        },
+        {
+          "responseId": "es:lesson-05:session-43:i02:r2",
+          "text": "sed"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-43:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-43:i02:audio",
+          "transcript": "sueño"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-05:session-43:i02:r1",
+            "targetText": "sueño",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-05:session-43:i02:r2",
+            "targetText": "sed",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-43:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит sueño; sed означает жажду.",
+              "uk": "Звучить sueño; sed означає спрагу."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-43:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — я хочу спати",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-43:i03:r1",
+          "text": "sueño"
+        },
+        {
+          "responseId": "es:lesson-05:session-43:i03:r2",
+          "text": "hambre"
+        },
+        {
+          "responseId": "es:lesson-05:session-43:i03:r3",
+          "text": "sed"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — я хочу спати",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — я хочу спать",
+          "uk": "Вставте слово — я хочу спати"
+        },
+        "gappedTargetPhrase": "Tengo ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-43:i03:r1",
+            "text": "sueño"
+          },
+          {
+            "responseId": "es:lesson-05:session-43:i03:r2",
+            "text": "hambre"
+          },
+          {
+            "responseId": "es:lesson-05:session-43:i03:r3",
+            "text": "sed"
+          }
+        ],
+        "testedDimension": "Вставте слово — я хочу спати",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-43:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — я хочу спати",
+            "feedbackByLocale": {
+              "ru": "Это голод, а нужно сонливость: sueño.",
+              "uk": "Це голод, а потрібно сонливість: sueño."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-43:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — я хочу спати",
+            "feedbackByLocale": {
+              "ru": "Это жажда, а нужно sueño.",
+              "uk": "Це спрага, а потрібно sueño."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-43:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — я хочу спати; почніть з Tengo, використайте sueño",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-43:i04:r1",
+          "text": "Плитки: sueño"
+        },
+        {
+          "responseId": "es:lesson-05:session-43:i04:r2",
+          "text": "Tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-43:i04:r3",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — я хочу спати; почніть з Tengo, використайте sueño",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Tengo sueño.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — я хочу спать; начните с Tengo, используйте sueño",
+          "uk": "Зберіть фразу — я хочу спати; почніть з Tengo, використайте sueño"
+        },
+        "orderedTokens": [
+          "Tengo",
+          "sueño"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-43:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — я хочу спати; почніть з Tengo, використайте sueño",
+            "feedbackByLocale": {
+              "ru": "для сонливости говорим tengo sueño без артикля.",
+              "uk": "для сонливості кажемо tengo sueño без артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-43:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — Ана хоче спати",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-43:i05:r1",
+          "text": "tiene"
+        },
+        {
+          "responseId": "es:lesson-05:session-43:i05:r2",
+          "text": "tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-43:i05:r3",
+          "text": "es"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — Ана хоче спати",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — Ана хочет спать",
+          "uk": "Вставте слово — Ана хоче спати"
+        },
+        "gappedTargetPhrase": "Ana ___ sueño.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-43:i05:r1",
+            "text": "tiene"
+          },
+          {
+            "responseId": "es:lesson-05:session-43:i05:r2",
+            "text": "tengo"
+          },
+          {
+            "responseId": "es:lesson-05:session-43:i05:r3",
+            "text": "es"
+          }
+        ],
+        "testedDimension": "Вставте слово — Ана хоче спати",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-43:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — Ана хоче спати",
+            "feedbackByLocale": {
+              "ru": "Об Ане нужно tiene.",
+              "uk": "Про Ану потрібно tiene."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-43:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — Ана хоче спати",
+            "feedbackByLocale": {
+              "ru": "Используем tiene sueño.",
+              "uk": "Використовуємо tiene sueño."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-43:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — Ана хоче спати; почніть з Ana, використайте sueño",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-43:i06:r1",
+          "text": "Плитки: tiene"
+        },
+        {
+          "responseId": "es:lesson-05:session-43:i06:r2",
+          "text": "Ana"
+        },
+        {
+          "responseId": "es:lesson-05:session-43:i06:r3",
+          "text": "sueño"
+        },
+        {
+          "responseId": "es:lesson-05:session-43:i06:r4",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — Ана хоче спати; почніть з Ana, використайте sueño",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Ana tiene sueño.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — Ана хочет спать; начните с Ana, используйте sueño",
+          "uk": "Зберіть фразу — Ана хоче спати; почніть з Ana, використайте sueño"
+        },
+        "orderedTokens": [
+          "Ana",
+          "tiene",
+          "sueño"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-43:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — Ана хоче спати; почніть з Ana, використайте sueño",
+            "feedbackByLocale": {
+              "ru": "состояние выражаем через tiene sueño.",
+              "uk": "стан виражаємо через tiene sueño."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-43:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — я не хочу спати; почніть з No, використайте sueño",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-43:i07:r1",
+          "text": "Плитки: sueño"
+        },
+        {
+          "responseId": "es:lesson-05:session-43:i07:r2",
+          "text": "No"
+        },
+        {
+          "responseId": "es:lesson-05:session-43:i07:r3",
+          "text": "tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-43:i07:r4",
+          "text": "soy."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — я не хочу спати; почніть з No, використайте sueño",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No tengo sueño.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — я не хочу спать; начните с No, используйте sueño",
+          "uk": "Зберіть фразу — я не хочу спати; почніть з No, використайте sueño"
+        },
+        "orderedTokens": [
+          "No",
+          "tengo",
+          "sueño"
+        ],
+        "authoredDistractorTokens": [
+          "soy"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-43:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — я не хочу спати; почніть з No, використайте sueño",
+            "feedbackByLocale": {
+              "ru": "используем tener sueño.",
+              "uk": "використовуємо tener sueño."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-43:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-43:i08:r1",
+          "text": "Плитки: Tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-43:i08:r2",
+          "text": "sueño"
+        },
+        {
+          "responseId": "es:lesson-05:session-43:i08:r3",
+          "text": "sed."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-43:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-43:i08:audio",
+          "transcript": "Tengo sueño."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Tengo sueño.",
+        "orderedTokens": [
+          "Tengo",
+          "sueño"
+        ],
+        "authoredDistractorTokens": [
+          "sed"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-43:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит sueño.",
+              "uk": "звучить sueño."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-43:i09",
+      "ordinal": 12,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — я не хочу спати",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-43:i09:r1",
+          "text": "No"
+        },
+        {
+          "responseId": "es:lesson-05:session-43:i09:r2",
+          "text": "Un"
+        },
+        {
+          "responseId": "es:lesson-05:session-43:i09:r3",
+          "text": "Una"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — я не хочу спати",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — я не хочу спать",
+          "uk": "Вставте слово — я не хочу спати"
+        },
+        "gappedTargetPhrase": "___ tengo sueño.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-43:i09:r1",
+            "text": "No"
+          },
+          {
+            "responseId": "es:lesson-05:session-43:i09:r2",
+            "text": "Un"
+          },
+          {
+            "responseId": "es:lesson-05:session-43:i09:r3",
+            "text": "Una"
+          }
+        ],
+        "testedDimension": "Вставте слово — я не хочу спати",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-43:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — я не хочу спати",
+            "feedbackByLocale": {
+              "ru": "Для отрицания нужно no.",
+              "uk": "Для заперечення потрібно no."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-43:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — я не хочу спати",
+            "feedbackByLocale": {
+              "ru": "Артикль не отрицает состояние: нужно no.",
+              "uk": "Артикль не заперечує стану: потрібно no."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-43:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — я хочу спати; почніть з Tengo, використайте sueño",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-43:i10:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — я хочу спати; почніть з Tengo, використайте sueño",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-43:i10:audio",
+          "transcript": "Tengo sueño."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tengo sueño.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-43:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — Ана хоче спати; почніть з Ana tiene, використайте sueño",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-43:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — Ана хоче спати; почніть з Ana tiene, використайте sueño",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-43:i11:audio",
+          "transcript": "Ana tiene sueño."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Ana tiene sueño.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-43:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — я не хочу спати; почніть з No tengo, використайте sueño",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-43:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — я не хочу спати; почніть з No tengo, використайте sueño",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-43:i12:audio",
+          "transcript": "No tengo sueño."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No tengo sueño.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-43:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — ми хочемо спати; почніть з Tenemos, використайте sueño",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-43:i13:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — ми хочемо спати; почніть з Tenemos, використайте sueño",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-43:i13:audio",
+          "transcript": "Tenemos sueño."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tenemos sueño.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 13,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "94e14e292145202cc7b8a29da9a4233a34bfabe5408e168a0ab09caba7f52c94"
+}

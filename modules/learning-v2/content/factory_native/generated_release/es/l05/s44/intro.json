@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-05:session-44",
+  "learningOutcomeByLocale": {
+    "ru": "выразить ощущение холода сочетанием tener frío.",
+    "uk": "виразити відчуття холоду сполученням tener frío."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-05:session-44:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Вы замёрзли",
+        "uk": "Ви змерзли"
+      },
+      "bodyByLocale": {
+        "ru": "На прогулке стало прохладно, и вы хотите зайти в помещение. Скажите `Tengo frío` — «Мне холодно». Соберите `Tengo` + `frío`. Знакомое frío здесь означает «холод», а не описывает предмет. В tener frío это существительное: и мужчина, и женщина говорят tengo frío. Перед frío в этой простой фразе нет артикля.",
+        "uk": "На прогулянці стало прохолодно, і ви хочете зайти в приміщення. Скажіть `Tengo frío` — «Мені холодно». Зберіть `Tengo` + `frío`. Знайоме frío тут означає «холод», а не описує предмет. У tener frío це іменник: і чоловік, і жінка кажуть tengo frío. Перед frío у цій простій фразі немає артикля."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-44:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите «Мне холодно» с помощью frío. Начните с Tengo.",
+          "uk": "Скажіть «Мені холодно» за допомогою frío. Почніть з Tengo."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-44:intro1:r1",
+              "text": "Tengo frío."
+            },
+            {
+              "responseId": "es:lesson-05:session-44:intro1:r2",
+              "text": "Tengo fría."
+            },
+            {
+              "responseId": "es:lesson-05:session-44:intro1:r3",
+              "text": "Soy frío."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-44:intro1:r1",
+              "text": "Tengo frío."
+            },
+            {
+              "responseId": "es:lesson-05:session-44:intro1:r2",
+              "text": "Tengo fría."
+            },
+            {
+              "responseId": "es:lesson-05:session-44:intro1:r3",
+              "text": "Soy frío."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Мне холодно» с помощью frío. Начните с Tengo.",
+          "uk": "Скажіть «Мені холодно» за допомогою frío. Почніть з Tengo."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-05:session-44:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ана замёрзла",
+        "uk": "Ана змерзла"
+      },
+      "bodyByLocale": {
+        "ru": "Ана попросила закрыть окно. Объясните другу `Ana tiene frío` — «Ане холодно». Соберите `Ana` + `tiene` + `frío`. С именем другого человека нужна форма tiene. Frío сохраняет o: в этом сочетании называем холод, а не согласуем прилагательное с Аной.",
+        "uk": "Ана попросила зачинити вікно. Поясніть другові `Ana tiene frío` — «Ані холодно». Зберіть `Ana` + `tiene` + `frío`. З ім’ям іншої людини потрібна форма tiene. Frío зберігає o: у цьому сполученні називаємо холод, а не узгоджуємо прикметник з Аною."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-44:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «Ане холодно». Начните с Ana tiene.",
+          "uk": "Скажіть «Ані холодно». Почніть з Ana tiene."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-44:intro2:r1",
+              "text": "Ana tiene frío."
+            },
+            {
+              "responseId": "es:lesson-05:session-44:intro2:r2",
+              "text": "Ana tiene fría."
+            },
+            {
+              "responseId": "es:lesson-05:session-44:intro2:r3",
+              "text": "Ana tengo frío."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-44:intro2:r1",
+              "text": "Ana tiene frío."
+            },
+            {
+              "responseId": "es:lesson-05:session-44:intro2:r2",
+              "text": "Ana tiene fría."
+            },
+            {
+              "responseId": "es:lesson-05:session-44:intro2:r3",
+              "text": "Ana tengo frío."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Ане холодно». Начните с Ana tiene.",
+          "uk": "Скажіть «Ані холодно». Почніть з Ana tiene."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-05:session-44:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Вы уже согрелись",
+        "uk": "Ви вже зігрілися"
+      },
+      "bodyByLocale": {
+        "ru": "Вам предлагают плед, но вы уже согрелись. Скажите `No tengo frío` — «Мне не холодно». Соберите `No` + `tengo` + `frío`. No ставим перед tengo, чтобы отрицать ощущение холода. Само frío не меняется, и артикль перед ним не нужен.",
+        "uk": "Вам пропонують плед, але ви вже зігрілися. Скажіть `No tengo frío` — «Мені не холодно». Зберіть `No` + `tengo` + `frío`. No ставимо перед tengo, щоб заперечити відчуття холоду. Саме frío не змінюється, й артикль перед ним не потрібен."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-44:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите «Мне не холодно». Начните с No tengo.",
+          "uk": "Скажіть «Мені не холодно». Почніть з No tengo."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-44:intro3:r1",
+              "text": "No tengo frío."
+            },
+            {
+              "responseId": "es:lesson-05:session-44:intro3:r2",
+              "text": "Tengo no frío."
+            },
+            {
+              "responseId": "es:lesson-05:session-44:intro3:r3",
+              "text": "No tengo fría."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-44:intro3:r1",
+              "text": "No tengo frío."
+            },
+            {
+              "responseId": "es:lesson-05:session-44:intro3:r2",
+              "text": "Tengo no frío."
+            },
+            {
+              "responseId": "es:lesson-05:session-44:intro3:r3",
+              "text": "No tengo fría."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Мне не холодно». Начните с No tengo.",
+          "uk": "Скажіть «Мені не холодно». Почніть з No tengo."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "5e08f3b5be85c498a48fbb6e261f7c29247bf2a140b0bdc64e1d4f885763648b"
+}

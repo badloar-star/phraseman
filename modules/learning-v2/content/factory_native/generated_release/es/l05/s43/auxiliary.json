@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-05:session-43",
+  "entries": [
+    {
+      "interactionId": "es:lesson-05:session-43:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-43:intro1:r2": {
+          "ru": "Сонливость выражаем через tengo sueño.",
+          "uk": "Сонливість виражаємо через tengo sueño."
+        },
+        "es:lesson-05:session-43:intro1:r3": {
+          "ru": "Здесь нужен смысл «хочу спать», без un; un sueño меняет смысл.",
+          "uk": "Тут потрібен зміст «хочу спати», без un; un sueño змінює зміст."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-43:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-43:intro2:r2": {
+          "ru": "Об Ане нужно tiene.",
+          "uk": "Про Ану потрібно tiene."
+        },
+        "es:lesson-05:session-43:intro2:r3": {
+          "ru": "Используем tiene sueño.",
+          "uk": "Використовуємо tiene sueño."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-43:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-43:intro3:r2": {
+          "ru": "No должно стоять перед tengo.",
+          "uk": "No має стояти перед tengo."
+        },
+        "es:lesson-05:session-43:intro3:r3": {
+          "ru": "Используем no tengo sueño.",
+          "uk": "Використовуємо no tengo sueño."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a9b533e238b3bf4b0cef5a6efcd452edbbc71dc457b73b7d02c2eb840aebc907"
+}

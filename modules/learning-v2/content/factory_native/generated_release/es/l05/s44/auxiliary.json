@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-05:session-44",
+  "entries": [
+    {
+      "interactionId": "es:lesson-05:session-44:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-44:intro1:r2": {
+          "ru": "Ощущение холода называем словом frío; оно не меняется по полу говорящего.",
+          "uk": "Відчуття холоду називаємо словом frío; воно не змінюється за статтю мовця."
+        },
+        "es:lesson-05:session-44:intro1:r3": {
+          "ru": "Для ощущения «мне холодно» здесь нужно tengo frío.",
+          "uk": "Для відчуття «мені холодно» тут потрібно tengo frío."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-44:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-44:intro2:r2": {
+          "ru": "В tener frío слово frío не согласуется с Аной.",
+          "uk": "У tener frío слово frío не узгоджується з Аною."
+        },
+        "es:lesson-05:session-44:intro2:r3": {
+          "ru": "Об Ане говорим tiene.",
+          "uk": "Про Ану кажемо tiene."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-44:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-44:intro3:r2": {
+          "ru": "No ставим перед tengo.",
+          "uk": "No ставимо перед tengo."
+        },
+        "es:lesson-05:session-44:intro3:r3": {
+          "ru": "Ощущение холода называем frío.",
+          "uk": "Відчуття холоду називаємо frío."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c5829131c42285a37d37a9274c524c3da291e22a8eb2bb36f6feee946ffa4f5f"
+}

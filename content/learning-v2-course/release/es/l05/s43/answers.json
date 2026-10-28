@@ -1,0 +1,67 @@
+[
+  {
+    "interactionId": "es:lesson-05:session-43:i01",
+    "correctText": "sueño",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-43:i02",
+    "correctText": "sueño",
+    "correctResponseId": "es:lesson-05:session-43:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-43:i03",
+    "correctText": "sueño",
+    "correctResponseId": "es:lesson-05:session-43:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-43:i04",
+    "correctText": "Tengo sueño.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-43:i05",
+    "correctText": "tiene",
+    "correctResponseId": "es:lesson-05:session-43:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-43:i06",
+    "correctText": "Ana tiene sueño.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-43:i07",
+    "correctText": "No tengo sueño.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-43:i08",
+    "correctText": "Tengo sueño.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-43:i09",
+    "correctText": "No",
+    "correctResponseId": "es:lesson-05:session-43:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-43:i10",
+    "correctText": "Tengo sueño.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-43:i11",
+    "correctText": "Ana tiene sueño.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-43:i12",
+    "correctText": "No tengo sueño.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-43:i13",
+    "correctText": "Tenemos sueño.",
+    "correctResponseId": null
+  }
+]

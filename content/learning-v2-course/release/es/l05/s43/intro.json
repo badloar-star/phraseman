@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-05:session-43",
+  "learningOutcomeByLocale": {
+    "ru": "выразить сонливость сочетанием tener sueño.",
+    "uk": "виразити сонливість сполученням tener sueño."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-05:session-43:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Пора отдыхать",
+        "uk": "Час відпочивати"
+      },
+      "bodyByLocale": {
+        "ru": "Вечером вам трудно держать глаза открытыми. Скажите `Tengo sueño` — «Я хочу спать». Соберите `Tengo` + `sueño`. В сочетании tener sueño слово sueño обозначает сонливость. Это не рассказ об увиденном сне: вы сообщаете, что вас клонит в сон. В этой простой фразе артикль не нужен.",
+        "uk": "Увечері вам важко тримати очі відкритими. Скажіть `Tengo sueño` — «Я хочу спати». Зберіть `Tengo` + `sueño`. У сполученні tener sueño слово sueño позначає сонливість. Це не розповідь про побачений сон: ви повідомляєте, що вас хилить у сон. У цій простій фразі артикль не потрібен."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-43:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите «Я хочу спать» с помощью sueño. Начните с Tengo.",
+          "uk": "Скажіть «Я хочу спати» за допомогою sueño. Почніть з Tengo."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-43:intro1:r1",
+              "text": "Tengo sueño."
+            },
+            {
+              "responseId": "es:lesson-05:session-43:intro1:r2",
+              "text": "Soy sueño."
+            },
+            {
+              "responseId": "es:lesson-05:session-43:intro1:r3",
+              "text": "Tengo un sueño."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-43:intro1:r1",
+              "text": "Tengo sueño."
+            },
+            {
+              "responseId": "es:lesson-05:session-43:intro1:r2",
+              "text": "Soy sueño."
+            },
+            {
+              "responseId": "es:lesson-05:session-43:intro1:r3",
+              "text": "Tengo un sueño."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Я хочу спать» с помощью sueño. Начните с Tengo.",
+          "uk": "Скажіть «Я хочу спати» за допомогою sueño. Почніть з Tengo."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-05:session-43:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ана засыпает",
+        "uk": "Ана засинає"
+      },
+      "bodyByLocale": {
+        "ru": "Ана сказала, что хочет спать. Передайте другу `Ana tiene sueño` — «Ана хочет спать». Соберите `Ana` + `tiene` + `sueño`. С именем одного другого человека нужна форма tiene. Sueño не меняется из-за того, что речь об Ане: это существительное, а не согласуемое прилагательное.",
+        "uk": "Ана сказала, що хоче спати. Передайте другові `Ana tiene sueño` — «Ана хоче спати». Зберіть `Ana` + `tiene` + `sueño`. З ім’ям однієї іншої людини потрібна форма tiene. Sueño не змінюється через те, що йдеться про Ану: це іменник, а не узгоджуваний прикметник."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-43:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «Ана хочет спать» с помощью sueño. Начните с Ana tiene.",
+          "uk": "Скажіть «Ана хоче спати» за допомогою sueño. Почніть з Ana tiene."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-43:intro2:r1",
+              "text": "Ana tiene sueño."
+            },
+            {
+              "responseId": "es:lesson-05:session-43:intro2:r2",
+              "text": "Ana tengo sueño."
+            },
+            {
+              "responseId": "es:lesson-05:session-43:intro2:r3",
+              "text": "Ana es sueño."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-43:intro2:r1",
+              "text": "Ana tiene sueño."
+            },
+            {
+              "responseId": "es:lesson-05:session-43:intro2:r2",
+              "text": "Ana tengo sueño."
+            },
+            {
+              "responseId": "es:lesson-05:session-43:intro2:r3",
+              "text": "Ana es sueño."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Ана хочет спать» с помощью sueño. Начните с Ana tiene.",
+          "uk": "Скажіть «Ана хоче спати» за допомогою sueño. Почніть з Ana tiene."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-05:session-43:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Спать пока не хочется",
+        "uk": "Спати поки не хочеться"
+      },
+      "bodyByLocale": {
+        "ru": "Вам предлагают лечь пораньше, но вы ещё бодры. Скажите `No tengo sueño` — «Я не хочу спать». Соберите `No` + `tengo` + `sueño`. No ставим перед tengo, чтобы отрицать сонливость. Перед sueño артикль по-прежнему не нужен.",
+        "uk": "Вам пропонують лягти раніше, але ви ще бадьорі. Скажіть `No tengo sueño` — «Я не хочу спати». Зберіть `No` + `tengo` + `sueño`. No ставимо перед tengo, щоб заперечити сонливість. Перед sueño артикль так само не потрібен."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-43:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите «Я не хочу спать» с помощью sueño. Начните с No tengo.",
+          "uk": "Скажіть «Я не хочу спати» за допомогою sueño. Почніть з No tengo."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-43:intro3:r1",
+              "text": "No tengo sueño."
+            },
+            {
+              "responseId": "es:lesson-05:session-43:intro3:r2",
+              "text": "Tengo no sueño."
+            },
+            {
+              "responseId": "es:lesson-05:session-43:intro3:r3",
+              "text": "No soy sueño."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-43:intro3:r1",
+              "text": "No tengo sueño."
+            },
+            {
+              "responseId": "es:lesson-05:session-43:intro3:r2",
+              "text": "Tengo no sueño."
+            },
+            {
+              "responseId": "es:lesson-05:session-43:intro3:r3",
+              "text": "No soy sueño."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Я не хочу спать» с помощью sueño. Начните с No tengo.",
+          "uk": "Скажіть «Я не хочу спати» за допомогою sueño. Почніть з No tengo."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "4568c39426874888b04f0f70e8667d4564cd15709b48975f34c59c05e1ca2986"
+}

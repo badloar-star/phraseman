@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-06:session-08",
+  "entries": [
+    {
+      "interactionId": "es:lesson-06:session-08:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-08:intro1:r2": {
+          "ru": "Mesa женского рода: una.",
+          "uk": "Mesa жіночого роду: una."
+        },
+        "es:lesson-06:session-08:intro1:r3": {
+          "ru": "По ситуации стол там: allí.",
+          "uk": "За ситуацією стіл там: allí."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-08:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-08:intro2:r2": {
+          "ru": "После dos нужно sillas.",
+          "uk": "Після dos потрібно sillas."
+        },
+        "es:lesson-06:session-08:intro2:r3": {
+          "ru": "Перед dos не нужна una.",
+          "uk": "Перед dos не потрібна una."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-08:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-08:intro3:r2": {
+          "ru": "Нужно указать, что книга у вас: tengo.",
+          "uk": "Потрібно вказати, що книга у вас: tengo."
+        },
+        "es:lesson-06:session-08:intro3:r3": {
+          "ru": "Libro мужского рода: un.",
+          "uk": "Libro чоловічого роду: un."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "2cfda498318cc69fdfc8ed010da723150e192882580623122428ddf714d00545"
+}

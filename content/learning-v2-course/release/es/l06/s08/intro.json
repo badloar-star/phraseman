@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-06:session-08",
+  "learningOutcomeByLocale": {
+    "ru": "соединить hay с предметом, количеством и знакомым указанием места.",
+    "uk": "поєднати hay з предметом, кількістю та знайомим зазначенням місця."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-06:session-08:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Найти стол в стороне",
+        "uk": "Знайти стіл осторонь"
+      },
+      "bodyByLocale": {
+        "ru": "Вы стоите у входа и показываете другу стол в другом конце комнаты. Скажите `Hay una mesa allí` — «Там есть стол». Соберите `Hay` + `una mesa` + `allí`. Hay сообщает о наличии, una подходит к mesa, а allí направляет взгляд подальше. Стол стоит на месте — путешествует только взгляд.",
+        "uk": "Ви стоїте біля входу й показуєте другові стіл в іншому кінці кімнати. Скажіть `Hay una mesa allí` — «Там є стіл». Складіть `Hay` + `una mesa` + `allí`. Hay повідомляє про наявність, una підходить до mesa, а allí спрямовує погляд подалі. Стіл стоїть на місці — подорожує лише погляд."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-08:intro1:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Там есть стол». Начните с Hay, слово «там» поставьте в конце.",
+          "uk": "Повідомте «Там є стіл». Почніть з Hay, слово «там» поставте в кінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-08:intro1:r1",
+              "text": "Hay una mesa allí."
+            },
+            {
+              "responseId": "es:lesson-06:session-08:intro1:r2",
+              "text": "Hay un mesa allí."
+            },
+            {
+              "responseId": "es:lesson-06:session-08:intro1:r3",
+              "text": "Hay una mesa aquí."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-08:intro1:r1",
+              "text": "Hay una mesa allí."
+            },
+            {
+              "responseId": "es:lesson-06:session-08:intro1:r2",
+              "text": "Hay un mesa allí."
+            },
+            {
+              "responseId": "es:lesson-06:session-08:intro1:r3",
+              "text": "Hay una mesa aquí."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Там есть стол». Начните с Hay, слово «там» поставьте в конце.",
+          "uk": "Повідомте «Там є стіл». Почніть з Hay, слово «там» поставте в кінці."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-06:session-08:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Сосчитать стулья",
+        "uk": "Порахувати стільці"
+      },
+      "bodyByLocale": {
+        "ru": "Для двух гостей вы нашли два стула. Скажите `Hay dos sillas` — «Есть два стула». Соберите `Hay` + `dos` + `sillas`. После числа dos нужна форма нескольких предметов — sillas. Артикль перед dos не добавляем.",
+        "uk": "Для двох гостей ви знайшли два стільці. Скажіть `Hay dos sillas` — «Є два стільці». Складіть `Hay` + `dos` + `sillas`. Після числа dos потрібна форма кількох предметів — sillas. Артикль перед dos не додаємо."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-08:intro2:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Есть два стула». Начните с Hay, число поставьте перед предметом.",
+          "uk": "Повідомте «Є два стільці». Почніть з Hay, число поставте перед предметом."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-08:intro2:r1",
+              "text": "Hay dos sillas."
+            },
+            {
+              "responseId": "es:lesson-06:session-08:intro2:r2",
+              "text": "Hay dos silla."
+            },
+            {
+              "responseId": "es:lesson-06:session-08:intro2:r3",
+              "text": "Hay una dos sillas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-08:intro2:r1",
+              "text": "Hay dos sillas."
+            },
+            {
+              "responseId": "es:lesson-06:session-08:intro2:r2",
+              "text": "Hay dos silla."
+            },
+            {
+              "responseId": "es:lesson-06:session-08:intro2:r3",
+              "text": "Hay una dos sillas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Есть два стула». Начните с Hay, число поставьте перед предметом.",
+          "uk": "Повідомте «Є два стільці». Почніть з Hay, число поставте перед предметом."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-06:session-08:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Предложить свою книгу",
+        "uk": "Запропонувати свою книгу"
+      },
+      "bodyByLocale": {
+        "ru": "Друг хочет почитать, а вы принесли книгу с собой. Скажите `Tengo un libro` — «У меня есть книга». Соберите `Tengo` + `un libro`. Здесь важно, что книга у вас, поэтому выбираем tengo. Hay сообщил бы лишь о наличии, без этой связи с вами.",
+        "uk": "Друг хоче почитати, а ви принесли книгу із собою. Скажіть `Tengo un libro` — «У мене є книга». Складіть `Tengo` + `un libro`. Тут важливо, що книга у вас, тому вибираємо tengo. Hay повідомило б лише про наявність, без цього зв’язку з вами."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-08:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите «У меня есть книга». Начните с Tengo.",
+          "uk": "Скажіть «У мене є книга». Почніть з Tengo."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-08:intro3:r1",
+              "text": "Tengo un libro."
+            },
+            {
+              "responseId": "es:lesson-06:session-08:intro3:r2",
+              "text": "Hay un libro."
+            },
+            {
+              "responseId": "es:lesson-06:session-08:intro3:r3",
+              "text": "Tengo una libro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-08:intro3:r1",
+              "text": "Tengo un libro."
+            },
+            {
+              "responseId": "es:lesson-06:session-08:intro3:r2",
+              "text": "Hay un libro."
+            },
+            {
+              "responseId": "es:lesson-06:session-08:intro3:r3",
+              "text": "Tengo una libro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «У меня есть книга». Начните с Tengo.",
+          "uk": "Скажіть «У мене є книга». Почніть з Tengo."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "77f2a35a83dfbc613838216cc31cce291739d6e04ced32a7912c4aefea5ab58e"
+}

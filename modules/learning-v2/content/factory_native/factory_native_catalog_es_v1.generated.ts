@@ -2009,4 +2009,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"после hay назвать точное количество предметов.","uk":"після hay назвати точну кількість предметів."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 6","uk":"Іспанська · Урок 6"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 6, sessionOrdinal: 7,
+    sourceFingerprint: "3a183b1f319980b05da83283774aedcd87f6a90a83d073586312ebd1e0ca834b",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбирать hay для наличия и tengo для того, что есть у вас.","uk":"вибирати hay для наявності й tengo для того, що є у вас."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 6","uk":"Іспанська · Урок 6"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 6, sessionOrdinal: 8,
+    sourceFingerprint: "9f6b71ac8b3472ea443c46f1b68ec1c9a4c7ec526c84708fda25810abc686535",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"соединить hay с предметом, количеством и знакомым указанием места.","uk":"поєднати hay з предметом, кількістю та знайомим зазначенням місця."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 6","uk":"Іспанська · Урок 6"}),
+  }),
 ]);

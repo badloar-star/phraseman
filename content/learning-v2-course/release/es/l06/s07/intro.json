@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-06:session-07",
+  "learningOutcomeByLocale": {
+    "ru": "выбирать hay для наличия и tengo для того, что есть у вас.",
+    "uk": "вибирати hay для наявності й tengo для того, що є у вас."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-06:session-07:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Заметить книгу в общей комнате",
+        "uk": "Помітити книгу в спільній кімнаті"
+      },
+      "bodyByLocale": {
+        "ru": "В общей комнате вы увидели книгу и хотите сообщить лишь о её наличии: `Hay un libro` — «Есть книга». Соберите `Hay` + `un libro`. Эта фраза не говорит, что книга ваша или что вы держите её при себе. Найти книгу — ещё не записать её в свою библиотеку.",
+        "uk": "У спільній кімнаті ви побачили книгу й хочете повідомити лише про її наявність: `Hay un libro` — «Є книга». Складіть `Hay` + `un libro`. Ця фраза не говорить, що книга ваша або що ви тримаєте її при собі. Знайти книгу — ще не записати її до своєї бібліотеки."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-07:intro1:q",
+        "promptByLocale": {
+          "ru": "Сообщите только о наличии: «Есть книга». Начните с Hay.",
+          "uk": "Повідомте лише про наявність: «Є книга». Почніть з Hay."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-07:intro1:r1",
+              "text": "Hay un libro."
+            },
+            {
+              "responseId": "es:lesson-06:session-07:intro1:r2",
+              "text": "Tengo un libro."
+            },
+            {
+              "responseId": "es:lesson-06:session-07:intro1:r3",
+              "text": "Tienes un libro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-07:intro1:r1",
+              "text": "Hay un libro."
+            },
+            {
+              "responseId": "es:lesson-06:session-07:intro1:r2",
+              "text": "Tengo un libro."
+            },
+            {
+              "responseId": "es:lesson-06:session-07:intro1:r3",
+              "text": "Tienes un libro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите только о наличии: «Есть книга». Начните с Hay.",
+          "uk": "Повідомте лише про наявність: «Є книга». Почніть з Hay."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-06:session-07:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Предложить свою книгу",
+        "uk": "Запропонувати свою книгу"
+      },
+      "bodyByLocale": {
+        "ru": "Теперь другая ситуация: вы принесли книгу с собой и хотите предложить её другу. Скажите `Tengo un libro` — «У меня есть книга». Соберите `Tengo` + `un libro`. Tengo указывает именно на вас: книга есть у вас. Дополнительное yo в этой короткой фразе не требуется.",
+        "uk": "Тепер інша ситуація: ви принесли книгу із собою й хочете запропонувати її другові. Скажіть `Tengo un libro` — «У мене є книга». Складіть `Tengo` + `un libro`. Tengo вказує саме на вас: книга є у вас. Додаткове yo в цій короткій фразі не потрібне."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-07:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите о себе: «У меня есть книга». Начните с Tengo.",
+          "uk": "Скажіть про себе: «У мене є книга». Почніть з Tengo."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-07:intro2:r1",
+              "text": "Tengo un libro."
+            },
+            {
+              "responseId": "es:lesson-06:session-07:intro2:r2",
+              "text": "Hay un libro."
+            },
+            {
+              "responseId": "es:lesson-06:session-07:intro2:r3",
+              "text": "Tienes un libro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-07:intro2:r1",
+              "text": "Tengo un libro."
+            },
+            {
+              "responseId": "es:lesson-06:session-07:intro2:r2",
+              "text": "Hay un libro."
+            },
+            {
+              "responseId": "es:lesson-06:session-07:intro2:r3",
+              "text": "Tienes un libro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите о себе: «У меня есть книга». Начните с Tengo.",
+          "uk": "Скажіть про себе: «У мене є книга». Почніть з Tengo."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-06:session-07:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Сообщить о своей сумке",
+        "uk": "Повідомити про свою сумку"
+      },
+      "bodyByLocale": {
+        "ru": "Друг предлагает сумку для вещей, а у вас уже есть своя. Скажите `Tengo una bolsa` — «У меня есть сумка». Соберите `Tengo` + `una bolsa`. Tengo сохраняем, потому что говорим о себе. Со словом bolsa нужен женский вариант una.",
+        "uk": "Друг пропонує сумку для речей, а у вас уже є своя. Скажіть `Tengo una bolsa` — «У мене є сумка». Складіть `Tengo` + `una bolsa`. Tengo зберігаємо, бо говоримо про себе. Зі словом bolsa потрібен жіночий варіант una."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-07:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите о себе «У меня есть сумка» со словом bolsa. Начните с Tengo.",
+          "uk": "Скажіть про себе «У мене є сумка» зі словом bolsa. Почніть з Tengo."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-07:intro3:r1",
+              "text": "Tengo una bolsa."
+            },
+            {
+              "responseId": "es:lesson-06:session-07:intro3:r2",
+              "text": "Hay una bolsa."
+            },
+            {
+              "responseId": "es:lesson-06:session-07:intro3:r3",
+              "text": "Tengo un bolsa."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-07:intro3:r1",
+              "text": "Tengo una bolsa."
+            },
+            {
+              "responseId": "es:lesson-06:session-07:intro3:r2",
+              "text": "Hay una bolsa."
+            },
+            {
+              "responseId": "es:lesson-06:session-07:intro3:r3",
+              "text": "Tengo un bolsa."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите о себе «У меня есть сумка» со словом bolsa. Начните с Tengo.",
+          "uk": "Скажіть про себе «У мене є сумка» зі словом bolsa. Почніть з Tengo."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "cf36975b9a3cb68e3e10c4bc83d78ba1b4b8c7b49755640f41ede9ce0d031aa8"
+}

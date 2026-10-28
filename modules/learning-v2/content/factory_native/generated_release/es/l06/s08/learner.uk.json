@@ -1,0 +1,1022 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-06:session-08",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-06:session-08:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте та виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-08:i01:r1",
+          "text": "aquí"
+        },
+        {
+          "responseId": "es:lesson-06:session-08:i01:r2",
+          "text": "allí"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-08:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте та виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-08:i01:audio",
+          "transcript": "aquí"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-06:session-08:i01:r1",
+            "targetText": "aquí",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-06:session-08:i01:r2",
+            "targetText": "allí",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-08:i01:r2",
+            "correct": false,
+            "testedDimension": "Послухайте та виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит aquí — здесь.",
+              "uk": "Звучить aquí — тут."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-08:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте та виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-08:i02:r1",
+          "text": "silla"
+        },
+        {
+          "responseId": "es:lesson-06:session-08:i02:r2",
+          "text": "mesa"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-08:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте та виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-08:i02:audio",
+          "transcript": "silla"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-06:session-08:i02:r1",
+            "targetText": "silla",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-06:session-08:i02:r2",
+            "targetText": "mesa",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-08:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте та виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит silla — стул.",
+              "uk": "Звучить silla — стілець."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-08:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — є стіл",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-08:i03:r1",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-06:session-08:i03:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-06:session-08:i03:r3",
+          "text": "unos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — є стіл",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — есть стол",
+          "uk": "Вставте слово — є стіл"
+        },
+        "gappedTargetPhrase": "Hay ___ mesa.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-08:i03:r1",
+            "text": "una"
+          },
+          {
+            "responseId": "es:lesson-06:session-08:i03:r2",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-06:session-08:i03:r3",
+            "text": "unos"
+          }
+        ],
+        "testedDimension": "Вставте слово — є стіл",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-08:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — є стіл",
+            "feedbackByLocale": {
+              "ru": "Mesa женского рода: una.",
+              "uk": "Mesa жіночого роду: una."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-08:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — є стіл",
+            "feedbackByLocale": {
+              "ru": "Одна mesa: una.",
+              "uk": "Одна mesa: una."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-08:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — там є стіл; почніть з Hay, місце поставте в кінці",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-08:i04:r1",
+          "text": "Плитки: allí"
+        },
+        {
+          "responseId": "es:lesson-06:session-08:i04:r2",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-08:i04:r3",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-06:session-08:i04:r4",
+          "text": "mesa"
+        },
+        {
+          "responseId": "es:lesson-06:session-08:i04:r5",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — там є стіл; почніть з Hay, місце поставте в кінці",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Hay una mesa allí.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — там есть стол; начните с Hay, место поставьте в конце",
+          "uk": "Зберіть фразу — там є стіл; почніть з Hay, місце поставте в кінці"
+        },
+        "orderedTokens": [
+          "Hay",
+          "una",
+          "mesa",
+          "allí"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-08:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — там є стіл; почніть з Hay, місце поставте в кінці",
+            "feedbackByLocale": {
+              "ru": "с mesa нужна una.",
+              "uk": "з mesa потрібна una."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-08:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — тут є книги",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-08:i05:r1",
+          "text": "aquí"
+        },
+        {
+          "responseId": "es:lesson-06:session-08:i05:r2",
+          "text": "allí"
+        },
+        {
+          "responseId": "es:lesson-06:session-08:i05:r3",
+          "text": "tiempo"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — тут є книги",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — здесь есть книги",
+          "uk": "Вставте слово — тут є книги"
+        },
+        "gappedTargetPhrase": "Hay libros ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-08:i05:r1",
+            "text": "aquí"
+          },
+          {
+            "responseId": "es:lesson-06:session-08:i05:r2",
+            "text": "allí"
+          },
+          {
+            "responseId": "es:lesson-06:session-08:i05:r3",
+            "text": "tiempo"
+          }
+        ],
+        "testedDimension": "Вставте слово — тут є книги",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-08:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — тут є книги",
+            "feedbackByLocale": {
+              "ru": "«Здесь» — aquí.",
+              "uk": "«Тут» — aquí."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-08:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — тут є книги",
+            "feedbackByLocale": {
+              "ru": "Это время; для места нужно aquí.",
+              "uk": "Це час; для місця потрібно aquí."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-08:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — тут є книги; без артикля, почніть з Hay, місце поставте в кінці",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-08:i06:r1",
+          "text": "Плитки: aquí"
+        },
+        {
+          "responseId": "es:lesson-06:session-08:i06:r2",
+          "text": "libros"
+        },
+        {
+          "responseId": "es:lesson-06:session-08:i06:r3",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-08:i06:r4",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — тут є книги; без артикля, почніть з Hay, місце поставте в кінці",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Hay libros aquí.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — здесь есть книги; без артикля, начните с Hay, место поставьте в конце",
+          "uk": "Зберіть фразу — тут є книги; без артикля, почніть з Hay, місце поставте в кінці"
+        },
+        "orderedTokens": [
+          "Hay",
+          "libros",
+          "aquí"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-08:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — тут є книги; без артикля, почніть з Hay, місце поставте в кінці",
+            "feedbackByLocale": {
+              "ru": "называем несколько книг без артикля.",
+              "uk": "називаємо кілька книг без артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-08:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — є два стільці; почніть з Hay, число поставте перед предметом",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-08:i07:r1",
+          "text": "Плитки: sillas"
+        },
+        {
+          "responseId": "es:lesson-06:session-08:i07:r2",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-08:i07:r3",
+          "text": "dos"
+        },
+        {
+          "responseId": "es:lesson-06:session-08:i07:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — є два стільці; почніть з Hay, число поставте перед предметом",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Hay dos sillas.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — есть два стула; начните с Hay, число поставьте перед предметом",
+          "uk": "Зберіть фразу — є два стільці; почніть з Hay, число поставте перед предметом"
+        },
+        "orderedTokens": [
+          "Hay",
+          "dos",
+          "sillas"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-08:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — є два стільці; почніть з Hay, число поставте перед предметом",
+            "feedbackByLocale": {
+              "ru": "перед dos не нужен артикль.",
+              "uk": "перед dos не потрібен артикль."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-08:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте та зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-08:i08:r1",
+          "text": "Плитки: Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-08:i08:r2",
+          "text": "tres"
+        },
+        {
+          "responseId": "es:lesson-06:session-08:i08:r3",
+          "text": "mesas"
+        },
+        {
+          "responseId": "es:lesson-06:session-08:i08:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-08:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте та зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-08:i08:audio",
+          "transcript": "Hay tres mesas."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Hay tres mesas.",
+        "orderedTokens": [
+          "Hay",
+          "tres",
+          "mesas"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-08:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте та зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "её нет в услышанной фразе.",
+              "uk": "її немає в почутій фразі."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-08:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — є дві книги",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-08:i09:r1",
+          "text": "libros"
+        },
+        {
+          "responseId": "es:lesson-06:session-08:i09:r2",
+          "text": "libro"
+        },
+        {
+          "responseId": "es:lesson-06:session-08:i09:r3",
+          "text": "una"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — є дві книги",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — есть две книги",
+          "uk": "Вставте слово — є дві книги"
+        },
+        "gappedTargetPhrase": "Hay dos ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-08:i09:r1",
+            "text": "libros"
+          },
+          {
+            "responseId": "es:lesson-06:session-08:i09:r2",
+            "text": "libro"
+          },
+          {
+            "responseId": "es:lesson-06:session-08:i09:r3",
+            "text": "una"
+          }
+        ],
+        "testedDimension": "Вставте слово — є дві книги",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-08:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — є дві книги",
+            "feedbackByLocale": {
+              "ru": "После dos нужно libros.",
+              "uk": "Після dos потрібно libros."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-08:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — є дві книги",
+            "feedbackByLocale": {
+              "ru": "Нужно название книг: libros.",
+              "uk": "Потрібна назва книг: libros."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-08:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — є дві книги; почніть з Hay, число поставте перед предметом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-08:i10:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — є дві книги; почніть з Hay, число поставте перед предметом",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-08:i10:audio",
+          "transcript": "Hay dos libros."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay dos libros.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-08:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — у мене є книга",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-08:i11:r1",
+          "text": "Tengo"
+        },
+        {
+          "responseId": "es:lesson-06:session-08:i11:r2",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-08:i11:r3",
+          "text": "Tienes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — у мене є книга",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — у меня есть книга",
+          "uk": "Вставте слово — у мене є книга"
+        },
+        "gappedTargetPhrase": "___ un libro.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-08:i11:r1",
+            "text": "Tengo"
+          },
+          {
+            "responseId": "es:lesson-06:session-08:i11:r2",
+            "text": "Hay"
+          },
+          {
+            "responseId": "es:lesson-06:session-08:i11:r3",
+            "text": "Tienes"
+          }
+        ],
+        "testedDimension": "Вставте слово — у мене є книга",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-08:i11:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — у мене є книга",
+            "feedbackByLocale": {
+              "ru": "Нужно указать на себя: tengo.",
+              "uk": "Потрібно вказати на себе: tengo."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-08:i11:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — у мене є книга",
+            "feedbackByLocale": {
+              "ru": "Tienes — о собеседнике; о себе tengo.",
+              "uk": "Tienes — про співрозмовника; про себе tengo."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-08:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — у мене є книга; почніть з Tengo",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-08:i12:r1",
+          "text": "Плитки: libro"
+        },
+        {
+          "responseId": "es:lesson-06:session-08:i12:r2",
+          "text": "Tengo"
+        },
+        {
+          "responseId": "es:lesson-06:session-08:i12:r3",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-06:session-08:i12:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — у мене є книга; почніть з Tengo",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Tengo un libro.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — у меня есть книга; начните с Tengo",
+          "uk": "Зберіть фразу — у мене є книга; почніть з Tengo"
+        },
+        "orderedTokens": [
+          "Tengo",
+          "un",
+          "libro"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-08:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — у мене є книга; почніть з Tengo",
+            "feedbackByLocale": {
+              "ru": "с libro нужен un.",
+              "uk": "з libro потрібен un."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-08:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — є книга; повідомте лише про наявність, почніть з Hay",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-08:i13:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — є книга; повідомте лише про наявність, почніть з Hay",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-08:i13:audio",
+          "transcript": "Hay un libro."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay un libro.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-08:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — там є ліжко",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-08:i14:r1",
+          "text": "allí"
+        },
+        {
+          "responseId": "es:lesson-06:session-08:i14:r2",
+          "text": "aquí"
+        },
+        {
+          "responseId": "es:lesson-06:session-08:i14:r3",
+          "text": "años"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — там є ліжко",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — там есть кровать",
+          "uk": "Вставте слово — там є ліжко"
+        },
+        "gappedTargetPhrase": "Hay una cama ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-08:i14:r1",
+            "text": "allí"
+          },
+          {
+            "responseId": "es:lesson-06:session-08:i14:r2",
+            "text": "aquí"
+          },
+          {
+            "responseId": "es:lesson-06:session-08:i14:r3",
+            "text": "años"
+          }
+        ],
+        "testedDimension": "Вставте слово — там є ліжко",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-08:i14:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — там є ліжко",
+            "feedbackByLocale": {
+              "ru": "«Там» — allí.",
+              "uk": "«Там» — allí."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-08:i14:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — там є ліжко",
+            "feedbackByLocale": {
+              "ru": "Это годы; нужно allí.",
+              "uk": "Це роки; потрібно allí."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-08:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте та зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-08:i15:r1",
+          "text": "Плитки: Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-08:i15:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-06:session-08:i15:r3",
+          "text": "silla"
+        },
+        {
+          "responseId": "es:lesson-06:session-08:i15:r4",
+          "text": "aquí"
+        },
+        {
+          "responseId": "es:lesson-06:session-08:i15:r5",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-08:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте та зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-08:i15:audio",
+          "transcript": "Hay una silla aquí."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Hay una silla aquí.",
+        "orderedTokens": [
+          "Hay",
+          "una",
+          "silla",
+          "aquí"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-08:i15:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте та зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит una.",
+              "uk": "звучить una."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-08:i16",
+      "ordinal": 19,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — там є стільці; без артикля, почніть з Hay, місце поставте в кінці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-08:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — там є стільці; без артикля, почніть з Hay, місце поставте в кінці",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-08:i16:audio",
+          "transcript": "Hay sillas allí."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay sillas allí.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-08:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — тут є столи; без артикля, почніть з Hay, місце поставте в кінці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-08:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — тут є столи; без артикля, почніть з Hay, місце поставте в кінці",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-08:i17:audio",
+          "transcript": "Hay mesas aquí."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay mesas aquí.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-08:i18",
+      "ordinal": 21,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — у мене є сумка; використайте bolsa, почніть з Tengo",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-08:i18:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — у мене є сумка; використайте bolsa, почніть з Tengo",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-08:i18:audio",
+          "transcript": "Tengo una bolsa."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tengo una bolsa.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 18,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "675031b68f8fca1a912cdc3dcc5c7f27fa5b8b3ca7334be6fad5c0615513b777"
+}

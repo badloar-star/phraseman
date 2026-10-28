@@ -1,0 +1,92 @@
+[
+  {
+    "interactionId": "es:lesson-06:session-08:i01",
+    "correctText": "aquí",
+    "correctResponseId": "es:lesson-06:session-08:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-08:i02",
+    "correctText": "silla",
+    "correctResponseId": "es:lesson-06:session-08:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-08:i03",
+    "correctText": "una",
+    "correctResponseId": "es:lesson-06:session-08:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-08:i04",
+    "correctText": "Hay una mesa allí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-08:i05",
+    "correctText": "aquí",
+    "correctResponseId": "es:lesson-06:session-08:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-08:i06",
+    "correctText": "Hay libros aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-08:i07",
+    "correctText": "Hay dos sillas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-08:i08",
+    "correctText": "Hay tres mesas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-08:i09",
+    "correctText": "libros",
+    "correctResponseId": "es:lesson-06:session-08:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-08:i10",
+    "correctText": "Hay dos libros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-08:i11",
+    "correctText": "Tengo",
+    "correctResponseId": "es:lesson-06:session-08:i11:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-08:i12",
+    "correctText": "Tengo un libro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-08:i13",
+    "correctText": "Hay un libro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-08:i14",
+    "correctText": "allí",
+    "correctResponseId": "es:lesson-06:session-08:i14:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-08:i15",
+    "correctText": "Hay una silla aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-08:i16",
+    "correctText": "Hay sillas allí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-08:i17",
+    "correctText": "Hay mesas aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-08:i18",
+    "correctText": "Tengo una bolsa.",
+    "correctResponseId": null
+  }
+]

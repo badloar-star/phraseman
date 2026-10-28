@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-06:session-07",
+  "entries": [
+    {
+      "interactionId": "es:lesson-06:session-07:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-07:intro1:r2": {
+          "ru": "Это уже «У меня есть книга»; здесь нужен смысл наличия.",
+          "uk": "Це вже «У мене є книга»; тут потрібен зміст наявності."
+        },
+        "es:lesson-06:session-07:intro1:r3": {
+          "ru": "Это «У тебя есть книга»; здесь нужно hay.",
+          "uk": "Це «У тебе є книга»; тут потрібно hay."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-07:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-07:intro2:r2": {
+          "ru": "Это только наличие; оно не сообщает, что книга у вас.",
+          "uk": "Це лише наявність; вона не повідомляє, що книга у вас."
+        },
+        "es:lesson-06:session-07:intro2:r3": {
+          "ru": "О себе говорим tengo.",
+          "uk": "Про себе говоримо tengo."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-07:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-07:intro3:r2": {
+          "ru": "Нужно сообщить, что сумка у вас: tengo.",
+          "uk": "Потрібно повідомити, що сумка у вас: tengo."
+        },
+        "es:lesson-06:session-07:intro3:r3": {
+          "ru": "Bolsa женского рода: una.",
+          "uk": "Bolsa жіночого роду: una."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "3cd1a0870d2ff4bf383f769d9eb778e8dd9409ea4f4fe64279ff8fc58d1249c5"
+}

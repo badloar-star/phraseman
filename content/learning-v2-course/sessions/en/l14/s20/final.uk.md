@@ -63,7 +63,7 @@
 - I was cleaning the changing mat. — *У записі звучить You were cleaning the changing mat.*
 - They were cleaning the changing mat. — *У записі звучить You were cleaning the changing mat.*
 
-**4 · У той момент минулого. Виберіть was або were**
+**4 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-20:i03; family: context_gap_grammar -->
 I ___ cleaning the changing mat. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
@@ -83,7 +83,7 @@ I ___ cleaning the changing mat. → **was** · were · is
 - She was packing the nappy bag. — *У записі звучить You were packing the nappy bag.*
 - They were packing the nappy bag. — *У записі звучить You were packing the nappy bag.*
 
-**8 · У той момент минулого. Виберіть was або were**
+**8 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-20:i06; family: context_gap_grammar -->
 She ___ packing the nappy bag. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
@@ -103,7 +103,7 @@ She ___ packing the nappy bag. → **was** · were · is
 - They were cleaning the changing table. — *У записі звучить You were cleaning the changing table.*
 - She was cleaning the changing table. — *У записі звучить You were cleaning the changing table.*
 
-**12 · У той момент минулого. Виберіть was або were**
+**12 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-20:i09; family: context_gap_grammar -->
 They ___ cleaning the changing table. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*
@@ -123,7 +123,7 @@ They ___ cleaning the changing table. → **were** · was · are
 - We were checking the baby monitor. — *У записі звучить You were checking the baby monitor.*
 - She was checking the baby monitor. — *У записі звучить You were checking the baby monitor.*
 
-**16 · У той момент минулого. Виберіть was або were**
+**16 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-20:i12; family: context_gap_grammar -->
 We ___ checking the baby monitor. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*

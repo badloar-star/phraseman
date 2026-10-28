@@ -63,7 +63,7 @@
 - I didn't clean up the kitchen. — *В записи звучит She didn't clean up the kitchen.*
 - She doesn't clean up the kitchen. — *В записи звучит She didn't clean up the kitchen.*
 
-**4 · Этого не было вчера. Выберите отрицание**
+**4 · Речь о прошлом. Выберите, как сказать «не»**
 <!-- interaction_id: en:lesson-13:session-19:i03; family: context_gap_grammar -->
 I ___ clean up the kitchen. → **didn't** · don't · doesn't
 - don't — *Для прошлого нужна форма didn't.*
@@ -83,7 +83,7 @@ I ___ clean up the kitchen. → **didn't** · don't · doesn't
 - I didn't tidy up my room. — *В записи звучит She didn't tidy up my room.*
 - She doesn't tidy up my room. — *В записи звучит She didn't tidy up my room.*
 
-**8 · Этого не было вчера. Выберите отрицание**
+**8 · Речь о прошлом. Выберите, как сказать «не»**
 <!-- interaction_id: en:lesson-13:session-19:i06; family: context_gap_grammar -->
 I ___ tidy up my room. → **didn't** · don't · doesn't
 - don't — *Для прошлого нужна форма didn't.*
@@ -103,7 +103,7 @@ I ___ tidy up my room. → **didn't** · don't · doesn't
 - I didn't wash up after dinner. — *В записи звучит She didn't wash up after dinner.*
 - She doesn't wash up after dinner. — *В записи звучит She didn't wash up after dinner.*
 
-**12 · Этого не было вчера. Выберите отрицание**
+**12 · Речь о прошлом. Выберите, как сказать «не»**
 <!-- interaction_id: en:lesson-13:session-19:i09; family: context_gap_grammar -->
 I ___ wash up after dinner. → **didn't** · don't · doesn't
 - don't — *Для прошлого нужна форма didn't.*
@@ -123,7 +123,7 @@ I ___ wash up after dinner. → **didn't** · don't · doesn't
 - I didn't dry off with a towel. — *В записи звучит She didn't dry off with a towel.*
 - She doesn't dry off with a towel. — *В записи звучит She didn't dry off with a towel.*
 
-**16 · Этого не было вчера. Выберите отрицание**
+**16 · Речь о прошлом. Выберите, как сказать «не»**
 <!-- interaction_id: en:lesson-13:session-19:i12; family: context_gap_grammar -->
 I ___ dry off with a towel. → **didn't** · don't · doesn't
 - don't — *Для прошлого нужна форма didn't.*

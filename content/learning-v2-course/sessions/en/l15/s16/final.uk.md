@@ -63,7 +63,7 @@
 - He is going stumble. — *У записі звучить He is going to stumble.*
 - He are going to stumble. — *У записі звучить He is going to stumble.*
 
-**4 · Прогноз за видимою ознакою. Виберіть is або are**
+**4 · Це видно вже зараз. Виберіть is або are**
 <!-- interaction_id: en:lesson-15:session-16:i03; family: context_gap_grammar -->
 He ___ going to stumble. → **is** · are · am
 - are — *З цим підметом потрібна форма is.*
@@ -83,7 +83,7 @@ He ___ going to stumble. → **is** · are · am
 - She is going doze. — *У записі звучить She is going to doze.*
 - She are going to doze. — *У записі звучить She is going to doze.*
 
-**8 · Прогноз за видимою ознакою. Виберіть is або are**
+**8 · Це видно вже зараз. Виберіть is або are**
 <!-- interaction_id: en:lesson-15:session-16:i06; family: context_gap_grammar -->
 She ___ going to doze. → **is** · are · am
 - are — *З цим підметом потрібна форма is.*
@@ -103,7 +103,7 @@ She ___ going to doze. → **is** · are · am
 - He is going blush. — *У записі звучить He is going to blush.*
 - He are going to blush. — *У записі звучить He is going to blush.*
 
-**12 · Прогноз за видимою ознакою. Виберіть is або are**
+**12 · Це видно вже зараз. Виберіть is або are**
 <!-- interaction_id: en:lesson-15:session-16:i09; family: context_gap_grammar -->
 He ___ going to blush. → **is** · are · am
 - are — *З цим підметом потрібна форма is.*
@@ -123,7 +123,7 @@ He ___ going to blush. → **is** · are · am
 - She is going hiccup again. — *У записі звучить She is going to hiccup again.*
 - She are going to hiccup again. — *У записі звучить She is going to hiccup again.*
 
-**16 · Прогноз за видимою ознакою. Виберіть is або are**
+**16 · Це видно вже зараз. Виберіть is або are**
 <!-- interaction_id: en:lesson-15:session-16:i12; family: context_gap_grammar -->
 She ___ going to hiccup again. → **is** · are · am
 - are — *З цим підметом потрібна форма is.*

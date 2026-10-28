@@ -63,7 +63,7 @@
 - There is going be dew on the grass. — *В записи звучит There is going to be dew on the grass.*
 - There are going to be dew on the grass. — *В записи звучит There is going to be dew on the grass.*
 
-**4 · Прогноз по видимому признаку. Выберите is или are**
+**4 · Это видно уже сейчас. Выберите is или are**
 <!-- interaction_id: en:lesson-15:session-14:i03; family: context_gap_grammar -->
 There ___ going to be dew on the grass. → **is** · are · am
 - are — *С этим подлежащим нужна форма is.*
@@ -83,7 +83,7 @@ There ___ going to be dew on the grass. → **is** · are · am
 - There is going be a rainbow. — *В записи звучит There is going to be a rainbow.*
 - There are going to be a rainbow. — *В записи звучит There is going to be a rainbow.*
 
-**8 · Прогноз по видимому признаку. Выберите is или are**
+**8 · Это видно уже сейчас. Выберите is или are**
 <!-- interaction_id: en:lesson-15:session-14:i06; family: context_gap_grammar -->
 There ___ going to be a rainbow. → **is** · are · am
 - are — *С этим подлежащим нужна форма is.*
@@ -103,7 +103,7 @@ There ___ going to be a rainbow. → **is** · are · am
 - A sunbeam is going reach the floor. — *В записи звучит A sunbeam is going to reach the floor.*
 - A sunbeam are going to reach the floor. — *В записи звучит A sunbeam is going to reach the floor.*
 
-**12 · Прогноз по видимому признаку. Выберите is или are**
+**12 · Это видно уже сейчас. Выберите is или are**
 <!-- interaction_id: en:lesson-15:session-14:i09; family: context_gap_grammar -->
 A sunbeam ___ going to reach the floor. → **is** · are · am
 - are — *С этим подлежащим нужна форма is.*
@@ -123,7 +123,7 @@ A sunbeam ___ going to reach the floor. → **is** · are · am
 - The treetop is going touch the window. — *В записи звучит The treetop is going to touch the window.*
 - The treetop are going to touch the window. — *В записи звучит The treetop is going to touch the window.*
 
-**16 · Прогноз по видимому признаку. Выберите is или are**
+**16 · Это видно уже сейчас. Выберите is или are**
 <!-- interaction_id: en:lesson-15:session-14:i12; family: context_gap_grammar -->
 The treetop ___ going to touch the window. → **is** · are · am
 - are — *С этим подлежащим нужна форма is.*

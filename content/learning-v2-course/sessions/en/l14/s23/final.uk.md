@@ -63,7 +63,7 @@
 - I was adding baking powder. — *У записі звучить You were adding baking powder.*
 - They were adding baking powder. — *У записі звучить You were adding baking powder.*
 
-**4 · У той момент минулого. Виберіть was або were**
+**4 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-23:i03; family: context_gap_grammar -->
 I ___ adding baking powder. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
@@ -83,7 +83,7 @@ I ___ adding baking powder. → **was** · were · is
 - He was looking for the baking soda. — *У записі звучить You were looking for the baking soda.*
 - They were looking for the baking soda. — *У записі звучить You were looking for the baking soda.*
 
-**8 · У той момент минулого. Виберіть was або were**
+**8 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-23:i06; family: context_gap_grammar -->
 He ___ looking for the baking soda. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
@@ -103,7 +103,7 @@ He ___ looking for the baking soda. → **was** · were · is
 - She was measuring plain flour. — *У записі звучить You were measuring plain flour.*
 - They were measuring plain flour. — *У записі звучить You were measuring plain flour.*
 
-**12 · У той момент минулого. Виберіть was або were**
+**12 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-23:i09; family: context_gap_grammar -->
 She ___ measuring plain flour. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
@@ -123,7 +123,7 @@ She ___ measuring plain flour. → **was** · were · is
 - We were using self-raising flour. — *У записі звучить You were using self-raising flour.*
 - She was using self-raising flour. — *У записі звучить You were using self-raising flour.*
 
-**16 · У той момент минулого. Виберіть was або were**
+**16 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-23:i12; family: context_gap_grammar -->
 We ___ using self-raising flour. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*

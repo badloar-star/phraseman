@@ -63,7 +63,7 @@
 - I was adding soy sauce. — *У записі звучить You were adding soy sauce.*
 - They were adding soy sauce. — *У записі звучить You were adding soy sauce.*
 
-**4 · У той момент минулого. Виберіть was або were**
+**4 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-22:i03; family: context_gap_grammar -->
 I ___ adding soy sauce. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
@@ -83,7 +83,7 @@ I ___ adding soy sauce. → **was** · were · is
 - She was using sesame oil. — *У записі звучить You were using sesame oil.*
 - They were using sesame oil. — *У записі звучить You were using sesame oil.*
 
-**8 · У той момент минулого. Виберіть was або were**
+**8 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-22:i06; family: context_gap_grammar -->
 She ___ using sesame oil. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
@@ -103,7 +103,7 @@ She ___ using sesame oil. → **was** · were · is
 - They were using sunflower oil. — *У записі звучить You were using sunflower oil.*
 - She was using sunflower oil. — *У записі звучить You were using sunflower oil.*
 
-**12 · У той момент минулого. Виберіть was або were**
+**12 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-22:i09; family: context_gap_grammar -->
 They ___ using sunflower oil. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*
@@ -123,7 +123,7 @@ They ___ using sunflower oil. → **were** · was · are
 - We were adding tomato paste. — *У записі звучить You were adding tomato paste.*
 - She was adding tomato paste. — *У записі звучить You were adding tomato paste.*
 
-**16 · У той момент минулого. Виберіть was або were**
+**16 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-22:i12; family: context_gap_grammar -->
 We ___ adding tomato paste. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*

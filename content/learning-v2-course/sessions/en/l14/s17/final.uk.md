@@ -63,7 +63,7 @@
 - I was changing a flat tyre. — *У записі звучить You were changing a flat tyre.*
 - They were changing a flat tyre. — *У записі звучить You were changing a flat tyre.*
 
-**4 · У той момент минулого. Виберіть was або were**
+**4 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-17:i03; family: context_gap_grammar -->
 I ___ changing a flat tyre. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
@@ -83,7 +83,7 @@ I ___ changing a flat tyre. → **was** · were · is
 - They were looking for the spare tyre. — *У записі звучить You were looking for the spare tyre.*
 - She was looking for the spare tyre. — *У записі звучить You were looking for the spare tyre.*
 
-**8 · У той момент минулого. Виберіть was або were**
+**8 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-17:i06; family: context_gap_grammar -->
 They ___ looking for the spare tyre. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*
@@ -103,7 +103,7 @@ They ___ looking for the spare tyre. → **were** · was · are
 - He was checking the windscreen wiper. — *У записі звучить You were checking the windscreen wiper.*
 - They were checking the windscreen wiper. — *У записі звучить You were checking the windscreen wiper.*
 
-**12 · У той момент минулого. Виберіть was або were**
+**12 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-17:i09; family: context_gap_grammar -->
 He ___ checking the windscreen wiper. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
@@ -123,7 +123,7 @@ He ___ checking the windscreen wiper. → **was** · were · is
 - We were cleaning the rear-view mirror. — *У записі звучить You were cleaning the rear-view mirror.*
 - She was cleaning the rear-view mirror. — *У записі звучить You were cleaning the rear-view mirror.*
 
-**16 · У той момент минулого. Виберіть was або were**
+**16 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-17:i12; family: context_gap_grammar -->
 We ___ cleaning the rear-view mirror. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*

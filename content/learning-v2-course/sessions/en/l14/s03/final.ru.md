@@ -63,7 +63,7 @@
 - I was filling the bird feeder. — *В записи звучит He was filling the bird feeder.*
 - They were filling the bird feeder. — *В записи звучит He was filling the bird feeder.*
 
-**4 · В тот момент прошлого. Выберите was или were**
+**4 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-03:i03; family: context_gap_grammar -->
 I ___ filling the bird feeder. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -83,7 +83,7 @@ I ___ filling the bird feeder. → **was** · were · is
 - They were cleaning the garden path. — *В записи звучит We were cleaning the garden path.*
 - She was cleaning the garden path. — *В записи звучит We were cleaning the garden path.*
 
-**8 · В тот момент прошлого. Выберите was или were**
+**8 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-03:i06; family: context_gap_grammar -->
 They ___ cleaning the garden path. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*
@@ -103,7 +103,7 @@ They ___ cleaning the garden path. → **were** · was · are
 - She was watering the flower bed. — *В записи звучит I was watering the flower bed.*
 - We were watering the flower bed. — *В записи звучит I was watering the flower bed.*
 
-**12 · В тот момент прошлого. Выберите was или were**
+**12 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-03:i09; family: context_gap_grammar -->
 She ___ watering the flower bed. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -123,7 +123,7 @@ She ___ watering the flower bed. → **was** · were · is
 - We were watering the apple tree. — *В записи звучит He was watering the apple tree.*
 - They were watering the apple tree. — *В записи звучит He was watering the apple tree.*
 
-**16 · В тот момент прошлого. Выберите was или were**
+**16 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-03:i12; family: context_gap_grammar -->
 We ___ watering the apple tree. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*

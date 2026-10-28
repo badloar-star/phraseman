@@ -63,7 +63,7 @@
 - I didn't fall over. — *У записі звучить She didn't fall over.*
 - She doesn't fall over. — *У записі звучить She didn't fall over.*
 
-**4 · Цього не було вчора. Виберіть заперечення**
+**4 · Ідеться про минуле. Виберіть, як сказати «не»**
 <!-- interaction_id: en:lesson-13:session-20:i03; family: context_gap_grammar -->
 I ___ fall over. → **didn't** · don't · doesn't
 - don't — *Для минулого потрібна форма didn't.*
@@ -83,7 +83,7 @@ I ___ fall over. → **didn't** · don't · doesn't
 - I didn't trip over the bag. — *У записі звучить She didn't trip over the bag.*
 - She doesn't trip over the bag. — *У записі звучить She didn't trip over the bag.*
 
-**8 · Цього не було вчора. Виберіть заперечення**
+**8 · Ідеться про минуле. Виберіть, як сказати «не»**
 <!-- interaction_id: en:lesson-13:session-20:i06; family: context_gap_grammar -->
 I ___ trip over the bag. → **didn't** · don't · doesn't
 - don't — *Для минулого потрібна форма didn't.*
@@ -103,7 +103,7 @@ I ___ trip over the bag. → **didn't** · don't · doesn't
 - I didn't bump into the table. — *У записі звучить She didn't bump into the table.*
 - She doesn't bump into the table. — *У записі звучить She didn't bump into the table.*
 
-**12 · Цього не було вчора. Виберіть заперечення**
+**12 · Ідеться про минуле. Виберіть, як сказати «не»**
 <!-- interaction_id: en:lesson-13:session-20:i09; family: context_gap_grammar -->
 I ___ bump into the table. → **didn't** · don't · doesn't
 - don't — *Для минулого потрібна форма didn't.*
@@ -123,7 +123,7 @@ I ___ bump into the table. → **didn't** · don't · doesn't
 - I didn't knock over the cup. — *У записі звучить She didn't knock over the cup.*
 - She doesn't knock over the cup. — *У записі звучить She didn't knock over the cup.*
 
-**16 · Цього не було вчора. Виберіть заперечення**
+**16 · Ідеться про минуле. Виберіть, як сказати «не»**
 <!-- interaction_id: en:lesson-13:session-20:i12; family: context_gap_grammar -->
 I ___ knock over the cup. → **didn't** · don't · doesn't
 - don't — *Для минулого потрібна форма didn't.*

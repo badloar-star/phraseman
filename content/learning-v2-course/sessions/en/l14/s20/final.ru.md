@@ -63,7 +63,7 @@
 - I was cleaning the changing mat. — *В записи звучит You were cleaning the changing mat.*
 - They were cleaning the changing mat. — *В записи звучит You were cleaning the changing mat.*
 
-**4 · В тот момент прошлого. Выберите was или were**
+**4 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-20:i03; family: context_gap_grammar -->
 I ___ cleaning the changing mat. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -83,7 +83,7 @@ I ___ cleaning the changing mat. → **was** · were · is
 - She was packing the nappy bag. — *В записи звучит You were packing the nappy bag.*
 - They were packing the nappy bag. — *В записи звучит You were packing the nappy bag.*
 
-**8 · В тот момент прошлого. Выберите was или were**
+**8 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-20:i06; family: context_gap_grammar -->
 She ___ packing the nappy bag. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -103,7 +103,7 @@ She ___ packing the nappy bag. → **was** · were · is
 - They were cleaning the changing table. — *В записи звучит You were cleaning the changing table.*
 - She was cleaning the changing table. — *В записи звучит You were cleaning the changing table.*
 
-**12 · В тот момент прошлого. Выберите was или were**
+**12 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-20:i09; family: context_gap_grammar -->
 They ___ cleaning the changing table. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*
@@ -123,7 +123,7 @@ They ___ cleaning the changing table. → **were** · was · are
 - We were checking the baby monitor. — *В записи звучит You were checking the baby monitor.*
 - She was checking the baby monitor. — *В записи звучит You were checking the baby monitor.*
 
-**16 · В тот момент прошлого. Выберите was или were**
+**16 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-20:i12; family: context_gap_grammar -->
 We ___ checking the baby monitor. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*

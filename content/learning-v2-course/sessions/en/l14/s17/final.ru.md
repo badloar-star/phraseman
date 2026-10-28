@@ -63,7 +63,7 @@
 - I was changing a flat tyre. — *В записи звучит You were changing a flat tyre.*
 - They were changing a flat tyre. — *В записи звучит You were changing a flat tyre.*
 
-**4 · В тот момент прошлого. Выберите was или were**
+**4 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-17:i03; family: context_gap_grammar -->
 I ___ changing a flat tyre. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -83,7 +83,7 @@ I ___ changing a flat tyre. → **was** · were · is
 - They were looking for the spare tyre. — *В записи звучит You were looking for the spare tyre.*
 - She was looking for the spare tyre. — *В записи звучит You were looking for the spare tyre.*
 
-**8 · В тот момент прошлого. Выберите was или were**
+**8 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-17:i06; family: context_gap_grammar -->
 They ___ looking for the spare tyre. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*
@@ -103,7 +103,7 @@ They ___ looking for the spare tyre. → **were** · was · are
 - He was checking the windscreen wiper. — *В записи звучит You were checking the windscreen wiper.*
 - They were checking the windscreen wiper. — *В записи звучит You were checking the windscreen wiper.*
 
-**12 · В тот момент прошлого. Выберите was или were**
+**12 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-17:i09; family: context_gap_grammar -->
 He ___ checking the windscreen wiper. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -123,7 +123,7 @@ He ___ checking the windscreen wiper. → **was** · were · is
 - We were cleaning the rear-view mirror. — *В записи звучит You were cleaning the rear-view mirror.*
 - She was cleaning the rear-view mirror. — *В записи звучит You were cleaning the rear-view mirror.*
 
-**16 · В тот момент прошлого. Выберите was или were**
+**16 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-17:i12; family: context_gap_grammar -->
 We ___ cleaning the rear-view mirror. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*

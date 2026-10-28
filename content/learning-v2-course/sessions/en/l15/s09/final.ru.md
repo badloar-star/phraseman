@@ -63,7 +63,7 @@
 - The sink is going overflow. — *В записи звучит The sink is going to overflow.*
 - The sink are going to overflow. — *В записи звучит The sink is going to overflow.*
 
-**4 · Прогноз по видимому признаку. Выберите is или are**
+**4 · Это видно уже сейчас. Выберите is или are**
 <!-- interaction_id: en:lesson-15:session-09:i03; family: context_gap_grammar -->
 The sink ___ going to overflow. → **is** · are · am
 - are — *С этим подлежащим нужна форма is.*
@@ -83,7 +83,7 @@ The sink ___ going to overflow. → **is** · are · am
 - The tower is going topple. — *В записи звучит The tower is going to topple.*
 - The tower are going to topple. — *В записи звучит The tower is going to topple.*
 
-**8 · Прогноз по видимому признаку. Выберите is или are**
+**8 · Это видно уже сейчас. Выберите is или are**
 <!-- interaction_id: en:lesson-15:session-09:i06; family: context_gap_grammar -->
 The tower ___ going to topple. → **is** · are · am
 - are — *С этим подлежащим нужна форма is.*
@@ -103,7 +103,7 @@ The tower ___ going to topple. → **is** · are · am
 - The balloons are going burst. — *В записи звучит The balloons are going to burst.*
 - The balloons is going to burst. — *В записи звучит The balloons are going to burst.*
 
-**12 · Прогноз по видимому признаку. Выберите is или are**
+**12 · Это видно уже сейчас. Выберите is или are**
 <!-- interaction_id: en:lesson-15:session-09:i09; family: context_gap_grammar -->
 The balloons ___ going to burst. → **are** · is · am
 - is — *С этим подлежащим нужна форма are.*
@@ -123,7 +123,7 @@ The balloons ___ going to burst. → **are** · is · am
 - The shelf is going collapse. — *В записи звучит The shelf is going to collapse.*
 - The shelf are going to collapse. — *В записи звучит The shelf is going to collapse.*
 
-**16 · Прогноз по видимому признаку. Выберите is или are**
+**16 · Это видно уже сейчас. Выберите is или are**
 <!-- interaction_id: en:lesson-15:session-09:i12; family: context_gap_grammar -->
 The shelf ___ going to collapse. → **is** · are · am
 - are — *С этим подлежащим нужна форма is.*

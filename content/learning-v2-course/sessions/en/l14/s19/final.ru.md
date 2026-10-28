@@ -63,7 +63,7 @@
 - I was washing spinach. — *В записи звучит You were washing spinach.*
 - They were washing spinach. — *В записи звучит You were washing spinach.*
 
-**4 · В тот момент прошлого. Выберите was или were**
+**4 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-19:i03; family: context_gap_grammar -->
 I ___ washing spinach. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -83,7 +83,7 @@ I ___ washing spinach. → **was** · were · is
 - They were washing kale. — *В записи звучит You were washing kale.*
 - She was washing kale. — *В записи звучит You were washing kale.*
 
-**8 · В тот момент прошлого. Выберите was или were**
+**8 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-19:i06; family: context_gap_grammar -->
 They ___ washing kale. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*
@@ -103,7 +103,7 @@ They ___ washing kale. → **were** · was · are
 - She was cooking asparagus. — *В записи звучит You were cooking asparagus.*
 - They were cooking asparagus. — *В записи звучит You were cooking asparagus.*
 
-**12 · В тот момент прошлого. Выберите was или were**
+**12 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-19:i09; family: context_gap_grammar -->
 She ___ cooking asparagus. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -123,7 +123,7 @@ She ___ cooking asparagus. → **was** · were · is
 - We were cutting red cabbage. — *В записи звучит You were cutting red cabbage.*
 - She was cutting red cabbage. — *В записи звучит You were cutting red cabbage.*
 
-**16 · В тот момент прошлого. Выберите was или were**
+**16 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-19:i12; family: context_gap_grammar -->
 We ___ cutting red cabbage. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*

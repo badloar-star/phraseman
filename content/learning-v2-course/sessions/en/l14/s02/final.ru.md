@@ -63,7 +63,7 @@
 - We were using a measuring jug. — *В записи звучит She was using a measuring jug.*
 - I was using a measuring jug. — *В записи звучит She was using a measuring jug.*
 
-**4 · В тот момент прошлого. Выберите was или were**
+**4 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-02:i03; family: context_gap_grammar -->
 I ___ using a measuring jug. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -83,7 +83,7 @@ I ___ using a measuring jug. → **was** · were · is
 - He was using a rolling pin. — *В записи звучит I was using a rolling pin.*
 - They were using a rolling pin. — *В записи звучит I was using a rolling pin.*
 
-**8 · В тот момент прошлого. Выберите was или were**
+**8 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-02:i06; family: context_gap_grammar -->
 He ___ using a rolling pin. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -103,7 +103,7 @@ He ___ using a rolling pin. → **was** · were · is
 - She was washing a cake tin. — *В записи звучит We were washing a cake tin.*
 - I was washing a cake tin. — *В записи звучит We were washing a cake tin.*
 
-**12 · В тот момент прошлого. Выберите was или were**
+**12 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-02:i09; family: context_gap_grammar -->
 She ___ washing a cake tin. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -123,7 +123,7 @@ She ___ washing a cake tin. → **was** · were · is
 - We were using a wooden spoon. — *В записи звучит They were using a wooden spoon.*
 - He was using a wooden spoon. — *В записи звучит They were using a wooden spoon.*
 
-**16 · В тот момент прошлого. Выберите was или were**
+**16 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-02:i12; family: context_gap_grammar -->
 We ___ using a wooden spoon. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*

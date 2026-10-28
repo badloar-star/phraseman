@@ -63,7 +63,7 @@
 - I was cleaning my ankle boots when you called. — *В записи звучит You were cleaning my ankle boots when you called.*
 - They were cleaning my ankle boots when you called. — *В записи звучит You were cleaning my ankle boots when you called.*
 
-**4 · В тот момент прошлого. Выберите was или were**
+**4 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-25:i03; family: context_gap_grammar -->
 I ___ cleaning my ankle boots when you called. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -83,7 +83,7 @@ I ___ cleaning my ankle boots when you called. → **was** · were · is
 - She was packing her ballet flats when I called. — *В записи звучит You were packing her ballet flats when I called.*
 - They were packing her ballet flats when I called. — *В записи звучит You were packing her ballet flats when I called.*
 
-**8 · В тот момент прошлого. Выберите was или were**
+**8 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-25:i06; family: context_gap_grammar -->
 She ___ packing her ballet flats when I called. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -103,7 +103,7 @@ She ___ packing her ballet flats when I called. → **was** · were · is
 - They were cleaning their walking boots when I arrived. — *В записи звучит You were cleaning their walking boots when I arrived.*
 - She was cleaning their walking boots when I arrived. — *В записи звучит You were cleaning their walking boots when I arrived.*
 
-**12 · В тот момент прошлого. Выберите was или were**
+**12 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-25:i09; family: context_gap_grammar -->
 They ___ cleaning their walking boots when I arrived. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*
@@ -123,7 +123,7 @@ They ___ cleaning their walking boots when I arrived. → **were** · was · are
 - We were looking for an insole when you arrived. — *В записи звучит You were looking for an insole when you arrived.*
 - She was looking for an insole when you arrived. — *В записи звучит You were looking for an insole when you arrived.*
 
-**16 · В тот момент прошлого. Выберите was или were**
+**16 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-25:i12; family: context_gap_grammar -->
 We ___ looking for an insole when you arrived. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*

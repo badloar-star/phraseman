@@ -63,7 +63,7 @@
 - I was adding soy sauce. — *В записи звучит You were adding soy sauce.*
 - They were adding soy sauce. — *В записи звучит You were adding soy sauce.*
 
-**4 · В тот момент прошлого. Выберите was или were**
+**4 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-22:i03; family: context_gap_grammar -->
 I ___ adding soy sauce. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -83,7 +83,7 @@ I ___ adding soy sauce. → **was** · were · is
 - She was using sesame oil. — *В записи звучит You were using sesame oil.*
 - They were using sesame oil. — *В записи звучит You were using sesame oil.*
 
-**8 · В тот момент прошлого. Выберите was или were**
+**8 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-22:i06; family: context_gap_grammar -->
 She ___ using sesame oil. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -103,7 +103,7 @@ She ___ using sesame oil. → **was** · were · is
 - They were using sunflower oil. — *В записи звучит You were using sunflower oil.*
 - She was using sunflower oil. — *В записи звучит You were using sunflower oil.*
 
-**12 · В тот момент прошлого. Выберите was или were**
+**12 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-22:i09; family: context_gap_grammar -->
 They ___ using sunflower oil. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*
@@ -123,7 +123,7 @@ They ___ using sunflower oil. → **were** · was · are
 - We were adding tomato paste. — *В записи звучит You were adding tomato paste.*
 - She was adding tomato paste. — *В записи звучит You were adding tomato paste.*
 
-**16 · В тот момент прошлого. Выберите was или were**
+**16 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-22:i12; family: context_gap_grammar -->
 We ___ adding tomato paste. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*

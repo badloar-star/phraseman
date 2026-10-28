@@ -63,7 +63,7 @@
 - I was filling a spray bottle. — *У записі звучить She was filling a spray bottle.*
 - They were filling a spray bottle. — *У записі звучить She was filling a spray bottle.*
 
-**4 · У той момент минулого. Виберіть was або were**
+**4 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-04:i03; family: context_gap_grammar -->
 I ___ filling a spray bottle. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
@@ -83,7 +83,7 @@ I ___ filling a spray bottle. → **was** · were · is
 - She was using a scrubbing brush. — *У записі звучить I was using a scrubbing brush.*
 - We were using a scrubbing brush. — *У записі звучить I was using a scrubbing brush.*
 
-**8 · У той момент минулого. Виберіть was або were**
+**8 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-04:i06; family: context_gap_grammar -->
 She ___ using a scrubbing brush. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
@@ -103,7 +103,7 @@ She ___ using a scrubbing brush. → **was** · were · is
 - We were using soapy water. — *У записі звучить They were using soapy water.*
 - He was using soapy water. — *У записі звучить They were using soapy water.*
 
-**12 · У той момент минулого. Виберіть was або were**
+**12 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-04:i09; family: context_gap_grammar -->
 We ___ using soapy water. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*
@@ -123,7 +123,7 @@ We ___ using soapy water. → **were** · was · are
 - They were watching the soap bubbles. — *У записі звучить She was watching the soap bubbles.*
 - I was watching the soap bubbles. — *У записі звучить She was watching the soap bubbles.*
 
-**16 · У той момент минулого. Виберіть was або were**
+**16 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-04:i12; family: context_gap_grammar -->
 They ___ watching the soap bubbles. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*

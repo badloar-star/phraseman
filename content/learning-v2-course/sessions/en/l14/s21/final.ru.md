@@ -63,7 +63,7 @@
 - I was using a cotton pad. — *В записи звучит You were using a cotton pad.*
 - They were using a cotton pad. — *В записи звучит You were using a cotton pad.*
 
-**4 · В тот момент прошлого. Выберите was или were**
+**4 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-21:i03; family: context_gap_grammar -->
 I ___ using a cotton pad. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -83,7 +83,7 @@ I ___ using a cotton pad. → **was** · were · is
 - She was washing a face cloth. — *В записи звучит You were washing a face cloth.*
 - They were washing a face cloth. — *В записи звучит You were washing a face cloth.*
 
-**8 · В тот момент прошлого. Выберите was или were**
+**8 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-21:i06; family: context_gap_grammar -->
 She ___ washing a face cloth. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -103,7 +103,7 @@ She ___ washing a face cloth. → **was** · were · is
 - He was using dental floss. — *В записи звучит You were using dental floss.*
 - They were using dental floss. — *В записи звучит You were using dental floss.*
 
-**12 · В тот момент прошлого. Выберите was или were**
+**12 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-21:i09; family: context_gap_grammar -->
 He ___ using dental floss. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -123,7 +123,7 @@ He ___ using dental floss. → **was** · were · is
 - We were looking for the mouthwash. — *В записи звучит You were looking for the mouthwash.*
 - She was looking for the mouthwash. — *В записи звучит You were looking for the mouthwash.*
 
-**16 · В тот момент прошлого. Выберите was или were**
+**16 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-21:i12; family: context_gap_grammar -->
 We ___ looking for the mouthwash. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*

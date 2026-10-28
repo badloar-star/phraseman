@@ -63,7 +63,7 @@
 - The chair is going wobble. — *У записі звучить The chair is going to wobble.*
 - The chair are going to wobble. — *У записі звучить The chair is going to wobble.*
 
-**4 · Прогноз за видимою ознакою. Виберіть is або are**
+**4 · Це видно вже зараз. Виберіть is або are**
 <!-- interaction_id: en:lesson-15:session-11:i03; family: context_gap_grammar -->
 The chair ___ going to wobble. → **is** · are · am
 - are — *З цим підметом потрібна форма is.*
@@ -83,7 +83,7 @@ The chair ___ going to wobble. → **is** · are · am
 - The picture is going tilt. — *У записі звучить The picture is going to tilt.*
 - The picture are going to tilt. — *У записі звучить The picture is going to tilt.*
 
-**8 · Прогноз за видимою ознакою. Виберіть is або are**
+**8 · Це видно вже зараз. Виберіть is або are**
 <!-- interaction_id: en:lesson-15:session-11:i06; family: context_gap_grammar -->
 The picture ___ going to tilt. → **is** · are · am
 - are — *З цим підметом потрібна форма is.*
@@ -103,7 +103,7 @@ The picture ___ going to tilt. → **is** · are · am
 - The shelves are going sag. — *У записі звучить The shelves are going to sag.*
 - The shelves is going to sag. — *У записі звучить The shelves are going to sag.*
 
-**12 · Прогноз за видимою ознакою. Виберіть is або are**
+**12 · Це видно вже зараз. Виберіть is або are**
 <!-- interaction_id: en:lesson-15:session-11:i09; family: context_gap_grammar -->
 The shelves ___ going to sag. → **are** · is · am
 - is — *З цим підметом потрібна форма are.*
@@ -123,7 +123,7 @@ The shelves ___ going to sag. → **are** · is · am
 - The room is going darken. — *У записі звучить The room is going to darken.*
 - The room are going to darken. — *У записі звучить The room is going to darken.*
 
-**16 · Прогноз за видимою ознакою. Виберіть is або are**
+**16 · Це видно вже зараз. Виберіть is або are**
 <!-- interaction_id: en:lesson-15:session-11:i12; family: context_gap_grammar -->
 The room ___ going to darken. → **is** · are · am
 - are — *З цим підметом потрібна форма is.*

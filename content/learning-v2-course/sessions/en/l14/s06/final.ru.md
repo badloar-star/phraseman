@@ -63,7 +63,7 @@
 - We were playing on the tennis court. — *В записи звучит You were playing on the tennis court.*
 - She was playing on the tennis court. — *В записи звучит You were playing on the tennis court.*
 
-**4 · В тот момент прошлого. Выберите was или were**
+**4 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-06:i03; family: context_gap_grammar -->
 We ___ playing on the tennis court. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*
@@ -83,7 +83,7 @@ We ___ playing on the tennis court. → **were** · was · are
 - I was talking to a teammate. — *В записи звучит You were talking to a teammate.*
 - They were talking to a teammate. — *В записи звучит You were talking to a teammate.*
 
-**8 · В тот момент прошлого. Выберите was или were**
+**8 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-06:i06; family: context_gap_grammar -->
 I ___ talking to a teammate. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -103,7 +103,7 @@ I ___ talking to a teammate. → **was** · were · is
 - She was talking to a spectator. — *В записи звучит You were talking to a spectator.*
 - They were talking to a spectator. — *В записи звучит You were talking to a spectator.*
 
-**12 · В тот момент прошлого. Выберите was или were**
+**12 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-06:i09; family: context_gap_grammar -->
 She ___ talking to a spectator. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -123,7 +123,7 @@ She ___ talking to a spectator. → **was** · were · is
 - They were waiting in the sports hall. — *В записи звучит You were waiting in the sports hall.*
 - She was waiting in the sports hall. — *В записи звучит You were waiting in the sports hall.*
 
-**16 · В тот момент прошлого. Выберите was или were**
+**16 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-06:i12; family: context_gap_grammar -->
 They ___ waiting in the sports hall. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*

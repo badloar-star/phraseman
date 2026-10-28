@@ -63,7 +63,7 @@
 - I was cooking fried rice. — *У записі звучить You were cooking fried rice.*
 - They were cooking fried rice. — *У записі звучить You were cooking fried rice.*
 
-**4 · У той момент минулого. Виберіть was або were**
+**4 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-07:i03; family: context_gap_grammar -->
 I ___ cooking fried rice. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
@@ -83,7 +83,7 @@ I ___ cooking fried rice. → **was** · were · is
 - They were cooking noodle soup. — *У записі звучить You were cooking noodle soup.*
 - She was cooking noodle soup. — *У записі звучить You were cooking noodle soup.*
 
-**8 · У той момент минулого. Виберіть was або were**
+**8 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-07:i06; family: context_gap_grammar -->
 They ___ cooking noodle soup. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*
@@ -103,7 +103,7 @@ They ___ cooking noodle soup. → **were** · was · are
 - She was eating a fishcake. — *У записі звучить You were eating a fishcake.*
 - They were eating a fishcake. — *У записі звучить You were eating a fishcake.*
 
-**12 · У той момент минулого. Виберіть was або were**
+**12 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-07:i09; family: context_gap_grammar -->
 She ___ eating a fishcake. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
@@ -123,7 +123,7 @@ She ___ eating a fishcake. → **was** · were · is
 - We were eating a spring roll. — *У записі звучить You were eating a spring roll.*
 - She was eating a spring roll. — *У записі звучить You were eating a spring roll.*
 
-**16 · У той момент минулого. Виберіть was або were**
+**16 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-07:i12; family: context_gap_grammar -->
 We ___ eating a spring roll. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*

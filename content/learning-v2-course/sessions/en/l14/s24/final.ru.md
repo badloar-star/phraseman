@@ -63,7 +63,7 @@
 - I was adding brown sugar. — *В записи звучит You were adding brown sugar.*
 - They were adding brown sugar. — *В записи звучит You were adding brown sugar.*
 
-**4 · В тот момент прошлого. Выберите was или were**
+**4 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-24:i03; family: context_gap_grammar -->
 I ___ adding brown sugar. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -83,7 +83,7 @@ I ___ adding brown sugar. → **was** · were · is
 - They were measuring caster sugar. — *В записи звучит You were measuring caster sugar.*
 - She was measuring caster sugar. — *В записи звучит You were measuring caster sugar.*
 
-**8 · В тот момент прошлого. Выберите was или were**
+**8 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-24:i06; family: context_gap_grammar -->
 They ___ measuring caster sugar. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*
@@ -103,7 +103,7 @@ They ___ measuring caster sugar. → **were** · was · are
 - She was using icing sugar. — *В записи звучит You were using icing sugar.*
 - They were using icing sugar. — *В записи звучит You were using icing sugar.*
 
-**12 · В тот момент прошлого. Выберите was или were**
+**12 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-24:i09; family: context_gap_grammar -->
 She ___ using icing sugar. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -123,7 +123,7 @@ She ___ using icing sugar. → **was** · were · is
 - We were using breadcrumbs. — *В записи звучит You were using breadcrumbs.*
 - She was using breadcrumbs. — *В записи звучит You were using breadcrumbs.*
 
-**16 · В тот момент прошлого. Выберите was или were**
+**16 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-24:i12; family: context_gap_grammar -->
 We ___ using breadcrumbs. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*

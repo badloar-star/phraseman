@@ -63,7 +63,7 @@
 - I was filling a spray bottle. — *В записи звучит She was filling a spray bottle.*
 - They were filling a spray bottle. — *В записи звучит She was filling a spray bottle.*
 
-**4 · В тот момент прошлого. Выберите was или were**
+**4 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-04:i03; family: context_gap_grammar -->
 I ___ filling a spray bottle. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -83,7 +83,7 @@ I ___ filling a spray bottle. → **was** · were · is
 - She was using a scrubbing brush. — *В записи звучит I was using a scrubbing brush.*
 - We were using a scrubbing brush. — *В записи звучит I was using a scrubbing brush.*
 
-**8 · В тот момент прошлого. Выберите was или were**
+**8 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-04:i06; family: context_gap_grammar -->
 She ___ using a scrubbing brush. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -103,7 +103,7 @@ She ___ using a scrubbing brush. → **was** · were · is
 - We were using soapy water. — *В записи звучит They were using soapy water.*
 - He was using soapy water. — *В записи звучит They were using soapy water.*
 
-**12 · В тот момент прошлого. Выберите was или were**
+**12 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-04:i09; family: context_gap_grammar -->
 We ___ using soapy water. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*
@@ -123,7 +123,7 @@ We ___ using soapy water. → **were** · was · are
 - They were watching the soap bubbles. — *В записи звучит She was watching the soap bubbles.*
 - I was watching the soap bubbles. — *В записи звучит She was watching the soap bubbles.*
 
-**16 · В тот момент прошлого. Выберите was или were**
+**16 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-04:i12; family: context_gap_grammar -->
 They ___ watching the soap bubbles. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*

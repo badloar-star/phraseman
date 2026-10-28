@@ -63,7 +63,7 @@
 - There is going be dew on the grass. — *У записі звучить There is going to be dew on the grass.*
 - There are going to be dew on the grass. — *У записі звучить There is going to be dew on the grass.*
 
-**4 · Прогноз за видимою ознакою. Виберіть is або are**
+**4 · Це видно вже зараз. Виберіть is або are**
 <!-- interaction_id: en:lesson-15:session-14:i03; family: context_gap_grammar -->
 There ___ going to be dew on the grass. → **is** · are · am
 - are — *З цим підметом потрібна форма is.*
@@ -83,7 +83,7 @@ There ___ going to be dew on the grass. → **is** · are · am
 - There is going be a rainbow. — *У записі звучить There is going to be a rainbow.*
 - There are going to be a rainbow. — *У записі звучить There is going to be a rainbow.*
 
-**8 · Прогноз за видимою ознакою. Виберіть is або are**
+**8 · Це видно вже зараз. Виберіть is або are**
 <!-- interaction_id: en:lesson-15:session-14:i06; family: context_gap_grammar -->
 There ___ going to be a rainbow. → **is** · are · am
 - are — *З цим підметом потрібна форма is.*
@@ -103,7 +103,7 @@ There ___ going to be a rainbow. → **is** · are · am
 - A sunbeam is going reach the floor. — *У записі звучить A sunbeam is going to reach the floor.*
 - A sunbeam are going to reach the floor. — *У записі звучить A sunbeam is going to reach the floor.*
 
-**12 · Прогноз за видимою ознакою. Виберіть is або are**
+**12 · Це видно вже зараз. Виберіть is або are**
 <!-- interaction_id: en:lesson-15:session-14:i09; family: context_gap_grammar -->
 A sunbeam ___ going to reach the floor. → **is** · are · am
 - are — *З цим підметом потрібна форма is.*
@@ -123,7 +123,7 @@ A sunbeam ___ going to reach the floor. → **is** · are · am
 - The treetop is going touch the window. — *У записі звучить The treetop is going to touch the window.*
 - The treetop are going to touch the window. — *У записі звучить The treetop is going to touch the window.*
 
-**16 · Прогноз за видимою ознакою. Виберіть is або are**
+**16 · Це видно вже зараз. Виберіть is або are**
 <!-- interaction_id: en:lesson-15:session-14:i12; family: context_gap_grammar -->
 The treetop ___ going to touch the window. → **is** · are · am
 - are — *З цим підметом потрібна форма is.*

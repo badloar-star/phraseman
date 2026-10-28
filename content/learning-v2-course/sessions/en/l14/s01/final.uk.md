@@ -63,7 +63,7 @@
 - I was reading a comic book. — *У записі звучить She was reading a comic book.*
 - They were reading a comic book. — *У записі звучить She was reading a comic book.*
 
-**4 · У той момент минулого. Виберіть was або were**
+**4 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-01:i03; family: context_gap_grammar -->
 I ___ reading a comic book. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
@@ -83,7 +83,7 @@ I ___ reading a comic book. → **was** · were · is
 - She was doing a jigsaw puzzle. — *У записі звучить We were doing a jigsaw puzzle.*
 - They were doing a jigsaw puzzle. — *У записі звучить We were doing a jigsaw puzzle.*
 
-**8 · У той момент минулого. Виберіть was або were**
+**8 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-01:i06; family: context_gap_grammar -->
 They ___ doing a jigsaw puzzle. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*
@@ -103,7 +103,7 @@ They ___ doing a jigsaw puzzle. → **were** · was · are
 - She was using a colouring book. — *У записі звучить I was using a colouring book.*
 - We were using a colouring book. — *У записі звучить I was using a colouring book.*
 
-**12 · У той момент минулого. Виберіть was або were**
+**12 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-01:i09; family: context_gap_grammar -->
 She ___ using a colouring book. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
@@ -123,7 +123,7 @@ She ___ using a colouring book. → **was** · were · is
 - We were reading a picture book. — *У записі звучить He was reading a picture book.*
 - She was reading a picture book. — *У записі звучить He was reading a picture book.*
 
-**16 · У той момент минулого. Виберіть was або were**
+**16 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-01:i12; family: context_gap_grammar -->
 We ___ reading a picture book. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*

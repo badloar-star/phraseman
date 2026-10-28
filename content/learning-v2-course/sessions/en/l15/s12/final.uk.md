@@ -63,7 +63,7 @@
 - The jumper is going shrink. — *У записі звучить The jumper is going to shrink.*
 - The jumper are going to shrink. — *У записі звучить The jumper is going to shrink.*
 
-**4 · Прогноз за видимою ознакою. Виберіть is або are**
+**4 · Це видно вже зараз. Виберіть is або are**
 <!-- interaction_id: en:lesson-15:session-12:i03; family: context_gap_grammar -->
 The jumper ___ going to shrink. → **is** · are · am
 - are — *З цим підметом потрібна форма is.*
@@ -83,7 +83,7 @@ The jumper ___ going to shrink. → **is** · are · am
 - The scarf is going unravel. — *У записі звучить The scarf is going to unravel.*
 - The scarf are going to unravel. — *У записі звучить The scarf is going to unravel.*
 
-**8 · Прогноз за видимою ознакою. Виберіть is або are**
+**8 · Це видно вже зараз. Виберіть is або are**
 <!-- interaction_id: en:lesson-15:session-12:i06; family: context_gap_grammar -->
 The scarf ___ going to unravel. → **is** · are · am
 - are — *З цим підметом потрібна форма is.*
@@ -103,7 +103,7 @@ The scarf ___ going to unravel. → **is** · are · am
 - The iron is going scorch the shirt. — *У записі звучить The iron is going to scorch the shirt.*
 - The iron are going to scorch the shirt. — *У записі звучить The iron is going to scorch the shirt.*
 
-**12 · Прогноз за видимою ознакою. Виберіть is або are**
+**12 · Це видно вже зараз. Виберіть is або are**
 <!-- interaction_id: en:lesson-15:session-12:i09; family: context_gap_grammar -->
 The iron ___ going to scorch the shirt. → **is** · are · am
 - are — *З цим підметом потрібна форма is.*
@@ -123,7 +123,7 @@ The iron ___ going to scorch the shirt. → **is** · are · am
 - The boards are going rot. — *У записі звучить The boards are going to rot.*
 - The boards is going to rot. — *У записі звучить The boards are going to rot.*
 
-**16 · Прогноз за видимою ознакою. Виберіть is або are**
+**16 · Це видно вже зараз. Виберіть is або are**
 <!-- interaction_id: en:lesson-15:session-12:i12; family: context_gap_grammar -->
 The boards ___ going to rot. → **are** · is · am
 - is — *З цим підметом потрібна форма are.*

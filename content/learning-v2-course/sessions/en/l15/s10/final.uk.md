@@ -63,7 +63,7 @@
 - The fish is going thaw. — *У записі звучить The fish is going to thaw.*
 - The fish are going to thaw. — *У записі звучить The fish is going to thaw.*
 
-**4 · Прогноз за видимою ознакою. Виберіть is або are**
+**4 · Це видно вже зараз. Виберіть is або are**
 <!-- interaction_id: en:lesson-15:session-10:i03; family: context_gap_grammar -->
 The fish ___ going to thaw. → **is** · are · am
 - are — *З цим підметом потрібна форма is.*
@@ -83,7 +83,7 @@ The fish ___ going to thaw. → **is** · are · am
 - The butter is going soften. — *У записі звучить The butter is going to soften.*
 - The butter are going to soften. — *У записі звучить The butter is going to soften.*
 
-**8 · Прогноз за видимою ознакою. Виберіть is або are**
+**8 · Це видно вже зараз. Виберіть is або are**
 <!-- interaction_id: en:lesson-15:session-10:i06; family: context_gap_grammar -->
 The butter ___ going to soften. → **is** · are · am
 - are — *З цим підметом потрібна форма is.*
@@ -103,7 +103,7 @@ The butter ___ going to soften. → **is** · are · am
 - The chocolate is going harden. — *У записі звучить The chocolate is going to harden.*
 - The chocolate are going to harden. — *У записі звучить The chocolate is going to harden.*
 
-**12 · Прогноз за видимою ознакою. Виберіть is або are**
+**12 · Це видно вже зараз. Виберіть is або are**
 <!-- interaction_id: en:lesson-15:session-10:i09; family: context_gap_grammar -->
 The chocolate ___ going to harden. → **is** · are · am
 - are — *З цим підметом потрібна форма is.*
@@ -123,7 +123,7 @@ The chocolate ___ going to harden. → **is** · are · am
 - The biscuits are going crumble. — *У записі звучить The biscuits are going to crumble.*
 - The biscuits is going to crumble. — *У записі звучить The biscuits are going to crumble.*
 
-**16 · Прогноз за видимою ознакою. Виберіть is або are**
+**16 · Це видно вже зараз. Виберіть is або are**
 <!-- interaction_id: en:lesson-15:session-10:i12; family: context_gap_grammar -->
 The biscuits ___ going to crumble. → **are** · is · am
 - is — *З цим підметом потрібна форма are.*

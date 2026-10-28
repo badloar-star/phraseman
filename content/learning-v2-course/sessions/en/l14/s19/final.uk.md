@@ -63,7 +63,7 @@
 - I was washing spinach. — *У записі звучить You were washing spinach.*
 - They were washing spinach. — *У записі звучить You were washing spinach.*
 
-**4 · У той момент минулого. Виберіть was або were**
+**4 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-19:i03; family: context_gap_grammar -->
 I ___ washing spinach. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
@@ -83,7 +83,7 @@ I ___ washing spinach. → **was** · were · is
 - They were washing kale. — *У записі звучить You were washing kale.*
 - She was washing kale. — *У записі звучить You were washing kale.*
 
-**8 · У той момент минулого. Виберіть was або were**
+**8 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-19:i06; family: context_gap_grammar -->
 They ___ washing kale. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*
@@ -103,7 +103,7 @@ They ___ washing kale. → **were** · was · are
 - She was cooking asparagus. — *У записі звучить You were cooking asparagus.*
 - They were cooking asparagus. — *У записі звучить You were cooking asparagus.*
 
-**12 · У той момент минулого. Виберіть was або were**
+**12 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-19:i09; family: context_gap_grammar -->
 She ___ cooking asparagus. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
@@ -123,7 +123,7 @@ She ___ cooking asparagus. → **was** · were · is
 - We were cutting red cabbage. — *У записі звучить You were cutting red cabbage.*
 - She was cutting red cabbage. — *У записі звучить You were cutting red cabbage.*
 
-**16 · У той момент минулого. Виберіть was або were**
+**16 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-19:i12; family: context_gap_grammar -->
 We ___ cutting red cabbage. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*

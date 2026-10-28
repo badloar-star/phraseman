@@ -63,7 +63,7 @@
 - I was filling the bird feeder. — *У записі звучить He was filling the bird feeder.*
 - They were filling the bird feeder. — *У записі звучить He was filling the bird feeder.*
 
-**4 · У той момент минулого. Виберіть was або were**
+**4 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-03:i03; family: context_gap_grammar -->
 I ___ filling the bird feeder. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
@@ -83,7 +83,7 @@ I ___ filling the bird feeder. → **was** · were · is
 - They were cleaning the garden path. — *У записі звучить We were cleaning the garden path.*
 - She was cleaning the garden path. — *У записі звучить We were cleaning the garden path.*
 
-**8 · У той момент минулого. Виберіть was або were**
+**8 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-03:i06; family: context_gap_grammar -->
 They ___ cleaning the garden path. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*
@@ -103,7 +103,7 @@ They ___ cleaning the garden path. → **were** · was · are
 - She was watering the flower bed. — *У записі звучить I was watering the flower bed.*
 - We were watering the flower bed. — *У записі звучить I was watering the flower bed.*
 
-**12 · У той момент минулого. Виберіть was або were**
+**12 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-03:i09; family: context_gap_grammar -->
 She ___ watering the flower bed. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
@@ -123,7 +123,7 @@ She ___ watering the flower bed. → **was** · were · is
 - We were watering the apple tree. — *У записі звучить He was watering the apple tree.*
 - They were watering the apple tree. — *У записі звучить He was watering the apple tree.*
 
-**16 · У той момент минулого. Виберіть was або were**
+**16 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-03:i12; family: context_gap_grammar -->
 We ___ watering the apple tree. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*

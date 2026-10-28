@@ -63,7 +63,7 @@
 - The skylight is going leak. — *У записі звучить The skylight is going to leak.*
 - The skylight are going to leak. — *У записі звучить The skylight is going to leak.*
 
-**4 · Прогноз за видимою ознакою. Виберіть is або are**
+**4 · Це видно вже зараз. Виберіть is або are**
 <!-- interaction_id: en:lesson-15:session-15:i03; family: context_gap_grammar -->
 The skylight ___ going to leak. → **is** · are · am
 - are — *З цим підметом потрібна форма is.*
@@ -83,7 +83,7 @@ The skylight ___ going to leak. → **is** · are · am
 - The veranda is going get wet. — *У записі звучить The veranda is going to get wet.*
 - The veranda are going to get wet. — *У записі звучить The veranda is going to get wet.*
 
-**8 · Прогноз за видимою ознакою. Виберіть is або are**
+**8 · Це видно вже зараз. Виберіть is або are**
 <!-- interaction_id: en:lesson-15:session-15:i06; family: context_gap_grammar -->
 The veranda ___ going to get wet. → **is** · are · am
 - are — *З цим підметом потрібна форма is.*
@@ -103,7 +103,7 @@ The veranda ___ going to get wet. → **is** · are · am
 - The conservatory is going get hot. — *У записі звучить The conservatory is going to get hot.*
 - The conservatory are going to get hot. — *У записі звучить The conservatory is going to get hot.*
 
-**12 · Прогноз за видимою ознакою. Виберіть is або are**
+**12 · Це видно вже зараз. Виберіть is або are**
 <!-- interaction_id: en:lesson-15:session-15:i09; family: context_gap_grammar -->
 The conservatory ___ going to get hot. → **is** · are · am
 - are — *З цим підметом потрібна форма is.*
@@ -123,7 +123,7 @@ The conservatory ___ going to get hot. → **is** · are · am
 - The doorstop is going slide. — *У записі звучить The doorstop is going to slide.*
 - The doorstop are going to slide. — *У записі звучить The doorstop is going to slide.*
 
-**16 · Прогноз за видимою ознакою. Виберіть is або are**
+**16 · Це видно вже зараз. Виберіть is або are**
 <!-- interaction_id: en:lesson-15:session-15:i12; family: context_gap_grammar -->
 The doorstop ___ going to slide. → **is** · are · am
 - are — *З цим підметом потрібна форма is.*

@@ -113,7 +113,7 @@ We ___ the cloves tomorrow. → **are collecting** · are going to collect · co
 <!-- interaction_id: en:lesson-15:session-38:word:nutmeg; family: word_card -->
 > **nutmeg** — мускатний горіх, пряність.
 
-**14 · Ваші батьки узгодили з продавцем отримання замовленого мускатного горіха на п’ятницю. Передайте домовленість через Present Continuous. Скажіть: «Вони забирають мускатний горіх у п’ятницю».**
+**14 · Ваші батьки домовилися з продавцем, що заберуть мускатний горіх у п’ятницю. Передайте домовленість через Present Continuous. Скажіть: «Вони забирають мускатний горіх у п’ятницю».**
 <!-- interaction_id: en:lesson-15:session-38:i10; family: phrase_builder -->
 Плитки: `Friday` `on` `nutmeg` `the` `collecting` `are` `They` → **They are collecting the nutmeg on Friday.**
 
@@ -123,7 +123,7 @@ We ___ the cloves tomorrow. → **are collecting** · are going to collect · co
 - They are going to collect the nutmeg on Friday. — *У записі звучить They are collecting the nutmeg on Friday.*
 - They is collecting the nutmeg on Friday. — *У записі звучить They are collecting the nutmeg on Friday.*
 
-**16 · Ваші батьки узгодили з продавцем отримання замовленого мускатного горіха на п’ятницю. Передайте домовленість через Present Continuous.**
+**16 · Ваші батьки домовилися з продавцем, що заберуть мускатний горіх у п’ятницю. Передайте домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-38:i12; family: context_gap_grammar -->
 They ___ the nutmeg on Friday. → **are collecting** · are going to collect · collect
 - are going to collect — *Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous.*

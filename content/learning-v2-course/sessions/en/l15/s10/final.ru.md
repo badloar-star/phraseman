@@ -63,7 +63,7 @@
 - The fish is going thaw. — *В записи звучит The fish is going to thaw.*
 - The fish are going to thaw. — *В записи звучит The fish is going to thaw.*
 
-**4 · Прогноз по видимому признаку. Выберите is или are**
+**4 · Это видно уже сейчас. Выберите is или are**
 <!-- interaction_id: en:lesson-15:session-10:i03; family: context_gap_grammar -->
 The fish ___ going to thaw. → **is** · are · am
 - are — *С этим подлежащим нужна форма is.*
@@ -83,7 +83,7 @@ The fish ___ going to thaw. → **is** · are · am
 - The butter is going soften. — *В записи звучит The butter is going to soften.*
 - The butter are going to soften. — *В записи звучит The butter is going to soften.*
 
-**8 · Прогноз по видимому признаку. Выберите is или are**
+**8 · Это видно уже сейчас. Выберите is или are**
 <!-- interaction_id: en:lesson-15:session-10:i06; family: context_gap_grammar -->
 The butter ___ going to soften. → **is** · are · am
 - are — *С этим подлежащим нужна форма is.*
@@ -103,7 +103,7 @@ The butter ___ going to soften. → **is** · are · am
 - The chocolate is going harden. — *В записи звучит The chocolate is going to harden.*
 - The chocolate are going to harden. — *В записи звучит The chocolate is going to harden.*
 
-**12 · Прогноз по видимому признаку. Выберите is или are**
+**12 · Это видно уже сейчас. Выберите is или are**
 <!-- interaction_id: en:lesson-15:session-10:i09; family: context_gap_grammar -->
 The chocolate ___ going to harden. → **is** · are · am
 - are — *С этим подлежащим нужна форма is.*
@@ -123,7 +123,7 @@ The chocolate ___ going to harden. → **is** · are · am
 - The biscuits are going crumble. — *В записи звучит The biscuits are going to crumble.*
 - The biscuits is going to crumble. — *В записи звучит The biscuits are going to crumble.*
 
-**16 · Прогноз по видимому признаку. Выберите is или are**
+**16 · Это видно уже сейчас. Выберите is или are**
 <!-- interaction_id: en:lesson-15:session-10:i12; family: context_gap_grammar -->
 The biscuits ___ going to crumble. → **are** · is · am
 - is — *С этим подлежащим нужна форма are.*

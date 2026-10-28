@@ -63,7 +63,7 @@
 - I was cooking fried rice. — *В записи звучит You were cooking fried rice.*
 - They were cooking fried rice. — *В записи звучит You were cooking fried rice.*
 
-**4 · В тот момент прошлого. Выберите was или were**
+**4 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-07:i03; family: context_gap_grammar -->
 I ___ cooking fried rice. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -83,7 +83,7 @@ I ___ cooking fried rice. → **was** · were · is
 - They were cooking noodle soup. — *В записи звучит You were cooking noodle soup.*
 - She was cooking noodle soup. — *В записи звучит You were cooking noodle soup.*
 
-**8 · В тот момент прошлого. Выберите was или were**
+**8 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-07:i06; family: context_gap_grammar -->
 They ___ cooking noodle soup. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*
@@ -103,7 +103,7 @@ They ___ cooking noodle soup. → **were** · was · are
 - She was eating a fishcake. — *В записи звучит You were eating a fishcake.*
 - They were eating a fishcake. — *В записи звучит You were eating a fishcake.*
 
-**12 · В тот момент прошлого. Выберите was или were**
+**12 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-07:i09; family: context_gap_grammar -->
 She ___ eating a fishcake. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -123,7 +123,7 @@ She ___ eating a fishcake. → **was** · were · is
 - We were eating a spring roll. — *В записи звучит You were eating a spring roll.*
 - She was eating a spring roll. — *В записи звучит You were eating a spring roll.*
 
-**16 · В тот момент прошлого. Выберите was или were**
+**16 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-07:i12; family: context_gap_grammar -->
 We ___ eating a spring roll. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*

@@ -63,7 +63,7 @@
 - He is going stumble. — *В записи звучит He is going to stumble.*
 - He are going to stumble. — *В записи звучит He is going to stumble.*
 
-**4 · Прогноз по видимому признаку. Выберите is или are**
+**4 · Это видно уже сейчас. Выберите is или are**
 <!-- interaction_id: en:lesson-15:session-16:i03; family: context_gap_grammar -->
 He ___ going to stumble. → **is** · are · am
 - are — *С этим подлежащим нужна форма is.*
@@ -83,7 +83,7 @@ He ___ going to stumble. → **is** · are · am
 - She is going doze. — *В записи звучит She is going to doze.*
 - She are going to doze. — *В записи звучит She is going to doze.*
 
-**8 · Прогноз по видимому признаку. Выберите is или are**
+**8 · Это видно уже сейчас. Выберите is или are**
 <!-- interaction_id: en:lesson-15:session-16:i06; family: context_gap_grammar -->
 She ___ going to doze. → **is** · are · am
 - are — *С этим подлежащим нужна форма is.*
@@ -103,7 +103,7 @@ She ___ going to doze. → **is** · are · am
 - He is going blush. — *В записи звучит He is going to blush.*
 - He are going to blush. — *В записи звучит He is going to blush.*
 
-**12 · Прогноз по видимому признаку. Выберите is или are**
+**12 · Это видно уже сейчас. Выберите is или are**
 <!-- interaction_id: en:lesson-15:session-16:i09; family: context_gap_grammar -->
 He ___ going to blush. → **is** · are · am
 - are — *С этим подлежащим нужна форма is.*
@@ -123,7 +123,7 @@ He ___ going to blush. → **is** · are · am
 - She is going hiccup again. — *В записи звучит She is going to hiccup again.*
 - She are going to hiccup again. — *В записи звучит She is going to hiccup again.*
 
-**16 · Прогноз по видимому признаку. Выберите is или are**
+**16 · Это видно уже сейчас. Выберите is или are**
 <!-- interaction_id: en:lesson-15:session-16:i12; family: context_gap_grammar -->
 She ___ going to hiccup again. → **is** · are · am
 - are — *С этим подлежащим нужна форма is.*

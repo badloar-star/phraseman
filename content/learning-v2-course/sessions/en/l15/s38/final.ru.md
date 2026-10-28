@@ -113,7 +113,7 @@ We ___ the cloves tomorrow. → **are collecting** · are going to collect · co
 <!-- interaction_id: en:lesson-15:session-38:word:nutmeg; family: word_card -->
 > **nutmeg** — мускатный орех, пряность.
 
-**14 · Ваши родители согласовали с продавцом получение заказанного мускатного ореха на пятницу. Передайте договорённость через Present Continuous. Скажите: «Они забирают мускатный орех в пятницу».**
+**14 · Ваши родители договорились с продавцом, что заберут мускатный орех в пятницу. Передайте договорённость через Present Continuous. Скажите: «Они забирают мускатный орех в пятницу».**
 <!-- interaction_id: en:lesson-15:session-38:i10; family: phrase_builder -->
 Плитки: `Friday` `on` `nutmeg` `the` `collecting` `are` `They` → **They are collecting the nutmeg on Friday.**
 
@@ -123,7 +123,7 @@ We ___ the cloves tomorrow. → **are collecting** · are going to collect · co
 - They are going to collect the nutmeg on Friday. — *В записи звучит They are collecting the nutmeg on Friday.*
 - They is collecting the nutmeg on Friday. — *В записи звучит They are collecting the nutmeg on Friday.*
 
-**16 · Ваши родители согласовали с продавцом получение заказанного мускатного ореха на пятницу. Передайте договорённость через Present Continuous.**
+**16 · Ваши родители договорились с продавцом, что заберут мускатный орех в пятницу. Передайте договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-15:session-38:i12; family: context_gap_grammar -->
 They ___ the nutmeg on Friday. → **are collecting** · are going to collect · collect
 - are going to collect — *Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.*

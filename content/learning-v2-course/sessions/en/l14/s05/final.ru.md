@@ -63,7 +63,7 @@
 - I was playing with a toy train. — *В записи звучит You were playing with a toy train.*
 - They were playing with a toy train. — *В записи звучит You were playing with a toy train.*
 
-**4 · В тот момент прошлого. Выберите was или were**
+**4 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-05:i03; family: context_gap_grammar -->
 I ___ playing with a toy train. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -83,7 +83,7 @@ I ___ playing with a toy train. → **was** · were · is
 - They were playing with a toy boat. — *В записи звучит You were playing with a toy boat.*
 - She was playing with a toy boat. — *В записи звучит You were playing with a toy boat.*
 
-**8 · В тот момент прошлого. Выберите was или were**
+**8 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-05:i06; family: context_gap_grammar -->
 They ___ playing with a toy boat. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*
@@ -103,7 +103,7 @@ They ___ playing with a toy boat. → **were** · was · are
 - She was playing with a dollhouse. — *В записи звучит You were playing with a dollhouse.*
 - They were playing with a dollhouse. — *В записи звучит You were playing with a dollhouse.*
 
-**12 · В тот момент прошлого. Выберите was или were**
+**12 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-05:i09; family: context_gap_grammar -->
 She ___ playing with a dollhouse. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -123,7 +123,7 @@ She ___ playing with a dollhouse. → **was** · were · is
 - He was sitting on a rocking horse. — *В записи звучит You were sitting on a rocking horse.*
 - They were sitting on a rocking horse. — *В записи звучит You were sitting on a rocking horse.*
 
-**16 · В тот момент прошлого. Выберите was или were**
+**16 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-05:i12; family: context_gap_grammar -->
 He ___ sitting on a rocking horse. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*

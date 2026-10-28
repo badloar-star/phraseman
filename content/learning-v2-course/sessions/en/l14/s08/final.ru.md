@@ -63,7 +63,7 @@
 - I was cleaning the bedside lamp. — *В записи звучит You were cleaning the bedside lamp.*
 - They were cleaning the bedside lamp. — *В записи звучит You were cleaning the bedside lamp.*
 
-**4 · В тот момент прошлого. Выберите was или were**
+**4 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-08:i03; family: context_gap_grammar -->
 I ___ cleaning the bedside lamp. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -83,7 +83,7 @@ I ___ cleaning the bedside lamp. → **was** · were · is
 - She was looking for the night light. — *В записи звучит You were looking for the night light.*
 - They were looking for the night light. — *В записи звучит You were looking for the night light.*
 
-**8 · В тот момент прошлого. Выберите was или were**
+**8 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-08:i06; family: context_gap_grammar -->
 She ___ looking for the night light. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -103,7 +103,7 @@ She ___ looking for the night light. → **was** · were · is
 - We were looking for the electric blanket. — *В записи звучит You were looking for the electric blanket.*
 - She was looking for the electric blanket. — *В записи звучит You were looking for the electric blanket.*
 
-**12 · В тот момент прошлого. Выберите was или were**
+**12 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-08:i09; family: context_gap_grammar -->
 We ___ looking for the electric blanket. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*
@@ -123,7 +123,7 @@ We ___ looking for the electric blanket. → **were** · was · are
 - They were looking for the hot-water bottle. — *В записи звучит You were looking for the hot-water bottle.*
 - She was looking for the hot-water bottle. — *В записи звучит You were looking for the hot-water bottle.*
 
-**16 · В тот момент прошлого. Выберите was или were**
+**16 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-08:i12; family: context_gap_grammar -->
 They ___ looking for the hot-water bottle. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*

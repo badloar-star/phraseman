@@ -63,7 +63,7 @@
 - The chair is going wobble. — *В записи звучит The chair is going to wobble.*
 - The chair are going to wobble. — *В записи звучит The chair is going to wobble.*
 
-**4 · Прогноз по видимому признаку. Выберите is или are**
+**4 · Это видно уже сейчас. Выберите is или are**
 <!-- interaction_id: en:lesson-15:session-11:i03; family: context_gap_grammar -->
 The chair ___ going to wobble. → **is** · are · am
 - are — *С этим подлежащим нужна форма is.*
@@ -83,7 +83,7 @@ The chair ___ going to wobble. → **is** · are · am
 - The picture is going tilt. — *В записи звучит The picture is going to tilt.*
 - The picture are going to tilt. — *В записи звучит The picture is going to tilt.*
 
-**8 · Прогноз по видимому признаку. Выберите is или are**
+**8 · Это видно уже сейчас. Выберите is или are**
 <!-- interaction_id: en:lesson-15:session-11:i06; family: context_gap_grammar -->
 The picture ___ going to tilt. → **is** · are · am
 - are — *С этим подлежащим нужна форма is.*
@@ -103,7 +103,7 @@ The picture ___ going to tilt. → **is** · are · am
 - The shelves are going sag. — *В записи звучит The shelves are going to sag.*
 - The shelves is going to sag. — *В записи звучит The shelves are going to sag.*
 
-**12 · Прогноз по видимому признаку. Выберите is или are**
+**12 · Это видно уже сейчас. Выберите is или are**
 <!-- interaction_id: en:lesson-15:session-11:i09; family: context_gap_grammar -->
 The shelves ___ going to sag. → **are** · is · am
 - is — *С этим подлежащим нужна форма are.*
@@ -123,7 +123,7 @@ The shelves ___ going to sag. → **are** · is · am
 - The room is going darken. — *В записи звучит The room is going to darken.*
 - The room are going to darken. — *В записи звучит The room is going to darken.*
 
-**16 · Прогноз по видимому признаку. Выберите is или are**
+**16 · Это видно уже сейчас. Выберите is или are**
 <!-- interaction_id: en:lesson-15:session-11:i12; family: context_gap_grammar -->
 The room ___ going to darken. → **is** · are · am
 - are — *С этим подлежащим нужна форма is.*

@@ -63,7 +63,7 @@
 - I was playing with a toy train. — *У записі звучить You were playing with a toy train.*
 - They were playing with a toy train. — *У записі звучить You were playing with a toy train.*
 
-**4 · У той момент минулого. Виберіть was або were**
+**4 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-05:i03; family: context_gap_grammar -->
 I ___ playing with a toy train. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
@@ -83,7 +83,7 @@ I ___ playing with a toy train. → **was** · were · is
 - They were playing with a toy boat. — *У записі звучить You were playing with a toy boat.*
 - She was playing with a toy boat. — *У записі звучить You were playing with a toy boat.*
 
-**8 · У той момент минулого. Виберіть was або were**
+**8 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-05:i06; family: context_gap_grammar -->
 They ___ playing with a toy boat. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*
@@ -103,7 +103,7 @@ They ___ playing with a toy boat. → **were** · was · are
 - She was playing with a dollhouse. — *У записі звучить You were playing with a dollhouse.*
 - They were playing with a dollhouse. — *У записі звучить You were playing with a dollhouse.*
 
-**12 · У той момент минулого. Виберіть was або were**
+**12 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-05:i09; family: context_gap_grammar -->
 She ___ playing with a dollhouse. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
@@ -123,7 +123,7 @@ She ___ playing with a dollhouse. → **was** · were · is
 - He was sitting on a rocking horse. — *У записі звучить You were sitting on a rocking horse.*
 - They were sitting on a rocking horse. — *У записі звучить You were sitting on a rocking horse.*
 
-**16 · У той момент минулого. Виберіть was або were**
+**16 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-05:i12; family: context_gap_grammar -->
 He ___ sitting on a rocking horse. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*

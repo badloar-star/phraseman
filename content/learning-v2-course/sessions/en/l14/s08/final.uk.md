@@ -63,7 +63,7 @@
 - I was cleaning the bedside lamp. — *У записі звучить You were cleaning the bedside lamp.*
 - They were cleaning the bedside lamp. — *У записі звучить You were cleaning the bedside lamp.*
 
-**4 · У той момент минулого. Виберіть was або were**
+**4 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-08:i03; family: context_gap_grammar -->
 I ___ cleaning the bedside lamp. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
@@ -83,7 +83,7 @@ I ___ cleaning the bedside lamp. → **was** · were · is
 - She was looking for the night light. — *У записі звучить You were looking for the night light.*
 - They were looking for the night light. — *У записі звучить You were looking for the night light.*
 
-**8 · У той момент минулого. Виберіть was або were**
+**8 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-08:i06; family: context_gap_grammar -->
 She ___ looking for the night light. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
@@ -103,7 +103,7 @@ She ___ looking for the night light. → **was** · were · is
 - We were looking for the electric blanket. — *У записі звучить You were looking for the electric blanket.*
 - She was looking for the electric blanket. — *У записі звучить You were looking for the electric blanket.*
 
-**12 · У той момент минулого. Виберіть was або were**
+**12 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-08:i09; family: context_gap_grammar -->
 We ___ looking for the electric blanket. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*
@@ -123,7 +123,7 @@ We ___ looking for the electric blanket. → **were** · was · are
 - They were looking for the hot-water bottle. — *У записі звучить You were looking for the hot-water bottle.*
 - She was looking for the hot-water bottle. — *У записі звучить You were looking for the hot-water bottle.*
 
-**16 · У той момент минулого. Виберіть was або were**
+**16 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-08:i12; family: context_gap_grammar -->
 They ___ looking for the hot-water bottle. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*

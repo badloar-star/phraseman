@@ -63,7 +63,7 @@
 - The sink is going overflow. — *У записі звучить The sink is going to overflow.*
 - The sink are going to overflow. — *У записі звучить The sink is going to overflow.*
 
-**4 · Прогноз за видимою ознакою. Виберіть is або are**
+**4 · Це видно вже зараз. Виберіть is або are**
 <!-- interaction_id: en:lesson-15:session-09:i03; family: context_gap_grammar -->
 The sink ___ going to overflow. → **is** · are · am
 - are — *З цим підметом потрібна форма is.*
@@ -83,7 +83,7 @@ The sink ___ going to overflow. → **is** · are · am
 - The tower is going topple. — *У записі звучить The tower is going to topple.*
 - The tower are going to topple. — *У записі звучить The tower is going to topple.*
 
-**8 · Прогноз за видимою ознакою. Виберіть is або are**
+**8 · Це видно вже зараз. Виберіть is або are**
 <!-- interaction_id: en:lesson-15:session-09:i06; family: context_gap_grammar -->
 The tower ___ going to topple. → **is** · are · am
 - are — *З цим підметом потрібна форма is.*
@@ -103,7 +103,7 @@ The tower ___ going to topple. → **is** · are · am
 - The balloons are going burst. — *У записі звучить The balloons are going to burst.*
 - The balloons is going to burst. — *У записі звучить The balloons are going to burst.*
 
-**12 · Прогноз за видимою ознакою. Виберіть is або are**
+**12 · Це видно вже зараз. Виберіть is або are**
 <!-- interaction_id: en:lesson-15:session-09:i09; family: context_gap_grammar -->
 The balloons ___ going to burst. → **are** · is · am
 - is — *З цим підметом потрібна форма are.*
@@ -123,7 +123,7 @@ The balloons ___ going to burst. → **are** · is · am
 - The shelf is going collapse. — *У записі звучить The shelf is going to collapse.*
 - The shelf are going to collapse. — *У записі звучить The shelf is going to collapse.*
 
-**16 · Прогноз за видимою ознакою. Виберіть is або are**
+**16 · Це видно вже зараз. Виберіть is або are**
 <!-- interaction_id: en:lesson-15:session-09:i12; family: context_gap_grammar -->
 The shelf ___ going to collapse. → **is** · are · am
 - are — *З цим підметом потрібна форма is.*

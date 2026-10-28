@@ -63,7 +63,7 @@
 - I was cutting a passion fruit. — *У записі звучить You were cutting a passion fruit.*
 - They were cutting a passion fruit. — *У записі звучить You were cutting a passion fruit.*
 
-**4 · У той момент минулого. Виберіть was або were**
+**4 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-18:i03; family: context_gap_grammar -->
 I ___ cutting a passion fruit. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
@@ -83,7 +83,7 @@ I ___ cutting a passion fruit. → **was** · were · is
 - We were cutting a dragon fruit. — *У записі звучить You were cutting a dragon fruit.*
 - She was cutting a dragon fruit. — *У записі звучить You were cutting a dragon fruit.*
 
-**8 · У той момент минулого. Виберіть was або were**
+**8 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-18:i06; family: context_gap_grammar -->
 We ___ cutting a dragon fruit. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*
@@ -103,7 +103,7 @@ We ___ cutting a dragon fruit. → **were** · was · are
 - She was peeling a lychee. — *У записі звучить You were peeling a lychee.*
 - They were peeling a lychee. — *У записі звучить You were peeling a lychee.*
 
-**12 · У той момент минулого. Виберіть was або were**
+**12 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-18:i09; family: context_gap_grammar -->
 She ___ peeling a lychee. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
@@ -123,7 +123,7 @@ She ___ peeling a lychee. → **was** · were · is
 - They were washing a papaya. — *У записі звучить You were washing a papaya.*
 - She was washing a papaya. — *У записі звучить You were washing a papaya.*
 
-**16 · У той момент минулого. Виберіть was або were**
+**16 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-18:i12; family: context_gap_grammar -->
 They ___ washing a papaya. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*

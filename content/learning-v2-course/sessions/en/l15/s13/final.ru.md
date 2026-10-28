@@ -63,7 +63,7 @@
 - There is going be a downpour. — *В записи звучит There is going to be a downpour.*
 - There are going to be a downpour. — *В записи звучит There is going to be a downpour.*
 
-**4 · Прогноз по видимому признаку. Выберите is или are**
+**4 · Это видно уже сейчас. Выберите is или are**
 <!-- interaction_id: en:lesson-15:session-13:i03; family: context_gap_grammar -->
 There ___ going to be a downpour. → **is** · are · am
 - are — *С этим подлежащим нужна форма is.*
@@ -83,7 +83,7 @@ There ___ going to be a downpour. → **is** · are · am
 - There is going be a gale. — *В записи звучит There is going to be a gale.*
 - There are going to be a gale. — *В записи звучит There is going to be a gale.*
 
-**8 · Прогноз по видимому признаку. Выберите is или are**
+**8 · Это видно уже сейчас. Выберите is или are**
 <!-- interaction_id: en:lesson-15:session-13:i06; family: context_gap_grammar -->
 There ___ going to be a gale. → **is** · are · am
 - are — *С этим подлежащим нужна форма is.*
@@ -103,7 +103,7 @@ There ___ going to be a gale. → **is** · are · am
 - Another gust is going hit the window. — *В записи звучит Another gust is going to hit the window.*
 - Another gust are going to hit the window. — *В записи звучит Another gust is going to hit the window.*
 
-**12 · Прогноз по видимому признаку. Выберите is или are**
+**12 · Это видно уже сейчас. Выберите is или are**
 <!-- interaction_id: en:lesson-15:session-13:i09; family: context_gap_grammar -->
 Another gust ___ going to hit the window. → **is** · are · am
 - are — *С этим подлежащим нужна форма is.*
@@ -123,7 +123,7 @@ Another gust ___ going to hit the window. → **is** · are · am
 - There is going be slush on the road. — *В записи звучит There is going to be slush on the road.*
 - There are going to be slush on the road. — *В записи звучит There is going to be slush on the road.*
 
-**16 · Прогноз по видимому признаку. Выберите is или are**
+**16 · Это видно уже сейчас. Выберите is или are**
 <!-- interaction_id: en:lesson-15:session-13:i12; family: context_gap_grammar -->
 There ___ going to be slush on the road. → **is** · are · am
 - are — *С этим подлежащим нужна форма is.*

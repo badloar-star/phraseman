@@ -63,7 +63,7 @@
 - I didn't fall over. — *В записи звучит She didn't fall over.*
 - She doesn't fall over. — *В записи звучит She didn't fall over.*
 
-**4 · Этого не было вчера. Выберите отрицание**
+**4 · Речь о прошлом. Выберите, как сказать «не»**
 <!-- interaction_id: en:lesson-13:session-20:i03; family: context_gap_grammar -->
 I ___ fall over. → **didn't** · don't · doesn't
 - don't — *Для прошлого нужна форма didn't.*
@@ -83,7 +83,7 @@ I ___ fall over. → **didn't** · don't · doesn't
 - I didn't trip over the bag. — *В записи звучит She didn't trip over the bag.*
 - She doesn't trip over the bag. — *В записи звучит She didn't trip over the bag.*
 
-**8 · Этого не было вчера. Выберите отрицание**
+**8 · Речь о прошлом. Выберите, как сказать «не»**
 <!-- interaction_id: en:lesson-13:session-20:i06; family: context_gap_grammar -->
 I ___ trip over the bag. → **didn't** · don't · doesn't
 - don't — *Для прошлого нужна форма didn't.*
@@ -103,7 +103,7 @@ I ___ trip over the bag. → **didn't** · don't · doesn't
 - I didn't bump into the table. — *В записи звучит She didn't bump into the table.*
 - She doesn't bump into the table. — *В записи звучит She didn't bump into the table.*
 
-**12 · Этого не было вчера. Выберите отрицание**
+**12 · Речь о прошлом. Выберите, как сказать «не»**
 <!-- interaction_id: en:lesson-13:session-20:i09; family: context_gap_grammar -->
 I ___ bump into the table. → **didn't** · don't · doesn't
 - don't — *Для прошлого нужна форма didn't.*
@@ -123,7 +123,7 @@ I ___ bump into the table. → **didn't** · don't · doesn't
 - I didn't knock over the cup. — *В записи звучит She didn't knock over the cup.*
 - She doesn't knock over the cup. — *В записи звучит She didn't knock over the cup.*
 
-**16 · Этого не было вчера. Выберите отрицание**
+**16 · Речь о прошлом. Выберите, как сказать «не»**
 <!-- interaction_id: en:lesson-13:session-20:i12; family: context_gap_grammar -->
 I ___ knock over the cup. → **didn't** · don't · doesn't
 - don't — *Для прошлого нужна форма didn't.*

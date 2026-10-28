@@ -63,7 +63,7 @@
 - I was adding baking powder. — *В записи звучит You were adding baking powder.*
 - They were adding baking powder. — *В записи звучит You were adding baking powder.*
 
-**4 · В тот момент прошлого. Выберите was или were**
+**4 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-23:i03; family: context_gap_grammar -->
 I ___ adding baking powder. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -83,7 +83,7 @@ I ___ adding baking powder. → **was** · were · is
 - He was looking for the baking soda. — *В записи звучит You were looking for the baking soda.*
 - They were looking for the baking soda. — *В записи звучит You were looking for the baking soda.*
 
-**8 · В тот момент прошлого. Выберите was или were**
+**8 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-23:i06; family: context_gap_grammar -->
 He ___ looking for the baking soda. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -103,7 +103,7 @@ He ___ looking for the baking soda. → **was** · were · is
 - She was measuring plain flour. — *В записи звучит You were measuring plain flour.*
 - They were measuring plain flour. — *В записи звучит You were measuring plain flour.*
 
-**12 · В тот момент прошлого. Выберите was или were**
+**12 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-23:i09; family: context_gap_grammar -->
 She ___ measuring plain flour. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -123,7 +123,7 @@ She ___ measuring plain flour. → **was** · were · is
 - We were using self-raising flour. — *В записи звучит You were using self-raising flour.*
 - She was using self-raising flour. — *В записи звучит You were using self-raising flour.*
 
-**16 · В тот момент прошлого. Выберите was или were**
+**16 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-23:i12; family: context_gap_grammar -->
 We ___ using self-raising flour. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*

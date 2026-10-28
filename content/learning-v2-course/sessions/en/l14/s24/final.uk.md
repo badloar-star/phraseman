@@ -63,7 +63,7 @@
 - I was adding brown sugar. — *У записі звучить You were adding brown sugar.*
 - They were adding brown sugar. — *У записі звучить You were adding brown sugar.*
 
-**4 · У той момент минулого. Виберіть was або were**
+**4 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-24:i03; family: context_gap_grammar -->
 I ___ adding brown sugar. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
@@ -83,7 +83,7 @@ I ___ adding brown sugar. → **was** · were · is
 - They were measuring caster sugar. — *У записі звучить You were measuring caster sugar.*
 - She was measuring caster sugar. — *У записі звучить You were measuring caster sugar.*
 
-**8 · У той момент минулого. Виберіть was або were**
+**8 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-24:i06; family: context_gap_grammar -->
 They ___ measuring caster sugar. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*
@@ -103,7 +103,7 @@ They ___ measuring caster sugar. → **were** · was · are
 - She was using icing sugar. — *У записі звучить You were using icing sugar.*
 - They were using icing sugar. — *У записі звучить You were using icing sugar.*
 
-**12 · У той момент минулого. Виберіть was або were**
+**12 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-24:i09; family: context_gap_grammar -->
 She ___ using icing sugar. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
@@ -123,7 +123,7 @@ She ___ using icing sugar. → **was** · were · is
 - We were using breadcrumbs. — *У записі звучить You were using breadcrumbs.*
 - She was using breadcrumbs. — *У записі звучить You were using breadcrumbs.*
 
-**16 · У той момент минулого. Виберіть was або were**
+**16 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-24:i12; family: context_gap_grammar -->
 We ___ using breadcrumbs. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*

@@ -63,7 +63,7 @@
 - I was cutting a passion fruit. — *В записи звучит You were cutting a passion fruit.*
 - They were cutting a passion fruit. — *В записи звучит You were cutting a passion fruit.*
 
-**4 · В тот момент прошлого. Выберите was или were**
+**4 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-18:i03; family: context_gap_grammar -->
 I ___ cutting a passion fruit. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -83,7 +83,7 @@ I ___ cutting a passion fruit. → **was** · were · is
 - We were cutting a dragon fruit. — *В записи звучит You were cutting a dragon fruit.*
 - She was cutting a dragon fruit. — *В записи звучит You were cutting a dragon fruit.*
 
-**8 · В тот момент прошлого. Выберите was или were**
+**8 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-18:i06; family: context_gap_grammar -->
 We ___ cutting a dragon fruit. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*
@@ -103,7 +103,7 @@ We ___ cutting a dragon fruit. → **were** · was · are
 - She was peeling a lychee. — *В записи звучит You were peeling a lychee.*
 - They were peeling a lychee. — *В записи звучит You were peeling a lychee.*
 
-**12 · В тот момент прошлого. Выберите was или were**
+**12 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-18:i09; family: context_gap_grammar -->
 She ___ peeling a lychee. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -123,7 +123,7 @@ She ___ peeling a lychee. → **was** · were · is
 - They were washing a papaya. — *В записи звучит You were washing a papaya.*
 - She was washing a papaya. — *В записи звучит You were washing a papaya.*
 
-**16 · В тот момент прошлого. Выберите was или were**
+**16 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-18:i12; family: context_gap_grammar -->
 They ___ washing a papaya. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*

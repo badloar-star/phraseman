@@ -63,7 +63,7 @@
 - I was using a cotton pad. — *У записі звучить You were using a cotton pad.*
 - They were using a cotton pad. — *У записі звучить You were using a cotton pad.*
 
-**4 · У той момент минулого. Виберіть was або were**
+**4 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-21:i03; family: context_gap_grammar -->
 I ___ using a cotton pad. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
@@ -83,7 +83,7 @@ I ___ using a cotton pad. → **was** · were · is
 - She was washing a face cloth. — *У записі звучить You were washing a face cloth.*
 - They were washing a face cloth. — *У записі звучить You were washing a face cloth.*
 
-**8 · У той момент минулого. Виберіть was або were**
+**8 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-21:i06; family: context_gap_grammar -->
 She ___ washing a face cloth. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
@@ -103,7 +103,7 @@ She ___ washing a face cloth. → **was** · were · is
 - He was using dental floss. — *У записі звучить You were using dental floss.*
 - They were using dental floss. — *У записі звучить You were using dental floss.*
 
-**12 · У той момент минулого. Виберіть was або were**
+**12 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-21:i09; family: context_gap_grammar -->
 He ___ using dental floss. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
@@ -123,7 +123,7 @@ He ___ using dental floss. → **was** · were · is
 - We were looking for the mouthwash. — *У записі звучить You were looking for the mouthwash.*
 - She was looking for the mouthwash. — *У записі звучить You were looking for the mouthwash.*
 
-**16 · У той момент минулого. Виберіть was або were**
+**16 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-21:i12; family: context_gap_grammar -->
 We ___ looking for the mouthwash. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*

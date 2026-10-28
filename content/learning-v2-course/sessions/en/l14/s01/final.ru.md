@@ -63,7 +63,7 @@
 - I was reading a comic book. — *В записи звучит She was reading a comic book.*
 - They were reading a comic book. — *В записи звучит She was reading a comic book.*
 
-**4 · В тот момент прошлого. Выберите was или were**
+**4 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-01:i03; family: context_gap_grammar -->
 I ___ reading a comic book. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -83,7 +83,7 @@ I ___ reading a comic book. → **was** · were · is
 - She was doing a jigsaw puzzle. — *В записи звучит We were doing a jigsaw puzzle.*
 - They were doing a jigsaw puzzle. — *В записи звучит We were doing a jigsaw puzzle.*
 
-**8 · В тот момент прошлого. Выберите was или were**
+**8 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-01:i06; family: context_gap_grammar -->
 They ___ doing a jigsaw puzzle. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*
@@ -103,7 +103,7 @@ They ___ doing a jigsaw puzzle. → **were** · was · are
 - She was using a colouring book. — *В записи звучит I was using a colouring book.*
 - We were using a colouring book. — *В записи звучит I was using a colouring book.*
 
-**12 · В тот момент прошлого. Выберите was или were**
+**12 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-01:i09; family: context_gap_grammar -->
 She ___ using a colouring book. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -123,7 +123,7 @@ She ___ using a colouring book. → **was** · were · is
 - We were reading a picture book. — *В записи звучит He was reading a picture book.*
 - She was reading a picture book. — *В записи звучит He was reading a picture book.*
 
-**16 · В тот момент прошлого. Выберите was или were**
+**16 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-01:i12; family: context_gap_grammar -->
 We ___ reading a picture book. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*

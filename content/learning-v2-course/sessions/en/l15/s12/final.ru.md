@@ -63,7 +63,7 @@
 - The jumper is going shrink. — *В записи звучит The jumper is going to shrink.*
 - The jumper are going to shrink. — *В записи звучит The jumper is going to shrink.*
 
-**4 · Прогноз по видимому признаку. Выберите is или are**
+**4 · Это видно уже сейчас. Выберите is или are**
 <!-- interaction_id: en:lesson-15:session-12:i03; family: context_gap_grammar -->
 The jumper ___ going to shrink. → **is** · are · am
 - are — *С этим подлежащим нужна форма is.*
@@ -83,7 +83,7 @@ The jumper ___ going to shrink. → **is** · are · am
 - The scarf is going unravel. — *В записи звучит The scarf is going to unravel.*
 - The scarf are going to unravel. — *В записи звучит The scarf is going to unravel.*
 
-**8 · Прогноз по видимому признаку. Выберите is или are**
+**8 · Это видно уже сейчас. Выберите is или are**
 <!-- interaction_id: en:lesson-15:session-12:i06; family: context_gap_grammar -->
 The scarf ___ going to unravel. → **is** · are · am
 - are — *С этим подлежащим нужна форма is.*
@@ -103,7 +103,7 @@ The scarf ___ going to unravel. → **is** · are · am
 - The iron is going scorch the shirt. — *В записи звучит The iron is going to scorch the shirt.*
 - The iron are going to scorch the shirt. — *В записи звучит The iron is going to scorch the shirt.*
 
-**12 · Прогноз по видимому признаку. Выберите is или are**
+**12 · Это видно уже сейчас. Выберите is или are**
 <!-- interaction_id: en:lesson-15:session-12:i09; family: context_gap_grammar -->
 The iron ___ going to scorch the shirt. → **is** · are · am
 - are — *С этим подлежащим нужна форма is.*
@@ -123,7 +123,7 @@ The iron ___ going to scorch the shirt. → **is** · are · am
 - The boards are going rot. — *В записи звучит The boards are going to rot.*
 - The boards is going to rot. — *В записи звучит The boards are going to rot.*
 
-**16 · Прогноз по видимому признаку. Выберите is или are**
+**16 · Это видно уже сейчас. Выберите is или are**
 <!-- interaction_id: en:lesson-15:session-12:i12; family: context_gap_grammar -->
 The boards ___ going to rot. → **are** · is · am
 - is — *С этим подлежащим нужна форма are.*

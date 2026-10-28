@@ -113,7 +113,7 @@ I ___ an unplanned expense. → **am going to cover** · am covering · be
 <!-- interaction_id: en:lesson-16:session-36:word:last-minute; family: word_card -->
 > **last-minute** — такий, що виник або був зроблений в останню мить.
 
-**14 · Лише сьогодні ви з господарями остаточно узгодили завтрашній візит. Домовленість підтверджена. Скажіть, що це вже вирішено. Скажіть: «Ми їдемо з візитом завтра, домовившись в останню мить».**
+**14 · Лише сьогодні ви з господарями остаточно узгодили завтрашній візит. Домовленість підтверджена. Це вже вирішено. Скажіть: «Ми їдемо з візитом завтра, домовившись в останню мить».**
 <!-- interaction_id: en:lesson-16:session-36:i10; family: phrase_builder -->
 Плитки: `tomorrow` `visit` `last-minute` `a` `making` `are` `We` → **We are making a last-minute visit tomorrow.**
 

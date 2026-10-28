@@ -113,7 +113,7 @@ I ___ on rice. → **am going to stock up** · am stocking up · be
 <!-- interaction_id: en:lesson-16:session-47:word:cut-down-on; family: word_card -->
 > **cut down on** — сократить количество или употребление чего-либо.
 
-**14 · Вы с семьёй договорились с понедельника есть меньше сладкого. У cut down on форма с -ing — cutting down on. Скажите, что это уже решено. Скажите: «С понедельника мы сокращаем количество сладкого».**
+**14 · Вы с семьёй договорились с понедельника есть меньше сладкого. У cut down on форма с -ing — cutting down on. Это уже решено. Скажите: «С понедельника мы сокращаем количество сладкого».**
 <!-- interaction_id: en:lesson-16:session-47:i10; family: phrase_builder -->
 Плитки: `Monday` `from` `sweets` `on` `down` `cutting` `are` `We` → **We are cutting down on sweets from Monday.**
 

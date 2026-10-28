@@ -113,7 +113,7 @@ I ___ boneless chicken. → **am going to buy** · am buying · be
 <!-- interaction_id: en:lesson-16:session-43:word:skinless; family: word_card -->
 > **skinless** — без шкіри — про м’ясо або рибу.
 
-**14 · Ви домовилися з другом готувати разом сьогодні ввечері й уже вибрали продукти. Скажіть, що це вже вирішено. Скажіть: «Сьогодні ввечері ми разом готуємо курятину без шкіри».**
+**14 · Ви домовилися з другом готувати разом сьогодні ввечері й уже вибрали продукти. Це вже вирішено. Скажіть: «Сьогодні ввечері ми разом готуємо курятину без шкіри».**
 <!-- interaction_id: en:lesson-16:session-43:i10; family: phrase_builder -->
 Плитки: `tonight` `together` `chicken` `skinless` `cooking` `are` `We` → **We are cooking skinless chicken together tonight.**
 

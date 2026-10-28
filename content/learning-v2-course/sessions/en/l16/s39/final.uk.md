@@ -113,7 +113,7 @@ I ___ a roomy backpack. → **am going to choose** · am choosing · be
 <!-- interaction_id: en:lesson-16:session-39:word:compact; family: word_card -->
 > **compact** — компактний, що займає мало місця.
 
-**14 · Ви домовилися з прокатом забрати компактний намет завтра в призначений час. Скажіть, що це вже вирішено. Скажіть: «Ми забираємо компактний намет завтра».**
+**14 · Ви домовилися з прокатом забрати компактний намет завтра в призначений час. Це вже вирішено. Скажіть: «Ми забираємо компактний намет завтра».**
 <!-- interaction_id: en:lesson-16:session-39:i10; family: phrase_builder -->
 Плитки: `tomorrow` `tent` `compact` `a` `collecting` `are` `We` → **We are collecting a compact tent tomorrow.**
 

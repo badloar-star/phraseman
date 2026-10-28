@@ -113,7 +113,7 @@ I ___ for a top-floor flat. → **am going to look** · am looking · be
 <!-- interaction_id: en:lesson-16:session-55:word:new-build; family: word_card -->
 > **new-build** — нещодавно збудований — про житло.
 
-**14 · Ви узгодили з агентом завтрашній перегляд нової квартири. Скажіть, що це вже вирішено. Скажіть: «Завтра ми оглядаємо квартиру в новобудові».**
+**14 · Ви узгодили з агентом завтрашній перегляд нової квартири. Це вже вирішено. Скажіть: «Завтра ми оглядаємо квартиру в новобудові».**
 <!-- interaction_id: en:lesson-16:session-55:i10; family: phrase_builder -->
 Плитки: `tomorrow` `flat` `new-build` `a` `viewing` `are` `We` → **We are viewing a new-build flat tomorrow.**
 

@@ -113,7 +113,7 @@ I ___ the toys. → **am going to clear up** · am clearing up · be
 <!-- interaction_id: en:lesson-16:session-50:word:clean-out; family: word_card -->
 > **clean out** — вычистить, убрав всё лишнее изнутри.
 
-**14 · Вы договорились с семьёй в субботу разобрать и вычистить гараж. У clean out форма с -ing — cleaning out. Скажите, что это уже решено. Скажите: «В субботу мы вычищаем гараж и убираем из него всё лишнее».**
+**14 · Вы договорились с семьёй в субботу разобрать и вычистить гараж. У clean out форма с -ing — cleaning out. Это уже решено. Скажите: «В субботу мы вычищаем гараж и убираем из него всё лишнее».**
 <!-- interaction_id: en:lesson-16:session-50:i10; family: phrase_builder -->
 Плитки: `Saturday` `on` `garage` `the` `out` `cleaning` `are` `We` → **We are cleaning out the garage on Saturday.**
 

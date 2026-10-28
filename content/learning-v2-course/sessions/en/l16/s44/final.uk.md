@@ -113,7 +113,7 @@ I ___ a reversible jacket. → **am going to buy** · am buying · be
 <!-- interaction_id: en:lesson-16:session-44:word:childproof; family: word_card -->
 > **childproof** — із захистом від малих дітей.
 
-**14 · Ви домовилися з майстром поставити замки на кухонні шафки завтра. Скажіть, що це вже вирішено. Скажіть: «Ми встановлюємо замки із захистом від дітей завтра».**
+**14 · Ви домовилися з майстром поставити замки на кухонні шафки завтра. Це вже вирішено. Скажіть: «Ми встановлюємо замки із захистом від дітей завтра».**
 <!-- interaction_id: en:lesson-16:session-44:i10; family: phrase_builder -->
 Плитки: `tomorrow` `locks` `childproof` `fitting` `are` `We` → **We are fitting childproof locks tomorrow.**
 

@@ -113,7 +113,7 @@ I ___ a paved path. → **am going to choose** · am choosing · be
 <!-- interaction_id: en:lesson-16:session-52:word:unpaved; family: word_card -->
 > **unpaved** — без твёрдого покрытия — о дороге.
 
-**14 · Вы договорились с друзьями завтра пройти по знакомой грунтовой дороге. Скажите, что это уже решено. Скажите: «Завтра мы идём по дороге без твёрдого покрытия».**
+**14 · Вы договорились с друзьями завтра пройти по знакомой грунтовой дороге. Это уже решено. Скажите: «Завтра мы идём по дороге без твёрдого покрытия».**
 <!-- interaction_id: en:lesson-16:session-52:i10; family: phrase_builder -->
 Плитки: `tomorrow` `road` `unpaved` `the` `along` `walking` `are` `We` → **We are walking along the unpaved road tomorrow.**
 

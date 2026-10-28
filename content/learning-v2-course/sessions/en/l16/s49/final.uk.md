@@ -113,7 +113,7 @@ I ___ for a cooking class. → **am going to sign up** · am signing up · be
 <!-- interaction_id: en:lesson-16:session-49:word:check-out; family: word_card -->
 > **check out** — виписатися з готелю.
 
-**14 · Ви узгодили з готелем час завтрашнього виїзду. У check out форма з -ing — checking out. Скажіть, що це вже вирішено. Скажіть: «Ми виписуємося з готелю завтра о десятій».**
+**14 · Ви узгодили з готелем час завтрашнього виїзду. У check out форма з -ing — checking out. Це вже вирішено. Скажіть: «Ми виписуємося з готелю завтра о десятій».**
 <!-- interaction_id: en:lesson-16:session-49:i10; family: phrase_builder -->
 Плитки: `tomorrow` `ten` `at` `out` `checking` `are` `We` → **We are checking out at ten tomorrow.**
 

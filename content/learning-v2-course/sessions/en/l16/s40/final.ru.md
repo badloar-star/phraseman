@@ -113,7 +113,7 @@ I ___ a non-stick pan. → **am going to buy** · am buying · be
 <!-- interaction_id: en:lesson-16:session-40:word:foldable; family: word_card -->
 > **foldable** — складной.
 
-**14 · Вы договорились с продавцом, что заберёте складной стол завтра. Скажите, что это уже решено. Скажите: «Мы забираем складной стол завтра».**
+**14 · Вы договорились с продавцом, что заберёте складной стол завтра. Это уже решено. Скажите: «Мы забираем складной стол завтра».**
 <!-- interaction_id: en:lesson-16:session-40:i10; family: phrase_builder -->
 Плитки: `tomorrow` `table` `foldable` `a` `collecting` `are` `We` → **We are collecting a foldable table tomorrow.**
 

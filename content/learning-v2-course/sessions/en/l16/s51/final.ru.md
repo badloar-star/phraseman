@@ -113,7 +113,7 @@ I ___ for a soundproof room. → **am going to look** · am looking · be
 <!-- interaction_id: en:lesson-16:session-51:word:well-kept; family: word_card -->
 > **well-kept** — ухоженный, в хорошем состоянии.
 
-**14 · Вы согласовали с владельцем просмотр квартиры на завтра. Скажите, что это уже решено. Скажите: «Завтра мы осматриваем ухоженную квартиру».**
+**14 · Вы согласовали с владельцем просмотр квартиры на завтра. Это уже решено. Скажите: «Завтра мы осматриваем ухоженную квартиру».**
 <!-- interaction_id: en:lesson-16:session-51:i10; family: phrase_builder -->
 Плитки: `tomorrow` `flat` `well-kept` `a` `viewing` `are` `We` → **We are viewing a well-kept flat tomorrow.**
 

@@ -113,7 +113,7 @@ I ___ disposable plates. → **am going to avoid** · am avoiding · be
 <!-- interaction_id: en:lesson-16:session-38:word:portable; family: word_card -->
 > **portable** — переносний, зручний для перенесення.
 
-**14 · Ви з другом домовилися завтра зустрітися в магазині й купити переносні стільці. Скажіть, що це вже вирішено. Скажіть: «Ми купуємо переносні стільці завтра».**
+**14 · Ви з другом домовилися завтра зустрітися в магазині й купити переносні стільці. Це вже вирішено. Скажіть: «Ми купуємо переносні стільці завтра».**
 <!-- interaction_id: en:lesson-16:session-38:i10; family: phrase_builder -->
 Плитки: `tomorrow` `chairs` `portable` `buying` `are` `We` → **We are buying portable chairs tomorrow.**
 

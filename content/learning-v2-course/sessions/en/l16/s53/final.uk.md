@@ -113,7 +113,7 @@ I ___ for a detached house. → **am going to look** · am looking · be
 <!-- interaction_id: en:lesson-16:session-53:word:terraced; family: word_card -->
 > **terraced** — розташований у ряду будинків зі спільними бічними стінами.
 
-**14 · Ви домовилися з агентом завтра подивитися будинок у суцільному ряду будинків. Скажіть, що це вже вирішено. Скажіть: «Завтра ми оглядаємо будинок у ряду будинків зі спільними стінами».**
+**14 · Ви домовилися з агентом завтра подивитися будинок у суцільному ряду будинків. Це вже вирішено. Скажіть: «Завтра ми оглядаємо будинок у ряду будинків зі спільними стінами».**
 <!-- interaction_id: en:lesson-16:session-53:i10; family: phrase_builder -->
 Плитки: `tomorrow` `house` `terraced` `a` `viewing` `are` `We` → **We are viewing a terraced house tomorrow.**
 

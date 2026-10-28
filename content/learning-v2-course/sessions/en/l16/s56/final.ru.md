@@ -113,7 +113,7 @@ I ___ for a flat with a built-in wardrobe. → **am going to look** · am lookin
 <!-- interaction_id: en:lesson-16:session-56:word:waterfront; family: word_card -->
 > **waterfront** — расположенный у самой воды.
 
-**14 · Вы договорились с агентом завтра посмотреть квартиру у набережной. Скажите, что это уже решено. Скажите: «Завтра мы осматриваем квартиру у самой воды».**
+**14 · Вы договорились с агентом завтра посмотреть квартиру у набережной. Это уже решено. Скажите: «Завтра мы осматриваем квартиру у самой воды».**
 <!-- interaction_id: en:lesson-16:session-56:i10; family: phrase_builder -->
 Плитки: `tomorrow` `flat` `waterfront` `a` `viewing` `are` `We` → **We are viewing a waterfront flat tomorrow.**
 

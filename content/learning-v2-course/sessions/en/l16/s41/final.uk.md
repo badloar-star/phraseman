@@ -113,7 +113,7 @@ I ___ a savoury pie. → **am going to make** · am making · be
 <!-- interaction_id: en:lesson-16:session-41:word:tangy; family: word_card -->
 > **tangy** — із приємним кислуватим смаком.
 
-**14 · Ви домовилися з подругою завтра прийти до неї й скуштувати її новий соус. Скажіть, що це вже вирішено. Скажіть: «Ми куштуємо кислуватий соус завтра».**
+**14 · Ви домовилися з подругою завтра прийти до неї й скуштувати її новий соус. Це вже вирішено. Скажіть: «Ми куштуємо кислуватий соус завтра».**
 <!-- interaction_id: en:lesson-16:session-41:i10; family: phrase_builder -->
 Плитки: `tomorrow` `sauce` `tangy` `a` `tasting` `are` `We` → **We are tasting a tangy sauce tomorrow.**
 

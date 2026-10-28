@@ -113,7 +113,7 @@ I ___ the bruised apples for a pie. → **am going to use** · am using · be
 <!-- interaction_id: en:lesson-16:session-42:word:seedless; family: word_card -->
 > **seedless** — без косточек или семян.
 
-**14 · Вы заказали виноград и согласовали с продавцом, что заберёте его завтра. Скажите, что это уже решено. Скажите: «Мы забираем виноград без косточек завтра».**
+**14 · Вы заказали виноград и согласовали с продавцом, что заберёте его завтра. Это уже решено. Скажите: «Мы забираем виноград без косточек завтра».**
 <!-- interaction_id: en:lesson-16:session-42:i10; family: phrase_builder -->
 Плитки: `tomorrow` `grapes` `seedless` `the` `collecting` `are` `We` → **We are collecting the seedless grapes tomorrow.**
 

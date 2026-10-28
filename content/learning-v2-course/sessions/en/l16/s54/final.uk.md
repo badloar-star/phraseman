@@ -113,7 +113,7 @@ I ___ for a flat with central heating. → **am going to look** · am looking ·
 <!-- interaction_id: en:lesson-16:session-54:word:utility-room; family: word_card -->
 > **utility room** — господарська кімната, зазвичай із пральною машиною.
 
-**14 · Ви домовилися з власником завтра подивитися будинок з окремою кімнатою для прання та господарських речей. Скажіть, що це вже вирішено. Скажіть: «Завтра ми оглядаємо будинок із господарською кімнатою».**
+**14 · Ви домовилися з власником завтра подивитися будинок з окремою кімнатою для прання та господарських речей. Це вже вирішено. Скажіть: «Завтра ми оглядаємо будинок із господарською кімнатою».**
 <!-- interaction_id: en:lesson-16:session-54:i10; family: phrase_builder -->
 Плитки: `tomorrow` `room` `utility` `a` `with` `house` `a` `viewing` `are` `We` → **We are viewing a house with a utility room tomorrow.**
 

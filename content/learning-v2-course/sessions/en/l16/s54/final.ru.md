@@ -113,7 +113,7 @@ I ___ for a flat with central heating. → **am going to look** · am looking ·
 <!-- interaction_id: en:lesson-16:session-54:word:utility-room; family: word_card -->
 > **utility room** — хозяйственная комната, обычно со стиральной машиной.
 
-**14 · Вы договорились с владельцем завтра посмотреть дом с отдельной комнатой для стирки и хозяйственных вещей. Скажите, что это уже решено. Скажите: «Завтра мы осматриваем дом с хозяйственной комнатой».**
+**14 · Вы договорились с владельцем завтра посмотреть дом с отдельной комнатой для стирки и хозяйственных вещей. Это уже решено. Скажите: «Завтра мы осматриваем дом с хозяйственной комнатой».**
 <!-- interaction_id: en:lesson-16:session-54:i10; family: phrase_builder -->
 Плитки: `tomorrow` `room` `utility` `a` `with` `house` `a` `viewing` `are` `We` → **We are viewing a house with a utility room tomorrow.**
 

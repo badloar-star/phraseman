@@ -113,7 +113,7 @@ I ___ an exhausting trip. → **am going to avoid** · am avoiding · be
 <!-- interaction_id: en:lesson-16:session-34:word:refreshing; family: word_card -->
 > **refreshing** — освежающий, возвращающий бодрость.
 
-**14 · Вы с другом согласовали завтрашнюю прогулку на свежем воздухе. Скажите, что это уже решено. Скажите: «Мы идём на бодрящую прогулку завтра».**
+**14 · Вы с другом согласовали завтрашнюю прогулку на свежем воздухе. Это уже решено. Скажите: «Мы идём на бодрящую прогулку завтра».**
 <!-- interaction_id: en:lesson-16:session-34:i10; family: phrase_builder -->
 Плитки: `tomorrow` `walk` `refreshing` `a` `taking` `are` `We` → **We are taking a refreshing walk tomorrow.**
 

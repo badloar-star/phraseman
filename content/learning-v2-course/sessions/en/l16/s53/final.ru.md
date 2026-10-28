@@ -113,7 +113,7 @@ I ___ for a detached house. → **am going to look** · am looking · be
 <!-- interaction_id: en:lesson-16:session-53:word:terraced; family: word_card -->
 > **terraced** — стоящий в ряду домов с общими боковыми стенами.
 
-**14 · Вы договорились с агентом завтра посмотреть дом в сплошном ряду домов. Скажите, что это уже решено. Скажите: «Завтра мы осматриваем дом в ряду домов с общими стенами».**
+**14 · Вы договорились с агентом завтра посмотреть дом в сплошном ряду домов. Это уже решено. Скажите: «Завтра мы осматриваем дом в ряду домов с общими стенами».**
 <!-- interaction_id: en:lesson-16:session-53:i10; family: phrase_builder -->
 Плитки: `tomorrow` `house` `terraced` `a` `viewing` `are` `We` → **We are viewing a terraced house tomorrow.**
 

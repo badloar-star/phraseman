@@ -113,7 +113,7 @@ I ___ before dinner. → **am going to freshen up** · am freshening up · be
 <!-- interaction_id: en:lesson-16:session-46:word:wind-down; family: word_card -->
 > **wind down** — розслабитися після напруженого дня або справи.
 
-**14 · Ви з подругою домовилися завтра відпочити в спа й уже забронювали відвідування. У wind down форма з -ing — winding down. Скажіть, що це вже вирішено. Скажіть: «Завтра ми відпочиваємо в спа після напружених днів».**
+**14 · Ви з подругою домовилися завтра відпочити в спа й уже забронювали відвідування. У wind down форма з -ing — winding down. Це вже вирішено. Скажіть: «Завтра ми відпочиваємо в спа після напружених днів».**
 <!-- interaction_id: en:lesson-16:session-46:i10; family: phrase_builder -->
 Плитки: `tomorrow` `spa` `the` `at` `down` `winding` `are` `We` → **We are winding down at the spa tomorrow.**
 

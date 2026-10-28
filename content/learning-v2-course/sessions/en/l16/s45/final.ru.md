@@ -113,7 +113,7 @@ I ___ for a few minutes. → **am going to hang on** · am hanging on · be
 <!-- interaction_id: en:lesson-16:session-45:word:stay-put; family: word_card -->
 > **stay put** — оставаться на месте, никуда не уходить.
 
-**14 · Вы с семьёй уже договорились провести выходные дома вместо поездки. У stay put форма с -ing — staying put. Скажите, что это уже решено. Скажите: «На этих выходных мы никуда не уезжаем».**
+**14 · Вы с семьёй уже договорились провести выходные дома вместо поездки. У stay put форма с -ing — staying put. Это уже решено. Скажите: «На этих выходных мы никуда не уезжаем».**
 <!-- interaction_id: en:lesson-16:session-45:i10; family: phrase_builder -->
 Плитки: `weekend` `this` `put` `staying` `are` `We` → **We are staying put this weekend.**
 

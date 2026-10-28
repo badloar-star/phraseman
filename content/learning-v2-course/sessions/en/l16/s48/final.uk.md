@@ -113,7 +113,7 @@ I ___ with friends soon. → **am going to get together** · am getting together
 <!-- interaction_id: en:lesson-16:session-48:word:head-out; family: word_card -->
 > **head out** — вийти, вирушити кудись.
 
-**14 · Ви з друзями узгодили час виходу на завтрашню прогулянку. У head out форма з -ing — heading out. Скажіть, що це вже вирішено. Скажіть: «Завтра ми виходимо о восьмій».**
+**14 · Ви з друзями узгодили час виходу на завтрашню прогулянку. У head out форма з -ing — heading out. Це вже вирішено. Скажіть: «Завтра ми виходимо о восьмій».**
 <!-- interaction_id: en:lesson-16:session-48:i10; family: phrase_builder -->
 Плитки: `tomorrow` `eight` `at` `out` `heading` `are` `We` → **We are heading out at eight tomorrow.**
 

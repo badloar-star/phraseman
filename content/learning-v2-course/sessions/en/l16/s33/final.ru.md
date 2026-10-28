@@ -113,7 +113,7 @@ I ___ an unnecessary trip. → **am going to cancel** · am cancelling · be
 <!-- interaction_id: en:lesson-16:session-33:word:worthwhile; family: word_card -->
 > **worthwhile** — стоящий затраченных времени или усилий.
 
-**14 · Вы с другом записались на завтрашнее полезное занятие, время подтверждено. Скажите, что это уже решено. Скажите: «Мы участвуем в стоящем занятии завтра».**
+**14 · Вы с другом записались на завтрашнее полезное занятие, время подтверждено. Это уже решено. Скажите: «Мы участвуем в стоящем занятии завтра».**
 <!-- interaction_id: en:lesson-16:session-33:i10; family: phrase_builder -->
 Плитки: `tomorrow` `activity` `worthwhile` `a` `joining` `are` `We` → **We are joining a worthwhile activity tomorrow.**
 

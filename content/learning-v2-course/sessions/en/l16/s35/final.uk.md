@@ -113,7 +113,7 @@ I ___ a time-consuming task. → **am going to finish** · am finishing · be
 <!-- interaction_id: en:lesson-16:session-35:word:straightforward; family: word_card -->
 > **straightforward** — простий і зрозумілий, без складнощів.
 
-**14 · Ви з другом уже узгодили простий маршрут на завтра й час виїзду. Скажіть, що це вже вирішено. Скажіть: «Ми їдемо простим маршрутом завтра».**
+**14 · Ви з другом уже узгодили простий маршрут на завтра й час виїзду. Це вже вирішено. Скажіть: «Ми їдемо простим маршрутом завтра».**
 <!-- interaction_id: en:lesson-16:session-35:i10; family: phrase_builder -->
 Плитки: `tomorrow` `route` `straightforward` `a` `taking` `are` `We` → **We are taking a straightforward route tomorrow.**
 

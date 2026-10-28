@@ -113,7 +113,7 @@ I ___ a temporary job. → **am going to find** · am finding · be
 <!-- interaction_id: en:lesson-16:session-37:word:permanent; family: word_card -->
 > **permanent** — постоянный, не временный.
 
-**14 · Вы согласовали переезд из временного жилья на завтра; машина заказана. Скажите, что это уже решено. Скажите: «Мы переезжаем в наш постоянный дом завтра».**
+**14 · Вы согласовали переезд из временного жилья на завтра; машина заказана. Это уже решено. Скажите: «Мы переезжаем в наш постоянный дом завтра».**
 <!-- interaction_id: en:lesson-16:session-37:i10; family: phrase_builder -->
 Плитки: `tomorrow` `home` `permanent` `our` `to` `moving` `are` `We` → **We are moving to our permanent home tomorrow.**
 

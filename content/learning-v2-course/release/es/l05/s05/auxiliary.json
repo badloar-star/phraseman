@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-05:session-05",
+  "entries": [
+    {
+      "interactionId": "es:lesson-05:session-05:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-05:intro1:r2": {
+          "ru": "No ставим перед tengo.",
+          "uk": "No ставимо перед tengo."
+        },
+        "es:lesson-05:session-05:intro1:r3": {
+          "ru": "Это означало бы «Это не машина», а нужно сказать, что машины у вас нет.",
+          "uk": "Це означало б «Це не машина», а потрібно сказати, що машини у вас немає."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-05:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-05:intro2:r2": {
+          "ru": "Без no получится, что сумка есть.",
+          "uk": "Без no вийде, що сумка є."
+        },
+        "es:lesson-05:session-05:intro2:r3": {
+          "ru": "Soy говорит о том, кто вы; о своей вещи нужно tengo.",
+          "uk": "Soy говорить про те, хто ви; про свою річ потрібно tengo."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-05:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-05:intro3:r2": {
+          "ru": "No нужно перед tengo.",
+          "uk": "No потрібне перед tengo."
+        },
+        "es:lesson-05:session-05:intro3:r3": {
+          "ru": "Здесь тренируем фразу об одном ключе: llave, без s.",
+          "uk": "Тут тренуємо фразу про один ключ: llave, без s."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "d57ad6e861f04357441d32afbb00cc96d6437bb5fd48941b3cd2b3ac79fc0736"
+}

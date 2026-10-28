@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-05:session-02",
+  "learningOutcomeByLocale": {
+    "ru": "ставить una после tengo перед одним предметом женского рода.",
+    "uk": "ставити una після tengo перед одним предметом жіночого роду."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-05:session-02:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Коробка для вещей",
+        "uk": "Коробка для речей"
+      },
+      "bodyByLocale": {
+        "ru": "Друг ищет коробку для мелких вещей. Скажите `Tengo una caja` — «У меня есть коробка». Соберите `tengo` + `una caja`. Tengo уже означает «у меня есть». Caja женского рода, поэтому для одной коробки берём una. Меняется артикль перед предметом, а tengo остаётся прежним.",
+        "uk": "Друг шукає коробку для дрібних речей. Скажіть `Tengo una caja` — «У мене є коробка». Складіть `tengo` + `una caja`. Tengo вже означає «у мене є». Caja жіночого роду, тому для однієї коробки беремо una. Змінюється артикль перед предметом, а tengo залишається тим самим."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-02:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите «У меня есть коробка». Начните с Tengo.",
+          "uk": "Скажіть «У мене є коробка». Почніть з Tengo."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-02:intro1:r1",
+              "text": "Tengo una caja."
+            },
+            {
+              "responseId": "es:lesson-05:session-02:intro1:r2",
+              "text": "Tengo un caja."
+            },
+            {
+              "responseId": "es:lesson-05:session-02:intro1:r3",
+              "text": "Es una caja."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-02:intro1:r1",
+              "text": "Tengo una caja."
+            },
+            {
+              "responseId": "es:lesson-05:session-02:intro1:r2",
+              "text": "Tengo un caja."
+            },
+            {
+              "responseId": "es:lesson-05:session-02:intro1:r3",
+              "text": "Es una caja."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «У меня есть коробка». Начните с Tengo.",
+          "uk": "Скажіть «У мене є коробка». Почніть з Tengo."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-05:session-02:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Сумка для покупок",
+        "uk": "Сумка для покупок"
+      },
+      "bodyByLocale": {
+        "ru": "Для покупок в дороге пригодится сумка. Скажите `Tengo una bolsa` — «У меня есть сумка». Соберите `tengo` + `una bolsa`. Здесь используем знакомое bolsa, слово женского рода. Поэтому una bolsa, хотя с другим знакомым словом bolso было un bolso. Выбирайте артикль по тому испанскому слову, которое произносите.",
+        "uk": "Для покупок у дорозі знадобиться сумка. Скажіть `Tengo una bolsa` — «У мене є сумка». Складіть `tengo` + `una bolsa`. Тут використовуємо знайоме bolsa, слово жіночого роду. Тому una bolsa, хоча з іншим знайомим словом bolso було un bolso. Вибирайте артикль за тим іспанським словом, яке вимовляєте."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-02:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «У меня есть сумка». Начните с Tengo и используйте bolsa.",
+          "uk": "Скажіть «У мене є сумка». Почніть з Tengo й використайте bolsa."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-02:intro2:r1",
+              "text": "Tengo una bolsa."
+            },
+            {
+              "responseId": "es:lesson-05:session-02:intro2:r2",
+              "text": "Tengo un bolsa."
+            },
+            {
+              "responseId": "es:lesson-05:session-02:intro2:r3",
+              "text": "Tengo una bolso."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-02:intro2:r1",
+              "text": "Tengo una bolsa."
+            },
+            {
+              "responseId": "es:lesson-05:session-02:intro2:r2",
+              "text": "Tengo un bolsa."
+            },
+            {
+              "responseId": "es:lesson-05:session-02:intro2:r3",
+              "text": "Tengo una bolso."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «У меня есть сумка». Начните с Tengo и используйте bolsa.",
+          "uk": "Скажіть «У мене є сумка». Почніть з Tengo й використайте bolsa."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-05:session-02:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ключ от дома",
+        "uk": "Ключ від дому"
+      },
+      "bodyByLocale": {
+        "ru": "Перед выходом вы сообщаете, что ключ у вас есть: `Tengo una llave` — «У меня есть ключ». Соберите `tengo` + `una llave`. В русском «ключ» мужского рода, но испанское llave — женского. Поэтому una. Вы говорите об одном ключе, и существительное остаётся в единственном числе.",
+        "uk": "Перед виходом ви повідомляєте, що ключ у вас є: `Tengo una llave` — «У мене є ключ». Складіть `tengo` + `una llave`. В українській «ключ» чоловічого роду, але іспанське llave — жіночого. Тому una. Ви говорите про один ключ, і іменник залишається в однині."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-02:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите «У меня есть ключ». Начните с Tengo.",
+          "uk": "Скажіть «У мене є ключ». Почніть з Tengo."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-02:intro3:r1",
+              "text": "Tengo una llave."
+            },
+            {
+              "responseId": "es:lesson-05:session-02:intro3:r2",
+              "text": "Tengo un llave."
+            },
+            {
+              "responseId": "es:lesson-05:session-02:intro3:r3",
+              "text": "Tengo una llaves."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-02:intro3:r1",
+              "text": "Tengo una llave."
+            },
+            {
+              "responseId": "es:lesson-05:session-02:intro3:r2",
+              "text": "Tengo un llave."
+            },
+            {
+              "responseId": "es:lesson-05:session-02:intro3:r3",
+              "text": "Tengo una llaves."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «У меня есть ключ». Начните с Tengo.",
+          "uk": "Скажіть «У мене є ключ». Почніть з Tengo."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "146983e8c9b889351f7fd5958500c0ceb53172cfba5bd383eba982793f83f0a4"
+}

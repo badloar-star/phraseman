@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-05:session-04",
+  "entries": [
+    {
+      "interactionId": "es:lesson-05:session-04:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-04:intro1:r2": {
+          "ru": "Для «у меня есть» нужна форма tengo.",
+          "uk": "Для «у мене є» потрібна форма tengo."
+        },
+        "es:lesson-05:session-04:intro1:r3": {
+          "ru": "С yo здесь нужна личная форма tengo, не tener.",
+          "uk": "Із yo тут потрібна особова форма tengo, не tener."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-04:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-04:intro2:r2": {
+          "ru": "Bolsa женского рода: una.",
+          "uk": "Bolsa жіночого роду: una."
+        },
+        "es:lesson-05:session-04:intro2:r3": {
+          "ru": "Soy означало бы, что вы сами сумка; о своей вещи нужно tengo.",
+          "uk": "Soy означало б, що ви самі сумка; про свою річ потрібно tengo."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-04:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-04:intro3:r2": {
+          "ru": "Es здесь лишнее.",
+          "uk": "Es тут зайве."
+        },
+        "es:lesson-05:session-04:intro3:r3": {
+          "ru": "Llave женского рода: una.",
+          "uk": "Llave жіночого роду: una."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f1fe6bfbe4e9f26928a13ccbf84cb498aae1edec5771bf63d71433eff9b69b48"
+}

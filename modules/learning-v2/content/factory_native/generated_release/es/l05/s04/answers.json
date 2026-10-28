@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-05:session-04:i01",
+    "correctText": "yo",
+    "correctResponseId": "es:lesson-05:session-04:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-04:i02",
+    "correctText": "Yo",
+    "correctResponseId": "es:lesson-05:session-04:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-04:i03",
+    "correctText": "Yo tengo un libro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-04:i04",
+    "correctText": "tengo",
+    "correctResponseId": "es:lesson-05:session-04:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-04:i05",
+    "correctText": "Yo tengo una bolsa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-04:i06",
+    "correctText": "Yo tengo una llave.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-04:i07",
+    "correctText": "Yo tengo un libro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-04:i08",
+    "correctText": "una",
+    "correctResponseId": "es:lesson-05:session-04:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-04:i09",
+    "correctText": "Yo tengo un libro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-04:i10",
+    "correctText": "Yo tengo una bolsa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-04:i11",
+    "correctText": "Yo tengo una llave.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-04:i12",
+    "correctText": "Yo tengo una caja.",
+    "correctResponseId": null
+  }
+]

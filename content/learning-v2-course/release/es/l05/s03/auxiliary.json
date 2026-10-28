@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-05:session-03",
+  "entries": [
+    {
+      "interactionId": "es:lesson-05:session-03:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-03:intro1:r2": {
+          "ru": "Это говорило бы, что вы сами брат; здесь рассказываете о родственнике.",
+          "uk": "Це говорило б, що ви самі брат; тут розповідаєте про родича."
+        },
+        "es:lesson-05:session-03:intro1:r3": {
+          "ru": "Hermano мужского рода: un.",
+          "uk": "Hermano чоловічого роду: un."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-03:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-03:intro2:r2": {
+          "ru": "Перед hermana нужно una.",
+          "uk": "Перед hermana потрібно una."
+        },
+        "es:lesson-05:session-03:intro2:r3": {
+          "ru": "Нужно сообщить о своей семье: tengo.",
+          "uk": "Потрібно повідомити про свою родину: tengo."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-03:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-03:intro3:r2": {
+          "ru": "В этой фразе mi не нужно: tengo un hijo.",
+          "uk": "У цій фразі mi не потрібне: tengo un hijo."
+        },
+        "es:lesson-05:session-03:intro3:r3": {
+          "ru": "Hijo мужского рода: un.",
+          "uk": "Hijo чоловічого роду: un."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "d7ce4e377ccdc569db08faed9b6180d586ee3abf58442b00a3cafb1f5410dade"
+}

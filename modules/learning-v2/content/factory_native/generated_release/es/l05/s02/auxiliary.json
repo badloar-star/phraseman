@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-05:session-02",
+  "entries": [
+    {
+      "interactionId": "es:lesson-05:session-02:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-02:intro1:r2": {
+          "ru": "Caja женского рода: una.",
+          "uk": "Caja жіночого роду: una."
+        },
+        "es:lesson-05:session-02:intro1:r3": {
+          "ru": "Так называем предмет, но не сообщаем, что он у вас есть.",
+          "uk": "Так називаємо предмет, але не повідомляємо, що він у вас є."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-02:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-02:intro2:r2": {
+          "ru": "С bolsa нужна una.",
+          "uk": "Із bolsa потрібна una."
+        },
+        "es:lesson-05:session-02:intro2:r3": {
+          "ru": "Выбрано слово bolsa; у bolso другой род.",
+          "uk": "Вибране слово bolsa; у bolso інший рід."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-02:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-02:intro3:r2": {
+          "ru": "Llave женского рода: una.",
+          "uk": "Llave жіночого роду: una."
+        },
+        "es:lesson-05:session-02:intro3:r3": {
+          "ru": "После una здесь нужна одна llave, без s.",
+          "uk": "Після una тут потрібна одна llave, без s."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c9a67b5b0d97ac93c542b24ed229737df59acd418a1840c6404e00a8f5d723f8"
+}

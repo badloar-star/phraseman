@@ -1,0 +1,678 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-05:session-04",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-05:session-04:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-04:i01:r1",
+          "text": "yo"
+        },
+        {
+          "responseId": "es:lesson-05:session-04:i01:r2",
+          "text": "tú"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-04:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-04:i01:audio",
+          "transcript": "yo"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-05:session-04:i01:r1",
+            "targetText": "yo",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-05:session-04:i01:r2",
+            "targetText": "tú",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-04:i01:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит yo — «я».",
+              "uk": "Звучить yo — «я»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-04:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — явно назвіть себе: у мене є книжка",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-04:i02:r1",
+          "text": "Yo"
+        },
+        {
+          "responseId": "es:lesson-05:session-04:i02:r2",
+          "text": "Tú"
+        },
+        {
+          "responseId": "es:lesson-05:session-04:i02:r3",
+          "text": "Ella"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — явно назвіть себе: у мене є книжка",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — явно назовите себя: у меня есть книга",
+          "uk": "Вставте слово — явно назвіть себе: у мене є книжка"
+        },
+        "gappedTargetPhrase": "___ tengo un libro.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-04:i02:r1",
+            "text": "Yo"
+          },
+          {
+            "responseId": "es:lesson-05:session-04:i02:r2",
+            "text": "Tú"
+          },
+          {
+            "responseId": "es:lesson-05:session-04:i02:r3",
+            "text": "Ella"
+          }
+        ],
+        "testedDimension": "Вставте слово — явно назвіть себе: у мене є книжка",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-04:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — явно назвіть себе: у мене є книжка",
+            "feedbackByLocale": {
+              "ru": "Говорите о себе: yo.",
+              "uk": "Говорите про себе: yo."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-04:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — явно назвіть себе: у мене є книжка",
+            "feedbackByLocale": {
+              "ru": "Речь о вас, говорящем: yo.",
+              "uk": "Ідеться про вас, мовця: yo."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-04:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — а в мене є книжка; почніть з Yo",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-04:i03:r1",
+          "text": "Плитки: un"
+        },
+        {
+          "responseId": "es:lesson-05:session-04:i03:r2",
+          "text": "yo"
+        },
+        {
+          "responseId": "es:lesson-05:session-04:i03:r3",
+          "text": "libro"
+        },
+        {
+          "responseId": "es:lesson-05:session-04:i03:r4",
+          "text": "tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-04:i03:r5",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — а в мене є книжка; почніть з Yo",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Yo tengo un libro.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — а у меня есть книга; начните с Yo",
+          "uk": "Зберіть фразу — а в мене є книжка; почніть з Yo"
+        },
+        "orderedTokens": [
+          "Yo",
+          "tengo",
+          "un",
+          "libro"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-04:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — а в мене є книжка; почніть з Yo",
+            "feedbackByLocale": {
+              "ru": "yo соединяется с tengo напрямую.",
+              "uk": "yo з’єднується з tengo безпосередньо."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-04:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — а в мене є сумка",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-04:i04:r1",
+          "text": "tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-04:i04:r2",
+          "text": "tener"
+        },
+        {
+          "responseId": "es:lesson-05:session-04:i04:r3",
+          "text": "soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — а в мене є сумка",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — а у меня есть сумка",
+          "uk": "Вставте слово — а в мене є сумка"
+        },
+        "gappedTargetPhrase": "Yo ___ una bolsa.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-04:i04:r1",
+            "text": "tengo"
+          },
+          {
+            "responseId": "es:lesson-05:session-04:i04:r2",
+            "text": "tener"
+          },
+          {
+            "responseId": "es:lesson-05:session-04:i04:r3",
+            "text": "soy"
+          }
+        ],
+        "testedDimension": "Вставте слово — а в мене є сумка",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-04:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — а в мене є сумка",
+            "feedbackByLocale": {
+              "ru": "С yo нужна личная форма tengo.",
+              "uk": "Із yo потрібна особова форма tengo."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-04:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — а в мене є сумка",
+            "feedbackByLocale": {
+              "ru": "Говорите о наличии сумки: tengo.",
+              "uk": "Говорите про наявність сумки: tengo."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-04:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — а в мене є сумка; почніть з Yo й використайте bolsa",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-04:i05:r1",
+          "text": "Плитки: bolsa"
+        },
+        {
+          "responseId": "es:lesson-05:session-04:i05:r2",
+          "text": "yo"
+        },
+        {
+          "responseId": "es:lesson-05:session-04:i05:r3",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-05:session-04:i05:r4",
+          "text": "tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-04:i05:r5",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — а в мене є сумка; почніть з Yo й використайте bolsa",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Yo tengo una bolsa.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — а у меня есть сумка; начните с Yo и используйте bolsa",
+          "uk": "Зберіть фразу — а в мене є сумка; почніть з Yo й використайте bolsa"
+        },
+        "orderedTokens": [
+          "Yo",
+          "tengo",
+          "una",
+          "bolsa"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-04:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — а в мене є сумка; почніть з Yo й використайте bolsa",
+            "feedbackByLocale": {
+              "ru": "bolsa женского рода.",
+              "uk": "bolsa жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-04:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — у мене є ключ; почніть з Yo",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-04:i06:r1",
+          "text": "Плитки: tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-04:i06:r2",
+          "text": "llave"
+        },
+        {
+          "responseId": "es:lesson-05:session-04:i06:r3",
+          "text": "yo"
+        },
+        {
+          "responseId": "es:lesson-05:session-04:i06:r4",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-05:session-04:i06:r5",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — у мене є ключ; почніть з Yo",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Yo tengo una llave.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — у меня есть ключ; начните с Yo",
+          "uk": "Зберіть фразу — у мене є ключ; почніть з Yo"
+        },
+        "orderedTokens": [
+          "Yo",
+          "tengo",
+          "una",
+          "llave"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-04:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — у мене є ключ; почніть з Yo",
+            "feedbackByLocale": {
+              "ru": "перед tengo она не нужна.",
+              "uk": "перед tengo вона не потрібна."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-04:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-04:i07:r1",
+          "text": "Плитки: libro"
+        },
+        {
+          "responseId": "es:lesson-05:session-04:i07:r2",
+          "text": "tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-04:i07:r3",
+          "text": "yo"
+        },
+        {
+          "responseId": "es:lesson-05:session-04:i07:r4",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-05:session-04:i07:r5",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-04:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-04:i07:audio",
+          "transcript": "Yo tengo un libro."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Yo tengo un libro.",
+        "orderedTokens": [
+          "Yo",
+          "tengo",
+          "un",
+          "libro"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-04:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит un.",
+              "uk": "звучить un."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-04:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — у мене є ключ",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-04:i08:r1",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-05:session-04:i08:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-05:session-04:i08:r3",
+          "text": "unas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — у мене є ключ",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — у меня есть ключ",
+          "uk": "Вставте слово — у мене є ключ"
+        },
+        "gappedTargetPhrase": "Yo tengo ___ llave.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-04:i08:r1",
+            "text": "una"
+          },
+          {
+            "responseId": "es:lesson-05:session-04:i08:r2",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-05:session-04:i08:r3",
+            "text": "unas"
+          }
+        ],
+        "testedDimension": "Вставте слово — у мене є ключ",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-04:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — у мене є ключ",
+            "feedbackByLocale": {
+              "ru": "Llave женского рода: una.",
+              "uk": "Llave жіночого роду: una."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-04:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — у мене є ключ",
+            "feedbackByLocale": {
+              "ru": "Ключ один: una llave.",
+              "uk": "Ключ один: una llave."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-04:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — а в мене є книжка; почніть з Yo tengo",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-04:i09:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — а в мене є книжка; почніть з Yo tengo",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-04:i09:audio",
+          "transcript": "Yo tengo un libro."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Yo tengo un libro.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-04:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — а в мене є сумка; почніть з Yo tengo й використайте bolsa",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-04:i10:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — а в мене є сумка; почніть з Yo tengo й використайте bolsa",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-04:i10:audio",
+          "transcript": "Yo tengo una bolsa."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Yo tengo una bolsa.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-04:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — у мене є ключ; почніть з Yo tengo",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-04:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — у мене є ключ; почніть з Yo tengo",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-04:i11:audio",
+          "transcript": "Yo tengo una llave."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Yo tengo una llave.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-04:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — а в мене є коробка; почніть з Yo tengo",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-04:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — а в мене є коробка; почніть з Yo tengo",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-04:i12:audio",
+          "transcript": "Yo tengo una caja."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Yo tengo una caja.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "baa29bf8e3bab79bce0fe68a35aa923940e72304554363a1a05a7f7817b3d8dd"
+}

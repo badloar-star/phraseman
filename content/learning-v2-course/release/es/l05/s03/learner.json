@@ -1,0 +1,658 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-05:session-03",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-05:session-03:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-03:i01:r1",
+          "text": "hermano"
+        },
+        {
+          "responseId": "es:lesson-05:session-03:i01:r2",
+          "text": "hermana"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-03:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-03:i01:audio",
+          "transcript": "hermano"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-05:session-03:i01:r1",
+            "targetText": "hermano",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-05:session-03:i01:r2",
+            "targetText": "hermana",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-03:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В конце звучит o: hermano.",
+              "uk": "Наприкінці звучить o: hermano."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-03:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — у меня есть брат",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-03:i02:r1",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-05:session-03:i02:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-05:session-03:i02:r3",
+          "text": "unos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — у меня есть брат",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — у меня есть брат",
+          "uk": "Вставте слово — у мене є брат"
+        },
+        "gappedTargetPhrase": "Tengo ___ hermano.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-03:i02:r1",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-05:session-03:i02:r2",
+            "text": "una"
+          },
+          {
+            "responseId": "es:lesson-05:session-03:i02:r3",
+            "text": "unos"
+          }
+        ],
+        "testedDimension": "Вставьте слово — у меня есть брат",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-03:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у меня есть брат",
+            "feedbackByLocale": {
+              "ru": "Hermano мужского рода: un.",
+              "uk": "Hermano чоловічого роду: un."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-03:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у меня есть брат",
+            "feedbackByLocale": {
+              "ru": "Здесь называете одного брата: un hermano.",
+              "uk": "Тут називаєте одного брата: un hermano."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-03:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — у меня есть брат; начните с Tengo",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-03:i03:r1",
+          "text": "Плитки: hermano"
+        },
+        {
+          "responseId": "es:lesson-05:session-03:i03:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-05:session-03:i03:r3",
+          "text": "tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-03:i03:r4",
+          "text": "soy."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — у меня есть брат; начните с Tengo",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Tengo un hermano.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — у меня есть брат; начните с Tengo",
+          "uk": "Зберіть фразу — у мене є брат; почніть з Tengo"
+        },
+        "orderedTokens": [
+          "Tengo",
+          "un",
+          "hermano"
+        ],
+        "authoredDistractorTokens": [
+          "soy"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-03:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — у меня есть брат; начните с Tengo",
+            "feedbackByLocale": {
+              "ru": "о родственнике говорим tengo.",
+              "uk": "про родича говоримо tengo."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-03:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — у меня есть сестра",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-03:i04:r1",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-05:session-03:i04:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-05:session-03:i04:r3",
+          "text": "unas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — у меня есть сестра",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — у меня есть сестра",
+          "uk": "Вставте слово — у мене є сестра"
+        },
+        "gappedTargetPhrase": "Tengo ___ hermana.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-03:i04:r1",
+            "text": "una"
+          },
+          {
+            "responseId": "es:lesson-05:session-03:i04:r2",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-05:session-03:i04:r3",
+            "text": "unas"
+          }
+        ],
+        "testedDimension": "Вставьте слово — у меня есть сестра",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-03:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у меня есть сестра",
+            "feedbackByLocale": {
+              "ru": "Hermana женского рода: una.",
+              "uk": "Hermana жіночого роду: una."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-03:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у меня есть сестра",
+            "feedbackByLocale": {
+              "ru": "Здесь одна сестра: una hermana.",
+              "uk": "Тут одна сестра: una hermana."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-03:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — у меня есть сестра; начните с Tengo",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-03:i05:r1",
+          "text": "Плитки: una"
+        },
+        {
+          "responseId": "es:lesson-05:session-03:i05:r2",
+          "text": "hermana"
+        },
+        {
+          "responseId": "es:lesson-05:session-03:i05:r3",
+          "text": "tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-03:i05:r4",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — у меня есть сестра; начните с Tengo",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Tengo una hermana.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — у меня есть сестра; начните с Tengo",
+          "uk": "Зберіть фразу — у мене є сестра; почніть з Tengo"
+        },
+        "orderedTokens": [
+          "Tengo",
+          "una",
+          "hermana"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-03:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — у меня есть сестра; начните с Tengo",
+            "feedbackByLocale": {
+              "ru": "hermana женского рода.",
+              "uk": "hermana жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-03:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — у меня есть сын; начните с Tengo",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-03:i06:r1",
+          "text": "Плитки: hijo"
+        },
+        {
+          "responseId": "es:lesson-05:session-03:i06:r2",
+          "text": "tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-03:i06:r3",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-05:session-03:i06:r4",
+          "text": "mi."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — у меня есть сын; начните с Tengo",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Tengo un hijo.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — у меня есть сын; начните с Tengo",
+          "uk": "Зберіть фразу — у мене є син; почніть з Tengo"
+        },
+        "orderedTokens": [
+          "Tengo",
+          "un",
+          "hijo"
+        ],
+        "authoredDistractorTokens": [
+          "mi"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-03:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — у меня есть сын; начните с Tengo",
+            "feedbackByLocale": {
+              "ru": "связь с вами уже передана словом tengo.",
+              "uk": "зв’язок із вами вже передано словом tengo."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-03:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-03:i07:r1",
+          "text": "Плитки: tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-03:i07:r2",
+          "text": "hermana"
+        },
+        {
+          "responseId": "es:lesson-05:session-03:i07:r3",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-05:session-03:i07:r4",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-03:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-03:i07:audio",
+          "transcript": "Tengo una hermana."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Tengo una hermana.",
+        "orderedTokens": [
+          "Tengo",
+          "una",
+          "hermana"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-03:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит una.",
+              "uk": "звучить una."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-03:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — у меня есть сын",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-03:i08:r1",
+          "text": "Tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-03:i08:r2",
+          "text": "Soy"
+        },
+        {
+          "responseId": "es:lesson-05:session-03:i08:r3",
+          "text": "Es"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — у меня есть сын",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — у меня есть сын",
+          "uk": "Вставте слово — у мене є син"
+        },
+        "gappedTargetPhrase": "___ un hijo.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-03:i08:r1",
+            "text": "Tengo"
+          },
+          {
+            "responseId": "es:lesson-05:session-03:i08:r2",
+            "text": "Soy"
+          },
+          {
+            "responseId": "es:lesson-05:session-03:i08:r3",
+            "text": "Es"
+          }
+        ],
+        "testedDimension": "Вставьте слово — у меня есть сын",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-03:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у меня есть сын",
+            "feedbackByLocale": {
+              "ru": "Не представляете себя сыном, а говорите о своём ребёнке: tengo.",
+              "uk": "Не представляєте себе сином, а говорите про свою дитину: tengo."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-03:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у меня есть сын",
+            "feedbackByLocale": {
+              "ru": "Нужно выразить «у меня есть»: tengo.",
+              "uk": "Потрібно виразити «у мене є»: tengo."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-03:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — у меня есть брат; начните с Tengo",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-03:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — у меня есть брат; начните с Tengo",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-03:i09:audio",
+          "transcript": "Tengo un hermano."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tengo un hermano.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-03:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — у меня есть сестра; начните с Tengo",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-03:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — у меня есть сестра; начните с Tengo",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-03:i10:audio",
+          "transcript": "Tengo una hermana."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tengo una hermana.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-03:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — у меня есть сын; начните с Tengo",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-03:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — у меня есть сын; начните с Tengo",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-03:i11:audio",
+          "transcript": "Tengo un hijo."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tengo un hijo.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-03:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — у меня есть дочь; начните с Tengo",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-03:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — у меня есть дочь; начните с Tengo",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-03:i12:audio",
+          "transcript": "Tengo una hija."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tengo una hija.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "3dd2b82a37e4f6ad74fe8dc73bc9911358d351b271f4b3d88ece7deee7464270"
+}

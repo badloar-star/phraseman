@@ -1582,4 +1582,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"сказать «у меня есть» с tengo и назвать один предмет.","uk":"сказати «у мене є» з tengo й назвати один предмет."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 5, sessionOrdinal: 2,
+    sourceFingerprint: "a9ea7f8b0d70ffe4f486485a92a4cf74da04aac1e4c5e5c38153beb4ee4af8d9",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"ставить una после tengo перед одним предметом женского рода.","uk":"ставити una після tengo перед одним предметом жіночого роду."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 5, sessionOrdinal: 3,
+    sourceFingerprint: "379b4a4948b1764061635bf1a13b96913366ebb5ff9726c5f42727cde22527af",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"говорить о родственниках с tengo, выбирая un или una.","uk":"говорити про родичів із tengo, вибираючи un або una."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 5, sessionOrdinal: 4,
+    sourceFingerprint: "654e5da6523b1001dc4403d55524dc4dd175560e673f9f55256c1660c3e1b4c0",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"добавить yo перед tengo, чтобы явно выделить себя.","uk":"додати yo перед tengo, щоб явно виділити себе."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 5, sessionOrdinal: 5,
+    sourceFingerprint: "b54213f3555f8ce996de1fdf2b476013d33e6212708f8da55cda8865219805b2",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"поставить no перед tengo и сказать, что предмета у вас нет.","uk":"поставити no перед tengo й сказати, що предмета у вас немає."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
+  }),
 ]);

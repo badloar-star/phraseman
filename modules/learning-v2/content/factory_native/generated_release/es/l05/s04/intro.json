@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-05:session-04",
+  "learningOutcomeByLocale": {
+    "ru": "добавить yo перед tengo, чтобы явно выделить себя.",
+    "uk": "додати yo перед tengo, щоб явно виділити себе."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-05:session-04:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ваша очередь",
+        "uk": "Ваша черга"
+      },
+      "bodyByLocale": {
+        "ru": "Друг назвал свою вещь, теперь ваша очередь. Скажите `Yo tengo un libro` — «А у меня есть книга». Соберите `yo` + `tengo` + `un libro`. Yo явно называет вас и помогает выделить свою очередь в разговоре. Форма tengo остаётся прежней. Без yo фраза тоже правильна; здесь добавляем его намеренно.",
+        "uk": "Друг назвав свою річ, тепер ваша черга. Скажіть `Yo tengo un libro` — «А в мене є книжка». Складіть `yo` + `tengo` + `un libro`. Yo явно називає вас і допомагає виділити свою чергу в розмові. Форма tengo залишається тією самою. Без yo фраза теж правильна; тут додаємо його навмисно."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-04:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите «А у меня есть книга». Начните с Yo tengo.",
+          "uk": "Скажіть «А в мене є книжка». Почніть з Yo tengo."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-04:intro1:r1",
+              "text": "Yo tengo un libro."
+            },
+            {
+              "responseId": "es:lesson-05:session-04:intro1:r2",
+              "text": "Yo es un libro."
+            },
+            {
+              "responseId": "es:lesson-05:session-04:intro1:r3",
+              "text": "Yo tener un libro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-04:intro1:r1",
+              "text": "Yo tengo un libro."
+            },
+            {
+              "responseId": "es:lesson-05:session-04:intro1:r2",
+              "text": "Yo es un libro."
+            },
+            {
+              "responseId": "es:lesson-05:session-04:intro1:r3",
+              "text": "Yo tener un libro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «А у меня есть книга». Начните с Yo tengo.",
+          "uk": "Скажіть «А в мене є книжка». Почніть з Yo tengo."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-05:session-04:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Сумка у вас",
+        "uk": "Сумка у вас"
+      },
+      "bodyByLocale": {
+        "ru": "Друг сообщает, что у него есть коробка. Вы добавляете о себе `Yo tengo una bolsa` — «А у меня есть сумка». Соберите `yo` + `tengo` + `una bolsa`. Сначала явно назовите себя, затем скажите о своей вещи. Женский род bolsa меняет артикль на una, но не форму tengo.",
+        "uk": "Друг повідомляє, що в нього є коробка. Ви додаєте про себе `Yo tengo una bolsa` — «А в мене є сумка». Складіть `yo` + `tengo` + `una bolsa`. Спочатку явно назвіть себе, потім скажіть про свою річ. Жіночий рід bolsa змінює артикль на una, але не форму tengo."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-04:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «А у меня есть сумка». Начните с Yo tengo и используйте bolsa.",
+          "uk": "Скажіть «А в мене є сумка». Почніть з Yo tengo й використайте bolsa."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-04:intro2:r1",
+              "text": "Yo tengo una bolsa."
+            },
+            {
+              "responseId": "es:lesson-05:session-04:intro2:r2",
+              "text": "Yo tengo un bolsa."
+            },
+            {
+              "responseId": "es:lesson-05:session-04:intro2:r3",
+              "text": "Yo soy una bolsa."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-04:intro2:r1",
+              "text": "Yo tengo una bolsa."
+            },
+            {
+              "responseId": "es:lesson-05:session-04:intro2:r2",
+              "text": "Yo tengo un bolsa."
+            },
+            {
+              "responseId": "es:lesson-05:session-04:intro2:r3",
+              "text": "Yo soy una bolsa."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «А у меня есть сумка». Начните с Yo tengo и используйте bolsa.",
+          "uk": "Скажіть «А в мене є сумка». Почніть з Yo tengo й використайте bolsa."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-05:session-04:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ключ у вас",
+        "uk": "Ключ у вас"
+      },
+      "bodyByLocale": {
+        "ru": "Друзья выясняют, у кого есть ключ. Вы говорите `Yo tengo una llave` — «У меня есть ключ». Соберите `yo` + `tengo` + `una llave`. В этой ситуации yo подчёркивает: ключ есть именно у вас. Не ставьте es между yo и tengo: они соединяются напрямую.",
+        "uk": "Друзі з’ясовують, у кого є ключ. Ви говорите `Yo tengo una llave` — «У мене є ключ». Складіть `yo` + `tengo` + `una llave`. У цій ситуації yo підкреслює: ключ є саме у вас. Не ставте es між yo і tengo: вони з’єднуються безпосередньо."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-04:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите «У меня есть ключ», явно назвав себя. Начните с Yo tengo.",
+          "uk": "Скажіть «У мене є ключ», явно назвавши себе. Почніть з Yo tengo."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-04:intro3:r1",
+              "text": "Yo tengo una llave."
+            },
+            {
+              "responseId": "es:lesson-05:session-04:intro3:r2",
+              "text": "Yo es tengo una llave."
+            },
+            {
+              "responseId": "es:lesson-05:session-04:intro3:r3",
+              "text": "Yo tengo un llave."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-04:intro3:r1",
+              "text": "Yo tengo una llave."
+            },
+            {
+              "responseId": "es:lesson-05:session-04:intro3:r2",
+              "text": "Yo es tengo una llave."
+            },
+            {
+              "responseId": "es:lesson-05:session-04:intro3:r3",
+              "text": "Yo tengo un llave."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «У меня есть ключ», явно назвав себя. Начните с Yo tengo.",
+          "uk": "Скажіть «У мене є ключ», явно назвавши себе. Почніть з Yo tengo."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "77cccf3a3fb505d353681fa3bdec7cab6abb7ed163f43abd9c6f76bfb0dc5871"
+}

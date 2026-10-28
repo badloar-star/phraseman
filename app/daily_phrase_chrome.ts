@@ -53,23 +53,23 @@ function contrastOf(a: string, b: string): number {
 }
 
 /** Оформление «Фразы дня» из токенов текущей темы (все 23 темы × светлое / тёмное). Чистая функция, мемоизируется вызывающим по объекту токенов. */
-export function dailyPhraseChromeFromTokens(g: Pick<GlassTokens, 'isLight' | 'opaqueCard' | 'bg' | 'accent' | 'accentGlow' | 'accentGraphic' | 'accentTextSafe' | 'glassEdge' | 'text' | 'secondary' | 'cta' | 'ctaInk' | 'shadowTint'>): DailyPhraseChrome {
+export function dailyPhraseChromeFromTokens(g: Pick<GlassTokens, 'isLight' | 'opaqueCard' | 'bg' | 'accentGlow' | 'accentGraphic' | 'accentTextSafe' | 'glassEdge' | 'text' | 'secondary' | 'cta' | 'ctaInk' | 'shadowTint'>): DailyPhraseChrome {
   const mix = g.isLight ? DAILY_PHRASE_ACCENT_MIX.light : DAILY_PHRASE_ACCENT_MIX.dark;
   // зачем (замер 28.10): в части светлых тем заливка кнопки темы (cta) совпадает с карточкой (1,00:1) — кнопки не видно; тогда форма — тон текста темы, подпись — цвет карточки (как у кнопки сцены Диалогов)
   const ctaVisible = contrastOf(g.cta, g.opaqueCard) >= DAILY_PHRASE_ACTION_MIN_CONTRAST;
   return {
-    colors: [mixHex(g.opaqueCard, g.accent, mix), g.opaqueCard, g.bg],
+    colors: [mixHex(g.opaqueCard, g.accentGraphic, mix), g.opaqueCard, g.bg],
     border: g.glassEdge,
     glow: g.accentGlow,
     title: g.accentTextSafe,
     phrase: g.text,
     sub: g.secondary,
-    iconBg: alphaHex(g.accent, 0.14),
-    iconBorder: alphaHex(g.accent, 0.26),
+    iconBg: alphaHex(g.accentGraphic, 0.14),
+    iconBorder: alphaHex(g.accentGraphic, 0.26),
     ornament: g.accentGraphic,
     actionBg: ctaVisible ? g.cta : g.text,
     actionText: ctaVisible ? g.ctaInk : g.opaqueCard,
     // тёмные темы — свечение акцентом (как было), светлые — мягкая тень тоном темы
-    shadow: g.isLight ? g.shadowTint : g.accent,
+    shadow: g.isLight ? g.shadowTint : g.accentGraphic,
   };
 }

@@ -48,7 +48,7 @@ export function isLightSurface(bg?: string): boolean {
 export function theoryColors(t: Theme, themeMode: ThemeMode) {
   const sx = screenTextOnGradient(t, themeMode);
   const isLight = isLightSurface(t?.bgCard);
-  const roles = themeRoleColors(t?.accentText ?? t?.accent ?? '', typeof t?.bgCard === 'string' ? t.bgCard : '', isLight);
+  const roles = themeRoleColors(t?.accentGraphic ?? '', typeof t?.bgCard === 'string' ? t.bgCard : '', isLight);
   return {
     primary: sx.primary,
     body: sx.primary,

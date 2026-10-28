@@ -25,9 +25,9 @@ import BackGlyph from '../v2/BackGlyph';
  * Цвет галочки награды и её подложка — оттенок акцента ТЕКУЩЕЙ темы (themeRoleColors), не фиксированный фиолетовый.
  * зачем (владелец 28.10, «везде по цвету темы»): прежняя фиолетовая константа (две фиксированные пары) снята — цвет награды не фиолетовый при любой теме.
  */
-export function surveyRewardTone(accent: string, surface: string, isLight: boolean): Readonly<{ accent: string; surfaceOverlay: string }> {
+export function surveyRewardTone(accent: string, surface: string, isLight: boolean): Readonly<{ mark: string; surfaceOverlay: string }> {
   const roles = themeRoleColors(accent, surface, isLight);
-  return { accent: roles.subject, surfaceOverlay: themeRoleAlpha(roles.subject, 0.16) };
+  return { mark: roles.subject, surfaceOverlay: themeRoleAlpha(roles.subject, 0.16) };
 }
 
 export type SurveyRewardPanelPhase = 'optimistic-reward' | 'reconciled' | 'retryable-error';
@@ -87,7 +87,7 @@ export default function SurveyRewardPanel({
   const reduceMotion = useReduceMotion();
   const isError = phase === 'retryable-error';
   const labels = ACTION_LABELS[lang as keyof typeof ACTION_LABELS] ?? ACTION_LABELS.ru;
-  const rewardTone = surveyRewardTone(glass.accent, glass.bg, isLightThemeMode(themeMode));
+  const rewardTone = surveyRewardTone(glass.accentGraphic, glass.bg, isLightThemeMode(themeMode));
   const supportingMotionStyle = useSupportingEntrance(reduceMotion);
 
   return (
@@ -104,7 +104,7 @@ export default function SurveyRewardPanel({
             </View>
           ) : (phase === 'optimistic-reward' || phase === 'reconciled') ? (
             <View testID={phase === 'optimistic-reward' ? 'survey-pending-accepted' : 'survey-completion-check'} style={[styles.iconHalo, { backgroundColor: rewardTone.surfaceOverlay }]}>
-              <Ionicons name="checkmark-circle" size={56} color={rewardTone.accent} accessibilityElementsHidden />
+              <Ionicons name="checkmark-circle" size={56} color={rewardTone.mark} accessibilityElementsHidden />
             </View>
           ) : null}
           <FlowText testID="survey-reward-title" provenance="authored" accessibilityRole="header" style={[styles.title, { color: glass.text, fontSize: f.h2 }]}>

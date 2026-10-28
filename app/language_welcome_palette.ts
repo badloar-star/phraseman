@@ -20,7 +20,7 @@ export type LanguageWelcomePalette = Readonly<{
   /** Подпись на светлой кнопке и галочке: цвет низа сцены (глубокий тон темы). */
   ink: string;
   /** Акцент темы на сцене: активная точка, метка, выбранный пункт. */
-  accent: string;
+  mark: string;
   accentSoft: string;
   /** Заливка выбранного пункта и ореол финала — тот же оттенок, полупрозрачный. */
   haloDone: string;
@@ -73,7 +73,7 @@ export function languageWelcomePalette(themeId: string, appearance: 'dark' | 'li
     text: SPIRE_SCENE_INK.text,
     soft: SPIRE_SCENE_INK.muted,
     ink: legibleInk(scene.sceneBottom, scene.todayRing),
-    accent,
+    mark: accent,
     accentSoft: withAlpha(accent, 0.16),
     haloDone: withAlpha(accent, 0.22),
     card: SPIRE_SCENE_INK.skeleton,

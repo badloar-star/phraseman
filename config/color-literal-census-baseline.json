@@ -1,5 +1,5 @@
 {
-  "total": 578,
+  "total": 522,
   "files": {
     "app/_layout.tsx": 11,
     "app/(tabs)/home.tsx": 7,
@@ -15,7 +15,6 @@
     "components/packs/CommunityPackScene.tsx": 5,
     "components/packs/CommunityScene.tsx": 10,
     "components/packs/CommunityWinnerDialog.tsx": 7,
-    "components/paywallThemeConfig.ts": 210,
-    "components/ui/v2_theme.ts": 56
+    "components/paywallThemeConfig.ts": 210
   }
 }

@@ -78,3 +78,10 @@ Governance-ID: TG-4BAF7F1B8977
 
 Outcome: (1) цвета статусов карточек — theme-exempt «статус = смысл» (решение владельца: оставить светофор); (2) удаление кластера components/ui (v2_theme, V2Countdown, v2_sheet и др.) вместе с режимом sound_contrast_mode_v1 и двумя тестами одним коммитом после проверки импортёров и маршрутов; (3) удаление таблицы medalToastThemeStyles, пропа themeMode и правка двух контрактных тестов.
 Scope: перечисленные файлы и тесты; Learning V2 предупреждается до удаления режима. Architecture/Security/Debt/Verification/Rollback — как выше (цвета; откат — revert коммита).
+
+## Удаление кластера components/ui и режима sound_contrast (28.10)
+
+Governance-ID: TG-5B567834B897
+
+Outcome: удалить components/ui/{v2_theme,v2_ui,V2Fx,V2Countdown,v2_sheet,PrimaryButton} и удалённый режим modules/learning-v2/modes/sound_contrast_mode_v1.tsx одним коммитом; поправить tests/learning_v2_arena_visual_primitives_gate.ts и tests/sage_porcelain_real_device_visibility_contract.test.ts; Learning V2 уже убрал зависимость из своего теста (b060eebbc, 27e2e9943).
+Scope: только перечисленные файлы. Architecture/Security/Debt/Verification/Rollback — как выше (цвета, мёртвый код; откат — revert).

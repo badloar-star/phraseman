@@ -220,15 +220,4 @@ describe('perf freeze contract', () => {
     }
     expect(offenders).toEqual([]);
   });
-
-  it('catches up instantly when a gated screen becomes visible again', () => {
-    // Экономия не должна стоить свежести: гвард гасит таймеры, поэтому при
-    // ВОЗВРАТЕ на экран данные обязаны пересчитаться сразу, а не через секунду
-    // (иначе первый кадр показывает состояние, замороженное в момент ухода —
-    // прямое нарушение Performance Bible про первый кадр).
-    // зачем 2026-08-23: турнирный хаб заархивирован (турниры выключены фулл);
-    // правило про пересчёт ДО setInterval сторожим на живом общем отсчёте.
-    const countdown = read('components/ui/V2Countdown.tsx');
-    expect(countdown).toMatch(/if \(compute\(\) <= 0\) return;[\s\S]{0,120}?setInterval/);
-  });
 });

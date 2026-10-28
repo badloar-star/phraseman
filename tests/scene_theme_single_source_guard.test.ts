@@ -82,7 +82,7 @@ describe('экран «Приветствие нового языка»: пал�
         const themeChroma = hexChroma(liquidGlassTokens(id, { level: 'max', appearance }).accent);
         if (themeChroma < 0.08) {
           // фон (top/bottom) — цвет сцены Главной по определению, он здесь не проверяется; проверяются цвета, которые экран выбирает сам
-          for (const [name, color] of Object.entries({ accent: p.accent, c0: p.cta[0], c1: p.cta[1], c2: p.cta[2] })) {
+          for (const [name, color] of Object.entries({ accent: p.mark, c0: p.cta[0], c1: p.cta[1], c2: p.cta[2] })) {
             if (chromaOf(color) > 0.1) bad.push(`${id}/${appearance}: серая тема, а ${name} ${color} насыщенность ${chromaOf(color).toFixed(3)}`);
           }
         }

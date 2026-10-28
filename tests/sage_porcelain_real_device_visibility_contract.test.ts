@@ -2,7 +2,6 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 import { SAGE_PORCELAIN } from '../constants/theme';
-import { tournamentV2FromTheme } from '../components/ui/v2_theme';
 
 const ROOT = path.join(__dirname, '..');
 const read = (relativePath: string) => fs.readFileSync(path.join(ROOT, relativePath), 'utf8').replace(/\r\n/g, '\n');
@@ -61,15 +60,6 @@ describe('Sage Porcelain real-device visibility regressions', () => {
     expect(source).toMatch(/isSagePorcelainCard\s*\? \[lightenHex\(bg, 1\.04\), bg, lightenHex\(bg, 1\.1\)\]/);
     expect(source).toContain('...(isSagePorcelainCard ? {} : LESSON_CARD_WHITE_TEXT_SHADOW)');
     expect(source).toContain('const lockedCardHasLightFill = isLightThemeMode(_themeMode) || lightCard !== null;');
-  });
-
-  it('keeps both Sage tournament hero gradient stops readable on the light hero surface', () => {
-    const palette = tournamentV2FromTheme(SAGE_PORCELAIN, 'sagePorcelain');
-
-    expect(palette.heroGradA).toBe(SAGE_PORCELAIN.textPrimary);
-    expect(palette.heroGradB).toBe(SAGE_PORCELAIN.accent);
-    expect(contrast(palette.heroGradA, SAGE_PORCELAIN.bgSurface)).toBeGreaterThanOrEqual(4.5);
-    expect(contrast(palette.heroGradB, SAGE_PORCELAIN.bgSurface)).toBeGreaterThanOrEqual(4.5);
   });
 
   it('renders a stable semantic fallback beneath the referral artwork', () => {

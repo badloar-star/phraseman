@@ -8,7 +8,6 @@ const findings: string[] = [];
 const modeFiles = [
   "phrase_builder_mode_v1.tsx",
   "listen_choose_mode_v1.tsx",
-  "sound_contrast_mode_v1.tsx",
   "listen_build_dictation_mode_v1.tsx",
   "context_gap_grammar_mode_v1.tsx",
   "speed_match_mode_v1.tsx",
@@ -17,7 +16,7 @@ const modeFiles = [
 
 // зачем (владелец 2026-09-30, learning-v2.html): шесть боевых режимов занятия перенесены с «арена-
 // примитивов» (V2Chip/useTournamentPalette) на общий набор Liquid Glass — LearningV2Glass. Режим
-// sound_contrast в макете не рисуется и остаётся на прежних примитивах.
+// sound_contrast удалён 28.10 вместе с кластером components/ui (аудит цвета) — все режимы списка на LearningV2Glass.
 const glassModes = new Set([
   "phrase_builder_mode_v1.tsx",
   "listen_choose_mode_v1.tsx",

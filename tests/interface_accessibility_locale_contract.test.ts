@@ -11,7 +11,6 @@ function read(relativePath: string): string {
 describe('release UI accessibility localization', () => {
   const localizedTemplates = [
     ['app/(tabs)/home.tsx', 'home screen'],
-    ['components/ui/V2Countdown.tsx', 'tournament question timer'],
     ['components/flashcards/CollectionLimitHeader.tsx', 'flashcards collection limit'],
   ] as const;
 
@@ -25,7 +24,6 @@ describe('release UI accessibility localization', () => {
 
   it('does not leave the old Russian accessibility templates in the release UI', () => {
     expect(read('app/(tabs)/home.tsx')).not.toContain('accessibilityLabel={`Баланс: ${shardsBalance} жемчужин`}');
-    expect(read('components/ui/V2Countdown.tsx')).not.toContain('accessibilityLabel={`Время вопроса: ${Math.ceil(seconds)} секунд`}');
     expect(read('components/flashcards/CollectionLimitHeader.tsx')).not.toContain('accessibilityLabel={`Сохранено ${saved} из ${FREE_FLASHCARD_LIMIT}`}');
   });
 });

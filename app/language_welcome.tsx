@@ -125,7 +125,7 @@ function useLanguageWelcomeStyles(): Readonly<{ p: LanguageWelcomePalette; style
   const p = useMemo(() => languageWelcomePalette(liquidGlassThemeId, liquidGlassAppearance), [liquidGlassThemeId, liquidGlassAppearance]);
   const styles = useMemo(() => makeStyles(p), [p]);
   useEffect(() => {
-    logSceneTheme('language_welcome', liquidGlassThemeId, liquidGlassAppearance, 'languageWelcomePalette(homeSceneTokensForTheme)', { top: p.top, bottom: p.bottom, accent: p.accent, ctaFrom: p.cta[0], ctaTo: p.cta[2] });
+    logSceneTheme('language_welcome', liquidGlassThemeId, liquidGlassAppearance, 'languageWelcomePalette(homeSceneTokensForTheme)', { top: p.top, bottom: p.bottom, accent: p.mark, ctaFrom: p.cta[0], ctaTo: p.cta[2] });
   }, [p, liquidGlassThemeId, liquidGlassAppearance]);
   return { p, styles };
 }
@@ -510,7 +510,7 @@ const makeStyles = (p: LanguageWelcomePalette) => StyleSheet.create({
   backButton: { width: 44, height: 44, alignItems: 'center', justifyContent: 'center' },
   dotsRow: { flexDirection: 'row', gap: 8 },
   dot: { width: 8, height: 8, borderRadius: 4, backgroundColor: p.dot },
-  dotActive: { backgroundColor: p.accent },
+  dotActive: { backgroundColor: p.mark },
   scrollContent: { paddingHorizontal: 22, paddingTop: 10, paddingBottom: 28, flexGrow: 1 },
   welcomeBlock: { alignItems: 'center', paddingTop: 26 },
   flagHalo: {
@@ -539,7 +539,7 @@ const makeStyles = (p: LanguageWelcomePalette) => StyleSheet.create({
     paddingHorizontal: 14,
     paddingVertical: 12,
   },
-  optionCardSelected: { borderColor: p.accent, backgroundColor: p.accentSoft },
+  optionCardSelected: { borderColor: p.mark, backgroundColor: p.markSoft },
   optionTitle: { color: p.text, fontSize: 16, fontWeight: '600', flex: 1 },
   radio: {
     width: 26,
@@ -550,7 +550,7 @@ const makeStyles = (p: LanguageWelcomePalette) => StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  radioSelected: { backgroundColor: p.accent, borderColor: p.accent },
+  radioSelected: { backgroundColor: p.mark, borderColor: p.mark },
   footer: { paddingHorizontal: 22, paddingBottom: 14, paddingTop: 8 },
   primaryButtonOuter: { borderRadius: 18, overflow: 'hidden' },
   primaryButton: { paddingVertical: 16, alignItems: 'center', justifyContent: 'center', borderRadius: 18 },
@@ -587,14 +587,14 @@ const makeStyles = (p: LanguageWelcomePalette) => StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: p.accent,
+    backgroundColor: p.mark,
     borderWidth: 0,
     borderColor: p.bottom,
     alignItems: 'center',
     justifyContent: 'center',
   },
   doneCopy: { alignItems: 'center', marginTop: 22 },
-  doneEyebrow: { color: p.accent, fontSize: 13, fontWeight: '700', letterSpacing: 0.3, marginBottom: 6 },
+  doneEyebrow: { color: p.mark, fontSize: 13, fontWeight: '700', letterSpacing: 0.3, marginBottom: 6 },
   doneTitle: { color: p.text, fontSize: 30, fontWeight: '800', textAlign: 'center', marginBottom: 14 },
   doneText: { color: p.soft, fontSize: 16, lineHeight: 24, textAlign: 'center', maxWidth: 320 },
 });

@@ -60,7 +60,7 @@
 - The light must be off. — *В записи звучит The light must be on.*
 - The light must be broken. — *В записи звучит The light must be on.*
 
-**3 · Бен весь день шёл пешком. Вы делаете вывод, что он устал. Вставьте связку после must.**
+**3 · Бен весь день шёл пешком. Вы делаете вывод, что он устал. Вставьте форму be после must.**
 <!-- interaction_id: en:lesson-32:session-01:i03; family: context_gap_grammar -->
 He must ___ tired. → **be** · is · are
 - is — *После must нужна начальная форма be.*

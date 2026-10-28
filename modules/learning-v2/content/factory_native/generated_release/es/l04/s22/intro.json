@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-04:session-22",
+  "learningOutcomeByLocale": {
+    "ru": "использовать su и sus, говоря о вещах нескольких людей.",
+    "uk": "використовувати su та sus, говорячи про речі кількох людей."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-04:session-22:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Один общий ключ",
+        "uk": "Один спільний ключ"
+      },
+      "bodyByLocale": {
+        "ru": "На столе лежит один ключ от общей квартиры Аны и Педро. Скажите подруге `Es su llave` — «Это их ключ». Соберите `es` + `su llave`. Владельцев двое, но ключ один, поэтому su, без -s. Здесь su означает «их»: из разговора понятно, что речь об Ане и Педро.",
+        "uk": "На столі лежить один ключ від спільної квартири Ани й Педро. Скажіть подрузі `Es su llave` — «Це їхній ключ». Зберіть `es` + `su llave`. Власників двоє, але ключ один, тому su, без -s. Тут su означає «їхній»: з розмови зрозуміло, що йдеться про Ану й Педро."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-22:intro1:q",
+        "promptByLocale": {
+          "ru": "Речь об Ане и Педро. Скажите подруге: «Это их ключ». Начните с Es.",
+          "uk": "Йдеться про Ану й Педро. Скажіть подрузі: «Це їхній ключ». Почніть з Es."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-22:intro1:r1",
+              "text": "Es su llave."
+            },
+            {
+              "responseId": "es:lesson-04:session-22:intro1:r2",
+              "text": "Es sus llave."
+            },
+            {
+              "responseId": "es:lesson-04:session-22:intro1:r3",
+              "text": "Es tu llave."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-22:intro1:r1",
+              "text": "Es su llave."
+            },
+            {
+              "responseId": "es:lesson-04:session-22:intro1:r2",
+              "text": "Es sus llave."
+            },
+            {
+              "responseId": "es:lesson-04:session-22:intro1:r3",
+              "text": "Es tu llave."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Речь об Ане и Педро. Скажите подруге: «Это их ключ». Начните с Es.",
+          "uk": "Йдеться про Ану й Педро. Скажіть подрузі: «Це їхній ключ». Почніть з Es."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-04:session-22:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Несколько ключей",
+        "uk": "Кілька ключів"
+      },
+      "bodyByLocale": {
+        "ru": "Вы нашли ещё ключи Аны и Педро. Скажите `Son sus llaves` — «Это их ключи». Соберите `son` + `sus llaves`. Ключей несколько: поэтому son, sus и llaves. Форма sus та же, что для книг одной Аны; число владельцев само по себе её не определяет.",
+        "uk": "Ви знайшли ще ключі Ани й Педро. Скажіть `Son sus llaves` — «Це їхні ключі». Зберіть `son` + `sus llaves`. Ключів кілька: тому son, sus і llaves. Форма sus та сама, що для книжок однієї Ани; кількість власників сама собою її не визначає."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-22:intro2:q",
+        "promptByLocale": {
+          "ru": "Речь об Ане и Педро. Скажите: «Это их ключи». Начните с Son.",
+          "uk": "Йдеться про Ану й Педро. Скажіть: «Це їхні ключі». Почніть з Son."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-22:intro2:r1",
+              "text": "Son sus llaves."
+            },
+            {
+              "responseId": "es:lesson-04:session-22:intro2:r2",
+              "text": "Son su llaves."
+            },
+            {
+              "responseId": "es:lesson-04:session-22:intro2:r3",
+              "text": "Es sus llaves."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-22:intro2:r1",
+              "text": "Son sus llaves."
+            },
+            {
+              "responseId": "es:lesson-04:session-22:intro2:r2",
+              "text": "Son su llaves."
+            },
+            {
+              "responseId": "es:lesson-04:session-22:intro2:r3",
+              "text": "Es sus llaves."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Речь об Ане и Педро. Скажите: «Это их ключи». Начните с Son.",
+          "uk": "Йдеться про Ану й Педро. Скажіть: «Це їхні ключі». Почніть з Son."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-04:session-22:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Новые ключи",
+        "uk": "Нові ключі"
+      },
+      "bodyByLocale": {
+        "ru": "Ана и Педро недавно сделали новые ключи. Скажите подруге `Sus llaves son nuevas` — «Их ключи новые». Соберите `sus llaves` + `son` + `nuevas`. Испанское llave женского рода; во множественном числе llaves требует nuevas. Описание согласуется с ключами, а не с их владельцами.",
+        "uk": "Ана й Педро нещодавно зробили нові ключі. Скажіть подрузі `Sus llaves son nuevas` — «Їхні ключі нові». Зберіть `sus llaves` + `son` + `nuevas`. Іспанське llave жіночого роду; у множині llaves потребує nuevas. Опис узгоджується з ключами, а не з їхніми власниками."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-22:intro3:q",
+        "promptByLocale": {
+          "ru": "Речь об Ане и Педро. Скажите: «Их ключи новые». Начните с Sus llaves.",
+          "uk": "Йдеться про Ану й Педро. Скажіть: «Їхні ключі нові». Почніть з Sus llaves."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-22:intro3:r1",
+              "text": "Sus llaves son nuevas."
+            },
+            {
+              "responseId": "es:lesson-04:session-22:intro3:r2",
+              "text": "Sus llaves son nuevos."
+            },
+            {
+              "responseId": "es:lesson-04:session-22:intro3:r3",
+              "text": "Sus llaves son nueva."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-22:intro3:r1",
+              "text": "Sus llaves son nuevas."
+            },
+            {
+              "responseId": "es:lesson-04:session-22:intro3:r2",
+              "text": "Sus llaves son nuevos."
+            },
+            {
+              "responseId": "es:lesson-04:session-22:intro3:r3",
+              "text": "Sus llaves son nueva."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Речь об Ане и Педро. Скажите: «Их ключи новые». Начните с Sus llaves.",
+          "uk": "Йдеться про Ану й Педро. Скажіть: «Їхні ключі нові». Почніть з Sus llaves."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "3d10f9e16b1a45cc6e98aec366ac2086133bb919d2c85e4eccf20433ea0c45a0"
+}

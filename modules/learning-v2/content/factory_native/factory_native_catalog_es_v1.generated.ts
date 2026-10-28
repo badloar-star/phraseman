@@ -1323,4 +1323,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"назвать дочь Педро и согласовать описание со словом hija.","uk":"назвати дочку Педро й узгодити опис зі словом hija."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 4, sessionOrdinal: 21,
+    sourceFingerprint: "b0c7b5962d6ed1286db13d1955ed6283a7f82db5b142c15eb233fa78431c2561",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"менять su на sus, когда называете несколько вещей.","uk":"змінювати su на sus, коли називаєте кілька речей."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 4, sessionOrdinal: 22,
+    sourceFingerprint: "03a509623bc0785e7bc3a7b5272169f33d1c9f1259a419debcbff9a736eeb465",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"использовать su и sus, говоря о вещах нескольких людей.","uk":"використовувати su та sus, говорячи про речі кількох людей."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 4, sessionOrdinal: 23,
+    sourceFingerprint: "07933ac0a704883167024b49c5e9c238cc837598f6b3156d4d382b6d356b4a30",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"задать вопрос с su и отдельно отрицать принадлежность.","uk":"поставити запитання із su й окремо заперечити належність."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 4, sessionOrdinal: 24,
+    sourceFingerprint: "3315c6b119844c799a7a3e196fa014ce0e46a8d95fdfa7e51db8dc504da0ca61",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбирать su/sus и согласовывать описание с человеком или вещью.","uk":"вибирати su/sus й узгоджувати опис із людиною або річчю."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
+  }),
 ]);

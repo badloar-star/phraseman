@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-04:session-22:i01",
+    "correctText": "llaves",
+    "correctResponseId": "es:lesson-04:session-22:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-22:i02",
+    "correctText": "su",
+    "correctResponseId": "es:lesson-04:session-22:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-22:i03",
+    "correctText": "Es su llave.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-22:i04",
+    "correctText": "sus",
+    "correctResponseId": "es:lesson-04:session-22:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-22:i05",
+    "correctText": "Son sus llaves.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-22:i06",
+    "correctText": "Sus llaves son nuevas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-22:i07",
+    "correctText": "Son sus llaves.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-22:i08",
+    "correctText": "nuevas",
+    "correctResponseId": "es:lesson-04:session-22:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-22:i09",
+    "correctText": "Es su llave.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-22:i10",
+    "correctText": "Son sus llaves.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-22:i11",
+    "correctText": "Sus llaves son nuevas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-22:i12",
+    "correctText": "Su llave es nueva.",
+    "correctResponseId": null
+  }
+]

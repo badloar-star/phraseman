@@ -1,0 +1,92 @@
+[
+  {
+    "interactionId": "es:lesson-04:session-24:i01",
+    "correctText": "hija",
+    "correctResponseId": "es:lesson-04:session-24:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-24:i02",
+    "correctText": "su",
+    "correctResponseId": "es:lesson-04:session-24:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-24:i03",
+    "correctText": "Es su hija.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-24:i04",
+    "correctText": "alta",
+    "correctResponseId": "es:lesson-04:session-24:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-24:i05",
+    "correctText": "Su hijo es alto.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-24:i06",
+    "correctText": "blanca",
+    "correctResponseId": "es:lesson-04:session-24:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-24:i07",
+    "correctText": "Es su llave.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-24:i08",
+    "correctText": "sus",
+    "correctResponseId": "es:lesson-04:session-24:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-24:i09",
+    "correctText": "Sus libros son nuevos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-24:i10",
+    "correctText": "¿Es su bolso?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-24:i11",
+    "correctText": "No es su bolso.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-24:i12",
+    "correctText": "son",
+    "correctResponseId": "es:lesson-04:session-24:i12:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-24:i13",
+    "correctText": "Es su hijo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-24:i14",
+    "correctText": "Su hija es alta.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-24:i15",
+    "correctText": "Es su llave.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-24:i16",
+    "correctText": "Sus llaves son nuevas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-24:i17",
+    "correctText": "¿Es su bolso?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-24:i18",
+    "correctText": "No son sus libros.",
+    "correctResponseId": null
+  }
+]

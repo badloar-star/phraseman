@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-04:session-23:i01",
+    "correctText": "bolso",
+    "correctResponseId": "es:lesson-04:session-23:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-23:i02",
+    "correctText": "Es",
+    "correctResponseId": "es:lesson-04:session-23:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-23:i03",
+    "correctText": "¿Es su bolso?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-23:i04",
+    "correctText": "su",
+    "correctResponseId": "es:lesson-04:session-23:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-23:i05",
+    "correctText": "No es su bolso.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-23:i06",
+    "correctText": "No son sus libros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-23:i07",
+    "correctText": "No es su bolso.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-23:i08",
+    "correctText": "sus",
+    "correctResponseId": "es:lesson-04:session-23:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-23:i09",
+    "correctText": "¿Es su bolso?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-23:i10",
+    "correctText": "No es su bolso.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-23:i11",
+    "correctText": "No son sus libros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-23:i12",
+    "correctText": "Son sus libros.",
+    "correctResponseId": null
+  }
+]

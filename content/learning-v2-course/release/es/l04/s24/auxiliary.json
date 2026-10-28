@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-04:session-24",
+  "entries": [
+    {
+      "interactionId": "es:lesson-04:session-24:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-24:intro1:r2": {
+          "ru": "Описываете дочь, а не отца.",
+          "uk": "Описуєте дочку, а не батька."
+        },
+        "es:lesson-04:session-24:intro1:r3": {
+          "ru": "Дочь одна: es.",
+          "uk": "Дочка одна: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-24:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-24:intro2:r2": {
+          "ru": "Один ключ: su.",
+          "uk": "Один ключ: su."
+        },
+        "es:lesson-04:session-24:intro2:r3": {
+          "ru": "Один ключ: es.",
+          "uk": "Один ключ: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-24:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-24:intro3:r2": {
+          "ru": "Книг несколько: son.",
+          "uk": "Книжок кілька: son."
+        },
+        "es:lesson-04:session-24:intro3:r3": {
+          "ru": "Перед libros нужно sus.",
+          "uk": "Перед libros потрібне sus."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "d6a6aa312aa95c3acfd66cf985ea0021a7668500dd27c98e933ff3092fb9a094"
+}

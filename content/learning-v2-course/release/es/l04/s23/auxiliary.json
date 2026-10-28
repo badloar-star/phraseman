@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-04:session-23",
+  "entries": [
+    {
+      "interactionId": "es:lesson-04:session-23:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-23:intro1:r2": {
+          "ru": "Сумка одна: es.",
+          "uk": "Сумка одна: es."
+        },
+        "es:lesson-04:session-23:intro1:r3": {
+          "ru": "Tu относилось бы к подруге, а спрашиваете о Педро.",
+          "uk": "Tu стосувалося б подруги, а запитуєте про Педро."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-23:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-23:intro2:r2": {
+          "ru": "Сумка одна: es.",
+          "uk": "Сумка одна: es."
+        },
+        "es:lesson-04:session-23:intro2:r3": {
+          "ru": "Mi меняет смысл на «не моя», а нужно «не его».",
+          "uk": "Mi змінює зміст на «не моя», а потрібно «не його»."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-23:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-23:intro3:r2": {
+          "ru": "Для нескольких книг нужно son.",
+          "uk": "Для кількох книжок потрібне son."
+        },
+        "es:lesson-04:session-23:intro3:r3": {
+          "ru": "Перед множественным libros нужно sus.",
+          "uk": "Перед множиною libros потрібне sus."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a171a10674099345665dd7771765f073a1a8327896e1cb31592b3956f2c6c0aa"
+}

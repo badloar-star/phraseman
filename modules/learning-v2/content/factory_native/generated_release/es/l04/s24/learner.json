@@ -1,0 +1,999 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-04:session-24",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-04:session-24:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-24:i01:r1",
+          "text": "hija"
+        },
+        {
+          "responseId": "es:lesson-04:session-24:i01:r2",
+          "text": "hijo"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-24:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-24:i01:audio",
+          "transcript": "hija"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-04:session-24:i01:r1",
+            "targetText": "hija",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-04:session-24:i01:r2",
+            "targetText": "hijo",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-24:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит hija — дочь.",
+              "uk": "Звучить hija — дочка."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-24:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — речь об Ане: это её сын",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-24:i02:r1",
+          "text": "su"
+        },
+        {
+          "responseId": "es:lesson-04:session-24:i02:r2",
+          "text": "mi"
+        },
+        {
+          "responseId": "es:lesson-04:session-24:i02:r3",
+          "text": "tu"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — речь об Ане: это её сын",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — речь об Ане: это её сын",
+          "uk": "Вставте слово — йдеться про Ану: це її син"
+        },
+        "gappedTargetPhrase": "Es ___ hijo.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-24:i02:r1",
+            "text": "su"
+          },
+          {
+            "responseId": "es:lesson-04:session-24:i02:r2",
+            "text": "mi"
+          },
+          {
+            "responseId": "es:lesson-04:session-24:i02:r3",
+            "text": "tu"
+          }
+        ],
+        "testedDimension": "Вставьте слово — речь об Ане: это её сын",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-24:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — речь об Ане: это её сын",
+            "feedbackByLocale": {
+              "ru": "Это сын Аны, не ваш.",
+              "uk": "Це син Ани, не ваш."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-24:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — речь об Ане: это её сын",
+            "feedbackByLocale": {
+              "ru": "Говорите подруге о сыне Аны.",
+              "uk": "Говорите подрузі про сина Ани."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-24:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — речь о Педро: это его дочь",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-24:i03:r1",
+          "text": "Плитки: hija"
+        },
+        {
+          "responseId": "es:lesson-04:session-24:i03:r2",
+          "text": "su"
+        },
+        {
+          "responseId": "es:lesson-04:session-24:i03:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-24:i03:r4",
+          "text": "la."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — речь о Педро: это его дочь",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es su hija.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — речь о Педро: это его дочь",
+          "uk": "Зберіть фразу — йдеться про Педро: це його дочка"
+        },
+        "orderedTokens": [
+          "Es",
+          "su",
+          "hija"
+        ],
+        "authoredDistractorTokens": [
+          "la"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-24:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — речь о Педро: это его дочь",
+            "feedbackByLocale": {
+              "ru": "перед su здесь нет артикля.",
+              "uk": "перед su тут немає артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-24:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — дочь Педро высокая",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-24:i04:r1",
+          "text": "alta"
+        },
+        {
+          "responseId": "es:lesson-04:session-24:i04:r2",
+          "text": "alto"
+        },
+        {
+          "responseId": "es:lesson-04:session-24:i04:r3",
+          "text": "altas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — дочь Педро высокая",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — дочь Педро высокая",
+          "uk": "Вставте слово — дочка Педро висока"
+        },
+        "gappedTargetPhrase": "Su hija es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-24:i04:r1",
+            "text": "alta"
+          },
+          {
+            "responseId": "es:lesson-04:session-24:i04:r2",
+            "text": "alto"
+          },
+          {
+            "responseId": "es:lesson-04:session-24:i04:r3",
+            "text": "altas"
+          }
+        ],
+        "testedDimension": "Вставьте слово — дочь Педро высокая",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-24:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — дочь Педро высокая",
+            "feedbackByLocale": {
+              "ru": "Описываете дочь: alta.",
+              "uk": "Описуєте дочку: alta."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-24:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — дочь Педро высокая",
+            "feedbackByLocale": {
+              "ru": "Дочь одна: alta.",
+              "uk": "Дочка одна: alta."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-24:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — речь об Ане: её сын высокий; начните с Su hijo",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-24:i05:r1",
+          "text": "Плитки: alto"
+        },
+        {
+          "responseId": "es:lesson-04:session-24:i05:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-24:i05:r3",
+          "text": "hijo"
+        },
+        {
+          "responseId": "es:lesson-04:session-24:i05:r4",
+          "text": "su"
+        },
+        {
+          "responseId": "es:lesson-04:session-24:i05:r5",
+          "text": "alta."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — речь об Ане: её сын высокий; начните с Su hijo",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Su hijo es alto.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — речь об Ане: её сын высокий; начните с Su hijo",
+          "uk": "Зберіть фразу — йдеться про Ану: її син високий; почніть з Su hijo"
+        },
+        "orderedTokens": [
+          "Su",
+          "hijo",
+          "es",
+          "alto"
+        ],
+        "authoredDistractorTokens": [
+          "alta"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-24:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — речь об Ане: её сын высокий; начните с Su hijo",
+            "feedbackByLocale": {
+              "ru": "hijo мужского рода.",
+              "uk": "hijo чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-24:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — дом Аны белый",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-24:i06:r1",
+          "text": "blanca"
+        },
+        {
+          "responseId": "es:lesson-04:session-24:i06:r2",
+          "text": "blanco"
+        },
+        {
+          "responseId": "es:lesson-04:session-24:i06:r3",
+          "text": "blancas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — дом Аны белый",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — дом Аны белый",
+          "uk": "Вставте слово — будинок Ани білий"
+        },
+        "gappedTargetPhrase": "Su casa es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-24:i06:r1",
+            "text": "blanca"
+          },
+          {
+            "responseId": "es:lesson-04:session-24:i06:r2",
+            "text": "blanco"
+          },
+          {
+            "responseId": "es:lesson-04:session-24:i06:r3",
+            "text": "blancas"
+          }
+        ],
+        "testedDimension": "Вставьте слово — дом Аны белый",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-24:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — дом Аны белый",
+            "feedbackByLocale": {
+              "ru": "Casa женского рода: blanca.",
+              "uk": "Casa жіночого роду: blanca."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-24:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — дом Аны белый",
+            "feedbackByLocale": {
+              "ru": "Дом один: blanca.",
+              "uk": "Будинок один: blanca."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-24:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — речь об Ане и Педро: это их ключ, один",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-24:i07:r1",
+          "text": "Плитки: llave"
+        },
+        {
+          "responseId": "es:lesson-04:session-24:i07:r2",
+          "text": "su"
+        },
+        {
+          "responseId": "es:lesson-04:session-24:i07:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-24:i07:r4",
+          "text": "sus."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — речь об Ане и Педро: это их ключ, один",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es su llave.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — речь об Ане и Педро: это их ключ, один",
+          "uk": "Зберіть фразу — йдеться про Ану й Педро: це їхній ключ, один"
+        },
+        "orderedTokens": [
+          "Es",
+          "su",
+          "llave"
+        ],
+        "authoredDistractorTokens": [
+          "sus"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-24:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — речь об Ане и Педро: это их ключ, один",
+            "feedbackByLocale": {
+              "ru": "ключ один.",
+              "uk": "ключ один."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-24:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — речь об Ане и Педро: это их ключи",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-24:i08:r1",
+          "text": "sus"
+        },
+        {
+          "responseId": "es:lesson-04:session-24:i08:r2",
+          "text": "su"
+        },
+        {
+          "responseId": "es:lesson-04:session-24:i08:r3",
+          "text": "mis"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — речь об Ане и Педро: это их ключи",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — речь об Ане и Педро: это их ключи",
+          "uk": "Вставте слово — йдеться про Ану й Педро: це їхні ключі"
+        },
+        "gappedTargetPhrase": "Son ___ llaves.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-24:i08:r1",
+            "text": "sus"
+          },
+          {
+            "responseId": "es:lesson-04:session-24:i08:r2",
+            "text": "su"
+          },
+          {
+            "responseId": "es:lesson-04:session-24:i08:r3",
+            "text": "mis"
+          }
+        ],
+        "testedDimension": "Вставьте слово — речь об Ане и Педро: это их ключи",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-24:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — речь об Ане и Педро: это их ключи",
+            "feedbackByLocale": {
+              "ru": "Ключей несколько: sus.",
+              "uk": "Ключів кілька: sus."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-24:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — речь об Ане и Педро: это их ключи",
+            "feedbackByLocale": {
+              "ru": "Ключи гостей, не ваши: sus.",
+              "uk": "Ключі гостей, не ваші: sus."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-24:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — речь об Ане: её книги новые; начните с Sus libros",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-24:i09:r1",
+          "text": "Плитки: nuevos"
+        },
+        {
+          "responseId": "es:lesson-04:session-24:i09:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-24:i09:r3",
+          "text": "libros"
+        },
+        {
+          "responseId": "es:lesson-04:session-24:i09:r4",
+          "text": "sus"
+        },
+        {
+          "responseId": "es:lesson-04:session-24:i09:r5",
+          "text": "nuevas."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — речь об Ане: её книги новые; начните с Sus libros",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Sus libros son nuevos.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — речь об Ане: её книги новые; начните с Sus libros",
+          "uk": "Зберіть фразу — йдеться про Ану: її книжки нові; почніть з Sus libros"
+        },
+        "orderedTokens": [
+          "Sus",
+          "libros",
+          "son",
+          "nuevos"
+        ],
+        "authoredDistractorTokens": [
+          "nuevas"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-24:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — речь об Ане: её книги новые; начните с Sus libros",
+            "feedbackByLocale": {
+              "ru": "libros мужского рода.",
+              "uk": "libros чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-24:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — речь о Педро: это его сумка? Используйте bolso",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-24:i10:r1",
+          "text": "Плитки: bolso?"
+        },
+        {
+          "responseId": "es:lesson-04:session-24:i10:r2",
+          "text": "su"
+        },
+        {
+          "responseId": "es:lesson-04:session-24:i10:r3",
+          "text": "¿es"
+        },
+        {
+          "responseId": "es:lesson-04:session-24:i10:r4",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — речь о Педро: это его сумка? Используйте bolso",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Es su bolso?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — речь о Педро: это его сумка? Используйте bolso",
+          "uk": "Зберіть фразу — йдеться про Педро: це його сумка? Використайте bolso"
+        },
+        "orderedTokens": [
+          "¿Es",
+          "su",
+          "bolso"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-24:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — речь о Педро: это его сумка? Используйте bolso",
+            "feedbackByLocale": {
+              "ru": "сумка одна.",
+              "uk": "сумка одна."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-24:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-24:i11:r1",
+          "text": "Плитки: bolso"
+        },
+        {
+          "responseId": "es:lesson-04:session-24:i11:r2",
+          "text": "su"
+        },
+        {
+          "responseId": "es:lesson-04:session-24:i11:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-24:i11:r4",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-04:session-24:i11:r5",
+          "text": "mi."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-24:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-24:i11:audio",
+          "transcript": "No es su bolso."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "No es su bolso.",
+        "orderedTokens": [
+          "No",
+          "es",
+          "su",
+          "bolso"
+        ],
+        "authoredDistractorTokens": [
+          "mi"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-24:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит su.",
+              "uk": "звучить su."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-24:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — речь о Педро: это не его книги",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-24:i12:r1",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-24:i12:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-24:i12:r3",
+          "text": "soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — речь о Педро: это не его книги",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — речь о Педро: это не его книги",
+          "uk": "Вставте слово — йдеться про Педро: це не його книжки"
+        },
+        "gappedTargetPhrase": "No ___ sus libros.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-24:i12:r1",
+            "text": "son"
+          },
+          {
+            "responseId": "es:lesson-04:session-24:i12:r2",
+            "text": "es"
+          },
+          {
+            "responseId": "es:lesson-04:session-24:i12:r3",
+            "text": "soy"
+          }
+        ],
+        "testedDimension": "Вставьте слово — речь о Педро: это не его книги",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-24:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — речь о Педро: это не его книги",
+            "feedbackByLocale": {
+              "ru": "Книг несколько: son.",
+              "uk": "Книжок кілька: son."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-24:i12:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — речь о Педро: это не его книги",
+            "feedbackByLocale": {
+              "ru": "Речь о книгах, а не о говорящем.",
+              "uk": "Йдеться про книжки, а не про мовця."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-24:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — речь об Ане: это её сын; начните с Es",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-24:i13:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — речь об Ане: это её сын; начните с Es",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-24:i13:audio",
+          "transcript": "Es su hijo."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es su hijo.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-24:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — речь о Педро: его дочь высокая; начните с Su hija",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-24:i14:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — речь о Педро: его дочь высокая; начните с Su hija",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-24:i14:audio",
+          "transcript": "Su hija es alta."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Su hija es alta.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-24:i15",
+      "ordinal": 18,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — речь об Ане и Педро: это их ключ; начните с Es",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-24:i15:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — речь об Ане и Педро: это их ключ; начните с Es",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-24:i15:audio",
+          "transcript": "Es su llave."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es su llave.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-24:i16",
+      "ordinal": 19,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — речь об Ане и Педро: их ключи новые; начните с Sus llaves",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-24:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — речь об Ане и Педро: их ключи новые; начните с Sus llaves",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-24:i16:audio",
+          "transcript": "Sus llaves son nuevas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Sus llaves son nuevas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-24:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — речь о Педро: это его сумка? Начните с ¿Es, используйте bolso",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-24:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — речь о Педро: это его сумка? Начните с ¿Es, используйте bolso",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-24:i17:audio",
+          "transcript": "¿Es su bolso?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Es su bolso?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-24:i18",
+      "ordinal": 21,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — речь о Педро: это не его книги; начните с No son",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-24:i18:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — речь о Педро: это не его книги; начните с No son",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-24:i18:audio",
+          "transcript": "No son sus libros."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No son sus libros.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 18,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "7e99f52b471cccf5e0e00c9bdaab89656c13f9e0d4a9012abccc961674e2a2b2"
+}

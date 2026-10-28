@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-04:session-22",
+  "entries": [
+    {
+      "interactionId": "es:lesson-04:session-22:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-22:intro1:r2": {
+          "ru": "Число su зависит от ключей: один ключ — su.",
+          "uk": "Число su залежить від ключів: один ключ — su."
+        },
+        "es:lesson-04:session-22:intro1:r3": {
+          "ru": "Tu означало бы ключ собеседницы.",
+          "uk": "Tu означало б ключ співрозмовниці."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-22:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-22:intro2:r2": {
+          "ru": "Перед множественным llaves нужно sus.",
+          "uk": "Перед множиною llaves потрібне sus."
+        },
+        "es:lesson-04:session-22:intro2:r3": {
+          "ru": "Несколько ключей: son.",
+          "uk": "Кілька ключів: son."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-22:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-22:intro3:r2": {
+          "ru": "Испанское llaves женского рода.",
+          "uk": "Іспанське llaves жіночого роду."
+        },
+        "es:lesson-04:session-22:intro3:r3": {
+          "ru": "Ключей несколько: nuevas.",
+          "uk": "Ключів кілька: nuevas."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "8a87194633c6b6bca5a4a26393cc075abc87181caaf62a448cd6760c142d3197"
+}

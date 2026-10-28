@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-04:session-21",
+  "learningOutcomeByLocale": {
+    "ru": "менять su на sus, когда называете несколько вещей.",
+    "uk": "змінювати su на sus, коли називаєте кілька речей."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-04:session-21:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Одна книга Аны",
+        "uk": "Одна книжка Ани"
+      },
+      "bodyByLocale": {
+        "ru": "Вы нашли одну книгу Аны. Скажите другу `Es su libro` — «Это её книга». Соберите `es` + `su libro`. Речь об Ане, поэтому su здесь значит «её». Книга одна: используем es и su. Перед su не добавляем el.",
+        "uk": "Ви знайшли одну книжку Ани. Скажіть другу `Es su libro` — «Це її книжка». Зберіть `es` + `su libro`. Йдеться про Ану, тому su тут означає «її». Книжка одна: використовуємо es і su. Перед su не додаємо el."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-21:intro1:q",
+        "promptByLocale": {
+          "ru": "Речь об Ане. Скажите: «Это её книга». Начните с Es.",
+          "uk": "Йдеться про Ану. Скажіть: «Це її книжка». Почніть з Es."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-21:intro1:r1",
+              "text": "Es su libro."
+            },
+            {
+              "responseId": "es:lesson-04:session-21:intro1:r2",
+              "text": "Es mi libro."
+            },
+            {
+              "responseId": "es:lesson-04:session-21:intro1:r3",
+              "text": "Es el su libro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-21:intro1:r1",
+              "text": "Es su libro."
+            },
+            {
+              "responseId": "es:lesson-04:session-21:intro1:r2",
+              "text": "Es mi libro."
+            },
+            {
+              "responseId": "es:lesson-04:session-21:intro1:r3",
+              "text": "Es el su libro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Речь об Ане. Скажите: «Это её книга». Начните с Es.",
+          "uk": "Йдеться про Ану. Скажіть: «Це її книжка». Почніть з Es."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-04:session-21:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Несколько книг Аны",
+        "uk": "Кілька книжок Ани"
+      },
+      "bodyByLocale": {
+        "ru": "Рядом нашлись ещё книги Аны. Скажите `Son sus libros` — «Это её книги». Соберите `son` + `sus libros`. Libro получает -s, su становится sus, а es заменяем на son. Ана одна; sus нужно из-за нескольких книг, а не нескольких владельцев. Это форма знакомого su, а не новое отдельное слово.",
+        "uk": "Поруч знайшлися ще книжки Ани. Скажіть `Son sus libros` — «Це її книжки». Зберіть `son` + `sus libros`. Libro отримує -s, su стає sus, а es замінюємо на son. Ана одна; sus потрібне через кілька книжок, а не кількох власників. Це форма знайомого su, а не нове окреме слово."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-21:intro2:q",
+        "promptByLocale": {
+          "ru": "Речь об Ане. Скажите: «Это её книги». Начните с Son.",
+          "uk": "Йдеться про Ану. Скажіть: «Це її книжки». Почніть з Son."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-21:intro2:r1",
+              "text": "Son sus libros."
+            },
+            {
+              "responseId": "es:lesson-04:session-21:intro2:r2",
+              "text": "Son su libros."
+            },
+            {
+              "responseId": "es:lesson-04:session-21:intro2:r3",
+              "text": "Es sus libros."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-21:intro2:r1",
+              "text": "Son sus libros."
+            },
+            {
+              "responseId": "es:lesson-04:session-21:intro2:r2",
+              "text": "Son su libros."
+            },
+            {
+              "responseId": "es:lesson-04:session-21:intro2:r3",
+              "text": "Es sus libros."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Речь об Ане. Скажите: «Это её книги». Начните с Son.",
+          "uk": "Йдеться про Ану. Скажіть: «Це її книжки». Почніть з Son."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-04:session-21:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Новые книги",
+        "uk": "Нові книжки"
+      },
+      "bodyByLocale": {
+        "ru": "Чтобы друг узнал книги Аны, скажите `Sus libros son nuevos` — «Её книги новые». Соберите `sus libros` + `son` + `nuevos`. Libros мужского рода и множественного числа, поэтому nuevos. Описание согласуется с книгами, а не с Аной.",
+        "uk": "Щоб друг упізнав книжки Ани, скажіть `Sus libros son nuevos` — «Її книжки нові». Зберіть `sus libros` + `son` + `nuevos`. Libros чоловічого роду й у множині, тому nuevos. Опис узгоджується з книжками, а не з Аною."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-21:intro3:q",
+        "promptByLocale": {
+          "ru": "Речь об Ане. Скажите: «Её книги новые». Начните с Sus libros.",
+          "uk": "Йдеться про Ану. Скажіть: «Її книжки нові». Почніть з Sus libros."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-21:intro3:r1",
+              "text": "Sus libros son nuevos."
+            },
+            {
+              "responseId": "es:lesson-04:session-21:intro3:r2",
+              "text": "Sus libros son nuevo."
+            },
+            {
+              "responseId": "es:lesson-04:session-21:intro3:r3",
+              "text": "Sus libros son nuevas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-21:intro3:r1",
+              "text": "Sus libros son nuevos."
+            },
+            {
+              "responseId": "es:lesson-04:session-21:intro3:r2",
+              "text": "Sus libros son nuevo."
+            },
+            {
+              "responseId": "es:lesson-04:session-21:intro3:r3",
+              "text": "Sus libros son nuevas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Речь об Ане. Скажите: «Её книги новые». Начните с Sus libros.",
+          "uk": "Йдеться про Ану. Скажіть: «Її книжки нові». Почніть з Sus libros."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "6edd331014cf9ff37d54c441aaee1f478ac500b7be2e280183b614625d65ba59"
+}

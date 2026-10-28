@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-04:session-21",
+  "entries": [
+    {
+      "interactionId": "es:lesson-04:session-21:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-21:intro1:r2": {
+          "ru": "Книга Аны, а не ваша.",
+          "uk": "Книжка Ани, а не ваша."
+        },
+        "es:lesson-04:session-21:intro1:r3": {
+          "ru": "Перед su здесь нет артикля.",
+          "uk": "Перед su тут немає артикля."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-21:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-21:intro2:r2": {
+          "ru": "Перед множественным libros нужно sus.",
+          "uk": "Перед множиною libros потрібне sus."
+        },
+        "es:lesson-04:session-21:intro2:r3": {
+          "ru": "Для нескольких книг нужно son.",
+          "uk": "Для кількох книжок потрібне son."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-21:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-21:intro3:r2": {
+          "ru": "Книг несколько: nuevos.",
+          "uk": "Книжок кілька: nuevos."
+        },
+        "es:lesson-04:session-21:intro3:r3": {
+          "ru": "Libros мужского рода.",
+          "uk": "Libros чоловічого роду."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "1144eb20ca256ee928fb74a55b456f58dfaa20c6e16b0d7edaf06c41736781fb"
+}

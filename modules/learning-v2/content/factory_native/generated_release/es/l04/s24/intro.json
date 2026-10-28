@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-04:session-24",
+  "learningOutcomeByLocale": {
+    "ru": "выбирать su/sus и согласовывать описание с человеком или вещью.",
+    "uk": "вибирати su/sus й узгоджувати опис із людиною або річчю."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-04:session-24:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Дочь Педро на снимке",
+        "uk": "Дочка Педро на знімку"
+      },
+      "bodyByLocale": {
+        "ru": "Показываете подруге дочь Педро. Скажите `Su hija es alta` — «Его дочь высокая». Соберите `su hija` + `es` + `alta`. Su отсылает к Педро, а alta описывает дочь и согласуется с женским hija. Пол отца не определяет окончание описания.",
+        "uk": "Показуєте подрузі дочку Педро. Скажіть `Su hija es alta` — «Його дочка висока». Зберіть `su hija` + `es` + `alta`. Su відсилає до Педро, а alta описує дочку й узгоджується з жіночим hija. Стать батька не визначає закінчення опису."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-24:intro1:q",
+        "promptByLocale": {
+          "ru": "Речь о Педро. Скажите: «Его дочь высокая». Начните с Su hija.",
+          "uk": "Йдеться про Педро. Скажіть: «Його дочка висока». Почніть з Su hija."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-24:intro1:r1",
+              "text": "Su hija es alta."
+            },
+            {
+              "responseId": "es:lesson-04:session-24:intro1:r2",
+              "text": "Su hija es alto."
+            },
+            {
+              "responseId": "es:lesson-04:session-24:intro1:r3",
+              "text": "Su hija son alta."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-24:intro1:r1",
+              "text": "Su hija es alta."
+            },
+            {
+              "responseId": "es:lesson-04:session-24:intro1:r2",
+              "text": "Su hija es alto."
+            },
+            {
+              "responseId": "es:lesson-04:session-24:intro1:r3",
+              "text": "Su hija son alta."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Речь о Педро. Скажите: «Его дочь высокая». Начните с Su hija.",
+          "uk": "Йдеться про Педро. Скажіть: «Його дочка висока». Почніть з Su hija."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-04:session-24:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Общий ключ гостей",
+        "uk": "Спільний ключ гостей"
+      },
+      "bodyByLocale": {
+        "ru": "Вы нашли один ключ от квартиры Аны и Педро. Скажите подруге `Es su llave` — «Это их ключ». Соберите `es` + `su llave`. Владельцев двое, но ключ один: поэтому su, не sus. Для нескольких их ключей понадобилось бы sus llaves; сейчас называем один.",
+        "uk": "Ви знайшли один ключ від квартири Ани й Педро. Скажіть подрузі `Es su llave` — «Це їхній ключ». Зберіть `es` + `su llave`. Власників двоє, але ключ один: тому su, не sus. Для кількох їхніх ключів знадобилося б sus llaves; зараз називаємо один."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-24:intro2:q",
+        "promptByLocale": {
+          "ru": "Речь об Ане и Педро. Скажите: «Это их ключ». Начните с Es.",
+          "uk": "Йдеться про Ану й Педро. Скажіть: «Це їхній ключ». Почніть з Es."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-24:intro2:r1",
+              "text": "Es su llave."
+            },
+            {
+              "responseId": "es:lesson-04:session-24:intro2:r2",
+              "text": "Es sus llave."
+            },
+            {
+              "responseId": "es:lesson-04:session-24:intro2:r3",
+              "text": "Son su llave."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-24:intro2:r1",
+              "text": "Es su llave."
+            },
+            {
+              "responseId": "es:lesson-04:session-24:intro2:r2",
+              "text": "Es sus llave."
+            },
+            {
+              "responseId": "es:lesson-04:session-24:intro2:r3",
+              "text": "Son su llave."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Речь об Ане и Педро. Скажите: «Это их ключ». Начните с Es.",
+          "uk": "Йдеться про Ану й Педро. Скажіть: «Це їхній ключ». Почніть з Es."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-04:session-24:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Не книги Педро",
+        "uk": "Не книжки Педро"
+      },
+      "bodyByLocale": {
+        "ru": "Подруга думает, что найденные книги оставил Педро. Вы знаете, что это не его книги. Скажите `No son sus libros` — «Это не его книги». Соберите `no` + `son` + `sus libros`. No ставим перед son; несколько книг требуют sus и libros.",
+        "uk": "Подруга думає, що знайдені книжки залишив Педро. Ви знаєте, що це не його книжки. Скажіть `No son sus libros` — «Це не його книжки». Зберіть `no` + `son` + `sus libros`. No ставимо перед son; кілька книжок потребують sus і libros."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-24:intro3:q",
+        "promptByLocale": {
+          "ru": "Речь о Педро. Скажите: «Это не его книги». Начните с No son.",
+          "uk": "Йдеться про Педро. Скажіть: «Це не його книжки». Почніть з No son."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-24:intro3:r1",
+              "text": "No son sus libros."
+            },
+            {
+              "responseId": "es:lesson-04:session-24:intro3:r2",
+              "text": "No es sus libros."
+            },
+            {
+              "responseId": "es:lesson-04:session-24:intro3:r3",
+              "text": "No son su libros."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-24:intro3:r1",
+              "text": "No son sus libros."
+            },
+            {
+              "responseId": "es:lesson-04:session-24:intro3:r2",
+              "text": "No es sus libros."
+            },
+            {
+              "responseId": "es:lesson-04:session-24:intro3:r3",
+              "text": "No son su libros."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Речь о Педро. Скажите: «Это не его книги». Начните с No son.",
+          "uk": "Йдеться про Педро. Скажіть: «Це не його книжки». Почніть з No son."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "8ead86a53c4330c553a88afb85b31a40de3553bf28b9a446e83c81f7f38180c7"
+}

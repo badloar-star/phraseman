@@ -1,0 +1,663 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-04:session-21",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-04:session-21:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-21:i01:r1",
+          "text": "sus"
+        },
+        {
+          "responseId": "es:lesson-04:session-21:i01:r2",
+          "text": "su"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-21:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-21:i01:audio",
+          "transcript": "sus"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-04:session-21:i01:r1",
+            "targetText": "sus",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-04:session-21:i01:r2",
+            "targetText": "su",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-21:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи есть конечное -s: sus.",
+              "uk": "У записі є кінцеве -s: sus."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-21:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — речь об Ане: это её книга, одна",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-21:i02:r1",
+          "text": "su"
+        },
+        {
+          "responseId": "es:lesson-04:session-21:i02:r2",
+          "text": "sus"
+        },
+        {
+          "responseId": "es:lesson-04:session-21:i02:r3",
+          "text": "mi"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — речь об Ане: это её книга, одна",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — речь об Ане: это её книга, одна",
+          "uk": "Вставте слово — йдеться про Ану: це її книжка, одна"
+        },
+        "gappedTargetPhrase": "Es ___ libro.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-21:i02:r1",
+            "text": "su"
+          },
+          {
+            "responseId": "es:lesson-04:session-21:i02:r2",
+            "text": "sus"
+          },
+          {
+            "responseId": "es:lesson-04:session-21:i02:r3",
+            "text": "mi"
+          }
+        ],
+        "testedDimension": "Вставьте слово — речь об Ане: это её книга, одна",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-21:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — речь об Ане: это её книга, одна",
+            "feedbackByLocale": {
+              "ru": "Книга одна: su.",
+              "uk": "Книжка одна: su."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-21:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — речь об Ане: это её книга, одна",
+            "feedbackByLocale": {
+              "ru": "Книга Аны, не ваша: su.",
+              "uk": "Книжка Ани, не ваша: su."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-21:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — речь об Ане: это её книга",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-21:i03:r1",
+          "text": "Плитки: libro"
+        },
+        {
+          "responseId": "es:lesson-04:session-21:i03:r2",
+          "text": "su"
+        },
+        {
+          "responseId": "es:lesson-04:session-21:i03:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-21:i03:r4",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — речь об Ане: это её книга",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es su libro.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — речь об Ане: это её книга",
+          "uk": "Зберіть фразу — йдеться про Ану: це її книжка"
+        },
+        "orderedTokens": [
+          "Es",
+          "su",
+          "libro"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-21:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — речь об Ане: это её книга",
+            "feedbackByLocale": {
+              "ru": "перед su здесь нет артикля.",
+              "uk": "перед su тут немає артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-21:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — речь об Ане: это её книги",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-21:i04:r1",
+          "text": "sus"
+        },
+        {
+          "responseId": "es:lesson-04:session-21:i04:r2",
+          "text": "su"
+        },
+        {
+          "responseId": "es:lesson-04:session-21:i04:r3",
+          "text": "tus"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — речь об Ане: это её книги",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — речь об Ане: это её книги",
+          "uk": "Вставте слово — йдеться про Ану: це її книжки"
+        },
+        "gappedTargetPhrase": "Son ___ libros.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-21:i04:r1",
+            "text": "sus"
+          },
+          {
+            "responseId": "es:lesson-04:session-21:i04:r2",
+            "text": "su"
+          },
+          {
+            "responseId": "es:lesson-04:session-21:i04:r3",
+            "text": "tus"
+          }
+        ],
+        "testedDimension": "Вставьте слово — речь об Ане: это её книги",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-21:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — речь об Ане: это её книги",
+            "feedbackByLocale": {
+              "ru": "Книг несколько: sus.",
+              "uk": "Книжок кілька: sus."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-21:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — речь об Ане: это её книги",
+            "feedbackByLocale": {
+              "ru": "Говорите другу о книгах Аны: sus.",
+              "uk": "Говорите другу про книжки Ани: sus."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-21:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — речь об Ане: это её книги",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-21:i05:r1",
+          "text": "Плитки: libros"
+        },
+        {
+          "responseId": "es:lesson-04:session-21:i05:r2",
+          "text": "sus"
+        },
+        {
+          "responseId": "es:lesson-04:session-21:i05:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-21:i05:r4",
+          "text": "su."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — речь об Ане: это её книги",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son sus libros.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — речь об Ане: это её книги",
+          "uk": "Зберіть фразу — йдеться про Ану: це її книжки"
+        },
+        "orderedTokens": [
+          "Son",
+          "sus",
+          "libros"
+        ],
+        "authoredDistractorTokens": [
+          "su"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-21:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — речь об Ане: это её книги",
+            "feedbackByLocale": {
+              "ru": "книг несколько.",
+              "uk": "книжок кілька."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-21:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — речь об Ане: её книги новые; начните с Sus libros",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-21:i06:r1",
+          "text": "Плитки: nuevos"
+        },
+        {
+          "responseId": "es:lesson-04:session-21:i06:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-21:i06:r3",
+          "text": "libros"
+        },
+        {
+          "responseId": "es:lesson-04:session-21:i06:r4",
+          "text": "sus"
+        },
+        {
+          "responseId": "es:lesson-04:session-21:i06:r5",
+          "text": "nuevas."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — речь об Ане: её книги новые; начните с Sus libros",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Sus libros son nuevos.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — речь об Ане: её книги новые; начните с Sus libros",
+          "uk": "Зберіть фразу — йдеться про Ану: її книжки нові; почніть з Sus libros"
+        },
+        "orderedTokens": [
+          "Sus",
+          "libros",
+          "son",
+          "nuevos"
+        ],
+        "authoredDistractorTokens": [
+          "nuevas"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-21:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — речь об Ане: её книги новые; начните с Sus libros",
+            "feedbackByLocale": {
+              "ru": "libros мужского рода.",
+              "uk": "libros чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-21:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-21:i07:r1",
+          "text": "Плитки: libros"
+        },
+        {
+          "responseId": "es:lesson-04:session-21:i07:r2",
+          "text": "sus"
+        },
+        {
+          "responseId": "es:lesson-04:session-21:i07:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-21:i07:r4",
+          "text": "su."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-21:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-21:i07:audio",
+          "transcript": "Son sus libros."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Son sus libros.",
+        "orderedTokens": [
+          "Son",
+          "sus",
+          "libros"
+        ],
+        "authoredDistractorTokens": [
+          "su"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-21:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит sus.",
+              "uk": "звучить sus."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-21:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — книги Аны новые",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-21:i08:r1",
+          "text": "nuevos"
+        },
+        {
+          "responseId": "es:lesson-04:session-21:i08:r2",
+          "text": "nuevo"
+        },
+        {
+          "responseId": "es:lesson-04:session-21:i08:r3",
+          "text": "nuevas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — книги Аны новые",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — книги Аны новые",
+          "uk": "Вставте слово — книжки Ани нові"
+        },
+        "gappedTargetPhrase": "Sus libros son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-21:i08:r1",
+            "text": "nuevos"
+          },
+          {
+            "responseId": "es:lesson-04:session-21:i08:r2",
+            "text": "nuevo"
+          },
+          {
+            "responseId": "es:lesson-04:session-21:i08:r3",
+            "text": "nuevas"
+          }
+        ],
+        "testedDimension": "Вставьте слово — книги Аны новые",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-21:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — книги Аны новые",
+            "feedbackByLocale": {
+              "ru": "Книг несколько: nuevos.",
+              "uk": "Книжок кілька: nuevos."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-21:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — книги Аны новые",
+            "feedbackByLocale": {
+              "ru": "Libros мужского рода: nuevos.",
+              "uk": "Libros чоловічого роду: nuevos."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-21:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — речь об Ане: это её книга; начните с Es",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-21:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — речь об Ане: это её книга; начните с Es",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-21:i09:audio",
+          "transcript": "Es su libro."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es su libro.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-21:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — речь об Ане: это её книги; начните с Son",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-21:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — речь об Ане: это её книги; начните с Son",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-21:i10:audio",
+          "transcript": "Son sus libros."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son sus libros.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-21:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — речь об Ане: её книги новые; начните с Sus libros",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-21:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — речь об Ане: её книги новые; начните с Sus libros",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-21:i11:audio",
+          "transcript": "Sus libros son nuevos."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Sus libros son nuevos.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-21:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — речь об Ане: её книга новая; начните с Su libro",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-21:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — речь об Ане: её книга новая; начните с Su libro",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-21:i12:audio",
+          "transcript": "Su libro es nuevo."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Su libro es nuevo.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "bca065e2f01a4e81e76c462c2299de9816083335d3b86040d4f2daa758c9a465"
+}

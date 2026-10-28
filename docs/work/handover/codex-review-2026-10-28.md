@@ -260,6 +260,20 @@
      координатор уточняет; если файл не твой, правку делает Дизайн.
 - Проверка: `tests/content_report_flag_2026_10_28.test.ts`.
 
+### 21. Три цветовых ratchet красные — от твоих незакоммиченных файлов (данные 4 · Темы, принадлежность проверена Ревизором)
+
+Файлы `components/packs/Community*.tsx` — неотслеживаемые, правлены 26.10; `app/community_packs/CommunityPackSocialBar.tsx` и `app/flashcards_packs.tsx` — твои незакоммиченные правки 26.10. Базы ratchet не поднимать — заменить литералы.
+
+1. `tests/theme_hardcoded_colors_ratchet` и `tests/v2_screens_color_literals_ratchet` — новые литералы:
+   CommunityPackSocialBar.tsx (6), flashcards_packs.tsx (3), CommunityAwardDecoration.tsx (7), CommunityPackCheckScene.tsx (2), CommunityPackScene.tsx (5), CommunityScene.tsx (10), CommunityWinnerDialog.tsx (7).
+   Замена: белый на сцене → токены сцены / `SPIRE_SCENE_INK`; акценты → `g.accentGraphic`; сердце → `g.bad`. Золото награды месяца в CommunityAwardDecoration можно вынести в исключение темы с пометкой «золото награды месяца».
+2. `tests/light_accent_graphics_ratchet` — сырой accent вместо `accentGraphic`/`accentTextSafe`: CommunityWinnerDialog.tsx (2), CommunityPackCheckScene.tsx (+1 «глубокий» accentBorder/accentText).
+3. `tests/modal_status_bar_translucent_ratchet` — прозрачный `<Modal>` без `statusBarTranslucent` в CommunityScene.tsx и CommunityWinnerDialog.tsx.
+
+Не твоё (для сведения, чтобы не искать): FriendEventMarker.tsx:78, LearningV2SessionOutcomeSheet.tsx:291, lesson1.tsx, SpireGhostLayer.tsx (+3) — закоммичены другими сессиями; `components/stories/templates/` (story_template_palette.ts:50) — новая неотслеживаемая папка от 28.10, владелец уточняется. `tests/i18n-design-zone` красный от старых файлов Пика (spire_scene_preview_fixtures 24, spire_oddity_prompt 3, spire_outcome_host_trace 2) — тоже не твоё.
+
+Хвосты цвета Тем закрыты: 1343 → 511 (`tests/color_literal_census_ratchet.test.mjs`, база 511).
+
 ## Кнопка «Уроки» на Главной (жалоба владельца) — для сведения
 
 - Гипотеза про `tabs_hidden_route_redirect` для интерфейса ru/uk скорее неверна: перенаправление срабатывает, только если текущий маршрут —

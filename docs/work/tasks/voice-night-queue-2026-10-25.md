@@ -85,3 +85,5 @@ Governance-ID: TG-3466FA06E090 (28.10: внести 13 правок заголо
 Governance-ID: TG-3466FA06E090 (28.10: ревизия текстов флага «Пожаловаться» ×9 — правка только чистых файлов ReportPackModal, ReportUserModal, PackMoreMenu, ReportCommentModal + сторож pm107; чужие файлы — предложениями координатору)
 
 Governance-ID: TG-05174B19FFA2 (28.10: строки 23 шаблонов историй ×9 — документ docs/voice/stories-templates-v1-strings-2026-10-28.md; код не трогаю, формат — по ответу Моментов)
+
+Governance-ID: TG-053CBD022814 (28.10: поиск грамматических терминов вне заголовков Learning V2 — отчёт в docs/voice, правок курса нет)

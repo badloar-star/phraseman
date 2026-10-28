@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-04:session-10",
+  "entries": [
+    {
+      "interactionId": "es:lesson-04:session-10:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-10:intro1:r2": {
+          "ru": "Перед tu здесь не ставим el.",
+          "uk": "Перед tu тут не ставимо el."
+        },
+        "es:lesson-04:session-10:intro1:r3": {
+          "ru": "Один папа: padre.",
+          "uk": "Один тато: padre."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-10:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-10:intro2:r2": {
+          "ru": "Нужна мужская форма tranquilo.",
+          "uk": "Потрібна чоловіча форма tranquilo."
+        },
+        "es:lesson-04:session-10:intro2:r3": {
+          "ru": "Один человек: es.",
+          "uk": "Одна людина: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-10:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-10:intro3:r2": {
+          "ru": "Речь об одном человеке: es.",
+          "uk": "Йдеться про одну людину: es."
+        },
+        "es:lesson-04:session-10:intro3:r3": {
+          "ru": "Перед tu здесь нет артикля el.",
+          "uk": "Перед tu тут немає артикля el."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "efecb930368be6103aeb8af5bc1bd6e65dafd50b9b4f609bcb78ddab4e4eb9b6"
+}

@@ -1,0 +1,82 @@
+[
+  {
+    "interactionId": "es:lesson-04:session-09:i01",
+    "correctText": "madre",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-09:i02",
+    "correctText": "madre",
+    "correctResponseId": "es:lesson-04:session-09:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-09:i03",
+    "correctText": "tu",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-09:i04",
+    "correctText": "tu",
+    "correctResponseId": "es:lesson-04:session-09:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-09:i05",
+    "correctText": "Es tu madre.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-09:i06",
+    "correctText": "tu",
+    "correctResponseId": "es:lesson-04:session-09:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-09:i07",
+    "correctText": "Tu madre es amable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-09:i08",
+    "correctText": "Tu",
+    "correctResponseId": "es:lesson-04:session-09:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-09:i09",
+    "correctText": "No es tu madre.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-09:i10",
+    "correctText": "Tu madre es muy amable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-09:i11",
+    "correctText": "No",
+    "correctResponseId": "es:lesson-04:session-09:i11:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-09:i12",
+    "correctText": "amable",
+    "correctResponseId": "es:lesson-04:session-09:i12:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-09:i13",
+    "correctText": "Es tu madre.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-09:i14",
+    "correctText": "Tu madre es amable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-09:i15",
+    "correctText": "No es tu madre.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-09:i16",
+    "correctText": "Tu madre es muy amable.",
+    "correctResponseId": null
+  }
+]

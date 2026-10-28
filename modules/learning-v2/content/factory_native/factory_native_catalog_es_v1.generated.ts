@@ -1239,4 +1239,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"самостоятельно выбрать mi или mis.","uk":"самостійно вибрати mi або mis."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 4, sessionOrdinal: 9,
+    sourceFingerprint: "5961bf25f9117202c58201bb0e3a2f179f6b4860407ea72df3c51590ddc374ff",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"использовать tu, обращаясь к владельцу или родственнику.","uk":"використовувати tu, звертаючись до власника або родича."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 4, sessionOrdinal: 10,
+    sourceFingerprint: "f0707019ab96313bd779b8d4c24ec8b665e60b9db3a22bd2f204a7eb3c8afcc5",
+    newWordCount: 1,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"использовать tu с мужским существительным.","uk":"використовувати tu з іменником чоловічого роду."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
+  }),
 ]);

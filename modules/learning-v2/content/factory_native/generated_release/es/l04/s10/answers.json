@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-04:session-10:i01",
+    "correctText": "padre",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-10:i02",
+    "correctText": "padre",
+    "correctResponseId": "es:lesson-04:session-10:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-10:i03",
+    "correctText": "Es tu padre.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-10:i04",
+    "correctText": "tu",
+    "correctResponseId": "es:lesson-04:session-10:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-10:i05",
+    "correctText": "Tu padre es tranquilo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-10:i06",
+    "correctText": "tranquilo",
+    "correctResponseId": "es:lesson-04:session-10:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-10:i07",
+    "correctText": "No es tu padre.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-10:i08",
+    "correctText": "Tu padre es muy tranquilo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-10:i09",
+    "correctText": "Es tu padre.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-10:i10",
+    "correctText": "Tu padre es tranquilo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-10:i11",
+    "correctText": "No es tu padre.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-10:i12",
+    "correctText": "Tu padre es muy tranquilo.",
+    "correctResponseId": null
+  }
+]

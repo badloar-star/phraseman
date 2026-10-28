@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-04:session-09",
+  "entries": [
+    {
+      "interactionId": "es:lesson-04:session-09:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-09:intro1:r2": {
+          "ru": "Mi означало бы «моя мама», а речь о маме друга.",
+          "uk": "Mi означало б «моя мама», а йдеться про маму друга."
+        },
+        "es:lesson-04:session-09:intro1:r3": {
+          "ru": "Перед tu здесь не ставим la.",
+          "uk": "Перед tu тут не ставимо la."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-09:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-09:intro2:r2": {
+          "ru": "Tú с ударением — «ты», здесь нужно tu — «твоя».",
+          "uk": "Tú з наголосом — «ти», тут потрібне tu — «твоя»."
+        },
+        "es:lesson-04:session-09:intro2:r3": {
+          "ru": "Мама одна: amable.",
+          "uk": "Мама одна: amable."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-09:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-09:intro3:r2": {
+          "ru": "Нужно tu: говорим о маме собеседника.",
+          "uk": "Потрібне tu: говоримо про маму співрозмовника."
+        },
+        "es:lesson-04:session-09:intro3:r3": {
+          "ru": "Один человек: es.",
+          "uk": "Одна людина: es."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f358fa378c502586666c1b04fbe5ef52a07f83e97c2fb468e25a3e4d49c0dbf9"
+}

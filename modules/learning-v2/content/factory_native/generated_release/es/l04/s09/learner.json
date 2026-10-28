@@ -1,0 +1,891 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-04:session-09",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-04:session-09:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — madre",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-09:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — madre",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-09:i01:audio",
+          "transcript": "madre"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-04:session-09:i01:r1",
+            "targetText": "madre",
+            "meaningByLocale": {
+              "ru": "мать, мама; женский род. 🔊 *madre*",
+              "uk": "мати, мама; жіночий рід. 🔊 *madre*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "madre",
+          "definitionByLocale": {
+            "ru": "мать, мама; женский род. 🔊 *madre*",
+            "uk": "мати, мама; жіночий рід. 🔊 *madre*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-09:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-09:i02:r1",
+          "text": "madre"
+        },
+        {
+          "responseId": "es:lesson-04:session-09:i02:r2",
+          "text": "hermana"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-09:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-09:i02:audio",
+          "transcript": "madre"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-04:session-09:i02:r1",
+            "targetText": "madre",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-04:session-09:i02:r2",
+            "targetText": "hermana",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-09:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи madre — мама, а не hermana — сестра.",
+              "uk": "У записі madre — мама, а не hermana — сестра."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-09:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — tu",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-09:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — tu",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-09:i03:audio",
+          "transcript": "tu"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-04:session-09:i03:r1",
+            "targetText": "tu",
+            "meaningByLocale": {
+              "ru": "твой, твоя; перед названием человека или вещи: tu madre — твоя мама. Пишется без ударения. 🔊 *tu*",
+              "uk": "твій, твоя; перед назвою людини або речі: tu madre — твоя мама. Пишеться без наголосу. 🔊 *tu*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tu",
+          "definitionByLocale": {
+            "ru": "твой, твоя; перед названием человека или вещи: tu madre — твоя мама. Пишется без ударения. 🔊 *tu*",
+            "uk": "твій, твоя; перед назвою людини або речі: tu madre — твоя мама. Пишеться без наголосу. 🔊 *tu*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-09:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-09:i04:r1",
+          "text": "tu"
+        },
+        {
+          "responseId": "es:lesson-04:session-09:i04:r2",
+          "text": "mi"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-09:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-09:i04:audio",
+          "transcript": "tu"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-04:session-09:i04:r1",
+            "targetText": "tu",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-04:session-09:i04:r2",
+            "targetText": "mi",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-09:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи tu, а не mi.",
+              "uk": "У записі tu, а не mi."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-09:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это твоя мама",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-09:i05:r1",
+          "text": "Плитки: madre"
+        },
+        {
+          "responseId": "es:lesson-04:session-09:i05:r2",
+          "text": "tu"
+        },
+        {
+          "responseId": "es:lesson-04:session-09:i05:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-09:i05:r4",
+          "text": "la."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это твоя мама",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es tu madre.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это твоя мама",
+          "uk": "Зберіть фразу — це твоя мама"
+        },
+        "orderedTokens": [
+          "Es",
+          "tu",
+          "madre"
+        ],
+        "authoredDistractorTokens": [
+          "la"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-09:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это твоя мама",
+            "feedbackByLocale": {
+              "ru": "перед tu здесь нет артикля.",
+              "uk": "перед tu тут немає артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-09:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — это твоя мама, обращаетесь к другу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-09:i06:r1",
+          "text": "tu"
+        },
+        {
+          "responseId": "es:lesson-04:session-09:i06:r2",
+          "text": "mi"
+        },
+        {
+          "responseId": "es:lesson-04:session-09:i06:r3",
+          "text": "yo"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — это твоя мама, обращаетесь к другу",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это твоя мама, обращаетесь к другу",
+          "uk": "Вставте слово — це твоя мама, звертаєтеся до друга"
+        },
+        "gappedTargetPhrase": "Es ___ madre.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-09:i06:r1",
+            "text": "tu"
+          },
+          {
+            "responseId": "es:lesson-04:session-09:i06:r2",
+            "text": "mi"
+          },
+          {
+            "responseId": "es:lesson-04:session-09:i06:r3",
+            "text": "yo"
+          }
+        ],
+        "testedDimension": "Вставьте слово — это твоя мама, обращаетесь к другу",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-09:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это твоя мама, обращаетесь к другу",
+            "feedbackByLocale": {
+              "ru": "Mi означает «моя», а нужно «твоя»: tu.",
+              "uk": "Mi означає «моя», а потрібно «твоя»: tu."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-09:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это твоя мама, обращаетесь к другу",
+            "feedbackByLocale": {
+              "ru": "Yo означает «я»; перед madre нужно tu.",
+              "uk": "Yo означає «я»; перед madre потрібне tu."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-09:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — твоя мама приветливая",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-09:i07:r1",
+          "text": "Плитки: amable"
+        },
+        {
+          "responseId": "es:lesson-04:session-09:i07:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-09:i07:r3",
+          "text": "madre"
+        },
+        {
+          "responseId": "es:lesson-04:session-09:i07:r4",
+          "text": "tu"
+        },
+        {
+          "responseId": "es:lesson-04:session-09:i07:r5",
+          "text": "amables."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — твоя мама приветливая",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Tu madre es amable.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — твоя мама приветливая",
+          "uk": "Зберіть фразу — твоя мама привітна"
+        },
+        "orderedTokens": [
+          "Tu",
+          "madre",
+          "es",
+          "amable"
+        ],
+        "authoredDistractorTokens": [
+          "amables"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-09:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — твоя мама приветливая",
+            "feedbackByLocale": {
+              "ru": "мама одна.",
+              "uk": "мама одна."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-09:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — твоя мама приветливая",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-09:i08:r1",
+          "text": "Tu"
+        },
+        {
+          "responseId": "es:lesson-04:session-09:i08:r2",
+          "text": "Tú"
+        },
+        {
+          "responseId": "es:lesson-04:session-09:i08:r3",
+          "text": "Yo"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — твоя мама приветливая",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — твоя мама приветливая",
+          "uk": "Вставте слово — твоя мама привітна"
+        },
+        "gappedTargetPhrase": "___ madre es amable.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-09:i08:r1",
+            "text": "Tu"
+          },
+          {
+            "responseId": "es:lesson-04:session-09:i08:r2",
+            "text": "Tú"
+          },
+          {
+            "responseId": "es:lesson-04:session-09:i08:r3",
+            "text": "Yo"
+          }
+        ],
+        "testedDimension": "Вставьте слово — твоя мама приветливая",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-09:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — твоя мама приветливая",
+            "feedbackByLocale": {
+              "ru": "Перед названием человека tu — «твоя» — без ударения.",
+              "uk": "Перед назвою людини tu — «твоя» — без наголосу."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-09:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — твоя мама приветливая",
+            "feedbackByLocale": {
+              "ru": "Yo означает «я», а нужно tu — «твоя».",
+              "uk": "Yo означає «я», а потрібне tu — «твоя»."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-09:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это не твоя мама",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-09:i09:r1",
+          "text": "Плитки: madre"
+        },
+        {
+          "responseId": "es:lesson-04:session-09:i09:r2",
+          "text": "tu"
+        },
+        {
+          "responseId": "es:lesson-04:session-09:i09:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-09:i09:r4",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-04:session-09:i09:r5",
+          "text": "la."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это не твоя мама",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No es tu madre.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это не твоя мама",
+          "uk": "Зберіть фразу — це не твоя мама"
+        },
+        "orderedTokens": [
+          "No",
+          "es",
+          "tu",
+          "madre"
+        ],
+        "authoredDistractorTokens": [
+          "la"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-09:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это не твоя мама",
+            "feedbackByLocale": {
+              "ru": "группа tu madre без артикля.",
+              "uk": "група tu madre без артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-09:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-09:i10:r1",
+          "text": "Плитки: amable"
+        },
+        {
+          "responseId": "es:lesson-04:session-09:i10:r2",
+          "text": "muy"
+        },
+        {
+          "responseId": "es:lesson-04:session-09:i10:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-09:i10:r4",
+          "text": "madre"
+        },
+        {
+          "responseId": "es:lesson-04:session-09:i10:r5",
+          "text": "tu"
+        },
+        {
+          "responseId": "es:lesson-04:session-09:i10:r6",
+          "text": "amables."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-09:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-09:i10:audio",
+          "transcript": "Tu madre es muy amable."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Tu madre es muy amable.",
+        "orderedTokens": [
+          "Tu",
+          "madre",
+          "es",
+          "muy",
+          "amable"
+        ],
+        "authoredDistractorTokens": [
+          "amables"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-09:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит amable.",
+              "uk": "звучить amable."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-09:i11",
+      "ordinal": 14,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — это не твоя мама",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-09:i11:r1",
+          "text": "No"
+        },
+        {
+          "responseId": "es:lesson-04:session-09:i11:r2",
+          "text": "Muy"
+        },
+        {
+          "responseId": "es:lesson-04:session-09:i11:r3",
+          "text": "Tu"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — это не твоя мама",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это не твоя мама",
+          "uk": "Вставте слово — це не твоя мама"
+        },
+        "gappedTargetPhrase": "___ es tu madre.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-09:i11:r1",
+            "text": "No"
+          },
+          {
+            "responseId": "es:lesson-04:session-09:i11:r2",
+            "text": "Muy"
+          },
+          {
+            "responseId": "es:lesson-04:session-09:i11:r3",
+            "text": "Tu"
+          }
+        ],
+        "testedDimension": "Вставьте слово — это не твоя мама",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-09:i11:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это не твоя мама",
+            "feedbackByLocale": {
+              "ru": "Нужно отрицание no, а не «очень».",
+              "uk": "Потрібне заперечення no, а не «дуже»."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-09:i11:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это не твоя мама",
+            "feedbackByLocale": {
+              "ru": "Tu уже стоит перед madre; перед es нужно no.",
+              "uk": "Tu вже стоїть перед madre; перед es потрібне no."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-09:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — твоя мама очень приветливая",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-09:i12:r1",
+          "text": "amable"
+        },
+        {
+          "responseId": "es:lesson-04:session-09:i12:r2",
+          "text": "amables"
+        },
+        {
+          "responseId": "es:lesson-04:session-09:i12:r3",
+          "text": "amabla"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — твоя мама очень приветливая",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — твоя мама очень приветливая",
+          "uk": "Вставте слово — твоя мама дуже привітна"
+        },
+        "gappedTargetPhrase": "Tu madre es muy ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-09:i12:r1",
+            "text": "amable"
+          },
+          {
+            "responseId": "es:lesson-04:session-09:i12:r2",
+            "text": "amables"
+          },
+          {
+            "responseId": "es:lesson-04:session-09:i12:r3",
+            "text": "amabla"
+          }
+        ],
+        "testedDimension": "Вставьте слово — твоя мама очень приветливая",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-09:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — твоя мама очень приветливая",
+            "feedbackByLocale": {
+              "ru": "Один человек: amable.",
+              "uk": "Одна людина: amable."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-09:i12:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — твоя мама очень приветливая",
+            "feedbackByLocale": {
+              "ru": "Amable сохраняет -e с женским словом.",
+              "uk": "Amable зберігає -e з жіночим словом."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-09:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — это твоя мама; начните с Es",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-09:i13:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — это твоя мама; начните с Es",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-09:i13:audio",
+          "transcript": "Es tu madre."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es tu madre.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-09:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — твоя мама приветливая; начните с Tu madre",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-09:i14:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — твоя мама приветливая; начните с Tu madre",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-09:i14:audio",
+          "transcript": "Tu madre es amable."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tu madre es amable.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-09:i15",
+      "ordinal": 18,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — это не твоя мама; начните с No es",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-09:i15:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — это не твоя мама; начните с No es",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-09:i15:audio",
+          "transcript": "No es tu madre."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No es tu madre.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-09:i16",
+      "ordinal": 19,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — твоя мама очень приветливая; начните с Tu madre",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-09:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — твоя мама очень приветливая; начните с Tu madre",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-09:i16:audio",
+          "transcript": "Tu madre es muy amable."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tu madre es muy amable.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 16,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "fad8e1b170ff47c08e7ade7bb500e41a89a5c69961a6b38dcef7d797545fb3c8"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-04:session-09",
+  "learningOutcomeByLocale": {
+    "ru": "использовать tu, обращаясь к владельцу или родственнику.",
+    "uk": "використовувати tu, звертаючись до власника або родича."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-04:session-09:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Мама на фотографии",
+        "uk": "Мама на фотографії"
+      },
+      "bodyByLocale": {
+        "ru": "Друг показывает свою маму. Скажите ему `Es tu madre` — «Это твоя мама». Madre значит «мать, мама», tu перед существительным — «твой, твоя». Соберите `es` + `tu madre`. Вы обращаетесь к другу: поэтому tu, а не mi. Перед tu артикль la не нужен.",
+        "uk": "Друг показує свою маму. Скажіть йому `Es tu madre` — «Це твоя мама». Madre означає «мати, мама», tu перед іменником — «твій, твоя». Зберіть `es` + `tu madre`. Ви звертаєтеся до друга: тому tu, а не mi. Перед tu артикль la не потрібний."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-09:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите другу, что на снимке его мама: «Это твоя мама». Начните с Es.",
+          "uk": "Скажіть другу, що на знімку його мама: «Це твоя мама». Почніть з Es."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-09:intro1:r1",
+              "text": "Es tu madre."
+            },
+            {
+              "responseId": "es:lesson-04:session-09:intro1:r2",
+              "text": "Es mi madre."
+            },
+            {
+              "responseId": "es:lesson-04:session-09:intro1:r3",
+              "text": "Es la tu madre."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-09:intro1:r1",
+              "text": "Es tu madre."
+            },
+            {
+              "responseId": "es:lesson-04:session-09:intro1:r2",
+              "text": "Es mi madre."
+            },
+            {
+              "responseId": "es:lesson-04:session-09:intro1:r3",
+              "text": "Es la tu madre."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите другу, что на снимке его мама: «Это твоя мама». Начните с Es.",
+          "uk": "Скажіть другу, що на знімку його мама: «Це твоя мама». Почніть з Es."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-04:session-09:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Приветливая мама",
+        "uk": "Привітна мама"
+      },
+      "bodyByLocale": {
+        "ru": "Вы уже знакомы с мамой друга. Скажите ему `Tu madre es amable` — «Твоя мама приветливая». Соберите `tu madre` + `es` + `amable`. Tu madre называет человека, es amable описывает её. Притяжательное tu пишется без знака ударения; знакомое личное tú означает «ты» и здесь не нужно.",
+        "uk": "Ви вже знайомі з мамою друга. Скажіть йому `Tu madre es amable` — «Твоя мама привітна». Зберіть `tu madre` + `es` + `amable`. Tu madre називає людину, es amable описує її. Присвійне tu пишеться без знака наголосу; знайоме особове tú означає «ти» й тут не потрібне."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-09:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите другу, что его мама приветливая, начав с Tu madre.",
+          "uk": "Скажіть другу, що його мама привітна, почавши з Tu madre."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-09:intro2:r1",
+              "text": "Tu madre es amable."
+            },
+            {
+              "responseId": "es:lesson-04:session-09:intro2:r2",
+              "text": "Tú madre es amable."
+            },
+            {
+              "responseId": "es:lesson-04:session-09:intro2:r3",
+              "text": "Tu madre es amables."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-09:intro2:r1",
+              "text": "Tu madre es amable."
+            },
+            {
+              "responseId": "es:lesson-04:session-09:intro2:r2",
+              "text": "Tú madre es amable."
+            },
+            {
+              "responseId": "es:lesson-04:session-09:intro2:r3",
+              "text": "Tu madre es amables."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите другу, что его мама приветливая, начав с Tu madre.",
+          "uk": "Скажіть другу, що його мама привітна, почавши з Tu madre."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-04:session-09:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Другой человек",
+        "uk": "Інша людина"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает про другую женщину на снимке. Скажите ему `No es tu madre` — «Это не твоя мама». Соберите `no` + `es` + `tu madre`. No ставится перед es. Tu по-прежнему относится к собеседнику: речь о его маме, а не о вашей.",
+        "uk": "Друг запитує про іншу жінку на знімку. Скажіть йому `No es tu madre` — «Це не твоя мама». Зберіть `no` + `es` + `tu madre`. No ставиться перед es. Tu, як і раніше, стосується співрозмовника: йдеться про його маму, а не про вашу."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-09:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите другу: «Это не твоя мама». Начните с No es.",
+          "uk": "Скажіть другу: «Це не твоя мама». Почніть з No es."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-09:intro3:r1",
+              "text": "No es tu madre."
+            },
+            {
+              "responseId": "es:lesson-04:session-09:intro3:r2",
+              "text": "No es mi madre."
+            },
+            {
+              "responseId": "es:lesson-04:session-09:intro3:r3",
+              "text": "No son tu madre."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-09:intro3:r1",
+              "text": "No es tu madre."
+            },
+            {
+              "responseId": "es:lesson-04:session-09:intro3:r2",
+              "text": "No es mi madre."
+            },
+            {
+              "responseId": "es:lesson-04:session-09:intro3:r3",
+              "text": "No son tu madre."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите другу: «Это не твоя мама». Начните с No es.",
+          "uk": "Скажіть другу: «Це не твоя мама». Почніть з No es."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b1104f2fe6aef812a1b11f6c190acea4a8ea61c69c6df3327db9f6b1d89fa92a"
+}

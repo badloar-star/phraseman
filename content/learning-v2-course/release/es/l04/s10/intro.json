@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-04:session-10",
+  "learningOutcomeByLocale": {
+    "ru": "использовать tu с мужским существительным.",
+    "uk": "використовувати tu з іменником чоловічого роду."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-04:session-10:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Кто рядом с мамой",
+        "uk": "Хто поруч із мамою"
+      },
+      "bodyByLocale": {
+        "ru": "Друг показывает папу на фотографии. Скажите `Es tu padre` — «Это твой папа». Padre значит «отец, папа». Соберите `es` + `tu padre`. С мужским padre используем то же tu, что с женским madre: tu не меняется по роду. Перед ним артикль el здесь не нужен.",
+        "uk": "Друг показує тата на фотографії. Скажіть `Es tu padre` — «Це твій тато». Padre означає «батько, тато». Зберіть `es` + `tu padre`. З чоловічим padre використовуємо те саме tu, що з жіночим madre: tu не змінюється за родом. Перед ним артикль el тут не потрібний."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-10:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите другу: «Это твой папа». Начните с Es.",
+          "uk": "Скажіть другу: «Це твій тато». Почніть з Es."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-10:intro1:r1",
+              "text": "Es tu padre."
+            },
+            {
+              "responseId": "es:lesson-04:session-10:intro1:r2",
+              "text": "Es el tu padre."
+            },
+            {
+              "responseId": "es:lesson-04:session-10:intro1:r3",
+              "text": "Es tu padres."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-10:intro1:r1",
+              "text": "Es tu padre."
+            },
+            {
+              "responseId": "es:lesson-04:session-10:intro1:r2",
+              "text": "Es el tu padre."
+            },
+            {
+              "responseId": "es:lesson-04:session-10:intro1:r3",
+              "text": "Es tu padres."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите другу: «Это твой папа». Начните с Es.",
+          "uk": "Скажіть другу: «Це твій тато». Почніть з Es."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-04:session-10:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Спокойный характер",
+        "uk": "Спокійний характер"
+      },
+      "bodyByLocale": {
+        "ru": "Вы знакомы с папой друга и описываете его характер: `Tu padre es tranquilo` — «Твой папа спокойный». Соберите `tu padre` + `es` + `tranquilo`. Признак tranquilo мужского рода, как padre. Tu не меняется: род показываем в прилагательном.",
+        "uk": "Ви знайомі з татом друга й описуєте його характер: `Tu padre es tranquilo` — «Твій тато спокійний». Зберіть `tu padre` + `es` + `tranquilo`. Ознака tranquilo чоловічого роду, як padre. Tu не змінюється: рід показуємо в прикметнику."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-10:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите другу, что его папа спокойный по характеру, начав с Tu padre.",
+          "uk": "Скажіть другу, що його тато спокійний за характером, почавши з Tu padre."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-10:intro2:r1",
+              "text": "Tu padre es tranquilo."
+            },
+            {
+              "responseId": "es:lesson-04:session-10:intro2:r2",
+              "text": "Tu padre es tranquila."
+            },
+            {
+              "responseId": "es:lesson-04:session-10:intro2:r3",
+              "text": "Tu padre son tranquilo."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-10:intro2:r1",
+              "text": "Tu padre es tranquilo."
+            },
+            {
+              "responseId": "es:lesson-04:session-10:intro2:r2",
+              "text": "Tu padre es tranquila."
+            },
+            {
+              "responseId": "es:lesson-04:session-10:intro2:r3",
+              "text": "Tu padre son tranquilo."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите другу, что его папа спокойный по характеру, начав с Tu padre.",
+          "uk": "Скажіть другу, що його тато спокійний за характером, почавши з Tu padre."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-04:session-10:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Не тот человек",
+        "uk": "Не та людина"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает, его ли папа на другом снимке. Ответьте `No es tu padre` — «Это не твой папа». Соберите `no` + `es` + `tu padre`. No ставится перед es, а tu остаётся перед padre. Вы обращаетесь к другу, поэтому сохраняете значение «твой».",
+        "uk": "Друг запитує, чи його тато на іншому знімку. Дайте відповідь `No es tu padre` — «Це не твій тато». Зберіть `no` + `es` + `tu padre`. No ставиться перед es, а tu залишається перед padre. Ви звертаєтеся до друга, тому зберігаєте значення «твій»."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-10:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите другу: «Это не твой папа». Начните с No es.",
+          "uk": "Скажіть другу: «Це не твій тато». Почніть з No es."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-10:intro3:r1",
+              "text": "No es tu padre."
+            },
+            {
+              "responseId": "es:lesson-04:session-10:intro3:r2",
+              "text": "No son tu padre."
+            },
+            {
+              "responseId": "es:lesson-04:session-10:intro3:r3",
+              "text": "No es el tu padre."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-10:intro3:r1",
+              "text": "No es tu padre."
+            },
+            {
+              "responseId": "es:lesson-04:session-10:intro3:r2",
+              "text": "No son tu padre."
+            },
+            {
+              "responseId": "es:lesson-04:session-10:intro3:r3",
+              "text": "No es el tu padre."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите другу: «Это не твой папа». Начните с No es.",
+          "uk": "Скажіть другу: «Це не твій тато». Почніть з No es."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "10d012e0d91c6d90e503042855f89331ae45c34f46321227cf85380d86335c7e"
+}

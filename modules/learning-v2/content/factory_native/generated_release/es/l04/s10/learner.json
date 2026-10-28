@@ -1,0 +1,652 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-04:session-10",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-04:session-10:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — padre",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-10:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — padre",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-10:i01:audio",
+          "transcript": "padre"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-04:session-10:i01:r1",
+            "targetText": "padre",
+            "meaningByLocale": {
+              "ru": "отец, папа; мужской род. 🔊 *padre*",
+              "uk": "батько, тато; чоловічий рід. 🔊 *padre*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "padre",
+          "definitionByLocale": {
+            "ru": "отец, папа; мужской род. 🔊 *padre*",
+            "uk": "батько, тато; чоловічий рід. 🔊 *padre*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-10:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-10:i02:r1",
+          "text": "padre"
+        },
+        {
+          "responseId": "es:lesson-04:session-10:i02:r2",
+          "text": "madre"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-10:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-10:i02:audio",
+          "transcript": "padre"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-04:session-10:i02:r1",
+            "targetText": "padre",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-04:session-10:i02:r2",
+            "targetText": "madre",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-10:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи padre — папа, а не madre — мама.",
+              "uk": "У записі padre — тато, а не madre — мама."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-10:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это твой папа",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-10:i03:r1",
+          "text": "Плитки: padre"
+        },
+        {
+          "responseId": "es:lesson-04:session-10:i03:r2",
+          "text": "tu"
+        },
+        {
+          "responseId": "es:lesson-04:session-10:i03:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-10:i03:r4",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это твой папа",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es tu padre.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это твой папа",
+          "uk": "Зберіть фразу — це твій тато"
+        },
+        "orderedTokens": [
+          "Es",
+          "tu",
+          "padre"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-10:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это твой папа",
+            "feedbackByLocale": {
+              "ru": "перед tu здесь нет артикля.",
+              "uk": "перед tu тут немає артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-10:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — это твой папа, обращаетесь к другу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-10:i04:r1",
+          "text": "tu"
+        },
+        {
+          "responseId": "es:lesson-04:session-10:i04:r2",
+          "text": "mi"
+        },
+        {
+          "responseId": "es:lesson-04:session-10:i04:r3",
+          "text": "yo"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — это твой папа, обращаетесь к другу",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это твой папа, обращаетесь к другу",
+          "uk": "Вставте слово — це твій тато, звертаєтеся до друга"
+        },
+        "gappedTargetPhrase": "Es ___ padre.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-10:i04:r1",
+            "text": "tu"
+          },
+          {
+            "responseId": "es:lesson-04:session-10:i04:r2",
+            "text": "mi"
+          },
+          {
+            "responseId": "es:lesson-04:session-10:i04:r3",
+            "text": "yo"
+          }
+        ],
+        "testedDimension": "Вставьте слово — это твой папа, обращаетесь к другу",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-10:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это твой папа, обращаетесь к другу",
+            "feedbackByLocale": {
+              "ru": "Mi означает «мой», а нужно «твой»: tu.",
+              "uk": "Mi означає «мій», а потрібно «твій»: tu."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-10:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это твой папа, обращаетесь к другу",
+            "feedbackByLocale": {
+              "ru": "Yo означает «я»; перед padre нужно tu.",
+              "uk": "Yo означає «я»; перед padre потрібне tu."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-10:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — твой папа спокойный по характеру",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-10:i05:r1",
+          "text": "Плитки: tranquilo"
+        },
+        {
+          "responseId": "es:lesson-04:session-10:i05:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-10:i05:r3",
+          "text": "padre"
+        },
+        {
+          "responseId": "es:lesson-04:session-10:i05:r4",
+          "text": "tu"
+        },
+        {
+          "responseId": "es:lesson-04:session-10:i05:r5",
+          "text": "tranquila."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — твой папа спокойный по характеру",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Tu padre es tranquilo.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — твой папа спокойный по характеру",
+          "uk": "Зберіть фразу — твій тато спокійний за характером"
+        },
+        "orderedTokens": [
+          "Tu",
+          "padre",
+          "es",
+          "tranquilo"
+        ],
+        "authoredDistractorTokens": [
+          "tranquila"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-10:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — твой папа спокойный по характеру",
+            "feedbackByLocale": {
+              "ru": "padre мужского рода.",
+              "uk": "padre чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-10:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — твой папа спокойный по характеру",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-10:i06:r1",
+          "text": "tranquilo"
+        },
+        {
+          "responseId": "es:lesson-04:session-10:i06:r2",
+          "text": "tranquila"
+        },
+        {
+          "responseId": "es:lesson-04:session-10:i06:r3",
+          "text": "tranquilos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — твой папа спокойный по характеру",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — твой папа спокойный по характеру",
+          "uk": "Вставте слово — твій тато спокійний за характером"
+        },
+        "gappedTargetPhrase": "Tu padre es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-10:i06:r1",
+            "text": "tranquilo"
+          },
+          {
+            "responseId": "es:lesson-04:session-10:i06:r2",
+            "text": "tranquila"
+          },
+          {
+            "responseId": "es:lesson-04:session-10:i06:r3",
+            "text": "tranquilos"
+          }
+        ],
+        "testedDimension": "Вставьте слово — твой папа спокойный по характеру",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-10:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — твой папа спокойный по характеру",
+            "feedbackByLocale": {
+              "ru": "Padre мужского рода.",
+              "uk": "Padre чоловічого роду."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-10:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — твой папа спокойный по характеру",
+            "feedbackByLocale": {
+              "ru": "Один человек: tranquilo.",
+              "uk": "Одна людина: tranquilo."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-10:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это не твой папа",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-10:i07:r1",
+          "text": "Плитки: padre"
+        },
+        {
+          "responseId": "es:lesson-04:session-10:i07:r2",
+          "text": "tu"
+        },
+        {
+          "responseId": "es:lesson-04:session-10:i07:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-10:i07:r4",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-04:session-10:i07:r5",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это не твой папа",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No es tu padre.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это не твой папа",
+          "uk": "Зберіть фразу — це не твій тато"
+        },
+        "orderedTokens": [
+          "No",
+          "es",
+          "tu",
+          "padre"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-10:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это не твой папа",
+            "feedbackByLocale": {
+              "ru": "группа tu padre без артикля.",
+              "uk": "група tu padre без артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-10:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-10:i08:r1",
+          "text": "Плитки: tranquilo"
+        },
+        {
+          "responseId": "es:lesson-04:session-10:i08:r2",
+          "text": "muy"
+        },
+        {
+          "responseId": "es:lesson-04:session-10:i08:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-10:i08:r4",
+          "text": "padre"
+        },
+        {
+          "responseId": "es:lesson-04:session-10:i08:r5",
+          "text": "tu"
+        },
+        {
+          "responseId": "es:lesson-04:session-10:i08:r6",
+          "text": "tranquila."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-10:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-10:i08:audio",
+          "transcript": "Tu padre es muy tranquilo."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Tu padre es muy tranquilo.",
+        "orderedTokens": [
+          "Tu",
+          "padre",
+          "es",
+          "muy",
+          "tranquilo"
+        ],
+        "authoredDistractorTokens": [
+          "tranquila"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-10:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит tranquilo.",
+              "uk": "звучить tranquilo."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-10:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — это твой папа; начните с Es",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-10:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — это твой папа; начните с Es",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-10:i09:audio",
+          "transcript": "Es tu padre."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es tu padre.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-10:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — твой папа спокойный по характеру; начните с Tu padre",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-10:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — твой папа спокойный по характеру; начните с Tu padre",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-10:i10:audio",
+          "transcript": "Tu padre es tranquilo."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tu padre es tranquilo.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-10:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — это не твой папа; начните с No es",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-10:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — это не твой папа; начните с No es",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-10:i11:audio",
+          "transcript": "No es tu padre."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No es tu padre.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-10:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — твой папа очень спокойный по характеру; начните с Tu padre",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-10:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — твой папа очень спокойный по характеру; начните с Tu padre",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-10:i12:audio",
+          "transcript": "Tu padre es muy tranquilo."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tu padre es muy tranquilo.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "1dd9fbef5c82eff4b7fa5708014d0f285a2c37945ea5e0418a6e373f7f773920"
+}

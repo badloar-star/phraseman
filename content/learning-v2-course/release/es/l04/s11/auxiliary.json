@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-04:session-11",
+  "entries": [
+    {
+      "interactionId": "es:lesson-04:session-11:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-11:intro1:r2": {
+          "ru": "Перед tu здесь нет артикля.",
+          "uk": "Перед tu тут немає артикля."
+        },
+        "es:lesson-04:session-11:intro1:r3": {
+          "ru": "Машина одна: carro.",
+          "uk": "Машина одна: carro."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-11:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-11:intro2:r2": {
+          "ru": "Нужно es.",
+          "uk": "Потрібне es."
+        },
+        "es:lesson-04:session-11:intro2:r3": {
+          "ru": "Один предмет: azul.",
+          "uk": "Один предмет: azul."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-11:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-11:intro3:r2": {
+          "ru": "Одна машина: es.",
+          "uk": "Одна машина: es."
+        },
+        "es:lesson-04:session-11:intro3:r3": {
+          "ru": "Перед tu здесь нет el.",
+          "uk": "Перед tu тут немає el."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ebb244200d14b4e133481bb9ff0c8ffa88ead40da27fc602e22bf20c7775fc20"
+}

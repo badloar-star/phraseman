@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-04:session-12:i01",
+    "correctText": "¿Es tu carro?",
+    "correctResponseId": "es:lesson-04:session-12:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-12:i02",
+    "correctText": "tu",
+    "correctResponseId": "es:lesson-04:session-12:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-12:i03",
+    "correctText": "¿Es tu carro?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-12:i04",
+    "correctText": "mi",
+    "correctResponseId": "es:lesson-04:session-12:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-12:i05",
+    "correctText": "Es mi carro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-12:i06",
+    "correctText": "No es mi carro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-12:i07",
+    "correctText": "¿Es tu carro?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-12:i08",
+    "correctText": "mi",
+    "correctResponseId": "es:lesson-04:session-12:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-12:i09",
+    "correctText": "¿Es tu carro?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-12:i10",
+    "correctText": "Es mi carro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-12:i11",
+    "correctText": "No es mi carro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-12:i12",
+    "correctText": "Es tu carro.",
+    "correctResponseId": null
+  }
+]

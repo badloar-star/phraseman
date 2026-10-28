@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-04:session-12",
+  "entries": [
+    {
+      "interactionId": "es:lesson-04:session-12:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-12:intro1:r2": {
+          "ru": "Машина одна: es.",
+          "uk": "Машина одна: es."
+        },
+        "es:lesson-04:session-12:intro1:r3": {
+          "ru": "Перед tu здесь не нужен el.",
+          "uk": "Перед tu тут не потрібне el."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-12:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-12:intro2:r2": {
+          "ru": "Tu означало бы, что машина собеседника.",
+          "uk": "Tu означало б, що машина співрозмовника."
+        },
+        "es:lesson-04:session-12:intro2:r3": {
+          "ru": "Перед mi здесь не нужен el.",
+          "uk": "Перед mi тут не потрібне el."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-12:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-12:intro3:r2": {
+          "ru": "Эта фраза отрицала бы принадлежность собеседнику.",
+          "uk": "Ця фраза заперечувала б належність співрозмовнику."
+        },
+        "es:lesson-04:session-12:intro3:r3": {
+          "ru": "Одна машина: es.",
+          "uk": "Одна машина: es."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a3b0aece0ab813a5f7b46893cf9e3cc38f5196162218c8cb527df245c23e8a1c"
+}

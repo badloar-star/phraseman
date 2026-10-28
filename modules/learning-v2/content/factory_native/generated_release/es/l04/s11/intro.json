@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-04:session-11",
+  "learningOutcomeByLocale": {
+    "ru": "использовать tu перед названием вещи.",
+    "uk": "використовувати tu перед назвою речі."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-04:session-11:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Узнать машину друга",
+        "uk": "Упізнати машину друга"
+      },
+      "bodyByLocale": {
+        "ru": "Друг показал свою машину. Скажите ему `Es tu carro` — «Это твоя машина». Соберите `es` + `tu carro`. Как в tu madre, tu относится к собеседнику. Теперь за tu стоит название вещи. Перед tu здесь не добавляем el.",
+        "uk": "Друг показав свою машину. Скажіть йому `Es tu carro` — «Це твоя машина». Зберіть `es` + `tu carro`. Як у tu madre, tu стосується співрозмовника. Тепер за tu стоїть назва речі. Перед tu тут не додаємо el."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-11:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите другу: «Это твоя машина». Начните с Es.",
+          "uk": "Скажіть другу: «Це твоя машина». Почніть з Es."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-11:intro1:r1",
+              "text": "Es tu carro."
+            },
+            {
+              "responseId": "es:lesson-04:session-11:intro1:r2",
+              "text": "Es el tu carro."
+            },
+            {
+              "responseId": "es:lesson-04:session-11:intro1:r3",
+              "text": "Es tu carros."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-11:intro1:r1",
+              "text": "Es tu carro."
+            },
+            {
+              "responseId": "es:lesson-04:session-11:intro1:r2",
+              "text": "Es el tu carro."
+            },
+            {
+              "responseId": "es:lesson-04:session-11:intro1:r3",
+              "text": "Es tu carros."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите другу: «Это твоя машина». Начните с Es.",
+          "uk": "Скажіть другу: «Це твоя машина». Почніть з Es."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-04:session-11:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Узнать по цвету",
+        "uk": "Упізнати за кольором"
+      },
+      "bodyByLocale": {
+        "ru": "Вы помните цвет машины и говорите `Tu carro es azul` — «Твоя машина синяя». Соберите `tu carro` + `es` + `azul`. Группа tu carro называет вещь и её владельца, es azul сообщает цвет. Для одной машины используем es.",
+        "uk": "Ви пам'ятаєте колір машини й говорите `Tu carro es azul` — «Твоя машина синя». Зберіть `tu carro` + `es` + `azul`. Група tu carro називає річ та її власника, es azul повідомляє колір. Для однієї машини використовуємо es."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-11:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите другу, что его машина синяя, начав с Tu carro.",
+          "uk": "Скажіть другу, що його машина синя, почавши з Tu carro."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-11:intro2:r1",
+              "text": "Tu carro es azul."
+            },
+            {
+              "responseId": "es:lesson-04:session-11:intro2:r2",
+              "text": "Tu carro son azul."
+            },
+            {
+              "responseId": "es:lesson-04:session-11:intro2:r3",
+              "text": "Tu carro es azules."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-11:intro2:r1",
+              "text": "Tu carro es azul."
+            },
+            {
+              "responseId": "es:lesson-04:session-11:intro2:r2",
+              "text": "Tu carro son azul."
+            },
+            {
+              "responseId": "es:lesson-04:session-11:intro2:r3",
+              "text": "Tu carro es azules."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите другу, что его машина синяя, начав с Tu carro.",
+          "uk": "Скажіть другу, що його машина синя, почавши з Tu carro."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-04:session-11:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Похожая машина",
+        "uk": "Схожа машина"
+      },
+      "bodyByLocale": {
+        "ru": "Рядом стоит похожая машина другого человека. Скажите другу `No es tu carro` — «Это не твоя машина». Соберите `no` + `es` + `tu carro`. No ставится перед es; tu по-прежнему указывает на собеседника. Так вы отрицаете принадлежность ему этой машины.",
+        "uk": "Поруч стоїть схожа машина іншої людини. Скажіть другу `No es tu carro` — «Це не твоя машина». Зберіть `no` + `es` + `tu carro`. No ставиться перед es; tu, як і раніше, вказує на співрозмовника. Так ви заперечуєте належність йому цієї машини."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-11:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите другу: «Это не твоя машина». Начните с No es.",
+          "uk": "Скажіть другу: «Це не твоя машина». Почніть з No es."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-11:intro3:r1",
+              "text": "No es tu carro."
+            },
+            {
+              "responseId": "es:lesson-04:session-11:intro3:r2",
+              "text": "No son tu carro."
+            },
+            {
+              "responseId": "es:lesson-04:session-11:intro3:r3",
+              "text": "No es el tu carro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-11:intro3:r1",
+              "text": "No es tu carro."
+            },
+            {
+              "responseId": "es:lesson-04:session-11:intro3:r2",
+              "text": "No son tu carro."
+            },
+            {
+              "responseId": "es:lesson-04:session-11:intro3:r3",
+              "text": "No es el tu carro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите другу: «Это не твоя машина». Начните с No es.",
+          "uk": "Скажіть другу: «Це не твоя машина». Почніть з No es."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "6fd822d9fa1d10beeaa8b8283802f306a740b48ac7983d1f80408ecf1b35e155"
+}

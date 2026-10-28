@@ -1253,4 +1253,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"использовать tu с мужским существительным.","uk":"використовувати tu з іменником чоловічого роду."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 4, sessionOrdinal: 11,
+    sourceFingerprint: "1314f04eb354611835b083e4e591c1d432ceb04f10e71635d83eedeb5542f440",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"использовать tu перед названием вещи.","uk":"використовувати tu перед назвою речі."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 4, sessionOrdinal: 12,
+    sourceFingerprint: "bbb65b97cf47e452d172e1f887beaa692192e31b3013b9b89b27f1b5b069d962",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"задать вопрос о принадлежности и отдельно ответить от своего лица.","uk":"поставити запитання про належність і окремо відповісти від свого імені."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
+  }),
 ]);

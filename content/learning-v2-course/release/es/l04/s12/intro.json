@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-04:session-12",
+  "learningOutcomeByLocale": {
+    "ru": "задать вопрос о принадлежности и отдельно ответить от своего лица.",
+    "uk": "поставити запитання про належність і окремо відповісти від свого імені."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-04:session-12:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Уточнить у друга",
+        "uk": "Уточнити в друга"
+      },
+      "bodyByLocale": {
+        "ru": "Вы не уверены, какую машину показал друг. Спросите `¿Es tu carro?` — «Это твоя машина?» Соберите `es` + `tu carro`, как в знакомом утверждении, но произнесите с вопросительной интонацией. На письме поставьте ¿ в начале и ? в конце. Tu указывает на собеседника.",
+        "uk": "Ви не впевнені, яку машину показав друг. Запитайте `¿Es tu carro?` — «Це твоя машина?» Зберіть `es` + `tu carro`, як у знайомому твердженні, але вимовте з питальною інтонацією. На письмі поставте ¿ на початку й ? у кінці. Tu вказує на співрозмовника."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-12:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите друга: «Это твоя машина?»",
+          "uk": "Запитайте друга: «Це твоя машина?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-12:intro1:r1",
+              "text": "¿Es tu carro?"
+            },
+            {
+              "responseId": "es:lesson-04:session-12:intro1:r2",
+              "text": "¿Son tu carro?"
+            },
+            {
+              "responseId": "es:lesson-04:session-12:intro1:r3",
+              "text": "¿Es el tu carro?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-12:intro1:r1",
+              "text": "¿Es tu carro?"
+            },
+            {
+              "responseId": "es:lesson-04:session-12:intro1:r2",
+              "text": "¿Son tu carro?"
+            },
+            {
+              "responseId": "es:lesson-04:session-12:intro1:r3",
+              "text": "¿Es el tu carro?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите друга: «Это твоя машина?»",
+          "uk": "Запитайте друга: «Це твоя машина?»"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-04:session-12:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Подтвердить от своего лица",
+        "uk": "Підтвердити від свого імені"
+      },
+      "bodyByLocale": {
+        "ru": "Теперь друг спрашивает вас о вашей машине. Ответьте `Es mi carro` — «Это моя машина». Соберите `es` + `mi carro`. В вопросе к вам звучит tu — «твоя», а в вашем ответе нужно mi — «моя». Говорящий изменился, поэтому меняется слово владельца.",
+        "uk": "Тепер друг запитує вас про вашу машину. Дайте відповідь `Es mi carro` — «Це моя машина». Зберіть `es` + `mi carro`. У запитанні до вас звучить tu — «твоя», а у вашій відповіді потрібне mi — «моя». Мовець змінився, тому змінюється слово власника."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-12:intro2:q",
+        "promptByLocale": {
+          "ru": "Подтвердите, что машина ваша. Начните с Es, ответьте одной репликой.",
+          "uk": "Підтвердьте, що машина ваша. Почніть з Es, дайте відповідь однією реплікою."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-12:intro2:r1",
+              "text": "Es mi carro."
+            },
+            {
+              "responseId": "es:lesson-04:session-12:intro2:r2",
+              "text": "Es tu carro."
+            },
+            {
+              "responseId": "es:lesson-04:session-12:intro2:r3",
+              "text": "Es el mi carro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-12:intro2:r1",
+              "text": "Es mi carro."
+            },
+            {
+              "responseId": "es:lesson-04:session-12:intro2:r2",
+              "text": "Es tu carro."
+            },
+            {
+              "responseId": "es:lesson-04:session-12:intro2:r3",
+              "text": "Es el mi carro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Подтвердите, что машина ваша. Начните с Es, ответьте одной репликой.",
+          "uk": "Підтвердьте, що машина ваша. Почніть з Es, дайте відповідь однією реплікою."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-04:session-12:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Отрицательный ответ",
+        "uk": "Заперечна відповідь"
+      },
+      "bodyByLocale": {
+        "ru": "Если машина не ваша, скажите `No es mi carro` — «Это не моя машина». Соберите `no` + `es` + `mi carro`. Mi по-прежнему относится к вам. Отрицание no перед es меняет ответ, но не владельца, о котором вы говорите.",
+        "uk": "Якщо машина не ваша, скажіть `No es mi carro` — «Це не моя машина». Зберіть `no` + `es` + `mi carro`. Mi, як і раніше, стосується вас. Заперечення no перед es змінює відповідь, але не власника, про якого ви говорите."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-12:intro3:q",
+        "promptByLocale": {
+          "ru": "Ответьте другу, что машина не ваша. Начните с No es.",
+          "uk": "Дайте другу відповідь, що машина не ваша. Почніть з No es."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-12:intro3:r1",
+              "text": "No es mi carro."
+            },
+            {
+              "responseId": "es:lesson-04:session-12:intro3:r2",
+              "text": "No es tu carro."
+            },
+            {
+              "responseId": "es:lesson-04:session-12:intro3:r3",
+              "text": "No son mi carro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-12:intro3:r1",
+              "text": "No es mi carro."
+            },
+            {
+              "responseId": "es:lesson-04:session-12:intro3:r2",
+              "text": "No es tu carro."
+            },
+            {
+              "responseId": "es:lesson-04:session-12:intro3:r3",
+              "text": "No son mi carro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ответьте другу, что машина не ваша. Начните с No es.",
+          "uk": "Дайте другу відповідь, що машина не ваша. Почніть з No es."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "1c9579b14fba93e68c4b3b797eccaa7fd73a6aab3d62d604702cc46da852f773"
+}

@@ -1,0 +1,663 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-04:session-12",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-04:session-12:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-12:i01:r1",
+          "text": "¿Es tu carro?"
+        },
+        {
+          "responseId": "es:lesson-04:session-12:i01:r2",
+          "text": "¿Es mi carro?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-12:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-12:i01:audio",
+          "transcript": "¿Es tu carro?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-04:session-12:i01:r1",
+            "targetText": "¿Es tu carro?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-04:session-12:i01:r2",
+            "targetText": "¿Es mi carro?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-12:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи tu, а не mi.",
+              "uk": "У записі tu, а не mi."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-12:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — спрашиваете друга: это твоя машина?",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-12:i02:r1",
+          "text": "tu"
+        },
+        {
+          "responseId": "es:lesson-04:session-12:i02:r2",
+          "text": "mi"
+        },
+        {
+          "responseId": "es:lesson-04:session-12:i02:r3",
+          "text": "yo"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — спрашиваете друга: это твоя машина?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — спрашиваете друга: это твоя машина?",
+          "uk": "Вставте слово — запитуєте друга: це твоя машина?"
+        },
+        "gappedTargetPhrase": "¿Es ___ carro?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-12:i02:r1",
+            "text": "tu"
+          },
+          {
+            "responseId": "es:lesson-04:session-12:i02:r2",
+            "text": "mi"
+          },
+          {
+            "responseId": "es:lesson-04:session-12:i02:r3",
+            "text": "yo"
+          }
+        ],
+        "testedDimension": "Вставьте слово — спрашиваете друга: это твоя машина?",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-12:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — спрашиваете друга: это твоя машина?",
+            "feedbackByLocale": {
+              "ru": "Спрашиваем о машине друга: tu.",
+              "uk": "Запитуємо про машину друга: tu."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-12:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — спрашиваете друга: это твоя машина?",
+            "feedbackByLocale": {
+              "ru": "Yo означает «я»; перед carro нужно tu.",
+              "uk": "Yo означає «я»; перед carro потрібне tu."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-12:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — спросите друга: это твоя машина?",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-12:i03:r1",
+          "text": "Плитки: carro?"
+        },
+        {
+          "responseId": "es:lesson-04:session-12:i03:r2",
+          "text": "tu"
+        },
+        {
+          "responseId": "es:lesson-04:session-12:i03:r3",
+          "text": "¿Es"
+        },
+        {
+          "responseId": "es:lesson-04:session-12:i03:r4",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — спросите друга: это твоя машина?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Es tu carro?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — спросите друга: это твоя машина?",
+          "uk": "Зберіть фразу — запитайте друга: це твоя машина?"
+        },
+        "orderedTokens": [
+          "¿Es",
+          "tu",
+          "carro"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-12:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — спросите друга: это твоя машина?",
+            "feedbackByLocale": {
+              "ru": "перед tu здесь нет артикля.",
+              "uk": "перед tu тут немає артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-12:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — отвечаете о себе: это моя машина",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-12:i04:r1",
+          "text": "mi"
+        },
+        {
+          "responseId": "es:lesson-04:session-12:i04:r2",
+          "text": "tu"
+        },
+        {
+          "responseId": "es:lesson-04:session-12:i04:r3",
+          "text": "yo"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — отвечаете о себе: это моя машина",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — отвечаете о себе: это моя машина",
+          "uk": "Вставте слово — відповідаєте про себе: це моя машина"
+        },
+        "gappedTargetPhrase": "Es ___ carro.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-12:i04:r1",
+            "text": "mi"
+          },
+          {
+            "responseId": "es:lesson-04:session-12:i04:r2",
+            "text": "tu"
+          },
+          {
+            "responseId": "es:lesson-04:session-12:i04:r3",
+            "text": "yo"
+          }
+        ],
+        "testedDimension": "Вставьте слово — отвечаете о себе: это моя машина",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-12:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — отвечаете о себе: это моя машина",
+            "feedbackByLocale": {
+              "ru": "О своей машине говорим mi, а не tu.",
+              "uk": "Про свою машину говоримо mi, а не tu."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-12:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — отвечаете о себе: это моя машина",
+            "feedbackByLocale": {
+              "ru": "Перед названием вещи нужно mi, а не yo.",
+              "uk": "Перед назвою речі потрібне mi, а не yo."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-12:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — подтвердите: это моя машина",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-12:i05:r1",
+          "text": "Плитки: carro"
+        },
+        {
+          "responseId": "es:lesson-04:session-12:i05:r2",
+          "text": "mi"
+        },
+        {
+          "responseId": "es:lesson-04:session-12:i05:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-12:i05:r4",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — подтвердите: это моя машина",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es mi carro.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — подтвердите: это моя машина",
+          "uk": "Зберіть фразу — підтвердьте: це моя машина"
+        },
+        "orderedTokens": [
+          "Es",
+          "mi",
+          "carro"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-12:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — подтвердите: это моя машина",
+            "feedbackByLocale": {
+              "ru": "перед mi здесь нет артикля.",
+              "uk": "перед mi тут немає артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-12:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — ответьте: это не моя машина",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-12:i06:r1",
+          "text": "Плитки: carro"
+        },
+        {
+          "responseId": "es:lesson-04:session-12:i06:r2",
+          "text": "mi"
+        },
+        {
+          "responseId": "es:lesson-04:session-12:i06:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-12:i06:r4",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-04:session-12:i06:r5",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — ответьте: это не моя машина",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No es mi carro.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — ответьте: это не моя машина",
+          "uk": "Зберіть фразу — дайте відповідь: це не моя машина"
+        },
+        "orderedTokens": [
+          "No",
+          "es",
+          "mi",
+          "carro"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-12:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — ответьте: это не моя машина",
+            "feedbackByLocale": {
+              "ru": "группа mi carro без артикля.",
+              "uk": "група mi carro без артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-12:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-12:i07:r1",
+          "text": "Плитки: carro?"
+        },
+        {
+          "responseId": "es:lesson-04:session-12:i07:r2",
+          "text": "tu"
+        },
+        {
+          "responseId": "es:lesson-04:session-12:i07:r3",
+          "text": "¿Es"
+        },
+        {
+          "responseId": "es:lesson-04:session-12:i07:r4",
+          "text": "mi."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-12:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-12:i07:audio",
+          "transcript": "¿Es tu carro?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "¿Es tu carro?",
+        "orderedTokens": [
+          "¿Es",
+          "tu",
+          "carro"
+        ],
+        "authoredDistractorTokens": [
+          "mi"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-12:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит tu.",
+              "uk": "звучить tu."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-12:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — ответьте: это не моя машина",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-12:i08:r1",
+          "text": "mi"
+        },
+        {
+          "responseId": "es:lesson-04:session-12:i08:r2",
+          "text": "tu"
+        },
+        {
+          "responseId": "es:lesson-04:session-12:i08:r3",
+          "text": "yo"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — ответьте: это не моя машина",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — ответьте: это не моя машина",
+          "uk": "Вставте слово — дайте відповідь: це не моя машина"
+        },
+        "gappedTargetPhrase": "No es ___ carro.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-12:i08:r1",
+            "text": "mi"
+          },
+          {
+            "responseId": "es:lesson-04:session-12:i08:r2",
+            "text": "tu"
+          },
+          {
+            "responseId": "es:lesson-04:session-12:i08:r3",
+            "text": "yo"
+          }
+        ],
+        "testedDimension": "Вставьте слово — ответьте: это не моя машина",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-12:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — ответьте: это не моя машина",
+            "feedbackByLocale": {
+              "ru": "Вы отвечаете о себе: mi.",
+              "uk": "Ви відповідаєте про себе: mi."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-12:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — ответьте: это не моя машина",
+            "feedbackByLocale": {
+              "ru": "Перед названием вещи нужно mi.",
+              "uk": "Перед назвою речі потрібне mi."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-12:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — спросите друга: это твоя машина?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-12:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — спросите друга: это твоя машина?",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-12:i09:audio",
+          "transcript": "¿Es tu carro?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Es tu carro?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-12:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — подтвердите: это моя машина; начните с Es",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-12:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — подтвердите: это моя машина; начните с Es",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-12:i10:audio",
+          "transcript": "Es mi carro."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es mi carro.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-12:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — ответьте: это не моя машина; начните с No es",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-12:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — ответьте: это не моя машина; начните с No es",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-12:i11:audio",
+          "transcript": "No es mi carro."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No es mi carro.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-12:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — сообщите другу, что узнали его машину: это твоя машина; начните с Es",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-12:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — сообщите другу, что узнали его машину: это твоя машина; начните с Es",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-12:i12:audio",
+          "transcript": "Es tu carro."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es tu carro.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "f2b93e6ee10850d4ad090bac98bcb1d4e8d0485bc29d1548e1c66e0574263c33"
+}

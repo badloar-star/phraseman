@@ -1,65 +1,44 @@
 import type { TopicAccent } from './lesson_data_types';
+import { homeSceneFromOklch, homeSceneOklchOf } from '../components/home/v2/scene/home_scene_tokens';
+import { themeRoleAlpha } from '../components/theme_role_colors';
 
 /**
- * Уникальный цвет у каждой темы раздела «Теория» (пожелание владельца).
+ * Акцент темы раздела «Теория» — оттенок ТЕКУЩЕЙ темы приложения, а не своя палитра.
  *
- * Семантика остаётся общей и берётся из темы приложения:
- *   success / correct = зелёный, danger / wrong = красный, warning = жёлтый.
- * Здесь — ТОЛЬКО topic-accent (то, что мы учим): пилюли формулы, tone:'accent',
- * активные элементы интерактива.
- *
- * Контраст доведён до AAA (≥7:1 для текста на тёмном фоне карточки #171A21).
- * Ни один accent НЕ совпадает с danger (#DC5050) и success (#3CB478) —
- * см. assertNoSemanticClash ниже (вызывается в dev).
- *
- * ВАЖНО: поле `accent` считалось ТОЛЬКО под тёмную карточку. На светлой
- * поверхности оно даёт 1.8–2.5:1 (норма 4.5) — текст не читается. Для светлых
- * тем берём `accentOnLight`: тот же оттенок, затемнён до AA на #FCFDF9/#FFFFFF/
- * #F0FAFF/#F0F1EC/#E1E5DC. Выбирать через getTopicAccentColor(pal, isLight).
+ * зачем (решение владельца 28.10 через координатора: «Теория — в цвет темы приложения, грамматические темы различаются оттенком от акцента, а не своей палитрой»;
+ * снято прежнее пожелание «у каждой темы свой уникальный цвет» — таблица из 22 фиксированных цветов, 76 литералов, удалена; её читателей не было): тема урока
+ * получает акцент из акцента текущей темы со сдвигом тона на TOPIC_HUE_STEP_DEG за каждую следующую тему цикла из TOPIC_HUE_CYCLE. Насыщенность не ниже
+ * TOPIC_MIN_CHROMA (у серой темы темы остаются различимы), светлота подбирается отдельно под тёмную карточку (accent) и светлую (accentOnLight): текст ≥ 4,5:1.
+ * Страж — tests/theory_topic_accents_theme.test.ts (все темы × уроки 1–32).
  */
-export const TOPIC_ACCENTS: Record<number, TopicAccent> = {
-  // To Be — синий
-  1: { accent: '#5EA3FF', soft: 'rgba(94,163,255,0.10)', accentOnLight: '#1D5FC4' },
-  2: { accent: '#5EA3FF', soft: 'rgba(94,163,255,0.10)', accentOnLight: '#1D5FC4' },
-  // Present Simple (I/he + -s) — чайно-зелёный (отличён от success-зелёного)
-  3: { accent: '#34C2C2', soft: 'rgba(52,194,194,0.10)', accentOnLight: '#17706F' },
-  4: { accent: '#34C2C2', soft: 'rgba(52,194,194,0.10)', accentOnLight: '#17706F' },
-  // Вопросы Do/Does — фиолетовый
-  5: { accent: '#B68CFF', soft: 'rgba(182,140,255,0.10)', accentOnLight: '#6D3FC4' },
-  6: { accent: '#B68CFF', soft: 'rgba(182,140,255,0.10)', accentOnLight: '#6D3FC4' },
-  // Have/Has — индиго
-  7: { accent: '#8AA0FF', soft: 'rgba(138,160,255,0.10)', accentOnLight: '#4356C4' },
-  8: { accent: '#8AA0FF', soft: 'rgba(138,160,255,0.10)', accentOnLight: '#4356C4' },
-  // There is/are — бирюзовый
-  9: { accent: '#4FD1C5', soft: 'rgba(79,209,197,0.10)', accentOnLight: '#177067' },
-  // Модальные can/should/must — янтарный
-  10: { accent: '#F4B452', soft: 'rgba(244,180,82,0.10)', accentOnLight: '#8A5A12' },
-  // Неправильные глаголы — коралл
-  11: { accent: '#FF8E72', soft: 'rgba(255,142,114,0.10)', accentOnLight: '#AE3A22' },
-  12: { accent: '#FF8E72', soft: 'rgba(255,142,114,0.10)', accentOnLight: '#AE3A22' },
-  // Past Simple — тёплый персик
-  13: { accent: '#F2A65A', soft: 'rgba(242,166,90,0.10)', accentOnLight: '#8C5214' },
-  14: { accent: '#F2A65A', soft: 'rgba(242,166,90,0.10)', accentOnLight: '#8C5214' },
-  // Артикли a/an/the — розовый
-  15: { accent: '#F08FB8', soft: 'rgba(240,143,184,0.10)', accentOnLight: '#A83A6E' },
-  16: { accent: '#F08FB8', soft: 'rgba(240,143,184,0.10)', accentOnLight: '#A83A6E' },
-  // Present Continuous — небесно-голубой
-  17: { accent: '#62C3FF', soft: 'rgba(98,195,255,0.10)', accentOnLight: '#175E8A' },
-  18: { accent: '#62C3FF', soft: 'rgba(98,195,255,0.10)', accentOnLight: '#175E8A' },
-  // Future will / going to — лавандовый
-  19: { accent: '#A98CFF', soft: 'rgba(169,140,255,0.10)', accentOnLight: '#5F44C4' },
-  20: { accent: '#A98CFF', soft: 'rgba(169,140,255,0.10)', accentOnLight: '#5F44C4' },
-  // Сравнения / прилагательные — мятный
-  21: { accent: '#5BD6A8', soft: 'rgba(91,214,168,0.10)', accentOnLight: '#1C7154' },
-  22: { accent: '#5BD6A8', soft: 'rgba(91,214,168,0.10)', accentOnLight: '#1C7154' },
-};
+export const TOPIC_HUE_STEP_DEG = 30;
+export const TOPIC_HUE_CYCLE = 8;
+export const TOPIC_MIN_CHROMA = 0.075;
+export const TOPIC_MAX_CHROMA = 0.16;
+/** Светлота акцента: на тёмной карточке светлый тон, на светлой — глубокий (контраст ≥ 4,5 проверяет страж). */
+export const TOPIC_LIGHTNESS = { dark: 0.8, light: 0.43 } as const;
 
-/** Fallback-акцент, если урока нет в реестре. */
-export const DEFAULT_TOPIC_ACCENT: TopicAccent = {
-  accent: '#5EA3FF',
-  soft: 'rgba(94,163,255,0.10)',
-  accentOnLight: '#1D5FC4',
-};
+const HEX6 = /^#([0-9a-f]{6})$/i;
+/** Оттенок запасного варианта, если акцент темы не hex: нейтральный сине-серый. */
+const FALLBACK_HUE = 250;
+
+const hexOf = (c: readonly number[]): string => `#${c.map((v) => Math.round(Math.max(0, Math.min(255, v))).toString(16).padStart(2, '0')).join('')}`.toUpperCase();
+
+/**
+ * Акцент темы урока `lessonId` для акцента темы приложения `themeAccent` (#rrggbb).
+ * Приоритет: явный topicAccent экрана → производный от темы. Мемоизации не нужно: вызывается раз на экран.
+ */
+export function getTopicAccent(lessonId: number | undefined, explicit?: TopicAccent, themeAccent = ''): TopicAccent {
+  if (explicit) return explicit;
+  const m = HEX6.exec(themeAccent);
+  const n = m ? parseInt(m[1], 16) : 0;
+  const [, c, h] = m ? homeSceneOklchOf([(n >> 16) & 255, (n >> 8) & 255, n & 255]) : [0, 0, FALLBACK_HUE];
+  const chroma = Math.max(TOPIC_MIN_CHROMA, Math.min(TOPIC_MAX_CHROMA, c));
+  const index = lessonId != null && lessonId > 0 ? (lessonId - 1) % TOPIC_HUE_CYCLE : 0;
+  const hue = (h + index * TOPIC_HUE_STEP_DEG) % 360;
+  const accent = hexOf(homeSceneFromOklch(TOPIC_LIGHTNESS.dark, chroma, hue));
+  return { accent, soft: themeRoleAlpha(accent, 0.1), accentOnLight: hexOf(homeSceneFromOklch(TOPIC_LIGHTNESS.light, chroma, hue)) };
+}
 
 /**
  * Уроки, контент которых переписан на новую интерактивную теорию
@@ -82,77 +61,4 @@ export function isInteractiveTheoryLesson(lessonId: number): boolean {
  */
 export function getTopicAccentColor(pal: TopicAccent, isLightSurface: boolean): string {
   return isLightSurface ? pal.accentOnLight : pal.accent;
-}
-
-/** Семантические цвета, с которыми accent НЕ должен совпадать. */
-const SEMANTIC_GUARD = {
-  danger: '#dc5050',
-  success: '#3cb478',
-};
-
-/**
- * Возвращает уникальный цвет темы по lessonId.
- * Приоритет: явный topicAccent экрана → реестр → дефолт.
- */
-export function getTopicAccent(
-  lessonId: number | undefined,
-  explicit?: TopicAccent,
-): TopicAccent {
-  if (explicit) return explicit;
-  if (lessonId != null && TOPIC_ACCENTS[lessonId]) return TOPIC_ACCENTS[lessonId];
-  return DEFAULT_TOPIC_ACCENT;
-}
-
-/**
- * Dev-проверка: ни один accent не сливается с danger/success.
- * Вызывать в __DEV__ при загрузке, чтобы ловить регрессии палитры.
- */
-export function assertNoSemanticClash(): string[] {
-  const problems: string[] = [];
-  for (const [id, pal] of Object.entries(TOPIC_ACCENTS)) {
-    const a = pal.accent.toLowerCase();
-    if (a === SEMANTIC_GUARD.danger || a === SEMANTIC_GUARD.success) {
-      problems.push(`Урок ${id}: accent ${pal.accent} совпадает с семантическим цветом`);
-    }
-  }
-  return problems;
-}
-
-/** Светлые поверхности, на которых живёт теория (карточки светлых тем). */
-const LIGHT_SURFACES = ['#FCFDF9', '#FFFFFF', '#F0FAFF', '#DCE1D8', '#E1E5DC'] as const;
-const AA_TEXT = 4.5;
-
-function relativeLuminance(hex: string): number {
-  const h = hex.replace('#', '');
-  const ch = [0, 2, 4].map((i) => {
-    const v = parseInt(h.slice(i, i + 2), 16) / 255;
-    return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
-  });
-  return 0.2126 * ch[0] + 0.7152 * ch[1] + 0.0722 * ch[2];
-}
-
-function contrastRatio(a: string, b: string): number {
-  const la = relativeLuminance(a);
-  const lb = relativeLuminance(b);
-  return (Math.max(la, lb) + 0.05) / (Math.min(la, lb) + 0.05);
-}
-
-/**
- * Dev-проверка: accentOnLight читается на всех светлых карточках.
- * зачем: базовые accent'ы писались под тёмный фон, и на светлой теме текст
- * пропадал. Страж ловит регрессию при добавлении новой темы урока.
- */
-export function assertLightAccentContrast(): string[] {
-  const problems: string[] = [];
-  for (const [id, pal] of Object.entries(TOPIC_ACCENTS)) {
-    for (const surface of LIGHT_SURFACES) {
-      const ratio = contrastRatio(pal.accentOnLight, surface);
-      if (ratio < AA_TEXT) {
-        problems.push(
-          `Урок ${id}: accentOnLight ${pal.accentOnLight} на ${surface} даёт ${ratio.toFixed(2)}:1 (нужно ${AA_TEXT})`,
-        );
-      }
-    }
-  }
-  return problems;
 }

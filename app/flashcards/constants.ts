@@ -1,5 +1,5 @@
 // Localized labels and static UI metadata for flashcards screen.
-import { CardItem, Category, CategoryId } from './types';
+import { Category, CategoryId } from './types';
 
 export const STR = {
   ru: {
@@ -272,21 +272,8 @@ export function categoriesForFlashcardsHub(): Category[] {
   return orderedHubItems;
 }
 
-export const SOURCE_COLORS: Record<string, string> = {
-  lesson: '#4A90D9', word: '#7B68EE', verb: '#E87D3E', dialog: '#50BFA0',
-};
-
-export function getCardTint(card: CardItem): string | null {
-  if (!card.source) return null;
-  if (card.source === 'lesson' && card.sourceId) {
-    const n = parseInt(card.sourceId, 10);
-    if (n <= 8) return '#4CAF72';
-    if (n <= 18) return '#40B4E8';
-    if (n <= 28) return '#D4A017';
-    return '#DC6428';
-  }
-  return SOURCE_COLORS[card.source] ?? null;
-}
+// зачем (аудит цвета 28.10, «каждый цвет — оттенок текущей темы»): SOURCE_COLORS и getCardTint (8 фиксированных цветов источников карточек) не имели читателей — удалены;
+// цвета источников на экранах берутся из своих мест (SOURCE_ACCENTS в trainingSources / flashcards_swipe), см. docs/work/color-audit-2026-10-28.md
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */
 export default function __RouteShim() { return null; }

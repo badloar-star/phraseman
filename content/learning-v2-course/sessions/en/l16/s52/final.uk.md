@@ -113,7 +113,7 @@ I ___ a paved path. → **am going to choose** · am choosing · be
 <!-- interaction_id: en:lesson-16:session-52:word:unpaved; family: word_card -->
 > **unpaved** — без твердого покриття — про дорогу.
 
-**14 · Ви домовилися з друзями завтра пройти знайомою ґрунтовою дорогою. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Завтра ми йдемо дорогою без твердого покриття».**
+**14 · Ви домовилися з друзями завтра пройти знайомою ґрунтовою дорогою. Скажіть, що це вже вирішено. Скажіть: «Завтра ми йдемо дорогою без твердого покриття».**
 <!-- interaction_id: en:lesson-16:session-52:i10; family: phrase_builder -->
 Плитки: `tomorrow` `road` `unpaved` `the` `along` `walking` `are` `We` → **We are walking along the unpaved road tomorrow.**
 
@@ -123,7 +123,7 @@ I ___ a paved path. → **am going to choose** · am choosing · be
 - We are going to walk along the unpaved road tomorrow. — *У записі звучить We are walking along the unpaved road tomorrow.*
 - We is walking along the unpaved road tomorrow. — *У записі звучить We are walking along the unpaved road tomorrow.*
 
-**16 · Ви домовилися з друзями завтра пройти знайомою ґрунтовою дорогою. Передайте підтверджену домовленість через Present Continuous.**
+**16 · Ви домовилися з друзями завтра пройти знайомою ґрунтовою дорогою. Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-16:session-52:i12; family: context_gap_grammar -->
 We ___ along the unpaved road tomorrow. → **are walking** · are walk · be
 - are walk — *Після are потрібна форма з -ing: are walking.*
@@ -141,7 +141,7 @@ uneven — нерівний — про поверхню · shaded — затін
 <!-- interaction_id: en:lesson-16:session-52:i15; family: listen_build_dictation -->
 🔊 *I am going to choose a paved path.* Плитки: `path` `paved` `a` `choose` `to` `going` `am` `I` → **I am going to choose a paved path.**
 
-**20 · Передайте підтверджену домовленість через Present Continuous.**
+**20 · Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-16:session-52:i16; family: scripted_repeat_compare -->
 🎙 **We are walking along the unpaved road tomorrow.**
 

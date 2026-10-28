@@ -113,7 +113,7 @@ I ___ for a few minutes. → **am going to hang on** · am hanging on · be
 <!-- interaction_id: en:lesson-16:session-45:word:stay-put; family: word_card -->
 > **stay put** — залишатися на місці, нікуди не йти.
 
-**14 · Ви з родиною вже домовилися провести вихідні вдома замість поїздки. У stay put форма з -ing — staying put. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Цими вихідними ми нікуди не їдемо».**
+**14 · Ви з родиною вже домовилися провести вихідні вдома замість поїздки. У stay put форма з -ing — staying put. Скажіть, що це вже вирішено. Скажіть: «Цими вихідними ми нікуди не їдемо».**
 <!-- interaction_id: en:lesson-16:session-45:i10; family: phrase_builder -->
 Плитки: `weekend` `this` `put` `staying` `are` `We` → **We are staying put this weekend.**
 
@@ -123,7 +123,7 @@ I ___ for a few minutes. → **am going to hang on** · am hanging on · be
 - We are going to stay put this weekend. — *У записі звучить We are staying put this weekend.*
 - We is staying put this weekend. — *У записі звучить We are staying put this weekend.*
 
-**16 · Ви з родиною вже домовилися провести вихідні вдома замість поїздки. У stay put форма з -ing — staying put. Передайте підтверджену домовленість через Present Continuous.**
+**16 · Ви з родиною вже домовилися провести вихідні вдома замість поїздки. У stay put форма з -ing — staying put. Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-16:session-45:i12; family: context_gap_grammar -->
 We ___ this weekend. → **are staying put** · are stay put · be
 - are stay put — *Після are потрібна форма з -ing: are staying put.*
@@ -141,7 +141,7 @@ speak up — говорити голосніше · hold still — не руха
 <!-- interaction_id: en:lesson-16:session-45:i15; family: listen_build_dictation -->
 🔊 *I am going to hang on for a few minutes.* Плитки: `minutes` `few` `a` `for` `on` `hang` `to` `going` `am` `I` → **I am going to hang on for a few minutes.**
 
-**20 · Передайте підтверджену домовленість через Present Continuous.**
+**20 · Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-16:session-45:i16; family: scripted_repeat_compare -->
 🎙 **We are staying put this weekend.**
 

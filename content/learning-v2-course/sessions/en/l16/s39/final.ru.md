@@ -113,7 +113,7 @@ I ___ a roomy backpack. → **am going to choose** · am choosing · be
 <!-- interaction_id: en:lesson-16:session-39:word:compact; family: word_card -->
 > **compact** — компактный, занимающий мало места.
 
-**14 · Вы договорились с прокатом забрать компактную палатку завтра в назначенное время. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Мы забираем компактную палатку завтра».**
+**14 · Вы договорились с прокатом забрать компактную палатку завтра в назначенное время. Скажите, что это уже решено. Скажите: «Мы забираем компактную палатку завтра».**
 <!-- interaction_id: en:lesson-16:session-39:i10; family: phrase_builder -->
 Плитки: `tomorrow` `tent` `compact` `a` `collecting` `are` `We` → **We are collecting a compact tent tomorrow.**
 
@@ -123,7 +123,7 @@ I ___ a roomy backpack. → **am going to choose** · am choosing · be
 - We are going to collect a compact tent tomorrow. — *В записи звучит We are collecting a compact tent tomorrow.*
 - We is collecting a compact tent tomorrow. — *В записи звучит We are collecting a compact tent tomorrow.*
 
-**16 · Вы договорились с прокатом забрать компактную палатку завтра в назначенное время. Передайте подтверждённую договорённость через Present Continuous.**
+**16 · Вы договорились с прокатом забрать компактную палатку завтра в назначенное время. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-16:session-39:i12; family: context_gap_grammar -->
 We ___ a compact tent tomorrow. → **are collecting** · are collect · be
 - are collect — *После are нужна форма с -ing: are collecting.*
@@ -141,7 +141,7 @@ windproof — не пропускающий ветер · breathable — дыш�
 <!-- interaction_id: en:lesson-16:session-39:i15; family: listen_build_dictation -->
 🔊 *I am going to choose a roomy backpack.* Плитки: `backpack` `roomy` `a` `choose` `to` `going` `am` `I` → **I am going to choose a roomy backpack.**
 
-**20 · Передайте подтверждённую договорённость через Present Continuous.**
+**20 · Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-16:session-39:i16; family: scripted_repeat_compare -->
 🎙 **We are collecting a compact tent tomorrow.**
 

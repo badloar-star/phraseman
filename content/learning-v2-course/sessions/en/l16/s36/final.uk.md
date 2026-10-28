@@ -113,7 +113,7 @@ I ___ an unplanned expense. → **am going to cover** · am covering · be
 <!-- interaction_id: en:lesson-16:session-36:word:last-minute; family: word_card -->
 > **last-minute** — такий, що виник або був зроблений в останню мить.
 
-**14 · Лише сьогодні ви з господарями остаточно узгодили завтрашній візит. Домовленість підтверджена. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Ми їдемо з візитом завтра, домовившись в останню мить».**
+**14 · Лише сьогодні ви з господарями остаточно узгодили завтрашній візит. Домовленість підтверджена. Скажіть, що це вже вирішено. Скажіть: «Ми їдемо з візитом завтра, домовившись в останню мить».**
 <!-- interaction_id: en:lesson-16:session-36:i10; family: phrase_builder -->
 Плитки: `tomorrow` `visit` `last-minute` `a` `making` `are` `We` → **We are making a last-minute visit tomorrow.**
 
@@ -123,7 +123,7 @@ I ___ an unplanned expense. → **am going to cover** · am covering · be
 - We are going to make a last-minute visit tomorrow. — *У записі звучить We are making a last-minute visit tomorrow.*
 - We is making a last-minute visit tomorrow. — *У записі звучить We are making a last-minute visit tomorrow.*
 
-**16 · Лише сьогодні ви з господарями остаточно узгодили завтрашній візит. Домовленість підтверджена. Передайте підтверджену домовленість через Present Continuous.**
+**16 · Лише сьогодні ви з господарями остаточно узгодили завтрашній візит. Домовленість підтверджена. Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-16:session-36:i12; family: context_gap_grammar -->
 We ___ a last-minute visit tomorrow. → **are making** · are make · be
 - are make — *Після are потрібна форма з -ing: are making.*
@@ -141,7 +141,7 @@ memorable — незабутній, такий, що запам’ятовуєт
 <!-- interaction_id: en:lesson-16:session-36:i15; family: listen_build_dictation -->
 🔊 *I am going to cover an unplanned expense.* Плитки: `expense` `unplanned` `an` `cover` `to` `going` `am` `I` → **I am going to cover an unplanned expense.**
 
-**20 · Передайте підтверджену домовленість через Present Continuous.**
+**20 · Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-16:session-36:i16; family: scripted_repeat_compare -->
 🎙 **We are making a last-minute visit tomorrow.**
 

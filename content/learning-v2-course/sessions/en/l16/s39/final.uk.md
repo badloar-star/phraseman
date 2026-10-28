@@ -113,7 +113,7 @@ I ___ a roomy backpack. → **am going to choose** · am choosing · be
 <!-- interaction_id: en:lesson-16:session-39:word:compact; family: word_card -->
 > **compact** — компактний, що займає мало місця.
 
-**14 · Ви домовилися з прокатом забрати компактний намет завтра в призначений час. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Ми забираємо компактний намет завтра».**
+**14 · Ви домовилися з прокатом забрати компактний намет завтра в призначений час. Скажіть, що це вже вирішено. Скажіть: «Ми забираємо компактний намет завтра».**
 <!-- interaction_id: en:lesson-16:session-39:i10; family: phrase_builder -->
 Плитки: `tomorrow` `tent` `compact` `a` `collecting` `are` `We` → **We are collecting a compact tent tomorrow.**
 
@@ -123,7 +123,7 @@ I ___ a roomy backpack. → **am going to choose** · am choosing · be
 - We are going to collect a compact tent tomorrow. — *У записі звучить We are collecting a compact tent tomorrow.*
 - We is collecting a compact tent tomorrow. — *У записі звучить We are collecting a compact tent tomorrow.*
 
-**16 · Ви домовилися з прокатом забрати компактний намет завтра в призначений час. Передайте підтверджену домовленість через Present Continuous.**
+**16 · Ви домовилися з прокатом забрати компактний намет завтра в призначений час. Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-16:session-39:i12; family: context_gap_grammar -->
 We ___ a compact tent tomorrow. → **are collecting** · are collect · be
 - are collect — *Після are потрібна форма з -ing: are collecting.*
@@ -141,7 +141,7 @@ windproof — такий, що не пропускає вітер · breathable 
 <!-- interaction_id: en:lesson-16:session-39:i15; family: listen_build_dictation -->
 🔊 *I am going to choose a roomy backpack.* Плитки: `backpack` `roomy` `a` `choose` `to` `going` `am` `I` → **I am going to choose a roomy backpack.**
 
-**20 · Передайте підтверджену домовленість через Present Continuous.**
+**20 · Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-16:session-39:i16; family: scripted_repeat_compare -->
 🎙 **We are collecting a compact tent tomorrow.**
 

@@ -113,7 +113,7 @@ I ___ for a top-floor flat. → **am going to look** · am looking · be
 <!-- interaction_id: en:lesson-16:session-55:word:new-build; family: word_card -->
 > **new-build** — нещодавно збудований — про житло.
 
-**14 · Ви узгодили з агентом завтрашній перегляд нової квартири. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Завтра ми оглядаємо квартиру в новобудові».**
+**14 · Ви узгодили з агентом завтрашній перегляд нової квартири. Скажіть, що це вже вирішено. Скажіть: «Завтра ми оглядаємо квартиру в новобудові».**
 <!-- interaction_id: en:lesson-16:session-55:i10; family: phrase_builder -->
 Плитки: `tomorrow` `flat` `new-build` `a` `viewing` `are` `We` → **We are viewing a new-build flat tomorrow.**
 
@@ -123,7 +123,7 @@ I ___ for a top-floor flat. → **am going to look** · am looking · be
 - We are going to view a new-build flat tomorrow. — *У записі звучить We are viewing a new-build flat tomorrow.*
 - We is viewing a new-build flat tomorrow. — *У записі звучить We are viewing a new-build flat tomorrow.*
 
-**16 · Ви узгодили з агентом завтрашній перегляд нової квартири. Передайте підтверджену домовленість через Present Continuous.**
+**16 · Ви узгодили з агентом завтрашній перегляд нової квартири. Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-16:session-55:i12; family: context_gap_grammar -->
 We ___ a new-build flat tomorrow. → **are viewing** · are view · be
 - are view — *Після are потрібна форма з -ing: are viewing.*
@@ -141,7 +141,7 @@ open-plan — відкритого планування, без перегоро
 <!-- interaction_id: en:lesson-16:session-55:i15; family: listen_build_dictation -->
 🔊 *I am going to look for a top-floor flat.* Плитки: `flat` `top-floor` `a` `for` `look` `to` `going` `am` `I` → **I am going to look for a top-floor flat.**
 
-**20 · Передайте підтверджену домовленість через Present Continuous.**
+**20 · Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-16:session-55:i16; family: scripted_repeat_compare -->
 🎙 **We are viewing a new-build flat tomorrow.**
 

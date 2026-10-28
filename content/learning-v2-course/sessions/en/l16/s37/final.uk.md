@@ -113,7 +113,7 @@ I ___ a temporary job. → **am going to find** · am finding · be
 <!-- interaction_id: en:lesson-16:session-37:word:permanent; family: word_card -->
 > **permanent** — постійний, не тимчасовий.
 
-**14 · Ви узгодили переїзд із тимчасового житла на завтра; машину замовлено. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Ми переїжджаємо до нашого постійного дому завтра».**
+**14 · Ви узгодили переїзд із тимчасового житла на завтра; машину замовлено. Скажіть, що це вже вирішено. Скажіть: «Ми переїжджаємо до нашого постійного дому завтра».**
 <!-- interaction_id: en:lesson-16:session-37:i10; family: phrase_builder -->
 Плитки: `tomorrow` `home` `permanent` `our` `to` `moving` `are` `We` → **We are moving to our permanent home tomorrow.**
 
@@ -123,7 +123,7 @@ I ___ a temporary job. → **am going to find** · am finding · be
 - We are going to move to our permanent home tomorrow. — *У записі звучить We are moving to our permanent home tomorrow.*
 - We is moving to our permanent home tomorrow. — *У записі звучить We are moving to our permanent home tomorrow.*
 
-**16 · Ви узгодили переїзд із тимчасового житла на завтра; машину замовлено. Передайте підтверджену домовленість через Present Continuous.**
+**16 · Ви узгодили переїзд із тимчасового житла на завтра; машину замовлено. Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-16:session-37:i12; family: context_gap_grammar -->
 We ___ to our permanent home tomorrow. → **are moving** · are move · be
 - are move — *Після are потрібна форма з -ing: are moving.*
@@ -141,7 +141,7 @@ predictable — передбачуваний · unpredictable — неперед
 <!-- interaction_id: en:lesson-16:session-37:i15; family: listen_build_dictation -->
 🔊 *I am going to find a temporary job.* Плитки: `job` `temporary` `a` `find` `to` `going` `am` `I` → **I am going to find a temporary job.**
 
-**20 · Передайте підтверджену домовленість через Present Continuous.**
+**20 · Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-16:session-37:i16; family: scripted_repeat_compare -->
 🎙 **We are moving to our permanent home tomorrow.**
 

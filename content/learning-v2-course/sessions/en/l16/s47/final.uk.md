@@ -113,7 +113,7 @@ I ___ on rice. → **am going to stock up** · am stocking up · be
 <!-- interaction_id: en:lesson-16:session-47:word:cut-down-on; family: word_card -->
 > **cut down on** — скоротити кількість або споживання чогось.
 
-**14 · Ви з родиною домовилися з понеділка їсти менше солодкого. У cut down on форма з -ing — cutting down on. Передайте підтверджену домовленість через Present Continuous. Скажіть: «З понеділка ми скорочуємо кількість солодкого».**
+**14 · Ви з родиною домовилися з понеділка їсти менше солодкого. У cut down on форма з -ing — cutting down on. Скажіть, що це вже вирішено. Скажіть: «З понеділка ми скорочуємо кількість солодкого».**
 <!-- interaction_id: en:lesson-16:session-47:i10; family: phrase_builder -->
 Плитки: `Monday` `from` `sweets` `on` `down` `cutting` `are` `We` → **We are cutting down on sweets from Monday.**
 
@@ -123,7 +123,7 @@ I ___ on rice. → **am going to stock up** · am stocking up · be
 - We are going to cut down on sweets from Monday. — *У записі звучить We are cutting down on sweets from Monday.*
 - We is cutting down on sweets from Monday. — *У записі звучить We are cutting down on sweets from Monday.*
 
-**16 · Ви з родиною домовилися з понеділка їсти менше солодкого. У cut down on форма з -ing — cutting down on. Передайте підтверджену домовленість через Present Continuous.**
+**16 · Ви з родиною домовилися з понеділка їсти менше солодкого. У cut down on форма з -ing — cutting down on. Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-16:session-47:i12; family: context_gap_grammar -->
 We ___ sweets from Monday. → **are cutting down on** · are cut down on · be
 - are cut down on — *Після are потрібна форма з -ing: are cutting down on.*
@@ -141,7 +141,7 @@ queue up — ставати в чергу · pop out — ненадовго ви
 <!-- interaction_id: en:lesson-16:session-47:i15; family: listen_build_dictation -->
 🔊 *I am going to stock up on rice.* Плитки: `rice` `on` `up` `stock` `to` `going` `am` `I` → **I am going to stock up on rice.**
 
-**20 · Передайте підтверджену домовленість через Present Continuous.**
+**20 · Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-16:session-47:i16; family: scripted_repeat_compare -->
 🎙 **We are cutting down on sweets from Monday.**
 

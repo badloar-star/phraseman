@@ -113,7 +113,7 @@ I ___ a time-consuming task. → **am going to finish** · am finishing · be
 <!-- interaction_id: en:lesson-16:session-35:word:straightforward; family: word_card -->
 > **straightforward** — простой и понятный, без сложностей.
 
-**14 · Вы с другом уже согласовали простой маршрут на завтра и время выезда. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Мы едем простым маршрутом завтра».**
+**14 · Вы с другом уже согласовали простой маршрут на завтра и время выезда. Скажите, что это уже решено. Скажите: «Мы едем простым маршрутом завтра».**
 <!-- interaction_id: en:lesson-16:session-35:i10; family: phrase_builder -->
 Плитки: `tomorrow` `route` `straightforward` `a` `taking` `are` `We` → **We are taking a straightforward route tomorrow.**
 
@@ -123,7 +123,7 @@ I ___ a time-consuming task. → **am going to finish** · am finishing · be
 - We are going to take a straightforward route tomorrow. — *В записи звучит We are taking a straightforward route tomorrow.*
 - We is taking a straightforward route tomorrow. — *В записи звучит We are taking a straightforward route tomorrow.*
 
-**16 · Вы с другом уже согласовали простой маршрут на завтра и время выезда. Передайте подтверждённую договорённость через Present Continuous.**
+**16 · Вы с другом уже согласовали простой маршрут на завтра и время выезда. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-16:session-35:i12; family: context_gap_grammar -->
 We ___ a straightforward route tomorrow. → **are taking** · are take · be
 - are take — *После are нужна форма с -ing: are taking.*
@@ -141,7 +141,7 @@ demanding — требующий много сил или внимания · re
 <!-- interaction_id: en:lesson-16:session-35:i15; family: listen_build_dictation -->
 🔊 *I am going to finish a time-consuming task.* Плитки: `task` `time-consuming` `a` `finish` `to` `going` `am` `I` → **I am going to finish a time-consuming task.**
 
-**20 · Передайте подтверждённую договорённость через Present Continuous.**
+**20 · Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-16:session-35:i16; family: scripted_repeat_compare -->
 🎙 **We are taking a straightforward route tomorrow.**
 

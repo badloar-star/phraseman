@@ -113,7 +113,7 @@ I ___ for a flat with a built-in wardrobe. → **am going to look** · am lookin
 <!-- interaction_id: en:lesson-16:session-56:word:waterfront; family: word_card -->
 > **waterfront** — розташований біля самої води.
 
-**14 · Ви домовилися з агентом завтра подивитися квартиру біля набережної. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Завтра ми оглядаємо квартиру біля самої води».**
+**14 · Ви домовилися з агентом завтра подивитися квартиру біля набережної. Скажіть, що це вже вирішено. Скажіть: «Завтра ми оглядаємо квартиру біля самої води».**
 <!-- interaction_id: en:lesson-16:session-56:i10; family: phrase_builder -->
 Плитки: `tomorrow` `flat` `waterfront` `a` `viewing` `are` `We` → **We are viewing a waterfront flat tomorrow.**
 
@@ -123,7 +123,7 @@ I ___ for a flat with a built-in wardrobe. → **am going to look** · am lookin
 - We are going to view a waterfront flat tomorrow. — *У записі звучить We are viewing a waterfront flat tomorrow.*
 - We is viewing a waterfront flat tomorrow. — *У записі звучить We are viewing a waterfront flat tomorrow.*
 
-**16 · Ви домовилися з агентом завтра подивитися квартиру біля набережної. Передайте підтверджену домовленість через Present Continuous.**
+**16 · Ви домовилися з агентом завтра подивитися квартиру біля набережної. Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-16:session-56:i12; family: context_gap_grammar -->
 We ___ a waterfront flat tomorrow. → **are viewing** · are view · be
 - are view — *Після are потрібна форма з -ing: are viewing.*
@@ -141,7 +141,7 @@ south-facing — що виходить на південь · north-facing — �
 <!-- interaction_id: en:lesson-16:session-56:i15; family: listen_build_dictation -->
 🔊 *I am going to look for a flat with a built-in wardrobe.* Плитки: `wardrobe` `built-in` `a` `with` `flat` `a` `for` `look` `to` `going` `am` `I` → **I am going to look for a flat with a built-in wardrobe.**
 
-**20 · Передайте підтверджену домовленість через Present Continuous.**
+**20 · Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-16:session-56:i16; family: scripted_repeat_compare -->
 🎙 **We are viewing a waterfront flat tomorrow.**
 

@@ -113,7 +113,7 @@ I ___ a savoury pie. → **am going to make** · am making · be
 <!-- interaction_id: en:lesson-16:session-41:word:tangy; family: word_card -->
 > **tangy** — із приємним кислуватим смаком.
 
-**14 · Ви домовилися з подругою завтра прийти до неї й скуштувати її новий соус. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Ми куштуємо кислуватий соус завтра».**
+**14 · Ви домовилися з подругою завтра прийти до неї й скуштувати її новий соус. Скажіть, що це вже вирішено. Скажіть: «Ми куштуємо кислуватий соус завтра».**
 <!-- interaction_id: en:lesson-16:session-41:i10; family: phrase_builder -->
 Плитки: `tomorrow` `sauce` `tangy` `a` `tasting` `are` `We` → **We are tasting a tangy sauce tomorrow.**
 
@@ -123,7 +123,7 @@ I ___ a savoury pie. → **am going to make** · am making · be
 - We are going to taste a tangy sauce tomorrow. — *У записі звучить We are tasting a tangy sauce tomorrow.*
 - We is tasting a tangy sauce tomorrow. — *У записі звучить We are tasting a tangy sauce tomorrow.*
 
-**16 · Ви домовилися з подругою завтра прийти до неї й скуштувати її новий соус. Передайте підтверджену домовленість через Present Continuous.**
+**16 · Ви домовилися з подругою завтра прийти до неї й скуштувати її новий соус. Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-16:session-41:i12; family: context_gap_grammar -->
 We ___ a tangy sauce tomorrow. → **are tasting** · are taste · be
 - are taste — *Після are потрібна форма з -ing: are tasting.*
@@ -141,7 +141,7 @@ smoky — з димним смаком або ароматом · nutty — з �
 <!-- interaction_id: en:lesson-16:session-41:i15; family: listen_build_dictation -->
 🔊 *I am going to make a savoury pie.* Плитки: `pie` `savoury` `a` `make` `to` `going` `am` `I` → **I am going to make a savoury pie.**
 
-**20 · Передайте підтверджену домовленість через Present Continuous.**
+**20 · Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-16:session-41:i16; family: scripted_repeat_compare -->
 🎙 **We are tasting a tangy sauce tomorrow.**
 

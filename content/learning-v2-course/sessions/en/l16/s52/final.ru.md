@@ -113,7 +113,7 @@ I ___ a paved path. → **am going to choose** · am choosing · be
 <!-- interaction_id: en:lesson-16:session-52:word:unpaved; family: word_card -->
 > **unpaved** — без твёрдого покрытия — о дороге.
 
-**14 · Вы договорились с друзьями завтра пройти по знакомой грунтовой дороге. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Завтра мы идём по дороге без твёрдого покрытия».**
+**14 · Вы договорились с друзьями завтра пройти по знакомой грунтовой дороге. Скажите, что это уже решено. Скажите: «Завтра мы идём по дороге без твёрдого покрытия».**
 <!-- interaction_id: en:lesson-16:session-52:i10; family: phrase_builder -->
 Плитки: `tomorrow` `road` `unpaved` `the` `along` `walking` `are` `We` → **We are walking along the unpaved road tomorrow.**
 
@@ -123,7 +123,7 @@ I ___ a paved path. → **am going to choose** · am choosing · be
 - We are going to walk along the unpaved road tomorrow. — *В записи звучит We are walking along the unpaved road tomorrow.*
 - We is walking along the unpaved road tomorrow. — *В записи звучит We are walking along the unpaved road tomorrow.*
 
-**16 · Вы договорились с друзьями завтра пройти по знакомой грунтовой дороге. Передайте подтверждённую договорённость через Present Continuous.**
+**16 · Вы договорились с друзьями завтра пройти по знакомой грунтовой дороге. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-16:session-52:i12; family: context_gap_grammar -->
 We ___ along the unpaved road tomorrow. → **are walking** · are walk · be
 - are walk — *После are нужна форма с -ing: are walking.*
@@ -141,7 +141,7 @@ uneven — неровный — о поверхности · shaded — зате
 <!-- interaction_id: en:lesson-16:session-52:i15; family: listen_build_dictation -->
 🔊 *I am going to choose a paved path.* Плитки: `path` `paved` `a` `choose` `to` `going` `am` `I` → **I am going to choose a paved path.**
 
-**20 · Передайте подтверждённую договорённость через Present Continuous.**
+**20 · Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-16:session-52:i16; family: scripted_repeat_compare -->
 🎙 **We are walking along the unpaved road tomorrow.**
 

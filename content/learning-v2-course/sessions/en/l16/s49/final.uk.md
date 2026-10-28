@@ -113,7 +113,7 @@ I ___ for a cooking class. → **am going to sign up** · am signing up · be
 <!-- interaction_id: en:lesson-16:session-49:word:check-out; family: word_card -->
 > **check out** — виписатися з готелю.
 
-**14 · Ви узгодили з готелем час завтрашнього виїзду. У check out форма з -ing — checking out. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Ми виписуємося з готелю завтра о десятій».**
+**14 · Ви узгодили з готелем час завтрашнього виїзду. У check out форма з -ing — checking out. Скажіть, що це вже вирішено. Скажіть: «Ми виписуємося з готелю завтра о десятій».**
 <!-- interaction_id: en:lesson-16:session-49:i10; family: phrase_builder -->
 Плитки: `tomorrow` `ten` `at` `out` `checking` `are` `We` → **We are checking out at ten tomorrow.**
 
@@ -123,7 +123,7 @@ I ___ for a cooking class. → **am going to sign up** · am signing up · be
 - We are going to check out at ten tomorrow. — *У записі звучить We are checking out at ten tomorrow.*
 - We is checking out at ten tomorrow. — *У записі звучить We are checking out at ten tomorrow.*
 
-**16 · Ви узгодили з готелем час завтрашнього виїзду. У check out форма з -ing — checking out. Передайте підтверджену домовленість через Present Continuous.**
+**16 · Ви узгодили з готелем час завтрашнього виїзду. У check out форма з -ing — checking out. Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-16:session-49:i12; family: context_gap_grammar -->
 We ___ at ten tomorrow. → **are checking out** · are check out · be
 - are check out — *Після are потрібна форма з -ing: are checking out.*
@@ -141,7 +141,7 @@ call off — скасувати заплановану подію · give up —
 <!-- interaction_id: en:lesson-16:session-49:i15; family: listen_build_dictation -->
 🔊 *I am going to sign up for a cooking class.* Плитки: `class` `cooking` `a` `for` `up` `sign` `to` `going` `am` `I` → **I am going to sign up for a cooking class.**
 
-**20 · Передайте підтверджену домовленість через Present Continuous.**
+**20 · Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-16:session-49:i16; family: scripted_repeat_compare -->
 🎙 **We are checking out at ten tomorrow.**
 

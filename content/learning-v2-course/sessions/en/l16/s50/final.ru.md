@@ -113,7 +113,7 @@ I ___ the toys. → **am going to clear up** · am clearing up · be
 <!-- interaction_id: en:lesson-16:session-50:word:clean-out; family: word_card -->
 > **clean out** — вычистить, убрав всё лишнее изнутри.
 
-**14 · Вы договорились с семьёй в субботу разобрать и вычистить гараж. У clean out форма с -ing — cleaning out. Передайте подтверждённую договорённость через Present Continuous. Скажите: «В субботу мы вычищаем гараж и убираем из него всё лишнее».**
+**14 · Вы договорились с семьёй в субботу разобрать и вычистить гараж. У clean out форма с -ing — cleaning out. Скажите, что это уже решено. Скажите: «В субботу мы вычищаем гараж и убираем из него всё лишнее».**
 <!-- interaction_id: en:lesson-16:session-50:i10; family: phrase_builder -->
 Плитки: `Saturday` `on` `garage` `the` `out` `cleaning` `are` `We` → **We are cleaning out the garage on Saturday.**
 
@@ -123,7 +123,7 @@ I ___ the toys. → **am going to clear up** · am clearing up · be
 - We are going to clean out the garage on Saturday. — *В записи звучит We are cleaning out the garage on Saturday.*
 - We is cleaning out the garage on Saturday. — *В записи звучит We are cleaning out the garage on Saturday.*
 
-**16 · Вы договорились с семьёй в субботу разобрать и вычистить гараж. У clean out форма с -ing — cleaning out. Передайте подтверждённую договорённость через Present Continuous.**
+**16 · Вы договорились с семьёй в субботу разобрать и вычистить гараж. У clean out форма с -ing — cleaning out. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-16:session-50:i12; family: context_gap_grammar -->
 We ___ the garage on Saturday. → **are cleaning out** · are clean out · be
 - are clean out — *После are нужна форма с -ing: are cleaning out.*
@@ -141,7 +141,7 @@ bring in — занести внутрь · keep out — не заходить, 
 <!-- interaction_id: en:lesson-16:session-50:i15; family: listen_build_dictation -->
 🔊 *I am going to clear up the toys.* Плитки: `toys` `the` `up` `clear` `to` `going` `am` `I` → **I am going to clear up the toys.**
 
-**20 · Передайте подтверждённую договорённость через Present Continuous.**
+**20 · Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-16:session-50:i16; family: scripted_repeat_compare -->
 🎙 **We are cleaning out the garage on Saturday.**
 

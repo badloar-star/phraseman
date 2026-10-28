@@ -113,7 +113,7 @@ I ___ for a flat with central heating. → **am going to look** · am looking ·
 <!-- interaction_id: en:lesson-16:session-54:word:utility-room; family: word_card -->
 > **utility room** — хозяйственная комната, обычно со стиральной машиной.
 
-**14 · Вы договорились с владельцем завтра посмотреть дом с отдельной комнатой для стирки и хозяйственных вещей. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Завтра мы осматриваем дом с хозяйственной комнатой».**
+**14 · Вы договорились с владельцем завтра посмотреть дом с отдельной комнатой для стирки и хозяйственных вещей. Скажите, что это уже решено. Скажите: «Завтра мы осматриваем дом с хозяйственной комнатой».**
 <!-- interaction_id: en:lesson-16:session-54:i10; family: phrase_builder -->
 Плитки: `tomorrow` `room` `utility` `a` `with` `house` `a` `viewing` `are` `We` → **We are viewing a house with a utility room tomorrow.**
 
@@ -123,7 +123,7 @@ I ___ for a flat with central heating. → **am going to look** · am looking ·
 - We are going to view a house with a utility room tomorrow. — *В записи звучит We are viewing a house with a utility room tomorrow.*
 - We is viewing a house with a utility room tomorrow. — *В записи звучит We are viewing a house with a utility room tomorrow.*
 
-**16 · Вы договорились с владельцем завтра посмотреть дом с отдельной комнатой для стирки и хозяйственных вещей. Передайте подтверждённую договорённость через Present Continuous.**
+**16 · Вы договорились с владельцем завтра посмотреть дом с отдельной комнатой для стирки и хозяйственных вещей. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-16:session-54:i12; family: context_gap_grammar -->
 We ___ a house with a utility room tomorrow. → **are viewing** · are view · be
 - are view — *После are нужна форма с -ing: are viewing.*
@@ -141,7 +141,7 @@ semi-detached — с одной общей стеной с соседним до
 <!-- interaction_id: en:lesson-16:session-54:i15; family: listen_build_dictation -->
 🔊 *I am going to look for a flat with central heating.* Плитки: `heating` `central` `with` `flat` `a` `for` `look` `to` `going` `am` `I` → **I am going to look for a flat with central heating.**
 
-**20 · Передайте подтверждённую договорённость через Present Continuous.**
+**20 · Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-16:session-54:i16; family: scripted_repeat_compare -->
 🎙 **We are viewing a house with a utility room tomorrow.**
 

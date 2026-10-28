@@ -113,7 +113,7 @@ I ___ a non-stick pan. → **am going to buy** · am buying · be
 <!-- interaction_id: en:lesson-16:session-40:word:foldable; family: word_card -->
 > **foldable** — складаний.
 
-**14 · Ви домовилися з продавцем, що заберете складаний стіл завтра. Передайте домовленість через Present Continuous. Скажіть: «Ми забираємо складаний стіл завтра».**
+**14 · Ви домовилися з продавцем, що заберете складаний стіл завтра. Скажіть, що це вже вирішено. Скажіть: «Ми забираємо складаний стіл завтра».**
 <!-- interaction_id: en:lesson-16:session-40:i10; family: phrase_builder -->
 Плитки: `tomorrow` `table` `foldable` `a` `collecting` `are` `We` → **We are collecting a foldable table tomorrow.**
 
@@ -123,7 +123,7 @@ I ___ a non-stick pan. → **am going to buy** · am buying · be
 - We are going to collect a foldable table tomorrow. — *У записі звучить We are collecting a foldable table tomorrow.*
 - We is collecting a foldable table tomorrow. — *У записі звучить We are collecting a foldable table tomorrow.*
 
-**16 · Ви домовилися з продавцем, що заберете складаний стіл завтра. Передайте домовленість через Present Continuous.**
+**16 · Ви домовилися з продавцем, що заберете складаний стіл завтра. Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-16:session-40:i12; family: context_gap_grammar -->
 We ___ a foldable table tomorrow. → **are collecting** · are collect · be
 - are collect — *Після are потрібна форма з -ing: are collecting.*
@@ -141,7 +141,7 @@ airtight — герметичний, що не пропускає повітря
 <!-- interaction_id: en:lesson-16:session-40:i15; family: listen_build_dictation -->
 🔊 *I am going to buy a non-stick pan.* Плитки: `pan` `non-stick` `a` `buy` `to` `going` `am` `I` → **I am going to buy a non-stick pan.**
 
-**20 · Передайте підтверджену домовленість через Present Continuous.**
+**20 · Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-16:session-40:i16; family: scripted_repeat_compare -->
 🎙 **We are collecting a foldable table tomorrow.**
 

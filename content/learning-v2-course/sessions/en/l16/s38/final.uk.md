@@ -113,7 +113,7 @@ I ___ disposable plates. → **am going to avoid** · am avoiding · be
 <!-- interaction_id: en:lesson-16:session-38:word:portable; family: word_card -->
 > **portable** — переносний, зручний для перенесення.
 
-**14 · Ви з другом домовилися завтра зустрітися в магазині й купити переносні стільці. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Ми купуємо переносні стільці завтра».**
+**14 · Ви з другом домовилися завтра зустрітися в магазині й купити переносні стільці. Скажіть, що це вже вирішено. Скажіть: «Ми купуємо переносні стільці завтра».**
 <!-- interaction_id: en:lesson-16:session-38:i10; family: phrase_builder -->
 Плитки: `tomorrow` `chairs` `portable` `buying` `are` `We` → **We are buying portable chairs tomorrow.**
 
@@ -123,7 +123,7 @@ I ___ disposable plates. → **am going to avoid** · am avoiding · be
 - We are going to buy portable chairs tomorrow. — *У записі звучить We are buying portable chairs tomorrow.*
 - We is buying portable chairs tomorrow. — *У записі звучить We are buying portable chairs tomorrow.*
 
-**16 · Ви з другом домовилися завтра зустрітися в магазині й купити переносні стільці. Передайте підтверджену домовленість через Present Continuous.**
+**16 · Ви з другом домовилися завтра зустрітися в магазині й купити переносні стільці. Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-16:session-38:i12; family: context_gap_grammar -->
 We ___ portable chairs tomorrow. → **are buying** · are buy · be
 - are buy — *Після are потрібна форма з -ing: are buying.*
@@ -141,7 +141,7 @@ durable — довговічний, стійкий до зношування · 
 <!-- interaction_id: en:lesson-16:session-38:i15; family: listen_build_dictation -->
 🔊 *I am going to avoid disposable plates.* Плитки: `plates` `disposable` `avoid` `to` `going` `am` `I` → **I am going to avoid disposable plates.**
 
-**20 · Передайте підтверджену домовленість через Present Continuous.**
+**20 · Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-16:session-38:i16; family: scripted_repeat_compare -->
 🎙 **We are buying portable chairs tomorrow.**
 

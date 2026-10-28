@@ -113,7 +113,7 @@ I ___ a reversible jacket. → **am going to buy** · am buying · be
 <!-- interaction_id: en:lesson-16:session-44:word:childproof; family: word_card -->
 > **childproof** — із захистом від малих дітей.
 
-**14 · Ви домовилися з майстром поставити замки на кухонні шафки завтра. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Ми встановлюємо замки із захистом від дітей завтра».**
+**14 · Ви домовилися з майстром поставити замки на кухонні шафки завтра. Скажіть, що це вже вирішено. Скажіть: «Ми встановлюємо замки із захистом від дітей завтра».**
 <!-- interaction_id: en:lesson-16:session-44:i10; family: phrase_builder -->
 Плитки: `tomorrow` `locks` `childproof` `fitting` `are` `We` → **We are fitting childproof locks tomorrow.**
 
@@ -123,7 +123,7 @@ I ___ a reversible jacket. → **am going to buy** · am buying · be
 - We are going to fit childproof locks tomorrow. — *У записі звучить We are fitting childproof locks tomorrow.*
 - We is fitting childproof locks tomorrow. — *У записі звучить We are fitting childproof locks tomorrow.*
 
-**16 · Ви домовилися з майстром поставити замки на кухонні шафки завтра. Передайте підтверджену домовленість через Present Continuous.**
+**16 · Ви домовилися з майстром поставити замки на кухонні шафки завтра. Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-16:session-44:i12; family: context_gap_grammar -->
 We ___ childproof locks tomorrow. → **are fitting** · are fit · be
 - are fit — *Після are потрібна форма з -ing: are fitting.*
@@ -141,7 +141,7 @@ rechargeable — перезаряджуваний — про акумулято�
 <!-- interaction_id: en:lesson-16:session-44:i15; family: listen_build_dictation -->
 🔊 *I am going to buy a reversible jacket.* Плитки: `jacket` `reversible` `a` `buy` `to` `going` `am` `I` → **I am going to buy a reversible jacket.**
 
-**20 · Передайте підтверджену домовленість через Present Continuous.**
+**20 · Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-16:session-44:i16; family: scripted_repeat_compare -->
 🎙 **We are fitting childproof locks tomorrow.**
 

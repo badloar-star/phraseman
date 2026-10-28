@@ -113,7 +113,7 @@ I ___ an unplanned expense. → **am going to cover** · am covering · be
 <!-- interaction_id: en:lesson-16:session-36:word:last-minute; family: word_card -->
 > **last-minute** — возникший или сделанный в последний момент.
 
-**14 · Только сегодня вы с хозяевами окончательно согласовали завтрашний визит. Договорённость подтверждена. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Мы едем с визитом завтра, договорившись в последний момент».**
+**14 · Только сегодня вы с хозяевами окончательно согласовали завтрашний визит. Договорённость подтверждена. Скажите, что это уже решено. Скажите: «Мы едем с визитом завтра, договорившись в последний момент».**
 <!-- interaction_id: en:lesson-16:session-36:i10; family: phrase_builder -->
 Плитки: `tomorrow` `visit` `last-minute` `a` `making` `are` `We` → **We are making a last-minute visit tomorrow.**
 
@@ -123,7 +123,7 @@ I ___ an unplanned expense. → **am going to cover** · am covering · be
 - We are going to make a last-minute visit tomorrow. — *В записи звучит We are making a last-minute visit tomorrow.*
 - We is making a last-minute visit tomorrow. — *В записи звучит We are making a last-minute visit tomorrow.*
 
-**16 · Только сегодня вы с хозяевами окончательно согласовали завтрашний визит. Договорённость подтверждена. Передайте подтверждённую договорённость через Present Continuous.**
+**16 · Только сегодня вы с хозяевами окончательно согласовали завтрашний визит. Договорённость подтверждена. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-16:session-36:i12; family: context_gap_grammar -->
 We ___ a last-minute visit tomorrow. → **are making** · are make · be
 - are make — *После are нужна форма с -ing: are making.*
@@ -141,7 +141,7 @@ memorable — запоминающийся · uneventful — прошедший 
 <!-- interaction_id: en:lesson-16:session-36:i15; family: listen_build_dictation -->
 🔊 *I am going to cover an unplanned expense.* Плитки: `expense` `unplanned` `an` `cover` `to` `going` `am` `I` → **I am going to cover an unplanned expense.**
 
-**20 · Передайте подтверждённую договорённость через Present Continuous.**
+**20 · Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-16:session-36:i16; family: scripted_repeat_compare -->
 🎙 **We are making a last-minute visit tomorrow.**
 

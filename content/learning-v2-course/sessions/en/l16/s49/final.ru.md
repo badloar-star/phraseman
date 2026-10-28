@@ -113,7 +113,7 @@ I ___ for a cooking class. → **am going to sign up** · am signing up · be
 <!-- interaction_id: en:lesson-16:session-49:word:check-out; family: word_card -->
 > **check out** — выписаться из гостиницы.
 
-**14 · Вы согласовали с гостиницей время завтрашнего выезда. У check out форма с -ing — checking out. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Мы выписываемся из гостиницы завтра в десять».**
+**14 · Вы согласовали с гостиницей время завтрашнего выезда. У check out форма с -ing — checking out. Скажите, что это уже решено. Скажите: «Мы выписываемся из гостиницы завтра в десять».**
 <!-- interaction_id: en:lesson-16:session-49:i10; family: phrase_builder -->
 Плитки: `tomorrow` `ten` `at` `out` `checking` `are` `We` → **We are checking out at ten tomorrow.**
 
@@ -123,7 +123,7 @@ I ___ for a cooking class. → **am going to sign up** · am signing up · be
 - We are going to check out at ten tomorrow. — *В записи звучит We are checking out at ten tomorrow.*
 - We is checking out at ten tomorrow. — *В записи звучит We are checking out at ten tomorrow.*
 
-**16 · Вы согласовали с гостиницей время завтрашнего выезда. У check out форма с -ing — checking out. Передайте подтверждённую договорённость через Present Continuous.**
+**16 · Вы согласовали с гостиницей время завтрашнего выезда. У check out форма с -ing — checking out. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-16:session-49:i12; family: context_gap_grammar -->
 We ___ at ten tomorrow. → **are checking out** · are check out · be
 - are check out — *После are нужна форма с -ing: are checking out.*
@@ -141,7 +141,7 @@ call off — отменить запланированное событие · g
 <!-- interaction_id: en:lesson-16:session-49:i15; family: listen_build_dictation -->
 🔊 *I am going to sign up for a cooking class.* Плитки: `class` `cooking` `a` `for` `up` `sign` `to` `going` `am` `I` → **I am going to sign up for a cooking class.**
 
-**20 · Передайте подтверждённую договорённость через Present Continuous.**
+**20 · Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-16:session-49:i16; family: scripted_repeat_compare -->
 🎙 **We are checking out at ten tomorrow.**
 

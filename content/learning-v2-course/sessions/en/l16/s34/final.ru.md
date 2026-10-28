@@ -113,7 +113,7 @@ I ___ an exhausting trip. → **am going to avoid** · am avoiding · be
 <!-- interaction_id: en:lesson-16:session-34:word:refreshing; family: word_card -->
 > **refreshing** — освежающий, возвращающий бодрость.
 
-**14 · Вы с другом согласовали завтрашнюю прогулку на свежем воздухе. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Мы идём на бодрящую прогулку завтра».**
+**14 · Вы с другом согласовали завтрашнюю прогулку на свежем воздухе. Скажите, что это уже решено. Скажите: «Мы идём на бодрящую прогулку завтра».**
 <!-- interaction_id: en:lesson-16:session-34:i10; family: phrase_builder -->
 Плитки: `tomorrow` `walk` `refreshing` `a` `taking` `are` `We` → **We are taking a refreshing walk tomorrow.**
 
@@ -123,7 +123,7 @@ I ___ an exhausting trip. → **am going to avoid** · am avoiding · be
 - We are going to take a refreshing walk tomorrow. — *В записи звучит We are taking a refreshing walk tomorrow.*
 - We is taking a refreshing walk tomorrow. — *В записи звучит We are taking a refreshing walk tomorrow.*
 
-**16 · Вы с другом согласовали завтрашнюю прогулку на свежем воздухе. Передайте подтверждённую договорённость через Present Continuous.**
+**16 · Вы с другом согласовали завтрашнюю прогулку на свежем воздухе. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-16:session-34:i12; family: context_gap_grammar -->
 We ___ a refreshing walk tomorrow. → **are taking** · are take · be
 - are take — *После are нужна форма с -ing: are taking.*
@@ -141,7 +141,7 @@ disappointing — разочаровывающий, не оправдывающ�
 <!-- interaction_id: en:lesson-16:session-34:i15; family: listen_build_dictation -->
 🔊 *I am going to avoid an exhausting trip.* Плитки: `trip` `exhausting` `an` `avoid` `to` `going` `am` `I` → **I am going to avoid an exhausting trip.**
 
-**20 · Передайте подтверждённую договорённость через Present Continuous.**
+**20 · Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-16:session-34:i16; family: scripted_repeat_compare -->
 🎙 **We are taking a refreshing walk tomorrow.**
 

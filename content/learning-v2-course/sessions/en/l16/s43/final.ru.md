@@ -113,7 +113,7 @@ I ___ boneless chicken. → **am going to buy** · am buying · be
 <!-- interaction_id: en:lesson-16:session-43:word:skinless; family: word_card -->
 > **skinless** — без кожи — о мясе или рыбе.
 
-**14 · Вы договорились с другом готовить вместе сегодня вечером и уже выбрали продукты. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Сегодня вечером мы вместе готовим курицу без кожи».**
+**14 · Вы договорились с другом готовить вместе сегодня вечером и уже выбрали продукты. Скажите, что это уже решено. Скажите: «Сегодня вечером мы вместе готовим курицу без кожи».**
 <!-- interaction_id: en:lesson-16:session-43:i10; family: phrase_builder -->
 Плитки: `tonight` `together` `chicken` `skinless` `cooking` `are` `We` → **We are cooking skinless chicken together tonight.**
 
@@ -123,7 +123,7 @@ I ___ boneless chicken. → **am going to buy** · am buying · be
 - We are going to cook skinless chicken together tonight. — *В записи звучит We are cooking skinless chicken together tonight.*
 - We is cooking skinless chicken together tonight. — *В записи звучит We are cooking skinless chicken together tonight.*
 
-**16 · Вы договорились с другом готовить вместе сегодня вечером и уже выбрали продукты. Передайте подтверждённую договорённость через Present Continuous.**
+**16 · Вы договорились с другом готовить вместе сегодня вечером и уже выбрали продукты. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-16:session-43:i12; family: context_gap_grammar -->
 We ___ skinless chicken together tonight. → **are cooking** · are cook · be
 - are cook — *После are нужна форма с -ing: are cooking.*
@@ -141,7 +141,7 @@ crumbly — рассыпчатый, легко крошащийся · watery �
 <!-- interaction_id: en:lesson-16:session-43:i15; family: listen_build_dictation -->
 🔊 *I am going to buy boneless chicken.* Плитки: `chicken` `boneless` `buy` `to` `going` `am` `I` → **I am going to buy boneless chicken.**
 
-**20 · Передайте подтверждённую договорённость через Present Continuous.**
+**20 · Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-16:session-43:i16; family: scripted_repeat_compare -->
 🎙 **We are cooking skinless chicken together tonight.**
 

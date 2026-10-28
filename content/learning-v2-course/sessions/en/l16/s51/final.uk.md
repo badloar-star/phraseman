@@ -113,7 +113,7 @@ I ___ for a soundproof room. → **am going to look** · am looking · be
 <!-- interaction_id: en:lesson-16:session-51:word:well-kept; family: word_card -->
 > **well-kept** — доглянутий, у доброму стані.
 
-**14 · Ви узгодили з власником перегляд квартири на завтра. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Завтра ми оглядаємо доглянуту квартиру».**
+**14 · Ви узгодили з власником перегляд квартири на завтра. Скажіть, що це вже вирішено. Скажіть: «Завтра ми оглядаємо доглянуту квартиру».**
 <!-- interaction_id: en:lesson-16:session-51:i10; family: phrase_builder -->
 Плитки: `tomorrow` `flat` `well-kept` `a` `viewing` `are` `We` → **We are viewing a well-kept flat tomorrow.**
 
@@ -123,7 +123,7 @@ I ___ for a soundproof room. → **am going to look** · am looking · be
 - We are going to view a well-kept flat tomorrow. — *У записі звучить We are viewing a well-kept flat tomorrow.*
 - We is viewing a well-kept flat tomorrow. — *У записі звучить We are viewing a well-kept flat tomorrow.*
 
-**16 · Ви узгодили з власником перегляд квартири на завтра. Передайте підтверджену домовленість через Present Continuous.**
+**16 · Ви узгодили з власником перегляд квартири на завтра. Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-16:session-51:i12; family: context_gap_grammar -->
 We ___ a well-kept flat tomorrow. → **are viewing** · are view · be
 - are view — *Після are потрібна форма з -ing: are viewing.*
@@ -141,7 +141,7 @@ draughty — з протягами · well-lit — добре освітлени
 <!-- interaction_id: en:lesson-16:session-51:i15; family: listen_build_dictation -->
 🔊 *I am going to look for a soundproof room.* Плитки: `room` `soundproof` `a` `for` `look` `to` `going` `am` `I` → **I am going to look for a soundproof room.**
 
-**20 · Передайте підтверджену домовленість через Present Continuous.**
+**20 · Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-16:session-51:i16; family: scripted_repeat_compare -->
 🎙 **We are viewing a well-kept flat tomorrow.**
 

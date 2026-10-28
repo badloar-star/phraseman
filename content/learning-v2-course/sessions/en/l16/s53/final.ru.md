@@ -113,7 +113,7 @@ I ___ for a detached house. → **am going to look** · am looking · be
 <!-- interaction_id: en:lesson-16:session-53:word:terraced; family: word_card -->
 > **terraced** — стоящий в ряду домов с общими боковыми стенами.
 
-**14 · Вы договорились с агентом завтра посмотреть дом в сплошном ряду домов. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Завтра мы осматриваем дом в ряду домов с общими стенами».**
+**14 · Вы договорились с агентом завтра посмотреть дом в сплошном ряду домов. Скажите, что это уже решено. Скажите: «Завтра мы осматриваем дом в ряду домов с общими стенами».**
 <!-- interaction_id: en:lesson-16:session-53:i10; family: phrase_builder -->
 Плитки: `tomorrow` `house` `terraced` `a` `viewing` `are` `We` → **We are viewing a terraced house tomorrow.**
 
@@ -123,7 +123,7 @@ I ___ for a detached house. → **am going to look** · am looking · be
 - We are going to view a terraced house tomorrow. — *В записи звучит We are viewing a terraced house tomorrow.*
 - We is viewing a terraced house tomorrow. — *В записи звучит We are viewing a terraced house tomorrow.*
 
-**16 · Вы договорились с агентом завтра посмотреть дом в сплошном ряду домов. Передайте подтверждённую договорённость через Present Continuous.**
+**16 · Вы договорились с агентом завтра посмотреть дом в сплошном ряду домов. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-16:session-53:i12; family: context_gap_grammar -->
 We ___ a terraced house tomorrow. → **are viewing** · are view · be
 - are view — *После are нужна форма с -ing: are viewing.*
@@ -141,7 +141,7 @@ furnished — с мебелью — о жилье · unfurnished — без ме
 <!-- interaction_id: en:lesson-16:session-53:i15; family: listen_build_dictation -->
 🔊 *I am going to look for a detached house.* Плитки: `house` `detached` `a` `for` `look` `to` `going` `am` `I` → **I am going to look for a detached house.**
 
-**20 · Передайте подтверждённую договорённость через Present Continuous.**
+**20 · Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-16:session-53:i16; family: scripted_repeat_compare -->
 🎙 **We are viewing a terraced house tomorrow.**
 

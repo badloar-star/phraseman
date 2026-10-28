@@ -113,7 +113,7 @@ I ___ a reversible jacket. → **am going to buy** · am buying · be
 <!-- interaction_id: en:lesson-16:session-44:word:childproof; family: word_card -->
 > **childproof** — с защитой от маленьких детей.
 
-**14 · Вы договорились с мастером поставить замки на кухонные шкафчики завтра. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Мы устанавливаем замки с защитой от детей завтра».**
+**14 · Вы договорились с мастером поставить замки на кухонные шкафчики завтра. Скажите, что это уже решено. Скажите: «Мы устанавливаем замки с защитой от детей завтра».**
 <!-- interaction_id: en:lesson-16:session-44:i10; family: phrase_builder -->
 Плитки: `tomorrow` `locks` `childproof` `fitting` `are` `We` → **We are fitting childproof locks tomorrow.**
 
@@ -123,7 +123,7 @@ I ___ a reversible jacket. → **am going to buy** · am buying · be
 - We are going to fit childproof locks tomorrow. — *В записи звучит We are fitting childproof locks tomorrow.*
 - We is fitting childproof locks tomorrow. — *В записи звучит We are fitting childproof locks tomorrow.*
 
-**16 · Вы договорились с мастером поставить замки на кухонные шкафчики завтра. Передайте подтверждённую договорённость через Present Continuous.**
+**16 · Вы договорились с мастером поставить замки на кухонные шкафчики завтра. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-16:session-44:i12; family: context_gap_grammar -->
 We ___ childproof locks tomorrow. → **are fitting** · are fit · be
 - are fit — *После are нужна форма с -ing: are fitting.*
@@ -141,7 +141,7 @@ rechargeable — перезаряжаемый — об аккумуляторе 
 <!-- interaction_id: en:lesson-16:session-44:i15; family: listen_build_dictation -->
 🔊 *I am going to buy a reversible jacket.* Плитки: `jacket` `reversible` `a` `buy` `to` `going` `am` `I` → **I am going to buy a reversible jacket.**
 
-**20 · Передайте подтверждённую договорённость через Present Continuous.**
+**20 · Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-16:session-44:i16; family: scripted_repeat_compare -->
 🎙 **We are fitting childproof locks tomorrow.**
 

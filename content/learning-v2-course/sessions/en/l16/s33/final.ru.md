@@ -113,7 +113,7 @@ I ___ an unnecessary trip. → **am going to cancel** · am cancelling · be
 <!-- interaction_id: en:lesson-16:session-33:word:worthwhile; family: word_card -->
 > **worthwhile** — стоящий затраченных времени или усилий.
 
-**14 · Вы с другом записались на завтрашнее полезное занятие, время подтверждено. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Мы участвуем в стоящем занятии завтра».**
+**14 · Вы с другом записались на завтрашнее полезное занятие, время подтверждено. Скажите, что это уже решено. Скажите: «Мы участвуем в стоящем занятии завтра».**
 <!-- interaction_id: en:lesson-16:session-33:i10; family: phrase_builder -->
 Плитки: `tomorrow` `activity` `worthwhile` `a` `joining` `are` `We` → **We are joining a worthwhile activity tomorrow.**
 
@@ -123,7 +123,7 @@ I ___ an unnecessary trip. → **am going to cancel** · am cancelling · be
 - We are going to join a worthwhile activity tomorrow. — *В записи звучит We are joining a worthwhile activity tomorrow.*
 - We is joining a worthwhile activity tomorrow. — *В записи звучит We are joining a worthwhile activity tomorrow.*
 
-**16 · Вы с другом записались на завтрашнее полезное занятие, время подтверждено. Передайте подтверждённую договорённость через Present Continuous.**
+**16 · Вы с другом записались на завтрашнее полезное занятие, время подтверждено. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-16:session-33:i12; family: context_gap_grammar -->
 We ___ a worthwhile activity tomorrow. → **are joining** · are join · be
 - are join — *После are нужна форма с -ing: are joining.*
@@ -141,7 +141,7 @@ manageable — посильный, с которым можно справить
 <!-- interaction_id: en:lesson-16:session-33:i15; family: listen_build_dictation -->
 🔊 *I am going to cancel an unnecessary trip.* Плитки: `trip` `unnecessary` `an` `cancel` `to` `going` `am` `I` → **I am going to cancel an unnecessary trip.**
 
-**20 · Передайте подтверждённую договорённость через Present Continuous.**
+**20 · Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-16:session-33:i16; family: scripted_repeat_compare -->
 🎙 **We are joining a worthwhile activity tomorrow.**
 

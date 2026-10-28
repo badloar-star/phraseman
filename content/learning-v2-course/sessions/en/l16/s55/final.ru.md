@@ -113,7 +113,7 @@ I ___ for a top-floor flat. → **am going to look** · am looking · be
 <!-- interaction_id: en:lesson-16:session-55:word:new-build; family: word_card -->
 > **new-build** — недавно построенный — о жилье.
 
-**14 · Вы согласовали с агентом завтрашний просмотр новой квартиры. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Завтра мы осматриваем квартиру в новостройке».**
+**14 · Вы согласовали с агентом завтрашний просмотр новой квартиры. Скажите, что это уже решено. Скажите: «Завтра мы осматриваем квартиру в новостройке».**
 <!-- interaction_id: en:lesson-16:session-55:i10; family: phrase_builder -->
 Плитки: `tomorrow` `flat` `new-build` `a` `viewing` `are` `We` → **We are viewing a new-build flat tomorrow.**
 
@@ -123,7 +123,7 @@ I ___ for a top-floor flat. → **am going to look** · am looking · be
 - We are going to view a new-build flat tomorrow. — *В записи звучит We are viewing a new-build flat tomorrow.*
 - We is viewing a new-build flat tomorrow. — *В записи звучит We are viewing a new-build flat tomorrow.*
 
-**16 · Вы согласовали с агентом завтрашний просмотр новой квартиры. Передайте подтверждённую договорённость через Present Continuous.**
+**16 · Вы согласовали с агентом завтрашний просмотр новой квартиры. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-16:session-55:i12; family: context_gap_grammar -->
 We ___ a new-build flat tomorrow. → **are viewing** · are view · be
 - are view — *После are нужна форма с -ing: are viewing.*
@@ -141,7 +141,7 @@ open-plan — открытой планировки, без перегородо
 <!-- interaction_id: en:lesson-16:session-55:i15; family: listen_build_dictation -->
 🔊 *I am going to look for a top-floor flat.* Плитки: `flat` `top-floor` `a` `for` `look` `to` `going` `am` `I` → **I am going to look for a top-floor flat.**
 
-**20 · Передайте подтверждённую договорённость через Present Continuous.**
+**20 · Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-16:session-55:i16; family: scripted_repeat_compare -->
 🎙 **We are viewing a new-build flat tomorrow.**
 

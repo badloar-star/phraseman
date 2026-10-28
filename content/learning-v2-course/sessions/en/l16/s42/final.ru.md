@@ -113,7 +113,7 @@ I ___ the bruised apples for a pie. → **am going to use** · am using · be
 <!-- interaction_id: en:lesson-16:session-42:word:seedless; family: word_card -->
 > **seedless** — без косточек или семян.
 
-**14 · Вы заказали виноград и согласовали с продавцом, что заберёте его завтра. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Мы забираем виноград без косточек завтра».**
+**14 · Вы заказали виноград и согласовали с продавцом, что заберёте его завтра. Скажите, что это уже решено. Скажите: «Мы забираем виноград без косточек завтра».**
 <!-- interaction_id: en:lesson-16:session-42:i10; family: phrase_builder -->
 Плитки: `tomorrow` `grapes` `seedless` `the` `collecting` `are` `We` → **We are collecting the seedless grapes tomorrow.**
 
@@ -123,7 +123,7 @@ I ___ the bruised apples for a pie. → **am going to use** · am using · be
 - We are going to collect the seedless grapes tomorrow. — *В записи звучит We are collecting the seedless grapes tomorrow.*
 - We is collecting the seedless grapes tomorrow. — *В записи звучит We are collecting the seedless grapes tomorrow.*
 
-**16 · Вы заказали виноград и согласовали с продавцом, что заберёте его завтра. Передайте подтверждённую договорённость через Present Continuous.**
+**16 · Вы заказали виноград и согласовали с продавцом, что заберёте его завтра. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-16:session-42:i12; family: context_gap_grammar -->
 We ___ the seedless grapes tomorrow. → **are collecting** · are collect · be
 - are collect — *После are нужна форма с -ing: are collecting.*
@@ -141,7 +141,7 @@ unripe — неспелый · overripe — переспелый · bruised — 
 <!-- interaction_id: en:lesson-16:session-42:i15; family: listen_build_dictation -->
 🔊 *I am going to use the bruised apples for a pie.* Плитки: `pie` `a` `for` `apples` `bruised` `the` `use` `to` `going` `am` `I` → **I am going to use the bruised apples for a pie.**
 
-**20 · Передайте подтверждённую договорённость через Present Continuous.**
+**20 · Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-16:session-42:i16; family: scripted_repeat_compare -->
 🎙 **We are collecting the seedless grapes tomorrow.**
 

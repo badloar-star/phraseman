@@ -113,7 +113,7 @@ I ___ with friends soon. → **am going to get together** · am getting together
 <!-- interaction_id: en:lesson-16:session-48:word:head-out; family: word_card -->
 > **head out** — выйти, отправиться куда-либо.
 
-**14 · Вы с друзьями согласовали время выхода на завтрашнюю прогулку. У head out форма с -ing — heading out. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Завтра мы выходим в восемь».**
+**14 · Вы с друзьями согласовали время выхода на завтрашнюю прогулку. У head out форма с -ing — heading out. Скажите, что это уже решено. Скажите: «Завтра мы выходим в восемь».**
 <!-- interaction_id: en:lesson-16:session-48:i10; family: phrase_builder -->
 Плитки: `tomorrow` `eight` `at` `out` `heading` `are` `We` → **We are heading out at eight tomorrow.**
 
@@ -123,7 +123,7 @@ I ___ with friends soon. → **am going to get together** · am getting together
 - We are going to head out at eight tomorrow. — *В записи звучит We are heading out at eight tomorrow.*
 - We is heading out at eight tomorrow. — *В записи звучит We are heading out at eight tomorrow.*
 
-**16 · Вы с друзьями согласовали время выхода на завтрашнюю прогулку. У head out форма с -ing — heading out. Передайте подтверждённую договорённость через Present Continuous.**
+**16 · Вы с друзьями согласовали время выхода на завтрашнюю прогулку. У head out форма с -ing — heading out. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-16:session-48:i12; family: context_gap_grammar -->
 We ___ at eight tomorrow. → **are heading out** · are head out · be
 - are head out — *После are нужна форма с -ing: are heading out.*
@@ -141,7 +141,7 @@ show up — прийти, появиться в условленном мест�
 <!-- interaction_id: en:lesson-16:session-48:i15; family: listen_build_dictation -->
 🔊 *I am going to get together with friends soon.* Плитки: `soon` `friends` `with` `together` `get` `to` `going` `am` `I` → **I am going to get together with friends soon.**
 
-**20 · Передайте подтверждённую договорённость через Present Continuous.**
+**20 · Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-16:session-48:i16; family: scripted_repeat_compare -->
 🎙 **We are heading out at eight tomorrow.**
 

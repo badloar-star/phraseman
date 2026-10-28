@@ -113,7 +113,7 @@ I ___ a savoury pie. → **am going to make** · am making · be
 <!-- interaction_id: en:lesson-16:session-41:word:tangy; family: word_card -->
 > **tangy** — с приятным кисловатым вкусом.
 
-**14 · Вы договорились с подругой завтра прийти к ней и попробовать её новый соус. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Мы пробуем кисловатый соус завтра».**
+**14 · Вы договорились с подругой завтра прийти к ней и попробовать её новый соус. Скажите, что это уже решено. Скажите: «Мы пробуем кисловатый соус завтра».**
 <!-- interaction_id: en:lesson-16:session-41:i10; family: phrase_builder -->
 Плитки: `tomorrow` `sauce` `tangy` `a` `tasting` `are` `We` → **We are tasting a tangy sauce tomorrow.**
 
@@ -123,7 +123,7 @@ I ___ a savoury pie. → **am going to make** · am making · be
 - We are going to taste a tangy sauce tomorrow. — *В записи звучит We are tasting a tangy sauce tomorrow.*
 - We is tasting a tangy sauce tomorrow. — *В записи звучит We are tasting a tangy sauce tomorrow.*
 
-**16 · Вы договорились с подругой завтра прийти к ней и попробовать её новый соус. Передайте подтверждённую договорённость через Present Continuous.**
+**16 · Вы договорились с подругой завтра прийти к ней и попробовать её новый соус. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-16:session-41:i12; family: context_gap_grammar -->
 We ___ a tangy sauce tomorrow. → **are tasting** · are taste · be
 - are taste — *После are нужна форма с -ing: are tasting.*
@@ -141,7 +141,7 @@ smoky — с дымным вкусом или ароматом · nutty — с �
 <!-- interaction_id: en:lesson-16:session-41:i15; family: listen_build_dictation -->
 🔊 *I am going to make a savoury pie.* Плитки: `pie` `savoury` `a` `make` `to` `going` `am` `I` → **I am going to make a savoury pie.**
 
-**20 · Передайте подтверждённую договорённость через Present Continuous.**
+**20 · Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-16:session-41:i16; family: scripted_repeat_compare -->
 🎙 **We are tasting a tangy sauce tomorrow.**
 

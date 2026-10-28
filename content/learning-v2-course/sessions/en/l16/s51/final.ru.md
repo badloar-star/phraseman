@@ -113,7 +113,7 @@ I ___ for a soundproof room. → **am going to look** · am looking · be
 <!-- interaction_id: en:lesson-16:session-51:word:well-kept; family: word_card -->
 > **well-kept** — ухоженный, в хорошем состоянии.
 
-**14 · Вы согласовали с владельцем просмотр квартиры на завтра. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Завтра мы осматриваем ухоженную квартиру».**
+**14 · Вы согласовали с владельцем просмотр квартиры на завтра. Скажите, что это уже решено. Скажите: «Завтра мы осматриваем ухоженную квартиру».**
 <!-- interaction_id: en:lesson-16:session-51:i10; family: phrase_builder -->
 Плитки: `tomorrow` `flat` `well-kept` `a` `viewing` `are` `We` → **We are viewing a well-kept flat tomorrow.**
 
@@ -123,7 +123,7 @@ I ___ for a soundproof room. → **am going to look** · am looking · be
 - We are going to view a well-kept flat tomorrow. — *В записи звучит We are viewing a well-kept flat tomorrow.*
 - We is viewing a well-kept flat tomorrow. — *В записи звучит We are viewing a well-kept flat tomorrow.*
 
-**16 · Вы согласовали с владельцем просмотр квартиры на завтра. Передайте подтверждённую договорённость через Present Continuous.**
+**16 · Вы согласовали с владельцем просмотр квартиры на завтра. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-16:session-51:i12; family: context_gap_grammar -->
 We ___ a well-kept flat tomorrow. → **are viewing** · are view · be
 - are view — *После are нужна форма с -ing: are viewing.*
@@ -141,7 +141,7 @@ draughty — со сквозняками · well-lit — хорошо освещ
 <!-- interaction_id: en:lesson-16:session-51:i15; family: listen_build_dictation -->
 🔊 *I am going to look for a soundproof room.* Плитки: `room` `soundproof` `a` `for` `look` `to` `going` `am` `I` → **I am going to look for a soundproof room.**
 
-**20 · Передайте подтверждённую договорённость через Present Continuous.**
+**20 · Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-16:session-51:i16; family: scripted_repeat_compare -->
 🎙 **We are viewing a well-kept flat tomorrow.**
 

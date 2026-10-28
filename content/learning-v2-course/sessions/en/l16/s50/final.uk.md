@@ -113,7 +113,7 @@ I ___ the toys. → **am going to clear up** · am clearing up · be
 <!-- interaction_id: en:lesson-16:session-50:word:clean-out; family: word_card -->
 > **clean out** — вичистити, прибравши все зайве зсередини.
 
-**14 · Ви домовилися з родиною в суботу розібрати й вичистити гараж. У clean out форма з -ing — cleaning out. Передайте підтверджену домовленість через Present Continuous. Скажіть: «У суботу ми вичищаємо гараж і прибираємо з нього все зайве».**
+**14 · Ви домовилися з родиною в суботу розібрати й вичистити гараж. У clean out форма з -ing — cleaning out. Скажіть, що це вже вирішено. Скажіть: «У суботу ми вичищаємо гараж і прибираємо з нього все зайве».**
 <!-- interaction_id: en:lesson-16:session-50:i10; family: phrase_builder -->
 Плитки: `Saturday` `on` `garage` `the` `out` `cleaning` `are` `We` → **We are cleaning out the garage on Saturday.**
 
@@ -123,7 +123,7 @@ I ___ the toys. → **am going to clear up** · am clearing up · be
 - We are going to clean out the garage on Saturday. — *У записі звучить We are cleaning out the garage on Saturday.*
 - We is cleaning out the garage on Saturday. — *У записі звучить We are cleaning out the garage on Saturday.*
 
-**16 · Ви домовилися з родиною в суботу розібрати й вичистити гараж. У clean out форма з -ing — cleaning out. Передайте підтверджену домовленість через Present Continuous.**
+**16 · Ви домовилися з родиною в суботу розібрати й вичистити гараж. У clean out форма з -ing — cleaning out. Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-16:session-50:i12; family: context_gap_grammar -->
 We ___ the garage on Saturday. → **are cleaning out** · are clean out · be
 - are clean out — *Після are потрібна форма з -ing: are cleaning out.*
@@ -141,7 +141,7 @@ bring in — занести всередину · keep out — не заходи
 <!-- interaction_id: en:lesson-16:session-50:i15; family: listen_build_dictation -->
 🔊 *I am going to clear up the toys.* Плитки: `toys` `the` `up` `clear` `to` `going` `am` `I` → **I am going to clear up the toys.**
 
-**20 · Передайте підтверджену домовленість через Present Continuous.**
+**20 · Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-16:session-50:i16; family: scripted_repeat_compare -->
 🎙 **We are cleaning out the garage on Saturday.**
 

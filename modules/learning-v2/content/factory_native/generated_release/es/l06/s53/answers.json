@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-06:session-53:i01",
+    "correctText": "baño",
+    "correctResponseId": "es:lesson-06:session-53:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-53:i02",
+    "correctText": "Hay",
+    "correctResponseId": "es:lesson-06:session-53:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-53:i03",
+    "correctText": "¿Hay un baño?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-53:i04",
+    "correctText": "está",
+    "correctResponseId": "es:lesson-06:session-53:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-53:i05",
+    "correctText": "¿Dónde está el baño?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-53:i06",
+    "correctText": "El baño está allí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-53:i07",
+    "correctText": "El baño está allí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-53:i08",
+    "correctText": "un",
+    "correctResponseId": "es:lesson-06:session-53:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-53:i09",
+    "correctText": "¿Hay un baño?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-53:i10",
+    "correctText": "¿Dónde está el baño?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-53:i11",
+    "correctText": "El baño está allí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-53:i12",
+    "correctText": "Hay un baño.",
+    "correctResponseId": null
+  }
+]

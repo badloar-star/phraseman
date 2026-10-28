@@ -1,0 +1,67 @@
+[
+  {
+    "interactionId": "es:lesson-06:session-50:i01",
+    "correctText": "café",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-50:i02",
+    "correctText": "café",
+    "correctResponseId": "es:lesson-06:session-50:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-50:i03",
+    "correctText": "un",
+    "correctResponseId": "es:lesson-06:session-50:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-50:i04",
+    "correctText": "¿Hay un café aquí?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-50:i05",
+    "correctText": "allí",
+    "correctResponseId": "es:lesson-06:session-50:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-50:i06",
+    "correctText": "Hay un café allí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-50:i07",
+    "correctText": "No hay un café aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-50:i08",
+    "correctText": "Hay un café allí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-50:i09",
+    "correctText": "No",
+    "correctResponseId": "es:lesson-06:session-50:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-50:i10",
+    "correctText": "¿Hay un café aquí?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-50:i11",
+    "correctText": "Hay un café allí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-50:i12",
+    "correctText": "No hay un café aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-50:i13",
+    "correctText": "Hay un café aquí.",
+    "correctResponseId": null
+  }
+]

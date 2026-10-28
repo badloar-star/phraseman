@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-06:session-52",
+  "learningOutcomeByLocale": {
+    "ru": "отличать отсутствие воды от малого количества.",
+    "uk": "відрізняти відсутність води від малої кількості."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-06:session-52:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Пустой запас",
+        "uk": "Порожній запас"
+      },
+      "bodyByLocale": {
+        "ru": "Вы проверили запас: воды совсем нет. Сообщите `No hay agua` — «Воды нет». Соберите `No` + `hay` + `agua`. No ставим перед hay. Здесь не подходит poca: «мало воды» всё же означает, что вода есть.",
+        "uk": "Ви перевірили запас: води зовсім немає. Повідомте `No hay agua` — «Води немає». Складіть `No` + `hay` + `agua`. No ставимо перед hay. Тут не підходить poca: «мало води» все ж означає, що вода є."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-52:intro1:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Воды нет». Начните с No hay, используйте agua без артикля.",
+          "uk": "Повідомте «Води немає». Почніть з No hay, використайте agua без артикля."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-52:intro1:r1",
+              "text": "No hay agua."
+            },
+            {
+              "responseId": "es:lesson-06:session-52:intro1:r2",
+              "text": "Hay agua."
+            },
+            {
+              "responseId": "es:lesson-06:session-52:intro1:r3",
+              "text": "Hay poca agua."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-52:intro1:r1",
+              "text": "No hay agua."
+            },
+            {
+              "responseId": "es:lesson-06:session-52:intro1:r2",
+              "text": "Hay agua."
+            },
+            {
+              "responseId": "es:lesson-06:session-52:intro1:r3",
+              "text": "Hay poca agua."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Воды нет». Начните с No hay, используйте agua без артикля.",
+          "uk": "Повідомте «Води немає». Почніть з No hay, використайте agua без артикля."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-06:session-52:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Вода отсутствует здесь",
+        "uk": "Вода відсутня тут"
+      },
+      "bodyByLocale": {
+        "ru": "Друг собирается набрать воду в этом месте. Предупредите `No hay agua aquí` — «Здесь нет воды». Соберите `No hay agua` + `aquí`. Место добавляем в конце. Пустую бутылку можно взять с собой, но сначала хорошо бы найти, чем её наполнить.",
+        "uk": "Друг збирається набрати воду в цьому місці. Попередьте `No hay agua aquí` — «Тут немає води». Складіть `No hay agua` + `aquí`. Місце додаємо наприкінці. Порожню пляшку можна взяти із собою, але спочатку добре було б знайти, чим її наповнити."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-52:intro2:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Здесь нет воды». Начните с No hay, используйте agua без артикля, место поставьте в конце.",
+          "uk": "Повідомте «Тут немає води». Почніть з No hay, використайте agua без артикля, місце поставте наприкінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-52:intro2:r1",
+              "text": "No hay agua aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-52:intro2:r2",
+              "text": "No hay agua allí."
+            },
+            {
+              "responseId": "es:lesson-06:session-52:intro2:r3",
+              "text": "Hay poca agua aquí."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-52:intro2:r1",
+              "text": "No hay agua aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-52:intro2:r2",
+              "text": "No hay agua allí."
+            },
+            {
+              "responseId": "es:lesson-06:session-52:intro2:r3",
+              "text": "Hay poca agua aquí."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Здесь нет воды». Начните с No hay, используйте agua без артикля, место поставьте в конце.",
+          "uk": "Повідомте «Тут немає води». Почніть з No hay, використайте agua без артикля, місце поставте наприкінці."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-06:session-52:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Проверить другое место",
+        "uk": "Перевірити інше місце"
+      },
+      "bodyByLocale": {
+        "ru": "Вы не знаете, есть ли вода в другом месте. Спросите `¿Hay agua allí?` — «Там есть вода?» Соберите `¿Hay` + `agua` + `allí?`. Нейтральный вопрос о наличии начинаем с ¿Hay. Мы пока не утверждаем, что вода есть или отсутствует.",
+        "uk": "Ви не знаєте, чи є вода в іншому місці. Запитайте `¿Hay agua allí?` — «Там є вода?» Складіть `¿Hay` + `agua` + `allí?`. Нейтральне запитання про наявність починаємо з ¿Hay. Ми поки не стверджуємо, що вода є або відсутня."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-52:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите «Там есть вода?». Начните с ¿Hay, используйте agua без артикля, место поставьте в конце.",
+          "uk": "Запитайте «Там є вода?». Почніть з ¿Hay, використайте agua без артикля, місце поставте наприкінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-52:intro3:r1",
+              "text": "¿Hay agua allí?"
+            },
+            {
+              "responseId": "es:lesson-06:session-52:intro3:r2",
+              "text": "¿Hay agua aquí?"
+            },
+            {
+              "responseId": "es:lesson-06:session-52:intro3:r3",
+              "text": "¿Hay poca agua allí?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-52:intro3:r1",
+              "text": "¿Hay agua allí?"
+            },
+            {
+              "responseId": "es:lesson-06:session-52:intro3:r2",
+              "text": "¿Hay agua aquí?"
+            },
+            {
+              "responseId": "es:lesson-06:session-52:intro3:r3",
+              "text": "¿Hay poca agua allí?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «Там есть вода?». Начните с ¿Hay, используйте agua без артикля, место поставьте в конце.",
+          "uk": "Запитайте «Там є вода?». Почніть з ¿Hay, використайте agua без артикля, місце поставте наприкінці."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "09bae2bed92d57df097a3b5b75843939e8628449cd92c35d1e7993a25dc46ec6"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-06:session-53",
+  "entries": [
+    {
+      "interactionId": "es:lesson-06:session-53:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-53:intro1:r2": {
+          "ru": "Нужно узнать о наличии: hay.",
+          "uk": "Потрібно дізнатися про наявність: hay."
+        },
+        "es:lesson-06:session-53:intro1:r3": {
+          "ru": "Baño мужского рода: un.",
+          "uk": "Baño чоловічого роду: un."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-53:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-53:intro2:r2": {
+          "ru": "Для места известного туалета нужна está.",
+          "uk": "Для місця відомого туалету потрібна está."
+        },
+        "es:lesson-06:session-53:intro2:r3": {
+          "ru": "Baño мужского рода: el.",
+          "uk": "Baño чоловічого роду: el."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-53:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-53:intro3:r2": {
+          "ru": "Расположение известного объекта выражаем с está.",
+          "uk": "Розташування відомого об'єкта виражаємо з está."
+        },
+        "es:lesson-06:session-53:intro3:r3": {
+          "ru": "Baño мужского рода: el.",
+          "uk": "Baño чоловічого роду: el."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e786a2fe5bd4add7adac5d5f42115740ee24acc5e21c3326c3c3bcc7592b1f23"
+}

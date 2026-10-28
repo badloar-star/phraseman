@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-06:session-53",
+  "learningOutcomeByLocale": {
+    "ru": "выбирать hay для наличия и está для места известного объекта.",
+    "uk": "обирати hay для наявності та está для місця відомого об'єкта."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-06:session-53:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сначала узнать о наличии",
+        "uk": "Спочатку дізнатися про наявність"
+      },
+      "bodyByLocale": {
+        "ru": "Вы вошли в небольшое кафе и ещё не знаете, есть ли там туалет. Спросите `¿Hay un baño?` — «Есть туалет?» Соберите `¿Hay` + `un baño?`. Hay спрашивает о наличии. Пока впервые называем объект, используем un baño.",
+        "uk": "Ви зайшли в невелике кафе й ще не знаєте, чи є там туалет. Запитайте `¿Hay un baño?` — «Є туалет?» Складіть `¿Hay` + `un baño?`. Hay запитує про наявність. Поки вперше називаємо об'єкт, використовуємо un baño."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-53:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите «Есть туалет?». Начните с ¿Hay, используйте un baño.",
+          "uk": "Запитайте «Є туалет?». Почніть з ¿Hay, використайте un baño."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-53:intro1:r1",
+              "text": "¿Hay un baño?"
+            },
+            {
+              "responseId": "es:lesson-06:session-53:intro1:r2",
+              "text": "¿Está un baño?"
+            },
+            {
+              "responseId": "es:lesson-06:session-53:intro1:r3",
+              "text": "¿Hay una baño?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-53:intro1:r1",
+              "text": "¿Hay un baño?"
+            },
+            {
+              "responseId": "es:lesson-06:session-53:intro1:r2",
+              "text": "¿Está un baño?"
+            },
+            {
+              "responseId": "es:lesson-06:session-53:intro1:r3",
+              "text": "¿Hay una baño?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «Есть туалет?». Начните с ¿Hay, используйте un baño.",
+          "uk": "Запитайте «Є туалет?». Почніть з ¿Hay, використайте un baño."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-06:session-53:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Теперь найти его",
+        "uk": "Тепер знайти його"
+      },
+      "bodyByLocale": {
+        "ru": "Вам ответили, что туалет есть. Теперь спросите, где именно он находится: `¿Dónde está el baño?` — «Где туалет?» Соберите `¿Dónde` + `está` + `el baño?`. Объект уже известен, поэтому el baño; его расположение спрашиваем с está. Наличие выяснили, осталось не открыть случайно дверь на кухню.",
+        "uk": "Вам відповіли, що туалет є. Тепер запитайте, де саме він розташований: `¿Dónde está el baño?` — «Де туалет?» Складіть `¿Dónde` + `está` + `el baño?`. Об'єкт уже відомий, тому el baño; його розташування запитуємо з está. Наявність з'ясували, залишилося не відчинити випадково двері на кухню."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-53:intro2:q",
+        "promptByLocale": {
+          "ru": "Спросите «Где туалет?». Начните с ¿Dónde, используйте está и el baño.",
+          "uk": "Запитайте «Де туалет?». Почніть з ¿Dónde, використайте está та el baño."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-53:intro2:r1",
+              "text": "¿Dónde está el baño?"
+            },
+            {
+              "responseId": "es:lesson-06:session-53:intro2:r2",
+              "text": "¿Dónde hay el baño?"
+            },
+            {
+              "responseId": "es:lesson-06:session-53:intro2:r3",
+              "text": "¿Dónde está la baño?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-53:intro2:r1",
+              "text": "¿Dónde está el baño?"
+            },
+            {
+              "responseId": "es:lesson-06:session-53:intro2:r2",
+              "text": "¿Dónde hay el baño?"
+            },
+            {
+              "responseId": "es:lesson-06:session-53:intro2:r3",
+              "text": "¿Dónde está la baño?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «Где туалет?». Начните с ¿Dónde, используйте está и el baño.",
+          "uk": "Запитайте «Де туалет?». Почніть з ¿Dónde, використайте está та el baño."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-06:session-53:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Показать направление",
+        "uk": "Показати напрямок"
+      },
+      "bodyByLocale": {
+        "ru": "Вы уже знаете, где туалет, и показываете другу вдалеке: `El baño está allí` — «Туалет там». Соберите `El baño` + `está` + `allí`. Мы указываем место уже известного объекта, поэтому el baño и está. Hay здесь не нужно: о существовании туалета друг уже знает.",
+        "uk": "Ви вже знаєте, де туалет, і показуєте другу вдалині: `El baño está allí` — «Туалет там». Складіть `El baño` + `está` + `allí`. Ми вказуємо місце вже відомого об'єкта, тому el baño та está. Hay тут не потрібне: про існування туалету друг уже знає."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-53:intro3:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Туалет там». Начните с El baño, затем поставьте está и место.",
+          "uk": "Повідомте «Туалет там». Почніть з El baño, потім поставте está та місце."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-53:intro3:r1",
+              "text": "El baño está allí."
+            },
+            {
+              "responseId": "es:lesson-06:session-53:intro3:r2",
+              "text": "El baño hay allí."
+            },
+            {
+              "responseId": "es:lesson-06:session-53:intro3:r3",
+              "text": "La baño está allí."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-53:intro3:r1",
+              "text": "El baño está allí."
+            },
+            {
+              "responseId": "es:lesson-06:session-53:intro3:r2",
+              "text": "El baño hay allí."
+            },
+            {
+              "responseId": "es:lesson-06:session-53:intro3:r3",
+              "text": "La baño está allí."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Туалет там». Начните с El baño, затем поставьте está и место.",
+          "uk": "Повідомте «Туалет там». Почніть з El baño, потім поставте está та місце."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "6bd22eb0648c8763ac176a751c6b062063e9c02bd8807596c9bd402db7c09718"
+}

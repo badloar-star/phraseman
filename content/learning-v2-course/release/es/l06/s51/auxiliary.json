@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-06:session-51",
+  "entries": [
+    {
+      "interactionId": "es:lesson-06:session-51:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-51:intro1:r2": {
+          "ru": "В этом вопросе о наличии услуги используем wifi без артикля.",
+          "uk": "У цьому запитанні про наявність послуги використовуємо wifi без артикля."
+        },
+        "es:lesson-06:session-51:intro1:r3": {
+          "ru": "Так спрашивают «Вайфая нет?», а нужен нейтральный вопрос о наличии.",
+          "uk": "Так запитують «Вайфаю немає?», а потрібне нейтральне запитання про наявність."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-51:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-51:intro2:r2": {
+          "ru": "Здесь — aquí, а allí означает там.",
+          "uk": "Тут — aquí, а allí означає там."
+        },
+        "es:lesson-06:session-51:intro2:r3": {
+          "ru": "No отрицает наличие, а связь здесь есть.",
+          "uk": "No заперечує наявність, а зв'язок тут є."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-51:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-51:intro3:r2": {
+          "ru": "Пропущено no: получится, что связь есть.",
+          "uk": "Пропущено no: вийде, що зв'язок є."
+        },
+        "es:lesson-06:session-51:intro3:r3": {
+          "ru": "Говорим о другом месте: allí.",
+          "uk": "Говоримо про інше місце: allí."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "54f616e8878a565c526d74697714da6a520361f9bb77e1d6d55ac73efa789fd4"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-06:session-50",
+  "entries": [
+    {
+      "interactionId": "es:lesson-06:session-50:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-50:intro1:r2": {
+          "ru": "Café мужского рода: un.",
+          "uk": "Café чоловічого роду: un."
+        },
+        "es:lesson-06:session-50:intro1:r3": {
+          "ru": "Спрашиваем об этом месте: aquí.",
+          "uk": "Запитуємо про це місце: aquí."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-50:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-50:intro2:r2": {
+          "ru": "С café нужен un.",
+          "uk": "З café потрібен un."
+        },
+        "es:lesson-06:session-50:intro2:r3": {
+          "ru": "Вывеска вдалеке: allí.",
+          "uk": "Вивіска вдалині: allí."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-50:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-50:intro3:r2": {
+          "ru": "Café мужского рода: un.",
+          "uk": "Café чоловічого роду: un."
+        },
+        "es:lesson-06:session-50:intro3:r3": {
+          "ru": "Без no сообщаем, что кафе есть.",
+          "uk": "Без no повідомляємо, що кафе є."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "bd7a8240895b9c4f40760863c431be0182854ebfa615786a4c478cd1fd32dda4"
+}

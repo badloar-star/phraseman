@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-06:session-52",
+  "entries": [
+    {
+      "interactionId": "es:lesson-06:session-52:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-52:intro1:r2": {
+          "ru": "Без no получается «вода есть».",
+          "uk": "Без no виходить «вода є»."
+        },
+        "es:lesson-06:session-52:intro1:r3": {
+          "ru": "По условию воды совсем нет, а не мало.",
+          "uk": "За умовою води зовсім немає, а не мало."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-52:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-52:intro2:r2": {
+          "ru": "Говорим об этом месте: aquí.",
+          "uk": "Говоримо про це місце: aquí."
+        },
+        "es:lesson-06:session-52:intro2:r3": {
+          "ru": "Воды нет совсем: No hay agua.",
+          "uk": "Води немає зовсім: No hay agua."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-52:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-52:intro3:r2": {
+          "ru": "Спрашиваем про другое место: allí.",
+          "uk": "Запитуємо про інше місце: allí."
+        },
+        "es:lesson-06:session-52:intro3:r3": {
+          "ru": "Это вопрос о малом количестве; сейчас уточняем только наличие.",
+          "uk": "Це запитання про малу кількість; зараз уточнюємо лише наявність."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "beb38dd8120b0524356bb6fd5c80d781edbcffd575d02ff8152aefdb0207ffcd"
+}

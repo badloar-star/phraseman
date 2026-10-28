@@ -2310,4 +2310,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"сообщить о магазине и спросить, есть ли он здесь.","uk":"повідомити про магазин і запитати, чи є він тут."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 6","uk":"Іспанська · Урок 6"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 6, sessionOrdinal: 50,
+    sourceFingerprint: "654abd274f2f2b3002b790dbede229fa7cedb6e968e227eb63029e62a8927345",
+    newWordCount: 1,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"спросить о наличии кафе с un café.","uk":"запитати про наявність кафе з un café."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 6","uk":"Іспанська · Урок 6"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 6, sessionOrdinal: 51,
+    sourceFingerprint: "aa236ad791aff8f7679096ed84384b3e6995c561b59f8ff8da7add3729316f4f",
+    newWordCount: 1,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"спросить о доступной услуге без артикля.","uk":"запитати про доступну послугу без артикля."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 6","uk":"Іспанська · Урок 6"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 6, sessionOrdinal: 52,
+    sourceFingerprint: "6657db35d904f3736db1f963f59ca20b0a96bf7254978520ec23db5deb0f612e",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"отличать отсутствие воды от малого количества.","uk":"відрізняти відсутність води від малої кількості."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 6","uk":"Іспанська · Урок 6"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 6, sessionOrdinal: 53,
+    sourceFingerprint: "5ddace4cc8a17e58d38f4a6fee17a04ed162b1f55a62dc48031e0d712945d3d9",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбирать hay для наличия и está для места известного объекта.","uk":"обирати hay для наявності та está для місця відомого об'єкта."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 6","uk":"Іспанська · Урок 6"}),
+  }),
 ]);

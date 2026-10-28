@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-06:session-51",
+  "learningOutcomeByLocale": {
+    "ru": "спросить о доступной услуге без артикля.",
+    "uk": "запитати про доступну послугу без артикля."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-06:session-51:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Вопрос при заселении",
+        "uk": "Запитання під час заселення"
+      },
+      "bodyByLocale": {
+        "ru": "Вы хотите отправить близким сообщение и уточняете у сотрудника, есть ли вайфай. Спросите `¿Hay wifi?` — «Есть вайфай?» Соберите `¿Hay` + `wifi?`. Здесь спрашиваем о наличии связи, поэтому используем wifi без артикля: мы не считаем отдельные предметы.",
+        "uk": "Ви хочете надіслати близьким повідомлення й уточнюєте у працівника, чи є вайфай. Запитайте `¿Hay wifi?` — «Є вайфай?» Складіть `¿Hay` + `wifi?`. Тут запитуємо про наявність зв'язку, тому використовуємо wifi без артикля: ми не рахуємо окремі предмети."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-51:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите «Есть вайфай?». Начните с ¿Hay, используйте wifi без артикля.",
+          "uk": "Запитайте «Є вайфай?». Почніть з ¿Hay, використайте wifi без артикля."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-51:intro1:r1",
+              "text": "¿Hay wifi?"
+            },
+            {
+              "responseId": "es:lesson-06:session-51:intro1:r2",
+              "text": "¿Hay un wifi?"
+            },
+            {
+              "responseId": "es:lesson-06:session-51:intro1:r3",
+              "text": "¿No hay wifi?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-51:intro1:r1",
+              "text": "¿Hay wifi?"
+            },
+            {
+              "responseId": "es:lesson-06:session-51:intro1:r2",
+              "text": "¿Hay un wifi?"
+            },
+            {
+              "responseId": "es:lesson-06:session-51:intro1:r3",
+              "text": "¿No hay wifi?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «Есть вайфай?». Начните с ¿Hay, используйте wifi без артикля.",
+          "uk": "Запитайте «Є вайфай?». Почніть з ¿Hay, використайте wifi без артикля."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-06:session-51:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Связь в этом месте",
+        "uk": "Зв'язок у цьому місці"
+      },
+      "bodyByLocale": {
+        "ru": "Вы узнали, что здесь есть вайфай, и сообщаете спутнику `Hay wifi aquí` — «Здесь есть вайфай». Соберите `Hay` + `wifi` + `aquí`. Место добавляем в конце. Теперь можно сообщить, что добрались, — длинный отчёт о дороге необязателен.",
+        "uk": "Ви дізналися, що тут є вайфай, і повідомляєте супутнику `Hay wifi aquí` — «Тут є вайфай». Складіть `Hay` + `wifi` + `aquí`. Місце додаємо наприкінці. Тепер можна повідомити, що дісталися, — довгий звіт про дорогу необов'язковий."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-51:intro2:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Здесь есть вайфай». Начните с Hay, используйте wifi без артикля, место поставьте в конце.",
+          "uk": "Повідомте «Тут є вайфай». Почніть з Hay, використайте wifi без артикля, місце поставте наприкінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-51:intro2:r1",
+              "text": "Hay wifi aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-51:intro2:r2",
+              "text": "Hay wifi allí."
+            },
+            {
+              "responseId": "es:lesson-06:session-51:intro2:r3",
+              "text": "No hay wifi aquí."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-51:intro2:r1",
+              "text": "Hay wifi aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-51:intro2:r2",
+              "text": "Hay wifi allí."
+            },
+            {
+              "responseId": "es:lesson-06:session-51:intro2:r3",
+              "text": "No hay wifi aquí."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Здесь есть вайфай». Начните с Hay, используйте wifi без артикля, место поставьте в конце.",
+          "uk": "Повідомте «Тут є вайфай». Почніть з Hay, використайте wifi без артикля, місце поставте наприкінці."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-06:session-51:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "В другом месте связи нет",
+        "uk": "В іншому місці зв'язку немає"
+      },
+      "bodyByLocale": {
+        "ru": "Вы узнали, что в другом месте вайфая нет. Передайте другу `No hay wifi allí` — «Там нет вайфая». Соберите `No hay` + `wifi` + `allí`. No ставим перед hay. Слово wifi по-прежнему без артикля, место — в конце.",
+        "uk": "Ви дізналися, що в іншому місці вайфаю немає. Передайте другу `No hay wifi allí` — «Там немає вайфаю». Складіть `No hay` + `wifi` + `allí`. No ставимо перед hay. Слово wifi, як і раніше, без артикля, місце — наприкінці."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-51:intro3:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Там нет вайфая». Начните с No hay, используйте wifi без артикля, место поставьте в конце.",
+          "uk": "Повідомте «Там немає вайфаю». Почніть з No hay, використайте wifi без артикля, місце поставте наприкінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-51:intro3:r1",
+              "text": "No hay wifi allí."
+            },
+            {
+              "responseId": "es:lesson-06:session-51:intro3:r2",
+              "text": "Hay wifi allí."
+            },
+            {
+              "responseId": "es:lesson-06:session-51:intro3:r3",
+              "text": "No hay wifi aquí."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-51:intro3:r1",
+              "text": "No hay wifi allí."
+            },
+            {
+              "responseId": "es:lesson-06:session-51:intro3:r2",
+              "text": "Hay wifi allí."
+            },
+            {
+              "responseId": "es:lesson-06:session-51:intro3:r3",
+              "text": "No hay wifi aquí."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Там нет вайфая». Начните с No hay, используйте wifi без артикля, место поставьте в конце.",
+          "uk": "Повідомте «Там немає вайфаю». Почніть з No hay, використайте wifi без артикля, місце поставте наприкінці."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "c251559a75f3ed4476601f5314353da8e2e68b6b3c11a7f43c006c31782d7c43"
+}

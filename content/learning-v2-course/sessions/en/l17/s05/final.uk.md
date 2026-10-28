@@ -133,7 +133,7 @@ We are clearing ___. → **clutter** · a clutter · clutters
 <!-- interaction_id: en:lesson-17:session-05:i13; family: speed_match -->
 wrapper — обгортка · cigarette end — недопалок · litter — сміття, викинуте в громадському місці · clutter — безладне скупчення зайвих речей
 
-**18 · Складіть почуту фразу зі злічуваним словом**
+**18 · Складіть почуту фразу**
 <!-- interaction_id: en:lesson-17:session-05:i14; family: listen_build_dictation -->
 🔊 *This is a wrapper.* Плитки: `wrapper` `a` `is` `This` → **This is a wrapper.**
 

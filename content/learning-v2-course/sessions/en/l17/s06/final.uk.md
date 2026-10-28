@@ -133,7 +133,7 @@ We use ___. → **public transport** · a public transport · public transports
 <!-- interaction_id: en:lesson-17:session-06:i13; family: speed_match -->
 errand — невелика справа поза домом: наприклад, забрати посилку · replacement — заміна, річ замість попередньої · housework — хатні справи: прибирання, прання та інша робота вдома · public transport — громадський транспорт
 
-**18 · Складіть почуту фразу зі злічуваним словом**
+**18 · Складіть почуту фразу**
 <!-- interaction_id: en:lesson-17:session-06:i14; family: listen_build_dictation -->
 🔊 *This is an errand.* Плитки: `errand` `an` `is` `This` → **This is an errand.**
 

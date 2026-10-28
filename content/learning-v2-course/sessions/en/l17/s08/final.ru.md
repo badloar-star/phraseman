@@ -133,7 +133,7 @@ We can see ___. → **damage** · a damage · damages
 <!-- interaction_id: en:lesson-17:session-08:i13; family: speed_match -->
 appliance — бытовой прибор · estimate — предварительный расчёт стоимости · packaging — упаковка, упаковочные материалы · damage — повреждение, нанесённый вещам вред
 
-**18 · Соберите услышанную фразу с исчисляемым словом**
+**18 · Соберите услышанную фразу**
 <!-- interaction_id: en:lesson-17:session-08:i14; family: listen_build_dictation -->
 🔊 *This is an appliance.* Плитки: `appliance` `an` `is` `This` → **This is an appliance.**
 

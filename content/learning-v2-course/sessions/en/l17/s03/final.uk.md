@@ -133,7 +133,7 @@ We need ___. → **non-fiction** · a non-fiction · non-fictions
 <!-- interaction_id: en:lesson-17:session-03:i13; family: speed_match -->
 biography — біографія, книжка про чиєсь життя · autobiography — автобіографія, книжка автора про власне життя · fiction — художня література, вигадані історії · non-fiction — нехудожня література про реальні факти
 
-**18 · Складіть почуту фразу зі злічуваним словом**
+**18 · Складіть почуту фразу**
 <!-- interaction_id: en:lesson-17:session-03:i14; family: listen_build_dictation -->
 🔊 *This is a biography.* Плитки: `biography` `a` `is` `This` → **This is a biography.**
 

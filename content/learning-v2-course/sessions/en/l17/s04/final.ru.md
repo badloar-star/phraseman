@@ -133,7 +133,7 @@ We need ___. → **training** · a training · trainings
 <!-- interaction_id: en:lesson-17:session-04:i13; family: speed_match -->
 candidate — кандидат, человек, претендующий на место · vacancy — вакансия, свободное рабочее место · paperwork — работа с документами, оформление бумаг · training — обучение, подготовка к работе или деятельности
 
-**18 · Соберите услышанную фразу с исчисляемым словом**
+**18 · Соберите услышанную фразу**
 <!-- interaction_id: en:lesson-17:session-04:i14; family: listen_build_dictation -->
 🔊 *She is a candidate.* Плитки: `candidate` `a` `is` `She` → **She is a candidate.**
 

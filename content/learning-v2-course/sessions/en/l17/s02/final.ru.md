@@ -133,7 +133,7 @@ We need ___. → **barley** · a barley · barleys
 <!-- interaction_id: en:lesson-17:session-02:i13; family: speed_match -->
 shallot — лук-шалот, небольшая луковица · peppercorn — горошина перца · bulgur — булгур, крупа из пшеницы · barley — ячмень, ячменная крупа
 
-**18 · Соберите услышанную фразу с исчисляемым словом**
+**18 · Соберите услышанную фразу**
 <!-- interaction_id: en:lesson-17:session-02:i14; family: listen_build_dictation -->
 🔊 *This is a shallot.* Плитки: `shallot` `a` `is` `This` → **This is a shallot.**
 

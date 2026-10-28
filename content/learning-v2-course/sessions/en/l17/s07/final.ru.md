@@ -133,7 +133,7 @@ We need ___. → **equipment** · an equipment · equipments
 <!-- interaction_id: en:lesson-17:session-07:i13; family: speed_match -->
 sapling — молодое деревце, саженец дерева · planter — контейнер или ящик для выращивания растений · gravel — гравий, мелкие камни для покрытия дорожек · equipment — оборудование, нужные для дела приспособления
 
-**18 · Соберите услышанную фразу с исчисляемым словом**
+**18 · Соберите услышанную фразу**
 <!-- interaction_id: en:lesson-17:session-07:i14; family: listen_build_dictation -->
 🔊 *This is a sapling.* Плитки: `sapling` `a` `is` `This` → **This is a sapling.**
 

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-03:session-09",
+  "entries": [
+    {
+      "interactionId": "es:lesson-03:session-09:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-09:intro1:r2": {
+          "ru": "Для casa нужна форма blanca.",
+          "uk": "Для casa потрібна форма blanca."
+        },
+        "es:lesson-03:session-09:intro1:r3": {
+          "ru": "Запомните la casa и blanca.",
+          "uk": "Запам'ятайте la casa та blanca."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-09:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-09:intro2:r2": {
+          "ru": "Для coche нужна форма blanco.",
+          "uk": "Для coche потрібна форма blanco."
+        },
+        "es:lesson-03:session-09:intro2:r3": {
+          "ru": "Машина одна: es.",
+          "uk": "Машина одна: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-09:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-09:intro3:r2": {
+          "ru": "Casas женского рода: blancas.",
+          "uk": "Casas жіночого роду: blancas."
+        },
+        "es:lesson-03:session-09:intro3:r3": {
+          "ru": "Домов несколько: blancas.",
+          "uk": "Будинків кілька: blancas."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "02631e7358f8213be6adbbbf4e11d291dccb1ec04ba033d8f34ae41433a29a47"
+}

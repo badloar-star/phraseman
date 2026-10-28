@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-03:session-09",
+  "learningOutcomeByLocale": {
+    "ru": "описать белый цвет с правильным родом и числом.",
+    "uk": "описати білий колір із правильним родом і числом."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-03:session-09:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Дом на фотографии",
+        "uk": "Будинок на фотографії"
+      },
+      "bodyByLocale": {
+        "ru": "Друг прислал фотографию белого дома. `Blanco` — «белый», для женского рода — blanca. Скажите `La casa es blanca` — «Дом белый». Соберите `la casa` + `es` + `blanca`. Испанское casa женского рода, поэтому blanca, хотя русский «дом» мужского.",
+        "uk": "Друг надіслав фотографію білого будинку. `Blanco` — «білий», для жіночого роду — blanca. Скажіть `La casa es blanca` — «Будинок білий». Складіть `la casa` + `es` + `blanca`. Іспанське casa жіночого роду, тому blanca, хоча український «будинок» чоловічого."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-09:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите, что дом белый.",
+          "uk": "Скажіть, що будинок білий."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-09:intro1:r1",
+              "text": "La casa es blanca."
+            },
+            {
+              "responseId": "es:lesson-03:session-09:intro1:r2",
+              "text": "La casa es blanco."
+            },
+            {
+              "responseId": "es:lesson-03:session-09:intro1:r3",
+              "text": "El casa es blanco."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-09:intro1:r1",
+              "text": "La casa es blanca."
+            },
+            {
+              "responseId": "es:lesson-03:session-09:intro1:r2",
+              "text": "La casa es blanco."
+            },
+            {
+              "responseId": "es:lesson-03:session-09:intro1:r3",
+              "text": "El casa es blanco."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что дом белый.",
+          "uk": "Скажіть, що будинок білий."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-03:session-09:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Машина рядом с домом",
+        "uk": "Машина поруч із будинком"
+      },
+      "bodyByLocale": {
+        "ru": "На той же фотографии возле дома стоит белая машина. Скажите `El coche es blanco` — «Машина белая». Соберите `el coche` + `es` + `blanco`. Испанское coche мужского рода: blanco с -o. Род русской «машины» не определяет испанскую форму.",
+        "uk": "На тій самій фотографії біля будинку стоїть біла машина. Скажіть `El coche es blanco` — «Машина біла». Складіть `el coche` + `es` + `blanco`. Іспанське coche чоловічого роду: blanco з -o. Рід української «машини» не визначає іспанської форми."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-09:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите, что машина белая.",
+          "uk": "Скажіть, що машина біла."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-09:intro2:r1",
+              "text": "El coche es blanco."
+            },
+            {
+              "responseId": "es:lesson-03:session-09:intro2:r2",
+              "text": "El coche es blanca."
+            },
+            {
+              "responseId": "es:lesson-03:session-09:intro2:r3",
+              "text": "El coche son blanco."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-09:intro2:r1",
+              "text": "El coche es blanco."
+            },
+            {
+              "responseId": "es:lesson-03:session-09:intro2:r2",
+              "text": "El coche es blanca."
+            },
+            {
+              "responseId": "es:lesson-03:session-09:intro2:r3",
+              "text": "El coche son blanco."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что машина белая.",
+          "uk": "Скажіть, що машина біла."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-03:session-09:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Дома на соседней улице",
+        "uk": "Будинки на сусідній вулиці"
+      },
+      "bodyByLocale": {
+        "ru": "Друг прислал ещё одну фотографию: несколько белых домов. Скажите `Las casas son blancas` — «Дома белые». Соберите `las casas` + `son` + `blancas`. Casas женского рода во множественном числе: к blanca добавьте -s. Цвет согласуется по тому же правилу, что знакомое pequeña.",
+        "uk": "Друг надіслав ще одну фотографію: кілька білих будинків. Скажіть `Las casas son blancas` — «Будинки білі». Складіть `las casas` + `son` + `blancas`. Casas жіночого роду в множині: до blanca додайте -s. Колір узгоджується за тим самим правилом, що знайоме pequeña."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-09:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите, что несколько домов белые.",
+          "uk": "Скажіть, що кілька будинків білі."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-09:intro3:r1",
+              "text": "Las casas son blancas."
+            },
+            {
+              "responseId": "es:lesson-03:session-09:intro3:r2",
+              "text": "Las casas son blancos."
+            },
+            {
+              "responseId": "es:lesson-03:session-09:intro3:r3",
+              "text": "Las casas son blanca."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-09:intro3:r1",
+              "text": "Las casas son blancas."
+            },
+            {
+              "responseId": "es:lesson-03:session-09:intro3:r2",
+              "text": "Las casas son blancos."
+            },
+            {
+              "responseId": "es:lesson-03:session-09:intro3:r3",
+              "text": "Las casas son blanca."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что несколько домов белые.",
+          "uk": "Скажіть, що кілька будинків білі."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "7cb6465a62937c6d2c47038bda7e51ab103f5774601b2f5f67ab2f491e02ac45"
+}

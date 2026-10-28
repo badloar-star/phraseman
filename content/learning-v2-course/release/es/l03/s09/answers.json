@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-03:session-09:i01",
+    "correctText": "blanco",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-09:i02",
+    "correctText": "blanca",
+    "correctResponseId": "es:lesson-03:session-09:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-09:i03",
+    "correctText": "La casa es blanca.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-09:i04",
+    "correctText": "blanco",
+    "correctResponseId": "es:lesson-03:session-09:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-09:i05",
+    "correctText": "El coche es blanco.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-09:i06",
+    "correctText": "blancas",
+    "correctResponseId": "es:lesson-03:session-09:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-09:i07",
+    "correctText": "Las casas son blancas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-09:i08",
+    "correctText": "El coche es blanco.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-09:i09",
+    "correctText": "La casa es blanca.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-09:i10",
+    "correctText": "blancos",
+    "correctResponseId": "es:lesson-03:session-09:i10:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-09:i11",
+    "correctText": "El coche es blanco.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-09:i12",
+    "correctText": "Las casas son blancas.",
+    "correctResponseId": null
+  }
+]

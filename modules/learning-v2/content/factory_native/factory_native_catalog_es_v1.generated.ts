@@ -847,4 +847,11 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"самостоятельно описать размер, длину и ширину с правильными окончаниями.","uk":"самостійно описати розмір, довжину й ширину з правильними закінченнями."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 9,
+    sourceFingerprint: "e98fb17b3140be03c7ba587cc7a4a238283006683afcae41e62c567576c328b4",
+    newWordCount: 1,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"описать белый цвет с правильным родом и числом.","uk":"описати білий колір із правильним родом і числом."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+  }),
 ]);

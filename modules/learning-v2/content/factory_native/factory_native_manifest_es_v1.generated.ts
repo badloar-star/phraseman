@@ -1691,4 +1691,18 @@ export const FACTORY_NATIVE_MANIFEST_ES_V1: readonly LearningV2FactoryNativeMani
     loadAnswers: () => require("./generated_release/es/l03/s08/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/es/l03/s08/auxiliary.json") as unknown,
   }),
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 9,
+    sourceFingerprint: "e98fb17b3140be03c7ba587cc7a4a238283006683afcae41e62c567576c328b4",
+    introCorrectChoiceIndexes: Object.freeze([0,0,0]),
+    introPromptByAuthoredLocale: Object.freeze({"ru":["Скажите, что дом белый.","Скажите, что машина белая.","Скажите, что несколько домов белые."],"uk":["Скажіть, що будинок білий.","Скажіть, що машина біла.","Скажіть, що кілька будинків білі."]}),
+    introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Для casa нужна форма blanca.","Запомните la casa и blanca."],["Для coche нужна форма blanco.","Машина одна: es."],["Casas женского рода: blancas.","Домов несколько: blancas."]],"uk":[["Для casa потрібна форма blanca.","Запам'ятайте la casa та blanca."],["Для coche потрібна форма blanco.","Машина одна: es."],["Casas жіночого роду: blancas.","Будинків кілька: blancas."]]}),
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"описать белый цвет с правильным родом и числом.","uk":"описати білий колір із правильним родом і числом."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+    practiceTitlesByAuthoredLocale: Object.freeze({"ru":[{"ordinal":1,"title":"Карточка слова — blanco"},{"ordinal":2,"title":"Послушайте и выберите слово"},{"ordinal":3,"title":"Соберите фразу — дом белый"},{"ordinal":4,"title":"Вставьте слово — одна машина белая"},{"ordinal":5,"title":"Соберите фразу — машина белая"},{"ordinal":6,"title":"Вставьте слово — несколько домов белые"},{"ordinal":7,"title":"Соберите фразу — дома белые"},{"ordinal":8,"title":"Послушайте и соберите фразу"},{"ordinal":9,"title":"Скажите вслух — дом белый; назовите предмет"},{"ordinal":10,"title":"Вставьте слово — несколько машин белые"},{"ordinal":11,"title":"Скажите вслух — машина белая; назовите предмет"},{"ordinal":12,"title":"Скажите вслух — дома белые; назовите предметы"}],"uk":[{"ordinal":1,"title":"Картка слова — blanco"},{"ordinal":2,"title":"Послухайте й виберіть слово"},{"ordinal":3,"title":"Зберіть фразу — будинок білий"},{"ordinal":4,"title":"Вставте слово — одна машина біла"},{"ordinal":5,"title":"Зберіть фразу — машина біла"},{"ordinal":6,"title":"Вставте слово — кілька будинків білі"},{"ordinal":7,"title":"Зберіть фразу — будинки білі"},{"ordinal":8,"title":"Послухайте й зберіть фразу"},{"ordinal":9,"title":"Скажіть уголос — будинок білий; назвіть предмет"},{"ordinal":10,"title":"Вставте слово — кілька машин білі"},{"ordinal":11,"title":"Скажіть уголос — машина біла; назвіть предмет"},{"ordinal":12,"title":"Скажіть уголос — будинки білі; назвіть предмети"}]}),
+    loadIntro: () => require("./generated_release/es/l03/s09/intro.json") as unknown,
+    loadLearner: (locale: "ru" | "uk") => locale === "uk" ? require("./generated_release/es/l03/s09/learner.uk.json") as unknown : require("./generated_release/es/l03/s09/learner.json") as unknown,
+    loadAnswers: () => require("./generated_release/es/l03/s09/answers.json") as unknown,
+    loadAuxiliary: () => require("./generated_release/es/l03/s09/auxiliary.json") as unknown,
+  }),
 ]);

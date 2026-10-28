@@ -1,0 +1,688 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-03:session-09",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-03:session-09:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — blanco",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-09:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — blanco",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-09:i01:audio",
+          "transcript": "blanco"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-09:i01:r1",
+            "targetText": "blanco",
+            "meaningByLocale": {
+              "ru": "белый; blanca — форма женского рода. 🔊 *blanco*",
+              "uk": "білий; blanca — форма жіночого роду. 🔊 *blanco*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "blanco",
+          "definitionByLocale": {
+            "ru": "белый; blanca — форма женского рода. 🔊 *blanco*",
+            "uk": "білий; blanca — форма жіночого роду. 🔊 *blanco*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-09:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-09:i02:r1",
+          "text": "blanca"
+        },
+        {
+          "responseId": "es:lesson-03:session-09:i02:r2",
+          "text": "blanco"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-09:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-09:i02:audio",
+          "transcript": "blanca"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-09:i02:r1",
+            "targetText": "blanca",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-03:session-09:i02:r2",
+            "targetText": "blanco",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-09:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В конце слышно -a: blanca.",
+              "uk": "Наприкінці чути -a: blanca."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-09:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — будинок білий",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-09:i03:r1",
+          "text": "Плитки: blanca"
+        },
+        {
+          "responseId": "es:lesson-03:session-09:i03:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-09:i03:r3",
+          "text": "casa"
+        },
+        {
+          "responseId": "es:lesson-03:session-09:i03:r4",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-03:session-09:i03:r5",
+          "text": "blanco."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — будинок білий",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "La casa es blanca.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — дом белый",
+          "uk": "Зберіть фразу — будинок білий"
+        },
+        "orderedTokens": [
+          "La",
+          "casa",
+          "es",
+          "blanca"
+        ],
+        "authoredDistractorTokens": [
+          "blanco"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-09:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — будинок білий",
+            "feedbackByLocale": {
+              "ru": "casa женского рода.",
+              "uk": "casa жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-09:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — одна машина біла",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-09:i04:r1",
+          "text": "blanco"
+        },
+        {
+          "responseId": "es:lesson-03:session-09:i04:r2",
+          "text": "blanca"
+        },
+        {
+          "responseId": "es:lesson-03:session-09:i04:r3",
+          "text": "blancos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — одна машина біла",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — одна машина белая",
+          "uk": "Вставте слово — одна машина біла"
+        },
+        "gappedTargetPhrase": "El coche es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-09:i04:r1",
+            "text": "blanco"
+          },
+          {
+            "responseId": "es:lesson-03:session-09:i04:r2",
+            "text": "blanca"
+          },
+          {
+            "responseId": "es:lesson-03:session-09:i04:r3",
+            "text": "blancos"
+          }
+        ],
+        "testedDimension": "Вставте слово — одна машина біла",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-09:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — одна машина біла",
+            "feedbackByLocale": {
+              "ru": "Coche мужского рода: blanco.",
+              "uk": "Coche чоловічого роду: blanco."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-09:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — одна машина біла",
+            "feedbackByLocale": {
+              "ru": "Машина одна: blanco.",
+              "uk": "Машина одна: blanco."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-09:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — машина біла",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-09:i05:r1",
+          "text": "Плитки: blanco"
+        },
+        {
+          "responseId": "es:lesson-03:session-09:i05:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-09:i05:r3",
+          "text": "coche"
+        },
+        {
+          "responseId": "es:lesson-03:session-09:i05:r4",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-03:session-09:i05:r5",
+          "text": "la."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — машина біла",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "El coche es blanco.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — машина белая",
+          "uk": "Зберіть фразу — машина біла"
+        },
+        "orderedTokens": [
+          "El",
+          "coche",
+          "es",
+          "blanco"
+        ],
+        "authoredDistractorTokens": [
+          "la"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-09:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — машина біла",
+            "feedbackByLocale": {
+              "ru": "coche мужского рода.",
+              "uk": "coche чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-09:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — кілька будинків білі",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-09:i06:r1",
+          "text": "blancas"
+        },
+        {
+          "responseId": "es:lesson-03:session-09:i06:r2",
+          "text": "blancos"
+        },
+        {
+          "responseId": "es:lesson-03:session-09:i06:r3",
+          "text": "blanca"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — кілька будинків білі",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — несколько домов белые",
+          "uk": "Вставте слово — кілька будинків білі"
+        },
+        "gappedTargetPhrase": "Las casas son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-09:i06:r1",
+            "text": "blancas"
+          },
+          {
+            "responseId": "es:lesson-03:session-09:i06:r2",
+            "text": "blancos"
+          },
+          {
+            "responseId": "es:lesson-03:session-09:i06:r3",
+            "text": "blanca"
+          }
+        ],
+        "testedDimension": "Вставте слово — кілька будинків білі",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-09:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — кілька будинків білі",
+            "feedbackByLocale": {
+              "ru": "Casas женского рода: blancas.",
+              "uk": "Casas жіночого роду: blancas."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-09:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — кілька будинків білі",
+            "feedbackByLocale": {
+              "ru": "Домов несколько: blancas.",
+              "uk": "Будинків кілька: blancas."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-09:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — будинки білі",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-09:i07:r1",
+          "text": "Плитки: blancas"
+        },
+        {
+          "responseId": "es:lesson-03:session-09:i07:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-09:i07:r3",
+          "text": "casas"
+        },
+        {
+          "responseId": "es:lesson-03:session-09:i07:r4",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-03:session-09:i07:r5",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — будинки білі",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Las casas son blancas.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — дома белые",
+          "uk": "Зберіть фразу — будинки білі"
+        },
+        "orderedTokens": [
+          "Las",
+          "casas",
+          "son",
+          "blancas"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-09:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — будинки білі",
+            "feedbackByLocale": {
+              "ru": "домов несколько.",
+              "uk": "будинків кілька."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-09:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-09:i08:r1",
+          "text": "Плитки: blanco"
+        },
+        {
+          "responseId": "es:lesson-03:session-09:i08:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-09:i08:r3",
+          "text": "coche"
+        },
+        {
+          "responseId": "es:lesson-03:session-09:i08:r4",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-03:session-09:i08:r5",
+          "text": "blanca."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-09:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-09:i08:audio",
+          "transcript": "El coche es blanco."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "El coche es blanco.",
+        "orderedTokens": [
+          "El",
+          "coche",
+          "es",
+          "blanco"
+        ],
+        "authoredDistractorTokens": [
+          "blanca"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-09:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит blanco.",
+              "uk": "звучить blanco."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-09:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — будинок білий; назвіть предмет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-09:i09:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — будинок білий; назвіть предмет",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-09:i09:audio",
+          "transcript": "La casa es blanca."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "La casa es blanca.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-09:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — кілька машин білі",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-09:i10:r1",
+          "text": "blancos"
+        },
+        {
+          "responseId": "es:lesson-03:session-09:i10:r2",
+          "text": "blancas"
+        },
+        {
+          "responseId": "es:lesson-03:session-09:i10:r3",
+          "text": "blanco"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — кілька машин білі",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — несколько машин белые",
+          "uk": "Вставте слово — кілька машин білі"
+        },
+        "gappedTargetPhrase": "Los coches son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-09:i10:r1",
+            "text": "blancos"
+          },
+          {
+            "responseId": "es:lesson-03:session-09:i10:r2",
+            "text": "blancas"
+          },
+          {
+            "responseId": "es:lesson-03:session-09:i10:r3",
+            "text": "blanco"
+          }
+        ],
+        "testedDimension": "Вставте слово — кілька машин білі",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-09:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — кілька машин білі",
+            "feedbackByLocale": {
+              "ru": "Coches мужского рода: blancos.",
+              "uk": "Coches чоловічого роду: blancos."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-09:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — кілька машин білі",
+            "feedbackByLocale": {
+              "ru": "Машин несколько: blancos.",
+              "uk": "Машин кілька: blancos."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-09:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — машина біла; назвіть предмет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-09:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — машина біла; назвіть предмет",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-09:i11:audio",
+          "transcript": "El coche es blanco."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "El coche es blanco.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-09:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — будинки білі; назвіть предмети",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-09:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — будинки білі; назвіть предмети",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-09:i12:audio",
+          "transcript": "Las casas son blancas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Las casas son blancas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "5df330f26196bc0a3f5d8f8f8d5b1d6dce3b7cf137e3590581225e0d4e7511cc"
+}

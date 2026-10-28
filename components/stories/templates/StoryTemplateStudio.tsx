@@ -16,18 +16,19 @@ const LOG = '[STORY-TPL]';
 /** Пауза между закрытием и новым показом, мс (макет: улёт 320 + 100). */
 const REOPEN_MS = 420;
 
-type Props = Readonly<{ lang: Lang; frame?: string }>;
+/** settle — кадр сразу в конечном состоянии и без автоперехода (снимок «конечное состояние» без системного «Уменьшить движение»). */
+type Props = Readonly<{ lang: Lang; frame?: string; settle?: boolean }>;
 
-export default function StoryTemplateStudio({ lang, frame }: Props) {
+export default function StoryTemplateStudio({ lang, frame, settle = false }: Props) {
   const startIndex = studioStartIndex(frame);
   const events = useMemo(() => studioEvents(Date.now()), []);
   const [round, setRound] = useState(0);
   const [open, setOpen] = useState(true);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   useEffect(() => {
-    DebugLogger.info(LOG, `фотостудия: ${events.length} кадров, старт с ${startIndex + 1} (${STORY_TEMPLATE_IDS[startIndex]}) lang=${lang}`);
+    DebugLogger.info(LOG, `фотостудия: ${events.length} кадров, старт с ${startIndex + 1} (${STORY_TEMPLATE_IDS[startIndex]}) lang=${lang} settle=${String(settle)}`);
     return () => { if (timer.current) clearTimeout(timer.current); };
-  }, [events.length, lang, startIndex]);
+  }, [events.length, lang, settle, startIndex]);
   const onClose = useCallback(() => {
     DebugLogger.info(LOG, `фотостудия: просмотр закрыт, новый показ через ${REOPEN_MS} мс`);
     setOpen(false);
@@ -36,5 +37,5 @@ export default function StoryTemplateStudio({ lang, frame }: Props) {
   }, []);
   const onSeen = useCallback((id: string) => { DebugLogger.info(LOG, `фотостудия: показан ${id}`); }, []);
   if (!open) return null;
-  return <StoryViewer key={`studio-${round}`} lang={lang} events={events} coinRank={STORY_SAMPLE_MY_RANK} origin={null} onSeen={onSeen} onClose={onClose} studio startIndex={startIndex} testID="story-studio" />;
+  return <StoryViewer key={`studio-${round}`} lang={lang} events={events} coinRank={STORY_SAMPLE_MY_RANK} origin={null} onSeen={onSeen} onClose={onClose} studio studioSettle={settle} startIndex={startIndex} testID="story-studio" />;
 }

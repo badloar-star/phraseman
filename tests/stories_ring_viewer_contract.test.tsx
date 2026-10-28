@@ -95,6 +95,8 @@ jest.mock('../components/stories/templates/story_template_palette', () => {
 });
 jest.mock('../components/ThemeContext', () => ({ useTheme: () => ({ liquidGlassThemeId: 'ink', setLiquidGlassThemeId: jest.fn() }) }));
 jest.mock('../app/premium_theme_entitlements', () => ({ isPremiumThemeUnlocked: () => true }));
+// зачем (объявления v1, 28.10): кнопка «Открыть Plus» закрывает просмотр и открывает /premium_modal — навигация без настоящего роутера
+jest.mock('expo-router', () => ({ useRouter: () => ({ push: jest.fn() }) }));
 
 import type { StoryEvent } from '../modules/story_events/story_events_core';
 let mockStories: { enabled: boolean; unseenCount: number; playback: readonly StoryEvent[]; stories?: readonly StoryEvent[] };

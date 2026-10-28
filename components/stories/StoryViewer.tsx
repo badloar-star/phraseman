@@ -75,9 +75,11 @@ export type StoryViewerProps = Readonly<{
   studio?: boolean;
   /** С какого кадра открыть (фотостудия: снимок кадра k). */
   startIndex?: number;
+  /** Фотостудия (Сайт 28.10, settle макета): кадр сразу в конечном состоянии и без автоперехода — снимок без системного «Уменьшить движение». */
+  studioSettle?: boolean;
 }>;
 
-function StoryViewer({ lang, liveAnnouncementIds, events: eventsProp, coinRank, origin, onSeen, onClose, testID = 'story-viewer', studio = false, startIndex = 0 }: StoryViewerProps) {
+function StoryViewer({ lang, liveAnnouncementIds, events: eventsProp, coinRank, origin, onSeen, onClose, testID = 'story-viewer', studio = false, startIndex = 0, studioSettle = false }: StoryViewerProps) {
   const p = useSpirePalette();
   const reduceMotion = useReducedMotion();
   const insets = useStableSafeAreaInsets();
@@ -135,12 +137,12 @@ function StoryViewer({ lang, liveAnnouncementIds, events: eventsProp, coinRank, 
   const advance = useCallback(() => { goRef.current(indexRef.current + 1); }, []);
   const runBar = useCallback((from: number) => {
     // зачем (макет stories-templates-v1, владелец 28.10: «Уменьшить движение — всё стоит сразу в конечном состоянии, автопереход выключен»): полоса полная, листание — тапом
-    if (reduceMotion) { progress.value = 1; DebugLogger.info(LOG, `уменьшение движения: автопереход выключен, кадр ${indexRef.current + 1} стоит`); return; }
+    if (reduceMotion || studioSettle) { progress.value = 1; DebugLogger.info(LOG, `${studioSettle ? 'фотостудия settle' : 'уменьшение движения'}: автопереход выключен, кадр ${indexRef.current + 1} стоит`); return; }
     const current=events[indexRef.current];
     const duration=current?.type==='announcement'?Math.max(STORY_SLIDE_MS,Number(current.payload.durationMs)||STORY_SLIDE_MS):STORY_SLIDE_MS; // зачем (владелец 24.10): объявление тоже не короче 10 с
     const left = Math.max(0, 1 - from) * duration;
     progress.value = withTiming(1, { duration: left, easing: EASE_LINEAR }, (finished) => { if (finished) runOnJS(advance)(); });
-  }, [advance, progress, events, reduceMotion]);
+  }, [advance, progress, events, reduceMotion, studioSettle]);
 
   const go = useCallback((target: number) => {
     if (closingRef.current) return;
@@ -274,9 +276,11 @@ function StoryViewer({ lang, liveAnnouncementIds, events: eventsProp, coinRank, 
   ctaZoneRef.current = cta ? winH - ctaBottom - STORY_CTA_HEIGHT - 6 : null;
   // зачем (Сайт 28.10): часы кадра идут столько же, сколько полоса (runBar): у объявления 12/15 с кадр иначе шёл бы медленнее макета
   const frameDurationMs = event?.type === 'announcement' ? Math.max(STORY_SLIDE_MS, Number(event.payload.durationMs) || STORY_SLIDE_MS) : STORY_SLIDE_MS;
-  const clock = useMemo<StoryFrameClock>(() => ({ progress, durationMs: frameDurationMs, final: reduceMotion || screenReader }), [progress, frameDurationMs, reduceMotion, screenReader]);
-  const onCtaAction = useStoryCtaAction(lang, studio);
-  const onCta = useCallback(() => { if (tpl && cta) onCtaAction(cta, tpl); }, [cta, onCtaAction, tpl]);
+  const clock = useMemo<StoryFrameClock>(() => ({ progress, durationMs: frameDurationMs, final: reduceMotion || screenReader || studioSettle }), [progress, frameDurationMs, reduceMotion, screenReader, studioSettle]);
+  const onCtaAction = useStoryCtaAction(lang, studio, close);
+  const onCta = useCallback(() => {
+    if (tpl && cta) onCtaAction(cta, { source: tpl.id, themeId: tpl.id === 'theme' ? tpl.themeId : null });
+  }, [cta, onCtaAction, tpl]);
   return (
     <Modal visible transparent animationType="none" statusBarTranslucent onRequestClose={() => close('back')}>
       <SheetSwipeRoot>

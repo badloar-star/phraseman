@@ -1,36 +1,51 @@
 // ═══════════════════════════════════════════════════════════════════════════
-// use_story_cta_action.ts — что делает кнопка действия кадра истории (6 кнопок макета stories-templates-v1.html).
+// use_story_cta_action.ts — что делает кнопка действия кадра истории: 6 кнопок шаблонов личных историй (stories-templates-v1) и 3 кнопки
+// шаблонов объявлений (stories-announcements-v1: plus / invite / theme).
 //
 // зачем (CLAUDE.md, Optimistic UI): «Включить тему» меняет тему сразу, локально — просмотр перекрашивается под пальцем, сеть не ждём;
 // повторный тап по уже включённой теме ничего не делает. «Поделиться ссылкой» открывает системное окно со ссылкой-приглашением (код — из кэша,
-// сервер только если кода ещё нет). Остальные четыре кнопки принадлежат событиям, которых в приложении ещё нет (дуэль, друг, набор, фраза):
-// в просмотр они не попадают; в фотостудии нажатие только пишет лог. Логи [STORY-TPL] — каждая ветка и каждый ранний выход.
+// сервер только если кода ещё нет), двойной тап не открывает второе окно. «Открыть Plus» закрывает просмотр и открывает экран Plus.
+// Кнопки событий, которых в приложении ещё нет (дуэль, друг, набор, фраза), в просмотр не попадают; в фотостудии нажатие только пишет лог.
+// Логи [STORY-TPL] — каждая ветка и каждый ранний выход.
 // ═══════════════════════════════════════════════════════════════════════════
 import { useCallback, useRef } from 'react';
 import { Share } from 'react-native';
+import { useRouter } from 'expo-router';
 import type { Lang } from '../../../constants/i18n';
 import { DebugLogger } from '../../../app/debug-logger';
 import { isPremiumThemeId } from '../../../app/premium_theme_catalog';
 import { isPremiumThemeUnlocked } from '../../../app/premium_theme_entitlements';
 import { hapticTap } from '../../../hooks/use-haptics';
 import { useTheme } from '../../ThemeContext';
-import type { StoryTemplate, StoryTemplateCta } from './story_template_registry';
+import type { StoryTemplateCta } from './story_template_registry';
 
 const LOG = '[STORY-TPL]';
 
-export function useStoryCtaAction(lang: Lang, studio: boolean): (cta: StoryTemplateCta, tpl: StoryTemplate) => void {
+/** Данные кадра для действия: тема для «Включить тему» (кадр «Новая тема» или объявление design=theme). */
+export type StoryCtaContext = Readonly<{ source: string; themeId: string | null }>;
+
+export function useStoryCtaAction(lang: Lang, studio: boolean, closeViewer: (source: string) => void): (cta: StoryTemplateCta, ctx: StoryCtaContext) => void {
   const { liquidGlassThemeId, setLiquidGlassThemeId } = useTheme();
+  const router = useRouter();
   const sharingRef = useRef(false);
-  return useCallback((cta: StoryTemplateCta, tpl: StoryTemplate) => {
-    DebugLogger.info(LOG, `кнопка action=${cta.action} кадр=${tpl.id} студия=${String(studio)}`);
+  return useCallback((cta: StoryTemplateCta, ctx: StoryCtaContext) => {
+    DebugLogger.info(LOG, `кнопка action=${cta.action} кадр=${ctx.source} студия=${String(studio)}`);
     void hapticTap();
     if (studio) { DebugLogger.info(LOG, `кнопка в фотостудии: только лог, действия нет (action=${cta.action})`); return; }
     if (cta.action === 'use_theme') {
-      if (tpl.id !== 'theme' || !isPremiumThemeId(tpl.themeId)) { DebugLogger.info(LOG, `тема: кадр=${tpl.id} themeId не особая тема — выход`); return; }
-      if (!isPremiumThemeUnlocked(tpl.themeId)) { DebugLogger.info(LOG, `тема ${tpl.themeId}: не открыта по entitlements — не включаем`); return; }
-      if (liquidGlassThemeId === tpl.themeId) { DebugLogger.info(LOG, `тема ${tpl.themeId} уже включена — выход`); return; }
-      DebugLogger.info(LOG, `тема: ${liquidGlassThemeId} → ${tpl.themeId} (локально, сразу)`);
-      setLiquidGlassThemeId(tpl.themeId);
+      const themeId = ctx.themeId;
+      if (!isPremiumThemeId(themeId)) { DebugLogger.info(LOG, `тема: кадр=${ctx.source} themeId=${themeId ?? '—'} не особая тема — выход`); return; }
+      if (!isPremiumThemeUnlocked(themeId)) { DebugLogger.info(LOG, `тема ${themeId}: не открыта по entitlements — не включаем`); return; }
+      if (liquidGlassThemeId === themeId) { DebugLogger.info(LOG, `тема ${themeId} уже включена — выход`); return; }
+      DebugLogger.info(LOG, `тема: ${liquidGlassThemeId} → ${themeId} (локально, сразу)`);
+      setLiquidGlassThemeId(themeId);
+      return;
+    }
+    if (cta.action === 'open_plus') {
+      // зачем: экран Plus — маршрут; просмотр (Modal) закрываем, иначе экран открылся бы под ним
+      DebugLogger.info(LOG, `Plus: закрываем просмотр и открываем /premium_modal source=story_announcement`);
+      closeViewer('cta_open_plus');
+      router.push({ pathname: '/premium_modal', params: { source: 'story_announcement' } } as never);
       return;
     }
     if (cta.action === 'share_link') {
@@ -51,5 +66,5 @@ export function useStoryCtaAction(lang: Lang, studio: boolean): (cta: StoryTempl
       return;
     }
     DebugLogger.info(LOG, `кнопка action=${cta.action}: события этого кадра в приложении ещё нет — переход не назначен`);
-  }, [lang, liquidGlassThemeId, setLiquidGlassThemeId, studio]);
+  }, [closeViewer, lang, liquidGlassThemeId, router, setLiquidGlassThemeId, studio]);
 }

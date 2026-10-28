@@ -17,7 +17,8 @@
 //   state=dlgchain — m18 «Эмма думает…» → «отлично!» → 5 целей каскадом → +30 (&wait=мс — задержка «ответа сети», 600). Для m08/m10/m18 включи флаг: dev_state?moments=v3
 //   state=fonts — полоса весов Inter 400–900 для решения владельца по шрифту 800 (Темы; на Android 246 мест рисуются как 700)
 //   state=stories — «фотостудия историй»: настоящий просмотр со всеми 23 кадрами макета stories-templates-v1.html на примерных данных;
-//     &frame=duel | 1…23 — открыть с этого кадра (по умолчанию 1). Кнопки действия только пишут лог [STORY-TPL]
+//     &frame=duel | 1…23 — открыть с этого кадра (по умолчанию 1); &settle=1 — кадр сразу в конечном состоянии, без автоперехода (снимки).
+//     Кнопки действия только пишут лог [STORY-TPL]
 //   &selector=1 — снизу полоса переключения состояний и «Повторить» (по умолчанию скрыта, чтобы не попадать в кадр); &replay=N — перезапуск показа
 // Экраны — ТЕ ЖЕ компоненты, что будут в бою; данные — моки без сети, ничего не пишется и не начисляется. Тема и язык — текущие настройки приложения (dev_state?theme=…).
 // В релизе маршрута нет: ENABLE_DEV_TOOLS && !IS_STORE_RELEASE, иначе уводим на Главную; в стор-сборке файл исключён регуляркой router.ctx.js.
@@ -91,7 +92,7 @@ const int = (raw: string | undefined, fallback: number, min: number, max: number
 };
 
 function Inner() {
-  const params = useLocalSearchParams<{ state?: string; tier?: string; place?: string; gap?: string; coins?: string; rank?: string; selector?: string; replay?: string; d?: string; p?: string; awake?: string; n?: string; goals?: string; study?: string; wait?: string; frame?: string }>();
+  const params = useLocalSearchParams<{ state?: string; tier?: string; place?: string; gap?: string; coins?: string; rank?: string; selector?: string; replay?: string; d?: string; p?: string; awake?: string; n?: string; goals?: string; study?: string; wait?: string; frame?: string; settle?: string }>();
   const { lang } = useLang();
   const fromParam: PreviewState = isState(params.state) ? params.state : 'promo';
   const [state, setState] = useState<PreviewState>(fromParam);
@@ -163,7 +164,7 @@ function Inner() {
         {state === 'donechain' ? <DoneChainPreview key={key} lang={lang} /> : null}
         {state === 'dlgchain' ? <DialogueChainPreview key={key} lang={lang} waitMs={int(params.wait, 600, 0, 10000)} /> : null}
         {/* зачем (владелец 28.10: шаблоны историй «проверить через дев»): 23 кадра в настоящем просмотре — снимки Сверки «эмулятор | макет» */}
-        {state === 'stories' ? <StoryTemplateStudio key={key} lang={lang} frame={params.frame} /> : null}
+        {state === 'stories' ? <StoryTemplateStudio key={key} lang={lang} frame={params.frame} settle={params.settle === '1'} /> : null}
         {params.selector === '1' ? (
           <View style={s.bar} pointerEvents="box-none">
             {STATES.map((st) => (

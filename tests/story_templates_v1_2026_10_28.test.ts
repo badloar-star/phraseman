@@ -247,9 +247,10 @@ describe('шаблоны историй v1 — стиль и связи', () => 
     expect(viewer).toContain('<StoryFrameClockProvider value={clock}>');
     expect(viewer).toContain('final: reduceMotion || screenReader');
     expect(viewer).toContain('<StoryPauseBadge visible={heldUi} />');
-    expect(viewer).toContain('if (reduceMotion) { progress.value = 1;');
+    expect(viewer).toContain('if (reduceMotion || studioSettle) { progress.value = 1;');
+    expect(viewer).toContain('final: reduceMotion || screenReader || studioSettle');
     const route = read('app/dev_moments_preview.tsx');
     expect(route).toContain("'stories'] as const");
-    expect(route).toContain('<StoryTemplateStudio key={key} lang={lang} frame={params.frame} />');
+    expect(route).toContain("<StoryTemplateStudio key={key} lang={lang} frame={params.frame} settle={params.settle === '1'} />");
   });
 });

@@ -8,6 +8,9 @@ import {
   ANNOUNCEMENT_ART_DEFAULTS, ANNOUNCEMENT_CTA_ACTIONS, ANNOUNCEMENT_DESIGNS, STORY_POLLS_COLLECTION, STORY_POLL_VOTES_SUBCOLLECTION,
   decideStoryPollVote, liveAnnouncements, normalizeAnnouncement, normalizeStoryPollVoteInput, storyPollDocId, storyPollPercents,
 } from '../modules/story_events/story_announcements_contract';
+import { announcementCta, announcementFromEvent } from '../components/stories/templates/announcement_v2_bridge';
+
+jest.mock('../app/debug-logger', () => ({ DebugLogger: { info: jest.fn(), warn: jest.fn() } }));
 
 const ROOT = path.join(__dirname, '..');
 const read = (rel: string): string => fs.readFileSync(path.join(ROOT, rel), 'utf8').replace(/\r\n/g, '\n');
@@ -97,5 +100,28 @@ describe('объявления v1 — опрос (политика: вариан
     expect(del).toContain("{ collectionGroup: 'votes', field: 'userId', values: 'stable' }");
     const publish = read('functions/src/story_announcements.ts');
     expect(publish).toContain('if (pollContent?.design === "poll")');
+  });
+});
+
+describe('объявления v1 — мост просмотра (событие → объявление → кнопка)', () => {
+  const now = 1_800_000_000_000;
+  const published = { ...base, id: 'a1', revision: 2, status: 'published', publishedAtMs: now - 1000, expiresAtMs: now + 1000 };
+  const ev = (contentJson: unknown) => ({ id: 'announcement:a1', type: 'announcement', payload: { contentJson } });
+
+  it('contentJson проходит общий контракт; битый JSON, не объявление и просроченное — прежний кадр (null)', () => {
+    expect(announcementFromEvent(ev(JSON.stringify({ ...published, design: 'quote' })), now)).toMatchObject({ id: 'a1', design: 'quote' });
+    expect(announcementFromEvent(ev('{oops'), now)).toBeNull();
+    expect(announcementFromEvent(ev(undefined), now)).toBeNull();
+    expect(announcementFromEvent({ id: 'x', type: 'achievement', payload: {} }, now)).toBeNull();
+    expect(announcementFromEvent(ev(JSON.stringify({ ...published, expiresAtMs: now - 1 })), now)).toBeNull();
+  });
+
+  it('кнопка — только у plus / invite / theme и только если включена в редакторе', () => {
+    const a = (extra: Record<string, unknown>) => announcementFromEvent(ev(JSON.stringify({ ...published, ...extra })), now)!;
+    expect(announcementCta(a({ design: 'plus', cta: { action: 'open_plus' } }))).toEqual({ action: 'open_plus', label: 'ctaOpenPlus', icon: 'sparkles' });
+    expect(announcementCta(a({ design: 'invite', cta: { action: 'share_invite' } }))?.action).toBe('share_link');
+    expect(announcementCta(a({ design: 'theme', themeId: 'grad_full_titanium', cta: { action: 'use_theme' } }))?.action).toBe('use_theme');
+    expect(announcementCta(a({ design: 'plus' }))).toBeNull();
+    expect(announcementCta(a({ design: 'quote' }))).toBeNull();
   });
 });

@@ -22,7 +22,7 @@ export function isStoryTemplateId(value: unknown): value is StoryTemplateId {
 }
 
 export type StoryIconName = React.ComponentProps<typeof Ionicons>['name'];
-export type StoryTemplateCtaAction = 'catch_up' | 'duel' | 'open_pack' | 'add_cards' | 'share_link' | 'use_theme';
+export type StoryTemplateCtaAction = 'catch_up' | 'duel' | 'open_pack' | 'add_cards' | 'share_link' | 'use_theme' | 'open_plus';
 export type StoryTemplateCta = Readonly<{ action: StoryTemplateCtaAction; label: StoryTemplateStringKey; icon: StoryIconName }>;
 
 /** Кнопки действия макета (`cta`): подпись и глиф Ionicons — те же, что в макете (arrowR, flash, layers, bookmark, share, palette). */

@@ -1161,8 +1161,19 @@ export async function loadCurrentLearningV2CourseReleasedSessionV3(
   // читал — экран висел на сетевом запросе даже для контента, который уже был
   // на телефоне.
   const bundled = bundledLearningV2CourseSessionMaterialV3(locator);
-  if (bundled) return appResult(bundled, "bundled_factory");
-  if (locator.targetLanguage === "en" || locator.targetLanguage === "es") throw new Error("learning_v2_factory_session_unavailable");
+  // зачем (координатор 28.10, жалобы #1/#3/#11 «нет доступа к занятиям», сперва логи): одна строка на развилку источника —
+  // какое занятие просили, нашлось ли оно в бандле, куда пошли дальше и почему отказ. Причину null пишет [V2-BUNDLED] выше.
+  const sourceTrace = { target: locator.targetLanguage, lesson: locator.lessonOrdinal, session: locator.sessionOrdinal, locale: locator.learnerSourceLocale, inBundle: bundled !== null };
+  if (bundled) {
+    console.log(`[V2-SESSION-SOURCE] ${JSON.stringify({ ...sourceTrace, source: "bundled_factory" })}`); // guard-ok: одна строка на открытие
+    return appResult(bundled, "bundled_factory");
+  }
+  if (locator.targetLanguage === "en" || locator.targetLanguage === "es") {
+    // en/es живут только в бандле: сетевого пути и офлайн-копии для них нет — человек видит «Сессия недоступна».
+    console.log(`[V2-SESSION-SOURCE] ${JSON.stringify({ ...sourceTrace, source: "none", reason: "learning_v2_factory_session_unavailable", shown: "session_unavailable" })}`); // guard-ok: причина отказа
+    throw new Error("learning_v2_factory_session_unavailable");
+  }
+  console.log(`[V2-SESSION-SOURCE] ${JSON.stringify({ ...sourceTrace, source: "network_or_lkg" })}`); // guard-ok: одна строка на открытие
   // зачем ensureStableAuthLink, а не голый ensureAnonUser (владелец,
   // 2026-08-27, «сессии должны быть доступны всегда, даже без привязки
   // аккаунта»; ensureStableAuthLink = ensureAnonUser + серверная привязка,

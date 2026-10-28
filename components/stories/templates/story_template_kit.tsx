@@ -94,7 +94,7 @@ export const Chip = memo(function Chip({ icon, text, d }: Readonly<{ icon: React
 
 // ── конфетти (макет `confetti(n, d0)`) ───────────────────────────────────────────────────────────────────────────
 
-const ConfettiBit = memo(function ConfettiBit({ piece }: Readonly<{ piece: ConfettiPiece }>) {
+const ConfettiBit = memo(function ConfettiBit({ piece, fromPct }: Readonly<{ piece: ConfettiPiece; fromPct: number }>) {
   const { progress, durationMs, final } = useStoryFrameClock();
   const style = useAnimatedStyle(() => {
     const t = frameMs(progress.value, durationMs, final);
@@ -102,16 +102,17 @@ const ConfettiBit = memo(function ConfettiBit({ piece }: Readonly<{ piece: Confe
     const p = EASE_CONF(phase(t, piece.d, 1700));
     return { opacity: 1 - p, transform: [{ translateX: piece.dx * p }, { translateY: piece.dy * p }, { rotate: `${piece.rot * p}deg` }] };
   });
-  return <Animated.View style={[k.conf, { backgroundColor: piece.color }, style]} />;
+  return <Animated.View style={[k.conf, { top: `${fromPct}%`, backgroundColor: piece.color }, style]} />;
 });
 
-/** Слой конфетти в цветах темы; «Уменьшить движение» — слоя нет (как display:none в макете). */
-export const Confetti = memo(function Confetti({ n, d0 }: Readonly<{ n: number; d0: number }>) {
+/** Слой конфетти в цветах темы; «Уменьшить движение» — слоя нет (как display:none в макете).
+ *  `fromPct` — высота старта, % кадра: 42 у макета историй (`.conf i { top: 42% }`), 40 у макета объявлений (Сайт 28.10). */
+export const Confetti = memo(function Confetti({ n, d0, fromPct = 42 }: Readonly<{ n: number; d0: number; fromPct?: number }>) {
   const pal = useStoryTemplatePalette();
   const { final } = useStoryFrameClock();
   const pieces = useMemo(() => confettiPieces(n, d0, [pal.accB, pal.accG, pal.tx, pal.sec]), [n, d0, pal.accB, pal.accG, pal.tx, pal.sec]);
   if (final) return null;
-  return <>{pieces.map((piece) => <ConfettiBit key={`${piece.dx}:${piece.dy}:${piece.d}`} piece={piece} />)}</>;
+  return <>{pieces.map((piece) => <ConfettiBit key={`${piece.dx}:${piece.dy}:${piece.d}`} piece={piece} fromPct={fromPct} />)}</>;
 });
 
 // ── кольцо (макет `ring(frac, inner)`) ───────────────────────────────────────────────────────────────────────────

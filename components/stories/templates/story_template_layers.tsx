@@ -18,22 +18,23 @@ import { mix, useStoryTemplatePalette } from './story_template_palette';
 
 // ── снег (stSnow: вниз на 880 и вбок на sx, линейно, бесконечно; к концу гаснет) ──────────────────────────────────────────────
 
-const SnowFlake = memo(function SnowFlake({ flake, color }: Readonly<{ flake: Flake; color: string }>) {
+const SnowFlake = memo(function SnowFlake({ flake, color, fallTo }: Readonly<{ flake: Flake; color: string; fallTo: number }>) {
   const { progress, durationMs, final } = useStoryFrameClock();
   const animated = useAnimatedStyle(() => {
     // зачем: отрицательная задержка макета = снежинка уже в пути с первого кадра
     const u = ((frameMs(progress.value, durationMs, final) + flake.offsetMs) % flake.durMs) / flake.durMs;
-    return { opacity: 0.75 * (1 - u), transform: [{ translateY: 880 * u }, { translateX: flake.sx * u }] };
+    return { opacity: 0.75 * (1 - u), transform: [{ translateY: fallTo * u }, { translateX: flake.sx * u }] };
   });
   return <Animated.View style={[l.flake, { left: `${flake.x}%`, width: flake.size, height: flake.size, borderRadius: flake.size / 2, backgroundColor: color }, animated]} />;
 });
 
-export const Snow = memo(function Snow() {
+/** Снег; `fallTo` — глубина падения, dp: 880 у макета историй, 760 у макета объявлений (stories-announcements-v1, Сайт 28.10). */
+export const Snow = memo(function Snow({ fallTo = 880 }: Readonly<{ fallTo?: number }>) {
   const pal = useStoryTemplatePalette();
   const { final } = useStoryFrameClock();
   const flakes = useMemo(snowFlakes, []);
   if (final) return null;
-  return <View style={l.clip}>{flakes.map((flake) => <SnowFlake key={`${flake.x}:${flake.offsetMs}`} flake={flake} color={pal.tx} />)}</View>;
+  return <View style={l.clip}>{flakes.map((flake) => <SnowFlake key={`${flake.x}:${flake.offsetMs}`} flake={flake} color={pal.tx} fallTo={fallTo} />)}</View>;
 });
 
 // ── дождь монет (stRain: вниз на 820 с поворотом, кривая .4,0,1,1; гаснет на последних 15 %) ───────────────────────────────────
@@ -95,14 +96,16 @@ export const CoinFlip = memo(function CoinFlip({ from, to }: Readonly<{ from: nu
 /** Серп блика «inset 0 2px 0»: круг ядра минус тот же круг на 2 dp ниже (чётно-нечётная заливка), обрезано ядром. */
 const CORE_HIGHLIGHT = 'M0,60 a60,60 0 1,0 120,0 a60,60 0 1,0 -120,0 Z M0,62 a60,60 0 1,0 120,0 a60,60 0 1,0 -120,0 Z';
 
-export const ThemeSwatch = memo(function ThemeSwatch({ colorA, colorB }: Readonly<{ colorA: string; colorB: string }>) {
+/** Круг темы; `orbitColor` — цвет орбит: accG у макета историй, accInk у макета объявлений (`stroke: var(--acc-ink)`, Сайт 28.10). */
+export const ThemeSwatch = memo(function ThemeSwatch({ colorA, colorB, orbitColor }: Readonly<{ colorA: string; colorB: string; orbitColor?: string }>) {
   const pal = useStoryTemplatePalette();
+  const orbit = orbitColor ?? pal.accG;
   return (
     <View style={l.swatch}>
       <Spin periodMs={18000} style={StyleSheet.absoluteFill}>
         <Svg width={170} height={170} viewBox="0 0 170 170">
-          <Ellipse cx={85} cy={85} rx={82} ry={36} fill="none" stroke={pal.accG} strokeWidth={7} strokeOpacity={0.7} transform="rotate(-22 85 85)" />
-          <Ellipse cx={85} cy={85} rx={44} ry={66} fill="none" stroke={pal.accG} strokeWidth={4} strokeOpacity={0.5} transform="rotate(31 85 85)" />
+          <Ellipse cx={85} cy={85} rx={82} ry={36} fill="none" stroke={orbit} strokeWidth={7} strokeOpacity={0.7} transform="rotate(-22 85 85)" />
+          <Ellipse cx={85} cy={85} rx={44} ry={66} fill="none" stroke={orbit} strokeWidth={4} strokeOpacity={0.5} transform="rotate(31 85 85)" />
         </Svg>
       </Spin>
       <View style={[l.core, { boxShadow: `0 20px 50px -20px ${mix(pal.shTint, 0.6)}` }]}>

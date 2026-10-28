@@ -45,7 +45,7 @@
 **Подруга пропонує їздити разом. Скажіть їй: «Зранку немає автобуса».**
 
 - ✅ **There is no bus in the morning.**
-- ❌ There are no bus in the morning. — *Слово bus стоїть в однині: потрібно There is no.*
+- ❌ There are no bus in the morning. — *Слово bus стоїть у формі для одного: потрібно There is no.*
 - ❌ There is no bus on the morning. — *З ранком кажемо in the morning.*
 
 ---
@@ -136,7 +136,7 @@ morning — ранок · weekend — вихідні · night — ніч · even
 **18 · Скажіть, що зранку автобуса немає. Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-05:i14; family: context_gap_grammar -->
 There ___ no bus in the morning. → **is** · are · am
-- are — *Слово bus стоїть в однині: потрібно `There is no`.*
+- are — *Слово bus стоїть у формі для одного: потрібно `There is no`.*
 - am — *Потрібно `There is no`; `am` пасує лише до `I`.*
 
 **19 · Послухайте питання про майстерню**

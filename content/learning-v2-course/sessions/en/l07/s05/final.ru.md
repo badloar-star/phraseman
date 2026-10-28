@@ -45,7 +45,7 @@
 **Подруга предлагает ездить вместе. Скажите ей: «Утром нет автобуса».**
 
 - ✅ **There is no bus in the morning.**
-- ❌ There are no bus in the morning. — *Слово bus стоит в единственном числе: нужно There is no.*
+- ❌ There are no bus in the morning. — *Слово bus стоит в форме для одного: нужно There is no.*
 - ❌ There is no bus on the morning. — *С утром говорим in the morning.*
 
 ---
@@ -136,7 +136,7 @@ morning — утро · weekend — выходные · night — ночь · ev
 **18 · Скажите, что утром автобуса нет. Выберите слово**
 <!-- interaction_id: en:lesson-07:session-05:i14; family: context_gap_grammar -->
 There ___ no bus in the morning. → **is** · are · am
-- are — *Слово bus стоит в единственном числе: нужно `There is no`.*
+- are — *Слово bus стоит в форме для одного: нужно `There is no`.*
 - am — *Нужно `There is no`; `am` подходит только к `I`.*
 
 **19 · Послушайте вопрос о мастерской**

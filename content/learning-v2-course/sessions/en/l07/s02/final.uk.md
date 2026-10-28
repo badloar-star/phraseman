@@ -136,7 +136,7 @@ tape — клейка стрічка · scale — ваги · package — пос
 **18 · Скажіть, що ваг немає. Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-02:i14; family: context_gap_grammar -->
 There ___ no scale here. → **is** · are · am
-- are — *Слово scale стоїть в однині: потрібно `There is no`.*
+- are — *Слово scale стоїть у формі для одного: потрібно `There is no`.*
 - am — *Потрібно `There is no`; `am` пасує лише до `I`.*
 
 **19 · Послухайте питання на пошті**

@@ -136,7 +136,7 @@ tape — клейкая лента · scale — весы · package — посы
 **18 · Скажите, что весов нет. Выберите слово**
 <!-- interaction_id: en:lesson-07:session-02:i14; family: context_gap_grammar -->
 There ___ no scale here. → **is** · are · am
-- are — *Слово scale стоит в единственном числе: нужно `There is no`.*
+- are — *Слово scale стоит в форме для одного: нужно `There is no`.*
 - am — *Нужно `There is no`; `am` подходит только к `I`.*
 
 **19 · Послушайте вопрос на почте**

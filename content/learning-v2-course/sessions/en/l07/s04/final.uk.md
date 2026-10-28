@@ -45,7 +45,7 @@
 **Подруга просить перевірити стіл. Рахунку там немає. Скажіть їй: «Тут немає рахунку».**
 
 - ✅ **There is no bill here.**
-- ❌ There are no bill here. — *Слово bill стоїть в однині: потрібно There is no.*
+- ❌ There are no bill here. — *Слово bill стоїть у формі для одного: потрібно There is no.*
 - ❌ There is not bill here. — *Після not тут бракує a. У нашій відповіді використовуємо no bill.*
 
 ---
@@ -136,7 +136,7 @@ bill — рахунок · cash — готівка · menu — меню · waite
 **18 · Скажіть подрузі, що рахунку немає. Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-04:i14; family: context_gap_grammar -->
 There ___ no bill here. → **is** · are · am
-- are — *Слово bill стоїть в однині: потрібно `There is no`.*
+- are — *Слово bill стоїть у формі для одного: потрібно `There is no`.*
 - am — *Потрібно `There is no`; `am` пасує лише до `I`.*
 
 **19 · Послухайте питання про кафе**

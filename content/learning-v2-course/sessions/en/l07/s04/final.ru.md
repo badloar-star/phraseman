@@ -45,7 +45,7 @@
 **Подруга просит проверить стол. Счёта там нет. Скажите ей: «Здесь нет счёта».**
 
 - ✅ **There is no bill here.**
-- ❌ There are no bill here. — *Слово bill стоит в единственном числе: нужно There is no.*
+- ❌ There are no bill here. — *Слово bill стоит в форме для одного: нужно There is no.*
 - ❌ There is not bill here. — *После not здесь не хватает a. В нашем ответе используем no bill.*
 
 ---
@@ -136,7 +136,7 @@ bill — счёт · cash — наличные деньги · menu — меню
 **18 · Скажите подруге, что счёта нет. Выберите слово**
 <!-- interaction_id: en:lesson-07:session-04:i14; family: context_gap_grammar -->
 There ___ no bill here. → **is** · are · am
-- are — *Слово bill стоит в единственном числе: нужно `There is no`.*
+- are — *Слово bill стоит в форме для одного: нужно `There is no`.*
 - am — *Нужно `There is no`; `am` подходит только к `I`.*
 
 **19 · Послушайте вопрос о кафе**

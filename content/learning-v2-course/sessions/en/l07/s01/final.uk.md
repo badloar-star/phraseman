@@ -45,7 +45,7 @@
 **Сусід чекає доставку. Ви визирнули у двір. Скажіть йому: «Тут немає кур’єра».**
 
 - ✅ **There is no courier here.**
-- ❌ There are no courier here. — *Слово courier стоїть в однині: потрібно There is no.*
+- ❌ There are no courier here. — *Слово courier стоїть у формі для одного: потрібно There is no.*
 - ❌ There is not courier here. — *Після not тут бракує a. В обраній конструкції використовуємо no courier.*
 
 ---
@@ -136,7 +136,7 @@ courier — кур’єр · forklift — навантажувач · factory �
 **18 · Скажіть сусіду, що кур’єра немає. Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-01:i14; family: context_gap_grammar -->
 There ___ no courier here. → **is** · are · am
-- are — *Слово courier стоїть в однині: потрібно `There is no`.*
+- are — *Слово courier стоїть у формі для одного: потрібно `There is no`.*
 - am — *Потрібно `There is no`; `am` пасує лише до `I`.*
 
 **19 · Послухайте питання сусіда**

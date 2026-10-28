@@ -45,7 +45,7 @@
 **Сусід дивується відчиненим воротам. Скажіть йому: «Біля воріт немає охоронця».**
 
 - ✅ **There is no guard at the gate.**
-- ❌ There are no guard at the gate. — *Слово guard стоїть в однині: потрібно There is no.*
+- ❌ There are no guard at the gate. — *Слово guard стоїть у формі для одного: потрібно There is no.*
 - ❌ There is not guard at the gate. — *Після not тут бракує a. У нашій відповіді використовуємо no guard.*
 
 ---
@@ -136,7 +136,7 @@ count — рахувати · check — перевіряти · guard — охо
 **18 · Скажіть сусіду, що охоронця немає. Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-08:i14; family: context_gap_grammar -->
 There ___ no guard at the gate. → **is** · are · am
-- are — *Слово guard стоїть в однині: потрібно `There is no`.*
+- are — *Слово guard стоїть у формі для одного: потрібно `There is no`.*
 - am — *Потрібно `There is no`; `am` пасує лише до `I`.*
 
 **19 · Послухайте питання в районі**

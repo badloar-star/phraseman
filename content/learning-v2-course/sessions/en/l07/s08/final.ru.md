@@ -45,7 +45,7 @@
 **Сосед удивляется открытым воротам. Скажите ему: «У ворот нет охранника».**
 
 - ✅ **There is no guard at the gate.**
-- ❌ There are no guard at the gate. — *Слово guard стоит в единственном числе: нужно There is no.*
+- ❌ There are no guard at the gate. — *Слово guard стоит в форме для одного: нужно There is no.*
 - ❌ There is not guard at the gate. — *После not здесь не хватает a. В нашем ответе используем no guard.*
 
 ---
@@ -136,7 +136,7 @@ count — считать · check — проверять · guard — охран
 **18 · Скажите соседу, что охранника нет. Выберите слово**
 <!-- interaction_id: en:lesson-07:session-08:i14; family: context_gap_grammar -->
 There ___ no guard at the gate. → **is** · are · am
-- are — *Слово guard стоит в единственном числе: нужно `There is no`.*
+- are — *Слово guard стоит в форме для одного: нужно `There is no`.*
 - am — *Нужно `There is no`; `am` подходит только к `I`.*
 
 **19 · Послушайте вопрос в районе**

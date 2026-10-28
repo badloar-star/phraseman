@@ -45,7 +45,7 @@
 **Сосед ждёт доставку. Вы выглянули во двор. Скажите ему: «Здесь нет курьера».**
 
 - ✅ **There is no courier here.**
-- ❌ There are no courier here. — *Слово courier стоит в единственном числе: нужно There is no.*
+- ❌ There are no courier here. — *Слово courier стоит в форме для одного: нужно There is no.*
 - ❌ There is not courier here. — *После not здесь не хватает a. В выбранной конструкции используем no courier.*
 
 ---
@@ -136,7 +136,7 @@ courier — курьер · forklift — погрузчик · factory — фа�
 **18 · Скажите соседу, что курьера нет. Выберите слово**
 <!-- interaction_id: en:lesson-07:session-01:i14; family: context_gap_grammar -->
 There ___ no courier here. → **is** · are · am
-- are — *Слово courier стоит в единственном числе: нужно `There is no`.*
+- are — *Слово courier стоит в форме для одного: нужно `There is no`.*
 - am — *Нужно `There is no`; `am` подходит только к `I`.*
 
 **19 · Послушайте вопрос соседа**

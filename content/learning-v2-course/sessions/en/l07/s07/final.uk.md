@@ -46,7 +46,7 @@
 
 - ✅ **There is no voucher here.**
 - ❌ There is no a voucher here. — *Після no слово a не потрібне: There is no voucher.*
-- ❌ There are no voucher here. — *Слово voucher стоїть в однині: потрібно There is no.*
+- ❌ There are no voucher here. — *Слово voucher стоїть у формі для одного: потрібно There is no.*
 
 ---
 
@@ -136,7 +136,7 @@ join — долучатися · voucher — талон · schedule — розк
 **18 · Скажіть подрузі, що ваучера немає. Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-07:i14; family: context_gap_grammar -->
 There ___ no voucher here. → **is** · are · am
-- are — *Слово voucher стоїть в однині: потрібно `There is no`.*
+- are — *Слово voucher стоїть у формі для одного: потрібно `There is no`.*
 - am — *Потрібно `There is no`; `am` пасує лише до `I`.*
 
 **19 · Послухайте питання про студію**

@@ -81,7 +81,8 @@ describe('DailyPhraseCard quest contract', () => {
 
   it('uses tonal surfaces for the modal sheet internals without replacing the themed daily plaque chrome', () => {
     expect(source).toContain('TonalSurface');
-    expect(source).toContain('dailyPhraseChromeFor(themeMode)');
+    // зачем (аудит цвета 28.10): оформление карточки — из токенов текущей темы, а не из таблицы по режиму
+    expect(source).toContain('dailyPhraseChromeFromTokens(glassTokens)');
     expect(source).toContain('radius={24} tone="raised"');
     // зачем (10.10): шторка по скрину владельца (322b0f847, 01.10) — три одинаковые карточки на radius 16, без radius 18.
     expect(source.split('radius={16} tone="subtle"').length - 1).toBeGreaterThanOrEqual(3);

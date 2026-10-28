@@ -1,6 +1,5 @@
 import fs from 'fs';
 import path from 'path';
-import { DAILY_PHRASE_CHROME, dailyPhraseChromeFor } from '../app/daily_phrase_chrome';
 import { themedToastChrome } from '../constants/themedToastChrome';
 import { statsPageField, statsSoftBg, statsThemeAccent } from '../constants/statsThemeChrome';
 import { SAGE_PORCELAIN } from '../constants/theme';
@@ -21,10 +20,10 @@ describe('Sage Porcelain surface chrome contract', () => {
     const sources: Array<[string, string]> = [
       // зачем: карта SETTINGS_SURFACES (components/settings/settingsSurfaces.ts) удалена 15.10 как мёртвый код прежней системы тем
       // (никто не импортировал, цвета Настроек берутся из liquidGlassTokens) — её проверок здесь больше нет.
-      ['app/daily_phrase_chrome.ts', 'midnight'],
       ['constants/themedToastChrome.ts', 'midnight'],
       ['constants/statsThemeChrome.ts', 'midnight'],
-      ['components/medalToastThemeStyles.ts', 'midnight'],
+      // зачем (аудит цвета 28.10): таблицы «Фразы дня» (daily_phrase_chrome) и тоста медали (medalToastThemeStyles) по прежнему режиму удалены — обе считаются из токенов темы;
+      // читаемость Sage там проверяют tests/daily_phrase_chrome_tokens.test.ts и tests/lessons_level_tokens_medal_toast_contract.test.ts (все темы, включая sagePorcelain-подобные).
     ];
 
     for (const [file, nextTheme] of sources) {
@@ -34,12 +33,7 @@ describe('Sage Porcelain surface chrome contract', () => {
     }
   });
 
-  it('resolves the Sage daily phrase and toast chrome from porcelain roles', () => {
-    expect(DAILY_PHRASE_CHROME.sagePorcelain).toMatchObject({
-      colors: ['#FCFDF9', '#F0F1EC', '#E1E5DC'], border: '#CFD6CE', title: '#3C5A50',
-      phrase: '#17201D', sub: '#52605A', ornament: '#315F50',
-    });
-    expect(dailyPhraseChromeFor('sagePorcelain')).toEqual(DAILY_PHRASE_CHROME.sagePorcelain);
+  it('resolves the Sage toast chrome from porcelain roles', () => {
     expect(themedToastChrome('sagePorcelain', SAGE_PORCELAIN)).toMatchObject({
       cardColors: ['#FCFDF9', '#F0F1EC', '#E1E5DC'], accent: '#315F50', accentSoft: '#D9E9E1',
       border: '#CFD6CE', title: '#17201D', body: '#52605A',

@@ -1,0 +1,965 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-03:session-16",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-03:session-16:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — одна коробка красная",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-16:i01:r1",
+          "text": "roja"
+        },
+        {
+          "responseId": "es:lesson-03:session-16:i01:r2",
+          "text": "rojo"
+        },
+        {
+          "responseId": "es:lesson-03:session-16:i01:r3",
+          "text": "rojas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — одна коробка красная",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — одна коробка красная",
+          "uk": "Вставте слово — одна коробка червона"
+        },
+        "gappedTargetPhrase": "La caja es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-16:i01:r1",
+            "text": "roja"
+          },
+          {
+            "responseId": "es:lesson-03:session-16:i01:r2",
+            "text": "rojo"
+          },
+          {
+            "responseId": "es:lesson-03:session-16:i01:r3",
+            "text": "rojas"
+          }
+        ],
+        "testedDimension": "Вставьте слово — одна коробка красная",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-16:i01:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — одна коробка красная",
+            "feedbackByLocale": {
+              "ru": "Caja женского рода: roja.",
+              "uk": "Caja жіночого роду: roja."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-16:i01:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — одна коробка красная",
+            "feedbackByLocale": {
+              "ru": "Коробка одна: roja.",
+              "uk": "Коробка одна: roja."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-16:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — коробка красная",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-16:i02:r1",
+          "text": "Плитки: roja"
+        },
+        {
+          "responseId": "es:lesson-03:session-16:i02:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-16:i02:r3",
+          "text": "caja"
+        },
+        {
+          "responseId": "es:lesson-03:session-16:i02:r4",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-03:session-16:i02:r5",
+          "text": "rojo."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — коробка красная",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "La caja es roja.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — коробка красная",
+          "uk": "Зберіть фразу — коробка червона"
+        },
+        "orderedTokens": [
+          "La",
+          "caja",
+          "es",
+          "roja"
+        ],
+        "authoredDistractorTokens": [
+          "rojo"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-16:i02:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — коробка красная",
+            "feedbackByLocale": {
+              "ru": "caja женского рода.",
+              "uk": "caja жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-16:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — один рюкзак чёрный",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-16:i03:r1",
+          "text": "negra"
+        },
+        {
+          "responseId": "es:lesson-03:session-16:i03:r2",
+          "text": "negro"
+        },
+        {
+          "responseId": "es:lesson-03:session-16:i03:r3",
+          "text": "negras"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — один рюкзак чёрный",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — один рюкзак чёрный",
+          "uk": "Вставте слово — один рюкзак чорний"
+        },
+        "gappedTargetPhrase": "La mochila es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-16:i03:r1",
+            "text": "negra"
+          },
+          {
+            "responseId": "es:lesson-03:session-16:i03:r2",
+            "text": "negro"
+          },
+          {
+            "responseId": "es:lesson-03:session-16:i03:r3",
+            "text": "negras"
+          }
+        ],
+        "testedDimension": "Вставьте слово — один рюкзак чёрный",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-16:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — один рюкзак чёрный",
+            "feedbackByLocale": {
+              "ru": "Mochila женского рода: negra.",
+              "uk": "Mochila жіночого роду: negra."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-16:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — один рюкзак чёрный",
+            "feedbackByLocale": {
+              "ru": "Рюкзак один: negra.",
+              "uk": "Рюкзак один: negra."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-16:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — несколько сумок зелёные",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-16:i04:r1",
+          "text": "verdes"
+        },
+        {
+          "responseId": "es:lesson-03:session-16:i04:r2",
+          "text": "verde"
+        },
+        {
+          "responseId": "es:lesson-03:session-16:i04:r3",
+          "text": "verdos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — несколько сумок зелёные",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — несколько сумок зелёные",
+          "uk": "Вставте слово — кілька сумок зелені"
+        },
+        "gappedTargetPhrase": "Los bolsos son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-16:i04:r1",
+            "text": "verdes"
+          },
+          {
+            "responseId": "es:lesson-03:session-16:i04:r2",
+            "text": "verde"
+          },
+          {
+            "responseId": "es:lesson-03:session-16:i04:r3",
+            "text": "verdos"
+          }
+        ],
+        "testedDimension": "Вставьте слово — несколько сумок зелёные",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-16:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — несколько сумок зелёные",
+            "feedbackByLocale": {
+              "ru": "Сумок несколько: verdes.",
+              "uk": "Сумок кілька: verdes."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-16:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — несколько сумок зелёные",
+            "feedbackByLocale": {
+              "ru": "Для мужского рода тоже нужно verdes.",
+              "uk": "Для чоловічого роду теж потрібно verdes."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-16:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — сумки зелёные; используйте bolsos",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-16:i05:r1",
+          "text": "Плитки: verdes"
+        },
+        {
+          "responseId": "es:lesson-03:session-16:i05:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-16:i05:r3",
+          "text": "bolsos"
+        },
+        {
+          "responseId": "es:lesson-03:session-16:i05:r4",
+          "text": "los"
+        },
+        {
+          "responseId": "es:lesson-03:session-16:i05:r5",
+          "text": "las."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — сумки зелёные; используйте bolsos",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Los bolsos son verdes.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — сумки зелёные; используйте bolsos",
+          "uk": "Зберіть фразу — сумки зелені; використайте bolsos"
+        },
+        "orderedTokens": [
+          "Los",
+          "bolsos",
+          "son",
+          "verdes"
+        ],
+        "authoredDistractorTokens": [
+          "las"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-16:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — сумки зелёные; используйте bolsos",
+            "feedbackByLocale": {
+              "ru": "bolsos мужского рода.",
+              "uk": "bolsos чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-16:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — несколько рубашек белые",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-16:i06:r1",
+          "text": "blancas"
+        },
+        {
+          "responseId": "es:lesson-03:session-16:i06:r2",
+          "text": "blancos"
+        },
+        {
+          "responseId": "es:lesson-03:session-16:i06:r3",
+          "text": "blanca"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — несколько рубашек белые",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — несколько рубашек белые",
+          "uk": "Вставте слово — кілька сорочок білі"
+        },
+        "gappedTargetPhrase": "Las camisas son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-16:i06:r1",
+            "text": "blancas"
+          },
+          {
+            "responseId": "es:lesson-03:session-16:i06:r2",
+            "text": "blancos"
+          },
+          {
+            "responseId": "es:lesson-03:session-16:i06:r3",
+            "text": "blanca"
+          }
+        ],
+        "testedDimension": "Вставьте слово — несколько рубашек белые",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-16:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — несколько рубашек белые",
+            "feedbackByLocale": {
+              "ru": "Camisas женского рода: blancas.",
+              "uk": "Camisas жіночого роду: blancas."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-16:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — несколько рубашек белые",
+            "feedbackByLocale": {
+              "ru": "Рубашек несколько: blancas.",
+              "uk": "Сорочок кілька: blancas."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-16:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — полотенца синие",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-16:i07:r1",
+          "text": "Плитки: azules"
+        },
+        {
+          "responseId": "es:lesson-03:session-16:i07:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-16:i07:r3",
+          "text": "toallas"
+        },
+        {
+          "responseId": "es:lesson-03:session-16:i07:r4",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-03:session-16:i07:r5",
+          "text": "azul."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — полотенца синие",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Las toallas son azules.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — полотенца синие",
+          "uk": "Зберіть фразу — рушники сині"
+        },
+        "orderedTokens": [
+          "Las",
+          "toallas",
+          "son",
+          "azules"
+        ],
+        "authoredDistractorTokens": [
+          "azul"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-16:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — полотенца синие",
+            "feedbackByLocale": {
+              "ru": "полотенец несколько.",
+              "uk": "рушників кілька."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-16:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — несколько конвертов жёлтые",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-16:i08:r1",
+          "text": "amarillos"
+        },
+        {
+          "responseId": "es:lesson-03:session-16:i08:r2",
+          "text": "amarillas"
+        },
+        {
+          "responseId": "es:lesson-03:session-16:i08:r3",
+          "text": "amarillo"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — несколько конвертов жёлтые",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — несколько конвертов жёлтые",
+          "uk": "Вставте слово — кілька конвертів жовті"
+        },
+        "gappedTargetPhrase": "Los sobres son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-16:i08:r1",
+            "text": "amarillos"
+          },
+          {
+            "responseId": "es:lesson-03:session-16:i08:r2",
+            "text": "amarillas"
+          },
+          {
+            "responseId": "es:lesson-03:session-16:i08:r3",
+            "text": "amarillo"
+          }
+        ],
+        "testedDimension": "Вставьте слово — несколько конвертов жёлтые",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-16:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — несколько конвертов жёлтые",
+            "feedbackByLocale": {
+              "ru": "Sobres мужского рода: amarillos.",
+              "uk": "Sobres чоловічого роду: amarillos."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-16:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — несколько конвертов жёлтые",
+            "feedbackByLocale": {
+              "ru": "Конвертов несколько: amarillos.",
+              "uk": "Конвертів кілька: amarillos."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-16:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-16:i09:r1",
+          "text": "Плитки: grises"
+        },
+        {
+          "responseId": "es:lesson-03:session-16:i09:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-16:i09:r3",
+          "text": "guantes"
+        },
+        {
+          "responseId": "es:lesson-03:session-16:i09:r4",
+          "text": "los"
+        },
+        {
+          "responseId": "es:lesson-03:session-16:i09:r5",
+          "text": "gris."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-16:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-16:i09:audio",
+          "transcript": "Los guantes son grises."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Los guantes son grises.",
+        "orderedTokens": [
+          "Los",
+          "guantes",
+          "son",
+          "grises"
+        ],
+        "authoredDistractorTokens": [
+          "gris"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-16:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит grises.",
+              "uk": "звучить grises."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-16:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — одна перчатка серая",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-16:i10:r1",
+          "text": "gris"
+        },
+        {
+          "responseId": "es:lesson-03:session-16:i10:r2",
+          "text": "grises"
+        },
+        {
+          "responseId": "es:lesson-03:session-16:i10:r3",
+          "text": "griso"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — одна перчатка серая",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — одна перчатка серая",
+          "uk": "Вставте слово — одна рукавичка сіра"
+        },
+        "gappedTargetPhrase": "El guante es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-16:i10:r1",
+            "text": "gris"
+          },
+          {
+            "responseId": "es:lesson-03:session-16:i10:r2",
+            "text": "grises"
+          },
+          {
+            "responseId": "es:lesson-03:session-16:i10:r3",
+            "text": "griso"
+          }
+        ],
+        "testedDimension": "Вставьте слово — одна перчатка серая",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-16:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — одна перчатка серая",
+            "feedbackByLocale": {
+              "ru": "Перчатка одна: gris.",
+              "uk": "Рукавичка одна: gris."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-16:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — одна перчатка серая",
+            "feedbackByLocale": {
+              "ru": "Gris не меняется по роду.",
+              "uk": "Gris не змінюється за родом."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-16:i11",
+      "ordinal": 14,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — один шарф синий",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-16:i11:r1",
+          "text": "azul"
+        },
+        {
+          "responseId": "es:lesson-03:session-16:i11:r2",
+          "text": "azules"
+        },
+        {
+          "responseId": "es:lesson-03:session-16:i11:r3",
+          "text": "azula"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — один шарф синий",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — один шарф синий",
+          "uk": "Вставте слово — один шарф синій"
+        },
+        "gappedTargetPhrase": "La bufanda es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-16:i11:r1",
+            "text": "azul"
+          },
+          {
+            "responseId": "es:lesson-03:session-16:i11:r2",
+            "text": "azules"
+          },
+          {
+            "responseId": "es:lesson-03:session-16:i11:r3",
+            "text": "azula"
+          }
+        ],
+        "testedDimension": "Вставьте слово — один шарф синий",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-16:i11:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — один шарф синий",
+            "feedbackByLocale": {
+              "ru": "Шарф один: azul.",
+              "uk": "Шарф один: azul."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-16:i11:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — один шарф синий",
+            "feedbackByLocale": {
+              "ru": "Azul не меняется по роду.",
+              "uk": "Azul не змінюється за родом."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-16:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — несколько коробок не красные",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-16:i12:r1",
+          "text": "rojas"
+        },
+        {
+          "responseId": "es:lesson-03:session-16:i12:r2",
+          "text": "rojos"
+        },
+        {
+          "responseId": "es:lesson-03:session-16:i12:r3",
+          "text": "roja"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — несколько коробок не красные",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — несколько коробок не красные",
+          "uk": "Вставте слово — кілька коробок не червоні"
+        },
+        "gappedTargetPhrase": "Las cajas no son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-16:i12:r1",
+            "text": "rojas"
+          },
+          {
+            "responseId": "es:lesson-03:session-16:i12:r2",
+            "text": "rojos"
+          },
+          {
+            "responseId": "es:lesson-03:session-16:i12:r3",
+            "text": "roja"
+          }
+        ],
+        "testedDimension": "Вставьте слово — несколько коробок не красные",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-16:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — несколько коробок не красные",
+            "feedbackByLocale": {
+              "ru": "Cajas женского рода: rojas.",
+              "uk": "Cajas жіночого роду: rojas."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-16:i12:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — несколько коробок не красные",
+            "feedbackByLocale": {
+              "ru": "Коробок несколько: rojas.",
+              "uk": "Коробок кілька: rojas."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-16:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — коробка красная; назовите предмет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-16:i13:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — коробка красная; назовите предмет",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-16:i13:audio",
+          "transcript": "La caja es roja."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "La caja es roja.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-16:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — сумки зелёные; назовите их словом bolsos",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-16:i14:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — сумки зелёные; назовите их словом bolsos",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-16:i14:audio",
+          "transcript": "Los bolsos son verdes."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Los bolsos son verdes.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-16:i15",
+      "ordinal": 18,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — полотенца синие; назовите предметы",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-16:i15:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — полотенца синие; назовите предметы",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-16:i15:audio",
+          "transcript": "Las toallas son azules."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Las toallas son azules.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-16:i16",
+      "ordinal": 19,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — перчатки серые; назовите предметы",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-16:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — перчатки серые; назовите предметы",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-16:i16:audio",
+          "transcript": "Los guantes son grises."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Los guantes son grises.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 16,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "fedce8420a0d69c9b63f9c1810870b8aa5ee7999cc2d0807b82fd00012bc2f00"
+}

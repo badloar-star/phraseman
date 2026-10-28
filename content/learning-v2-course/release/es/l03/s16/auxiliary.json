@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-03:session-16",
+  "entries": [
+    {
+      "interactionId": "es:lesson-03:session-16:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-16:intro1:r2": {
+          "ru": "Нужна форма roja.",
+          "uk": "Потрібна форма roja."
+        },
+        "es:lesson-03:session-16:intro1:r3": {
+          "ru": "Коробка одна: roja.",
+          "uk": "Коробка одна: roja."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-16:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-16:intro2:r2": {
+          "ru": "Окончание -e не меняется по роду: verdes.",
+          "uk": "Закінчення -e не змінюється за родом: verdes."
+        },
+        "es:lesson-03:session-16:intro2:r3": {
+          "ru": "Сумок несколько: verdes.",
+          "uk": "Сумок кілька: verdes."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-16:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-16:intro3:r2": {
+          "ru": "Полотенец несколько: azules.",
+          "uk": "Рушників кілька: azules."
+        },
+        "es:lesson-03:session-16:intro3:r3": {
+          "ru": "Не меняйте форму по роду: azules.",
+          "uk": "Не змінюйте форму за родом: azules."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a93a525c6ee67c024f5e6dcd357f17c9a1acaa6b9604f24ccb51cdce12a51113"
+}

@@ -1,0 +1,82 @@
+[
+  {
+    "interactionId": "es:lesson-03:session-16:i01",
+    "correctText": "roja",
+    "correctResponseId": "es:lesson-03:session-16:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-16:i02",
+    "correctText": "La caja es roja.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-16:i03",
+    "correctText": "negra",
+    "correctResponseId": "es:lesson-03:session-16:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-16:i04",
+    "correctText": "verdes",
+    "correctResponseId": "es:lesson-03:session-16:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-16:i05",
+    "correctText": "Los bolsos son verdes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-16:i06",
+    "correctText": "blancas",
+    "correctResponseId": "es:lesson-03:session-16:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-16:i07",
+    "correctText": "Las toallas son azules.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-16:i08",
+    "correctText": "amarillos",
+    "correctResponseId": "es:lesson-03:session-16:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-16:i09",
+    "correctText": "Los guantes son grises.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-16:i10",
+    "correctText": "gris",
+    "correctResponseId": "es:lesson-03:session-16:i10:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-16:i11",
+    "correctText": "azul",
+    "correctResponseId": "es:lesson-03:session-16:i11:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-16:i12",
+    "correctText": "rojas",
+    "correctResponseId": "es:lesson-03:session-16:i12:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-16:i13",
+    "correctText": "La caja es roja.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-16:i14",
+    "correctText": "Los bolsos son verdes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-16:i15",
+    "correctText": "Las toallas son azules.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-16:i16",
+    "correctText": "Los guantes son grises.",
+    "correctResponseId": null
+  }
+]

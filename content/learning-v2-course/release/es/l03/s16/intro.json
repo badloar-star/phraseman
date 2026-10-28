@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-03:session-16",
+  "learningOutcomeByLocale": {
+    "ru": "самостоятельно согласовать знакомые цвета с родом и числом вещей.",
+    "uk": "самостійно узгоджувати знайомі кольори з родом і числом речей."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-03:session-16:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Красная коробка",
+        "uk": "Червона коробка"
+      },
+      "bodyByLocale": {
+        "ru": "Друг ищет красную коробку. Вы показываете найденную и описываете цвет: `La caja es roja` — «Коробка красная». Соберите `la caja` + `es` + `roja`. Для женского caja выбирайте roja. У цветов на -o окончание меняется по роду, как у знакомого pequeño.",
+        "uk": "Друг шукає червону коробку. Ви показуєте знайдену й описуєте колір: `La caja es roja` — «Коробка червона». Зберіть `la caja` + `es` + `roja`. Для жіночого caja обирайте roja. У кольорів на -o закінчення змінюється за родом, як у знайомого pequeño."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-16:intro1:q",
+        "promptByLocale": {
+          "ru": "Опишите красную коробку.",
+          "uk": "Опишіть червону коробку."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-16:intro1:r1",
+              "text": "La caja es roja."
+            },
+            {
+              "responseId": "es:lesson-03:session-16:intro1:r2",
+              "text": "La caja es rojo."
+            },
+            {
+              "responseId": "es:lesson-03:session-16:intro1:r3",
+              "text": "La caja es rojas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-16:intro1:r1",
+              "text": "La caja es roja."
+            },
+            {
+              "responseId": "es:lesson-03:session-16:intro1:r2",
+              "text": "La caja es rojo."
+            },
+            {
+              "responseId": "es:lesson-03:session-16:intro1:r3",
+              "text": "La caja es rojas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Опишите красную коробку.",
+          "uk": "Опишіть червону коробку."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-03:session-16:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Зелёные сумки",
+        "uk": "Зелені сумки"
+      },
+      "bodyByLocale": {
+        "ru": "Рядом стоят несколько зелёных сумок. Скажите `Los bolsos son verdes` — «Сумки зелёные». Соберите `los bolsos` + `son` + `verdes`. Verde не меняется по роду, но для нескольких вещей получает -s: verdes. Мужской род bolsos не превращает окончание в -os.",
+        "uk": "Поруч стоять кілька зелених сумок. Скажіть `Los bolsos son verdes` — «Сумки зелені». Зберіть `los bolsos` + `son` + `verdes`. Verde не змінюється за родом, але для кількох речей отримує -s: verdes. Чоловічий рід bolsos не перетворює закінчення на -os."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-16:intro2:q",
+        "promptByLocale": {
+          "ru": "Опишите зелёные сумки словом bolsos.",
+          "uk": "Опишіть зелені сумки словом bolsos."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-16:intro2:r1",
+              "text": "Los bolsos son verdes."
+            },
+            {
+              "responseId": "es:lesson-03:session-16:intro2:r2",
+              "text": "Los bolsos son verdos."
+            },
+            {
+              "responseId": "es:lesson-03:session-16:intro2:r3",
+              "text": "Los bolsos son verde."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-16:intro2:r1",
+              "text": "Los bolsos son verdes."
+            },
+            {
+              "responseId": "es:lesson-03:session-16:intro2:r2",
+              "text": "Los bolsos son verdos."
+            },
+            {
+              "responseId": "es:lesson-03:session-16:intro2:r3",
+              "text": "Los bolsos son verde."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Опишите зелёные сумки словом bolsos.",
+          "uk": "Опишіть зелені сумки словом bolsos."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-03:session-16:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Синие полотенца",
+        "uk": "Сині рушники"
+      },
+      "bodyByLocale": {
+        "ru": "Из другой сумки достали несколько синих полотенец. Скажите `Las toallas son azules` — «Полотенца синие». Соберите `las toallas` + `son` + `azules`. К azul добавляется -es, а не -s. Для женского toallas и мужского предмета во множественном числе форма одинакова: azules.",
+        "uk": "З іншої сумки дістали кілька синіх рушників. Скажіть `Las toallas son azules` — «Рушники сині». Зберіть `las toallas` + `son` + `azules`. До azul додається -es, а не -s. Для жіночого toallas і чоловічого предмета у множині форма однакова: azules."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-16:intro3:q",
+        "promptByLocale": {
+          "ru": "Опишите синие полотенца.",
+          "uk": "Опишіть сині рушники."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-16:intro3:r1",
+              "text": "Las toallas son azules."
+            },
+            {
+              "responseId": "es:lesson-03:session-16:intro3:r2",
+              "text": "Las toallas son azul."
+            },
+            {
+              "responseId": "es:lesson-03:session-16:intro3:r3",
+              "text": "Las toallas son azulas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-16:intro3:r1",
+              "text": "Las toallas son azules."
+            },
+            {
+              "responseId": "es:lesson-03:session-16:intro3:r2",
+              "text": "Las toallas son azul."
+            },
+            {
+              "responseId": "es:lesson-03:session-16:intro3:r3",
+              "text": "Las toallas son azulas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Опишите синие полотенца.",
+          "uk": "Опишіть сині рушники."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f575bb79c4075626fac19a77057bebef5eabf23457fe92aa1b29b939fe18f7d5"
+}

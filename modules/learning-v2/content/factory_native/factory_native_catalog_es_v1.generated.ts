@@ -896,4 +896,11 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"использовать gris и grises, сохраняя одну форму для обоих родов.","uk":"використовувати gris і grises, зберігаючи одну форму для обох родів."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 16,
+    sourceFingerprint: "8741065042e08d0943a3e7921a4f54d2ed955e64cacf0e0ba78a48f5b9b47218",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"самостоятельно согласовать знакомые цвета с родом и числом вещей.","uk":"самостійно узгоджувати знайомі кольори з родом і числом речей."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+  }),
 ]);

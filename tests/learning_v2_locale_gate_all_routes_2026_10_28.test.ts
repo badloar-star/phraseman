@@ -17,7 +17,8 @@ function routeFiles(): string[] {
   };
   walk(path.join(APP, 'learning-v2'));
   walk(path.join(APP, 'learning_v2_modes_showcase_run'));
-  for (const name of fs.readdirSync(APP)) if (/^_?(learning_v2|dev_learning_v2)_.*\.tsx$/.test(name)) out.push(path.join(APP, name));
+  // файлы с «_» в начале expo-router маршрутами не считает (их подключают защищённые маршруты) — проверяем только настоящие маршруты
+  for (const name of fs.readdirSync(APP)) if (/^(learning_v2|dev_learning_v2)_.*\.tsx$/.test(name)) out.push(path.join(APP, name));
   return out.filter((f) => /export default/.test(fs.readFileSync(f, 'utf8')));
 }
 

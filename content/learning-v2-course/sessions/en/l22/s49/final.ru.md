@@ -63,7 +63,7 @@
 - We use this website to book a flight. — *В записи звучит I use this website to book a flight.*
 - You use this website to book a flight. — *В записи звучит I use this website to book a flight.*
 
-**4 · Выберите слово, которое вводит цель.**
+**4 · Выберите слово, после которого идёт цель.**
 <!-- interaction_id: en:lesson-22:session-49:i03; family: context_gap_grammar -->
 I use this website ___ book a flight. → **to** · for · of
 - for — *Цель выражается через to + начальную форму глагола.*
@@ -83,7 +83,7 @@ I use this website ___ book a flight. → **to** · for · of
 - We make a list to pack our bag. — *В записи звучит I make a list to pack my bag.*
 - You make a list to pack your bag. — *В записи звучит I make a list to pack my bag.*
 
-**8 · Выберите слово, которое вводит цель.**
+**8 · Выберите слово, после которого идёт цель.**
 <!-- interaction_id: en:lesson-22:session-49:i06; family: context_gap_grammar -->
 I make a list ___ pack my bag. → **to** · for · of
 - for — *Цель выражается через to + начальную форму глагола.*
@@ -103,7 +103,7 @@ I make a list ___ pack my bag. → **to** · for · of
 - We open the drawer to check our passports. — *В записи звучит I open the drawer to check my passport.*
 - You open the drawer to check your passport. — *В записи звучит I open the drawer to check my passport.*
 
-**12 · Выберите слово, которое вводит цель.**
+**12 · Выберите слово, после которого идёт цель.**
 <!-- interaction_id: en:lesson-22:session-49:i09; family: context_gap_grammar -->
 I open the drawer ___ check my passport. → **to** · for · of
 - for — *Цель выражается через to + начальную форму глагола.*
@@ -123,7 +123,7 @@ I open the drawer ___ check my passport. → **to** · for · of
 - We use the printer to print our tickets. — *В записи звучит I use the printer to print my ticket.*
 - You use the printer to print your ticket. — *В записи звучит I use the printer to print my ticket.*
 
-**16 · Выберите слово, которое вводит цель.**
+**16 · Выберите слово, после которого идёт цель.**
 <!-- interaction_id: en:lesson-22:session-49:i12; family: context_gap_grammar -->
 I use the printer ___ print my ticket. → **to** · for · of
 - for — *Цель выражается через to + начальную форму глагола.*

@@ -57,7 +57,7 @@ Skeleton — скелет. They saw a skeleton at the museum yesterday — вч�
 <!-- interaction_id: en:lesson-24:session-46:i01; family: phrase_builder -->
 Плитки: `skin` `my` `washed` `have` `I` → **I have washed my skin.**
 
-**3 · Дополните рассказ о теле и музее.**
+**3 · Дополните рассказ о теле человека.**
 <!-- interaction_id: en:lesson-24:session-46:i02; family: context_gap_grammar -->
 I ___ washed my skin. → **have** · has · am
 - has — *С I нужно have перед washed.*
@@ -77,7 +77,7 @@ I ___ washed my skin. → **have** · has · am
 <!-- interaction_id: en:lesson-24:session-46:i04; family: phrase_builder -->
 Плитки: `year` `last` `rib` `a` `broke` `She` → **She broke a rib last year.**
 
-**7 · Дополните рассказ о теле и музее.**
+**7 · Дополните рассказ о теле человека.**
 <!-- interaction_id: en:lesson-24:session-46:i05; family: context_gap_grammar -->
 She ___ a rib last year. → **broke** · has broken · break
 - has broken — *С last year нужна форма broke без has.*
@@ -97,7 +97,7 @@ She ___ a rib last year. → **broke** · has broken · break
 <!-- interaction_id: en:lesson-24:session-46:i07; family: phrase_builder -->
 Плитки: `liver` `the` `about` `read` `have` `We` → **We have read about the liver.**
 
-**11 · Дополните рассказ о теле и музее.**
+**11 · Дополните рассказ о теле человека.**
 <!-- interaction_id: en:lesson-24:session-46:i08; family: context_gap_grammar -->
 We ___ read about the liver. → **have** · has · are
 - has — *С we нужно have перед read.*
@@ -117,7 +117,7 @@ We ___ read about the liver. → **have** · has · are
 <!-- interaction_id: en:lesson-24:session-46:i10; family: phrase_builder -->
 Плитки: `yesterday` `museum` `the` `at` `skeleton` `a` `saw` `They` → **They saw a skeleton at the museum yesterday.**
 
-**15 · Дополните рассказ о теле и музее.**
+**15 · Дополните рассказ о теле человека.**
 <!-- interaction_id: en:lesson-24:session-46:i11; family: context_gap_grammar -->
 They ___ a skeleton at the museum yesterday. → **saw** · have seen · see
 - have seen — *С yesterday нужна форма saw без have.*

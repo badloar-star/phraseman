@@ -63,7 +63,7 @@
 - We call the shop to sort out a problem. — *У записі звучить I call the shop to sort out a problem.*
 - You call the shop to sort out a problem. — *У записі звучить I call the shop to sort out a problem.*
 
-**4 · Виберіть слово, яке вводить мету.**
+**4 · Виберіть слово, після якого йде мета.**
 <!-- interaction_id: en:lesson-22:session-38:i03; family: context_gap_grammar -->
 I call the shop ___ sort out a problem. → **to** · for · of
 - for — *Мета виражається через to + початкову форму дієслова.*
@@ -83,7 +83,7 @@ I call the shop ___ sort out a problem. → **to** · for · of
 - We read the instructions to find a solution. — *У записі звучить I read the instructions to find a solution.*
 - You read the instructions to find a solution. — *У записі звучить I read the instructions to find a solution.*
 
-**8 · Виберіть слово, яке вводить мету.**
+**8 · Виберіть слово, після якого йде мета.**
 <!-- interaction_id: en:lesson-22:session-38:i06; family: context_gap_grammar -->
 I read the instructions ___ find a solution. → **to** · for · of
 - for — *Мета виражається через to + початкову форму дієслова.*
@@ -103,7 +103,7 @@ I read the instructions ___ find a solution. → **to** · for · of
 - We talk to our neighbour to reach an agreement. — *У записі звучить I talk to my neighbour to reach an agreement.*
 - You talk to your neighbour to reach an agreement. — *У записі звучить I talk to my neighbour to reach an agreement.*
 
-**12 · Виберіть слово, яке вводить мету.**
+**12 · Виберіть слово, після якого йде мета.**
 <!-- interaction_id: en:lesson-22:session-38:i09; family: context_gap_grammar -->
 I talk to my neighbour ___ reach an agreement. → **to** · for · of
 - for — *Мета виражається через to + початкову форму дієслова.*
@@ -123,7 +123,7 @@ I talk to my neighbour ___ reach an agreement. → **to** · for · of
 - We compare the options to make a decision. — *У записі звучить I compare the options to make a decision.*
 - You compare the options to make a decision. — *У записі звучить I compare the options to make a decision.*
 
-**16 · Виберіть слово, яке вводить мету.**
+**16 · Виберіть слово, після якого йде мета.**
 <!-- interaction_id: en:lesson-22:session-38:i12; family: context_gap_grammar -->
 I compare the options ___ make a decision. → **to** · for · of
 - for — *Мета виражається через to + початкову форму дієслова.*

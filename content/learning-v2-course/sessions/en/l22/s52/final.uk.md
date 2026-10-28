@@ -63,7 +63,7 @@
 - We look at the board to check the platform. — *У записі звучить I look at the board to check the platform.*
 - You look at the board to check the platform. — *У записі звучить I look at the board to check the platform.*
 
-**4 · Виберіть слово, яке вводить мету.**
+**4 · Виберіть слово, після якого йде мета.**
 <!-- interaction_id: en:lesson-22:session-52:i03; family: context_gap_grammar -->
 I look at the board ___ check the platform. → **to** · for · of
 - for — *Мета виражається через to + початкову форму дієслова.*
@@ -83,7 +83,7 @@ I look at the board ___ check the platform. → **to** · for · of
 - We take a taxi to reach the station. — *У записі звучить I take a taxi to reach the station.*
 - You take a taxi to reach the station. — *У записі звучить I take a taxi to reach the station.*
 
-**8 · Виберіть слово, яке вводить мету.**
+**8 · Виберіть слово, після якого йде мета.**
 <!-- interaction_id: en:lesson-22:session-52:i06; family: context_gap_grammar -->
 I take a taxi ___ reach the station. → **to** · for · of
 - for — *Мета виражається через to + початкову форму дієслова.*
@@ -103,7 +103,7 @@ I take a taxi ___ reach the station. → **to** · for · of
 - We leave early to avoid the traffic. — *У записі звучить I leave early to avoid the traffic.*
 - You leave early to avoid the traffic. — *У записі звучить I leave early to avoid the traffic.*
 
-**12 · Виберіть слово, яке вводить мету.**
+**12 · Виберіть слово, після якого йде мета.**
 <!-- interaction_id: en:lesson-22:session-52:i09; family: context_gap_grammar -->
 I leave early ___ avoid the traffic. → **to** · for · of
 - for — *Мета виражається через to + початкову форму дієслова.*
@@ -123,7 +123,7 @@ I leave early ___ avoid the traffic. → **to** · for · of
 - We drive to the car park to find a parking space. — *У записі звучить I drive to the car park to find a parking space.*
 - You drive to the car park to find a parking space. — *У записі звучить I drive to the car park to find a parking space.*
 
-**16 · Виберіть слово, яке вводить мету.**
+**16 · Виберіть слово, після якого йде мета.**
 <!-- interaction_id: en:lesson-22:session-52:i12; family: context_gap_grammar -->
 I drive to the car park ___ find a parking space. → **to** · for · of
 - for — *Мета виражається через to + початкову форму дієслова.*

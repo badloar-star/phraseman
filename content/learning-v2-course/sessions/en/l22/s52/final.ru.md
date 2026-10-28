@@ -63,7 +63,7 @@
 - We look at the board to check the platform. — *В записи звучит I look at the board to check the platform.*
 - You look at the board to check the platform. — *В записи звучит I look at the board to check the platform.*
 
-**4 · Выберите слово, которое вводит цель.**
+**4 · Выберите слово, после которого идёт цель.**
 <!-- interaction_id: en:lesson-22:session-52:i03; family: context_gap_grammar -->
 I look at the board ___ check the platform. → **to** · for · of
 - for — *Цель выражается через to + начальную форму глагола.*
@@ -83,7 +83,7 @@ I look at the board ___ check the platform. → **to** · for · of
 - We take a taxi to reach the station. — *В записи звучит I take a taxi to reach the station.*
 - You take a taxi to reach the station. — *В записи звучит I take a taxi to reach the station.*
 
-**8 · Выберите слово, которое вводит цель.**
+**8 · Выберите слово, после которого идёт цель.**
 <!-- interaction_id: en:lesson-22:session-52:i06; family: context_gap_grammar -->
 I take a taxi ___ reach the station. → **to** · for · of
 - for — *Цель выражается через to + начальную форму глагола.*
@@ -103,7 +103,7 @@ I take a taxi ___ reach the station. → **to** · for · of
 - We leave early to avoid the traffic. — *В записи звучит I leave early to avoid the traffic.*
 - You leave early to avoid the traffic. — *В записи звучит I leave early to avoid the traffic.*
 
-**12 · Выберите слово, которое вводит цель.**
+**12 · Выберите слово, после которого идёт цель.**
 <!-- interaction_id: en:lesson-22:session-52:i09; family: context_gap_grammar -->
 I leave early ___ avoid the traffic. → **to** · for · of
 - for — *Цель выражается через to + начальную форму глагола.*
@@ -123,7 +123,7 @@ I leave early ___ avoid the traffic. → **to** · for · of
 - We drive to the car park to find a parking space. — *В записи звучит I drive to the car park to find a parking space.*
 - You drive to the car park to find a parking space. — *В записи звучит I drive to the car park to find a parking space.*
 
-**16 · Выберите слово, которое вводит цель.**
+**16 · Выберите слово, после которого идёт цель.**
 <!-- interaction_id: en:lesson-22:session-52:i12; family: context_gap_grammar -->
 I drive to the car park ___ find a parking space. → **to** · for · of
 - for — *Цель выражается через to + начальную форму глагола.*

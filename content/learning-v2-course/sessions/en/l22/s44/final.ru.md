@@ -63,7 +63,7 @@
 - We go outside to hang out the washing. — *В записи звучит I go outside to hang out the washing.*
 - You go outside to hang out the washing. — *В записи звучит I go outside to hang out the washing.*
 
-**4 · Выберите слово, которое вводит цель.**
+**4 · Выберите слово, после которого идёт цель.**
 <!-- interaction_id: en:lesson-22:session-44:i03; family: context_gap_grammar -->
 I go outside ___ hang out the washing. → **to** · for · of
 - for — *Цель выражается через to + начальную форму глагола.*
@@ -83,7 +83,7 @@ I go outside ___ hang out the washing. → **to** · for · of
 - We clear the bed to fold the clothes. — *В записи звучит I clear the bed to fold the clothes.*
 - You clear the bed to fold the clothes. — *В записи звучит I clear the bed to fold the clothes.*
 
-**8 · Выберите слово, которое вводит цель.**
+**8 · Выберите слово, после которого идёт цель.**
 <!-- interaction_id: en:lesson-22:session-44:i06; family: context_gap_grammar -->
 I clear the bed ___ fold the clothes. → **to** · for · of
 - for — *Цель выражается через to + начальную форму глагола.*
@@ -103,7 +103,7 @@ I clear the bed ___ fold the clothes. → **to** · for · of
 - We open the cupboard to put away the dishes. — *В записи звучит I open the cupboard to put away the dishes.*
 - You open the cupboard to put away the dishes. — *В записи звучит I open the cupboard to put away the dishes.*
 
-**12 · Выберите слово, которое вводит цель.**
+**12 · Выберите слово, после которого идёт цель.**
 <!-- interaction_id: en:lesson-22:session-44:i09; family: context_gap_grammar -->
 I open the cupboard ___ put away the dishes. → **to** · for · of
 - for — *Цель выражается через to + начальную форму глагола.*
@@ -123,7 +123,7 @@ I open the cupboard ___ put away the dishes. → **to** · for · of
 - We use a cloth to wipe the table. — *В записи звучит I use a cloth to wipe the table.*
 - You use a cloth to wipe the table. — *В записи звучит I use a cloth to wipe the table.*
 
-**16 · Выберите слово, которое вводит цель.**
+**16 · Выберите слово, после которого идёт цель.**
 <!-- interaction_id: en:lesson-22:session-44:i12; family: context_gap_grammar -->
 I use a cloth ___ wipe the table. → **to** · for · of
 - for — *Цель выражается через to + начальную форму глагола.*

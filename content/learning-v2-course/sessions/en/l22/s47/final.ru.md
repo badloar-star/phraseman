@@ -63,7 +63,7 @@
 - We use a broom to sweep the floor. — *В записи звучит I use a broom to sweep the floor.*
 - You use a broom to sweep the floor. — *В записи звучит I use a broom to sweep the floor.*
 
-**4 · Выберите слово, которое вводит цель.**
+**4 · Выберите слово, после которого идёт цель.**
 <!-- interaction_id: en:lesson-22:session-47:i03; family: context_gap_grammar -->
 I use a broom ___ sweep the floor. → **to** · for · of
 - for — *Цель выражается через to + начальную форму глагола.*
@@ -83,7 +83,7 @@ I use a broom ___ sweep the floor. → **to** · for · of
 - We fill the bucket to mop the floor. — *В записи звучит I fill the bucket to mop the floor.*
 - You fill the bucket to mop the floor. — *В записи звучит I fill the bucket to mop the floor.*
 
-**8 · Выберите слово, которое вводит цель.**
+**8 · Выберите слово, после которого идёт цель.**
 <!-- interaction_id: en:lesson-22:session-47:i06; family: context_gap_grammar -->
 I fill the bucket ___ mop the floor. → **to** · for · of
 - for — *Цель выражается через to + начальную форму глагола.*
@@ -103,7 +103,7 @@ I fill the bucket ___ mop the floor. → **to** · for · of
 - We move the chair to vacuum the carpet. — *В записи звучит I move the chair to vacuum the carpet.*
 - You move the chair to vacuum the carpet. — *В записи звучит I move the chair to vacuum the carpet.*
 
-**12 · Выберите слово, которое вводит цель.**
+**12 · Выберите слово, после которого идёт цель.**
 <!-- interaction_id: en:lesson-22:session-47:i09; family: context_gap_grammar -->
 I move the chair ___ vacuum the carpet. → **to** · for · of
 - for — *Цель выражается через to + начальную форму глагола.*
@@ -123,7 +123,7 @@ I move the chair ___ vacuum the carpet. → **to** · for · of
 - We use a soft cloth to dust the shelves. — *В записи звучит I use a soft cloth to dust the shelves.*
 - You use a soft cloth to dust the shelves. — *В записи звучит I use a soft cloth to dust the shelves.*
 
-**16 · Выберите слово, которое вводит цель.**
+**16 · Выберите слово, после которого идёт цель.**
 <!-- interaction_id: en:lesson-22:session-47:i12; family: context_gap_grammar -->
 I use a soft cloth ___ dust the shelves. → **to** · for · of
 - for — *Цель выражается через to + начальную форму глагола.*

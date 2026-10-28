@@ -63,7 +63,7 @@
 - We take a break to check our messages. — *В записи звучит I take a break to check my messages.*
 - You take a break to check your messages. — *В записи звучит I take a break to check my messages.*
 
-**4 · Выберите слово, которое вводит цель.**
+**4 · Выберите слово, после которого идёт цель.**
 <!-- interaction_id: en:lesson-22:session-43:i03; family: context_gap_grammar -->
 I take a break ___ check my messages. → **to** · for · of
 - for — *Цель выражается через to + начальную форму глагола.*
@@ -83,7 +83,7 @@ I take a break ___ check my messages. → **to** · for · of
 - We use this button to turn down the volume. — *В записи звучит I use this button to turn down the volume.*
 - You use this button to turn down the volume. — *В записи звучит I use this button to turn down the volume.*
 
-**8 · Выберите слово, которое вводит цель.**
+**8 · Выберите слово, после которого идёт цель.**
 <!-- interaction_id: en:lesson-22:session-43:i06; family: context_gap_grammar -->
 I use this button ___ turn down the volume. → **to** · for · of
 - for — *Цель выражается через to + начальную форму глагола.*
@@ -103,7 +103,7 @@ I use this button ___ turn down the volume. → **to** · for · of
 - We open the settings to put our phone on silent. — *В записи звучит I open the settings to put my phone on silent.*
 - You open the settings to put your phone on silent. — *В записи звучит I open the settings to put my phone on silent.*
 
-**12 · Выберите слово, которое вводит цель.**
+**12 · Выберите слово, после которого идёт цель.**
 <!-- interaction_id: en:lesson-22:session-43:i09; family: context_gap_grammar -->
 I open the settings ___ put my phone on silent. → **to** · for · of
 - for — *Цель выражается через to + начальную форму глагола.*
@@ -123,7 +123,7 @@ I open the settings ___ put my phone on silent. → **to** · for · of
 - We use this socket to charge our phone. — *В записи звучит I use this socket to charge my phone.*
 - You use this socket to charge your phone. — *В записи звучит I use this socket to charge my phone.*
 
-**16 · Выберите слово, которое вводит цель.**
+**16 · Выберите слово, после которого идёт цель.**
 <!-- interaction_id: en:lesson-22:session-43:i12; family: context_gap_grammar -->
 I use this socket ___ charge my phone. → **to** · for · of
 - for — *Цель выражается через to + начальную форму глагола.*

@@ -63,7 +63,7 @@
 - We use a broom to sweep the floor. — *У записі звучить I use a broom to sweep the floor.*
 - You use a broom to sweep the floor. — *У записі звучить I use a broom to sweep the floor.*
 
-**4 · Виберіть слово, яке вводить мету.**
+**4 · Виберіть слово, після якого йде мета.**
 <!-- interaction_id: en:lesson-22:session-47:i03; family: context_gap_grammar -->
 I use a broom ___ sweep the floor. → **to** · for · of
 - for — *Мета виражається через to + початкову форму дієслова.*
@@ -83,7 +83,7 @@ I use a broom ___ sweep the floor. → **to** · for · of
 - We fill the bucket to mop the floor. — *У записі звучить I fill the bucket to mop the floor.*
 - You fill the bucket to mop the floor. — *У записі звучить I fill the bucket to mop the floor.*
 
-**8 · Виберіть слово, яке вводить мету.**
+**8 · Виберіть слово, після якого йде мета.**
 <!-- interaction_id: en:lesson-22:session-47:i06; family: context_gap_grammar -->
 I fill the bucket ___ mop the floor. → **to** · for · of
 - for — *Мета виражається через to + початкову форму дієслова.*
@@ -103,7 +103,7 @@ I fill the bucket ___ mop the floor. → **to** · for · of
 - We move the chair to vacuum the carpet. — *У записі звучить I move the chair to vacuum the carpet.*
 - You move the chair to vacuum the carpet. — *У записі звучить I move the chair to vacuum the carpet.*
 
-**12 · Виберіть слово, яке вводить мету.**
+**12 · Виберіть слово, після якого йде мета.**
 <!-- interaction_id: en:lesson-22:session-47:i09; family: context_gap_grammar -->
 I move the chair ___ vacuum the carpet. → **to** · for · of
 - for — *Мета виражається через to + початкову форму дієслова.*
@@ -123,7 +123,7 @@ I move the chair ___ vacuum the carpet. → **to** · for · of
 - We use a soft cloth to dust the shelves. — *У записі звучить I use a soft cloth to dust the shelves.*
 - You use a soft cloth to dust the shelves. — *У записі звучить I use a soft cloth to dust the shelves.*
 
-**16 · Виберіть слово, яке вводить мету.**
+**16 · Виберіть слово, після якого йде мета.**
 <!-- interaction_id: en:lesson-22:session-47:i12; family: context_gap_grammar -->
 I use a soft cloth ___ dust the shelves. → **to** · for · of
 - for — *Мета виражається через to + початкову форму дієслова.*

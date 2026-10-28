@@ -63,7 +63,7 @@
 - We go outside to hang out the washing. — *У записі звучить I go outside to hang out the washing.*
 - You go outside to hang out the washing. — *У записі звучить I go outside to hang out the washing.*
 
-**4 · Виберіть слово, яке вводить мету.**
+**4 · Виберіть слово, після якого йде мета.**
 <!-- interaction_id: en:lesson-22:session-44:i03; family: context_gap_grammar -->
 I go outside ___ hang out the washing. → **to** · for · of
 - for — *Мета виражається через to + початкову форму дієслова.*
@@ -83,7 +83,7 @@ I go outside ___ hang out the washing. → **to** · for · of
 - We clear the bed to fold the clothes. — *У записі звучить I clear the bed to fold the clothes.*
 - You clear the bed to fold the clothes. — *У записі звучить I clear the bed to fold the clothes.*
 
-**8 · Виберіть слово, яке вводить мету.**
+**8 · Виберіть слово, після якого йде мета.**
 <!-- interaction_id: en:lesson-22:session-44:i06; family: context_gap_grammar -->
 I clear the bed ___ fold the clothes. → **to** · for · of
 - for — *Мета виражається через to + початкову форму дієслова.*
@@ -103,7 +103,7 @@ I clear the bed ___ fold the clothes. → **to** · for · of
 - We open the cupboard to put away the dishes. — *У записі звучить I open the cupboard to put away the dishes.*
 - You open the cupboard to put away the dishes. — *У записі звучить I open the cupboard to put away the dishes.*
 
-**12 · Виберіть слово, яке вводить мету.**
+**12 · Виберіть слово, після якого йде мета.**
 <!-- interaction_id: en:lesson-22:session-44:i09; family: context_gap_grammar -->
 I open the cupboard ___ put away the dishes. → **to** · for · of
 - for — *Мета виражається через to + початкову форму дієслова.*
@@ -123,7 +123,7 @@ I open the cupboard ___ put away the dishes. → **to** · for · of
 - We use a cloth to wipe the table. — *У записі звучить I use a cloth to wipe the table.*
 - You use a cloth to wipe the table. — *У записі звучить I use a cloth to wipe the table.*
 
-**16 · Виберіть слово, яке вводить мету.**
+**16 · Виберіть слово, після якого йде мета.**
 <!-- interaction_id: en:lesson-22:session-44:i12; family: context_gap_grammar -->
 I use a cloth ___ wipe the table. → **to** · for · of
 - for — *Мета виражається через to + початкову форму дієслова.*

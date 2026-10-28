@@ -63,7 +63,7 @@
 - We call the shop to sort out a problem. — *В записи звучит I call the shop to sort out a problem.*
 - You call the shop to sort out a problem. — *В записи звучит I call the shop to sort out a problem.*
 
-**4 · Выберите слово, которое вводит цель.**
+**4 · Выберите слово, после которого идёт цель.**
 <!-- interaction_id: en:lesson-22:session-38:i03; family: context_gap_grammar -->
 I call the shop ___ sort out a problem. → **to** · for · of
 - for — *Цель выражается через to + начальную форму глагола.*
@@ -83,7 +83,7 @@ I call the shop ___ sort out a problem. → **to** · for · of
 - We read the instructions to find a solution. — *В записи звучит I read the instructions to find a solution.*
 - You read the instructions to find a solution. — *В записи звучит I read the instructions to find a solution.*
 
-**8 · Выберите слово, которое вводит цель.**
+**8 · Выберите слово, после которого идёт цель.**
 <!-- interaction_id: en:lesson-22:session-38:i06; family: context_gap_grammar -->
 I read the instructions ___ find a solution. → **to** · for · of
 - for — *Цель выражается через to + начальную форму глагола.*
@@ -103,7 +103,7 @@ I read the instructions ___ find a solution. → **to** · for · of
 - We talk to our neighbour to reach an agreement. — *В записи звучит I talk to my neighbour to reach an agreement.*
 - You talk to your neighbour to reach an agreement. — *В записи звучит I talk to my neighbour to reach an agreement.*
 
-**12 · Выберите слово, которое вводит цель.**
+**12 · Выберите слово, после которого идёт цель.**
 <!-- interaction_id: en:lesson-22:session-38:i09; family: context_gap_grammar -->
 I talk to my neighbour ___ reach an agreement. → **to** · for · of
 - for — *Цель выражается через to + начальную форму глагола.*
@@ -123,7 +123,7 @@ I talk to my neighbour ___ reach an agreement. → **to** · for · of
 - We compare the options to make a decision. — *В записи звучит I compare the options to make a decision.*
 - You compare the options to make a decision. — *В записи звучит I compare the options to make a decision.*
 
-**16 · Выберите слово, которое вводит цель.**
+**16 · Выберите слово, после которого идёт цель.**
 <!-- interaction_id: en:lesson-22:session-38:i12; family: context_gap_grammar -->
 I compare the options ___ make a decision. → **to** · for · of
 - for — *Цель выражается через to + начальную форму глагола.*

@@ -63,7 +63,7 @@
 - We move to another town to make a fresh start. — *У записі звучить I move to another town to make a fresh start.*
 - You move to another town to make a fresh start. — *У записі звучить I move to another town to make a fresh start.*
 
-**4 · Виберіть слово, яке вводить мету.**
+**4 · Виберіть слово, після якого йде мета.**
 <!-- interaction_id: en:lesson-22:session-37:i03; family: context_gap_grammar -->
 I move to another town ___ make a fresh start. → **to** · for · of
 - for — *Мета виражається через to + початкову форму дієслова.*
@@ -83,7 +83,7 @@ I move to another town ___ make a fresh start. → **to** · for · of
 - We check other routes to have a backup plan. — *У записі звучить I check other routes to have a backup plan.*
 - You check other routes to have a backup plan. — *У записі звучить I check other routes to have a backup plan.*
 
-**8 · Виберіть слово, яке вводить мету.**
+**8 · Виберіть слово, після якого йде мета.**
 <!-- interaction_id: en:lesson-22:session-37:i06; family: context_gap_grammar -->
 I check other routes ___ have a backup plan. → **to** · for · of
 - for — *Мета виражається через to + початкову форму дієслова.*
@@ -103,7 +103,7 @@ I check other routes ___ have a backup plan. → **to** · for · of
 - We change our routine to try a different approach. — *У записі звучить I change my routine to try a different approach.*
 - You change your routine to try a different approach. — *У записі звучить I change my routine to try a different approach.*
 
-**12 · Виберіть слово, яке вводить мету.**
+**12 · Виберіть слово, після якого йде мета.**
 <!-- interaction_id: en:lesson-22:session-37:i09; family: context_gap_grammar -->
 I change my routine ___ try a different approach. → **to** · for · of
 - for — *Мета виражається через to + початкову форму дієслова.*
@@ -123,7 +123,7 @@ I change my routine ___ try a different approach. → **to** · for · of
 - We visit another town to get a change of scene. — *У записі звучить I visit another town to get a change of scene.*
 - You visit another town to get a change of scene. — *У записі звучить I visit another town to get a change of scene.*
 
-**16 · Виберіть слово, яке вводить мету.**
+**16 · Виберіть слово, після якого йде мета.**
 <!-- interaction_id: en:lesson-22:session-37:i12; family: context_gap_grammar -->
 I visit another town ___ get a change of scene. → **to** · for · of
 - for — *Мета виражається через to + початкову форму дієслова.*

@@ -57,7 +57,7 @@ Skeleton — скелет. They saw a skeleton at the museum yesterday — уч�
 <!-- interaction_id: en:lesson-24:session-46:i01; family: phrase_builder -->
 Плитки: `skin` `my` `washed` `have` `I` → **I have washed my skin.**
 
-**3 · Доповніть розповідь про тіло й музей.**
+**3 · Доповніть розповідь про тіло людини.**
 <!-- interaction_id: en:lesson-24:session-46:i02; family: context_gap_grammar -->
 I ___ washed my skin. → **have** · has · am
 - has — *Із I потрібно have перед washed.*
@@ -77,7 +77,7 @@ I ___ washed my skin. → **have** · has · am
 <!-- interaction_id: en:lesson-24:session-46:i04; family: phrase_builder -->
 Плитки: `year` `last` `rib` `a` `broke` `She` → **She broke a rib last year.**
 
-**7 · Доповніть розповідь про тіло й музей.**
+**7 · Доповніть розповідь про тіло людини.**
 <!-- interaction_id: en:lesson-24:session-46:i05; family: context_gap_grammar -->
 She ___ a rib last year. → **broke** · has broken · break
 - has broken — *Із last year потрібна форма broke без has.*
@@ -97,7 +97,7 @@ She ___ a rib last year. → **broke** · has broken · break
 <!-- interaction_id: en:lesson-24:session-46:i07; family: phrase_builder -->
 Плитки: `liver` `the` `about` `read` `have` `We` → **We have read about the liver.**
 
-**11 · Доповніть розповідь про тіло й музей.**
+**11 · Доповніть розповідь про тіло людини.**
 <!-- interaction_id: en:lesson-24:session-46:i08; family: context_gap_grammar -->
 We ___ read about the liver. → **have** · has · are
 - has — *Із we потрібно have перед read.*
@@ -117,7 +117,7 @@ We ___ read about the liver. → **have** · has · are
 <!-- interaction_id: en:lesson-24:session-46:i10; family: phrase_builder -->
 Плитки: `yesterday` `museum` `the` `at` `skeleton` `a` `saw` `They` → **They saw a skeleton at the museum yesterday.**
 
-**15 · Доповніть розповідь про тіло й музей.**
+**15 · Доповніть розповідь про тіло людини.**
 <!-- interaction_id: en:lesson-24:session-46:i11; family: context_gap_grammar -->
 They ___ a skeleton at the museum yesterday. → **saw** · have seen · see
 - have seen — *Із yesterday потрібна форма saw без have.*

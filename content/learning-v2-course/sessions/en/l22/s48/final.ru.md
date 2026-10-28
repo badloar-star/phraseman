@@ -63,7 +63,7 @@
 - We fill the kettle to boil the water. — *В записи звучит I fill the kettle to boil the water.*
 - You fill the kettle to boil the water. — *В записи звучит I fill the kettle to boil the water.*
 
-**4 · Выберите слово, которое вводит цель.**
+**4 · Выберите слово, после которого идёт цель.**
 <!-- interaction_id: en:lesson-22:session-48:i03; family: context_gap_grammar -->
 I fill the kettle ___ boil the water. → **to** · for · of
 - for — *Цель выражается через to + начальную форму глагола.*
@@ -83,7 +83,7 @@ I fill the kettle ___ boil the water. → **to** · for · of
 - We use this knife to chop the vegetables. — *В записи звучит I use this knife to chop the vegetables.*
 - You use this knife to chop the vegetables. — *В записи звучит I use this knife to chop the vegetables.*
 
-**8 · Выберите слово, которое вводит цель.**
+**8 · Выберите слово, после которого идёт цель.**
 <!-- interaction_id: en:lesson-22:session-48:i06; family: context_gap_grammar -->
 I use this knife ___ chop the vegetables. → **to** · for · of
 - for — *Цель выражается через to + начальную форму глагола.*
@@ -103,7 +103,7 @@ I use this knife ___ chop the vegetables. → **to** · for · of
 - We heat the pan to fry an egg. — *В записи звучит I heat the pan to fry an egg.*
 - You heat the pan to fry an egg. — *В записи звучит I heat the pan to fry an egg.*
 
-**12 · Выберите слово, которое вводит цель.**
+**12 · Выберите слово, после которого идёт цель.**
 <!-- interaction_id: en:lesson-22:session-48:i09; family: context_gap_grammar -->
 I heat the pan ___ fry an egg. → **to** · for · of
 - for — *Цель выражается через to + начальную форму глагола.*
@@ -123,7 +123,7 @@ I heat the pan ___ fry an egg. → **to** · for · of
 - We turn on the oven to bake a cake. — *В записи звучит I turn on the oven to bake a cake.*
 - You turn on the oven to bake a cake. — *В записи звучит I turn on the oven to bake a cake.*
 
-**16 · Выберите слово, которое вводит цель.**
+**16 · Выберите слово, после которого идёт цель.**
 <!-- interaction_id: en:lesson-22:session-48:i12; family: context_gap_grammar -->
 I turn on the oven ___ bake a cake. → **to** · for · of
 - for — *Цель выражается через to + начальную форму глагола.*

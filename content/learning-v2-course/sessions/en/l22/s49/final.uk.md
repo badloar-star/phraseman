@@ -63,7 +63,7 @@
 - We use this website to book a flight. — *У записі звучить I use this website to book a flight.*
 - You use this website to book a flight. — *У записі звучить I use this website to book a flight.*
 
-**4 · Виберіть слово, яке вводить мету.**
+**4 · Виберіть слово, після якого йде мета.**
 <!-- interaction_id: en:lesson-22:session-49:i03; family: context_gap_grammar -->
 I use this website ___ book a flight. → **to** · for · of
 - for — *Мета виражається через to + початкову форму дієслова.*
@@ -83,7 +83,7 @@ I use this website ___ book a flight. → **to** · for · of
 - We make a list to pack our bag. — *У записі звучить I make a list to pack my bag.*
 - You make a list to pack your bag. — *У записі звучить I make a list to pack my bag.*
 
-**8 · Виберіть слово, яке вводить мету.**
+**8 · Виберіть слово, після якого йде мета.**
 <!-- interaction_id: en:lesson-22:session-49:i06; family: context_gap_grammar -->
 I make a list ___ pack my bag. → **to** · for · of
 - for — *Мета виражається через to + початкову форму дієслова.*
@@ -103,7 +103,7 @@ I make a list ___ pack my bag. → **to** · for · of
 - We open the drawer to check our passports. — *У записі звучить I open the drawer to check my passport.*
 - You open the drawer to check your passport. — *У записі звучить I open the drawer to check my passport.*
 
-**12 · Виберіть слово, яке вводить мету.**
+**12 · Виберіть слово, після якого йде мета.**
 <!-- interaction_id: en:lesson-22:session-49:i09; family: context_gap_grammar -->
 I open the drawer ___ check my passport. → **to** · for · of
 - for — *Мета виражається через to + початкову форму дієслова.*
@@ -123,7 +123,7 @@ I open the drawer ___ check my passport. → **to** · for · of
 - We use the printer to print our tickets. — *У записі звучить I use the printer to print my ticket.*
 - You use the printer to print your ticket. — *У записі звучить I use the printer to print my ticket.*
 
-**16 · Виберіть слово, яке вводить мету.**
+**16 · Виберіть слово, після якого йде мета.**
 <!-- interaction_id: en:lesson-22:session-49:i12; family: context_gap_grammar -->
 I use the printer ___ print my ticket. → **to** · for · of
 - for — *Мета виражається через to + початкову форму дієслова.*

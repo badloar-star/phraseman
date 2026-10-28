@@ -25,6 +25,7 @@ import { readTesterFlags, resolveTesterNoPremiumOverride } from './tester_premiu
 import { emitAppEvent } from './events';
 import { rememberPremiumPlan } from './premium_plan_peek';
 import { notePlusStoreAccessEvidence, plusTransferHoldGrantsAccess } from './plus_transfer_hold';
+import { notePlusSource, type PlusSource } from './plus_source_diagnostics';
 import { noteSwallowedHandler, noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const isDevRuntime = typeof __DEV__ !== 'undefined' && !!__DEV__;
@@ -669,10 +670,16 @@ export async function getVerifiedPremiumAccessStatus(
     stepAt = now;
   };
   let result = false;
+  // зачем (жалоба №8, координатор 28.10): чей это Plus — магазин, VIP (оплата через Telegram-бот), пробный, подарок, облако.
+  // null — ответ из кэша или аккаунт сменился: нового итога нет, журнал не пишем.
+  // Объект, а не let: присваивание из колбэка компилятор не видит и сузил бы переменную до null.
+  const decided: { source: PlusSource | null } = { source: null };
+  const setSource = (value: PlusSource): void => { decided.source = value; };
   try {
-    result = await getVerifiedPremiumAccessStatusTraced(options, mark);
+    result = await getVerifiedPremiumAccessStatusTraced(options, mark, setSource);
     return result;
   } finally {
+    if (decided.source !== null) notePlusSource(decided.source, result);
     const totalMs = Date.now() - startedAt;
     if (totalMs > 1500) {
       console.warn('[PREMIUM-GUARD-STEP] access_status:slow', JSON.stringify({ totalMs, result, steps }));
@@ -683,6 +690,7 @@ export async function getVerifiedPremiumAccessStatus(
 async function getVerifiedPremiumAccessStatusTraced(
   options: PremiumLeaseReadOptions | undefined,
   mark: (name: string) => void,
+  setSource: (source: PlusSource) => void,
 ): Promise<boolean> {
   const generation = options?.generation ?? captureAccountGeneration();
   if (!accountGenerationIsCurrent(generation)) return false;
@@ -695,7 +703,7 @@ async function getVerifiedPremiumAccessStatusTraced(
   const { noPremium: noPremiumAccess } = await readTesterFlags();
   mark('tester_flags');
   if (!accountGenerationIsCurrent(generation)) return false;
-  if (resolveTesterNoPremiumOverride(noPremiumAccess)) return finish(false);
+  if (resolveTesterNoPremiumOverride(noPremiumAccess)) { setSource('tester_off'); return finish(false); }
 
   if (
     !options?.bypassCache
@@ -709,6 +717,7 @@ async function getVerifiedPremiumAccessStatusTraced(
   const testerNoLimits = await isTesterNoLimitsActive();
   mark('tester_no_limits');
   if (testerNoLimits) {
+    setSource('tester_on');
     return accountGenerationIsCurrent(generation) ? finish(true) : false;
   }
   if (!accountGenerationIsCurrent(generation)) return false;
@@ -719,11 +728,12 @@ async function getVerifiedPremiumAccessStatusTraced(
   ]);
   mark('verified_local');
   if (!accountGenerationIsCurrent(generation)) return false;
-  if (realPremium || vip) return finish(true);
+  if (realPremium || vip) { setSource(realPremium ? 'store' : 'vip'); return finish(true); }
 
   const introActive = await isIntroFullAccessActive().catch(noteSwallowedAs('premium_guard:promise_13', false));
   mark('intro');
   if (introActive) {
+    setSource('intro');
     return accountGenerationIsCurrent(generation) ? finish(true) : false;
   }
   if (!accountGenerationIsCurrent(generation)) return false;
@@ -741,6 +751,7 @@ async function getVerifiedPremiumAccessStatusTraced(
   if (!accountGenerationIsCurrent(generation)) return false;
   if (localGiftUntil !== null) {
     scheduleLoyaltyGiftCloudReverify(generation);
+    setSource('gift_local');
     return finish(true);
   }
 
@@ -751,6 +762,7 @@ async function getVerifiedPremiumAccessStatusTraced(
   if (!accountGenerationIsCurrent(generation)) return false;
   if (loyaltyGift?.endsAtMs && loyaltyGift.endsAtMs > Date.now()) {
     void rememberLoyaltyGiftForCurrentAccount(loyaltyGift.endsAtMs, generation);
+    setSource('gift_cloud');
     return finish(true);
   }
 
@@ -767,7 +779,8 @@ async function getVerifiedPremiumAccessStatusTraced(
   if (options?.allowCloudRefresh === false) {
     const giftNow = await giftCopyStillActive();
     if (!accountGenerationIsCurrent(generation)) return false;
-    if (giftNow) return finish(true);
+    if (giftNow) { setSource('gift_local'); return finish(true); }
+    setSource('none_fast');
     // зачем (R61, координатор/Ревизор 15.10, 🔴 деньги): «нет», посчитанное БЕЗ облака, — не окончательный ответ. В общем кэше
     // на 5 мин оно отравляло полные проверки: Plus только в облаке (промокод, VIP, перенос) при пустой локальной копии →
     // PremiumContext видел Free, лимиты и пейвол. Кэшируем только «да»; лишней сети нет — копия подарка читается из
@@ -786,18 +799,21 @@ async function getVerifiedPremiumAccessStatusTraced(
       getVerifiedVipStatus(options).catch(noteSwallowedAs('premium_guard:promise_16', false)),
       giftCopyStillActive(),
     ]);
+    setSource(realAfterCloud ? 'cloud_store' : vipAfterCloud ? 'cloud_vip' : giftAfterCloud ? 'cloud_gift' : 'none');
     return accountGenerationIsCurrent(generation) ? finish(realAfterCloud || vipAfterCloud || giftAfterCloud) : false;
   }
 
   const giftAtEnd = await giftCopyStillActive();
   if (!accountGenerationIsCurrent(generation)) return false;
-  if (giftAtEnd) return finish(true);
+  if (giftAtEnd) { setSource('gift_local'); return finish(true); }
   // зачем (R61b): «нет» по потолку ожидания, после неудачного восстановления или пропуска без подтверждения — не ответ облака.
   // Не кэшируем: следующая полная проверка увидит доехавшее восстановление (Plus только в облаке после переустановки).
   if (cloudRefresh === 'unconfirmed') {
     console.log('[PREMIUM-GUARD] full_unconfirmed: «нет» без подтверждения облака не кэшируем'); // guard-ok: ветка решения
+    setSource('none_unconfirmed');
     return false;
   }
+  setSource('none');
   return finish(false);
 }
 

@@ -8,6 +8,7 @@ import { openPremiumPaywall } from './paywall_navigation';
 // Любой вход вне онбординга ведёт сюда и показывает ЕДИНСТВЕННЫЙ пейвол Plus.
 import PaywallPlusScreen from '../components/paywall/PaywallPlusScreen';
 import { usePremium } from '../components/PremiumContext';
+import { notePlusPaywallDecision } from './plus_source_diagnostics';
 import { dismissPaywallModal } from './navigation_back';
 import { paywallEntryAccessInputs, resolvePremiumModalEntry, type CachedPaywallEntitlement } from './paywall_entry_contract';
 import { PAYWALL_ENTRY_WAIT_CEILING_MS } from './load_gate_config';
@@ -136,6 +137,8 @@ export default function PremiumModalDispatcher() {
       accessFrom: accessInputs.source,
       rootNavReady,
     }));
+    // зачем (жалоба №8): console.log в прод-сборке вырезается — решение окна и чем оно принято уходит в журнал обращений.
+    notePlusPaywallDecision(decision, accessInputs.source, accessInputs.hasPremiumAccess, cachedEntitlement);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [decision]);
 

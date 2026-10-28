@@ -171,6 +171,7 @@ import {
 import { featureIntroById } from "../feature_intro_registry";
 import { featureIntroLater } from "../feature_intro_copy";
 import { lessonNamesForStudyTarget } from "../lesson_titles_for_study_target";
+import { noteClassicLessonsShown } from "../lessons_access_diagnostics";
 import {
   examContentAvailableForTarget,
   frenchExamGateCopy,
@@ -4397,24 +4398,19 @@ export default function LessonsTab({
   }, [legacyFilteredListData, legacyLessonQuery]);
   // зачем (координатор 28.10, жалобы #3 uk «натискаю на класичні уроки і уроків немає», #1 ru «не полностью открывается старый
   // курс», сперва логи): одна строка на показ классического списка — сколько уроков должно быть, сколько строк собрано и показано,
-  // какой шаг отрезал (страница v2 / поиск) и сколько уроков открыто. console.log, а не warn: в релизе iOS warn не виден.
+  // какой шаг отрезал (страница v2 / поиск) и сколько уроков открыто. console.* в прод-сборке вырезается (babel.config.js, кроме
+  // warn/error) — итог уходит событием журнала обращений (app/lessons_access_diagnostics.ts), одно событие на смену итога.
   useEffect(() => {
-    if (page === "v2") return;
-    const lessonRows = legacyFilteredListData.filter((item) => item.kind === "lesson").length;
-    console.log('[CLASSIC-LESSONS] shown', JSON.stringify({
-      page, presentation, initialPage, lang, studyTarget, tabVisible: lessonsTabVisible,
-      expectedLessons: lessons.length,
-      builtRows: listData.length,
-      shownRows: legacyFilteredListData.length,
-      shownLessons: lessonRows,
-      cutBy: lessons.length === 0 ? "no_titles" : listData.length === 0 ? "list_not_built" : legacyFilteredListData.length === 0 ? "search" : null,
-      queryLength: legacyLessonQuery.trim().length,
+    if (page === "v2" || !lessonsTabVisible) return;
+    noteClassicLessonsShown({
+      cutBy: lessons.length === 0 ? "no_titles" : listData.length === 0 ? "list_not_built" : legacyFilteredListData.length === 0 ? "search" : "none",
+      queryActive: legacyLessonQuery.trim().length > 0,
+      shownLessons: legacyFilteredListData.filter((item) => item.kind === "lesson").length,
       unlocked: unlockedLessons.filter(Boolean).length,
       done: progCounts.filter((count) => (count ?? 0) >= 50).length,
-      started: progCounts.filter((count) => (count ?? 0) > 0).length,
-      isPremium, noLimits: effectiveNoLimits,
-    })); // guard-ok: временная трассировка жалоб #1/#3
-  }, [effectiveNoLimits, initialPage, isPremium, lang, legacyFilteredListData, legacyLessonQuery, lessons.length, lessonsTabVisible, listData.length, page, presentation, progCounts, studyTarget, unlockedLessons]);
+      isPremium,
+    });
+  }, [isPremium, legacyFilteredListData, legacyLessonQuery, lessons.length, lessonsTabVisible, listData.length, page, progCounts, unlockedLessons]);
   // Премиум-урок: открываем пейвол СРАЗУ, без промежуточного окна «урок входит в премиум».
   // (Раньше тап показывал ThemedChoiceModal с кнопкой «Получить Premium» — лишний шаг.)
   const openLessonPaywall = useCallback(

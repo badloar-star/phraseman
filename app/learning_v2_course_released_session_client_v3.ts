@@ -58,6 +58,7 @@ import {
   type LearningV2InterfaceLocale,
 } from "../modules/learning-v2/content/generator_course_contract";
 import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
+import { noteV2SessionUnavailable } from './lessons_access_diagnostics';
 
 export const LEARNING_V2_COURSE_RELEASED_SESSION_CACHE_SCHEMA_V3 =
   "learning-v2-course-released-session-cache.v3" as const;
@@ -1171,6 +1172,8 @@ export async function loadCurrentLearningV2CourseReleasedSessionV3(
   if (locator.targetLanguage === "en" || locator.targetLanguage === "es") {
     // en/es живут только в бандле: сетевого пути и офлайн-копии для них нет — человек видит «Сессия недоступна».
     console.log(`[V2-SESSION-SOURCE] ${JSON.stringify({ ...sourceTrace, source: "none", reason: "learning_v2_factory_session_unavailable", shown: "session_unavailable" })}`); // guard-ok: причина отказа
+    // зачем (🔴 Ревизора 28.10): console.log в прод-сборке вырезается — отказ уходит событием журнала обращений (жалоба #11)
+    noteV2SessionUnavailable(locator.targetLanguage, locator.lessonOrdinal, locator.sessionOrdinal);
     throw new Error("learning_v2_factory_session_unavailable");
   }
   console.log(`[V2-SESSION-SOURCE] ${JSON.stringify({ ...sourceTrace, source: "network_or_lkg" })}`); // guard-ok: одна строка на открытие

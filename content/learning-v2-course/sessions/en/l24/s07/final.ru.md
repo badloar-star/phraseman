@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы рассказываете о способностях и стремлениях знакомых.
 
-**Что вы освоите:** present perfect + for duration; since starting point
+**Что вы освоите:** сказать, как долго что-то длится и с какого времени
 **Новые слова:** creativity, intelligence, enthusiasm, ambition
 
 ## Интро 1

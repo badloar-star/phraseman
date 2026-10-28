@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы рассказываете о чувствах и о том, как долго они длятся.
 
-**Что вы освоите:** present perfect + for duration; since starting point
+**Что вы освоите:** сказать, как долго что-то длится и с какого времени
 **Новые слова:** disappointment, excitement, boredom, loneliness
 
 ## Интро 1

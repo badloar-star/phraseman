@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви розповідаєте про почуття та про те, як довго вони тривають.
 
-**Що ви опануєте:** present perfect + for duration; since starting point
+**Що ви опануєте:** сказати, як довго щось триває і відколи
 **Нові слова:** disappointment, excitement, boredom, loneliness
 
 ## Інтро 1

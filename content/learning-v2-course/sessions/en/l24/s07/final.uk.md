@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви розповідаєте про здібності та прагнення знайомих.
 
-**Що ви опануєте:** present perfect + for duration; since starting point
+**Що ви опануєте:** сказати, як довго щось триває і відколи
 **Нові слова:** creativity, intelligence, enthusiasm, ambition
 
 ## Інтро 1

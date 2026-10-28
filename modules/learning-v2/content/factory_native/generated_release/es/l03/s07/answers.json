@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-03:session-07:i01",
+    "correctText": "larga",
+    "correctResponseId": "es:lesson-03:session-07:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-07:i02",
+    "correctText": "La camisa es larga.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-07:i03",
+    "correctText": "largas",
+    "correctResponseId": "es:lesson-03:session-07:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-07:i04",
+    "correctText": "Las camisas son largas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-07:i05",
+    "correctText": "largo",
+    "correctResponseId": "es:lesson-03:session-07:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-07:i06",
+    "correctText": "Los abrigos son largos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-07:i07",
+    "correctText": "Las camisas son largas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-07:i08",
+    "correctText": "cortos",
+    "correctResponseId": "es:lesson-03:session-07:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-07:i09",
+    "correctText": "La camisa es larga.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-07:i10",
+    "correctText": "cortas",
+    "correctResponseId": "es:lesson-03:session-07:i10:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-07:i11",
+    "correctText": "Las camisas son largas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-07:i12",
+    "correctText": "Los abrigos son largos.",
+    "correctResponseId": null
+  }
+]

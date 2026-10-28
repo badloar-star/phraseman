@@ -1,0 +1,72 @@
+[
+  {
+    "interactionId": "es:lesson-03:session-06:i01",
+    "correctText": "ancho",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-06:i02",
+    "correctText": "ancha",
+    "correctResponseId": "es:lesson-03:session-06:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-06:i03",
+    "correctText": "La puerta es ancha.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-06:i04",
+    "correctText": "estrecho",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-06:i05",
+    "correctText": "estrecha",
+    "correctResponseId": "es:lesson-03:session-06:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-06:i06",
+    "correctText": "La puerta es estrecha.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-06:i07",
+    "correctText": "ancha",
+    "correctResponseId": "es:lesson-03:session-06:i07:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-06:i08",
+    "correctText": "La mesa es ancha.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-06:i09",
+    "correctText": "La puerta es estrecha.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-06:i10",
+    "correctText": "estrechas",
+    "correctResponseId": "es:lesson-03:session-06:i10:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-06:i11",
+    "correctText": "no",
+    "correctResponseId": "es:lesson-03:session-06:i11:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-06:i12",
+    "correctText": "La puerta es ancha.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-06:i13",
+    "correctText": "La puerta es estrecha.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-06:i14",
+    "correctText": "La mesa es ancha.",
+    "correctResponseId": null
+  }
+]

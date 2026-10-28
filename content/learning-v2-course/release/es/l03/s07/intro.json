@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-03:session-07",
+  "learningOutcomeByLocale": {
+    "ru": "выбрать largo, larga, largos или largas по роду и числу вещи.",
+    "uk": "вибрати largo, larga, largos або largas за родом і числом речі."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-03:session-07:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Одна рубашка",
+        "uk": "Одна сорочка"
+      },
+      "bodyByLocale": {
+        "ru": "Вы держите одну длинную рубашку. Скажите `La camisa es larga` — «Рубашка длинная». Соберите `la camisa` + `es` + `larga`. Camisa женского рода и обозначает одну вещь: larga с -a, без -s.",
+        "uk": "Ви тримаєте одну довгу сорочку. Скажіть `La camisa es larga` — «Сорочка довга». Складіть `la camisa` + `es` + `larga`. Camisa жіночого роду й позначає одну річ: larga з -a, без -s."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-07:intro1:q",
+        "promptByLocale": {
+          "ru": "Опишите одну длинную рубашку.",
+          "uk": "Опишіть одну довгу сорочку."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-07:intro1:r1",
+              "text": "La camisa es larga."
+            },
+            {
+              "responseId": "es:lesson-03:session-07:intro1:r2",
+              "text": "La camisa es largo."
+            },
+            {
+              "responseId": "es:lesson-03:session-07:intro1:r3",
+              "text": "La camisa es largas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-07:intro1:r1",
+              "text": "La camisa es larga."
+            },
+            {
+              "responseId": "es:lesson-03:session-07:intro1:r2",
+              "text": "La camisa es largo."
+            },
+            {
+              "responseId": "es:lesson-03:session-07:intro1:r3",
+              "text": "La camisa es largas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Опишите одну длинную рубашку.",
+          "uk": "Опишіть одну довгу сорочку."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-03:session-07:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Несколько рубашек",
+        "uk": "Кілька сорочок"
+      },
+      "bodyByLocale": {
+        "ru": "Теперь перед вами несколько длинных рубашек. Скажите `Las camisas son largas` — «Рубашки длинные». Соберите `las camisas` + `son` + `largas`. При переходе к нескольким вещам меняются все нужные части: la camisa → las camisas, es → son, larga → largas.",
+        "uk": "Тепер перед вами кілька довгих сорочок. Скажіть `Las camisas son largas` — «Сорочки довгі». Складіть `las camisas` + `son` + `largas`. При переході до кількох речей змінюються всі потрібні частини: la camisa → las camisas, es → son, larga → largas."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-07:intro2:q",
+        "promptByLocale": {
+          "ru": "Опишите несколько длинных рубашек.",
+          "uk": "Опишіть кілька довгих сорочок."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-07:intro2:r1",
+              "text": "Las camisas son largas."
+            },
+            {
+              "responseId": "es:lesson-03:session-07:intro2:r2",
+              "text": "Las camisas son largos."
+            },
+            {
+              "responseId": "es:lesson-03:session-07:intro2:r3",
+              "text": "Las camisas es larga."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-07:intro2:r1",
+              "text": "Las camisas son largas."
+            },
+            {
+              "responseId": "es:lesson-03:session-07:intro2:r2",
+              "text": "Las camisas son largos."
+            },
+            {
+              "responseId": "es:lesson-03:session-07:intro2:r3",
+              "text": "Las camisas es larga."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Опишите несколько длинных рубашек.",
+          "uk": "Опишіть кілька довгих сорочок."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-03:session-07:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Пальто для той же поездки",
+        "uk": "Пальта для тієї самої поїздки"
+      },
+      "bodyByLocale": {
+        "ru": "Рядом висят несколько длинных пальто. Скажите `Los abrigos son largos` — «Пальто длинные». Соберите `los abrigos` + `son` + `largos`. Abrigos мужского рода во множественном числе: largos. Для одного пальто знакомая форма — El abrigo es largo. Выбирайте окончание по испанскому слову, а не по переводу.",
+        "uk": "Поруч висять кілька довгих пальт. Скажіть `Los abrigos son largos` — «Пальта довгі». Складіть `los abrigos` + `son` + `largos`. Abrigos чоловічого роду в множині: largos. Для одного пальта знайома форма — El abrigo es largo. Вибирайте закінчення за іспанським словом, а не за перекладом."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-07:intro3:q",
+        "promptByLocale": {
+          "ru": "Опишите несколько длинных пальто.",
+          "uk": "Опишіть кілька довгих пальт."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-07:intro3:r1",
+              "text": "Los abrigos son largos."
+            },
+            {
+              "responseId": "es:lesson-03:session-07:intro3:r2",
+              "text": "Los abrigos son largas."
+            },
+            {
+              "responseId": "es:lesson-03:session-07:intro3:r3",
+              "text": "Los abrigos son largo."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-07:intro3:r1",
+              "text": "Los abrigos son largos."
+            },
+            {
+              "responseId": "es:lesson-03:session-07:intro3:r2",
+              "text": "Los abrigos son largas."
+            },
+            {
+              "responseId": "es:lesson-03:session-07:intro3:r3",
+              "text": "Los abrigos son largo."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Опишите несколько длинных пальто.",
+          "uk": "Опишіть кілька довгих пальт."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "3b887684429d680647f4680ee06bf0418ee2e6cc0d2983713c3fef1f976e0220"
+}

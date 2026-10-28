@@ -1,0 +1,725 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-03:session-07",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-03:session-07:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — одна сорочка довга",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-07:i01:r1",
+          "text": "larga"
+        },
+        {
+          "responseId": "es:lesson-03:session-07:i01:r2",
+          "text": "largo"
+        },
+        {
+          "responseId": "es:lesson-03:session-07:i01:r3",
+          "text": "largas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — одна сорочка довга",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — одна рубашка длинная",
+          "uk": "Вставте слово — одна сорочка довга"
+        },
+        "gappedTargetPhrase": "La camisa es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-07:i01:r1",
+            "text": "larga"
+          },
+          {
+            "responseId": "es:lesson-03:session-07:i01:r2",
+            "text": "largo"
+          },
+          {
+            "responseId": "es:lesson-03:session-07:i01:r3",
+            "text": "largas"
+          }
+        ],
+        "testedDimension": "Вставте слово — одна сорочка довга",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-07:i01:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — одна сорочка довга",
+            "feedbackByLocale": {
+              "ru": "Camisa женского рода: larga.",
+              "uk": "Camisa жіночого роду: larga."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-07:i01:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — одна сорочка довга",
+            "feedbackByLocale": {
+              "ru": "Рубашка одна: larga.",
+              "uk": "Сорочка одна: larga."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-07:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — сорочка довга",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-07:i02:r1",
+          "text": "Плитки: larga"
+        },
+        {
+          "responseId": "es:lesson-03:session-07:i02:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-07:i02:r3",
+          "text": "camisa"
+        },
+        {
+          "responseId": "es:lesson-03:session-07:i02:r4",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-03:session-07:i02:r5",
+          "text": "largas."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — сорочка довга",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "La camisa es larga.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — рубашка длинная",
+          "uk": "Зберіть фразу — сорочка довга"
+        },
+        "orderedTokens": [
+          "La",
+          "camisa",
+          "es",
+          "larga"
+        ],
+        "authoredDistractorTokens": [
+          "largas"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-07:i02:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — сорочка довга",
+            "feedbackByLocale": {
+              "ru": "рубашка одна.",
+              "uk": "сорочка одна."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-07:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — кілька сорочок довгі",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-07:i03:r1",
+          "text": "largas"
+        },
+        {
+          "responseId": "es:lesson-03:session-07:i03:r2",
+          "text": "larga"
+        },
+        {
+          "responseId": "es:lesson-03:session-07:i03:r3",
+          "text": "largos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — кілька сорочок довгі",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — несколько рубашек длинные",
+          "uk": "Вставте слово — кілька сорочок довгі"
+        },
+        "gappedTargetPhrase": "Las camisas son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-07:i03:r1",
+            "text": "largas"
+          },
+          {
+            "responseId": "es:lesson-03:session-07:i03:r2",
+            "text": "larga"
+          },
+          {
+            "responseId": "es:lesson-03:session-07:i03:r3",
+            "text": "largos"
+          }
+        ],
+        "testedDimension": "Вставте слово — кілька сорочок довгі",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-07:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — кілька сорочок довгі",
+            "feedbackByLocale": {
+              "ru": "Рубашек несколько: largas.",
+              "uk": "Сорочок кілька: largas."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-07:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — кілька сорочок довгі",
+            "feedbackByLocale": {
+              "ru": "Camisas женского рода: largas.",
+              "uk": "Camisas жіночого роду: largas."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-07:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — сорочки довгі",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-07:i04:r1",
+          "text": "Плитки: largas"
+        },
+        {
+          "responseId": "es:lesson-03:session-07:i04:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-07:i04:r3",
+          "text": "camisas"
+        },
+        {
+          "responseId": "es:lesson-03:session-07:i04:r4",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-03:session-07:i04:r5",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — сорочки довгі",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Las camisas son largas.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — рубашки длинные",
+          "uk": "Зберіть фразу — сорочки довгі"
+        },
+        "orderedTokens": [
+          "Las",
+          "camisas",
+          "son",
+          "largas"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-07:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — сорочки довгі",
+            "feedbackByLocale": {
+              "ru": "рубашек несколько.",
+              "uk": "сорочок кілька."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-07:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — одне пальто довге",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-07:i05:r1",
+          "text": "largo"
+        },
+        {
+          "responseId": "es:lesson-03:session-07:i05:r2",
+          "text": "larga"
+        },
+        {
+          "responseId": "es:lesson-03:session-07:i05:r3",
+          "text": "largos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — одне пальто довге",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — одно пальто длинное",
+          "uk": "Вставте слово — одне пальто довге"
+        },
+        "gappedTargetPhrase": "El abrigo es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-07:i05:r1",
+            "text": "largo"
+          },
+          {
+            "responseId": "es:lesson-03:session-07:i05:r2",
+            "text": "larga"
+          },
+          {
+            "responseId": "es:lesson-03:session-07:i05:r3",
+            "text": "largos"
+          }
+        ],
+        "testedDimension": "Вставте слово — одне пальто довге",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-07:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — одне пальто довге",
+            "feedbackByLocale": {
+              "ru": "Abrigo мужского рода: largo.",
+              "uk": "Abrigo чоловічого роду: largo."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-07:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — одне пальто довге",
+            "feedbackByLocale": {
+              "ru": "Пальто одно: largo.",
+              "uk": "Пальто одне: largo."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-07:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — кілька пальт довгі",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-07:i06:r1",
+          "text": "Плитки: largos"
+        },
+        {
+          "responseId": "es:lesson-03:session-07:i06:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-07:i06:r3",
+          "text": "abrigos"
+        },
+        {
+          "responseId": "es:lesson-03:session-07:i06:r4",
+          "text": "los"
+        },
+        {
+          "responseId": "es:lesson-03:session-07:i06:r5",
+          "text": "largas."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — кілька пальт довгі",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Los abrigos son largos.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — несколько пальто длинные",
+          "uk": "Зберіть фразу — кілька пальт довгі"
+        },
+        "orderedTokens": [
+          "Los",
+          "abrigos",
+          "son",
+          "largos"
+        ],
+        "authoredDistractorTokens": [
+          "largas"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-07:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — кілька пальт довгі",
+            "feedbackByLocale": {
+              "ru": "abrigos мужского рода.",
+              "uk": "abrigos чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-07:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-07:i07:r1",
+          "text": "Плитки: largas"
+        },
+        {
+          "responseId": "es:lesson-03:session-07:i07:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-07:i07:r3",
+          "text": "camisas"
+        },
+        {
+          "responseId": "es:lesson-03:session-07:i07:r4",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-03:session-07:i07:r5",
+          "text": "los."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-07:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-07:i07:audio",
+          "transcript": "Las camisas son largas."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Las camisas son largas.",
+        "orderedTokens": [
+          "Las",
+          "camisas",
+          "son",
+          "largas"
+        ],
+        "authoredDistractorTokens": [
+          "los"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-07:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит las.",
+              "uk": "звучить las."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-07:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — кілька пальт короткі",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-07:i08:r1",
+          "text": "cortos"
+        },
+        {
+          "responseId": "es:lesson-03:session-07:i08:r2",
+          "text": "cortas"
+        },
+        {
+          "responseId": "es:lesson-03:session-07:i08:r3",
+          "text": "corto"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — кілька пальт короткі",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — несколько пальто короткие",
+          "uk": "Вставте слово — кілька пальт короткі"
+        },
+        "gappedTargetPhrase": "Los abrigos son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-07:i08:r1",
+            "text": "cortos"
+          },
+          {
+            "responseId": "es:lesson-03:session-07:i08:r2",
+            "text": "cortas"
+          },
+          {
+            "responseId": "es:lesson-03:session-07:i08:r3",
+            "text": "corto"
+          }
+        ],
+        "testedDimension": "Вставте слово — кілька пальт короткі",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-07:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — кілька пальт короткі",
+            "feedbackByLocale": {
+              "ru": "Abrigos мужского рода: cortos.",
+              "uk": "Abrigos чоловічого роду: cortos."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-07:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — кілька пальт короткі",
+            "feedbackByLocale": {
+              "ru": "Пальто несколько: cortos.",
+              "uk": "Пальт кілька: cortos."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-07:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — одна сорочка довга; назвіть предмет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-07:i09:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — одна сорочка довга; назвіть предмет",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-07:i09:audio",
+          "transcript": "La camisa es larga."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "La camisa es larga.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-07:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — кілька сорочок короткі",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-07:i10:r1",
+          "text": "cortas"
+        },
+        {
+          "responseId": "es:lesson-03:session-07:i10:r2",
+          "text": "cortos"
+        },
+        {
+          "responseId": "es:lesson-03:session-07:i10:r3",
+          "text": "corta"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — кілька сорочок короткі",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — несколько рубашек короткие",
+          "uk": "Вставте слово — кілька сорочок короткі"
+        },
+        "gappedTargetPhrase": "Las camisas son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-07:i10:r1",
+            "text": "cortas"
+          },
+          {
+            "responseId": "es:lesson-03:session-07:i10:r2",
+            "text": "cortos"
+          },
+          {
+            "responseId": "es:lesson-03:session-07:i10:r3",
+            "text": "corta"
+          }
+        ],
+        "testedDimension": "Вставте слово — кілька сорочок короткі",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-07:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — кілька сорочок короткі",
+            "feedbackByLocale": {
+              "ru": "Camisas женского рода: cortas.",
+              "uk": "Camisas жіночого роду: cortas."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-07:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — кілька сорочок короткі",
+            "feedbackByLocale": {
+              "ru": "Рубашек несколько: cortas.",
+              "uk": "Сорочок кілька: cortas."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-07:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — кілька сорочок довгі; назвіть предмети",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-07:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — кілька сорочок довгі; назвіть предмети",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-07:i11:audio",
+          "transcript": "Las camisas son largas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Las camisas son largas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-07:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — кілька пальт довгі; назвіть предмети",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-07:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — кілька пальт довгі; назвіть предмети",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-07:i12:audio",
+          "transcript": "Los abrigos son largos."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Los abrigos son largos.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "b06910efa1a741b55395866d8c88c51d6b051aed2df06bb3f77cb5ad33767ea1"
+}

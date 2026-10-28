@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-03:session-08",
+  "entries": [
+    {
+      "interactionId": "es:lesson-03:session-08:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-08:intro1:r2": {
+          "ru": "Grande не меняется по роду.",
+          "uk": "Grande не змінюється за родом."
+        },
+        "es:lesson-03:session-08:intro1:r3": {
+          "ru": "Чемодан один: es grande.",
+          "uk": "Валіза одна: es grande."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-08:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-08:intro2:r2": {
+          "ru": "Camisas женского рода: cortas.",
+          "uk": "Camisas жіночого роду: cortas."
+        },
+        "es:lesson-03:session-08:intro2:r3": {
+          "ru": "Рубашек несколько: son cortas.",
+          "uk": "Сорочок кілька: son cortas."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-08:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-08:intro3:r2": {
+          "ru": "Нужна форма ancha.",
+          "uk": "Потрібна форма ancha."
+        },
+        "es:lesson-03:session-08:intro3:r3": {
+          "ru": "Так описывают несколько шарфов, а сейчас один.",
+          "uk": "Так описують кілька шарфів, а зараз один."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "d0d8654ab4304f11921456f92f447cb7ffdead75a11f2e99a4ebfabd16b127ed"
+}

@@ -1,0 +1,82 @@
+[
+  {
+    "interactionId": "es:lesson-03:session-08:i01",
+    "correctText": "grande",
+    "correctResponseId": "es:lesson-03:session-08:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-08:i02",
+    "correctText": "La maleta es grande.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-08:i03",
+    "correctText": "pequeños",
+    "correctResponseId": "es:lesson-03:session-08:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-08:i04",
+    "correctText": "cortas",
+    "correctResponseId": "es:lesson-03:session-08:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-08:i05",
+    "correctText": "Las camisas son cortas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-08:i06",
+    "correctText": "largo",
+    "correctResponseId": "es:lesson-03:session-08:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-08:i07",
+    "correctText": "La bufanda es ancha.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-08:i08",
+    "correctText": "estrecha",
+    "correctResponseId": "es:lesson-03:session-08:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-08:i09",
+    "correctText": "Las camisas son cortas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-08:i10",
+    "correctText": "son",
+    "correctResponseId": "es:lesson-03:session-08:i10:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-08:i11",
+    "correctText": "largos",
+    "correctResponseId": "es:lesson-03:session-08:i11:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-08:i12",
+    "correctText": "pequeñas",
+    "correctResponseId": "es:lesson-03:session-08:i12:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-08:i13",
+    "correctText": "La maleta es grande.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-08:i14",
+    "correctText": "Las camisas son cortas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-08:i15",
+    "correctText": "La bufanda es ancha.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-08:i16",
+    "correctText": "El abrigo no es largo.",
+    "correctResponseId": null
+  }
+]

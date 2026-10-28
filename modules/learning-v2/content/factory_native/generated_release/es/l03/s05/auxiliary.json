@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-03:session-05",
+  "entries": [
+    {
+      "interactionId": "es:lesson-03:session-05:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-05:intro1:r2": {
+          "ru": "Нужна женская форма larga.",
+          "uk": "Потрібна жіноча форма larga."
+        },
+        "es:lesson-03:session-05:intro1:r3": {
+          "ru": "Запомните la bufanda и larga.",
+          "uk": "Запам'ятайте la bufanda та larga."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-05:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-05:intro2:r2": {
+          "ru": "Для bufanda нужна форма corta.",
+          "uk": "Для bufanda потрібна форма corta."
+        },
+        "es:lesson-03:session-05:intro2:r3": {
+          "ru": "Larga означает длинный, а этот шарф короткий.",
+          "uk": "Larga означає довгий, а цей шарф короткий."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-05:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-05:intro3:r2": {
+          "ru": "Для abrigo нужна форма largo.",
+          "uk": "Для abrigo потрібна форма largo."
+        },
+        "es:lesson-03:session-05:intro3:r3": {
+          "ru": "Corto означает короткое, а пальто длинное.",
+          "uk": "Corto означає коротке, а пальто довге."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "3621c7c3ea091842f8407fd6d0137880fe127ba691d7857740c4d2147cd41f37"
+}

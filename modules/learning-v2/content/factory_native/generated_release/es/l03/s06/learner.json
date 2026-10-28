@@ -1,0 +1,789 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-03:session-06",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-03:session-06:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — ancho",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-06:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — ancho",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-06:i01:audio",
+          "transcript": "ancho"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-06:i01:r1",
+            "targetText": "ancho",
+            "meaningByLocale": {
+              "ru": "широкий; ancha — форма женского рода. 🔊 *ancho*",
+              "uk": "широкий; ancha — форма жіночого роду. 🔊 *ancho*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ancho",
+          "definitionByLocale": {
+            "ru": "широкий; ancha — форма женского рода. 🔊 *ancho*",
+            "uk": "широкий; ancha — форма жіночого роду. 🔊 *ancho*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-06:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-06:i02:r1",
+          "text": "ancha"
+        },
+        {
+          "responseId": "es:lesson-03:session-06:i02:r2",
+          "text": "ancho"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-06:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-06:i02:audio",
+          "transcript": "ancha"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-06:i02:r1",
+            "targetText": "ancha",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-03:session-06:i02:r2",
+            "targetText": "ancho",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-06:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В конце слышно -a: ancha.",
+              "uk": "Наприкінці чути -a: ancha."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-06:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — дверь широкая",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-06:i03:r1",
+          "text": "Плитки: ancha"
+        },
+        {
+          "responseId": "es:lesson-03:session-06:i03:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-06:i03:r3",
+          "text": "puerta"
+        },
+        {
+          "responseId": "es:lesson-03:session-06:i03:r4",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-03:session-06:i03:r5",
+          "text": "ancho."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — дверь широкая",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "La puerta es ancha.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — дверь широкая",
+          "uk": "Зберіть фразу — одні двері широкі"
+        },
+        "orderedTokens": [
+          "La",
+          "puerta",
+          "es",
+          "ancha"
+        ],
+        "authoredDistractorTokens": [
+          "ancho"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-06:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — дверь широкая",
+            "feedbackByLocale": {
+              "ru": "puerta женского рода.",
+              "uk": "puerta жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-06:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — estrecho",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-06:i04:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — estrecho",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-06:i04:audio",
+          "transcript": "estrecho"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-06:i04:r1",
+            "targetText": "estrecho",
+            "meaningByLocale": {
+              "ru": "узкий; estrecha — форма женского рода. 🔊 *estrecho*",
+              "uk": "вузький; estrecha — форма жіночого роду. 🔊 *estrecho*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "estrecho",
+          "definitionByLocale": {
+            "ru": "узкий; estrecha — форма женского рода. 🔊 *estrecho*",
+            "uk": "вузький; estrecha — форма жіночого роду. 🔊 *estrecho*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-06:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-06:i05:r1",
+          "text": "estrecha"
+        },
+        {
+          "responseId": "es:lesson-03:session-06:i05:r2",
+          "text": "ancha"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-06:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-06:i05:audio",
+          "transcript": "estrecha"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-06:i05:r1",
+            "targetText": "estrecha",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-03:session-06:i05:r2",
+            "targetText": "ancha",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-06:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит estrecha — узкая.",
+              "uk": "Звучить estrecha — вузька."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-06:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — дверь узкая",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-06:i06:r1",
+          "text": "Плитки: estrecha"
+        },
+        {
+          "responseId": "es:lesson-03:session-06:i06:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-06:i06:r3",
+          "text": "puerta"
+        },
+        {
+          "responseId": "es:lesson-03:session-06:i06:r4",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-03:session-06:i06:r5",
+          "text": "estrecho."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — дверь узкая",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "La puerta es estrecha.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — дверь узкая",
+          "uk": "Зберіть фразу — одні двері вузькі"
+        },
+        "orderedTokens": [
+          "La",
+          "puerta",
+          "es",
+          "estrecha"
+        ],
+        "authoredDistractorTokens": [
+          "estrecho"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-06:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — дверь узкая",
+            "feedbackByLocale": {
+              "ru": "puerta женского рода.",
+              "uk": "puerta жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-06:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — стол широкий",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-06:i07:r1",
+          "text": "ancha"
+        },
+        {
+          "responseId": "es:lesson-03:session-06:i07:r2",
+          "text": "ancho"
+        },
+        {
+          "responseId": "es:lesson-03:session-06:i07:r3",
+          "text": "anchas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — стол широкий",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — стол широкий",
+          "uk": "Вставте слово — стіл широкий"
+        },
+        "gappedTargetPhrase": "La mesa es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-06:i07:r1",
+            "text": "ancha"
+          },
+          {
+            "responseId": "es:lesson-03:session-06:i07:r2",
+            "text": "ancho"
+          },
+          {
+            "responseId": "es:lesson-03:session-06:i07:r3",
+            "text": "anchas"
+          }
+        ],
+        "testedDimension": "Вставьте слово — стол широкий",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-06:i07:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — стол широкий",
+            "feedbackByLocale": {
+              "ru": "Mesa женского рода: ancha.",
+              "uk": "Mesa жіночого роду: ancha."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-06:i07:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — стол широкий",
+            "feedbackByLocale": {
+              "ru": "Стол один: ancha.",
+              "uk": "Стіл один: ancha."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-06:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — стол широкий",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-06:i08:r1",
+          "text": "Плитки: ancha"
+        },
+        {
+          "responseId": "es:lesson-03:session-06:i08:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-06:i08:r3",
+          "text": "mesa"
+        },
+        {
+          "responseId": "es:lesson-03:session-06:i08:r4",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-03:session-06:i08:r5",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — стол широкий",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "La mesa es ancha.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — стол широкий",
+          "uk": "Зберіть фразу — стіл широкий"
+        },
+        "orderedTokens": [
+          "La",
+          "mesa",
+          "es",
+          "ancha"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-06:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — стол широкий",
+            "feedbackByLocale": {
+              "ru": "mesa женского рода.",
+              "uk": "mesa жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-06:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-06:i09:r1",
+          "text": "Плитки: estrecha"
+        },
+        {
+          "responseId": "es:lesson-03:session-06:i09:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-06:i09:r3",
+          "text": "puerta"
+        },
+        {
+          "responseId": "es:lesson-03:session-06:i09:r4",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-03:session-06:i09:r5",
+          "text": "ancha."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-06:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-06:i09:audio",
+          "transcript": "La puerta es estrecha."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "La puerta es estrecha.",
+        "orderedTokens": [
+          "La",
+          "puerta",
+          "es",
+          "estrecha"
+        ],
+        "authoredDistractorTokens": [
+          "ancha"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-06:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит estrecha.",
+              "uk": "звучить estrecha."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-06:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — несколько дверей узкие",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-06:i10:r1",
+          "text": "estrechas"
+        },
+        {
+          "responseId": "es:lesson-03:session-06:i10:r2",
+          "text": "estrechos"
+        },
+        {
+          "responseId": "es:lesson-03:session-06:i10:r3",
+          "text": "estrecha"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — несколько дверей узкие",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — несколько дверей узкие",
+          "uk": "Вставте слово — кілька окремих дверей вузькі"
+        },
+        "gappedTargetPhrase": "Las puertas son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-06:i10:r1",
+            "text": "estrechas"
+          },
+          {
+            "responseId": "es:lesson-03:session-06:i10:r2",
+            "text": "estrechos"
+          },
+          {
+            "responseId": "es:lesson-03:session-06:i10:r3",
+            "text": "estrecha"
+          }
+        ],
+        "testedDimension": "Вставьте слово — несколько дверей узкие",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-06:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — несколько дверей узкие",
+            "feedbackByLocale": {
+              "ru": "Puertas женского рода: estrechas.",
+              "uk": "Puertas жіночого роду: estrechas."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-06:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — несколько дверей узкие",
+            "feedbackByLocale": {
+              "ru": "Дверей несколько: estrechas.",
+              "uk": "Йдеться про кілька дверей: estrechas."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-06:i11",
+      "ordinal": 14,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — дверь не широкая",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-06:i11:r1",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-03:session-06:i11:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-06:i11:r3",
+          "text": "una"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — дверь не широкая",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — дверь не широкая",
+          "uk": "Вставте слово — одні двері не широкі"
+        },
+        "gappedTargetPhrase": "La puerta ___ es ancha.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-06:i11:r1",
+            "text": "no"
+          },
+          {
+            "responseId": "es:lesson-03:session-06:i11:r2",
+            "text": "son"
+          },
+          {
+            "responseId": "es:lesson-03:session-06:i11:r3",
+            "text": "una"
+          }
+        ],
+        "testedDimension": "Вставьте слово — дверь не широкая",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-06:i11:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — дверь не широкая",
+            "feedbackByLocale": {
+              "ru": "Перед es для отрицания нужно no.",
+              "uk": "Перед es для заперечення потрібно no."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-06:i11:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — дверь не широкая",
+            "feedbackByLocale": {
+              "ru": "Una — артикль; для отрицания нужно no.",
+              "uk": "Una — артикль; для заперечення потрібно no."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-06:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — дверь широкая; назовите предмет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-06:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — дверь широкая; назовите предмет",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-06:i12:audio",
+          "transcript": "La puerta es ancha."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "La puerta es ancha.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-06:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — дверь узкая; назовите предмет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-06:i13:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — дверь узкая; назовите предмет",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-06:i13:audio",
+          "transcript": "La puerta es estrecha."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "La puerta es estrecha.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-06:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — стол широкий; назовите предмет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-06:i14:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — стол широкий; назовите предмет",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-06:i14:audio",
+          "transcript": "La mesa es ancha."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "La mesa es ancha.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 14,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "876f683827f7938b7206a2093ff3be80ace77378daf7f34eb1f916ffc738ef62"
+}

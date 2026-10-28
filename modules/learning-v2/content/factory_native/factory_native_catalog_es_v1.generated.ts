@@ -819,4 +819,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"согласовать pequeña с несколькими предметами женского рода.","uk":"узгодити pequeña з кількома предметами жіночого роду."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 5,
+    sourceFingerprint: "15baf955ee4467c62e38801f5f0ae3c958095a19079190d62fc5395ab39d90f8",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"описать длину и согласовать largo или corto с предметом.","uk":"описати довжину й узгодити largo або corto з предметом."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 6,
+    sourceFingerprint: "344637eccb773a56a094e0ec5112b429105b30511b590c4d14cc15a57d245203",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"описать ширину словами ancho и estrecho.","uk":"описати ширину словами ancho та estrecho."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 7,
+    sourceFingerprint: "d991dc78f6fee07a513a40002bbfccb97784ec3cc2c738503b86a35b6763e042",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбрать largo, larga, largos или largas по роду и числу вещи.","uk":"вибрати largo, larga, largos або largas за родом і числом речі."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 8,
+    sourceFingerprint: "b83822fc3f0b06f0b5ed9eb43a7c42d718b6ca791030959798c4d1e550ba2e02",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"самостоятельно описать размер, длину и ширину с правильными окончаниями.","uk":"самостійно описати розмір, довжину й ширину з правильними закінченнями."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+  }),
 ]);

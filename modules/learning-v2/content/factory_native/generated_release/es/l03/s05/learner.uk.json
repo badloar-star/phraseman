@@ -1,0 +1,789 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-03:session-05",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-03:session-05:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — largo",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-05:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — largo",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-05:i01:audio",
+          "transcript": "largo"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-05:i01:r1",
+            "targetText": "largo",
+            "meaningByLocale": {
+              "ru": "длинный; larga — форма женского рода. 🔊 *largo*",
+              "uk": "довгий; larga — форма жіночого роду. 🔊 *largo*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "largo",
+          "definitionByLocale": {
+            "ru": "длинный; larga — форма женского рода. 🔊 *largo*",
+            "uk": "довгий; larga — форма жіночого роду. 🔊 *largo*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-05:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-05:i02:r1",
+          "text": "larga"
+        },
+        {
+          "responseId": "es:lesson-03:session-05:i02:r2",
+          "text": "largo"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-05:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-05:i02:audio",
+          "transcript": "larga"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-05:i02:r1",
+            "targetText": "larga",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-03:session-05:i02:r2",
+            "targetText": "largo",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-05:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В конце слышно -a: larga.",
+              "uk": "Наприкінці чути -a: larga."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-05:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — шарф довгий",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-05:i03:r1",
+          "text": "Плитки: larga"
+        },
+        {
+          "responseId": "es:lesson-03:session-05:i03:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-05:i03:r3",
+          "text": "bufanda"
+        },
+        {
+          "responseId": "es:lesson-03:session-05:i03:r4",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-03:session-05:i03:r5",
+          "text": "largo."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — шарф довгий",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "La bufanda es larga.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — шарф длинный",
+          "uk": "Зберіть фразу — шарф довгий"
+        },
+        "orderedTokens": [
+          "La",
+          "bufanda",
+          "es",
+          "larga"
+        ],
+        "authoredDistractorTokens": [
+          "largo"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-05:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — шарф довгий",
+            "feedbackByLocale": {
+              "ru": "bufanda женского рода.",
+              "uk": "bufanda жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-05:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — corto",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-05:i04:audio"
+      ],
+      "accessibilityLabel": "Картка слова — corto",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-05:i04:audio",
+          "transcript": "corto"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-05:i04:r1",
+            "targetText": "corto",
+            "meaningByLocale": {
+              "ru": "короткий; corta — форма женского рода. 🔊 *corto*",
+              "uk": "короткий; corta — форма жіночого роду. 🔊 *corto*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "corto",
+          "definitionByLocale": {
+            "ru": "короткий; corta — форма женского рода. 🔊 *corto*",
+            "uk": "короткий; corta — форма жіночого роду. 🔊 *corto*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-05:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-05:i05:r1",
+          "text": "corta"
+        },
+        {
+          "responseId": "es:lesson-03:session-05:i05:r2",
+          "text": "larga"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-05:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-05:i05:audio",
+          "transcript": "corta"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-05:i05:r1",
+            "targetText": "corta",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-03:session-05:i05:r2",
+            "targetText": "larga",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-05:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит corta — короткая.",
+              "uk": "Звучить corta — коротка."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-05:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — шарф короткий",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-05:i06:r1",
+          "text": "Плитки: corta"
+        },
+        {
+          "responseId": "es:lesson-03:session-05:i06:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-05:i06:r3",
+          "text": "bufanda"
+        },
+        {
+          "responseId": "es:lesson-03:session-05:i06:r4",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-03:session-05:i06:r5",
+          "text": "corto."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — шарф короткий",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "La bufanda es corta.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — шарф короткий",
+          "uk": "Зберіть фразу — шарф короткий"
+        },
+        "orderedTokens": [
+          "La",
+          "bufanda",
+          "es",
+          "corta"
+        ],
+        "authoredDistractorTokens": [
+          "corto"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-05:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — шарф короткий",
+            "feedbackByLocale": {
+              "ru": "bufanda женского рода.",
+              "uk": "bufanda жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-05:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — пальто довге",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-05:i07:r1",
+          "text": "largo"
+        },
+        {
+          "responseId": "es:lesson-03:session-05:i07:r2",
+          "text": "larga"
+        },
+        {
+          "responseId": "es:lesson-03:session-05:i07:r3",
+          "text": "largos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — пальто довге",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — пальто длинное",
+          "uk": "Вставте слово — пальто довге"
+        },
+        "gappedTargetPhrase": "El abrigo es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-05:i07:r1",
+            "text": "largo"
+          },
+          {
+            "responseId": "es:lesson-03:session-05:i07:r2",
+            "text": "larga"
+          },
+          {
+            "responseId": "es:lesson-03:session-05:i07:r3",
+            "text": "largos"
+          }
+        ],
+        "testedDimension": "Вставте слово — пальто довге",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-05:i07:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — пальто довге",
+            "feedbackByLocale": {
+              "ru": "Abrigo мужского рода: largo.",
+              "uk": "Abrigo чоловічого роду: largo."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-05:i07:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — пальто довге",
+            "feedbackByLocale": {
+              "ru": "Пальто одно: largo.",
+              "uk": "Пальто одне: largo."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-05:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — пальто довге",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-05:i08:r1",
+          "text": "Плитки: largo"
+        },
+        {
+          "responseId": "es:lesson-03:session-05:i08:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-05:i08:r3",
+          "text": "abrigo"
+        },
+        {
+          "responseId": "es:lesson-03:session-05:i08:r4",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-03:session-05:i08:r5",
+          "text": "larga."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — пальто довге",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "El abrigo es largo.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — пальто длинное",
+          "uk": "Зберіть фразу — пальто довге"
+        },
+        "orderedTokens": [
+          "El",
+          "abrigo",
+          "es",
+          "largo"
+        ],
+        "authoredDistractorTokens": [
+          "larga"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-05:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — пальто довге",
+            "feedbackByLocale": {
+              "ru": "abrigo мужского рода.",
+              "uk": "abrigo чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-05:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-05:i09:r1",
+          "text": "Плитки: corta"
+        },
+        {
+          "responseId": "es:lesson-03:session-05:i09:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-05:i09:r3",
+          "text": "bufanda"
+        },
+        {
+          "responseId": "es:lesson-03:session-05:i09:r4",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-03:session-05:i09:r5",
+          "text": "larga."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-05:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-05:i09:audio",
+          "transcript": "La bufanda es corta."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "La bufanda es corta.",
+        "orderedTokens": [
+          "La",
+          "bufanda",
+          "es",
+          "corta"
+        ],
+        "authoredDistractorTokens": [
+          "larga"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-05:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит corta.",
+              "uk": "звучить corta."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-05:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — кілька шарфів довгі",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-05:i10:r1",
+          "text": "largas"
+        },
+        {
+          "responseId": "es:lesson-03:session-05:i10:r2",
+          "text": "largos"
+        },
+        {
+          "responseId": "es:lesson-03:session-05:i10:r3",
+          "text": "larga"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — кілька шарфів довгі",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — несколько шарфов длинные",
+          "uk": "Вставте слово — кілька шарфів довгі"
+        },
+        "gappedTargetPhrase": "Las bufandas son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-05:i10:r1",
+            "text": "largas"
+          },
+          {
+            "responseId": "es:lesson-03:session-05:i10:r2",
+            "text": "largos"
+          },
+          {
+            "responseId": "es:lesson-03:session-05:i10:r3",
+            "text": "larga"
+          }
+        ],
+        "testedDimension": "Вставте слово — кілька шарфів довгі",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-05:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — кілька шарфів довгі",
+            "feedbackByLocale": {
+              "ru": "Bufandas женского рода: largas.",
+              "uk": "Bufandas жіночого роду: largas."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-05:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — кілька шарфів довгі",
+            "feedbackByLocale": {
+              "ru": "Шарфов несколько: largas.",
+              "uk": "Шарфів кілька: largas."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-05:i11",
+      "ordinal": 14,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — кілька пальт короткі",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-05:i11:r1",
+          "text": "cortos"
+        },
+        {
+          "responseId": "es:lesson-03:session-05:i11:r2",
+          "text": "cortas"
+        },
+        {
+          "responseId": "es:lesson-03:session-05:i11:r3",
+          "text": "corto"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — кілька пальт короткі",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — несколько пальто короткие",
+          "uk": "Вставте слово — кілька пальт короткі"
+        },
+        "gappedTargetPhrase": "Los abrigos son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-05:i11:r1",
+            "text": "cortos"
+          },
+          {
+            "responseId": "es:lesson-03:session-05:i11:r2",
+            "text": "cortas"
+          },
+          {
+            "responseId": "es:lesson-03:session-05:i11:r3",
+            "text": "corto"
+          }
+        ],
+        "testedDimension": "Вставте слово — кілька пальт короткі",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-05:i11:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — кілька пальт короткі",
+            "feedbackByLocale": {
+              "ru": "Abrigos мужского рода: cortos.",
+              "uk": "Abrigos чоловічого роду: cortos."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-05:i11:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — кілька пальт короткі",
+            "feedbackByLocale": {
+              "ru": "Пальто несколько: cortos.",
+              "uk": "Пальт кілька: cortos."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-05:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — шарф довгий; назвіть предмет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-05:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — шарф довгий; назвіть предмет",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-05:i12:audio",
+          "transcript": "La bufanda es larga."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "La bufanda es larga.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-05:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — шарф короткий; назвіть предмет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-05:i13:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — шарф короткий; назвіть предмет",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-05:i13:audio",
+          "transcript": "La bufanda es corta."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "La bufanda es corta.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-05:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — пальто довге; назвіть предмет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-05:i14:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — пальто довге; назвіть предмет",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-05:i14:audio",
+          "transcript": "El abrigo es largo."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "El abrigo es largo.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 14,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "45de9ce1dacbfb9671b7b1beca69ec96029c0072352e6582c2d43702b80c43ad"
+}

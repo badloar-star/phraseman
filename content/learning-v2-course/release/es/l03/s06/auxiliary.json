@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-03:session-06",
+  "entries": [
+    {
+      "interactionId": "es:lesson-03:session-06:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-06:intro1:r2": {
+          "ru": "Для puerta нужна форма ancha.",
+          "uk": "Для puerta потрібна форма ancha."
+        },
+        "es:lesson-03:session-06:intro1:r3": {
+          "ru": "Дверь одна: es.",
+          "uk": "Puerta в однині: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-06:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-06:intro2:r2": {
+          "ru": "Puerta женского рода: estrecha.",
+          "uk": "Puerta жіночого роду: estrecha."
+        },
+        "es:lesson-03:session-06:intro2:r3": {
+          "ru": "Ancha означает широкая, а эта дверь узкая.",
+          "uk": "Ancha означає широкі, а ці двері вузькі."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-06:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-06:intro3:r2": {
+          "ru": "Ориентируйтесь на испанское mesa: ancha.",
+          "uk": "Орієнтуйтеся на іспанське mesa: ancha."
+        },
+        "es:lesson-03:session-06:intro3:r3": {
+          "ru": "Запомните la mesa и ancha.",
+          "uk": "Запам'ятайте la mesa та ancha."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "d69e81a44823bda1b5d031e62ddd7c151de2f435065d6990c20115794e4feb30"
+}

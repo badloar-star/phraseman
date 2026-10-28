@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-03:session-06",
+  "learningOutcomeByLocale": {
+    "ru": "описать ширину словами ancho и estrecho.",
+    "uk": "описати ширину словами ancho та estrecho."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-03:session-06:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Широкая дверь",
+        "uk": "Широкі двері"
+      },
+      "bodyByLocale": {
+        "ru": "Вы смотрите на широкую входную дверь. `Ancho` — «широкий», для женского рода — ancha. Скажите `La puerta es ancha` — «Дверь широкая». Соберите `la puerta` + `es` + `ancha`. Puerta женского рода: окончание признака -a.",
+        "uk": "Ви дивитеся на широкі вхідні двері. `Ancho` — «широкий», для жіночого роду — ancha. Скажіть `La puerta es ancha` — «Двері широкі». Складіть `la puerta` + `es` + `ancha`. Іспанське puerta жіночого роду в однині, тому es та ancha, хоча українське «двері» має форму множини."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-06:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите, что дверь широкая.",
+          "uk": "Скажіть, що одні двері широкі."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-06:intro1:r1",
+              "text": "La puerta es ancha."
+            },
+            {
+              "responseId": "es:lesson-03:session-06:intro1:r2",
+              "text": "La puerta es ancho."
+            },
+            {
+              "responseId": "es:lesson-03:session-06:intro1:r3",
+              "text": "La puerta son ancha."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-06:intro1:r1",
+              "text": "La puerta es ancha."
+            },
+            {
+              "responseId": "es:lesson-03:session-06:intro1:r2",
+              "text": "La puerta es ancho."
+            },
+            {
+              "responseId": "es:lesson-03:session-06:intro1:r3",
+              "text": "La puerta son ancha."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что дверь широкая.",
+          "uk": "Скажіть, що одні двері широкі."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-03:session-06:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Узкая дверь в комнату",
+        "uk": "Вузькі двері до кімнати"
+      },
+      "bodyByLocale": {
+        "ru": "Входная дверь широкая, но дверь в комнату узкая. `Estrecho` — «узкий», для женского рода — estrecha. Скажите `La puerta es estrecha` — «Дверь узкая». Соберите `la puerta` + `es` + `estrecha`. Вы описываете другую дверь: теперь нужна estrecha вместо ancha.",
+        "uk": "Вхідні двері широкі, але двері до кімнати вузькі. `Estrecho` — «вузький», для жіночого роду — estrecha. Скажіть `La puerta es estrecha` — «Двері вузькі». Складіть `la puerta` + `es` + `estrecha`. Ви описуєте інші двері: тепер потрібна estrecha замість ancha."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-06:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите, что дверь в комнату узкая.",
+          "uk": "Скажіть, що двері до кімнати вузькі."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-06:intro2:r1",
+              "text": "La puerta es estrecha."
+            },
+            {
+              "responseId": "es:lesson-03:session-06:intro2:r2",
+              "text": "La puerta es estrecho."
+            },
+            {
+              "responseId": "es:lesson-03:session-06:intro2:r3",
+              "text": "La puerta es ancha."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-06:intro2:r1",
+              "text": "La puerta es estrecha."
+            },
+            {
+              "responseId": "es:lesson-03:session-06:intro2:r2",
+              "text": "La puerta es estrecho."
+            },
+            {
+              "responseId": "es:lesson-03:session-06:intro2:r3",
+              "text": "La puerta es ancha."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что дверь в комнату узкая.",
+          "uk": "Скажіть, що двері до кімнати вузькі."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-03:session-06:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Стол тоже широкий",
+        "uk": "Стіл теж широкий"
+      },
+      "bodyByLocale": {
+        "ru": "Посмотрите на стол, который предстоит занести. Скажите `La mesa es ancha` — «Стол широкий». Соберите `la mesa` + `es` + `ancha`. Испанское mesa женского рода, хотя русский «стол» мужского. Поэтому форма ancha остаётся такой же, как с puerta.",
+        "uk": "Подивіться на стіл, який потрібно занести. Скажіть `La mesa es ancha` — «Стіл широкий». Складіть `la mesa` + `es` + `ancha`. Іспанське mesa жіночого роду, хоча український «стіл» чоловічого. Тому форма ancha залишається такою самою, як із puerta."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-06:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите, что стол широкий.",
+          "uk": "Скажіть, що стіл широкий."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-06:intro3:r1",
+              "text": "La mesa es ancha."
+            },
+            {
+              "responseId": "es:lesson-03:session-06:intro3:r2",
+              "text": "La mesa es ancho."
+            },
+            {
+              "responseId": "es:lesson-03:session-06:intro3:r3",
+              "text": "El mesa es ancho."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-06:intro3:r1",
+              "text": "La mesa es ancha."
+            },
+            {
+              "responseId": "es:lesson-03:session-06:intro3:r2",
+              "text": "La mesa es ancho."
+            },
+            {
+              "responseId": "es:lesson-03:session-06:intro3:r3",
+              "text": "El mesa es ancho."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что стол широкий.",
+          "uk": "Скажіть, що стіл широкий."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "bfad0ceae98d9a184e88289178a2ea8099e6c294942d25959de16f5f4f34dd73"
+}

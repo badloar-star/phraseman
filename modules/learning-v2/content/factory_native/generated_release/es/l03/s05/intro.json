@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-03:session-05",
+  "learningOutcomeByLocale": {
+    "ru": "описать длину и согласовать largo или corto с предметом.",
+    "uk": "описати довжину й узгодити largo або corto з предметом."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-03:session-05:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Шарф можно обернуть дважды",
+        "uk": "Шарф можна обгорнути двічі"
+      },
+      "bodyByLocale": {
+        "ru": "Вы рассматриваете длинный шарф. `Largo` — «длинный», для женского рода — larga. Скажите `La bufanda es larga` — «Шарф длинный». Соберите `la bufanda` + `es` + `larga`. Испанское bufanda женского рода, хотя русский «шарф» мужского: ориентируйтесь на bufanda.",
+        "uk": "Ви розглядаєте довгий шарф. `Largo` — «довгий», для жіночого роду — larga. Скажіть `La bufanda es larga` — «Шарф довгий». Складіть `la bufanda` + `es` + `larga`. Іспанське bufanda жіночого роду, хоча український «шарф» чоловічого: орієнтуйтеся на bufanda."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-05:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите, что шарф длинный.",
+          "uk": "Скажіть, що шарф довгий."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-05:intro1:r1",
+              "text": "La bufanda es larga."
+            },
+            {
+              "responseId": "es:lesson-03:session-05:intro1:r2",
+              "text": "La bufanda es largo."
+            },
+            {
+              "responseId": "es:lesson-03:session-05:intro1:r3",
+              "text": "El bufanda es largo."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-05:intro1:r1",
+              "text": "La bufanda es larga."
+            },
+            {
+              "responseId": "es:lesson-03:session-05:intro1:r2",
+              "text": "La bufanda es largo."
+            },
+            {
+              "responseId": "es:lesson-03:session-05:intro1:r3",
+              "text": "El bufanda es largo."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что шарф длинный.",
+          "uk": "Скажіть, що шарф довгий."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-03:session-05:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Другой шарф",
+        "uk": "Інший шарф"
+      },
+      "bodyByLocale": {
+        "ru": "Рядом лежит короткий шарф. `Corto` — «короткий», для женского рода — corta. Скажите `La bufanda es corta` — «Шарф короткий». Соберите `la bufanda` + `es` + `corta`. Меняется описание длины: вместо larga выберите corta. Женский род bufanda остаётся тем же.",
+        "uk": "Поруч лежить короткий шарф. `Corto` — «короткий», для жіночого роду — corta. Скажіть `La bufanda es corta` — «Шарф короткий». Складіть `la bufanda` + `es` + `corta`. Змінюється опис довжини: замість larga виберіть corta. Жіночий рід bufanda залишається тим самим."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-05:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите, что шарф короткий.",
+          "uk": "Скажіть, що шарф короткий."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-05:intro2:r1",
+              "text": "La bufanda es corta."
+            },
+            {
+              "responseId": "es:lesson-03:session-05:intro2:r2",
+              "text": "La bufanda es corto."
+            },
+            {
+              "responseId": "es:lesson-03:session-05:intro2:r3",
+              "text": "La bufanda es larga."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-05:intro2:r1",
+              "text": "La bufanda es corta."
+            },
+            {
+              "responseId": "es:lesson-03:session-05:intro2:r2",
+              "text": "La bufanda es corto."
+            },
+            {
+              "responseId": "es:lesson-03:session-05:intro2:r3",
+              "text": "La bufanda es larga."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что шарф короткий.",
+          "uk": "Скажіть, що шарф короткий."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-03:session-05:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Пальто для прогулки",
+        "uk": "Пальто для прогулянки"
+      },
+      "bodyByLocale": {
+        "ru": "К шарфу выбираете длинное пальто. Скажите `El abrigo es largo` — «Пальто длинное». Соберите `el abrigo` + `es` + `largo`. Испанское abrigo мужского рода: выбирайте largo. Род русского перевода «пальто» не определяет испанское окончание.",
+        "uk": "До шарфа вибираєте довге пальто. Скажіть `El abrigo es largo` — «Пальто довге». Складіть `el abrigo` + `es` + `largo`. Іспанське abrigo чоловічого роду: вибирайте largo. Рід українського перекладу «пальто» не визначає іспанського закінчення."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-05:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите, что пальто длинное.",
+          "uk": "Скажіть, що пальто довге."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-05:intro3:r1",
+              "text": "El abrigo es largo."
+            },
+            {
+              "responseId": "es:lesson-03:session-05:intro3:r2",
+              "text": "El abrigo es larga."
+            },
+            {
+              "responseId": "es:lesson-03:session-05:intro3:r3",
+              "text": "El abrigo es corto."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-05:intro3:r1",
+              "text": "El abrigo es largo."
+            },
+            {
+              "responseId": "es:lesson-03:session-05:intro3:r2",
+              "text": "El abrigo es larga."
+            },
+            {
+              "responseId": "es:lesson-03:session-05:intro3:r3",
+              "text": "El abrigo es corto."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что пальто длинное.",
+          "uk": "Скажіть, що пальто довге."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e6056fd6818c2195c3345c8e528552ca66d9f9348b3f325d5e196b8def4c1b59"
+}

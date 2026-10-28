@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-03:session-07",
+  "entries": [
+    {
+      "interactionId": "es:lesson-03:session-07:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-07:intro1:r2": {
+          "ru": "Camisa женского рода: larga.",
+          "uk": "Camisa жіночого роду: larga."
+        },
+        "es:lesson-03:session-07:intro1:r3": {
+          "ru": "Рубашка одна: larga.",
+          "uk": "Сорочка одна: larga."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-07:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-07:intro2:r2": {
+          "ru": "Camisas женского рода: largas.",
+          "uk": "Camisas жіночого роду: largas."
+        },
+        "es:lesson-03:session-07:intro2:r3": {
+          "ru": "Нужны son и largas.",
+          "uk": "Потрібні son і largas."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-07:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-07:intro3:r2": {
+          "ru": "Abrigos мужского рода: largos.",
+          "uk": "Abrigos чоловічого роду: largos."
+        },
+        "es:lesson-03:session-07:intro3:r3": {
+          "ru": "Пальто несколько: largos.",
+          "uk": "Пальт кілька: largos."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "0d096745b6107aa814808c0afa4efad034e5d0bdaf189b9ee130502cb4ce08de"
+}

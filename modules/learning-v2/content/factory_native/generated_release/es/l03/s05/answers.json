@@ -1,0 +1,72 @@
+[
+  {
+    "interactionId": "es:lesson-03:session-05:i01",
+    "correctText": "largo",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-05:i02",
+    "correctText": "larga",
+    "correctResponseId": "es:lesson-03:session-05:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-05:i03",
+    "correctText": "La bufanda es larga.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-05:i04",
+    "correctText": "corto",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-05:i05",
+    "correctText": "corta",
+    "correctResponseId": "es:lesson-03:session-05:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-05:i06",
+    "correctText": "La bufanda es corta.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-05:i07",
+    "correctText": "largo",
+    "correctResponseId": "es:lesson-03:session-05:i07:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-05:i08",
+    "correctText": "El abrigo es largo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-05:i09",
+    "correctText": "La bufanda es corta.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-05:i10",
+    "correctText": "largas",
+    "correctResponseId": "es:lesson-03:session-05:i10:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-05:i11",
+    "correctText": "cortos",
+    "correctResponseId": "es:lesson-03:session-05:i11:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-05:i12",
+    "correctText": "La bufanda es larga.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-05:i13",
+    "correctText": "La bufanda es corta.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-05:i14",
+    "correctText": "El abrigo es largo.",
+    "correctResponseId": null
+  }
+]

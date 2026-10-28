@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-03:session-22",
+  "learningOutcomeByLocale": {
+    "ru": "спросить о внешнем виде или свойствах одной вещи через ¿Cómo es?",
+    "uk": "запитувати про вигляд або властивості однієї речі через ¿Cómo es?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-03:session-22:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Попросить описание",
+        "uk": "Попросити опис"
+      },
+      "bodyByLocale": {
+        "ru": "Друг уже сказал, что купил сумку. Чтобы узнать, какая она, спросите `¿Cómo es?` — «Какая она?» Здесь cómo просит описание, например размера или цвета. Соберите `cómo` + `es`, обрамите вопрос знаками ¿ и ?. В вопросительном cómo пишется ударение над ó.",
+        "uk": "Друг уже сказав, що купив сумку. Щоб дізнатися, яка вона, запитайте `¿Cómo es?` — «Яка вона?» Тут cómo просить опис, наприклад розміру або кольору. Зберіть `cómo` + `es`, оточіть питання знаками ¿ і ?. У питальному cómo пишеться наголос над ó."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-22:intro1:q",
+        "promptByLocale": {
+          "ru": "Попросите описать уже названную вещь: какая она?",
+          "uk": "Попросіть описати вже названу річ: яка вона?"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-22:intro1:r1",
+              "text": "¿Cómo es?"
+            },
+            {
+              "responseId": "es:lesson-03:session-22:intro1:r2",
+              "text": "¿Qué es?"
+            },
+            {
+              "responseId": "es:lesson-03:session-22:intro1:r3",
+              "text": "¿De quién es?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-22:intro1:r1",
+              "text": "¿Cómo es?"
+            },
+            {
+              "responseId": "es:lesson-03:session-22:intro1:r2",
+              "text": "¿Qué es?"
+            },
+            {
+              "responseId": "es:lesson-03:session-22:intro1:r3",
+              "text": "¿De quién es?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Попросите описать уже названную вещь: какая она?",
+          "uk": "Попросіть описати вже названу річ: яка вона?"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-03:session-22:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Назвать сумку в вопросе",
+        "uk": "Назвати сумку в питанні"
+      },
+      "bodyByLocale": {
+        "ru": "Обсуждали несколько покупок, и вы уточняете, что спрашиваете о сумке: `¿Cómo es el bolso?` — «Какая сумка?» Соберите `cómo` + `es` + `el bolso`. Название предмета ставим после es. Слово cómo одинаково для мужского и женского рода.",
+        "uk": "Обговорювали кілька покупок, і ви уточнюєте, що питаєте про сумку: `¿Cómo es el bolso?` — «Яка сумка?» Зберіть `cómo` + `es` + `el bolso`. Назву предмета ставимо після es. Слово cómo однакове для чоловічого й жіночого роду."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-22:intro2:q",
+        "promptByLocale": {
+          "ru": "Спросите, какая сумка; назовите её словом bolso.",
+          "uk": "Запитайте, яка сумка; назвіть її словом bolso."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-22:intro2:r1",
+              "text": "¿Cómo es el bolso?"
+            },
+            {
+              "responseId": "es:lesson-03:session-22:intro2:r2",
+              "text": "¿Cómo son el bolso?"
+            },
+            {
+              "responseId": "es:lesson-03:session-22:intro2:r3",
+              "text": "¿Cómo es la bolso?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-22:intro2:r1",
+              "text": "¿Cómo es el bolso?"
+            },
+            {
+              "responseId": "es:lesson-03:session-22:intro2:r2",
+              "text": "¿Cómo son el bolso?"
+            },
+            {
+              "responseId": "es:lesson-03:session-22:intro2:r3",
+              "text": "¿Cómo es la bolso?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите, какая сумка; назовите её словом bolso.",
+          "uk": "Запитайте, яка сумка; назвіть її словом bolso."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-03:session-22:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Узнать о коробке",
+        "uk": "Дізнатися про коробку"
+      },
+      "bodyByLocale": {
+        "ru": "Для подарка друг выбрал коробку. Спросите о ней: `¿Cómo es la caja?` — «Какая коробка?» Соберите `cómo` + `es` + `la caja`. Меняется только название вещи с артиклем. Caja женского рода, но cómo остаётся cómo: окончания -a у вопросительного слова нет.",
+        "uk": "Для подарунка друг обрав коробку. Запитайте про неї: `¿Cómo es la caja?` — «Яка коробка?» Зберіть `cómo` + `es` + `la caja`. Змінюється лише назва речі з артиклем. Caja жіночого роду, але cómo залишається cómo: закінчення -a у питального слова немає."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-22:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите, какая коробка, назвав предмет.",
+          "uk": "Запитайте, яка коробка, назвавши предмет."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-22:intro3:r1",
+              "text": "¿Cómo es la caja?"
+            },
+            {
+              "responseId": "es:lesson-03:session-22:intro3:r2",
+              "text": "¿Cóma es la caja?"
+            },
+            {
+              "responseId": "es:lesson-03:session-22:intro3:r3",
+              "text": "¿Cómo es el caja?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-22:intro3:r1",
+              "text": "¿Cómo es la caja?"
+            },
+            {
+              "responseId": "es:lesson-03:session-22:intro3:r2",
+              "text": "¿Cóma es la caja?"
+            },
+            {
+              "responseId": "es:lesson-03:session-22:intro3:r3",
+              "text": "¿Cómo es el caja?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите, какая коробка, назвав предмет.",
+          "uk": "Запитайте, яка коробка, назвавши предмет."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "fd5c76b8a7ad3c5da67ea24fef1a5f6bb5989a0203237e0c3542af0eea51ec56"
+}

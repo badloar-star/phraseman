@@ -1,0 +1,664 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-03:session-23",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-03:session-23:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — про bolsa: вона маленька",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-23:i01:r1",
+          "text": "pequeña"
+        },
+        {
+          "responseId": "es:lesson-03:session-23:i01:r2",
+          "text": "pequeño"
+        },
+        {
+          "responseId": "es:lesson-03:session-23:i01:r3",
+          "text": "pequeñas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — про bolsa: вона маленька",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — о bolsa: она маленькая",
+          "uk": "Вставте слово — про bolsa: вона маленька"
+        },
+        "gappedTargetPhrase": "Es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-23:i01:r1",
+            "text": "pequeña"
+          },
+          {
+            "responseId": "es:lesson-03:session-23:i01:r2",
+            "text": "pequeño"
+          },
+          {
+            "responseId": "es:lesson-03:session-23:i01:r3",
+            "text": "pequeñas"
+          }
+        ],
+        "testedDimension": "Вставте слово — про bolsa: вона маленька",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-23:i01:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — про bolsa: вона маленька",
+            "feedbackByLocale": {
+              "ru": "Bolsa женского рода: pequeña.",
+              "uk": "Bolsa жіночого роду: pequeña."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-23:i01:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — про bolsa: вона маленька",
+            "feedbackByLocale": {
+              "ru": "Сумка одна: pequeña.",
+              "uk": "Сумка одна: pequeña."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-23:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — про bolsa: вона маленька; без назви речі",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-23:i02:r1",
+          "text": "Плитки: pequeña"
+        },
+        {
+          "responseId": "es:lesson-03:session-23:i02:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-23:i02:r3",
+          "text": "pequeño."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — про bolsa: вона маленька; без назви речі",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es pequeña.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — о bolsa: она маленькая; без названия вещи",
+          "uk": "Зберіть фразу — про bolsa: вона маленька; без назви речі"
+        },
+        "orderedTokens": [
+          "Es",
+          "pequeña"
+        ],
+        "authoredDistractorTokens": [
+          "pequeño"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-23:i02:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — про bolsa: вона маленька; без назви речі",
+            "feedbackByLocale": {
+              "ru": "описываем bolsa.",
+              "uk": "описуємо bolsa."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-23:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — про bolso: він гарний",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-23:i03:r1",
+          "text": "bonito"
+        },
+        {
+          "responseId": "es:lesson-03:session-23:i03:r2",
+          "text": "bonita"
+        },
+        {
+          "responseId": "es:lesson-03:session-23:i03:r3",
+          "text": "bonitos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — про bolso: він гарний",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — о bolso: он красивый",
+          "uk": "Вставте слово — про bolso: він гарний"
+        },
+        "gappedTargetPhrase": "Es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-23:i03:r1",
+            "text": "bonito"
+          },
+          {
+            "responseId": "es:lesson-03:session-23:i03:r2",
+            "text": "bonita"
+          },
+          {
+            "responseId": "es:lesson-03:session-23:i03:r3",
+            "text": "bonitos"
+          }
+        ],
+        "testedDimension": "Вставте слово — про bolso: він гарний",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-23:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — про bolso: він гарний",
+            "feedbackByLocale": {
+              "ru": "Bolso мужского рода: bonito.",
+              "uk": "Bolso чоловічого роду: bonito."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-23:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — про bolso: він гарний",
+            "feedbackByLocale": {
+              "ru": "Сумка одна: bonito.",
+              "uk": "Сумка одна: bonito."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-23:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — про bolso: він гарний; без назви речі",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-23:i04:r1",
+          "text": "Плитки: bonito"
+        },
+        {
+          "responseId": "es:lesson-03:session-23:i04:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-23:i04:r3",
+          "text": "bonita."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — про bolso: він гарний; без назви речі",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es bonito.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — о bolso: он красивый; без названия вещи",
+          "uk": "Зберіть фразу — про bolso: він гарний; без назви речі"
+        },
+        "orderedTokens": [
+          "Es",
+          "bonito"
+        ],
+        "authoredDistractorTokens": [
+          "bonita"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-23:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — про bolso: він гарний; без назви речі",
+            "feedbackByLocale": {
+              "ru": "описываем bolso.",
+              "uk": "описуємо bolso."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-23:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — вона не дуже велика; сумка одна",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-23:i05:r1",
+          "text": "grande"
+        },
+        {
+          "responseId": "es:lesson-03:session-23:i05:r2",
+          "text": "grandes"
+        },
+        {
+          "responseId": "es:lesson-03:session-23:i05:r3",
+          "text": "granda"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — вона не дуже велика; сумка одна",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — она не очень большая; сумка одна",
+          "uk": "Вставте слово — вона не дуже велика; сумка одна"
+        },
+        "gappedTargetPhrase": "No es muy ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-23:i05:r1",
+            "text": "grande"
+          },
+          {
+            "responseId": "es:lesson-03:session-23:i05:r2",
+            "text": "grandes"
+          },
+          {
+            "responseId": "es:lesson-03:session-23:i05:r3",
+            "text": "granda"
+          }
+        ],
+        "testedDimension": "Вставте слово — вона не дуже велика; сумка одна",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-23:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — вона не дуже велика; сумка одна",
+            "feedbackByLocale": {
+              "ru": "Предмет один: grande.",
+              "uk": "Предмет один: grande."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-23:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — вона не дуже велика; сумка одна",
+            "feedbackByLocale": {
+              "ru": "Grande не меняется по роду.",
+              "uk": "Grande не змінюється за родом."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-23:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — вона не дуже велика; без назви речі",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-23:i06:r1",
+          "text": "Плитки: grande"
+        },
+        {
+          "responseId": "es:lesson-03:session-23:i06:r2",
+          "text": "muy"
+        },
+        {
+          "responseId": "es:lesson-03:session-23:i06:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-23:i06:r4",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-03:session-23:i06:r5",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — вона не дуже велика; без назви речі",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No es muy grande.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — она не очень большая; без названия вещи",
+          "uk": "Зберіть фразу — вона не дуже велика; без назви речі"
+        },
+        "orderedTokens": [
+          "No",
+          "es",
+          "muy",
+          "grande"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-23:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — вона не дуже велика; без назви речі",
+            "feedbackByLocale": {
+              "ru": "сумка одна.",
+              "uk": "сумка одна."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-23:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-23:i07:r1",
+          "text": "Плитки: bonita"
+        },
+        {
+          "responseId": "es:lesson-03:session-23:i07:r2",
+          "text": "muy"
+        },
+        {
+          "responseId": "es:lesson-03:session-23:i07:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-23:i07:r4",
+          "text": "bonito."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-23:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-23:i07:audio",
+          "transcript": "Es muy bonita."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Es muy bonita.",
+        "orderedTokens": [
+          "Es",
+          "muy",
+          "bonita"
+        ],
+        "authoredDistractorTokens": [
+          "bonito"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-23:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит bonita.",
+              "uk": "звучить bonita."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-23:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — про bolsa: вона дуже гарна",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-23:i08:r1",
+          "text": "bonita"
+        },
+        {
+          "responseId": "es:lesson-03:session-23:i08:r2",
+          "text": "bonito"
+        },
+        {
+          "responseId": "es:lesson-03:session-23:i08:r3",
+          "text": "bonitas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — про bolsa: вона дуже гарна",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — о bolsa: она очень красивая",
+          "uk": "Вставте слово — про bolsa: вона дуже гарна"
+        },
+        "gappedTargetPhrase": "Es muy ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-23:i08:r1",
+            "text": "bonita"
+          },
+          {
+            "responseId": "es:lesson-03:session-23:i08:r2",
+            "text": "bonito"
+          },
+          {
+            "responseId": "es:lesson-03:session-23:i08:r3",
+            "text": "bonitas"
+          }
+        ],
+        "testedDimension": "Вставте слово — про bolsa: вона дуже гарна",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-23:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — про bolsa: вона дуже гарна",
+            "feedbackByLocale": {
+              "ru": "Bolsa женского рода: bonita.",
+              "uk": "Bolsa жіночого роду: bonita."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-23:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — про bolsa: вона дуже гарна",
+            "feedbackByLocale": {
+              "ru": "Сумка одна: bonita.",
+              "uk": "Сумка одна: bonita."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-23:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — про bolsa: вона маленька; без назви речі",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-23:i09:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — про bolsa: вона маленька; без назви речі",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-23:i09:audio",
+          "transcript": "Es pequeña."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es pequeña.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-23:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — про bolso: він гарний; без назви речі",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-23:i10:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — про bolso: він гарний; без назви речі",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-23:i10:audio",
+          "transcript": "Es bonito."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es bonito.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-23:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — вона не дуже велика; про сумку, без назви речі",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-23:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — вона не дуже велика; про сумку, без назви речі",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-23:i11:audio",
+          "transcript": "No es muy grande."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No es muy grande.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-23:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — про bolsa: вона дуже гарна; без назви речі",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-23:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — про bolsa: вона дуже гарна; без назви речі",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-23:i12:audio",
+          "transcript": "Es muy bonita."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es muy bonita.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "2db2529a642860e031708ebf6b3b865d90c7e82b2f979151b5b6fad73bfe960a"
+}

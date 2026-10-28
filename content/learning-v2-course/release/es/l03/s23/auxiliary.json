@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-03:session-23",
+  "entries": [
+    {
+      "interactionId": "es:lesson-03:session-23:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-23:intro1:r2": {
+          "ru": "Речь о bolsa: нужна pequeña.",
+          "uk": "Йдеться про bolsa: потрібна pequeña."
+        },
+        "es:lesson-03:session-23:intro1:r3": {
+          "ru": "Сумка одна: es pequeña.",
+          "uk": "Сумка одна: es pequeña."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-23:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-23:intro2:r2": {
+          "ru": "В этой реплике описываем bolso: bonito.",
+          "uk": "У цій репліці описуємо bolso: bonito."
+        },
+        "es:lesson-03:session-23:intro2:r3": {
+          "ru": "Предмет один: bonito.",
+          "uk": "Предмет один: bonito."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-23:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-23:intro3:r2": {
+          "ru": "Сумка одна: es, grande.",
+          "uk": "Сумка одна: es, grande."
+        },
+        "es:lesson-03:session-23:intro3:r3": {
+          "ru": "Один предмет: grande.",
+          "uk": "Один предмет: grande."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a5e8eda92d06e364bc824b7bf60a8797ef0a52d82363966b0fca93792112b449"
+}

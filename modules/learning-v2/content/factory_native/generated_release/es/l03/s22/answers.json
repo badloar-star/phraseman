@@ -1,0 +1,72 @@
+[
+  {
+    "interactionId": "es:lesson-03:session-22:i01",
+    "correctText": "cómo",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-22:i02",
+    "correctText": "cómo",
+    "correctResponseId": "es:lesson-03:session-22:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-22:i03",
+    "correctText": "¿Cómo es?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-22:i04",
+    "correctText": "es",
+    "correctResponseId": "es:lesson-03:session-22:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-22:i05",
+    "correctText": "¿Cómo es el bolso?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-22:i06",
+    "correctText": "la",
+    "correctResponseId": "es:lesson-03:session-22:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-22:i07",
+    "correctText": "¿Cómo es la caja?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-22:i08",
+    "correctText": "¿Cómo es el bolso?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-22:i09",
+    "correctText": "Cómo",
+    "correctResponseId": "es:lesson-03:session-22:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-22:i10",
+    "correctText": "Cómo",
+    "correctResponseId": "es:lesson-03:session-22:i10:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-22:i11",
+    "correctText": "¿Cómo es?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-22:i12",
+    "correctText": "¿Cómo es el bolso?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-22:i13",
+    "correctText": "¿Cómo es la caja?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-22:i14",
+    "correctText": "¿Cómo es?",
+    "correctResponseId": null
+  }
+]

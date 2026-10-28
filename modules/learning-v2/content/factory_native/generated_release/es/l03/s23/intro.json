@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-03:session-23",
+  "learningOutcomeByLocale": {
+    "ru": "ответить на ¿Cómo es? короткой фразой без повторения названия вещи.",
+    "uk": "відповідати на ¿Cómo es? короткою фразою без повторення назви речі."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-03:session-23:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Небольшая сумка",
+        "uk": "Невелика сумка"
+      },
+      "bodyByLocale": {
+        "ru": "Вы уже назвали сумку словом bolsa. Подруга спрашивает: `¿Cómo es?` Ответьте «Она маленькая»: `Es pequeña`. Соберите `es` + `pequeña`. Повторять la bolsa не обязательно: предмет понятен. Но женский род bolsa сохраняется и в коротком ответе — pequeña.",
+        "uk": "Ви вже назвали сумку словом bolsa. Подруга запитує: `¿Cómo es?` Відповідайте «Вона маленька»: `Es pequeña`. Зберіть `es` + `pequeña`. Повторювати la bolsa не обов'язково: предмет зрозумілий. Але жіночий рід bolsa зберігається й у короткій відповіді — pequeña."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-23:intro1:q",
+        "promptByLocale": {
+          "ru": "О bolsa: она маленькая. Ответьте без названия вещи.",
+          "uk": "Про bolsa: вона маленька. Відповідайте без назви речі."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-23:intro1:r1",
+              "text": "Es pequeña."
+            },
+            {
+              "responseId": "es:lesson-03:session-23:intro1:r2",
+              "text": "Es pequeño."
+            },
+            {
+              "responseId": "es:lesson-03:session-23:intro1:r3",
+              "text": "Son pequeñas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-23:intro1:r1",
+              "text": "Es pequeña."
+            },
+            {
+              "responseId": "es:lesson-03:session-23:intro1:r2",
+              "text": "Es pequeño."
+            },
+            {
+              "responseId": "es:lesson-03:session-23:intro1:r3",
+              "text": "Son pequeñas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "О bolsa: она маленькая. Ответьте без названия вещи.",
+          "uk": "Про bolsa: вона маленька. Відповідайте без назви речі."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-03:session-23:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Та же вещь, другое название",
+        "uk": "Та сама річ, інша назва"
+      },
+      "bodyByLocale": {
+        "ru": "Продавец называет эту сумку словом bolso. Отвечаете на его вопрос о внешнем виде: `Es bonito` — «Она красивая». Соберите `es` + `bonito`. Теперь описание связано с мужским bolso, поэтому bonito. Выбор формы зависит от испанского названия вещи, даже когда его не повторяют.",
+        "uk": "Продавець називає цю сумку словом bolso. Відповідаєте на його питання про вигляд: `Es bonito` — «Вона гарна». Зберіть `es` + `bonito`. Тепер опис пов'язаний із чоловічим bolso, тому bonito. Вибір форми залежить від іспанської назви речі, навіть коли її не повторюють."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-23:intro2:q",
+        "promptByLocale": {
+          "ru": "О bolso: он красивый. Ответьте без названия вещи.",
+          "uk": "Про bolso: він гарний. Відповідайте без назви речі."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-23:intro2:r1",
+              "text": "Es bonito."
+            },
+            {
+              "responseId": "es:lesson-03:session-23:intro2:r2",
+              "text": "Es bonita."
+            },
+            {
+              "responseId": "es:lesson-03:session-23:intro2:r3",
+              "text": "Es bonitos."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-23:intro2:r1",
+              "text": "Es bonito."
+            },
+            {
+              "responseId": "es:lesson-03:session-23:intro2:r2",
+              "text": "Es bonita."
+            },
+            {
+              "responseId": "es:lesson-03:session-23:intro2:r3",
+              "text": "Es bonitos."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "О bolso: он красивый. Ответьте без названия вещи.",
+          "uk": "Про bolso: він гарний. Відповідайте без назви речі."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-03:session-23:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Уточнить размер",
+        "uk": "Уточнити розмір"
+      },
+      "bodyByLocale": {
+        "ru": "Подруга снова говорит la bolsa и спрашивает, большая ли она. Вы уточняете: `No es muy grande` — «Она не очень большая». Соберите `no` + `es` + `muy grande`. No ставьте перед es, а знакомое muy — прямо перед grande. Название сумки снова можно опустить.",
+        "uk": "Подруга знову каже la bolsa й питає, чи велика вона. Ви уточнюєте: `No es muy grande` — «Вона не дуже велика». Зберіть `no` + `es` + `muy grande`. No ставте перед es, а знайоме muy — прямо перед grande. Назву сумки знову можна опустити."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-23:intro3:q",
+        "promptByLocale": {
+          "ru": "О la bolsa: она не очень большая. Без названия вещи.",
+          "uk": "Про la bolsa: вона не дуже велика. Без назви речі."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-23:intro3:r1",
+              "text": "No es muy grande."
+            },
+            {
+              "responseId": "es:lesson-03:session-23:intro3:r2",
+              "text": "No son muy grandes."
+            },
+            {
+              "responseId": "es:lesson-03:session-23:intro3:r3",
+              "text": "No es muy grandes."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-23:intro3:r1",
+              "text": "No es muy grande."
+            },
+            {
+              "responseId": "es:lesson-03:session-23:intro3:r2",
+              "text": "No son muy grandes."
+            },
+            {
+              "responseId": "es:lesson-03:session-23:intro3:r3",
+              "text": "No es muy grandes."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "О la bolsa: она не очень большая. Без названия вещи.",
+          "uk": "Про la bolsa: вона не дуже велика. Без назви речі."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "0d1abdcd16ba3bca5a52f76b80254b96da8460271bc284f303b2542ad138bca9"
+}

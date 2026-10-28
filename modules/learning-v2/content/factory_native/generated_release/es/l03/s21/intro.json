@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-03:session-21",
+  "learningOutcomeByLocale": {
+    "ru": "назвать известные собеседнику вещи и уточнить их цвет.",
+    "uk": "називати відомі співрозмовнику речі й уточнювати їхній колір."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-03:session-21:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Нашли красные карандаши",
+        "uk": "Знайшли червоні олівці"
+      },
+      "bodyByLocale": {
+        "ru": "Друг просил найти его красные карандаши. Вы нашли именно их: `Son los lápices rojos` — «Это те красные карандаши». Соберите `son` + `los lápices` + `rojos`. Los показывает, что речь о понятных вам обоим карандашах. Цвет уточняет, какие именно. Здесь не unas: lápices мужского рода.",
+        "uk": "Друг просив знайти його червоні олівці. Ви знайшли саме їх: `Son los lápices rojos` — «Це ті червоні олівці». Зберіть `son` + `los lápices` + `rojos`. Los показує, що йдеться про зрозумілі вам обом олівці. Колір уточнює, які саме. Тут не unas: lápices чоловічого роду."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-21:intro1:q",
+        "promptByLocale": {
+          "ru": "Это те красные карандаши; используйте los.",
+          "uk": "Це ті червоні олівці; використайте los."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-21:intro1:r1",
+              "text": "Son los lápices rojos."
+            },
+            {
+              "responseId": "es:lesson-03:session-21:intro1:r2",
+              "text": "Son las lápices rojas."
+            },
+            {
+              "responseId": "es:lesson-03:session-21:intro1:r3",
+              "text": "Son los lápices rojo."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-21:intro1:r1",
+              "text": "Son los lápices rojos."
+            },
+            {
+              "responseId": "es:lesson-03:session-21:intro1:r2",
+              "text": "Son las lápices rojas."
+            },
+            {
+              "responseId": "es:lesson-03:session-21:intro1:r3",
+              "text": "Son los lápices rojo."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Это те красные карандаши; используйте los.",
+          "uk": "Це ті червоні олівці; використайте los."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-03:session-21:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Нужная синяя тетрадь",
+        "uk": "Потрібний синій зошит"
+      },
+      "bodyByLocale": {
+        "ru": "Теперь друг ищет синюю тетрадь, о которой вы уже говорили. Покажите найденную: `Es el cuaderno azul` — «Это та синяя тетрадь». Соберите `es` + `el cuaderno` + `azul`. El указывает на нужную знакомую тетрадь. Цвет остаётся после cuaderno, без дополнительного es между ними.",
+        "uk": "Тепер друг шукає синій зошит, про який ви вже говорили. Покажіть знайдений: `Es el cuaderno azul` — «Це той синій зошит». Зберіть `es` + `el cuaderno` + `azul`. El указує на потрібний знайомий зошит. Колір залишається після cuaderno, без додаткового es між ними."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-21:intro2:q",
+        "promptByLocale": {
+          "ru": "Это та синяя тетрадь; используйте el.",
+          "uk": "Це той синій зошит; використайте el."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-21:intro2:r1",
+              "text": "Es el cuaderno azul."
+            },
+            {
+              "responseId": "es:lesson-03:session-21:intro2:r2",
+              "text": "Es la cuaderno azul."
+            },
+            {
+              "responseId": "es:lesson-03:session-21:intro2:r3",
+              "text": "Es el cuaderno es azul."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-21:intro2:r1",
+              "text": "Es el cuaderno azul."
+            },
+            {
+              "responseId": "es:lesson-03:session-21:intro2:r2",
+              "text": "Es la cuaderno azul."
+            },
+            {
+              "responseId": "es:lesson-03:session-21:intro2:r3",
+              "text": "Es el cuaderno es azul."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Это та синяя тетрадь; используйте el.",
+          "uk": "Це той синій зошит; використайте el."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-03:session-21:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Белая коробка",
+        "uk": "Біла коробка"
+      },
+      "bodyByLocale": {
+        "ru": "Друг просил и белую коробку для этих вещей. Вы узнаёте её: `Es la caja blanca` — «Это та белая коробка». Соберите `es` + `la caja` + `blanca`. Caja женского рода: la и blanca. La указывает на известную коробку, а blanca помогает отличить её от других.",
+        "uk": "Друг просив і білу коробку для цих речей. Ви впізнаєте її: `Es la caja blanca` — «Це та біла коробка». Зберіть `es` + `la caja` + `blanca`. Caja жіночого роду: la і blanca. La указує на відому коробку, а blanca допомагає відрізнити її від інших."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-21:intro3:q",
+        "promptByLocale": {
+          "ru": "Это та белая коробка; используйте la.",
+          "uk": "Це та біла коробка; використайте la."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-21:intro3:r1",
+              "text": "Es la caja blanca."
+            },
+            {
+              "responseId": "es:lesson-03:session-21:intro3:r2",
+              "text": "Es el caja blanco."
+            },
+            {
+              "responseId": "es:lesson-03:session-21:intro3:r3",
+              "text": "Es la caja blancas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-21:intro3:r1",
+              "text": "Es la caja blanca."
+            },
+            {
+              "responseId": "es:lesson-03:session-21:intro3:r2",
+              "text": "Es el caja blanco."
+            },
+            {
+              "responseId": "es:lesson-03:session-21:intro3:r3",
+              "text": "Es la caja blancas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Это та белая коробка; используйте la.",
+          "uk": "Це та біла коробка; використайте la."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "5fb95e68b73ed43e8fedb09de73102072de786f3a01ad4c605b947a489ba1ac2"
+}

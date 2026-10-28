@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-03:session-21",
+  "entries": [
+    {
+      "interactionId": "es:lesson-03:session-21:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-21:intro1:r2": {
+          "ru": "Lápices мужского рода: los, rojos.",
+          "uk": "Lápices чоловічого роду: los, rojos."
+        },
+        "es:lesson-03:session-21:intro1:r3": {
+          "ru": "Карандашей несколько: rojos.",
+          "uk": "Олівців кілька: rojos."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-21:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-21:intro2:r2": {
+          "ru": "Cuaderno мужского рода: el.",
+          "uk": "Cuaderno чоловічого роду: el."
+        },
+        "es:lesson-03:session-21:intro2:r3": {
+          "ru": "После cuaderno сразу идёт azul.",
+          "uk": "Після cuaderno відразу йде azul."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-21:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-21:intro3:r2": {
+          "ru": "Caja женского рода: la, blanca.",
+          "uk": "Caja жіночого роду: la, blanca."
+        },
+        "es:lesson-03:session-21:intro3:r3": {
+          "ru": "Коробка одна: blanca.",
+          "uk": "Коробка одна: blanca."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c21624e0948eb47ffc79f29a8d96ac76e490119ed05e988a71bffcc509b7beb9"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-03:session-22",
+  "entries": [
+    {
+      "interactionId": "es:lesson-03:session-22:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-22:intro1:r2": {
+          "ru": "Это вопрос «Что это?», а сумку уже назвали.",
+          "uk": "Це питання «Що це?», а сумку вже назвали."
+        },
+        "es:lesson-03:session-22:intro1:r3": {
+          "ru": "Это вопрос о владельце, а не о свойствах.",
+          "uk": "Це питання про власника, а не про властивості."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-22:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-22:intro2:r2": {
+          "ru": "Сумка одна: es.",
+          "uk": "Сумка одна: es."
+        },
+        "es:lesson-03:session-22:intro2:r3": {
+          "ru": "Bolso мужского рода: el.",
+          "uk": "Bolso чоловічого роду: el."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-22:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-22:intro3:r2": {
+          "ru": "Формы cóma нет: cómo не меняется по роду.",
+          "uk": "Форми cóma немає: cómo не змінюється за родом."
+        },
+        "es:lesson-03:session-22:intro3:r3": {
+          "ru": "Caja женского рода: la.",
+          "uk": "Caja жіночого роду: la."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "31c95388148aa86cf3fee755447a19a8c53ca88812cdede9324896fd91618c92"
+}

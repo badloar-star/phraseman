@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-03:session-21:i01",
+    "correctText": "rojos",
+    "correctResponseId": "es:lesson-03:session-21:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-21:i02",
+    "correctText": "Son los lápices rojos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-21:i03",
+    "correctText": "azul",
+    "correctResponseId": "es:lesson-03:session-21:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-21:i04",
+    "correctText": "Es el cuaderno azul.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-21:i05",
+    "correctText": "blanca",
+    "correctResponseId": "es:lesson-03:session-21:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-21:i06",
+    "correctText": "Es la caja blanca.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-21:i07",
+    "correctText": "Son los lápices azules.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-21:i08",
+    "correctText": "roja",
+    "correctResponseId": "es:lesson-03:session-21:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-21:i09",
+    "correctText": "Son los lápices rojos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-21:i10",
+    "correctText": "Es el cuaderno azul.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-21:i11",
+    "correctText": "Es la caja blanca.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-21:i12",
+    "correctText": "Son los lápices azules.",
+    "correctResponseId": null
+  }
+]

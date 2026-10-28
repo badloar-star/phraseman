@@ -1,0 +1,780 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-03:session-22",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-03:session-22:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cómo",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-22:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cómo",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-22:i01:audio",
+          "transcript": "cómo"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-22:i01:r1",
+            "targetText": "cómo",
+            "meaningByLocale": {
+              "ru": "как; в вопросе ¿Cómo es? просит описать, какой предмет. 🔊 *cómo*",
+              "uk": "як; у питанні ¿Cómo es? просить описати, який предмет. 🔊 *cómo*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cómo",
+          "definitionByLocale": {
+            "ru": "как; в вопросе ¿Cómo es? просит описать, какой предмет. 🔊 *cómo*",
+            "uk": "як; у питанні ¿Cómo es? просить описати, який предмет. 🔊 *cómo*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-22:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-22:i02:r1",
+          "text": "cómo"
+        },
+        {
+          "responseId": "es:lesson-03:session-22:i02:r2",
+          "text": "qué"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-22:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-22:i02:audio",
+          "transcript": "cómo"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-22:i02:r1",
+            "targetText": "cómo",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-03:session-22:i02:r2",
+            "targetText": "qué",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-22:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи два слога: cómo.",
+              "uk": "У записі два склади: cómo."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-22:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — какая она? О вещи уже говорили",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-22:i03:r1",
+          "text": "Плитки: es?"
+        },
+        {
+          "responseId": "es:lesson-03:session-22:i03:r2",
+          "text": "¿cómo"
+        },
+        {
+          "responseId": "es:lesson-03:session-22:i03:r3",
+          "text": "¿qué."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — какая она? О вещи уже говорили",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Cómo es?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — какая она? О вещи уже говорили",
+          "uk": "Зберіть фразу — яка вона? Про річ уже говорили"
+        },
+        "orderedTokens": [
+          "¿Cómo",
+          "es"
+        ],
+        "authoredDistractorTokens": [
+          "¿qué"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-22:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — какая она? О вещи уже говорили",
+            "feedbackByLocale": {
+              "ru": "вы просите описание, а не название вещи.",
+              "uk": "ви просите опис, а не назву речі."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-22:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — какая сумка?",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-22:i04:r1",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-22:i04:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-22:i04:r3",
+          "text": "soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — какая сумка?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — какая сумка?",
+          "uk": "Вставте слово — яка сумка?"
+        },
+        "gappedTargetPhrase": "¿Cómo ___ el bolso?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-22:i04:r1",
+            "text": "es"
+          },
+          {
+            "responseId": "es:lesson-03:session-22:i04:r2",
+            "text": "son"
+          },
+          {
+            "responseId": "es:lesson-03:session-22:i04:r3",
+            "text": "soy"
+          }
+        ],
+        "testedDimension": "Вставьте слово — какая сумка?",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-22:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — какая сумка?",
+            "feedbackByLocale": {
+              "ru": "Сумка одна: es.",
+              "uk": "Сумка одна: es."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-22:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — какая сумка?",
+            "feedbackByLocale": {
+              "ru": "Речь о сумке, не о себе: es.",
+              "uk": "Йдеться про сумку, не про себе: es."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-22:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — какая сумка? Используйте bolso",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-22:i05:r1",
+          "text": "Плитки: bolso?"
+        },
+        {
+          "responseId": "es:lesson-03:session-22:i05:r2",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-03:session-22:i05:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-22:i05:r4",
+          "text": "¿cómo"
+        },
+        {
+          "responseId": "es:lesson-03:session-22:i05:r5",
+          "text": "la."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — какая сумка? Используйте bolso",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Cómo es el bolso?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — какая сумка? Используйте bolso",
+          "uk": "Зберіть фразу — яка сумка? Використайте bolso"
+        },
+        "orderedTokens": [
+          "¿Cómo",
+          "es",
+          "el",
+          "bolso"
+        ],
+        "authoredDistractorTokens": [
+          "la"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-22:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — какая сумка? Используйте bolso",
+            "feedbackByLocale": {
+              "ru": "bolso мужского рода.",
+              "uk": "bolso чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-22:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — какая коробка?",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-22:i06:r1",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-03:session-22:i06:r2",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-03:session-22:i06:r3",
+          "text": "los"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — какая коробка?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — какая коробка?",
+          "uk": "Вставте слово — яка коробка?"
+        },
+        "gappedTargetPhrase": "¿Cómo es ___ caja?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-22:i06:r1",
+            "text": "la"
+          },
+          {
+            "responseId": "es:lesson-03:session-22:i06:r2",
+            "text": "el"
+          },
+          {
+            "responseId": "es:lesson-03:session-22:i06:r3",
+            "text": "los"
+          }
+        ],
+        "testedDimension": "Вставьте слово — какая коробка?",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-22:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — какая коробка?",
+            "feedbackByLocale": {
+              "ru": "Caja женского рода: la.",
+              "uk": "Caja жіночого роду: la."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-22:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — какая коробка?",
+            "feedbackByLocale": {
+              "ru": "Коробка одна и женского рода: la.",
+              "uk": "Коробка одна й жіночого роду: la."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-22:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — какая коробка?",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-22:i07:r1",
+          "text": "Плитки: caja?"
+        },
+        {
+          "responseId": "es:lesson-03:session-22:i07:r2",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-03:session-22:i07:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-22:i07:r4",
+          "text": "¿cómo"
+        },
+        {
+          "responseId": "es:lesson-03:session-22:i07:r5",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — какая коробка?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Cómo es la caja?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — какая коробка?",
+          "uk": "Зберіть фразу — яка коробка?"
+        },
+        "orderedTokens": [
+          "¿Cómo",
+          "es",
+          "la",
+          "caja"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-22:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — какая коробка?",
+            "feedbackByLocale": {
+              "ru": "caja женского рода.",
+              "uk": "caja жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-22:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-22:i08:r1",
+          "text": "Плитки: bolso?"
+        },
+        {
+          "responseId": "es:lesson-03:session-22:i08:r2",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-03:session-22:i08:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-22:i08:r4",
+          "text": "¿cómo"
+        },
+        {
+          "responseId": "es:lesson-03:session-22:i08:r5",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-22:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-22:i08:audio",
+          "transcript": "¿Cómo es el bolso?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "¿Cómo es el bolso?",
+        "orderedTokens": [
+          "¿Cómo",
+          "es",
+          "el",
+          "bolso"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-22:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит es.",
+              "uk": "звучить es."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-22:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — попросите описать коробку",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-22:i09:r1",
+          "text": "Cómo"
+        },
+        {
+          "responseId": "es:lesson-03:session-22:i09:r2",
+          "text": "Qué"
+        },
+        {
+          "responseId": "es:lesson-03:session-22:i09:r3",
+          "text": "Quién"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — попросите описать коробку",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — попросите описать коробку",
+          "uk": "Вставте слово — попросіть описати коробку"
+        },
+        "gappedTargetPhrase": "¿___ es la caja?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-22:i09:r1",
+            "text": "Cómo"
+          },
+          {
+            "responseId": "es:lesson-03:session-22:i09:r2",
+            "text": "Qué"
+          },
+          {
+            "responseId": "es:lesson-03:session-22:i09:r3",
+            "text": "Quién"
+          }
+        ],
+        "testedDimension": "Вставьте слово — попросите описать коробку",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-22:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — попросите описать коробку",
+            "feedbackByLocale": {
+              "ru": "Нужно описание коробки, не объяснение, что это: cómo.",
+              "uk": "Потрібен опис коробки, не пояснення, що це: cómo."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-22:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — попросите описать коробку",
+            "feedbackByLocale": {
+              "ru": "Quién спрашивает о человеке, а не о свойствах коробки.",
+              "uk": "Quién запитує про людину, а не про властивості коробки."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-22:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — какая она? Попросите описание вещи",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-22:i10:r1",
+          "text": "Cómo"
+        },
+        {
+          "responseId": "es:lesson-03:session-22:i10:r2",
+          "text": "Qué"
+        },
+        {
+          "responseId": "es:lesson-03:session-22:i10:r3",
+          "text": "Quién"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — какая она? Попросите описание вещи",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — какая она? Попросите описание вещи",
+          "uk": "Вставте слово — яка вона? Попросіть опис речі"
+        },
+        "gappedTargetPhrase": "¿___ es?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-22:i10:r1",
+            "text": "Cómo"
+          },
+          {
+            "responseId": "es:lesson-03:session-22:i10:r2",
+            "text": "Qué"
+          },
+          {
+            "responseId": "es:lesson-03:session-22:i10:r3",
+            "text": "Quién"
+          }
+        ],
+        "testedDimension": "Вставьте слово — какая она? Попросите описание вещи",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-22:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — какая она? Попросите описание вещи",
+            "feedbackByLocale": {
+              "ru": "Qué es спрашивает, что это.",
+              "uk": "Qué es запитує, що це."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-22:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — какая она? Попросите описание вещи",
+            "feedbackByLocale": {
+              "ru": "Quién es спрашивает, кто это.",
+              "uk": "Quién es запитує, хто це."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-22:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — попросите описать уже названную вещь: какая она?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-22:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — попросите описать уже названную вещь: какая она?",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-22:i11:audio",
+          "transcript": "¿Cómo es?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Cómo es?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-22:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — какая сумка? Назовите её словом bolso",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-22:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — какая сумка? Назовите её словом bolso",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-22:i12:audio",
+          "transcript": "¿Cómo es el bolso?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Cómo es el bolso?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-22:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — какая коробка? Назовите предмет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-22:i13:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — какая коробка? Назовите предмет",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-22:i13:audio",
+          "transcript": "¿Cómo es la caja?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Cómo es la caja?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-22:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — какой он? Попросите описать уже названный подарок без повторения названия",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-22:i14:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — какой он? Попросите описать уже названный подарок без повторения названия",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-22:i14:audio",
+          "transcript": "¿Cómo es?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Cómo es?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 14,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "eee6526238d923e6f285ddcd8a61f7064897356aaadc951f76c2263a252fc3a8"
+}

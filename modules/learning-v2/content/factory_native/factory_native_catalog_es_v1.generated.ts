@@ -931,4 +931,25 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"назвать несколько вещей женского рода вместе с цветом или размером.","uk":"називати кілька речей жіночого роду разом із кольором або розміром."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 21,
+    sourceFingerprint: "2c7f21e6d7a1b88ea19cd768b89b993500d93c79be2a61b8ccb05678c91aae9f",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"назвать известные собеседнику вещи и уточнить их цвет.","uk":"називати відомі співрозмовнику речі й уточнювати їхній колір."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 22,
+    sourceFingerprint: "33ac50ad09b07779666af6a125f2e84a275e520360e4ee0ffe0e0ac93b20e760",
+    newWordCount: 1,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"спросить о внешнем виде или свойствах одной вещи через ¿Cómo es?","uk":"запитувати про вигляд або властивості однієї речі через ¿Cómo es?"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 23,
+    sourceFingerprint: "c3d42e2665fde7e6c2550303c30ea7fa773a9ebaafa524376dcd047b64c02c8e",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"ответить на ¿Cómo es? короткой фразой без повторения названия вещи.","uk":"відповідати на ¿Cómo es? короткою фразою без повторення назви речі."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+  }),
 ]);

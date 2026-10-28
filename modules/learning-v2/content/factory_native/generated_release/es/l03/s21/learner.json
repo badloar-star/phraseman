@@ -1,0 +1,689 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-03:session-21",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-03:session-21:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — это те красные карандаши",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-21:i01:r1",
+          "text": "rojos"
+        },
+        {
+          "responseId": "es:lesson-03:session-21:i01:r2",
+          "text": "rojo"
+        },
+        {
+          "responseId": "es:lesson-03:session-21:i01:r3",
+          "text": "rojas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — это те красные карандаши",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это те красные карандаши",
+          "uk": "Вставте слово — це ті червоні олівці"
+        },
+        "gappedTargetPhrase": "Son los lápices ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-21:i01:r1",
+            "text": "rojos"
+          },
+          {
+            "responseId": "es:lesson-03:session-21:i01:r2",
+            "text": "rojo"
+          },
+          {
+            "responseId": "es:lesson-03:session-21:i01:r3",
+            "text": "rojas"
+          }
+        ],
+        "testedDimension": "Вставьте слово — это те красные карандаши",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-21:i01:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это те красные карандаши",
+            "feedbackByLocale": {
+              "ru": "Карандашей несколько: rojos.",
+              "uk": "Олівців кілька: rojos."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-21:i01:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это те красные карандаши",
+            "feedbackByLocale": {
+              "ru": "Lápices мужского рода: rojos.",
+              "uk": "Lápices чоловічого роду: rojos."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-21:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это те красные карандаши; используйте los",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-21:i02:r1",
+          "text": "Плитки: rojos"
+        },
+        {
+          "responseId": "es:lesson-03:session-21:i02:r2",
+          "text": "lápices"
+        },
+        {
+          "responseId": "es:lesson-03:session-21:i02:r3",
+          "text": "los"
+        },
+        {
+          "responseId": "es:lesson-03:session-21:i02:r4",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-21:i02:r5",
+          "text": "las."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это те красные карандаши; используйте los",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son los lápices rojos.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это те красные карандаши; используйте los",
+          "uk": "Зберіть фразу — це ті червоні олівці; використайте los"
+        },
+        "orderedTokens": [
+          "Son",
+          "los",
+          "lápices",
+          "rojos"
+        ],
+        "authoredDistractorTokens": [
+          "las"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-21:i02:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это те красные карандаши; используйте los",
+            "feedbackByLocale": {
+              "ru": "lápices мужского рода.",
+              "uk": "lápices чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-21:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — это та синяя тетрадь",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-21:i03:r1",
+          "text": "azul"
+        },
+        {
+          "responseId": "es:lesson-03:session-21:i03:r2",
+          "text": "azules"
+        },
+        {
+          "responseId": "es:lesson-03:session-21:i03:r3",
+          "text": "azulo"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — это та синяя тетрадь",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это та синяя тетрадь",
+          "uk": "Вставте слово — це той синій зошит"
+        },
+        "gappedTargetPhrase": "Es el cuaderno ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-21:i03:r1",
+            "text": "azul"
+          },
+          {
+            "responseId": "es:lesson-03:session-21:i03:r2",
+            "text": "azules"
+          },
+          {
+            "responseId": "es:lesson-03:session-21:i03:r3",
+            "text": "azulo"
+          }
+        ],
+        "testedDimension": "Вставьте слово — это та синяя тетрадь",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-21:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это та синяя тетрадь",
+            "feedbackByLocale": {
+              "ru": "Тетрадь одна: azul.",
+              "uk": "Зошит один: azul."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-21:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это та синяя тетрадь",
+            "feedbackByLocale": {
+              "ru": "У azul нет отдельной мужской формы.",
+              "uk": "В azul немає окремої чоловічої форми."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-21:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это та синяя тетрадь; используйте el",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-21:i04:r1",
+          "text": "Плитки: azul"
+        },
+        {
+          "responseId": "es:lesson-03:session-21:i04:r2",
+          "text": "cuaderno"
+        },
+        {
+          "responseId": "es:lesson-03:session-21:i04:r3",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-03:session-21:i04:r4",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-21:i04:r5",
+          "text": "la."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это та синяя тетрадь; используйте el",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es el cuaderno azul.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это та синяя тетрадь; используйте el",
+          "uk": "Зберіть фразу — це той синій зошит; використайте el"
+        },
+        "orderedTokens": [
+          "Es",
+          "el",
+          "cuaderno",
+          "azul"
+        ],
+        "authoredDistractorTokens": [
+          "la"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-21:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это та синяя тетрадь; используйте el",
+            "feedbackByLocale": {
+              "ru": "cuaderno мужского рода.",
+              "uk": "cuaderno чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-21:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — это та белая коробка",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-21:i05:r1",
+          "text": "blanca"
+        },
+        {
+          "responseId": "es:lesson-03:session-21:i05:r2",
+          "text": "blanco"
+        },
+        {
+          "responseId": "es:lesson-03:session-21:i05:r3",
+          "text": "blancas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — это та белая коробка",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это та белая коробка",
+          "uk": "Вставте слово — це та біла коробка"
+        },
+        "gappedTargetPhrase": "Es la caja ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-21:i05:r1",
+            "text": "blanca"
+          },
+          {
+            "responseId": "es:lesson-03:session-21:i05:r2",
+            "text": "blanco"
+          },
+          {
+            "responseId": "es:lesson-03:session-21:i05:r3",
+            "text": "blancas"
+          }
+        ],
+        "testedDimension": "Вставьте слово — это та белая коробка",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-21:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это та белая коробка",
+            "feedbackByLocale": {
+              "ru": "Caja женского рода: blanca.",
+              "uk": "Caja жіночого роду: blanca."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-21:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это та белая коробка",
+            "feedbackByLocale": {
+              "ru": "Коробка одна: blanca.",
+              "uk": "Коробка одна: blanca."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-21:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это та белая коробка; используйте la",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-21:i06:r1",
+          "text": "Плитки: blanca"
+        },
+        {
+          "responseId": "es:lesson-03:session-21:i06:r2",
+          "text": "caja"
+        },
+        {
+          "responseId": "es:lesson-03:session-21:i06:r3",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-03:session-21:i06:r4",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-21:i06:r5",
+          "text": "blanco."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это та белая коробка; используйте la",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es la caja blanca.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это та белая коробка; используйте la",
+          "uk": "Зберіть фразу — це та біла коробка; використайте la"
+        },
+        "orderedTokens": [
+          "Es",
+          "la",
+          "caja",
+          "blanca"
+        ],
+        "authoredDistractorTokens": [
+          "blanco"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-21:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это та белая коробка; используйте la",
+            "feedbackByLocale": {
+              "ru": "caja женского рода.",
+              "uk": "caja жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-21:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-21:i07:r1",
+          "text": "Плитки: azules"
+        },
+        {
+          "responseId": "es:lesson-03:session-21:i07:r2",
+          "text": "lápices"
+        },
+        {
+          "responseId": "es:lesson-03:session-21:i07:r3",
+          "text": "los"
+        },
+        {
+          "responseId": "es:lesson-03:session-21:i07:r4",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-21:i07:r5",
+          "text": "rojos."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-21:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-21:i07:audio",
+          "transcript": "Son los lápices azules."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Son los lápices azules.",
+        "orderedTokens": [
+          "Son",
+          "los",
+          "lápices",
+          "azules"
+        ],
+        "authoredDistractorTokens": [
+          "rojos"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-21:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит azules.",
+              "uk": "звучить azules."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-21:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — это та красная коробка",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-21:i08:r1",
+          "text": "roja"
+        },
+        {
+          "responseId": "es:lesson-03:session-21:i08:r2",
+          "text": "rojo"
+        },
+        {
+          "responseId": "es:lesson-03:session-21:i08:r3",
+          "text": "rojas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — это та красная коробка",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это та красная коробка",
+          "uk": "Вставте слово — це та червона коробка"
+        },
+        "gappedTargetPhrase": "Es la caja ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-21:i08:r1",
+            "text": "roja"
+          },
+          {
+            "responseId": "es:lesson-03:session-21:i08:r2",
+            "text": "rojo"
+          },
+          {
+            "responseId": "es:lesson-03:session-21:i08:r3",
+            "text": "rojas"
+          }
+        ],
+        "testedDimension": "Вставьте слово — это та красная коробка",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-21:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это та красная коробка",
+            "feedbackByLocale": {
+              "ru": "Caja женского рода: roja.",
+              "uk": "Caja жіночого роду: roja."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-21:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это та красная коробка",
+            "feedbackByLocale": {
+              "ru": "Коробка одна: roja.",
+              "uk": "Коробка одна: roja."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-21:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — это те красные карандаши; начните с Son los",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-21:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — это те красные карандаши; начните с Son los",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-21:i09:audio",
+          "transcript": "Son los lápices rojos."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son los lápices rojos.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-21:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — это та синяя тетрадь; начните с Es el",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-21:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — это та синяя тетрадь; начните с Es el",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-21:i10:audio",
+          "transcript": "Es el cuaderno azul."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es el cuaderno azul.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-21:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — это та белая коробка; начните с Es la",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-21:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — это та белая коробка; начните с Es la",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-21:i11:audio",
+          "transcript": "Es la caja blanca."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es la caja blanca.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-21:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — это те синие карандаши; начните с Son los",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-21:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — это те синие карандаши; начните с Son los",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-21:i12:audio",
+          "transcript": "Son los lápices azules."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son los lápices azules.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "db09d0c6cf5bce4636d1187c80b3fc2066d1a41d5b8e70f3872c08a919372a64"
+}

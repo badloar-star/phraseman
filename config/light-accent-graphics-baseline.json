@@ -22,7 +22,7 @@
     "components/ReviewPromptModal.tsx": 1,
     "components/StatsPremiumBlur.tsx": 1
   },
-  "deepTotal": 309,
+  "deepTotal": 308,
   "deepCounts": {
     "app/(tabs)/home.tsx": 4,
     "app/(tabs)/lessons.tsx": 5,
@@ -47,7 +47,6 @@
     "app/flashcards_swipe.tsx": 10,
     "app/flashcards_voice_picker.tsx": 5,
     "app/hint.tsx": 4,
-    "app/lesson1.tsx": 1,
     "app/lesson_complete.tsx": 9,
     "app/mistake_practice_session.tsx": 1,
     "app/pack_opening.tsx": 2,

@@ -104,8 +104,8 @@ function SpireGhostLayer({ lang, view, clock, paused, done }: Props) {
             <Text numberOfLines={1} style={[s.text, s.sizer]}>{sizer}</Text>
             <Animated.Text numberOfLines={1} style={[s.text, s.over, { color: p.textSecondary }, g0Style]}>{average}</Animated.Text>
             <Animated.View style={[s.over, s.aheadRow, g1Style]}>
-              <Ionicons name="checkmark" size={14} color={p.accentText} />
-              <Text numberOfLines={1} style={[s.text, s.aheadText, { color: p.accentText }]}>{ahead}</Text>
+              <Ionicons name="checkmark" size={14} color={p.accentTextSafe} />
+              <Text numberOfLines={1} style={[s.text, s.aheadText, { color: p.accentTextSafe }]}>{ahead}</Text>
             </Animated.View>
           </View>
           <View style={s.track}>
@@ -114,7 +114,7 @@ function SpireGhostLayer({ lang, view, clock, paused, done }: Props) {
             <Animated.View style={[s.her, { backgroundColor: ghostTone }, herStyle]}>
               <Text style={[s.herLetter, { color: p.text }]}>{ghost.letter}</Text>
             </Animated.View>
-            <Animated.View style={[s.mine, { backgroundColor: p.accentText, boxShadow: `0 0 0 2px ${p.card}` }, mineStyle]} />
+            <Animated.View style={[s.mine, { backgroundColor: p.accentGraphic, boxShadow: `0 0 0 2px ${p.card}` }, mineStyle]} />
           </View>
         </View>
       </View>

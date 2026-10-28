@@ -1353,7 +1353,7 @@ const LessonContent = React.memo(function LessonContent({
                     })()
                   : ''
                 }{selectedWords.length > 0 && phraseWordIdx < phraseTokens.length ? '\u00A0' : ''}
-                <Animated.Text style={{ color: t.accentText, opacity: selectedWords.length > 0 ? 1 : cursorAnim }}>
+                <Animated.Text style={{ color: glass.accentTextSafe, opacity: selectedWords.length > 0 ? 1 : cursorAnim }}>
                   {selectedWords.length > 0 ? (phraseWordIdx < phraseTokens.length ? '…' : '') : '|'}
                 </Animated.Text>
               </Text>
@@ -1362,7 +1362,7 @@ const LessonContent = React.memo(function LessonContent({
 
           {/* зачем (жалоба №4, вариант А макета hardmode-switch-line.html): при «Вводе с клавиатуры» — тихая строка под полем, тап включает выбор слов */}
           {settings.hardMode && status === 'playing' && onSwitchToTiles ? (
-            <LessonHardModeSwitchLine lang={lang} mutedColor={glass.secondary} actionColor={t.accentText} onSwitch={onSwitchToTiles} />
+            <LessonHardModeSwitchLine lang={lang} mutedColor={glass.secondary} actionColor={glass.accentTextSafe} onSwitch={onSwitchToTiles} />
           ) : null}
 
           {speakingResult && speakingFailWords.length === 0 && (

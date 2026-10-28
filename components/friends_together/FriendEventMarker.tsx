@@ -75,7 +75,7 @@ function FriendEventMarker({ event, onPress, nowMs }: Props) {
           <Ionicons name={iconName} size={27} color={g.text} />
           {flashBadge
             // зачем (Темы 25.10, zones-contrast): молния ctaFillInk на accentGraphic — не пара темы (2,98 в grad_jade); accentInk на accent — пара (≥ 4,56)
-            ? <View style={[styles.flash, { backgroundColor: g.accent, borderColor: g.opaqueCard }]}><Ionicons name="flash" size={11} color={g.accentInk} /></View>
+            ? <View style={[styles.flash, { backgroundColor: g.accent, borderColor: g.opaqueCard }]}><Ionicons name="flash" size={11} color={g.accentInk} /></View> /* light-accent-ok: заливка со своей парой accentInk (≥ 4,56), не графика на фоне */
             : <View style={[styles.accentDot, { backgroundColor: g.accentGraphic }]} />}
         </View>
         {event.kind === 'duel_invite' && <Text style={[styles.countdown, { backgroundColor: g.opaqueCard, color: g.text }]}>{Math.ceil(seconds / 60)}:{String(seconds % 60).padStart(2, '0')}</Text>}

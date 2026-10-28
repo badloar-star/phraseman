@@ -92,3 +92,10 @@ Governance-ID: TG-9F17DBC69B38
 
 Outcome: окно званий на Главной и затемнение шторки «Ошибки» — токены текущей темы; SOURCE_ACCENTS источников карточек — theme-exempt с причиной; устаревшие записи потолков в ratchet убраны; в home.tsx коммитятся только мои фрагменты (чужой импорт noteLessonsOpenStart остаётся незакоммиченным у автора).
 Scope: app/(tabs)/home.tsx (патчем), HomeMistakesLockedSheet.tsx, trainingSources.ts, ratchet-базы. Architecture/Security/Debt/Verification/Rollback — как выше (цвета; откат — revert).
+
+## Хвосты ratchet светлого акцента: наши файлы (28.10)
+
+Governance-ID: TG-C41E7A25D903
+
+Outcome: FriendEventMarker, LearningV2SessionOutcomeSheet, lesson1, SpireGhostLayer не растят счётчик сырого accent/accentText: текст и значки — accentTextSafe, графика — accentGraphic, заливки с парой «чернила на акценте» — пометка light-accent-ok с причиной. Codex-файлы (Community*, story_template_palette) не трогаются.
+Scope: четыре перечисленных файла и config/light-accent-graphics-baseline.json (только подрезка). Architecture/Security/Debt/Verification/Rollback — как выше (цвета; откат — revert).

@@ -288,7 +288,7 @@ export default function LearningV2SessionOutcomeSheet({
                   disabled={actionsDisabled}
                   activeOpacity={0.8}
                   onPress={start}
-                  style={[sx.primaryButton, { backgroundColor: g.accent, minHeight: layout.targetHeight, opacity: actionsDisabled ? 0.66 : 1 }]}
+                  style={[sx.primaryButton, { backgroundColor: g.accent /* light-accent-ok: подложка главной кнопки под ThemeAccentFill, подпись — пара ctaInk */, minHeight: layout.targetHeight, opacity: actionsDisabled ? 0.66 : 1 }]}
                 >
                   {/* зачем (сверка learning-v2-010, 05.10): глянец .cta макета / фактура темы — общий слой, как у всех главных кнопок. */}
                   <ThemeAccentFill glass={g} radius={20} />

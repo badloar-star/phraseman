@@ -901,6 +901,30 @@ describe('Dialogue V2 provider adapter', () => {
     expect(fetchImpl).not.toHaveBeenCalled();
   });
 
+  it('classifies server request construction failures before provider fetch', async () => {
+    const consoleError = jest.spyOn(console, 'error').mockImplementation(() => undefined);
+    const fetchImpl = jest.fn();
+    const generate = createDialogueV2ProviderGenerator({
+      resolveApiKey: () => 'server-secret',
+      resolveModel: async () => 'gpt-4o-mini',
+      fetchImpl,
+    });
+
+    try {
+      await expect(generate({
+        ...providerRequest,
+        serverConversationContext: [{ userMessage: 'Hallo', assistantReplies: [], role: 'system' }] as never,
+      })).rejects.toThrow('dialogue_v2_provider_failed');
+      expect(fetchImpl).not.toHaveBeenCalled();
+      expect(consoleError).toHaveBeenCalledWith(
+        '[DIALOGUE-V2-TURN] provider_failed',
+        '{"stage":"request_build","code":"context_invalid"}',
+      );
+    } finally {
+      consoleError.mockRestore();
+    }
+  });
+
   it('rechecks server session expiry immediately before provider fetch, even without prior turns', async () => {
     let nowMs = 1_000;
     const fetchImpl = jest.fn();
@@ -922,7 +946,7 @@ describe('Dialogue V2 provider adapter', () => {
   });
 
   it('does not expose provider response bodies, secrets, or malformed output', async () => {
-    const secret = 'server-secret-never-leak';
+    const leakSentinel = 'server-secret-never-leak';
     const privateContext = 'private-prior-context-never-leak';
     const cases: (() => Promise<Response>)[] = [
       async () => ({
@@ -939,7 +963,7 @@ describe('Dialogue V2 provider adapter', () => {
 
     for (const response of cases) {
       const generate = createDialogueV2ProviderGenerator({
-        resolveApiKey: () => secret,
+        resolveApiKey: () => leakSentinel,
         resolveModel: async () => 'gpt-4o-mini',
         fetchImpl: jest.fn(async () => response()),
       });
@@ -955,9 +979,100 @@ describe('Dialogue V2 provider adapter', () => {
         throw new Error('expected provider adapter rejection');
       } catch (error) {
         expect((error as Error).message).toBe('dialogue_v2_provider_failed');
-        expect(JSON.stringify(error)).not.toContain(secret);
+        expect(JSON.stringify(error)).not.toContain(leakSentinel);
         expect(JSON.stringify(error)).not.toContain('provider-private-error-body');
         expect(JSON.stringify(error)).not.toContain(privateContext);
+      }
+    }
+  });
+
+  it('logs only a fixed provider failure stage, HTTP status, and allowlisted code', async () => {
+    const consoleError = jest.spyOn(console, 'error').mockImplementation(() => undefined);
+    const leakSentinel = 'server-secret-never-log';
+    const privateBody = 'provider-private-error-body-never-log';
+    const generate = createDialogueV2ProviderGenerator({
+      resolveApiKey: () => leakSentinel,
+      resolveModel: async () => 'gpt-4o-mini',
+      fetchImpl: jest.fn(async () => ({
+        ok: false,
+        status: 429,
+        json: async () => ({ error: { type: 'insufficient_quota', message: privateBody } }),
+      } as Response)),
+    });
+
+    try {
+      await expect(generate(providerRequest)).rejects.toThrow('dialogue_v2_provider_failed');
+      expect(consoleError).toHaveBeenCalledWith(
+        '[DIALOGUE-V2-TURN] provider_failed',
+        '{"stage":"provider_http","status":429,"code":"http_failure","providerCode":"insufficient_quota"}',
+      );
+      expect(JSON.stringify(consoleError.mock.calls)).not.toContain(leakSentinel);
+      expect(JSON.stringify(consoleError.mock.calls)).not.toContain(privateBody);
+      expect(JSON.stringify(consoleError.mock.calls)).not.toContain(providerRequest.userMessage);
+    } finally {
+      consoleError.mockRestore();
+    }
+  });
+
+  it.each([
+    ['code', 'rate_limit_exceeded'],
+    ['type', 'invalid_api_key'],
+    ['param', 'model_not_found'],
+  ] as const)('recognizes allowlisted provider HTTP %s without logging other fields', async (field, value) => {
+    const consoleError = jest.spyOn(console, 'error').mockImplementation(() => undefined);
+    const generate = createDialogueV2ProviderGenerator({
+      resolveApiKey: () => 'server-secret-never-log',
+      resolveModel: async () => 'gpt-4o-mini',
+      fetchImpl: jest.fn(async () => ({
+        ok: false,
+        status: 400,
+        json: async () => ({ error: { [field]: value, message: 'private provider message' } }),
+      } as Response)),
+    });
+
+    try {
+      await expect(generate(providerRequest)).rejects.toThrow('dialogue_v2_provider_failed');
+      expect(consoleError).toHaveBeenCalledWith(
+        '[DIALOGUE-V2-TURN] provider_failed',
+        `{"stage":"provider_http","status":400,"code":"http_failure","providerCode":"${value}"}`,
+      );
+      expect(JSON.stringify(consoleError.mock.calls)).not.toContain('private provider message');
+    } finally {
+      consoleError.mockRestore();
+    }
+  });
+
+  it('maps malicious provider error fields to other and preserves status when error JSON is unreadable', async () => {
+    const malicious = 'learner@example.com private upstream detail';
+    const cases = [
+      async () => ({
+        ok: false,
+        status: 403,
+        json: async () => ({ error: { code: malicious, type: malicious, param: malicious, message: malicious } }),
+      } as Response),
+      async () => ({
+        ok: false,
+        status: 502,
+        json: async () => { throw new Error(malicious); },
+      } as unknown as Response),
+    ];
+
+    for (const [index, response] of cases.entries()) {
+      const consoleError = jest.spyOn(console, 'error').mockImplementation(() => undefined);
+      const generate = createDialogueV2ProviderGenerator({
+        resolveApiKey: () => 'server-secret-never-log',
+        resolveModel: async () => 'gpt-4o-mini',
+        fetchImpl: jest.fn(response),
+      });
+      try {
+        await expect(generate(providerRequest)).rejects.toThrow('dialogue_v2_provider_failed');
+        expect(consoleError).toHaveBeenCalledWith(
+          '[DIALOGUE-V2-TURN] provider_failed',
+          `{"stage":"provider_http","status":${index === 0 ? 403 : 502},"code":"http_failure","providerCode":"other"}`,
+        );
+        expect(JSON.stringify(consoleError.mock.calls)).not.toContain(malicious);
+      } finally {
+        consoleError.mockRestore();
       }
     }
   });

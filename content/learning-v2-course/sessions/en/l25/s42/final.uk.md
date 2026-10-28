@@ -109,7 +109,7 @@ purr — муркотіти · growl — гарчати · hiss — шипіти
 <!-- interaction_id: en:lesson-25:session-42:i09; family: scripted_repeat_compare -->
 🎙 **I have already fed the dog.**
 
-**14 · Ви гуляли із собакою вчора. Виберіть Past Simple.**
+**14 · Ви гуляли із собакою вчора. Виберіть форму для завершеного минулого.**
 <!-- interaction_id: en:lesson-25:session-42:i10; family: context_gap_grammar -->
 I ___ the dog yesterday. → **walked** · have walked · walking
 - have walked — *Yesterday називає завершений день, тому walked.*

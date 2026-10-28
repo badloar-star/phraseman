@@ -143,7 +143,7 @@ We ___ the park yesterday. → **visited** · have visited · would visit
 - I have already sent a photo. — *У записі звучить I have already taken a photo.*
 - She has already taken a photo. — *У записі звучить I have already taken a photo.*
 
-**21 · За цей час парк змінився, і зміни видно зараз. Доповніть Present Perfect.**
+**21 · За цей час парк змінився, і зміни видно зараз. Доповніть фразу з have / has.**
 <!-- interaction_id: en:lesson-25:session-24:i17; family: context_gap_grammar -->
 The park has ___ a lot. → **changed** · change · changing
 - change — *Після has потрібна форма changed.*

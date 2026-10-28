@@ -139,7 +139,7 @@ I ___ my cousin yesterday. → **met** · have met · would meet
 <!-- interaction_id: en:lesson-25:session-18:i15; family: phrase_builder -->
 Плитки: `please` `chair,` `another` `Bring` → **Bring another chair, please.**
 
-**20 · Ви вже відповіли на запрошення. Доповніть Present Perfect.**
+**20 · Ви вже відповіли на запрошення. Доповніть фразу з have / has.**
 <!-- interaction_id: en:lesson-25:session-18:i16; family: context_gap_grammar -->
 I have already ___ to the invitation. → **replied** · reply · replying
 - reply — *Після have потрібна форма replied.*

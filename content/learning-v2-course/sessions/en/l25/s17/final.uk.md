@@ -87,7 +87,7 @@ I ___ finished when my friend called. → **had** · have · was
 <!-- interaction_id: en:lesson-25:session-17:i05; family: listen_build_dictation -->
 🔊 *I had reread the story before the class started.* Плитки: `started` `class` `the` `before` `story` `the` `reread` `had` `I` → **I had reread the story before the class started.**
 
-**9 · Перечитування було раніше за надсилання листа. Доповніть третю форму.**
+**9 · Перечитування було раніше за надсилання листа. Доповніть потрібну форму слова.**
 <!-- interaction_id: en:lesson-25:session-17:i06; family: context_gap_grammar -->
 I had ___ the letter before I sent it. → **reread** · rereading · rereads
 - rereading — *Після had потрібна третя форма reread.*
@@ -107,7 +107,7 @@ I had ___ the letter before I sent it. → **reread** · rereading · rereads
 <!-- interaction_id: en:lesson-25:session-17:i08; family: scripted_repeat_compare -->
 🎙 **I had eaten before the meeting started.**
 
-**13 · Зіставте треті форми з діями**
+**13 · Зіставте форми слів із діями**
 <!-- interaction_id: en:lesson-25:session-17:i09; family: speed_match -->
 redone — переробив · rebuilt — перебудували, збудували наново · rewashed — виправ заново · reread — перечитав
 
@@ -135,7 +135,7 @@ The train ___ left when we arrived. → **had** · has · is
 <!-- interaction_id: en:lesson-25:session-17:i14; family: scripted_repeat_compare -->
 🎙 **I had wrapped the presents before the party began.**
 
-**19 · Ви приїхали пізніше за закінчення фільму. Доповніть третю форму.**
+**19 · Ви приїхали пізніше за закінчення фільму. Доповніть потрібну форму слова.**
 <!-- interaction_id: en:lesson-25:session-17:i15; family: context_gap_grammar -->
 The film had ___ when we arrived. → **ended** · end · ending
 - end — *Після had потрібна форма ended.*

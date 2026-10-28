@@ -87,7 +87,7 @@ I ___ finished by the time my friend arrived. → **had** · have · was
 - We had piled the books on the floor by the time she arrived. — *В записи звучит We had piled the books on the desk by the time she arrived.*
 - They had piled the books on the desk by the time she arrived. — *В записи звучит We had piled the books on the desk by the time she arrived.*
 
-**9 · Книги уже были собраны в кучу к приходу учителя. Выберите третью форму.**
+**9 · Книги уже были собраны в кучу к приходу учителя. Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-25:session-33:i06; family: context_gap_grammar -->
 We had ___ the books by the time the teacher came. → **piled** · pile · piling
 - pile — *После had нужна третья форма piled.*

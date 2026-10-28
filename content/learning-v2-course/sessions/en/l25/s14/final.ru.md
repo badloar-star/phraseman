@@ -115,7 +115,7 @@ gargle — полоскать горло · massage — массировать �
 <!-- interaction_id: en:lesson-25:session-14:i10; family: phrase_builder -->
 Плитки: `hair` `dark` `have` `to` `used` `I` → **I used to have dark hair.**
 
-**15 · Вы уже вымыли волосы; результат важен сейчас. Дополните Present Perfect.**
+**15 · Вы уже вымыли волосы; результат важен сейчас. Дополните фразу с have / has.**
 <!-- interaction_id: en:lesson-25:session-14:i11; family: context_gap_grammar -->
 I have already ___ my hair. → **washed** · wash · washing
 - wash — *После have нужна форма washed.*

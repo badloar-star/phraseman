@@ -71,7 +71,7 @@ Applaud — аплодувати, плескати на знак схвален�
 <!-- interaction_id: en:lesson-25:session-22:i03; family: phrase_builder -->
 Плитки: `started` `lesson` `the` `before` `phones` `forbidden` `had` `teacher` `The` → **The teacher had forbidden phones before the lesson started.**
 
-**6 · Учитель заборонив фотографії до того, як ви ввійшли. Виберіть третю форму.**
+**6 · Учитель заборонив фотографії до того, як ви ввійшли. Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-25:session-22:i04; family: context_gap_grammar -->
 The teacher had ___ photos before we came in. → **forbidden** · forbade · forbid
 - forbade — *Forbade — Past Simple; після had потрібна форма forbidden.*
@@ -139,7 +139,7 @@ We ___ the singer yesterday. → **applauded** · have applauded · would applau
 <!-- interaction_id: en:lesson-25:session-22:i15; family: listen_build_dictation -->
 🔊 *The show had started before I found my seat.* Плитки: `seat` `my` `found` `I` `before` `started` `had` `show` `The` → **The show had started before I found my seat.**
 
-**20 · Ви вже вибачилися. Доповніть Present Perfect.**
+**20 · Ви вже вибачилися. Доповніть фразу з have / has.**
 <!-- interaction_id: en:lesson-25:session-22:i16; family: context_gap_grammar -->
 I have already ___ sorry. → **said** · say · saying
 - say — *Після have потрібна форма said.*

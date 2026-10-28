@@ -71,7 +71,7 @@ Introduction здесь — введение к тексту, его начал�
 - I got a good grade in maths. — *В записи звучит I got a good grade in English.*
 - She got a good grade in English. — *В записи звучит I got a good grade in English.*
 
-**6 · Результат контрольной уже известен. Выберите Present Perfect.**
+**6 · Результат контрольной уже известен. Выберите форму с have / has.**
 <!-- interaction_id: en:lesson-25:session-44:i04; family: context_gap_grammar -->
 The teacher ___ our tests. → **has already marked** · have already marked · has already mark
 - have already marked — *Teacher в единственном числе требует has.*

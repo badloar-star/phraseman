@@ -115,7 +115,7 @@ I used to take ___ breaks. → **frequent** · long · short
 <!-- interaction_id: en:lesson-25:session-04:i10; family: speed_match -->
 former — бывший, прежний · frequent — частый · occasional — случающийся время от времени · yearly — ежегодный
 
-**15 · Вы рассказываете об опыте без даты. Дополните Present Perfect.**
+**15 · Вы рассказываете об опыте без даты. Дополните фразу с have / has.**
 <!-- interaction_id: en:lesson-25:session-04:i11; family: context_gap_grammar -->
 I have ___ my former teacher twice. → **met** · meet · meeting
 - meet — *После have в Present Perfect нужна форма met.*

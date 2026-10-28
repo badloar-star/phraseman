@@ -113,7 +113,7 @@ stray — безпритульний · tame — ручний · paws — лап
 <!-- interaction_id: en:lesson-25:session-48:i10; family: phrase_builder -->
 Плитки: `owner` `the` `to` `spoken` `already` `have` `I` → **I have already spoken to the owner.**
 
-**15 · Ви знайшли кота вчора. Виберіть Past Simple.**
+**15 · Ви знайшли кота вчора. Виберіть форму для завершеного минулого.**
 <!-- interaction_id: en:lesson-25:session-48:i11; family: context_gap_grammar -->
 We ___ the cat yesterday. → **found** · have found · finding
 - have found — *Yesterday називає завершений момент, тому found.*

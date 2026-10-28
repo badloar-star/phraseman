@@ -77,7 +77,7 @@ I ___ a photo in class yesterday. → **took** · have taken · used to take
 <!-- interaction_id: en:lesson-25:session-02:i04; family: listen_build_dictation -->
 🔊 *We used to watch athletics together.* Плитки: `together` `athletics` `watch` `to` `used` `We` → **We used to watch athletics together.**
 
-**7 · Вы говорите о своём опыте без даты. Дополните Present Perfect.**
+**7 · Вы говорите о своём опыте без даты. Дополните фразу с have / has.**
 <!-- interaction_id: en:lesson-25:session-02:i05; family: context_gap_grammar -->
 I have ___ this sport twice. → **tried** · try · trying
 - try — *После have в Present Perfect нужна форма tried.*
@@ -139,7 +139,7 @@ athletics — лёгкая атлетика · archery — стрельба из
 - I have already cancelled another lesson. — *В записи звучит I have already booked another lesson.*
 - I have already finished another lesson. — *В записи звучит I have already booked another lesson.*
 
-**20 · Вы знаете один вид спорта и спрашиваете о других. После пропуска — множественное число.**
+**20 · Вы знаете один вид спорта и спрашиваете о других. После пропуска — несколько предметов.**
 <!-- interaction_id: en:lesson-25:session-02:i16; family: context_gap_grammar -->
 What ___ sports do you enjoy? → **other** · another · others
 - another — *Another ставим перед исчисляемым существительным в единственном числе, а sports — множественное.*

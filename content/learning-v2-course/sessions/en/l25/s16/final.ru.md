@@ -133,7 +133,7 @@ I ___ to my teacher yesterday. → **spoke** · have spoken · would speak
 <!-- interaction_id: en:lesson-25:session-16:i14; family: listen_build_dictation -->
 🔊 *After lunch we would go outside for a break.* Плитки: `break` `a` `for` `outside` `go` `would` `we` `lunch` `After` → **After lunch we would go outside for a break.**
 
-**19 · Вы уже ответили на вопрос. Дополните Present Perfect.**
+**19 · Вы уже ответили на вопрос. Дополните фразу с have / has.**
 <!-- interaction_id: en:lesson-25:session-16:i15; family: context_gap_grammar -->
 I have already ___ that question. → **answered** · answer · answering
 - answer — *После have нужна форма answered.*

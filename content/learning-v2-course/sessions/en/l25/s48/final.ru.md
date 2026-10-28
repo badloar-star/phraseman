@@ -113,7 +113,7 @@ stray — бездомный · tame — ручной · paws — лапы · cl
 <!-- interaction_id: en:lesson-25:session-48:i10; family: phrase_builder -->
 Плитки: `owner` `the` `to` `spoken` `already` `have` `I` → **I have already spoken to the owner.**
 
-**15 · Вы нашли кота вчера. Выберите Past Simple.**
+**15 · Вы нашли кота вчера. Выберите форму для законченного прошлого.**
 <!-- interaction_id: en:lesson-25:session-48:i11; family: context_gap_grammar -->
 We ___ the cat yesterday. → **found** · have found · finding
 - have found — *Yesterday называет законченный момент, поэтому found.*

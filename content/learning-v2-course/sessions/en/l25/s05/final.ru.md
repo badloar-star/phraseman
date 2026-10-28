@@ -123,7 +123,7 @@ We used to help ___ people. → **homeless** · tired · hungry
 <!-- interaction_id: en:lesson-25:session-05:i12; family: speed_match -->
 deaf — глухой · disabled — с инвалидностью · homeless — бездомный · wealthy — состоятельный, богатый
 
-**17 · Вы рассказываете об опыте без даты. Дополните Present Perfect.**
+**17 · Вы рассказываете об опыте без даты. Дополните фразу с have / has.**
 <!-- interaction_id: en:lesson-25:session-05:i13; family: context_gap_grammar -->
 I have ___ with deaf adults before. → **worked** · work · working
 - work — *После have в Present Perfect нужна форма worked.*

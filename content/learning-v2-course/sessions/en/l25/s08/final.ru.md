@@ -129,7 +129,7 @@ I ___ to my teacher yesterday. → **apologised** · have apologised · used to 
 <!-- interaction_id: en:lesson-25:session-08:i13; family: listen_build_dictation -->
 🔊 *We used to be afraid of our teacher.* Плитки: `teacher` `our` `of` `afraid` `be` `to` `used` `We` → **We used to be afraid of our teacher.**
 
-**18 · Объяснение уже получено, сейчас вы его понимаете. Дополните Present Perfect.**
+**18 · Объяснение уже получено, сейчас вы его понимаете. Дополните фразу с have / has.**
 <!-- interaction_id: en:lesson-25:session-08:i14; family: context_gap_grammar -->
 She has ___ the rule to me. → **explained** · explain · explaining
 - explain — *После has нужна третья форма explained.*
@@ -145,7 +145,7 @@ She has ___ the rule to me. → **explained** · explain · explaining
 <!-- interaction_id: en:lesson-25:session-08:i16; family: phrase_builder -->
 Плитки: `children` `other` `with` `share` `to` `used` `I` → **I used to share with other children.**
 
-**21 · Один случай уже рассказал друг. Скажите о своём опыте: «Я тоже совершал ошибки». Используйте Present Perfect.**
+**21 · Один случай уже рассказал друг. Скажите о своём опыте: «Я тоже совершал ошибки». Используйте have / has.**
 <!-- interaction_id: en:lesson-25:session-08:i17; family: scripted_repeat_compare -->
 🎙 **I have made mistakes too.**
 

@@ -109,7 +109,7 @@ purr — мурлыкать · growl — рычать · hiss — шипеть �
 <!-- interaction_id: en:lesson-25:session-42:i09; family: scripted_repeat_compare -->
 🎙 **I have already fed the dog.**
 
-**14 · Вы гуляли с собакой вчера. Выберите Past Simple.**
+**14 · Вы гуляли с собакой вчера. Выберите форму для законченного прошлого.**
 <!-- interaction_id: en:lesson-25:session-42:i10; family: context_gap_grammar -->
 I ___ the dog yesterday. → **walked** · have walked · walking
 - have walked — *Yesterday называет законченный день, поэтому walked.*

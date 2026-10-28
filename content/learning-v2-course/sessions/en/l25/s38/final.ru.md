@@ -99,7 +99,7 @@ The ___ changed the channel. → **viewer** · listener · driver
 - The pensioner took the bus to the hospital. — *В записи звучит The pensioner took the bus to the market.*
 - The pensioner took the train to the market. — *В записи звучит The pensioner took the bus to the market.*
 
-**12 · Автобус ушёл раньше вашего прихода. Выберите третью форму после had.**
+**12 · Автобус ушёл раньше вашего прихода. Выберите форму слова после had.**
 <!-- interaction_id: en:lesson-25:session-38:i08; family: context_gap_grammar -->
 The bus had ___ by the time I reached the stop. → **gone** · went · go
 - went — *Went — Past Simple; после had нужна третья форма gone.*
@@ -113,7 +113,7 @@ listener — слушатель · viewer — зритель · learner — уч
 <!-- interaction_id: en:lesson-25:session-38:i10; family: phrase_builder -->
 Плитки: `morning` `every` `radio` `the` `to` `listen` `to` `used` `I` → **I used to listen to the radio every morning.**
 
-**15 · Передача уже закончилась, и сейчас её больше не показывают. Выберите Present Perfect.**
+**15 · Передача уже закончилась, и сейчас её больше не показывают. Выберите форму с have / has.**
 <!-- interaction_id: en:lesson-25:session-38:i11; family: context_gap_grammar -->
 The programme ___. → **has already ended** · have already ended · has already end
 - have already ended — *Programme в единственном числе требует has.*

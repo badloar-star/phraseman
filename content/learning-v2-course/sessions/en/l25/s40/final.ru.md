@@ -71,7 +71,7 @@ Bang — издать громкий резкий хлопок или стук. 
 <!-- interaction_id: en:lesson-25:session-40:i03; family: phrase_builder -->
 Плитки: `floor` `the` `to` `crashed` `bowls` `The` → **The bowls crashed to the floor.**
 
-**6 · Вы уронили тарелку вчера. Выберите Past Simple.**
+**6 · Вы уронили тарелку вчера. Выберите форму для законченного прошлого.**
 <!-- interaction_id: en:lesson-25:session-40:i04; family: context_gap_grammar -->
 I ___ a plate yesterday. → **dropped** · have dropped · dropping
 - have dropped — *Yesterday — законченный момент, поэтому dropped.*

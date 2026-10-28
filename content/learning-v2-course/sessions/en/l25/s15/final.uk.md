@@ -119,7 +119,7 @@ gulp — пити великими ковтками · nibble — їсти ма�
 - Have you started your lunch? — *У записі звучить Have you finished your lunch?*
 - Have they finished their lunch? — *У записі звучить Have you finished your lunch?*
 
-**16 · Ви вже поїли; зараз голоду немає. Доповніть Present Perfect.**
+**16 · Ви вже поїли; зараз голоду немає. Доповніть фразу з have / has.**
 <!-- interaction_id: en:lesson-25:session-15:i12; family: context_gap_grammar -->
 I have already ___. → **eaten** · ate · eat
 - ate — *Після have потрібна третя форма eaten, а не ate.*

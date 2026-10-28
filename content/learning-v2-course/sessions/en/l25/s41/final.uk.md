@@ -119,7 +119,7 @@ As children we ___ play outside every evening. → **would** · had · were
 - I met our neighbours last night. — *У записі звучить I met our neighbours last weekend.*
 - I visited our neighbours last weekend. — *У записі звучить I met our neighbours last weekend.*
 
-**16 · Ви вже познайомилися із сусідами, тому представляти вас не потрібно. Виберіть Present Perfect.**
+**16 · Ви вже познайомилися із сусідами, тому представляти вас не потрібно. Виберіть форму з have / has.**
 <!-- interaction_id: en:lesson-25:session-41:i12; family: context_gap_grammar -->
 We ___ our neighbours. → **have already met** · has already met · have already meet
 - has already met — *Після we потрібно have, не has.*

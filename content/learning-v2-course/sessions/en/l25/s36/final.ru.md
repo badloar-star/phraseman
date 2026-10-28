@@ -113,7 +113,7 @@ entertained — развлёк · amazed — поразил · irritated — в�
 <!-- interaction_id: en:lesson-25:session-36:i10; family: phrase_builder -->
 Плитки: `boring` `was` `game` `this` `think` `to` `used` `I` → **I used to think this game was boring.**
 
-**15 · Дети уснули до конца рассказа. Выберите третью форму после had.**
+**15 · Дети уснули до конца рассказа. Выберите форму слова после had.**
 <!-- interaction_id: en:lesson-25:session-36:i11; family: context_gap_grammar -->
 The children had ___ asleep by the time I finished the story. → **fallen** · fell · fall
 - fell — *Fell — Past Simple; после had нужна третья форма fallen.*
@@ -139,7 +139,7 @@ Please sing ___ song. → **another** · other · others
 <!-- interaction_id: en:lesson-25:session-36:i15; family: scripted_repeat_compare -->
 🎙 **Thank you for a lovely evening.**
 
-**20 · Вы уже рассказали другу новость; важен результат сейчас. Выберите Present Perfect.**
+**20 · Вы уже рассказали другу новость; важен результат сейчас. Выберите форму с have / has.**
 <!-- interaction_id: en:lesson-25:session-36:i16; family: context_gap_grammar -->
 I ___ him the news. → **have already told** · already telling · have already tell
 - already telling — *Для завершённого действия здесь нужно have already told.*

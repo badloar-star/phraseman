@@ -119,7 +119,7 @@ gulp — пить большими глотками · nibble — есть ма�
 - Have you started your lunch? — *В записи звучит Have you finished your lunch?*
 - Have they finished their lunch? — *В записи звучит Have you finished your lunch?*
 
-**16 · Вы уже поели; сейчас голода нет. Дополните Present Perfect.**
+**16 · Вы уже поели; сейчас голода нет. Дополните фразу с have / has.**
 <!-- interaction_id: en:lesson-25:session-15:i12; family: context_gap_grammar -->
 I have already ___. → **eaten** · ate · eat
 - ate — *После have нужна третья форма eaten, а не ate.*

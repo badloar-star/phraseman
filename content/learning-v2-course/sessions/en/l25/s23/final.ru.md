@@ -81,7 +81,7 @@ Release — выпускать на свободу. We had released the bird bef
 <!-- interaction_id: en:lesson-25:session-23:word:fled; family: word_card -->
 > **fled** — Убежала. Flee — убегать от опасности; fled — третья форма.
 
-**8 · Кролик убежал раньше, чем вы открыли ворота. Выберите третью форму.**
+**8 · Кролик убежал раньше, чем вы открыли ворота. Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-25:session-23:i05; family: context_gap_grammar -->
 The rabbit had ___ before I opened the gate. → **fled** · flee · fleeing
 - flee — *После had нужна третья форма fled.*

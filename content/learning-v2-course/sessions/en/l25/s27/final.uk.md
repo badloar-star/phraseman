@@ -139,7 +139,7 @@ I ___ cleaned the fridge before my family returned. → **had** · have · was
 <!-- interaction_id: en:lesson-25:session-27:i15; family: phrase_builder -->
 Плитки: `full` `are` `shelves` `other` `The` → **The other shelves are full.**
 
-**20 · Ви вже перевірили покупки. Доповніть Present Perfect.**
+**20 · Ви вже перевірили покупки. Доповніть фразу з have / has.**
 <!-- interaction_id: en:lesson-25:session-27:i16; family: context_gap_grammar -->
 I have already ___ everything. → **checked** · check · checking
 - check — *Після have потрібна форма checked.*

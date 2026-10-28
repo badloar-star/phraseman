@@ -143,7 +143,7 @@ I ___ this shirt yesterday. → **bought** · have bought · would buy
 <!-- interaction_id: en:lesson-25:session-21:i16; family: phrase_builder -->
 Плитки: `door` `the` `by` `are` `shoes` `other` `The` → **The other shoes are by the door.**
 
-**21 · Вы уже выбрали одежду. Дополните Present Perfect.**
+**21 · Вы уже выбрали одежду. Дополните фразу с have / has.**
 <!-- interaction_id: en:lesson-25:session-21:i17; family: context_gap_grammar -->
 I have already ___ my clothes. → **chosen** · chose · choose
 - chose — *После have нужна третья форма chosen.*

@@ -95,7 +95,7 @@ I ___ shy at school. → **used to be** · am · am being
 <!-- interaction_id: en:lesson-25:session-06:i07; family: scripted_repeat_compare -->
 🎙 **We used to talk about our youth.**
 
-**11 · Вы рассказываете о результате, заметном сейчас. Дополните Present Perfect.**
+**11 · Вы рассказываете о результате, заметном сейчас. Дополните фразу с have / has.**
 <!-- interaction_id: en:lesson-25:session-06:i08; family: context_gap_grammar -->
 My life has ___ a lot. → **changed** · change · changing
 - change — *После has нужна форма changed.*

@@ -85,7 +85,7 @@ It is only a ___. → **rumour** · receipt · promise
 <!-- interaction_id: en:lesson-25:session-35:i05; family: listen_build_dictation -->
 🔊 *There is a fault in the washing machine.* Плитки: `machine` `washing` `the` `in` `fault` `a` `is` `There` → **There is a fault in the washing machine.**
 
-**9 · Мастер нашёл причину вчера. Выберите Past Simple.**
+**9 · Мастер нашёл причину вчера. Выберите форму для законченного прошлого.**
 <!-- interaction_id: en:lesson-25:session-35:i06; family: context_gap_grammar -->
 The repairman ___ the problem yesterday. → **found** · has found · finding
 - has found — *Yesterday требует рассказа о законченном событии: found.*

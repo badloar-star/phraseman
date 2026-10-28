@@ -1,0 +1,891 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-03:session-42",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-03:session-42:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — salsa",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-42:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — salsa",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-42:i01:audio",
+          "transcript": "salsa"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-42:i01:r1",
+            "targetText": "salsa",
+            "meaningByLocale": {
+              "ru": "соус. Женский род; несколько — salsas. 🔊 *salsa*",
+              "uk": "соус. Жіночий рід; кілька — salsas. 🔊 *salsa*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "salsa",
+          "definitionByLocale": {
+            "ru": "соус. Женский род; несколько — salsas. 🔊 *salsa*",
+            "uk": "соус. Жіночий рід; кілька — salsas. 🔊 *salsa*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-42:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-42:i02:r1",
+          "text": "salsa"
+        },
+        {
+          "responseId": "es:lesson-03:session-42:i02:r2",
+          "text": "silla"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-42:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-42:i02:audio",
+          "transcript": "salsa"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-42:i02:r1",
+            "targetText": "salsa",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-03:session-42:i02:r2",
+            "targetText": "silla",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-42:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи первый слог sal: salsa.",
+              "uk": "У записі перший склад sal: salsa."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-42:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це соус; почніть з Es",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-42:i03:r1",
+          "text": "Плитки: salsa"
+        },
+        {
+          "responseId": "es:lesson-03:session-42:i03:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-03:session-42:i03:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-42:i03:r4",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це соус; почніть з Es",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es una salsa.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это соус; начните с Es",
+          "uk": "Зберіть фразу — це соус; почніть з Es"
+        },
+        "orderedTokens": [
+          "Es",
+          "una",
+          "salsa"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-42:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це соус; почніть з Es",
+            "feedbackByLocale": {
+              "ru": "salsa женского рода.",
+              "uk": "salsa жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-42:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — це соус",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-42:i04:r1",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-03:session-42:i04:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-03:session-42:i04:r3",
+          "text": "unos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — це соус",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это соус",
+          "uk": "Вставте слово — це соус"
+        },
+        "gappedTargetPhrase": "Es ___ salsa.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-42:i04:r1",
+            "text": "una"
+          },
+          {
+            "responseId": "es:lesson-03:session-42:i04:r2",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-03:session-42:i04:r3",
+            "text": "unos"
+          }
+        ],
+        "testedDimension": "Вставте слово — це соус",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-42:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — це соус",
+            "feedbackByLocale": {
+              "ru": "Salsa женского рода: una.",
+              "uk": "Salsa жіночого роду: una."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-42:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — це соус",
+            "feedbackByLocale": {
+              "ru": "Один соус женского рода: una.",
+              "uk": "Один соус жіночого роду: una."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-42:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — picante",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-42:i05:audio"
+      ],
+      "accessibilityLabel": "Картка слова — picante",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-42:i05:audio",
+          "transcript": "picante"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-42:i05:r1",
+            "targetText": "picante",
+            "meaningByLocale": {
+              "ru": "острый на вкус; несколько — picantes. 🔊 *picante*",
+              "uk": "гострий на смак; кілька — picantes. 🔊 *picante*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "picante",
+          "definitionByLocale": {
+            "ru": "острый на вкус; несколько — picantes. 🔊 *picante*",
+            "uk": "гострий на смак; кілька — picantes. 🔊 *picante*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-42:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-42:i06:r1",
+          "text": "picante"
+        },
+        {
+          "responseId": "es:lesson-03:session-42:i06:r2",
+          "text": "paciente"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-42:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-42:i06:audio",
+          "transcript": "picante"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-42:i06:r1",
+            "targetText": "picante",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-03:session-42:i06:r2",
+            "targetText": "paciente",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-42:i06:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи начало pi, не pa: picante.",
+              "uk": "У записі початок pi, не pa: picante."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-42:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — соус гострий",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-42:i07:r1",
+          "text": "Плитки: picante"
+        },
+        {
+          "responseId": "es:lesson-03:session-42:i07:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-42:i07:r3",
+          "text": "salsa"
+        },
+        {
+          "responseId": "es:lesson-03:session-42:i07:r4",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-03:session-42:i07:r5",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — соус гострий",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "La salsa es picante.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — соус острый",
+          "uk": "Зберіть фразу — соус гострий"
+        },
+        "orderedTokens": [
+          "La",
+          "salsa",
+          "es",
+          "picante"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-42:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — соус гострий",
+            "feedbackByLocale": {
+              "ru": "salsa женского рода.",
+              "uk": "salsa жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-42:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — один соус гострий",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-42:i08:r1",
+          "text": "picante"
+        },
+        {
+          "responseId": "es:lesson-03:session-42:i08:r2",
+          "text": "picanta"
+        },
+        {
+          "responseId": "es:lesson-03:session-42:i08:r3",
+          "text": "picantes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — один соус гострий",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — один соус острый",
+          "uk": "Вставте слово — один соус гострий"
+        },
+        "gappedTargetPhrase": "La salsa es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-42:i08:r1",
+            "text": "picante"
+          },
+          {
+            "responseId": "es:lesson-03:session-42:i08:r2",
+            "text": "picanta"
+          },
+          {
+            "responseId": "es:lesson-03:session-42:i08:r3",
+            "text": "picantes"
+          }
+        ],
+        "testedDimension": "Вставте слово — один соус гострий",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-42:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — один соус гострий",
+            "feedbackByLocale": {
+              "ru": "Picante не меняется по роду.",
+              "uk": "Picante не змінюється за родом."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-42:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — один соус гострий",
+            "feedbackByLocale": {
+              "ru": "Один соус: picante.",
+              "uk": "Один соус: picante."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-42:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — соуси гострі",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-42:i09:r1",
+          "text": "Плитки: picantes"
+        },
+        {
+          "responseId": "es:lesson-03:session-42:i09:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-42:i09:r3",
+          "text": "salsas"
+        },
+        {
+          "responseId": "es:lesson-03:session-42:i09:r4",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-03:session-42:i09:r5",
+          "text": "picante."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — соуси гострі",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Las salsas son picantes.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — соусы острые",
+          "uk": "Зберіть фразу — соуси гострі"
+        },
+        "orderedTokens": [
+          "Las",
+          "salsas",
+          "son",
+          "picantes"
+        ],
+        "authoredDistractorTokens": [
+          "picante"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-42:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — соуси гострі",
+            "feedbackByLocale": {
+              "ru": "соусов несколько.",
+              "uk": "соусів кілька."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-42:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-42:i10:r1",
+          "text": "Плитки: picante"
+        },
+        {
+          "responseId": "es:lesson-03:session-42:i10:r2",
+          "text": "muy"
+        },
+        {
+          "responseId": "es:lesson-03:session-42:i10:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-42:i10:r4",
+          "text": "salsa"
+        },
+        {
+          "responseId": "es:lesson-03:session-42:i10:r5",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-03:session-42:i10:r6",
+          "text": "picantes."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-42:i10:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-42:i10:audio",
+          "transcript": "La salsa es muy picante."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "La salsa es muy picante.",
+        "orderedTokens": [
+          "La",
+          "salsa",
+          "es",
+          "muy",
+          "picante"
+        ],
+        "authoredDistractorTokens": [
+          "picantes"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-42:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит picante.",
+              "uk": "звучить picante."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-42:i11",
+      "ordinal": 14,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — кілька соусів гострі",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-42:i11:r1",
+          "text": "picantes"
+        },
+        {
+          "responseId": "es:lesson-03:session-42:i11:r2",
+          "text": "picante"
+        },
+        {
+          "responseId": "es:lesson-03:session-42:i11:r3",
+          "text": "picantas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — кілька соусів гострі",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — несколько соусов острые",
+          "uk": "Вставте слово — кілька соусів гострі"
+        },
+        "gappedTargetPhrase": "Las salsas son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-42:i11:r1",
+            "text": "picantes"
+          },
+          {
+            "responseId": "es:lesson-03:session-42:i11:r2",
+            "text": "picante"
+          },
+          {
+            "responseId": "es:lesson-03:session-42:i11:r3",
+            "text": "picantas"
+          }
+        ],
+        "testedDimension": "Вставте слово — кілька соусів гострі",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-42:i11:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — кілька соусів гострі",
+            "feedbackByLocale": {
+              "ru": "Соусов несколько: picantes.",
+              "uk": "Соусів кілька: picantes."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-42:i11:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — кілька соусів гострі",
+            "feedbackByLocale": {
+              "ru": "Сохраняйте -e: picantes.",
+              "uk": "Зберігайте -e: picantes."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-42:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — цей соус не гострий",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-42:i12:r1",
+          "text": "picante"
+        },
+        {
+          "responseId": "es:lesson-03:session-42:i12:r2",
+          "text": "picanta"
+        },
+        {
+          "responseId": "es:lesson-03:session-42:i12:r3",
+          "text": "picantes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — цей соус не гострий",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — этот соус не острый",
+          "uk": "Вставте слово — цей соус не гострий"
+        },
+        "gappedTargetPhrase": "La salsa no es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-42:i12:r1",
+            "text": "picante"
+          },
+          {
+            "responseId": "es:lesson-03:session-42:i12:r2",
+            "text": "picanta"
+          },
+          {
+            "responseId": "es:lesson-03:session-42:i12:r3",
+            "text": "picantes"
+          }
+        ],
+        "testedDimension": "Вставте слово — цей соус не гострий",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-42:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — цей соус не гострий",
+            "feedbackByLocale": {
+              "ru": "Picante не меняется по роду.",
+              "uk": "Picante не змінюється за родом."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-42:i12:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — цей соус не гострий",
+            "feedbackByLocale": {
+              "ru": "Один соус: picante.",
+              "uk": "Один соус: picante."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-42:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — це соус; почніть з Es una",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-42:i13:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — це соус; почніть з Es una",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-42:i13:audio",
+          "transcript": "Es una salsa."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es una salsa.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-42:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — соус гострий; назвіть його",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-42:i14:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — соус гострий; назвіть його",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-42:i14:audio",
+          "transcript": "La salsa es picante."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "La salsa es picante.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-42:i15",
+      "ordinal": 18,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — соуси гострі; назвіть їх",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-42:i15:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — соуси гострі; назвіть їх",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-42:i15:audio",
+          "transcript": "Las salsas son picantes."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Las salsas son picantes.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-42:i16",
+      "ordinal": 19,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — соус дуже гострий; назвіть його",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-42:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — соус дуже гострий; назвіть його",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-42:i16:audio",
+          "transcript": "La salsa es muy picante."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "La salsa es muy picante.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 16,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "e56babd3ff8683c31a5e84c6d81caf58663ac0412fbd8c470a6be1ea951dbae5"
+}

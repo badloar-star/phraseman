@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-03:session-42",
+  "entries": [
+    {
+      "interactionId": "es:lesson-03:session-42:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-42:intro1:r2": {
+          "ru": "Нужно una salsa.",
+          "uk": "Потрібно una salsa."
+        },
+        "es:lesson-03:session-42:intro1:r3": {
+          "ru": "Здесь один вид соуса: es.",
+          "uk": "Тут один вид соусу: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-42:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-42:intro2:r2": {
+          "ru": "У picante нет отдельной женской формы.",
+          "uk": "У picante немає окремої жіночої форми."
+        },
+        "es:lesson-03:session-42:intro2:r3": {
+          "ru": "Описываем один соус: picante.",
+          "uk": "Описуємо один соус: picante."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-42:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-42:intro3:r2": {
+          "ru": "Нужно множественное число picantes.",
+          "uk": "Потрібна множина picantes."
+        },
+        "es:lesson-03:session-42:intro3:r3": {
+          "ru": "Не меняйте -e на -a: picantes.",
+          "uk": "Не змінюйте -e на -a: picantes."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "078890ae2dc8a5319b250db49e8949c65728a9b2fbd66181c21ed04340acbc6f"
+}

@@ -1078,4 +1078,11 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"описать солёный вкус как свойство вида еды.","uk":"описувати солоний смак як властивість виду їжі."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 42,
+    sourceFingerprint: "bdaed0ea421e6432162801e6c4e35fb2f02abc4d9dc4bef47db3349c9c6db5a3",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"описать остроту соуса и согласовать picante по числу.","uk":"описувати гостроту соусу й узгоджувати picante за числом."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+  }),
 ]);

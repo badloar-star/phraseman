@@ -2797,6 +2797,7 @@ export default function FriendsTabScreen() {
         {sortedFriends.length > 0 ? (
         <View style={{ alignItems: 'center', paddingVertical: 16 }}>
           <ReportErrorButton
+            variant="icon-flag"
             screen="friends_tab"
             dataId="friends_tab_main"
             dataText={L('Вкладка друзья', 'Вкладка друзі', 'Friends tab', 'Pestaña amigos', 'Aba amigos', 'Tab bạn bè', 'Tab teman', 'Arkadaşlar sekmesi', 'Karta znajomych')}

@@ -481,6 +481,7 @@ function LessonHelp() {
           )}
 
           <ReportErrorButton
+            variant="icon-flag"
             screen="theory"
             dataId={`theory_lesson_${lessonId}`}
             dataText={`theory_lesson_${lessonId}`} // зачем: служебная метка для репорта, не UI

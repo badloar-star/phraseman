@@ -2740,7 +2740,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                 </React.Fragment>)}
 
                 <View style={{ alignItems: 'center', paddingVertical: 12 }}>
-                  <ReportErrorButton screen="streak_stats" dataId="streak_stats_main" dataText={triLang(lang, {
+                  <ReportErrorButton variant="icon-flag" screen="streak_stats" dataId="streak_stats_main" dataText={triLang(lang, {
                     ru: 'Серия и результаты',
                     uk: 'Серія та результати',
                     en: 'Streaks and stats',

@@ -33,7 +33,7 @@ import { normalizeMistakeStudyTarget } from '../modules/mistake-practice/contrac
 import { trackMistakePracticeEvent } from './mistake_practice_analytics';
 import { actionToastTri, emitAppEvent } from './events';
 import { safeRouterBack } from './navigation_back';
-import ReportErrorButton, { REPORT_ERROR_ENABLED } from '../components/ReportErrorButton';
+import ContentReportFlag from '../components/ContentReportFlag';
 import { getStableId } from './stable_id';
 import { useSilentLeave } from '../hooks/use_silent_leave';
 
@@ -373,7 +373,7 @@ export default function MistakeDetailScreen() {
           </PanelDock>
         ) : null}
         {loaded ? (
-          <ReportErrorButton
+          <ContentReportFlag
             hideTrigger
             openRef={reportOpenRef}
             screen="mistake_detail"
@@ -386,7 +386,7 @@ ${detail.meaning}` : ''}`}
         <PanelSheet visible={menuOpen} onClose={closeMenu} testID="mistake-detail-sheet">
           <SheetRow g={g} testID="mistake-detail-know" icon="checkmark" title={copy.know} onPress={() => hide('known')} />
           {/* решение 6 (05.10): пункт жалобы — только тестерам и разработке, как и сама форма. */}
-          {REPORT_ERROR_ENABLED ? <SheetRow g={g} testID="mistake-detail-report" icon="flag-outline" title={copy.report} onPress={() => { setMenuOpen(false); reportOpenRef.current?.(); }} /> : null}
+          <SheetRow g={g} testID="mistake-detail-report" icon="flag-outline" title={copy.report} onPress={() => { setMenuOpen(false); reportOpenRef.current?.(); }} />
           <SheetRow g={g} testID="mistake-detail-remove" icon="trash-outline" title={copy.remove} danger onPress={() => hide('removed')} />
         </PanelSheet>
         {/* зачем (закон владельца 22.10 «назад везде в одном месте»): общая кнопка слоем от верха экрана, не уезжает с прокруткой */}

@@ -721,6 +721,7 @@ export default function CollectionListView({
                 )}
                 <View style={{ alignItems: 'center', paddingVertical: 24 }}>
                   <ReportErrorButton
+                    variant="icon-flag"
                     screen="flashcards_collection"
                     dataId={`flashcards_${activeCat}`}
                     dataText={triLang(lang, {

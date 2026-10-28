@@ -54,16 +54,14 @@ test('ReportErrorButton is visible only to testers and development builds', () =
   // Шпиль (свой submitOverride) — рабочая функция режима, её не прячем.
   assert.ok(/if \(!REPORT_ERROR_ENABLED && !props\.submitOverride\) \{[\s\S]{0,120}return null;/.test(error), 'store build renders nothing');
   assert.ok(error.includes('export default memo(ReportErrorButtonGate);'), 'every caller goes through the gate');
-  for (const file of ['app/mistake_detail.tsx']) {
-    const src = readFileSync(new URL(`../${file}`, import.meta.url), 'utf8');
-    assert.ok(src.includes('{REPORT_ERROR_ENABLED ? <SheetRow'), `${file}: menu report row follows the gate`);
-  }
 });
 
 // зачем (владелец 28.10, «флажок везде»): в разборе ошибок жалоба доступна всем — пункт меню без гейта, форма через общий транспорт ContentReportFlag.
-test('mistake practice report is available to everyone through the shared transport', () => {
-  const src = readFileSync(new URL('../app/mistake_practice_session.tsx', import.meta.url), 'utf8');
-  assert.ok(!src.includes('REPORT_ERROR_ENABLED'), 'no tester gate left');
-  assert.ok(src.includes('testID="mistake-practice-menu-report"'), 'menu row stays');
-  assert.ok(/<ContentReportFlag\s+hideTrigger\s+openRef=\{reportOpenRef\}/.test(src), 'hidden form uses ContentReportFlag with the same openRef');
+test('mistake practice and mistake detail reports are available to everyone through the shared transport', () => {
+  for (const [file, rowId] of [['app/mistake_practice_session.tsx', 'mistake-practice-menu-report'], ['app/mistake_detail.tsx', 'mistake-detail-report']]) {
+    const src = readFileSync(new URL(`../${file}`, import.meta.url), 'utf8');
+    assert.ok(!src.includes('REPORT_ERROR_ENABLED'), `${file}: no tester gate left`);
+    assert.ok(src.includes(`testID="${rowId}"`), `${file}: menu row stays`);
+    assert.ok(/<ContentReportFlag\s+hideTrigger\s+openRef=\{reportOpenRef\}/.test(src), `${file}: hidden form uses ContentReportFlag with the same openRef`);
+  }
 });

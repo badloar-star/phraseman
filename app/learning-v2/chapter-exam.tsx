@@ -421,7 +421,7 @@ ${promptText}${optionTexts ? `
   const reportAnswer = interaction?.inputMode === 'single_choice'
     ? (options.find((o) => o.responseId === selectedChoiceId)?.text ?? undefined)
     : (orderedText || undefined);
-  const reportLabel = triLang(interfaceLocale as never, { ru: 'Сообщить об ошибке в задании', uk: 'Повідомити про помилку в завданні', en: 'Report an error in the task', es: 'Informar de un error en el ejercicio', 'pt-BR': 'Relatar um erro no exercício', vi: 'Báo lỗi trong bài tập', id: 'Laporkan kesalahan dalam latihan', tr: 'Alıştırmadaki hatayı bildir', pl: 'Zgłoś błąd w ćwiczeniu' });
+  const reportLabel = triLang(interfaceLocale as never, { ru: 'Сообщить об ошибке в задании', uk: 'Повідомити про помилку в завданні', en: 'Report an error in the task', es: 'Informar de un error en el ejercicio', 'pt-BR': 'Relatar erro no exercício', vi: 'Báo lỗi trong bài tập', id: 'Laporkan kesalahan dalam latihan', tr: 'Alıştırmadaki hatayı bildir', pl: 'Zgłoś błąd w ćwiczeniu' });
 
   return (
     <>

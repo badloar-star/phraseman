@@ -265,6 +265,7 @@ export default function CollectionGalleryView({
           ) : null}
           <View style={styles.report}>
             <ReportErrorButton
+              variant="icon-flag"
               screen="flashcards_collection"
               dataId={`flashcards_${activeCat}`}
               dataText={`Cards · ${activeCat}`}

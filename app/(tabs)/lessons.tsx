@@ -5750,6 +5750,7 @@ export default function LessonsTab({
                 <>
                   <View style={{ alignItems: "center", paddingVertical: 20 }}>
                     <ReportErrorButton
+                      variant="icon-flag"
                       screen="lessons_tab"
                       dataId="lessons_list"
                       dataText={triLang(lang, {

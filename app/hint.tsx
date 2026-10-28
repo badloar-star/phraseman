@@ -1544,6 +1544,7 @@ function HintScreen() {
             «Шпаргалка» рисует правило урока напрямую — и там пожаловаться
             было нельзя, хотя контент тот же грамматический. */}
         <ReportErrorButton
+          variant="icon-flag"
           screen="lesson_hint"
           dataId={`lesson_hint_${lessonId}`}
           dataText={hintTitle}

@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви описуєте проблему зі стравою, обираєте заміну й уточнюєте склад напою.
 
-**Що ви опануєте:** if + past simple, would + base verb; if + subject + were; present perfect / past simple
+**Що ви опануєте:** сказати, що було б, якби…
 **Нові слова:** overcooked, undercooked, uneaten, caffeine
 
 ## Інтро 1

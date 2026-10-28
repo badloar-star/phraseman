@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви називаєте відчуття, розповідаєте про час і домовляєтеся про прийом.
 
-**Що ви опануєте:** if + past simple, would + base verb; if I were; past simple / present perfect
+**Що ви опануєте:** сказати, що було б, якби…
 **Нові слова:** nausea, heartburn, nosebleed, insomnia
 
 ## Інтро 1

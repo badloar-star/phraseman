@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви описуєте відчуття, телефонуєте дізнатися час прийому й переносите зустріч із другом.
 
-**Що ви опануєте:** if + past simple, would + base verb; if + subject + were; present perfect / past simple
+**Що ви опануєте:** сказати, що було б, якби…
 **Нові слова:** groggy, dizziness, stiffness, numbness
 
 ## Інтро 1

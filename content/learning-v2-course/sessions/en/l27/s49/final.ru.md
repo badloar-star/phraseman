@@ -2,7 +2,7 @@
 
 **Ситуация.** Во время прогулки вы уточняете маршрут, объясняете усталость и выбираете, как вернуться.
 
-**Что вы освоите:** wish + past; if I were; unreal condition; present perfect / past simple
+**Что вы освоите:** сказать, чего вам хочется иначе, и о том, что было бы, если бы…
 **Новые слова:** expectation, assumption, perspective, unexpectedly
 
 ## Интро 1

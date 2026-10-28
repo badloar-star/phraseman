@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы просите соседку о помощи, исправляете неловкий разговор и благодарите друга.
 
-**Что вы освоите:** if + past simple, would + base verb; if + subject + were; present perfect / past simple
+**Что вы освоите:** сказать, что было бы, если бы…
 **Новые слова:** trustworthy, thoughtless, tactless, selfless
 
 ## Интро 1

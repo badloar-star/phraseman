@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви збираєте їжу, вибираєте місце для пікніка й прибираєте за собою.
 
-**Що ви опануєте:** present perfect / past simple; wish + past; if I were; unreal condition
+**Що ви опануєте:** сказати, чого вам хочеться інакше, і про те, що було б, якби…
 **Нові слова:** freshness, coolness, quietness, cleanliness
 
 ## Інтро 1

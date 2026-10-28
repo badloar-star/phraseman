@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви розглядаєте малюнки, запитуєте про практику й підтримуєте друга.
 
-**Що ви опануєте:** wish + past; if I were; unreal condition; present perfect / past simple
+**Що ви опануєте:** сказати, чого вам хочеться інакше, і про те, що було б, якби…
 **Нові слова:** curiosity, affection, admiration, empathy
 
 ## Інтро 1

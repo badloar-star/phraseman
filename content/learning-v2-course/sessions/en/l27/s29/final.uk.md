@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви обговорюєте догляд за дитиною, шкільні справи й час зустрічі з другом.
 
-**Що ви опануєте:** wish + past simple / were; unreal condition; present perfect / past simple
+**Що ви опануєте:** сказати, чого вам хочеться інакше, і про те, що було б, якби…
 **Нові слова:** parenthood, daycare, kindergarten, schoolwork
 
 ## Інтро 1

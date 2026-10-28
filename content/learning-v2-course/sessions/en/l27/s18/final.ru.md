@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы просите понятное объяснение, уточняете оплату и называете проблему.
 
-**Что вы освоите:** if-clause without would; result with would; if I were you; past simple / present perfect
+**Что вы освоите:** сказать, что было бы, если бы…, и дать совет «на вашем месте я бы…»
 **Новые слова:** unhelpful, unpaid, unaware, unacceptable
 
 ## Интро 1

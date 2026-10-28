@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви просите сусідку про допомогу, виправляєте незручну розмову й дякуєте другові.
 
-**Що ви опануєте:** if + past simple, would + base verb; if + subject + were; present perfect / past simple
+**Що ви опануєте:** сказати, що було б, якби…
 **Нові слова:** trustworthy, thoughtless, tactless, selfless
 
 ## Інтро 1

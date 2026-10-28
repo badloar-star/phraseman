@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви з другом переплутали час і вхід до кафе. Уточнюєте деталі й домовляєтеся зустрітися.
 
-**Що ви опануєте:** wish + past; if I were; present perfect / past simple; unreal condition
+**Що ви опануєте:** сказати, чого вам хочеться інакше, і про те, що було б, якби…
 **Нові слова:** overthink, understandable, incorrect, unnecessarily
 
 ## Інтро 1

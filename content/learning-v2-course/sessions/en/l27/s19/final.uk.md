@@ -2,7 +2,7 @@
 
 **Ситуація.** Після напруженого дня ви просите допомоги й домовляєтеся про спокійний вечір.
 
-**Що ви опануєте:** if + past simple, would + base verb; if I were you; present perfect / past simple
+**Що ви опануєте:** сказати, що було б, якби…, і дати пораду «на вашому місці я б…»
 **Нові слова:** stressful, restful, content, desperate
 
 ## Інтро 1

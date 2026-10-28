@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы описываете ощущения, звоните узнать время приёма и переносите встречу с другом.
 
-**Что вы освоите:** if + past simple, would + base verb; if + subject + were; present perfect / past simple
+**Что вы освоите:** сказать, что было бы, если бы…
 **Новые слова:** groggy, dizziness, stiffness, numbness
 
 ## Интро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви ще не визначилися з подарунком, порівнюєте варіанти й знаходите пропущену записку.
 
-**Що ви опануєте:** wish + past simple / were; unreal condition; present perfect / past simple
+**Що ви опануєте:** сказати, чого вам хочеться інакше, і про те, що було б, якби…
 **Нові слова:** undecided, unimportant, uncommon, unnoticed
 
 ## Інтро 1

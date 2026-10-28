@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви уточнюєте неправдиве повідомлення, обираєте здійсненний план і ділитеся враженнями.
 
-**Що ви опануєте:** wish + past simple / were; unreal condition; present perfect / past simple
+**Що ви опануєте:** сказати, чого вам хочеться інакше, і про те, що було б, якби…
 **Нові слова:** untrue, unrealistic, unbelievable, unforgettable
 
 ## Інтро 1

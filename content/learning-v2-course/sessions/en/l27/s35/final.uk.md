@@ -2,7 +2,7 @@
 
 **Ситуація.** Перед спільною поїздкою ви узгоджуєте час, шукаєте квитки й обговорюєте побоювання.
 
-**Що ви опануєте:** wish + past; if I were; unreal condition; present perfect / past simple
+**Що ви опануєте:** сказати, чого вам хочеться інакше, і про те, що було б, якби…
 **Нові слова:** considerate, inconsiderate, absent-minded, dismiss
 
 ## Інтро 1

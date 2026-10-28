@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы приглашаете друга, узнаёте условия и выбираете занятие на вечер.
 
-**Что вы освоите:** if I were you; if + past simple, would + base verb; past simple / present perfect
+**Что вы освоите:** дать совет «на вашем месте я бы…» и сказать, что было бы, если бы…
 **Новые слова:** bowling, billiards, darts, handball
 
 ## Интро 1

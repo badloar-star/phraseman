@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви обговорюєте район, просите іншу кімнату й уточнюєте час її підготовки.
 
-**Що ви опануєте:** wish + past simple / were; unreal condition; present perfect / past simple
+**Що ви опануєте:** сказати, чого вам хочеться інакше, і про те, що було б, якби…
 **Нові слова:** housing, residential, dampness, housekeeping
 
 ## Інтро 1

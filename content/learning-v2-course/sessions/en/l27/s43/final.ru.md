@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы собираете еду, выбираете место для пикника и убираете за собой.
 
-**Что вы освоите:** present perfect / past simple; wish + past; if I were; unreal condition
+**Что вы освоите:** сказать, чего вам хочется иначе, и о том, что было бы, если бы…
 **Новые слова:** freshness, coolness, quietness, cleanliness
 
 ## Интро 1

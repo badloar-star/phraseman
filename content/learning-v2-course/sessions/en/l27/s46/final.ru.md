@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы распаковали полку, проверили детали и объясняете продавцу проблему.
 
-**Что вы освоите:** present perfect / past simple; wish + past; if I were; unreal condition
+**Что вы освоите:** сказать, чего вам хочется иначе, и о том, что было бы, если бы…
 **Новые слова:** incomplete, unreadable, unsuitable, unusable
 
 ## Интро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы уточняете неверное сообщение, выбираете выполнимый план и делитесь впечатлениями.
 
-**Что вы освоите:** wish + past simple / were; unreal condition; present perfect / past simple
+**Что вы освоите:** сказать, чего вам хочется иначе, и о том, что было бы, если бы…
 **Новые слова:** untrue, unrealistic, unbelievable, unforgettable
 
 ## Интро 1

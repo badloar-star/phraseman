@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы приехали в гостевой дом, оставляете вещи, принимаете помощь и благодарите хозяев.
 
-**Что вы освоите:** present perfect / past simple; wish + past; if I were; unreal condition
+**Что вы освоите:** сказать, чего вам хочется иначе, и о том, что было бы, если бы…
 **Новые слова:** guesthouse, cheerfully, hospitality, gratefully
 
 ## Интро 1

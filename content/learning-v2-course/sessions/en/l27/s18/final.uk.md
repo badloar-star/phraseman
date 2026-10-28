@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви просите зрозуміле пояснення, уточнюєте оплату й називаєте проблему.
 
-**Що ви опануєте:** if-clause without would; result with would; if I were you; past simple / present perfect
+**Що ви опануєте:** сказати, що було б, якби…, і дати пораду «на вашому місці я б…»
 **Нові слова:** unhelpful, unpaid, unaware, unacceptable
 
 ## Інтро 1

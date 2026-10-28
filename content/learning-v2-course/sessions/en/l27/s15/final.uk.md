@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви запрошуєте друга, дізнаєтеся про умови й обираєте заняття на вечір.
 
-**Що ви опануєте:** if I were you; if + past simple, would + base verb; past simple / present perfect
+**Що ви опануєте:** дати пораду «на вашому місці я б…» і сказати, що було б, якби…
 **Нові слова:** bowling, billiards, darts, handball
 
 ## Інтро 1

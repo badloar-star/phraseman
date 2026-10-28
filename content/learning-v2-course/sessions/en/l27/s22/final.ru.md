@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы описываете проблему с блюдом, выбираете замену и уточняете состав напитка.
 
-**Что вы освоите:** if + past simple, would + base verb; if + subject + were; present perfect / past simple
+**Что вы освоите:** сказать, что было бы, если бы…
 **Новые слова:** overcooked, undercooked, uneaten, caffeine
 
 ## Интро 1

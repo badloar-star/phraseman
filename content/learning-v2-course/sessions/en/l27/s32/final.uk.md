@@ -2,7 +2,7 @@
 
 **Ситуація.** На виставці ви обговорюєте інтереси, чергу й шум, а потім домовляєтеся про перерву.
 
-**Що ви опануєте:** wish + past simple / were; unreal condition; present perfect / past simple
+**Що ви опануєте:** сказати, чого вам хочеться інакше, і про те, що було б, якби…
 **Нові слова:** fascinate, discourage, frustrate, overwhelm
 
 ## Інтро 1

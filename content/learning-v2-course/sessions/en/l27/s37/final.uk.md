@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви збираєтеся на танці з другом, просите підтримки й уточнюєте розклад.
 
-**Що ви опануєте:** wish + past; unreal condition; present perfect / past simple
+**Що ви опануєте:** сказати, чого вам хочеться інакше, і про те, що було б, якби…
 **Нові слова:** reassurance, hesitation, certainty, uncertainty
 
 ## Інтро 1

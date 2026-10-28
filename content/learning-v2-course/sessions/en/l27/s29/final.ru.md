@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы обсуждаете присмотр за ребёнком, школьные дела и время встречи с другом.
 
-**Что вы освоите:** wish + past simple / were; unreal condition; present perfect / past simple
+**Что вы освоите:** сказать, чего вам хочется иначе, и о том, что было бы, если бы…
 **Новые слова:** parenthood, daycare, kindergarten, schoolwork
 
 ## Интро 1

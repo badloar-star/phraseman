@@ -2,7 +2,7 @@
 
 **Ситуація.** Під час прогулянки ви уточнюєте маршрут, пояснюєте втому й вибираєте, як повернутися.
 
-**Що ви опануєте:** wish + past; if I were; unreal condition; present perfect / past simple
+**Що ви опануєте:** сказати, чого вам хочеться інакше, і про те, що було б, якби…
 **Нові слова:** expectation, assumption, perspective, unexpectedly
 
 ## Інтро 1

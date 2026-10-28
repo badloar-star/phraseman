@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы с другом перепутали время и вход в кафе. Уточняете детали и договариваетесь встретиться.
 
-**Что вы освоите:** wish + past; if I were; present perfect / past simple; unreal condition
+**Что вы освоите:** сказать, чего вам хочется иначе, и о том, что было бы, если бы…
 **Новые слова:** overthink, understandable, incorrect, unnecessarily
 
 ## Интро 1

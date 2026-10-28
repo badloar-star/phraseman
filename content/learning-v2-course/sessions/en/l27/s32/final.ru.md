@@ -2,7 +2,7 @@
 
 **Ситуация.** На выставке вы обсуждаете интересы, очередь и шум, а затем договариваетесь о перерыве.
 
-**Что вы освоите:** wish + past simple / were; unreal condition; present perfect / past simple
+**Что вы освоите:** сказать, чего вам хочется иначе, и о том, что было бы, если бы…
 **Новые слова:** fascinate, discourage, frustrate, overwhelm
 
 ## Интро 1

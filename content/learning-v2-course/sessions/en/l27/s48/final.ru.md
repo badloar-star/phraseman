@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы делите комнату, обсуждаете шум вечером и договариваетесь о простом решении.
 
-**Что вы освоите:** wish + past; if I were; unreal condition; present perfect / past simple
+**Что вы освоите:** сказать, чего вам хочется иначе, и о том, что было бы, если бы…
 **Новые слова:** tactful, insensitive, consideration, peacefully
 
 ## Интро 1

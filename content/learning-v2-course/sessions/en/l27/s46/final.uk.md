@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви розпакували полицю, перевірили деталі й пояснюєте продавцеві проблему.
 
-**Що ви опануєте:** present perfect / past simple; wish + past; if I were; unreal condition
+**Що ви опануєте:** сказати, чого вам хочеться інакше, і про те, що було б, якби…
 **Нові слова:** incomplete, unreadable, unsuitable, unusable
 
 ## Інтро 1

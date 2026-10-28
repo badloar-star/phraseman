@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы обсуждаете район, просите другую комнату и уточняете время её подготовки.
 
-**Что вы освоите:** wish + past simple / were; unreal condition; present perfect / past simple
+**Что вы освоите:** сказать, чего вам хочется иначе, и о том, что было бы, если бы…
 **Новые слова:** housing, residential, dampness, housekeeping
 
 ## Интро 1

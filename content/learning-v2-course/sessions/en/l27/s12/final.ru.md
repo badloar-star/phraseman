@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы называете ощущения, рассказываете о времени и договариваетесь о приёме.
 
-**Что вы освоите:** if + past simple, would + base verb; if I were; past simple / present perfect
+**Что вы освоите:** сказать, что было бы, если бы…
 **Новые слова:** nausea, heartburn, nosebleed, insomnia
 
 ## Интро 1

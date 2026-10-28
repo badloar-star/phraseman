@@ -2,7 +2,7 @@
 
 **Ситуация.** Перед совместной поездкой вы согласуете время, ищете билеты и обсуждаете опасения.
 
-**Что вы освоите:** wish + past; if I were; unreal condition; present perfect / past simple
+**Что вы освоите:** сказать, чего вам хочется иначе, и о том, что было бы, если бы…
 **Новые слова:** considerate, inconsiderate, absent-minded, dismiss
 
 ## Интро 1

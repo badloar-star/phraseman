@@ -11,7 +11,12 @@ import {
   parseStoryCommand,
   applyStoryCommand,
 } from "./story_announcements_domain";
-import { liveAnnouncements } from "../../modules/story_events/story_announcements_contract";
+import {
+  liveAnnouncements,
+  nextStoryFeedRev,
+  storyFeedRevOf,
+  STORY_FEED_REV_CONFIG_KEY,
+} from "../../modules/story_events/story_announcements_contract";
 const options = { region: "us-central1", enforceAppCheck: false };
 function role(
   request: { auth?: { token: Record<string, unknown> } },
@@ -114,10 +119,14 @@ export const adminStoryAnnouncementCommand = onCall(
       // зачем (владелец 28.10: «новая история заменяет предыдущую»; координатор: сперва логи): по строке на команду — тот ли это id, что уже
       // в показе (повторная публикация того же id = замена), сколько историй в ленте до и после. Без uid и текста истории.
       const liveBefore = liveAnnouncements(feed.data()?.items ?? [], next.document.updatedAtMs);
+      // зачем (координатор 28.10, дешёвый путь): публикация и снятие меняют ленту — новая версия; черновик ленту не меняет — версия прежняя
+      const prevFeedRev = storyFeedRevOf(feed.data());
+      const feedChanged = command.action !== "save";
+      const feedRev = feedChanged ? nextStoryFeedRev(prevFeedRev, next.document.updatedAtMs) : prevFeedRev;
       console.log("[STORY-POST] command", JSON.stringify({
         id: command.id.slice(0, 8), action: command.action, expectedRevision: command.expectedRevision, revision: next.document.revision,
         previousStatus: before?.status ?? "none", replacesLiveSameId: command.action === "publish" && liveBefore.some((x) => x.id === command.id),
-        feedBefore: liveBefore.length, feedAfter: next.items.length,
+        feedBefore: liveBefore.length, feedAfter: next.items.length, feedRevBefore: prevFeedRev, feedRevAfter: feedRev, configRevWritten: feedChanged,
         publishedAt: next.document.publishedAtMs ? new Date(next.document.publishedAtMs).toISOString() : null,
         expiresAt: next.document.expiresAtMs ? new Date(next.document.expiresAtMs).toISOString() : null,
       }));
@@ -130,7 +139,16 @@ export const adminStoryAnnouncementCommand = onCall(
       tx.set(feedRef, {
         items: next.items,
         updatedAtMs: next.document.updatedAtMs,
+        rev: feedRev,
       });
+      // зачем: версия ленты — в уже читаемом на каждом холодном старте remote_config/app (клиент сравнивает с копией на телефоне).
+      // merge: остальные ручки «Пульта» не трогаем; adminPublishRemoteConfig сливает ветки и это поле сохраняет.
+      if (feedChanged)
+        tx.set(
+          db.collection("remote_config").doc("app"),
+          { numbers: { [STORY_FEED_REV_CONFIG_KEY]: feedRev } },
+          { merge: true },
+        );
       tx.create(
         auditRef,
         createAuditRecord({
@@ -166,9 +184,9 @@ export const storyAnnouncementsGet = onCall(options, async (request) => {
     .collection("story_announcement_feed")
     .doc("current")
     .get();
-  const projected = { items: liveAnnouncements(feed.data()?.items ?? [], nowMs), nowMs };
+  const projected = { items: liveAnnouncements(feed.data()?.items ?? [], nowMs), nowMs, feedRev: storyFeedRevOf(feed.data()) };
   // зачем (28.10): видно, что лента отдаёт человеку — сколько историй и самая свежая; 1 чтение документа на вызов
   const newest = projected.items[projected.items.length - 1];
-  console.log("[STORY-POST] get", JSON.stringify({ live: projected.items.length, newestPublishedAt: newest ? new Date(newest.publishedAtMs).toISOString() : null }));
+  console.log("[STORY-POST] get", JSON.stringify({ live: projected.items.length, feedRev: projected.feedRev, newestPublishedAt: newest ? new Date(newest.publishedAtMs).toISOString() : null }));
   return projected;
 });

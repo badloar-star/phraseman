@@ -151,3 +151,29 @@ export function announcementSeenKey(
 ): string {
   return `announcement:${a.id}:${a.revision}`;
 }
+
+// ── Версия ленты историй (координатор 28.10: «метка версии ленты в уже читаемом конфиге — запрос только при новой истории») ──
+// зачем: remote_config/app читается на каждом холодном старте и так. Сервер при публикации или снятии истории пишет туда
+// numbers.story_feed_rev (в той же транзакции, что и лента; +1 запись на действие админа, 0 на людей), а лента отдаёт ту же версию.
+// Совпала с версией копии на телефоне — ленту не запрашиваем. Поля нет (сервер ещё не выложен) — клиент работает по-старому.
+
+/** Ключ версии ленты в remote_config/app.numbers. */
+export const STORY_FEED_REV_CONFIG_KEY = "story_feed_rev";
+
+/** Следующая версия ленты: не меньше времени изменения и строго больше прежней (монотонно даже при одинаковых мс). */
+export function nextStoryFeedRev(previous: unknown, nowMs: number): number {
+  const prev =
+    typeof previous === "number" && Number.isFinite(previous) && previous > 0
+      ? Math.floor(previous)
+      : 0;
+  return Math.max(Math.floor(nowMs), prev + 1);
+}
+
+/** Версия из документа ленты или из ответа; 0 — версии нет. */
+export function storyFeedRevOf(value: unknown): number {
+  if (!value || typeof value !== "object") return 0;
+  const rev = (value as Record<string, unknown>).rev;
+  return typeof rev === "number" && Number.isFinite(rev) && rev > 0
+    ? Math.floor(rev)
+    : 0;
+}

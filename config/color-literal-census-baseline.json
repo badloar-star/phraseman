@@ -1,17 +1,15 @@
 {
-  "total": 760,
+  "total": 578,
   "files": {
     "app/_layout.tsx": 11,
     "app/(tabs)/home.tsx": 7,
     "app/community_packs/CommunityPackSocialBar.tsx": 6,
     "app/flashcards_packs.tsx": 3,
-    "app/flashcards/cardStatus.ts": 5,
     "app/flashcards/trainingSources.ts": 4,
     "app/learning-v2/session/[id].tsx": 106,
     "app/paywall_copy.ts": 80,
     "components/CleanOnboarding.tsx": 63,
     "components/home/HomeMistakesLockedSheet.tsx": 1,
-    "components/medalToastThemeStyles.ts": 177,
     "components/packs/CommunityAwardDecoration.tsx": 7,
     "components/packs/CommunityPackCheckScene.tsx": 2,
     "components/packs/CommunityPackScene.tsx": 5,

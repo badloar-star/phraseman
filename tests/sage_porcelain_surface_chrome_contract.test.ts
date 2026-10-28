@@ -3,7 +3,6 @@ import path from 'path';
 import { DAILY_PHRASE_CHROME, dailyPhraseChromeFor } from '../app/daily_phrase_chrome';
 import { themedToastChrome } from '../constants/themedToastChrome';
 import { statsPageField, statsSoftBg, statsThemeAccent } from '../constants/statsThemeChrome';
-import { getMedalToastThemeStyle } from '../components/medalToastThemeStyles';
 import { SAGE_PORCELAIN } from '../constants/theme';
 
 const ROOT = path.join(__dirname, '..');
@@ -47,13 +46,10 @@ describe('Sage Porcelain surface chrome contract', () => {
     });
   });
 
-  it('resolves Sage stats and medal rewards with approved semantic colors', () => {
+  it('resolves Sage stats with approved semantic colors', () => {
     expect(statsPageField('sagePorcelain')).toBe('#F0F1EC');
     expect(statsThemeAccent('sagePorcelain')).toBe('#315F50');
     expect(statsSoftBg('sagePorcelain', 'streak', 'strong')).toBe('#315F502E');
-    expect(getMedalToastThemeStyle('sagePorcelain')).toMatchObject({
-      cardBgColors: ['#FCFDF9', '#E1E5DC'], borderColor: '#CFD6CE', titleColor: '#17201D',
-      subtitleColor: '#52605A', surfaceAccent: '#315F50', medalPlateBg: '#D9E9E1',
-    });
+    // стиль тоста медали для Sage теперь строится из токенов темы (таблица по режиму снята 28.10) — его читаемость проверяет tests/lessons_level_tokens_medal_toast_contract.test.ts
   });
 });

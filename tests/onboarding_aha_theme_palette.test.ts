@@ -31,7 +31,7 @@ describe('онбординг «ага»: палитра из сцены теку
         const T = ahaThemeFor(id, appearance);
         for (const bg of T.bgGradient) {
           const rows: Array<[string, string, string, number]> = [
-            ['белый текст', '#FFFFFF', bg, 4.5],
+            ['основной текст', T.textPrimary, bg, 4.5],
             ['кнопка', T.ctaGradient[1], bg, 3],
             ['микрофон', T.micRing, bg, 3],
             ['слово «чисто»', T.wordClean, bg, 3],
@@ -79,9 +79,7 @@ describe('онбординг «ага»: палитра из сцены теку
         if (/^\s*(\/\/|\*|\/\*)/.test(l)) return;
         const code = l.replace(/\/\/.*$/, '');
         if (/\bAHA_THEME\b/.test(code)) bad.push(`${name}:${i + 1} AHA_THEME`);
-        // aha_theme.ts — сама палитра: белый свет сцены собирается шаблоном rgba(255,255,255,a); литералов hex там нет
-        const literal = name === 'aha_theme.ts' ? /#[0-9a-fA-F]{6,8}\b/ : /#[0-9a-fA-F]{6,8}\b|rgba?\(\s*\d/;
-        if (literal.test(code)) bad.push(`${name}:${i + 1} литерал цвета`);
+        if (/#[0-9a-fA-F]{6,8}\b|rgba?\(\s*\d/.test(code)) bad.push(`${name}:${i + 1} литерал цвета`);
       });
     }
     expect(bad).toEqual([]);

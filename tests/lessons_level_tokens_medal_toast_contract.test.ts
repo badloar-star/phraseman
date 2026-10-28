@@ -67,11 +67,12 @@ describe('списки уроков: цвета уровней A1–B2 из то
 });
 
 describe('MedalToast: стиль из токенов активной темы', () => {
-  it('без явного themeMode — токены, с themeMode (витрина движения) — прежняя таблица', () => {
+  it('стиль тоста всегда из токенов активной темы (таблица по режиму и проп themeMode сняты 28.10)', () => {
     const src = read('components/MedalToast.tsx');
     expect(src).toContain("import { medalToastStyleFromTokens } from './medalToastThemeStylesFromTokens';");
-    expect(src).toContain('const visualTheme = themeMode ? getMedalToastThemeStyle(themeMode) : medalToastStyleFromTokens(glassTokens);');
-    expect(src).not.toContain("getMedalToastThemeStyle(themeMode ?? 'indigo')");
+    expect(src).toContain('const visualTheme = medalToastStyleFromTokens(glassTokens);');
+    expect(src).not.toContain('getMedalToastThemeStyle');
+    expect(src).not.toContain('themeMode');
   });
 
   it('читаемость: заголовок и подзаголовок на плашке тоста во всех темах и оттенках, тёмных и светлых', () => {

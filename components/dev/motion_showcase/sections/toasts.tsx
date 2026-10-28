@@ -19,11 +19,11 @@ import { useLang } from '../../../LangContext';
 import MedalToast from '../../../MedalToast';
 import InGameToast from '../../../InGameToast';
 
-/** Обёртка-мост: MedalToast принимает Animated.Value (0→1) и themeMode из контекста темы.
+/** Обёртка-мост: MedalToast принимает Animated.Value (0→1); стиль тост берёт из токенов темы.
  * зачем: motionVariant опционален — classic-вызов ниже передаёт демо-пружину anim как
  * раньше, гибрид-вызов рядом просто добавляет проп, сам MedalToast решает какой путь идёт. */
 function MedalToastDemo({ onClose, motionVariant = 'classic' }: { onClose: () => void; motionVariant?: 'classic' | 'hybrid' }) {
-  const { themeMode, theme: t } = useTheme();
+  const { theme: t } = useTheme();
   const { lang } = useLang();
   const anim = useRef(new Animated.Value(0)).current;
   useEffect(() => {
@@ -36,7 +36,6 @@ function MedalToastDemo({ onClose, motionVariant = 'classic' }: { onClose: () =>
       anim={anim}
       bg={t.bgCard}
       isLightTheme={false}
-      themeMode={themeMode}
       lang={lang}
       spanishUiActive={false}
       onDismiss={onClose}

@@ -19,11 +19,11 @@ export type FlashcardStatus = 'new' | 'learning' | 'review' | 'mastered' | 'weak
 
 /** Цвета статусов — дословно из хендофа §4.3 «Статусы карточек флешек». */
 export const FLASHCARD_STATUS_COLOR: Record<FlashcardStatus, string> = {
-  new: '#9FB4CC',
-  learning: '#5AA6FF',
-  review: '#F5C842',
-  mastered: '#35D07F',
-  weak: '#FF6B7E',
+  new: '#9FB4CC', // theme-exempt: статус = смысл: новое, учу, выучено; решение владельца 28.10 («оставить светофор»)
+  learning: '#5AA6FF', // theme-exempt: статус = смысл: новое, учу, выучено; решение владельца 28.10 («оставить светофор»)
+  review: '#F5C842', // theme-exempt: статус = смысл: новое, учу, выучено; решение владельца 28.10 («оставить светофор»)
+  mastered: '#35D07F', // theme-exempt: статус = смысл: новое, учу, выучено; решение владельца 28.10 («оставить светофор»)
+  weak: '#FF6B7E', // theme-exempt: статус = смысл: новое, учу, выучено; решение владельца 28.10 («оставить светофор»)
 };
 
 /**

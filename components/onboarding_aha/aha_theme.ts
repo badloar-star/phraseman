@@ -31,9 +31,6 @@ function mixToward(a: string, b: string, k: number): string {
   return toHex([ch(16), ch(8), ch(0)]);
 }
 
-/** Белый свет сцены с прозрачностью a (текст и стекло на тёмной сцене темы). */
-const whiteA = (a: number): string => `rgba(255,255,255,${a})`;
-
 function contrastOf(a: string, b: string): number {
   const la = relativeLuminance(a);
   const lb = relativeLuminance(b);
@@ -104,6 +101,9 @@ export function ahaThemeFor(themeId: string, appearance: 'dark' | 'light'): AhaT
   // зачем (замер 28.10): сцена онбординга ВСЕГДА тёмная (белый текст), поэтому зелёный/жёлтый/красный и акцент берутся из ТЁМНОГО набора токенов темы — светлый набор даёт 1,01:1 на тёмной сцене
   const glass = liquidGlassTokens(themeId, { level: 'max', appearance: 'dark' });
   const [ring1, ring2, ring3] = scene.todayRing;
+  // зачем (Ревизор по ec25c850c, координатор 28.10): белый свет сцены — токен text темы (тёмный набор: почти белый), а не литерал rgba(255,255,255,…); стекло и текст на тёмной сцене — он же с прозрачностью
+  const light = glass.text;
+  const whiteA = (a: number): string => themeRoleAlpha(light, a);
   const bottom = scene.sceneBottom;
   const deep = shade(bottom, 0.45);
   const next: AhaTheme = Object.freeze({
@@ -114,7 +114,7 @@ export function ahaThemeFor(themeId: string, appearance: 'dark' | 'light'): AhaT
     ctaDisabled: whiteA(0.28),
     accentGradient: [ring1, ring2, ring3] as const,
 
-    textPrimary: whiteA(1),
+    textPrimary: light,
     textSecondary: whiteA(0.78),
     textMuted: whiteA(0.62),
 
@@ -134,7 +134,7 @@ export function ahaThemeFor(themeId: string, appearance: 'dark' | 'light'): AhaT
     chipHintBorder: themeRoleAlpha(ring3, 0.7),
 
     karaokeIdle: whiteA(0.5),
-    karaokeLit: whiteA(1),
+    karaokeLit: light,
     karaokeAccent: ring1,
 
     wordClean: glass.good,

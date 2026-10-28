@@ -1,7 +1,33 @@
 import { glassTone } from './dialogs/glass/glassTone';
 import { flattenOver, legibleOn } from '../constants/liquidGlassSurfaceRoles';
 import type { GlassTokens } from '../constants/liquidGlassThemePalette';
-import type { MedalToastThemeStyle } from './medalToastThemeStyles';
+import type { MedalTier } from '../app/medal_utils';
+
+type EarnedMedalTier = Exclude<MedalTier, 'none'>;
+
+// зачем (аудит цвета 28.10, решение координатора): таблица по прежнему режиму (components/medalToastThemeStyles.ts, 177 литералов) удалена — боевой путь всегда токены темы; форма стиля живёт здесь
+export interface MedalToastThemeStyle {
+  signature: string;
+  cardBgColors: [string, string];
+  borderColor: string;
+  titleColor: string;
+  subtitleColor: string;
+  surfaceAccent: string;
+  badgeDownColor: string;
+  topShineColors: [string, string, string];
+  topShineOpacity: number;
+  haloOpacity: number;
+  auraColor: string;
+  medalPlateBg: string;
+  medalPlateBorder: string;
+  textureColor: string;
+  textureOpacity: number;
+  tierAccents: Record<EarnedMedalTier, string>;
+  /** Цвет подписи ступени (текст) — цвет ступени, доведённый до ≥ 4,55 на карточке; нет — подпись берёт tierAccents (прежние таблицы). */
+  tierLabelColors?: Record<EarnedMedalTier, string>;
+  tierGlows: Record<EarnedMedalTier, string>;
+}
+
 
 // зачем (координатор 12.10): getMedalToastThemeStyle(themeMode ?? 'indigo') выбирает строку по прежнему режиму, а не по теме Liquid Glass.
 // Здесь та же форма стиля строится из токенов. Цвета ступеней медали (бронза/серебро/золото) — смысловые, не цвет темы: в светлой

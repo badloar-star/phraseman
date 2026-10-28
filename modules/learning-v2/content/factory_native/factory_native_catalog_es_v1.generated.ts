@@ -1288,4 +1288,11 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"отрицать принадлежность одной вещи и нескольких вещей собеседнику.","uk":"заперечувати належність однієї речі та кількох речей співрозмовнику."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 4, sessionOrdinal: 16,
+    sourceFingerprint: "ce2835a7a2c54668517e7877964cef75e41dd06c73e6cc21ebb303751afc9579",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбирать tu или tus, уточнять принадлежность и исправлять ошибку.","uk":"вибирати tu або tus, уточнювати належність і виправляти помилку."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
+  }),
 ]);

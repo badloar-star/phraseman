@@ -1,0 +1,92 @@
+[
+  {
+    "interactionId": "es:lesson-04:session-16:i01",
+    "correctText": "tus",
+    "correctResponseId": "es:lesson-04:session-16:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-16:i02",
+    "correctText": "tu",
+    "correctResponseId": "es:lesson-04:session-16:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-16:i03",
+    "correctText": "Es tu libro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-16:i04",
+    "correctText": "Son tus libros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-16:i05",
+    "correctText": "tus",
+    "correctResponseId": "es:lesson-04:session-16:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-16:i06",
+    "correctText": "¿Es tu bolsa?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-16:i07",
+    "correctText": "No son tus llaves.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-16:i08",
+    "correctText": "tu",
+    "correctResponseId": "es:lesson-04:session-16:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-16:i09",
+    "correctText": "Tus zapatos son negros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-16:i10",
+    "correctText": "rojas",
+    "correctResponseId": "es:lesson-04:session-16:i10:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-16:i11",
+    "correctText": "Son mis llaves.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-16:i12",
+    "correctText": "Es",
+    "correctResponseId": "es:lesson-04:session-16:i12:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-16:i13",
+    "correctText": "Es tu libro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-16:i14",
+    "correctText": "Son tus libros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-16:i15",
+    "correctText": "¿Es tu bolsa?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-16:i16",
+    "correctText": "No son tus llaves.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-16:i17",
+    "correctText": "Tus zapatos son negros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-16:i18",
+    "correctText": "Tus bolsas son rojas.",
+    "correctResponseId": null
+  }
+]

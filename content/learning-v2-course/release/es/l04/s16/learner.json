@@ -1,0 +1,994 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-04:session-16",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-04:session-16:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-16:i01:r1",
+          "text": "tus"
+        },
+        {
+          "responseId": "es:lesson-04:session-16:i01:r2",
+          "text": "tu"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-16:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-16:i01:audio",
+          "transcript": "tus"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-04:session-16:i01:r1",
+            "targetText": "tus",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-04:session-16:i01:r2",
+            "targetText": "tu",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-16:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит конечное -s: tus.",
+              "uk": "Звучить кінцеве -s: tus."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-16:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — это твоя книга",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-16:i02:r1",
+          "text": "tu"
+        },
+        {
+          "responseId": "es:lesson-04:session-16:i02:r2",
+          "text": "tus"
+        },
+        {
+          "responseId": "es:lesson-04:session-16:i02:r3",
+          "text": "mis"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — это твоя книга",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это твоя книга",
+          "uk": "Вставте слово — це твоя книжка"
+        },
+        "gappedTargetPhrase": "Es ___ libro.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-16:i02:r1",
+            "text": "tu"
+          },
+          {
+            "responseId": "es:lesson-04:session-16:i02:r2",
+            "text": "tus"
+          },
+          {
+            "responseId": "es:lesson-04:session-16:i02:r3",
+            "text": "mis"
+          }
+        ],
+        "testedDimension": "Вставьте слово — это твоя книга",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-16:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это твоя книга",
+            "feedbackByLocale": {
+              "ru": "Книга одна: tu.",
+              "uk": "Книжка одна: tu."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-16:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это твоя книга",
+            "feedbackByLocale": {
+              "ru": "Нужно «твоя», одна вещь: tu.",
+              "uk": "Потрібно «твоя», одна річ: tu."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-16:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это твоя книга",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-16:i03:r1",
+          "text": "Плитки: libro"
+        },
+        {
+          "responseId": "es:lesson-04:session-16:i03:r2",
+          "text": "tu"
+        },
+        {
+          "responseId": "es:lesson-04:session-16:i03:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-16:i03:r4",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это твоя книга",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es tu libro.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это твоя книга",
+          "uk": "Зберіть фразу — це твоя книжка"
+        },
+        "orderedTokens": [
+          "Es",
+          "tu",
+          "libro"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-16:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это твоя книга",
+            "feedbackByLocale": {
+              "ru": "перед tu здесь нет артикля.",
+              "uk": "перед tu тут немає артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-16:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это твои книги",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-16:i04:r1",
+          "text": "Плитки: libros"
+        },
+        {
+          "responseId": "es:lesson-04:session-16:i04:r2",
+          "text": "tus"
+        },
+        {
+          "responseId": "es:lesson-04:session-16:i04:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-16:i04:r4",
+          "text": "tu."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это твои книги",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son tus libros.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это твои книги",
+          "uk": "Зберіть фразу — це твої книжки"
+        },
+        "orderedTokens": [
+          "Son",
+          "tus",
+          "libros"
+        ],
+        "authoredDistractorTokens": [
+          "tu"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-16:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это твои книги",
+            "feedbackByLocale": {
+              "ru": "книг несколько.",
+              "uk": "книжок кілька."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-16:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — это твои сумки",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-16:i05:r1",
+          "text": "tus"
+        },
+        {
+          "responseId": "es:lesson-04:session-16:i05:r2",
+          "text": "tu"
+        },
+        {
+          "responseId": "es:lesson-04:session-16:i05:r3",
+          "text": "mi"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — это твои сумки",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это твои сумки",
+          "uk": "Вставте слово — це твої сумки"
+        },
+        "gappedTargetPhrase": "Son ___ bolsas.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-16:i05:r1",
+            "text": "tus"
+          },
+          {
+            "responseId": "es:lesson-04:session-16:i05:r2",
+            "text": "tu"
+          },
+          {
+            "responseId": "es:lesson-04:session-16:i05:r3",
+            "text": "mi"
+          }
+        ],
+        "testedDimension": "Вставьте слово — это твои сумки",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-16:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это твои сумки",
+            "feedbackByLocale": {
+              "ru": "Сумок несколько: tus.",
+              "uk": "Сумок кілька: tus."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-16:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это твои сумки",
+            "feedbackByLocale": {
+              "ru": "Нужно «твои», несколько вещей: tus.",
+              "uk": "Потрібно «твої», кілька речей: tus."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-16:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это твоя сумка? Используйте bolsa",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-16:i06:r1",
+          "text": "Плитки: bolsa?"
+        },
+        {
+          "responseId": "es:lesson-04:session-16:i06:r2",
+          "text": "tu"
+        },
+        {
+          "responseId": "es:lesson-04:session-16:i06:r3",
+          "text": "¿es"
+        },
+        {
+          "responseId": "es:lesson-04:session-16:i06:r4",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это твоя сумка? Используйте bolsa",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Es tu bolsa?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это твоя сумка? Используйте bolsa",
+          "uk": "Зберіть фразу — це твоя сумка? Використайте bolsa"
+        },
+        "orderedTokens": [
+          "¿Es",
+          "tu",
+          "bolsa"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-16:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это твоя сумка? Используйте bolsa",
+            "feedbackByLocale": {
+              "ru": "сумка одна.",
+              "uk": "сумка одна."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-16:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-16:i07:r1",
+          "text": "Плитки: llaves"
+        },
+        {
+          "responseId": "es:lesson-04:session-16:i07:r2",
+          "text": "tus"
+        },
+        {
+          "responseId": "es:lesson-04:session-16:i07:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-16:i07:r4",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-04:session-16:i07:r5",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-16:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-16:i07:audio",
+          "transcript": "No son tus llaves."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "No son tus llaves.",
+        "orderedTokens": [
+          "No",
+          "son",
+          "tus",
+          "llaves"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-16:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит son.",
+              "uk": "звучить son."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-16:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — это не твой ключ",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-16:i08:r1",
+          "text": "tu"
+        },
+        {
+          "responseId": "es:lesson-04:session-16:i08:r2",
+          "text": "tus"
+        },
+        {
+          "responseId": "es:lesson-04:session-16:i08:r3",
+          "text": "mis"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — это не твой ключ",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это не твой ключ",
+          "uk": "Вставте слово — це не твій ключ"
+        },
+        "gappedTargetPhrase": "No es ___ llave.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-16:i08:r1",
+            "text": "tu"
+          },
+          {
+            "responseId": "es:lesson-04:session-16:i08:r2",
+            "text": "tus"
+          },
+          {
+            "responseId": "es:lesson-04:session-16:i08:r3",
+            "text": "mis"
+          }
+        ],
+        "testedDimension": "Вставьте слово — это не твой ключ",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-16:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это не твой ключ",
+            "feedbackByLocale": {
+              "ru": "Ключ один: tu.",
+              "uk": "Ключ один: tu."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-16:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это не твой ключ",
+            "feedbackByLocale": {
+              "ru": "Нужно «твой», один ключ: tu.",
+              "uk": "Потрібно «твій», один ключ: tu."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-16:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — твои туфли чёрные; начните с Tus zapatos",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-16:i09:r1",
+          "text": "Плитки: negros"
+        },
+        {
+          "responseId": "es:lesson-04:session-16:i09:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-16:i09:r3",
+          "text": "zapatos"
+        },
+        {
+          "responseId": "es:lesson-04:session-16:i09:r4",
+          "text": "tus"
+        },
+        {
+          "responseId": "es:lesson-04:session-16:i09:r5",
+          "text": "negras."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — твои туфли чёрные; начните с Tus zapatos",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Tus zapatos son negros.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — твои туфли чёрные; начните с Tus zapatos",
+          "uk": "Зберіть фразу — твої туфлі чорні; почніть з Tus zapatos"
+        },
+        "orderedTokens": [
+          "Tus",
+          "zapatos",
+          "son",
+          "negros"
+        ],
+        "authoredDistractorTokens": [
+          "negras"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-16:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — твои туфли чёрные; начните с Tus zapatos",
+            "feedbackByLocale": {
+              "ru": "zapatos мужского рода.",
+              "uk": "zapatos чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-16:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — твои сумки красные",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-16:i10:r1",
+          "text": "rojas"
+        },
+        {
+          "responseId": "es:lesson-04:session-16:i10:r2",
+          "text": "rojos"
+        },
+        {
+          "responseId": "es:lesson-04:session-16:i10:r3",
+          "text": "roja"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — твои сумки красные",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — твои сумки красные",
+          "uk": "Вставте слово — твої сумки червоні"
+        },
+        "gappedTargetPhrase": "Tus bolsas son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-16:i10:r1",
+            "text": "rojas"
+          },
+          {
+            "responseId": "es:lesson-04:session-16:i10:r2",
+            "text": "rojos"
+          },
+          {
+            "responseId": "es:lesson-04:session-16:i10:r3",
+            "text": "roja"
+          }
+        ],
+        "testedDimension": "Вставьте слово — твои сумки красные",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-16:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — твои сумки красные",
+            "feedbackByLocale": {
+              "ru": "Bolsas женского рода.",
+              "uk": "Bolsas жіночого роду."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-16:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — твои сумки красные",
+            "feedbackByLocale": {
+              "ru": "Сумок несколько: rojas.",
+              "uk": "Сумок кілька: rojas."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-16:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это мои ключи",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-16:i11:r1",
+          "text": "Плитки: llaves"
+        },
+        {
+          "responseId": "es:lesson-04:session-16:i11:r2",
+          "text": "mis"
+        },
+        {
+          "responseId": "es:lesson-04:session-16:i11:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-16:i11:r4",
+          "text": "mi."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это мои ключи",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son mis llaves.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это мои ключи",
+          "uk": "Зберіть фразу — це мої ключі"
+        },
+        "orderedTokens": [
+          "Son",
+          "mis",
+          "llaves"
+        ],
+        "authoredDistractorTokens": [
+          "mi"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-16:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это мои ключи",
+            "feedbackByLocale": {
+              "ru": "ключей несколько.",
+              "uk": "ключів кілька."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-16:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — это твоя машина?",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-16:i12:r1",
+          "text": "Es"
+        },
+        {
+          "responseId": "es:lesson-04:session-16:i12:r2",
+          "text": "Son"
+        },
+        {
+          "responseId": "es:lesson-04:session-16:i12:r3",
+          "text": "Soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — это твоя машина?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это твоя машина?",
+          "uk": "Вставте слово — це твоя машина?"
+        },
+        "gappedTargetPhrase": "¿___ tu carro?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-16:i12:r1",
+            "text": "Es"
+          },
+          {
+            "responseId": "es:lesson-04:session-16:i12:r2",
+            "text": "Son"
+          },
+          {
+            "responseId": "es:lesson-04:session-16:i12:r3",
+            "text": "Soy"
+          }
+        ],
+        "testedDimension": "Вставьте слово — это твоя машина?",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-16:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это твоя машина?",
+            "feedbackByLocale": {
+              "ru": "Машина одна: es.",
+              "uk": "Машина одна: es."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-16:i12:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это твоя машина?",
+            "feedbackByLocale": {
+              "ru": "Речь о машине, а не «я».",
+              "uk": "Йдеться про машину, а не «я»."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-16:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — это твоя книга; начните с Es",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-16:i13:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — это твоя книга; начните с Es",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-16:i13:audio",
+          "transcript": "Es tu libro."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es tu libro.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-16:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — это твои книги; начните с Son",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-16:i14:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — это твои книги; начните с Son",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-16:i14:audio",
+          "transcript": "Son tus libros."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son tus libros.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-16:i15",
+      "ordinal": 18,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — это твоя сумка? Начните с ¿Es, используйте bolsa",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-16:i15:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — это твоя сумка? Начните с ¿Es, используйте bolsa",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-16:i15:audio",
+          "transcript": "¿Es tu bolsa?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Es tu bolsa?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-16:i16",
+      "ordinal": 19,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — это не твои ключи; начните с No son",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-16:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — это не твои ключи; начните с No son",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-16:i16:audio",
+          "transcript": "No son tus llaves."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No son tus llaves.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-16:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — твои туфли чёрные; начните с Tus zapatos",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-16:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — твои туфли чёрные; начните с Tus zapatos",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-16:i17:audio",
+          "transcript": "Tus zapatos son negros."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tus zapatos son negros.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-16:i18",
+      "ordinal": 21,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — твои сумки красные; начните с Tus bolsas",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-16:i18:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — твои сумки красные; начните с Tus bolsas",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-16:i18:audio",
+          "transcript": "Tus bolsas son rojas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tus bolsas son rojas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 18,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "effe7ddaf6eec7e02282fbb871002e574973ee8a4f55f03b7d641e06b0591155"
+}

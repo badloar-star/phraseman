@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-04:session-16",
+  "entries": [
+    {
+      "interactionId": "es:lesson-04:session-16:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-16:intro1:r2": {
+          "ru": "Для одной книги нужно tu.",
+          "uk": "Для однієї книжки потрібне tu."
+        },
+        "es:lesson-04:session-16:intro1:r3": {
+          "ru": "Перед tu здесь не нужен артикль.",
+          "uk": "Перед tu тут не потрібен артикль."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-16:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-16:intro2:r2": {
+          "ru": "Сумка одна: es.",
+          "uk": "Сумка одна: es."
+        },
+        "es:lesson-04:session-16:intro2:r3": {
+          "ru": "Перед единственным bolsa нужно tu.",
+          "uk": "Перед одниною bolsa потрібне tu."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-16:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-16:intro3:r2": {
+          "ru": "Несколько ключей: son.",
+          "uk": "Кілька ключів: son."
+        },
+        "es:lesson-04:session-16:intro3:r3": {
+          "ru": "Множественное число вещей требует tus.",
+          "uk": "Множина речей потребує tus."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "0f339a7742bbddf5ad35ce38c36240c5aa7dd45bca6365ddd3392c3aa3cc9d22"
+}

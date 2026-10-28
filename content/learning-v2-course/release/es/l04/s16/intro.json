@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-04:session-16",
+  "learningOutcomeByLocale": {
+    "ru": "выбирать tu или tus, уточнять принадлежность и исправлять ошибку.",
+    "uk": "вибирати tu або tus, уточнювати належність і виправляти помилку."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-04:session-16:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Вернуть книгу",
+        "uk": "Повернути книжку"
+      },
+      "bodyByLocale": {
+        "ru": "Передаёте другу его книгу. Скажите `Es tu libro` — «Это твоя книга». Соберите `es` + `tu libro`. Одна вещь требует tu. Не добавляйте el перед tu: слово tu уже показывает, чья книга.",
+        "uk": "Передаєте другу його книжку. Скажіть `Es tu libro` — «Це твоя книжка». Зберіть `es` + `tu libro`. Одна річ потребує tu. Не додавайте el перед tu: слово tu вже показує, чия книжка."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-16:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите другу: «Это твоя книга». Начните с Es.",
+          "uk": "Скажіть другу: «Це твоя книжка». Почніть з Es."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-16:intro1:r1",
+              "text": "Es tu libro."
+            },
+            {
+              "responseId": "es:lesson-04:session-16:intro1:r2",
+              "text": "Es tus libro."
+            },
+            {
+              "responseId": "es:lesson-04:session-16:intro1:r3",
+              "text": "Es el tu libro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-16:intro1:r1",
+              "text": "Es tu libro."
+            },
+            {
+              "responseId": "es:lesson-04:session-16:intro1:r2",
+              "text": "Es tus libro."
+            },
+            {
+              "responseId": "es:lesson-04:session-16:intro1:r3",
+              "text": "Es el tu libro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите другу: «Это твоя книга». Начните с Es.",
+          "uk": "Скажіть другу: «Це твоя книжка». Почніть з Es."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-04:session-16:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Уточнить про сумку",
+        "uk": "Уточнити про сумку"
+      },
+      "bodyByLocale": {
+        "ru": "Осталась сумка, и вы не уверены, принадлежит ли она другу. Спросите `¿Es tu bolsa?` — «Это твоя сумка?» Соберите `es` + `tu bolsa` и произнесите с вопросительной интонацией. На письме поставьте ¿ в начале и ? в конце. Здесь называем сумку словом bolsa.",
+        "uk": "Залишилася сумка, і ви не впевнені, чи належить вона другу. Запитайте `¿Es tu bolsa?` — «Це твоя сумка?» Зберіть `es` + `tu bolsa` і вимовте з питальною інтонацією. На письмі поставте ¿ на початку та ? у кінці. Тут називаємо сумку словом bolsa."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-16:intro2:q",
+        "promptByLocale": {
+          "ru": "Спросите друга: «Это твоя сумка?» Начните с ¿Es, используйте bolsa.",
+          "uk": "Запитайте друга: «Це твоя сумка?» Почніть з ¿Es, використайте bolsa."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-16:intro2:r1",
+              "text": "¿Es tu bolsa?"
+            },
+            {
+              "responseId": "es:lesson-04:session-16:intro2:r2",
+              "text": "¿Son tu bolsa?"
+            },
+            {
+              "responseId": "es:lesson-04:session-16:intro2:r3",
+              "text": "¿Es tus bolsa?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-16:intro2:r1",
+              "text": "¿Es tu bolsa?"
+            },
+            {
+              "responseId": "es:lesson-04:session-16:intro2:r2",
+              "text": "¿Son tu bolsa?"
+            },
+            {
+              "responseId": "es:lesson-04:session-16:intro2:r3",
+              "text": "¿Es tus bolsa?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите друга: «Это твоя сумка?» Начните с ¿Es, используйте bolsa.",
+          "uk": "Запитайте друга: «Це твоя сумка?» Почніть з ¿Es, використайте bolsa."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-04:session-16:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Не перепутать ключи",
+        "uk": "Не переплутати ключі"
+      },
+      "bodyByLocale": {
+        "ru": "Друг потянулся к ключам другого гостя. Скажите `No son tus llaves` — «Это не твои ключи». Соберите `no` + `son` + `tus llaves`. No поставьте перед son. Son и tus выбираем потому, что ключей несколько, хотя обращаемся к одному другу.",
+        "uk": "Друг потягнувся до ключів іншого гостя. Скажіть `No son tus llaves` — «Це не твої ключі». Зберіть `no` + `son` + `tus llaves`. No поставте перед son. Son і tus вибираємо тому, що ключів кілька, хоча звертаємося до одного друга."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-16:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите другу: «Это не твои ключи». Начните с No son.",
+          "uk": "Скажіть другу: «Це не твої ключі». Почніть з No son."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-16:intro3:r1",
+              "text": "No son tus llaves."
+            },
+            {
+              "responseId": "es:lesson-04:session-16:intro3:r2",
+              "text": "No es tus llaves."
+            },
+            {
+              "responseId": "es:lesson-04:session-16:intro3:r3",
+              "text": "No son tu llaves."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-16:intro3:r1",
+              "text": "No son tus llaves."
+            },
+            {
+              "responseId": "es:lesson-04:session-16:intro3:r2",
+              "text": "No es tus llaves."
+            },
+            {
+              "responseId": "es:lesson-04:session-16:intro3:r3",
+              "text": "No son tu llaves."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите другу: «Это не твои ключи». Начните с No son.",
+          "uk": "Скажіть другу: «Це не твої ключі». Почніть з No son."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a982b251aa63a49d1d89e51d19360ca427ea860523f70fd97cd02453c44b775d"
+}

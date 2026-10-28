@@ -987,4 +987,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"описать хрупкость одной или нескольких вещей словом frágil.","uk":"описувати крихкість однієї чи кількох речей словом frágil."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 29,
+    sourceFingerprint: "cfc5290f40e26990f333a748c6e014fafc76df90727e95bd8a2dd4d872080ba9",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"согласовать знакомые caro и barato с разными вещами.","uk":"узгоджувати знайомі caro і barato з різними речами."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 30,
+    sourceFingerprint: "671703e0b6fb7897720e39330dfee5e6e46e37c0fe562dfbcaf9d546f91ac93e",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"описать удобство нескольких вещей женского рода.","uk":"описувати зручність кількох речей жіночого роду."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+  }),
 ]);

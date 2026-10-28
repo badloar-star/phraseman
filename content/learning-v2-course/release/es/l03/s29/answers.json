@@ -1,0 +1,72 @@
+[
+  {
+    "interactionId": "es:lesson-03:session-29:i01",
+    "correctText": "caros",
+    "correctResponseId": "es:lesson-03:session-29:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-29:i02",
+    "correctText": "Los zapatos son caros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-29:i03",
+    "correctText": "baratas",
+    "correctResponseId": "es:lesson-03:session-29:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-29:i04",
+    "correctText": "Las bolsas son baratas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-29:i05",
+    "correctText": "barato",
+    "correctResponseId": "es:lesson-03:session-29:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-29:i06",
+    "correctText": "El bolso es barato.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-29:i07",
+    "correctText": "La bolsa es cara.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-29:i08",
+    "correctText": "cara",
+    "correctResponseId": "es:lesson-03:session-29:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-29:i09",
+    "correctText": "baratas",
+    "correctResponseId": "es:lesson-03:session-29:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-29:i10",
+    "correctText": "caro",
+    "correctResponseId": "es:lesson-03:session-29:i10:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-29:i11",
+    "correctText": "Los zapatos son caros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-29:i12",
+    "correctText": "Las bolsas son baratas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-29:i13",
+    "correctText": "El bolso es barato.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-29:i14",
+    "correctText": "La bolsa es cara.",
+    "correctResponseId": null
+  }
+]

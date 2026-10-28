@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-03:session-30",
+  "learningOutcomeByLocale": {
+    "ru": "описать удобство нескольких вещей женского рода.",
+    "uk": "описувати зручність кількох речей жіночого роду."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-03:session-30:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Удобно сидеть",
+        "uk": "Зручно сидіти"
+      },
+      "bodyByLocale": {
+        "ru": "Проверили несколько одинаковых стульев: сидеть удобно. Скажите `Las sillas son cómodas` — «Стулья удобные». Соберите `las sillas` + `son` + `cómodas`. Испанское sillas женского рода и во множественном числе: у признака окончание -as. Род русского слова «стул» здесь не влияет.",
+        "uk": "Перевірили кілька однакових стільців: сидіти зручно. Скажіть `Las sillas son cómodas` — «Стільці зручні». Зберіть `las sillas` + `son` + `cómodas`. Іспанське sillas жіночого роду й у множині: ознака має закінчення -as. Рід українського слова «стілець» тут не впливає."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-30:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите, что стулья удобные.",
+          "uk": "Скажіть, що стільці зручні."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-30:intro1:r1",
+              "text": "Las sillas son cómodas."
+            },
+            {
+              "responseId": "es:lesson-03:session-30:intro1:r2",
+              "text": "Las sillas son cómodos."
+            },
+            {
+              "responseId": "es:lesson-03:session-30:intro1:r3",
+              "text": "Las sillas son cómoda."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-30:intro1:r1",
+              "text": "Las sillas son cómodas."
+            },
+            {
+              "responseId": "es:lesson-03:session-30:intro1:r2",
+              "text": "Las sillas son cómodos."
+            },
+            {
+              "responseId": "es:lesson-03:session-30:intro1:r3",
+              "text": "Las sillas son cómoda."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что стулья удобные.",
+          "uk": "Скажіть, що стільці зручні."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-03:session-30:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Другие стулья неудобные",
+        "uk": "Інші стільці незручні"
+      },
+      "bodyByLocale": {
+        "ru": "Пробуете старые стулья: спинка мешает удобно устроиться. Скажите `Las sillas son incómodas` — «Стулья неудобные». Соберите `las sillas` + `son` + `incómodas`. Знакомое incómodo получает женское множественное -as. В этой фразе уже само слово означает «неудобные»; no добавлять не нужно.",
+        "uk": "Пробуєте старі стільці: спинка заважає зручно влаштуватися. Скажіть `Las sillas son incómodas` — «Стільці незручні». Зберіть `las sillas` + `son` + `incómodas`. Знайоме incómodo отримує жіноче множинне -as. У цій фразі вже саме слово означає «незручні»; no додавати не потрібно."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-30:intro2:q",
+        "promptByLocale": {
+          "ru": "Опишите стулья словом incómodas.",
+          "uk": "Опишіть стільці словом incómodas."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-30:intro2:r1",
+              "text": "Las sillas son incómodas."
+            },
+            {
+              "responseId": "es:lesson-03:session-30:intro2:r2",
+              "text": "Las sillas son incómodos."
+            },
+            {
+              "responseId": "es:lesson-03:session-30:intro2:r3",
+              "text": "Las sillas son incómoda."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-30:intro2:r1",
+              "text": "Las sillas son incómodas."
+            },
+            {
+              "responseId": "es:lesson-03:session-30:intro2:r2",
+              "text": "Las sillas son incómodos."
+            },
+            {
+              "responseId": "es:lesson-03:session-30:intro2:r3",
+              "text": "Las sillas son incómoda."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Опишите стулья словом incómodas.",
+          "uk": "Опишіть стільці словом incómodas."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-03:session-30:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Не очень удобные",
+        "uk": "Не дуже зручні"
+      },
+      "bodyByLocale": {
+        "ru": "Ещё несколько стульев пригодны, но долго сидеть на них не хочется. Смягчите оценку: `Las sillas no son muy cómodas` — «Стулья не очень удобные». Соберите `las sillas` + `no son` + `muy cómodas`. No перед son отрицает «очень удобные». Muy остаётся без изменения, а cómodas согласуется со стульями.",
+        "uk": "Ще кілька стільців придатні, але довго сидіти на них не хочеться. Пом'якшіть оцінку: `Las sillas no son muy cómodas` — «Стільці не дуже зручні». Зберіть `las sillas` + `no son` + `muy cómodas`. No перед son заперечує «дуже зручні». Muy залишається без змін, а cómodas узгоджується зі стільцями."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-30:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите, что стулья не очень удобные.",
+          "uk": "Скажіть, що стільці не дуже зручні."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-30:intro3:r1",
+              "text": "Las sillas no son muy cómodas."
+            },
+            {
+              "responseId": "es:lesson-03:session-30:intro3:r2",
+              "text": "Las sillas no es muy cómodas."
+            },
+            {
+              "responseId": "es:lesson-03:session-30:intro3:r3",
+              "text": "Las sillas no son muy cómoda."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-30:intro3:r1",
+              "text": "Las sillas no son muy cómodas."
+            },
+            {
+              "responseId": "es:lesson-03:session-30:intro3:r2",
+              "text": "Las sillas no es muy cómodas."
+            },
+            {
+              "responseId": "es:lesson-03:session-30:intro3:r3",
+              "text": "Las sillas no son muy cómoda."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что стулья не очень удобные.",
+          "uk": "Скажіть, що стільці не дуже зручні."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "4f7863eb51b5ad48939d0db842e35aa1f44f48fc1acf61991ec844b80d209392"
+}

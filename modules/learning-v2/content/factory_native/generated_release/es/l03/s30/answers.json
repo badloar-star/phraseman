@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-03:session-30:i01",
+    "correctText": "cómodas",
+    "correctResponseId": "es:lesson-03:session-30:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-30:i02",
+    "correctText": "Las sillas son cómodas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-30:i03",
+    "correctText": "incómodas",
+    "correctResponseId": "es:lesson-03:session-30:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-30:i04",
+    "correctText": "Las sillas son incómodas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-30:i05",
+    "correctText": "cómodas",
+    "correctResponseId": "es:lesson-03:session-30:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-30:i06",
+    "correctText": "Las sillas no son muy cómodas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-30:i07",
+    "correctText": "Las sillas son muy cómodas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-30:i08",
+    "correctText": "cómoda",
+    "correctResponseId": "es:lesson-03:session-30:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-30:i09",
+    "correctText": "Las sillas son cómodas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-30:i10",
+    "correctText": "Las sillas son incómodas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-30:i11",
+    "correctText": "Las sillas no son muy cómodas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-30:i12",
+    "correctText": "Las sillas son muy cómodas.",
+    "correctResponseId": null
+  }
+]

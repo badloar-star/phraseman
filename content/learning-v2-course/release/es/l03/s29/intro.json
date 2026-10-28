@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-03:session-29",
+  "learningOutcomeByLocale": {
+    "ru": "согласовать знакомые caro и barato с разными вещами.",
+    "uk": "узгоджувати знайомі caro і barato з різними речами."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-03:session-29:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Дорогие туфли",
+        "uk": "Дорогі туфлі"
+      },
+      "bodyByLocale": {
+        "ru": "Смотрите на ценник туфель: цена высокая. Скажите `Los zapatos son caros` — «Туфли дорогие». Соберите `los zapatos` + `son` + `caros`. Испанское zapatos мужского рода и во множественном числе. Поэтому у caro окончание -os, даже если по-русски говорим «туфли».",
+        "uk": "Дивитеся на цінник туфель: ціна висока. Скажіть `Los zapatos son caros` — «Туфлі дорогі». Зберіть `los zapatos` + `son` + `caros`. Іспанське zapatos чоловічого роду й у множині. Тому caro має закінчення -os, навіть якщо українською кажемо «туфлі»."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-29:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите, что туфли дорогие.",
+          "uk": "Скажіть, що туфлі дорогі."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-29:intro1:r1",
+              "text": "Los zapatos son caros."
+            },
+            {
+              "responseId": "es:lesson-03:session-29:intro1:r2",
+              "text": "Los zapatos son caras."
+            },
+            {
+              "responseId": "es:lesson-03:session-29:intro1:r3",
+              "text": "Los zapatos son caro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-29:intro1:r1",
+              "text": "Los zapatos son caros."
+            },
+            {
+              "responseId": "es:lesson-03:session-29:intro1:r2",
+              "text": "Los zapatos son caras."
+            },
+            {
+              "responseId": "es:lesson-03:session-29:intro1:r3",
+              "text": "Los zapatos son caro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что туфли дорогие.",
+          "uk": "Скажіть, що туфлі дорогі."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-03:session-29:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Недорогие сумки",
+        "uk": "Недорогі сумки"
+      },
+      "bodyByLocale": {
+        "ru": "На соседней полке сумки по низкой цене. Скажите `Las bolsas son baratas` — «Сумки недорогие». Соберите `las bolsas` + `son` + `baratas`. Bolsas женского рода и во множественном числе: женское barata получает -s. Здесь barato описывает цену, а не плохое качество.",
+        "uk": "На сусідній полиці сумки за низькою ціною. Скажіть `Las bolsas son baratas` — «Сумки недорогі». Зберіть `las bolsas` + `son` + `baratas`. Bolsas жіночого роду й у множині: жіноче barata отримує -s. Тут barato описує ціну, а не погану якість."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-29:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите, что сумки недорогие.",
+          "uk": "Скажіть, що сумки недорогі."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-29:intro2:r1",
+              "text": "Las bolsas son baratas."
+            },
+            {
+              "responseId": "es:lesson-03:session-29:intro2:r2",
+              "text": "Las bolsas son baratos."
+            },
+            {
+              "responseId": "es:lesson-03:session-29:intro2:r3",
+              "text": "Las bolsas son barata."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-29:intro2:r1",
+              "text": "Las bolsas son baratas."
+            },
+            {
+              "responseId": "es:lesson-03:session-29:intro2:r2",
+              "text": "Las bolsas son baratos."
+            },
+            {
+              "responseId": "es:lesson-03:session-29:intro2:r3",
+              "text": "Las bolsas son barata."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что сумки недорогие.",
+          "uk": "Скажіть, що сумки недорогі."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-03:session-29:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Одна недорогая сумка",
+        "uk": "Одна недорога сумка"
+      },
+      "bodyByLocale": {
+        "ru": "Выбрали одну сумку — el bolso. Цена подходит: `El bolso es barato` — «Сумка недорогая». Соберите `el bolso` + `es` + `barato`. Вернулись к одной вещи мужского рода: el, es, barato. Окончание -s больше не нужно.",
+        "uk": "Обрали одну сумку — el bolso. Ціна підходить: `El bolso es barato` — «Сумка недорога». Зберіть `el bolso` + `es` + `barato`. Повернулися до однієї речі чоловічого роду: el, es, barato. Закінчення -s більше не потрібне."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-29:intro3:q",
+        "promptByLocale": {
+          "ru": "Опишите недорогую сумку словом bolso.",
+          "uk": "Опишіть недорогу сумку словом bolso."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-29:intro3:r1",
+              "text": "El bolso es barato."
+            },
+            {
+              "responseId": "es:lesson-03:session-29:intro3:r2",
+              "text": "El bolso es barata."
+            },
+            {
+              "responseId": "es:lesson-03:session-29:intro3:r3",
+              "text": "El bolso es baratos."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-29:intro3:r1",
+              "text": "El bolso es barato."
+            },
+            {
+              "responseId": "es:lesson-03:session-29:intro3:r2",
+              "text": "El bolso es barata."
+            },
+            {
+              "responseId": "es:lesson-03:session-29:intro3:r3",
+              "text": "El bolso es baratos."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Опишите недорогую сумку словом bolso.",
+          "uk": "Опишіть недорогу сумку словом bolso."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "10a726d710bd5de84762050536d6e681764dea28480933fb552f933da115b554"
+}

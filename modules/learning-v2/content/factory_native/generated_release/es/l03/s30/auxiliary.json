@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-03:session-30",
+  "entries": [
+    {
+      "interactionId": "es:lesson-03:session-30:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-30:intro1:r2": {
+          "ru": "Согласуйте с sillas: cómodas.",
+          "uk": "Узгодьте з sillas: cómodas."
+        },
+        "es:lesson-03:session-30:intro1:r3": {
+          "ru": "Стульев несколько: cómodas.",
+          "uk": "Стільців кілька: cómodas."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-30:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-30:intro2:r2": {
+          "ru": "Sillas женского рода: incómodas.",
+          "uk": "Sillas жіночого роду: incómodas."
+        },
+        "es:lesson-03:session-30:intro2:r3": {
+          "ru": "Стульев несколько: incómodas.",
+          "uk": "Стільців кілька: incómodas."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-30:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-30:intro3:r2": {
+          "ru": "Стульев несколько: son.",
+          "uk": "Стільців кілька: son."
+        },
+        "es:lesson-03:session-30:intro3:r3": {
+          "ru": "Нужна форма cómodas.",
+          "uk": "Потрібна форма cómodas."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "8350e63596234a1a93c7fc3c665cebcb69cc3cc4de2196f5b37e244f2b2ebb19"
+}

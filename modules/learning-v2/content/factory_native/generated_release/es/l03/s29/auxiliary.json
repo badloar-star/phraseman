@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-03:session-29",
+  "entries": [
+    {
+      "interactionId": "es:lesson-03:session-29:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-29:intro1:r2": {
+          "ru": "Ориентируйтесь на испанское zapatos: caros.",
+          "uk": "Орієнтуйтеся на іспанське zapatos: caros."
+        },
+        "es:lesson-03:session-29:intro1:r3": {
+          "ru": "Туфель несколько: caros.",
+          "uk": "Туфель кілька: caros."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-29:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-29:intro2:r2": {
+          "ru": "Bolsas женского рода: baratas.",
+          "uk": "Bolsas жіночого роду: baratas."
+        },
+        "es:lesson-03:session-29:intro2:r3": {
+          "ru": "Сумок несколько: baratas.",
+          "uk": "Сумок кілька: baratas."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-29:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-29:intro3:r2": {
+          "ru": "С bolso нужна форма barato.",
+          "uk": "З bolso потрібна форма barato."
+        },
+        "es:lesson-03:session-29:intro3:r3": {
+          "ru": "Сумка одна: barato.",
+          "uk": "Сумка одна: barato."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "1b228b2620008dbbe8be15a2e8b21ea4ffde63f3093f83a47355d760b7815739"
+}

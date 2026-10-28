@@ -1,0 +1,704 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-03:session-30",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-03:session-30:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — стулья удобные",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-30:i01:r1",
+          "text": "cómodas"
+        },
+        {
+          "responseId": "es:lesson-03:session-30:i01:r2",
+          "text": "cómodos"
+        },
+        {
+          "responseId": "es:lesson-03:session-30:i01:r3",
+          "text": "cómoda"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — стулья удобные",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — стулья удобные",
+          "uk": "Вставте слово — стільці зручні"
+        },
+        "gappedTargetPhrase": "Las sillas son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-30:i01:r1",
+            "text": "cómodas"
+          },
+          {
+            "responseId": "es:lesson-03:session-30:i01:r2",
+            "text": "cómodos"
+          },
+          {
+            "responseId": "es:lesson-03:session-30:i01:r3",
+            "text": "cómoda"
+          }
+        ],
+        "testedDimension": "Вставьте слово — стулья удобные",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-30:i01:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — стулья удобные",
+            "feedbackByLocale": {
+              "ru": "Sillas женского рода: cómodas.",
+              "uk": "Sillas жіночого роду: cómodas."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-30:i01:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — стулья удобные",
+            "feedbackByLocale": {
+              "ru": "Стульев несколько: cómodas.",
+              "uk": "Стільців кілька: cómodas."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-30:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — стулья удобные",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-30:i02:r1",
+          "text": "Плитки: cómodas"
+        },
+        {
+          "responseId": "es:lesson-03:session-30:i02:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-30:i02:r3",
+          "text": "sillas"
+        },
+        {
+          "responseId": "es:lesson-03:session-30:i02:r4",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-03:session-30:i02:r5",
+          "text": "cómodos."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — стулья удобные",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Las sillas son cómodas.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — стулья удобные",
+          "uk": "Зберіть фразу — стільці зручні"
+        },
+        "orderedTokens": [
+          "Las",
+          "sillas",
+          "son",
+          "cómodas"
+        ],
+        "authoredDistractorTokens": [
+          "cómodos"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-30:i02:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — стулья удобные",
+            "feedbackByLocale": {
+              "ru": "sillas женского рода.",
+              "uk": "sillas жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-30:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — стулья неудобные",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-30:i03:r1",
+          "text": "incómodas"
+        },
+        {
+          "responseId": "es:lesson-03:session-30:i03:r2",
+          "text": "incómodos"
+        },
+        {
+          "responseId": "es:lesson-03:session-30:i03:r3",
+          "text": "incómoda"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — стулья неудобные",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — стулья неудобные",
+          "uk": "Вставте слово — стільці незручні"
+        },
+        "gappedTargetPhrase": "Las sillas son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-30:i03:r1",
+            "text": "incómodas"
+          },
+          {
+            "responseId": "es:lesson-03:session-30:i03:r2",
+            "text": "incómodos"
+          },
+          {
+            "responseId": "es:lesson-03:session-30:i03:r3",
+            "text": "incómoda"
+          }
+        ],
+        "testedDimension": "Вставьте слово — стулья неудобные",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-30:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — стулья неудобные",
+            "feedbackByLocale": {
+              "ru": "Sillas женского рода: incómodas.",
+              "uk": "Sillas жіночого роду: incómodas."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-30:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — стулья неудобные",
+            "feedbackByLocale": {
+              "ru": "Стульев несколько: incómodas.",
+              "uk": "Стільців кілька: incómodas."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-30:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — стулья неудобные; используйте incómodas",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-30:i04:r1",
+          "text": "Плитки: incómodas"
+        },
+        {
+          "responseId": "es:lesson-03:session-30:i04:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-30:i04:r3",
+          "text": "sillas"
+        },
+        {
+          "responseId": "es:lesson-03:session-30:i04:r4",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-03:session-30:i04:r5",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — стулья неудобные; используйте incómodas",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Las sillas son incómodas.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — стулья неудобные; используйте incómodas",
+          "uk": "Зберіть фразу — стільці незручні; використайте incómodas"
+        },
+        "orderedTokens": [
+          "Las",
+          "sillas",
+          "son",
+          "incómodas"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-30:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — стулья неудобные; используйте incómodas",
+            "feedbackByLocale": {
+              "ru": "стульев несколько.",
+              "uk": "стільців кілька."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-30:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — стулья не очень удобные",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-30:i05:r1",
+          "text": "cómodas"
+        },
+        {
+          "responseId": "es:lesson-03:session-30:i05:r2",
+          "text": "cómodos"
+        },
+        {
+          "responseId": "es:lesson-03:session-30:i05:r3",
+          "text": "cómoda"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — стулья не очень удобные",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — стулья не очень удобные",
+          "uk": "Вставте слово — стільці не дуже зручні"
+        },
+        "gappedTargetPhrase": "Las sillas no son muy ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-30:i05:r1",
+            "text": "cómodas"
+          },
+          {
+            "responseId": "es:lesson-03:session-30:i05:r2",
+            "text": "cómodos"
+          },
+          {
+            "responseId": "es:lesson-03:session-30:i05:r3",
+            "text": "cómoda"
+          }
+        ],
+        "testedDimension": "Вставьте слово — стулья не очень удобные",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-30:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — стулья не очень удобные",
+            "feedbackByLocale": {
+              "ru": "Sillas женского рода: cómodas.",
+              "uk": "Sillas жіночого роду: cómodas."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-30:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — стулья не очень удобные",
+            "feedbackByLocale": {
+              "ru": "Стульев несколько: cómodas.",
+              "uk": "Стільців кілька: cómodas."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-30:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — стулья не очень удобные",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-30:i06:r1",
+          "text": "Плитки: cómodas"
+        },
+        {
+          "responseId": "es:lesson-03:session-30:i06:r2",
+          "text": "muy"
+        },
+        {
+          "responseId": "es:lesson-03:session-30:i06:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-30:i06:r4",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-03:session-30:i06:r5",
+          "text": "sillas"
+        },
+        {
+          "responseId": "es:lesson-03:session-30:i06:r6",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-03:session-30:i06:r7",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — стулья не очень удобные",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Las sillas no son muy cómodas.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — стулья не очень удобные",
+          "uk": "Зберіть фразу — стільці не дуже зручні"
+        },
+        "orderedTokens": [
+          "Las",
+          "sillas",
+          "no",
+          "son",
+          "muy",
+          "cómodas"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-30:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — стулья не очень удобные",
+            "feedbackByLocale": {
+              "ru": "стульев несколько.",
+              "uk": "стільців кілька."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-30:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-30:i07:r1",
+          "text": "Плитки: cómodas"
+        },
+        {
+          "responseId": "es:lesson-03:session-30:i07:r2",
+          "text": "muy"
+        },
+        {
+          "responseId": "es:lesson-03:session-30:i07:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-30:i07:r4",
+          "text": "sillas"
+        },
+        {
+          "responseId": "es:lesson-03:session-30:i07:r5",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-03:session-30:i07:r6",
+          "text": "incómodas."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-30:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-30:i07:audio",
+          "transcript": "Las sillas son muy cómodas."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Las sillas son muy cómodas.",
+        "orderedTokens": [
+          "Las",
+          "sillas",
+          "son",
+          "muy",
+          "cómodas"
+        ],
+        "authoredDistractorTokens": [
+          "incómodas"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-30:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит cómodas.",
+              "uk": "звучить cómodas."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-30:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — один стул удобный",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-30:i08:r1",
+          "text": "cómoda"
+        },
+        {
+          "responseId": "es:lesson-03:session-30:i08:r2",
+          "text": "cómodo"
+        },
+        {
+          "responseId": "es:lesson-03:session-30:i08:r3",
+          "text": "cómodas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — один стул удобный",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — один стул удобный",
+          "uk": "Вставте слово — один стілець зручний"
+        },
+        "gappedTargetPhrase": "La silla es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-30:i08:r1",
+            "text": "cómoda"
+          },
+          {
+            "responseId": "es:lesson-03:session-30:i08:r2",
+            "text": "cómodo"
+          },
+          {
+            "responseId": "es:lesson-03:session-30:i08:r3",
+            "text": "cómodas"
+          }
+        ],
+        "testedDimension": "Вставьте слово — один стул удобный",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-30:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — один стул удобный",
+            "feedbackByLocale": {
+              "ru": "Silla женского рода: cómoda.",
+              "uk": "Silla жіночого роду: cómoda."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-30:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — один стул удобный",
+            "feedbackByLocale": {
+              "ru": "Стул один: cómoda.",
+              "uk": "Стілець один: cómoda."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-30:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — стулья удобные; назовите предметы",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-30:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — стулья удобные; назовите предметы",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-30:i09:audio",
+          "transcript": "Las sillas son cómodas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Las sillas son cómodas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-30:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — стулья неудобные; назовите предметы и используйте incómodas",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-30:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — стулья неудобные; назовите предметы и используйте incómodas",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-30:i10:audio",
+          "transcript": "Las sillas son incómodas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Las sillas son incómodas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-30:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — стулья не очень удобные; назовите предметы",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-30:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — стулья не очень удобные; назовите предметы",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-30:i11:audio",
+          "transcript": "Las sillas no son muy cómodas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Las sillas no son muy cómodas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-30:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — стулья очень удобные; назовите предметы",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-30:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — стулья очень удобные; назовите предметы",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-30:i12:audio",
+          "transcript": "Las sillas son muy cómodas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Las sillas son muy cómodas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "179fc8016b4532ce935f195613332b93434f53c2af7bbf29eec1b58b2f50c9c0"
+}

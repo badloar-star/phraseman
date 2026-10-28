@@ -1,0 +1,827 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-03:session-29",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-03:session-29:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — туфли дорогие",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-29:i01:r1",
+          "text": "caros"
+        },
+        {
+          "responseId": "es:lesson-03:session-29:i01:r2",
+          "text": "caras"
+        },
+        {
+          "responseId": "es:lesson-03:session-29:i01:r3",
+          "text": "caro"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — туфли дорогие",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — туфли дорогие",
+          "uk": "Вставте слово — туфлі дорогі"
+        },
+        "gappedTargetPhrase": "Los zapatos son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-29:i01:r1",
+            "text": "caros"
+          },
+          {
+            "responseId": "es:lesson-03:session-29:i01:r2",
+            "text": "caras"
+          },
+          {
+            "responseId": "es:lesson-03:session-29:i01:r3",
+            "text": "caro"
+          }
+        ],
+        "testedDimension": "Вставьте слово — туфли дорогие",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-29:i01:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — туфли дорогие",
+            "feedbackByLocale": {
+              "ru": "Zapatos мужского рода: caros.",
+              "uk": "Zapatos чоловічого роду: caros."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-29:i01:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — туфли дорогие",
+            "feedbackByLocale": {
+              "ru": "Туфель несколько: caros.",
+              "uk": "Туфель кілька: caros."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-29:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — туфли дорогие",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-29:i02:r1",
+          "text": "Плитки: caros"
+        },
+        {
+          "responseId": "es:lesson-03:session-29:i02:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-29:i02:r3",
+          "text": "zapatos"
+        },
+        {
+          "responseId": "es:lesson-03:session-29:i02:r4",
+          "text": "los"
+        },
+        {
+          "responseId": "es:lesson-03:session-29:i02:r5",
+          "text": "caras."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — туфли дорогие",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Los zapatos son caros.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — туфли дорогие",
+          "uk": "Зберіть фразу — туфлі дорогі"
+        },
+        "orderedTokens": [
+          "Los",
+          "zapatos",
+          "son",
+          "caros"
+        ],
+        "authoredDistractorTokens": [
+          "caras"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-29:i02:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — туфли дорогие",
+            "feedbackByLocale": {
+              "ru": "zapatos мужского рода.",
+              "uk": "zapatos чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-29:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — сумки недорогие",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-29:i03:r1",
+          "text": "baratas"
+        },
+        {
+          "responseId": "es:lesson-03:session-29:i03:r2",
+          "text": "baratos"
+        },
+        {
+          "responseId": "es:lesson-03:session-29:i03:r3",
+          "text": "barata"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — сумки недорогие",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — сумки недорогие",
+          "uk": "Вставте слово — сумки недорогі"
+        },
+        "gappedTargetPhrase": "Las bolsas son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-29:i03:r1",
+            "text": "baratas"
+          },
+          {
+            "responseId": "es:lesson-03:session-29:i03:r2",
+            "text": "baratos"
+          },
+          {
+            "responseId": "es:lesson-03:session-29:i03:r3",
+            "text": "barata"
+          }
+        ],
+        "testedDimension": "Вставьте слово — сумки недорогие",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-29:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — сумки недорогие",
+            "feedbackByLocale": {
+              "ru": "Bolsas женского рода: baratas.",
+              "uk": "Bolsas жіночого роду: baratas."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-29:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — сумки недорогие",
+            "feedbackByLocale": {
+              "ru": "Сумок несколько: baratas.",
+              "uk": "Сумок кілька: baratas."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-29:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — сумки недорогие; используйте bolsas",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-29:i04:r1",
+          "text": "Плитки: baratas"
+        },
+        {
+          "responseId": "es:lesson-03:session-29:i04:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-29:i04:r3",
+          "text": "bolsas"
+        },
+        {
+          "responseId": "es:lesson-03:session-29:i04:r4",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-03:session-29:i04:r5",
+          "text": "baratos."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — сумки недорогие; используйте bolsas",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Las bolsas son baratas.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — сумки недорогие; используйте bolsas",
+          "uk": "Зберіть фразу — сумки недорогі; використайте bolsas"
+        },
+        "orderedTokens": [
+          "Las",
+          "bolsas",
+          "son",
+          "baratas"
+        ],
+        "authoredDistractorTokens": [
+          "baratos"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-29:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — сумки недорогие; используйте bolsas",
+            "feedbackByLocale": {
+              "ru": "bolsas женского рода.",
+              "uk": "bolsas жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-29:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — сумка недорогая; используйте bolso",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-29:i05:r1",
+          "text": "barato"
+        },
+        {
+          "responseId": "es:lesson-03:session-29:i05:r2",
+          "text": "barata"
+        },
+        {
+          "responseId": "es:lesson-03:session-29:i05:r3",
+          "text": "baratos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — сумка недорогая; используйте bolso",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — сумка недорогая; используйте bolso",
+          "uk": "Вставте слово — сумка недорога; використайте bolso"
+        },
+        "gappedTargetPhrase": "El bolso es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-29:i05:r1",
+            "text": "barato"
+          },
+          {
+            "responseId": "es:lesson-03:session-29:i05:r2",
+            "text": "barata"
+          },
+          {
+            "responseId": "es:lesson-03:session-29:i05:r3",
+            "text": "baratos"
+          }
+        ],
+        "testedDimension": "Вставьте слово — сумка недорогая; используйте bolso",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-29:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — сумка недорогая; используйте bolso",
+            "feedbackByLocale": {
+              "ru": "Bolso мужского рода: barato.",
+              "uk": "Bolso чоловічого роду: barato."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-29:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — сумка недорогая; используйте bolso",
+            "feedbackByLocale": {
+              "ru": "Сумка одна: barato.",
+              "uk": "Сумка одна: barato."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-29:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — сумка недорогая; используйте bolso",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-29:i06:r1",
+          "text": "Плитки: barato"
+        },
+        {
+          "responseId": "es:lesson-03:session-29:i06:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-29:i06:r3",
+          "text": "bolso"
+        },
+        {
+          "responseId": "es:lesson-03:session-29:i06:r4",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-03:session-29:i06:r5",
+          "text": "barata."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — сумка недорогая; используйте bolso",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "El bolso es barato.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — сумка недорогая; используйте bolso",
+          "uk": "Зберіть фразу — сумка недорога; використайте bolso"
+        },
+        "orderedTokens": [
+          "El",
+          "bolso",
+          "es",
+          "barato"
+        ],
+        "authoredDistractorTokens": [
+          "barata"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-29:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — сумка недорогая; используйте bolso",
+            "feedbackByLocale": {
+              "ru": "bolso мужского рода.",
+              "uk": "bolso чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-29:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-29:i07:r1",
+          "text": "Плитки: cara"
+        },
+        {
+          "responseId": "es:lesson-03:session-29:i07:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-29:i07:r3",
+          "text": "bolsa"
+        },
+        {
+          "responseId": "es:lesson-03:session-29:i07:r4",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-03:session-29:i07:r5",
+          "text": "caro."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-29:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-29:i07:audio",
+          "transcript": "La bolsa es cara."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "La bolsa es cara.",
+        "orderedTokens": [
+          "La",
+          "bolsa",
+          "es",
+          "cara"
+        ],
+        "authoredDistractorTokens": [
+          "caro"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-29:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит cara.",
+              "uk": "звучить cara."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-29:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — одна сумка дорогая; используйте bolsa",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-29:i08:r1",
+          "text": "cara"
+        },
+        {
+          "responseId": "es:lesson-03:session-29:i08:r2",
+          "text": "caro"
+        },
+        {
+          "responseId": "es:lesson-03:session-29:i08:r3",
+          "text": "caras"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — одна сумка дорогая; используйте bolsa",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — одна сумка дорогая; используйте bolsa",
+          "uk": "Вставте слово — одна сумка дорога; використайте bolsa"
+        },
+        "gappedTargetPhrase": "La bolsa es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-29:i08:r1",
+            "text": "cara"
+          },
+          {
+            "responseId": "es:lesson-03:session-29:i08:r2",
+            "text": "caro"
+          },
+          {
+            "responseId": "es:lesson-03:session-29:i08:r3",
+            "text": "caras"
+          }
+        ],
+        "testedDimension": "Вставьте слово — одна сумка дорогая; используйте bolsa",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-29:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — одна сумка дорогая; используйте bolsa",
+            "feedbackByLocale": {
+              "ru": "Bolsa женского рода: cara.",
+              "uk": "Bolsa жіночого роду: cara."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-29:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — одна сумка дорогая; используйте bolsa",
+            "feedbackByLocale": {
+              "ru": "Сумка одна: cara.",
+              "uk": "Сумка одна: cara."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-29:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — сумки недорогие; используйте bolsas",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-29:i09:r1",
+          "text": "baratas"
+        },
+        {
+          "responseId": "es:lesson-03:session-29:i09:r2",
+          "text": "baratos"
+        },
+        {
+          "responseId": "es:lesson-03:session-29:i09:r3",
+          "text": "barata"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — сумки недорогие; используйте bolsas",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — сумки недорогие; используйте bolsas",
+          "uk": "Вставте слово — сумки недорогі; використайте bolsas"
+        },
+        "gappedTargetPhrase": "Las bolsas son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-29:i09:r1",
+            "text": "baratas"
+          },
+          {
+            "responseId": "es:lesson-03:session-29:i09:r2",
+            "text": "baratos"
+          },
+          {
+            "responseId": "es:lesson-03:session-29:i09:r3",
+            "text": "barata"
+          }
+        ],
+        "testedDimension": "Вставьте слово — сумки недорогие; используйте bolsas",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-29:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — сумки недорогие; используйте bolsas",
+            "feedbackByLocale": {
+              "ru": "Bolsas женского рода: baratas.",
+              "uk": "Bolsas жіночого роду: baratas."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-29:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — сумки недорогие; используйте bolsas",
+            "feedbackByLocale": {
+              "ru": "Сумок несколько: baratas.",
+              "uk": "Сумок кілька: baratas."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-29:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — сумка дорогая; используйте bolso",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-29:i10:r1",
+          "text": "caro"
+        },
+        {
+          "responseId": "es:lesson-03:session-29:i10:r2",
+          "text": "cara"
+        },
+        {
+          "responseId": "es:lesson-03:session-29:i10:r3",
+          "text": "caros"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — сумка дорогая; используйте bolso",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — сумка дорогая; используйте bolso",
+          "uk": "Вставте слово — сумка дорога; використайте bolso"
+        },
+        "gappedTargetPhrase": "El bolso es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-29:i10:r1",
+            "text": "caro"
+          },
+          {
+            "responseId": "es:lesson-03:session-29:i10:r2",
+            "text": "cara"
+          },
+          {
+            "responseId": "es:lesson-03:session-29:i10:r3",
+            "text": "caros"
+          }
+        ],
+        "testedDimension": "Вставьте слово — сумка дорогая; используйте bolso",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-29:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — сумка дорогая; используйте bolso",
+            "feedbackByLocale": {
+              "ru": "Bolso мужского рода: caro.",
+              "uk": "Bolso чоловічого роду: caro."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-29:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — сумка дорогая; используйте bolso",
+            "feedbackByLocale": {
+              "ru": "Сумка одна: caro.",
+              "uk": "Сумка одна: caro."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-29:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — туфли дорогие; назовите предметы",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-29:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — туфли дорогие; назовите предметы",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-29:i11:audio",
+          "transcript": "Los zapatos son caros."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Los zapatos son caros.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-29:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — сумки недорогие; назовите их словом bolsas",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-29:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — сумки недорогие; назовите их словом bolsas",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-29:i12:audio",
+          "transcript": "Las bolsas son baratas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Las bolsas son baratas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-29:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — сумка недорогая; назовите её словом bolso",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-29:i13:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — сумка недорогая; назовите её словом bolso",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-29:i13:audio",
+          "transcript": "El bolso es barato."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "El bolso es barato.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-29:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — сумка дорогая; назовите её словом bolsa",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-29:i14:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — сумка дорогая; назовите её словом bolsa",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-29:i14:audio",
+          "transcript": "La bolsa es cara."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "La bolsa es cara.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 14,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "f7dff0ca3807e0761de0b2f96cf6487f3361b773ea7fc59e9f66820b6cd5b2da"
+}

@@ -1,4 +1,5 @@
 import React from 'react';
+import { themeRoleColors } from './theme_role_colors';
 import { Text, View, StyleSheet } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import type { IntroLine, IntroTextPart, IntroTextTone, LessonIntroExample, LessonIntroScreen, LessonIntroBlockKind } from '../app/lesson_data_types';
@@ -244,6 +245,7 @@ export function legacyExampleMeta(
 
 export function toneStyle(tone: IntroTextTone | undefined, t: any, accent: string, isLight: boolean) {
   const resolved = tone ?? 'normal';
+  const roles = themeRoleColors(accent, typeof t?.bgCard === 'string' ? t.bgCard : '', isLight);
   const colorByTone: Record<IntroTextTone, string> = {
     normal: t.textPrimary,
     muted: t.textMuted,
@@ -252,8 +254,8 @@ export function toneStyle(tone: IntroTextTone | undefined, t: any, accent: strin
     success: t.correct,
     danger: t.wrong,
     warning: t.gold,
-    formula: isLight ? '#6D28D9' : '#C4B5FD', // theme-exempt: интро урока: пары светлая/тёмная заданы по режиму темы, цвет блока по группе уроков (токены — у «Тем»)
-    code: isLight ? '#0369A1' : '#7DD3FC', // theme-exempt: интро урока: пары светлая/тёмная заданы по режиму темы, цвет блока по группе уроков (токены — у «Тем»)
+    formula: roles.formula, // зачем (владелец 28.10, «везде по цвету темы»): формула и код — оттенки акцента текущей темы (themeRoleColors), не фиксированные фиолетовый и голубой
+    code: roles.verb,
   };
   const weightByTone: Record<IntroTextTone, '400' | '600' | '700' | '800'> = {
     normal: '400',

@@ -11,6 +11,7 @@ import Reanimated, {
 
 import type { SurveyFollowUp } from '../../app/survey_followups';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { themeRoleAlpha, themeRoleColors } from '../theme_role_colors';
 import { LUM } from '../../constants/motionHybrid';
 import { isLightThemeMode } from '../../constants/theme';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
@@ -20,14 +21,14 @@ import { useTheme } from '../ThemeContext';
 import { FlowText } from '../text-integrity/FlowText';
 import BackGlyph from '../v2/BackGlyph';
 
-export const SURVEY_PURPLE_TONE = {
-  accentDark: '#B98CFF', // theme-exempt: палитра панели награды опроса — пары светлая/тёмная заданы по режиму темы
-  accentLight: '#6D28D9', // theme-exempt: палитра панели награды опроса — пары светлая/тёмная заданы по режиму темы
-  /** Текст на залитой акцентом плашке «+1»: тёмный на лаванде, белый на фиолетовом. */
-  onAccentDark: '#17162B', // theme-exempt: палитра панели награды опроса — пары светлая/тёмная заданы по режиму темы
-  onAccentLight: '#FFFFFF', // theme-exempt: палитра панели награды опроса — пары светлая/тёмная заданы по режиму темы
-  surfaceOverlay: 'rgba(139, 92, 246, 0.16)', // theme-exempt: палитра панели награды опроса — пары светлая/тёмная заданы по режиму темы
-} as const;
+/**
+ * Цвет галочки награды и её подложка — оттенок акцента ТЕКУЩЕЙ темы (themeRoleColors), не фиксированный фиолетовый.
+ * зачем (владелец 28.10, «везде по цвету темы»): прежняя фиолетовая константа (две фиксированные пары) снята — цвет награды не фиолетовый при любой теме.
+ */
+export function surveyRewardTone(accent: string, surface: string, isLight: boolean): Readonly<{ accent: string; surfaceOverlay: string }> {
+  const roles = themeRoleColors(accent, surface, isLight);
+  return { accent: roles.subject, surfaceOverlay: themeRoleAlpha(roles.subject, 0.16) };
+}
 
 export type SurveyRewardPanelPhase = 'optimistic-reward' | 'reconciled' | 'retryable-error';
 
@@ -86,9 +87,7 @@ export default function SurveyRewardPanel({
   const reduceMotion = useReduceMotion();
   const isError = phase === 'retryable-error';
   const labels = ACTION_LABELS[lang as keyof typeof ACTION_LABELS] ?? ACTION_LABELS.ru;
-  const purpleAccent = isLightThemeMode(themeMode)
-    ? SURVEY_PURPLE_TONE.accentLight
-    : SURVEY_PURPLE_TONE.accentDark;
+  const rewardTone = surveyRewardTone(glass.accent, glass.bg, isLightThemeMode(themeMode));
   const supportingMotionStyle = useSupportingEntrance(reduceMotion);
 
   return (
@@ -104,8 +103,8 @@ export default function SurveyRewardPanel({
               <Ionicons name="alert-circle" size={56} color={t.wrong} accessibilityElementsHidden />
             </View>
           ) : (phase === 'optimistic-reward' || phase === 'reconciled') ? (
-            <View testID={phase === 'optimistic-reward' ? 'survey-pending-accepted' : 'survey-completion-check'} style={[styles.iconHalo, { backgroundColor: SURVEY_PURPLE_TONE.surfaceOverlay }]}>
-              <Ionicons name="checkmark-circle" size={56} color={purpleAccent} accessibilityElementsHidden />
+            <View testID={phase === 'optimistic-reward' ? 'survey-pending-accepted' : 'survey-completion-check'} style={[styles.iconHalo, { backgroundColor: rewardTone.surfaceOverlay }]}>
+              <Ionicons name="checkmark-circle" size={56} color={rewardTone.accent} accessibilityElementsHidden />
             </View>
           ) : null}
           <FlowText testID="survey-reward-title" provenance="authored" accessibilityRole="header" style={[styles.title, { color: glass.text, fontSize: f.h2 }]}>

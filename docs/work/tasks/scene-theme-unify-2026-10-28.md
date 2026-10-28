@@ -35,3 +35,10 @@ Contain: хардкод фиолетового в сценах заменяет�
 ## Rollback
 
 git revert коммитов правки.
+
+## Роли грамматики и панель опроса от темы (продолжение, 28.10)
+
+Governance-ID: TG-C0015AB320F9
+
+Outcome: цвета ролей грамматики (разбор теории, интро урока) и панели награды опроса — оттенки/сдвиги тона от акцента ТЕКУЩЕЙ темы вместо фиолетового #6D28D9/#C4B5FD; текст >= 4,5:1 на карточке, роли различимы между собой (OKLab); guard по всем темам.
+Scope: components/lesson_help_theory_ui.tsx, components/lesson_intro_rich.tsx, components/survey/SurveyRewardPanel.tsx, новый чистый модуль палитры ролей, guard-тест. Architecture/Security/Debt/Verification/Rollback — как выше (цвета, данные не затронуты; откат — revert).

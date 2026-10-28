@@ -11,6 +11,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { useMemo, useRef, useState } from 'react';
 import { Animated, Text, View } from 'react-native';
 import { useTheme } from './ThemeContext';
+import { themeRoleColors } from './theme_role_colors';
 import { screenTextOnGradient, type Theme, type ThemeMode } from '../constants/theme';
 
 // Разделитель текста по акцентным словам (group capture → совпадения остаются в split).
@@ -47,6 +48,7 @@ export function isLightSurface(bg?: string): boolean {
 export function theoryColors(t: Theme, themeMode: ThemeMode) {
   const sx = screenTextOnGradient(t, themeMode);
   const isLight = isLightSurface(t?.bgCard);
+  const roles = themeRoleColors(t?.accentText ?? t?.accent ?? '', typeof t?.bgCard === 'string' ? t.bgCard : '', isLight);
   return {
     primary: sx.primary,
     body: sx.primary,
@@ -57,7 +59,7 @@ export function theoryColors(t: Theme, themeMode: ThemeMode) {
     rowAltBg: isLight ? '#FFFFFFB8' : 'rgba(255,255,255,0.045)', // theme-exempt: разбор теории: пары светлая/тёмная заданы по режиму темы, роли членов предложения — семантическая палитра (токены — у «Тем»)
     // зачем (п.63, светлая + Максимум): accent — пастельная заливка (контраст 1,0–1,3 на светлых градиентных темах), а здесь он красит значок/полосу/рамку; accentText ≥ 4,5
     accent: t.accentText ?? t.accent ?? sx.second,
-    formula: isLight ? '#6D28D9' : '#C4B5FD', // theme-exempt: разбор теории: пары светлая/тёмная заданы по режиму темы, роли членов предложения — семантическая палитра (токены — у «Тем»)
+    formula: roles.formula, // зачем (владелец 28.10, «везде по цвету темы»): цвет формулы — оттенок акцента текущей темы (themeRoleColors), не фиксированный фиолетовый
     warning: t.gold ?? '#FBBF24', // theme-exempt: разбор теории: пары светлая/тёмная заданы по режиму темы, роли членов предложения — семантическая палитра (токены — у «Тем»)
     warningBg: isLight ? 'rgba(251,191,36,0.14)' : 'rgba(251,191,36,0.10)', // theme-exempt: разбор теории: пары светлая/тёмная заданы по режиму темы, роли членов предложения — семантическая палитра (токены — у «Тем»)
     success: t.correct ?? '#40C080', // theme-exempt: разбор теории: пары светлая/тёмная заданы по режиму темы, роли членов предложения — семантическая палитра (токены — у «Тем»)
@@ -67,16 +69,15 @@ export function theoryColors(t: Theme, themeMode: ThemeMode) {
     // ── Ролевые цвета для цветового кодирования грамматики (новый дизайн) ──
     // Ролевые цвета для цветового кодирования грамматики (3 роли всегда различимы).
     // ВАЖНО: НЕ берём из t.gold/t.correct — на некоторых темах (gold) они совпадают,
-    // и две роли сливались бы в один цвет. Фиксированная палитра фиолет/янтарь/бирюза
-    // со светлым и тёмным вариантом контрастна на любой карточке (8 тем).
-    // Роль 1 «подлежащее/предмет» — фиолетовый; роль 2 «связка/служебное» — янтарный;
-    // роль 3 «смысловая форма (V3/-ing/...)» — бирюзовый. Фоны-чипы полупрозрачные.
-    roleSubject: isLight ? '#6D28D9' : '#C4B5FD', // theme-exempt: разбор теории: пары светлая/тёмная заданы по режиму темы, роли членов предложения — семантическая палитра (токены — у «Тем»)
-    roleSubjectBg: isLight ? 'rgba(109,40,217,0.12)' : 'rgba(196,181,253,0.12)', // theme-exempt: разбор теории: пары светлая/тёмная заданы по режиму темы, роли членов предложения — семантическая палитра (токены — у «Тем»)
-    roleLink: isLight ? '#B45309' : '#FBBF24', // theme-exempt: разбор теории: пары светлая/тёмная заданы по режиму темы, роли членов предложения — семантическая палитра (токены — у «Тем»)
-    roleLinkBg: isLight ? 'rgba(180,83,9,0.14)' : 'rgba(251,191,36,0.13)', // theme-exempt: разбор теории: пары светлая/тёмная заданы по режиму темы, роли членов предложения — семантическая палитра (токены — у «Тем»)
-    roleVerb: isLight ? '#0F766E' : '#40C080', // theme-exempt: разбор теории: пары светлая/тёмная заданы по режиму темы, роли членов предложения — семантическая палитра (токены — у «Тем»)
-    roleVerbBg: isLight ? 'rgba(15,118,110,0.14)' : 'rgba(64,192,128,0.13)', // theme-exempt: разбор теории: пары светлая/тёмная заданы по режиму темы, роли членов предложения — семантическая палитра (токены — у «Тем»)
+    // и две роли сливались бы в один цвет. С 28.10 (владелец: «везде по цвету темы») роли — сдвиги тона 0° / +120° / +240° от акцента ТЕКУЩЕЙ темы
+    // (components/theme_role_colors.ts): текст ≥ 4,5:1 к карточке, роли различимы по расстоянию в OKLab; страж — tests/theme_role_colors_guard.test.ts.
+    // Роль 1 «подлежащее/предмет»; роль 2 «связка/служебное»; роль 3 «смысловая форма (V3/-ing/...)». Фоны-чипы полупрозрачные.
+    roleSubject: roles.subject,
+    roleSubjectBg: roles.subjectBg,
+    roleLink: roles.link,
+    roleLinkBg: roles.linkBg,
+    roleVerb: roles.verb,
+    roleVerbBg: roles.verbBg,
   };
 }
 

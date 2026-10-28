@@ -50,7 +50,8 @@ test('SurveyRewardPanel uses Liquid Glass tokens and has no pearl reward (pearls
   for (const gone of ['survey-reward-shard-asset', 'survey-reward-amount', 'oskolok', 'SHARD_REWARDS', 'useSurveyRewardImpact']) {
     assert.ok(!src.includes(gone), `pearl reward piece ${gone} removed`);
   }
-  assert.ok(src.includes('SURVEY_PURPLE_TONE'), 'экспорт цвета награды сохранён');
+  // 28.10 (владелец: «везде по цвету темы»): фиолетовая константа снята, цвет награды — surveyRewardTone от акцента темы
+  assert.ok(src.includes('surveyRewardTone') && !src.includes('SURVEY_PURPLE_TONE'), 'цвет награды — от темы, не фиксированный фиолетовый');
 });
 
 test('AchievementModal (achievements_screen) is an opaque glass dossier without gradients or hex colors', () => {

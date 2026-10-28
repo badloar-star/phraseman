@@ -113,7 +113,7 @@ I ___ not tired. → **am** · is · are
 - is — *С `I` нужно `am`, затем `not`: `I am not tired`.*
 - are — *С I нужна форма `am`: `I am not tired`.*
 
-**12 · Утверждение или отрицание? Вы опоздали — признайте это**
+**12 · «Да» или «не»? Вы опоздали — признайте это**
 <!-- interaction_id: en:lesson-01:session-03:i13; family: phrase_builder -->
 Соберите: `am` `late` `I` `not` → **I am late.**
 *(плитка `not` лишняя: она дала бы `I am not late` — «я не опоздал». Здесь нужно признать, что вы опоздали.)*

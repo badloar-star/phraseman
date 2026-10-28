@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-07:session-06",
+  "learningOutcomeByLocale": {
+    "ru": "называть восемь и девять предметов и уточнять количество.",
+    "uk": "називати вісім і дев'ять предметів та уточнювати кількість."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-07:session-06:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Восемь книг",
+        "uk": "Вісім книжок"
+      },
+      "bodyByLocale": {
+        "ru": "На столе лежат восемь книг для участников. Скажите `Hay ocho libros` — «Есть восемь книг». Соберите `Hay` + `ocho` + `libros`. Ocho — восемь. После числа используем libros во множественном числе, без артикля между числом и предметами.",
+        "uk": "На столі лежать вісім книжок для учасників. Скажіть `Hay ocho libros` — «Є вісім книжок». Складіть `Hay` + `ocho` + `libros`. Ocho — вісім. Після числа використовуємо libros у множині, без артикля між числом і предметами."
+      },
+      "question": {
+        "interactionId": "es:lesson-07:session-06:intro1:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Есть восемь книг». Начните с Hay, число поставьте перед libros.",
+          "uk": "Повідомте «Є вісім книжок». Почніть з Hay, число поставте перед libros."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-07:session-06:intro1:r1",
+              "text": "Hay ocho libros."
+            },
+            {
+              "responseId": "es:lesson-07:session-06:intro1:r2",
+              "text": "Hay ocho libro."
+            },
+            {
+              "responseId": "es:lesson-07:session-06:intro1:r3",
+              "text": "Hay nueve libros."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-07:session-06:intro1:r1",
+              "text": "Hay ocho libros."
+            },
+            {
+              "responseId": "es:lesson-07:session-06:intro1:r2",
+              "text": "Hay ocho libro."
+            },
+            {
+              "responseId": "es:lesson-07:session-06:intro1:r3",
+              "text": "Hay nueve libros."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Есть восемь книг». Начните с Hay, число поставьте перед libros.",
+          "uk": "Повідомте «Є вісім книжок». Почніть з Hay, число поставте перед libros."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-07:session-06:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Девять книг в другом месте",
+        "uk": "Дев'ять книжок в іншому місці"
+      },
+      "bodyByLocale": {
+        "ru": "Вы подошли к другому столу и насчитали там девять книг. Стоя у него, сообщите `Hay nueve libros aquí` — «Здесь есть девять книг». Соберите `Hay` + `nueve libros` + `aquí`. Число перед libros, место в конце. Теперь осталось не пересчитать одну книгу дважды.",
+        "uk": "Ви підійшли до іншого столу й нарахували там дев'ять книжок. Стоячи біля нього, повідомте `Hay nueve libros aquí` — «Тут є дев'ять книжок». Складіть `Hay` + `nueve libros` + `aquí`. Число перед libros, місце наприкінці. Тепер залишилося не порахувати одну книжку двічі."
+      },
+      "question": {
+        "interactionId": "es:lesson-07:session-06:intro2:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Здесь есть девять книг». Начните с Hay, число поставьте перед libros, место — в конце.",
+          "uk": "Повідомте «Тут є дев'ять книжок». Почніть з Hay, число поставте перед libros, місце — наприкінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-07:session-06:intro2:r1",
+              "text": "Hay nueve libros aquí."
+            },
+            {
+              "responseId": "es:lesson-07:session-06:intro2:r2",
+              "text": "Hay nueve libro aquí."
+            },
+            {
+              "responseId": "es:lesson-07:session-06:intro2:r3",
+              "text": "Hay ocho libros aquí."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-07:session-06:intro2:r1",
+              "text": "Hay nueve libros aquí."
+            },
+            {
+              "responseId": "es:lesson-07:session-06:intro2:r2",
+              "text": "Hay nueve libro aquí."
+            },
+            {
+              "responseId": "es:lesson-07:session-06:intro2:r3",
+              "text": "Hay ocho libros aquí."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Здесь есть девять книг». Начните с Hay, число поставьте перед libros, место — в конце.",
+          "uk": "Повідомте «Тут є дев'ять книжок». Почніть з Hay, число поставте перед libros, місце — наприкінці."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-07:session-06:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Проверить перед раздачей",
+        "uk": "Перевірити перед роздаванням"
+      },
+      "bodyByLocale": {
+        "ru": "Друг подготовил книги, а вы уточняете, есть ли девять экземпляров. Спросите `¿Hay nueve libros?` — «Есть девять книг?» Соберите `¿Hay` + `nueve` + `libros?`. Для вопроса сохраняем число перед существительным; голосом обозначаем вопрос.",
+        "uk": "Друг підготував книжки, а ви уточнюєте, чи є дев'ять примірників. Запитайте `¿Hay nueve libros?` — «Є дев'ять книжок?» Складіть `¿Hay` + `nueve` + `libros?`. Для запитання зберігаємо число перед іменником; голосом позначаємо запитання."
+      },
+      "question": {
+        "interactionId": "es:lesson-07:session-06:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите «Есть девять книг?». Начните с ¿Hay, число поставьте перед libros.",
+          "uk": "Запитайте «Є дев'ять книжок?». Почніть з ¿Hay, число поставте перед libros."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-07:session-06:intro3:r1",
+              "text": "¿Hay nueve libros?"
+            },
+            {
+              "responseId": "es:lesson-07:session-06:intro3:r2",
+              "text": "¿Hay nueve libro?"
+            },
+            {
+              "responseId": "es:lesson-07:session-06:intro3:r3",
+              "text": "¿Hay ocho libros?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-07:session-06:intro3:r1",
+              "text": "¿Hay nueve libros?"
+            },
+            {
+              "responseId": "es:lesson-07:session-06:intro3:r2",
+              "text": "¿Hay nueve libro?"
+            },
+            {
+              "responseId": "es:lesson-07:session-06:intro3:r3",
+              "text": "¿Hay ocho libros?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «Есть девять книг?». Начните с ¿Hay, число поставьте перед libros.",
+          "uk": "Запитайте «Є дев'ять книжок?». Почніть з ¿Hay, число поставте перед libros."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "4f032f31efc5e59b11180e77058adc0b4aae411542c7ed1b11177caa10dc9820"
+}

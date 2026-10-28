@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-07:session-08",
+  "entries": [
+    {
+      "interactionId": "es:lesson-07:session-08:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-08:intro1:r2": {
+          "ru": "Перед libro нужна короткая форма un.",
+          "uk": "Перед libro потрібна коротка форма un."
+        },
+        "es:lesson-07:session-08:intro1:r3": {
+          "ru": "Libro мужского рода: un.",
+          "uk": "Libro чоловічого роду: un."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-07:session-08:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-08:intro2:r2": {
+          "ru": "Стульев восемь: sillas.",
+          "uk": "Стільців вісім: sillas."
+        },
+        "es:lesson-07:session-08:intro2:r3": {
+          "ru": "По условию восемь: ocho.",
+          "uk": "За умовою вісім: ocho."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-07:session-08:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-08:intro3:r2": {
+          "ru": "С cero здесь нужно множественное число libros.",
+          "uk": "З cero тут потрібна множина libros."
+        },
+        "es:lesson-07:session-08:intro3:r3": {
+          "ru": "Книг нет, поэтому ноль: cero.",
+          "uk": "Книжок немає, тому нуль: cero."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a14a30f20a567e221599902c7d6dde02dc4eb83dbfaf5d772957b3ca92157583"
+}

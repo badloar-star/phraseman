@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-07:session-05",
+  "entries": [
+    {
+      "interactionId": "es:lesson-07:session-05:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-05:intro1:r2": {
+          "ru": "Стульев шесть: sillas во множественном числе.",
+          "uk": "Стільців шість: sillas у множині."
+        },
+        "es:lesson-07:session-05:intro1:r3": {
+          "ru": "Siete — семь, а здесь шесть: seis.",
+          "uk": "Siete — сім, а тут шість: seis."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-07:session-05:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-05:intro2:r2": {
+          "ru": "После siete нужно sillas.",
+          "uk": "Після siete потрібно sillas."
+        },
+        "es:lesson-07:session-05:intro2:r3": {
+          "ru": "В этой комнате семь: siete.",
+          "uk": "У цій кімнаті сім: siete."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-07:session-05:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-05:intro3:r2": {
+          "ru": "Стульев несколько: sillas.",
+          "uk": "Стільців кілька: sillas."
+        },
+        "es:lesson-07:session-05:intro3:r3": {
+          "ru": "Уточняем семь: siete.",
+          "uk": "Уточнюємо сім: siete."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "d360c99d8cc00b269a441ece7fe644857d55115b993b6809cefd62b9761cd9ce"
+}

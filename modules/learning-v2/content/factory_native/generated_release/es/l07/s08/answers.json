@@ -1,0 +1,92 @@
+[
+  {
+    "interactionId": "es:lesson-07:session-08:i01",
+    "correctText": "nueve",
+    "correctResponseId": "es:lesson-07:session-08:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-08:i02",
+    "correctText": "Un",
+    "correctResponseId": "es:lesson-07:session-08:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-08:i03",
+    "correctText": "Una silla.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-08:i04",
+    "correctText": "dos",
+    "correctResponseId": "es:lesson-07:session-08:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-08:i05",
+    "correctText": "Hay tres sillas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-08:i06",
+    "correctText": "cuatro",
+    "correctResponseId": "es:lesson-07:session-08:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-08:i07",
+    "correctText": "Hay cinco sillas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-08:i08",
+    "correctText": "seis",
+    "correctResponseId": "es:lesson-07:session-08:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-08:i09",
+    "correctText": "Hay siete sillas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-08:i10",
+    "correctText": "Hay ocho sillas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-08:i11",
+    "correctText": "nueve",
+    "correctResponseId": "es:lesson-07:session-08:i11:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-08:i12",
+    "correctText": "Hay diez libros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-08:i13",
+    "correctText": "Cero.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-08:i14",
+    "correctText": "Uno.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-08:i15",
+    "correctText": "Un libro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-08:i16",
+    "correctText": "Hay ocho sillas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-08:i17",
+    "correctText": "Cero libros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-08:i18",
+    "correctText": "¿Hay diez libros?",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-07:session-07",
+  "entries": [
+    {
+      "interactionId": "es:lesson-07:session-07:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-07:intro1:r2": {
+          "ru": "Стульев десять: sillas.",
+          "uk": "Стільців десять: sillas."
+        },
+        "es:lesson-07:session-07:intro1:r3": {
+          "ru": "По условию десять: diez.",
+          "uk": "За умовою десять: diez."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-07:session-07:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-07:intro2:r2": {
+          "ru": "Книг несколько: libros.",
+          "uk": "Книжок кілька: libros."
+        },
+        "es:lesson-07:session-07:intro2:r3": {
+          "ru": "Уточняем десять: diez.",
+          "uk": "Уточнюємо десять: diez."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-07:session-07:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-07:intro3:r2": {
+          "ru": "После diez нужно libros.",
+          "uk": "Після diez потрібно libros."
+        },
+        "es:lesson-07:session-07:intro3:r3": {
+          "ru": "Показываем на книги здесь: aquí.",
+          "uk": "Показуємо на книжки тут: aquí."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9f2e6b1556257c8758d6e7692c9b01fa55dc8d2c05b4c31183d29e1f38a1df83"
+}

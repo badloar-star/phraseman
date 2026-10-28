@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-07:session-08",
+  "learningOutcomeByLocale": {
+    "ru": "выбирать число и форму существительного от нуля до десяти.",
+    "uk": "обирати число й форму іменника від нуля до десяти."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-07:session-08:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Один предмет",
+        "uk": "Один предмет"
+      },
+      "bodyByLocale": {
+        "ru": "В первой строке списка нужно указать одну книгу. Скажите `Un libro` — «Одна книга». Соберите `Un` + `libro`. Перед существительным мужского рода libro используем un, а не полное uno. Для одного предмета само libro остаётся в единственном числе.",
+        "uk": "У першому рядку списку потрібно вказати одну книжку. Скажіть `Un libro` — «Одна книжка». Складіть `Un` + `libro`. Перед іменником чоловічого роду libro використовуємо un, а не повне uno. Для одного предмета саме libro залишається в однині."
+      },
+      "question": {
+        "interactionId": "es:lesson-07:session-08:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите «Одна книга», используя un перед libro, без hay.",
+          "uk": "Назвіть «Одна книжка», використавши un перед libro, без hay."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-07:session-08:intro1:r1",
+              "text": "Un libro."
+            },
+            {
+              "responseId": "es:lesson-07:session-08:intro1:r2",
+              "text": "Uno libro."
+            },
+            {
+              "responseId": "es:lesson-07:session-08:intro1:r3",
+              "text": "Una libro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-07:session-08:intro1:r1",
+              "text": "Un libro."
+            },
+            {
+              "responseId": "es:lesson-07:session-08:intro1:r2",
+              "text": "Uno libro."
+            },
+            {
+              "responseId": "es:lesson-07:session-08:intro1:r3",
+              "text": "Una libro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите «Одна книга», используя un перед libro, без hay.",
+          "uk": "Назвіть «Одна книжка», використавши un перед libro, без hay."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-07:session-08:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Несколько мест",
+        "uk": "Кілька місць"
+      },
+      "bodyByLocale": {
+        "ru": "Вы пересчитали стулья для участников: их восемь. Сообщите `Hay ocho sillas` — «Есть восемь стульев». Соберите `Hay` + `ocho` + `sillas`. После числа восемь существительное во множественном числе. Ocho не меняется по роду. Восемь стульев не обещают восемь гостей, но места уже готовы.",
+        "uk": "Ви перерахували стільці для учасників: їх вісім. Повідомте `Hay ocho sillas` — «Є вісім стільців». Складіть `Hay` + `ocho` + `sillas`. Після числа вісім іменник у множині. Ocho не змінюється за родом. Вісім стільців не обіцяють вісім гостей, але місця вже готові."
+      },
+      "question": {
+        "interactionId": "es:lesson-07:session-08:intro2:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Есть восемь стульев». Начните с Hay, число поставьте перед sillas.",
+          "uk": "Повідомте «Є вісім стільців». Почніть з Hay, число поставте перед sillas."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-07:session-08:intro2:r1",
+              "text": "Hay ocho sillas."
+            },
+            {
+              "responseId": "es:lesson-07:session-08:intro2:r2",
+              "text": "Hay ocho silla."
+            },
+            {
+              "responseId": "es:lesson-07:session-08:intro2:r3",
+              "text": "Hay nueve sillas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-07:session-08:intro2:r1",
+              "text": "Hay ocho sillas."
+            },
+            {
+              "responseId": "es:lesson-07:session-08:intro2:r2",
+              "text": "Hay ocho silla."
+            },
+            {
+              "responseId": "es:lesson-07:session-08:intro2:r3",
+              "text": "Hay nueve sillas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Есть восемь стульев». Начните с Hay, число поставьте перед sillas.",
+          "uk": "Повідомте «Є вісім стільців». Почніть з Hay, число поставте перед sillas."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-07:session-08:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Пустая строка списка",
+        "uk": "Порожній рядок списку"
+      },
+      "bodyByLocale": {
+        "ru": "Вы проверили запас книг в другой комнате: книг нет. Назовите количество в списке `Cero libros` — «Ноль книг». Соберите `Cero` + `libros`. С cero здесь используем множественное число. Это запись количества; обычное сообщение об отсутствии было бы No hay libros.",
+        "uk": "Ви перевірили запас книжок в іншій кімнаті: книжок немає. Назвіть кількість у списку `Cero libros` — «Нуль книжок». Складіть `Cero` + `libros`. З cero тут використовуємо множину. Це запис кількості; звичайне повідомлення про відсутність було б No hay libros."
+      },
+      "question": {
+        "interactionId": "es:lesson-07:session-08:intro3:q",
+        "promptByLocale": {
+          "ru": "Назовите запись «Ноль книг». Начните с Cero, без hay и артикля.",
+          "uk": "Назвіть запис «Нуль книжок». Почніть з Cero, без hay та артикля."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-07:session-08:intro3:r1",
+              "text": "Cero libros."
+            },
+            {
+              "responseId": "es:lesson-07:session-08:intro3:r2",
+              "text": "Cero libro."
+            },
+            {
+              "responseId": "es:lesson-07:session-08:intro3:r3",
+              "text": "Un libro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-07:session-08:intro3:r1",
+              "text": "Cero libros."
+            },
+            {
+              "responseId": "es:lesson-07:session-08:intro3:r2",
+              "text": "Cero libro."
+            },
+            {
+              "responseId": "es:lesson-07:session-08:intro3:r3",
+              "text": "Un libro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите запись «Ноль книг». Начните с Cero, без hay и артикля.",
+          "uk": "Назвіть запис «Нуль книжок». Почніть з Cero, без hay та артикля."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2f75a574b5d73ead23b80eb4eb640cf5631b7bf38eebbf20c883c59c5e3e9880"
+}

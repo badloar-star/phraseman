@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-07:session-06:i01",
+    "correctText": "ocho",
+    "correctResponseId": "es:lesson-07:session-06:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-06:i02",
+    "correctText": "ocho",
+    "correctResponseId": "es:lesson-07:session-06:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-06:i03",
+    "correctText": "Hay ocho libros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-06:i04",
+    "correctText": "nueve",
+    "correctResponseId": "es:lesson-07:session-06:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-06:i05",
+    "correctText": "Hay nueve libros aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-06:i06",
+    "correctText": "¿Hay nueve libros?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-06:i07",
+    "correctText": "Hay ocho libros aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-06:i08",
+    "correctText": "libros",
+    "correctResponseId": "es:lesson-07:session-06:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-06:i09",
+    "correctText": "Hay ocho libros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-06:i10",
+    "correctText": "Hay nueve libros aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-06:i11",
+    "correctText": "¿Hay nueve libros?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-06:i12",
+    "correctText": "Hay ocho libros aquí.",
+    "correctResponseId": null
+  }
+]

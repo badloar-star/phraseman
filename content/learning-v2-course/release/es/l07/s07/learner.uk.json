@@ -1,0 +1,668 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-07:session-07",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-07:session-07:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-07:i01:r1",
+          "text": "diez"
+        },
+        {
+          "responseId": "es:lesson-07:session-07:i01:r2",
+          "text": "seis"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-07:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-07:i01:audio",
+          "transcript": "diez"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-07:session-07:i01:r1",
+            "targetText": "diez",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-07:session-07:i01:r2",
+            "targetText": "seis",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-07:session-07:i01:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит diez — десять.",
+              "uk": "Звучить diez — десять."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-07:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — є десять стільців",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-07:i02:r1",
+          "text": "diez"
+        },
+        {
+          "responseId": "es:lesson-07:session-07:i02:r2",
+          "text": "nueve"
+        },
+        {
+          "responseId": "es:lesson-07:session-07:i02:r3",
+          "text": "ocho"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — є десять стільців",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — есть десять стульев",
+          "uk": "Вставте слово — є десять стільців"
+        },
+        "gappedTargetPhrase": "Hay ___ sillas.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-07:session-07:i02:r1",
+            "text": "diez"
+          },
+          {
+            "responseId": "es:lesson-07:session-07:i02:r2",
+            "text": "nueve"
+          },
+          {
+            "responseId": "es:lesson-07:session-07:i02:r3",
+            "text": "ocho"
+          }
+        ],
+        "testedDimension": "Вставте слово — є десять стільців",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-07:session-07:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — є десять стільців",
+            "feedbackByLocale": {
+              "ru": "Нужно десять: diez.",
+              "uk": "Потрібно десять: diez."
+            }
+          },
+          {
+            "responseId": "es:lesson-07:session-07:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — є десять стільців",
+            "feedbackByLocale": {
+              "ru": "Ocho — восемь, а нужно diez.",
+              "uk": "Ocho — вісім, а потрібно diez."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-07:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — є десять стільців; почніть з Hay, число поставте перед sillas",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-07:i03:r1",
+          "text": "Плитки: sillas"
+        },
+        {
+          "responseId": "es:lesson-07:session-07:i03:r2",
+          "text": "diez"
+        },
+        {
+          "responseId": "es:lesson-07:session-07:i03:r3",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-07:session-07:i03:r4",
+          "text": "silla."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — є десять стільців; почніть з Hay, число поставте перед sillas",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Hay diez sillas.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — есть десять стульев; начните с Hay, число поставьте перед sillas",
+          "uk": "Зберіть фразу — є десять стільців; почніть з Hay, число поставте перед sillas"
+        },
+        "orderedTokens": [
+          "Hay",
+          "diez",
+          "sillas"
+        ],
+        "authoredDistractorTokens": [
+          "silla"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-07:session-07:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — є десять стільців; почніть з Hay, число поставте перед sillas",
+            "feedbackByLocale": {
+              "ru": "стульев десять, нужно sillas.",
+              "uk": "стільців десять, потрібно sillas."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-07:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — є десять книжок?",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-07:i04:r1",
+          "text": "libros"
+        },
+        {
+          "responseId": "es:lesson-07:session-07:i04:r2",
+          "text": "libro"
+        },
+        {
+          "responseId": "es:lesson-07:session-07:i04:r3",
+          "text": "silla"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — є десять книжок?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — есть десять книг?",
+          "uk": "Вставте слово — є десять книжок?"
+        },
+        "gappedTargetPhrase": "¿Hay diez ___?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-07:session-07:i04:r1",
+            "text": "libros"
+          },
+          {
+            "responseId": "es:lesson-07:session-07:i04:r2",
+            "text": "libro"
+          },
+          {
+            "responseId": "es:lesson-07:session-07:i04:r3",
+            "text": "silla"
+          }
+        ],
+        "testedDimension": "Вставте слово — є десять книжок?",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-07:session-07:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — є десять книжок?",
+            "feedbackByLocale": {
+              "ru": "После diez нужно множественное число libros.",
+              "uk": "Після diez потрібна множина libros."
+            }
+          },
+          {
+            "responseId": "es:lesson-07:session-07:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — є десять книжок?",
+            "feedbackByLocale": {
+              "ru": "Спрашиваем про книги: libros.",
+              "uk": "Запитуємо про книжки: libros."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-07:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — є десять книжок?; почніть з ¿Hay, число поставте перед libros",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-07:i05:r1",
+          "text": "Плитки: libros?"
+        },
+        {
+          "responseId": "es:lesson-07:session-07:i05:r2",
+          "text": "¿Hay"
+        },
+        {
+          "responseId": "es:lesson-07:session-07:i05:r3",
+          "text": "diez"
+        },
+        {
+          "responseId": "es:lesson-07:session-07:i05:r4",
+          "text": "nueve."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — є десять книжок?; почніть з ¿Hay, число поставте перед libros",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Hay diez libros?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — есть десять книг?; начните с ¿Hay, число поставьте перед libros",
+          "uk": "Зберіть фразу — є десять книжок?; почніть з ¿Hay, число поставте перед libros"
+        },
+        "orderedTokens": [
+          "¿Hay",
+          "diez",
+          "libros"
+        ],
+        "authoredDistractorTokens": [
+          "nueve"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-07:session-07:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — є десять книжок?; почніть з ¿Hay, число поставте перед libros",
+            "feedbackByLocale": {
+              "ru": "нужно десять, diez.",
+              "uk": "потрібно десять, diez."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-07:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — тут є десять книжок; почніть з Hay, число поставте перед libros, місце — наприкінці",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-07:i06:r1",
+          "text": "Плитки: aquí"
+        },
+        {
+          "responseId": "es:lesson-07:session-07:i06:r2",
+          "text": "libros"
+        },
+        {
+          "responseId": "es:lesson-07:session-07:i06:r3",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-07:session-07:i06:r4",
+          "text": "diez"
+        },
+        {
+          "responseId": "es:lesson-07:session-07:i06:r5",
+          "text": "libro."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — тут є десять книжок; почніть з Hay, число поставте перед libros, місце — наприкінці",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Hay diez libros aquí.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — здесь есть десять книг; начните с Hay, число поставьте перед libros, место — в конце",
+          "uk": "Зберіть фразу — тут є десять книжок; почніть з Hay, число поставте перед libros, місце — наприкінці"
+        },
+        "orderedTokens": [
+          "Hay",
+          "diez",
+          "libros",
+          "aquí"
+        ],
+        "authoredDistractorTokens": [
+          "libro"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-07:session-07:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — тут є десять книжок; почніть з Hay, число поставте перед libros, місце — наприкінці",
+            "feedbackByLocale": {
+              "ru": "после diez нужно libros.",
+              "uk": "після diez потрібно libros."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-07:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-07:i07:r1",
+          "text": "Плитки: Hay"
+        },
+        {
+          "responseId": "es:lesson-07:session-07:i07:r2",
+          "text": "diez"
+        },
+        {
+          "responseId": "es:lesson-07:session-07:i07:r3",
+          "text": "sillas"
+        },
+        {
+          "responseId": "es:lesson-07:session-07:i07:r4",
+          "text": "aquí"
+        },
+        {
+          "responseId": "es:lesson-07:session-07:i07:r5",
+          "text": "seis."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-07:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-07:i07:audio",
+          "transcript": "Hay diez sillas aquí."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Hay diez sillas aquí.",
+        "orderedTokens": [
+          "Hay",
+          "diez",
+          "sillas",
+          "aquí"
+        ],
+        "authoredDistractorTokens": [
+          "seis"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-07:session-07:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит diez.",
+              "uk": "звучить diez."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-07:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — тут є десять книжок",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-07:i08:r1",
+          "text": "aquí"
+        },
+        {
+          "responseId": "es:lesson-07:session-07:i08:r2",
+          "text": "allí"
+        },
+        {
+          "responseId": "es:lesson-07:session-07:i08:r3",
+          "text": "una"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — тут є десять книжок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — здесь есть десять книг",
+          "uk": "Вставте слово — тут є десять книжок"
+        },
+        "gappedTargetPhrase": "Hay diez libros ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-07:session-07:i08:r1",
+            "text": "aquí"
+          },
+          {
+            "responseId": "es:lesson-07:session-07:i08:r2",
+            "text": "allí"
+          },
+          {
+            "responseId": "es:lesson-07:session-07:i08:r3",
+            "text": "una"
+          }
+        ],
+        "testedDimension": "Вставте слово — тут є десять книжок",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-07:session-07:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — тут є десять книжок",
+            "feedbackByLocale": {
+              "ru": "Здесь — aquí.",
+              "uk": "Тут — aquí."
+            }
+          },
+          {
+            "responseId": "es:lesson-07:session-07:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — тут є десять книжок",
+            "feedbackByLocale": {
+              "ru": "Нужно место aquí.",
+              "uk": "Потрібне місце aquí."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-07:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — є десять стільців; почніть з Hay, число поставте перед sillas",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-07:i09:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — є десять стільців; почніть з Hay, число поставте перед sillas",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-07:i09:audio",
+          "transcript": "Hay diez sillas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay diez sillas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-07:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — є десять книжок?; почніть з ¿Hay, число поставте перед libros",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-07:i10:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — є десять книжок?; почніть з ¿Hay, число поставте перед libros",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-07:i10:audio",
+          "transcript": "¿Hay diez libros?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Hay diez libros?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-07:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — тут є десять книжок; почніть з Hay, число поставте перед libros, місце — наприкінці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-07:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — тут є десять книжок; почніть з Hay, число поставте перед libros, місце — наприкінці",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-07:i11:audio",
+          "transcript": "Hay diez libros aquí."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay diez libros aquí.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-07:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — тут є десять стільців; почніть з Hay, число поставте перед sillas, місце — наприкінці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-07:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — тут є десять стільців; почніть з Hay, число поставте перед sillas, місце — наприкінці",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-07:i12:audio",
+          "transcript": "Hay diez sillas aquí."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay diez sillas aquí.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "9d6644133ff4b8a2cfecf33be1555802715a5d091ab69fb1fa2a8e937a4ff3b9"
+}

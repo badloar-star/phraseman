@@ -1,0 +1,668 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-07:session-05",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-07:session-05:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-05:i01:r1",
+          "text": "seis"
+        },
+        {
+          "responseId": "es:lesson-07:session-05:i01:r2",
+          "text": "siete"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-05:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-05:i01:audio",
+          "transcript": "seis"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-07:session-05:i01:r1",
+            "targetText": "seis",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-07:session-05:i01:r2",
+            "targetText": "siete",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-07:session-05:i01:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит seis — шесть.",
+              "uk": "Звучить seis — шість."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-05:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — є шість стільців",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-05:i02:r1",
+          "text": "seis"
+        },
+        {
+          "responseId": "es:lesson-07:session-05:i02:r2",
+          "text": "siete"
+        },
+        {
+          "responseId": "es:lesson-07:session-05:i02:r3",
+          "text": "cinco"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — є шість стільців",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — есть шесть стульев",
+          "uk": "Вставте слово — є шість стільців"
+        },
+        "gappedTargetPhrase": "Hay ___ sillas.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-07:session-05:i02:r1",
+            "text": "seis"
+          },
+          {
+            "responseId": "es:lesson-07:session-05:i02:r2",
+            "text": "siete"
+          },
+          {
+            "responseId": "es:lesson-07:session-05:i02:r3",
+            "text": "cinco"
+          }
+        ],
+        "testedDimension": "Вставте слово — є шість стільців",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-07:session-05:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — є шість стільців",
+            "feedbackByLocale": {
+              "ru": "Нужно шесть: seis.",
+              "uk": "Потрібно шість: seis."
+            }
+          },
+          {
+            "responseId": "es:lesson-07:session-05:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — є шість стільців",
+            "feedbackByLocale": {
+              "ru": "Cinco — пять, а нужно seis.",
+              "uk": "Cinco — п'ять, а потрібно seis."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-05:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — є шість стільців; почніть з Hay, число поставте перед sillas",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-05:i03:r1",
+          "text": "Плитки: sillas"
+        },
+        {
+          "responseId": "es:lesson-07:session-05:i03:r2",
+          "text": "seis"
+        },
+        {
+          "responseId": "es:lesson-07:session-05:i03:r3",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-07:session-05:i03:r4",
+          "text": "silla."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — є шість стільців; почніть з Hay, число поставте перед sillas",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Hay seis sillas.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — есть шесть стульев; начните с Hay, число поставьте перед sillas",
+          "uk": "Зберіть фразу — є шість стільців; почніть з Hay, число поставте перед sillas"
+        },
+        "orderedTokens": [
+          "Hay",
+          "seis",
+          "sillas"
+        ],
+        "authoredDistractorTokens": [
+          "silla"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-07:session-05:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — є шість стільців; почніть з Hay, число поставте перед sillas",
+            "feedbackByLocale": {
+              "ru": "стульев шесть, нужно sillas.",
+              "uk": "стільців шість, потрібно sillas."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-05:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — тут є сім стільців",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-05:i04:r1",
+          "text": "siete"
+        },
+        {
+          "responseId": "es:lesson-07:session-05:i04:r2",
+          "text": "seis"
+        },
+        {
+          "responseId": "es:lesson-07:session-05:i04:r3",
+          "text": "cinco"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — тут є сім стільців",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — здесь есть семь стульев",
+          "uk": "Вставте слово — тут є сім стільців"
+        },
+        "gappedTargetPhrase": "Hay ___ sillas aquí.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-07:session-05:i04:r1",
+            "text": "siete"
+          },
+          {
+            "responseId": "es:lesson-07:session-05:i04:r2",
+            "text": "seis"
+          },
+          {
+            "responseId": "es:lesson-07:session-05:i04:r3",
+            "text": "cinco"
+          }
+        ],
+        "testedDimension": "Вставте слово — тут є сім стільців",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-07:session-05:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — тут є сім стільців",
+            "feedbackByLocale": {
+              "ru": "Нужно семь: siete.",
+              "uk": "Потрібно сім: siete."
+            }
+          },
+          {
+            "responseId": "es:lesson-07:session-05:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — тут є сім стільців",
+            "feedbackByLocale": {
+              "ru": "Cinco — пять, а нужно siete.",
+              "uk": "Cinco — п'ять, а потрібно siete."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-05:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — тут є сім стільців; почніть з Hay, число поставте перед sillas, місце — наприкінці",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-05:i05:r1",
+          "text": "Плитки: aquí"
+        },
+        {
+          "responseId": "es:lesson-07:session-05:i05:r2",
+          "text": "sillas"
+        },
+        {
+          "responseId": "es:lesson-07:session-05:i05:r3",
+          "text": "siete"
+        },
+        {
+          "responseId": "es:lesson-07:session-05:i05:r4",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-07:session-05:i05:r5",
+          "text": "silla."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — тут є сім стільців; почніть з Hay, число поставте перед sillas, місце — наприкінці",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Hay siete sillas aquí.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — здесь есть семь стульев; начните с Hay, число поставьте перед sillas, место — в конце",
+          "uk": "Зберіть фразу — тут є сім стільців; почніть з Hay, число поставте перед sillas, місце — наприкінці"
+        },
+        "orderedTokens": [
+          "Hay",
+          "siete",
+          "sillas",
+          "aquí"
+        ],
+        "authoredDistractorTokens": [
+          "silla"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-07:session-05:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — тут є сім стільців; почніть з Hay, число поставте перед sillas, місце — наприкінці",
+            "feedbackByLocale": {
+              "ru": "после siete нужно sillas.",
+              "uk": "після siete потрібно sillas."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-05:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — є сім стільців?; почніть з ¿Hay, число поставте перед sillas",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-05:i06:r1",
+          "text": "Плитки: sillas?"
+        },
+        {
+          "responseId": "es:lesson-07:session-05:i06:r2",
+          "text": "siete"
+        },
+        {
+          "responseId": "es:lesson-07:session-05:i06:r3",
+          "text": "¿Hay"
+        },
+        {
+          "responseId": "es:lesson-07:session-05:i06:r4",
+          "text": "seis."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — є сім стільців?; почніть з ¿Hay, число поставте перед sillas",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Hay siete sillas?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — есть семь стульев?; начните с ¿Hay, число поставьте перед sillas",
+          "uk": "Зберіть фразу — є сім стільців?; почніть з ¿Hay, число поставте перед sillas"
+        },
+        "orderedTokens": [
+          "¿Hay",
+          "siete",
+          "sillas"
+        ],
+        "authoredDistractorTokens": [
+          "seis"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-07:session-05:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — є сім стільців?; почніть з ¿Hay, число поставте перед sillas",
+            "feedbackByLocale": {
+              "ru": "нужно семь, siete.",
+              "uk": "потрібно сім, siete."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-05:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-05:i07:r1",
+          "text": "Плитки: Hay"
+        },
+        {
+          "responseId": "es:lesson-07:session-05:i07:r2",
+          "text": "seis"
+        },
+        {
+          "responseId": "es:lesson-07:session-05:i07:r3",
+          "text": "sillas"
+        },
+        {
+          "responseId": "es:lesson-07:session-05:i07:r4",
+          "text": "aquí"
+        },
+        {
+          "responseId": "es:lesson-07:session-05:i07:r5",
+          "text": "siete."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-05:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-05:i07:audio",
+          "transcript": "Hay seis sillas aquí."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Hay seis sillas aquí.",
+        "orderedTokens": [
+          "Hay",
+          "seis",
+          "sillas",
+          "aquí"
+        ],
+        "authoredDistractorTokens": [
+          "siete"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-07:session-05:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит seis.",
+              "uk": "звучить seis."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-05:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — є сім стільців?",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-05:i08:r1",
+          "text": "sillas"
+        },
+        {
+          "responseId": "es:lesson-07:session-05:i08:r2",
+          "text": "silla"
+        },
+        {
+          "responseId": "es:lesson-07:session-05:i08:r3",
+          "text": "libro"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — є сім стільців?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — есть семь стульев?",
+          "uk": "Вставте слово — є сім стільців?"
+        },
+        "gappedTargetPhrase": "¿Hay siete ___?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-07:session-05:i08:r1",
+            "text": "sillas"
+          },
+          {
+            "responseId": "es:lesson-07:session-05:i08:r2",
+            "text": "silla"
+          },
+          {
+            "responseId": "es:lesson-07:session-05:i08:r3",
+            "text": "libro"
+          }
+        ],
+        "testedDimension": "Вставте слово — є сім стільців?",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-07:session-05:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — є сім стільців?",
+            "feedbackByLocale": {
+              "ru": "Семь стульев: sillas во множественном числе.",
+              "uk": "Сім стільців: sillas у множині."
+            }
+          },
+          {
+            "responseId": "es:lesson-07:session-05:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — є сім стільців?",
+            "feedbackByLocale": {
+              "ru": "Считаем стулья: sillas.",
+              "uk": "Рахуємо стільці: sillas."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-05:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — є шість стільців; почніть з Hay, число поставте перед sillas",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-05:i09:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — є шість стільців; почніть з Hay, число поставте перед sillas",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-05:i09:audio",
+          "transcript": "Hay seis sillas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay seis sillas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-05:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — тут є сім стільців; почніть з Hay, число поставте перед sillas, місце — наприкінці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-05:i10:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — тут є сім стільців; почніть з Hay, число поставте перед sillas, місце — наприкінці",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-05:i10:audio",
+          "transcript": "Hay siete sillas aquí."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay siete sillas aquí.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-05:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — є сім стільців?; почніть з ¿Hay, число поставте перед sillas",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-05:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — є сім стільців?; почніть з ¿Hay, число поставте перед sillas",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-05:i11:audio",
+          "transcript": "¿Hay siete sillas?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Hay siete sillas?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-05:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — тут є шість стільців; почніть з Hay, число поставте перед sillas, місце — наприкінці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-05:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — тут є шість стільців; почніть з Hay, число поставте перед sillas, місце — наприкінці",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-05:i12:audio",
+          "transcript": "Hay seis sillas aquí."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay seis sillas aquí.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "97134be37271414eb4462f3e48868089186fb98364794365c5cb97754ad7365c"
+}

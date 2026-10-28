@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-07:session-07",
+  "learningOutcomeByLocale": {
+    "ru": "использовать diez перед существительными и в вопросе.",
+    "uk": "використовувати diez перед іменниками й у запитанні."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-07:session-07:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Десять стульев",
+        "uk": "Десять стільців"
+      },
+      "bodyByLocale": {
+        "ru": "Вы приготовили десять стульев для группы. Сообщите `Hay diez sillas` — «Есть десять стульев». Соберите `Hay` + `diez` + `sillas`. Diez — десять; sillas во множественном числе. Число не меняется из-за рода существительного.",
+        "uk": "Ви підготували десять стільців для групи. Повідомте `Hay diez sillas` — «Є десять стільців». Складіть `Hay` + `diez` + `sillas`. Diez — десять; sillas у множині. Число не змінюється через рід іменника."
+      },
+      "question": {
+        "interactionId": "es:lesson-07:session-07:intro1:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Есть десять стульев». Начните с Hay, число поставьте перед sillas.",
+          "uk": "Повідомте «Є десять стільців». Почніть з Hay, число поставте перед sillas."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-07:session-07:intro1:r1",
+              "text": "Hay diez sillas."
+            },
+            {
+              "responseId": "es:lesson-07:session-07:intro1:r2",
+              "text": "Hay diez silla."
+            },
+            {
+              "responseId": "es:lesson-07:session-07:intro1:r3",
+              "text": "Hay nueve sillas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-07:session-07:intro1:r1",
+              "text": "Hay diez sillas."
+            },
+            {
+              "responseId": "es:lesson-07:session-07:intro1:r2",
+              "text": "Hay diez silla."
+            },
+            {
+              "responseId": "es:lesson-07:session-07:intro1:r3",
+              "text": "Hay nueve sillas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Есть десять стульев». Начните с Hay, число поставьте перед sillas.",
+          "uk": "Повідомте «Є десять стільців». Почніть з Hay, число поставте перед sillas."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-07:session-07:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Проверить книги",
+        "uk": "Перевірити книжки"
+      },
+      "bodyByLocale": {
+        "ru": "Вы хотите узнать, подготовлены ли десять книг для той же группы. Спросите `¿Hay diez libros?` — «Есть десять книг?» Соберите `¿Hay` + `diez` + `libros?`. С libros число diez остаётся тем же, что и с sillas. Главное, чтобы десять стульев не оказались единственным, что подготовили.",
+        "uk": "Ви хочете дізнатися, чи підготовлено десять книжок для тієї самої групи. Запитайте `¿Hay diez libros?` — «Є десять книжок?» Складіть `¿Hay` + `diez` + `libros?`. З libros число diez залишається тим самим, що й із sillas. Головне, щоб десять стільців не виявилися єдиним, що підготували."
+      },
+      "question": {
+        "interactionId": "es:lesson-07:session-07:intro2:q",
+        "promptByLocale": {
+          "ru": "Спросите «Есть десять книг?». Начните с ¿Hay, число поставьте перед libros.",
+          "uk": "Запитайте «Є десять книжок?». Почніть з ¿Hay, число поставте перед libros."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-07:session-07:intro2:r1",
+              "text": "¿Hay diez libros?"
+            },
+            {
+              "responseId": "es:lesson-07:session-07:intro2:r2",
+              "text": "¿Hay diez libro?"
+            },
+            {
+              "responseId": "es:lesson-07:session-07:intro2:r3",
+              "text": "¿Hay ocho libros?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-07:session-07:intro2:r1",
+              "text": "¿Hay diez libros?"
+            },
+            {
+              "responseId": "es:lesson-07:session-07:intro2:r2",
+              "text": "¿Hay diez libro?"
+            },
+            {
+              "responseId": "es:lesson-07:session-07:intro2:r3",
+              "text": "¿Hay ocho libros?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «Есть десять книг?». Начните с ¿Hay, число поставьте перед libros.",
+          "uk": "Запитайте «Є десять книжок?». Почніть з ¿Hay, число поставте перед libros."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-07:session-07:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Указать место",
+        "uk": "Указати місце"
+      },
+      "bodyByLocale": {
+        "ru": "Вы нашли все десять книг и показываете их организатору. Скажите `Hay diez libros aquí` — «Здесь есть десять книг». Соберите `Hay` + `diez libros` + `aquí`. Сначала наличие, потом количество с предметами, затем место.",
+        "uk": "Ви знайшли всі десять книжок і показуєте їх організатору. Скажіть `Hay diez libros aquí` — «Тут є десять книжок». Складіть `Hay` + `diez libros` + `aquí`. Спочатку наявність, потім кількість із предметами, далі місце."
+      },
+      "question": {
+        "interactionId": "es:lesson-07:session-07:intro3:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Здесь есть десять книг». Начните с Hay, число поставьте перед libros, место — в конце.",
+          "uk": "Повідомте «Тут є десять книжок». Почніть з Hay, число поставте перед libros, місце — наприкінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-07:session-07:intro3:r1",
+              "text": "Hay diez libros aquí."
+            },
+            {
+              "responseId": "es:lesson-07:session-07:intro3:r2",
+              "text": "Hay diez libro aquí."
+            },
+            {
+              "responseId": "es:lesson-07:session-07:intro3:r3",
+              "text": "Hay diez libros allí."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-07:session-07:intro3:r1",
+              "text": "Hay diez libros aquí."
+            },
+            {
+              "responseId": "es:lesson-07:session-07:intro3:r2",
+              "text": "Hay diez libro aquí."
+            },
+            {
+              "responseId": "es:lesson-07:session-07:intro3:r3",
+              "text": "Hay diez libros allí."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Здесь есть десять книг». Начните с Hay, число поставьте перед libros, место — в конце.",
+          "uk": "Повідомте «Тут є десять книжок». Почніть з Hay, число поставте перед libros, місце — наприкінці."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "291ef34323c57fc86449b74e50ae6d32547a8d364292e544cc5bae53638e0819"
+}

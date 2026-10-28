@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-07:session-05:i01",
+    "correctText": "seis",
+    "correctResponseId": "es:lesson-07:session-05:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-05:i02",
+    "correctText": "seis",
+    "correctResponseId": "es:lesson-07:session-05:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-05:i03",
+    "correctText": "Hay seis sillas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-05:i04",
+    "correctText": "siete",
+    "correctResponseId": "es:lesson-07:session-05:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-05:i05",
+    "correctText": "Hay siete sillas aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-05:i06",
+    "correctText": "¿Hay siete sillas?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-05:i07",
+    "correctText": "Hay seis sillas aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-05:i08",
+    "correctText": "sillas",
+    "correctResponseId": "es:lesson-07:session-05:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-05:i09",
+    "correctText": "Hay seis sillas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-05:i10",
+    "correctText": "Hay siete sillas aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-05:i11",
+    "correctText": "¿Hay siete sillas?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-05:i12",
+    "correctText": "Hay seis sillas aquí.",
+    "correctResponseId": null
+  }
+]

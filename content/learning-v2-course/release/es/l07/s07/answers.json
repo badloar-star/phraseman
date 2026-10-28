@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-07:session-07:i01",
+    "correctText": "diez",
+    "correctResponseId": "es:lesson-07:session-07:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-07:i02",
+    "correctText": "diez",
+    "correctResponseId": "es:lesson-07:session-07:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-07:i03",
+    "correctText": "Hay diez sillas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-07:i04",
+    "correctText": "libros",
+    "correctResponseId": "es:lesson-07:session-07:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-07:i05",
+    "correctText": "¿Hay diez libros?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-07:i06",
+    "correctText": "Hay diez libros aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-07:i07",
+    "correctText": "Hay diez sillas aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-07:i08",
+    "correctText": "aquí",
+    "correctResponseId": "es:lesson-07:session-07:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-07:i09",
+    "correctText": "Hay diez sillas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-07:i10",
+    "correctText": "¿Hay diez libros?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-07:i11",
+    "correctText": "Hay diez libros aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-07:i12",
+    "correctText": "Hay diez sillas aquí.",
+    "correctResponseId": null
+  }
+]

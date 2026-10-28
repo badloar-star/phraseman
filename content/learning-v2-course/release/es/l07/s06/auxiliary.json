@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-07:session-06",
+  "entries": [
+    {
+      "interactionId": "es:lesson-07:session-06:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-06:intro1:r2": {
+          "ru": "Книг несколько: libros.",
+          "uk": "Книжок кілька: libros."
+        },
+        "es:lesson-07:session-06:intro1:r3": {
+          "ru": "По условию восемь: ocho.",
+          "uk": "За умовою вісім: ocho."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-07:session-06:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-06:intro2:r2": {
+          "ru": "После nueve нужно libros.",
+          "uk": "Після nueve потрібно libros."
+        },
+        "es:lesson-07:session-06:intro2:r3": {
+          "ru": "В этом месте девять: nueve.",
+          "uk": "У цьому місці дев'ять: nueve."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-07:session-06:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-06:intro3:r2": {
+          "ru": "Книг несколько: libros.",
+          "uk": "Книжок кілька: libros."
+        },
+        "es:lesson-07:session-06:intro3:r3": {
+          "ru": "Уточняем девять: nueve.",
+          "uk": "Уточнюємо дев'ять: nueve."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "7b030dd03f465263ef48c74c0df4eb0eaf6f978ec9d689b7a10e900878f91159"
+}

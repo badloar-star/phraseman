@@ -15,6 +15,7 @@ import { createLearningV2CourseLocalProgressStoreV1, type LearningV2CourseProgre
 import { deriveLocalOfflineProgressAccountScopeHash } from '../modules/learning-v2/progress/progress_account_scope';
 import { isLearningV2SessionReleasedV1 } from './learning_v2_session_availability_v1';
 import { markLearningV2NotFromStartUsedV1 } from './learning_v2_not_from_start_once_v1';
+import { LEARNING_V2_PLACEMENT_ITEMS_V1, learningV2PlacementItemSessionsV1 } from './learning_v2_placement_items_v1';
 import { getStableId } from './stable_id';
 
 const LOG = '[PLACEMENT]';
@@ -70,6 +71,9 @@ const L15_HINT_RE = /\s*Передайте\s[^.]*?через\s[^.]*\.?\s*$/u;
 /** Подходит ли задание как вопрос «на тему урока» (правило Теории); для у15 — только задания с подсказкой формы. */
 function eligible(lessonOrdinal: number, sessionOrdinal: number, interaction: Interaction): boolean {
   if (interaction.family !== 'context_gap_grammar') return false;
+  // зачем (жалобы владельца 28.10: бредовые задания и несколько верных ответов): есть проверенный список урока — берём только из него
+  const vetted = LEARNING_V2_PLACEMENT_ITEMS_V1[lessonOrdinal];
+  if (vetted) return vetted.includes(interaction.interactionId);
   const prompt = interaction.prompt ?? '';
   // у3: «без подсказки» в занятиях 1–8 (i14) проверяет Is / Am / Are — тему урока 2
   if (lessonOrdinal === 3 && sessionOrdinal <= 8 && /:i14$/u.test(interaction.interactionId)) return false;
@@ -99,7 +103,9 @@ export function learningV2PlacementQuestionV1(input: Readonly<{
   const locale = input.locale ?? 'ru';
   const used = new Set(input.usedInteractionIds);
   const random = seeded(`placement:${input.lessonOrdinal}:${input.attemptIndex}:${used.size}`);
-  const order = Array.from({ length: LEARNING_V2_LESSON_SESSION_COUNT_V1 }, (_x, i) => i + 1).sort(() => random() - 0.5);
+  // зачем (⚡): у урока с проверенным списком собираем только его занятия (3–6), а не перебираем все 56
+  const vettedSessions = learningV2PlacementItemSessionsV1(input.lessonOrdinal);
+  const order = (vettedSessions.length > 0 ? [...vettedSessions] : Array.from({ length: LEARNING_V2_LESSON_SESSION_COUNT_V1 }, (_x, i) => i + 1)).sort(() => random() - 0.5);
   let fallback: { sessionOrdinal: number; interaction: Interaction } | null = null;
   let scanned = 0;
   for (const sessionOrdinal of order) {
@@ -121,7 +127,8 @@ export function learningV2PlacementQuestionV1(input: Readonly<{
 }
 
 function build(lessonOrdinal: number, sessionOrdinal: number, interaction: Interaction, scanned: number, kind: string): LearningV2PlacementQuestionV1 {
-  const promptOverride = lessonOrdinal === 15 ? (interaction.prompt ?? '').replace(L15_HINT_RE, '').trim() || null : null;
+  // подсказку «Передайте … через …» отрезаем только там, где она есть (проверенные задания у15 её не имеют)
+  const promptOverride = lessonOrdinal === 15 && L15_HINT_RE.test(interaction.prompt ?? '') ? (interaction.prompt ?? '').replace(L15_HINT_RE, '').trim() || null : null;
   if (lessonOrdinal === 14) {
     // зачем (Теория 933301947): в у14 нет заданий на -ing / when / while — берём was / were и честно пишем о нехватке
     console.warn(LOG, 'l14:topic_gap', JSON.stringify({ interactionId: interaction.interactionId, note: 'нет заданий на was/were + -ing, when/while — 6 новых ждут слова владельца' })); // guard-ok: нехватка запаса

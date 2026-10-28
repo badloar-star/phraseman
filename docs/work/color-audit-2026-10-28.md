@@ -93,3 +93,17 @@
 
 Тест `tests/color_literal_census_ratchet.test.ts` + `config/color-literal-census-baseline.json`: по файлам, число литералов не растёт, новые файлы с литералами не появляются; сканер — тот же, что у переписи (общий модуль). Снижение фиксируется `node scripts/color_literal_census.mjs --baseline`.
 
+
+## Статус на вечер 28.10
+
+Счёт литералов: **1343 → 760** в 18 файлах (минус 583). Ratchet — `tests/color_literal_census_ratchet.test.mjs`, база `config/color-literal-census-baseline.json` (760).
+
+| Пакет | Коммит | Что | Литералов |
+|---|---|---|---|
+| ratchet + общий сканер | 6b493e83c | `scripts/color_literal_scan.mjs`, тест, база | — |
+| 1 «Фраза дня» | ee52303b3 | оформление карточки из токенов текущей темы | −127 |
+| 2 мелочь | 25a6393c7 | таблица YouTube удалена, мёртвое поле `accent` у POS, плитка «Ошибок» на токенах, 3 системных цвета с причиной | −46 |
+| B + 4 + онбординг | ec25c850c | `theme-exempt` с конкретной причиной для арта (карточка профиля, Горизонты, UGC-пресеты, цвета металлов), удалён `premiumMemberStyles.ts`, онбординг «ага» в цвета темы (`ahaThemeFor`) | −278 |
+| «Теория» + замки | см. `git log` «Theory takes its accent» | акцент темы урока = оттенок акцента текущей темы + сдвиг по номеру урока; две строки в `docs/work/OWNER_LOCKS.md` | −84 |
+
+Остаются: Plus (`paywallThemeConfig` 210, `paywall_copy` 80 — Codex), `medalToastThemeStyles` 177 (удалить вместе с пропом витрины и двумя тестами), `learning-v2/session/[id].tsx` 106 (после OTA), `ui/v2_theme.ts` 56 (кластер «Турниров»), онбординг `CleanOnboarding.tsx` 63 (Codex), цвета статусов карточек 9 (закреплены тестом, решение Макетов), `app/_layout.tsx` 11 и наборы 31 (Codex). Подробно по файлам Codex — `docs/work/color-audit-codex-list-2026-10-28.md`.

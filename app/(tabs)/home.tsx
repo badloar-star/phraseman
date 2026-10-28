@@ -115,7 +115,8 @@ import { resolveThemedArt } from '../../components/theme/themed_art_registry';
 import { useTodayTasks } from '../../hooks/use_today_tasks';
 import { useHomeFriendPairRow } from '../../hooks/use_home_friend_pair_row';
 import type { HomeFeatureTile } from '../../components/home/v2/home_v2_types';
-import { getV2Palette, V2 } from '../../constants/v2Style';
+import { alphaHex, getV2Palette, V2 } from '../../constants/v2Style';
+import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 // зачем отдельное имя: в этом файле `Animated` — из react-native и им пользуются
 // сотни мест. Пульс счётчиков живёт на Reanimated (UI-поток), поэтому его
 // компонент импортируется как Reanimated, а не подменяет существующий.
@@ -586,7 +587,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const router = useRouter();
     // Навигация к отдельным экранам — через guard от двойного тапа (дубли в стеке).
     const nav = useGuardedNav();
-    const { theme: t, f, themeMode, liquidGlassAppearance } = useTheme();
+    const { theme: t, f, themeMode, liquidGlassAppearance, liquidGlassThemeId } = useTheme();
     const shadowGlass = useShadowGlass(); // зачем («Тень» 12.10): строки окна званий — плашки с тенью, выбранная приподнята; обводок нет
     // зачем (владелец 04.10, «первые ассеты готовы, вшивай»): предметы 2.0 — светлый комплект у светлых тем, тёмный у тёмных и градиентных.
     const homeArtTone = liquidGlassAppearance === 'light' ? 'light' : 'dark';
@@ -2970,7 +2971,9 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         // Старая разметка V1 и флаг раскладки удалены 01.10.
         return renderHomeV2();
     };
-    const titleModalButtonBg = isGoldTheme ? 'rgba(246,227,161,0.13)' : (isLightTheme ? 'rgba(202,138,4,0.12)' : 'rgba(252,211,77,0.13)');
+    // зачем (аудит цвета 28.10, правило владельца «каждый цвет — оттенок текущей темы»; координатор): подложки окна званий — оттенок акцента ТЕКУЩЕЙ темы, а не золотые литералы
+    const titleGlass = liquidGlassTokens(liquidGlassThemeId);
+    const titleModalButtonBg = alphaHex(titleGlass.accentGraphic, isLightTheme ? 0.12 : 0.13);
     // Кэш вне рендера (см. computeHomeTitles): при неизменных входах — ноль работы.
     const { allTitles, earnedTitles, currentTitleKey } = computeHomeTitles({
         streak,
@@ -3122,7 +3125,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 </TouchableOpacity>
               </View>
 
-              <View style={{ borderRadius: 16, backgroundColor: isGoldTheme ? 'rgba(246,227,161,0.08)' : t.bgSurface2, paddingHorizontal: 12, paddingVertical: 10, marginBottom: 12 }}>
+              <View style={{ borderRadius: 16, backgroundColor: isGoldTheme ? alphaHex(titleGlass.accentGraphic, 0.08) : t.bgSurface2, paddingHorizontal: 12, paddingVertical: 10, marginBottom: 12 }}>
                 <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '800' }} numberOfLines={2}>
                   {titleModalEarnedLabel}
                 </Text>
@@ -3143,7 +3146,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                             {item.subtitle}
                           </Text>
                         </View>
-                        {item.current && (<View style={{ borderRadius: 999, paddingHorizontal: 8, paddingVertical: 4, backgroundColor: isLightTheme ? 'rgba(202,138,4,0.14)' : 'rgba(252,211,77,0.16)' }}>
+                        {item.current && (<View style={{ borderRadius: 999, paddingHorizontal: 8, paddingVertical: 4, backgroundColor: alphaHex(titleGlass.accentGraphic, isLightTheme ? 0.14 : 0.16) }}>
                             <Text style={{ color: isLightTheme ? t.accentText : t.accentText, fontSize: f.caption, fontWeight: '900' }} numberOfLines={1}>
                               {triLang(lang, {
                                     ru: 'Сейчас',

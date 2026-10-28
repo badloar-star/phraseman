@@ -13,9 +13,7 @@ const COLOR = /^(#[0-9a-fA-F]{3,8}|rgba?\(.*\)|hsla?\(.*\)|white|black|red|green
 
 /** Потолок на 13.10 (замер Темами): файл → число неоправданных хардкод-цветов. Уменьшай при правке, увеличивать нельзя. */
 const CEILING: Readonly<Record<string, number>> = {
-  'components/medalToastThemeStyles.ts': 177, // старые палитры тостов медалей по ThemeMode: живой путь окна — medalToastStyleFromTokens (токены темы), эти — превью
   'components/ExamResultPreviewAdminModal.tsx': 27, // окно только для админа
-  'components/home/HomeMistakesLockedSheet.tsx': 1, // затемнение подложки
 };
 
 function listModalFiles(dir: string, out: string[] = []): string[] {

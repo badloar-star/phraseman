@@ -6,6 +6,7 @@ import type { Lang } from '../../constants/i18n';
 import { hapticTap } from '../../hooks/use-haptics';
 import { mistakesLockedCopy } from '../../app/mistakes_locked_copy';
 import { useTheme } from '../ThemeContext';
+import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { glassFill } from '../GlassSurface';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 
@@ -26,13 +27,15 @@ type Props = {
 };
 
 function HomeMistakesLockedSheet({ visible, lang, count, onClose }: Props) {
-  const { theme: t, f } = useTheme();
+  const { theme: t, f, liquidGlassThemeId } = useTheme();
+  // зачем (аудит цвета 28.10): затемнение под шторкой — токен scrim текущей темы, а не rgba(0,0,0,0.5)
+  const scrim = liquidGlassTokens(liquidGlassThemeId).scrim;
   const insets = useStableSafeAreaInsets();
   const copy = useMemo(() => mistakesLockedCopy(lang, count), [count, lang]);
 
   return (
     <Modal visible={visible} transparent animationType="none" onRequestClose={onClose}>
-      <Animated.View entering={FadeIn.duration(160)} exiting={FadeOut.duration(140)} style={styles.backdrop}>
+      <Animated.View entering={FadeIn.duration(160)} exiting={FadeOut.duration(140)} style={[styles.backdrop, { backgroundColor: scrim }]}>
         <Pressable style={StyleSheet.absoluteFill} accessibilityRole="button" accessibilityLabel={copy.action} onPress={onClose} />
         <Animated.View
           entering={FadeInDown.duration(220).springify().damping(18)}
@@ -61,7 +64,7 @@ function HomeMistakesLockedSheet({ visible, lang, count, onClose }: Props) {
 }
 
 const styles = StyleSheet.create({
-  backdrop: { flex: 1, justifyContent: 'flex-end', backgroundColor: 'rgba(0,0,0,0.5)' },
+  backdrop: { flex: 1, justifyContent: 'flex-end' },
   sheet: { borderTopLeftRadius: 28, borderTopRightRadius: 28, padding: 24, paddingBottom: 34, gap: 12 },
   title: { fontWeight: '900', letterSpacing: -0.4 },
   body: { fontWeight: '600', lineHeight: 23 },

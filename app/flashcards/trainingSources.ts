@@ -56,10 +56,10 @@ export type TrainingSourceInfo = {
 };
 
 export const SOURCE_ACCENTS: Record<SourceKind, string> = {
-  saved: '#7CDAFF',
-  custom: '#FFB84D',
-  official: '#7CFF92',
-  community: '#D6A4FF',
+  saved: '#7CDAFF', // theme-exempt: акцент источника — цвет тени карточки набора (как SOURCE_ACCENTS в flashcards_swipe), не цвет текста или фона интерфейса
+  custom: '#FFB84D', // theme-exempt: акцент источника — цвет тени карточки набора (как SOURCE_ACCENTS в flashcards_swipe), не цвет текста или фона интерфейса
+  official: '#7CFF92', // theme-exempt: акцент источника — цвет тени карточки набора (как SOURCE_ACCENTS в flashcards_swipe), не цвет текста или фона интерфейса
+  community: '#D6A4FF', // theme-exempt: акцент источника — цвет тени карточки набора (как SOURCE_ACCENTS в flashcards_swipe), не цвет текста или фона интерфейса
 };
 
 export function cleanString(v: unknown): string {

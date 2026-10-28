@@ -1,7 +1,6 @@
 {
-  "total": 385,
+  "total": 384,
   "files": {
-    "components/home/HomeMistakesLockedSheet.tsx": 1,
     "components/home/v2/HomeV2VideoPlayerModal.tsx": 2,
     "components/home/v2/HomeV2VideoRail.tsx": 1,
     "components/home/v2/scene/home_scene_ink.ts": 14,

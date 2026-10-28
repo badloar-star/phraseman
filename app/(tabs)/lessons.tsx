@@ -141,6 +141,7 @@ import { prefetchLessonMenuCache } from "../lesson_menu";
 import { navOnce } from "../nav_once"; // зачем (аудит Optimistic UI Уроков, 13.10): двойной тап по карточке урока
 import ReportErrorButton from "../../components/ReportErrorButton";
 import { consumeLessonsV2PageRequest, peekLessonsV2PageRequestAgeMs } from "../lessons_open_v2_request";
+import { noteLessonsFirstFrame, noteLessonsLeave } from "../lessons_tab_diagnostics";
 import { LessonsGateDialog } from "../../components/lessons/LessonsGateDialog";
 import { LUM } from "../../constants/motionHybrid";
 import { pickLessonsExamStatus } from "../lessons_exam_status";
@@ -2633,6 +2634,22 @@ export default function LessonsTab({
     console.log("[HOME-LESSONS-BTN] lessons_tab: карта V2 выбрана по запросу плитки", JSON.stringify({ sinceTapMs })); // guard-ok: одна строка на тап по плитке
     requestAnimationFrame(() => console.log("[HOME-LESSONS-BTN] lessons_tab: первый кадр после выбора карты", JSON.stringify({ sinceTapMs: sinceTapMs + (Date.now() - startedAt) }))); // guard-ok: замер «тап → кадр»
   }, [isRetainedTab, lessonsTabVisible, navFocused, learningV2CanOpen]);
+  // зачем (координатор 28.10, события диагностики обращений): вкладка стала видимой и в фокусе — через кадр это «первый кадр» после тапа (мс от тапа →
+  // корзина lt1s | 1to3s | 3to8s | gt8s); перестала быть видимой — неявный уход tab_switch (явные причины back_button / hidden_tab_redirect / tab_bar_tap
+  // пишутся раньше и перекрывают его в пределах 1,5 с).
+  const lessonsShownRef = useRef(false);
+  useEffect(() => {
+    if (!isRetainedTab) return undefined;
+    const shown = lessonsTabVisible && navFocused;
+    const wasShown = lessonsShownRef.current;
+    lessonsShownRef.current = shown;
+    if (shown && !wasShown) {
+      const frame = requestAnimationFrame(() => noteLessonsFirstFrame());
+      return () => cancelAnimationFrame(frame);
+    }
+    if (!shown && wasShown) noteLessonsLeave("tab_switch", { visible: lessonsTabVisible, focused: navFocused });
+    return undefined;
+  }, [isRetainedTab, lessonsTabVisible, navFocused]);
   useEffect(() => {
     // Legacy course links must select V2 even when the retained tab last showed the classic list.
     if (isRetainedTab && lessonsTabVisible && navFocused && courseEntry === "v2" && learningV2CanOpen) {
@@ -3784,6 +3801,7 @@ export default function LessonsTab({
       if (isRetainedTab && page === "v2") {
         console.log("[LESSONS-TABS] назад с карты V2 → Главная"); // guard-ok: итог нажатия «назад»
         noteBackDecision("tab_v2_map → goHome");
+        noteLessonsLeave("back_button", { page: "v2" });
         goHome();
         return;
       }
@@ -3800,6 +3818,7 @@ export default function LessonsTab({
         return;
       }
       noteBackDecision("tab_legacy_list_no_v2 → goHome");
+      noteLessonsLeave("back_button", { page: "legacy_list" });
       goHome();
       return;
     }

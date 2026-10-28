@@ -103,7 +103,7 @@ ___ they busy in autumn? → **Were** · Was · Did
 - It was a holiday. — *В записи звучит It was a weekday.*
 - It was Sunday. — *В записи звучит It was a weekday.*
 
-**12 · Дополните отрицание: это был не будний день**
+**12 · Дополните фразу с «не»: это был не будний день**
 <!-- interaction_id: en:lesson-11:session-09:i09; family: context_gap_grammar -->
 It ___ not a weekday. → **was** · were · did
 - were — *С it нужна was.*
@@ -137,7 +137,7 @@ spring — весна · autumn — осень · weekday — будний де�
 <!-- interaction_id: en:lesson-11:session-09:i14; family: listen_build_dictation -->
 🔊 *Were they at home yesterday?* Плитки: `yesterday` `home` `at` `they` `Were` → **Were they at home yesterday?**
 
-**19 · Соберите услышанное отрицание**
+**19 · Соберите услышанную фразу с «не»**
 <!-- interaction_id: en:lesson-11:session-09:i15; family: listen_build_dictation -->
 🔊 *We were not at work yesterday.* Плитки: `yesterday` `work` `at` `not` `were` `We` → **We were not at work yesterday.**
 

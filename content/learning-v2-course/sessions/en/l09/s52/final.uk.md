@@ -83,7 +83,7 @@ She is ___ at the sea. → **gazing** · gazeing · gaze
 - I am looking at the boat. — *У записі звучить I am looking at the horizon.*
 - I am not looking at the horizon. — *У записі звучить I am looking at the horizon.*
 
-**8 · Виберіть зв’язку для horizon**
+**8 · Виберіть is або are: horizon**
 <!-- interaction_id: en:lesson-09:session-52:i06; family: context_gap_grammar -->
 The horizon ___ clear. → **is** · are · am
 - are — *Тут із horizon потрібне is.*

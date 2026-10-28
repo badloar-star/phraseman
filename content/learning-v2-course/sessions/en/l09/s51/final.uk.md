@@ -101,7 +101,7 @@ She is ___ through the window. → **peering** · peer · peers
 - The eyepiece is large. — *У записі звучить The eyepiece is small.*
 - The telescope is small. — *У записі звучить The eyepiece is small.*
 
-**12 · Виберіть зв’язку для одного окуляра**
+**12 · Виберіть is або are: один окуляр**
 <!-- interaction_id: en:lesson-09:session-51:i09; family: context_gap_grammar -->
 The eyepiece ___ small. → **is** · are · am
 - are — *Один окуляр: is.*

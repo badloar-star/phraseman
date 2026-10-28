@@ -84,7 +84,7 @@ This is ___ swatch. → **a** · an · are
 - Please touch the wallpaper. — *У записі звучить Please don't touch the wallpaper.*
 - Please don't touch the swatch. — *У записі звучить Please don't touch the wallpaper.*
 
-**8 · Виберіть зв’язку для wallpaper як матеріалу**
+**8 · Виберіть is або are: wallpaper — це матеріал**
 <!-- interaction_id: en:lesson-09:session-47:i06; family: context_gap_grammar -->
 The wallpaper ___ wet. → **is** · are · am
 - are — *Wallpaper тут незлічуване, використовуємо is.*
@@ -122,7 +122,7 @@ The wallpaper ___ wet. → **is** · are · am
 - The adhesive is dry. — *У записі звучить The adhesive is wet.*
 - The wallpaper is wet. — *У записі звучить The adhesive is wet.*
 
-**16 · Виберіть зв’язку для adhesive як речовини**
+**16 · Виберіть is або are: adhesive — це речовина**
 <!-- interaction_id: en:lesson-09:session-47:i12; family: context_gap_grammar -->
 The adhesive ___ dry. → **is** · are · am
 - are — *Про речовину adhesive тут кажемо is.*

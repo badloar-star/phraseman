@@ -63,7 +63,7 @@
 - I didn't lie down. — *В записи звучит She didn't lie down.*
 - She doesn't lie down. — *В записи звучит She didn't lie down.*
 
-**4 · Этого не было вчера. Выберите отрицание**
+**4 · Речь о прошлом. Выберите, как сказать «не»**
 <!-- interaction_id: en:lesson-13:session-12:i03; family: context_gap_grammar -->
 I ___ lie down. → **didn't** · don't · doesn't
 - don't — *Для прошлого нужна форма didn't.*
@@ -83,7 +83,7 @@ I ___ lie down. → **didn't** · don't · doesn't
 - I didn't stay in. — *В записи звучит She didn't stay in.*
 - She doesn't stay in. — *В записи звучит She didn't stay in.*
 
-**8 · Этого не было вчера. Выберите отрицание**
+**8 · Речь о прошлом. Выберите, как сказать «не»**
 <!-- interaction_id: en:lesson-13:session-12:i06; family: context_gap_grammar -->
 I ___ stay in. → **didn't** · don't · doesn't
 - don't — *Для прошлого нужна форма didn't.*
@@ -103,7 +103,7 @@ I ___ stay in. → **didn't** · don't · doesn't
 - I didn't go out. — *В записи звучит She didn't go out.*
 - She doesn't go out. — *В записи звучит She didn't go out.*
 
-**12 · Этого не было вчера. Выберите отрицание**
+**12 · Речь о прошлом. Выберите, как сказать «не»**
 <!-- interaction_id: en:lesson-13:session-12:i09; family: context_gap_grammar -->
 I ___ go out. → **didn't** · don't · doesn't
 - don't — *Для прошлого нужна форма didn't.*
@@ -123,7 +123,7 @@ I ___ go out. → **didn't** · don't · doesn't
 - I didn't come back early. — *В записи звучит She didn't come back early.*
 - She doesn't come back early. — *В записи звучит She didn't come back early.*
 
-**16 · Этого не было вчера. Выберите отрицание**
+**16 · Речь о прошлом. Выберите, как сказать «не»**
 <!-- interaction_id: en:lesson-13:session-12:i12; family: context_gap_grammar -->
 I ___ come back early. → **didn't** · don't · doesn't
 - don't — *Для прошлого нужна форма didn't.*

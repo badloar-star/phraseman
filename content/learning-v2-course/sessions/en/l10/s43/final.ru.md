@@ -123,7 +123,7 @@ I am ___ a thin slice. → **cutting** · cut · cuts
 - The cheese is hard. — *В записи звучит The bread is hard.*
 - The bread is soft. — *В записи звучит The bread is hard.*
 
-**16 · Выберите связку для свойства сыра**
+**16 · Выберите is или are: какой этот сыр**
 <!-- interaction_id: en:lesson-10:session-43:i12; family: context_gap_grammar -->
 This cheese ___ hard. → **is** · are · am
 - are — *С cheese нужна is.*

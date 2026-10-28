@@ -103,7 +103,7 @@ I am ___ a ready-made meal. → **buying** · buy · buys
 - That drink is sugar-free. — *В записи звучит This drink is sugar-free.*
 - These drinks are sugar-free. — *В записи звучит This drink is sugar-free.*
 
-**12 · Выберите связку для одного напитка**
+**12 · Выберите is или are: один напиток**
 <!-- interaction_id: en:lesson-10:session-09:i09; family: context_gap_grammar -->
 This drink ___ sugar-free. → **is** · are · am
 - are — *Один напиток: is.*
@@ -123,7 +123,7 @@ This drink ___ sugar-free. → **is** · are · am
 - That cake is dairy-free. — *В записи звучит This cake is dairy-free.*
 - This cake is sugar-free. — *В записи звучит This cake is dairy-free.*
 
-**16 · Выберите связку для одного пирога**
+**16 · Выберите is или are: один пирог**
 <!-- interaction_id: en:lesson-10:session-09:i12; family: context_gap_grammar -->
 This cake ___ dairy-free. → **is** · are · am
 - are — *Один пирог: is.*

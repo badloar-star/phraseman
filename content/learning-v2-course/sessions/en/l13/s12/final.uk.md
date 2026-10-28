@@ -63,7 +63,7 @@
 - I didn't lie down. — *У записі звучить She didn't lie down.*
 - She doesn't lie down. — *У записі звучить She didn't lie down.*
 
-**4 · Цього не було вчора. Виберіть заперечення**
+**4 · Ідеться про минуле. Виберіть, як сказати «не»**
 <!-- interaction_id: en:lesson-13:session-12:i03; family: context_gap_grammar -->
 I ___ lie down. → **didn't** · don't · doesn't
 - don't — *Для минулого потрібна форма didn't.*
@@ -83,7 +83,7 @@ I ___ lie down. → **didn't** · don't · doesn't
 - I didn't stay in. — *У записі звучить She didn't stay in.*
 - She doesn't stay in. — *У записі звучить She didn't stay in.*
 
-**8 · Цього не було вчора. Виберіть заперечення**
+**8 · Ідеться про минуле. Виберіть, як сказати «не»**
 <!-- interaction_id: en:lesson-13:session-12:i06; family: context_gap_grammar -->
 I ___ stay in. → **didn't** · don't · doesn't
 - don't — *Для минулого потрібна форма didn't.*
@@ -103,7 +103,7 @@ I ___ stay in. → **didn't** · don't · doesn't
 - I didn't go out. — *У записі звучить She didn't go out.*
 - She doesn't go out. — *У записі звучить She didn't go out.*
 
-**12 · Цього не було вчора. Виберіть заперечення**
+**12 · Ідеться про минуле. Виберіть, як сказати «не»**
 <!-- interaction_id: en:lesson-13:session-12:i09; family: context_gap_grammar -->
 I ___ go out. → **didn't** · don't · doesn't
 - don't — *Для минулого потрібна форма didn't.*
@@ -123,7 +123,7 @@ I ___ go out. → **didn't** · don't · doesn't
 - I didn't come back early. — *У записі звучить She didn't come back early.*
 - She doesn't come back early. — *У записі звучить She didn't come back early.*
 
-**16 · Цього не було вчора. Виберіть заперечення**
+**16 · Ідеться про минуле. Виберіть, як сказати «не»**
 <!-- interaction_id: en:lesson-13:session-12:i12; family: context_gap_grammar -->
 I ___ come back early. → **didn't** · don't · doesn't
 - don't — *Для минулого потрібна форма didn't.*

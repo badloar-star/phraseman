@@ -63,7 +63,7 @@
 - I didn't turn up the radio. — *У записі звучить She didn't turn up the radio.*
 - She doesn't turn up the radio. — *У записі звучить She didn't turn up the radio.*
 
-**4 · Цього не було вчора. Виберіть заперечення**
+**4 · Ідеться про минуле. Виберіть, як сказати «не»**
 <!-- interaction_id: en:lesson-13:session-11:i03; family: context_gap_grammar -->
 I ___ turn up the radio. → **didn't** · don't · doesn't
 - don't — *Для минулого потрібна форма didn't.*
@@ -83,7 +83,7 @@ I ___ turn up the radio. → **didn't** · don't · doesn't
 - I didn't turn down the music. — *У записі звучить She didn't turn down the music.*
 - She doesn't turn down the music. — *У записі звучить She didn't turn down the music.*
 
-**8 · Цього не було вчора. Виберіть заперечення**
+**8 · Ідеться про минуле. Виберіть, як сказати «не»**
 <!-- interaction_id: en:lesson-13:session-11:i06; family: context_gap_grammar -->
 I ___ turn down the music. → **didn't** · don't · doesn't
 - don't — *Для минулого потрібна форма didn't.*
@@ -103,7 +103,7 @@ I ___ turn down the music. → **didn't** · don't · doesn't
 - I didn't hang up my coat. — *У записі звучить She didn't hang up my coat.*
 - She doesn't hang up my coat. — *У записі звучить She didn't hang up my coat.*
 
-**12 · Цього не було вчора. Виберіть заперечення**
+**12 · Ідеться про минуле. Виберіть, як сказати «не»**
 <!-- interaction_id: en:lesson-13:session-11:i09; family: context_gap_grammar -->
 I ___ hang up my coat. → **didn't** · don't · doesn't
 - don't — *Для минулого потрібна форма didn't.*
@@ -123,7 +123,7 @@ I ___ hang up my coat. → **didn't** · don't · doesn't
 - I didn't wake up early. — *У записі звучить She didn't wake up early.*
 - She doesn't wake up early. — *У записі звучить She didn't wake up early.*
 
-**16 · Цього не було вчора. Виберіть заперечення**
+**16 · Ідеться про минуле. Виберіть, як сказати «не»**
 <!-- interaction_id: en:lesson-13:session-11:i12; family: context_gap_grammar -->
 I ___ wake up early. → **didn't** · don't · doesn't
 - don't — *Для минулого потрібна форма didn't.*

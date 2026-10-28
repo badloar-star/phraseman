@@ -63,7 +63,7 @@
 <!-- interaction_id: en:lesson-09:session-32:i02; family: phrase_builder -->
 Плитки: `jellyfish` `a` `is` `It` → **It is a jellyfish.**
 
-**4 · Виберіть форму для спостереження за однією медузою**
+**4 · Ви дивитеся на одну медузу. Виберіть форму**
 <!-- interaction_id: en:lesson-09:session-32:i03; family: context_gap_grammar -->
 The jellyfish ___ floating. → **is** · are · am
 - are — *Тут одна медуза: is.*

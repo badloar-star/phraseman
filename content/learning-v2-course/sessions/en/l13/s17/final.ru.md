@@ -63,7 +63,7 @@
 - I didn't slow down. — *В записи звучит She didn't slow down.*
 - She doesn't slow down. — *В записи звучит She didn't slow down.*
 
-**4 · Этого не было вчера. Выберите отрицание**
+**4 · Речь о прошлом. Выберите, как сказать «не»**
 <!-- interaction_id: en:lesson-13:session-17:i03; family: context_gap_grammar -->
 I ___ slow down. → **didn't** · don't · doesn't
 - don't — *Для прошлого нужна форма didn't.*
@@ -83,7 +83,7 @@ I ___ slow down. → **didn't** · don't · doesn't
 - I didn't speed up. — *В записи звучит She didn't speed up.*
 - She doesn't speed up. — *В записи звучит She didn't speed up.*
 
-**8 · Этого не было вчера. Выберите отрицание**
+**8 · Речь о прошлом. Выберите, как сказать «не»**
 <!-- interaction_id: en:lesson-13:session-17:i06; family: context_gap_grammar -->
 I ___ speed up. → **didn't** · don't · doesn't
 - don't — *Для прошлого нужна форма didn't.*
@@ -103,7 +103,7 @@ I ___ speed up. → **didn't** · don't · doesn't
 - I didn't calm down quickly. — *В записи звучит She didn't calm down quickly.*
 - She doesn't calm down quickly. — *В записи звучит She didn't calm down quickly.*
 
-**12 · Этого не было вчера. Выберите отрицание**
+**12 · Речь о прошлом. Выберите, как сказать «не»**
 <!-- interaction_id: en:lesson-13:session-17:i09; family: context_gap_grammar -->
 I ___ calm down quickly. → **didn't** · don't · doesn't
 - don't — *Для прошлого нужна форма didn't.*
@@ -123,7 +123,7 @@ I ___ calm down quickly. → **didn't** · don't · doesn't
 - I didn't cheer up quickly. — *В записи звучит She didn't cheer up quickly.*
 - She doesn't cheer up quickly. — *В записи звучит She didn't cheer up quickly.*
 
-**16 · Этого не было вчера. Выберите отрицание**
+**16 · Речь о прошлом. Выберите, как сказать «не»**
 <!-- interaction_id: en:lesson-13:session-17:i12; family: context_gap_grammar -->
 I ___ cheer up quickly. → **didn't** · don't · doesn't
 - don't — *Для прошлого нужна форма didn't.*

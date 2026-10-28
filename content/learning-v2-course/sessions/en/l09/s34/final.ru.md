@@ -123,7 +123,7 @@ He ___ tying a knot. → **is** · are · am
 <!-- interaction_id: en:lesson-09:session-34:i12; family: phrase_builder -->
 Плитки: `small` `is` `loop` `The` → **The loop is small.**
 
-**17 · Выберите связку для одной петли**
+**17 · Выберите is или are: одна петля**
 <!-- interaction_id: en:lesson-09:session-34:i13; family: context_gap_grammar -->
 The loop ___ small. → **is** · are · am
 - are — *Одна петля: is.*

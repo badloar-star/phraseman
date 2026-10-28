@@ -63,7 +63,7 @@
 - I didn't slow down. — *У записі звучить She didn't slow down.*
 - She doesn't slow down. — *У записі звучить She didn't slow down.*
 
-**4 · Цього не було вчора. Виберіть заперечення**
+**4 · Ідеться про минуле. Виберіть, як сказати «не»**
 <!-- interaction_id: en:lesson-13:session-17:i03; family: context_gap_grammar -->
 I ___ slow down. → **didn't** · don't · doesn't
 - don't — *Для минулого потрібна форма didn't.*
@@ -83,7 +83,7 @@ I ___ slow down. → **didn't** · don't · doesn't
 - I didn't speed up. — *У записі звучить She didn't speed up.*
 - She doesn't speed up. — *У записі звучить She didn't speed up.*
 
-**8 · Цього не було вчора. Виберіть заперечення**
+**8 · Ідеться про минуле. Виберіть, як сказати «не»**
 <!-- interaction_id: en:lesson-13:session-17:i06; family: context_gap_grammar -->
 I ___ speed up. → **didn't** · don't · doesn't
 - don't — *Для минулого потрібна форма didn't.*
@@ -103,7 +103,7 @@ I ___ speed up. → **didn't** · don't · doesn't
 - I didn't calm down quickly. — *У записі звучить She didn't calm down quickly.*
 - She doesn't calm down quickly. — *У записі звучить She didn't calm down quickly.*
 
-**12 · Цього не було вчора. Виберіть заперечення**
+**12 · Ідеться про минуле. Виберіть, як сказати «не»**
 <!-- interaction_id: en:lesson-13:session-17:i09; family: context_gap_grammar -->
 I ___ calm down quickly. → **didn't** · don't · doesn't
 - don't — *Для минулого потрібна форма didn't.*
@@ -123,7 +123,7 @@ I ___ calm down quickly. → **didn't** · don't · doesn't
 - I didn't cheer up quickly. — *У записі звучить She didn't cheer up quickly.*
 - She doesn't cheer up quickly. — *У записі звучить She didn't cheer up quickly.*
 
-**16 · Цього не було вчора. Виберіть заперечення**
+**16 · Ідеться про минуле. Виберіть, як сказати «не»**
 <!-- interaction_id: en:lesson-13:session-17:i12; family: context_gap_grammar -->
 I ___ cheer up quickly. → **didn't** · don't · doesn't
 - don't — *Для минулого потрібна форма didn't.*

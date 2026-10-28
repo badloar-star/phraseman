@@ -103,7 +103,7 @@ I am ___ the sole. → **checking** · check · checks
 - This mattress is soft. — *В записи звучит This mattress is firm.*
 - This pillow is firm. — *В записи звучит This mattress is firm.*
 
-**12 · Выберите связку для свойства подошвы**
+**12 · Выберите is или are: какая подошва**
 <!-- interaction_id: en:lesson-10:session-45:i09; family: context_gap_grammar -->
 The sole ___ firm. → **is** · are · am
 - are — *Одна подошва: is.*

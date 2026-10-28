@@ -63,7 +63,7 @@
 - I didn't put on my coat. — *У записі звучить She didn't put on my coat.*
 - She doesn't put on my coat. — *У записі звучить She didn't put on my coat.*
 
-**4 · Цього не було вчора. Виберіть заперечення**
+**4 · Ідеться про минуле. Виберіть, як сказати «не»**
 <!-- interaction_id: en:lesson-13:session-16:i03; family: context_gap_grammar -->
 I ___ put on my coat. → **didn't** · don't · doesn't
 - don't — *Для минулого потрібна форма didn't.*
@@ -83,7 +83,7 @@ I ___ put on my coat. → **didn't** · don't · doesn't
 - I didn't take off my scarf. — *У записі звучить She didn't take off my scarf.*
 - She doesn't take off my scarf. — *У записі звучить She didn't take off my scarf.*
 
-**8 · Цього не було вчора. Виберіть заперечення**
+**8 · Ідеться про минуле. Виберіть, як сказати «не»**
 <!-- interaction_id: en:lesson-13:session-16:i06; family: context_gap_grammar -->
 I ___ take off my scarf. → **didn't** · don't · doesn't
 - don't — *Для минулого потрібна форма didn't.*
@@ -103,7 +103,7 @@ I ___ take off my scarf. → **didn't** · don't · doesn't
 - I didn't get on the bus. — *У записі звучить She didn't get on the bus.*
 - She doesn't get on the bus. — *У записі звучить She didn't get on the bus.*
 
-**12 · Цього не було вчора. Виберіть заперечення**
+**12 · Ідеться про минуле. Виберіть, як сказати «не»**
 <!-- interaction_id: en:lesson-13:session-16:i09; family: context_gap_grammar -->
 I ___ get on the bus. → **didn't** · don't · doesn't
 - don't — *Для минулого потрібна форма didn't.*
@@ -123,7 +123,7 @@ I ___ get on the bus. → **didn't** · don't · doesn't
 - I didn't get off at the station. — *У записі звучить She didn't get off at the station.*
 - She doesn't get off at the station. — *У записі звучить She didn't get off at the station.*
 
-**16 · Цього не було вчора. Виберіть заперечення**
+**16 · Ідеться про минуле. Виберіть, як сказати «не»**
 <!-- interaction_id: en:lesson-13:session-16:i12; family: context_gap_grammar -->
 I ___ get off at the station. → **didn't** · don't · doesn't
 - don't — *Для минулого потрібна форма didn't.*

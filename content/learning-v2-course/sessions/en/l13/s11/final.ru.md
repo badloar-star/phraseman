@@ -63,7 +63,7 @@
 - I didn't turn up the radio. — *В записи звучит She didn't turn up the radio.*
 - She doesn't turn up the radio. — *В записи звучит She didn't turn up the radio.*
 
-**4 · Этого не было вчера. Выберите отрицание**
+**4 · Речь о прошлом. Выберите, как сказать «не»**
 <!-- interaction_id: en:lesson-13:session-11:i03; family: context_gap_grammar -->
 I ___ turn up the radio. → **didn't** · don't · doesn't
 - don't — *Для прошлого нужна форма didn't.*
@@ -83,7 +83,7 @@ I ___ turn up the radio. → **didn't** · don't · doesn't
 - I didn't turn down the music. — *В записи звучит She didn't turn down the music.*
 - She doesn't turn down the music. — *В записи звучит She didn't turn down the music.*
 
-**8 · Этого не было вчера. Выберите отрицание**
+**8 · Речь о прошлом. Выберите, как сказать «не»**
 <!-- interaction_id: en:lesson-13:session-11:i06; family: context_gap_grammar -->
 I ___ turn down the music. → **didn't** · don't · doesn't
 - don't — *Для прошлого нужна форма didn't.*
@@ -103,7 +103,7 @@ I ___ turn down the music. → **didn't** · don't · doesn't
 - I didn't hang up my coat. — *В записи звучит She didn't hang up my coat.*
 - She doesn't hang up my coat. — *В записи звучит She didn't hang up my coat.*
 
-**12 · Этого не было вчера. Выберите отрицание**
+**12 · Речь о прошлом. Выберите, как сказать «не»**
 <!-- interaction_id: en:lesson-13:session-11:i09; family: context_gap_grammar -->
 I ___ hang up my coat. → **didn't** · don't · doesn't
 - don't — *Для прошлого нужна форма didn't.*
@@ -123,7 +123,7 @@ I ___ hang up my coat. → **didn't** · don't · doesn't
 - I didn't wake up early. — *В записи звучит She didn't wake up early.*
 - She doesn't wake up early. — *В записи звучит She didn't wake up early.*
 
-**16 · Этого не было вчера. Выберите отрицание**
+**16 · Речь о прошлом. Выберите, как сказать «не»**
 <!-- interaction_id: en:lesson-13:session-11:i12; family: context_gap_grammar -->
 I ___ wake up early. → **didn't** · don't · doesn't
 - don't — *Для прошлого нужна форма didn't.*

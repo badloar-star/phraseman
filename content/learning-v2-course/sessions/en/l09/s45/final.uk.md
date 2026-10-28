@@ -83,7 +83,7 @@ My hands are ___. → **trembling** · trembleing · tremble
 - The book is under the lectern. — *У записі звучить The book is on the lectern.*
 - The speech is on the lectern. — *У записі звучить The book is on the lectern.*
 
-**8 · Виберіть зв’язку для однієї книжки**
+**8 · Виберіть is або are: одна книжка**
 <!-- interaction_id: en:lesson-09:session-45:i06; family: context_gap_grammar -->
 The book ___ on the lectern. → **is** · are · am
 - are — *Одна книжка: is.*

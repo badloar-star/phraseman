@@ -63,7 +63,7 @@
 - I didn't give away the clothes. — *В записи звучит She didn't give away the clothes.*
 - She doesn't give away the clothes. — *В записи звучит She didn't give away the clothes.*
 
-**4 · Этого не было вчера. Выберите отрицание**
+**4 · Речь о прошлом. Выберите, как сказать «не»**
 <!-- interaction_id: en:lesson-13:session-10:i03; family: context_gap_grammar -->
 I ___ give away the clothes. → **didn't** · don't · doesn't
 - don't — *Для прошлого нужна форма didn't.*
@@ -83,7 +83,7 @@ I ___ give away the clothes. → **didn't** · don't · doesn't
 - I didn't leave behind any clothes. — *В записи звучит She didn't leave behind any clothes.*
 - She doesn't leave behind any clothes. — *В записи звучит She didn't leave behind any clothes.*
 
-**8 · Этого не было вчера. Выберите отрицание**
+**8 · Речь о прошлом. Выберите, как сказать «не»**
 <!-- interaction_id: en:lesson-13:session-10:i06; family: context_gap_grammar -->
 I ___ leave behind any clothes. → **didn't** · don't · doesn't
 - don't — *Для прошлого нужна форма didn't.*
@@ -103,7 +103,7 @@ I ___ leave behind any clothes. → **didn't** · don't · doesn't
 - I didn't lock up the house. — *В записи звучит She didn't lock up the house.*
 - She doesn't lock up the house. — *В записи звучит She didn't lock up the house.*
 
-**12 · Этого не было вчера. Выберите отрицание**
+**12 · Речь о прошлом. Выберите, как сказать «не»**
 <!-- interaction_id: en:lesson-13:session-10:i09; family: context_gap_grammar -->
 I ___ lock up the house. → **didn't** · don't · doesn't
 - don't — *Для прошлого нужна форма didn't.*
@@ -123,7 +123,7 @@ I ___ lock up the house. → **didn't** · don't · doesn't
 - I didn't take out the rubbish. — *В записи звучит She didn't take out the rubbish.*
 - She doesn't take out the rubbish. — *В записи звучит She didn't take out the rubbish.*
 
-**16 · Этого не было вчера. Выберите отрицание**
+**16 · Речь о прошлом. Выберите, как сказать «не»**
 <!-- interaction_id: en:lesson-13:session-10:i12; family: context_gap_grammar -->
 I ___ take out the rubbish. → **didn't** · don't · doesn't
 - don't — *Для прошлого нужна форма didn't.*

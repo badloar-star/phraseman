@@ -123,7 +123,7 @@ We ___ a side dish. → **need** · needs · needing
 - This portion is small. — *В записи звучит This portion is large.*
 - That portion is large. — *В записи звучит This portion is large.*
 
-**16 · Выберите связку для одной порции**
+**16 · Выберите is или are: одна порция**
 <!-- interaction_id: en:lesson-10:session-26:i12; family: context_gap_grammar -->
 This portion ___ small. → **is** · are · am
 - are — *Одна порция: is.*

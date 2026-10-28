@@ -121,7 +121,7 @@ She is ___ in the courtyard. → **waiting** · wait · waits
 - The cobblestones are dry. — *У записі звучить The cobblestones are wet.*
 - The courtyard is wet. — *У записі звучить The cobblestones are wet.*
 
-**16 · Виберіть зв’язку для кількох каменів**
+**16 · Виберіть is або are: кілька каменів**
 <!-- interaction_id: en:lesson-09:session-46:i12; family: context_gap_grammar -->
 The cobblestones ___ wet. → **are** · is · am
 - is — *Cobblestones у множині: are.*

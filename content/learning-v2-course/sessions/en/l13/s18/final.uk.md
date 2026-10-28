@@ -63,7 +63,7 @@
 - I didn't put back the book. — *У записі звучить She didn't put back the book.*
 - She doesn't put back the book. — *У записі звучить She didn't put back the book.*
 
-**4 · Цього не було вчора. Виберіть заперечення**
+**4 · Ідеться про минуле. Виберіть, як сказати «не»**
 <!-- interaction_id: en:lesson-13:session-18:i03; family: context_gap_grammar -->
 I ___ put back the book. → **didn't** · don't · doesn't
 - don't — *Для минулого потрібна форма didn't.*
@@ -83,7 +83,7 @@ I ___ put back the book. → **didn't** · don't · doesn't
 - I didn't put down my bag. — *У записі звучить She didn't put down my bag.*
 - She doesn't put down my bag. — *У записі звучить She didn't put down my bag.*
 
-**8 · Цього не було вчора. Виберіть заперечення**
+**8 · Ідеться про минуле. Виберіть, як сказати «не»**
 <!-- interaction_id: en:lesson-13:session-18:i06; family: context_gap_grammar -->
 I ___ put down my bag. → **didn't** · don't · doesn't
 - don't — *Для минулого потрібна форма didn't.*
@@ -103,7 +103,7 @@ I ___ put down my bag. → **didn't** · don't · doesn't
 - I didn't pick out a chair. — *У записі звучить She didn't pick out a chair.*
 - She doesn't pick out a chair. — *У записі звучить She didn't pick out a chair.*
 
-**12 · Цього не було вчора. Виберіть заперечення**
+**12 · Ідеться про минуле. Виберіть, як сказати «не»**
 <!-- interaction_id: en:lesson-13:session-18:i09; family: context_gap_grammar -->
 I ___ pick out a chair. → **didn't** · don't · doesn't
 - don't — *Для минулого потрібна форма didn't.*
@@ -123,7 +123,7 @@ I ___ pick out a chair. → **didn't** · don't · doesn't
 - I didn't try out the chair. — *У записі звучить She didn't try out the chair.*
 - She doesn't try out the chair. — *У записі звучить She didn't try out the chair.*
 
-**16 · Цього не було вчора. Виберіть заперечення**
+**16 · Ідеться про минуле. Виберіть, як сказати «не»**
 <!-- interaction_id: en:lesson-13:session-18:i12; family: context_gap_grammar -->
 I ___ try out the chair. → **didn't** · don't · doesn't
 - don't — *Для минулого потрібна форма didn't.*

@@ -63,7 +63,7 @@
 - What is his first name? — *У записі звучить What is her first name?*
 - What is your first name? — *У записі звучить What is her first name?*
 
-**4 · Виберіть зв’язку для одного імені**
+**4 · Виберіть is або are: одне ім’я**
 <!-- interaction_id: en:lesson-10:session-15:i03; family: context_gap_grammar -->
 What ___ your first name? → **is** · are · am
 - are — *Одне ім’я: is.*
@@ -83,7 +83,7 @@ What ___ your first name? → **is** · are · am
 - His surname is Brown. — *У записі звучить Her surname is Brown.*
 - My surname is Brown. — *У записі звучить Her surname is Brown.*
 
-**8 · Виберіть зв’язку для одного прізвища**
+**8 · Виберіть is або are: одне прізвище**
 <!-- interaction_id: en:lesson-10:session-15:i06; family: context_gap_grammar -->
 My surname ___ Brown. → **is** · are · am
 - are — *Одне прізвище: is.*

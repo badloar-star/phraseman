@@ -121,7 +121,7 @@ I am ___ the walkie-talkie. → **using** · useing · use
 - We are doing a headcount. — *В записи звучит Are you doing a headcount?*
 - Is she doing a headcount? — *В записи звучит Are you doing a headcount?*
 
-**16 · Выберите связку для we при действии сейчас**
+**16 · Выберите is или are: we, и это происходит сейчас**
 <!-- interaction_id: en:lesson-09:session-56:i12; family: context_gap_grammar -->
 We ___ doing a headcount. → **are** · is · am
 - is — *С we употребляется are.*

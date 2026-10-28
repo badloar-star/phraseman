@@ -83,7 +83,7 @@ She is ___ to the baby. → **murmuring** · murmur · murmurs
 - The pacifier is green. — *У записі звучить The pacifier is blue.*
 - The bag is blue. — *У записі звучить The pacifier is blue.*
 
-**8 · Виберіть зв’язку для однієї пустушки**
+**8 · Виберіть is або are: одна пустушка**
 <!-- interaction_id: en:lesson-09:session-49:i06; family: context_gap_grammar -->
 The pacifier ___ in the bag. → **is** · are · am
 - are — *Одна пустушка: is.*

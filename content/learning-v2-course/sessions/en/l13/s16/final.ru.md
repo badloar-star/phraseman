@@ -63,7 +63,7 @@
 - I didn't put on my coat. — *В записи звучит She didn't put on my coat.*
 - She doesn't put on my coat. — *В записи звучит She didn't put on my coat.*
 
-**4 · Этого не было вчера. Выберите отрицание**
+**4 · Речь о прошлом. Выберите, как сказать «не»**
 <!-- interaction_id: en:lesson-13:session-16:i03; family: context_gap_grammar -->
 I ___ put on my coat. → **didn't** · don't · doesn't
 - don't — *Для прошлого нужна форма didn't.*
@@ -83,7 +83,7 @@ I ___ put on my coat. → **didn't** · don't · doesn't
 - I didn't take off my scarf. — *В записи звучит She didn't take off my scarf.*
 - She doesn't take off my scarf. — *В записи звучит She didn't take off my scarf.*
 
-**8 · Этого не было вчера. Выберите отрицание**
+**8 · Речь о прошлом. Выберите, как сказать «не»**
 <!-- interaction_id: en:lesson-13:session-16:i06; family: context_gap_grammar -->
 I ___ take off my scarf. → **didn't** · don't · doesn't
 - don't — *Для прошлого нужна форма didn't.*
@@ -103,7 +103,7 @@ I ___ take off my scarf. → **didn't** · don't · doesn't
 - I didn't get on the bus. — *В записи звучит She didn't get on the bus.*
 - She doesn't get on the bus. — *В записи звучит She didn't get on the bus.*
 
-**12 · Этого не было вчера. Выберите отрицание**
+**12 · Речь о прошлом. Выберите, как сказать «не»**
 <!-- interaction_id: en:lesson-13:session-16:i09; family: context_gap_grammar -->
 I ___ get on the bus. → **didn't** · don't · doesn't
 - don't — *Для прошлого нужна форма didn't.*
@@ -123,7 +123,7 @@ I ___ get on the bus. → **didn't** · don't · doesn't
 - I didn't get off at the station. — *В записи звучит She didn't get off at the station.*
 - She doesn't get off at the station. — *В записи звучит She didn't get off at the station.*
 
-**16 · Этого не было вчера. Выберите отрицание**
+**16 · Речь о прошлом. Выберите, как сказать «не»**
 <!-- interaction_id: en:lesson-13:session-16:i12; family: context_gap_grammar -->
 I ___ get off at the station. → **didn't** · don't · doesn't
 - don't — *Для прошлого нужна форма didn't.*

@@ -63,7 +63,7 @@
 - Both cups are empty. — *В записи звучит Both cups are clean.*
 - Both plates are clean. — *В записи звучит Both cups are clean.*
 
-**4 · Выберите связку для двух стульев**
+**4 · Выберите is или are: два стула**
 <!-- interaction_id: en:lesson-10:session-39:i03; family: context_gap_grammar -->
 Both chairs ___ free. → **are** · is · am
 - is — *Множественное число: are.*

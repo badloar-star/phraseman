@@ -63,7 +63,7 @@
 - What is his first name? — *В записи звучит What is her first name?*
 - What is your first name? — *В записи звучит What is her first name?*
 
-**4 · Выберите связку для одного имени**
+**4 · Выберите is или are: одно имя**
 <!-- interaction_id: en:lesson-10:session-15:i03; family: context_gap_grammar -->
 What ___ your first name? → **is** · are · am
 - are — *Одно имя: is.*
@@ -83,7 +83,7 @@ What ___ your first name? → **is** · are · am
 - His surname is Brown. — *В записи звучит Her surname is Brown.*
 - My surname is Brown. — *В записи звучит Her surname is Brown.*
 
-**8 · Выберите связку для одной фамилии**
+**8 · Выберите is или are: одна фамилия**
 <!-- interaction_id: en:lesson-10:session-15:i06; family: context_gap_grammar -->
 My surname ___ Brown. → **is** · are · am
 - are — *Одна фамилия: is.*

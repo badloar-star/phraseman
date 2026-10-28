@@ -63,7 +63,7 @@
 - I didn't look after my nephew. — *У записі звучить She didn't look after my nephew.*
 - She doesn't look after my nephew. — *У записі звучить She didn't look after my nephew.*
 
-**4 · Цього не було вчора. Виберіть заперечення**
+**4 · Ідеться про минуле. Виберіть, як сказати «не»**
 <!-- interaction_id: en:lesson-13:session-15:i03; family: context_gap_grammar -->
 I ___ look after my nephew. → **didn't** · don't · doesn't
 - don't — *Для минулого потрібна форма didn't.*
@@ -83,7 +83,7 @@ I ___ look after my nephew. → **didn't** · don't · doesn't
 - I didn't help out at home. — *У записі звучить She didn't help out at home.*
 - She doesn't help out at home. — *У записі звучить She didn't help out at home.*
 
-**8 · Цього не було вчора. Виберіть заперечення**
+**8 · Ідеться про минуле. Виберіть, як сказати «не»**
 <!-- interaction_id: en:lesson-13:session-15:i06; family: context_gap_grammar -->
 I ___ help out at home. → **didn't** · don't · doesn't
 - don't — *Для минулого потрібна форма didn't.*
@@ -103,7 +103,7 @@ I ___ help out at home. → **didn't** · don't · doesn't
 - I didn't fill in the form. — *У записі звучить She didn't fill in the form.*
 - She doesn't fill in the form. — *У записі звучить She didn't fill in the form.*
 
-**12 · Цього не було вчора. Виберіть заперечення**
+**12 · Ідеться про минуле. Виберіть, як сказати «не»**
 <!-- interaction_id: en:lesson-13:session-15:i09; family: context_gap_grammar -->
 I ___ fill in the form. → **didn't** · don't · doesn't
 - don't — *Для минулого потрібна форма didn't.*
@@ -123,7 +123,7 @@ I ___ fill in the form. → **didn't** · don't · doesn't
 - I didn't find out the price. — *У записі звучить She didn't find out the price.*
 - She doesn't find out the price. — *У записі звучить She didn't find out the price.*
 
-**16 · Цього не було вчора. Виберіть заперечення**
+**16 · Ідеться про минуле. Виберіть, як сказати «не»**
 <!-- interaction_id: en:lesson-13:session-15:i12; family: context_gap_grammar -->
 I ___ find out the price. → **didn't** · don't · doesn't
 - don't — *Для минулого потрібна форма didn't.*

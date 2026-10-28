@@ -63,7 +63,7 @@
 - I didn't switch on the lamp. — *У записі звучить She didn't switch on the lamp.*
 - She doesn't switch on the lamp. — *У записі звучить She didn't switch on the lamp.*
 
-**4 · Цього не було вчора. Виберіть заперечення**
+**4 · Ідеться про минуле. Виберіть, як сказати «не»**
 <!-- interaction_id: en:lesson-13:session-14:i03; family: context_gap_grammar -->
 I ___ switch on the lamp. → **didn't** · don't · doesn't
 - don't — *Для минулого потрібна форма didn't.*
@@ -83,7 +83,7 @@ I ___ switch on the lamp. → **didn't** · don't · doesn't
 - I didn't switch off the radio. — *У записі звучить She didn't switch off the radio.*
 - She doesn't switch off the radio. — *У записі звучить She didn't switch off the radio.*
 
-**8 · Цього не було вчора. Виберіть заперечення**
+**8 · Ідеться про минуле. Виберіть, як сказати «не»**
 <!-- interaction_id: en:lesson-13:session-14:i06; family: context_gap_grammar -->
 I ___ switch off the radio. → **didn't** · don't · doesn't
 - don't — *Для минулого потрібна форма didn't.*
@@ -103,7 +103,7 @@ I ___ switch off the radio. → **didn't** · don't · doesn't
 - I didn't call back. — *У записі звучить She didn't call back.*
 - She doesn't call back. — *У записі звучить She didn't call back.*
 
-**12 · Цього не було вчора. Виберіть заперечення**
+**12 · Ідеться про минуле. Виберіть, як сказати «не»**
 <!-- interaction_id: en:lesson-13:session-14:i09; family: context_gap_grammar -->
 I ___ call back. → **didn't** · don't · doesn't
 - don't — *Для минулого потрібна форма didn't.*
@@ -123,7 +123,7 @@ I ___ call back. → **didn't** · don't · doesn't
 - I didn't write down the address. — *У записі звучить She didn't write down the address.*
 - She doesn't write down the address. — *У записі звучить She didn't write down the address.*
 
-**16 · Цього не було вчора. Виберіть заперечення**
+**16 · Ідеться про минуле. Виберіть, як сказати «не»**
 <!-- interaction_id: en:lesson-13:session-14:i12; family: context_gap_grammar -->
 I ___ write down the address. → **didn't** · don't · doesn't
 - don't — *Для минулого потрібна форма didn't.*

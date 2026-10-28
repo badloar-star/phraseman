@@ -83,7 +83,7 @@ I glance ___ the clock. → **at** · on · to
 - The billboard is small. — *У записі звучить The billboard is large.*
 - The window is large. — *У записі звучить The billboard is large.*
 
-**8 · Виберіть зв’язку для одного рекламного щита**
+**8 · Виберіть is або are: один рекламний щит**
 <!-- interaction_id: en:lesson-09:session-44:i06; family: context_gap_grammar -->
 The billboard ___ large. → **is** · are · am
 - are — *Один щит: is.*

@@ -63,7 +63,7 @@
 - I didn't save up for a bike. — *У записі звучить She didn't save up for a bike.*
 - She doesn't save up for a bike. — *У записі звучить She didn't save up for a bike.*
 
-**4 · Цього не було вчора. Виберіть заперечення**
+**4 · Ідеться про минуле. Виберіть, як сказати «не»**
 <!-- interaction_id: en:lesson-13:session-09:i03; family: context_gap_grammar -->
 I ___ save up for a bike. → **didn't** · don't · doesn't
 - don't — *Для минулого потрібна форма didn't.*
@@ -83,7 +83,7 @@ I ___ save up for a bike. → **didn't** · don't · doesn't
 - I didn't pay back the money. — *У записі звучить She didn't pay back the money.*
 - She doesn't pay back the money. — *У записі звучить She didn't pay back the money.*
 
-**8 · Цього не було вчора. Виберіть заперечення**
+**8 · Ідеться про минуле. Виберіть, як сказати «не»**
 <!-- interaction_id: en:lesson-13:session-09:i06; family: context_gap_grammar -->
 I ___ pay back the money. → **didn't** · don't · doesn't
 - don't — *Для минулого потрібна форма didn't.*
@@ -103,7 +103,7 @@ I ___ pay back the money. → **didn't** · don't · doesn't
 - I didn't take back the shoes. — *У записі звучить She didn't take back the shoes.*
 - She doesn't take back the shoes. — *У записі звучить She didn't take back the shoes.*
 
-**12 · Цього не було вчора. Виберіть заперечення**
+**12 · Ідеться про минуле. Виберіть, як сказати «не»**
 <!-- interaction_id: en:lesson-13:session-09:i09; family: context_gap_grammar -->
 I ___ take back the shoes. → **didn't** · don't · doesn't
 - don't — *Для минулого потрібна форма didn't.*
@@ -123,7 +123,7 @@ I ___ take back the shoes. → **didn't** · don't · doesn't
 - I didn't give back the book. — *У записі звучить She didn't give back the book.*
 - She doesn't give back the book. — *У записі звучить She didn't give back the book.*
 
-**16 · Цього не було вчора. Виберіть заперечення**
+**16 · Ідеться про минуле. Виберіть, як сказати «не»**
 <!-- interaction_id: en:lesson-13:session-09:i12; family: context_gap_grammar -->
 I ___ give back the book. → **didn't** · don't · doesn't
 - don't — *Для минулого потрібна форма didn't.*

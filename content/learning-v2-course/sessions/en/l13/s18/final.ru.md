@@ -63,7 +63,7 @@
 - I didn't put back the book. — *В записи звучит She didn't put back the book.*
 - She doesn't put back the book. — *В записи звучит She didn't put back the book.*
 
-**4 · Этого не было вчера. Выберите отрицание**
+**4 · Речь о прошлом. Выберите, как сказать «не»**
 <!-- interaction_id: en:lesson-13:session-18:i03; family: context_gap_grammar -->
 I ___ put back the book. → **didn't** · don't · doesn't
 - don't — *Для прошлого нужна форма didn't.*
@@ -83,7 +83,7 @@ I ___ put back the book. → **didn't** · don't · doesn't
 - I didn't put down my bag. — *В записи звучит She didn't put down my bag.*
 - She doesn't put down my bag. — *В записи звучит She didn't put down my bag.*
 
-**8 · Этого не было вчера. Выберите отрицание**
+**8 · Речь о прошлом. Выберите, как сказать «не»**
 <!-- interaction_id: en:lesson-13:session-18:i06; family: context_gap_grammar -->
 I ___ put down my bag. → **didn't** · don't · doesn't
 - don't — *Для прошлого нужна форма didn't.*
@@ -103,7 +103,7 @@ I ___ put down my bag. → **didn't** · don't · doesn't
 - I didn't pick out a chair. — *В записи звучит She didn't pick out a chair.*
 - She doesn't pick out a chair. — *В записи звучит She didn't pick out a chair.*
 
-**12 · Этого не было вчера. Выберите отрицание**
+**12 · Речь о прошлом. Выберите, как сказать «не»**
 <!-- interaction_id: en:lesson-13:session-18:i09; family: context_gap_grammar -->
 I ___ pick out a chair. → **didn't** · don't · doesn't
 - don't — *Для прошлого нужна форма didn't.*
@@ -123,7 +123,7 @@ I ___ pick out a chair. → **didn't** · don't · doesn't
 - I didn't try out the chair. — *В записи звучит She didn't try out the chair.*
 - She doesn't try out the chair. — *В записи звучит She didn't try out the chair.*
 
-**16 · Этого не было вчера. Выберите отрицание**
+**16 · Речь о прошлом. Выберите, как сказать «не»**
 <!-- interaction_id: en:lesson-13:session-18:i12; family: context_gap_grammar -->
 I ___ try out the chair. → **didn't** · don't · doesn't
 - don't — *Для прошлого нужна форма didn't.*

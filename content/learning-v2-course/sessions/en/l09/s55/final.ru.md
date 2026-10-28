@@ -64,7 +64,7 @@
 - The agenda is under the table. — *В записи звучит The agenda is on the table.*
 - The notebook is on the table. — *В записи звучит The agenda is on the table.*
 
-**4 · Выберите связку для agenda**
+**4 · Выберите is или are: agenda**
 <!-- interaction_id: en:lesson-09:session-55:i03; family: context_gap_grammar -->
 The agenda ___ on the table. → **is** · are · am
 - are — *Agenda здесь в единственном числе: is.*

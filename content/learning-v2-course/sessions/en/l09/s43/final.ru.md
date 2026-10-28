@@ -101,7 +101,7 @@ This is ___ thumbnail. → **a** · an · are
 - The resolution is low. — *В записи звучит The resolution is high.*
 - The thumbnail is small. — *В записи звучит The resolution is high.*
 
-**12 · Выберите связку для resolution**
+**12 · Выберите is или are: resolution**
 <!-- interaction_id: en:lesson-09:session-43:i09; family: context_gap_grammar -->
 The resolution ___ low. → **is** · are · am
 - are — *Resolution здесь в единственном числе, нужно is.*

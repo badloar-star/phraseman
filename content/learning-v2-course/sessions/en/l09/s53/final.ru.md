@@ -103,7 +103,7 @@ We ___ in the auditorium. → **are** · is · am
 - The acoustics are good. — *В записи звучит The acoustics are poor.*
 - The auditorium is empty. — *В записи звучит The acoustics are poor.*
 
-**12 · Выберите связку для acoustics в значении звучания помещения**
+**12 · Выберите is или are: acoustics — как звучит помещение**
 <!-- interaction_id: en:lesson-09:session-53:i09; family: context_gap_grammar -->
 The acoustics ___ good. → **are** · is · am
 - is — *В этом значении acoustics во множественном числе: are.*

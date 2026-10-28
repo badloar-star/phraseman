@@ -63,7 +63,7 @@
 - I didn't get up early. — *В записи звучит She didn't get up early.*
 - She doesn't get up early. — *В записи звучит She didn't get up early.*
 
-**4 · Этого не было вчера. Выберите отрицание**
+**4 · Речь о прошлом. Выберите, как сказать «не»**
 <!-- interaction_id: en:lesson-13:session-13:i03; family: context_gap_grammar -->
 I ___ get up early. → **didn't** · don't · doesn't
 - don't — *Для прошлого нужна форма didn't.*
@@ -83,7 +83,7 @@ I ___ get up early. → **didn't** · don't · doesn't
 - I didn't sit down. — *В записи звучит She didn't sit down.*
 - She doesn't sit down. — *В записи звучит She didn't sit down.*
 
-**8 · Этого не было вчера. Выберите отрицание**
+**8 · Речь о прошлом. Выберите, как сказать «не»**
 <!-- interaction_id: en:lesson-13:session-13:i06; family: context_gap_grammar -->
 I ___ sit down. → **didn't** · don't · doesn't
 - don't — *Для прошлого нужна форма didn't.*
@@ -103,7 +103,7 @@ I ___ sit down. → **didn't** · don't · doesn't
 - I didn't stand up. — *В записи звучит She didn't stand up.*
 - She doesn't stand up. — *В записи звучит She didn't stand up.*
 
-**12 · Этого не было вчера. Выберите отрицание**
+**12 · Речь о прошлом. Выберите, как сказать «не»**
 <!-- interaction_id: en:lesson-13:session-13:i09; family: context_gap_grammar -->
 I ___ stand up. → **didn't** · don't · doesn't
 - don't — *Для прошлого нужна форма didn't.*
@@ -123,7 +123,7 @@ I ___ stand up. → **didn't** · don't · doesn't
 - I didn't dress up for the party. — *В записи звучит She didn't dress up for the party.*
 - She doesn't dress up for the party. — *В записи звучит She didn't dress up for the party.*
 
-**16 · Этого не было вчера. Выберите отрицание**
+**16 · Речь о прошлом. Выберите, как сказать «не»**
 <!-- interaction_id: en:lesson-13:session-13:i12; family: context_gap_grammar -->
 I ___ dress up for the party. → **didn't** · don't · doesn't
 - don't — *Для прошлого нужна форма didn't.*

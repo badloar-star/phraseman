@@ -272,7 +272,9 @@ function StoryViewer({ lang, liveAnnouncementIds, events: eventsProp, coinRank, 
   const cta = tpl ? STORY_TEMPLATE_CTA[tpl.id] ?? null : null;
   const ctaBottom = storyCtaBottom(insets.bottom);
   ctaZoneRef.current = cta ? winH - ctaBottom - STORY_CTA_HEIGHT - 6 : null;
-  const clock = useMemo<StoryFrameClock>(() => ({ progress, durationMs: STORY_SLIDE_MS, final: reduceMotion || screenReader }), [progress, reduceMotion, screenReader]);
+  // зачем (Сайт 28.10): часы кадра идут столько же, сколько полоса (runBar): у объявления 12/15 с кадр иначе шёл бы медленнее макета
+  const frameDurationMs = event?.type === 'announcement' ? Math.max(STORY_SLIDE_MS, Number(event.payload.durationMs) || STORY_SLIDE_MS) : STORY_SLIDE_MS;
+  const clock = useMemo<StoryFrameClock>(() => ({ progress, durationMs: frameDurationMs, final: reduceMotion || screenReader }), [progress, frameDurationMs, reduceMotion, screenReader]);
   const onCtaAction = useStoryCtaAction(lang, studio);
   const onCta = useCallback(() => { if (tpl && cta) onCtaAction(cta, tpl); }, [cta, onCtaAction, tpl]);
   return (

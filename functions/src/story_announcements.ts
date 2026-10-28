@@ -15,7 +15,9 @@ import {
   liveAnnouncements,
   nextStoryFeedRev,
   storyFeedRevOf,
+  storyPollDocId,
   STORY_FEED_REV_CONFIG_KEY,
+  STORY_POLLS_COLLECTION,
 } from "../../modules/story_events/story_announcements_contract";
 const options = { region: "us-central1", enforceAppCheck: false };
 function role(
@@ -141,6 +143,24 @@ export const adminStoryAnnouncementCommand = onCall(
         updatedAtMs: next.document.updatedAtMs,
         rev: feedRev,
       });
+      // зачем (шаблон «Опрос», координатор 28.10): опрос заводится той же транзакцией, что и публикация, — один документ на ревизию
+      // (story_polls/{id}_{revision}); варианты = блоки. merge: повтор операции не обнуляет уже набранные счётчики.
+      const pollContent = command.action === "publish" ? command.content : undefined;
+      if (pollContent?.design === "poll") {
+        const pollId = storyPollDocId(command.id, next.document.revision);
+        tx.set(
+          db.collection(STORY_POLLS_COLLECTION).doc(pollId), // guard-ok: один документ опроса по id
+          {
+            announcementId: command.id,
+            revision: next.document.revision,
+            options: pollContent.blocks.map((b) => b.text),
+            expiresAtMs: next.document.expiresAtMs,
+            createdAtMs: next.document.updatedAtMs,
+          },
+          { merge: true },
+        );
+        console.log("[STORY-POLL] created", JSON.stringify({ poll: storyPollDocId(command.id.slice(0, 8), next.document.revision), options: pollContent.blocks.length }));
+      }
       // зачем: версия ленты — в уже читаемом на каждом холодном старте remote_config/app (клиент сравнивает с копией на телефоне).
       // merge: остальные ручки «Пульта» не трогаем; adminPublishRemoteConfig сливает ветки и это поле сохраняет.
       if (feedChanged)

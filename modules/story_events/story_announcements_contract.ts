@@ -39,12 +39,17 @@ export const ANNOUNCEMENT_ART_DEFAULTS: Readonly<Partial<Record<AnnouncementDesi
   lessons: "lessons", dialogs: "dialogs", mistakes: "mistakes_entry", exam: "home_scene_exam_ready",
   ai: "intro_ai_dialog", holiday: "home_scene_all_done", maintenance: "dialogs_scene_limit", phrase: "phrase_of_day",
 };
-/** Кнопка действия — только из белого списка; подпись фиксирована по действию и переведена в приложении (свободного текста и ссылок нет). */
-export const ANNOUNCEMENT_CTA_ACTIONS = [
-  "open_plus", "share_invite", "use_theme", "open_lessons", "open_dialogs", "open_cards",
-  "open_spire", "open_duels", "open_mistakes", "open_video", "open_exam", "open_ai",
-] as const;
+/**
+ * Кнопка действия — строго как в макете (координатор 28.10: гейт идёт против макета): только у plus / invite / theme, действие задано
+ * шаблоном; подпись фиксирована по действию и переведена в приложении (свободного текста и ссылок нет).
+ */
+export const ANNOUNCEMENT_CTA_BY_DESIGN = { plus: "open_plus", invite: "share_invite", theme: "use_theme" } as const;
+export const ANNOUNCEMENT_CTA_ACTIONS = ["open_plus", "share_invite", "use_theme"] as const;
 export type AnnouncementCtaAction = (typeof ANNOUNCEMENT_CTA_ACTIONS)[number];
+const ctaFor = (design: AnnouncementDesign | undefined): AnnouncementCtaAction | undefined =>
+  design !== undefined && design in ANNOUNCEMENT_CTA_BY_DESIGN
+    ? ANNOUNCEMENT_CTA_BY_DESIGN[design as keyof typeof ANNOUNCEMENT_CTA_BY_DESIGN]
+    : undefined;
 export type AnnouncementCta = Readonly<{ action: AnnouncementCtaAction }>;
 /** Опрос: варианты — блоки объявления, от 2 до 4. */
 export const ANNOUNCEMENT_POLL_MIN_OPTIONS = 2;
@@ -140,7 +145,7 @@ function designFields(
   onlyFor("eventAtMs", design === "date");
   onlyFor("art", design !== undefined && ANNOUNCEMENT_ART_DEFAULTS[design] !== undefined);
   onlyFor("videoId", design === "video");
-  onlyFor("cta", design !== undefined);
+  onlyFor("cta", ctaFor(design) !== undefined);
   onlyFor("themeId", design === "theme");
   const out: {
     design?: AnnouncementDesign; eventAtMs?: number; art?: AnnouncementArt; videoId?: string; cta?: AnnouncementCta; themeId?: string;
@@ -160,7 +165,10 @@ function designFields(
   if (v.cta !== undefined) {
     const c = record(v.cta);
     if (Object.keys(c).some((k) => k !== "action")) throw new Error("invalid_cta");
-    out.cta = { action: member(c.action, ANNOUNCEMENT_CTA_ACTIONS) };
+    const action = member(c.action, ANNOUNCEMENT_CTA_ACTIONS);
+    // зачем (макет): у plus — «Открыть Plus», у invite — «Поделиться ссылкой», у theme — «Включить тему»; чужое действие — отказ
+    if (action !== ctaFor(design)) throw new Error("invalid_cta");
+    out.cta = { action };
   }
   if (v.themeId !== undefined) {
     if (typeof v.themeId !== "string" || !SAFE_ID.test(v.themeId)) throw new Error("invalid_theme");

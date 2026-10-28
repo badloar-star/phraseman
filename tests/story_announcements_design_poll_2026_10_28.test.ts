@@ -39,11 +39,15 @@ describe('объявления v1 — поле design и его поля', () =>
     expect(normalizeAnnouncement({ ...base, design: 'lessons', art: 'home_scene_newbie' }).art).toBe('home_scene_newbie');
     expect(() => normalizeAnnouncement({ ...base, design: 'lessons', art: 'http://x' })).toThrow('invalid_option');
     expect(normalizeAnnouncement({ ...base, design: 'plus', cta: { action: 'open_plus' } }).cta).toEqual({ action: 'open_plus' });
+    expect(normalizeAnnouncement({ ...base, design: 'invite', cta: { action: 'share_invite' } }).cta).toEqual({ action: 'share_invite' });
     expect(() => normalizeAnnouncement({ ...base, design: 'plus', cta: { action: 'open_url' } })).toThrow('invalid_option');
     expect(() => normalizeAnnouncement({ ...base, design: 'plus', cta: { action: 'open_plus', url: 'x' } })).toThrow('invalid_cta');
+    // координатор 28.10: кнопка строго как в макете — только у plus / invite / theme, действие задано шаблоном
+    expect(() => normalizeAnnouncement({ ...base, design: 'plus', cta: { action: 'use_theme' } })).toThrow('invalid_cta');
+    expect(() => normalizeAnnouncement({ ...base, design: 'lessons', cta: { action: 'open_plus' } })).toThrow('field_not_for_design');
     expect(() => normalizeAnnouncement({ ...base, design: 'video', videoId: 'a b' })).toThrow('invalid_video');
     expect(Object.keys(ANNOUNCEMENT_ART_DEFAULTS).sort()).toEqual(['ai', 'dialogs', 'exam', 'holiday', 'lessons', 'maintenance', 'mistakes', 'phrase']);
-    expect(ANNOUNCEMENT_CTA_ACTIONS).toHaveLength(12);
+    expect(ANNOUNCEMENT_CTA_ACTIONS).toEqual(['open_plus', 'share_invite', 'use_theme']);
   });
 
   it('опрос — от 2 до 4 вариантов (блоков)', () => {

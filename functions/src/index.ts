@@ -1193,6 +1193,7 @@ export { homePollV2Vote } from "./home_poll_v2_vote";
 // зачем (координатор 24.10): исходник живых функций, выложенных 23.10 из дерева, — фиксируем в git, чтобы «бой = git».
 // Administrator-authored stories; content-only feed for clients.
 export { adminStoryAnnouncementsList, adminStoryAnnouncementCommand, storyAnnouncementsGet } from './story_announcements';
+export { storyPollVote } from './story_poll_vote';
 
 // Admin Hosting uses this bounded read-only projection. The separate admin codebase is not configured for deployment yet.
 export { adminListOpsLog } from './admin_ops_log';

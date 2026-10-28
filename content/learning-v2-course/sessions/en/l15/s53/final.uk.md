@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви відокремлюєте свої наміри від уже узгоджених майбутніх справ.
 
-**Що ви опануєте:** going to / Present Continuous: intention and arrangement
+**Що ви опануєте:** сказати про плани: що ви вирішили зробити і про що вже домовилися
 **Нові слова:** gluten-free, lactose-free, unsweetened, unsalted
 
 ## Інтро 1

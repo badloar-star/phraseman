@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы выбрали занятия по интересам и уже подтвердили участие.
 
-**Что вы освоите:** review: Present Continuous for agreed future arrangements
+**Что вы освоите:** повторить: сказать о встрече или деле, о котором уже договорились
 **Новые слова:** flower arranging, pottery, open day, taster session
 
 ## Интро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви вибрали заняття за інтересами й уже підтвердили участь.
 
-**Що ви опануєте:** review: Present Continuous for agreed future arrangements
+**Що ви опануєте:** повторити: сказати про зустріч чи справу, про яку вже домовилися
 **Нові слова:** flower arranging, pottery, open day, taster session
 
 ## Інтро 1

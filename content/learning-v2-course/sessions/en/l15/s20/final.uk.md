@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви з друзями вже вибрали заходи й домовилися, хто куди прийде.
 
-**Що ви опануєте:** review: Present Continuous for agreed future arrangements
+**Що ви опануєте:** повторити: сказати про зустріч чи справу, про яку вже домовилися
 **Нові слова:** car boot sale, craft fair, fun run, book club
 
 ## Інтро 1

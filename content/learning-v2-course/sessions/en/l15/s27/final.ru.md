@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы отделяете свои намерения от уже согласованных будущих дел.
 
-**Что вы освоите:** going to / Present Continuous: intention and arrangement
+**Что вы освоите:** сказать о планах: что вы решили сделать и о чём уже договорились
 **Новые слова:** launderette, dry cleaning, key cutting, shoe repair
 
 ## Интро 1

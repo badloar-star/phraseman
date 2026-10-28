@@ -24,7 +24,6 @@ export interface PosWorkoutProfile {
   category: WordCategory;
   drillType: PosDrillType;
   icon: string;
-  accent: string;
   title: PosWorkoutLocaleCopy;
   drillLabel: PosWorkoutLocaleCopy;
   coachLine: PosWorkoutLocaleCopy;
@@ -297,7 +296,6 @@ const PROFILES: Record<Exclude<WordCategory, 'other'>, PosWorkoutProfile> = {
     category: 'syntax',
     drillType: 'order_rebuild',
     icon: 'swap-horizontal-outline',
-    accent: '#7C3AED',
     title: { ru: 'Syntax', uk: 'Syntax', en: 'Syntax', es: 'Sintaxis', 'pt-BR': "Sintaxe", vi: "Cú pháp", id: "Sintaksis", tr: "Sözdizimi", pl: "Składnia" },
     drillLabel: { ru: 'word order', uk: 'word order', en: 'word order', es: 'orden de palabras', 'pt-BR': "ordem das palavras", vi: "trật tự từ", id: "urutan kata", tr: "kelime sırası", pl: "szyk słów" },
     coachLine: {
@@ -323,7 +321,6 @@ const PROFILES: Record<Exclude<WordCategory, 'other'>, PosWorkoutProfile> = {
     category: 'verb',
     drillType: 'form_choice',
     icon: 'flash-outline',
-    accent: '#F97316',
     title: { ru: 'Глаголы', uk: 'Дієслова', en: 'Verbs', es: 'Verbos', 'pt-BR': "Verbos", vi: "Động từ", id: "Kata kerja", tr: "Fiiller", pl: "Czasowniki" },
     drillLabel: { ru: 'форма и время', uk: 'форма і час', en: 'form and tense', es: 'forma y tiempo', 'pt-BR': "forma e tempo", vi: "dạng và thì", id: "bentuk dan tense", tr: "biçim ve zaman", pl: "forma i czas" },
     coachLine: {
@@ -349,7 +346,6 @@ const PROFILES: Record<Exclude<WordCategory, 'other'>, PosWorkoutProfile> = {
     category: 'noun',
     drillType: 'meaning_map',
     icon: 'cube-outline',
-    accent: '#22C55E',
     title: { ru: 'Существительные', uk: 'Іменники', en: 'Nouns', es: 'Sustantivos', 'pt-BR': "Substantivos", vi: "Danh từ", id: "Kata benda", tr: "İsimler", pl: "Rzeczowniki" },
     drillLabel: { ru: 'предмет и число', uk: 'предмет і число', en: 'thing and number', es: 'objeto y número', 'pt-BR': "objeto e número", vi: "đồ vật và số", id: "objek dan jumlah", tr: "nesne ve sayı", pl: "przedmiot i liczba" },
     coachLine: {
@@ -375,7 +371,6 @@ const PROFILES: Record<Exclude<WordCategory, 'other'>, PosWorkoutProfile> = {
     category: 'pronoun',
     drillType: 'slot_anchor',
     icon: 'person-outline',
-    accent: '#38BDF8',
     title: { ru: 'Местоимения', uk: 'Займенники', en: 'Pronouns', es: 'Pronombres', 'pt-BR': "Pronomes", vi: "Đại từ", id: "Kata ganti", tr: "Zamirler", pl: "Zaimki" },
     drillLabel: { ru: 'кто кому принадлежит', uk: 'хто кому належить', en: 'who owns what', es: 'quién y de quién', 'pt-BR': "quem e de quem", vi: "ai và của ai", id: "siapa dan milik siapa", tr: "kim ve kimin", pl: "kto i czyje" },
     coachLine: {
@@ -401,7 +396,6 @@ const PROFILES: Record<Exclude<WordCategory, 'other'>, PosWorkoutProfile> = {
     category: 'adjective',
     drillType: 'meaning_map',
     icon: 'color-palette-outline',
-    accent: '#EC4899',
     title: { ru: 'Прилагательные', uk: 'Прикметники', en: 'Adjectives', es: 'Adjetivos', 'pt-BR': "Adjetivos", vi: "Tính từ", id: "Kata sifat", tr: "Sıfatlar", pl: "Przymiotniki" },
     drillLabel: { ru: 'качество и сравнение', uk: 'якість і порівняння', en: 'quality and comparison', es: 'cualidad y comparación', 'pt-BR': "qualidade e comparação", vi: "phẩm chất và so sánh", id: "kualitas dan perbandingan", tr: "nitelik ve karşılaştırma", pl: "cecha i porównanie" },
     coachLine: {
@@ -427,7 +421,6 @@ const PROFILES: Record<Exclude<WordCategory, 'other'>, PosWorkoutProfile> = {
     category: 'adverb',
     drillType: 'slot_anchor',
     icon: 'speedometer-outline',
-    accent: '#A3E635',
     title: { ru: 'Наречия', uk: 'Прислівники', en: 'Adverbs', es: 'Adverbios', 'pt-BR': "Advérbios", vi: "Trạng từ", id: "Kata keterangan", tr: "Zarflar", pl: "Przysłówki" },
     drillLabel: { ru: 'как, где, когда', uk: 'як, де, коли', en: 'how, where, when', es: 'cómo, dónde, cuándo', 'pt-BR': "como, onde, quando", vi: "như thế nào, ở đâu, khi nào", id: "bagaimana, di mana, kapan", tr: "nasıl, nerede, ne zaman", pl: "jak, gdzie, kiedy" },
     coachLine: {
@@ -453,7 +446,6 @@ const PROFILES: Record<Exclude<WordCategory, 'other'>, PosWorkoutProfile> = {
     category: 'modifier',
     drillType: 'slot_anchor',
     icon: 'options-outline',
-    accent: '#F59E0B',
     title: { ru: 'Modifiers', uk: 'Modifiers', en: 'Modifiers', es: 'Modificadores', 'pt-BR': "Modificadores", vi: "Từ bổ nghĩa", id: "Modifier", tr: "Niteleyiciler", pl: "Modyfikatory" },
     drillLabel: { ru: 'degree modifiers', uk: 'degree modifiers', en: 'degree modifiers', es: 'modificadores de grado', 'pt-BR': "modificadores de grau", vi: "từ chỉ mức độ", id: "modifier derajat", tr: "derece belirteçleri", pl: "modyfikatory stopnia" },
     coachLine: {
@@ -479,7 +471,6 @@ const PROFILES: Record<Exclude<WordCategory, 'other'>, PosWorkoutProfile> = {
     category: 'preposition',
     drillType: 'slot_anchor',
     icon: 'navigate-outline',
-    accent: '#14B8A6',
     title: { ru: 'Предлоги', uk: 'Прийменники', en: 'Prepositions', es: 'Preposiciones', 'pt-BR': "Preposições", vi: "Giới từ", id: "Preposisi", tr: "Edatlar", pl: "Przyimki" },
     drillLabel: { ru: 'связь и направление', uk: 'зв\'язок і напрям', en: 'link and direction', es: 'relación y dirección', 'pt-BR': "relação e direção", vi: "quan hệ và hướng", id: "relasi dan arah", tr: "ilişki ve yön", pl: "relacja i kierunek" },
     coachLine: {
@@ -506,7 +497,6 @@ const PROFILES: Record<Exclude<WordCategory, 'other'>, PosWorkoutProfile> = {
     category: 'article',
     drillType: 'slot_anchor',
     icon: 'text-outline',
-    accent: '#FACC15',
     title: { ru: 'Артикли', uk: 'Артиклі', en: 'Articles', es: 'Artículos', 'pt-BR': "Artigos", vi: "Mạo từ", id: "Artikel", tr: "Artikeller", pl: "Przedimki" },
     drillLabel: { ru: 'a, an, the или ноль', uk: 'a, an, the або нуль', en: 'a, an, the, or zero', es: 'a, an, the o cero', 'pt-BR': "a, an, the ou zero", vi: "a, an, the hoặc zero", id: "a, an, the atau nol", tr: "a, an, the ya da sıfır", pl: "a, an, the albo zero" },
     coachLine: {
@@ -532,7 +522,6 @@ const PROFILES: Record<Exclude<WordCategory, 'other'>, PosWorkoutProfile> = {
     category: 'determiner',
     drillType: 'slot_anchor',
     icon: 'options-outline',
-    accent: '#14B8A6',
     title: { ru: 'Determiners', uk: 'Determiners', en: 'Determiners', es: 'Determinantes', 'pt-BR': "Determinantes", vi: "Từ hạn định", id: "Determiner", tr: "Belirleyiciler", pl: "Określniki" },
     drillLabel: { ru: 'some, any, no', uk: 'some, any, no', en: 'some, any, no', es: 'some, any, no', 'pt-BR': "some, any, no", vi: "some, any, no", id: "some, any, no", tr: "some, any, no", pl: "some, any, no" },
     coachLine: {
@@ -558,7 +547,6 @@ const PROFILES: Record<Exclude<WordCategory, 'other'>, PosWorkoutProfile> = {
     category: 'existential',
     drillType: 'form_choice',
     icon: 'albums-outline',
-    accent: '#0EA5E9',
     title: { ru: 'There is / There are', uk: 'There is / There are', en: 'There is / There are', es: 'There is / There are', 'pt-BR': "There is / There are", vi: "There is / There are", id: "There is / There are", tr: "There is / There are", pl: "There is / There are" },
     drillLabel: { ru: 'existence and number', uk: 'existence and number', en: 'existence and number', es: 'existencia y numero', 'pt-BR': "existência e número", vi: "sự tồn tại và số", id: "keberadaan dan jumlah", tr: "varlık ve sayı", pl: "istnienie i liczba" },
     coachLine: {
@@ -584,7 +572,6 @@ const PROFILES: Record<Exclude<WordCategory, 'other'>, PosWorkoutProfile> = {
     category: 'to-be',
     drillType: 'form_choice',
     icon: 'git-branch-outline',
-    accent: '#818CF8',
     title: { ru: 'Глагол to be', uk: 'Дієслово to be', en: 'The verb to be', es: 'Verbo to be', 'pt-BR': "Verbo to be", vi: "Động từ to be", id: "Kata kerja to be", tr: "to be fiili", pl: "Czasownik to be" },
     drillLabel: { ru: 'am, is, are, was, were', uk: 'am, is, are, was, were', en: 'am, is, are, was, were', es: 'am, is, are, was, were', 'pt-BR': "am, is, are, was, were", vi: "am, is, are, was, were", id: "am, is, are, was, were", tr: "am, is, are, was, were", pl: "am, is, are, was, were" },
     coachLine: {
@@ -610,7 +597,6 @@ const PROFILES: Record<Exclude<WordCategory, 'other'>, PosWorkoutProfile> = {
     category: 'conjunction',
     drillType: 'order_rebuild',
     icon: 'link-outline',
-    accent: '#06B6D4',
     title: { ru: 'Союзы', uk: 'Сполучники', en: 'Conjunctions', es: 'Conjunciones', 'pt-BR': "Conjunções", vi: "Liên từ", id: "Konjungsi", tr: "Bağlaçlar", pl: "Spójniki" },
     drillLabel: { ru: 'связь частей фразы', uk: 'зв\'язок частин фрази', en: 'linking parts of a phrase', es: 'conectar ideas', 'pt-BR': "conectar ideias", vi: "nối ý", id: "menghubungkan ide", tr: "fikirleri bağlama", pl: "łączenie myśli" },
     coachLine: {
@@ -636,7 +622,6 @@ const PROFILES: Record<Exclude<WordCategory, 'other'>, PosWorkoutProfile> = {
     category: 'modal',
     drillType: 'rule_contrast',
     icon: 'options-outline',
-    accent: '#C084FC',
     title: { ru: 'Модальные глаголы', uk: 'Модальні дієслова', en: 'Modal verbs', es: 'Verbos modales', 'pt-BR': "Verbos modais", vi: "Động từ modal", id: "Kata kerja modal", tr: "Modal fiiller", pl: "Czasowniki modalne" },
     drillLabel: { ru: 'можно, нужно, стоит', uk: 'можна, треба, варто', en: 'possibility, obligation, advice', es: 'posibilidad y obligación', 'pt-BR': "possibilidade e obrigação", vi: "khả năng và nghĩa vụ", id: "kemungkinan dan kewajiban", tr: "olasılık ve zorunluluk", pl: "możliwość i obowiązek" },
     coachLine: {
@@ -662,7 +647,6 @@ const PROFILES: Record<Exclude<WordCategory, 'other'>, PosWorkoutProfile> = {
     category: 'phrasal_particle',
     drillType: 'rule_contrast',
     icon: 'swap-horizontal-outline',
-    accent: '#F43F5E',
     title: { ru: 'Фразовые частицы', uk: 'Фразові частки', en: 'Phrasal particles', es: 'Partículas verbales', 'pt-BR': "Partículas frasais", vi: "Particle trong phrasal verb", id: "Partikel frasal", tr: "Phrasal parçacıklar", pl: "Partykuły frazowe" },
     drillLabel: { ru: 'глагол плюс частица', uk: 'дієслово плюс частка', en: 'verb plus particle', es: 'verbo más partícula', 'pt-BR': "verbo mais partícula", vi: "động từ cộng particle", id: "kata kerja plus partikel", tr: "fiil artı parçacık", pl: "czasownik plus partykuła" },
     coachLine: {

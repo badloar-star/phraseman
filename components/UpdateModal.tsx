@@ -244,7 +244,7 @@ function UpdateModal({
       >
         <LinearGradient
           // theme-exempt: блик — свет на кнопке, а не цвет темы; одинаков на любой заливке
-          colors={['rgba(255,255,255,0.28)', 'rgba(255,255,255,0)']}
+          colors={['rgba(255,255,255,0.28)', 'rgba(255,255,255,0)']} // theme-exempt: блик — свет на кнопке, а не цвет темы; одинаков на любой заливке
           start={{ x: 0, y: 0 }}
           end={{ x: 0, y: 1 }}
           style={styles.buttonSheen}

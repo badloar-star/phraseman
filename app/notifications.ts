@@ -148,7 +148,7 @@ const getNotifications = async () => {
           name: triLang(channelLang, { ru: 'Напоминания', uk: 'Нагадування', en: 'Reminders', es: 'Recordatorios', 'pt-BR': 'Lembretes', vi: 'Lời nhắc', id: 'Pengingat', tr: 'Hatırlatıcılar', pl: 'Przypomnienia' }),
           importance: Notifications.AndroidImportance.HIGH,
           vibrationPattern: [0, 250, 250, 250],
-          lightColor: '#06141B',
+          lightColor: '#06141B', // theme-exempt: цвет светодиода уведомления Android, а не экран приложения
           enableVibrate: true,
         });
       } catch (e) {

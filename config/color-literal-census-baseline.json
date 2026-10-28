@@ -1,5 +1,5 @@
 {
-  "total": 1168,
+  "total": 1122,
   "files": {
     "app/_layout.tsx": 11,
     "app/(tabs)/home.tsx": 7,
@@ -10,11 +10,8 @@
     "app/flashcards/constants.ts": 8,
     "app/flashcards/trainingSources.ts": 4,
     "app/learning-v2/session/[id].tsx": 106,
-    "app/lingman_youtube_chrome.ts": 25,
     "app/medal_utils.ts": 7,
-    "app/notifications.ts": 1,
     "app/paywall_copy.ts": 80,
-    "app/pos_workout_engine.ts": 15,
     "app/profile_card_system.ts": 66,
     "app/theory_topic_accents.ts": 76,
     "components/CleanOnboarding.tsx": 63,
@@ -22,7 +19,6 @@
     "components/learning-v2/horizons/art.ts": 2,
     "components/learning-v2/horizons/model.ts": 70,
     "components/medalToastThemeStyles.ts": 177,
-    "components/mistakes-panel/panelPaint.ts": 3,
     "components/onboarding_aha/aha_theme.ts": 46,
     "components/onboarding_aha/aha_ui.tsx": 1,
     "components/onboarding_aha/SpeechBeat.tsx": 3,
@@ -34,7 +30,6 @@
     "components/paywallThemeConfig.ts": 210,
     "components/premiumMemberStyles.ts": 5,
     "components/profile-card/profile_card_looks.ts": 66,
-    "components/ui/v2_theme.ts": 56,
-    "components/UpdateModal.tsx": 2
+    "components/ui/v2_theme.ts": 56
   }
 }

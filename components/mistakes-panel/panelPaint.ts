@@ -11,7 +11,7 @@ import type { GlassTokens } from '../../constants/liquidGlassThemePalette';
 /** Смешивает цвет темы с тёмным основанием (как color-mix макета: доля темы + основание). */
 export function mixDark(hex: string, base: string, t: number): string {
   const c = (h: string) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
-  const a = c(hex.length >= 7 ? hex : '#888888');
+  const a = c(hex.length >= 7 ? hex : '#888888'); // theme-exempt: запасной нейтральный серый на случай нешестизначного цвета (данные темы всегда hex), на экране не появляется
   const b = c(base);
   return `#${a.map((v, i) => Math.round(v * t + b[i]! * (1 - t)).toString(16).padStart(2, '0')).join('')}`;
 }
@@ -46,7 +46,7 @@ export const glassFillColors = (g: GlassTokens, a: string, b: string) =>
 export const iconTileColors = (g: GlassTokens, a: string, b: string) =>
   g.isLight
     ? ([mixDark(a, g.deepBase, 0.6), mixDark(b, g.deepBaseAlt, 0.32)] as const)
-    : (['#33333A', '#2B2B31'] as const);
+    : ([g.opaqueControl, g.opaqueSheet] as const); // зачем (аудит цвета 28.10, «каждый цвет — оттенок темы»): плоская нейтральная плитка — тоны самой темы (у «Затмения» ≈ прежний #242426 образца «Тени»), а не фиксированный серый
 
 /** Диагонали 150° и 170° макета в долях бокса. */
 export const DIAG_150 = { start: { x: 0.25, y: 0.07 }, end: { x: 0.75, y: 0.93 } } as const;

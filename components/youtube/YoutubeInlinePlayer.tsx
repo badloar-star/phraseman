@@ -10,7 +10,6 @@ import {
   LINGMAN_PLAYER_BRIDGE_SOURCE,
   LINGMAN_YOUTUBE_EMBED_BASE_URL,
 } from '../../app/lingman_youtube';
-import { getLingmanYoutubeChrome } from '../../app/lingman_youtube_chrome';
 import { publishYoutubePosition, registerYoutubePauseHandler, registerYoutubeSeekHandler, takePendingYoutubeSeek } from '../../app/youtube_player_seek_bus';
 import { createYoutubeSeekController } from '../../app/youtube_seek_controller';
 import { forgetYoutubePosition, readYoutubeResumeSec, rememberYoutubePosition } from '../../app/youtube_resume_position';
@@ -85,7 +84,7 @@ export default function YoutubeInlinePlayer({
   startSec,
 }: YoutubeInlinePlayerProps) {
   const { lang } = useLang();
-  const { theme: t, isDark, themeMode, liquidGlassThemeId } = useTheme();
+  const { liquidGlassThemeId } = useTheme();
   // зачем (Сверка video-011): вокруг плеера была толстая светлая рамка старой палитры; в стиле «Тень» (12.10) кромки нет вовсе — плашка с тенью.
   const glass = liquidGlassTokens(liquidGlassThemeId);
   // зачем (закон владельца 22.10): сцена под плеером, кнопка и значок поверх кадра — роли темы (video_media_tones)
@@ -97,7 +96,6 @@ export default function YoutubeInlinePlayer({
   const [playerKey, setPlayerKey] = useState(0);
   const webViewRef = useRef<WebView>(null);
   const pauseRequestedAtRef = useRef<number | null>(null);
-  const chrome = getLingmanYoutubeChrome(t, isDark, themeMode);
   // зачем (Q9, координатор 01.10; D07, PM-080-A3): видео не даёт ни монет, ни рун, ни
   // ускорения энергии. Отсчёт просмотра под награду (use_video_watch_energy_boost) снят
   // целиком; мост плеер→экран остаётся только ради подсветки фразы и перемотки.
@@ -193,9 +191,9 @@ export default function YoutubeInlinePlayer({
   }, [playerError, active, videoId, playerKey]);
   const renderLoading = useCallback(() => (
     <View style={[styles.playerLoading, { backgroundColor: media.stage }]}>
-      <ActivityIndicator color={t.accentGraphic ?? chrome.accent} />
+      <ActivityIndicator color={glass.accentGraphic} />
     </View>
-  ), [chrome.accent, t.accentGraphic, media.stage]); // зачем (светлый акцент): спиннер — графика, deps включают токен
+  ), [glass.accentGraphic, media.stage]); // зачем (светлый акцент): спиннер — графика, deps включают токен; зачем (аудит цвета 28.10): цвет — токен текущей темы, а не таблица lingman_youtube_chrome (её единственным живым полем был accent)
   const handleLoadStart = useCallback(() => setPlayerError(false), []);
   const handlePlayerError = useCallback(() => {
     console.warn('[VIDEO-PLAYER] player error', JSON.stringify({ videoId }));

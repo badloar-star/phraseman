@@ -51,6 +51,7 @@ SWAP_GROUPS = {
                                        {'should', 'have to'}, {'must', 'need to'}],
     'will/shall/would': [{'will', 'shall'}, {'would', 'will'}, {"'ll", 'will'}],
     'some/any': [{'some', 'any'}],
+    'little/a little, few/a few': [{'little', 'a little'}, {'few', 'a few'}],
     'much/many/a lot of': [{'much', 'a lot of'}, {'many', 'a lot of'}, {'lots of', 'a lot of'}, {'many', 'lots of'},
                            {'much', 'lots of'}],
     'this/that': [{'this', 'that'}, {'these', 'those'}, {'it', 'this'}, {'it', 'that'}],
@@ -213,6 +214,9 @@ TENSE_PAIRS = {
     frozenset({'perfect', 'simple'}): 'Present Perfect ↔ Present Simple',
     frozenset({'pastperf', 'past'}): 'Past Perfect ↔ Past Simple',
     frozenset({'pastperf', 'perfect'}): 'Past Perfect ↔ Present Perfect',
+    # зачем (Learning V2 28.10, пример владельца «I ___ cheer up quickly»): don't / didn't, are / were без маркера во фразе
+    frozenset({'simple', 'past'}): 'Present Simple ↔ Past Simple',
+    frozenset({'cont', 'past_cont'}): 'Present Continuous ↔ Past Continuous',
 }
 
 
@@ -278,6 +282,9 @@ def classify(correct, alt):
     cs, as_ = ' '.join(c[i0:i1]), ' '.join(a[j0:j1])
     if (i1 - i0) <= 3 and (j1 - j0) <= 3:
         g = PAIR_TO_GROUP.get(frozenset({cs, as_}))
+        nxt_c = c[i1] if i1 < len(c) else ''
+        if {cs, as_} == {'', 'a'} and nxt_c in ('little', 'few'):
+            return ('little/a little, few/a few', cs or '∅', as_ or '∅')
         if g == 'артикль' or (not cs and as_ in ('a', 'an', 'the')) or (not as_ and cs in ('a', 'an', 'the')):
             if as_ in ('a', 'an', 'the') and not article_ok(a, j0):
                 return None
@@ -395,7 +402,9 @@ def marker_status(rule, correct, alt, context):
             'will ↔ Present Simple': ('will', 'simple_habit'),
             'Present Perfect ↔ Present Simple': ('perfect', 'simple_habit'),
             'Past Perfect ↔ Past Simple': ('pastperf', 'past'),
-            'Past Perfect ↔ Present Perfect': ('pastperf', 'perfect')}.get(rule)
+            'Past Perfect ↔ Present Perfect': ('pastperf', 'perfect'),
+            'Present Simple ↔ Past Simple': ('simple_habit', 'past'),
+            'Present Continuous ↔ Past Continuous': ('cont_now', 'past_cont')}.get(rule)
     if rule == 'will/shall/would' and {'will', 'shall'} <= set(expand(norm(correct + ' ' + alt))):
         return 'unresolved'  # I/we shall = I/we will: оба верны
     if rule.startswith('модальные') or rule == 'will/shall/would':
@@ -413,7 +422,7 @@ def marker_status(rule, correct, alt, context):
     hits = {k: any(re.search(p, ctx) for p in MARKERS[k]) for k in side}
     # какая сторона у верного ответа
     first_is_correct = (tag_c == side[0]) or (side[0] == 'cont_future' and tag_c == 'cont') or \
-                       (side[0] == 'simple_habit' and tag_c == 'simple')
+                       (side[0] == 'simple_habit' and tag_c == 'simple') or (side[0] == 'cont_now' and tag_c == 'cont')
     good, bad = (side[0], side[1]) if first_is_correct else (side[1], side[0])
     if hits[good] and not hits[bad]:
         return 'resolved_marker'

@@ -23,6 +23,7 @@ import React, {
 import {
   AppState,
   BackHandler,
+  Platform,
   Pressable,
   ScrollView,
   StyleSheet,
@@ -146,7 +147,7 @@ import type { V2LocalEvaluatorResponseV1 } from "../modules/learning-v2/runtime/
 import { learningV2ScriptedRepeatAnswerBearingContentRevealedV1 } from "../modules/learning-v2/contracts/mode_native_payload_v1";
 import { learningV2CourseSessionVoiceResponseV1 } from "../modules/learning-v2/runtime/course_session_voice_response_v1";
 import { getStableId } from "./stable_id";
-import { captureAccountGeneration } from "./account_generation";
+import { captureAccountGeneration, isCurrentAccountGeneration, subscribeAccountGeneration, withAccountTransitionLock } from "./account_generation";
 import { clearSessionAttemptsState } from "./session_attempts/session_attempt_recovery";
 import { creditLearningV2SessionRunesToUnifiedWallet } from "./learning_v2_unified_rune_bridge";
 import { captureCurrentAccountObjectiveAttempt } from "./mistake_practice_capture";
@@ -573,6 +574,53 @@ export default function LearningV2DirectSessionPlayerV1() {
   const lessonOrdinal = routeCoordinates?.lessonOrdinal ?? null;
   const sessionOrdinal = routeCoordinates?.sessionOrdinal ?? null;
   const routeCoordinatesInvalid = routeCoordinates === null;
+  const audioNavigation = useNavigation();
+  useEffect(() => {
+    if (Platform.OS === "web" || isAuthoringPreview || (studyTarget !== "en" && studyTarget !== "es") || lessonOrdinal === null || sessionOrdinal === null) return;
+    let disposed = false;
+    let runtime: { prepare(input: Readonly<{ studyTarget: "en" | "es"; completedPrefixCount: number; activeLessonOrdinal: number; activeSessionOrdinal: number; signal: AbortSignal }>): Promise<void> } | null = null;
+    let prepareController: AbortController | null = null;
+    let runGeneration = 0;
+    let focused = audioNavigation.isFocused();
+    const cancelOwnPreparation = () => { runGeneration += 1; prepareController?.abort(); prepareController = null; };
+    const prepare = async () => {
+      if (!focused || AppState.currentState !== "active") return;
+      cancelOwnPreparation();
+      const generation = runGeneration;
+      const controller = new AbortController();
+      prepareController = controller;
+      try {
+        const accountToken = captureAccountGeneration();
+        const progress = await withAccountTransitionLock(async () => {
+          if (!isCurrentAccountGeneration(accountToken)) return null;
+          const stableId = await getStableId();
+          if (!isCurrentAccountGeneration(accountToken, stableId)) return null;
+          const accountScopeHash = deriveLocalOfflineProgressAccountScopeHash(stableId);
+          const snapshot = await createLearningV2CourseLocalProgressStoreV1(AsyncStorage, studyTarget).load(accountScopeHash);
+          return isCurrentAccountGeneration(accountToken, stableId) ? snapshot : null;
+        });
+        if (!progress || !isCurrentAccountGeneration(accountToken)) return;
+        if (disposed || generation !== runGeneration || controller.signal.aborted) return;
+        const audio = await import("../modules/learning-v2/audio/progressive_audio_runtime");
+        if (disposed || generation !== runGeneration || controller.signal.aborted) return;
+        runtime = audio.getLearningV2ProgressiveAudioRuntime();
+        await runtime.prepare({ studyTarget, completedPrefixCount: progress.chainCompletedCount, activeLessonOrdinal: lessonOrdinal, activeSessionOrdinal: sessionOrdinal, signal: controller.signal });
+      } catch (error) {
+        if (!disposed && !controller.signal.aborted) console.warn("[LV2-AUDIO] foreground_prepare_failed", error);
+      } finally {
+        if (prepareController === controller) prepareController = null;
+      }
+    };
+    if (AppState.currentState === "active") void prepare();
+    const subscription = AppState.addEventListener("change", (state) => {
+      if (state === "active") { if (focused) void prepare(); }
+      else cancelOwnPreparation();
+    });
+    const unsubscribeFocus = audioNavigation.addListener("focus", () => { focused = true; void prepare(); });
+    const unsubscribeBlur = audioNavigation.addListener("blur", () => { focused = false; cancelOwnPreparation(); });
+    const unsubscribeAccount = subscribeAccountGeneration(() => { cancelOwnPreparation(); if (focused) void prepare(); });
+    return () => { disposed = true; cancelOwnPreparation(); subscription.remove(); unsubscribeFocus(); unsubscribeBlur(); unsubscribeAccount.remove(); };
+  }, [audioNavigation, isAuthoringPreview, lessonOrdinal, sessionOrdinal, studyTarget]);
   const {
     energy,
     bonusEnergy,
@@ -1052,7 +1100,10 @@ export default function LearningV2DirectSessionPlayerV1() {
       );
       speakPreviewAudio(normalized, rate, {
         language: previewSpeechLocaleRef.current,
-        systemTtsOnly: true,
+        systemTtsOnly: studyTarget !== "en" && studyTarget !== "es",
+        learningV2Recorded: (studyTarget === "en" || studyTarget === "es") && lessonOrdinal !== null && sessionOrdinal !== null
+          ? { studyTarget, lessonOrdinal, sessionOrdinal }
+          : undefined,
         onStart: () => {
           logTts("start");
           if (previewSpeechGuardRef.current.isCurrent(request)) {
@@ -1080,7 +1131,7 @@ export default function LearningV2DirectSessionPlayerV1() {
         },
       });
     },
-    [allowsDeviceSpeech, endSpeechRing, moveSpeechRing, referenceSpeechProgress, speakPreviewAudio, startSpeechRing, stopPreviewAudio],
+    [allowsDeviceSpeech, endSpeechRing, lessonOrdinal, moveSpeechRing, referenceSpeechProgress, sessionOrdinal, speakPreviewAudio, startSpeechRing, stopPreviewAudio, studyTarget],
   );
 
   useEffect(

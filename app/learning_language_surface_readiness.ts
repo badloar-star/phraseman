@@ -3,8 +3,8 @@
 //
 // зачем D129 (владелец 2026-09-30): раздел показывается для языка обучения ТОЛЬКО
 // если он для этого языка готов. Курс (Уроки / «Обучение») готов лишь для
-// английского — для остальных нет плитки «Уроки» на Главной и вкладки «Обучение»
-// в таббаре. Ежедневные задания собираются только из видимых разделов.
+// английского; D201 открывает также испанский Learning V2 по решению владельца.
+// Ежедневные задания собираются только из видимых разделов.
 // зачем D130: итальянский — только видео на Главной, задания и карточки.
 //
 // ⛔ Каждая клетка — решение ВЛАДЕЛЬЦА со ссылкой на строку 03_DECISIONS.md.
@@ -33,7 +33,7 @@ const hidden = (decidedBy: string): LearningSurfaceReadinessCell => Object.freez
 
 /**
  * Факты из кода на 2026-09-30 (почему клетка такая):
- * - lessons / learning_v2 / diagnostic_and_exam — курс; готов только английский (D129).
+ * - lessons / diagnostic_and_exam — английский (D129); learning_v2 — также испанский (D201).
  * - daily_phrase — банк фраз есть у en и fr (daily_phrase_target_gate.ts); у es/de/it — принятые пакеты в сборке
  *   (D163, владелец 12.10: «Фразы дня должны быть подключены для ВСЕХ языков», app/daily_phrase_bundled_packs.ts).
  * - dialogues — es/fr/de выпущены владельцем 2026-09-20 (dialogue_language_activation.ts);
@@ -64,7 +64,7 @@ export const LEARNING_LANGUAGE_SURFACE_READINESS: Readonly<
   }),
   es: Object.freeze({
     lessons: hidden('D129'),
-    learning_v2: hidden('D129'),
+    learning_v2: ready('D201'),
     daily_phrase: ready('D163'),
     dialogues: ready('D129'),
     arena: hidden('D83'),

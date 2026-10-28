@@ -4,6 +4,7 @@ import { Platform } from 'react-native';
 import * as Speech from 'expo-speech';
 import { getUserSettingsSnapshot, normalizeSpeechRate } from '../app/user_settings_store';
 import type * as PhraseAudioPlayer from './phrase_audio_player';
+import type * as LearningV2RecordedAudioPlayer from '../modules/learning-v2/audio/progressive_audio_player';
 import { voicePlaybackPolicy } from '../modules/audio/voice_playback_policy';
 import {
   claimSpokenAudio,
@@ -29,6 +30,7 @@ export function preloadAudio() {}
 export function preloadSound(_text: string) {}
 
 let phraseAudioPlayerModulePromise: Promise<typeof PhraseAudioPlayer> | null = null;
+let learningV2RecordedAudioPlayerModulePromise: Promise<typeof LearningV2RecordedAudioPlayer> | null = null;
 
 function loadPhraseAudioPlayer(): Promise<typeof PhraseAudioPlayer> {
   phraseAudioPlayerModulePromise ??= import('./phrase_audio_player');
@@ -40,6 +42,18 @@ function stopPhraseAudioIfLoaded(): void {
   void phraseAudioPlayerModulePromise
     .then(({ stopPhraseAudio }) => stopPhraseAudio())
     .catch(noteSwallowedHandler('use-audio:promise_1'));
+}
+
+function loadLearningV2RecordedAudioPlayer(): Promise<typeof LearningV2RecordedAudioPlayer> {
+  learningV2RecordedAudioPlayerModulePromise ??= import('../modules/learning-v2/audio/progressive_audio_player');
+  return learningV2RecordedAudioPlayerModulePromise;
+}
+
+function stopLearningV2RecordedAudioIfLoaded(): void {
+  if (!learningV2RecordedAudioPlayerModulePromise) return;
+  void learningV2RecordedAudioPlayerModulePromise
+    .then(({ stopLearningV2RecordedAudio }) => stopLearningV2RecordedAudio())
+    .catch(noteSwallowedHandler('use-audio:learning-v2-recorded-stop'));
 }
 
 export type SpeakOpts = {
@@ -67,6 +81,12 @@ export type SpeakOpts = {
   cardAudio?: boolean;
   /** Skip every prerecorded/corpus route and speak through the device engine. */
   systemTtsOnly?: boolean;
+  /** Learning V2 may play only an already-verified durable local recording. */
+  learningV2Recorded?: Readonly<{
+    studyTarget: 'en' | 'es';
+    lessonOrdinal: number;
+    sessionOrdinal: number;
+  }>;
   onStart?: () => void;
   onDone?: () => void;
   onStopped?: () => void;
@@ -183,6 +203,7 @@ export function useAudio() {
   const stopVoiceNow = useCallback(() => {
     stopSystemSpeechNow();
     stopPhraseAudioIfLoaded();
+    stopLearningV2RecordedAudioIfLoaded();
   }, [stopSystemSpeechNow]);
 
   useEffect(() => {
@@ -234,6 +255,7 @@ export function useAudio() {
     clipStartTimerRef.current = null;
     safeSpeechStop();
     stopPhraseAudioIfLoaded();
+    stopLearningV2RecordedAudioIfLoaded();
 
     lastTextRef.current = dedupeKey;
     lastSpeakAtRef.current = now;
@@ -270,6 +292,10 @@ export function useAudio() {
       opts.onError?.(new Error('strict_dialogue_voice_missing'));
       return;
     }
+    if (opts?.learningV2Recorded) {
+      void playLearningV2RecordedOrFallback();
+      return;
+    }
     if (opts?.systemTtsOnly) {
       speakWithSystemTts();
       return;
@@ -289,6 +315,27 @@ export function useAudio() {
       return;
     }
     runDefaultVoicePath();
+
+    async function playLearningV2RecordedOrFallback(): Promise<void> {
+      let fellBack = false;
+      const fallback = () => {
+        if (fellBack || isStale()) return;
+        fellBack = true;
+        speakWithSystemTts();
+      };
+      try {
+        const { playLearningV2RecordedAudio } = await loadLearningV2RecordedAudioPlayer();
+        if (isStale()) return;
+        const played = await playLearningV2RecordedAudio(
+          { ...opts!.learningV2Recorded!, text: spokenText, rate: safeRate },
+          { onStart: opts?.onStart, onDone: opts?.onDone, onStopped: opts?.onStopped, onError: fallback },
+        );
+        if (!played) fallback();
+      } catch (error) {
+        console.warn('[LV2-AUDIO] cached_playback_failed', error);
+        fallback();
+      }
+    }
 
     function isStale(): boolean {
       return speechGenerationRef.current !== generation || !voicePlaybackPolicy.canStart(voicePolicyToken);

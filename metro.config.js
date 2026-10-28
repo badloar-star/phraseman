@@ -42,6 +42,15 @@ if (Number.isInteger(maxWorkersFromEnv) && maxWorkersFromEnv > 0) {
   config.maxWorkers = 4;
 }
 
+// Windows exhausts file descriptors while Metro reads the transform cache in
+// this workspace (`EMFILE` from metro-cache/FileStore before the bundle is
+// produced). A cacheless dev server is slower only when its process is cold,
+// but completes reliably; store/CI builds retain Metro's normal cache.
+const disableWindowsDiskTransformCache = process.platform === 'win32' && !isBuildMachine;
+if (disableWindowsDiskTransformCache) {
+  config.cacheStores = [];
+}
+
 // зачем (PM-216 / [HOME-PAINT], координатор 2026-10-03; владелец: «так чтобы все летало»): по умолчанию Expo задаёт
 // inlineRequires: false, и ВСЕ статические import исполняются сразу при загрузке модуля. При sync-маршрутах
 // expo-router это значит «при запуске выполняется всё приложение». inlineRequires: true переносит require каждой
@@ -165,15 +174,14 @@ const contentExceptV2Activation = new RegExp(
   `^${contentRoot}[/\\\\](?!learning-v2-course(?:[/\\\\]activation(?:[/\\\\]|$)|$)).*`,
 );
 
-// Старый обход бага expo-dev-client, который НЕ умел парсить multipart-ответ Metro:
-// для .bundle-запросов вырезался `multipart/mixed` из Accept, чтобы Metro отдавал
-// обычный (не multipart) бандл. ПОБОЧКА: `multipart/mixed` — это канал доставки
-// дельт Fast Refresh, поэтому вырезание ГЛУШИТ Fast Refresh (правки не применяются
-// на лету, нужен ручной reload). На expo-dev-client 6.x (SDK 54 / RN 0.81) multipart
-// уже поддерживается, обход не нужен — поэтому по умолчанию он ВЫКЛЮЧЕН.
-// Включить обратно (если на конкретном устройстве multipart всё же ломает бандл):
-// EXPO_METRO_STRIP_MULTIPART=1.
-const stripMultipartForBundles = process.env.EXPO_METRO_STRIP_MULTIPART === '1';
+// Metro's multipart bundle response makes the Android native downloader retain
+// the full eager dev bundle in MultipartStreamReader. On 2026-10-28 the actual
+// app request was 282,819,076 bytes and died at Android's 192 MiB cap before JS.
+// Remove multipart from .bundle requests by default so the response streams as
+// JavaScript. Fast Refresh remains available: Expo's HMR client uses its /hot
+// WebSocket, not this HTTP response. Set EXPO_METRO_ALLOW_MULTIPART=1 only for
+// a targeted compatibility check.
+const stripMultipartForBundles = process.env.EXPO_METRO_ALLOW_MULTIPART !== '1';
 const defaultEnhanceMiddleware = config.server?.enhanceMiddleware;
 if (stripMultipartForBundles) {
   config.server = {
@@ -190,7 +198,7 @@ if (stripMultipartForBundles) {
             const nextAccept = accept
               .split(',')
               .map((value) => value.trim())
-              .filter((value) => value !== 'multipart/mixed')
+              .filter((value) => !value.toLowerCase().startsWith('multipart/mixed'))
               .join(', ');
 
             req.headers.accept = nextAccept || '*/*';

@@ -35,8 +35,10 @@ const lessons = read('app/(tabs)/lessons.tsx');
 
 // зачем (план Б 16.10): маршрут курса не режется сборкой; уводит на Главную ТОЛЬКО рубильник «V2 скрыт» (решение владельца).
 assert.doesNotMatch(route, /if \(!ENABLE_DEV_TOOLS\)/u);
-assert.equal((route.match(/<Redirect/gu) ?? []).length, 1);
-assert.match(route, /if \(isLearningV2Hidden\(\)\) \{\n[^\n]*logLearningV2Hidden[^\n]*\n\s*return <Redirect href=\{LEARNING_V2_HIDDEN_REDIRECT\} \/>;/u);
+assert.match(route, /useRootNavigationState/u);
+assert.match(route, /if \(!rootNavigationReady\) return;/u);
+assert.match(route, /scheduleAfterRootNavigationReady\(\(\) => \{/u);
+assert.match(route, /if \(isLearningV2Hidden\(\)\) \{\n[^\n]*logLearningV2Hidden[^\n]*\n\s*router\.replace\(LEARNING_V2_HIDDEN_REDIRECT\);\n\s*return;/u);
 assert.doesNotMatch(layout, /isBlockedLearningV2RoutePath/u);
 // зачем (владелец 11.10: «LEARNING V2 ПОПАДАЕТ», курс виден всем сразу): вырез 10.10 снят — вход в курс открыт во всех сборках.
 // зачем (владелец 11.10: «ТАМ ДОЛЖНО ПОКАЗЫВАТЬСЯ СТОЛЬКО СКОЛЬКО ДОСТУПНО»): вход — только если есть выпущенные занятия.

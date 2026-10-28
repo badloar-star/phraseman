@@ -1,0 +1,7 @@
+{
+  "schemaVersion": "learning-v2-audio-r2-publish-invocation.v1",
+  "accountId": "9519c61534cc0cfca3a1b13b383b6235",
+  "bucket": "phraseman-learning-audio",
+  "releaseId": "631503b3fcaababfc07cdf77852738af271756b69ebd7fc496ffef843b1e503f",
+  "expectedPriorCurrentSha": null
+}

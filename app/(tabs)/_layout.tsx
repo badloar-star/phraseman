@@ -1,6 +1,6 @@
 ﻿import React, { Profiler, useState, useCallback, useEffect, useLayoutEffect, useMemo, useRef } from 'react';
 import { Freeze } from 'react-freeze';
-import { useFocusEffect, useNavigationContainerRef, usePathname, useRouter, useSegments } from 'expo-router';
+import { useFocusEffect, useNavigationContainerRef, usePathname, useRootNavigationState, useRouter, useSegments } from 'expo-router';
 import { View, StyleSheet, Animated, AppState, Easing, Text } from 'react-native';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
@@ -103,6 +103,8 @@ import { isLearnTabVisibleForTarget } from '../learning_language_surface_readine
 import { shouldLoadTabScreen } from '../tab_mount_policy';
 import { noteTabActivated } from '../../components/tab_activation_trace';
 import { whenOnboardingSettled } from '../onboarding_defer_gate';
+import { scheduleAfterRootNavigationReady } from '../paywall_navigation';
+import { planHiddenTabRedirect } from '../tabs_hidden_route_redirect';
 
 type IconName = React.ComponentProps<typeof Ionicons>['name'];
 
@@ -941,6 +943,12 @@ function ReleasedTabLayout() {
   const { studyTarget } = useStudyTarget();
   const learnTabVisible = isLearnTabVisibleForTarget(studyTarget);
   const pageLayout = tabPageLayoutFor({ learnTabVisible });
+  const rootNavigationReady = Boolean(useRootNavigationState()?.key);
+  const rawRouteTabIdx = tabIdxFromRouter(pathname, segments);
+  const hiddenTabRedirect = planHiddenTabRedirect({
+    rootNavigationReady,
+    routeIsHidden: rawRouteTabIdx !== null && isLogicalTabHidden(rawRouteTabIdx, pageLayout),
+  });
   const pageLayoutRef = useRef(pageLayout);
   pageLayoutRef.current = pageLayout;
   const initialTabIdx = visibleTabIdx(tabIdxFromRouter(pathname, segments) ?? 0, pageLayout);
@@ -977,6 +985,17 @@ function ReleasedTabLayout() {
   const router = useRouter();
   const routerRef = useRef(router);
   routerRef.current = router;
+  // A study-target switch can make the current tab route unavailable while
+  // this tab layout is also the cold-start route.  `rootNavigationReady` alone
+  // is not sufficient on that path, so use the shared interaction + macrotask
+  // handoff before calling replace.
+  useEffect(() => {
+    if (!hiddenTabRedirect) return;
+    const scheduled = scheduleAfterRootNavigationReady(() => {
+      routerRef.current.replace(hiddenTabRedirect);
+    });
+    return () => scheduled.cancel();
+  }, [hiddenTabRedirect]);
   // зачем (координатор 14.10, каскад [TABS-RENDER]): маршрут для navigateTo — из ref на момент вызова, а не из замыкания (см. navigateTo).
   const pathnameRef = useRef(pathname);
   pathnameRef.current = pathname;

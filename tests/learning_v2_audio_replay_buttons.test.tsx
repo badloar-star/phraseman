@@ -40,12 +40,15 @@ jest.mock("../components/learning-v2/LearningV2Glass", () => ({
   Lv2Explain: "Text",
   Lv2Option: "Text",
   useLv2Glass: () => ({
+    ...jest.requireActual<typeof import("../constants/liquidGlassThemePalette")>(
+      "../constants/liquidGlassThemePalette",
+    ).liquidGlassTokens("graphite", { level: "calm", appearance: "light" }),
     secondary: "#555",
     text: "#111",
     mutedText: "#777",
     glassEdge: "#ccc",
     opaqueControl: "#ddd",
-    opaqueCard: "#fff",
+    opaqueCard: "#ffffff",
     selected: "#eef",
     good: "#080",
   }),

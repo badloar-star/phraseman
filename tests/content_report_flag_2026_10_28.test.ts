@@ -103,6 +103,11 @@ describe('флажок «Пожаловаться» встроен в Диало
     const exam = read('app/learning-v2/chapter-exam.tsx');
     expect(exam).toContain('testID="chapter-exam-report"');
     expect(exam).toContain("reportScreen = 'learning_v2_chapter_exam'");
+    // Learning V2 28.10: в отчёт теста уровня — слова с пропуском, варианты пропуска и верный ответ (после проверки)
+    expect(exam).toContain('Пропуск: ${gapPhrase}');
+    expect(exam).toContain('Варианты пропуска: ${gapTexts}');
+    expect(exam).toContain('Верный ответ: ${correctText}');
+    expect(exam).toMatch(/verdict === null \? null : learningV2ChapterExamCorrectAnswerV1/);
     expect(exam).toContain('dataId: `lv2:l${lessonOrdinal}:s${question.sessionOrdinal}:${question.family}:${question.interactionId}`');
     expect(read('components/learning-v2/placement/placement_bridge_live.tsx')).toContain('reportScreen="learning_v2_placement"');
   });

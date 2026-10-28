@@ -399,17 +399,29 @@ export function ChapterExamQuestion({ ordinal, question, lessonOrdinal, locale, 
     if (!interaction) return null;
     const promptText = sanitizeLearningV2LearnerPromptV1(promptOverride ?? interaction.prompt);
     const optionTexts = options.map((o) => o.text).join(' | ');
+    // зачем (Learning V2 28.10: «в отчёт теста уровня — верный вариант, слова с пропуском и варианты пропуска»): модератору нужно видеть, что именно
+    // показали и какой ответ мы считали верным. Пропуск и его варианты лежат в modePayload (уже в памяти, ничего не считаем); верный ответ —
+    // только после проверки (тот же материализованный сеанс, что и проверка; до ответа его не раскрываем и лишнюю работу на показе не делаем).
+    const payload = interaction.modePayload as { gappedTargetPhrase?: unknown; gapOptions?: ReadonlyArray<{ text?: unknown }> } | null | undefined;
+    const gapPhrase = typeof payload?.gappedTargetPhrase === 'string' ? payload.gappedTargetPhrase : '';
+    const gapTexts = Array.isArray(payload?.gapOptions) ? payload.gapOptions.map((o) => String(o?.text ?? '')).filter(Boolean).join(' | ') : '';
+    const correctText = verdict === null ? null : learningV2ChapterExamCorrectAnswerV1({ lessonOrdinal, sessionOrdinal: question.sessionOrdinal, interactionId: question.interactionId, locale });
     return {
       dataId: `lv2:l${lessonOrdinal}:s${question.sessionOrdinal}:${question.family}:${question.interactionId}`,
       dataText: `Урок ${lessonOrdinal} · Эпизод ${question.sessionOrdinal} · ${question.family}
 ${promptText}${optionTexts ? `
-[${optionTexts}]` : ''}`,
+[${optionTexts}]` : ''}`
+        + `${gapPhrase ? `
+Пропуск: ${gapPhrase}` : ''}${gapTexts ? `
+Варианты пропуска: ${gapTexts}` : ''}${correctText ? `
+Верный ответ: ${correctText}` : ''}${verdict ? `
+Итог проверки: ${verdict}` : ''}`,
     };
-  }, [interaction, lessonOrdinal, options, promptOverride, question.family, question.interactionId, question.sessionOrdinal]);
+  }, [interaction, lessonOrdinal, locale, options, promptOverride, question.family, question.interactionId, question.sessionOrdinal, verdict]);
   const reportAnswer = interaction?.inputMode === 'single_choice'
     ? (options.find((o) => o.responseId === selectedChoiceId)?.text ?? undefined)
     : (orderedText || undefined);
-  const reportLabel = triLang(interfaceLocale as never, { ru: 'Сообщить об ошибке в задании', uk: 'Повідомити про помилку в завданні', en: 'Report an error in the task', es: 'Informar de un error en la tarea', 'pt-BR': 'Relatar erro na tarefa', vi: 'Báo lỗi trong bài tập', id: 'Laporkan kesalahan dalam tugas', tr: 'Görevdeki hatayı bildir', pl: 'Zgłoś błąd w zadaniu' });
+  const reportLabel = triLang(interfaceLocale as never, { ru: 'Сообщить об ошибке в задании', uk: 'Повідомити про помилку в завданні', en: 'Report an error in the task', es: 'Informar de un error en el ejercicio', 'pt-BR': 'Relatar um erro no exercício', vi: 'Báo lỗi trong bài tập', id: 'Laporkan kesalahan dalam latihan', tr: 'Alıştırmadaki hatayı bildir', pl: 'Zgłoś błąd w ćwiczeniu' });
 
   return (
     <>

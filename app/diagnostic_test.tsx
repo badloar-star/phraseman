@@ -1765,6 +1765,7 @@ export default function DiagnosticTest() {
 
           {q && (
             <ReportErrorButton
+              variant="icon-flag"
               screen="exam"
               dataId={`diagnostic_q${idx}_${String(q.phrase).replace(/\s+/g,'_').slice(0,30)}`}
               dataText={(() => {

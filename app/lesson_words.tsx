@@ -3384,6 +3384,7 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
       </View>
       {current && (
         <ReportErrorButton
+          variant="icon-flag"
           screen="lesson_words"
           dataId={`word_${current.correctOption.replace(/\s+/g,'_')}`}
           dataText={[
@@ -3473,6 +3474,7 @@ export function WordList({ words, learnedCounts, lang, lessonId, onStartTraining
               </View>
             ) : null}
             {flat ? null : <ReportErrorButton
+              variant="icon-flag"
               screen="lesson_words"
               dataId={`wordlist_lesson_${lessonId ?? 0}`}
               dataText={pickTriLang(lang, {

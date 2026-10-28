@@ -65,12 +65,14 @@ describe("lessons V2 — одна карта раскрывается прямо
 
   test("course route показывает те же плашки и 56 inline-сессий выбранного урока", () => {
     const courseSource = read("app/learning-v2/course.tsx");
-    expect(courseSource).toContain(
-      'import LessonsTab from "../(tabs)/lessons"',
-    );
-    expect(courseSource).toContain(
-      '<LessonsTab presentation="push" initialPage="v2" />',
-    );
+    // маршрут курса — только переходник: второй экземпляр «Уроков» не монтируется, человек возвращается на сохранённую вкладку
+    expect(courseSource).not.toContain('import LessonsTab');
+    expect(courseSource).not.toContain('<LessonsTab');
+    expect(courseSource).toContain('forwarded.set("courseEntry", "v2")');
+    expect(courseSource).toContain("dismissToTabRoute(router, '/(tabs)/lessons'");
+    // вкладка применяет courseEntry=v2 и тихий запрос плитки Главной (одно и то же действие: выбрать карту V2)
+    expect(lessonsSource).toContain('courseEntry');
+    expect(lessonsSource).toContain('consumeLessonsV2PageRequest');
     expect(sessionSource).toContain('pathname: "/learning-v2/course"');
     // зачем (§129): отдельного экрана «карта урока» (lesson/[id]) больше нет — одна карта раскрывается под плашкой урока (lessons.tsx),
     // это и есть название теста; проверки текста мёртвого экрана («КАРТА УРОКА», «Ты научишься») сняты вместе с ним.

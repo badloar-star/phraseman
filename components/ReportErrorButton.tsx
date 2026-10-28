@@ -1,6 +1,6 @@
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import { ENABLE_DEV_TOOLS } from '../app/config';
-import React, { memo, useCallback, useRef, useState } from 'react';
+import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 import {
   ActivityIndicator,
   ScrollView,
@@ -56,6 +56,8 @@ interface Props {
    */
   openRef?: React.MutableRefObject<(() => void) | null>;
   hideTrigger?: boolean;
+  /** Форма открылась/закрылась (экран с таймером ставит раунд на паузу). Не вызывается на первом монтировании. */
+  onOpenChange?: (open: boolean) => void;
 }
 
 type ReportErrorCategory = {
@@ -151,6 +153,7 @@ function ReportErrorButton({
   submitOverride,
   openRef,
   hideTrigger,
+  onOpenChange,
 }: Props) {
   // зачем: форма «сообщить об ошибке» (~30 экранов) — Liquid Glass по макету overlays-campaigns OS-ERROR-REPORT-*.
   const { theme: t, f, liquidGlassThemeId } = useTheme();
@@ -165,6 +168,20 @@ function ReportErrorButton({
   const [throttled, setThrottled] = useState(false);
   const [failed, setFailed] = useState(false);
   const [commentRequiredError, setCommentRequiredError] = useState(false);
+  // зачем (координатор 28.10, флажок в Блице): экран узнаёт об открытии формы и ставит таймер на паузу; колбэк через ref —
+  // смена его идентичности на рендере экрана не должна повторно вызывать открытие/закрытие.
+  const onOpenChangeRef = useRef(onOpenChange);
+  onOpenChangeRef.current = onOpenChange;
+  const visibleSeenRef = useRef(false);
+  const lastVisibleRef = useRef(false);
+  useEffect(() => {
+    lastVisibleRef.current = visible;
+    if (!visibleSeenRef.current && !visible) return; // первый монтаж: форма закрыта, сообщать нечего
+    visibleSeenRef.current = true;
+    onOpenChangeRef.current?.(visible);
+  }, [visible]);
+  // кнопка исчезла при открытой форме — экран не должен остаться на паузе
+  useEffect(() => () => { if (lastVisibleRef.current) onOpenChangeRef.current?.(false); }, []);
 
   const handleOpen = () => {
     setComment('');
@@ -301,15 +318,15 @@ function ReportErrorButton({
             numberOfLines={2}
           >
             {triLang(lang, {
-              ru: 'Нашёл ошибку?',
-              uk: 'Знайшов помилку?',
+              ru: 'Есть ошибка?',
+              uk: 'Є помилка?',
               en: 'Found an error?',
               es: '¿Has visto un error?',
               'pt-BR': 'Achou um erro?',
               vi: 'Thấy lỗi gì không?',
               id: 'Menemukan kesalahan?',
               tr: 'Bir hata mı buldun?',
-              pl: 'Znalazłeś błąd?',
+              pl: 'Widzisz błąd?',
             })}
           </Text>
         )}
@@ -395,8 +412,8 @@ function ReportErrorButton({
                   </Text>
                   <Text style={{ color: glass.secondary, fontSize: f.body, textAlign: 'center' }}>
                     {triLang(lang, {
-                      ru: 'Ты уже отправил репорт меньше минуты назад. Попробуй через минуту.',
-                      uk: 'Ти вже надіслав(ла) репорт менше хвилини тому. Спробуй за хвилину.',
+                      ru: 'Сообщение уже ушло меньше минуты назад. Попробуй через минуту.',
+                      uk: 'Повідомлення вже надіслано менше хвилини тому. Спробуй за хвилину.',
                       en: 'You sent a report less than a minute ago. Try again in a moment.',
                       es: 'Enviaste un informe hace menos de un minuto. Espera un momento antes de volver a intentarlo.',
                       'pt-BR': 'Você enviou um relatório há menos de um minuto. Tente novamente daqui a pouco.',
@@ -458,15 +475,15 @@ function ReportErrorButton({
                 <>
                   <Text style={[styles.title, { color: glass.text, fontSize: f.h3 }]}>
                     {triLang(lang, {
-                      ru: 'Нашёл ошибку?',
-                      uk: 'Знайшов помилку?',
+                      ru: 'Есть ошибка?',
+                      uk: 'Є помилка?',
                       en: 'Found an error?',
                       es: '¿Has visto un error?',
                       'pt-BR': 'Achou um erro?',
                       vi: 'Thấy lỗi gì không?',
                       id: 'Menemukan kesalahan?',
                       tr: 'Bir hata mı buldun?',
-                      pl: 'Znalazłeś błąd?',
+                      pl: 'Widzisz błąd?',
                     })}
                   </Text>
                   <Text style={[styles.sub, { color: glass.secondary, fontSize: f.sub }]}>
@@ -476,7 +493,7 @@ function ReportErrorButton({
                       en: 'Describe what’s wrong — we’ll fix it.',
                       es: 'Cuéntanos qué pasa y lo arreglamos.',
                       'pt-BR': 'Conta o que está errado e a gente conserta.',
-                      vi: 'Kể xem chỗ nào sai — bọn mình sẽ sửa.',
+                      vi: 'Kể xem chỗ nào sai — chúng mình sẽ sửa.',
                       id: 'Ceritakan apa yang salah — kami perbaiki.',
                       tr: 'Neyin yanlış olduğunu yaz — düzeltelim.',
                       pl: 'Napisz, co jest nie tak — naprawimy.',
@@ -550,7 +567,7 @@ function ReportErrorButton({
                         {sending ? <ActivityIndicator size="small" color={glass.ctaInk} /> : null}
                         <Text style={{ color: glass.accentInk, fontWeight: '700', fontSize: f.body }}>
                           {sending
-                            ? triLang(lang, { ru: 'Отправляю...', uk: 'Надсилаю...', en: 'Sending...', es: 'Enviando...', 'pt-BR': 'Enviando...', vi: 'Đang gửi...', id: 'Mengirim...', tr: 'Gönderiliyor...', pl: 'Wysyłanie...' })
+                            ? triLang(lang, { ru: 'Отправляем…', uk: 'Надсилаємо…', en: 'Sending…', es: 'Enviando…', 'pt-BR': 'Enviando…', vi: 'Đang gửi…', id: 'Mengirim…', tr: 'Gönderiliyor…', pl: 'Wysyłanie…' })
                             : triLang(lang, { ru: 'Отправить', uk: 'Надіслати', en: 'Send', es: 'Enviar', 'pt-BR': 'Enviar', vi: 'Gửi', id: 'Kirim', tr: 'Gönder', pl: 'Wyślij' })}
                         </Text>
                       </View>

@@ -587,6 +587,7 @@ function PrepositionDrillScreen() {
 
               {/* Кнопка репорта — в конце прокрутки */}
               <ReportErrorButton
+                variant="icon-flag"
                 screen="lesson_prepositions"
                 dataId={`prep_drill_lesson_${lessonId}_${item.id}`}
                 dataText={[

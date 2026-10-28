@@ -1132,6 +1132,7 @@ export default function LevelExam() {
               {premiumNote ? <ExamKvCard glass={glass} note={premiumNote} style={{ marginTop: 18 }} /> : null}
               <View style={{ alignItems: 'center', marginTop: 18 }}>
                 <ReportErrorButton
+                  variant="icon-flag"
                   screen="level_exam"
                   dataId={`level_exam_intro_${lvl}`}
                   dataText={triLang(lang, {
@@ -1286,6 +1287,7 @@ export default function LevelExam() {
             )}
             <View style={{ alignItems: 'center', marginTop: 12 }}>
               <ReportErrorButton
+                variant="icon-flag"
                 screen="level_exam"
                 dataId={`level_exam_result_${lvl}_${pct}`}
                 dataText={triLang(lang, {
@@ -1404,6 +1406,7 @@ export default function LevelExam() {
           </View>
           <View style={{ alignItems: 'center', marginTop: 12 }}>
             <ReportErrorButton
+              variant="icon-flag"
               screen="level_exam"
               dataId={`level_exam_${lvl}_q${idx}_L${q.lessonNum}`}
               dataText={`${q.q ?? ''}`.slice(0, 120)}

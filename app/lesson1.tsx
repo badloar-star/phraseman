@@ -1427,6 +1427,7 @@ const LessonContent = React.memo(function LessonContent({
               )}
 
               <ReportErrorButton
+                variant="icon-flag"
                 screen={`lesson_${lessonId}`}
                 dataId={lessonPhraseReportDataId(lessonId, phrase, realPhraseIdx)}
                 dataText={[
@@ -1487,6 +1488,7 @@ const LessonContent = React.memo(function LessonContent({
 
         {status === 'playing' && phrase && (
           <ReportErrorButton
+            variant="icon-flag"
             screen={`lesson_${lessonId}`}
             dataId={lessonPhraseReportDataId(lessonId, phrase, realPhraseIdx)}
             dataText={[

@@ -32,6 +32,7 @@ import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import { buildManifestCardIndex, cardManifestId, manifestSeed, restoreManifestCards, toManifestIds } from './flashcards/training_manifest_ids';
 import { attemptRevisionCandidates, resolveEnergyIntentForRecord } from './flashcards/training_energy_intent';
 import NoEnergyModal from '../components/NoEnergyModal';
+import ReportErrorButton from '../components/ReportErrorButton';
 import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
 import { PracticeRuneCounter } from '../components/PracticeRuneCounter';
 import { CoinRewardFlight } from '../components/rewards/CoinRewardFlight';
@@ -1088,6 +1089,29 @@ export default function FlashcardsBlitzSession() {
     ],
   );
 
+  // зачем (флажок в Блице): форма жалобы открыта — раунд на паузе, закрыта — продолжаем с того же остатка. Флажок рисуется только при
+  // незаблокированном вопросе, поэтому отложенных переходов в этот момент нет. Всё пишем в журнал [BLITZ-REPORT].
+  const reportPausedRef = useRef(false);
+  const onReportOpenChange = useCallback((open: boolean) => {
+    if (open) {
+      if (finishingRef.current) {
+        console.log('[BLITZ-REPORT] open: раунд уже завершается, паузу не ставим', JSON.stringify({ roundId })); // guard-ok: ранний выход
+        return;
+      }
+      reportPausedRef.current = true;
+      pauseBlitzCountdown();
+      console.log('[BLITZ-REPORT] open: таймер на паузе', JSON.stringify({ roundId, remainingMs: pausedRemainingMsRef.current })); // guard-ok: одна строка на открытие
+      return;
+    }
+    if (!reportPausedRef.current) {
+      console.log('[BLITZ-REPORT] close: паузы от формы не было, ничего не возобновляем', JSON.stringify({ roundId })); // guard-ok: ранний выход
+      return;
+    }
+    reportPausedRef.current = false;
+    console.log('[BLITZ-REPORT] close: возобновляем раунд', JSON.stringify({ roundId, remainingMs: pausedRemainingMsRef.current })); // guard-ok: одна строка на закрытие
+    resumeBlitzCountdown();
+  }, [pauseBlitzCountdown, resumeBlitzCountdown, roundId]);
+
   const resetBlitzAfterSessionRuneForfeit = useCallback(() => {
     setBtnStates(IDLE_BTNS);
     setLocked(false);
@@ -1560,6 +1584,19 @@ export default function FlashcardsBlitzSession() {
               >
                 {question?.card.en ?? ''}
               </Text>
+              {/* зачем (владелец 28.10 «флажок везде»): жалоба на карточку; справа сверху, чтобы не наезжать на подпись и пилюлю награды */}
+              {question && !locked ? (
+                <ReportErrorButton
+                  screen="flashcards_blitz"
+                  dataId={`flashcard_${question.card.id}`}
+                  dataText={`EN: ${question.card.en}\nRU: ${question.card.translation}`}
+                  variant="icon-flag"
+                  accessibilityLabel={triLang(lang, { ru: 'Сообщить об ошибке в карточке', uk: 'Повідомити про помилку в картці', en: 'Report an error in the card', es: 'Informar de un error en la tarjeta', 'pt-BR': 'Reportar um erro no cartão', vi: 'Báo lỗi trong thẻ', id: 'Laporkan kesalahan di kartu', tr: 'Karttaki hatayı bildir', pl: 'Zgłoś błąd w fiszce' })}
+                  testID="fc-blitz-report"
+                  style={{ position: 'absolute', top: 6, right: 6 }}
+                  onOpenChange={onReportOpenChange}
+                />
+              ) : null}
               {/* `.plus10`: пилюля награды справа снизу карточки после верного ответа */}
               {lastAward > 0 && btnStates.some((st) => st === 'correct') && !btnStates.some((st) => st === 'wrong') ? (
                 <View testID="fc-blitz-award" style={[styles.award, { backgroundColor: ANSWER_OK_SURFACE }]}>

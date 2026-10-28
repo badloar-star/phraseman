@@ -3,8 +3,11 @@
 Governance-ID: TG-555E81CC2D7B
 Governance-ID: TG-144E9994EA74
 Governance-ID: TG-FC2F6D646804
+Governance-ID: TG-CBA3CF3535EF
 
 Дополнение 28.10 (координатор по логам Сверки/Ревизора): «Уроки» на Главной — на холодном старте ~8 с пустого экрана и двойная навигация (push /learning-v2/course → dismissTo). Фикс: плитка переключает вкладку сразу (как тап по таббару) и оставляет тихий запрос карты V2 (app/lessons_open_v2_request.ts), который вкладка применяет при фокусе; пульс подсказки Главной — isInteraction:false, чтобы runAfterInteractions не ждал; скрытая вкладка — журнал и тост; замер [HOME-LESSONS-BTN] в мс. Скелет первого кадра вкладки лежит в _layout.tsx (файл Codex) — отдельная правка через координатора. Откат: вернуть go('/learning-v2/course') в плитке.
+
+Дополнение 28.10 (решения владельца через координатора): флажок «Пожаловаться» заменяет текстовую «Нашёл ошибку?» на lesson1, lesson_words, lesson_irregular_verbs, preposition_drill, exam, level_exam, diagnostic_test, добавляется в flashcards_blitz; правки текстов флага по docs/voice/report-flag-copy-review-2026-10-28.md; замок lessons_v2_surface_contract под новую схему маршрута курса; замер и ускорение «Найди пару» (speed_match, лог [SPEED-MATCH-PERF]); клиент Диалогов allObjectivesComplete (после выкладки сервера). mistake_practice_session — файл Codex: только описание правки координатору. Откат — по коммитам; каждая замена флажка — одна вставка на экран.
 
 ## Outcome
 1. Кнопка «Уроки» на Главной: сперва журнал `[HOME-LESSONS-BTN]` (вызвался ли onPress, какая ветка, значения гардов, какой маршрут ушёл в router, проглотил ли тап guard двойного нажатия, дошёл ли маршрут курса до вкладки), затем диагноз по фактам и починка. Файлы Codex (`app/(tabs)/_layout.tsx` — незакоммиченный рефакторинг) НЕ правятся: причина и точный фикс уходят координатору.

@@ -2505,7 +2505,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             if (!learnTabVisible) {
                 emitAppEvent('action_toast', actionToastTri('info', {
                     ru: 'Раздел «Уроки» для этого языка пока недоступен', uk: 'Розділ «Уроки» для цієї мови поки недоступний', en: 'Lessons aren’t available for this language yet', es: 'Las lecciones aún no están disponibles para este idioma',
-                    'pt-BR': 'As lições ainda não estão disponíveis para este idioma', vi: 'Bài học chưa có cho ngôn ngữ này', id: 'Pelajaran belum tersedia untuk bahasa ini', tr: 'Dersler bu dil için henüz kullanılamıyor', pl: 'Lekcje nie są jeszcze dostępne dla tego języka',
+                    'pt-BR': 'As lições ainda não estão disponíveis para este idioma', vi: 'Bài học chưa có cho ngôn ngữ này', id: 'Pelajaran belum tersedia untuk bahasa ini', tr: 'Dersler bu dil için henüz hazır değil', pl: 'Lekcje nie są jeszcze dostępne w tym języku',
                 }));
                 void hapticTap();
                 return;

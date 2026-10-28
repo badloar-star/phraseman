@@ -1518,6 +1518,7 @@ export default function ExamScreen() {
           </View>
           <View style={{alignItems:'flex-end',marginTop:8}}>
             <ReportErrorButton
+              variant="icon-flag"
               screen="exam"
               dataId={`exam_lesson_${q.lessonNum}_q${idx}`}
               dataText={[

@@ -910,6 +910,7 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
 
       {verb && (
         <ReportErrorButton
+          variant="icon-flag"
           screen="lesson_irregular_verbs"
           dataId={`irregular_verb_${verb.base}`}
           dataText={[
@@ -1084,6 +1085,7 @@ function IrregVerbsScrollTable({ glass, lang, allVerbs, globalCounts, lessonId }
       )}
 
       <ReportErrorButton
+        variant="icon-flag"
         screen="lesson_irregular_verbs"
         dataId={`irregular_verbs_list_lesson_${lessonId ?? 0}`}
         dataText={triLang(lang, {

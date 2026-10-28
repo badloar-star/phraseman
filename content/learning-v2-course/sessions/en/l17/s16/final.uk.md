@@ -63,7 +63,7 @@
 - How much poets do you know? — *У записі звучить How many poets do you know?*
 - How a many poets do you know? — *У записі звучить How many poets do you know?*
 
-**4 · Виберіть many для окремих предметів/людей або much для незлічуваного.**
+**4 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-16:i03; family: context_gap_grammar -->
 How ___ poets do you know? → **many** · much · a many
 - much — *poet можна порахувати: many + poets у множині.*
@@ -83,7 +83,7 @@ How ___ poets do you know? → **many** · much · a many
 - We don't know much novelists. — *У записі звучить We don't know many novelists.*
 - We don't know a many novelists. — *У записі звучить We don't know many novelists.*
 
-**8 · Виберіть many для окремих предметів/людей або much для незлічуваного.**
+**8 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-16:i06; family: context_gap_grammar -->
 We don't know ___ novelists. → **many** · much · a many
 - much — *novelist можна порахувати: many + novelists у множині.*
@@ -103,7 +103,7 @@ We don't know ___ novelists. → **many** · much · a many
 - How many poetry do you read? — *У записі звучить How much poetry do you read?*
 - How a much poetry do you read? — *У записі звучить How much poetry do you read?*
 
-**12 · Виберіть many для окремих предметів/людей або much для незлічуваного.**
+**12 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-16:i09; family: context_gap_grammar -->
 How ___ poetry do you read? → **much** · many · a much
 - many — *poetry у цьому значенні — незлічуване слово: much.*
@@ -123,7 +123,7 @@ How ___ poetry do you read? → **much** · many · a much
 - We don't read many prose. — *У записі звучить We don't read much prose.*
 - We don't read a much prose. — *У записі звучить We don't read much prose.*
 
-**16 · Виберіть many для окремих предметів/людей або much для незлічуваного.**
+**16 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-16:i12; family: context_gap_grammar -->
 We don't read ___ prose. → **much** · many · a much
 - many — *prose у цьому значенні — незлічуване слово: much.*

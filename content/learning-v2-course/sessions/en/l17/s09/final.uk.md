@@ -63,7 +63,7 @@
 - How much pecans do we need? — *У записі звучить How many pecans do we need?*
 - How a many pecans do we need? — *У записі звучить How many pecans do we need?*
 
-**4 · Виберіть слово кількості: окремі предмети чи незлічувана назва.**
+**4 · Виберіть слово кількості: те, що рахують поштучно, чи те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-09:i03; family: context_gap_grammar -->
 How ___ pecans do we need? → **many** · much · a many
 - much — *Pecan можна порахувати: many + pecans у множині.*
@@ -83,7 +83,7 @@ How ___ pecans do we need? → **many** · much · a many
 - We don't have much Brazil nuts. — *У записі звучить We don't have many Brazil nuts.*
 - We don't have a many Brazil nuts. — *У записі звучить We don't have many Brazil nuts.*
 
-**8 · Виберіть слово кількості: окремі предмети чи незлічувана назва.**
+**8 · Виберіть слово кількості: те, що рахують поштучно, чи те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-09:i06; family: context_gap_grammar -->
 We don't have ___ Brazil nuts. → **many** · much · a many
 - much — *Brazil nuts — окремі горіхи: many, не much.*
@@ -103,7 +103,7 @@ We don't have ___ Brazil nuts. → **many** · much · a many
 - How many polenta do we need? — *У записі звучить How much polenta do we need?*
 - How a much polenta do we need? — *У записі звучить How much polenta do we need?*
 
-**12 · Виберіть слово кількості: окремі предмети чи незлічувана назва.**
+**12 · Виберіть слово кількості: те, що рахують поштучно, чи те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-09:i09; family: context_gap_grammar -->
 How ___ polenta do we need? → **much** · many · a much
 - many — *Polenta як страва — незлічуване слово: much.*
@@ -123,7 +123,7 @@ How ___ polenta do we need? → **much** · many · a much
 - We don't have many semolina. — *У записі звучить We don't have much semolina.*
 - We don't have a much semolina. — *У записі звучить We don't have much semolina.*
 
-**16 · Виберіть слово кількості: окремі предмети чи незлічувана назва.**
+**16 · Виберіть слово кількості: те, що рахують поштучно, чи те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-09:i12; family: context_gap_grammar -->
 We don't have ___ semolina. → **much** · many · a much
 - many — *Semolina як крупа — незлічуване слово: much, не many.*

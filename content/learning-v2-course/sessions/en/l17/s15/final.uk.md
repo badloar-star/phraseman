@@ -63,7 +63,7 @@
 - How much trainees do we have? — *У записі звучить How many trainees do we have?*
 - How a many trainees do we have? — *У записі звучить How many trainees do we have?*
 
-**4 · Виберіть many для окремих предметів/людей або much для незлічуваного.**
+**4 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-15:i03; family: context_gap_grammar -->
 How ___ trainees do we have? → **many** · much · a many
 - much — *trainee можна порахувати: many + trainees у множині.*
@@ -83,7 +83,7 @@ How ___ trainees do we have? → **many** · much · a many
 - We don't have much apprentices. — *У записі звучить We don't have many apprentices.*
 - We don't have a many apprentices. — *У записі звучить We don't have many apprentices.*
 
-**8 · Виберіть many для окремих предметів/людей або much для незлічуваного.**
+**8 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-15:i06; family: context_gap_grammar -->
 We don't have ___ apprentices. → **many** · much · a many
 - much — *apprentice можна порахувати: many + apprentices у множині.*
@@ -103,7 +103,7 @@ We don't have ___ apprentices. → **many** · much · a many
 - How many supervision do they need? — *У записі звучить How much supervision do they need?*
 - How a much supervision do they need? — *У записі звучить How much supervision do they need?*
 
-**12 · Виберіть many для окремих предметів/людей або much для незлічуваного.**
+**12 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-15:i09; family: context_gap_grammar -->
 How ___ supervision do they need? → **much** · many · a much
 - many — *supervision у цьому значенні — незлічуване слово: much.*
@@ -123,7 +123,7 @@ How ___ supervision do they need? → **much** · many · a much
 - They don't need many guidance. — *У записі звучить They don't need much guidance.*
 - They don't need a much guidance. — *У записі звучить They don't need much guidance.*
 
-**16 · Виберіть many для окремих предметів/людей або much для незлічуваного.**
+**16 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-15:i12; family: context_gap_grammar -->
 They don't need ___ guidance. → **much** · many · a much
 - many — *guidance у цьому значенні — незлічуване слово: much.*

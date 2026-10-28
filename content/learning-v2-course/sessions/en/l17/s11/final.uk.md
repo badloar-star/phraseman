@@ -63,7 +63,7 @@
 - How much commuters use this train? — *У записі звучить How many commuters use this train?*
 - How a many commuters use this train? — *У записі звучить How many commuters use this train?*
 
-**4 · Виберіть many для окремих предметів/людей або much для незлічуваного.**
+**4 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-11:i03; family: context_gap_grammar -->
 How ___ commuters use this train? → **many** · much · a many
 - much — *commuter можна порахувати: many + commuters у множині.*
@@ -83,7 +83,7 @@ How ___ commuters use this train? → **many** · much · a many
 - We don't see much motorists here. — *У записі звучить We don't see many motorists here.*
 - We don't see a many motorists here. — *У записі звучить We don't see many motorists here.*
 
-**8 · Виберіть many для окремих предметів/людей або much для незлічуваного.**
+**8 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-11:i06; family: context_gap_grammar -->
 We don't see ___ motorists here. → **many** · much · a many
 - much — *motorist можна порахувати: many + motorists у множині.*
@@ -103,7 +103,7 @@ We don't see ___ motorists here. → **many** · much · a many
 - How many congestion is there today? — *У записі звучить How much congestion is there today?*
 - How a much congestion is there today? — *У записі звучить How much congestion is there today?*
 
-**12 · Виберіть many для окремих предметів/людей або much для незлічуваного.**
+**12 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-11:i09; family: context_gap_grammar -->
 How ___ congestion is there today? → **much** · many · a much
 - many — *congestion у цьому значенні — незлічуване слово: much.*
@@ -123,7 +123,7 @@ How ___ congestion is there today? → **much** · many · a much
 - There isn't many pollution here. — *У записі звучить There isn't much pollution here.*
 - There isn't a much pollution here. — *У записі звучить There isn't much pollution here.*
 
-**16 · Виберіть many для окремих предметів/людей або much для незлічуваного.**
+**16 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-11:i12; family: context_gap_grammar -->
 There isn't ___ pollution here. → **much** · many · a much
 - many — *pollution у цьому значенні — незлічуване слово: much.*

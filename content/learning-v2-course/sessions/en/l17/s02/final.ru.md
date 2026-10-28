@@ -73,7 +73,7 @@ This is ___ shallot. → **a** · an · the two
 <!-- interaction_id: en:lesson-17:session-02:word:peppercorn; family: word_card -->
 > **peppercorn** — горошина перца.
 
-**6 · Скажите: «В миске две горошины перца». У peppercorn множественное число — peppercorns.**
+**6 · Скажите: «В миске две горошины перца». Если peppercorn несколько — peppercorns.**
 <!-- interaction_id: en:lesson-17:session-02:i04; family: phrase_builder -->
 Плитки: `bowl` `the` `in` `peppercorns` `two` `are` `There` → **There are two peppercorns in the bowl.**
 
@@ -141,7 +141,7 @@ shallot — лук-шалот, небольшая луковица · peppercorn
 <!-- interaction_id: en:lesson-17:session-02:i15; family: listen_build_dictation -->
 🔊 *This bulgur is dry.* Плитки: `dry` `is` `bulgur` `This` → **This bulgur is dry.**
 
-**20 · Скажите фразу с неисчисляемым словом**
+**20 · Скажите фразу**
 <!-- interaction_id: en:lesson-17:session-02:i16; family: scripted_repeat_compare -->
 🎙 **We need barley.**
 

@@ -73,7 +73,7 @@ This is ___ sapling. → **a** · an · the two
 <!-- interaction_id: en:lesson-17:session-07:word:planter; family: word_card -->
 > **planter** — контейнер или ящик для выращивания растений.
 
-**6 · Скажите: «У двери два контейнера для растений». У planter множественное число — planters.**
+**6 · Скажите: «Если двери два контейнера для растений». У planter несколько — planters.**
 <!-- interaction_id: en:lesson-17:session-07:i04; family: phrase_builder -->
 Плитки: `door` `the` `by` `planters` `two` `are` `There` → **There are two planters by the door.**
 
@@ -141,7 +141,7 @@ sapling — молодое деревце, саженец дерева · plante
 <!-- interaction_id: en:lesson-17:session-07:i15; family: listen_build_dictation -->
 🔊 *This gravel is clean.* Плитки: `clean` `is` `gravel` `This` → **This gravel is clean.**
 
-**20 · Скажите фразу с неисчисляемым словом**
+**20 · Скажите фразу**
 <!-- interaction_id: en:lesson-17:session-07:i16; family: scripted_repeat_compare -->
 🎙 **We need equipment.**
 

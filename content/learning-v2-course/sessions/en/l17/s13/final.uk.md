@@ -63,7 +63,7 @@
 - How much participants do we have? — *У записі звучить How many participants do we have?*
 - How a many participants do we have? — *У записі звучить How many participants do we have?*
 
-**4 · Виберіть many для окремих предметів/людей або much для незлічуваного.**
+**4 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-13:i03; family: context_gap_grammar -->
 How ___ participants do we have? → **many** · much · a many
 - much — *participant можна порахувати: many + participants у множині.*
@@ -83,7 +83,7 @@ How ___ participants do we have? → **many** · much · a many
 - We don't have much sponsors. — *У записі звучить We don't have many sponsors.*
 - We don't have a many sponsors. — *У записі звучить We don't have many sponsors.*
 
-**8 · Виберіть many для окремих предметів/людей або much для незлічуваного.**
+**8 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-13:i06; family: context_gap_grammar -->
 We don't have ___ sponsors. → **many** · much · a many
 - much — *sponsor можна порахувати: many + sponsors у множині.*
@@ -103,7 +103,7 @@ We don't have ___ sponsors. → **many** · much · a many
 - How many entertainment do we need? — *У записі звучить How much entertainment do we need?*
 - How a much entertainment do we need? — *У записі звучить How much entertainment do we need?*
 
-**12 · Виберіть many для окремих предметів/людей або much для незлічуваного.**
+**12 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-13:i09; family: context_gap_grammar -->
 How ___ entertainment do we need? → **much** · many · a much
 - many — *entertainment у цьому значенні — незлічуване слово: much.*
@@ -123,7 +123,7 @@ How ___ entertainment do we need? → **much** · many · a much
 - We don't have many funding. — *У записі звучить We don't have much funding.*
 - We don't have a much funding. — *У записі звучить We don't have much funding.*
 
-**16 · Виберіть many для окремих предметів/людей або much для незлічуваного.**
+**16 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-13:i12; family: context_gap_grammar -->
 We don't have ___ funding. → **much** · many · a much
 - many — *funding у цьому значенні — незлічуване слово: much.*

@@ -63,7 +63,7 @@
 - How much participants do we have? — *В записи звучит How many participants do we have?*
 - How a many participants do we have? — *В записи звучит How many participants do we have?*
 
-**4 · Выберите many для отдельных предметов/людей или much для неисчисляемого.**
+**4 · Выберите many — то, что считают поштучно, или much — то, что не считают.**
 <!-- interaction_id: en:lesson-17:session-13:i03; family: context_gap_grammar -->
 How ___ participants do we have? → **many** · much · a many
 - much — *participant можно посчитать: many + participants во множественном числе.*
@@ -83,7 +83,7 @@ How ___ participants do we have? → **many** · much · a many
 - We don't have much sponsors. — *В записи звучит We don't have many sponsors.*
 - We don't have a many sponsors. — *В записи звучит We don't have many sponsors.*
 
-**8 · Выберите many для отдельных предметов/людей или much для неисчисляемого.**
+**8 · Выберите many — то, что считают поштучно, или much — то, что не считают.**
 <!-- interaction_id: en:lesson-17:session-13:i06; family: context_gap_grammar -->
 We don't have ___ sponsors. → **many** · much · a many
 - much — *sponsor можно посчитать: many + sponsors во множественном числе.*
@@ -103,7 +103,7 @@ We don't have ___ sponsors. → **many** · much · a many
 - How many entertainment do we need? — *В записи звучит How much entertainment do we need?*
 - How a much entertainment do we need? — *В записи звучит How much entertainment do we need?*
 
-**12 · Выберите many для отдельных предметов/людей или much для неисчисляемого.**
+**12 · Выберите many — то, что считают поштучно, или much — то, что не считают.**
 <!-- interaction_id: en:lesson-17:session-13:i09; family: context_gap_grammar -->
 How ___ entertainment do we need? → **much** · many · a much
 - many — *entertainment в этом значении — неисчисляемое слово: much.*
@@ -123,7 +123,7 @@ How ___ entertainment do we need? → **much** · many · a much
 - We don't have many funding. — *В записи звучит We don't have much funding.*
 - We don't have a much funding. — *В записи звучит We don't have much funding.*
 
-**16 · Выберите many для отдельных предметов/людей или much для неисчисляемого.**
+**16 · Выберите many — то, что считают поштучно, или much — то, что не считают.**
 <!-- interaction_id: en:lesson-17:session-13:i12; family: context_gap_grammar -->
 We don't have ___ funding. → **much** · many · a much
 - many — *funding в этом значении — неисчисляемое слово: much.*

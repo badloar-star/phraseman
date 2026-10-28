@@ -63,7 +63,7 @@
 - How much assignments do we have? — *В записи звучит How many assignments do we have?*
 - How a many assignments do we have? — *В записи звучит How many assignments do we have?*
 
-**4 · Выберите many для отдельных предметов/людей или much для неисчисляемого.**
+**4 · Выберите many — то, что считают поштучно, или much — то, что не считают.**
 <!-- interaction_id: en:lesson-17:session-10:i03; family: context_gap_grammar -->
 How ___ assignments do we have? → **many** · much · a many
 - much — *assignment можно посчитать: many + assignments во множественном числе.*
@@ -83,7 +83,7 @@ How ___ assignments do we have? → **many** · much · a many
 - We don't have much worksheets. — *В записи звучит We don't have many worksheets.*
 - We don't have a many worksheets. — *В записи звучит We don't have many worksheets.*
 
-**8 · Выберите many для отдельных предметов/людей или much для неисчисляемого.**
+**8 · Выберите many — то, что считают поштучно, или much — то, что не считают.**
 <!-- interaction_id: en:lesson-17:session-10:i06; family: context_gap_grammar -->
 We don't have ___ worksheets. → **many** · much · a many
 - much — *worksheet можно посчитать: many + worksheets во множественном числе.*
@@ -103,7 +103,7 @@ We don't have ___ worksheets. → **many** · much · a many
 - How many coursework do we have? — *В записи звучит How much coursework do we have?*
 - How a much coursework do we have? — *В записи звучит How much coursework do we have?*
 
-**12 · Выберите many для отдельных предметов/людей или much для неисчисляемого.**
+**12 · Выберите many — то, что считают поштучно, или much — то, что не считают.**
 <!-- interaction_id: en:lesson-17:session-10:i09; family: context_gap_grammar -->
 How ___ coursework do we have? → **much** · many · a much
 - many — *coursework в этом значении — неисчисляемое слово: much.*
@@ -123,7 +123,7 @@ How ___ coursework do we have? → **much** · many · a much
 - We don't need many revision. — *В записи звучит We don't need much revision.*
 - We don't need a much revision. — *В записи звучит We don't need much revision.*
 
-**16 · Выберите many для отдельных предметов/людей или much для неисчисляемого.**
+**16 · Выберите many — то, что считают поштучно, или much — то, что не считают.**
 <!-- interaction_id: en:lesson-17:session-10:i12; family: context_gap_grammar -->
 We don't need ___ revision. → **much** · many · a much
 - many — *revision в этом значении — неисчисляемое слово: much.*

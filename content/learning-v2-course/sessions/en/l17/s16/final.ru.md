@@ -63,7 +63,7 @@
 - How much poets do you know? — *В записи звучит How many poets do you know?*
 - How a many poets do you know? — *В записи звучит How many poets do you know?*
 
-**4 · Выберите many для отдельных предметов/людей или much для неисчисляемого.**
+**4 · Выберите many — то, что считают поштучно, или much — то, что не считают.**
 <!-- interaction_id: en:lesson-17:session-16:i03; family: context_gap_grammar -->
 How ___ poets do you know? → **many** · much · a many
 - much — *poet можно посчитать: many + poets во множественном числе.*
@@ -83,7 +83,7 @@ How ___ poets do you know? → **many** · much · a many
 - We don't know much novelists. — *В записи звучит We don't know many novelists.*
 - We don't know a many novelists. — *В записи звучит We don't know many novelists.*
 
-**8 · Выберите many для отдельных предметов/людей или much для неисчисляемого.**
+**8 · Выберите many — то, что считают поштучно, или much — то, что не считают.**
 <!-- interaction_id: en:lesson-17:session-16:i06; family: context_gap_grammar -->
 We don't know ___ novelists. → **many** · much · a many
 - much — *novelist можно посчитать: many + novelists во множественном числе.*
@@ -103,7 +103,7 @@ We don't know ___ novelists. → **many** · much · a many
 - How many poetry do you read? — *В записи звучит How much poetry do you read?*
 - How a much poetry do you read? — *В записи звучит How much poetry do you read?*
 
-**12 · Выберите many для отдельных предметов/людей или much для неисчисляемого.**
+**12 · Выберите many — то, что считают поштучно, или much — то, что не считают.**
 <!-- interaction_id: en:lesson-17:session-16:i09; family: context_gap_grammar -->
 How ___ poetry do you read? → **much** · many · a much
 - many — *poetry в этом значении — неисчисляемое слово: much.*
@@ -123,7 +123,7 @@ How ___ poetry do you read? → **much** · many · a much
 - We don't read many prose. — *В записи звучит We don't read much prose.*
 - We don't read a much prose. — *В записи звучит We don't read much prose.*
 
-**16 · Выберите many для отдельных предметов/людей или much для неисчисляемого.**
+**16 · Выберите many — то, что считают поштучно, или much — то, что не считают.**
 <!-- interaction_id: en:lesson-17:session-16:i12; family: context_gap_grammar -->
 We don't read ___ prose. → **much** · many · a much
 - many — *prose в этом значении — неисчисляемое слово: much.*

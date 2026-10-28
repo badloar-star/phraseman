@@ -63,7 +63,7 @@
 - How much pecans do we need? — *В записи звучит How many pecans do we need?*
 - How a many pecans do we need? — *В записи звучит How many pecans do we need?*
 
-**4 · Выберите слово количества: отдельные предметы или неисчисляемое название.**
+**4 · Выберите слово количества: то, что считают поштучно, или то, что не считают.**
 <!-- interaction_id: en:lesson-17:session-09:i03; family: context_gap_grammar -->
 How ___ pecans do we need? → **many** · much · a many
 - much — *Pecan можно посчитать: many + pecans во множественном числе.*
@@ -83,7 +83,7 @@ How ___ pecans do we need? → **many** · much · a many
 - We don't have much Brazil nuts. — *В записи звучит We don't have many Brazil nuts.*
 - We don't have a many Brazil nuts. — *В записи звучит We don't have many Brazil nuts.*
 
-**8 · Выберите слово количества: отдельные предметы или неисчисляемое название.**
+**8 · Выберите слово количества: то, что считают поштучно, или то, что не считают.**
 <!-- interaction_id: en:lesson-17:session-09:i06; family: context_gap_grammar -->
 We don't have ___ Brazil nuts. → **many** · much · a many
 - much — *Brazil nuts — отдельные орехи: many, не much.*
@@ -103,7 +103,7 @@ We don't have ___ Brazil nuts. → **many** · much · a many
 - How many polenta do we need? — *В записи звучит How much polenta do we need?*
 - How a much polenta do we need? — *В записи звучит How much polenta do we need?*
 
-**12 · Выберите слово количества: отдельные предметы или неисчисляемое название.**
+**12 · Выберите слово количества: то, что считают поштучно, или то, что не считают.**
 <!-- interaction_id: en:lesson-17:session-09:i09; family: context_gap_grammar -->
 How ___ polenta do we need? → **much** · many · a much
 - many — *Polenta как блюдо — неисчисляемое слово: much.*
@@ -123,7 +123,7 @@ How ___ polenta do we need? → **much** · many · a much
 - We don't have many semolina. — *В записи звучит We don't have much semolina.*
 - We don't have a much semolina. — *В записи звучит We don't have much semolina.*
 
-**16 · Выберите слово количества: отдельные предметы или неисчисляемое название.**
+**16 · Выберите слово количества: то, что считают поштучно, или то, что не считают.**
 <!-- interaction_id: en:lesson-17:session-09:i12; family: context_gap_grammar -->
 We don't have ___ semolina. → **much** · many · a much
 - many — *Semolina как крупа — неисчисляемое слово: much, не many.*

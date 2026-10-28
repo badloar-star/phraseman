@@ -73,7 +73,7 @@ This is ___ appliance. → **an** · a · the two
 <!-- interaction_id: en:lesson-17:session-08:word:estimate; family: word_card -->
 > **estimate** — попередній розрахунок вартості.
 
-**6 · Скажіть: «На столі два попередні розрахунки вартості». У estimate множина — estimates.**
+**6 · Скажіть: «На столі два попередні розрахунки вартості». Якщо estimate кілька — estimates.**
 <!-- interaction_id: en:lesson-17:session-08:i04; family: phrase_builder -->
 Плитки: `table` `the` `on` `estimates` `two` `are` `There` → **There are two estimates on the table.**
 
@@ -141,7 +141,7 @@ appliance — побутовий прилад · estimate — попередні
 <!-- interaction_id: en:lesson-17:session-08:i15; family: listen_build_dictation -->
 🔊 *This packaging is wet.* Плитки: `wet` `is` `packaging` `This` → **This packaging is wet.**
 
-**20 · Скажіть фразу з незлічуваним словом**
+**20 · Скажіть фразу**
 <!-- interaction_id: en:lesson-17:session-08:i16; family: scripted_repeat_compare -->
 🎙 **We can see damage.**
 

@@ -73,7 +73,7 @@ This is ___ shallot. → **a** · an · the two
 <!-- interaction_id: en:lesson-17:session-02:word:peppercorn; family: word_card -->
 > **peppercorn** — горошина перцю.
 
-**6 · Скажіть: «У мисці дві горошини перцю». У peppercorn множина — peppercorns.**
+**6 · Скажіть: «Якщо мисці дві горошини перцю». У peppercorn кілька — peppercorns.**
 <!-- interaction_id: en:lesson-17:session-02:i04; family: phrase_builder -->
 Плитки: `bowl` `the` `in` `peppercorns` `two` `are` `There` → **There are two peppercorns in the bowl.**
 
@@ -141,7 +141,7 @@ shallot — цибуля-шалот, невелика цибулина · pepper
 <!-- interaction_id: en:lesson-17:session-02:i15; family: listen_build_dictation -->
 🔊 *This bulgur is dry.* Плитки: `dry` `is` `bulgur` `This` → **This bulgur is dry.**
 
-**20 · Скажіть фразу з незлічуваним словом**
+**20 · Скажіть фразу**
 <!-- interaction_id: en:lesson-17:session-02:i16; family: scripted_repeat_compare -->
 🎙 **We need barley.**
 

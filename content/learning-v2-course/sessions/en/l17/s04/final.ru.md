@@ -73,7 +73,7 @@ She is ___ candidate. → **a** · an · the two
 <!-- interaction_id: en:lesson-17:session-04:word:vacancy; family: word_card -->
 > **vacancy** — вакансия, свободное рабочее место.
 
-**6 · Скажите: «В этом магазине две вакансии». У vacancy множественное число — vacancies.**
+**6 · Скажите: «В этом магазине две вакансии». Если vacancy несколько — vacancies.**
 <!-- interaction_id: en:lesson-17:session-04:i04; family: phrase_builder -->
 Плитки: `shop` `this` `in` `vacancies` `two` `are` `There` → **There are two vacancies in this shop.**
 
@@ -141,7 +141,7 @@ candidate — кандидат, человек, претендующий на м
 <!-- interaction_id: en:lesson-17:session-04:i15; family: listen_build_dictation -->
 🔊 *This paperwork is important.* Плитки: `important` `is` `paperwork` `This` → **This paperwork is important.**
 
-**20 · Скажите фразу с неисчисляемым словом**
+**20 · Скажите фразу**
 <!-- interaction_id: en:lesson-17:session-04:i16; family: scripted_repeat_compare -->
 🎙 **We need training.**
 

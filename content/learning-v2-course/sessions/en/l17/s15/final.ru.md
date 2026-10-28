@@ -63,7 +63,7 @@
 - How much trainees do we have? — *В записи звучит How many trainees do we have?*
 - How a many trainees do we have? — *В записи звучит How many trainees do we have?*
 
-**4 · Выберите many для отдельных предметов/людей или much для неисчисляемого.**
+**4 · Выберите many — то, что считают поштучно, или much — то, что не считают.**
 <!-- interaction_id: en:lesson-17:session-15:i03; family: context_gap_grammar -->
 How ___ trainees do we have? → **many** · much · a many
 - much — *trainee можно посчитать: many + trainees во множественном числе.*
@@ -83,7 +83,7 @@ How ___ trainees do we have? → **many** · much · a many
 - We don't have much apprentices. — *В записи звучит We don't have many apprentices.*
 - We don't have a many apprentices. — *В записи звучит We don't have many apprentices.*
 
-**8 · Выберите many для отдельных предметов/людей или much для неисчисляемого.**
+**8 · Выберите many — то, что считают поштучно, или much — то, что не считают.**
 <!-- interaction_id: en:lesson-17:session-15:i06; family: context_gap_grammar -->
 We don't have ___ apprentices. → **many** · much · a many
 - much — *apprentice можно посчитать: many + apprentices во множественном числе.*
@@ -103,7 +103,7 @@ We don't have ___ apprentices. → **many** · much · a many
 - How many supervision do they need? — *В записи звучит How much supervision do they need?*
 - How a much supervision do they need? — *В записи звучит How much supervision do they need?*
 
-**12 · Выберите many для отдельных предметов/людей или much для неисчисляемого.**
+**12 · Выберите many — то, что считают поштучно, или much — то, что не считают.**
 <!-- interaction_id: en:lesson-17:session-15:i09; family: context_gap_grammar -->
 How ___ supervision do they need? → **much** · many · a much
 - many — *supervision в этом значении — неисчисляемое слово: much.*
@@ -123,7 +123,7 @@ How ___ supervision do they need? → **much** · many · a much
 - They don't need many guidance. — *В записи звучит They don't need much guidance.*
 - They don't need a much guidance. — *В записи звучит They don't need much guidance.*
 
-**16 · Выберите many для отдельных предметов/людей или much для неисчисляемого.**
+**16 · Выберите many — то, что считают поштучно, или much — то, что не считают.**
 <!-- interaction_id: en:lesson-17:session-15:i12; family: context_gap_grammar -->
 They don't need ___ guidance. → **much** · many · a much
 - many — *guidance в этом значении — неисчисляемое слово: much.*

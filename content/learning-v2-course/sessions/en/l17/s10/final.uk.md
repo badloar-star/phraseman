@@ -63,7 +63,7 @@
 - How much assignments do we have? — *У записі звучить How many assignments do we have?*
 - How a many assignments do we have? — *У записі звучить How many assignments do we have?*
 
-**4 · Виберіть many для окремих предметів/людей або much для незлічуваного.**
+**4 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-10:i03; family: context_gap_grammar -->
 How ___ assignments do we have? → **many** · much · a many
 - much — *assignment можна порахувати: many + assignments у множині.*
@@ -83,7 +83,7 @@ How ___ assignments do we have? → **many** · much · a many
 - We don't have much worksheets. — *У записі звучить We don't have many worksheets.*
 - We don't have a many worksheets. — *У записі звучить We don't have many worksheets.*
 
-**8 · Виберіть many для окремих предметів/людей або much для незлічуваного.**
+**8 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-10:i06; family: context_gap_grammar -->
 We don't have ___ worksheets. → **many** · much · a many
 - much — *worksheet можна порахувати: many + worksheets у множині.*
@@ -103,7 +103,7 @@ We don't have ___ worksheets. → **many** · much · a many
 - How many coursework do we have? — *У записі звучить How much coursework do we have?*
 - How a much coursework do we have? — *У записі звучить How much coursework do we have?*
 
-**12 · Виберіть many для окремих предметів/людей або much для незлічуваного.**
+**12 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-10:i09; family: context_gap_grammar -->
 How ___ coursework do we have? → **much** · many · a much
 - many — *coursework у цьому значенні — незлічуване слово: much.*
@@ -123,7 +123,7 @@ How ___ coursework do we have? → **much** · many · a much
 - We don't need many revision. — *У записі звучить We don't need much revision.*
 - We don't need a much revision. — *У записі звучить We don't need much revision.*
 
-**16 · Виберіть many для окремих предметів/людей або much для незлічуваного.**
+**16 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-10:i12; family: context_gap_grammar -->
 We don't need ___ revision. → **much** · many · a much
 - many — *revision у цьому значенні — незлічуване слово: much.*

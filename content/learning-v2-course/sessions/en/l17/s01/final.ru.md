@@ -73,7 +73,7 @@ This is ___ bookend. → **a** · an · the two
 <!-- interaction_id: en:lesson-17:session-01:word:ottoman; family: word_card -->
 > **ottoman** — пуф, мягкое сиденье без спинки.
 
-**6 · Скажите: «В комнате два пуфа». У ottoman множественное число — ottomans.**
+**6 · Скажите: «В комнате два пуфа». Если ottoman несколько — ottomans.**
 <!-- interaction_id: en:lesson-17:session-01:i04; family: phrase_builder -->
 Плитки: `room` `the` `in` `ottomans` `two` `are` `There` → **There are two ottomans in the room.**
 

@@ -73,7 +73,7 @@ This is ___ wrapper. → **a** · an · the two
 <!-- interaction_id: en:lesson-17:session-05:word:cigarette-end; family: word_card -->
 > **cigarette end** — окурок.
 
-**6 · Скажите: «На земле два окурка». У cigarette end множественное число — cigarette ends.**
+**6 · Скажите: «На земле два окурка». Если cigarette end несколько — cigarette ends.**
 <!-- interaction_id: en:lesson-17:session-05:i04; family: phrase_builder -->
 Плитки: `ground` `the` `on` `ends` `cigarette` `two` `are` `There` → **There are two cigarette ends on the ground.**
 
@@ -141,7 +141,7 @@ wrapper — обёртка · cigarette end — окурок · litter — му�
 <!-- interaction_id: en:lesson-17:session-05:i15; family: listen_build_dictation -->
 🔊 *This litter is dangerous.* Плитки: `dangerous` `is` `litter` `This` → **This litter is dangerous.**
 
-**20 · Скажите фразу с неисчисляемым словом**
+**20 · Скажите фразу**
 <!-- interaction_id: en:lesson-17:session-05:i16; family: scripted_repeat_compare -->
 🎙 **We are clearing clutter.**
 

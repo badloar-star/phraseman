@@ -63,7 +63,7 @@
 - How much qualifications do you have? — *В записи звучит How many qualifications do you have?*
 - How a many qualifications do you have? — *В записи звучит How many qualifications do you have?*
 
-**4 · Выберите many для отдельных предметов/людей или much для неисчисляемого.**
+**4 · Выберите many — то, что считают поштучно, или much — то, что не считают.**
 <!-- interaction_id: en:lesson-17:session-12:i03; family: context_gap_grammar -->
 How ___ qualifications do you have? → **many** · much · a many
 - much — *qualification можно посчитать: many + qualifications во множественном числе.*
@@ -83,7 +83,7 @@ How ___ qualifications do you have? → **many** · much · a many
 - We don't have much certificates. — *В записи звучит We don't have many certificates.*
 - We don't have a many certificates. — *В записи звучит We don't have many certificates.*
 
-**8 · Выберите many для отдельных предметов/людей или much для неисчисляемого.**
+**8 · Выберите many — то, что считают поштучно, или much — то, что не считают.**
 <!-- interaction_id: en:lesson-17:session-12:i06; family: context_gap_grammar -->
 We don't have ___ certificates. → **many** · much · a many
 - much — *certificate можно посчитать: many + certificates во множественном числе.*
@@ -103,7 +103,7 @@ We don't have ___ certificates. → **many** · much · a many
 - How many knowledge do we need? — *В записи звучит How much knowledge do we need?*
 - How a much knowledge do we need? — *В записи звучит How much knowledge do we need?*
 
-**12 · Выберите many для отдельных предметов/людей или much для неисчисляемого.**
+**12 · Выберите many — то, что считают поштучно, или much — то, что не считают.**
 <!-- interaction_id: en:lesson-17:session-12:i09; family: context_gap_grammar -->
 How ___ knowledge do we need? → **much** · many · a much
 - many — *knowledge в этом значении — неисчисляемое слово: much.*
@@ -123,7 +123,7 @@ How ___ knowledge do we need? → **much** · many · a much
 - We don't need many tuition. — *В записи звучит We don't need much tuition.*
 - We don't need a much tuition. — *В записи звучит We don't need much tuition.*
 
-**16 · Выберите many для отдельных предметов/людей или much для неисчисляемого.**
+**16 · Выберите many — то, что считают поштучно, или much — то, что не считают.**
 <!-- interaction_id: en:lesson-17:session-12:i12; family: context_gap_grammar -->
 We don't need ___ tuition. → **much** · many · a much
 - many — *tuition в этом значении — неисчисляемое слово: much.*

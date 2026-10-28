@@ -73,7 +73,7 @@ This is ___ biography. → **a** · an · the two
 <!-- interaction_id: en:lesson-17:session-03:word:autobiography; family: word_card -->
 > **autobiography** — автобіографія, книжка автора про власне життя.
 
-**6 · Скажіть: «На полиці дві автобіографії». У autobiography множина — autobiographies.**
+**6 · Скажіть: «На полиці дві автобіографії». Якщо autobiography кілька — autobiographies.**
 <!-- interaction_id: en:lesson-17:session-03:i04; family: phrase_builder -->
 Плитки: `shelf` `the` `on` `autobiographies` `two` `are` `There` → **There are two autobiographies on the shelf.**
 
@@ -141,7 +141,7 @@ biography — біографія, книжка про чиєсь життя · a
 <!-- interaction_id: en:lesson-17:session-03:i15; family: listen_build_dictation -->
 🔊 *This fiction is interesting.* Плитки: `interesting` `is` `fiction` `This` → **This fiction is interesting.**
 
-**20 · Скажіть фразу з незлічуваним словом**
+**20 · Скажіть фразу**
 <!-- interaction_id: en:lesson-17:session-03:i16; family: scripted_repeat_compare -->
 🎙 **We need non-fiction.**
 

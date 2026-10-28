@@ -63,7 +63,7 @@
 - How much lodgers do you have? — *У записі звучить How many lodgers do you have?*
 - How a many lodgers do you have? — *У записі звучить How many lodgers do you have?*
 
-**4 · Виберіть many для окремих предметів/людей або much для незлічуваного.**
+**4 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-14:i03; family: context_gap_grammar -->
 How ___ lodgers do you have? → **many** · much · a many
 - much — *lodger можна порахувати: many + lodgers у множині.*
@@ -83,7 +83,7 @@ How ___ lodgers do you have? → **many** · much · a many
 - We don't know much landladies. — *У записі звучить We don't know many landladies.*
 - We don't know a many landladies. — *У записі звучить We don't know many landladies.*
 
-**8 · Виберіть many для окремих предметів/людей або much для незлічуваного.**
+**8 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-14:i06; family: context_gap_grammar -->
 We don't know ___ landladies. → **many** · much · a many
 - much — *landlady можна порахувати: many + landladies у множині.*
@@ -103,7 +103,7 @@ We don't know ___ landladies. → **many** · much · a many
 - How many accommodation do we need? — *У записі звучить How much accommodation do we need?*
 - How a much accommodation do we need? — *У записі звучить How much accommodation do we need?*
 
-**12 · Виберіть many для окремих предметів/людей або much для незлічуваного.**
+**12 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-14:i09; family: context_gap_grammar -->
 How ___ accommodation do we need? → **much** · many · a much
 - many — *accommodation у цьому значенні — незлічуване слово: much.*
@@ -123,7 +123,7 @@ How ___ accommodation do we need? → **much** · many · a much
 - The house doesn't need many maintenance. — *У записі звучить The house doesn't need much maintenance.*
 - The house doesn't need a much maintenance. — *У записі звучить The house doesn't need much maintenance.*
 
-**16 · Виберіть many для окремих предметів/людей або much для незлічуваного.**
+**16 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-14:i12; family: context_gap_grammar -->
 The house doesn't need ___ maintenance. → **much** · many · a much
 - many — *maintenance у цьому значенні — незлічуване слово: much.*

@@ -73,7 +73,7 @@ This is ___ sapling. → **a** · an · the two
 <!-- interaction_id: en:lesson-17:session-07:word:planter; family: word_card -->
 > **planter** — контейнер або ящик для вирощування рослин.
 
-**6 · Скажіть: «Біля дверей два контейнери для рослин». У planter множина — planters.**
+**6 · Скажіть: «Біля дверей два контейнери для рослин». Якщо planter кілька — planters.**
 <!-- interaction_id: en:lesson-17:session-07:i04; family: phrase_builder -->
 Плитки: `door` `the` `by` `planters` `two` `are` `There` → **There are two planters by the door.**
 
@@ -141,7 +141,7 @@ sapling — молоде деревце, саджанець дерева · plan
 <!-- interaction_id: en:lesson-17:session-07:i15; family: listen_build_dictation -->
 🔊 *This gravel is clean.* Плитки: `clean` `is` `gravel` `This` → **This gravel is clean.**
 
-**20 · Скажіть фразу з незлічуваним словом**
+**20 · Скажіть фразу**
 <!-- interaction_id: en:lesson-17:session-07:i16; family: scripted_repeat_compare -->
 🎙 **We need equipment.**
 

@@ -73,7 +73,7 @@ This is ___ errand. → **an** · a · the two
 <!-- interaction_id: en:lesson-17:session-06:word:replacement; family: word_card -->
 > **replacement** — заміна, річ замість попередньої.
 
-**6 · Скажіть: «У магазині є дві речі на заміну». У replacement множина — replacements.**
+**6 · Скажіть: «Якщо магазині є дві речі на заміну». У replacement кілька — replacements.**
 <!-- interaction_id: en:lesson-17:session-06:i04; family: phrase_builder -->
 Плитки: `shop` `the` `in` `replacements` `two` `are` `There` → **There are two replacements in the shop.**
 
@@ -141,7 +141,7 @@ errand — невелика справа поза домом: наприклад
 <!-- interaction_id: en:lesson-17:session-06:i15; family: listen_build_dictation -->
 🔊 *This housework is tiring.* Плитки: `tiring` `is` `housework` `This` → **This housework is tiring.**
 
-**20 · Скажіть фразу з незлічуваним словом**
+**20 · Скажіть фразу**
 <!-- interaction_id: en:lesson-17:session-06:i16; family: scripted_repeat_compare -->
 🎙 **We use public transport.**
 

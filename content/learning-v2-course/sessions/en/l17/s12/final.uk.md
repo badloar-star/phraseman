@@ -63,7 +63,7 @@
 - How much qualifications do you have? — *У записі звучить How many qualifications do you have?*
 - How a many qualifications do you have? — *У записі звучить How many qualifications do you have?*
 
-**4 · Виберіть many для окремих предметів/людей або much для незлічуваного.**
+**4 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-12:i03; family: context_gap_grammar -->
 How ___ qualifications do you have? → **many** · much · a many
 - much — *qualification можна порахувати: many + qualifications у множині.*
@@ -83,7 +83,7 @@ How ___ qualifications do you have? → **many** · much · a many
 - We don't have much certificates. — *У записі звучить We don't have many certificates.*
 - We don't have a many certificates. — *У записі звучить We don't have many certificates.*
 
-**8 · Виберіть many для окремих предметів/людей або much для незлічуваного.**
+**8 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-12:i06; family: context_gap_grammar -->
 We don't have ___ certificates. → **many** · much · a many
 - much — *certificate можна порахувати: many + certificates у множині.*
@@ -103,7 +103,7 @@ We don't have ___ certificates. → **many** · much · a many
 - How many knowledge do we need? — *У записі звучить How much knowledge do we need?*
 - How a much knowledge do we need? — *У записі звучить How much knowledge do we need?*
 
-**12 · Виберіть many для окремих предметів/людей або much для незлічуваного.**
+**12 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-12:i09; family: context_gap_grammar -->
 How ___ knowledge do we need? → **much** · many · a much
 - many — *knowledge у цьому значенні — незлічуване слово: much.*
@@ -123,7 +123,7 @@ How ___ knowledge do we need? → **much** · many · a much
 - We don't need many tuition. — *У записі звучить We don't need much tuition.*
 - We don't need a much tuition. — *У записі звучить We don't need much tuition.*
 
-**16 · Виберіть many для окремих предметів/людей або much для незлічуваного.**
+**16 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-12:i12; family: context_gap_grammar -->
 We don't need ___ tuition. → **much** · many · a much
 - many — *tuition у цьому значенні — незлічуване слово: much.*

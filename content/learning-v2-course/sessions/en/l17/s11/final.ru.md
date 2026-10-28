@@ -63,7 +63,7 @@
 - How much commuters use this train? — *В записи звучит How many commuters use this train?*
 - How a many commuters use this train? — *В записи звучит How many commuters use this train?*
 
-**4 · Выберите many для отдельных предметов/людей или much для неисчисляемого.**
+**4 · Выберите many — то, что считают поштучно, или much — то, что не считают.**
 <!-- interaction_id: en:lesson-17:session-11:i03; family: context_gap_grammar -->
 How ___ commuters use this train? → **many** · much · a many
 - much — *commuter можно посчитать: many + commuters во множественном числе.*
@@ -83,7 +83,7 @@ How ___ commuters use this train? → **many** · much · a many
 - We don't see much motorists here. — *В записи звучит We don't see many motorists here.*
 - We don't see a many motorists here. — *В записи звучит We don't see many motorists here.*
 
-**8 · Выберите many для отдельных предметов/людей или much для неисчисляемого.**
+**8 · Выберите many — то, что считают поштучно, или much — то, что не считают.**
 <!-- interaction_id: en:lesson-17:session-11:i06; family: context_gap_grammar -->
 We don't see ___ motorists here. → **many** · much · a many
 - much — *motorist можно посчитать: many + motorists во множественном числе.*
@@ -103,7 +103,7 @@ We don't see ___ motorists here. → **many** · much · a many
 - How many congestion is there today? — *В записи звучит How much congestion is there today?*
 - How a much congestion is there today? — *В записи звучит How much congestion is there today?*
 
-**12 · Выберите many для отдельных предметов/людей или much для неисчисляемого.**
+**12 · Выберите many — то, что считают поштучно, или much — то, что не считают.**
 <!-- interaction_id: en:lesson-17:session-11:i09; family: context_gap_grammar -->
 How ___ congestion is there today? → **much** · many · a much
 - many — *congestion в этом значении — неисчисляемое слово: much.*
@@ -123,7 +123,7 @@ How ___ congestion is there today? → **much** · many · a much
 - There isn't many pollution here. — *В записи звучит There isn't much pollution here.*
 - There isn't a much pollution here. — *В записи звучит There isn't much pollution here.*
 
-**16 · Выберите many для отдельных предметов/людей или much для неисчисляемого.**
+**16 · Выберите many — то, что считают поштучно, или much — то, что не считают.**
 <!-- interaction_id: en:lesson-17:session-11:i12; family: context_gap_grammar -->
 There isn't ___ pollution here. → **much** · many · a much
 - many — *pollution в этом значении — неисчисляемое слово: much.*

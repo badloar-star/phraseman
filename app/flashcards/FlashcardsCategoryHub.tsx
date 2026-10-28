@@ -930,8 +930,8 @@ export default function FlashcardsCategoryHub({
         })}
         {pack.isCommunityUgc ? (<>
         {actionRow('flashcards-pack-report', 'flag-outline', triLang(uiLang, {
-          ru: 'Пожаловаться на набор', uk: 'Поскаржитися на набір', en: 'Report the pack', es: 'Reportar el pack',
-          'pt-BR': 'Denunciar o pacote', vi: 'Báo cáo bộ thẻ', id: 'Laporkan paket', tr: 'Paketi bildir', pl: 'Zgłoś zestaw',
+          ru: 'Пожаловаться на набор', uk: 'Поскаржитися на набір', en: 'Report this pack', es: 'Denunciar el pack',
+          'pt-BR': 'Denunciar o pacote', vi: 'Báo cáo bộ thẻ', id: 'Laporkan paket', tr: 'Paketi şikayet et', pl: 'Zgłoś zestaw',
         }), () => {
           void hapticTap();
           setMenuPack(null);

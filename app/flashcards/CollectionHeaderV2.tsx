@@ -250,8 +250,8 @@ export const CollectionMenuSheet = memo(function CollectionMenuSheet({ visible, 
       ) : null}
       {menu.onReport ? (
         <SheetRow g={g} testID="collection-report-pack" icon="flag-outline" title={triLang(menu.lang, {
-          ru: 'Пожаловаться на набор', uk: 'Поскаржитись на набір', en: 'Report this pack', es: 'Denunciar el pack',
-          'pt-BR': 'Denunciar o pacote', vi: 'Báo cáo bộ thẻ', id: 'Laporkan paket', tr: 'Seti bildir', pl: 'Zgłoś zestaw',
+          ru: 'Пожаловаться на набор', uk: 'Поскаржитися на набір', en: 'Report this pack', es: 'Denunciar el pack',
+          'pt-BR': 'Denunciar o pacote', vi: 'Báo cáo bộ thẻ', id: 'Laporkan paket', tr: 'Paketi şikayet et', pl: 'Zgłoś zestaw',
         })} onPress={run(menu.onReport)} />
       ) : null}
       {menu.showEdit ? (

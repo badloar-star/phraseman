@@ -1691,9 +1691,9 @@ export default function FlashcardsScreen() {
             >
               <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '700' }}>
                 {triLang(lang, {
-                  ru: 'Пожаловаться на набор', uk: 'Поскаржитись на набір', en: 'Report this pack', es: 'Denunciar el pack',
+                  ru: 'Пожаловаться на набор', uk: 'Поскаржитися на набір', en: 'Report this pack', es: 'Denunciar el pack',
                   'pt-BR': 'Denunciar o pacote', vi: 'Báo cáo bộ thẻ', id: 'Laporkan paket',
-                  tr: 'Seti bildir', pl: 'Zgłoś zestaw',
+                  tr: 'Paketi şikayet et', pl: 'Zgłoś zestaw',
                 })}
               </Text>
             </TouchableOpacity>

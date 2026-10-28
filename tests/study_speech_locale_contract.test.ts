@@ -11,7 +11,7 @@ const read = (rel: string) => fs.readFileSync(path.join(ROOT, rel), 'utf8');
 
 describe('study speech locale helper', () => {
   it('maps every study language to its exact locale, including Italian', () => {
-    expect(['en', 'es', 'fr', 'de', 'it'].map((l) => studySpeechLocale(l))).toEqual(['en-US', 'es-ES', 'fr-FR', 'de-DE', 'it-IT']);
+    expect(['en', 'es', 'fr', 'de', 'it'].map((l) => studySpeechLocale(l))).toEqual(['en-US', 'es-MX', 'fr-FR', 'de-DE', 'it-IT']);
   });
 
   it('understands long and odd forms, falls back to English for unknown', () => {
@@ -26,7 +26,7 @@ describe('study speech locale helper', () => {
     expect(inferExpoSpeechLanguage('Bonjour', 'fr')).toBe(STUDY_SPEECH_LOCALE.fr);
     expect(inferExpoSpeechLanguage('Guten Morgen', 'de')).toBe('de-DE');
     expect(inferExpoSpeechLanguage('Ciao', 'it')).toBe('it-IT');
-    expect(inferExpoSpeechLanguage('Hola', 'es')).toBe('es-ES');
+    expect(inferExpoSpeechLanguage('Hola', 'es')).toBe('es-MX');
     expect(inferExpoSpeechLanguage('Hello')).toBe('en-US');
     expect(inferExpoSpeechLanguage('Привет', 'fr')).toBe('ru-RU'); // кириллица — по тексту, не по набору
   });

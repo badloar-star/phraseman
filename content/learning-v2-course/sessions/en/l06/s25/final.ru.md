@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-25:word:walk; family: word_card -->
 > **walk** — ходить пешком. We walk to the park. — «Мы ходим пешком в парк». О привычном пути пешком.
 
-**2 · Коллега спрашивает о вас с соседкой. Скажите: «Мы ходим на работу пешком»**
+**2 · Коллега спрашивает о вас с соседкой. Скажите: «Каждый день мы ходим на работу пешком»**
 <!-- interaction_id: en:lesson-06:session-25:i01; family: phrase_builder -->
-Плитки: `work` `to` `walk` `We` `walks` → **We walk to work.**
-*(плитка `walks` лишняя: здесь нужно `walk` — `We walk to work.`)*
+Плитки: `work` `to` `walk` `We` `walks` `every` `day` → **We walk to work every day.**
+*(плитка `walks` лишняя: здесь нужно `walk` — `We walk to work every day.`)*
 
 **3 · Послушайте коллегу**
 <!-- interaction_id: en:lesson-06:session-25:i02; family: listen_choose -->
@@ -67,9 +67,9 @@
 - She runs to work. — *В записи действие — `walks`, ходит пешком, а в этом варианте — `runs`, бегает.*
 - He walks to work. — *В записи первое слово — `She`, она, а в этом варианте — `He`, он.*
 
-**4 · Скажите о соседке: «Она ходит на работу пешком». Выберите слово**
+**4 · Скажите о соседке: «Каждый день она ходит на работу пешком». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-25:i03; family: context_gap_grammar -->
-She ___ to work. → **walks** · walk · is walks
+She ___ to work every day. → **walks** · walk · is walks
 - walk — *После `she` нужно `walks`, с `s`.*
 - is walks — *Говорим `She walks`, без `is`.*
 
@@ -99,9 +99,9 @@ walk — ходить пешком · hill — холм · pedometer — шаг�
 <!-- interaction_id: en:lesson-06:session-25:i07; family: scripted_repeat_compare -->
 🎙 **She walks to work.**
 
-**11 · Скажите о себе: «Я хожу на работу пешком». Выберите слово**
+**11 · Скажите о себе: «Каждый день я хожу на работу пешком». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-25:i08; family: context_gap_grammar -->
-I ___ to work. → **walk** · walks · am walk
+I ___ to work every day. → **walk** · walks · am walk
 - walks — *После `I` нужно `walk`, без `s`.*
 - am walk — *Говорим `I walk`, без `am`.*
 

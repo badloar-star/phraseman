@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-31:word:shower; family: word_card -->
 > **shower** — приймати душ. We shower in the bathroom. — «Ми приймаємо душ у ванній». Про те, що людина миється під душем.
 
-**2 · Гість питає про вас із сестрою. Скажіть: «Ми приймаємо душ удома»**
+**2 · Гість питає про вас із сестрою. Скажіть: «Щодня ми приймаємо душ удома»**
 <!-- interaction_id: en:lesson-06:session-31:i01; family: phrase_builder -->
-Плитки: `home` `at` `shower` `We` `showers` → **We shower at home.**
-*(плитка `showers` зайва: тут потрібно `shower` — `We shower at home.`)*
+Плитки: `home` `at` `shower` `We` `showers` `every` `day` → **We shower at home every day.**
+*(плитка `showers` зайва: тут потрібно `shower` — `We shower at home every day.`)*
 
 **3 · Послухайте брата**
 <!-- interaction_id: en:lesson-06:session-31:i02; family: listen_choose -->
@@ -67,9 +67,9 @@
 - She showers at home. — *У записі останнє слово — `bathroom`, ванна кімната, а в цьому варіанті — `home`, дім.*
 - He showers in the bathroom. — *У записі перше слово — `She`, вона, а в цьому варіанті — `He`, він.*
 
-**4 · Скажіть про гостя: «Він приймає душ у ванній». Виберіть слово**
+**4 · Скажіть про гостя: «Щодня він приймає душ у ванній». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-31:i03; family: context_gap_grammar -->
-He ___ in the bathroom. → **showers** · shower · is showers
+He ___ in the bathroom every day. → **showers** · shower · is showers
 - shower — *Після `he` потрібно `showers`, з `s`.*
 - is showers — *Кажемо `He showers`, без `is`.*
 
@@ -103,9 +103,9 @@ shower — приймати душ · toothpaste — зубна паста · st
 <!-- interaction_id: en:lesson-06:session-31:word:rinse; family: word_card -->
 > **rinse** — споліскувати. He rinses the plate. — «Він ополіскує тарілку». Про те, що змивають водою, не використовуючи щітку.
 
-**12 · Скажіть про себе: «Я ополіскую чашку». Виберіть слово**
+**12 · Скажіть про себе: «Щодня я ополіскую чашку». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-31:i08; family: context_gap_grammar -->
-I ___ the cup. → **rinse** · rinses · am rinse
+I ___ the cup every day. → **rinse** · rinses · am rinse
 - rinses — *Після `I` потрібно `rinse`, без `s`.*
 - am rinse — *Кажемо `I rinse`, без `am`.*
 

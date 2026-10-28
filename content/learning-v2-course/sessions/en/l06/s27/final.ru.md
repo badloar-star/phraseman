@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-27:word:exercise; family: word_card -->
 > **exercise** — тренироваться, делать упражнения. We exercise on the mat. — «Мы тренируемся на коврике». О привычных занятиях для тела.
 
-**2 · Подруга спрашивает о вас с братом. Скажите: «Мы тренируемся дома»**
+**2 · Подруга спрашивает о вас с братом. Скажите: «Каждый день мы тренируемся дома»**
 <!-- interaction_id: en:lesson-06:session-27:i01; family: phrase_builder -->
-Плитки: `home` `at` `exercise` `We` `exercises` → **We exercise at home.**
-*(плитка `exercises` лишняя: здесь нужно `exercise` — `We exercise at home.`)*
+Плитки: `home` `at` `exercise` `We` `exercises` `every` `day` → **We exercise at home every day.**
+*(плитка `exercises` лишняя: здесь нужно `exercise` — `We exercise at home every day.`)*
 
 **3 · Послушайте подругу**
 <!-- interaction_id: en:lesson-06:session-27:i02; family: listen_choose -->
@@ -67,9 +67,9 @@
 - She exercises at work. — *В записи последнее слово — `home`, дома, а в этом варианте — `work`, на работе.*
 - He exercises at home. — *В записи первое слово — `She`, она, а в этом варианте — `He`, он.*
 
-**4 · Скажите о брате: «Он тренируется на коврике». Выберите слово**
+**4 · Скажите о брате: «Каждый день он тренируется на коврике». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-27:i03; family: context_gap_grammar -->
-He ___ on the mat. → **exercises** · exercise · is exercises
+He ___ on the mat every day. → **exercises** · exercise · is exercises
 - exercise — *После `he` нужно `exercises`, с `s`.*
 - is exercises — *Говорим `He exercises`, без `is`.*
 
@@ -133,9 +133,9 @@ rope — скакалка, верёвка · beginner — новичок · yoga
 <!-- interaction_id: en:lesson-06:session-27:i13; family: scripted_repeat_compare -->
 🎙 **I am a beginner.**
 
-**18 · Скажите о себе: «Я тренируюсь дома». Выберите слово**
+**18 · Скажите о себе: «Каждый день я тренируюсь дома». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-27:i14; family: context_gap_grammar -->
-I ___ at home. → **exercise** · exercises · am exercise
+I ___ at home every day. → **exercise** · exercises · am exercise
 - exercises — *После `I` нужно `exercise`, без `s`.*
 - am exercise — *Говорим `I exercise`, без `am`.*
 

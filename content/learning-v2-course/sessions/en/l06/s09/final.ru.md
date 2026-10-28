@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-09:word:start; family: word_card -->
 > **start** — начинать. We start at two. — «Мы начинаем в два». О начале работы, занятия или смены. После I, you, we, they — без s.
 
-**2 · Коллега спрашивает, во сколько вы начинаете. Скажите: «Я начинаю в четыре»**
+**2 · Коллега спрашивает, во сколько вы начинаете. Скажите: «Каждый день я начинаю в четыре»**
 <!-- interaction_id: en:lesson-06:session-09:i01; family: phrase_builder -->
-Плитки: `four` `at` `start` `I` `am` → **I start at four.**
-*(плитка `am` лишняя: здесь нужно `start` — `I start at four.`)*
+Плитки: `four` `at` `start` `I` `am` `every` `day` → **I start at four every day.**
+*(плитка `am` лишняя: здесь нужно `start` — `I start at four every day.`)*
 
 **3 · Послушайте администратора**
 <!-- interaction_id: en:lesson-06:session-09:i02; family: listen_choose -->
@@ -71,9 +71,9 @@
 <!-- interaction_id: en:lesson-06:session-09:word:shift; family: word_card -->
 > **shift** — смена. You start the shift at four. — «Ты начинаешь смену в четыре». О рабочих часах: бывает первая и вторая смена.
 
-**5 · Скажите коллеге: «Мы начинаем смену в два». Выберите слово**
+**5 · Скажите коллеге: «Каждый день мы начинаем смену в два». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-09:i03; family: context_gap_grammar -->
-We ___ the shift at two. → **start** · starts · are start
+We ___ the shift at two every day. → **start** · starts · are start
 - starts — *После `we` — `start`, без `s`.*
 - are start — *Говорим `We start`, без `are`.*
 
@@ -133,9 +133,9 @@ shift — смена · break — перерыв · appointment — приём (
 <!-- interaction_id: en:lesson-06:session-09:i13; family: scripted_repeat_compare -->
 🎙 **I work in a clinic.**
 
-**18 · Скажите о себе: «Я начинаю смену в четыре». Выберите слово**
+**18 · Скажите о себе: «Каждый день я начинаю смену в четыре». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-09:i14; family: context_gap_grammar -->
-I ___ the shift at four. → **start** · starts · am start
+I ___ the shift at four every day. → **start** · starts · am start
 - starts — *После `I` — `start`, без `s`.*
 - am start — *Говорим `I start`, без `am`.*
 

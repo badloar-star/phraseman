@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-26:word:jog; family: word_card -->
 > **jog** — бегать трусцой. They jog in the park. — «Они бегают трусцой в парке». О спокойном беге в своём темпе.
 
-**2 · Подруга спрашивает о соседях. Скажите: «Они бегают трусцой в парке»**
+**2 · Подруга спрашивает о соседях. Скажите: «Каждый день они бегают трусцой в парке»**
 <!-- interaction_id: en:lesson-06:session-26:i01; family: phrase_builder -->
-Плитки: `park` `in` `the` `jog` `They` `jogs` → **They jog in the park.**
-*(плитка `jogs` лишняя: здесь нужно `jog` — `They jog in the park.`)*
+Плитки: `park` `in` `the` `jog` `They` `jogs` `every` `day` → **They jog in the park every day.**
+*(плитка `jogs` лишняя: здесь нужно `jog` — `They jog in the park every day.`)*
 
 **3 · Карточка слова — track**
 <!-- interaction_id: en:lesson-06:session-26:word:track; family: word_card -->
@@ -71,9 +71,9 @@
 - He walks on the track. — *В записи действие — `jogs`, бегает трусцой, а в этом варианте — `walks`, ходит пешком.*
 - She jogs on the track. — *В записи первое слово — `He`, он, а в этом варианте — `She`, она.*
 
-**5 · Скажите о сестре: «Моя сестра бегает трусцой на дорожке». Выберите слово**
+**5 · Скажите о сестре: «Каждый день моя сестра бегает трусцой на дорожке». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-26:i03; family: context_gap_grammar -->
-My sister ___ on the track. → **jogs** · jog · is jogs
+My sister ___ on the track every day. → **jogs** · jog · is jogs
 - jog — *Сестра — это `she`, поэтому нужно `jogs`, с `s`.*
 - is jogs — *Говорим `My sister jogs`, без `is`.*
 
@@ -99,9 +99,9 @@ jog — бегать трусцой · track — беговая дорожка �
 <!-- interaction_id: en:lesson-06:session-26:i07; family: scripted_repeat_compare -->
 🎙 **We jog on the track.**
 
-**11 · Скажите о себе: «Я бегаю трусцой в парке». Выберите слово**
+**11 · Скажите о себе: «Каждый день я бегаю трусцой в парке». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-26:i08; family: context_gap_grammar -->
-I ___ in the park. → **jog** · jogs · am jog
+I ___ in the park every day. → **jog** · jogs · am jog
 - jogs — *После `I` нужно `jog`, без `s`.*
 - am jog — *Говорим `I jog`, без `am`.*
 

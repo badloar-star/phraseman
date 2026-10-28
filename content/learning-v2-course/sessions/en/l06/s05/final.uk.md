@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-05:word:buy; family: word_card -->
 > **buy** — купувати. I buy apples. — «Я купую яблука». Про те, як людина бере товар і платить за нього.
 
-**2 · Продавець питає, що ви берете. Скажіть: «Я купую яблука»**
+**2 · Продавець питає, що ви берете. Скажіть: «Щоосені я купую яблука»**
 <!-- interaction_id: en:lesson-06:session-05:i01; family: phrase_builder -->
-Плитки: `apples` `buy` `I` `am` → **I buy apples.**
-*(плитка `am` зайва: тут потрібно `buy` — `I buy apples.`)*
+Плитки: `apples` `buy` `I` `am` `every` `autumn` → **I buy apples every autumn.**
+*(плитка `am` зайва: тут потрібно `buy` — `I buy apples every autumn.`)*
 
 **3 · Картка слова — weigh**
 <!-- interaction_id: en:lesson-06:session-05:word:weigh; family: word_card -->
@@ -75,9 +75,9 @@
 <!-- interaction_id: en:lesson-06:session-05:word:pack; family: word_card -->
 > **pack** — пакувати, укладати. We pack the bags. — «Ми пакуємо сумки». Про те, як кладуть речі в сумку чи коробку.
 
-**6 · Ви з братом кладете фрукти в сумки. Виберіть слово**
+**6 · Щодня ви з братом кладете фрукти в сумки. Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-05:i03; family: context_gap_grammar -->
-We ___ the bags. → **pack** · are pack · am pack
+We ___ the bags every day. → **pack** · are pack · am pack
 - are pack — *Після `We` одразу ставимо `pack`, без `are`.*
 - am pack — *`am` ставиться тільки після `I`; тут потрібно `We pack`.*
 
@@ -103,9 +103,9 @@ buy — купувати · weigh — зважувати · pack — пакув�
 <!-- interaction_id: en:lesson-06:session-05:i07; family: scripted_repeat_compare -->
 🎙 **I buy apples.**
 
-**12 · Двоє продавців кладуть сливи на ваги. Виберіть слово**
+**12 · Щоосені двоє продавців кладуть сливи на ваги. Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-05:i08; family: context_gap_grammar -->
-They ___ the plums. → **weigh** · are weigh · is weigh
+They ___ the plums every autumn. → **weigh** · are weigh · is weigh
 - are weigh — *Після `They` одразу ставимо `weigh`, без `are`.*
 - is weigh — *Слово `is` ставиться після `he`, `she`, `it`; тут потрібно `They weigh`.*
 
@@ -124,18 +124,18 @@ weigh — зважувати · plum — слива · bag — сумка · sca
 🔊 *You weigh the plums.* Плитки: `plums` `the` `weigh` `You` `I` → **You weigh the plums.**
 *(плитка `I` зайва: тут потрібно `You` — `You weigh the plums.`)*
 
-**16 · Ви з братом укладаєте фрукти. Скажіть продавцеві: «Ми укладаємо яблука в коробку»**
+**16 · Ви з братом укладаєте фрукти. Скажіть продавцеві: «Щоосені ми укладаємо яблука в коробку»**
 <!-- interaction_id: en:lesson-06:session-05:i12; family: phrase_builder -->
-Плитки: `apples` `box` `the` `a` `in` `pack` `We` `are` → **We pack the apples in a box.**
-*(плитка `are` зайва: тут потрібно `pack` — `We pack the apples in a box.`)*
+Плитки: `apples` `box` `the` `a` `in` `pack` `We` `are` `every` `autumn` → **We pack the apples in a box every autumn.**
+*(плитка `are` зайва: тут потрібно `pack` — `We pack the apples in a box every autumn.`)*
 
 **17 · Брат питає, що роблять продавці. Скажіть: «Вони зважують сливи»**
 <!-- interaction_id: en:lesson-06:session-05:i13; family: scripted_repeat_compare -->
 🎙 **They weigh the plums.**
 
-**18 · Ви стоїте біля прилавка з яблуками. Скажіть продавцеві, що ви їх купуєте. Виберіть слово**
+**18 · Ви стоїте біля прилавка з яблуками. Скажіть продавцеві, що щоосені ви їх купуєте. Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-05:i14; family: context_gap_grammar -->
-I ___ apples. → **buy** · am buy · are buy
+I ___ apples every autumn. → **buy** · am buy · are buy
 - am buy — *Після `I` одразу ставимо `buy`, без `am`.*
 - are buy — *Слово `are` ставиться після `we`, `you`, `they`; тут потрібно `I buy`.*
 

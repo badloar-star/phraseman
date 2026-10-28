@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-48:word:greet; family: word_card -->
 > **greet** — встречать, здороваться. We greet the guests. — «Мы встречаем гостей». О том, как человек приветствует тех, кто пришёл.
 
-**2 · Гость спрашивает о вас с соседкой. Скажите: «Мы встречаем гостей»**
+**2 · Гость спрашивает о вас с соседкой. Скажите: «Каждый день мы встречаем гостей»**
 <!-- interaction_id: en:lesson-06:session-48:i01; family: phrase_builder -->
-Плитки: `guests` `greet` `We` `greets` → **We greet guests.**
-*(плитка `greets` лишняя: здесь нужно `greet` — `We greet guests.`)*
+Плитки: `guests` `greet` `We` `greets` `every` `day` → **We greet guests every day.**
+*(плитка `greets` лишняя: здесь нужно `greet` — `We greet guests every day.`)*
 
 **3 · Карточка слова — host**
 <!-- interaction_id: en:lesson-06:session-48:word:host; family: word_card -->
@@ -71,9 +71,9 @@
 - The host feeds the guests. — *В записи действие — `greets`, встречает, а в этом варианте — `feeds`, кормит.*
 - The host greets the neighbours. — *В записи последнее слово — `guests`, гости, а в этом варианте — `neighbours`, соседи.*
 
-**5 · Скажите о хозяине: «Хозяин встречает гостей». Выберите слово**
+**5 · Скажите о хозяине: «Каждый день хозяин встречает гостей». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-48:i03; family: context_gap_grammar -->
-The host ___ the guests. → **greets** · greet · is greets
+The host ___ the guests every day. → **greets** · greet · is greets
 - greet — *После `the host` нужно `greets`, с `s`.*
 - is greets — *Говорим `greets`, без `is`.*
 
@@ -99,9 +99,9 @@ greet — встречать, здороваться · host — хозяин п
 <!-- interaction_id: en:lesson-06:session-48:i07; family: scripted_repeat_compare -->
 🎙 **The host greets the guests.**
 
-**11 · Скажите о себе: «Я встречаю гостей». Выберите слово**
+**11 · Скажите о себе: «Каждый день я встречаю гостей». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-48:i08; family: context_gap_grammar -->
-I ___ the guests. → **greet** · greets · am greet
+I ___ the guests every day. → **greet** · greets · am greet
 - greets — *После `I` нужно `greet`, без `s`.*
 - am greet — *Говорим `I greet`, без `am`.*
 
@@ -133,9 +133,9 @@ garland — гирлянда · host — хозяин праздника · cake
 <!-- interaction_id: en:lesson-06:session-48:i13; family: scripted_repeat_compare -->
 🎙 **The cake is on the table.**
 
-**18 · Скажите о брате: «Он ловит рыбу на озере». Выберите слово**
+**18 · Скажите о брате: «Каждый день он ловит рыбу на озере». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-48:i14; family: context_gap_grammar -->
-My brother ___ at the lake. → **fishes** · fish · is fishes
+My brother ___ at the lake every day. → **fishes** · fish · is fishes
 - fish — *После `my brother` нужно `fishes`, с `es`.*
 - is fishes — *Говорим `fishes`, без `is`.*
 

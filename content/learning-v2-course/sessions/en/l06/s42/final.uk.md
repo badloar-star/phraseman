@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-42:word:arrive; family: word_card -->
 > **arrive** — приїжджати, прибувати. We arrive at five. — «Ми приїжджаємо о п’ятій». Про те, коли ви або потяг опиняєтеся на місці.
 
-**2 · Подруга питає про вас із сестрою. Скажіть: «Ми приїжджаємо о п’ятій»**
+**2 · Подруга питає про вас із сестрою. Скажіть: «Щодня ми приїжджаємо о п’ятій»**
 <!-- interaction_id: en:lesson-06:session-42:i01; family: phrase_builder -->
-Плитки: `at` `five` `arrive` `We` `arrives` → **We arrive at five.**
-*(плитка `arrives` зайва: тут потрібно `arrive` — `We arrive at five.`)*
+Плитки: `at` `five` `arrive` `We` `arrives` `every` `day` → **We arrive at five every day.**
+*(плитка `arrives` зайва: тут потрібно `arrive` — `We arrive at five every day.`)*
 
 **3 · Послухайте подругу**
 <!-- interaction_id: en:lesson-06:session-42:i02; family: listen_choose -->
@@ -67,9 +67,9 @@
 - She leaves at five. — *У записі дія — `arrives`, приїжджає, а в цьому варіанті — `leaves`, виїжджає.*
 - He arrives at five. — *У записі перше слово — `She`, вона, а в цьому варіанті — `He`, він.*
 
-**4 · Скажіть про сестру: «Вона приїжджає о п’ятій». Виберіть слово**
+**4 · Скажіть про сестру: «Щодня вона приїжджає о п’ятій». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-42:i03; family: context_gap_grammar -->
-She ___ at five. → **arrives** · arrive · is arrives
+She ___ at five every day. → **arrives** · arrive · is arrives
 - arrive — *Після `she` потрібно `arrives`, з `s`.*
 - is arrives — *Кажемо `She arrives`, без `is`.*
 
@@ -99,9 +99,9 @@ arrive — приїжджати, прибувати · leave — виїжджа�
 <!-- interaction_id: en:lesson-06:session-42:i07; family: scripted_repeat_compare -->
 🎙 **She leaves at four.**
 
-**11 · Скажіть про себе: «Я приїжджаю о п’ятій». Виберіть слово**
+**11 · Скажіть про себе: «Щодня я приїжджаю о п’ятій». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-42:i08; family: context_gap_grammar -->
-I ___ at five. → **arrive** · arrives · am arrive
+I ___ at five every day. → **arrive** · arrives · am arrive
 - arrives — *Після `I` потрібно `arrive`, без `s`.*
 - am arrive — *Кажемо `I arrive`, без `am`.*
 

@@ -63,9 +63,9 @@
 - She studies in the garden. — *У записі останнє слово — `library`, бібліотека, а в цьому варіанті — `garden`, сад.*
 - He studies in the library. — *У записі перше слово — `She`, вона, а в цьому варіанті — `He`, він.*
 
-**3 · Скажіть про брата: «Мій брат їздить на роботу на велосипеді». Виберіть слово**
+**3 · Скажіть про брата: «Щодня мій брат їздить на роботу на велосипеді». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-40:i03; family: context_gap_grammar -->
-My brother ___ to work. → **cycles** · cycle · is cycles
+My brother ___ to work every day. → **cycles** · cycle · is cycles
 - cycle — *Брат — це `he`, тому потрібно `cycles`, з `s`.*
 - is cycles — *Кажемо `cycles`, без `is`.*
 
@@ -95,9 +95,9 @@ newcomer — новоприбулий · invitation — запрошення · 
 <!-- interaction_id: en:lesson-06:session-40:i07; family: scripted_repeat_compare -->
 🎙 **She lives near the library.**
 
-**10 · Скажіть про себе: «Я займаюся в бібліотеці». Виберіть слово**
+**10 · Скажіть про себе: «Щодня я займаюся в бібліотеці». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-40:i08; family: context_gap_grammar -->
-I ___ in the library. → **study** · studies · am study
+I ___ in the library every day. → **study** · studies · am study
 - studies — *Після `I` потрібно `study`, без змін.*
 - am study — *Кажемо `I study`, без `am`.*
 

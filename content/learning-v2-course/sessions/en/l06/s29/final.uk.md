@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-29:word:call; family: word_card -->
 > **call** — телефонувати. We call our brother. — «Ми телефонуємо нашому братові». Про телефонний дзвінок: після call одразу людина.
 
-**2 · Подруга питає, кому ви із сестрою телефонуєте. Скажіть: «Ми телефонуємо нашому братові»**
+**2 · Подруга питає, кому ви із сестрою телефонуєте. Скажіть: «Щодня ми телефонуємо нашому братові»**
 <!-- interaction_id: en:lesson-06:session-29:i01; family: phrase_builder -->
-Плитки: `our` `brother` `call` `We` `calls` → **We call our brother.**
-*(плитка `calls` зайва: тут потрібно `call` — `We call our brother.`)*
+Плитки: `our` `brother` `call` `We` `calls` `every` `day` → **We call our brother every day.**
+*(плитка `calls` зайва: тут потрібно `call` — `We call our brother every day.`)*
 
 **3 · Послухайте подругу**
 <!-- interaction_id: en:lesson-06:session-29:i02; family: listen_choose -->
@@ -67,9 +67,9 @@
 - She calls her sister. — *У записі останнє слово — `brother`, брат, а в цьому варіанті — `sister`, сестра.*
 - He calls his brother. — *У записі перше слово — `She`, вона, а в цьому варіанті — `He`, він.*
 
-**4 · Скажіть про сестру: «Моя сестра телефонує своїй бабусі». Виберіть слово**
+**4 · Скажіть про сестру: «Щодня моя сестра телефонує своїй бабусі». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-29:i03; family: context_gap_grammar -->
-My sister ___ her grandmother. → **calls** · call · calls to
+My sister ___ her grandmother every day. → **calls** · call · calls to
 - call — *Сестра — це `she`, тому потрібно `calls`, з `s`.*
 - calls to — *Після `calls` одразу називаємо людину, без `to`.*
 
@@ -99,9 +99,9 @@ call — телефонувати · number — номер · message — пов
 <!-- interaction_id: en:lesson-06:session-29:i07; family: scripted_repeat_compare -->
 🎙 **I call my sister.**
 
-**11 · Скажіть про себе: «Я телефоную братові». Виберіть слово**
+**11 · Скажіть про себе: «Щодня я телефоную братові». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-29:i08; family: context_gap_grammar -->
-I ___ my brother. → **call** · calls · call to
+I ___ my brother every day. → **call** · calls · call to
 - calls — *Після `I` потрібно `call`, без `s`.*
 - call to — *Після `call` одразу називаємо людину, без `to`.*
 

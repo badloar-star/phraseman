@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-54:word:repair; family: word_card -->
 > **repair** — ремонтувати. They repair roofs. — «Вони ремонтують дахи». Лагодити те, що зламалося або тече.
 
-**2 · Сусід шукає майстрів. Скажіть: «Вони ремонтують дахи»**
+**2 · Сусід шукає майстрів. Скажіть: «Щодня вони ремонтують дахи»**
 <!-- interaction_id: en:lesson-06:session-54:i01; family: phrase_builder -->
-Плитки: `roofs` `repair` `They` `repairs` → **They repair roofs.**
-*(плитка `repairs` зайва: тут потрібно `repair` — `They repair roofs.`)*
+Плитки: `roofs` `repair` `They` `repairs` `every` `day` → **They repair roofs every day.**
+*(плитка `repairs` зайва: тут потрібно `repair` — `They repair roofs every day.`)*
 
 **3 · Картка слова — gutter**
 <!-- interaction_id: en:lesson-06:session-54:word:gutter; family: word_card -->
@@ -71,9 +71,9 @@
 - The gutter is on the wall. — *У записі останнє слово — `roof`, дах, а в цьому варіанті — `wall`, стіна.*
 - The ladder is on the roof. — *У записі друге слово — `gutter`, жолоб, а в цьому варіанті — `ladder`, драбина.*
 
-**5 · Скажіть про сестру: «Вона ремонтує жолоби». Виберіть слово**
+**5 · Скажіть про сестру: «Щодня вона ремонтує жолоби». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-54:i03; family: context_gap_grammar -->
-She ___ gutters. → **repairs** · repair · is repairs
+She ___ gutters every day. → **repairs** · repair · is repairs
 - repair — *Після `she` потрібно `repairs`, з `s`.*
 - is repairs — *Кажемо `She repairs`, без `is`.*
 
@@ -90,10 +90,10 @@ repair — ремонтувати · gutter — водостічний жоло�
 🔊 *The plank is here.* Плитки: `here` `is` `plank` `The` `are` → **The plank is here.**
 *(плитка `are` зайва: тут потрібно `is` — `The plank is here.`)*
 
-**9 · Сусід питає про вас із братом. Скажіть: «Ми ремонтуємо дахи»**
+**9 · Сусід питає про вас із братом. Скажіть: «Щодня ми ремонтуємо дахи»**
 <!-- interaction_id: en:lesson-06:session-54:i06; family: phrase_builder -->
-Плитки: `roofs` `repair` `We` `repairs` → **We repair roofs.**
-*(плитка `repairs` зайва: тут потрібно `repair` — `We repair roofs.`)*
+Плитки: `roofs` `repair` `We` `repairs` `every` `day` → **We repair roofs every day.**
+*(плитка `repairs` зайва: тут потрібно `repair` — `We repair roofs every day.`)*
 
 **10 · Картка слова — chimney**
 <!-- interaction_id: en:lesson-06:session-54:word:chimney; family: word_card -->
@@ -103,9 +103,9 @@ repair — ремонтувати · gutter — водостічний жоло�
 <!-- interaction_id: en:lesson-06:session-54:i07; family: scripted_repeat_compare -->
 🎙 **The ladder is next to the chimney.**
 
-**12 · Скажіть про майстра: «Він ремонтує жолоби». Виберіть слово**
+**12 · Скажіть про майстра: «Щодня він ремонтує жолоби». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-54:i08; family: context_gap_grammar -->
-He ___ gutters. → **repairs** · repair · is repairs
+He ___ gutters every day. → **repairs** · repair · is repairs
 - repair — *Після `he` потрібно `repairs`, з `s`.*
 - is repairs — *Кажемо `He repairs`, без `is`.*
 
@@ -133,9 +133,9 @@ chimney — димар · repair — ремонтувати · plank — дош�
 <!-- interaction_id: en:lesson-06:session-54:i13; family: scripted_repeat_compare -->
 🎙 **They are strong.**
 
-**18 · Скажіть про сусідку: «Вона ремонтує дахи». Виберіть слово**
+**18 · Скажіть про сусідку: «Щодня вона ремонтує дахи». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-54:i14; family: context_gap_grammar -->
-My neighbour ___ roofs. → **repairs** · repair · is repairs
+My neighbour ___ roofs every day. → **repairs** · repair · is repairs
 - repair — *Сусідка — вона: `My neighbour repairs`.*
 - is repairs — *Потрібно `My neighbour repairs`, без `is`.*
 

@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-51:word:sell; family: word_card -->
 > **sell** — продавати. They sell lamps. — «Вони продають лампи». Віддавати річ покупцеві за гроші.
 
-**2 · Друг шукає лампу. Підкажіть: «Вони продають лампи»**
+**2 · Друг шукає лампу. Підкажіть: «Щодня вони продають лампи»**
 <!-- interaction_id: en:lesson-06:session-51:i01; family: phrase_builder -->
-Плитки: `lamps` `sell` `They` `sells` → **They sell lamps.**
-*(плитка `sells` зайва: тут потрібно `sell` — `They sell lamps.`)*
+Плитки: `lamps` `sell` `They` `sells` `every` `day` → **They sell lamps every day.**
+*(плитка `sells` зайва: тут потрібно `sell` — `They sell lamps every day.`)*
 
 **3 · Картка слова — pumpkin**
 <!-- interaction_id: en:lesson-06:session-51:word:pumpkin; family: word_card -->
@@ -71,9 +71,9 @@
 - The pumpkin is small. — *У записі останнє слово — `big`, велика, а в цьому варіанті — `small`, маленька.*
 - The lamp is big. — *У записі друге слово — `pumpkin`, гарбуз, а в цьому варіанті — `lamp`, лампа.*
 
-**5 · Скажіть про жінку край дороги: «Вона продає гарбузи». Виберіть слово**
+**5 · Скажіть про жінку край дороги: «Щодня вона продає гарбузи». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-51:i03; family: context_gap_grammar -->
-She ___ pumpkins. → **sells** · sell · is sells
+She ___ pumpkins every day. → **sells** · sell · is sells
 - sell — *Після `she` потрібно `sells`, з `s`.*
 - is sells — *Кажемо `She sells`, без `is`.*
 
@@ -103,9 +103,9 @@ sell — продавати · pumpkin — гарбуз · lampshade — аба�
 <!-- interaction_id: en:lesson-06:session-51:i07; family: scripted_repeat_compare -->
 🎙 **The lampshade is near the lamp.**
 
-**12 · Скажіть про господаря крамниці: «Він продає лампи». Виберіть слово**
+**12 · Скажіть про господаря крамниці: «Щодня він продає лампи». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-51:i08; family: context_gap_grammar -->
-He ___ lamps. → **sells** · sell · is sells
+He ___ lamps every day. → **sells** · sell · is sells
 - sell — *Після `he` потрібно `sells`, з `s`.*
 - is sells — *Кажемо `He sells`, без `is`.*
 
@@ -133,9 +133,9 @@ lampshade — абажур · sell — продавати · muffin — мафф
 <!-- interaction_id: en:lesson-06:session-51:i13; family: scripted_repeat_compare -->
 🎙 **The pumpkin is near the table.**
 
-**18 · Скажіть про сусідку: «Вона продає маффіни». Виберіть слово**
+**18 · Скажіть про сусідку: «Щодня вона продає маффіни». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-51:i14; family: context_gap_grammar -->
-My neighbour ___ muffins. → **sells** · sell · is sells
+My neighbour ___ muffins every day. → **sells** · sell · is sells
 - sell — *Сусідка — вона: `My neighbour sells`.*
 - is sells — *Потрібно `My neighbour sells`, без `is`.*
 

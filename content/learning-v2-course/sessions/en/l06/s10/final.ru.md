@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-10:word:practice; family: word_card -->
 > **practice** — практиковаться, тренироваться. They practice English in the hotel. — «Они практикуют английский в отеле». О занятиях, которые повторяют много раз.
 
-**2 · Вы рассказываете гостю о коллегах. Скажите: «Они практикуют английский»**
+**2 · Вы рассказываете гостю о коллегах. Скажите: «Каждый день они практикуют английский»**
 <!-- interaction_id: en:lesson-06:session-10:i01; family: phrase_builder -->
-Плитки: `English` `practice` `They` `are` → **They practice English.**
-*(плитка `are` лишняя: здесь нужно `practice` — `They practice English.`)*
+Плитки: `English` `practice` `They` `are` `every` `day` → **They practice English every day.**
+*(плитка `are` лишняя: здесь нужно `practice` — `They practice English every day.`)*
 
 **3 · Карточка слова — phrase**
 <!-- interaction_id: en:lesson-06:session-10:word:phrase; family: word_card -->
@@ -71,9 +71,9 @@
 - I practice a phrase. — *В записи последнее слово — `English`, английский, а в этом варианте — `phrase`, фраза.*
 - We practice English. — *В записи первое слово — `I`, я, а в этом варианте — `We`, мы.*
 
-**5 · Скажите о коллегах: «Они тренируют фразу здесь». Выберите слово**
+**5 · Скажите о коллегах: «Каждый день они тренируют фразу здесь». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-10:i03; family: context_gap_grammar -->
-They ___ a phrase here. → **practice** · practices · are practice
+They ___ a phrase here every day. → **practice** · practices · are practice
 - practices — *После `they` — `practice`, без `s`.*
 - are practice — *Говорим `They practice`, без `are`.*
 
@@ -133,9 +133,9 @@ reservation — бронь · breakfast — завтрак · phrase — фра�
 <!-- interaction_id: en:lesson-06:session-10:i13; family: scripted_repeat_compare -->
 🎙 **We work in this hotel.**
 
-**18 · Скажите коллеге: «Ты тренируешь новую фразу». Выберите слово**
+**18 · Скажите коллеге: «Каждый день ты тренируешь новую фразу». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-10:i14; family: context_gap_grammar -->
-You ___ a new phrase. → **practice** · practices · are practice
+You ___ a new phrase every day. → **practice** · practices · are practice
 - practices — *После `you` — `practice`, без `s`.*
 - are practice — *Говорим `You practice`, без `are`.*
 

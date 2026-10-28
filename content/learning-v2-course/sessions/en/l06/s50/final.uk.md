@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-50:word:deliver; family: word_card -->
 > **deliver** — доставляти. I deliver newspapers to the door. — «Я доставляю газети до дверей». Привозити річ туди, де її чекають.
 
-**2 · Новий сусід питає про вашу роботу. Скажіть: «Я доставляю газети»**
+**2 · Новий сусід питає про вашу роботу. Скажіть: «Щодня я доставляю газети»**
 <!-- interaction_id: en:lesson-06:session-50:i01; family: phrase_builder -->
-Плитки: `newspapers` `deliver` `I` `delivers` → **I deliver newspapers.**
-*(плитка `delivers` зайва: тут потрібно `deliver` — `I deliver newspapers.`)*
+Плитки: `newspapers` `deliver` `I` `delivers` `every` `day` → **I deliver newspapers every day.**
+*(плитка `delivers` зайва: тут потрібно `deliver` — `I deliver newspapers every day.`)*
 
 **3 · Послухайте сусіда**
 <!-- interaction_id: en:lesson-06:session-50:i02; family: listen_choose -->
@@ -67,9 +67,9 @@
 - My brother delivers parcels. — *У записі останнє слово — `newspapers`, газети, а в цьому варіанті — `parcels`, посилки.*
 - My sister delivers newspapers. — *У записі друге слово — `brother`, брат, а в цьому варіанті — `sister`, сестра.*
 
-**4 · Скажіть про брата: «Він доставляє газети». Виберіть слово**
+**4 · Скажіть про брата: «Щодня він доставляє газети». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-50:i03; family: context_gap_grammar -->
-He ___ newspapers. → **delivers** · deliver · is delivers
+He ___ newspapers every day. → **delivers** · deliver · is delivers
 - deliver — *Після `he` потрібно `delivers`, з `s`.*
 - is delivers — *Кажемо `He delivers`, без `is`.*
 
@@ -90,10 +90,10 @@ deliver — доставляти · bundle — пачка, в’язка · shar
 <!-- interaction_id: en:lesson-06:session-50:word:share; family: word_card -->
 > **share** — ділити з кимось. We share a table. — «Ми ділимо стіл». Коли однією річчю користуються двоє або більше людей.
 
-**9 · Друг питає, як ви з братом їсте в кафе. Скажіть: «Ми ділимо стіл»**
+**9 · Друг питає, як ви з братом їсте в кафе. Скажіть: «Щодня ми ділимо стіл»**
 <!-- interaction_id: en:lesson-06:session-50:i06; family: phrase_builder -->
-Плитки: `a` `table` `share` `We` `shares` → **We share a table.**
-*(плитка `shares` зайва: тут потрібно `share` — `We share a table.`)*
+Плитки: `a` `table` `share` `We` `shares` `every` `day` → **We share a table every day.**
+*(плитка `shares` зайва: тут потрібно `share` — `We share a table every day.`)*
 
 **10 · Картка слова — bundle**
 <!-- interaction_id: en:lesson-06:session-50:word:bundle; family: word_card -->
@@ -103,9 +103,9 @@ deliver — доставляти · bundle — пачка, в’язка · shar
 <!-- interaction_id: en:lesson-06:session-50:i07; family: scripted_repeat_compare -->
 🎙 **My brother carries a bundle.**
 
-**12 · Скажіть про себе: «Я доставляю газети». Виберіть слово**
+**12 · Скажіть про себе: «Щодня я доставляю газети». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-50:i08; family: context_gap_grammar -->
-I ___ newspapers. → **deliver** · delivers · am deliver
+I ___ newspapers every day. → **deliver** · delivers · am deliver
 - delivers — *Після `I` потрібно `deliver`, без `s`.*
 - am deliver — *Кажемо `I deliver`, без `am`.*
 
@@ -133,9 +133,9 @@ bundle — пачка, в’язка · cart — візок · deliver — до�
 <!-- interaction_id: en:lesson-06:session-50:i13; family: scripted_repeat_compare -->
 🎙 **The cart is near the gate.**
 
-**18 · Скажіть про сусідку: «Вона доставляє газети». Виберіть слово**
+**18 · Скажіть про сусідку: «Щодня вона доставляє газети». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-50:i14; family: context_gap_grammar -->
-My neighbour ___ newspapers. → **delivers** · deliver · is delivers
+My neighbour ___ newspapers every day. → **delivers** · deliver · is delivers
 - deliver — *Сусідка — вона: `My neighbour delivers`.*
 - is delivers — *Потрібно `My neighbour delivers`, без `is`.*
 

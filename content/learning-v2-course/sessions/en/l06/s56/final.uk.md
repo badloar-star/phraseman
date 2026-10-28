@@ -75,9 +75,9 @@
 <!-- interaction_id: en:lesson-06:session-56:word:caretaker; family: word_card -->
 > **caretaker** — доглядач будинку. The caretaker is friendly. — «Доглядач будинку привітний». Людина, яка стежить за порядком у домі й на подвір’ї.
 
-**6 · Скажіть про доглядача будинку: «Він носить форму». Виберіть слово**
+**6 · Скажіть про доглядача будинку: «Щодня він носить форму». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-56:i03; family: context_gap_grammar -->
-The caretaker ___ a uniform. → **wears** · wear · is wears
+The caretaker ___ a uniform every day. → **wears** · wear · is wears
 - wear — *Доглядач один: потрібно `wears`, з `s`.*
 - is wears — *Кажемо `The caretaker wears`, без `is`.*
 
@@ -94,18 +94,18 @@ baker — пекар · tailor — кравець · cane — ціпок · care
 🔊 *The cane is here.* Плитки: `here` `is` `cane` `The` `are` → **The cane is here.**
 *(плитка `are` зайва: тут потрібно `is` — `The cane is here.`)*
 
-**10 · Сусід питає про вашого брата. Скажіть: «Він доставляє газети»**
+**10 · Сусід питає про вашого брата. Скажіть: «Щодня він доставляє газети»**
 <!-- interaction_id: en:lesson-06:session-56:i06; family: phrase_builder -->
-Плитки: `newspapers` `delivers` `He` `deliver` → **He delivers newspapers.**
-*(плитка `deliver` зайва: тут потрібно `delivers` — `He delivers newspapers.`)*
+Плитки: `newspapers` `delivers` `He` `deliver` `every` `day` → **He delivers newspapers every day.**
+*(плитка `deliver` зайва: тут потрібно `delivers` — `He delivers newspapers every day.`)*
 
 **11 · Ви знайшли ціпок у холі. Спитайте в людей поруч: «Чий це ціпок?»**
 <!-- interaction_id: en:lesson-06:session-56:i07; family: scripted_repeat_compare -->
 🎙 **Whose cane is this?**
 
-**12 · Скажіть про себе й колег: «Ми носимо форму». Виберіть слово**
+**12 · Скажіть про себе й колег: «Щодня ми носимо форму». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-56:i08; family: context_gap_grammar -->
-We ___ uniforms. → **wear** · wears · are wear
+We ___ uniforms every day. → **wear** · wears · are wear
 - wears — *Після `we` потрібно `wear`, без `s`.*
 - are wear — *Кажемо `We wear`, без `are`.*
 

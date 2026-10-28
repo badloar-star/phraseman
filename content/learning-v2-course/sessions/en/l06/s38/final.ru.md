@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-38:word:rest; family: word_card -->
 > **rest** — отдыхать. We rest on the bench. — «Мы отдыхаем на скамейке». О том, что делают, когда устали.
 
-**2 · Коллега зовёт вас с сестрой в бар. Скажите: «Мы отдыхаем здесь»**
+**2 · Коллега зовёт вас с сестрой в бар. Скажите: «Каждый день мы отдыхаем здесь»**
 <!-- interaction_id: en:lesson-06:session-38:i01; family: phrase_builder -->
-Плитки: `here` `rest` `We` `rests` → **We rest here.**
-*(плитка `rests` лишняя: здесь нужно `rest` — `We rest here.`)*
+Плитки: `here` `rest` `We` `rests` `every` `day` → **We rest here every day.**
+*(плитка `rests` лишняя: здесь нужно `rest` — `We rest here every day.`)*
 
 **3 · Карточка слова — shade**
 <!-- interaction_id: en:lesson-06:session-38:word:shade; family: word_card -->
@@ -71,9 +71,9 @@
 - She rests in the garden. — *В записи последнее слово — `shade`, тень, а в этом варианте — `garden`, сад.*
 - He rests in the shade. — *В записи первое слово — `She`, она, а в этом варианте — `He`, он.*
 
-**5 · Скажите о брате: «Мой брат отдыхает на скамейке». Выберите слово**
+**5 · Скажите о брате: «Каждый день мой брат отдыхает на скамейке». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-38:i03; family: context_gap_grammar -->
-My brother ___ on the bench. → **rests** · rest · is rests
+My brother ___ on the bench every day. → **rests** · rest · is rests
 - rest — *Брат — это `he`, поэтому нужно `rests`, с `s`.*
 - is rests — *Говорим `rests`, без `is`.*
 
@@ -103,9 +103,9 @@ rest — отдыхать · shade — тень · sunbed — шезлонг · 
 <!-- interaction_id: en:lesson-06:session-38:i07; family: scripted_repeat_compare -->
 🎙 **He rests in the garden.**
 
-**12 · Скажите о себе: «Я отдыхаю на скамейке». Выберите слово**
+**12 · Скажите о себе: «Каждый день я отдыхаю на скамейке». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-38:i08; family: context_gap_grammar -->
-I ___ on the bench. → **rest** · rests · am rest
+I ___ on the bench every day. → **rest** · rests · am rest
 - rests — *После `I` нужно `rest`, без `s`.*
 - am rest — *Говорим `I rest`, без `am`.*
 

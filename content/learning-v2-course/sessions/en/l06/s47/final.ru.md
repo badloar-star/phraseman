@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-47:word:snore; family: word_card -->
 > **snore** — храпеть. He snores in the tent. — «Он храпит в палатке». О шумном дыхании во сне.
 
-**2 · Друг спрашивает о вас с братом. Скажите: «Мы храпим в палатке»**
+**2 · Друг спрашивает о вас с братом. Скажите: «Каждую ночь мы храпим в палатке»**
 <!-- interaction_id: en:lesson-06:session-47:i01; family: phrase_builder -->
-Плитки: `in` `the` `tent` `snore` `We` `snores` → **We snore in the tent.**
-*(плитка `snores` лишняя: здесь нужно `snore` — `We snore in the tent.`)*
+Плитки: `in` `the` `tent` `snore` `We` `snores` `every` `night` → **We snore in the tent every night.**
+*(плитка `snores` лишняя: здесь нужно `snore` — `We snore in the tent every night.`)*
 
 **3 · Послушайте друга**
 <!-- interaction_id: en:lesson-06:session-47:i02; family: listen_choose -->
@@ -67,9 +67,9 @@
 - He snores in the hammock. — *В записи последнее слово — `tent`, палатка, а в этом варианте — `hammock`, гамак.*
 - She snores in the tent. — *В записи первое слово — `He`, он, а в этом варианте — `She`, она.*
 
-**4 · Скажите о брате: «Он храпит в палатке». Выберите слово**
+**4 · Скажите о брате: «Каждую ночь он храпит в палатке». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-47:i03; family: context_gap_grammar -->
-He ___ in the tent. → **snores** · snore · is snores
+He ___ in the tent every night. → **snores** · snore · is snores
 - snore — *После `he` нужно `snores`, с `s`.*
 - is snores — *Говорим `He snores`, без `is`.*
 
@@ -99,9 +99,9 @@ snore — храпеть · trail — тропа · summit — вершина ·
 <!-- interaction_id: en:lesson-06:session-47:i07; family: scripted_repeat_compare -->
 🎙 **My brother walks on the trail.**
 
-**11 · Скажите о себе: «Я храплю в палатке». Выберите слово**
+**11 · Скажите о себе: «Каждую ночь я храплю в палатке». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-47:i08; family: context_gap_grammar -->
-I ___ in the tent. → **snore** · snores · am snore
+I ___ in the tent every night. → **snore** · snores · am snore
 - snores — *После `I` нужно `snore`, без `s`.*
 - am snore — *Говорим `I snore`, без `am`.*
 

@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-21:word:write; family: word_card -->
 > **write** — писати. My sister writes at the table. — «Моя сестра пише за столом». Коли людина пише ручкою.
 
-**2 · Подруга питає, що робить ваш брат за столом. Скажіть: «Він пише за столом»**
+**2 · Подруга питає, що робить ваш брат за столом. Скажіть: «Щодня він пише за столом»**
 <!-- interaction_id: en:lesson-06:session-21:i01; family: phrase_builder -->
-Плитки: `writes` `at` `the` `table` `He` `write` → **He writes at the table.**
-*(плитка `write` зайва: тут потрібно `writes` — `He writes at the table.`)*
+Плитки: `writes` `at` `the` `table` `He` `write` `every` `day` → **He writes at the table every day.**
+*(плитка `write` зайва: тут потрібно `writes` — `He writes at the table every day.`)*
 
 **3 · Картка слова — jump**
 <!-- interaction_id: en:lesson-06:session-21:word:jump; family: word_card -->
@@ -94,18 +94,18 @@ write — писати · jump — стрибати · clasp — застібк�
 🔊 *The page is blank.* Плитки: `is` `blank` `page` `The` `are` → **The page is blank.**
 *(плитка `are` зайва: тут потрібно `is` — `The page is blank.`)*
 
-**10 · Рятувальник питає, що робить ваша сестра. Скажіть: «Вона плаває в басейні»**
+**10 · Рятувальник питає, що робить ваша сестра. Скажіть: «Щодня вона плаває в басейні»**
 <!-- interaction_id: en:lesson-06:session-21:i06; family: phrase_builder -->
-Плитки: `swims` `in` `the` `pool` `She` `swim` → **She swims in the pool.**
-*(плитка `swim` зайва: тут потрібно `swims` — `She swims in the pool.`)*
+Плитки: `swims` `in` `the` `pool` `She` `swim` `every` `day` → **She swims in the pool every day.**
+*(плитка `swim` зайва: тут потрібно `swims` — `She swims in the pool every day.`)*
 
 **11 · Подруга питає, що не так з намистом. Скажіть: «Застібка зламана»**
 <!-- interaction_id: en:lesson-06:session-21:i07; family: scripted_repeat_compare -->
 🎙 **The clasp is broken.**
 
-**12 · Скажіть про сестру: «Вона пише тут». Виберіть слово**
+**12 · Скажіть про сестру: «Щодня вона пише тут». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-21:i08; family: context_gap_grammar -->
-She ___ here. → **writes** · write · is writes
+She ___ here every day. → **writes** · write · is writes
 - write — *Після `she` — `writes`, з `s`.*
 - is writes — *Кажемо `She writes`, без `is`.*
 
@@ -133,9 +133,9 @@ page — сторінка · jump — стрибати · write — писати
 <!-- interaction_id: en:lesson-06:session-21:i13; family: scripted_repeat_compare -->
 🎙 **He jumps in the pool.**
 
-**18 · Скажіть про брата: «Він стрибає в басейн». Виберіть слово**
+**18 · Скажіть про брата: «Щодня він стрибає в басейн». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-21:i14; family: context_gap_grammar -->
-He ___ in the pool. → **jumps** · jump · is jumps
+He ___ in the pool every day. → **jumps** · jump · is jumps
 - jump — *Після `he` — `jumps`, з `s`.*
 - is jumps — *Кажемо `He jumps`, без `is`.*
 

@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-29:word:call; family: word_card -->
 > **call** — звонить. We call our brother. — «Мы звоним нашему брату». О телефонном звонке: после call сразу человек.
 
-**2 · Подруга спрашивает, кому вы с сестрой звоните. Скажите: «Мы звоним нашему брату»**
+**2 · Подруга спрашивает, кому вы с сестрой звоните. Скажите: «Каждый день мы звоним нашему брату»**
 <!-- interaction_id: en:lesson-06:session-29:i01; family: phrase_builder -->
-Плитки: `our` `brother` `call` `We` `calls` → **We call our brother.**
-*(плитка `calls` лишняя: здесь нужно `call` — `We call our brother.`)*
+Плитки: `our` `brother` `call` `We` `calls` `every` `day` → **We call our brother every day.**
+*(плитка `calls` лишняя: здесь нужно `call` — `We call our brother every day.`)*
 
 **3 · Послушайте подругу**
 <!-- interaction_id: en:lesson-06:session-29:i02; family: listen_choose -->
@@ -67,9 +67,9 @@
 - She calls her sister. — *В записи последнее слово — `brother`, брат, а в этом варианте — `sister`, сестра.*
 - He calls his brother. — *В записи первое слово — `She`, она, а в этом варианте — `He`, он.*
 
-**4 · Скажите о сестре: «Моя сестра звонит своей бабушке». Выберите слово**
+**4 · Скажите о сестре: «Каждый день моя сестра звонит своей бабушке». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-29:i03; family: context_gap_grammar -->
-My sister ___ her grandmother. → **calls** · call · calls to
+My sister ___ her grandmother every day. → **calls** · call · calls to
 - call — *Сестра — это `she`, поэтому нужно `calls`, с `s`.*
 - calls to — *После `calls` сразу называем человека, без `to`.*
 
@@ -99,9 +99,9 @@ call — звонить · number — номер · message — сообщени
 <!-- interaction_id: en:lesson-06:session-29:i07; family: scripted_repeat_compare -->
 🎙 **I call my sister.**
 
-**11 · Скажите о себе: «Я звоню брату». Выберите слово**
+**11 · Скажите о себе: «Каждый день я звоню брату». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-29:i08; family: context_gap_grammar -->
-I ___ my brother. → **call** · calls · call to
+I ___ my brother every day. → **call** · calls · call to
 - calls — *После `I` нужно `call`, без `s`.*
 - call to — *После `call` сразу называем человека, без `to`.*
 

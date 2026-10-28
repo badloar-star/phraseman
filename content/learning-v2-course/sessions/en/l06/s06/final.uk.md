@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-06:word:play; family: word_card -->
 > **play** — грати. We play football in the yard. — «Ми граємо у футбол у дворі». Про те, як грають в гру чи в спорт.
 
-**2 · Сусідка питає, чим ви з друзями зайняті. Скажіть: «Ми граємо у футбол»**
+**2 · Сусідка питає, чим ви з друзями зайняті. Скажіть: «Щодня ми граємо у футбол»**
 <!-- interaction_id: en:lesson-06:session-06:i01; family: phrase_builder -->
-Плитки: `football` `play` `We` `are` → **We play football.**
-*(плитка `are` зайва: тут потрібно `play` — `We play football.`)*
+Плитки: `football` `play` `We` `are` `every` `day` → **We play football every day.**
+*(плитка `are` зайва: тут потрібно `play` — `We play football every day.`)*
 
 **3 · Картка слова — run**
 <!-- interaction_id: en:lesson-06:session-06:word:run; family: word_card -->
@@ -75,9 +75,9 @@
 <!-- interaction_id: en:lesson-06:session-06:word:ride; family: word_card -->
 > **ride** — їхати, кататися. I ride a bicycle. — «Я їжджу на велосипеді». Про поїздку на велосипеді чи на коні.
 
-**6 · Сусід питає, як ви добираєтеся до парку. Виберіть слово**
+**6 · Сусід питає, як ви щодня добираєтеся до парку. Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-06:i03; family: context_gap_grammar -->
-I ___ a bicycle. → **ride** · am ride · are ride
+I ___ a bicycle every day. → **ride** · am ride · are ride
 - am ride — *Після `I` одразу ставимо `ride`, без `am`.*
 - are ride — *Слово `are` ставиться після `we`, `you`, `they`; тут потрібно `I ride`.*
 
@@ -103,9 +103,9 @@ play — грати · run — бігати · ride — їздити верхи,
 <!-- interaction_id: en:lesson-06:session-06:i07; family: scripted_repeat_compare -->
 🎙 **We play football in the yard.**
 
-**12 · Діти вибігають на алею. Скажіть сестрі, що вони бігають у парку. Виберіть слово**
+**12 · Діти вибігають на алею. Скажіть сестрі, що щодня вони бігають у парку. Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-06:i08; family: context_gap_grammar -->
-They ___ in the park. → **run** · are run · is run
+They ___ in the park every day. → **run** · are run · is run
 - are run — *Після `They` одразу ставимо `run`, без `are`.*
 - is run — *Слово `is` ставиться після `he`, `she`, `it`; тут потрібно `They run`.*
 
@@ -124,18 +124,18 @@ run — бігати · ride — їздити верхи, кататися · ba
 🔊 *You run in the park.* Плитки: `park` `the` `in` `run` `You` `I` → **You run in the park.**
 *(плитка `I` зайва: тут потрібно `You` — `You run in the park.`)*
 
-**16 · Ви зустріли сусіда біля ставка. Скажіть йому: «Я їжджу на велосипеді в парку»**
+**16 · Ви зустріли сусіда біля ставка. Скажіть йому: «Щодня я їжджу на велосипеді в парку»**
 <!-- interaction_id: en:lesson-06:session-06:i12; family: phrase_builder -->
-Плитки: `bicycle` `park` `the` `a` `in` `ride` `I` `am` → **I ride a bicycle in the park.**
-*(плитка `am` зайва: тут потрібно `ride` — `I ride a bicycle in the park.`)*
+Плитки: `bicycle` `park` `the` `a` `in` `ride` `I` `am` `every` `day` → **I ride a bicycle in the park every day.**
+*(плитка `am` зайва: тут потрібно `ride` — `I ride a bicycle in the park every day.`)*
 
 **17 · Сестра питає, що роблять діти в парку. Скажіть: «Вони бігають у парку»**
 <!-- interaction_id: en:lesson-06:session-06:i13; family: scripted_repeat_compare -->
 🎙 **They run in the park.**
 
-**18 · Ви з друзями вийшли у двір із м’ячем. Виберіть слово**
+**18 · Щодня ви з друзями виходите у двір із м’ячем. Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-06:i14; family: context_gap_grammar -->
-We ___ football in the yard. → **play** · are play · am play
+We ___ football in the yard every day. → **play** · are play · am play
 - are play — *Після `We` одразу ставимо `play`, без `are`.*
 - am play — *`am` ставиться тільки після `I`; тут потрібно `We play`.*
 

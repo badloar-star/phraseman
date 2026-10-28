@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-15:word:sing; family: word_card -->
 > **sing** — співати. They sing here. — «Вони співають тут». Про спів голосом. Після I, you, we, they — без s.
 
-**2 · Подруга питає про сусідів по хору. Скажіть: «Вони співають тут»**
+**2 · Подруга питає про сусідів по хору. Скажіть: «Щодня вони співають тут»**
 <!-- interaction_id: en:lesson-06:session-15:i01; family: phrase_builder -->
-Плитки: `sing` `here` `They` `are` → **They sing here.**
-*(плитка `are` зайва: тут потрібно `sing` — `They sing here.`)*
+Плитки: `sing` `here` `They` `are` `every` `day` → **They sing here every day.**
+*(плитка `are` зайва: тут потрібно `sing` — `They sing here every day.`)*
 
 **3 · Послухайте подругу**
 <!-- interaction_id: en:lesson-06:session-15:i02; family: listen_choose -->
@@ -67,9 +67,9 @@
 - I sing at the gym. — *У записі останнє слово — `home`, дім, а в цьому варіанті — `gym`, зал.*
 - We sing at home. — *У записі перше слово — `I`, я, а в цьому варіанті — `We`, ми.*
 
-**4 · Скажіть про себе й подругу: «Ми співаємо тут». Виберіть слово**
+**4 · Скажіть про себе й подругу: «Щодня ми співаємо тут». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-15:i03; family: context_gap_grammar -->
-We ___ here. → **sing** · sings · are sing
+We ___ here every day. → **sing** · sings · are sing
 - sings — *Після `we` — `sing`, без `s`.*
 - are sing — *Кажемо `We sing`, без `are`.*
 
@@ -133,9 +133,9 @@ choir — хор · lyrics — слова пісні · sing — співати 
 <!-- interaction_id: en:lesson-06:session-15:i13; family: scripted_repeat_compare -->
 🎙 **We sing at home.**
 
-**18 · Скажіть подрузі: «Ти співаєш пісню». Виберіть слово**
+**18 · Скажіть подрузі: «Щодня ти співаєш пісню». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-15:i14; family: context_gap_grammar -->
-You ___ a song. → **sing** · sings · are sing
+You ___ a song every day. → **sing** · sings · are sing
 - sings — *Після `you` — `sing`, без `s`.*
 - are sing — *Кажемо `You sing`, без `are`.*
 

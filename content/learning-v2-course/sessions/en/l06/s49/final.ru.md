@@ -90,10 +90,10 @@ chat — беседовать · crossword — кроссворд · cardigan �
 <!-- interaction_id: en:lesson-06:session-49:word:chat; family: word_card -->
 > **chat** — беседовать. They chat on the bench. — «Они беседуют на скамейке». О неспешном разговоре двух людей.
 
-**9 · Соседка спрашивает о двух стариках на скамейке. Скажите: «Они беседуют здесь»**
+**9 · Соседка спрашивает о двух стариках на скамейке. Скажите: «Каждый день они беседуют здесь»**
 <!-- interaction_id: en:lesson-06:session-49:i06; family: phrase_builder -->
-Плитки: `here` `chat` `They` `chats` → **They chat here.**
-*(плитка `chats` лишняя: здесь нужно `chat` — `They chat here.`)*
+Плитки: `here` `chat` `They` `chats` `every` `day` → **They chat here every day.**
+*(плитка `chats` лишняя: здесь нужно `chat` — `They chat here every day.`)*
 
 **10 · Карточка слова — kayak**
 <!-- interaction_id: en:lesson-06:session-49:word:kayak; family: word_card -->
@@ -103,9 +103,9 @@ chat — беседовать · crossword — кроссворд · cardigan �
 <!-- interaction_id: en:lesson-06:session-49:i07; family: scripted_repeat_compare -->
 🎙 **The kayak is near the canal.**
 
-**12 · Скажите «Он беседует здесь». Выберите слово**
+**12 · Скажите «Каждый день он беседует здесь». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-49:i08; family: context_gap_grammar -->
-He ___ here. → **chats** · chat · is chats
+He ___ here every day. → **chats** · chat · is chats
 - chat — *После `he` — `chats`.*
 - is chats — *Нужно `He chats`, без `is`.*
 
@@ -133,9 +133,9 @@ cardigan — кофта на пуговицах · chat — беседовать
 <!-- interaction_id: en:lesson-06:session-49:i13; family: scripted_repeat_compare -->
 🎙 **We chat here.**
 
-**18 · Скажите «Соседка беседует здесь». Выберите слово**
+**18 · Скажите «Каждый день соседка беседует здесь». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-49:i14; family: context_gap_grammar -->
-My neighbour ___ here. → **chats** · chat · is chats
+My neighbour ___ here every day. → **chats** · chat · is chats
 - chat — *Соседка — она: `My neighbour chats`.*
 - is chats — *Нужно `My neighbour chats`, без `is`.*
 

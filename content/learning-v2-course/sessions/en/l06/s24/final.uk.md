@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-24:word:pour; family: word_card -->
 > **pour** — наливати. He pours the tea. — «Він наливає чай». Коли рідину ллють із чайника, кавника чи глечика.
 
-**2 · Колега питає, що робить ваша сестра. Скажіть: «Вона наливає молоко»**
+**2 · Колега питає, що робить ваша сестра. Скажіть: «Щодня вона наливає молоко»**
 <!-- interaction_id: en:lesson-06:session-24:i01; family: phrase_builder -->
-Плитки: `pours` `the` `milk` `She` `pour` → **She pours the milk.**
-*(плитка `pour` зайва: тут потрібно `pours` — `She pours the milk.`)*
+Плитки: `pours` `the` `milk` `She` `pour` `every` `day` → **She pours the milk every day.**
+*(плитка `pour` зайва: тут потрібно `pours` — `She pours the milk every day.`)*
 
 **3 · Картка слова — toast**
 <!-- interaction_id: en:lesson-06:session-24:word:toast; family: word_card -->
@@ -75,9 +75,9 @@
 <!-- interaction_id: en:lesson-06:session-24:word:slice; family: word_card -->
 > **slice** — нарізати скибочками. He slices the cheese. — «Він нарізає сир». Коли їжу ріжуть на рівні шматки.
 
-**6 · Скажіть про сестру: «Вона нарізає хліб». Виберіть слово**
+**6 · Скажіть про сестру: «Щодня вона нарізає хліб». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-24:i03; family: context_gap_grammar -->
-She ___ the bread. → **slices** · slice · is slices
+She ___ the bread every day. → **slices** · slice · is slices
 - slice — *Після `she` — `slices`, з `s`.*
 - is slices — *Кажемо `She slices`, без `is`.*
 
@@ -94,18 +94,18 @@ pour — наливати · toast — тост (підсмажений хліб
 🔊 *The knife is sharp.* Плитки: `is` `sharp` `knife` `The` `are` → **The knife is sharp.**
 *(плитка `are` зайва: тут потрібно `is` — `The knife is sharp.`)*
 
-**10 · Колега питає, ким працює ваш брат. Скажіть: «Він викладає англійську»**
+**10 · Колега питає, ким працює ваш брат. Скажіть: «Щодня він викладає англійську»**
 <!-- interaction_id: en:lesson-06:session-24:i06; family: phrase_builder -->
-Плитки: `teaches` `English` `He` `teach` → **He teaches English.**
-*(плитка `teach` зайва: тут потрібно `teaches` — `He teaches English.`)*
+Плитки: `teaches` `English` `He` `teach` `every` `day` → **He teaches English every day.**
+*(плитка `teach` зайва: тут потрібно `teaches` — `He teaches English every day.`)*
 
 **11 · Колега питає, чи холодний тост. Скажіть: «Тост теплий»**
 <!-- interaction_id: en:lesson-06:session-24:i07; family: scripted_repeat_compare -->
 🎙 **The toast is warm.**
 
-**12 · Скажіть про брата: «Він малює за столом». Виберіть слово**
+**12 · Скажіть про брата: «Щодня він малює за столом». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-24:i08; family: context_gap_grammar -->
-He ___ at the table. → **draws** · draw · is draws
+He ___ at the table every day. → **draws** · draw · is draws
 - draw — *Після `he` — `draws`, з `s`.*
 - is draws — *Кажемо `He draws`, без `is`.*
 
@@ -133,9 +133,9 @@ knife — ніж · pour — наливати · drive — водити маши
 <!-- interaction_id: en:lesson-06:session-24:i13; family: scripted_repeat_compare -->
 🎙 **He pours the coffee.**
 
-**18 · Скажіть про сестру: «Вона викладає англійську». Виберіть слово**
+**18 · Скажіть про сестру: «Щодня вона викладає англійську». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-24:i14; family: context_gap_grammar -->
-She ___ English. → **teaches** · teach · teachs
+She ___ English every day. → **teaches** · teach · teachs
 - teach — *Після `she` — `teaches`, з `es`.*
 - teachs — *Після `ch` потрібно `es`: `teaches`.*
 

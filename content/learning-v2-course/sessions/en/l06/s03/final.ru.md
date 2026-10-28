@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-03:word:mow; family: word_card -->
 > **mow** — косить. We mow the lawn. — «Мы косим лужайку». О том, как срезают траву машиной.
 
-**2 · Соседка через забор спрашивает, чем вы с сестрой заняты. Скажите: «Мы косим лужайку»**
+**2 · Соседка через забор спрашивает, чем вы с сестрой заняты. Скажите: «По субботам мы косим лужайку»**
 <!-- interaction_id: en:lesson-06:session-03:i01; family: phrase_builder -->
-Плитки: `lawn` `the` `mow` `We` `are` → **We mow the lawn.**
-*(плитка `are` лишняя: здесь нужно `mow` — `We mow the lawn.`)*
+Плитки: `lawn` `the` `mow` `We` `are` `on` `Saturdays` → **We mow the lawn on Saturdays.**
+*(плитка `are` лишняя: здесь нужно `mow` — `We mow the lawn on Saturdays.`)*
 
 **3 · Карточка слова — trim**
 <!-- interaction_id: en:lesson-06:session-03:word:trim; family: word_card -->
@@ -75,9 +75,9 @@
 <!-- interaction_id: en:lesson-06:session-03:word:pick; family: word_card -->
 > **pick** — собирать, срывать. We pick pears. — «Мы собираем груши». О том, как берут плоды с ветки.
 
-**6 · Груши на дереве созрели. Скажите подруге, что вы их собираете. Выберите слово**
+**6 · Груши на дереве созрели. Скажите подруге, что каждую осень вы их собираете. Выберите слово**
 <!-- interaction_id: en:lesson-06:session-03:i03; family: context_gap_grammar -->
-We ___ pears. → **pick** · are pick · am pick
+We ___ pears every autumn. → **pick** · are pick · am pick
 - are pick — *После `We` сразу ставим `pick`, без `are`.*
 - am pick — *`am` ставится только после `I`; здесь нужно `We pick`.*
 
@@ -103,9 +103,9 @@ mow — косить · trim — подрезать · pick — собирать
 <!-- interaction_id: en:lesson-06:session-03:i07; family: scripted_repeat_compare -->
 🎙 **We trim the hedge.**
 
-**12 · Трава во дворе слишком высокая. Скажите соседке, что вы её косите. Выберите слово**
+**12 · Трава во дворе слишком высокая. Скажите соседке, что по субботам вы её косите. Выберите слово**
 <!-- interaction_id: en:lesson-06:session-03:i08; family: context_gap_grammar -->
-We ___ the lawn. → **mow** · are mow · am mow
+We ___ the lawn on Saturdays. → **mow** · are mow · am mow
 - are mow — *После `We` сразу ставим `mow`, без `are`.*
 - am mow — *`am` ставится только после `I`; здесь нужно `We mow`.*
 
@@ -124,18 +124,18 @@ trim — подрезать · hedge — живая изгородь · pear —
 🔊 *We mow the lawn in the garden.* Плитки: `lawn` `garden` `the` `the` `in` `mow` `We` `are` → **We mow the lawn in the garden.**
 *(плитка `are` лишняя: здесь нужно `mow` — `We mow the lawn in the garden.`)*
 
-**16 · Вы рассказываете подруге, где вы собираете груши. Скажите: «Мы собираем груши в саду»**
+**16 · Вы рассказываете подруге, где вы собираете груши. Скажите: «Каждую осень мы собираем груши в саду»**
 <!-- interaction_id: en:lesson-06:session-03:i12; family: phrase_builder -->
-Плитки: `pears` `garden` `the` `in` `pick` `We` `are` → **We pick pears in the garden.**
-*(плитка `are` лишняя: здесь нужно `pick` — `We pick pears in the garden.`)*
+Плитки: `pears` `garden` `the` `in` `pick` `We` `are` `every` `autumn` → **We pick pears in the garden every autumn.**
+*(плитка `are` лишняя: здесь нужно `pick` — `We pick pears in the garden every autumn.`)*
 
 **17 · Подруга спрашивает, что вы делаете под деревом. Скажите: «Мы собираем груши»**
 <!-- interaction_id: en:lesson-06:session-03:i13; family: scripted_repeat_compare -->
 🎙 **We pick pears.**
 
-**18 · Живая изгородь разрослась. Скажите брату, что вы её подрезаете. Выберите слово**
+**18 · Живая изгородь разрослась. Скажите брату, что по субботам вы её подрезаете. Выберите слово**
 <!-- interaction_id: en:lesson-06:session-03:i14; family: context_gap_grammar -->
-We ___ the hedge. → **trim** · are trim · am trim
+We ___ the hedge on Saturdays. → **trim** · are trim · am trim
 - are trim — *После `We` сразу ставим `trim`, без `are`.*
 - am trim — *`am` ставится только после `I`; здесь нужно `We trim`.*
 

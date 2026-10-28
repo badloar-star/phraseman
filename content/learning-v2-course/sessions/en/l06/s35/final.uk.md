@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-35:word:sleep; family: word_card -->
 > **sleep** — спати. We sleep on the sofa. — «Ми спимо на дивані». Про те, що роблять уночі в ліжку.
 
-**2 · Подруга питає про вас із сестрою. Скажіть: «Ми спимо тут»**
+**2 · Подруга питає про вас із сестрою. Скажіть: «Щоночі ми спимо тут»**
 <!-- interaction_id: en:lesson-06:session-35:i01; family: phrase_builder -->
-Плитки: `here` `sleep` `We` `sleeps` → **We sleep here.**
-*(плитка `sleeps` зайва: тут потрібно `sleep` — `We sleep here.`)*
+Плитки: `here` `sleep` `We` `sleeps` `every` `night` → **We sleep here every night.**
+*(плитка `sleeps` зайва: тут потрібно `sleep` — `We sleep here every night.`)*
 
 **3 · Послухайте подругу**
 <!-- interaction_id: en:lesson-06:session-35:i02; family: listen_choose -->
@@ -67,9 +67,9 @@
 - It sleeps on the bed. — *У записі останнє слово — `sofa`, диван, а в цьому варіанті — `bed`, ліжко.*
 - He sleeps on the sofa. — *У записі перше слово — `It`, воно, а в цьому варіанті — `He`, він.*
 
-**4 · Скажіть про брата: «Мій брат спить на дивані». Виберіть слово**
+**4 · Скажіть про брата: «Щоночі мій брат спить на дивані». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-35:i03; family: context_gap_grammar -->
-My brother ___ on the sofa. → **sleeps** · sleep · is sleeps
+My brother ___ on the sofa every night. → **sleeps** · sleep · is sleeps
 - sleep — *Брат — це `he`, тому потрібно `sleeps`, з `s`.*
 - is sleeps — *Кажемо `sleeps`, без `is`.*
 
@@ -99,9 +99,9 @@ sleep — спати · nap — короткий сон · pyjamas — піжа�
 <!-- interaction_id: en:lesson-06:session-35:i07; family: scripted_repeat_compare -->
 🎙 **She sleeps at home.**
 
-**11 · Скажіть про себе: «Я сплю на дивані». Виберіть слово**
+**11 · Скажіть про себе: «Щоночі я сплю на дивані». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-35:i08; family: context_gap_grammar -->
-I ___ on the sofa. → **sleep** · sleeps · am sleep
+I ___ on the sofa every night. → **sleep** · sleeps · am sleep
 - sleeps — *Після `I` потрібно `sleep`, без `s`.*
 - am sleep — *Кажемо `I sleep`, без `am`.*
 

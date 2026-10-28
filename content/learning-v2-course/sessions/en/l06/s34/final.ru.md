@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-34:word:drink; family: word_card -->
 > **drink** — пить. We drink tea. — «Мы пьём чай». О том, что делают, когда хочется пить.
 
-**2 · Подруга спрашивает о вас с братом. Скажите: «Мы пьём чай»**
+**2 · Подруга спрашивает о вас с братом. Скажите: «Каждый день мы пьём чай»**
 <!-- interaction_id: en:lesson-06:session-34:i01; family: phrase_builder -->
-Плитки: `tea` `drink` `We` `drinks` → **We drink tea.**
-*(плитка `drinks` лишняя: здесь нужно `drink` — `We drink tea.`)*
+Плитки: `tea` `drink` `We` `drinks` `every` `day` → **We drink tea every day.**
+*(плитка `drinks` лишняя: здесь нужно `drink` — `We drink tea every day.`)*
 
 **3 · Карточка слова — lemonade**
 <!-- interaction_id: en:lesson-06:session-34:word:lemonade; family: word_card -->
@@ -71,9 +71,9 @@
 - She drinks water. — *В записи последнее слово — `lemonade`, лимонад, а в этом варианте — `water`, вода.*
 - He drinks lemonade. — *В записи первое слово — `She`, она, а в этом варианте — `He`, он.*
 
-**5 · Скажите о брате: «Мой брат пьёт молоко». Выберите слово**
+**5 · Скажите о брате: «Каждый день мой брат пьёт молоко». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-34:i03; family: context_gap_grammar -->
-My brother ___ milk. → **drinks** · drink · is drinks
+My brother ___ milk every day. → **drinks** · drink · is drinks
 - drink — *Брат — это `he`, поэтому нужно `drinks`, с `s`.*
 - is drinks — *Говорим `drinks`, без `is`.*
 
@@ -99,9 +99,9 @@ drink — пить · lemonade — лимонад · straw — трубочка 
 <!-- interaction_id: en:lesson-06:session-34:i07; family: scripted_repeat_compare -->
 🎙 **He drinks tea.**
 
-**11 · Скажите о себе: «Я пью сок». Выберите слово**
+**11 · Скажите о себе: «Каждый день я пью сок». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-34:i08; family: context_gap_grammar -->
-I ___ juice. → **drink** · drinks · am drink
+I ___ juice every day. → **drink** · drinks · am drink
 - drinks — *После `I` нужно `drink`, без `s`.*
 - am drink — *Говорим `I drink`, без `am`.*
 

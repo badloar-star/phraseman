@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-45:word:mend; family: word_card -->
 > **mend** — чинить. We mend socks. — «Мы чиним носки». О том, как человек исправляет порванную вещь.
 
-**2 · Подруга спрашивает о вас с бабушкой. Скажите: «Мы чиним носки»**
+**2 · Подруга спрашивает о вас с бабушкой. Скажите: «Каждую неделю мы чиним носки»**
 <!-- interaction_id: en:lesson-06:session-45:i01; family: phrase_builder -->
-Плитки: `socks` `mend` `We` `mends` → **We mend socks.**
-*(плитка `mends` лишняя: здесь нужно `mend` — `We mend socks.`)*
+Плитки: `socks` `mend` `We` `mends` `every` `week` → **We mend socks every week.**
+*(плитка `mends` лишняя: здесь нужно `mend` — `We mend socks every week.`)*
 
 **3 · Послушайте подругу**
 <!-- interaction_id: en:lesson-06:session-45:i02; family: listen_choose -->
@@ -67,9 +67,9 @@
 - My grandmother mends shirts. — *В записи последнее слово — `socks`, носки, а в этом варианте — `shirts`, рубашки.*
 - My sister mends socks. — *В записи второе слово — `grandmother`, бабушка, а в этом варианте — `sister`, сестра.*
 
-**4 · Скажите о бабушке: «Она чинит носки». Выберите слово**
+**4 · Скажите о бабушке: «Каждую неделю она чинит носки». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-45:i03; family: context_gap_grammar -->
-She ___ socks. → **mends** · mend · is mends
+She ___ socks every week. → **mends** · mend · is mends
 - mend — *После `she` нужно `mends`, с `s`.*
 - is mends — *Говорим `She mends`, без `is`.*
 
@@ -99,9 +99,9 @@ mend — чинить · thread — нитка · needle — иголка · fab
 <!-- interaction_id: en:lesson-06:session-45:i07; family: scripted_repeat_compare -->
 🎙 **My grandmother mends socks.**
 
-**11 · Скажите о себе: «Я чиню свитер». Выберите слово**
+**11 · Скажите о себе: «Каждый день я чиню свитер». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-45:i08; family: context_gap_grammar -->
-I ___ my sweater. → **mend** · mends · am mend
+I ___ my sweater every day. → **mend** · mends · am mend
 - mends — *После `I` нужно `mend`, без `s`.*
 - am mend — *Говорим `I mend`, без `am`.*
 

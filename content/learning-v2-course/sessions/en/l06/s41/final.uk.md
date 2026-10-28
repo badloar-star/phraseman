@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-41:word:fish; family: word_card -->
 > **fish** — ловити рибу. We fish at the lake. — «Ми ловимо рибу на озері». Про звичне заняття біля води.
 
-**2 · Сусід питає про вас із братом. Скажіть: «Ми ловимо рибу на озері»**
+**2 · Сусід питає про вас із братом. Скажіть: «Щодня ми ловимо рибу на озері»**
 <!-- interaction_id: en:lesson-06:session-41:i01; family: phrase_builder -->
-Плитки: `at` `the` `lake` `fish` `We` `fishes` → **We fish at the lake.**
-*(плитка `fishes` зайва: тут потрібно `fish` — `We fish at the lake.`)*
+Плитки: `at` `the` `lake` `fish` `We` `fishes` `every` `day` → **We fish at the lake every day.**
+*(плитка `fishes` зайва: тут потрібно `fish` — `We fish at the lake every day.`)*
 
 **3 · Послухайте сусіда**
 <!-- interaction_id: en:lesson-06:session-41:i02; family: listen_choose -->
@@ -67,9 +67,9 @@
 - He walks at the lake. — *У записі дія — `fishes`, ловить рибу, а в цьому варіанті — `walks`, ходить пішки.*
 - She fishes at the lake. — *У записі перше слово — `He`, він, а в цьому варіанті — `She`, вона.*
 
-**4 · Скажіть про брата: «Він ловить рибу на озері». Виберіть слово**
+**4 · Скажіть про брата: «Щодня він ловить рибу на озері». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-41:i03; family: context_gap_grammar -->
-He ___ at the lake. → **fishes** · fish · is fishes
+He ___ at the lake every day. → **fishes** · fish · is fishes
 - fish — *Після `he` потрібно `fishes`, з `es`.*
 - is fishes — *Кажемо `He fishes`, без `is`.*
 
@@ -99,9 +99,9 @@ fish — ловити рибу · rod — вудка · bait — наживка 
 <!-- interaction_id: en:lesson-06:session-41:i07; family: scripted_repeat_compare -->
 🎙 **He fishes with a rod.**
 
-**11 · Скажіть про себе: «Я ловлю рибу на озері». Виберіть слово**
+**11 · Скажіть про себе: «Щодня я ловлю рибу на озері». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-41:i08; family: context_gap_grammar -->
-I ___ at the lake. → **fish** · fishes · am fish
+I ___ at the lake every day. → **fish** · fishes · am fish
 - fishes — *Після `I` потрібно `fish`, без `es`.*
 - am fish — *Кажемо `I fish`, без `am`.*
 

@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-09:word:start; family: word_card -->
 > **start** — починати. We start at two. — «Ми починаємо о другій». Про початок роботи, заняття чи зміни. Після I, you, we, they — без s.
 
-**2 · Колега питає, о котрій ви починаєте. Скажіть: «Я починаю о четвертій»**
+**2 · Колега питає, о котрій ви починаєте. Скажіть: «Щодня я починаю о четвертій»**
 <!-- interaction_id: en:lesson-06:session-09:i01; family: phrase_builder -->
-Плитки: `four` `at` `start` `I` `am` → **I start at four.**
-*(плитка `am` зайва: тут потрібно `start` — `I start at four.`)*
+Плитки: `four` `at` `start` `I` `am` `every` `day` → **I start at four every day.**
+*(плитка `am` зайва: тут потрібно `start` — `I start at four every day.`)*
 
 **3 · Послухайте адміністратора**
 <!-- interaction_id: en:lesson-06:session-09:i02; family: listen_choose -->
@@ -71,9 +71,9 @@
 <!-- interaction_id: en:lesson-06:session-09:word:shift; family: word_card -->
 > **shift** — зміна. You start the shift at four. — «Ти починаєш зміну о четвертій». Про робочі години: буває перша й друга зміна.
 
-**5 · Скажіть колезі: «Ми починаємо зміну о другій». Виберіть слово**
+**5 · Скажіть колезі: «Щодня ми починаємо зміну о другій». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-09:i03; family: context_gap_grammar -->
-We ___ the shift at two. → **start** · starts · are start
+We ___ the shift at two every day. → **start** · starts · are start
 - starts — *Після `we` — `start`, без `s`.*
 - are start — *Кажемо `We start`, без `are`.*
 
@@ -133,9 +133,9 @@ shift — зміна · break — перерва · appointment — прийом
 <!-- interaction_id: en:lesson-06:session-09:i13; family: scripted_repeat_compare -->
 🎙 **I work in a clinic.**
 
-**18 · Скажіть про себе: «Я починаю зміну о четвертій». Виберіть слово**
+**18 · Скажіть про себе: «Щодня я починаю зміну о четвертій». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-09:i14; family: context_gap_grammar -->
-I ___ the shift at four. → **start** · starts · am start
+I ___ the shift at four every day. → **start** · starts · am start
 - starts — *Після `I` — `start`, без `s`.*
 - am start — *Кажемо `I start`, без `am`.*
 

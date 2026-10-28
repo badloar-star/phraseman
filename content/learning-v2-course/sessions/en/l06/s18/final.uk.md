@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-18:word:smile; family: word_card -->
 > **smile** — усміхатися. My sister smiles in the park. — «Моя сестра усміхається в парку». Коли людина усміхається.
 
-**2 · Подруга питає, що робить ваш брат. Скажіть: «Він усміхається малюкові»**
+**2 · Подруга питає, що робить ваш брат. Скажіть: «Щодня він усміхається малюкові»**
 <!-- interaction_id: en:lesson-06:session-18:i01; family: phrase_builder -->
-Плитки: `smiles` `at` `the` `baby` `He` `smile` → **He smiles at the baby.**
-*(плитка `smile` зайва: тут потрібно `smiles` — `He smiles at the baby.`)*
+Плитки: `smiles` `at` `the` `baby` `He` `smile` `every` `day` → **He smiles at the baby every day.**
+*(плитка `smile` зайва: тут потрібно `smiles` — `He smiles at the baby every day.`)*
 
 **3 · Картка слова — cough**
 <!-- interaction_id: en:lesson-06:session-18:word:cough; family: word_card -->
@@ -94,18 +94,18 @@ smile — усміхатися · cough — кашляти · throat — гор�
 🔊 *The syrup is sweet.* Плитки: `is` `sweet` `syrup` `The` `are` → **The syrup is sweet.**
 *(плитка `are` зайва: тут потрібно `is` — `The syrup is sweet.`)*
 
-**10 · Вчителька питає, що робить ваша сестра вдома. Скажіть: «Вона практикує англійську»**
+**10 · Вчителька питає, що робить ваша сестра вдома. Скажіть: «Щодня вона практикує англійську»**
 <!-- interaction_id: en:lesson-06:session-18:i06; family: phrase_builder -->
-Плитки: `practices` `English` `She` `practice` → **She practices English.**
-*(плитка `practice` зайва: тут потрібно `practices` — `She practices English.`)*
+Плитки: `practices` `English` `She` `practice` `every` `day` → **She practices English every day.**
+*(плитка `practice` зайва: тут потрібно `practices` — `She practices English every day.`)*
 
 **11 · Сестра питає, що болить у брата. Скажіть: «У нього болить горло»**
 <!-- interaction_id: en:lesson-06:session-18:i07; family: scripted_repeat_compare -->
 🎙 **His throat is sore.**
 
-**12 · Скажіть про брата: «Він усміхається малюкові». Виберіть слово**
+**12 · Скажіть про брата: «Щодня він усміхається малюкові». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-18:i08; family: context_gap_grammar -->
-He ___ at the baby. → **smiles** · smile · is smiles
+He ___ at the baby every day. → **smiles** · smile · is smiles
 - smile — *Після `he` — `smiles`, з `s`.*
 - is smiles — *Кажемо `He smiles`, без `is`.*
 
@@ -133,9 +133,9 @@ smile — усміхатися · cough — кашляти · syrup — сиро
 <!-- interaction_id: en:lesson-06:session-18:i13; family: scripted_repeat_compare -->
 🎙 **He coughs.**
 
-**18 · Скажіть про брата: «Він кашляє вдома». Виберіть слово**
+**18 · Скажіть про брата: «Щодня він кашляє вдома». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-18:i14; family: context_gap_grammar -->
-He ___ at home. → **coughs** · cough · is coughs
+He ___ at home every day. → **coughs** · cough · is coughs
 - cough — *Після `he` — `coughs`, з `s`.*
 - is coughs — *Кажемо `He coughs`, без `is`.*
 

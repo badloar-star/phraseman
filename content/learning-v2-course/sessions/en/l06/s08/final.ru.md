@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-08:word:fold; family: word_card -->
 > **fold** — складывать. We fold the towels. — «Мы складываем полотенца». О том, как вещь делают плоской и аккуратной стопкой.
 
-**2 · Сестра села рядом с горой полотенец. Скажите: «Мы складываем полотенца»**
+**2 · Сестра села рядом с горой полотенец. Скажите: «Каждую неделю мы складываем полотенца»**
 <!-- interaction_id: en:lesson-06:session-08:i01; family: phrase_builder -->
-Плитки: `towels` `the` `fold` `We` `are` → **We fold the towels.**
-*(плитка `are` лишняя: здесь нужно `fold` — `We fold the towels.`)*
+Плитки: `towels` `the` `fold` `We` `are` `every` `week` → **We fold the towels every week.**
+*(плитка `are` лишняя: здесь нужно `fold` — `We fold the towels every week.`)*
 
 **3 · Карточка слова — hang**
 <!-- interaction_id: en:lesson-06:session-08:word:hang; family: word_card -->
@@ -75,9 +75,9 @@
 <!-- interaction_id: en:lesson-06:session-08:word:sort; family: word_card -->
 > **sort** — сортировать. They sort the socks. — «Они сортируют носки». О том, как раскладывают вещи по парам или по группам.
 
-**6 · Двое работников прачечной стоят над горой носков. Скажите, что они их сортируют. Выберите слово**
+**6 · Двое работников прачечной стоят над горой носков. Скажите, что каждую неделю они их сортируют. Выберите слово**
 <!-- interaction_id: en:lesson-06:session-08:i03; family: context_gap_grammar -->
-They ___ the socks. → **sort** · are sort · is sort
+They ___ the socks every week. → **sort** · are sort · is sort
 - are sort — *После `They` сразу ставим `sort`, без `are`.*
 - is sort — *Слово `is` ставится после `he`, `she`, `it`; здесь нужно `They sort`.*
 
@@ -103,9 +103,9 @@ fold — складывать · hang — вешать · sort — сортир�
 <!-- interaction_id: en:lesson-06:session-08:i07; family: scripted_repeat_compare -->
 🎙 **We fold the towels.**
 
-**12 · Сосед смотрит, как вы развешиваете рубашки. Выберите слово**
+**12 · Каждую неделю сосед смотрит, как вы развешиваете рубашки. Выберите слово**
 <!-- interaction_id: en:lesson-06:session-08:i08; family: context_gap_grammar -->
-I ___ the shirts on the line. → **hang** · am hang · are hang
+I ___ the shirts on the line every week. → **hang** · am hang · are hang
 - am hang — *После `I` сразу ставим `hang`, без `am`.*
 - are hang — *Слово `are` ставится после `we`, `you`, `they`; здесь нужно `I hang`.*
 
@@ -124,18 +124,18 @@ sort — сортировать · sock — носок · towel — полоте
 🔊 *We bake bread and we wash the plates.* Плитки: `bread` `plates` `the` `and` `bake` `wash` `We` `we` `are` → **We bake bread and we wash the plates.**
 *(плитка `are` лишняя: здесь нужно `bake` — `We bake bread and we wash the plates.`)*
 
-**16 · Две подруги разбирают бельё. Расскажите соседу: «Они несут полотенца и они складывают простыни»**
+**16 · Две подруги разбирают бельё. Расскажите соседу: «Каждую неделю они несут полотенца и они складывают простыни»**
 <!-- interaction_id: en:lesson-06:session-08:i12; family: phrase_builder -->
-Плитки: `towels` `sheets` `the` `the` `and` `carry` `fold` `They` `they` `are` → **They carry the towels and they fold the sheets.**
-*(плитка `are` лишняя: здесь нужно `carry` — `They carry the towels and they fold the sheets.`)*
+Плитки: `towels` `sheets` `the` `the` `and` `carry` `fold` `They` `they` `are` `every` `week` → **They carry the towels and they fold the sheets every week.**
+*(плитка `are` лишняя: здесь нужно `carry` — `They carry the towels and they fold the sheets every week.`)*
 
 **17 · Сосед спрашивает, что вы делаете во дворе. Скажите: «Я вешаю рубашки на верёвку»**
 <!-- interaction_id: en:lesson-06:session-08:i13; family: scripted_repeat_compare -->
 🎙 **I hang the shirts on the line.**
 
-**18 · Вы с сестрой стоите над кучей чистого белья. Выберите слово**
+**18 · Каждую неделю вы с сестрой стоите над кучей чистого белья. Выберите слово**
 <!-- interaction_id: en:lesson-06:session-08:i14; family: context_gap_grammar -->
-We ___ the towels. → **fold** · are fold · am fold
+We ___ the towels every week. → **fold** · are fold · am fold
 - are fold — *После `We` сразу ставим `fold`, без `are`.*
 - am fold — *`am` ставится только после `I`; здесь нужно `We fold`.*
 

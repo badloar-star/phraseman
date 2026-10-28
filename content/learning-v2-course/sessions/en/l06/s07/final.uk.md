@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-07:word:chop; family: word_card -->
 > **chop** — нарізати, рубати. I chop onions. — «Я ріжу цибулю». Про те, як ножем ділять їжу на дрібні шматочки.
 
-**2 · Кухар питає, що ви робите. Скажіть: «Я ріжу цибулю»**
+**2 · Кухар питає, що ви робите. Скажіть: «Щодня я ріжу цибулю»**
 <!-- interaction_id: en:lesson-06:session-07:i01; family: phrase_builder -->
-Плитки: `onions` `chop` `I` `am` → **I chop onions.**
-*(плитка `am` зайва: тут потрібно `chop` — `I chop onions.`)*
+Плитки: `onions` `chop` `I` `am` `every` `day` → **I chop onions every day.**
+*(плитка `am` зайва: тут потрібно `chop` — `I chop onions every day.`)*
 
 **3 · Картка слова — stir**
 <!-- interaction_id: en:lesson-06:session-07:word:stir; family: word_card -->
@@ -75,9 +75,9 @@
 <!-- interaction_id: en:lesson-06:session-07:word:serve; family: word_card -->
 > **serve** — подавати на стіл. You serve the soup. — «Ти подаєш суп». Про те, як приносять готову їжу гостям.
 
-**6 · Суп готовий. Скажіть новому офіціантові, що він подає суп гостям. Виберіть слово**
+**6 · Суп готовий. Скажіть новому офіціантові, що щодня він подає суп гостям. Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-07:i03; family: context_gap_grammar -->
-You ___ the soup. → **serve** · are serve · is serve
+You ___ the soup every day. → **serve** · are serve · is serve
 - are serve — *Після `You` одразу ставимо `serve`, без `are`.*
 - is serve — *Слово `is` ставиться після `he`, `she`, `it`; тут потрібно `You serve`.*
 
@@ -103,9 +103,9 @@ chop — рубати, шаткувати · stir — помішувати · se
 <!-- interaction_id: en:lesson-06:session-07:i07; family: scripted_repeat_compare -->
 🎙 **I chop onions.**
 
-**12 · Двоє кухарів стоять біля великої каструлі. Виберіть слово**
+**12 · Щодня двоє кухарів стоять біля великої каструлі. Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-07:i08; family: context_gap_grammar -->
-They ___ the soup. → **stir** · are stir · is stir
+They ___ the soup every day. → **stir** · are stir · is stir
 - are stir — *Після `They` одразу ставимо `stir`, без `are`.*
 - is stir — *Слово `is` ставиться після `he`, `she`, `it`; тут потрібно `They stir`.*
 
@@ -124,18 +124,18 @@ stir — помішувати · onion — цибуля (цибулина) · so
 🔊 *I chop onions and I stir the soup.* Плитки: `onions` `soup` `the` `and` `chop` `stir` `I` `I` `am` → **I chop onions and I stir the soup.**
 *(плитка `am` зайва: тут потрібно `chop` — `I chop onions and I stir the soup.`)*
 
-**16 · Двоє кухарів готують суп. Розкажіть помічниці: «Вони ріжуть цибулю і вони помішують суп»**
+**16 · Двоє кухарів готують суп. Розкажіть помічниці: «Щодня вони ріжуть цибулю і вони помішують суп»**
 <!-- interaction_id: en:lesson-06:session-07:i12; family: phrase_builder -->
-Плитки: `onions` `soup` `the` `and` `chop` `stir` `They` `they` `are` → **They chop onions and they stir the soup.**
-*(плитка `are` зайва: тут потрібно `chop` — `They chop onions and they stir the soup.`)*
+Плитки: `onions` `soup` `the` `and` `chop` `stir` `They` `they` `are` `every` `day` → **They chop onions and they stir the soup every day.**
+*(плитка `are` зайва: тут потрібно `chop` — `They chop onions and they stir the soup every day.`)*
 
 **17 · Новий офіціант питає, що йому робити з супом. Скажіть: «Ти подаєш суп»**
 <!-- interaction_id: en:lesson-06:session-07:i13; family: scripted_repeat_compare -->
 🎙 **You serve the soup.**
 
-**18 · Перед вами гора цибулі. Скажіть кухареві, що ви її ріжете. Виберіть слово**
+**18 · Перед вами гора цибулі. Скажіть кухареві, що щодня ви її ріжете. Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-07:i14; family: context_gap_grammar -->
-I ___ onions. → **chop** · am chop · are chop
+I ___ onions every day. → **chop** · am chop · are chop
 - am chop — *Після `I` одразу ставимо `chop`, без `am`.*
 - are chop — *Слово `are` ставиться після `we`, `you`, `they`; тут потрібно `I chop`.*
 

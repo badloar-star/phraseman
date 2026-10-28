@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-24:word:pour; family: word_card -->
 > **pour** — наливать. He pours the tea. — «Он наливает чай». Когда жидкость льют из чайника, кофейника или кувшина.
 
-**2 · Коллега спрашивает, что делает ваша сестра. Скажите: «Она наливает молоко»**
+**2 · Коллега спрашивает, что делает ваша сестра. Скажите: «Каждый день она наливает молоко»**
 <!-- interaction_id: en:lesson-06:session-24:i01; family: phrase_builder -->
-Плитки: `pours` `the` `milk` `She` `pour` → **She pours the milk.**
-*(плитка `pour` лишняя: здесь нужно `pours` — `She pours the milk.`)*
+Плитки: `pours` `the` `milk` `She` `pour` `every` `day` → **She pours the milk every day.**
+*(плитка `pour` лишняя: здесь нужно `pours` — `She pours the milk every day.`)*
 
 **3 · Карточка слова — toast**
 <!-- interaction_id: en:lesson-06:session-24:word:toast; family: word_card -->
@@ -75,9 +75,9 @@
 <!-- interaction_id: en:lesson-06:session-24:word:slice; family: word_card -->
 > **slice** — нарезать ломтиками. He slices the cheese. — «Он нарезает сыр». Когда еду режут на ровные куски.
 
-**6 · Скажите о сестре: «Она нарезает хлеб». Выберите слово**
+**6 · Скажите о сестре: «Каждый день она нарезает хлеб». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-24:i03; family: context_gap_grammar -->
-She ___ the bread. → **slices** · slice · is slices
+She ___ the bread every day. → **slices** · slice · is slices
 - slice — *После `she` — `slices`, с `s`.*
 - is slices — *Говорим `She slices`, без `is`.*
 
@@ -94,18 +94,18 @@ pour — наливать · toast — тост (подрумяненный хл
 🔊 *The knife is sharp.* Плитки: `is` `sharp` `knife` `The` `are` → **The knife is sharp.**
 *(плитка `are` лишняя: здесь нужно `is` — `The knife is sharp.`)*
 
-**10 · Коллега спрашивает, кем работает ваш брат. Скажите: «Он преподаёт английский»**
+**10 · Коллега спрашивает, кем работает ваш брат. Скажите: «Каждый день он преподаёт английский»**
 <!-- interaction_id: en:lesson-06:session-24:i06; family: phrase_builder -->
-Плитки: `teaches` `English` `He` `teach` → **He teaches English.**
-*(плитка `teach` лишняя: здесь нужно `teaches` — `He teaches English.`)*
+Плитки: `teaches` `English` `He` `teach` `every` `day` → **He teaches English every day.**
+*(плитка `teach` лишняя: здесь нужно `teaches` — `He teaches English every day.`)*
 
 **11 · Коллега спрашивает, холодный ли тост. Скажите: «Тост тёплый»**
 <!-- interaction_id: en:lesson-06:session-24:i07; family: scripted_repeat_compare -->
 🎙 **The toast is warm.**
 
-**12 · Скажите о брате: «Он рисует за столом». Выберите слово**
+**12 · Скажите о брате: «Каждый день он рисует за столом». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-24:i08; family: context_gap_grammar -->
-He ___ at the table. → **draws** · draw · is draws
+He ___ at the table every day. → **draws** · draw · is draws
 - draw — *После `he` — `draws`, с `s`.*
 - is draws — *Говорим `He draws`, без `is`.*
 
@@ -133,9 +133,9 @@ knife — нож · pour — наливать · drive — водить маши
 <!-- interaction_id: en:lesson-06:session-24:i13; family: scripted_repeat_compare -->
 🎙 **He pours the coffee.**
 
-**18 · Скажите о сестре: «Она преподаёт английский». Выберите слово**
+**18 · Скажите о сестре: «Каждый день она преподаёт английский». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-24:i14; family: context_gap_grammar -->
-She ___ English. → **teaches** · teach · teachs
+She ___ English every day. → **teaches** · teach · teachs
 - teach — *После `she` — `teaches`, с `es`.*
 - teachs — *После `ch` нужно `es`: `teaches`.*
 

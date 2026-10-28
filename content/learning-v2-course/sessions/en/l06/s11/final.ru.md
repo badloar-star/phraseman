@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-11:word:learn; family: word_card -->
 > **learn** — учить, изучать. They learn English at school. — «Они изучают английский в школе». О том, как человек получает новые знания. После I, you, we, they — без s.
 
-**2 · Подруга спрашивает о ваших соседях по курсам. Скажите: «Они изучают английский»**
+**2 · Подруга спрашивает о ваших соседях по курсам. Скажите: «Каждый день они изучают английский»**
 <!-- interaction_id: en:lesson-06:session-11:i01; family: phrase_builder -->
-Плитки: `English` `learn` `They` `are` → **They learn English.**
-*(плитка `are` лишняя: здесь нужно `learn` — `They learn English.`)*
+Плитки: `English` `learn` `They` `are` `every` `day` → **They learn English every day.**
+*(плитка `are` лишняя: здесь нужно `learn` — `They learn English every day.`)*
 
 **3 · Карточка слова — language**
 <!-- interaction_id: en:lesson-06:session-11:word:language; family: word_card -->
@@ -71,9 +71,9 @@
 - I learn English. — *В записи последнее слово — `language`, язык, а в этом варианте — `English`, английский.*
 - We learn a language. — *В записи первое слово — `I`, я, а в этом варианте — `We`, мы.*
 
-**5 · Скажите о себе: «Я изучаю английский в школе». Выберите слово**
+**5 · Скажите о себе: «Каждый день я изучаю английский в школе». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-11:i03; family: context_gap_grammar -->
-I ___ English at school. → **learn** · learns · am learn
+I ___ English at school every day. → **learn** · learns · am learn
 - learns — *После `I` — `learn`, без `s`.*
 - am learn — *Говорим `I learn`, без `am`.*
 

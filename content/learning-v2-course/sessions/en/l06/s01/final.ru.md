@@ -75,9 +75,9 @@
 <!-- interaction_id: en:lesson-06:session-01:word:wash; family: word_card -->
 > **wash** — мыть. I wash the plates. — «Я мою тарелки». О том, как убирают грязь водой.
 
-**6 · Вы стоите у раковины после ужина. Скажите, что вы моете тарелки. Выберите слово**
+**6 · Вы стоите у раковины после ужина. Скажите, что каждый вечер вы моете тарелки. Выберите слово**
 <!-- interaction_id: en:lesson-06:session-01:i03; family: context_gap_grammar -->
-I ___ the plates. → **wash** · am wash · is wash
+I ___ the plates every evening. → **wash** · am wash · is wash
 - am wash — *После `I` сразу ставим `wash`, без `am`.*
 - is wash — *С `I` слово `is` не используется; нужно `I wash`.*
 
@@ -124,18 +124,18 @@ bake — печь · bread — хлеб · plate — тарелка · ladle —
 🔊 *You work in a pharmacy.* Плитки: `pharmacy` `a` `in` `work` `You` `I` → **You work in a pharmacy.**
 *(плитка `I` лишняя: здесь нужно `You` — `You work in a pharmacy.`)*
 
-**16 · Вы пекарь. Скажите соседке полной фразой: «Я пеку хлеб в пекарне»**
+**16 · Вы пекарь. Скажите соседке полной фразой: «Каждый день я пеку хлеб в пекарне»**
 <!-- interaction_id: en:lesson-06:session-01:i12; family: phrase_builder -->
-Плитки: `bread` `bakery` `a` `in` `bake` `I` `am` → **I bake bread in a bakery.**
-*(плитка `am` лишняя: здесь нужно `bake` — `I bake bread in a bakery.`)*
+Плитки: `bread` `bakery` `a` `in` `bake` `I` `am` `every` `day` → **I bake bread in a bakery every day.**
+*(плитка `am` лишняя: здесь нужно `bake` — `I bake bread in a bakery every day.`)*
 
 **17 · Брат спрашивает, что вы делаете у раковины. Скажите: «Я мою тарелки»**
 <!-- interaction_id: en:lesson-06:session-01:i13; family: scripted_repeat_compare -->
 🎙 **I wash the plates.**
 
-**18 · Вы достали из духовки хлеб. Скажите соседке, что вы его печёте. Выберите слово**
+**18 · Вы достали из духовки хлеб. Скажите соседке, что каждый день вы его печёте. Выберите слово**
 <!-- interaction_id: en:lesson-06:session-01:i14; family: context_gap_grammar -->
-I ___ bread. → **bake** · am bake · is bake
+I ___ bread every day. → **bake** · am bake · is bake
 - am bake — *После `I` сразу ставим `bake`, без `am`.*
 - is bake — *С `I` слово `is` не используется; нужно `I bake`.*
 

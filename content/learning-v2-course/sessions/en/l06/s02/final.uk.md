@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-02:word:sweep; family: word_card -->
 > **sweep** — підмітати. You sweep the floor. — «Ти підмітаєш підлогу». Про те, як прибирають сміття з підлоги щіткою.
 
-**2 · Нова помічниця питає, що їй робити вранці. Скажіть: «Ти підмітаєш підлогу»**
+**2 · Нова помічниця питає, що їй робити вранці. Скажіть: «Щодня ти підмітаєш підлогу»**
 <!-- interaction_id: en:lesson-06:session-02:i01; family: phrase_builder -->
-Плитки: `floor` `the` `sweep` `You` `are` → **You sweep the floor.**
-*(плитка `are` зайва: тут потрібно `sweep` — `You sweep the floor.`)*
+Плитки: `floor` `the` `sweep` `You` `are` `every` `day` → **You sweep the floor every day.**
+*(плитка `are` зайва: тут потрібно `sweep` — `You sweep the floor every day.`)*
 
 **3 · Картка слова — carry**
 <!-- interaction_id: en:lesson-06:session-02:word:carry; family: word_card -->
@@ -75,9 +75,9 @@
 <!-- interaction_id: en:lesson-06:session-02:word:saucer; family: word_card -->
 > **saucer** — блюдце. You wash the saucers. — «Ти миєш блюдця». Маленька тарілка, на яку ставлять чашку.
 
-**6 · Відвідувачі пішли, на столі лишилися блюдця. Скажіть помічниці, що вона їх миє. Виберіть слово**
+**6 · Відвідувачі пішли, на столі лишилися блюдця. Скажіть помічниці, що щодня вона їх миє. Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-02:i03; family: context_gap_grammar -->
-You wash the ___. → **saucers** · saucer · cups
+You wash the ___ every day. → **saucers** · saucer · cups
 - saucer — *Блюдець багато, тому потрібно `saucers`.*
 - cups — *`cups` — чашки, а мити потрібно блюдця: `saucers`.*
 
@@ -103,9 +103,9 @@ sweep — підмітати · carry — нести · saucer — блюдце 
 <!-- interaction_id: en:lesson-06:session-02:i07; family: scripted_repeat_compare -->
 🎙 **You sweep the floor.**
 
-**12 · В обід помічниця чекає вказівок. Скажіть їй, що вона носить таці. Виберіть слово**
+**12 · В обід помічниця чекає вказівок. Скажіть їй, що щодня вона носить таці. Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-02:i08; family: context_gap_grammar -->
-You ___ the trays. → **carry** · are carry · is carry
+You ___ the trays every day. → **carry** · are carry · is carry
 - are carry — *Після `You` одразу ставимо `carry`, без `are`.*
 - is carry — *З `You` слово `is` не вживається; потрібно `You carry`.*
 
@@ -124,18 +124,18 @@ carry — нести · tray — таця · saucer — блюдце · sweep �
 🔊 *You carry the cups.* Плитки: `cups` `the` `carry` `You` `I` → **You carry the cups.**
 *(плитка `I` зайва: тут потрібно `You` — `You carry the cups.`)*
 
-**16 · Ви пояснюєте помічниці, де вона підмітає. Скажіть: «Ти підмітаєш підлогу в кафе»**
+**16 · Ви пояснюєте помічниці, де вона підмітає. Скажіть: «Щодня ти підмітаєш підлогу в кафе»**
 <!-- interaction_id: en:lesson-06:session-02:i12; family: phrase_builder -->
-Плитки: `floor` `cafe` `the` `the` `in` `sweep` `You` `are` → **You sweep the floor in the cafe.**
-*(плитка `are` зайва: тут потрібно `sweep` — `You sweep the floor in the cafe.`)*
+Плитки: `floor` `cafe` `the` `the` `in` `sweep` `You` `are` `every` `day` → **You sweep the floor in the cafe every day.**
+*(плитка `are` зайва: тут потрібно `sweep` — `You sweep the floor in the cafe every day.`)*
 
 **17 · Помічниця питає про таці. Скажіть їй: «Ти носиш таці»**
 <!-- interaction_id: en:lesson-06:session-02:i13; family: scripted_repeat_compare -->
 🎙 **You carry the trays.**
 
-**18 · Вранці зал треба прибрати. Скажіть помічниці, що вона підмітає підлогу. Виберіть слово**
+**18 · Вранці зал треба прибрати. Скажіть помічниці, що щоранку вона підмітає підлогу. Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-02:i14; family: context_gap_grammar -->
-You ___ the floor. → **sweep** · are sweep · is sweep
+You ___ the floor every morning. → **sweep** · are sweep · is sweep
 - are sweep — *Після `You` одразу ставимо `sweep`, без `are`.*
 - is sweep — *З `You` слово `is` не вживається; потрібно `You sweep`.*
 

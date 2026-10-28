@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-20:word:cook; family: word_card -->
 > **cook** — готовить еду. My grandmother cooks at home. — «Моя бабушка готовит дома». Когда человек делает еду, обычно с огнём.
 
-**2 · Гость спрашивает, что делает бабушка. Скажите: «Она готовит суп»**
+**2 · Гость спрашивает, что делает бабушка. Скажите: «Каждый день она готовит суп»**
 <!-- interaction_id: en:lesson-06:session-20:i01; family: phrase_builder -->
-Плитки: `cooks` `soup` `She` `cook` → **She cooks soup.**
-*(плитка `cook` лишняя: здесь нужно `cooks` — `She cooks soup.`)*
+Плитки: `cooks` `soup` `She` `cook` `every` `day` → **She cooks soup every day.**
+*(плитка `cook` лишняя: здесь нужно `cooks` — `She cooks soup every day.`)*
 
 **3 · Карточка слова — taste**
 <!-- interaction_id: en:lesson-06:session-20:word:taste; family: word_card -->
@@ -94,18 +94,18 @@ cook — готовить еду · taste — пробовать на вкус �
 🔊 *She boils the eggs.* Плитки: `boils` `the` `eggs` `She` `boil` → **She boils the eggs.**
 *(плитка `boil` лишняя: здесь нужно `boils` — `She boils the eggs.`)*
 
-**10 · Гость спрашивает, чем занимается дедушка. Скажите: «Он рисует красками дома»**
+**10 · Гость спрашивает, чем занимается дедушка. Скажите: «Каждый день он рисует красками дома»**
 <!-- interaction_id: en:lesson-06:session-20:i06; family: phrase_builder -->
-Плитки: `paints` `at` `home` `He` `paint` → **He paints at home.**
-*(плитка `paint` лишняя: здесь нужно `paints` — `He paints at home.`)*
+Плитки: `paints` `at` `home` `He` `paint` `every` `day` → **He paints at home every day.**
+*(плитка `paint` лишняя: здесь нужно `paints` — `He paints at home every day.`)*
 
 **11 · Гость спрашивает, трудно ли готовить этот суп. Скажите: «Рецепт простой»**
 <!-- interaction_id: en:lesson-06:session-20:i07; family: scripted_repeat_compare -->
 🎙 **The recipe is simple.**
 
-**12 · Скажите о бабушке: «Она пробует суп». Выберите слово**
+**12 · Скажите о бабушке: «Каждый день она пробует суп». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-20:i08; family: context_gap_grammar -->
-She ___ the soup. → **tastes** · taste · is tastes
+She ___ the soup every day. → **tastes** · taste · is tastes
 - taste — *После `she` — `tastes`, с `s`.*
 - is tastes — *Говорим `She tastes`, без `is`.*
 
@@ -133,9 +133,9 @@ recipe — рецепт · boil — варить в кипятке · cook — �
 <!-- interaction_id: en:lesson-06:session-20:i13; family: scripted_repeat_compare -->
 🎙 **He tastes the soup.**
 
-**18 · Скажите о бабушке: «Она варит яйца». Выберите слово**
+**18 · Скажите о бабушке: «Каждый день она варит яйца». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-20:i14; family: context_gap_grammar -->
-She ___ the eggs. → **boils** · boil · is boils
+She ___ the eggs every day. → **boils** · boil · is boils
 - boil — *После `she` — `boils`, с `s`.*
 - is boils — *Говорим `She boils`, без `is`.*
 

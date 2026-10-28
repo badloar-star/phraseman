@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-43:word:grow; family: word_card -->
 > **grow** — вирощувати, рости. We grow flowers in the kitchen. — «Ми вирощуємо квіти на кухні». Про те, як людина росить рослини.
 
-**2 · Сусід питає про вас із сусідкою. Скажіть: «Ми вирощуємо квіти на балконі»**
+**2 · Сусід питає про вас із сусідкою. Скажіть: «Щодня ми вирощуємо квіти на балконі»**
 <!-- interaction_id: en:lesson-06:session-43:i01; family: phrase_builder -->
-Плитки: `flowers` `on` `the` `balcony` `grow` `We` `grows` → **We grow flowers on the balcony.**
-*(плитка `grows` зайва: тут потрібно `grow` — `We grow flowers on the balcony.`)*
+Плитки: `flowers` `on` `the` `balcony` `grow` `We` `grows` `every` `day` → **We grow flowers on the balcony every day.**
+*(плитка `grows` зайва: тут потрібно `grow` — `We grow flowers on the balcony every day.`)*
 
 **3 · Послухайте сусіда**
 <!-- interaction_id: en:lesson-06:session-43:i02; family: listen_choose -->
@@ -67,9 +67,9 @@
 - She grows flowers in the kitchen. — *У записі останнє слово — `balcony`, балкон, а в цьому варіанті — `kitchen`, кухня.*
 - He grows flowers on the balcony. — *У записі перше слово — `She`, вона, а в цьому варіанті — `He`, він.*
 
-**4 · Скажіть про сусідку: «Вона вирощує квіти на балконі». Виберіть слово**
+**4 · Скажіть про сусідку: «Щодня вона вирощує квіти на балконі». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-43:i03; family: context_gap_grammar -->
-She ___ flowers on the balcony. → **grows** · grow · is grows
+She ___ flowers on the balcony every day. → **grows** · grow · is grows
 - grow — *Після `she` потрібно `grows`, з `s`.*
 - is grows — *Кажемо `She grows`, без `is`.*
 
@@ -99,9 +99,9 @@ grow — вирощувати, рости · seed — насінина · soil �
 <!-- interaction_id: en:lesson-06:session-43:i07; family: scripted_repeat_compare -->
 🎙 **She grows flowers from seeds.**
 
-**11 · Скажіть про себе: «Я вирощую квіти на балконі». Виберіть слово**
+**11 · Скажіть про себе: «Щодня я вирощую квіти на балконі». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-43:i08; family: context_gap_grammar -->
-I ___ flowers on the balcony. → **grow** · grows · am grow
+I ___ flowers on the balcony every day. → **grow** · grows · am grow
 - grows — *Після `I` потрібно `grow`, без `s`.*
 - am grow — *Кажемо `I grow`, без `am`.*
 

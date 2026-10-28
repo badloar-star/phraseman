@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-52:word:wear; family: word_card -->
 > **wear** — носити на собі. She wears a hat. — «Вона носить капелюх». Коли одяг надітий на людині.
 
-**2 · Друг питає про вашу тітку. Скажіть: «Вона носить капелюх»**
+**2 · Друг питає про вашу тітку. Скажіть: «Щодня вона носить капелюх»**
 <!-- interaction_id: en:lesson-06:session-52:i01; family: phrase_builder -->
-Плитки: `hat` `a` `wears` `She` `wear` → **She wears a hat.**
-*(плитка `wear` зайва: тут потрібно `wears` — `She wears a hat.`)*
+Плитки: `hat` `a` `wears` `She` `wear` `every` `day` → **She wears a hat every day.**
+*(плитка `wear` зайва: тут потрібно `wears` — `She wears a hat every day.`)*
 
 **3 · Картка слова — hood**
 <!-- interaction_id: en:lesson-06:session-52:word:hood; family: word_card -->
@@ -75,9 +75,9 @@
 <!-- interaction_id: en:lesson-06:session-52:word:suit; family: word_card -->
 > **suit** — костюм. The suit is black. — «Костюм чорний». Піджак і штани з однієї тканини.
 
-**6 · Скажіть про дядька: «Він носить костюм». Виберіть слово**
+**6 · Скажіть про дядька: «Щодня він носить костюм». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-52:i03; family: context_gap_grammar -->
-He ___ a suit. → **wears** · wear · is wears
+He ___ a suit every day. → **wears** · wear · is wears
 - wear — *Після `he` потрібно `wears`, з `s`.*
 - is wears — *Кажемо `He wears`, без `is`.*
 
@@ -94,18 +94,18 @@ wear — носити одяг на собі · hood — каптур · skirt �
 <!-- interaction_id: en:lesson-06:session-52:word:skirt; family: word_card -->
 > **skirt** — спідниця. The skirt is blue. — «Спідниця синя». Одяг, який надягають на талію і який закриває ноги.
 
-**10 · Друг питає про вашу сестру. Скажіть: «Вона носить спідницю»**
+**10 · Друг питає про вашу сестру. Скажіть: «Щодня вона носить спідницю»**
 <!-- interaction_id: en:lesson-06:session-52:i06; family: phrase_builder -->
-Плитки: `skirt` `a` `wears` `She` `wear` → **She wears a skirt.**
-*(плитка `wear` зайва: тут потрібно `wears` — `She wears a skirt.`)*
+Плитки: `skirt` `a` `wears` `She` `wear` `every` `day` → **She wears a skirt every day.**
+*(плитка `wear` зайва: тут потрібно `wears` — `She wears a skirt every day.`)*
 
 **11 · Друг шукає костюм. Скажіть: «Костюм біля лавки»**
 <!-- interaction_id: en:lesson-06:session-52:i07; family: scripted_repeat_compare -->
 🎙 **The suit is near the bench.**
 
-**12 · Скажіть про хлопців під дощем: «Вони носять каптури». Виберіть слово**
+**12 · Скажіть про хлопців під дощем: «Щодня вони носять каптури». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-52:i08; family: context_gap_grammar -->
-They ___ hoods. → **wear** · wears · are wear
+They ___ hoods every day. → **wear** · wears · are wear
 - wears — *Після `they` потрібно `wear`, без `s`.*
 - are wear — *Кажемо `They wear`, без `are`.*
 

@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-32:word:sunrise; family: word_card -->
 > **sunrise** — світанок. We walk at sunrise. — «Ми ходимо пішки на світанку». Про час, коли сходить сонце.
 
-**2 · Подруга питає, коли ви бігаєте. Скажіть: «Ми бігаємо підтюпцем на світанку»**
+**2 · Подруга питає, коли ви бігаєте. Скажіть: «Щодня ми бігаємо підтюпцем на світанку»**
 <!-- interaction_id: en:lesson-06:session-32:i01; family: phrase_builder -->
-Плитки: `sunrise` `at` `jog` `We` `jogs` → **We jog at sunrise.**
-*(плитка `jogs` зайва: тут потрібно `jog` — `We jog at sunrise.`)*
+Плитки: `sunrise` `at` `jog` `We` `jogs` `every` `day` → **We jog at sunrise every day.**
+*(плитка `jogs` зайва: тут потрібно `jog` — `We jog at sunrise every day.`)*
 
 **3 · Послухайте брата**
 <!-- interaction_id: en:lesson-06:session-32:i02; family: listen_choose -->
@@ -67,9 +67,9 @@
 - He jogs to the hill. — *У записі дія — `walks`, ходить пішки, а в цьому варіанті — `jogs`, бігає підтюпцем.*
 - She walks to the hill. — *У записі перше слово — `He`, він, а в цьому варіанті — `She`, вона.*
 
-**4 · Скажіть про сестру: «Моя сестра телефонує своїй бабусі». Виберіть слово**
+**4 · Скажіть про сестру: «Щодня моя сестра телефонує своїй бабусі». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-32:i03; family: context_gap_grammar -->
-My sister ___ her grandmother. → **calls** · call · calls to
+My sister ___ her grandmother every day. → **calls** · call · calls to
 - call — *Сестра — це `she`, тому потрібно `calls`, з `s`.*
 - calls to — *Після `calls` одразу називаємо людину, без `to`.*
 
@@ -90,18 +90,18 @@ sunrise — світанок · smoothie — смузі · playlist — плей
 <!-- interaction_id: en:lesson-06:session-32:word:playlist; family: word_card -->
 > **playlist** — плейлист. My playlist is new. — «Мій плейлист новий». Про добірку пісень.
 
-**9 · Подруга питає про вашу сестру. Скажіть: «Вона бігає підтюпцем із плейлистом»**
+**9 · Подруга питає про вашу сестру. Скажіть: «Щодня вона бігає підтюпцем із плейлистом»**
 <!-- interaction_id: en:lesson-06:session-32:i06; family: phrase_builder -->
-Плитки: `playlist` `a` `with` `jogs` `She` `jog` → **She jogs with a playlist.**
-*(плитка `jog` зайва: тут потрібно `jogs` — `She jogs with a playlist.`)*
+Плитки: `playlist` `a` `with` `jogs` `She` `jog` `every` `day` → **She jogs with a playlist every day.**
+*(плитка `jog` зайва: тут потрібно `jogs` — `She jogs with a playlist every day.`)*
 
 **10 · Подруга питає про сусідів. Скажіть: «Вони тренуються на килимку»**
 <!-- interaction_id: en:lesson-06:session-32:i07; family: scripted_repeat_compare -->
 🎙 **They exercise on the mat.**
 
-**11 · Скажіть про себе: «Я тру стіл». Виберіть слово**
+**11 · Скажіть про себе: «Щодня я тру стіл». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-32:i08; family: context_gap_grammar -->
-I ___ the table. → **scrub** · scrubs · am scrub
+I ___ the table every day. → **scrub** · scrubs · am scrub
 - scrubs — *Після `I` потрібно `scrub`, без `s`.*
 - am scrub — *Кажемо `I scrub`, без `am`.*
 

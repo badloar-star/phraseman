@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-12:word:paint; family: word_card -->
 > **paint** — рисовать красками. We paint at home. — «Мы рисуем красками дома». О рисовании красками, а не карандашом. После I, you, we, they — без s.
 
-**2 · Преподавательница спрашивает, где вы рисуете красками. Скажите: «Мы рисуем красками здесь»**
+**2 · Преподавательница спрашивает, где вы рисуете красками. Скажите: «Каждый день мы рисуем красками здесь»**
 <!-- interaction_id: en:lesson-06:session-12:i01; family: phrase_builder -->
-Плитки: `paint` `here` `We` `are` → **We paint here.**
-*(плитка `are` лишняя: здесь нужно `paint` — `We paint here.`)*
+Плитки: `paint` `here` `We` `are` `every` `day` → **We paint here every day.**
+*(плитка `are` лишняя: здесь нужно `paint` — `We paint here every day.`)*
 
 **3 · Карточка слова — studio**
 <!-- interaction_id: en:lesson-06:session-12:word:studio; family: word_card -->
@@ -71,9 +71,9 @@
 - I paint in the studio. — *В записи последние слова — `at home`, дома, а в этом варианте — `in the studio`, в мастерской.*
 - We paint at home. — *В записи первое слово — `I`, я, а в этом варианте — `We`, мы.*
 
-**5 · Скажите о группе: «Они рисуют красками в мастерской». Выберите слово**
+**5 · Скажите о группе: «Каждый день они рисуют красками в мастерской». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-12:i03; family: context_gap_grammar -->
-They ___ in the studio. → **paint** · paints · are paint
+They ___ in the studio every day. → **paint** · paints · are paint
 - paints — *После `they` — `paint`, без `s`.*
 - are paint — *Говорим `They paint`, без `are`.*
 
@@ -133,9 +133,9 @@ canvas — холст · palette — палитра · paint — рисоват�
 <!-- interaction_id: en:lesson-06:session-12:i13; family: scripted_repeat_compare -->
 🎙 **We paint at home.**
 
-**18 · Скажите о себе: «Я рисую красками дома». Выберите слово**
+**18 · Скажите о себе: «Каждый день я рисую красками дома». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-12:i14; family: context_gap_grammar -->
-I ___ at home. → **paint** · paints · am paint
+I ___ at home every day. → **paint** · paints · am paint
 - paints — *После `I` — `paint`, без `s`.*
 - am paint — *Говорим `I paint`, без `am`.*
 

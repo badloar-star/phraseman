@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-19:word:draw; family: word_card -->
 > **draw** — рисовать. My son draws at home. — «Мой сын рисует дома». Когда человек рисует карандашом или ручкой.
 
-**2 · Подруга спрашивает, что делает ваша дочь за столом. Скажите: «Она рисует за столом»**
+**2 · Подруга спрашивает, что делает ваша дочь за столом. Скажите: «Каждый день она рисует за столом»**
 <!-- interaction_id: en:lesson-06:session-19:i01; family: phrase_builder -->
-Плитки: `draws` `at` `the` `table` `She` `draw` → **She draws at the table.**
-*(плитка `draw` лишняя: здесь нужно `draws` — `She draws at the table.`)*
+Плитки: `draws` `at` `the` `table` `She` `draw` `every` `day` → **She draws at the table every day.**
+*(плитка `draw` лишняя: здесь нужно `draws` — `She draws at the table every day.`)*
 
 **3 · Карточка слова — listen**
 <!-- interaction_id: en:lesson-06:session-19:word:listen; family: word_card -->
@@ -94,18 +94,18 @@ draw — рисовать карандашом · listen — слушать · l
 🔊 *He asks the teacher.* Плитки: `asks` `the` `teacher` `He` `ask` → **He asks the teacher.**
 *(плитка `ask` лишняя: здесь нужно `asks` — `He asks the teacher.`)*
 
-**10 · Учительница спрашивает, что делает ваша дочь в школе. Скажите: «Она изучает английский»**
+**10 · Учительница спрашивает, что делает ваша дочь в школе. Скажите: «Каждый день она изучает английский»**
 <!-- interaction_id: en:lesson-06:session-19:i06; family: phrase_builder -->
-Плитки: `learns` `English` `She` `learn` → **She learns English.**
-*(плитка `learn` лишняя: здесь нужно `learns` — `She learns English.`)*
+Плитки: `learns` `English` `She` `learn` `every` `day` → **She learns English every day.**
+*(плитка `learn` лишняя: здесь нужно `learns` — `She learns English every day.`)*
 
 **11 · Подруга спрашивает, как прошёл урок. Скажите: «Урок трудный»**
 <!-- interaction_id: en:lesson-06:session-19:i07; family: scripted_repeat_compare -->
 🎙 **The lesson is difficult.**
 
-**12 · Скажите о сыне: «Он рисует за столом». Выберите слово**
+**12 · Скажите о сыне: «Каждый день он рисует за столом». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-19:i08; family: context_gap_grammar -->
-He ___ at the table. → **draws** · draw · is draws
+He ___ at the table every day. → **draws** · draw · is draws
 - draw — *После `he` — `draws`, с `s`.*
 - is draws — *Говорим `He draws`, без `is`.*
 
@@ -133,9 +133,9 @@ lesson — урок · ask — спрашивать · draw — рисовать
 <!-- interaction_id: en:lesson-06:session-19:i13; family: scripted_repeat_compare -->
 🎙 **She listens to the teacher.**
 
-**18 · Скажите о дочери: «Она спрашивает учительницу». Выберите слово**
+**18 · Скажите о дочери: «Каждый день она спрашивает учительницу». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-19:i14; family: context_gap_grammar -->
-She ___ the teacher. → **asks** · ask · is asks
+She ___ the teacher every day. → **asks** · ask · is asks
 - ask — *После `she` — `asks`, с `s`.*
 - is asks — *Говорим `She asks`, без `is`.*
 

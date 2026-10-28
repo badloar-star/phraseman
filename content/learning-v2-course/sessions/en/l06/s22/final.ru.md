@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-22:word:read; family: word_card -->
 > **read** — читать. My brother reads in the armchair. — «Мой брат читает в кресле». Когда человек читает книгу или текст.
 
-**2 · Подруга спрашивает, что делает ваш брат в кресле. Скажите: «Он читает в кресле»**
+**2 · Подруга спрашивает, что делает ваш брат в кресле. Скажите: «Каждый день он читает в кресле»**
 <!-- interaction_id: en:lesson-06:session-22:i01; family: phrase_builder -->
-Плитки: `reads` `in` `the` `armchair` `He` `read` → **He reads in the armchair.**
-*(плитка `read` лишняя: здесь нужно `reads` — `He reads in the armchair.`)*
+Плитки: `reads` `in` `the` `armchair` `He` `read` `every` `day` → **He reads in the armchair every day.**
+*(плитка `read` лишняя: здесь нужно `reads` — `He reads in the armchair every day.`)*
 
 **3 · Карточка слова — yawn**
 <!-- interaction_id: en:lesson-06:session-22:word:yawn; family: word_card -->
@@ -94,18 +94,18 @@ read — читать · yawn — зевать · chapter — глава · book
 🔊 *The bookmark is red.* Плитки: `is` `red` `bookmark` `The` `are` → **The bookmark is red.**
 *(плитка `are` лишняя: здесь нужно `is` — `The bookmark is red.`)*
 
-**10 · Подруга спрашивает, что делает ваш брат. Скажите: «Он смеётся над шуткой»**
+**10 · Подруга спрашивает, что делает ваш брат. Скажите: «Каждый день он смеётся над шуткой»**
 <!-- interaction_id: en:lesson-06:session-22:i06; family: phrase_builder -->
-Плитки: `laughs` `at` `the` `joke` `He` `laugh` → **He laughs at the joke.**
-*(плитка `laugh` лишняя: здесь нужно `laughs` — `He laughs at the joke.`)*
+Плитки: `laughs` `at` `the` `joke` `He` `laugh` `every` `day` → **He laughs at the joke every day.**
+*(плитка `laugh` лишняя: здесь нужно `laughs` — `He laughs at the joke every day.`)*
 
 **11 · Подруга спрашивает про книгу. Скажите: «Глава длинная»**
 <!-- interaction_id: en:lesson-06:session-22:i07; family: scripted_repeat_compare -->
 🎙 **The chapter is long.**
 
-**12 · Скажите о брате: «Он читает в кресле». Выберите слово**
+**12 · Скажите о брате: «Каждый день он читает в кресле». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-22:i08; family: context_gap_grammar -->
-He ___ in the armchair. → **reads** · read · is reads
+He ___ in the armchair every day. → **reads** · read · is reads
 - read — *После `he` — `reads`, с `s`.*
 - is reads — *Говорим `He reads`, без `is`.*
 
@@ -133,9 +133,9 @@ bookmark — закладка · chapter — глава · laugh — смеят�
 <!-- interaction_id: en:lesson-06:session-22:i13; family: scripted_repeat_compare -->
 🎙 **He yawns in class.**
 
-**18 · Скажите о соседке: «Она смеётся над шуткой». Выберите слово**
+**18 · Скажите о соседке: «Каждый день она смеётся над шуткой». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-22:i14; family: context_gap_grammar -->
-She ___ at the joke. → **laughs** · laugh · is laughs
+She ___ at the joke every day. → **laughs** · laugh · is laughs
 - laugh — *После `she` — `laughs`, с `s`.*
 - is laughs — *Говорим `She laughs`, без `is`.*
 

@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-13:word:swim; family: word_card -->
 > **swim** — плавать. They swim in the pool. — «Они плавают в бассейне». О движении в воде своими силами. После I, you, we, they — без s.
 
-**2 · Брат спрашивает, где вы плаваете. Скажите: «Я плаваю в этом бассейне»**
+**2 · Брат спрашивает, где вы плаваете. Скажите: «Каждый день я плаваю в этом бассейне»**
 <!-- interaction_id: en:lesson-06:session-13:i01; family: phrase_builder -->
-Плитки: `swim` `in` `this` `pool` `I` `am` → **I swim in this pool.**
-*(плитка `am` лишняя: здесь нужно `swim` — `I swim in this pool.`)*
+Плитки: `swim` `in` `this` `pool` `I` `am` `every` `day` → **I swim in this pool every day.**
+*(плитка `am` лишняя: здесь нужно `swim` — `I swim in this pool every day.`)*
 
 **3 · Послушайте брата**
 <!-- interaction_id: en:lesson-06:session-13:i02; family: listen_choose -->
@@ -67,9 +67,9 @@
 - They swim in the pool. — *В записи первое слово — `I`, я, а в этом варианте — `They`, они.*
 - I swim at the pool. — *В записи плавают `in`, в бассейне, а в этом варианте — `at`, у бассейна.*
 
-**4 · Скажите о людях в бассейне: «Они плавают в бассейне». Выберите слово**
+**4 · Скажите о людях в бассейне: «Каждый день они плавают в бассейне». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-13:i03; family: context_gap_grammar -->
-They ___ in the pool. → **swim** · swims · are swim
+They ___ in the pool every day. → **swim** · swims · are swim
 - swims — *После `they` — `swim`, без `s`.*
 - are swim — *Говорим `They swim`, без `are`.*
 
@@ -133,9 +133,9 @@ float — доска для плавания · trunks — плавки · swim 
 <!-- interaction_id: en:lesson-06:session-13:i13; family: scripted_repeat_compare -->
 🎙 **They swim in lane two.**
 
-**18 · Скажите о себе и брате: «Мы плаваем в этом бассейне». Выберите слово**
+**18 · Скажите о себе и брате: «Каждый день мы плаваем в этом бассейне». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-13:i14; family: context_gap_grammar -->
-We ___ in this pool. → **swim** · swims · are swim
+We ___ in this pool every day. → **swim** · swims · are swim
 - swims — *После `we` — `swim`, без `s`.*
 - are swim — *Говорим `We swim`, без `are`.*
 

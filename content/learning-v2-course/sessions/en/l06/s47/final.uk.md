@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-47:word:snore; family: word_card -->
 > **snore** — хропти. He snores in the tent. — «Він хропе в наметі». Про шумне дихання уві сні.
 
-**2 · Друг питає про вас із братом. Скажіть: «Ми хропемо в наметі»**
+**2 · Друг питає про вас із братом. Скажіть: «Щоночі ми хропемо в наметі»**
 <!-- interaction_id: en:lesson-06:session-47:i01; family: phrase_builder -->
-Плитки: `in` `the` `tent` `snore` `We` `snores` → **We snore in the tent.**
-*(плитка `snores` зайва: тут потрібно `snore` — `We snore in the tent.`)*
+Плитки: `in` `the` `tent` `snore` `We` `snores` `every` `night` → **We snore in the tent every night.**
+*(плитка `snores` зайва: тут потрібно `snore` — `We snore in the tent every night.`)*
 
 **3 · Послухайте друга**
 <!-- interaction_id: en:lesson-06:session-47:i02; family: listen_choose -->
@@ -67,9 +67,9 @@
 - He snores in the hammock. — *У записі останнє слово — `tent`, намет, а в цьому варіанті — `hammock`, гамак.*
 - She snores in the tent. — *У записі перше слово — `He`, він, а в цьому варіанті — `She`, вона.*
 
-**4 · Скажіть про брата: «Він хропе в наметі». Виберіть слово**
+**4 · Скажіть про брата: «Щоночі він хропе в наметі». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-47:i03; family: context_gap_grammar -->
-He ___ in the tent. → **snores** · snore · is snores
+He ___ in the tent every night. → **snores** · snore · is snores
 - snore — *Після `he` потрібно `snores`, з `s`.*
 - is snores — *Кажемо `He snores`, без `is`.*
 
@@ -99,9 +99,9 @@ snore — хропти · trail — стежка · summit — вершина ·
 <!-- interaction_id: en:lesson-06:session-47:i07; family: scripted_repeat_compare -->
 🎙 **My brother walks on the trail.**
 
-**11 · Скажіть про себе: «Я хроплю в наметі». Виберіть слово**
+**11 · Скажіть про себе: «Щоночі я хроплю в наметі». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-47:i08; family: context_gap_grammar -->
-I ___ in the tent. → **snore** · snores · am snore
+I ___ in the tent every night. → **snore** · snores · am snore
 - snores — *Після `I` потрібно `snore`, без `s`.*
 - am snore — *Кажемо `I snore`, без `am`.*
 

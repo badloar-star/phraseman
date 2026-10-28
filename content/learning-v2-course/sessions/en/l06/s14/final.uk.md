@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-14:word:laugh; family: word_card -->
 > **laugh** — сміятися. They laugh at the joke. — «Вони сміються з жарту». Про веселий звук, коли смішно. Після I, you, we, they — без s.
 
-**2 · Ви розповідаєте про відвідувачів, які слухають жарти. Скажіть: «Вони сміються разом»**
+**2 · Ви розповідаєте про відвідувачів, які слухають жарти. Скажіть: «Щодня вони сміються разом»**
 <!-- interaction_id: en:lesson-06:session-14:i01; family: phrase_builder -->
-Плитки: `laugh` `together` `They` `are` → **They laugh together.**
-*(плитка `are` зайва: тут потрібно `laugh` — `They laugh together.`)*
+Плитки: `laugh` `together` `They` `are` `every` `day` → **They laugh together every day.**
+*(плитка `are` зайва: тут потрібно `laugh` — `They laugh together every day.`)*
 
 **3 · Картка слова — joke**
 <!-- interaction_id: en:lesson-06:session-14:word:joke; family: word_card -->
@@ -71,9 +71,9 @@
 - They laugh at the jokes. — *У записі `joke` — один жарт, а в цьому варіанті `jokes` — кілька.*
 - We laugh at the joke. — *У записі перше слово — `They`, вони, а в цьому варіанті — `We`, ми.*
 
-**5 · Скажіть про себе й сусідку: «Ми сміємося разом». Виберіть слово**
+**5 · Скажіть про себе й сусідку: «Щодня ми сміємося разом». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-14:i03; family: context_gap_grammar -->
-We ___ together. → **laugh** · laughs · are laugh
+We ___ together every day. → **laugh** · laughs · are laugh
 - laughs — *Після `we` — `laugh`, без `s`.*
 - are laugh — *Кажемо `We laugh`, без `are`.*
 
@@ -133,9 +133,9 @@ joke — жарт · laundry — білизна для прання · detergent
 <!-- interaction_id: en:lesson-06:session-14:i13; family: scripted_repeat_compare -->
 🎙 **I laugh at the joke.**
 
-**18 · Скажіть сусідці: «Ти смієшся з мого жарту». Виберіть слово**
+**18 · Скажіть сусідці: «Щодня ти смієшся з мого жарту». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-14:i14; family: context_gap_grammar -->
-You ___ at my joke. → **laugh** · laughs · are laugh
+You ___ at my joke every day. → **laugh** · laughs · are laugh
 - laughs — *Після `you` — `laugh`, без `s`.*
 - are laugh — *Кажемо `You laugh`, без `are`.*
 

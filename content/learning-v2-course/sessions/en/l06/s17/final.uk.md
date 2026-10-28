@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-17:word:drive; family: word_card -->
 > **drive** — водити машину. My brother drives to work. — «Мій брат їздить на роботу за кермом». Коли людина сама керує машиною.
 
-**2 · Подруга питає, як їздить на роботу ваша сестра. Скажіть: «Вона їздить на роботу за кермом»**
+**2 · Подруга питає, як їздить на роботу ваша сестра. Скажіть: «Щодня вона їздить на роботу за кермом»**
 <!-- interaction_id: en:lesson-06:session-17:i01; family: phrase_builder -->
-Плитки: `work` `to` `drives` `She` `drive` → **She drives to work.**
-*(плитка `drive` зайва: тут потрібно `drives` — `She drives to work.`)*
+Плитки: `work` `to` `drives` `She` `drive` `every` `day` → **She drives to work every day.**
+*(плитка `drive` зайва: тут потрібно `drives` — `She drives to work every day.`)*
 
 **3 · Картка слова — wait**
 <!-- interaction_id: en:lesson-06:session-17:word:wait; family: word_card -->
@@ -94,10 +94,10 @@ drive — водити машину · wait — чекати · mechanic — а�
 🔊 *The engine is loud.* Плитки: `is` `loud` `engine` `The` `are` → **The engine is loud.**
 *(плитка `are` зайва: тут потрібно `is` — `The engine is loud.`)*
 
-**10 · Подруга питає, коли починає роботу ваша сестра. Скажіть: «Вона починає о четвертій»**
+**10 · Подруга питає, коли починає роботу ваша сестра. Скажіть: «Щодня вона починає о четвертій»**
 <!-- interaction_id: en:lesson-06:session-17:i06; family: phrase_builder -->
-Плитки: `four` `at` `starts` `She` `start` → **She starts at four.**
-*(плитка `start` зайва: тут потрібно `starts` — `She starts at four.`)*
+Плитки: `four` `at` `starts` `She` `start` `every` `day` → **She starts at four every day.**
+*(плитка `start` зайва: тут потрібно `starts` — `She starts at four every day.`)*
 
 **11 · Сусідка питає, ким працює ваш дядько. Скажіть: «Він автомеханік»**
 <!-- interaction_id: en:lesson-06:session-17:i07; family: scripted_repeat_compare -->
@@ -133,9 +133,9 @@ mechanic — автомеханік · engine — двигун · drive — во
 <!-- interaction_id: en:lesson-06:session-17:i13; family: scripted_repeat_compare -->
 🎙 **He drives to work.**
 
-**18 · Скажіть про сестру на зупинці: «Вона чекає на зупинці». Виберіть слово**
+**18 · Скажіть про сестру на зупинці: «Щодня вона чекає на зупинці». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-17:i14; family: context_gap_grammar -->
-She ___ at the bus stop. → **waits** · wait · is waits
+She ___ at the bus stop every day. → **waits** · wait · is waits
 - wait — *Після `she` — `waits`, з `s`.*
 - is waits — *Кажемо `She waits`, без `is`.*
 

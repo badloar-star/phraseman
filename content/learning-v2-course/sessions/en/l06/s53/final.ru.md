@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-53:word:overalls; family: word_card -->
 > **overalls** — рабочий комбинезон. They wear overalls. — «Они носят комбинезоны». Куртка и брюки в одном целом, чтобы не пачкать свою одежду. По-английски слово стоит во множественном числе.
 
-**2 · Друг спрашивает о рабочих. Скажите: «Они носят комбинезоны»**
+**2 · Друг спрашивает о рабочих. Скажите: «Каждый день они носят комбинезоны»**
 <!-- interaction_id: en:lesson-06:session-53:i01; family: phrase_builder -->
-Плитки: `overalls` `wear` `They` `wears` → **They wear overalls.**
-*(плитка `wears` лишняя: здесь нужно `wear` — `They wear overalls.`)*
+Плитки: `overalls` `wear` `They` `wears` `every` `day` → **They wear overalls every day.**
+*(плитка `wears` лишняя: здесь нужно `wear` — `They wear overalls every day.`)*
 
 **3 · Карточка слова — earpiece**
 <!-- interaction_id: en:lesson-06:session-53:word:earpiece; family: word_card -->
@@ -71,9 +71,9 @@
 - She wears an apron. — *В записи последнее слово — `earpiece`, гарнитура, а в этом варианте — `apron`, фартук.*
 - He wears an earpiece. — *В записи первое слово — `She`, она, а в этом варианте — `He`, он.*
 
-**5 · Скажите об охраннице: «Она носит гарнитуру». Выберите слово**
+**5 · Скажите об охраннице: «Каждый день она носит гарнитуру». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-53:i03; family: context_gap_grammar -->
-She wears ___ earpiece. → **an** · a · are
+She wears ___ earpiece every day. → **an** · a · are
 - a — *Слово `earpiece` начинается с гласного звука, поэтому нужно `an`.*
 - are — *Перед названием одной вещи здесь нужно `an`.*
 
@@ -90,10 +90,10 @@ overalls — рабочий комбинезон · earpiece — ушная га
 🔊 *He wears a visor.* Плитки: `visor` `a` `wears` `He` `wear` → **He wears a visor.**
 *(плитка `wear` лишняя: здесь нужно `wears` — `He wears a visor.`)*
 
-**9 · Друг спрашивает о форме. Скажите: «Она носит форму»**
+**9 · Друг спрашивает о форме. Скажите: «Каждый день она носит форму»**
 <!-- interaction_id: en:lesson-06:session-53:i06; family: phrase_builder -->
-Плитки: `uniform` `a` `wears` `She` `wear` → **She wears a uniform.**
-*(плитка `wear` лишняя: здесь нужно `wears` — `She wears a uniform.`)*
+Плитки: `uniform` `a` `wears` `She` `wear` `every` `day` → **She wears a uniform every day.**
+*(плитка `wear` лишняя: здесь нужно `wears` — `She wears a uniform every day.`)*
 
 **10 · Карточка слова — stethoscope**
 <!-- interaction_id: en:lesson-06:session-53:word:stethoscope; family: word_card -->
@@ -103,9 +103,9 @@ overalls — рабочий комбинезон · earpiece — ушная га
 <!-- interaction_id: en:lesson-06:session-53:i07; family: scripted_repeat_compare -->
 🎙 **Whose stethoscope is this?**
 
-**12 · Скажите о рабочих: «Они носят козырьки». Выберите слово**
+**12 · Скажите о рабочих: «Каждый день они носят козырьки». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-53:i08; family: context_gap_grammar -->
-They ___ visors. → **wear** · wears · are wear
+They ___ visors every day. → **wear** · wears · are wear
 - wears — *После `they` нужно `wear`, без `s`.*
 - are wear — *Говорим `They wear`, без `are`.*
 

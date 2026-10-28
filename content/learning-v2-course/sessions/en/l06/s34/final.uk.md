@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-34:word:drink; family: word_card -->
 > **drink** — пити. We drink tea. — «Ми п’ємо чай». Про те, що роблять, коли хочеться пити.
 
-**2 · Подруга питає про вас із братом. Скажіть: «Ми п’ємо чай»**
+**2 · Подруга питає про вас із братом. Скажіть: «Щодня ми п’ємо чай»**
 <!-- interaction_id: en:lesson-06:session-34:i01; family: phrase_builder -->
-Плитки: `tea` `drink` `We` `drinks` → **We drink tea.**
-*(плитка `drinks` зайва: тут потрібно `drink` — `We drink tea.`)*
+Плитки: `tea` `drink` `We` `drinks` `every` `day` → **We drink tea every day.**
+*(плитка `drinks` зайва: тут потрібно `drink` — `We drink tea every day.`)*
 
 **3 · Картка слова — lemonade**
 <!-- interaction_id: en:lesson-06:session-34:word:lemonade; family: word_card -->
@@ -71,9 +71,9 @@
 - She drinks water. — *У записі останнє слово — `lemonade`, лимонад, а в цьому варіанті — `water`, вода.*
 - He drinks lemonade. — *У записі перше слово — `She`, вона, а в цьому варіанті — `He`, він.*
 
-**5 · Скажіть про брата: «Мій брат п’є молоко». Виберіть слово**
+**5 · Скажіть про брата: «Щодня мій брат п’є молоко». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-34:i03; family: context_gap_grammar -->
-My brother ___ milk. → **drinks** · drink · is drinks
+My brother ___ milk every day. → **drinks** · drink · is drinks
 - drink — *Брат — це `he`, тому потрібно `drinks`, з `s`.*
 - is drinks — *Кажемо `drinks`, без `is`.*
 
@@ -99,9 +99,9 @@ drink — пити · lemonade — лимонад · straw — трубочка 
 <!-- interaction_id: en:lesson-06:session-34:i07; family: scripted_repeat_compare -->
 🎙 **He drinks tea.**
 
-**11 · Скажіть про себе: «Я п’ю сік». Виберіть слово**
+**11 · Скажіть про себе: «Щодня я п’ю сік». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-34:i08; family: context_gap_grammar -->
-I ___ juice. → **drink** · drinks · am drink
+I ___ juice every day. → **drink** · drinks · am drink
 - drinks — *Після `I` потрібно `drink`, без `s`.*
 - am drink — *Кажемо `I drink`, без `am`.*
 

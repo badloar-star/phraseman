@@ -63,9 +63,9 @@
 - She studies in the garden. — *В записи последнее слово — `library`, библиотека, а в этом варианте — `garden`, сад.*
 - He studies in the library. — *В записи первое слово — `She`, она, а в этом варианте — `He`, он.*
 
-**3 · Скажите о брате: «Мой брат ездит на работу на велосипеде». Выберите слово**
+**3 · Скажите о брате: «Каждый день мой брат ездит на работу на велосипеде». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-40:i03; family: context_gap_grammar -->
-My brother ___ to work. → **cycles** · cycle · is cycles
+My brother ___ to work every day. → **cycles** · cycle · is cycles
 - cycle — *Брат — это `he`, поэтому нужно `cycles`, с `s`.*
 - is cycles — *Говорим `cycles`, без `is`.*
 
@@ -95,9 +95,9 @@ newcomer — новичок в доме · invitation — приглашение
 <!-- interaction_id: en:lesson-06:session-40:i07; family: scripted_repeat_compare -->
 🎙 **She lives near the library.**
 
-**10 · Скажите о себе: «Я занимаюсь в библиотеке». Выберите слово**
+**10 · Скажите о себе: «Каждый день я занимаюсь в библиотеке». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-40:i08; family: context_gap_grammar -->
-I ___ in the library. → **study** · studies · am study
+I ___ in the library every day. → **study** · studies · am study
 - studies — *После `I` нужно `study`, без изменений.*
 - am study — *Говорим `I study`, без `am`.*
 

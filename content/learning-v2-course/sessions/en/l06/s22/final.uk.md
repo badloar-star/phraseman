@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-22:word:read; family: word_card -->
 > **read** — читати. My brother reads in the armchair. — «Мій брат читає в кріслі». Коли людина читає книжку чи текст.
 
-**2 · Подруга питає, що робить ваш брат у кріслі. Скажіть: «Він читає в кріслі»**
+**2 · Подруга питає, що робить ваш брат у кріслі. Скажіть: «Щодня він читає в кріслі»**
 <!-- interaction_id: en:lesson-06:session-22:i01; family: phrase_builder -->
-Плитки: `reads` `in` `the` `armchair` `He` `read` → **He reads in the armchair.**
-*(плитка `read` зайва: тут потрібно `reads` — `He reads in the armchair.`)*
+Плитки: `reads` `in` `the` `armchair` `He` `read` `every` `day` → **He reads in the armchair every day.**
+*(плитка `read` зайва: тут потрібно `reads` — `He reads in the armchair every day.`)*
 
 **3 · Картка слова — yawn**
 <!-- interaction_id: en:lesson-06:session-22:word:yawn; family: word_card -->
@@ -94,18 +94,18 @@ read — читати · yawn — позіхати · chapter — розділ �
 🔊 *The bookmark is red.* Плитки: `is` `red` `bookmark` `The` `are` → **The bookmark is red.**
 *(плитка `are` зайва: тут потрібно `is` — `The bookmark is red.`)*
 
-**10 · Подруга питає, що робить ваш брат. Скажіть: «Він сміється з жарту»**
+**10 · Подруга питає, що робить ваш брат. Скажіть: «Щодня він сміється з жарту»**
 <!-- interaction_id: en:lesson-06:session-22:i06; family: phrase_builder -->
-Плитки: `laughs` `at` `the` `joke` `He` `laugh` → **He laughs at the joke.**
-*(плитка `laugh` зайва: тут потрібно `laughs` — `He laughs at the joke.`)*
+Плитки: `laughs` `at` `the` `joke` `He` `laugh` `every` `day` → **He laughs at the joke every day.**
+*(плитка `laugh` зайва: тут потрібно `laughs` — `He laughs at the joke every day.`)*
 
 **11 · Подруга питає про книжку. Скажіть: «Розділ довгий»**
 <!-- interaction_id: en:lesson-06:session-22:i07; family: scripted_repeat_compare -->
 🎙 **The chapter is long.**
 
-**12 · Скажіть про брата: «Він читає в кріслі». Виберіть слово**
+**12 · Скажіть про брата: «Щодня він читає в кріслі». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-22:i08; family: context_gap_grammar -->
-He ___ in the armchair. → **reads** · read · is reads
+He ___ in the armchair every day. → **reads** · read · is reads
 - read — *Після `he` — `reads`, з `s`.*
 - is reads — *Кажемо `He reads`, без `is`.*
 
@@ -133,9 +133,9 @@ bookmark — закладка · chapter — розділ · laugh — смія�
 <!-- interaction_id: en:lesson-06:session-22:i13; family: scripted_repeat_compare -->
 🎙 **He yawns in class.**
 
-**18 · Скажіть про сусідку: «Вона сміється з жарту». Виберіть слово**
+**18 · Скажіть про сусідку: «Щодня вона сміється з жарту». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-22:i14; family: context_gap_grammar -->
-She ___ at the joke. → **laughs** · laugh · is laughs
+She ___ at the joke every day. → **laughs** · laugh · is laughs
 - laugh — *Після `she` — `laughs`, з `s`.*
 - is laughs — *Кажемо `She laughs`, без `is`.*
 

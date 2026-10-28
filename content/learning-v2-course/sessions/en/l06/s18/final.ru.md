@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-18:word:smile; family: word_card -->
 > **smile** — улыбаться. My sister smiles in the park. — «Моя сестра улыбается в парке». Когда человек улыбается.
 
-**2 · Подруга спрашивает, что делает ваш брат. Скажите: «Он улыбается малышу»**
+**2 · Подруга спрашивает, что делает ваш брат. Скажите: «Каждый день он улыбается малышу»**
 <!-- interaction_id: en:lesson-06:session-18:i01; family: phrase_builder -->
-Плитки: `smiles` `at` `the` `baby` `He` `smile` → **He smiles at the baby.**
-*(плитка `smile` лишняя: здесь нужно `smiles` — `He smiles at the baby.`)*
+Плитки: `smiles` `at` `the` `baby` `He` `smile` `every` `day` → **He smiles at the baby every day.**
+*(плитка `smile` лишняя: здесь нужно `smiles` — `He smiles at the baby every day.`)*
 
 **3 · Карточка слова — cough**
 <!-- interaction_id: en:lesson-06:session-18:word:cough; family: word_card -->
@@ -94,18 +94,18 @@ smile — улыбаться · cough — кашлять · throat — горл�
 🔊 *The syrup is sweet.* Плитки: `is` `sweet` `syrup` `The` `are` → **The syrup is sweet.**
 *(плитка `are` лишняя: здесь нужно `is` — `The syrup is sweet.`)*
 
-**10 · Учительница спрашивает, что делает ваша сестра дома. Скажите: «Она практикует английский»**
+**10 · Учительница спрашивает, что делает ваша сестра дома. Скажите: «Каждый день она практикует английский»**
 <!-- interaction_id: en:lesson-06:session-18:i06; family: phrase_builder -->
-Плитки: `practices` `English` `She` `practice` → **She practices English.**
-*(плитка `practice` лишняя: здесь нужно `practices` — `She practices English.`)*
+Плитки: `practices` `English` `She` `practice` `every` `day` → **She practices English every day.**
+*(плитка `practice` лишняя: здесь нужно `practices` — `She practices English every day.`)*
 
 **11 · Сестра спрашивает, что болит у брата. Скажите: «У него болит горло»**
 <!-- interaction_id: en:lesson-06:session-18:i07; family: scripted_repeat_compare -->
 🎙 **His throat is sore.**
 
-**12 · Скажите о брате: «Он улыбается малышу». Выберите слово**
+**12 · Скажите о брате: «Каждый день он улыбается малышу». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-18:i08; family: context_gap_grammar -->
-He ___ at the baby. → **smiles** · smile · is smiles
+He ___ at the baby every day. → **smiles** · smile · is smiles
 - smile — *После `he` — `smiles`, с `s`.*
 - is smiles — *Говорим `He smiles`, без `is`.*
 
@@ -133,9 +133,9 @@ smile — улыбаться · cough — кашлять · syrup — сироп
 <!-- interaction_id: en:lesson-06:session-18:i13; family: scripted_repeat_compare -->
 🎙 **He coughs.**
 
-**18 · Скажите о брате: «Он кашляет дома». Выберите слово**
+**18 · Скажите о брате: «Каждый день он кашляет дома». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-18:i14; family: context_gap_grammar -->
-He ___ at home. → **coughs** · cough · is coughs
+He ___ at home every day. → **coughs** · cough · is coughs
 - cough — *После `he` — `coughs`, с `s`.*
 - is coughs — *Говорим `He coughs`, без `is`.*
 

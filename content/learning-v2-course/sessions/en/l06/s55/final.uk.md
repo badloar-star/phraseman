@@ -86,10 +86,10 @@ artist — художник · portrait — портрет · sketch — нач�
 🔊 *The portrait is here.* Плитки: `here` `is` `portrait` `The` `are` → **The portrait is here.**
 *(плитка `are` зайва: тут потрібно `is` — `The portrait is here.`)*
 
-**8 · Друг питає, що малює художник біля фонтану. Скажіть: «Цей художник малює портрети»**
+**8 · Друг питає, що малює художник біля фонтану. Скажіть: «Щодня цей художник малює портрети»**
 <!-- interaction_id: en:lesson-06:session-55:i06; family: phrase_builder -->
-Плитки: `portraits` `paints` `artist` `This` `paint` → **This artist paints portraits.**
-*(плитка `paint` зайва: тут потрібно `paints` — `This artist paints portraits.`)*
+Плитки: `portraits` `paints` `artist` `This` `paint` `every` `day` → **This artist paints portraits every day.**
+*(плитка `paint` зайва: тут потрібно `paints` — `This artist paints portraits every day.`)*
 
 **9 · Картка слова — sketch**
 <!-- interaction_id: en:lesson-06:session-55:word:sketch; family: word_card -->
@@ -99,9 +99,9 @@ artist — художник · portrait — портрет · sketch — нач�
 <!-- interaction_id: en:lesson-06:session-55:i07; family: scripted_repeat_compare -->
 🎙 **Whose sketch is this?**
 
-**11 · Розкажіть про знайомих художників: «Вони малюють портрети». Виберіть слово**
+**11 · Розкажіть про знайомих художників: «Щодня вони малюють портрети». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-55:i08; family: context_gap_grammar -->
-They ___ portraits. → **paint** · paints · are paint
+They ___ portraits every day. → **paint** · paints · are paint
 - paints — *Після `they` потрібно `paint`, без `s`.*
 - are paint — *Потрібно `They paint`, без `are`.*
 
@@ -133,9 +133,9 @@ gallery — галерея · artist — художник · portrait — пор
 <!-- interaction_id: en:lesson-06:session-55:i13; family: scripted_repeat_compare -->
 🎙 **The gallery is next to the library.**
 
-**18 · Скажіть про сусідку: «Вона малює портрети». Виберіть слово**
+**18 · Скажіть про сусідку: «Щодня вона малює портрети». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-55:i14; family: context_gap_grammar -->
-My neighbour ___ portraits. → **paints** · paint · is paints
+My neighbour ___ portraits every day. → **paints** · paint · is paints
 - paint — *Сусідка — вона: `My neighbour paints`.*
 - is paints — *Потрібно `My neighbour paints`, без `is`.*
 

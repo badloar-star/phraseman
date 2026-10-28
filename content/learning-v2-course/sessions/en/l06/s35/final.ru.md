@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-35:word:sleep; family: word_card -->
 > **sleep** — спать. We sleep on the sofa. — «Мы спим на диване». О том, что делают ночью в кровати.
 
-**2 · Подруга спрашивает о вас с сестрой. Скажите: «Мы спим здесь»**
+**2 · Подруга спрашивает о вас с сестрой. Скажите: «Каждую ночь мы спим здесь»**
 <!-- interaction_id: en:lesson-06:session-35:i01; family: phrase_builder -->
-Плитки: `here` `sleep` `We` `sleeps` → **We sleep here.**
-*(плитка `sleeps` лишняя: здесь нужно `sleep` — `We sleep here.`)*
+Плитки: `here` `sleep` `We` `sleeps` `every` `night` → **We sleep here every night.**
+*(плитка `sleeps` лишняя: здесь нужно `sleep` — `We sleep here every night.`)*
 
 **3 · Послушайте подругу**
 <!-- interaction_id: en:lesson-06:session-35:i02; family: listen_choose -->
@@ -67,9 +67,9 @@
 - It sleeps on the bed. — *В записи последнее слово — `sofa`, диван, а в этом варианте — `bed`, кровать.*
 - He sleeps on the sofa. — *В записи первое слово — `It`, оно, а в этом варианте — `He`, он.*
 
-**4 · Скажите о брате: «Мой брат спит на диване». Выберите слово**
+**4 · Скажите о брате: «Каждую ночь мой брат спит на диване». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-35:i03; family: context_gap_grammar -->
-My brother ___ on the sofa. → **sleeps** · sleep · is sleeps
+My brother ___ on the sofa every night. → **sleeps** · sleep · is sleeps
 - sleep — *Брат — это `he`, поэтому нужно `sleeps`, с `s`.*
 - is sleeps — *Говорим `sleeps`, без `is`.*
 
@@ -99,9 +99,9 @@ sleep — спать · nap — короткий сон · pyjamas — пижа�
 <!-- interaction_id: en:lesson-06:session-35:i07; family: scripted_repeat_compare -->
 🎙 **She sleeps at home.**
 
-**11 · Скажите о себе: «Я сплю на диване». Выберите слово**
+**11 · Скажите о себе: «Каждую ночь я сплю на диване». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-35:i08; family: context_gap_grammar -->
-I ___ on the sofa. → **sleep** · sleeps · am sleep
+I ___ on the sofa every night. → **sleep** · sleeps · am sleep
 - sleeps — *После `I` нужно `sleep`, без `s`.*
 - am sleep — *Говорим `I sleep`, без `am`.*
 

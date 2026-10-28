@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-04:word:build; family: word_card -->
 > **build** — строить. They build a wall. — «Они строят стену». О том, как из кирпича или блоков ставят стену или дом.
 
-**2 · Сестра смотрит из окна на рабочих. Скажите: «Они строят стену»**
+**2 · Сестра смотрит из окна на рабочих. Скажите: «Каждый день они строят стену»**
 <!-- interaction_id: en:lesson-06:session-04:i01; family: phrase_builder -->
-Плитки: `wall` `a` `build` `They` `are` → **They build a wall.**
-*(плитка `are` лишняя: здесь нужно `build` — `They build a wall.`)*
+Плитки: `wall` `a` `build` `They` `are` `every` `day` → **They build a wall every day.**
+*(плитка `are` лишняя: здесь нужно `build` — `They build a wall every day.`)*
 
 **3 · Карточка слова — dig**
 <!-- interaction_id: en:lesson-06:session-04:word:dig; family: word_card -->
@@ -75,9 +75,9 @@
 <!-- interaction_id: en:lesson-06:session-04:word:mix; family: word_card -->
 > **mix** — мешать, смешивать. They mix the salad. — «Они мешают салат». О том, как соединяют несколько вещей в одну смесь.
 
-**6 · В обед рабочие готовят салат. Скажите, что они его мешают. Выберите слово**
+**6 · В обед рабочие готовят салат. Скажите, что каждый день они его мешают. Выберите слово**
 <!-- interaction_id: en:lesson-06:session-04:i03; family: context_gap_grammar -->
-They ___ the salad. → **mix** · are mix · is mix
+They ___ the salad every day. → **mix** · are mix · is mix
 - are mix — *После `They` сразу ставим `mix`, без `are`.*
 - is mix — *Слово `is` ставится после `he`, `she`, `it`; здесь нужно `They mix`.*
 
@@ -103,9 +103,9 @@ build — строить · dig — копать · mix — мешать, сме
 <!-- interaction_id: en:lesson-06:session-04:i07; family: scripted_repeat_compare -->
 🎙 **They dig in the yard.**
 
-**12 · Рабочие ставят стену новой кладовой. Выберите слово**
+**12 · Каждый день рабочие ставят стену новой кладовой. Выберите слово**
 <!-- interaction_id: en:lesson-06:session-04:i08; family: context_gap_grammar -->
-They ___ a wall. → **build** · are build · is build
+They ___ a wall every day. → **build** · are build · is build
 - are build — *После `They` сразу ставим `build`, без `are`.*
 - is build — *Слово `is` ставится после `he`, `she`, `it`; здесь нужно `They build`.*
 
@@ -124,18 +124,18 @@ dig — копать · cement — цемент · wall — стена · yard �
 🔊 *They carry the cement.* Плитки: `cement` `the` `carry` `They` `We` → **They carry the cement.**
 *(плитка `We` лишняя: здесь нужно `They` — `They carry the cement.`)*
 
-**16 · Рабочие обедают во дворе. Скажите другу: «Они мешают салат в миске»**
+**16 · Рабочие обедают во дворе. Скажите другу: «Каждый день они мешают салат в миске»**
 <!-- interaction_id: en:lesson-06:session-04:i12; family: phrase_builder -->
-Плитки: `salad` `bowl` `the` `a` `in` `mix` `They` `are` → **They mix the salad in a bowl.**
-*(плитка `are` лишняя: здесь нужно `mix` — `They mix the salad in a bowl.`)*
+Плитки: `salad` `bowl` `the` `a` `in` `mix` `They` `are` `every` `day` → **They mix the salad in a bowl every day.**
+*(плитка `are` лишняя: здесь нужно `mix` — `They mix the salad in a bowl every day.`)*
 
 **17 · Друг спрашивает, что делают рабочие в обед. Скажите: «Они мешают салат»**
 <!-- interaction_id: en:lesson-06:session-04:i13; family: scripted_repeat_compare -->
 🎙 **They mix the salad.**
 
-**18 · Рабочие копают яму у ворот. Выберите слово**
+**18 · Каждый день рабочие копают яму у ворот. Выберите слово**
 <!-- interaction_id: en:lesson-06:session-04:i14; family: context_gap_grammar -->
-They ___ in the yard. → **dig** · are dig · is dig
+They ___ in the yard every day. → **dig** · are dig · is dig
 - are dig — *После `They` сразу ставим `dig`, без `are`.*
 - is dig — *Слово `is` ставится после `he`, `she`, `it`; здесь нужно `They dig`.*
 

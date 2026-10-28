@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-15:word:sing; family: word_card -->
 > **sing** — петь. They sing here. — «Они поют здесь». О пении голосом. После I, you, we, they — без s.
 
-**2 · Подруга спрашивает о соседях по хору. Скажите: «Они поют здесь»**
+**2 · Подруга спрашивает о соседях по хору. Скажите: «Каждый день они поют здесь»**
 <!-- interaction_id: en:lesson-06:session-15:i01; family: phrase_builder -->
-Плитки: `sing` `here` `They` `are` → **They sing here.**
-*(плитка `are` лишняя: здесь нужно `sing` — `They sing here.`)*
+Плитки: `sing` `here` `They` `are` `every` `day` → **They sing here every day.**
+*(плитка `are` лишняя: здесь нужно `sing` — `They sing here every day.`)*
 
 **3 · Послушайте подругу**
 <!-- interaction_id: en:lesson-06:session-15:i02; family: listen_choose -->
@@ -67,9 +67,9 @@
 - I sing at the gym. — *В записи последнее слово — `home`, дом, а в этом варианте — `gym`, зал.*
 - We sing at home. — *В записи первое слово — `I`, я, а в этом варианте — `We`, мы.*
 
-**4 · Скажите о себе и подруге: «Мы поём здесь». Выберите слово**
+**4 · Скажите о себе и подруге: «Каждый день мы поём здесь». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-15:i03; family: context_gap_grammar -->
-We ___ here. → **sing** · sings · are sing
+We ___ here every day. → **sing** · sings · are sing
 - sings — *После `we` — `sing`, без `s`.*
 - are sing — *Говорим `We sing`, без `are`.*
 
@@ -133,9 +133,9 @@ choir — хор · lyrics — слова песни · sing — петь · son
 <!-- interaction_id: en:lesson-06:session-15:i13; family: scripted_repeat_compare -->
 🎙 **We sing at home.**
 
-**18 · Скажите подруге: «Ты поёшь песню». Выберите слово**
+**18 · Скажите подруге: «Каждый день ты поёшь песню». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-15:i14; family: context_gap_grammar -->
-You ___ a song. → **sing** · sings · are sing
+You ___ a song every day. → **sing** · sings · are sing
 - sings — *После `you` — `sing`, без `s`.*
 - are sing — *Говорим `You sing`, без `are`.*
 

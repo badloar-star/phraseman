@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-44:word:feed; family: word_card -->
 > **feed** — кормить. We feed the dog. — «Мы кормим собаку». О том, как человек даёт еду животному.
 
-**2 · Соседка спрашивает о вас с братом. Скажите: «Мы кормим щенка»**
+**2 · Соседка спрашивает о вас с братом. Скажите: «Каждый день мы кормим щенка»**
 <!-- interaction_id: en:lesson-06:session-44:i01; family: phrase_builder -->
-Плитки: `the` `puppy` `feed` `We` `feeds` → **We feed the puppy.**
-*(плитка `feeds` лишняя: здесь нужно `feed` — `We feed the puppy.`)*
+Плитки: `the` `puppy` `feed` `We` `feeds` `every` `day` → **We feed the puppy every day.**
+*(плитка `feeds` лишняя: здесь нужно `feed` — `We feed the puppy every day.`)*
 
 **3 · Послушайте соседку**
 <!-- interaction_id: en:lesson-06:session-44:i02; family: listen_choose -->
@@ -67,9 +67,9 @@
 - He feeds the puppy. — *В записи последнее слово — `dog`, собака, а в этом варианте — `puppy`, щенок.*
 - She feeds the dog. — *В записи первое слово — `He`, он, а в этом варианте — `She`, она.*
 
-**4 · Скажите о брате: «Он кормит собаку». Выберите слово**
+**4 · Скажите о брате: «Каждый день он кормит собаку». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-44:i03; family: context_gap_grammar -->
-He ___ the dog. → **feeds** · feed · is feeds
+He ___ the dog every day. → **feeds** · feed · is feeds
 - feed — *После `he` нужно `feeds`, с `s`.*
 - is feeds — *Говорим `He feeds`, без `is`.*
 
@@ -99,9 +99,9 @@ feed — кормить · bone — кость · kennel — будка · fur �
 <!-- interaction_id: en:lesson-06:session-44:i07; family: scripted_repeat_compare -->
 🎙 **He feeds the dog.**
 
-**11 · Скажите о себе: «Я кормлю щенка». Выберите слово**
+**11 · Скажите о себе: «Каждый день я кормлю щенка». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-44:i08; family: context_gap_grammar -->
-I ___ the puppy. → **feed** · feeds · am feed
+I ___ the puppy every day. → **feed** · feeds · am feed
 - feeds — *После `I` нужно `feed`, без `s`.*
 - am feed — *Говорим `I feed`, без `am`.*
 

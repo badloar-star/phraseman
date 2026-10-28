@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-33:word:study; family: word_card -->
 > **study** — займатися, вчитися. We study in the library. — «Ми займаємося в бібліотеці». Про те, що роблять з підручником і зошитом.
 
-**2 · Подруга кличе вас із братом до кафе. Скажіть: «Ми займаємося вдома»**
+**2 · Подруга кличе вас із братом до кафе. Скажіть: «Щодня ми займаємося вдома»**
 <!-- interaction_id: en:lesson-06:session-33:i01; family: phrase_builder -->
-Плитки: `home` `at` `study` `We` `studies` → **We study at home.**
-*(плитка `studies` зайва: тут потрібно `study` — `We study at home.`)*
+Плитки: `home` `at` `study` `We` `studies` `every` `day` → **We study at home every day.**
+*(плитка `studies` зайва: тут потрібно `study` — `We study at home every day.`)*
 
 **3 · Картка слова — tutor**
 <!-- interaction_id: en:lesson-06:session-33:word:tutor; family: word_card -->
@@ -71,9 +71,9 @@
 - She studies with a friend. — *У записі останнє слово — `tutor`, репетитор, а в цьому варіанті — `friend`, друг.*
 - He studies with a tutor. — *У записі перше слово — `She`, вона, а в цьому варіанті — `He`, він.*
 
-**5 · Скажіть про брата: «Мій брат займається в бібліотеці». Виберіть слово**
+**5 · Скажіть про брата: «Щодня мій брат займається в бібліотеці». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-33:i03; family: context_gap_grammar -->
-My brother ___ in the library. → **studies** · study · studys
+My brother ___ in the library every day. → **studies** · study · studys
 - study — *Брат — це `he`, тому потрібно `studies`, з `ies`.*
 - studys — *У `study` змінюємо `y` на `ies`: `studies`.*
 
@@ -99,9 +99,9 @@ study — вчитися, займатися · tutor — репетитор · 
 <!-- interaction_id: en:lesson-06:session-33:i07; family: scripted_repeat_compare -->
 🎙 **We study in the library.**
 
-**11 · Скажіть про себе: «Я читаю твір». Виберіть слово**
+**11 · Скажіть про себе: «Щодня я читаю твір». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-33:i08; family: context_gap_grammar -->
-I ___ the essay. → **read** · reads · am read
+I ___ the essay every day. → **read** · reads · am read
 - reads — *Після `I` потрібно `read`, без `s`.*
 - am read — *Кажемо `I read`, без `am`.*
 

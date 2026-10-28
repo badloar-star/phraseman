@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-42:word:arrive; family: word_card -->
 > **arrive** — приезжать, прибывать. We arrive at five. — «Мы приезжаем в пять». О том, когда вы или поезд оказываетесь на месте.
 
-**2 · Подруга спрашивает о вас с сестрой. Скажите: «Мы приезжаем в пять»**
+**2 · Подруга спрашивает о вас с сестрой. Скажите: «Каждый день мы приезжаем в пять»**
 <!-- interaction_id: en:lesson-06:session-42:i01; family: phrase_builder -->
-Плитки: `at` `five` `arrive` `We` `arrives` → **We arrive at five.**
-*(плитка `arrives` лишняя: здесь нужно `arrive` — `We arrive at five.`)*
+Плитки: `at` `five` `arrive` `We` `arrives` `every` `day` → **We arrive at five every day.**
+*(плитка `arrives` лишняя: здесь нужно `arrive` — `We arrive at five every day.`)*
 
 **3 · Послушайте подругу**
 <!-- interaction_id: en:lesson-06:session-42:i02; family: listen_choose -->
@@ -67,9 +67,9 @@
 - She leaves at five. — *В записи действие — `arrives`, приезжает, а в этом варианте — `leaves`, уезжает.*
 - He arrives at five. — *В записи первое слово — `She`, она, а в этом варианте — `He`, он.*
 
-**4 · Скажите о сестре: «Она приезжает в пять». Выберите слово**
+**4 · Скажите о сестре: «Каждый день она приезжает в пять». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-42:i03; family: context_gap_grammar -->
-She ___ at five. → **arrives** · arrive · is arrives
+She ___ at five every day. → **arrives** · arrive · is arrives
 - arrive — *После `she` нужно `arrives`, с `s`.*
 - is arrives — *Говорим `She arrives`, без `is`.*
 
@@ -99,9 +99,9 @@ arrive — приезжать, прибывать · leave — уезжать, �
 <!-- interaction_id: en:lesson-06:session-42:i07; family: scripted_repeat_compare -->
 🎙 **She leaves at four.**
 
-**11 · Скажите о себе: «Я приезжаю в пять». Выберите слово**
+**11 · Скажите о себе: «Каждый день я приезжаю в пять». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-42:i08; family: context_gap_grammar -->
-I ___ at five. → **arrive** · arrives · am arrive
+I ___ at five every day. → **arrive** · arrives · am arrive
 - arrives — *После `I` нужно `arrive`, без `s`.*
 - am arrive — *Говорим `I arrive`, без `am`.*
 

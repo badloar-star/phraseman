@@ -52,10 +52,10 @@
 
 ## Практика (21 завдання)
 
-**1 · Продавець питає про вас із братом. Скажіть: «Ми купуємо тут»**
+**1 · Продавець питає про вас із братом. Скажіть: «Щодня ми купуємо тут»**
 <!-- interaction_id: en:lesson-06:session-37:i01; family: phrase_builder -->
-Плитки: `here` `shop` `We` `shops` → **We shop here.**
-*(плитка `shops` зайва: тут потрібно `shop` — `We shop here.`)*
+Плитки: `here` `shop` `We` `shops` `every` `day` → **We shop here every day.**
+*(плитка `shops` зайва: тут потрібно `shop` — `We shop here every day.`)*
 
 **2 · Послухайте продавця**
 <!-- interaction_id: en:lesson-06:session-37:i02; family: listen_choose -->
@@ -63,9 +63,9 @@
 - She shops for bread. — *У записі останнє слово — `bargains`, вигідні покупки, а в цьому варіанті — `bread`, хліб.*
 - He shops for bargains. — *У записі перше слово — `She`, вона, а в цьому варіанті — `He`, він.*
 
-**3 · Скажіть про брата: «Мій брат купує хліб». Виберіть слово**
+**3 · Скажіть про брата: «Щодня мій брат купує хліб». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-37:i03; family: context_gap_grammar -->
-My brother ___ bread. → **shops** · shop · is shops
+My brother ___ bread every day. → **shops** · shop · is shops
 - shop — *Брат — це `he`, тому потрібно `shops`, з `s`.*
 - is shops — *Кажемо `shops`, без `is`.*
 
@@ -99,9 +99,9 @@ aisle — прохід між полицями · checkout — каса · barga
 <!-- interaction_id: en:lesson-06:session-37:i07; family: scripted_repeat_compare -->
 🎙 **He shops here.**
 
-**11 · Скажіть про себе: «Я ходжу по покупки з кошиком». Виберіть слово**
+**11 · Скажіть про себе: «Щодня я ходжу по покупки з кошиком». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-37:i08; family: context_gap_grammar -->
-I ___ with a basket. → **shop** · shops · am shop
+I ___ with a basket every day. → **shop** · shops · am shop
 - shops — *Після `I` потрібно `shop`, без `s`.*
 - am shop — *Кажемо `I shop`, без `am`.*
 

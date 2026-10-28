@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-30:word:scrub; family: word_card -->
 > **scrub** — тереть щёткой, чистить. They scrub the floor. — «Они трут пол». О чистке щёткой, когда нужно отчистить пятна.
 
-**2 · Сосед спрашивает о вас с сестрой. Скажите: «Мы трём пол»**
+**2 · Сосед спрашивает о вас с сестрой. Скажите: «Каждый день мы трём пол»**
 <!-- interaction_id: en:lesson-06:session-30:i01; family: phrase_builder -->
-Плитки: `floor` `the` `scrub` `We` `scrubs` → **We scrub the floor.**
-*(плитка `scrubs` лишняя: здесь нужно `scrub` — `We scrub the floor.`)*
+Плитки: `floor` `the` `scrub` `We` `scrubs` `every` `day` → **We scrub the floor every day.**
+*(плитка `scrubs` лишняя: здесь нужно `scrub` — `We scrub the floor every day.`)*
 
 **3 · Послушайте соседа**
 <!-- interaction_id: en:lesson-06:session-30:i02; family: listen_choose -->
@@ -67,9 +67,9 @@
 - She scrubs the floor. — *В записи последнее слово — `table`, стол, а в этом варианте — `floor`, пол.*
 - He scrubs the table. — *В записи первое слово — `She`, она, а в этом варианте — `He`, он.*
 
-**4 · Скажите о брате: «Мой брат трёт пол». Выберите слово**
+**4 · Скажите о брате: «Каждый день мой брат трёт пол». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-30:i03; family: context_gap_grammar -->
-My brother ___ the floor. → **scrubs** · scrub · is scrubs
+My brother ___ the floor every day. → **scrubs** · scrub · is scrubs
 - scrub — *Брат — это `he`, поэтому нужно `scrubs`, с `s`.*
 - is scrubs — *Говорим `My brother scrubs`, без `is`.*
 
@@ -99,9 +99,9 @@ scrub — тереть щёткой · rubbish — мусор · spray — сп�
 <!-- interaction_id: en:lesson-06:session-30:i07; family: scripted_repeat_compare -->
 🎙 **We scrub the table.**
 
-**11 · Скажите о себе: «Я тру стол». Выберите слово**
+**11 · Скажите о себе: «Каждый день я тру стол». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-30:i08; family: context_gap_grammar -->
-I ___ the table. → **scrub** · scrubs · am scrub
+I ___ the table every day. → **scrub** · scrubs · am scrub
 - scrubs — *После `I` нужно `scrub`, без `s`.*
 - am scrub — *Говорим `I scrub`, без `am`.*
 

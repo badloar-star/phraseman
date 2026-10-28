@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-39:word:cycle; family: word_card -->
 > **cycle** — їздити на велосипеді. We cycle to the park. — «Ми їдемо в парк на велосипеді». Про те, що роблять, коли їдуть на двох колесах.
 
-**2 · Колега питає про вас із сестрою. Скажіть: «Ми їздимо на роботу на велосипеді»**
+**2 · Колега питає про вас із сестрою. Скажіть: «Щодня ми їздимо на роботу на велосипеді»**
 <!-- interaction_id: en:lesson-06:session-39:i01; family: phrase_builder -->
-Плитки: `work` `to` `cycle` `We` `cycles` → **We cycle to work.**
-*(плитка `cycles` зайва: тут потрібно `cycle` — `We cycle to work.`)*
+Плитки: `work` `to` `cycle` `We` `cycles` `every` `day` → **We cycle to work every day.**
+*(плитка `cycles` зайва: тут потрібно `cycle` — `We cycle to work every day.`)*
 
 **3 · Послухайте колегу**
 <!-- interaction_id: en:lesson-06:session-39:i02; family: listen_choose -->
@@ -67,9 +67,9 @@
 - He cycles to the park. — *У записі останнє слово — `work`, робота, а в цьому варіанті — `park`, парк.*
 - She cycles to work. — *У записі перше слово — `He`, він, а в цьому варіанті — `She`, вона.*
 
-**4 · Скажіть про сестру: «Моя сестра їздить на роботу на велосипеді». Виберіть слово**
+**4 · Скажіть про сестру: «Щодня моя сестра їздить на роботу на велосипеді». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-39:i03; family: context_gap_grammar -->
-My sister ___ to work. → **cycles** · cycle · is cycles
+My sister ___ to work every day. → **cycles** · cycle · is cycles
 - cycle — *Сестра — це `she`, тому потрібно `cycles`, з `s`.*
 - is cycles — *Кажемо `cycles`, без `is`.*
 
@@ -99,9 +99,9 @@ cycle — їздити на велосипеді · puncture — прокол ш
 <!-- interaction_id: en:lesson-06:session-39:i07; family: scripted_repeat_compare -->
 🎙 **He cycles to the park.**
 
-**11 · Скажіть про себе: «Я їжджу в парк на велосипеді». Виберіть слово**
+**11 · Скажіть про себе: «Щодня я їжджу в парк на велосипеді». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-39:i08; family: context_gap_grammar -->
-I ___ to the park. → **cycle** · cycles · am cycle
+I ___ to the park every day. → **cycle** · cycles · am cycle
 - cycles — *Після `I` потрібно `cycle`, без `s`.*
 - am cycle — *Кажемо `I cycle`, без `am`.*
 

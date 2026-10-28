@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-16:word:class; family: word_card -->
 > **class** — увлечение. This is my new hobby. — «Это моё новое увлечение». О деле, которым занимаются в свободное время.
 
-**2 · Подруга спрашивает о соседях по группе. Скажите: «Они изучают английский на занятии»**
+**2 · Подруга спрашивает о соседях по группе. Скажите: «Каждый день они изучают английский на занятии»**
 <!-- interaction_id: en:lesson-06:session-16:i01; family: phrase_builder -->
-Плитки: `learn` `English` `in` `class` `They` `are` → **They learn English in class.**
-*(плитка `are` лишняя: здесь нужно `learn` — `They learn English in class.`)*
+Плитки: `learn` `English` `in` `class` `They` `are` `every` `day` → **They learn English in class every day.**
+*(плитка `are` лишняя: здесь нужно `learn` — `They learn English in class every day.`)*
 
 **3 · Карточка слова — club**
 <!-- interaction_id: en:lesson-06:session-16:word:club; family: word_card -->
@@ -71,9 +71,9 @@
 - I swim at the club. — *В записи действие — `paint`, рисовать красками, а в этом варианте — `swim`, плавать.*
 - We paint at the club. — *В записи первое слово — `I`, я, а в этом варианте — `We`, мы.*
 
-**5 · Скажите о себе и подруге: «Мы плаваем в клубе». Выберите слово**
+**5 · Скажите о себе и подруге: «Каждый день мы плаваем в клубе». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-16:i03; family: context_gap_grammar -->
-We ___ in the club. → **swim** · swims · are swim
+We ___ in the club every day. → **swim** · swims · are swim
 - swims — *После `we` — `swim`, без `s`.*
 - are swim — *Говорим `We swim`, без `are`.*
 
@@ -133,9 +133,9 @@ member — участник, член клуба · club — клуб · hobby �
 <!-- interaction_id: en:lesson-06:session-16:i13; family: scripted_repeat_compare -->
 🎙 **We paint in the club.**
 
-**18 · Скажите о себе: «Я начинаю в четыре». Выберите слово**
+**18 · Скажите о себе: «Каждый день я начинаю в четыре». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-16:i14; family: context_gap_grammar -->
-I ___ at four. → **start** · starts · am start
+I ___ at four every day. → **start** · starts · am start
 - starts — *После `I` — `start`, без `s`.*
 - am start — *Говорим `I start`, без `am`.*
 

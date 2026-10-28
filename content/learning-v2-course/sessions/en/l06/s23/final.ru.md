@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-23:word:teach; family: word_card -->
 > **teach** — преподавать. He teaches in the centre. — «Он преподаёт в центре». Когда человек учит других.
 
-**2 · Охранник спрашивает, что делает ваш брат в центре. Скажите: «Он преподаёт английский»**
+**2 · Охранник спрашивает, что делает ваш брат в центре. Скажите: «Каждый день он преподаёт английский»**
 <!-- interaction_id: en:lesson-06:session-23:i01; family: phrase_builder -->
-Плитки: `teaches` `English` `He` `teach` → **He teaches English.**
-*(плитка `teach` лишняя: здесь нужно `teaches` — `He teaches English.`)*
+Плитки: `teaches` `English` `He` `teach` `every` `day` → **He teaches English every day.**
+*(плитка `teach` лишняя: здесь нужно `teaches` — `He teaches English every day.`)*
 
 **3 · Карточка слова — catch**
 <!-- interaction_id: en:lesson-06:session-23:word:catch; family: word_card -->
@@ -94,18 +94,18 @@ teach — преподавать · catch — успевать на, ловит�
 🔊 *He answers the teacher.* Плитки: `answers` `the` `teacher` `He` `answer` → **He answers the teacher.**
 *(плитка `answer` лишняя: здесь нужно `answers` — `He answers the teacher.`)*
 
-**10 · Подруга спрашивает, что делает ваш брат дома. Скажите: «Он изучает английский»**
+**10 · Подруга спрашивает, что делает ваш брат дома. Скажите: «Каждый день он изучает английский»**
 <!-- interaction_id: en:lesson-06:session-23:i06; family: phrase_builder -->
-Плитки: `learns` `English` `He` `learn` → **He learns English.**
-*(плитка `learn` лишняя: здесь нужно `learns` — `He learns English.`)*
+Плитки: `learns` `English` `He` `learn` `every` `day` → **He learns English every day.**
+*(плитка `learn` лишняя: здесь нужно `learns` — `He learns English every day.`)*
 
 **11 · Подруга спрашивает про экзамен брата. Скажите: «Экзамен трудный»**
 <!-- interaction_id: en:lesson-06:session-23:i07; family: scripted_repeat_compare -->
 🎙 **The exam is difficult.**
 
-**12 · Скажите о сестре: «Она успевает на автобус». Выберите слово**
+**12 · Скажите о сестре: «Каждый день она успевает на автобус». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-23:i08; family: context_gap_grammar -->
-She ___ the bus. → **catches** · catch · catchs
+She ___ the bus every day. → **catches** · catch · catchs
 - catch — *После `she` — `catches`, с `es`.*
 - catchs — *После `ch` нужно `es`: `catches`.*
 
@@ -133,9 +133,9 @@ exam — экзамен · answer — отвечать · teach — препод
 <!-- interaction_id: en:lesson-06:session-23:i13; family: scripted_repeat_compare -->
 🎙 **She catches the bus.**
 
-**18 · Скажите о брате: «Он отвечает учителю». Выберите слово**
+**18 · Скажите о брате: «Каждый день он отвечает учителю». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-23:i14; family: context_gap_grammar -->
-He ___ the teacher. → **answers** · answer · is answers
+He ___ the teacher every day. → **answers** · answer · is answers
 - answer — *После `he` — `answers`, с `s`.*
 - is answers — *Говорим `He answers`, без `is`.*
 

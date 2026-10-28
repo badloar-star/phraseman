@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-46:word:grill; family: word_card -->
 > **grill** — жарить на гриле. We grill sausages. — «Мы жарим сосиски на гриле». О том, как еду готовят над огнём.
 
-**2 · Сосед спрашивает о вас с братом. Скажите: «Мы жарим сосиски на гриле»**
+**2 · Сосед спрашивает о вас с братом. Скажите: «Каждый день мы жарим сосиски на гриле»**
 <!-- interaction_id: en:lesson-06:session-46:i01; family: phrase_builder -->
-Плитки: `sausages` `grill` `We` `grills` → **We grill sausages.**
-*(плитка `grills` лишняя: здесь нужно `grill` — `We grill sausages.`)*
+Плитки: `sausages` `grill` `We` `grills` `every` `day` → **We grill sausages every day.**
+*(плитка `grills` лишняя: здесь нужно `grill` — `We grill sausages every day.`)*
 
 **3 · Послушайте соседа**
 <!-- interaction_id: en:lesson-06:session-46:i02; family: listen_choose -->
@@ -67,9 +67,9 @@
 - He grills sausages in the garden. — *В записи последнее слово — `yard`, двор, а в этом варианте — `garden`, сад.*
 - She grills sausages in the yard. — *В записи первое слово — `He`, он, а в этом варианте — `She`, она.*
 
-**4 · Скажите о брате: «Он жарит сосиски на гриле». Выберите слово**
+**4 · Скажите о брате: «Каждый день он жарит сосиски на гриле». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-46:i03; family: context_gap_grammar -->
-He ___ sausages. → **grills** · grill · is grills
+He ___ sausages every day. → **grills** · grill · is grills
 - grill — *После `he` нужно `grills`, с `s`.*
 - is grills — *Говорим `He grills`, без `is`.*
 
@@ -99,9 +99,9 @@ grill — жарить на гриле · roast — запекать · skewer �
 <!-- interaction_id: en:lesson-06:session-46:i07; family: scripted_repeat_compare -->
 🎙 **She roasts potatoes.**
 
-**11 · Скажите о себе: «Я жарю сосиски на гриле». Выберите слово**
+**11 · Скажите о себе: «Каждый день я жарю сосиски на гриле». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-46:i08; family: context_gap_grammar -->
-I ___ sausages. → **grill** · grills · am grill
+I ___ sausages every day. → **grill** · grills · am grill
 - grills — *После `I` нужно `grill`, без `s`.*
 - am grill — *Говорим `I grill`, без `am`.*
 

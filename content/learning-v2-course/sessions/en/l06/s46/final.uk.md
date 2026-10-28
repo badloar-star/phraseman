@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-46:word:grill; family: word_card -->
 > **grill** — смажити на грилі. We grill sausages. — «Ми смажимо сосиски на грилі». Про те, як їжу готують над вогнем.
 
-**2 · Сусід питає про вас із братом. Скажіть: «Ми смажимо сосиски на грилі»**
+**2 · Сусід питає про вас із братом. Скажіть: «Щодня ми смажимо сосиски на грилі»**
 <!-- interaction_id: en:lesson-06:session-46:i01; family: phrase_builder -->
-Плитки: `sausages` `grill` `We` `grills` → **We grill sausages.**
-*(плитка `grills` зайва: тут потрібно `grill` — `We grill sausages.`)*
+Плитки: `sausages` `grill` `We` `grills` `every` `day` → **We grill sausages every day.**
+*(плитка `grills` зайва: тут потрібно `grill` — `We grill sausages every day.`)*
 
 **3 · Послухайте сусіда**
 <!-- interaction_id: en:lesson-06:session-46:i02; family: listen_choose -->
@@ -67,9 +67,9 @@
 - He grills sausages in the garden. — *У записі останнє слово — `yard`, подвір’я, а в цьому варіанті — `garden`, сад.*
 - She grills sausages in the yard. — *У записі перше слово — `He`, він, а в цьому варіанті — `She`, вона.*
 
-**4 · Скажіть про брата: «Він смажить сосиски на грилі». Виберіть слово**
+**4 · Скажіть про брата: «Щодня він смажить сосиски на грилі». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-46:i03; family: context_gap_grammar -->
-He ___ sausages. → **grills** · grill · is grills
+He ___ sausages every day. → **grills** · grill · is grills
 - grill — *Після `he` потрібно `grills`, з `s`.*
 - is grills — *Кажемо `He grills`, без `is`.*
 
@@ -99,9 +99,9 @@ grill — смажити на грилі · roast — запікати · skewer
 <!-- interaction_id: en:lesson-06:session-46:i07; family: scripted_repeat_compare -->
 🎙 **She roasts potatoes.**
 
-**11 · Скажіть про себе: «Я смажу сосиски на грилі». Виберіть слово**
+**11 · Скажіть про себе: «Щодня я смажу сосиски на грилі». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-46:i08; family: context_gap_grammar -->
-I ___ sausages. → **grill** · grills · am grill
+I ___ sausages every day. → **grill** · grills · am grill
 - grills — *Після `I` потрібно `grill`, без `s`.*
 - am grill — *Кажемо `I grill`, без `am`.*
 

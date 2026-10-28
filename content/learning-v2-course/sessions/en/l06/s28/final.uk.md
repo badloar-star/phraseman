@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-28:word:stretch; family: word_card -->
 > **stretch** — робити розтяжку. They stretch at home. — «Вони роблять розтяжку вдома». Про звичку витягувати й розминати тіло.
 
-**2 · Подруга питає про вас із братом. Скажіть: «Ми робимо розтяжку вдома»**
+**2 · Подруга питає про вас із братом. Скажіть: «Щодня ми робимо розтяжку вдома»**
 <!-- interaction_id: en:lesson-06:session-28:i01; family: phrase_builder -->
-Плитки: `home` `at` `stretch` `We` `stretches` → **We stretch at home.**
-*(плитка `stretches` зайва: тут потрібно `stretch` — `We stretch at home.`)*
+Плитки: `home` `at` `stretch` `We` `stretches` `every` `day` → **We stretch at home every day.**
+*(плитка `stretches` зайва: тут потрібно `stretch` — `We stretch at home every day.`)*
 
 **3 · Послухайте подругу**
 <!-- interaction_id: en:lesson-06:session-28:i02; family: listen_choose -->
@@ -67,9 +67,9 @@
 - He stretches at work. — *У записі останнє слово — `home`, вдома, а в цьому варіанті — `work`, на роботі.*
 - She stretches at home. — *У записі перше слово — `He`, він, а в цьому варіанті — `She`, вона.*
 
-**4 · Скажіть про брата: «Мій брат робить розтяжку вдома». Виберіть слово**
+**4 · Скажіть про брата: «Щодня мій брат робить розтяжку вдома». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-28:i03; family: context_gap_grammar -->
-My brother ___ at home. → **stretches** · stretch · is stretches
+My brother ___ at home every day. → **stretches** · stretch · is stretches
 - stretch — *Брат — це `he`, тому потрібно `stretches`, з `es`.*
 - is stretches — *Кажемо `My brother stretches`, без `is`.*
 
@@ -99,9 +99,9 @@ stretch — робити розтяжку · muscle — м’яз · shoulder �
 <!-- interaction_id: en:lesson-06:session-28:i07; family: scripted_repeat_compare -->
 🎙 **He stretches at home.**
 
-**11 · Скажіть про себе: «Я роблю розтяжку вдома». Виберіть слово**
+**11 · Скажіть про себе: «Щодня я роблю розтяжку вдома». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-28:i08; family: context_gap_grammar -->
-I ___ at home. → **stretch** · stretches · am stretch
+I ___ at home every day. → **stretch** · stretches · am stretch
 - stretches — *Після `I` потрібно `stretch`, без закінчення.*
 - am stretch — *Кажемо `I stretch`, без `am`.*
 

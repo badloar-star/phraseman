@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-45:word:mend; family: word_card -->
 > **mend** — лагодити. We mend socks. — «Ми лагодимо шкарпетки». Про те, як людина виправляє порвану річ.
 
-**2 · Подруга питає про вас із бабусею. Скажіть: «Ми лагодимо шкарпетки»**
+**2 · Подруга питає про вас із бабусею. Скажіть: «Щотижня ми лагодимо шкарпетки»**
 <!-- interaction_id: en:lesson-06:session-45:i01; family: phrase_builder -->
-Плитки: `socks` `mend` `We` `mends` → **We mend socks.**
-*(плитка `mends` зайва: тут потрібно `mend` — `We mend socks.`)*
+Плитки: `socks` `mend` `We` `mends` `every` `week` → **We mend socks every week.**
+*(плитка `mends` зайва: тут потрібно `mend` — `We mend socks every week.`)*
 
 **3 · Послухайте подругу**
 <!-- interaction_id: en:lesson-06:session-45:i02; family: listen_choose -->
@@ -67,9 +67,9 @@
 - My grandmother mends shirts. — *У записі останнє слово — `socks`, шкарпетки, а в цьому варіанті — `shirts`, сорочки.*
 - My sister mends socks. — *У записі друге слово — `grandmother`, бабуся, а в цьому варіанті — `sister`, сестра.*
 
-**4 · Скажіть про бабусю: «Вона лагодить шкарпетки». Виберіть слово**
+**4 · Скажіть про бабусю: «Щотижня вона лагодить шкарпетки». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-45:i03; family: context_gap_grammar -->
-She ___ socks. → **mends** · mend · is mends
+She ___ socks every week. → **mends** · mend · is mends
 - mend — *Після `she` потрібно `mends`, з `s`.*
 - is mends — *Кажемо `She mends`, без `is`.*
 
@@ -99,9 +99,9 @@ mend — лагодити · thread — нитка · needle — голка · f
 <!-- interaction_id: en:lesson-06:session-45:i07; family: scripted_repeat_compare -->
 🎙 **My grandmother mends socks.**
 
-**11 · Скажіть про себе: «Я лагоджу светр». Виберіть слово**
+**11 · Скажіть про себе: «Щодня я лагоджу светр». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-45:i08; family: context_gap_grammar -->
-I ___ my sweater. → **mend** · mends · am mend
+I ___ my sweater every day. → **mend** · mends · am mend
 - mends — *Після `I` потрібно `mend`, без `s`.*
 - am mend — *Кажемо `I mend`, без `am`.*
 

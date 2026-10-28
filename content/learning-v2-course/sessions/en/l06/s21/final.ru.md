@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-21:word:write; family: word_card -->
 > **write** — писать. My sister writes at the table. — «Моя сестра пишет за столом». Когда человек пишет ручкой.
 
-**2 · Подруга спрашивает, что делает ваш брат за столом. Скажите: «Он пишет за столом»**
+**2 · Подруга спрашивает, что делает ваш брат за столом. Скажите: «Каждый день он пишет за столом»**
 <!-- interaction_id: en:lesson-06:session-21:i01; family: phrase_builder -->
-Плитки: `writes` `at` `the` `table` `He` `write` → **He writes at the table.**
-*(плитка `write` лишняя: здесь нужно `writes` — `He writes at the table.`)*
+Плитки: `writes` `at` `the` `table` `He` `write` `every` `day` → **He writes at the table every day.**
+*(плитка `write` лишняя: здесь нужно `writes` — `He writes at the table every day.`)*
 
 **3 · Карточка слова — jump**
 <!-- interaction_id: en:lesson-06:session-21:word:jump; family: word_card -->
@@ -94,18 +94,18 @@ write — писать · jump — прыгать · clasp — застёжка 
 🔊 *The page is blank.* Плитки: `is` `blank` `page` `The` `are` → **The page is blank.**
 *(плитка `are` лишняя: здесь нужно `is` — `The page is blank.`)*
 
-**10 · Спасатель спрашивает, что делает ваша сестра. Скажите: «Она плавает в бассейне»**
+**10 · Спасатель спрашивает, что делает ваша сестра. Скажите: «Каждый день она плавает в бассейне»**
 <!-- interaction_id: en:lesson-06:session-21:i06; family: phrase_builder -->
-Плитки: `swims` `in` `the` `pool` `She` `swim` → **She swims in the pool.**
-*(плитка `swim` лишняя: здесь нужно `swims` — `She swims in the pool.`)*
+Плитки: `swims` `in` `the` `pool` `She` `swim` `every` `day` → **She swims in the pool every day.**
+*(плитка `swim` лишняя: здесь нужно `swims` — `She swims in the pool every day.`)*
 
 **11 · Подруга спрашивает, что не так с ожерельем. Скажите: «Застёжка сломана»**
 <!-- interaction_id: en:lesson-06:session-21:i07; family: scripted_repeat_compare -->
 🎙 **The clasp is broken.**
 
-**12 · Скажите о сестре: «Она пишет здесь». Выберите слово**
+**12 · Скажите о сестре: «Каждый день она пишет здесь». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-21:i08; family: context_gap_grammar -->
-She ___ here. → **writes** · write · is writes
+She ___ here every day. → **writes** · write · is writes
 - write — *После `she` — `writes`, с `s`.*
 - is writes — *Говорим `She writes`, без `is`.*
 
@@ -133,9 +133,9 @@ page — страница · jump — прыгать · write — писать �
 <!-- interaction_id: en:lesson-06:session-21:i13; family: scripted_repeat_compare -->
 🎙 **He jumps in the pool.**
 
-**18 · Скажите о брате: «Он прыгает в бассейн». Выберите слово**
+**18 · Скажите о брате: «Каждый день он прыгает в бассейн». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-21:i14; family: context_gap_grammar -->
-He ___ in the pool. → **jumps** · jump · is jumps
+He ___ in the pool every day. → **jumps** · jump · is jumps
 - jump — *После `he` — `jumps`, с `s`.*
 - is jumps — *Говорим `He jumps`, без `is`.*
 

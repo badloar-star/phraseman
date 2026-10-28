@@ -52,10 +52,10 @@
 
 ## Практика (21 задание)
 
-**1 · Продавец спрашивает о вас с братом. Скажите: «Мы покупаем здесь»**
+**1 · Продавец спрашивает о вас с братом. Скажите: «Каждый день мы покупаем здесь»**
 <!-- interaction_id: en:lesson-06:session-37:i01; family: phrase_builder -->
-Плитки: `here` `shop` `We` `shops` → **We shop here.**
-*(плитка `shops` лишняя: здесь нужно `shop` — `We shop here.`)*
+Плитки: `here` `shop` `We` `shops` `every` `day` → **We shop here every day.**
+*(плитка `shops` лишняя: здесь нужно `shop` — `We shop here every day.`)*
 
 **2 · Послушайте продавца**
 <!-- interaction_id: en:lesson-06:session-37:i02; family: listen_choose -->
@@ -63,9 +63,9 @@
 - She shops for bread. — *В записи последнее слово — `bargains`, выгодные покупки, а в этом варианте — `bread`, хлеб.*
 - He shops for bargains. — *В записи первое слово — `She`, она, а в этом варианте — `He`, он.*
 
-**3 · Скажите о брате: «Мой брат покупает хлеб». Выберите слово**
+**3 · Скажите о брате: «Каждый день мой брат покупает хлеб». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-37:i03; family: context_gap_grammar -->
-My brother ___ bread. → **shops** · shop · is shops
+My brother ___ bread every day. → **shops** · shop · is shops
 - shop — *Брат — это `he`, поэтому нужно `shops`, с `s`.*
 - is shops — *Говорим `shops`, без `is`.*
 
@@ -99,9 +99,9 @@ aisle — проход между полками · checkout — касса · b
 <!-- interaction_id: en:lesson-06:session-37:i07; family: scripted_repeat_compare -->
 🎙 **He shops here.**
 
-**11 · Скажите о себе: «Я хожу за покупками с корзиной». Выберите слово**
+**11 · Скажите о себе: «Каждый день я хожу за покупками с корзиной». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-37:i08; family: context_gap_grammar -->
-I ___ with a basket. → **shop** · shops · am shop
+I ___ with a basket every day. → **shop** · shops · am shop
 - shops — *После `I` нужно `shop`, без `s`.*
 - am shop — *Говорим `I shop`, без `am`.*
 

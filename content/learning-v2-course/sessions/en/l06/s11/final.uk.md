@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-06:session-11:word:learn; family: word_card -->
 > **learn** — вчити, вивчати. They learn English at school. — «Вони вивчають англійську в школі». Про те, як людина здобуває нові знання. Після I, you, we, they — без s.
 
-**2 · Подруга питає про ваших сусідів по курсах. Скажіть: «Вони вивчають англійську»**
+**2 · Подруга питає про ваших сусідів по курсах. Скажіть: «Щодня вони вивчають англійську»**
 <!-- interaction_id: en:lesson-06:session-11:i01; family: phrase_builder -->
-Плитки: `English` `learn` `They` `are` → **They learn English.**
-*(плитка `are` зайва: тут потрібно `learn` — `They learn English.`)*
+Плитки: `English` `learn` `They` `are` `every` `day` → **They learn English every day.**
+*(плитка `are` зайва: тут потрібно `learn` — `They learn English every day.`)*
 
 **3 · Картка слова — language**
 <!-- interaction_id: en:lesson-06:session-11:word:language; family: word_card -->
@@ -71,9 +71,9 @@
 - I learn English. — *У записі останнє слово — `language`, мова, а в цьому варіанті — `English`, англійська.*
 - We learn a language. — *У записі перше слово — `I`, я, а в цьому варіанті — `We`, ми.*
 
-**5 · Скажіть про себе: «Я вивчаю англійську в школі». Виберіть слово**
+**5 · Скажіть про себе: «Щодня я вивчаю англійську в школі». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-11:i03; family: context_gap_grammar -->
-I ___ English at school. → **learn** · learns · am learn
+I ___ English at school every day. → **learn** · learns · am learn
 - learns — *Після `I` — `learn`, без `s`.*
 - am learn — *Кажемо `I learn`, без `am`.*
 

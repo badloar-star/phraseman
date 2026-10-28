@@ -171,7 +171,14 @@ async function describe(fp, p) {
       for (let y = 8; y <= 180; y += 8) { const c = px(buf, ch, 16, y); const m = paint(16, y); rf += c[0] + c[1] + c[2]; rm += m[0] + m[1] + m[2]; n += 1; }
       shadeA = Math.max(0, Math.min(0.6, 1 - rf / Math.max(1, rm))); }
   }
-  return { ok: true, status: 100, tab: 2140, sceneH, evening, preview, buf, ch, cardsInfo, shadeA: +shadeA.toFixed(3) };
+  // дефект приложения (Сверка 28.10, пачка 6): у градиентных тем в СВЕТЛЫХ Диалогах рисуются тёмные слои сцены — кадр много темнее модели светлой сцены;
+  // помечаем, но берём как есть (владелец смотрит настоящие экраны; чинят Темы/Дизайн)
+  let note = null;
+  if (p.screen === 'dialogs' && p.ap === 'light' && THEMES[p.theme] && THEMES[p.theme].light) {
+    const spec0 = oldSpec('dialogs', p.theme, 'light', 'day', sceneH, null, null); if (spec0) { const paint = SR.painter(spec0, W, sceneH); let rf = 0; let rm = 0; for (let y = 8; y <= 200; y += 8) for (let x = 16; x <= 300; x += 16) { const c = px(buf, ch, x, y); const m = paint(x, y); rf += c[0] + c[1] + c[2]; rm += m[0] + m[1] + m[2]; }
+      if (rf < rm * 0.6) note = 'в кадре дефект приложения: тёмные слои сцены в светлом оформлении (Темы) — показано как есть'; }
+  }
+  return { ok: true, status: 100, tab: 2140, sceneH, evening, preview, buf, ch, cardsInfo, shadeA: +shadeA.toFixed(3), note };
 }
 
 /* герой: в полосе справа ниже шапки пиксели, отличные от модели фона, — это герой; его рамка против рамки непрозрачных пикселей картинки
@@ -192,6 +199,7 @@ async function alignHero(d, screen, spec, sceneH, hero, ap, state) {
   for (let y = 0; y < N; y += 1) for (let x = 0; x < N; x += 1) { if (a0[(y * N + x) * 4 + 3] >= 128) { if (x < ab.minX) ab.minX = x; if (x > ab.maxX) ab.maxX = x; if (y < ab.minY) ab.minY = y; if (y > ab.maxY) ab.maxY = y; } }
   const fh = (ab.maxY - ab.minY + 1) / N; const fx0 = ab.minX / N; const fy0 = ab.minY / N;
   const size0 = Math.round((fb.maxY - fb.minY + 1) / fh); const x00 = Math.round(fb.minX - fx0 * size0); const y00 = Math.round(fb.minY - fy0 * size0);
+  if (!(size0 >= 40 && size0 <= 700)) return { hero: null, why: `рамка героя неправдоподобна (${size0} px) — вероятно, дефект кадра или другое состояние` }; // иначе sharp падает на resize(-1)
   let best = { s: -1 };
   for (let size = size0 - 2; size <= size0 + 2; size += 1) {
     const a = await sharp(art).resize(size, size, { fit: 'contain' }).ensureAlpha().raw().toBuffer();
@@ -244,6 +252,7 @@ async function fitReport(file) {
     const rec = Object.assign({ file, mtime, v: 6 }, p, { ok: d.ok, why: d.why || null, status: d.status, tab: d.tab, sceneH: d.sceneH });
     if (d.cardsInfo) { rec.cards = d.cardsInfo.cards; rec.cardFill = d.cardsInfo.cards.length ? d.cardsInfo.cards[0].fill : null; }
     if (p.screen === 'peak') rec.shadeA = d.shadeA;
+    if (d.note) rec.note = d.note;
     if (d.ok && (p.screen === 'home' || p.screen === 'dialogs')) {
       rec.state = p.state || (p.screen === 'home' && d.evening ? 'evening' : 'day');
       if (!THEMES[p.theme] || !THEMES[p.theme][p.ap]) { rec.recolor = false; rec.why = `тема «${p.theme}» (${p.ap}) не из снимка тем эталона и премиум-списка`; }

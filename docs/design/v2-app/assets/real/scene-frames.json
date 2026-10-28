@@ -23,6 +23,22 @@
    "opacity": 0.96
   }
  },
+ "scene_dialogs_eucalyptus_light.png": {
+  "file": "scene_dialogs_eucalyptus_light.png",
+  "mtime": 1793227780589.2454,
+  "v": 6,
+  "screen": "dialogs",
+  "theme": "eucalyptus",
+  "ap": "light",
+  "ok": true,
+  "why": null,
+  "status": 100,
+  "tab": 2140,
+  "sceneH": 1082,
+  "state": "day",
+  "hero": null,
+  "heroWhy": "герой не совпал с картинкой (точность 0.473 при 63 px в 831,138)"
+ },
  "scene_dialogs_grad_aurora_dark.png": {
   "file": "scene_dialogs_grad_aurora_dark.png",
   "mtime": 1793218756965.5237,
@@ -41,6 +57,31 @@
    "y": 59,
    "size": 638,
    "score": 0.9365,
+   "byPrior": false,
+   "art": "dialogs_scene_first",
+   "dir": "v2art",
+   "opacity": 0.96
+  }
+ },
+ "scene_dialogs_grad_aurora_light.png": {
+  "file": "scene_dialogs_grad_aurora_light.png",
+  "mtime": 1793227835144.314,
+  "v": 6,
+  "screen": "dialogs",
+  "theme": "grad_aurora",
+  "ap": "light",
+  "ok": true,
+  "why": null,
+  "status": 100,
+  "tab": 2140,
+  "sceneH": 1082,
+  "note": "в кадре дефект приложения: тёмные слои сцены в светлом оформлении (Темы) — показано как есть",
+  "state": "day",
+  "hero": {
+   "x": 547,
+   "y": 50,
+   "size": 627,
+   "score": 0.9225,
    "byPrior": false,
    "art": "dialogs_scene_first",
    "dir": "v2art",
@@ -71,6 +112,31 @@
    "opacity": 0.96
   }
  },
+ "scene_dialogs_grad_champagne_light.png": {
+  "file": "scene_dialogs_grad_champagne_light.png",
+  "mtime": 1793227972238.8718,
+  "v": 6,
+  "screen": "dialogs",
+  "theme": "grad_champagne",
+  "ap": "light",
+  "ok": true,
+  "why": null,
+  "status": 100,
+  "tab": 2140,
+  "sceneH": 1082,
+  "note": "в кадре дефект приложения: тёмные слои сцены в светлом оформлении (Темы) — показано как есть",
+  "state": "day",
+  "hero": {
+   "x": 547,
+   "y": 50,
+   "size": 627,
+   "score": 0.8512,
+   "byPrior": false,
+   "art": "dialogs_scene_first",
+   "dir": "v2art",
+   "opacity": 0.96
+  }
+ },
  "scene_dialogs_grad_coral_dark.png": {
   "file": "scene_dialogs_grad_coral_dark.png",
   "mtime": 1793221200226.7288,
@@ -89,6 +155,31 @@
    "y": 59,
    "size": 638,
    "score": 0.9634,
+   "byPrior": false,
+   "art": "dialogs_scene_first",
+   "dir": "v2art",
+   "opacity": 0.96
+  }
+ },
+ "scene_dialogs_grad_coral_light.png": {
+  "file": "scene_dialogs_grad_coral_light.png",
+  "mtime": 1793228135450.4382,
+  "v": 6,
+  "screen": "dialogs",
+  "theme": "grad_coral",
+  "ap": "light",
+  "ok": true,
+  "why": null,
+  "status": 100,
+  "tab": 2140,
+  "sceneH": 1082,
+  "note": "в кадре дефект приложения: тёмные слои сцены в светлом оформлении (Темы) — показано как есть",
+  "state": "day",
+  "hero": {
+   "x": 547,
+   "y": 50,
+   "size": 627,
+   "score": 0.8754,
    "byPrior": false,
    "art": "dialogs_scene_first",
    "dir": "v2art",
@@ -119,6 +210,31 @@
    "opacity": 0.96
   }
  },
+ "scene_dialogs_grad_full_horizon_light.png": {
+  "file": "scene_dialogs_grad_full_horizon_light.png",
+  "mtime": 1793228372595.2131,
+  "v": 6,
+  "screen": "dialogs",
+  "theme": "grad_full_horizon",
+  "ap": "light",
+  "ok": true,
+  "why": null,
+  "status": 100,
+  "tab": 2140,
+  "sceneH": 1082,
+  "note": "в кадре дефект приложения: тёмные слои сцены в светлом оформлении (Темы) — показано как есть",
+  "state": "day",
+  "hero": {
+   "x": 547,
+   "y": 50,
+   "size": 627,
+   "score": 0.9051,
+   "byPrior": false,
+   "art": "dialogs_scene_first",
+   "dir": "v2art",
+   "opacity": 0.96
+  }
+ },
  "scene_dialogs_grad_full_olive_dark.png": {
   "file": "scene_dialogs_grad_full_olive_dark.png",
   "mtime": 1793219242545.227,
@@ -137,6 +253,31 @@
    "y": 134,
    "size": 101,
    "score": 0.7714,
+   "byPrior": false,
+   "art": "dialogs_scene_first",
+   "dir": "v2art",
+   "opacity": 0.96
+  }
+ },
+ "scene_dialogs_grad_full_olive_light.png": {
+  "file": "scene_dialogs_grad_full_olive_light.png",
+  "mtime": 1793228206276.7595,
+  "v": 6,
+  "screen": "dialogs",
+  "theme": "grad_full_olive",
+  "ap": "light",
+  "ok": true,
+  "why": null,
+  "status": 100,
+  "tab": 2140,
+  "sceneH": 1082,
+  "note": "в кадре дефект приложения: тёмные слои сцены в светлом оформлении (Темы) — показано как есть",
+  "state": "day",
+  "hero": {
+   "x": 547,
+   "y": 50,
+   "size": 627,
+   "score": 0.8534,
    "byPrior": false,
    "art": "dialogs_scene_first",
    "dir": "v2art",
@@ -167,6 +308,31 @@
    "opacity": 0.96
   }
  },
+ "scene_dialogs_grad_full_ref_gravity_blue_light.png": {
+  "file": "scene_dialogs_grad_full_ref_gravity_blue_light.png",
+  "mtime": 1793228408297.674,
+  "v": 6,
+  "screen": "dialogs",
+  "theme": "grad_full_ref_gravity_blue",
+  "ap": "light",
+  "ok": true,
+  "why": null,
+  "status": 100,
+  "tab": 2140,
+  "sceneH": 1082,
+  "note": "в кадре дефект приложения: тёмные слои сцены в светлом оформлении (Темы) — показано как есть",
+  "state": "day",
+  "hero": {
+   "x": 545,
+   "y": 50,
+   "size": 627,
+   "score": 0.9194,
+   "byPrior": false,
+   "art": "dialogs_scene_first",
+   "dir": "v2art",
+   "opacity": 0.96
+  }
+ },
  "scene_dialogs_grad_full_ref_signal_lime_dark.png": {
   "file": "scene_dialogs_grad_full_ref_signal_lime_dark.png",
   "mtime": 1793219278721.8523,
@@ -185,6 +351,31 @@
    "y": 59,
    "size": 635,
    "score": 0.8742,
+   "byPrior": false,
+   "art": "dialogs_scene_first",
+   "dir": "v2art",
+   "opacity": 0.96
+  }
+ },
+ "scene_dialogs_grad_full_ref_signal_lime_light.png": {
+  "file": "scene_dialogs_grad_full_ref_signal_lime_light.png",
+  "mtime": 1793228242028.6167,
+  "v": 6,
+  "screen": "dialogs",
+  "theme": "grad_full_ref_signal_lime",
+  "ap": "light",
+  "ok": true,
+  "why": null,
+  "status": 100,
+  "tab": 2140,
+  "sceneH": 1082,
+  "note": "в кадре дефект приложения: тёмные слои сцены в светлом оформлении (Темы) — показано как есть",
+  "state": "day",
+  "hero": {
+   "x": 545,
+   "y": 50,
+   "size": 627,
+   "score": 0.9057,
    "byPrior": false,
    "art": "dialogs_scene_first",
    "dir": "v2art",
@@ -215,6 +406,31 @@
    "opacity": 0.96
   }
  },
+ "scene_dialogs_grad_full_ref_storm_violet_light.png": {
+  "file": "scene_dialogs_grad_full_ref_storm_violet_light.png",
+  "mtime": 1793228300002.9563,
+  "v": 6,
+  "screen": "dialogs",
+  "theme": "grad_full_ref_storm_violet",
+  "ap": "light",
+  "ok": true,
+  "why": null,
+  "status": 100,
+  "tab": 2140,
+  "sceneH": 1082,
+  "note": "в кадре дефект приложения: тёмные слои сцены в светлом оформлении (Темы) — показано как есть",
+  "state": "day",
+  "hero": {
+   "x": 545,
+   "y": 50,
+   "size": 627,
+   "score": 0.9148,
+   "byPrior": false,
+   "art": "dialogs_scene_first",
+   "dir": "v2art",
+   "opacity": 0.96
+  }
+ },
  "scene_dialogs_grad_full_titanium_dark.png": {
   "file": "scene_dialogs_grad_full_titanium_dark.png",
   "mtime": 1793219355436.0696,
@@ -233,6 +449,31 @@
    "y": 59,
    "size": 635,
    "score": 0.7671,
+   "byPrior": false,
+   "art": "dialogs_scene_first",
+   "dir": "v2art",
+   "opacity": 0.96
+  }
+ },
+ "scene_dialogs_grad_full_titanium_light.png": {
+  "file": "scene_dialogs_grad_full_titanium_light.png",
+  "mtime": 1793228334919.294,
+  "v": 6,
+  "screen": "dialogs",
+  "theme": "grad_full_titanium",
+  "ap": "light",
+  "ok": true,
+  "why": null,
+  "status": 100,
+  "tab": 2140,
+  "sceneH": 1082,
+  "note": "в кадре дефект приложения: тёмные слои сцены в светлом оформлении (Темы) — показано как есть",
+  "state": "day",
+  "hero": {
+   "x": 547,
+   "y": 50,
+   "size": 627,
+   "score": 0.8476,
    "byPrior": false,
    "art": "dialogs_scene_first",
    "dir": "v2art",
@@ -263,6 +504,31 @@
    "opacity": 0.96
   }
  },
+ "scene_dialogs_grad_ice_light.png": {
+  "file": "scene_dialogs_grad_ice_light.png",
+  "mtime": 1793228103114.483,
+  "v": 6,
+  "screen": "dialogs",
+  "theme": "grad_ice",
+  "ap": "light",
+  "ok": true,
+  "why": null,
+  "status": 100,
+  "tab": 2140,
+  "sceneH": 1082,
+  "note": "в кадре дефект приложения: тёмные слои сцены в светлом оформлении (Темы) — показано как есть",
+  "state": "day",
+  "hero": {
+   "x": 547,
+   "y": 50,
+   "size": 627,
+   "score": 0.9023,
+   "byPrior": false,
+   "art": "dialogs_scene_first",
+   "dir": "v2art",
+   "opacity": 0.96
+  }
+ },
  "scene_dialogs_grad_iris_dark.png": {
   "file": "scene_dialogs_grad_iris_dark.png",
   "mtime": 1793218798067.422,
@@ -287,6 +553,31 @@
    "opacity": 0.96
   }
  },
+ "scene_dialogs_grad_iris_light.png": {
+  "file": "scene_dialogs_grad_iris_light.png",
+  "mtime": 1793227868098.092,
+  "v": 6,
+  "screen": "dialogs",
+  "theme": "grad_iris",
+  "ap": "light",
+  "ok": true,
+  "why": null,
+  "status": 100,
+  "tab": 2140,
+  "sceneH": 1082,
+  "note": "в кадре дефект приложения: тёмные слои сцены в светлом оформлении (Темы) — показано как есть",
+  "state": "day",
+  "hero": {
+   "x": 547,
+   "y": 50,
+   "size": 627,
+   "score": 0.8772,
+   "byPrior": false,
+   "art": "dialogs_scene_first",
+   "dir": "v2art",
+   "opacity": 0.96
+  }
+ },
  "scene_dialogs_grad_jade_dark.png": {
   "file": "scene_dialogs_grad_jade_dark.png",
   "mtime": 1793218975368.105,
@@ -302,6 +593,31 @@
   "state": "day",
   "hero": null,
   "heroWhy": "герой не совпал с картинкой (точность 0.635 при 641 px в 577,63)"
+ },
+ "scene_dialogs_grad_jade_light.png": {
+  "file": "scene_dialogs_grad_jade_light.png",
+  "mtime": 1793228009182.9949,
+  "v": 6,
+  "screen": "dialogs",
+  "theme": "grad_jade",
+  "ap": "light",
+  "ok": true,
+  "why": null,
+  "status": 100,
+  "tab": 2140,
+  "sceneH": 1082,
+  "note": "в кадре дефект приложения: тёмные слои сцены в светлом оформлении (Темы) — показано как есть",
+  "state": "day",
+  "hero": {
+   "x": 547,
+   "y": 50,
+   "size": 627,
+   "score": 0.9355,
+   "byPrior": false,
+   "art": "dialogs_scene_first",
+   "dir": "v2art",
+   "opacity": 0.96
+  }
  },
  "scene_dialogs_grad_lilac_dark.png": {
   "file": "scene_dialogs_grad_lilac_dark.png",
@@ -321,6 +637,31 @@
    "y": 59,
    "size": 638,
    "score": 0.9308,
+   "byPrior": false,
+   "art": "dialogs_scene_first",
+   "dir": "v2art",
+   "opacity": 0.96
+  }
+ },
+ "scene_dialogs_grad_lilac_light.png": {
+  "file": "scene_dialogs_grad_lilac_light.png",
+  "mtime": 1793228168221.02,
+  "v": 6,
+  "screen": "dialogs",
+  "theme": "grad_lilac",
+  "ap": "light",
+  "ok": true,
+  "why": null,
+  "status": 100,
+  "tab": 2140,
+  "sceneH": 1082,
+  "note": "в кадре дефект приложения: тёмные слои сцены в светлом оформлении (Темы) — показано как есть",
+  "state": "day",
+  "hero": {
+   "x": 547,
+   "y": 50,
+   "size": 627,
+   "score": 0.8894,
    "byPrior": false,
    "art": "dialogs_scene_first",
    "dir": "v2art",
@@ -351,6 +692,31 @@
    "opacity": 0.96
   }
  },
+ "scene_dialogs_grad_magma_light.png": {
+  "file": "scene_dialogs_grad_magma_light.png",
+  "mtime": 1793227900720.3152,
+  "v": 6,
+  "screen": "dialogs",
+  "theme": "grad_magma",
+  "ap": "light",
+  "ok": true,
+  "why": null,
+  "status": 100,
+  "tab": 2140,
+  "sceneH": 1082,
+  "note": "в кадре дефект приложения: тёмные слои сцены в светлом оформлении (Темы) — показано как есть",
+  "state": "day",
+  "hero": {
+   "x": 547,
+   "y": 50,
+   "size": 627,
+   "score": 0.8999,
+   "byPrior": false,
+   "art": "dialogs_scene_first",
+   "dir": "v2art",
+   "opacity": 0.96
+  }
+ },
  "scene_dialogs_grad_midnight_dark.png": {
   "file": "scene_dialogs_grad_midnight_dark.png",
   "mtime": 1793218885920.928,
@@ -369,6 +735,31 @@
    "y": 59,
    "size": 638,
    "score": 0.963,
+   "byPrior": false,
+   "art": "dialogs_scene_first",
+   "dir": "v2art",
+   "opacity": 0.96
+  }
+ },
+ "scene_dialogs_grad_midnight_light.png": {
+  "file": "scene_dialogs_grad_midnight_light.png",
+  "mtime": 1793227936379.4575,
+  "v": 6,
+  "screen": "dialogs",
+  "theme": "grad_midnight",
+  "ap": "light",
+  "ok": true,
+  "why": null,
+  "status": 100,
+  "tab": 2140,
+  "sceneH": 1082,
+  "note": "в кадре дефект приложения: тёмные слои сцены в светлом оформлении (Темы) — показано как есть",
+  "state": "day",
+  "hero": {
+   "x": 546,
+   "y": 50,
+   "size": 627,
+   "score": 0.9791,
    "byPrior": false,
    "art": "dialogs_scene_first",
    "dir": "v2art",
@@ -399,6 +790,31 @@
    "opacity": 0.96
   }
  },
+ "scene_dialogs_grad_orchid_light.png": {
+  "file": "scene_dialogs_grad_orchid_light.png",
+  "mtime": 1793228070638.1406,
+  "v": 6,
+  "screen": "dialogs",
+  "theme": "grad_orchid",
+  "ap": "light",
+  "ok": true,
+  "why": null,
+  "status": 100,
+  "tab": 2140,
+  "sceneH": 1082,
+  "note": "в кадре дефект приложения: тёмные слои сцены в светлом оформлении (Темы) — показано как есть",
+  "state": "day",
+  "hero": {
+   "x": 547,
+   "y": 50,
+   "size": 627,
+   "score": 0.9142,
+   "byPrior": false,
+   "art": "dialogs_scene_first",
+   "dir": "v2art",
+   "opacity": 0.96
+  }
+ },
  "scene_dialogs_graphite_dark.png": {
   "file": "scene_dialogs_graphite_dark.png",
   "mtime": 1793218270140.1,
@@ -417,6 +833,30 @@
    "y": 246,
    "size": 418,
    "score": 0.7186,
+   "byPrior": false,
+   "art": "dialogs_scene_first",
+   "dir": "v2art",
+   "opacity": 0.96
+  }
+ },
+ "scene_dialogs_graphite_light.png": {
+  "file": "scene_dialogs_graphite_light.png",
+  "mtime": 1793227384966.0286,
+  "v": 6,
+  "screen": "dialogs",
+  "theme": "graphite",
+  "ap": "light",
+  "ok": true,
+  "why": null,
+  "status": 100,
+  "tab": 2140,
+  "sceneH": 1082,
+  "state": "day",
+  "hero": {
+   "x": 629,
+   "y": 237,
+   "size": 425,
+   "score": 0.7082,
    "byPrior": false,
    "art": "dialogs_scene_first",
    "dir": "v2art",
@@ -447,6 +887,30 @@
    "opacity": 0.96
   }
  },
+ "scene_dialogs_ink_light.png": {
+  "file": "scene_dialogs_ink_light.png",
+  "mtime": 1793227417826.861,
+  "v": 6,
+  "screen": "dialogs",
+  "theme": "ink",
+  "ap": "light",
+  "ok": true,
+  "why": null,
+  "status": 100,
+  "tab": 2140,
+  "sceneH": 1082,
+  "state": "day",
+  "hero": {
+   "x": 635,
+   "y": 243,
+   "size": 415,
+   "score": 0.7731,
+   "byPrior": false,
+   "art": "dialogs_scene_first",
+   "dir": "v2art",
+   "opacity": 0.96
+  }
+ },
  "scene_dialogs_iris_dark.png": {
   "file": "scene_dialogs_iris_dark.png",
   "mtime": 1793218464626.4873,
@@ -465,6 +929,30 @@
    "y": 248,
    "size": 422,
    "score": 0.7811,
+   "byPrior": false,
+   "art": "dialogs_scene_first",
+   "dir": "v2art",
+   "opacity": 0.96
+  }
+ },
+ "scene_dialogs_iris_light.png": {
+  "file": "scene_dialogs_iris_light.png",
+  "mtime": 1793227610763.969,
+  "v": 6,
+  "screen": "dialogs",
+  "theme": "iris",
+  "ap": "light",
+  "ok": true,
+  "why": null,
+  "status": 100,
+  "tab": 2140,
+  "sceneH": 1082,
+  "state": "day",
+  "hero": {
+   "x": 628,
+   "y": 234,
+   "size": 427,
+   "score": 0.7013,
    "byPrior": false,
    "art": "dialogs_scene_first",
    "dir": "v2art",
@@ -495,6 +983,30 @@
    "opacity": 0.96
   }
  },
+ "scene_dialogs_lavender_light.png": {
+  "file": "scene_dialogs_lavender_light.png",
+  "mtime": 1793227555572.5032,
+  "v": 6,
+  "screen": "dialogs",
+  "theme": "lavender",
+  "ap": "light",
+  "ok": true,
+  "why": null,
+  "status": 100,
+  "tab": 2140,
+  "sceneH": 1082,
+  "state": "day",
+  "hero": {
+   "x": 623,
+   "y": 228,
+   "size": 431,
+   "score": 0.7837,
+   "byPrior": false,
+   "art": "dialogs_scene_first",
+   "dir": "v2art",
+   "opacity": 0.96
+  }
+ },
  "scene_dialogs_marine_dark.png": {
   "file": "scene_dialogs_marine_dark.png",
   "mtime": 1793218716013.1143,
@@ -513,6 +1025,30 @@
    "y": 248,
    "size": 422,
    "score": 0.8667,
+   "byPrior": false,
+   "art": "dialogs_scene_first",
+   "dir": "v2art",
+   "opacity": 0.96
+  }
+ },
+ "scene_dialogs_marine_light.png": {
+  "file": "scene_dialogs_marine_light.png",
+  "mtime": 1793227450562.129,
+  "v": 6,
+  "screen": "dialogs",
+  "theme": "marine",
+  "ap": "light",
+  "ok": true,
+  "why": null,
+  "status": 100,
+  "tab": 2140,
+  "sceneH": 1082,
+  "state": "day",
+  "hero": {
+   "x": 598,
+   "y": 189,
+   "size": 475,
+   "score": 0.8741,
    "byPrior": false,
    "art": "dialogs_scene_first",
    "dir": "v2art",
@@ -543,6 +1079,30 @@
    "opacity": 0.96
   }
  },
+ "scene_dialogs_polar_light.png": {
+  "file": "scene_dialogs_polar_light.png",
+  "mtime": 1793227486814.8562,
+  "v": 6,
+  "screen": "dialogs",
+  "theme": "polar",
+  "ap": "light",
+  "ok": true,
+  "why": null,
+  "status": 100,
+  "tab": 2140,
+  "sceneH": 1082,
+  "state": "day",
+  "hero": {
+   "x": 612,
+   "y": 209,
+   "size": 453,
+   "score": 0.8657,
+   "byPrior": false,
+   "art": "dialogs_scene_first",
+   "dir": "v2art",
+   "opacity": 0.96
+  }
+ },
  "scene_dialogs_rose_dark.png": {
   "file": "scene_dialogs_rose_dark.png",
   "mtime": 1793218508070.7104,
@@ -566,6 +1126,22 @@
    "dir": "v2art",
    "opacity": 0.96
   }
+ },
+ "scene_dialogs_rose_light.png": {
+  "file": "scene_dialogs_rose_light.png",
+  "mtime": 1793227642981.2817,
+  "v": 6,
+  "screen": "dialogs",
+  "theme": "rose",
+  "ap": "light",
+  "ok": true,
+  "why": null,
+  "status": 100,
+  "tab": 2140,
+  "sceneH": 1082,
+  "state": "day",
+  "hero": null,
+  "heroWhy": "герой не совпал с картинкой (точность 0.691 при 426 px в 628,233)"
  },
  "scene_dialogs_sage_dark.png": {
   "file": "scene_dialogs_sage_dark.png",
@@ -591,6 +1167,22 @@
    "opacity": 0.96
   }
  },
+ "scene_dialogs_sage_light.png": {
+  "file": "scene_dialogs_sage_light.png",
+  "mtime": 1793227744391.527,
+  "v": 6,
+  "screen": "dialogs",
+  "theme": "sage",
+  "ap": "light",
+  "ok": true,
+  "why": null,
+  "status": 100,
+  "tab": 2140,
+  "sceneH": 1082,
+  "state": "day",
+  "hero": null,
+  "heroWhy": "рамка героя неправдоподобна (1 px) — вероятно, дефект кадра или другое состояние"
+ },
  "scene_dialogs_slate_dark.png": {
   "file": "scene_dialogs_slate_dark.png",
   "mtime": 1793218346912.6655,
@@ -609,6 +1201,30 @@
    "y": 250,
    "size": 419,
    "score": 0.8593,
+   "byPrior": false,
+   "art": "dialogs_scene_first",
+   "dir": "v2art",
+   "opacity": 0.96
+  }
+ },
+ "scene_dialogs_slate_light.png": {
+  "file": "scene_dialogs_slate_light.png",
+  "mtime": 1793227519347.658,
+  "v": 6,
+  "screen": "dialogs",
+  "theme": "slate",
+  "ap": "light",
+  "ok": true,
+  "why": null,
+  "status": 100,
+  "tab": 2140,
+  "sceneH": 1082,
+  "state": "day",
+  "hero": {
+   "x": 613,
+   "y": 209,
+   "size": 453,
+   "score": 0.8631,
    "byPrior": false,
    "art": "dialogs_scene_first",
    "dir": "v2art",
@@ -639,6 +1255,30 @@
    "opacity": 0.96
   }
  },
+ "scene_dialogs_taupe_light.png": {
+  "file": "scene_dialogs_taupe_light.png",
+  "mtime": 1793227708303.861,
+  "v": 6,
+  "screen": "dialogs",
+  "theme": "taupe",
+  "ap": "light",
+  "ok": true,
+  "why": null,
+  "status": 100,
+  "tab": 2140,
+  "sceneH": 1082,
+  "state": "day",
+  "hero": {
+   "x": 611,
+   "y": 213,
+   "size": 449,
+   "score": 0.7362,
+   "byPrior": false,
+   "art": "dialogs_scene_first",
+   "dir": "v2art",
+   "opacity": 0.96
+  }
+ },
  "scene_dialogs_terracotta_dark.png": {
   "file": "scene_dialogs_terracotta_dark.png",
   "mtime": 1793218549403.9954,
@@ -657,6 +1297,30 @@
    "y": 250,
    "size": 419,
    "score": 0.8576,
+   "byPrior": false,
+   "art": "dialogs_scene_first",
+   "dir": "v2art",
+   "opacity": 0.96
+  }
+ },
+ "scene_dialogs_terracotta_light.png": {
+  "file": "scene_dialogs_terracotta_light.png",
+  "mtime": 1793227675357.1453,
+  "v": 6,
+  "screen": "dialogs",
+  "theme": "terracotta",
+  "ap": "light",
+  "ok": true,
+  "why": null,
+  "status": 100,
+  "tab": 2140,
+  "sceneH": 1082,
+  "state": "day",
+  "hero": {
+   "x": 611,
+   "y": 211,
+   "size": 450,
+   "score": 0.7718,
    "byPrior": false,
    "art": "dialogs_scene_first",
    "dir": "v2art",
@@ -9342,6 +10006,20 @@
   "sceneH": 1950,
   "shadeA": 0.318
  },
+ "scene_peak_graphite_light.png": {
+  "file": "scene_peak_graphite_light.png",
+  "mtime": 1793228479601.5488,
+  "v": 6,
+  "screen": "peak",
+  "theme": "graphite",
+  "ap": "light",
+  "ok": true,
+  "why": null,
+  "status": 100,
+  "tab": 2140,
+  "sceneH": 1950,
+  "shadeA": 0.339
+ },
  "scene_peak_ink_dark.png": {
   "file": "scene_peak_ink_dark.png",
   "mtime": 1793220406454.08,
@@ -9355,6 +10033,20 @@
   "tab": 2140,
   "sceneH": 1950,
   "shadeA": 0.323
+ },
+ "scene_peak_ink_light.png": {
+  "file": "scene_peak_ink_light.png",
+  "mtime": 1793228547595.7605,
+  "v": 6,
+  "screen": "peak",
+  "theme": "ink",
+  "ap": "light",
+  "ok": true,
+  "why": null,
+  "status": 100,
+  "tab": 2140,
+  "sceneH": 1950,
+  "shadeA": 0.322
  },
  "scene_peak_marine_dark.png": {
   "file": "scene_peak_marine_dark.png",
@@ -9370,6 +10062,20 @@
   "sceneH": 1950,
   "shadeA": 0.32
  },
+ "scene_peak_marine_light.png": {
+  "file": "scene_peak_marine_light.png",
+  "mtime": 1793228614983.058,
+  "v": 6,
+  "screen": "peak",
+  "theme": "marine",
+  "ap": "light",
+  "ok": true,
+  "why": null,
+  "status": 100,
+  "tab": 2140,
+  "sceneH": 1950,
+  "shadeA": 0.334
+ },
  "scene_season_graphite_dark.png": {
   "file": "scene_season_graphite_dark.png",
   "mtime": 1793218123682.0295,
@@ -9377,6 +10083,19 @@
   "screen": "season",
   "theme": "graphite",
   "ap": "dark",
+  "ok": true,
+  "why": null,
+  "status": 100,
+  "tab": 2140,
+  "sceneH": 1029
+ },
+ "scene_season_graphite_light.png": {
+  "file": "scene_season_graphite_light.png",
+  "mtime": 1793228443008.802,
+  "v": 6,
+  "screen": "season",
+  "theme": "graphite",
+  "ap": "light",
   "ok": true,
   "why": null,
   "status": 100,
@@ -9396,6 +10115,19 @@
   "tab": 2140,
   "sceneH": 1029
  },
+ "scene_season_ink_light.png": {
+  "file": "scene_season_ink_light.png",
+  "mtime": 1793228511232.1277,
+  "v": 6,
+  "screen": "season",
+  "theme": "ink",
+  "ap": "light",
+  "ok": true,
+  "why": null,
+  "status": 100,
+  "tab": 2140,
+  "sceneH": 1029
+ },
  "scene_season_marine_dark.png": {
   "file": "scene_season_marine_dark.png",
   "mtime": 1793220437162.477,
@@ -9403,6 +10135,19 @@
   "screen": "season",
   "theme": "marine",
   "ap": "dark",
+  "ok": true,
+  "why": null,
+  "status": 100,
+  "tab": 2140,
+  "sceneH": 1029
+ },
+ "scene_season_marine_light.png": {
+  "file": "scene_season_marine_light.png",
+  "mtime": 1793228578974.7473,
+  "v": 6,
+  "screen": "season",
+  "theme": "marine",
+  "ap": "light",
   "ok": true,
   "why": null,
   "status": 100,

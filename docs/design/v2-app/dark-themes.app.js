@@ -87,7 +87,7 @@
     JOBS[key] = job;
     const now = RF.phone({ src: job.src, exists: true, cls: 'sp-rf', status: job.status, tab: job.tab });
     const will = (v) => RF.phone({ src: job.src, exists: true, cls: 'sp-rf sp-rf-will', status: job.status, tab: job.tab, fixed: '<span class="sp-rf-badge">считаю…</span>' }).replace('data-ph="sp-rf sp-rf-will"', `data-ph="sp-rf-will" data-strat="${v.key}"`);
-    return `<div class="sp-real-row" data-frame="${key}"><h3>${title}<small>${m.file}${!m.hero && (m.screen === 'home' || m.screen === 'dialogs') ? ' · герой не найден: под ним классификатор' : ''}</small></h3><div class="phones">${col('Сейчас · кадр приложения', now)}${variants.map((v) => col(`${v.name}<br><small>${v.why}</small>`, will(v))).join('')}</div></div>`;
+    return `<div class="sp-real-row" data-frame="${key}"><h3>${title}<small>${m.file}${!m.hero && (m.screen === 'home' || m.screen === 'dialogs') ? ' · герой не найден: под ним классификатор' : ''}${m.note ? ' · ' + m.note : ''}</small></h3><div class="phones">${col('Сейчас · кадр приложения', now)}${variants.map((v) => col(`${v.name}<br><small>${v.why}</small>`, will(v))).join('')}</div></div>`;
   };
   const missing = (title, file) => `<div class="sp-real-row"><h3>${title}<small>${file}</small></h3><div class="phones">${col('кадр снимается', RF.phone({ src: file, exists: false, cls: 'sp-rf' }).replace('кадр не снят', 'кадр снимается'))}</div></div>`;
   const stylesOf = (m, keys) => keys.map((k) => ({ key: k, name: SS.STYLES[k].name, why: SS.STYLES[k].why, spec: styleSpec(THEME, m, k) }));

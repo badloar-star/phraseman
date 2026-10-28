@@ -1957,4 +1957,18 @@ export const FACTORY_NATIVE_MANIFEST_ES_V1: readonly LearningV2FactoryNativeMani
     loadAnswers: () => require("./generated_release/es/l03/s27/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/es/l03/s27/auxiliary.json") as unknown,
   }),
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 28,
+    sourceFingerprint: "1c59574af44ef1f7e25d0b206ecb502d856002c4b8022a8447a67884d94e4fc9",
+    introCorrectChoiceIndexes: Object.freeze([0,0,0]),
+    introPromptByAuthoredLocale: Object.freeze({"ru":["Скажите, что чашка хрупкая.","Скажите, что чашки хрупкие.","Скажите, что стакан хрупкий."],"uk":["Скажіть, що чашка крихка.","Скажіть, що чашки крихкі.","Скажіть, що склянка крихка."]}),
+    introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Формы frágila нет: frágil.","Чашка одна: frágil."],["Нужно множественное число frágiles.","Добавьте -es целиком: frágiles."],["Не добавляйте -o: frágil.","Стакан один: frágil."]],"uk":[["Форми frágila немає: frágil.","Чашка одна: frágil."],["Потрібна множина frágiles.","Додайте -es повністю: frágiles."],["Не додавайте -o: frágil.","Склянка одна: frágil."]]}),
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"описать хрупкость одной или нескольких вещей словом frágil.","uk":"описувати крихкість однієї чи кількох речей словом frágil."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+    practiceTitlesByAuthoredLocale: Object.freeze({"ru":[{"ordinal":1,"title":"Карточка слова — frágil"},{"ordinal":2,"title":"Послушайте и выберите слово"},{"ordinal":3,"title":"Соберите фразу — чашка хрупкая"},{"ordinal":4,"title":"Вставьте слово — одна чашка хрупкая"},{"ordinal":5,"title":"Соберите фразу — чашки хрупкие"},{"ordinal":6,"title":"Вставьте слово — несколько чашек хрупкие"},{"ordinal":7,"title":"Соберите фразу — стакан хрупкий"},{"ordinal":8,"title":"Послушайте и соберите фразу"},{"ordinal":9,"title":"Скажите вслух — чашка хрупкая; назовите предмет"},{"ordinal":10,"title":"Скажите вслух — чашки хрупкие; назовите предметы"},{"ordinal":11,"title":"Скажите вслух — стакан хрупкий; назовите предмет"},{"ordinal":12,"title":"Скажите вслух — стаканы хрупкие; назовите предметы"}],"uk":[{"ordinal":1,"title":"Картка слова — frágil"},{"ordinal":2,"title":"Послухайте й виберіть слово"},{"ordinal":3,"title":"Зберіть фразу — чашка крихка"},{"ordinal":4,"title":"Вставте слово — одна чашка крихка"},{"ordinal":5,"title":"Зберіть фразу — чашки крихкі"},{"ordinal":6,"title":"Вставте слово — кілька чашок крихкі"},{"ordinal":7,"title":"Зберіть фразу — склянка крихка"},{"ordinal":8,"title":"Послухайте й зберіть фразу"},{"ordinal":9,"title":"Скажіть уголос — чашка крихка; назвіть предмет"},{"ordinal":10,"title":"Скажіть уголос — чашки крихкі; назвіть предмети"},{"ordinal":11,"title":"Скажіть уголос — склянка крихка; назвіть предмет"},{"ordinal":12,"title":"Скажіть уголос — склянки крихкі; назвіть предмети"}]}),
+    loadIntro: () => require("./generated_release/es/l03/s28/intro.json") as unknown,
+    loadLearner: (locale: "ru" | "uk") => locale === "uk" ? require("./generated_release/es/l03/s28/learner.uk.json") as unknown : require("./generated_release/es/l03/s28/learner.json") as unknown,
+    loadAnswers: () => require("./generated_release/es/l03/s28/answers.json") as unknown,
+    loadAuxiliary: () => require("./generated_release/es/l03/s28/auxiliary.json") as unknown,
+  }),
 ]);

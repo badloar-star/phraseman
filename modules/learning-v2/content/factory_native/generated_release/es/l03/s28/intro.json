@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-03:session-28",
+  "learningOutcomeByLocale": {
+    "ru": "описать хрупкость одной или нескольких вещей словом frágil.",
+    "uk": "описувати крихкість однієї чи кількох речей словом frágil."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-03:session-28:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Тонкая чашка",
+        "uk": "Тонка чашка"
+      },
+      "bodyByLocale": {
+        "ru": "Друг берёт чашку с тонкими стенками. Предупредите: `La taza es frágil` — «Чашка хрупкая». Frágil означает, что вещь легко повредить или разбить. Соберите `la taza` + `es` + `frágil`. У frágil нет отдельной женской формы: не добавляйте -a.",
+        "uk": "Друг бере чашку з тонкими стінками. Попередьте: `La taza es frágil` — «Чашка крихка». Frágil означає, що річ легко пошкодити або розбити. Зберіть `la taza` + `es` + `frágil`. У frágil немає окремої жіночої форми: не додавайте -a."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-28:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите, что чашка хрупкая.",
+          "uk": "Скажіть, що чашка крихка."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-28:intro1:r1",
+              "text": "La taza es frágil."
+            },
+            {
+              "responseId": "es:lesson-03:session-28:intro1:r2",
+              "text": "La taza es frágila."
+            },
+            {
+              "responseId": "es:lesson-03:session-28:intro1:r3",
+              "text": "La taza es frágiles."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-28:intro1:r1",
+              "text": "La taza es frágil."
+            },
+            {
+              "responseId": "es:lesson-03:session-28:intro1:r2",
+              "text": "La taza es frágila."
+            },
+            {
+              "responseId": "es:lesson-03:session-28:intro1:r3",
+              "text": "La taza es frágiles."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что чашка хрупкая.",
+          "uk": "Скажіть, що чашка крихка."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-03:session-28:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Несколько чашек",
+        "uk": "Кілька чашок"
+      },
+      "bodyByLocale": {
+        "ru": "В коробку кладёте несколько таких чашек. Скажите `Las tazas son frágiles` — «Чашки хрупкие». Соберите `las tazas` + `son` + `frágiles`. К frágil на согласную добавьте -es: frágiles. Ударение остаётся на frá, знак над á сохраняется.",
+        "uk": "У коробку кладете кілька таких чашок. Скажіть `Las tazas son frágiles` — «Чашки крихкі». Зберіть `las tazas` + `son` + `frágiles`. До frágil на приголосну додайте -es: frágiles. Наголос залишається на frá, знак над á зберігається."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-28:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите, что чашки хрупкие.",
+          "uk": "Скажіть, що чашки крихкі."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-28:intro2:r1",
+              "text": "Las tazas son frágiles."
+            },
+            {
+              "responseId": "es:lesson-03:session-28:intro2:r2",
+              "text": "Las tazas son frágil."
+            },
+            {
+              "responseId": "es:lesson-03:session-28:intro2:r3",
+              "text": "Las tazas son frágils."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-28:intro2:r1",
+              "text": "Las tazas son frágiles."
+            },
+            {
+              "responseId": "es:lesson-03:session-28:intro2:r2",
+              "text": "Las tazas son frágil."
+            },
+            {
+              "responseId": "es:lesson-03:session-28:intro2:r3",
+              "text": "Las tazas son frágils."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что чашки хрупкие.",
+          "uk": "Скажіть, що чашки крихкі."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-03:session-28:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Стакан рядом",
+        "uk": "Склянка поруч"
+      },
+      "bodyByLocale": {
+        "ru": "Рядом лежит тонкий стакан. Скажите `El vaso es frágil` — «Стакан хрупкий». Соберите `el vaso` + `es` + `frágil`. Vaso мужского рода, но frágil остаётся таким же, как с taza. Род не меняет это прилагательное; меняется только число.",
+        "uk": "Поруч лежить тонка склянка. Скажіть `El vaso es frágil` — «Склянка крихка». Зберіть `el vaso` + `es` + `frágil`. Vaso чоловічого роду, але frágil залишається таким самим, як із taza. Рід не змінює цей прикметник; змінюється лише число."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-28:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите, что стакан хрупкий.",
+          "uk": "Скажіть, що склянка крихка."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-28:intro3:r1",
+              "text": "El vaso es frágil."
+            },
+            {
+              "responseId": "es:lesson-03:session-28:intro3:r2",
+              "text": "El vaso es frágilo."
+            },
+            {
+              "responseId": "es:lesson-03:session-28:intro3:r3",
+              "text": "El vaso es frágiles."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-28:intro3:r1",
+              "text": "El vaso es frágil."
+            },
+            {
+              "responseId": "es:lesson-03:session-28:intro3:r2",
+              "text": "El vaso es frágilo."
+            },
+            {
+              "responseId": "es:lesson-03:session-28:intro3:r3",
+              "text": "El vaso es frágiles."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что стакан хрупкий.",
+          "uk": "Скажіть, що склянка крихка."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "8f2ae61ea91e2cb12baff039d164217a41fa47d8c1a254add62de6445f8276fd"
+}

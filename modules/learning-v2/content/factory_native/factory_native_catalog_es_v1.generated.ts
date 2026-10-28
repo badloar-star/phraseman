@@ -980,4 +980,11 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"описать прочность вещи словом resistente в единственном и множественном числе.","uk":"описувати міцність речі словом resistente в однині й множині."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 28,
+    sourceFingerprint: "1c59574af44ef1f7e25d0b206ecb502d856002c4b8022a8447a67884d94e4fc9",
+    newWordCount: 1,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"описать хрупкость одной или нескольких вещей словом frágil.","uk":"описувати крихкість однієї чи кількох речей словом frágil."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+  }),
 ]);

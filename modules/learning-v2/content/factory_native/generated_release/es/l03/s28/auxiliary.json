@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-03:session-28",
+  "entries": [
+    {
+      "interactionId": "es:lesson-03:session-28:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-28:intro1:r2": {
+          "ru": "Формы frágila нет: frágil.",
+          "uk": "Форми frágila немає: frágil."
+        },
+        "es:lesson-03:session-28:intro1:r3": {
+          "ru": "Чашка одна: frágil.",
+          "uk": "Чашка одна: frágil."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-28:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-28:intro2:r2": {
+          "ru": "Нужно множественное число frágiles.",
+          "uk": "Потрібна множина frágiles."
+        },
+        "es:lesson-03:session-28:intro2:r3": {
+          "ru": "Добавьте -es целиком: frágiles.",
+          "uk": "Додайте -es повністю: frágiles."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-28:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-28:intro3:r2": {
+          "ru": "Не добавляйте -o: frágil.",
+          "uk": "Не додавайте -o: frágil."
+        },
+        "es:lesson-03:session-28:intro3:r3": {
+          "ru": "Стакан один: frágil.",
+          "uk": "Склянка одна: frágil."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "3453e9cf97f2bd66d78fb3b38933620a53b3a0c0530fe3f0bc91e0e86f83861a"
+}

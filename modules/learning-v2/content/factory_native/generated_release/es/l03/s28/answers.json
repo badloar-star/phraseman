@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-03:session-28:i01",
+    "correctText": "frágil",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-28:i02",
+    "correctText": "frágil",
+    "correctResponseId": "es:lesson-03:session-28:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-28:i03",
+    "correctText": "La taza es frágil.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-28:i04",
+    "correctText": "frágil",
+    "correctResponseId": "es:lesson-03:session-28:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-28:i05",
+    "correctText": "Las tazas son frágiles.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-28:i06",
+    "correctText": "frágiles",
+    "correctResponseId": "es:lesson-03:session-28:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-28:i07",
+    "correctText": "El vaso es frágil.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-28:i08",
+    "correctText": "Los vasos son frágiles.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-28:i09",
+    "correctText": "La taza es frágil.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-28:i10",
+    "correctText": "Las tazas son frágiles.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-28:i11",
+    "correctText": "El vaso es frágil.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-28:i12",
+    "correctText": "Los vasos son frágiles.",
+    "correctResponseId": null
+  }
+]

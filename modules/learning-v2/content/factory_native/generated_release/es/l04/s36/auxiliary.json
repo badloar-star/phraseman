@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-04:session-36",
+  "entries": [
+    {
+      "interactionId": "es:lesson-04:session-36:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-36:intro1:r2": {
+          "ru": "Перед женским caja нужно esta.",
+          "uk": "Перед жіночим caja потрібне esta."
+        },
+        "es:lesson-04:session-36:intro1:r3": {
+          "ru": "Признак относится к caja: pequeña.",
+          "uk": "Ознака стосується caja: pequeña."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-36:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-36:intro2:r2": {
+          "ru": "В этой фразе поставьте no перед es.",
+          "uk": "У цій фразі поставте no перед es."
+        },
+        "es:lesson-04:session-36:intro2:r3": {
+          "ru": "Коробка одна: es.",
+          "uk": "Коробка одна: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-36:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-36:intro3:r2": {
+          "ru": "Нужна форма grande, не granda.",
+          "uk": "Потрібна форма grande, не granda."
+        },
+        "es:lesson-04:session-36:intro3:r3": {
+          "ru": "Caja женского рода: esta.",
+          "uk": "Caja жіночого роду: esta."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "57cba1bf4ed1a99d40c0d1f9c1711e537e396d40f84c2d61ccf7826b8f449546"
+}

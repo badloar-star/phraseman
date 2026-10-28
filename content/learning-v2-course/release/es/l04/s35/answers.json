@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-04:session-35:i01",
+    "correctText": "este",
+    "correctResponseId": "es:lesson-04:session-35:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-35:i02",
+    "correctText": "Este",
+    "correctResponseId": "es:lesson-04:session-35:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-35:i03",
+    "correctText": "Este libro es grande.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-35:i04",
+    "correctText": "nuevo",
+    "correctResponseId": "es:lesson-04:session-35:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-35:i05",
+    "correctText": "Este libro es nuevo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-35:i06",
+    "correctText": "Este libro es muy grande.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-35:i07",
+    "correctText": "Este libro es nuevo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-35:i08",
+    "correctText": "es",
+    "correctResponseId": "es:lesson-04:session-35:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-35:i09",
+    "correctText": "Este libro es grande.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-35:i10",
+    "correctText": "Este libro es nuevo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-35:i11",
+    "correctText": "Este libro es muy grande.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-35:i12",
+    "correctText": "Este libro no es nuevo.",
+    "correctResponseId": null
+  }
+]

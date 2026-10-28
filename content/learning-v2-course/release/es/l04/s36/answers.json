@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-04:session-36:i01",
+    "correctText": "esta",
+    "correctResponseId": "es:lesson-04:session-36:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-36:i02",
+    "correctText": "Esta",
+    "correctResponseId": "es:lesson-04:session-36:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-36:i03",
+    "correctText": "Esta caja es pequeña.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-36:i04",
+    "correctText": "pequeña",
+    "correctResponseId": "es:lesson-04:session-36:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-36:i05",
+    "correctText": "Esta caja no es pequeña.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-36:i06",
+    "correctText": "Esta caja es grande.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-36:i07",
+    "correctText": "Esta caja es pequeña.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-36:i08",
+    "correctText": "grande",
+    "correctResponseId": "es:lesson-04:session-36:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-36:i09",
+    "correctText": "Esta caja es pequeña.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-36:i10",
+    "correctText": "Esta caja no es pequeña.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-36:i11",
+    "correctText": "Esta caja es grande.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-36:i12",
+    "correctText": "Esta caja es muy pequeña.",
+    "correctResponseId": null
+  }
+]

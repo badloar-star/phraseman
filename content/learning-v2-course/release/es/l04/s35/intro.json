@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-04:session-35",
+  "learningOutcomeByLocale": {
+    "ru": "ставить este перед названием одного предмета мужского рода.",
+    "uk": "ставити este перед назвою одного предмета чоловічого роду."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-04:session-35:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Книга перед вами",
+        "uk": "Книжка перед вами"
+      },
+      "bodyByLocale": {
+        "ru": "Показываете другу большую книгу на столе. Скажите `Este libro es grande` — «Эта книга большая». Соберите `este libro` + `es` + `grande`. Здесь este стоит прямо перед libro: вместе они означают «эта книга». Испанское libro мужского рода, поэтому нужно este, хотя русское «книга» женского рода.",
+        "uk": "Показуєте другові велику книжку на столі. Скажіть `Este libro es grande` — «Ця книжка велика». Складіть `este libro` + `es` + `grande`. Тут este стоїть безпосередньо перед libro: разом вони означають «ця книжка». Іспанське libro чоловічого роду, тому потрібне este, хоча українське «книжка» жіночого роду."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-35:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите о книге рядом: «Эта книга большая». Начните с Este libro.",
+          "uk": "Скажіть про книжку поруч: «Ця книжка велика». Почніть з Este libro."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-35:intro1:r1",
+              "text": "Este libro es grande."
+            },
+            {
+              "responseId": "es:lesson-04:session-35:intro1:r2",
+              "text": "Esta libro es grande."
+            },
+            {
+              "responseId": "es:lesson-04:session-35:intro1:r3",
+              "text": "Este libro son grande."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-35:intro1:r1",
+              "text": "Este libro es grande."
+            },
+            {
+              "responseId": "es:lesson-04:session-35:intro1:r2",
+              "text": "Esta libro es grande."
+            },
+            {
+              "responseId": "es:lesson-04:session-35:intro1:r3",
+              "text": "Este libro son grande."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите о книге рядом: «Эта книга большая». Начните с Este libro.",
+          "uk": "Скажіть про книжку поруч: «Ця книжка велика». Почніть з Este libro."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-04:session-35:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Новая книга",
+        "uk": "Нова книжка"
+      },
+      "bodyByLocale": {
+        "ru": "Друг замечает вашу новую книгу. Скажите `Este libro es nuevo` — «Эта книга новая». Соберите `este libro` + `es` + `nuevo`. Вместо grande поставьте nuevo. Окончание -o относится к мужскому libro; русское «новая» не подсказывает испанское окончание.",
+        "uk": "Друг помічає вашу нову книжку. Скажіть `Este libro es nuevo` — «Ця книжка нова». Складіть `este libro` + `es` + `nuevo`. Замість grande поставте nuevo. Закінчення -o стосується чоловічого libro; українське «нова» не підказує іспанського закінчення."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-35:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите о книге рядом: «Эта книга новая». Начните с Este libro.",
+          "uk": "Скажіть про книжку поруч: «Ця книжка нова». Почніть з Este libro."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-35:intro2:r1",
+              "text": "Este libro es nuevo."
+            },
+            {
+              "responseId": "es:lesson-04:session-35:intro2:r2",
+              "text": "Este libro es nueva."
+            },
+            {
+              "responseId": "es:lesson-04:session-35:intro2:r3",
+              "text": "Esta libro es nuevo."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-35:intro2:r1",
+              "text": "Este libro es nuevo."
+            },
+            {
+              "responseId": "es:lesson-04:session-35:intro2:r2",
+              "text": "Este libro es nueva."
+            },
+            {
+              "responseId": "es:lesson-04:session-35:intro2:r3",
+              "text": "Esta libro es nuevo."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите о книге рядом: «Эта книга новая». Начните с Este libro.",
+          "uk": "Скажіть про книжку поруч: «Ця книжка нова». Почніть з Este libro."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-04:session-35:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Очень большая",
+        "uk": "Дуже велика"
+      },
+      "bodyByLocale": {
+        "ru": "Книга рядом с вами едва помещается в сумку. Подчеркните размер: `Este libro es muy grande` — «Эта книга очень большая». Соберите `este libro` + `es` + `muy grande`. Muy ставьте непосредственно перед grande: оно усиливает признак и означает «очень».",
+        "uk": "Книжка поруч із вами ледве вміщується в сумку. Підкресліть розмір: `Este libro es muy grande` — «Ця книжка дуже велика». Складіть `este libro` + `es` + `muy grande`. Muy ставте безпосередньо перед grande: воно підсилює ознаку й означає «дуже»."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-35:intro3:q",
+        "promptByLocale": {
+          "ru": "Подчеркните размер книги рядом: «Эта книга очень большая». Начните с Este libro.",
+          "uk": "Підкресліть розмір книжки поруч: «Ця книжка дуже велика». Почніть з Este libro."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-35:intro3:r1",
+              "text": "Este libro es muy grande."
+            },
+            {
+              "responseId": "es:lesson-04:session-35:intro3:r2",
+              "text": "Este libro es grande muy."
+            },
+            {
+              "responseId": "es:lesson-04:session-35:intro3:r3",
+              "text": "Este libro muy es grande."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-35:intro3:r1",
+              "text": "Este libro es muy grande."
+            },
+            {
+              "responseId": "es:lesson-04:session-35:intro3:r2",
+              "text": "Este libro es grande muy."
+            },
+            {
+              "responseId": "es:lesson-04:session-35:intro3:r3",
+              "text": "Este libro muy es grande."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Подчеркните размер книги рядом: «Эта книга очень большая». Начните с Este libro.",
+          "uk": "Підкресліть розмір книжки поруч: «Ця книжка дуже велика». Почніть з Este libro."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "8276cc942df2dbacfa34f31e6977cb607d003907e1e31b2608c6717dcdf650b5"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-04:session-36",
+  "learningOutcomeByLocale": {
+    "ru": "ставить esta перед названием одного предмета женского рода.",
+    "uk": "ставити esta перед назвою одного предмета жіночого роду."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-04:session-36:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Маленькая коробка",
+        "uk": "Маленька коробка"
+      },
+      "bodyByLocale": {
+        "ru": "Показываете другу маленькую коробку перед вами. Скажите `Esta caja es pequeña` — «Эта коробка маленькая». Соберите `esta caja` + `es` + `pequeña`. Caja женского рода: перед ним ставим esta, женскую форму este. Знакомое pequeño тоже принимает женскую форму pequeña. Все три слова относятся к одной коробке.",
+        "uk": "Показуєте другові маленьку коробку перед вами. Скажіть `Esta caja es pequeña` — «Ця коробка маленька». Складіть `esta caja` + `es` + `pequeña`. Caja жіночого роду: перед ним ставимо esta, жіночу форму este. Знайоме pequeño теж набуває жіночої форми pequeña. Усі три слова стосуються однієї коробки."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-36:intro1:q",
+        "promptByLocale": {
+          "ru": "Опишите коробку рядом: «Эта коробка маленькая». Начните с Esta caja.",
+          "uk": "Опишіть коробку поруч: «Ця коробка маленька». Почніть з Esta caja."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-36:intro1:r1",
+              "text": "Esta caja es pequeña."
+            },
+            {
+              "responseId": "es:lesson-04:session-36:intro1:r2",
+              "text": "Este caja es pequeña."
+            },
+            {
+              "responseId": "es:lesson-04:session-36:intro1:r3",
+              "text": "Esta caja es pequeño."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-36:intro1:r1",
+              "text": "Esta caja es pequeña."
+            },
+            {
+              "responseId": "es:lesson-04:session-36:intro1:r2",
+              "text": "Este caja es pequeña."
+            },
+            {
+              "responseId": "es:lesson-04:session-36:intro1:r3",
+              "text": "Esta caja es pequeño."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Опишите коробку рядом: «Эта коробка маленькая». Начните с Esta caja.",
+          "uk": "Опишіть коробку поруч: «Ця коробка маленька». Почніть з Esta caja."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-04:session-36:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Не маленькая",
+        "uk": "Не маленька"
+      },
+      "bodyByLocale": {
+        "ru": "Друг считает коробку перед вами маленькой, а вы не согласны. Скажите `Esta caja no es pequeña` — «Эта коробка не маленькая». Соберите `esta caja` + `no es` + `pequeña`. Для отрицания вставьте no непосредственно перед es. Формы esta и pequeña при этом остаются прежними.",
+        "uk": "Друг вважає коробку перед вами маленькою, а ви не згодні. Скажіть `Esta caja no es pequeña` — «Ця коробка не маленька». Складіть `esta caja` + `no es` + `pequeña`. Для заперечення вставте no безпосередньо перед es. Форми esta й pequeña при цьому залишаються незмінними."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-36:intro2:q",
+        "promptByLocale": {
+          "ru": "Возразите: «Эта коробка не маленькая». Начните с Esta caja.",
+          "uk": "Заперечте: «Ця коробка не маленька». Почніть з Esta caja."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-36:intro2:r1",
+              "text": "Esta caja no es pequeña."
+            },
+            {
+              "responseId": "es:lesson-04:session-36:intro2:r2",
+              "text": "Esta caja es no pequeña."
+            },
+            {
+              "responseId": "es:lesson-04:session-36:intro2:r3",
+              "text": "Esta caja no son pequeña."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-36:intro2:r1",
+              "text": "Esta caja no es pequeña."
+            },
+            {
+              "responseId": "es:lesson-04:session-36:intro2:r2",
+              "text": "Esta caja es no pequeña."
+            },
+            {
+              "responseId": "es:lesson-04:session-36:intro2:r3",
+              "text": "Esta caja no son pequeña."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Возразите: «Эта коробка не маленькая». Начните с Esta caja.",
+          "uk": "Заперечте: «Ця коробка не маленька». Почніть з Esta caja."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-04:session-36:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Большая коробка",
+        "uk": "Велика коробка"
+      },
+      "bodyByLocale": {
+        "ru": "Показываете другу большую коробку рядом с собой. Скажите `Esta caja es grande` — «Эта коробка большая». Соберите `esta caja` + `es` + `grande`. Замените pequeña на grande. У знакомого grande форма одна для мужского и женского рода: Este libro es grande; esta caja es grande. Окончание -a ему не нужно.",
+        "uk": "Показуєте другові велику коробку поруч із собою. Скажіть `Esta caja es grande` — «Ця коробка велика». Складіть `esta caja` + `es` + `grande`. Замініть pequeña на grande. У знайомого grande форма одна для чоловічого й жіночого роду: Este libro es grande; esta caja es grande. Закінчення -a йому не потрібне."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-36:intro3:q",
+        "promptByLocale": {
+          "ru": "Опишите коробку рядом: «Эта коробка большая». Начните с Esta caja.",
+          "uk": "Опишіть коробку поруч: «Ця коробка велика». Почніть з Esta caja."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-36:intro3:r1",
+              "text": "Esta caja es grande."
+            },
+            {
+              "responseId": "es:lesson-04:session-36:intro3:r2",
+              "text": "Esta caja es granda."
+            },
+            {
+              "responseId": "es:lesson-04:session-36:intro3:r3",
+              "text": "Este caja es grande."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-36:intro3:r1",
+              "text": "Esta caja es grande."
+            },
+            {
+              "responseId": "es:lesson-04:session-36:intro3:r2",
+              "text": "Esta caja es granda."
+            },
+            {
+              "responseId": "es:lesson-04:session-36:intro3:r3",
+              "text": "Este caja es grande."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Опишите коробку рядом: «Эта коробка большая». Начните с Esta caja.",
+          "uk": "Опишіть коробку поруч: «Ця коробка велика». Почніть з Esta caja."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "215d3674691d582f13bb02311c394e0aeba77c3742f698d7945990c56f0142f5"
+}

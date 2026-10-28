@@ -1421,4 +1421,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбирать esta при указании на женщину рядом.","uk":"вибирати esta, вказуючи на жінку поруч."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 4, sessionOrdinal: 35,
+    sourceFingerprint: "9a9274dad443cf52de78279f4b8fad307a24651056d50ac534745dffbdc33e48",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"ставить este перед названием одного предмета мужского рода.","uk":"ставити este перед назвою одного предмета чоловічого роду."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 4, sessionOrdinal: 36,
+    sourceFingerprint: "e03cee9f57009847f19236aa2b1c3d47a775e15effd514f97d60aab226b311e1",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"ставить esta перед названием одного предмета женского рода.","uk":"ставити esta перед назвою одного предмета жіночого роду."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
+  }),
 ]);

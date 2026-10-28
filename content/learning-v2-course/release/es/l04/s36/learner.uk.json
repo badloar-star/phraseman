@@ -1,0 +1,683 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-04:session-36",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-04:session-36:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте та виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-36:i01:r1",
+          "text": "esta"
+        },
+        {
+          "responseId": "es:lesson-04:session-36:i01:r2",
+          "text": "este"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-36:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте та виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-36:i01:audio",
+          "transcript": "esta"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-04:session-36:i01:r1",
+            "targetText": "esta",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-04:session-36:i01:r2",
+            "targetText": "este",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-36:i01:r2",
+            "correct": false,
+            "testedDimension": "Послухайте та виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит конечное a: esta.",
+              "uk": "Звучить кінцеве a: esta."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-36:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — ця коробка поруч маленька",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-36:i02:r1",
+          "text": "Esta"
+        },
+        {
+          "responseId": "es:lesson-04:session-36:i02:r2",
+          "text": "Este"
+        },
+        {
+          "responseId": "es:lesson-04:session-36:i02:r3",
+          "text": "Yo"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — ця коробка поруч маленька",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — эта коробка рядом маленькая",
+          "uk": "Вставте слово — ця коробка поруч маленька"
+        },
+        "gappedTargetPhrase": "___ caja es pequeña.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-36:i02:r1",
+            "text": "Esta"
+          },
+          {
+            "responseId": "es:lesson-04:session-36:i02:r2",
+            "text": "Este"
+          },
+          {
+            "responseId": "es:lesson-04:session-36:i02:r3",
+            "text": "Yo"
+          }
+        ],
+        "testedDimension": "Вставте слово — ця коробка поруч маленька",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-36:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — ця коробка поруч маленька",
+            "feedbackByLocale": {
+              "ru": "Caja женского рода: esta.",
+              "uk": "Caja жіночого роду: esta."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-36:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — ця коробка поруч маленька",
+            "feedbackByLocale": {
+              "ru": "Указываете на коробку, а не говорите о себе.",
+              "uk": "Указуєте на коробку, а не говорите про себе."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-36:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — ця коробка поруч маленька; почніть з Esta caja",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-36:i03:r1",
+          "text": "Плитки: pequeña"
+        },
+        {
+          "responseId": "es:lesson-04:session-36:i03:r2",
+          "text": "caja"
+        },
+        {
+          "responseId": "es:lesson-04:session-36:i03:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-36:i03:r4",
+          "text": "esta"
+        },
+        {
+          "responseId": "es:lesson-04:session-36:i03:r5",
+          "text": "la."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — ця коробка поруч маленька; почніть з Esta caja",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Esta caja es pequeña.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — эта коробка рядом маленькая; начните с Esta caja",
+          "uk": "Зберіть фразу — ця коробка поруч маленька; почніть з Esta caja"
+        },
+        "orderedTokens": [
+          "Esta",
+          "caja",
+          "es",
+          "pequeña"
+        ],
+        "authoredDistractorTokens": [
+          "la"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-36:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — ця коробка поруч маленька; почніть з Esta caja",
+            "feedbackByLocale": {
+              "ru": "перед caja уже стоит esta.",
+              "uk": "перед caja вже стоїть esta."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-36:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — ця коробка поруч маленька",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-36:i04:r1",
+          "text": "pequeña"
+        },
+        {
+          "responseId": "es:lesson-04:session-36:i04:r2",
+          "text": "pequeño"
+        },
+        {
+          "responseId": "es:lesson-04:session-36:i04:r3",
+          "text": "pequeñas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — ця коробка поруч маленька",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — эта коробка рядом маленькая",
+          "uk": "Вставте слово — ця коробка поруч маленька"
+        },
+        "gappedTargetPhrase": "Esta caja es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-36:i04:r1",
+            "text": "pequeña"
+          },
+          {
+            "responseId": "es:lesson-04:session-36:i04:r2",
+            "text": "pequeño"
+          },
+          {
+            "responseId": "es:lesson-04:session-36:i04:r3",
+            "text": "pequeñas"
+          }
+        ],
+        "testedDimension": "Вставте слово — ця коробка поруч маленька",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-36:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — ця коробка поруч маленька",
+            "feedbackByLocale": {
+              "ru": "Caja женского рода: pequeña.",
+              "uk": "Caja жіночого роду: pequeña."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-36:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — ця коробка поруч маленька",
+            "feedbackByLocale": {
+              "ru": "Коробка одна: pequeña.",
+              "uk": "Коробка одна: pequeña."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-36:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — ця коробка поруч не маленька; почніть з Esta caja",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-36:i05:r1",
+          "text": "Плитки: pequeña"
+        },
+        {
+          "responseId": "es:lesson-04:session-36:i05:r2",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-04:session-36:i05:r3",
+          "text": "caja"
+        },
+        {
+          "responseId": "es:lesson-04:session-36:i05:r4",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-36:i05:r5",
+          "text": "esta"
+        },
+        {
+          "responseId": "es:lesson-04:session-36:i05:r6",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — ця коробка поруч не маленька; почніть з Esta caja",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Esta caja no es pequeña.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — эта коробка рядом не маленькая; начните с Esta caja",
+          "uk": "Зберіть фразу — ця коробка поруч не маленька; почніть з Esta caja"
+        },
+        "orderedTokens": [
+          "Esta",
+          "caja",
+          "no",
+          "es",
+          "pequeña"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-36:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — ця коробка поруч не маленька; почніть з Esta caja",
+            "feedbackByLocale": {
+              "ru": "коробка одна, нужно es.",
+              "uk": "коробка одна, потрібне es."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-36:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — ця коробка поруч велика; почніть з Esta caja",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-36:i06:r1",
+          "text": "Плитки: grande"
+        },
+        {
+          "responseId": "es:lesson-04:session-36:i06:r2",
+          "text": "caja"
+        },
+        {
+          "responseId": "es:lesson-04:session-36:i06:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-36:i06:r4",
+          "text": "esta"
+        },
+        {
+          "responseId": "es:lesson-04:session-36:i06:r5",
+          "text": "este."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — ця коробка поруч велика; почніть з Esta caja",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Esta caja es grande.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — эта коробка рядом большая; начните с Esta caja",
+          "uk": "Зберіть фразу — ця коробка поруч велика; почніть з Esta caja"
+        },
+        "orderedTokens": [
+          "Esta",
+          "caja",
+          "es",
+          "grande"
+        ],
+        "authoredDistractorTokens": [
+          "este"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-36:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — ця коробка поруч велика; почніть з Esta caja",
+            "feedbackByLocale": {
+              "ru": "caja женского рода.",
+              "uk": "caja жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-36:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте та зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-36:i07:r1",
+          "text": "Плитки: caja"
+        },
+        {
+          "responseId": "es:lesson-04:session-36:i07:r2",
+          "text": "pequeña"
+        },
+        {
+          "responseId": "es:lesson-04:session-36:i07:r3",
+          "text": "esta"
+        },
+        {
+          "responseId": "es:lesson-04:session-36:i07:r4",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-36:i07:r5",
+          "text": "pequeño."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-36:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте та зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-36:i07:audio",
+          "transcript": "Esta caja es pequeña."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Esta caja es pequeña.",
+        "orderedTokens": [
+          "Esta",
+          "caja",
+          "es",
+          "pequeña"
+        ],
+        "authoredDistractorTokens": [
+          "pequeño"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-36:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте та зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит pequeña.",
+              "uk": "звучить pequeña."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-36:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — ця коробка поруч велика",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-36:i08:r1",
+          "text": "grande"
+        },
+        {
+          "responseId": "es:lesson-04:session-36:i08:r2",
+          "text": "granda"
+        },
+        {
+          "responseId": "es:lesson-04:session-36:i08:r3",
+          "text": "grandes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — ця коробка поруч велика",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — эта коробка рядом большая",
+          "uk": "Вставте слово — ця коробка поруч велика"
+        },
+        "gappedTargetPhrase": "Esta caja es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-36:i08:r1",
+            "text": "grande"
+          },
+          {
+            "responseId": "es:lesson-04:session-36:i08:r2",
+            "text": "granda"
+          },
+          {
+            "responseId": "es:lesson-04:session-36:i08:r3",
+            "text": "grandes"
+          }
+        ],
+        "testedDimension": "Вставте слово — ця коробка поруч велика",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-36:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — ця коробка поруч велика",
+            "feedbackByLocale": {
+              "ru": "Форма grande не меняется на granda.",
+              "uk": "Форма grande не змінюється на granda."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-36:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — ця коробка поруч велика",
+            "feedbackByLocale": {
+              "ru": "Коробка одна: grande.",
+              "uk": "Коробка одна: grande."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-36:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — ця коробка поруч маленька; почніть з Esta caja",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-36:i09:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — ця коробка поруч маленька; почніть з Esta caja",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-36:i09:audio",
+          "transcript": "Esta caja es pequeña."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Esta caja es pequeña.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-36:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — ця коробка поруч не маленька; почніть з Esta caja",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-36:i10:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — ця коробка поруч не маленька; почніть з Esta caja",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-36:i10:audio",
+          "transcript": "Esta caja no es pequeña."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Esta caja no es pequeña.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-36:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — ця коробка поруч велика; почніть з Esta caja",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-36:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — ця коробка поруч велика; почніть з Esta caja",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-36:i11:audio",
+          "transcript": "Esta caja es grande."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Esta caja es grande.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-36:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — ця коробка поруч дуже маленька; почніть з Esta caja",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-36:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — ця коробка поруч дуже маленька; почніть з Esta caja",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-36:i12:audio",
+          "transcript": "Esta caja es muy pequeña."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Esta caja es muy pequeña.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "b2a24c2e89957477be9e34f9a109c6015ecea3c4f50d879896332dc671bd48b4"
+}

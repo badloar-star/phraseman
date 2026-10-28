@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-04:session-35",
+  "entries": [
+    {
+      "interactionId": "es:lesson-04:session-35:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-35:intro1:r2": {
+          "ru": "Libro мужского рода: este.",
+          "uk": "Libro чоловічого роду: este."
+        },
+        "es:lesson-04:session-35:intro1:r3": {
+          "ru": "Книга одна: es.",
+          "uk": "Книжка одна: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-35:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-35:intro2:r2": {
+          "ru": "Nueva — женская форма; здесь libro.",
+          "uk": "Nueva — жіноча форма; тут libro."
+        },
+        "es:lesson-04:session-35:intro2:r3": {
+          "ru": "Перед мужским libro нужно este.",
+          "uk": "Перед чоловічим libro потрібне este."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-35:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-35:intro3:r2": {
+          "ru": "Muy ставится перед признаком.",
+          "uk": "Muy ставиться перед ознакою."
+        },
+        "es:lesson-04:session-35:intro3:r3": {
+          "ru": "Соедините muy с grande после es.",
+          "uk": "Поєднайте muy з grande після es."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "1e2ec14c8ca30ac5082527580b30abd179326d0a20b650fb2bb416119c6b9919"
+}

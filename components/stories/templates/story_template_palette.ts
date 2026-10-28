@@ -15,9 +15,9 @@ export type StoryTemplatePalette = Readonly<{
   bgTop: string; bgMid: string; bgBot: string;
   /** --tx / --sec / --mu — текст, вторичный, приглушённый. */
   tx: string; sec: string; mu: string;
-  /** --acc (accentText) — обзоры и значки цвета темы. */
+  /** --acc (accentTextSafe) — обзоры и значки цвета темы. */
   acc: string;
-  /** --acc-g (accent) — заливки и графика цвета темы. */
+  /** --acc-g (accentGraphic) — заливки и графика цвета темы. */
   accG: string;
   /** --acc-b (accentBright) — звёзды, конфетти. */
   accB: string;
@@ -47,7 +47,9 @@ export function storyTemplatePalette(themeId: unknown): StoryTemplatePalette {
   return Object.freeze({
     bgTop: t.bgTop, bgMid: t.bg, bgBot: t.bgBottom,
     tx: t.text, sec: t.secondary, mu: t.mutedText,
-    acc: t.accentText, accG: t.accent, accB: t.accentBright ?? t.accent, accInk: t.accentInk, accSoft: t.accentSoft, accGlow: t.accentGlow,
+    // зачем (координатор 28.10, храповик light_accent_graphics): --acc / --acc-g макета = безопасные токены проекта — текст и значки accentTextSafe,
+    // графика accentGraphic (в тёмном оформлении ровно accent, в светлом — тот же оттенок с контрастом ≥ 3:1 на всех поверхностях)
+    acc: t.accentTextSafe, accG: t.accentGraphic, accB: t.accentBright ?? t.accentGraphic, accInk: t.accentInk, accSoft: t.accentSoft, accGlow: t.accentGlow,
     g1: glow[0], g2: glow[1] ?? glow[0], g3: glow[2] ?? glow[0],
     card: t.opaqueCard, ctl: t.opaqueControl, cta: t.cta, ctaInk: t.ctaInk,
     shTint: t.shadowTint ?? t.bg, isLight: t.isLight === true,

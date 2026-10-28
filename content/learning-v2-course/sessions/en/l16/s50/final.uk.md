@@ -65,8 +65,8 @@
 
 **4 · Ви припускаєте, що Анна занесе білизну з вулиці, але ще не обговорювали це з нею. Передайте думку-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-50:i03; family: context_gap_grammar -->
-I think Anna ___ the washing. → **will bring in** · is going to bring in · be
-- is going to bring in — *Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will.*
+I think Anna ___ the washing. → **will bring in** · is going bring in · be
+- is going bring in — *Без to ця форма не будується. Для думки-прогнозу тут — will bring in.*
 - be — *Потрібна правильно побудована повна форма: will bring in.*
 
 **5 · Картка слова — keep out**
@@ -85,8 +85,8 @@ I think Anna ___ the washing. → **will bring in** · is going to bring in · b
 
 **8 · Ви припускаєте, що собака залишиться за межами кухні, поки ви готуєте. Передайте думку-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-50:i06; family: context_gap_grammar -->
-I think the dog ___ of the kitchen. → **will keep out** · is going to keep out · be
-- is going to keep out — *Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will.*
+I think the dog ___ of the kitchen. → **will keep out** · is going keep out · be
+- is going keep out — *Без to ця форма не будується. Для думки-прогнозу тут — will keep out.*
 - be — *Потрібна правильно побудована повна форма: will keep out.*
 
 **9 · Картка слова — clear up**
@@ -103,10 +103,10 @@ I think the dog ___ of the kitchen. → **will keep out** · is going to keep ou
 - I am clearing up the toys. — *У записі звучить I am going to clear up the toys.*
 - I is going to clear up the toys. — *У записі звучить I am going to clear up the toys.*
 
-**12 · Ви вирішили прибрати іграшки й повідомляєте про свій намір. Передайте заздалегідь прийнятий намір через going to.**
+**12 · Ви вирішили прибрати іграшки й повідомляєте про свій намір. Домовленості поки немає. Передайте заздалегідь прийнятий намір через going to.**
 <!-- interaction_id: en:lesson-16:session-50:i09; family: context_gap_grammar -->
 I ___ the toys. → **am going to clear up** · am clearing up · be
-- am clearing up — *Форма можлива, але тут потрібна вказана. Передайте заздалегідь прийнятий намір через going to.*
+- am clearing up — *Am clearing up — так кажуть про вже узгоджений план. Тут поки лише рішення: am going to clear up.*
 - be — *Потрібна правильно побудована повна форма: am going to clear up.*
 
 **13 · Картка слова — clean out**
@@ -125,8 +125,8 @@ I ___ the toys. → **am going to clear up** · am clearing up · be
 
 **16 · Ви домовилися з родиною в суботу розібрати й вичистити гараж. У clean out форма з -ing — cleaning out. Передайте підтверджену домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-16:session-50:i12; family: context_gap_grammar -->
-We ___ the garage on Saturday. → **are cleaning out** · are going to clean out · be
-- are going to clean out — *Форма можлива, але тут потрібна вказана. Передайте підтверджену домовленість через Present Continuous.*
+We ___ the garage on Saturday. → **are cleaning out** · are clean out · be
+- are clean out — *Після are потрібна форма з -ing: are cleaning out.*
 - be — *Потрібна правильно побудована повна форма: are cleaning out.*
 
 **17 · Поєднайте слова з перекладом**

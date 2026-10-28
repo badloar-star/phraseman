@@ -65,8 +65,8 @@
 
 **4 · Вы пока не получили новую куртку и предполагаете, что она защитит от ветра. Передайте мнение-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-39:i03; family: context_gap_grammar -->
-I think the new jacket ___ windproof. → **will be** · is going to be · will to be
-- is going to be — *Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.*
+I think the new jacket ___ windproof. → **will be** · is going be · will to be
+- is going be — *Без to эта форма не строится. Для мнения-прогноза здесь — will be.*
 - will to be — *Нужна правильно построенная полная форма: will be.*
 
 **5 · Карточка слова — breathable**
@@ -85,8 +85,8 @@ I think the new jacket ___ windproof. → **will be** · is going to be · will 
 
 **8 · Вы высказываете ожидание о ткани заказанной одежды. Передайте мнение-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-39:i06; family: context_gap_grammar -->
-I think the fabric ___ breathable. → **will be** · is going to be · will to be
-- is going to be — *Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.*
+I think the fabric ___ breathable. → **will be** · is going be · will to be
+- is going be — *Без to эта форма не строится. Для мнения-прогноза здесь — will be.*
 - will to be — *Нужна правильно построенная полная форма: will be.*
 
 **9 · Карточка слова — roomy**
@@ -125,8 +125,8 @@ I ___ a roomy backpack. → **am going to choose** · am choosing · be
 
 **16 · Вы договорились с прокатом забрать компактную палатку завтра в назначенное время. Передайте подтверждённую договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-16:session-39:i12; family: context_gap_grammar -->
-We ___ a compact tent tomorrow. → **are collecting** · are going to collect · be
-- are going to collect — *Форма возможна, но здесь нужна указанная. Передайте подтверждённую договорённость через Present Continuous.*
+We ___ a compact tent tomorrow. → **are collecting** · are collect · be
+- are collect — *После are нужна форма с -ing: are collecting.*
 - be — *Нужна правильно построенная полная форма: are collecting.*
 
 **17 · Соедините слова с переводом**

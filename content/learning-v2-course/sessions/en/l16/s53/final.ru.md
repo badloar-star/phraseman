@@ -65,8 +65,8 @@
 
 **4 · Вы ещё не видели квартиру и предполагаете, что мебель в ней уже есть. Передайте мнение-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-53:i03; family: context_gap_grammar -->
-I think the flat ___ furnished. → **will be** · is going to be · will to be
-- is going to be — *Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.*
+I think the flat ___ furnished. → **will be** · is going be · will to be
+- is going be — *Без to эта форма не строится. Для мнения-прогноза здесь — will be.*
 - will to be — *Нужна правильно построенная полная форма: will be.*
 
 **5 · Карточка слова — unfurnished**
@@ -85,8 +85,8 @@ I think the flat ___ furnished. → **will be** · is going to be · will to be
 
 **8 · Вы высказываете предположение о доме, который вам предложили снять. Передайте мнение-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-53:i06; family: context_gap_grammar -->
-I think the house ___ unfurnished. → **will be** · is going to be · will to be
-- is going to be — *Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.*
+I think the house ___ unfurnished. → **will be** · is going be · will to be
+- is going be — *Без to эта форма не строится. Для мнения-прогноза здесь — will be.*
 - will to be — *Нужна правильно построенная полная форма: will be.*
 
 **9 · Карточка слова — detached**
@@ -125,8 +125,8 @@ I ___ for a detached house. → **am going to look** · am looking · be
 
 **16 · Вы договорились с агентом завтра посмотреть дом в сплошном ряду домов. Передайте подтверждённую договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-16:session-53:i12; family: context_gap_grammar -->
-We ___ a terraced house tomorrow. → **are viewing** · are going to view · be
-- are going to view — *Форма возможна, но здесь нужна указанная. Передайте подтверждённую договорённость через Present Continuous.*
+We ___ a terraced house tomorrow. → **are viewing** · are view · be
+- are view — *После are нужна форма с -ing: are viewing.*
 - be — *Нужна правильно построенная полная форма: are viewing.*
 
 **17 · Соедините слова с переводом**

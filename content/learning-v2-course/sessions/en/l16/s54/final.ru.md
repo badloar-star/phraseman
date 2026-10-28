@@ -65,8 +65,8 @@
 
 **4 · Вы предполагаете, какой дом вам покажет агент; адрес ещё не получили. Передайте мнение-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-54:i03; family: context_gap_grammar -->
-I think the house ___ semi-detached. → **will be** · is going to be · will to be
-- is going to be — *Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.*
+I think the house ___ semi-detached. → **will be** · is going be · will to be
+- is going be — *Без to эта форма не строится. Для мнения-прогноза здесь — will be.*
 - will to be — *Нужна правильно построенная полная форма: will be.*
 
 **5 · Карточка слова — double-glazed**
@@ -85,8 +85,8 @@ I think the house ___ semi-detached. → **will be** · is going to be · will t
 
 **8 · Вы ещё не были в доме и предполагаете, какие в нём окна. Передайте мнение-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-54:i06; family: context_gap_grammar -->
-I think the windows ___ double-glazed. → **will be** · are going to be · will to be
-- are going to be — *Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.*
+I think the windows ___ double-glazed. → **will be** · are going be · will to be
+- are going be — *Без to эта форма не строится. Для мнения-прогноза здесь — will be.*
 - will to be — *Нужна правильно построенная полная форма: will be.*
 
 **9 · Карточка слова — central heating**
@@ -106,7 +106,7 @@ I think the windows ___ double-glazed. → **will be** · are going to be · wil
 **12 · Вы решили искать квартиру с отоплением для всего жилья; это пока намерение. Передайте заранее принятое намерение через going to.**
 <!-- interaction_id: en:lesson-16:session-54:i09; family: context_gap_grammar -->
 I ___ for a flat with central heating. → **am going to look** · am looking · be
-- am looking — *Форма возможна, но здесь нужна указанная. Передайте заранее принятое намерение через going to.*
+- am looking — *Am looking — так говорят об уже согласованном плане. Здесь пока только решение: am going to look.*
 - be — *Нужна правильно построенная полная форма: am going to look.*
 
 **13 · Карточка слова — utility room**
@@ -125,8 +125,8 @@ I ___ for a flat with central heating. → **am going to look** · am looking ·
 
 **16 · Вы договорились с владельцем завтра посмотреть дом с отдельной комнатой для стирки и хозяйственных вещей. Передайте подтверждённую договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-16:session-54:i12; family: context_gap_grammar -->
-We ___ a house with a utility room tomorrow. → **are viewing** · are going to view · be
-- are going to view — *Форма возможна, но здесь нужна указанная. Передайте подтверждённую договорённость через Present Continuous.*
+We ___ a house with a utility room tomorrow. → **are viewing** · are view · be
+- are view — *После are нужна форма с -ing: are viewing.*
 - be — *Нужна правильно построенная полная форма: are viewing.*
 
 **17 · Соедините слова с переводом**

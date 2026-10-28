@@ -65,8 +65,8 @@
 
 **4 · Вы предполагаете, что друзья отменят пикник, но их решения ещё не знаете. Передайте мнение-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-49:i03; family: context_gap_grammar -->
-I think they ___ the picnic. → **will call off** · are going to call off · be
-- are going to call off — *Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.*
+I think they ___ the picnic. → **will call off** · are going call off · be
+- are going call off — *Без to эта форма не строится. Для мнения-прогноза здесь — will call off.*
 - be — *Нужна правильно построенная полная форма: will call off.*
 
 **5 · Карточка слова — give up**
@@ -85,8 +85,8 @@ I think they ___ the picnic. → **will call off** · are going to call off · b
 
 **8 · Друг долго решает трудную головоломку. Вы предполагаете, что он скоро перестанет пытаться. Передайте мнение-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-49:i06; family: context_gap_grammar -->
-I think he ___ soon. → **will give up** · is going to give up · be
-- is going to give up — *Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.*
+I think he ___ soon. → **will give up** · is going give up · be
+- is going give up — *Без to эта форма не строится. Для мнения-прогноза здесь — will give up.*
 - be — *Нужна правильно построенная полная форма: will give up.*
 
 **9 · Карточка слова — sign up**
@@ -125,8 +125,8 @@ I ___ for a cooking class. → **am going to sign up** · am signing up · be
 
 **16 · Вы согласовали с гостиницей время завтрашнего выезда. У check out форма с -ing — checking out. Передайте подтверждённую договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-16:session-49:i12; family: context_gap_grammar -->
-We ___ at ten tomorrow. → **are checking out** · are going to check out · be
-- are going to check out — *Форма возможна, но здесь нужна указанная. Передайте подтверждённую договорённость через Present Continuous.*
+We ___ at ten tomorrow. → **are checking out** · are check out · be
+- are check out — *После are нужна форма с -ing: are checking out.*
 - be — *Нужна правильно построенная полная форма: are checking out.*
 
 **17 · Соедините слова с переводом**

@@ -65,8 +65,8 @@
 
 **4 · Ви припускаєте, що новий контейнер щільно закриватиметься й не пропускатиме повітря. Передайте думку-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-40:i03; family: context_gap_grammar -->
-I think the container ___ airtight. → **will be** · is going to be · will to be
-- is going to be — *Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will.*
+I think the container ___ airtight. → **will be** · is going be · will to be
+- is going be — *Без to ця форма не будується. Для думки-прогнозу тут — will be.*
 - will to be — *Потрібна правильно побудована повна форма: will be.*
 
 **5 · Картка слова — leakproof**
@@ -85,8 +85,8 @@ I think the container ___ airtight. → **will be** · is going to be · will to
 
 **8 · Ви ще не випробували нову пляшку й ділитеся очікуванням, що вона не протече. Передайте думку-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-40:i06; family: context_gap_grammar -->
-I think the bottle ___ leakproof. → **will be** · is going to be · will to be
-- is going to be — *Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will.*
+I think the bottle ___ leakproof. → **will be** · is going be · will to be
+- is going be — *Без to ця форма не будується. Для думки-прогнозу тут — will be.*
 - will to be — *Потрібна правильно побудована повна форма: will be.*
 
 **9 · Картка слова — non-stick**
@@ -125,8 +125,8 @@ I ___ a non-stick pan. → **am going to buy** · am buying · be
 
 **16 · Ви домовилися з продавцем, що заберете складаний стіл завтра. Передайте домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-16:session-40:i12; family: context_gap_grammar -->
-We ___ a foldable table tomorrow. → **are collecting** · are going to collect · be
-- are going to collect — *Форма можлива, але тут потрібна вказана. Передайте підтверджену домовленість через Present Continuous.*
+We ___ a foldable table tomorrow. → **are collecting** · are collect · be
+- are collect — *Після are потрібна форма з -ing: are collecting.*
 - be — *Потрібна правильно побудована повна форма: are collecting.*
 
 **17 · Поєднайте слова з перекладом**

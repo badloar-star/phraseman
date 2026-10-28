@@ -65,8 +65,8 @@
 
 **4 · Вы предполагаете, в какую сторону выходит сад у дома, который ещё не осмотрели. Передайте мнение-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-56:i03; family: context_gap_grammar -->
-I think the garden ___ south-facing. → **will be** · is going to be · will to be
-- is going to be — *Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.*
+I think the garden ___ south-facing. → **will be** · is going be · will to be
+- is going be — *Без to эта форма не строится. Для мнения-прогноза здесь — will be.*
 - will to be — *Нужна правильно построенная полная форма: will be.*
 
 **5 · Карточка слова — north-facing**
@@ -85,8 +85,8 @@ I think the garden ___ south-facing. → **will be** · is going to be · will t
 
 **8 · Вы высказываете предположение о расположении спальни в новой квартире. Передайте мнение-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-56:i06; family: context_gap_grammar -->
-I think the bedroom ___ north-facing. → **will be** · is going to be · will to be
-- is going to be — *Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.*
+I think the bedroom ___ north-facing. → **will be** · is going be · will to be
+- is going be — *Без to эта форма не строится. Для мнения-прогноза здесь — will be.*
 - will to be — *Нужна правильно построенная полная форма: will be.*
 
 **9 · Карточка слова — built-in**
@@ -125,8 +125,8 @@ I ___ for a flat with a built-in wardrobe. → **am going to look** · am lookin
 
 **16 · Вы договорились с агентом завтра посмотреть квартиру у набережной. Передайте подтверждённую договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-16:session-56:i12; family: context_gap_grammar -->
-We ___ a waterfront flat tomorrow. → **are viewing** · are going to view · be
-- are going to view — *Форма возможна, но здесь нужна указанная. Передайте подтверждённую договорённость через Present Continuous.*
+We ___ a waterfront flat tomorrow. → **are viewing** · are view · be
+- are view — *После are нужна форма с -ing: are viewing.*
 - be — *Нужна правильно построенная полная форма: are viewing.*
 
 **17 · Соедините слова с переводом**

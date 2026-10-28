@@ -65,8 +65,8 @@
 
 **4 · Ви припускаєте, що Анна почне говорити голосніше, щоб усім було чутно. Передайте думку-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-45:i03; family: context_gap_grammar -->
-I think Anna ___. → **will speak up** · is going to speak up · be
-- is going to speak up — *Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will.*
+I think Anna ___. → **will speak up** · is going speak up · be
+- is going speak up — *Без to ця форма не будується. Для думки-прогнозу тут — will speak up.*
 - be — *Потрібна правильно побудована повна форма: will speak up.*
 
 **5 · Картка слова — hold still**
@@ -85,8 +85,8 @@ I think Anna ___. → **will speak up** · is going to speak up · be
 
 **8 · Ви припускаєте, що дитина зможе не рухатися, поки ви фотографуєте. Передайте думку-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-45:i06; family: context_gap_grammar -->
-I think the child ___ for the photo. → **will hold still** · is going to hold still · be
-- is going to hold still — *Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will.*
+I think the child ___ for the photo. → **will hold still** · is going hold still · be
+- is going hold still — *Без to ця форма не будується. Для думки-прогнозу тут — will hold still.*
 - be — *Потрібна правильно побудована повна форма: will hold still.*
 
 **9 · Картка слова — hang on**
@@ -125,8 +125,8 @@ I ___ for a few minutes. → **am going to hang on** · am hanging on · be
 
 **16 · Ви з родиною вже домовилися провести вихідні вдома замість поїздки. У stay put форма з -ing — staying put. Передайте підтверджену домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-16:session-45:i12; family: context_gap_grammar -->
-We ___ this weekend. → **are staying put** · are going to stay put · be
-- are going to stay put — *Форма можлива, але тут потрібна вказана. Передайте підтверджену домовленість через Present Continuous.*
+We ___ this weekend. → **are staying put** · are stay put · be
+- are stay put — *Після are потрібна форма з -ing: are staying put.*
 - be — *Потрібна правильно побудована повна форма: are staying put.*
 
 **17 · Поєднайте слова з перекладом**

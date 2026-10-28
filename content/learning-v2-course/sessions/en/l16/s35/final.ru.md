@@ -65,8 +65,8 @@
 
 **4 · Вы делитесь предположением о сложности будущего курса. Передайте мнение-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-35:i03; family: context_gap_grammar -->
-I think the course ___ demanding. → **will be** · is going to be · will to be
-- is going to be — *Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.*
+I think the course ___ demanding. → **will be** · is going be · will to be
+- is going be — *Без to эта форма не строится. Для мнения-прогноза здесь — will be.*
 - will to be — *Нужна правильно построенная полная форма: will be.*
 
 **5 · Карточка слова — rewarding**
@@ -85,8 +85,8 @@ I think the course ___ demanding. → **will be** · is going to be · will to b
 
 **8 · Вы предполагаете, что помощь на местном празднике окажется полезным и приятным опытом. Передайте мнение-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-35:i06; family: context_gap_grammar -->
-I think the experience ___ rewarding. → **will be** · is going to be · will to be
-- is going to be — *Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.*
+I think the experience ___ rewarding. → **will be** · is going be · will to be
+- is going be — *Без to эта форма не строится. Для мнения-прогноза здесь — will be.*
 - will to be — *Нужна правильно построенная полная форма: will be.*
 
 **9 · Карточка слова — time-consuming**
@@ -125,8 +125,8 @@ I ___ a time-consuming task. → **am going to finish** · am finishing · be
 
 **16 · Вы с другом уже согласовали простой маршрут на завтра и время выезда. Передайте подтверждённую договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-16:session-35:i12; family: context_gap_grammar -->
-We ___ a straightforward route tomorrow. → **are taking** · are going to take · be
-- are going to take — *Форма возможна, но здесь нужна указанная. Передайте подтверждённую договорённость через Present Continuous.*
+We ___ a straightforward route tomorrow. → **are taking** · are take · be
+- are take — *После are нужна форма с -ing: are taking.*
 - be — *Нужна правильно построенная полная форма: are taking.*
 
 **17 · Соедините слова с переводом**

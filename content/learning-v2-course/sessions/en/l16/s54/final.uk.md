@@ -65,8 +65,8 @@
 
 **4 · Ви припускаєте, який будинок вам покаже агент; адреси ще не отримали. Передайте думку-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-54:i03; family: context_gap_grammar -->
-I think the house ___ semi-detached. → **will be** · is going to be · will to be
-- is going to be — *Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will.*
+I think the house ___ semi-detached. → **will be** · is going be · will to be
+- is going be — *Без to ця форма не будується. Для думки-прогнозу тут — will be.*
 - will to be — *Потрібна правильно побудована повна форма: will be.*
 
 **5 · Картка слова — double-glazed**
@@ -85,8 +85,8 @@ I think the house ___ semi-detached. → **will be** · is going to be · will t
 
 **8 · Ви ще не були в будинку й припускаєте, які в ньому вікна. Передайте думку-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-54:i06; family: context_gap_grammar -->
-I think the windows ___ double-glazed. → **will be** · are going to be · will to be
-- are going to be — *Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will.*
+I think the windows ___ double-glazed. → **will be** · are going be · will to be
+- are going be — *Без to ця форма не будується. Для думки-прогнозу тут — will be.*
 - will to be — *Потрібна правильно побудована повна форма: will be.*
 
 **9 · Картка слова — central heating**
@@ -106,7 +106,7 @@ I think the windows ___ double-glazed. → **will be** · are going to be · wil
 **12 · Ви вирішили шукати квартиру з опаленням для всього житла; це поки намір. Передайте заздалегідь прийнятий намір через going to.**
 <!-- interaction_id: en:lesson-16:session-54:i09; family: context_gap_grammar -->
 I ___ for a flat with central heating. → **am going to look** · am looking · be
-- am looking — *Форма можлива, але тут потрібна вказана. Передайте заздалегідь прийнятий намір через going to.*
+- am looking — *Am looking — так кажуть про вже узгоджений план. Тут поки лише рішення: am going to look.*
 - be — *Потрібна правильно побудована повна форма: am going to look.*
 
 **13 · Картка слова — utility room**
@@ -125,8 +125,8 @@ I ___ for a flat with central heating. → **am going to look** · am looking ·
 
 **16 · Ви домовилися з власником завтра подивитися будинок з окремою кімнатою для прання та господарських речей. Передайте підтверджену домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-16:session-54:i12; family: context_gap_grammar -->
-We ___ a house with a utility room tomorrow. → **are viewing** · are going to view · be
-- are going to view — *Форма можлива, але тут потрібна вказана. Передайте підтверджену домовленість через Present Continuous.*
+We ___ a house with a utility room tomorrow. → **are viewing** · are view · be
+- are view — *Після are потрібна форма з -ing: are viewing.*
 - be — *Потрібна правильно побудована повна форма: are viewing.*
 
 **17 · Поєднайте слова з перекладом**

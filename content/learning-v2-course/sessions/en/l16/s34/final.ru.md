@@ -65,8 +65,8 @@
 
 **4 · Друг спрашивает ваше мнение о фильме, который вы ещё не смотрели. Вы делитесь предположением. Передайте мнение-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-34:i03; family: context_gap_grammar -->
-I think the film ___ disappointing. → **will be** · is going to be · will to be
-- is going to be — *Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.*
+I think the film ___ disappointing. → **will be** · is going be · will to be
+- is going be — *Без to эта форма не строится. Для мнения-прогноза здесь — will be.*
 - will to be — *Нужна правильно построенная полная форма: will be.*
 
 **5 · Карточка слова — satisfying**
@@ -85,8 +85,8 @@ I think the film ___ disappointing. → **will be** · is going to be · will to
 
 **8 · Вы предполагаете, что результат предстоящей работы вас порадует. Передайте мнение-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-34:i06; family: context_gap_grammar -->
-I think the work ___ satisfying. → **will be** · is going to be · will to be
-- is going to be — *Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.*
+I think the work ___ satisfying. → **will be** · is going be · will to be
+- is going be — *Без to эта форма не строится. Для мнения-прогноза здесь — will be.*
 - will to be — *Нужна правильно построенная полная форма: will be.*
 
 **9 · Карточка слова — exhausting**
@@ -103,10 +103,10 @@ I think the work ___ satisfying. → **will be** · is going to be · will to be
 - I am avoiding an exhausting trip. — *В записи звучит I am going to avoid an exhausting trip.*
 - I is going to avoid an exhausting trip. — *В записи звучит I am going to avoid an exhausting trip.*
 
-**12 · Вы решили выбрать другой способ добраться, чтобы не изматывать себя поездкой. Это намерение. Передайте заранее принятое намерение через going to.**
+**12 · Вы решили выбрать другой способ добраться, чтобы не изматывать себя поездкой. Это намерение. Договорённости пока нет. Передайте заранее принятое намерение через going to.**
 <!-- interaction_id: en:lesson-16:session-34:i09; family: context_gap_grammar -->
 I ___ an exhausting trip. → **am going to avoid** · am avoiding · be
-- am avoiding — *Форма возможна, но здесь нужна указанная. Передайте заранее принятое намерение через going to.*
+- am avoiding — *Am avoiding — так говорят об уже согласованном плане. Здесь пока только решение: am going to avoid.*
 - be — *Нужна правильно построенная полная форма: am going to avoid.*
 
 **13 · Карточка слова — refreshing**
@@ -125,8 +125,8 @@ I ___ an exhausting trip. → **am going to avoid** · am avoiding · be
 
 **16 · Вы с другом согласовали завтрашнюю прогулку на свежем воздухе. Передайте подтверждённую договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-16:session-34:i12; family: context_gap_grammar -->
-We ___ a refreshing walk tomorrow. → **are taking** · are going to take · be
-- are going to take — *Форма возможна, но здесь нужна указанная. Передайте подтверждённую договорённость через Present Continuous.*
+We ___ a refreshing walk tomorrow. → **are taking** · are take · be
+- are take — *После are нужна форма с -ing: are taking.*
 - be — *Нужна правильно построенная полная форма: are taking.*
 
 **17 · Соедините слова с переводом**

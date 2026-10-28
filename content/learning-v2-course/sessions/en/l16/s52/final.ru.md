@@ -65,8 +65,8 @@
 
 **4 · Вы ещё не гуляли по этой дорожке и предполагаете, что поверхность будет неровной. Передайте мнение-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-52:i03; family: context_gap_grammar -->
-I think the path ___ uneven. → **will be** · is going to be · will to be
-- is going to be — *Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.*
+I think the path ___ uneven. → **will be** · is going be · will to be
+- is going be — *Без to эта форма не строится. Для мнения-прогноза здесь — will be.*
 - will to be — *Нужна правильно построенная полная форма: will be.*
 
 **5 · Карточка слова — shaded**
@@ -85,8 +85,8 @@ I think the path ___ uneven. → **will be** · is going to be · will to be
 
 **8 · Вы предполагаете, будет ли скамейка в тени после обеда. Передайте мнение-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-52:i06; family: context_gap_grammar -->
-I think the bench ___ shaded in the afternoon. → **will be** · is going to be · will to be
-- is going to be — *Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.*
+I think the bench ___ shaded in the afternoon. → **will be** · is going be · will to be
+- is going be — *Без to эта форма не строится. Для мнения-прогноза здесь — will be.*
 - will to be — *Нужна правильно построенная полная форма: will be.*
 
 **9 · Карточка слова — paved**
@@ -106,7 +106,7 @@ I think the bench ___ shaded in the afternoon. → **will be** · is going to be
 **12 · Вы решили выбрать для прогулки дорожку с покрытием; пока маршрут не выбран. Передайте заранее принятое намерение через going to.**
 <!-- interaction_id: en:lesson-16:session-52:i09; family: context_gap_grammar -->
 I ___ a paved path. → **am going to choose** · am choosing · be
-- am choosing — *Форма возможна, но здесь нужна указанная. Передайте заранее принятое намерение через going to.*
+- am choosing — *Am choosing — так говорят об уже согласованном плане. Здесь пока только решение: am going to choose.*
 - be — *Нужна правильно построенная полная форма: am going to choose.*
 
 **13 · Карточка слова — unpaved**
@@ -125,8 +125,8 @@ I ___ a paved path. → **am going to choose** · am choosing · be
 
 **16 · Вы договорились с друзьями завтра пройти по знакомой грунтовой дороге. Передайте подтверждённую договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-16:session-52:i12; family: context_gap_grammar -->
-We ___ along the unpaved road tomorrow. → **are walking** · are going to walk · be
-- are going to walk — *Форма возможна, но здесь нужна указанная. Передайте подтверждённую договорённость через Present Continuous.*
+We ___ along the unpaved road tomorrow. → **are walking** · are walk · be
+- are walk — *После are нужна форма с -ing: are walking.*
 - be — *Нужна правильно построенная полная форма: are walking.*
 
 **17 · Соедините слова с переводом**

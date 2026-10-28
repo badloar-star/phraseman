@@ -65,8 +65,8 @@
 
 **4 · Вам обещали подарить переносную лампу; вы предполагаете, что она будет с аккумулятором. Передайте мнение-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-44:i03; family: context_gap_grammar -->
-I think the lamp ___ rechargeable. → **will be** · is going to be · will to be
-- is going to be — *Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.*
+I think the lamp ___ rechargeable. → **will be** · is going be · will to be
+- is going be — *Без to эта форма не строится. Для мнения-прогноза здесь — will be.*
 - will to be — *Нужна правильно построенная полная форма: will be.*
 
 **5 · Карточка слова — refillable**
@@ -85,8 +85,8 @@ I think the lamp ___ rechargeable. → **will be** · is going to be · will to 
 
 **8 · Вы ожидаете заказ с мылом и предполагаете, что бутылку можно будет использовать снова. Передайте мнение-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-44:i06; family: context_gap_grammar -->
-I think the soap bottle ___ refillable. → **will be** · is going to be · will to be
-- is going to be — *Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.*
+I think the soap bottle ___ refillable. → **will be** · is going be · will to be
+- is going be — *Без to эта форма не строится. Для мнения-прогноза здесь — will be.*
 - will to be — *Нужна правильно построенная полная форма: will be.*
 
 **9 · Карточка слова — reversible**
@@ -106,7 +106,7 @@ I think the soap bottle ___ refillable. → **will be** · is going to be · wil
 **12 · Вы решили купить куртку, которую можно носить любой стороной наружу; пока это намерение. Передайте заранее принятое намерение через going to.**
 <!-- interaction_id: en:lesson-16:session-44:i09; family: context_gap_grammar -->
 I ___ a reversible jacket. → **am going to buy** · am buying · be
-- am buying — *Форма возможна, но здесь нужна указанная. Передайте заранее принятое намерение через going to.*
+- am buying — *Am buying — так говорят об уже согласованном плане. Здесь пока только решение: am going to buy.*
 - be — *Нужна правильно построенная полная форма: am going to buy.*
 
 **13 · Карточка слова — childproof**
@@ -125,8 +125,8 @@ I ___ a reversible jacket. → **am going to buy** · am buying · be
 
 **16 · Вы договорились с мастером поставить замки на кухонные шкафчики завтра. Передайте подтверждённую договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-16:session-44:i12; family: context_gap_grammar -->
-We ___ childproof locks tomorrow. → **are fitting** · are going to fit · be
-- are going to fit — *Форма возможна, но здесь нужна указанная. Передайте подтверждённую договорённость через Present Continuous.*
+We ___ childproof locks tomorrow. → **are fitting** · are fit · be
+- are fit — *После are нужна форма с -ing: are fitting.*
 - be — *Нужна правильно построенная полная форма: are fitting.*
 
 **17 · Соедините слова с переводом**

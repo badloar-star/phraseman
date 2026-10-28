@@ -65,8 +65,8 @@
 
 **4 · Вам обіцяли подарувати переносну лампу; ви припускаєте, що вона буде з акумулятором. Передайте думку-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-44:i03; family: context_gap_grammar -->
-I think the lamp ___ rechargeable. → **will be** · is going to be · will to be
-- is going to be — *Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will.*
+I think the lamp ___ rechargeable. → **will be** · is going be · will to be
+- is going be — *Без to ця форма не будується. Для думки-прогнозу тут — will be.*
 - will to be — *Потрібна правильно побудована повна форма: will be.*
 
 **5 · Картка слова — refillable**
@@ -85,8 +85,8 @@ I think the lamp ___ rechargeable. → **will be** · is going to be · will to 
 
 **8 · Ви очікуєте замовлення з милом і припускаєте, що пляшку можна буде використовувати знову. Передайте думку-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-44:i06; family: context_gap_grammar -->
-I think the soap bottle ___ refillable. → **will be** · is going to be · will to be
-- is going to be — *Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will.*
+I think the soap bottle ___ refillable. → **will be** · is going be · will to be
+- is going be — *Без to ця форма не будується. Для думки-прогнозу тут — will be.*
 - will to be — *Потрібна правильно побудована повна форма: will be.*
 
 **9 · Картка слова — reversible**
@@ -106,7 +106,7 @@ I think the soap bottle ___ refillable. → **will be** · is going to be · wil
 **12 · Ви вирішили купити куртку, яку можна носити будь-яким боком назовні; поки це намір. Передайте заздалегідь прийнятий намір через going to.**
 <!-- interaction_id: en:lesson-16:session-44:i09; family: context_gap_grammar -->
 I ___ a reversible jacket. → **am going to buy** · am buying · be
-- am buying — *Форма можлива, але тут потрібна вказана. Передайте заздалегідь прийнятий намір через going to.*
+- am buying — *Am buying — так кажуть про вже узгоджений план. Тут поки лише рішення: am going to buy.*
 - be — *Потрібна правильно побудована повна форма: am going to buy.*
 
 **13 · Картка слова — childproof**
@@ -125,8 +125,8 @@ I ___ a reversible jacket. → **am going to buy** · am buying · be
 
 **16 · Ви домовилися з майстром поставити замки на кухонні шафки завтра. Передайте підтверджену домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-16:session-44:i12; family: context_gap_grammar -->
-We ___ childproof locks tomorrow. → **are fitting** · are going to fit · be
-- are going to fit — *Форма можлива, але тут потрібна вказана. Передайте підтверджену домовленість через Present Continuous.*
+We ___ childproof locks tomorrow. → **are fitting** · are fit · be
+- are fit — *Після are потрібна форма з -ing: are fitting.*
 - be — *Потрібна правильно побудована повна форма: are fitting.*
 
 **17 · Поєднайте слова з перекладом**

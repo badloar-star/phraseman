@@ -65,8 +65,8 @@
 
 **4 · Ви припускаєте, що після довгого дня можете задрімати дорогою додому. Передайте думку-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-46:i03; family: context_gap_grammar -->
-I think I ___ on the train. → **will nod off** · am going to nod off · be
-- am going to nod off — *Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will.*
+I think I ___ on the train. → **will nod off** · am going nod off · be
+- am going nod off — *Без to ця форма не будується. Для думки-прогнозу тут — will nod off.*
 - be — *Потрібна правильно побудована повна форма: will nod off.*
 
 **5 · Картка слова — warm up**
@@ -85,8 +85,8 @@ I think I ___ on the train. → **will nod off** · am going to nod off · be
 
 **8 · Ви не знаєте рішення тренера й припускаєте, де команда проведе розминку. Передайте думку-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-46:i06; family: context_gap_grammar -->
-I think the team ___ outside. → **will warm up** · is going to warm up · be
-- is going to warm up — *Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will.*
+I think the team ___ outside. → **will warm up** · is going warm up · be
+- is going warm up — *Без to ця форма не будується. Для думки-прогнозу тут — will warm up.*
 - be — *Потрібна правильно побудована повна форма: will warm up.*
 
 **9 · Картка слова — freshen up**
@@ -103,10 +103,10 @@ I think the team ___ outside. → **will warm up** · is going to warm up · be
 - I am freshening up before dinner. — *У записі звучить I am going to freshen up before dinner.*
 - I is going to freshen up before dinner. — *У записі звучить I am going to freshen up before dinner.*
 
-**12 · Після дороги ви вирішили вмитися перед вечерею й повідомляєте про цей намір. Передайте заздалегідь прийнятий намір через going to.**
+**12 · Після дороги ви вирішили вмитися перед вечерею й повідомляєте про цей намір. Домовленості поки немає. Передайте заздалегідь прийнятий намір через going to.**
 <!-- interaction_id: en:lesson-16:session-46:i09; family: context_gap_grammar -->
 I ___ before dinner. → **am going to freshen up** · am freshening up · be
-- am freshening up — *Форма можлива, але тут потрібна вказана. Передайте заздалегідь прийнятий намір через going to.*
+- am freshening up — *Am freshening up — так кажуть про вже узгоджений план. Тут поки лише рішення: am going to freshen up.*
 - be — *Потрібна правильно побудована повна форма: am going to freshen up.*
 
 **13 · Картка слова — wind down**
@@ -125,8 +125,8 @@ I ___ before dinner. → **am going to freshen up** · am freshening up · be
 
 **16 · Ви з подругою домовилися завтра відпочити в спа й уже забронювали відвідування. У wind down форма з -ing — winding down. Передайте підтверджену домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-16:session-46:i12; family: context_gap_grammar -->
-We ___ at the spa tomorrow. → **are winding down** · are going to wind down · be
-- are going to wind down — *Форма можлива, але тут потрібна вказана. Передайте підтверджену домовленість через Present Continuous.*
+We ___ at the spa tomorrow. → **are winding down** · are wind down · be
+- are wind down — *Після are потрібна форма з -ing: are winding down.*
 - be — *Потрібна правильно побудована повна форма: are winding down.*
 
 **17 · Поєднайте слова з перекладом**

@@ -65,8 +65,8 @@
 
 **4 · Вы предполагаете, что Анна станет говорить громче, чтобы всем было слышно. Передайте мнение-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-45:i03; family: context_gap_grammar -->
-I think Anna ___. → **will speak up** · is going to speak up · be
-- is going to speak up — *Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.*
+I think Anna ___. → **will speak up** · is going speak up · be
+- is going speak up — *Без to эта форма не строится. Для мнения-прогноза здесь — will speak up.*
 - be — *Нужна правильно построенная полная форма: will speak up.*
 
 **5 · Карточка слова — hold still**
@@ -85,8 +85,8 @@ I think Anna ___. → **will speak up** · is going to speak up · be
 
 **8 · Вы предполагаете, что ребёнок сможет не двигаться, пока вы фотографируете. Передайте мнение-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-45:i06; family: context_gap_grammar -->
-I think the child ___ for the photo. → **will hold still** · is going to hold still · be
-- is going to hold still — *Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.*
+I think the child ___ for the photo. → **will hold still** · is going hold still · be
+- is going hold still — *Без to эта форма не строится. Для мнения-прогноза здесь — will hold still.*
 - be — *Нужна правильно построенная полная форма: will hold still.*
 
 **9 · Карточка слова — hang on**
@@ -125,8 +125,8 @@ I ___ for a few minutes. → **am going to hang on** · am hanging on · be
 
 **16 · Вы с семьёй уже договорились провести выходные дома вместо поездки. У stay put форма с -ing — staying put. Передайте подтверждённую договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-16:session-45:i12; family: context_gap_grammar -->
-We ___ this weekend. → **are staying put** · are going to stay put · be
-- are going to stay put — *Форма возможна, но здесь нужна указанная. Передайте подтверждённую договорённость через Present Continuous.*
+We ___ this weekend. → **are staying put** · are stay put · be
+- are stay put — *После are нужна форма с -ing: are staying put.*
 - be — *Нужна правильно построенная полная форма: are staying put.*
 
 **17 · Соедините слова с переводом**

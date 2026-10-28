@@ -65,8 +65,8 @@
 
 **4 · Ви ділитеся надією-прогнозом про майбутню відпустку. Передайте думку-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-36:i03; family: context_gap_grammar -->
-I think the holiday ___ memorable. → **will be** · is going to be · will to be
-- is going to be — *Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will.*
+I think the holiday ___ memorable. → **will be** · is going be · will to be
+- is going be — *Без to ця форма не будується. Для думки-прогнозу тут — will be.*
 - will to be — *Потрібна правильно побудована повна форма: will be.*
 
 **5 · Картка слова — uneventful**
@@ -85,8 +85,8 @@ I think the holiday ___ memorable. → **will be** · is going to be · will to 
 
 **8 · Ви припускаєте спокійну поїздку без пригод. Передайте думку-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-36:i06; family: context_gap_grammar -->
-I think the journey ___ uneventful. → **will be** · is going to be · will to be
-- is going to be — *Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will.*
+I think the journey ___ uneventful. → **will be** · is going be · will to be
+- is going be — *Без to ця форма не будується. Для думки-прогнозу тут — will be.*
 - will to be — *Потрібна правильно побудована повна форма: will be.*
 
 **9 · Картка слова — unplanned**
@@ -103,10 +103,10 @@ I think the journey ___ uneventful. → **will be** · is going to be · will to
 - I am covering an unplanned expense. — *У записі звучить I am going to cover an unplanned expense.*
 - I is going to cover an unplanned expense. — *У записі звучить I am going to cover an unplanned expense.*
 
-**12 · З’явилася непередбачена витрата. Ви вже вирішили оплатити її; повідомляєте про намір. Передайте заздалегідь прийнятий намір через going to.**
+**12 · З’явилася непередбачена витрата. Ви вже вирішили оплатити її; повідомляєте про намір. Домовленості поки немає. Передайте заздалегідь прийнятий намір через going to.**
 <!-- interaction_id: en:lesson-16:session-36:i09; family: context_gap_grammar -->
 I ___ an unplanned expense. → **am going to cover** · am covering · be
-- am covering — *Форма можлива, але тут потрібна вказана. Передайте заздалегідь прийнятий намір через going to.*
+- am covering — *Am covering — так кажуть про вже узгоджений план. Тут поки лише рішення: am going to cover.*
 - be — *Потрібна правильно побудована повна форма: am going to cover.*
 
 **13 · Картка слова — last-minute**
@@ -125,8 +125,8 @@ I ___ an unplanned expense. → **am going to cover** · am covering · be
 
 **16 · Лише сьогодні ви з господарями остаточно узгодили завтрашній візит. Домовленість підтверджена. Передайте підтверджену домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-16:session-36:i12; family: context_gap_grammar -->
-We ___ a last-minute visit tomorrow. → **are making** · are going to make · be
-- are going to make — *Форма можлива, але тут потрібна вказана. Передайте підтверджену домовленість через Present Continuous.*
+We ___ a last-minute visit tomorrow. → **are making** · are make · be
+- are make — *Після are потрібна форма з -ing: are making.*
 - be — *Потрібна правильно побудована повна форма: are making.*
 
 **17 · Поєднайте слова з перекладом**

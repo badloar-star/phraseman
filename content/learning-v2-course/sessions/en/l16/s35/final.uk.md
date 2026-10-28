@@ -65,8 +65,8 @@
 
 **4 · Ви ділитеся припущенням про складність майбутнього курсу. Передайте думку-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-35:i03; family: context_gap_grammar -->
-I think the course ___ demanding. → **will be** · is going to be · will to be
-- is going to be — *Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will.*
+I think the course ___ demanding. → **will be** · is going be · will to be
+- is going be — *Без to ця форма не будується. Для думки-прогнозу тут — will be.*
 - will to be — *Потрібна правильно побудована повна форма: will be.*
 
 **5 · Картка слова — rewarding**
@@ -85,8 +85,8 @@ I think the course ___ demanding. → **will be** · is going to be · will to b
 
 **8 · Ви припускаєте, що допомога на місцевому святі виявиться корисним і приємним досвідом. Передайте думку-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-35:i06; family: context_gap_grammar -->
-I think the experience ___ rewarding. → **will be** · is going to be · will to be
-- is going to be — *Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will.*
+I think the experience ___ rewarding. → **will be** · is going be · will to be
+- is going be — *Без to ця форма не будується. Для думки-прогнозу тут — will be.*
 - will to be — *Потрібна правильно побудована повна форма: will be.*
 
 **9 · Картка слова — time-consuming**
@@ -125,8 +125,8 @@ I ___ a time-consuming task. → **am going to finish** · am finishing · be
 
 **16 · Ви з другом уже узгодили простий маршрут на завтра й час виїзду. Передайте підтверджену домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-16:session-35:i12; family: context_gap_grammar -->
-We ___ a straightforward route tomorrow. → **are taking** · are going to take · be
-- are going to take — *Форма можлива, але тут потрібна вказана. Передайте підтверджену домовленість через Present Continuous.*
+We ___ a straightforward route tomorrow. → **are taking** · are take · be
+- are take — *Після are потрібна форма з -ing: are taking.*
 - be — *Потрібна правильно побудована повна форма: are taking.*
 
 **17 · Поєднайте слова з перекладом**

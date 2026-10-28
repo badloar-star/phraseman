@@ -65,8 +65,8 @@
 
 **4 · Вы предполагаете, что после долгого дня можете задремать по дороге домой. Передайте мнение-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-46:i03; family: context_gap_grammar -->
-I think I ___ on the train. → **will nod off** · am going to nod off · be
-- am going to nod off — *Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.*
+I think I ___ on the train. → **will nod off** · am going nod off · be
+- am going nod off — *Без to эта форма не строится. Для мнения-прогноза здесь — will nod off.*
 - be — *Нужна правильно построенная полная форма: will nod off.*
 
 **5 · Карточка слова — warm up**
@@ -85,8 +85,8 @@ I think I ___ on the train. → **will nod off** · am going to nod off · be
 
 **8 · Вы не знаете решения тренера и предполагаете, где команда проведёт разминку. Передайте мнение-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-46:i06; family: context_gap_grammar -->
-I think the team ___ outside. → **will warm up** · is going to warm up · be
-- is going to warm up — *Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.*
+I think the team ___ outside. → **will warm up** · is going warm up · be
+- is going warm up — *Без to эта форма не строится. Для мнения-прогноза здесь — will warm up.*
 - be — *Нужна правильно построенная полная форма: will warm up.*
 
 **9 · Карточка слова — freshen up**
@@ -103,10 +103,10 @@ I think the team ___ outside. → **will warm up** · is going to warm up · be
 - I am freshening up before dinner. — *В записи звучит I am going to freshen up before dinner.*
 - I is going to freshen up before dinner. — *В записи звучит I am going to freshen up before dinner.*
 
-**12 · После дороги вы решили умыться перед ужином и сообщаете об этом намерении. Передайте заранее принятое намерение через going to.**
+**12 · После дороги вы решили умыться перед ужином и сообщаете об этом намерении. Договорённости пока нет. Передайте заранее принятое намерение через going to.**
 <!-- interaction_id: en:lesson-16:session-46:i09; family: context_gap_grammar -->
 I ___ before dinner. → **am going to freshen up** · am freshening up · be
-- am freshening up — *Форма возможна, но здесь нужна указанная. Передайте заранее принятое намерение через going to.*
+- am freshening up — *Am freshening up — так говорят об уже согласованном плане. Здесь пока только решение: am going to freshen up.*
 - be — *Нужна правильно построенная полная форма: am going to freshen up.*
 
 **13 · Карточка слова — wind down**
@@ -125,8 +125,8 @@ I ___ before dinner. → **am going to freshen up** · am freshening up · be
 
 **16 · Вы с подругой договорились завтра отдохнуть в спа и уже забронировали посещение. У wind down форма с -ing — winding down. Передайте подтверждённую договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-16:session-46:i12; family: context_gap_grammar -->
-We ___ at the spa tomorrow. → **are winding down** · are going to wind down · be
-- are going to wind down — *Форма возможна, но здесь нужна указанная. Передайте подтверждённую договорённость через Present Continuous.*
+We ___ at the spa tomorrow. → **are winding down** · are wind down · be
+- are wind down — *После are нужна форма с -ing: are winding down.*
 - be — *Нужна правильно построенная полная форма: are winding down.*
 
 **17 · Соедините слова с переводом**

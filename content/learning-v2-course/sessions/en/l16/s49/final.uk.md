@@ -65,8 +65,8 @@
 
 **4 · Ви припускаєте, що друзі скасують пікнік, але їхнього рішення ще не знаєте. Передайте думку-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-49:i03; family: context_gap_grammar -->
-I think they ___ the picnic. → **will call off** · are going to call off · be
-- are going to call off — *Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will.*
+I think they ___ the picnic. → **will call off** · are going call off · be
+- are going call off — *Без to ця форма не будується. Для думки-прогнозу тут — will call off.*
 - be — *Потрібна правильно побудована повна форма: will call off.*
 
 **5 · Картка слова — give up**
@@ -85,8 +85,8 @@ I think they ___ the picnic. → **will call off** · are going to call off · b
 
 **8 · Друг довго розв’язує складну головоломку. Ви припускаєте, що він скоро перестане намагатися. Передайте думку-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-49:i06; family: context_gap_grammar -->
-I think he ___ soon. → **will give up** · is going to give up · be
-- is going to give up — *Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will.*
+I think he ___ soon. → **will give up** · is going give up · be
+- is going give up — *Без to ця форма не будується. Для думки-прогнозу тут — will give up.*
 - be — *Потрібна правильно побудована повна форма: will give up.*
 
 **9 · Картка слова — sign up**
@@ -125,8 +125,8 @@ I ___ for a cooking class. → **am going to sign up** · am signing up · be
 
 **16 · Ви узгодили з готелем час завтрашнього виїзду. У check out форма з -ing — checking out. Передайте підтверджену домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-16:session-49:i12; family: context_gap_grammar -->
-We ___ at ten tomorrow. → **are checking out** · are going to check out · be
-- are going to check out — *Форма можлива, але тут потрібна вказана. Передайте підтверджену домовленість через Present Continuous.*
+We ___ at ten tomorrow. → **are checking out** · are check out · be
+- are check out — *Після are потрібна форма з -ing: are checking out.*
 - be — *Потрібна правильно побудована повна форма: are checking out.*
 
 **17 · Поєднайте слова з перекладом**

@@ -65,8 +65,8 @@
 
 **4 · Ви припускаєте, що перед відкриттям магазину черга буде ззовні. Передайте думку-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-47:i03; family: context_gap_grammar -->
-I think people ___ outside. → **will queue up** · are going to queue up · be
-- are going to queue up — *Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will.*
+I think people ___ outside. → **will queue up** · are going queue up · be
+- are going queue up — *Без to ця форма не будується. Для думки-прогнозу тут — will queue up.*
 - be — *Потрібна правильно побудована повна форма: will queue up.*
 
 **5 · Картка слова — pop out**
@@ -85,8 +85,8 @@ I think people ___ outside. → **will queue up** · are going to queue up · be
 
 **8 · Ви припускаєте, що Том ненадовго сходить по хліб, але ще не обговорювали це з ним. Передайте думку-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-47:i06; family: context_gap_grammar -->
-I think Tom ___ for bread. → **will pop out** · is going to pop out · be
-- is going to pop out — *Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will.*
+I think Tom ___ for bread. → **will pop out** · is going pop out · be
+- is going pop out — *Без to ця форма не будується. Для думки-прогнозу тут — will pop out.*
 - be — *Потрібна правильно побудована повна форма: will pop out.*
 
 **9 · Картка слова — stock up**
@@ -103,10 +103,10 @@ I think Tom ___ for bread. → **will pop out** · is going to pop out · be
 - I am stocking up on rice. — *У записі звучить I am going to stock up on rice.*
 - I is going to stock up on rice. — *У записі звучить I am going to stock up on rice.*
 
-**12 · Ви вирішили купити рис про запас і повідомляєте про свій намір. Передайте заздалегідь прийнятий намір через going to.**
+**12 · Ви вирішили купити рис про запас і повідомляєте про свій намір. Домовленості поки немає. Передайте заздалегідь прийнятий намір через going to.**
 <!-- interaction_id: en:lesson-16:session-47:i09; family: context_gap_grammar -->
 I ___ on rice. → **am going to stock up** · am stocking up · be
-- am stocking up — *Форма можлива, але тут потрібна вказана. Передайте заздалегідь прийнятий намір через going to.*
+- am stocking up — *Am stocking up — так кажуть про вже узгоджений план. Тут поки лише рішення: am going to stock up.*
 - be — *Потрібна правильно побудована повна форма: am going to stock up.*
 
 **13 · Картка слова — cut down on**
@@ -125,8 +125,8 @@ I ___ on rice. → **am going to stock up** · am stocking up · be
 
 **16 · Ви з родиною домовилися з понеділка їсти менше солодкого. У cut down on форма з -ing — cutting down on. Передайте підтверджену домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-16:session-47:i12; family: context_gap_grammar -->
-We ___ sweets from Monday. → **are cutting down on** · are going to cut down on · be
-- are going to cut down on — *Форма можлива, але тут потрібна вказана. Передайте підтверджену домовленість через Present Continuous.*
+We ___ sweets from Monday. → **are cutting down on** · are cut down on · be
+- are cut down on — *Після are потрібна форма з -ing: are cutting down on.*
 - be — *Потрібна правильно побудована повна форма: are cutting down on.*
 
 **17 · Поєднайте слова з перекладом**

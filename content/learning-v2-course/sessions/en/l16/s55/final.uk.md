@@ -65,8 +65,8 @@
 
 **4 · Ви припускаєте, чи буде кухня поєднана з житловою зоною; квартири ще не бачили. Передайте думку-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-55:i03; family: context_gap_grammar -->
-I think the kitchen ___ open-plan. → **will be** · is going to be · will to be
-- is going to be — *Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will.*
+I think the kitchen ___ open-plan. → **will be** · is going be · will to be
+- is going be — *Без to ця форма не будується. Для думки-прогнозу тут — will be.*
 - will to be — *Потрібна правильно побудована повна форма: will be.*
 
 **5 · Картка слова — step-free**
@@ -85,8 +85,8 @@ I think the kitchen ___ open-plan. → **will be** · is going to be · will to 
 
 **8 · Ви ще не бачили вхід і припускаєте, чи можна буде пройти без сходинок. Передайте думку-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-55:i06; family: context_gap_grammar -->
-I think the entrance ___ step-free. → **will be** · is going to be · will to be
-- is going to be — *Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will.*
+I think the entrance ___ step-free. → **will be** · is going be · will to be
+- is going be — *Без to ця форма не будується. Для думки-прогнозу тут — will be.*
 - will to be — *Потрібна правильно побудована повна форма: will be.*
 
 **9 · Картка слова — top-floor**
@@ -106,7 +106,7 @@ I think the entrance ___ step-free. → **will be** · is going to be · will to
 **12 · Ви вирішили шукати житло на останньому поверсі; поки це намір. Передайте заздалегідь прийнятий намір через going to.**
 <!-- interaction_id: en:lesson-16:session-55:i09; family: context_gap_grammar -->
 I ___ for a top-floor flat. → **am going to look** · am looking · be
-- am looking — *Форма можлива, але тут потрібна вказана. Передайте заздалегідь прийнятий намір через going to.*
+- am looking — *Am looking — так кажуть про вже узгоджений план. Тут поки лише рішення: am going to look.*
 - be — *Потрібна правильно побудована повна форма: am going to look.*
 
 **13 · Картка слова — new-build**
@@ -125,8 +125,8 @@ I ___ for a top-floor flat. → **am going to look** · am looking · be
 
 **16 · Ви узгодили з агентом завтрашній перегляд нової квартири. Передайте підтверджену домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-16:session-55:i12; family: context_gap_grammar -->
-We ___ a new-build flat tomorrow. → **are viewing** · are going to view · be
-- are going to view — *Форма можлива, але тут потрібна вказана. Передайте підтверджену домовленість через Present Continuous.*
+We ___ a new-build flat tomorrow. → **are viewing** · are view · be
+- are view — *Після are потрібна форма з -ing: are viewing.*
 - be — *Потрібна правильно побудована повна форма: are viewing.*
 
 **17 · Поєднайте слова з перекладом**

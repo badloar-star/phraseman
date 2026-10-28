@@ -65,8 +65,8 @@
 
 **4 · Ви припускаєте, що нова сумка служитиме довго. Передайте думку-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-38:i03; family: context_gap_grammar -->
-I think the bag ___ durable. → **will be** · is going to be · will to be
-- is going to be — *Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will.*
+I think the bag ___ durable. → **will be** · is going be · will to be
+- is going be — *Без to ця форма не будується. Для думки-прогнозу тут — will be.*
 - will to be — *Потрібна правильно побудована повна форма: will be.*
 
 **5 · Картка слова — lightweight**
@@ -85,8 +85,8 @@ I think the bag ___ durable. → **will be** · is going to be · will to be
 
 **8 · Ви очікуєте доставку валізи й припускаєте, що вона виявиться легкою. Передайте думку-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-38:i06; family: context_gap_grammar -->
-I think the suitcase ___ lightweight. → **will be** · is going to be · will to be
-- is going to be — *Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will.*
+I think the suitcase ___ lightweight. → **will be** · is going be · will to be
+- is going be — *Без to ця форма не будується. Для думки-прогнозу тут — will be.*
 - will to be — *Потрібна правильно побудована повна форма: will be.*
 
 **9 · Картка слова — disposable**
@@ -103,10 +103,10 @@ I think the suitcase ___ lightweight. → **will be** · is going to be · will 
 - I am avoiding disposable plates. — *У записі звучить I am going to avoid disposable plates.*
 - I is going to avoid disposable plates. — *У записі звучить I am going to avoid disposable plates.*
 
-**12 · Ви вирішили взяти на пікнік звичайний посуд замість одноразового. Повідомте про намір. Передайте заздалегідь прийнятий намір через going to.**
+**12 · Ви вирішили взяти на пікнік звичайний посуд замість одноразового. Повідомте про намір. Домовленості поки немає. Передайте заздалегідь прийнятий намір через going to.**
 <!-- interaction_id: en:lesson-16:session-38:i09; family: context_gap_grammar -->
 I ___ disposable plates. → **am going to avoid** · am avoiding · be
-- am avoiding — *Форма можлива, але тут потрібна вказана. Передайте заздалегідь прийнятий намір через going to.*
+- am avoiding — *Am avoiding — так кажуть про вже узгоджений план. Тут поки лише рішення: am going to avoid.*
 - be — *Потрібна правильно побудована повна форма: am going to avoid.*
 
 **13 · Картка слова — portable**
@@ -125,8 +125,8 @@ I ___ disposable plates. → **am going to avoid** · am avoiding · be
 
 **16 · Ви з другом домовилися завтра зустрітися в магазині й купити переносні стільці. Передайте підтверджену домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-16:session-38:i12; family: context_gap_grammar -->
-We ___ portable chairs tomorrow. → **are buying** · are going to buy · be
-- are going to buy — *Форма можлива, але тут потрібна вказана. Передайте підтверджену домовленість через Present Continuous.*
+We ___ portable chairs tomorrow. → **are buying** · are buy · be
+- are buy — *Після are потрібна форма з -ing: are buying.*
 - be — *Потрібна правильно побудована повна форма: are buying.*
 
 **17 · Поєднайте слова з перекладом**

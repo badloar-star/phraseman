@@ -65,8 +65,8 @@
 
 **4 · Ви вперше випробовуєте рецепт і припускаєте, яким вийде печиво. Передайте думку-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-43:i03; family: context_gap_grammar -->
-I think the biscuits ___ crumbly. → **will be** · are going to be · will to be
-- are going to be — *Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will.*
+I think the biscuits ___ crumbly. → **will be** · are going be · will to be
+- are going be — *Без to ця форма не будується. Для думки-прогнозу тут — will be.*
 - will to be — *Потрібна правильно побудована повна форма: will be.*
 
 **5 · Картка слова — watery**
@@ -85,8 +85,8 @@ I think the biscuits ___ crumbly. → **will be** · are going to be · will to 
 
 **8 · Ви обговорюєте рецепт і висловлюєте побоювання, що суп виявиться надто рідким. Передайте думку-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-43:i06; family: context_gap_grammar -->
-I think the soup ___ watery. → **will be** · is going to be · will to be
-- is going to be — *Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will.*
+I think the soup ___ watery. → **will be** · is going be · will to be
+- is going be — *Без to ця форма не будується. Для думки-прогнозу тут — will be.*
 - will to be — *Потрібна правильно побудована повна форма: will be.*
 
 **9 · Картка слова — boneless**
@@ -103,10 +103,10 @@ I think the soup ___ watery. → **will be** · is going to be · will to be
 - I am buying boneless chicken. — *У записі звучить I am going to buy boneless chicken.*
 - I is going to buy boneless chicken. — *У записі звучить I am going to buy boneless chicken.*
 
-**12 · Ви вирішили купити м’ясо без кісток на вечерю; це намір перед походом до магазину. Передайте заздалегідь прийнятий намір через going to.**
+**12 · Ви вирішили купити м’ясо без кісток на вечерю; це намір перед походом до магазину. Домовленості поки немає. Передайте заздалегідь прийнятий намір через going to.**
 <!-- interaction_id: en:lesson-16:session-43:i09; family: context_gap_grammar -->
 I ___ boneless chicken. → **am going to buy** · am buying · be
-- am buying — *Форма можлива, але тут потрібна вказана. Передайте заздалегідь прийнятий намір через going to.*
+- am buying — *Am buying — так кажуть про вже узгоджений план. Тут поки лише рішення: am going to buy.*
 - be — *Потрібна правильно побудована повна форма: am going to buy.*
 
 **13 · Картка слова — skinless**
@@ -125,8 +125,8 @@ I ___ boneless chicken. → **am going to buy** · am buying · be
 
 **16 · Ви домовилися з другом готувати разом сьогодні ввечері й уже вибрали продукти. Передайте підтверджену домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-16:session-43:i12; family: context_gap_grammar -->
-We ___ skinless chicken together tonight. → **are cooking** · are going to cook · be
-- are going to cook — *Форма можлива, але тут потрібна вказана. Передайте підтверджену домовленість через Present Continuous.*
+We ___ skinless chicken together tonight. → **are cooking** · are cook · be
+- are cook — *Після are потрібна форма з -ing: are cooking.*
 - be — *Потрібна правильно побудована повна форма: are cooking.*
 
 **17 · Поєднайте слова з перекладом**

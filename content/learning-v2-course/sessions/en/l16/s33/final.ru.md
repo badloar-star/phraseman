@@ -65,8 +65,8 @@
 
 **4 · Вы высказываете мнение о будущей задаче. Передайте мнение-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-33:i03; family: context_gap_grammar -->
-I think the task ___ manageable. → **will be** · is going to be · will to be
-- is going to be — *Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.*
+I think the task ___ manageable. → **will be** · is going be · will to be
+- is going be — *Без to эта форма не строится. Для мнения-прогноза здесь — will be.*
 - will to be — *Нужна правильно построенная полная форма: will be.*
 
 **5 · Карточка слова — unavoidable**
@@ -85,8 +85,8 @@ I think the task ___ manageable. → **will be** · is going to be · will to be
 
 **8 · Вы предполагаете, что задержки не удастся избежать. Передайте мнение-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-33:i06; family: context_gap_grammar -->
-I think the delay ___ unavoidable. → **will be** · is going to be · will to be
-- is going to be — *Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.*
+I think the delay ___ unavoidable. → **will be** · is going be · will to be
+- is going be — *Без to эта форма не строится. Для мнения-прогноза здесь — will be.*
 - will to be — *Нужна правильно построенная полная форма: will be.*
 
 **9 · Карточка слова — unnecessary**
@@ -106,7 +106,7 @@ I think the delay ___ unavoidable. → **will be** · is going to be · will to 
 **12 · Вы решили отказаться от ненужной поездки; пока это ваше намерение. Передайте заранее принятое намерение через going to.**
 <!-- interaction_id: en:lesson-16:session-33:i09; family: context_gap_grammar -->
 I ___ an unnecessary trip. → **am going to cancel** · am cancelling · be
-- am cancelling — *Форма возможна, но здесь нужна указанная. Передайте заранее принятое намерение через going to.*
+- am cancelling — *Am cancelling — так говорят об уже согласованном плане. Здесь пока только решение: am going to cancel.*
 - be — *Нужна правильно построенная полная форма: am going to cancel.*
 
 **13 · Карточка слова — worthwhile**
@@ -125,8 +125,8 @@ I ___ an unnecessary trip. → **am going to cancel** · am cancelling · be
 
 **16 · Вы с другом записались на завтрашнее полезное занятие, время подтверждено. Передайте подтверждённую договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-16:session-33:i12; family: context_gap_grammar -->
-We ___ a worthwhile activity tomorrow. → **are joining** · are going to join · be
-- are going to join — *Форма возможна, но здесь нужна указанная. Передайте подтверждённую договорённость через Present Continuous.*
+We ___ a worthwhile activity tomorrow. → **are joining** · are join · be
+- are join — *После are нужна форма с -ing: are joining.*
 - be — *Нужна правильно построенная полная форма: are joining.*
 
 **17 · Соедините слова с переводом**

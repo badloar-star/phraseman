@@ -65,8 +65,8 @@
 
 **4 · Ви ще не отримали замовлені груші й припускаєте, що вони виявляться недостиглими. Передайте думку-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-42:i03; family: context_gap_grammar -->
-I think the pears ___ unripe. → **will be** · are going to be · will to be
-- are going to be — *Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will.*
+I think the pears ___ unripe. → **will be** · are going be · will to be
+- are going be — *Без to ця форма не будується. Для думки-прогнозу тут — will be.*
 - will to be — *Потрібна правильно побудована повна форма: will be.*
 
 **5 · Картка слова — overripe**
@@ -85,8 +85,8 @@ I think the pears ___ unripe. → **will be** · are going to be · will to be
 
 **8 · Ви висловлюєте свою думку про те, якими банани стануть завтра. Передайте думку-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-42:i06; family: context_gap_grammar -->
-I think the bananas ___ overripe tomorrow. → **will be** · are going to be · will to be
-- are going to be — *Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will.*
+I think the bananas ___ overripe tomorrow. → **will be** · are going be · will to be
+- are going be — *Без to ця форма не будується. Для думки-прогнозу тут — will be.*
 - will to be — *Потрібна правильно побудована повна форма: will be.*
 
 **9 · Картка слова — bruised**
@@ -106,7 +106,7 @@ I think the bananas ___ overripe tomorrow. → **will be** · are going to be ·
 **12 · Ви вирішили спекти пиріг із яблук із невеликими пом’ятими місцями; це поки намір. Передайте заздалегідь прийнятий намір через going to.**
 <!-- interaction_id: en:lesson-16:session-42:i09; family: context_gap_grammar -->
 I ___ the bruised apples for a pie. → **am going to use** · am using · be
-- am using — *Форма можлива, але тут потрібна вказана. Передайте заздалегідь прийнятий намір через going to.*
+- am using — *Am using — так кажуть про вже узгоджений план. Тут поки лише рішення: am going to use.*
 - be — *Потрібна правильно побудована повна форма: am going to use.*
 
 **13 · Картка слова — seedless**
@@ -125,8 +125,8 @@ I ___ the bruised apples for a pie. → **am going to use** · am using · be
 
 **16 · Ви замовили виноград і узгодили з продавцем, що заберете його завтра. Передайте підтверджену домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-16:session-42:i12; family: context_gap_grammar -->
-We ___ the seedless grapes tomorrow. → **are collecting** · are going to collect · be
-- are going to collect — *Форма можлива, але тут потрібна вказана. Передайте підтверджену домовленість через Present Continuous.*
+We ___ the seedless grapes tomorrow. → **are collecting** · are collect · be
+- are collect — *Після are потрібна форма з -ing: are collecting.*
 - be — *Потрібна правильно побудована повна форма: are collecting.*
 
 **17 · Поєднайте слова з перекладом**

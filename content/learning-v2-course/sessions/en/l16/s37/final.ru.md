@@ -65,8 +65,8 @@
 
 **4 · Вы ещё не досмотрели фильм и делитесь предположением о концовке. Передайте мнение-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-37:i03; family: context_gap_grammar -->
-I think the ending ___ predictable. → **will be** · is going to be · will to be
-- is going to be — *Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.*
+I think the ending ___ predictable. → **will be** · is going be · will to be
+- is going be — *Без to эта форма не строится. Для мнения-прогноза здесь — will be.*
 - will to be — *Нужна правильно построенная полная форма: will be.*
 
 **5 · Карточка слова — unpredictable**
@@ -85,8 +85,8 @@ I think the ending ___ predictable. → **will be** · is going to be · will to
 
 **8 · Вы делитесь мнением о погоде во время будущего отпуска. Передайте мнение-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-37:i06; family: context_gap_grammar -->
-I think the weather ___ unpredictable. → **will be** · is going to be · will to be
-- is going to be — *Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.*
+I think the weather ___ unpredictable. → **will be** · is going be · will to be
+- is going be — *Без to эта форма не строится. Для мнения-прогноза здесь — will be.*
 - will to be — *Нужна правильно построенная полная форма: will be.*
 
 **9 · Карточка слова — temporary**
@@ -125,8 +125,8 @@ I ___ a temporary job. → **am going to find** · am finding · be
 
 **16 · Вы согласовали переезд из временного жилья на завтра; машина заказана. Передайте подтверждённую договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-16:session-37:i12; family: context_gap_grammar -->
-We ___ to our permanent home tomorrow. → **are moving** · are going to move · be
-- are going to move — *Форма возможна, но здесь нужна указанная. Передайте подтверждённую договорённость через Present Continuous.*
+We ___ to our permanent home tomorrow. → **are moving** · are move · be
+- are move — *После are нужна форма с -ing: are moving.*
 - be — *Нужна правильно построенная полная форма: are moving.*
 
 **17 · Соедините слова с переводом**

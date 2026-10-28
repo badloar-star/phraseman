@@ -65,8 +65,8 @@
 
 **4 · Ви ще не були в кімнаті й припускаєте, що в ній може дути з вікон. Передайте думку-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-51:i03; family: context_gap_grammar -->
-I think the room ___ draughty. → **will be** · is going to be · will to be
-- is going to be — *Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will.*
+I think the room ___ draughty. → **will be** · is going be · will to be
+- is going be — *Без to ця форма не будується. Для думки-прогнозу тут — will be.*
 - will to be — *Потрібна правильно побудована повна форма: will be.*
 
 **5 · Картка слова — well-lit**
@@ -85,8 +85,8 @@ I think the room ___ draughty. → **will be** · is going to be · will to be
 
 **8 · Ви припускаєте, що ввечері біля входу буде достатньо світла. Передайте думку-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-51:i06; family: context_gap_grammar -->
-I think the entrance ___ well-lit. → **will be** · is going to be · will to be
-- is going to be — *Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will.*
+I think the entrance ___ well-lit. → **will be** · is going be · will to be
+- is going be — *Без to ця форма не будується. Для думки-прогнозу тут — will be.*
 - will to be — *Потрібна правильно побудована повна форма: will be.*
 
 **9 · Картка слова — soundproof**
@@ -106,7 +106,7 @@ I think the entrance ___ well-lit. → **will be** · is going to be · will to 
 **12 · Ви вирішили пошукати кімнату, де не буде чути сусідів; поки це намір. Передайте заздалегідь прийнятий намір через going to.**
 <!-- interaction_id: en:lesson-16:session-51:i09; family: context_gap_grammar -->
 I ___ for a soundproof room. → **am going to look** · am looking · be
-- am looking — *Форма можлива, але тут потрібна вказана. Передайте заздалегідь прийнятий намір через going to.*
+- am looking — *Am looking — так кажуть про вже узгоджений план. Тут поки лише рішення: am going to look.*
 - be — *Потрібна правильно побудована повна форма: am going to look.*
 
 **13 · Картка слова — well-kept**
@@ -125,8 +125,8 @@ I ___ for a soundproof room. → **am going to look** · am looking · be
 
 **16 · Ви узгодили з власником перегляд квартири на завтра. Передайте підтверджену домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-16:session-51:i12; family: context_gap_grammar -->
-We ___ a well-kept flat tomorrow. → **are viewing** · are going to view · be
-- are going to view — *Форма можлива, але тут потрібна вказана. Передайте підтверджену домовленість через Present Continuous.*
+We ___ a well-kept flat tomorrow. → **are viewing** · are view · be
+- are view — *Після are потрібна форма з -ing: are viewing.*
 - be — *Потрібна правильно побудована повна форма: are viewing.*
 
 **17 · Поєднайте слова з перекладом**

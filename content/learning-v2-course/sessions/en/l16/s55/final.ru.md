@@ -65,8 +65,8 @@
 
 **4 · Вы предполагаете, будет ли кухня объединена с жилой зоной; квартиру ещё не видели. Передайте мнение-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-55:i03; family: context_gap_grammar -->
-I think the kitchen ___ open-plan. → **will be** · is going to be · will to be
-- is going to be — *Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.*
+I think the kitchen ___ open-plan. → **will be** · is going be · will to be
+- is going be — *Без to эта форма не строится. Для мнения-прогноза здесь — will be.*
 - will to be — *Нужна правильно построенная полная форма: will be.*
 
 **5 · Карточка слова — step-free**
@@ -85,8 +85,8 @@ I think the kitchen ___ open-plan. → **will be** · is going to be · will to 
 
 **8 · Вы ещё не видели вход и предполагаете, можно ли будет пройти без ступенек. Передайте мнение-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-55:i06; family: context_gap_grammar -->
-I think the entrance ___ step-free. → **will be** · is going to be · will to be
-- is going to be — *Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.*
+I think the entrance ___ step-free. → **will be** · is going be · will to be
+- is going be — *Без to эта форма не строится. Для мнения-прогноза здесь — will be.*
 - will to be — *Нужна правильно построенная полная форма: will be.*
 
 **9 · Карточка слова — top-floor**
@@ -106,7 +106,7 @@ I think the entrance ___ step-free. → **will be** · is going to be · will to
 **12 · Вы решили искать жильё на последнем этаже; пока это намерение. Передайте заранее принятое намерение через going to.**
 <!-- interaction_id: en:lesson-16:session-55:i09; family: context_gap_grammar -->
 I ___ for a top-floor flat. → **am going to look** · am looking · be
-- am looking — *Форма возможна, но здесь нужна указанная. Передайте заранее принятое намерение через going to.*
+- am looking — *Am looking — так говорят об уже согласованном плане. Здесь пока только решение: am going to look.*
 - be — *Нужна правильно построенная полная форма: am going to look.*
 
 **13 · Карточка слова — new-build**
@@ -125,8 +125,8 @@ I ___ for a top-floor flat. → **am going to look** · am looking · be
 
 **16 · Вы согласовали с агентом завтрашний просмотр новой квартиры. Передайте подтверждённую договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-16:session-55:i12; family: context_gap_grammar -->
-We ___ a new-build flat tomorrow. → **are viewing** · are going to view · be
-- are going to view — *Форма возможна, но здесь нужна указанная. Передайте подтверждённую договорённость через Present Continuous.*
+We ___ a new-build flat tomorrow. → **are viewing** · are view · be
+- are view — *После are нужна форма с -ing: are viewing.*
 - be — *Нужна правильно построенная полная форма: are viewing.*
 
 **17 · Соедините слова с переводом**

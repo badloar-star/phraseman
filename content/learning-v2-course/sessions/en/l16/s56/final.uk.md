@@ -65,8 +65,8 @@
 
 **4 · Ви припускаєте, у який бік виходить сад біля будинку, який ще не оглянули. Передайте думку-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-56:i03; family: context_gap_grammar -->
-I think the garden ___ south-facing. → **will be** · is going to be · will to be
-- is going to be — *Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will.*
+I think the garden ___ south-facing. → **will be** · is going be · will to be
+- is going be — *Без to ця форма не будується. Для думки-прогнозу тут — will be.*
 - will to be — *Потрібна правильно побудована повна форма: will be.*
 
 **5 · Картка слова — north-facing**
@@ -85,8 +85,8 @@ I think the garden ___ south-facing. → **will be** · is going to be · will t
 
 **8 · Ви висловлюєте припущення про розташування спальні в новій квартирі. Передайте думку-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-56:i06; family: context_gap_grammar -->
-I think the bedroom ___ north-facing. → **will be** · is going to be · will to be
-- is going to be — *Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will.*
+I think the bedroom ___ north-facing. → **will be** · is going be · will to be
+- is going be — *Без to ця форма не будується. Для думки-прогнозу тут — will be.*
 - will to be — *Потрібна правильно побудована повна форма: will be.*
 
 **9 · Картка слова — built-in**
@@ -125,8 +125,8 @@ I ___ for a flat with a built-in wardrobe. → **am going to look** · am lookin
 
 **16 · Ви домовилися з агентом завтра подивитися квартиру біля набережної. Передайте підтверджену домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-16:session-56:i12; family: context_gap_grammar -->
-We ___ a waterfront flat tomorrow. → **are viewing** · are going to view · be
-- are going to view — *Форма можлива, але тут потрібна вказана. Передайте підтверджену домовленість через Present Continuous.*
+We ___ a waterfront flat tomorrow. → **are viewing** · are view · be
+- are view — *Після are потрібна форма з -ing: are viewing.*
 - be — *Потрібна правильно побудована повна форма: are viewing.*
 
 **17 · Поєднайте слова з перекладом**

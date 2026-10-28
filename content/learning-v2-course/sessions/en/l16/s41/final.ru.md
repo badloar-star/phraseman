@@ -65,8 +65,8 @@
 
 **4 · Вы ещё не пробовали сыр и предполагаете, каким будет его вкус. Передайте мнение-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-41:i03; family: context_gap_grammar -->
-I think the cheese ___ smoky. → **will be** · is going to be · will to be
-- is going to be — *Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.*
+I think the cheese ___ smoky. → **will be** · is going be · will to be
+- is going be — *Без to эта форма не строится. Для мнения-прогноза здесь — will be.*
 - will to be — *Нужна правильно построенная полная форма: will be.*
 
 **5 · Карточка слова — nutty**
@@ -85,8 +85,8 @@ I think the cheese ___ smoky. → **will be** · is going to be · will to be
 
 **8 · Вы высказываете предположение о вкусе пирога, который ещё не пробовали. Передайте мнение-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-41:i06; family: context_gap_grammar -->
-I think the cake ___ nutty. → **will be** · is going to be · will to be
-- is going to be — *Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.*
+I think the cake ___ nutty. → **will be** · is going be · will to be
+- is going be — *Без to эта форма не строится. Для мнения-прогноза здесь — will be.*
 - will to be — *Нужна правильно построенная полная форма: will be.*
 
 **9 · Карточка слова — savoury**
@@ -106,7 +106,7 @@ I think the cake ___ nutty. → **will be** · is going to be · will to be
 **12 · Вы решили приготовить пирог с овощами вместо сладкого; это пока намерение. Передайте заранее принятое намерение через going to.**
 <!-- interaction_id: en:lesson-16:session-41:i09; family: context_gap_grammar -->
 I ___ a savoury pie. → **am going to make** · am making · be
-- am making — *Форма возможна, но здесь нужна указанная. Передайте заранее принятое намерение через going to.*
+- am making — *Am making — так говорят об уже согласованном плане. Здесь пока только решение: am going to make.*
 - be — *Нужна правильно построенная полная форма: am going to make.*
 
 **13 · Карточка слова — tangy**
@@ -125,8 +125,8 @@ I ___ a savoury pie. → **am going to make** · am making · be
 
 **16 · Вы договорились с подругой завтра прийти к ней и попробовать её новый соус. Передайте подтверждённую договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-16:session-41:i12; family: context_gap_grammar -->
-We ___ a tangy sauce tomorrow. → **are tasting** · are going to taste · be
-- are going to taste — *Форма возможна, но здесь нужна указанная. Передайте подтверждённую договорённость через Present Continuous.*
+We ___ a tangy sauce tomorrow. → **are tasting** · are taste · be
+- are taste — *После are нужна форма с -ing: are tasting.*
 - be — *Нужна правильно построенная полная форма: are tasting.*
 
 **17 · Соедините слова с переводом**

@@ -65,8 +65,8 @@
 
 **4 · Ви ще не бачили квартиру й припускаєте, що меблі в ній уже є. Передайте думку-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-53:i03; family: context_gap_grammar -->
-I think the flat ___ furnished. → **will be** · is going to be · will to be
-- is going to be — *Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will.*
+I think the flat ___ furnished. → **will be** · is going be · will to be
+- is going be — *Без to ця форма не будується. Для думки-прогнозу тут — will be.*
 - will to be — *Потрібна правильно побудована повна форма: will be.*
 
 **5 · Картка слова — unfurnished**
@@ -85,8 +85,8 @@ I think the flat ___ furnished. → **will be** · is going to be · will to be
 
 **8 · Ви висловлюєте припущення про будинок, який вам запропонували орендувати. Передайте думку-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-53:i06; family: context_gap_grammar -->
-I think the house ___ unfurnished. → **will be** · is going to be · will to be
-- is going to be — *Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will.*
+I think the house ___ unfurnished. → **will be** · is going be · will to be
+- is going be — *Без to ця форма не будується. Для думки-прогнозу тут — will be.*
 - will to be — *Потрібна правильно побудована повна форма: will be.*
 
 **9 · Картка слова — detached**
@@ -125,8 +125,8 @@ I ___ for a detached house. → **am going to look** · am looking · be
 
 **16 · Ви домовилися з агентом завтра подивитися будинок у суцільному ряду будинків. Передайте підтверджену домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-16:session-53:i12; family: context_gap_grammar -->
-We ___ a terraced house tomorrow. → **are viewing** · are going to view · be
-- are going to view — *Форма можлива, але тут потрібна вказана. Передайте підтверджену домовленість через Present Continuous.*
+We ___ a terraced house tomorrow. → **are viewing** · are view · be
+- are view — *Після are потрібна форма з -ing: are viewing.*
 - be — *Потрібна правильно побудована повна форма: are viewing.*
 
 **17 · Поєднайте слова з перекладом**

@@ -65,8 +65,8 @@
 
 **4 · Ви ще не гуляли цією доріжкою й припускаєте, що поверхня буде нерівною. Передайте думку-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-52:i03; family: context_gap_grammar -->
-I think the path ___ uneven. → **will be** · is going to be · will to be
-- is going to be — *Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will.*
+I think the path ___ uneven. → **will be** · is going be · will to be
+- is going be — *Без to ця форма не будується. Для думки-прогнозу тут — will be.*
 - will to be — *Потрібна правильно побудована повна форма: will be.*
 
 **5 · Картка слова — shaded**
@@ -85,8 +85,8 @@ I think the path ___ uneven. → **will be** · is going to be · will to be
 
 **8 · Ви припускаєте, чи буде лавка в затінку після обіду. Передайте думку-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-52:i06; family: context_gap_grammar -->
-I think the bench ___ shaded in the afternoon. → **will be** · is going to be · will to be
-- is going to be — *Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will.*
+I think the bench ___ shaded in the afternoon. → **will be** · is going be · will to be
+- is going be — *Без to ця форма не будується. Для думки-прогнозу тут — will be.*
 - will to be — *Потрібна правильно побудована повна форма: will be.*
 
 **9 · Картка слова — paved**
@@ -106,7 +106,7 @@ I think the bench ___ shaded in the afternoon. → **will be** · is going to be
 **12 · Ви вирішили вибрати для прогулянки доріжку з покриттям; поки маршрут не вибрано. Передайте заздалегідь прийнятий намір через going to.**
 <!-- interaction_id: en:lesson-16:session-52:i09; family: context_gap_grammar -->
 I ___ a paved path. → **am going to choose** · am choosing · be
-- am choosing — *Форма можлива, але тут потрібна вказана. Передайте заздалегідь прийнятий намір через going to.*
+- am choosing — *Am choosing — так кажуть про вже узгоджений план. Тут поки лише рішення: am going to choose.*
 - be — *Потрібна правильно побудована повна форма: am going to choose.*
 
 **13 · Картка слова — unpaved**
@@ -125,8 +125,8 @@ I ___ a paved path. → **am going to choose** · am choosing · be
 
 **16 · Ви домовилися з друзями завтра пройти знайомою ґрунтовою дорогою. Передайте підтверджену домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-16:session-52:i12; family: context_gap_grammar -->
-We ___ along the unpaved road tomorrow. → **are walking** · are going to walk · be
-- are going to walk — *Форма можлива, але тут потрібна вказана. Передайте підтверджену домовленість через Present Continuous.*
+We ___ along the unpaved road tomorrow. → **are walking** · are walk · be
+- are walk — *Після are потрібна форма з -ing: are walking.*
 - be — *Потрібна правильно побудована повна форма: are walking.*
 
 **17 · Поєднайте слова з перекладом**

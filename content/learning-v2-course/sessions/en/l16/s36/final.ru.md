@@ -65,8 +65,8 @@
 
 **4 · Вы делитесь надеждой-прогнозом о предстоящем отпуске. Передайте мнение-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-36:i03; family: context_gap_grammar -->
-I think the holiday ___ memorable. → **will be** · is going to be · will to be
-- is going to be — *Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.*
+I think the holiday ___ memorable. → **will be** · is going be · will to be
+- is going be — *Без to эта форма не строится. Для мнения-прогноза здесь — will be.*
 - will to be — *Нужна правильно построенная полная форма: will be.*
 
 **5 · Карточка слова — uneventful**
@@ -85,8 +85,8 @@ I think the holiday ___ memorable. → **will be** · is going to be · will to 
 
 **8 · Вы предполагаете спокойную поездку без происшествий. Передайте мнение-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-36:i06; family: context_gap_grammar -->
-I think the journey ___ uneventful. → **will be** · is going to be · will to be
-- is going to be — *Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.*
+I think the journey ___ uneventful. → **will be** · is going be · will to be
+- is going be — *Без to эта форма не строится. Для мнения-прогноза здесь — will be.*
 - will to be — *Нужна правильно построенная полная форма: will be.*
 
 **9 · Карточка слова — unplanned**
@@ -103,10 +103,10 @@ I think the journey ___ uneventful. → **will be** · is going to be · will to
 - I am covering an unplanned expense. — *В записи звучит I am going to cover an unplanned expense.*
 - I is going to cover an unplanned expense. — *В записи звучит I am going to cover an unplanned expense.*
 
-**12 · Появился непредвиденный расход. Вы уже решили оплатить его; сообщаете о намерении. Передайте заранее принятое намерение через going to.**
+**12 · Появился непредвиденный расход. Вы уже решили оплатить его; сообщаете о намерении. Договорённости пока нет. Передайте заранее принятое намерение через going to.**
 <!-- interaction_id: en:lesson-16:session-36:i09; family: context_gap_grammar -->
 I ___ an unplanned expense. → **am going to cover** · am covering · be
-- am covering — *Форма возможна, но здесь нужна указанная. Передайте заранее принятое намерение через going to.*
+- am covering — *Am covering — так говорят об уже согласованном плане. Здесь пока только решение: am going to cover.*
 - be — *Нужна правильно построенная полная форма: am going to cover.*
 
 **13 · Карточка слова — last-minute**
@@ -125,8 +125,8 @@ I ___ an unplanned expense. → **am going to cover** · am covering · be
 
 **16 · Только сегодня вы с хозяевами окончательно согласовали завтрашний визит. Договорённость подтверждена. Передайте подтверждённую договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-16:session-36:i12; family: context_gap_grammar -->
-We ___ a last-minute visit tomorrow. → **are making** · are going to make · be
-- are going to make — *Форма возможна, но здесь нужна указанная. Передайте подтверждённую договорённость через Present Continuous.*
+We ___ a last-minute visit tomorrow. → **are making** · are make · be
+- are make — *После are нужна форма с -ing: are making.*
 - be — *Нужна правильно построенная полная форма: are making.*
 
 **17 · Соедините слова с переводом**

@@ -65,8 +65,8 @@
 
 **4 · Друг запитує вашу думку про фільм, якого ви ще не дивилися. Ви ділитеся припущенням. Передайте думку-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-34:i03; family: context_gap_grammar -->
-I think the film ___ disappointing. → **will be** · is going to be · will to be
-- is going to be — *Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will.*
+I think the film ___ disappointing. → **will be** · is going be · will to be
+- is going be — *Без to ця форма не будується. Для думки-прогнозу тут — will be.*
 - will to be — *Потрібна правильно побудована повна форма: will be.*
 
 **5 · Картка слова — satisfying**
@@ -85,8 +85,8 @@ I think the film ___ disappointing. → **will be** · is going to be · will to
 
 **8 · Ви припускаєте, що результат майбутньої роботи вас потішить. Передайте думку-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-34:i06; family: context_gap_grammar -->
-I think the work ___ satisfying. → **will be** · is going to be · will to be
-- is going to be — *Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will.*
+I think the work ___ satisfying. → **will be** · is going be · will to be
+- is going be — *Без to ця форма не будується. Для думки-прогнозу тут — will be.*
 - will to be — *Потрібна правильно побудована повна форма: will be.*
 
 **9 · Картка слова — exhausting**
@@ -103,10 +103,10 @@ I think the work ___ satisfying. → **will be** · is going to be · will to be
 - I am avoiding an exhausting trip. — *У записі звучить I am going to avoid an exhausting trip.*
 - I is going to avoid an exhausting trip. — *У записі звучить I am going to avoid an exhausting trip.*
 
-**12 · Ви вирішили вибрати інший спосіб дістатися, щоб не виснажувати себе поїздкою. Це намір. Передайте заздалегідь прийнятий намір через going to.**
+**12 · Ви вирішили вибрати інший спосіб дістатися, щоб не виснажувати себе поїздкою. Це намір. Домовленості поки немає. Передайте заздалегідь прийнятий намір через going to.**
 <!-- interaction_id: en:lesson-16:session-34:i09; family: context_gap_grammar -->
 I ___ an exhausting trip. → **am going to avoid** · am avoiding · be
-- am avoiding — *Форма можлива, але тут потрібна вказана. Передайте заздалегідь прийнятий намір через going to.*
+- am avoiding — *Am avoiding — так кажуть про вже узгоджений план. Тут поки лише рішення: am going to avoid.*
 - be — *Потрібна правильно побудована повна форма: am going to avoid.*
 
 **13 · Картка слова — refreshing**
@@ -125,8 +125,8 @@ I ___ an exhausting trip. → **am going to avoid** · am avoiding · be
 
 **16 · Ви з другом узгодили завтрашню прогулянку на свіжому повітрі. Передайте підтверджену домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-16:session-34:i12; family: context_gap_grammar -->
-We ___ a refreshing walk tomorrow. → **are taking** · are going to take · be
-- are going to take — *Форма можлива, але тут потрібна вказана. Передайте підтверджену домовленість через Present Continuous.*
+We ___ a refreshing walk tomorrow. → **are taking** · are take · be
+- are take — *Після are потрібна форма з -ing: are taking.*
 - be — *Потрібна правильно побудована повна форма: are taking.*
 
 **17 · Поєднайте слова з перекладом**

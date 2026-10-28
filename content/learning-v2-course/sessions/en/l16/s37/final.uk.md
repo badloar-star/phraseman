@@ -65,8 +65,8 @@
 
 **4 · Ви ще не додивилися фільм і ділитеся припущенням про кінцівку. Передайте думку-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-37:i03; family: context_gap_grammar -->
-I think the ending ___ predictable. → **will be** · is going to be · will to be
-- is going to be — *Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will.*
+I think the ending ___ predictable. → **will be** · is going be · will to be
+- is going be — *Без to ця форма не будується. Для думки-прогнозу тут — will be.*
 - will to be — *Потрібна правильно побудована повна форма: will be.*
 
 **5 · Картка слова — unpredictable**
@@ -85,8 +85,8 @@ I think the ending ___ predictable. → **will be** · is going to be · will to
 
 **8 · Ви ділитеся думкою про погоду під час майбутньої відпустки. Передайте думку-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-37:i06; family: context_gap_grammar -->
-I think the weather ___ unpredictable. → **will be** · is going to be · will to be
-- is going to be — *Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will.*
+I think the weather ___ unpredictable. → **will be** · is going be · will to be
+- is going be — *Без to ця форма не будується. Для думки-прогнозу тут — will be.*
 - will to be — *Потрібна правильно побудована повна форма: will be.*
 
 **9 · Картка слова — temporary**
@@ -125,8 +125,8 @@ I ___ a temporary job. → **am going to find** · am finding · be
 
 **16 · Ви узгодили переїзд із тимчасового житла на завтра; машину замовлено. Передайте підтверджену домовленість через Present Continuous.**
 <!-- interaction_id: en:lesson-16:session-37:i12; family: context_gap_grammar -->
-We ___ to our permanent home tomorrow. → **are moving** · are going to move · be
-- are going to move — *Форма можлива, але тут потрібна вказана. Передайте підтверджену домовленість через Present Continuous.*
+We ___ to our permanent home tomorrow. → **are moving** · are move · be
+- are move — *Після are потрібна форма з -ing: are moving.*
 - be — *Потрібна правильно побудована повна форма: are moving.*
 
 **17 · Поєднайте слова з перекладом**

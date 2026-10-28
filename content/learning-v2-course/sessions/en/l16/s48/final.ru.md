@@ -65,8 +65,8 @@
 
 **4 · Вы высказываете предположение о том, вовремя ли Том придёт на встречу. Передайте мнение-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-48:i03; family: context_gap_grammar -->
-I think Tom ___ on time. → **will show up** · is going to show up · be
-- is going to show up — *Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.*
+I think Tom ___ on time. → **will show up** · is going show up · be
+- is going show up — *Без to эта форма не строится. Для мнения-прогноза здесь — will show up.*
 - be — *Нужна правильно построенная полная форма: will show up.*
 
 **5 · Карточка слова — come along**
@@ -85,8 +85,8 @@ I think Tom ___ on time. → **will show up** · is going to show up · be
 
 **8 · Вы предполагаете, что Анна присоединится к вашей прогулке; её ответа ещё нет. Передайте мнение-прогноз через will.**
 <!-- interaction_id: en:lesson-16:session-48:i06; family: context_gap_grammar -->
-I think Anna ___. → **will come along** · is going to come along · be
-- is going to come along — *Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.*
+I think Anna ___. → **will come along** · is going come along · be
+- is going come along — *Без to эта форма не строится. Для мнения-прогноза здесь — will come along.*
 - be — *Нужна правильно построенная полная форма: will come along.*
 
 **9 · Карточка слова — get together**
@@ -125,8 +125,8 @@ I ___ with friends soon. → **am going to get together** · am getting together
 
 **16 · Вы с друзьями согласовали время выхода на завтрашнюю прогулку. У head out форма с -ing — heading out. Передайте подтверждённую договорённость через Present Continuous.**
 <!-- interaction_id: en:lesson-16:session-48:i12; family: context_gap_grammar -->
-We ___ at eight tomorrow. → **are heading out** · are going to head out · be
-- are going to head out — *Форма возможна, но здесь нужна указанная. Передайте подтверждённую договорённость через Present Continuous.*
+We ___ at eight tomorrow. → **are heading out** · are head out · be
+- are head out — *После are нужна форма с -ing: are heading out.*
 - be — *Нужна правильно построенная полная форма: are heading out.*
 
 **17 · Соедините слова с переводом**

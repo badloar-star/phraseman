@@ -4,14 +4,14 @@
 // зачем (владелец 28.10: шаблоны «именно так», пиксель в пиксель): разметка, задержки и кегли — из `render()` TPL макета построчно
 // (streak7: огонь 150 + счёт 1→7, обзор 380, заголовок 460, подпись 640, 7 дней с 700 через 80; streak100: 100 клеток волной через 14 мс,
 // число до 100 за 1,4 с; ach: арт 132 с бликом, конфетти 16 с 600; level: кольцо, A1 уходит вверх, A2 въезжает, конфетти 18 с 1100).
-// Огонь — тот же StreakMomentFlame, что у момента серии и Главной; цифра на плашке считает поверх него.
+// Огонь — пламя макета (.flame: градиент из цвета темы, ядро, дрожание — story_template_flame); плашка цифры — та же, что у огня серии.
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { memo, useMemo } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { achievementNameForLang, ALL_ACHIEVEMENTS } from '../../../app/achievements';
 import AchievementArt from '../../AchievementArt';
-import StreakMomentFlame, { streakPlateFill } from '../../streak/moments/StreakMomentFlame';
+import { streakPlateFill } from '../../streak/moments/StreakMomentFlame';
 import { isStreakMilestone } from '../../streak/moments/streak_milestones';
 import { streakDayWord, streakMilestoneTitle } from '../../streak/moments/streak_moments_strings';
 import { storyText } from '../story_strings';
@@ -20,6 +20,7 @@ import { Art, Confetti, FrameRoot, H1, Ov, P, Ring, k } from './story_template_k
 import { streakWeekCells } from './story_template_layout';
 import { CountUp, Enter } from './story_template_motion';
 import { LevelSwap, Sheen } from './story_template_parts';
+import { TemplateFlame } from './story_template_flame';
 import { mix, useStoryTemplatePalette } from './story_template_palette';
 import type { StoryFrameProps } from './story_template_registry';
 import { tplText } from './story_template_strings';
@@ -31,7 +32,8 @@ const FlameCount = memo(function FlameCount({ days }: Readonly<{ days: number }>
   const pal = useStoryTemplatePalette();
   return (
     <View style={f.flame}>
-      <StreakMomentFlame days={days} label="" size={150} testID="story-tpl-flame" />
+      {/* зачем (Сверка 28.10, кадр 1): пламя макета, залитое целиком; огонь приложения заливается по дням и на 7 днях выглядел «каплей» */}
+      <TemplateFlame size={150} />
       <View pointerEvents="none" style={f.plateWrap}>
         <View style={[f.plate, { backgroundColor: streakPlateFill({ mediaScrim: pal.mediaScrim }) }]}>
           <CountUp to={days} d={300} dur={800} style={[f.plateText, { color: pal.mediaInk }]} />

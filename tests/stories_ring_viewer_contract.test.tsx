@@ -97,6 +97,12 @@ jest.mock('../components/ThemeContext', () => ({ useTheme: () => ({ liquidGlassT
 jest.mock('../app/premium_theme_entitlements', () => ({ isPremiumThemeUnlocked: () => true }));
 // зачем (объявления v1, 28.10): кнопка «Открыть Plus» закрывает просмотр и открывает /premium_modal — навигация без настоящего роутера
 jest.mock('expo-router', () => ({ useRouter: () => ({ push: jest.fn() }) }));
+// зачем (объявления v1): кадры Сайта и голос опроса проверяются своими тестами; здесь — только выбор слайда в просмотре
+jest.mock('../components/stories/announcements_v2/AnnouncementV2Slide', () => ({ __esModule: true, default: 'AnnouncementV2Slide', isAnnouncementV2Design: (d: unknown) => d === 'quote' }));
+jest.mock('../components/stories/use_story_poll', () => ({ useStoryPoll: () => null }));
+// зачем (Сверка 28.10, кадр 1): пламя кадра серии залито градиентом через маску
+jest.mock('@react-native-masked-view/masked-view', () => ({ __esModule: true, default: 'MaskedView' }));
+jest.mock('../app/invite_code_singleton', () => ({ acquireInviteCodeShared: () => ({ promise: Promise.resolve(''), release: () => undefined }) }));
 
 import type { StoryEvent } from '../modules/story_events/story_events_core';
 let mockStories: { enabled: boolean; unseenCount: number; playback: readonly StoryEvent[]; stories?: readonly StoryEvent[] };
@@ -190,6 +196,21 @@ describe('просмотр сторис', () => {
     await fireEvent.press(screen.getByTestId('story-viewer-close'));
     expect(mockPlayEvent).toHaveBeenCalledWith('sheet_close', 'story_close');
     expect(onClose).toHaveBeenCalledTimes(1);
+  });
+
+  it('объявление с известным design — кадр Сайта вместо прежнего; неизвестный design — прежний кадр (шаблоны объявлений v1)', async () => {
+    const now = Date.now();
+    const content = {
+      templateId: 'editorial', badge: 'Новое', title: 'Заголовок', blocks: [{ text: 'Текст', size: 16, style: 'normal' }], titleSize: 34, align: 'center',
+      decoration: false, lifetime: 3, unit: 'days', durationMs: 8000, id: 'ann1', revision: 1, status: 'published', publishedAtMs: now - 1000, expiresAtMs: now + 86_400_000,
+    };
+    const ann = (design: string): StoryEvent => ({
+      id: `announcement:ann1:${design}`, type: 'announcement', atMs: now - 1000, seen: false,
+      payload: { contentJson: JSON.stringify({ ...content, design }), id: 'ann1', revision: 1, durationMs: 8000, expiresAtMs: now + 86_400_000 },
+    });
+    const known = ann('quote');
+    await render(<StoryViewer lang="ru" events={[known]} liveAnnouncementIds={[known.id]} coinRank={5} origin={null} onSeen={mockMarkSeen} onClose={jest.fn()} />);
+    expect(JSON.stringify(screen.toJSON())).toContain('"type":"AnnouncementV2Slide"');
   });
 
   it('очередь пустая → просмотр сразу закрывается сам (нечего показывать)', async () => {

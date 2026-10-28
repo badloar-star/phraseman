@@ -147,7 +147,8 @@ const f = StyleSheet.create({
   fcEn: { fontSize: 20, lineHeight: 24, fontWeight: '800', letterSpacing: -0.3, maxWidth: 104, textAlign: 'center' },
   fcRu: { fontSize: 13, lineHeight: 17, maxWidth: 104, textAlign: 'center' },
   // .avs: отступ 10; монеты 40 с нахлёстом 6 и кольцом цвета фона
-  avs: { flexDirection: 'row', justifyContent: 'center', marginTop: 10 },
+  // зачем (Сверка 28.10, кадр 13): в макете монеты — строчные картинки, под ними зазор базовой линии ≈ 5 px; без него надпись налезает на ряд
+  avs: { flexDirection: 'row', justifyContent: 'center', marginTop: 10, paddingBottom: 5 },
   avCoin: { marginHorizontal: -6 }, // guard-ok: нахлёст монет в ряду аватаров (вид), не баланс
   // .plybtn 64, текст·14 %, значок 28 со сдвигом 4, отступ снизу 22
   play: { width: 64, height: 64, borderRadius: 32, alignItems: 'center', justifyContent: 'center', marginBottom: 22 },

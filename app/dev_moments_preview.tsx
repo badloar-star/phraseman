@@ -19,6 +19,7 @@
 //   state=stories — «фотостудия историй»: настоящий просмотр со всеми 23 кадрами макета stories-templates-v1.html на примерных данных;
 //     &frame=duel | 1…23 — открыть с этого кадра (по умолчанию 1); &settle=1 — кадр сразу в конечном состоянии, без автоперехода (снимки).
 //     Кнопки действия только пишут лог [STORY-TPL]
+//   state=announcements — фотостудия 36 шаблонов объявлений (кадры Сайта): &frame=<design> &long=0|1 &settle=1 (конвейер Сверки)
 //   &selector=1 — снизу полоса переключения состояний и «Повторить» (по умолчанию скрыта, чтобы не попадать в кадр); &replay=N — перезапуск показа
 // Экраны — ТЕ ЖЕ компоненты, что будут в бою; данные — моки без сети, ничего не пишется и не начисляется. Тема и язык — текущие настройки приложения (dev_state?theme=…).
 // В релизе маршрута нет: ENABLE_DEV_TOOLS && !IS_STORE_RELEASE, иначе уводим на Главную; в стор-сборке файл исключён регуляркой router.ctx.js.
@@ -52,8 +53,9 @@ import { STREAK_MILESTONES, isStreakMilestone, type StreakMilestone } from '../c
 import { ENABLE_DEV_TOOLS, IS_STORE_RELEASE } from './config';
 import { ComboPreview, DialogueChainPreview, DoneChainPreview } from '../components/dev/MomentsChainPreview';
 import StoryTemplateStudio from '../components/stories/templates/StoryTemplateStudio';
+import AnnouncementV2Studio from '../components/stories/announcements_v2/AnnouncementV2Studio';
 
-const STATES = ['promo', 'stay', 'down', 'streak', 'rings', 'back', 'rankenough', 'steppass', 'stepfail', 'floor', 'summit', 'rise', 'overtake', 'lastchance', 'perfect', 'firstdialog', 'promoshort', 'fonts', 'combo', 'donechain', 'dlgchain', 'stories'] as const;
+const STATES = ['promo', 'stay', 'down', 'streak', 'rings', 'back', 'rankenough', 'steppass', 'stepfail', 'floor', 'summit', 'rise', 'overtake', 'lastchance', 'perfect', 'firstdialog', 'promoshort', 'fonts', 'combo', 'donechain', 'dlgchain', 'stories', 'announcements'] as const;
 type PreviewState = (typeof STATES)[number];
 const isState = (v: unknown): v is PreviewState => typeof v === 'string' && (STATES as readonly string[]).includes(v);
 const noop = (): void => undefined;
@@ -92,7 +94,7 @@ const int = (raw: string | undefined, fallback: number, min: number, max: number
 };
 
 function Inner() {
-  const params = useLocalSearchParams<{ state?: string; tier?: string; place?: string; gap?: string; coins?: string; rank?: string; selector?: string; replay?: string; d?: string; p?: string; awake?: string; n?: string; goals?: string; study?: string; wait?: string; frame?: string; settle?: string }>();
+  const params = useLocalSearchParams<{ state?: string; tier?: string; place?: string; gap?: string; coins?: string; rank?: string; selector?: string; replay?: string; d?: string; p?: string; awake?: string; n?: string; goals?: string; study?: string; wait?: string; frame?: string; settle?: string; long?: string }>();
   const { lang } = useLang();
   const fromParam: PreviewState = isState(params.state) ? params.state : 'promo';
   const [state, setState] = useState<PreviewState>(fromParam);
@@ -165,6 +167,8 @@ function Inner() {
         {state === 'dlgchain' ? <DialogueChainPreview key={key} lang={lang} waitMs={int(params.wait, 600, 0, 10000)} /> : null}
         {/* зачем (владелец 28.10: шаблоны историй «проверить через дев»): 23 кадра в настоящем просмотре — снимки Сверки «эмулятор | макет» */}
         {state === 'stories' ? <StoryTemplateStudio key={key} lang={lang} frame={params.frame} settle={params.settle === '1'} /> : null}
+        {/* зачем (Сайт 28.10: гейт 36 объявлений против макета): конвейер Сверки открывает state=announcements&frame=<design>&long=0|1&settle=1 */}
+        {state === 'announcements' ? <AnnouncementV2Studio key={key} lang={lang} frame={params.frame} long={params.long === '1'} settle={params.settle === '1'} /> : null}
         {params.selector === '1' ? (
           <View style={s.bar} pointerEvents="box-none">
             {STATES.map((st) => (

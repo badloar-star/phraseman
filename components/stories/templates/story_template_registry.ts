@@ -107,7 +107,8 @@ export const STORY_TEMPLATE_SAMPLES: Readonly<{ [I in StoryTemplateId]: StoryTem
   },
   packpop: { id: 'packpop', packTitle: 'Еда и кафе', cards: 48, count: 14, ranks: [1, 7, 12, 4, 15, 9] },
   phrase: { id: 'phrase', phrase: 'Pitch in', meaning: 'внести свою лепту, подключиться к общему делу', audioSec: 2 },
-  week: { id: 'week', startMs: day(2026, 10, 20), endMs: day(2026, 10, 26), dailyMinutes: [42, 70, 55, 90, 30, 80, 100], lessons: 5, coins: 1240, minutes: 200, streak: 7 },
+  // зачем (Сверка 28.10, кадр 15): «20–26 октября» с подписями П…В — это неделя 2025 года (20.10.2025 — понедельник)
+  week: { id: 'week', startMs: day(2025, 10, 20), endMs: day(2025, 10, 26), dailyMinutes: [42, 70, 55, 90, 30, 80, 100], lessons: 5, coins: 1240, minutes: 200, streak: 7 },
   month: {
     id: 'month', monthMs: day(2026, 10, 1), daysInMonth: 31, lessons: 18, exams: 2, best: true,
     activeDays: [1, 2, 3, 5, 6, 7, 8, 9, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 26, 27, 28],

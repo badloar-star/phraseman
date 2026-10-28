@@ -68,6 +68,10 @@ export const Words = memo(function Words({ text, d0, step = 50, style, maxWidth,
   const [widths, setWidths] = useState<readonly number[] | null>(null);
   const measured = useMemo(() => new Map<number, number>(), [text]); // eslint-disable-line react-hooks/exhaustive-deps -- зачем: замер заново на новый текст
   const onWord = useCallback((i: number, e: LayoutChangeEvent) => {
+    // зачем (Сверка 28.10, кадр 13 «челове|к»): ширины слов меряются ОДИН раз — в строке шириной maxWidth, где слово не переносится.
+    // После сужения до «balance» узкое слово (число + слово через неразрывный пробел) переносилось внутри себя, повторный замер давал
+    // меньшую ширину, строка сужалась ещё — петля рвала слово посреди. Повторные замеры того же текста не учитываем.
+    if (measured.has(i)) return;
     measured.set(i, e.nativeEvent.layout.width); // guard-ok: Map в памяти — ширины слов для выравнивания строк, не запись данных
     if (measured.size === words.length) setWidths(words.map((_, k) => measured.get(k) ?? 0));
   }, [measured, words]);

@@ -33,6 +33,9 @@ import { storyTemplateFromEvent } from './templates/story_template_from_event';
 import { STORY_TEMPLATE_CTA } from './templates/story_template_registry';
 import { STORY_CTA_HEIGHT, STORY_SLIDE_BOTTOM_CTA, StoryBackdrop, StoryCta, StoryPauseBadge, storyCtaBottom } from './templates/story_viewer_chrome';
 import { useStoryCtaAction } from './templates/use_story_cta_action';
+import { isAnnouncementV2Design } from './announcements_v2/AnnouncementV2Slide';
+import StoryAnnouncementV2Layer from './templates/StoryAnnouncementV2Layer';
+import { announcementCta, announcementFromEvent } from './templates/announcement_v2_bridge';
 
 const LOG = '[STORY-VIEWER]';
 /**
@@ -49,6 +52,8 @@ export const STORY_CLOSE_MS = 320;
 export const STORY_PREV_ZONE = 0.32;
 /** Удержание дольше этого — пауза, мс. */
 export const STORY_HOLD_MS = 220;
+/** Фотостудия settle (Сверка и Сайт 28.10): часы кадра замирают ровно на 6000 мс — при любой длительности полосы (10 / 12 / 15 с). */
+export const STORY_SETTLE_MS = 6000;
 /** Высота шапки (✕, полоса) ниже системной вставки сверху, dp — зона, где тап не листает. */
 const HEADER_BELOW_INSET = 70;
 const CLOSE_DRAG_PX = 90;
@@ -101,6 +106,9 @@ function StoryViewer({ lang, liveAnnouncementIds, events: eventsProp, coinRank, 
   const [heldUi, setHeldUi] = useState(false);
   // верх зоны кнопки действия (y от верха экрана); null — кнопки нет: тап и касание по кнопке не листают и не ставят паузу
   const ctaZoneRef = useRef<number | null>(null);
+  // зачем (опрос в объявлении): тап по варианту и тап листания приходят одновременно — время нажатия варианта и «в кадре есть варианты»
+  const innerPressAtRef = useRef(0);
+  const interactiveRef = useRef(false);
   const screenReaderRef = useRef(false);
   const nowMs = useMemo(() => Date.now(), []);
 
@@ -137,9 +145,12 @@ function StoryViewer({ lang, liveAnnouncementIds, events: eventsProp, coinRank, 
   const advance = useCallback(() => { goRef.current(indexRef.current + 1); }, []);
   const runBar = useCallback((from: number) => {
     // зачем (макет stories-templates-v1, владелец 28.10: «Уменьшить движение — всё стоит сразу в конечном состоянии, автопереход выключен»): полоса полная, листание — тапом
-    if (reduceMotion || studioSettle) { progress.value = 1; DebugLogger.info(LOG, `${studioSettle ? 'фотостудия settle' : 'уменьшение движения'}: автопереход выключен, кадр ${indexRef.current + 1} стоит`); return; }
+    // зачем (Сверка 28.10, кадр 18): «Уменьшить движение» — конец кадра, слои частиц скрыты (display: none макета); снимок «settle» — ниже,
+    // после длительности полосы: время кадра замирает ровно на 6000 мс (как ST.freeze макета), снег и частицы видны
+    if (reduceMotion) { progress.value = 1; DebugLogger.info(LOG, `уменьшение движения: автопереход выключен, кадр ${indexRef.current + 1} стоит`); return; }
     const current=events[indexRef.current];
     const duration=current?.type==='announcement'?Math.max(STORY_SLIDE_MS,Number(current.payload.durationMs)||STORY_SLIDE_MS):STORY_SLIDE_MS; // зачем (владелец 24.10): объявление тоже не короче 10 с
+    if (studioSettle) { progress.value = Math.min(1, STORY_SETTLE_MS / duration); DebugLogger.info(LOG, `фотостудия settle: кадр ${indexRef.current + 1} замер на ${STORY_SETTLE_MS} мс из ${duration}`); return; }
     const left = Math.max(0, 1 - from) * duration;
     progress.value = withTiming(1, { duration: left, easing: EASE_LINEAR }, (finished) => { if (finished) runOnJS(advance)(); });
   }, [advance, progress, events, reduceMotion, studioSettle]);
@@ -227,9 +238,18 @@ function StoryViewer({ lang, liveAnnouncementIds, events: eventsProp, coinRank, 
   const onTapAt = useCallback((x: number, y: number) => {
     if (y < headerH) return;
     if (ctaZoneRef.current !== null && y >= ctaZoneRef.current) { DebugLogger.info(LOG, `тап по кнопке действия y=${Math.round(y)} — не листаем`); return; }
-    DebugLogger.info(LOG, `тап x=${Math.round(x)} зона=${x < winW * STORY_PREV_ZONE ? 'назад' : 'дальше'}`);
-    go(x < winW * STORY_PREV_ZONE ? indexRef.current - 1 : indexRef.current + 1);
+    const navigate = () => {
+      DebugLogger.info(LOG, `тап x=${Math.round(x)} зона=${x < winW * STORY_PREV_ZONE ? 'назад' : 'дальше'}`);
+      go(x < winW * STORY_PREV_ZONE ? indexRef.current - 1 : indexRef.current + 1);
+    };
+    if (!interactiveRef.current) { navigate(); return; }
+    // зачем: решаем через 60 мс, когда нажатие варианта опроса уже отмечено (onPress и конец жеста приходят почти вместе)
+    setTimeout(() => {
+      if (Date.now() - innerPressAtRef.current < 400) { DebugLogger.info(LOG, 'тап по варианту опроса — не листаем'); return; }
+      navigate();
+    }, 60);
   }, [go, headerH, winW]);
+  const markInnerPress = useCallback(() => { innerPressAtRef.current = Date.now(); }, []);
 
   const gesture = useMemo(() => {
     // зачем (аудит Optimistic UI 24.10): тап короче удержания. Раньше tap=250 мс > hold=220 мс: отпустил на 230 мс — и пауза, и перелистывание сразу после неё; теперь «дольше STORY_HOLD_MS» — только удержание
@@ -271,16 +291,30 @@ function StoryViewer({ lang, liveAnnouncementIds, events: eventsProp, coinRank, 
   const event = events[Math.min(index, count - 1)];
   // зачем (владелец 28.10: шаблоны историй v1 «именно так»): у события есть шаблон — кадр макета stories-templates-v1 (часы кадра = полоса), иначе прежний StorySlides
   const tpl = useMemo(() => (event ? storyTemplateFromEvent(event, studio) : null), [event, studio]);
-  const cta = tpl ? STORY_TEMPLATE_CTA[tpl.id] ?? null : null;
+  // зачем (владелец 28.10: 36 шаблонов объявлений «точно как на макете»): объявление с известным design — кадр Сайта, иначе прежний AnnouncementSlide
+  const annV2 = useMemo(() => {
+    if (!event || event.type !== 'announcement') return null;
+    const announcement = announcementFromEvent(event, nowMs);
+    if (!announcement || announcement.design === undefined) return null;
+    if (!isAnnouncementV2Design(announcement.design)) {
+      DebugLogger.info(LOG, `объявление ${announcement.id.slice(0, 8)}: design=${announcement.design} в этой сборке неизвестен — прежний кадр`);
+      return null;
+    }
+    return announcement;
+  }, [event, nowMs]);
+  interactiveRef.current = annV2?.design === 'poll';
+  const cta = tpl ? STORY_TEMPLATE_CTA[tpl.id] ?? null : annV2 ? announcementCta(annV2) : null;
   const ctaBottom = storyCtaBottom(insets.bottom);
   ctaZoneRef.current = cta ? winH - ctaBottom - STORY_CTA_HEIGHT - 6 : null;
   // зачем (Сайт 28.10): часы кадра идут столько же, сколько полоса (runBar): у объявления 12/15 с кадр иначе шёл бы медленнее макета
   const frameDurationMs = event?.type === 'announcement' ? Math.max(STORY_SLIDE_MS, Number(event.payload.durationMs) || STORY_SLIDE_MS) : STORY_SLIDE_MS;
-  const clock = useMemo<StoryFrameClock>(() => ({ progress, durationMs: frameDurationMs, final: reduceMotion || screenReader || studioSettle }), [progress, frameDurationMs, reduceMotion, screenReader, studioSettle]);
+  const clock = useMemo<StoryFrameClock>(() => ({ progress, durationMs: frameDurationMs, final: reduceMotion || screenReader }), [progress, frameDurationMs, reduceMotion, screenReader]);
   const onCtaAction = useStoryCtaAction(lang, studio, close);
   const onCta = useCallback(() => {
-    if (tpl && cta) onCtaAction(cta, { source: tpl.id, themeId: tpl.id === 'theme' ? tpl.themeId : null });
-  }, [cta, onCtaAction, tpl]);
+    if (!cta) return;
+    if (tpl) onCtaAction(cta, { source: tpl.id, themeId: tpl.id === 'theme' ? tpl.themeId : null });
+    else if (annV2) onCtaAction(cta, { source: `announcement:${annV2.design ?? '—'}`, themeId: annV2.themeId ?? null });
+  }, [annV2, cta, onCtaAction, tpl]);
   return (
     <Modal visible transparent animationType="none" statusBarTranslucent onRequestClose={() => close('back')}>
       <SheetSwipeRoot>
@@ -313,12 +347,15 @@ function StoryViewer({ lang, liveAnnouncementIds, events: eventsProp, coinRank, 
                 <Ionicons name="close" size={22} color={p.text} />
               </Pressable>
             </View>
-            {tpl ? null : (
+            {annV2 && event ? (
+              <StoryAnnouncementV2Layer key={event.id} announcement={annV2} lang={lang} myRank={coinRank} bottom={cta ? STORY_SLIDE_BOTTOM_CTA : 60} onInnerPress={markInnerPress} studio={studio} testID={`${testID}-slide`} />
+            ) : null}
+            {tpl || annV2 ? null : (
               <Animated.View key={event?.id ?? 'none'} testID={`${testID}-slide`} style={[s.slide, slideStyle]} pointerEvents={event?.type==='announcement'?'box-none':'none'}>
                 {event ? <StorySlide event={event} lang={lang} coinRank={coinRank} paused={pausedUi} /> : null}
               </Animated.View>
             )}
-            {tpl && cta && event ? <StoryCta key={`cta-${event.id}`} cta={cta} lang={lang} bottom={ctaBottom} onPress={onCta} testID={`${testID}-cta`} /> : null}
+            {(tpl || annV2) && cta && event ? <StoryCta key={`cta-${event.id}`} cta={cta} lang={lang} bottom={ctaBottom} onPress={onCta} testID={`${testID}-cta`} /> : null}
             <StoryPauseBadge visible={heldUi} />
             {screenReader ? (
               <Pressable testID={`${testID}-next`} accessibilityRole="button" accessibilityLabel={storyText(lang, 'next')} onPress={() => go(indexRef.current + 1)} style={s.srNext} />

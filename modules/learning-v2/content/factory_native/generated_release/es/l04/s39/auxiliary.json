@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-04:session-39",
+  "entries": [
+    {
+      "interactionId": "es:lesson-04:session-39:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-39:intro1:r2": {
+          "ru": "Представляете мужчину: este.",
+          "uk": "Представляєте чоловіка: este."
+        },
+        "es:lesson-04:session-39:intro1:r3": {
+          "ru": "Брат один: es.",
+          "uk": "Брат один: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-39:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-39:intro2:r2": {
+          "ru": "Представляете женщину: esta.",
+          "uk": "Представляєте жінку: esta."
+        },
+        "es:lesson-04:session-39:intro2:r3": {
+          "ru": "Сестра одна: mi.",
+          "uk": "Сестра одна: mi."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-39:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-39:intro3:r2": {
+          "ru": "Форму определяет hermano: nuestro.",
+          "uk": "Форму визначає hermano: nuestro."
+        },
+        "es:lesson-04:session-39:intro3:r3": {
+          "ru": "Брат один: nuestro.",
+          "uk": "Брат один: nuestro."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "2835464fba16aa9cb4afbc6baef686922e5b53c16bb1c4c8266b0e24a4e65f18"
+}

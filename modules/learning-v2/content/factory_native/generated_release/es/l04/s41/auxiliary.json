@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-04:session-41",
+  "entries": [
+    {
+      "interactionId": "es:lesson-04:session-41:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-41:intro1:r2": {
+          "ru": "Для этой схемы нужно eso + es + un libro.",
+          "uk": "Для цієї схеми потрібно eso + es + un libro."
+        },
+        "es:lesson-04:session-41:intro1:r3": {
+          "ru": "Один предмет: es.",
+          "uk": "Один предмет: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-41:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-41:intro2:r2": {
+          "ru": "Caja женского рода: una.",
+          "uk": "Caja жіночого роду: una."
+        },
+        "es:lesson-04:session-41:intro2:r3": {
+          "ru": "Нужно назвать коробку: una caja.",
+          "uk": "Потрібно назвати коробку: una caja."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-41:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-41:intro3:r2": {
+          "ru": "Bolso мужского рода: un.",
+          "uk": "Bolso чоловічого роду: un."
+        },
+        "es:lesson-04:session-41:intro3:r3": {
+          "ru": "Нужно назвать сумку, а не книгу.",
+          "uk": "Потрібно назвати сумку, а не книжку."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "14307bb7cb0b8d558ced1d57b263e731733bf7a79a56530d9ecd91046ebd70da"
+}

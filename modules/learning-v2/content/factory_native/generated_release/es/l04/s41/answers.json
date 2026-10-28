@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-04:session-41:i01",
+    "correctText": "eso",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-41:i02",
+    "correctText": "eso",
+    "correctResponseId": "es:lesson-04:session-41:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-41:i03",
+    "correctText": "es",
+    "correctResponseId": "es:lesson-04:session-41:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-41:i04",
+    "correctText": "Eso es un libro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-41:i05",
+    "correctText": "una",
+    "correctResponseId": "es:lesson-04:session-41:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-41:i06",
+    "correctText": "Eso es una caja.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-41:i07",
+    "correctText": "Eso es un bolso.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-41:i08",
+    "correctText": "Eso es una caja.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-41:i09",
+    "correctText": "Eso es un libro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-41:i10",
+    "correctText": "Eso es una caja.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-41:i11",
+    "correctText": "Eso es un bolso.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-41:i12",
+    "correctText": "Eso es una silla.",
+    "correctResponseId": null
+  }
+]

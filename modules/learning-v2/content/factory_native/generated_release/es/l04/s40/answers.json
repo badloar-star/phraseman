@@ -1,0 +1,92 @@
+[
+  {
+    "interactionId": "es:lesson-04:session-40:i01",
+    "correctText": "estos",
+    "correctResponseId": "es:lesson-04:session-40:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-40:i02",
+    "correctText": "Este",
+    "correctResponseId": "es:lesson-04:session-40:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-40:i03",
+    "correctText": "Este libro es nuevo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-40:i04",
+    "correctText": "Esta",
+    "correctResponseId": "es:lesson-04:session-40:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-40:i05",
+    "correctText": "Esta caja es pequeña.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-40:i06",
+    "correctText": "Estos",
+    "correctResponseId": "es:lesson-04:session-40:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-40:i07",
+    "correctText": "Estos libros son nuevos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-40:i08",
+    "correctText": "Estas",
+    "correctResponseId": "es:lesson-04:session-40:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-40:i09",
+    "correctText": "Estas sillas son cómodas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-40:i10",
+    "correctText": "Estos libros no son nuevos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-40:i11",
+    "correctText": "Este es mi hermano.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-40:i12",
+    "correctText": "Esta es mi hermana.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-40:i13",
+    "correctText": "Este libro es nuevo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-40:i14",
+    "correctText": "Esta caja es pequeña.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-40:i15",
+    "correctText": "Estos libros son nuevos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-40:i16",
+    "correctText": "Estas sillas son cómodas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-40:i17",
+    "correctText": "Este es nuestro hermano.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-40:i18",
+    "correctText": "Esta es nuestra hermana.",
+    "correctResponseId": null
+  }
+]

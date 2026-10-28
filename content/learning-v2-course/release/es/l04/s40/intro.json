@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-04:session-40",
+  "learningOutcomeByLocale": {
+    "ru": "закрепить este, esta, estos, estas с уже знакомыми словами.",
+    "uk": "закріпити este, esta, estos, estas зі вже знайомими словами."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-04:session-40:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Один предмет",
+        "uk": "Один предмет"
+      },
+      "bodyByLocale": {
+        "ru": "Гость замечает маленькую коробку перед вами. Скажите `Esta caja es pequeña` — «Эта коробка маленькая». Соберите `esta caja` + `es` + `pequeña`. Для одного предмета выбирайте форму по испанскому названию: женскому caja соответствует esta. Даже при указании пальцем слово esta должно согласоваться с названием предмета.",
+        "uk": "Гість помічає маленьку коробку перед вами. Скажіть `Esta caja es pequeña` — «Ця коробка маленька». Складіть `esta caja` + `es` + `pequeña`. Для одного предмета вибирайте форму за іспанською назвою: жіночому caja відповідає esta. Навіть коли вказуєте пальцем, слово esta має узгоджуватися з назвою предмета."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-40:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите о коробке рядом: «Эта коробка маленькая». Начните с Esta caja.",
+          "uk": "Скажіть про коробку поруч: «Ця коробка маленька». Почніть з Esta caja."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-40:intro1:r1",
+              "text": "Esta caja es pequeña."
+            },
+            {
+              "responseId": "es:lesson-04:session-40:intro1:r2",
+              "text": "Este caja es pequeña."
+            },
+            {
+              "responseId": "es:lesson-04:session-40:intro1:r3",
+              "text": "Estas caja es pequeña."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-40:intro1:r1",
+              "text": "Esta caja es pequeña."
+            },
+            {
+              "responseId": "es:lesson-04:session-40:intro1:r2",
+              "text": "Este caja es pequeña."
+            },
+            {
+              "responseId": "es:lesson-04:session-40:intro1:r3",
+              "text": "Estas caja es pequeña."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите о коробке рядом: «Эта коробка маленькая». Начните с Esta caja.",
+          "uk": "Скажіть про коробку поруч: «Ця коробка маленька». Почніть з Esta caja."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-04:session-40:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Несколько предметов",
+        "uk": "Кілька предметів"
+      },
+      "bodyByLocale": {
+        "ru": "Показываете гостю новые книги на столе. Скажите `Estos libros son nuevos` — «Эти книги новые». Соберите `estos libros` + `son` + `nuevos`. Libros — несколько предметов мужского рода: поэтому estos. Son и nuevos тоже относятся к нескольким книгам. Начинайте выбор формы с испанского названия, а не с русского «эти».",
+        "uk": "Показуєте гостеві нові книжки на столі. Скажіть `Estos libros son nuevos` — «Ці книжки нові». Складіть `estos libros` + `son` + `nuevos`. Libros — кілька предметів чоловічого роду: тому estos. Son і nuevos теж стосуються кількох книжок. Починайте вибір форми з іспанської назви, а не з українського «ці»."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-40:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите о книгах рядом: «Эти книги новые». Начните с Estos libros.",
+          "uk": "Скажіть про книжки поруч: «Ці книжки нові». Почніть з Estos libros."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-40:intro2:r1",
+              "text": "Estos libros son nuevos."
+            },
+            {
+              "responseId": "es:lesson-04:session-40:intro2:r2",
+              "text": "Estas libros son nuevos."
+            },
+            {
+              "responseId": "es:lesson-04:session-40:intro2:r3",
+              "text": "Este libros son nuevos."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-40:intro2:r1",
+              "text": "Estos libros son nuevos."
+            },
+            {
+              "responseId": "es:lesson-04:session-40:intro2:r2",
+              "text": "Estas libros son nuevos."
+            },
+            {
+              "responseId": "es:lesson-04:session-40:intro2:r3",
+              "text": "Este libros son nuevos."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите о книгах рядом: «Эти книги новые». Начните с Estos libros.",
+          "uk": "Скажіть про книжки поруч: «Ці книжки нові». Почніть з Estos libros."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-04:session-40:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Представить человека",
+        "uk": "Представити людину"
+      },
+      "bodyByLocale": {
+        "ru": "В комнату входит ваша сестра и останавливается рядом с вами. Представьте её гостю: `Esta es mi hermana` — «Это моя сестра». Соберите `esta` + `es` + `mi hermana`. Здесь esta стоит отдельно перед es. После es назовите родство: mi hermana. Не переставляйте hermano или hermana непосредственно после esta, если хотите сохранить эту схему представления.",
+        "uk": "До кімнати заходить ваша сестра й зупиняється поруч із вами. Представте її гостеві: `Esta es mi hermana` — «Це моя сестра». Складіть `esta` + `es` + `mi hermana`. Тут esta стоїть окремо перед es. Після es назвіть спорідненість: mi hermana. Не переставляйте hermano чи hermana безпосередньо після esta, якщо хочете зберегти цю схему представлення."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-40:intro3:q",
+        "promptByLocale": {
+          "ru": "Представьте сестру рядом: «Это моя сестра». Начните с Esta.",
+          "uk": "Представте сестру поруч: «Це моя сестра». Почніть з Esta."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-40:intro3:r1",
+              "text": "Esta es mi hermana."
+            },
+            {
+              "responseId": "es:lesson-04:session-40:intro3:r2",
+              "text": "Este es mi hermana."
+            },
+            {
+              "responseId": "es:lesson-04:session-40:intro3:r3",
+              "text": "Esta son mi hermana."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-40:intro3:r1",
+              "text": "Esta es mi hermana."
+            },
+            {
+              "responseId": "es:lesson-04:session-40:intro3:r2",
+              "text": "Este es mi hermana."
+            },
+            {
+              "responseId": "es:lesson-04:session-40:intro3:r3",
+              "text": "Esta son mi hermana."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Представьте сестру рядом: «Это моя сестра». Начните с Esta.",
+          "uk": "Представте сестру поруч: «Це моя сестра». Почніть з Esta."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "7343b3aa8ec5d65ee1ae24735fc7eede26f2f0b377b1767017fe5787f6101046"
+}

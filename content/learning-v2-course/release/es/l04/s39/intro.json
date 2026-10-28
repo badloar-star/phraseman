@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-04:session-39",
+  "learningOutcomeByLocale": {
+    "ru": "выбирать este или esta при представлении родственника.",
+    "uk": "вибирати este або esta, представляючи родича."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-04:session-39:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Представить брата",
+        "uk": "Представити брата"
+      },
+      "bodyByLocale": {
+        "ru": "Брат стоит рядом с вами; гость ещё с ним не знаком. Скажите `Este es mi hermano` — «Это мой брат». Соберите `este` + `es` + `mi hermano`. Este указывает на мужчину рядом, а mi hermano объясняет, кто он вам. Здесь между este и hermano стоят es mi: вы представляете человека, а не начинаете фразу словами «этот брат».",
+        "uk": "Брат стоїть поруч із вами; гість іще з ним не знайомий. Скажіть `Este es mi hermano` — «Це мій брат». Складіть `este` + `es` + `mi hermano`. Este вказує на чоловіка поруч, а mi hermano пояснює, ким він вам доводиться. Тут між este й hermano стоять es mi: ви представляєте людину, а не починаєте фразу словами «цей брат»."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-39:intro1:q",
+        "promptByLocale": {
+          "ru": "Представьте брата рядом: «Это мой брат». Начните с Este.",
+          "uk": "Представте брата поруч: «Це мій брат». Почніть з Este."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-39:intro1:r1",
+              "text": "Este es mi hermano."
+            },
+            {
+              "responseId": "es:lesson-04:session-39:intro1:r2",
+              "text": "Esta es mi hermano."
+            },
+            {
+              "responseId": "es:lesson-04:session-39:intro1:r3",
+              "text": "Este son mi hermano."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-39:intro1:r1",
+              "text": "Este es mi hermano."
+            },
+            {
+              "responseId": "es:lesson-04:session-39:intro1:r2",
+              "text": "Esta es mi hermano."
+            },
+            {
+              "responseId": "es:lesson-04:session-39:intro1:r3",
+              "text": "Este son mi hermano."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Представьте брата рядом: «Это мой брат». Начните с Este.",
+          "uk": "Представте брата поруч: «Це мій брат». Почніть з Este."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-04:session-39:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Теперь сестра",
+        "uk": "Тепер сестра"
+      },
+      "bodyByLocale": {
+        "ru": "К вам подходит сестра, и вы представляете её тому же гостю. Скажите `Esta es mi hermana` — «Это моя сестра». Соберите `esta` + `es` + `mi hermana`. Теперь указываете на женщину: вместо este нужно esta. Mi не меняется по роду: mi hermano и mi hermana.",
+        "uk": "До вас підходить сестра, і ви представляєте її тому самому гостеві. Скажіть `Esta es mi hermana` — «Це моя сестра». Складіть `esta` + `es` + `mi hermana`. Тепер указуєте на жінку: замість este потрібне esta. Mi не змінюється за родом: mi hermano й mi hermana."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-39:intro2:q",
+        "promptByLocale": {
+          "ru": "Представьте сестру рядом: «Это моя сестра». Начните с Esta.",
+          "uk": "Представте сестру поруч: «Це моя сестра». Почніть з Esta."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-39:intro2:r1",
+              "text": "Esta es mi hermana."
+            },
+            {
+              "responseId": "es:lesson-04:session-39:intro2:r2",
+              "text": "Este es mi hermana."
+            },
+            {
+              "responseId": "es:lesson-04:session-39:intro2:r3",
+              "text": "Esta es mis hermana."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-39:intro2:r1",
+              "text": "Esta es mi hermana."
+            },
+            {
+              "responseId": "es:lesson-04:session-39:intro2:r2",
+              "text": "Este es mi hermana."
+            },
+            {
+              "responseId": "es:lesson-04:session-39:intro2:r3",
+              "text": "Esta es mis hermana."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Представьте сестру рядом: «Это моя сестра». Начните с Esta.",
+          "uk": "Представте сестру поруч: «Це моя сестра». Почніть з Esta."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-04:session-39:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "От вас и сестры",
+        "uk": "Від вас і сестри"
+      },
+      "bodyByLocale": {
+        "ru": "Теперь вы с сестрой вместе представляете гостю вашего общего брата. Скажите `Este es nuestro hermano` — «Это наш брат». Соберите `este` + `es` + `nuestro hermano`. Вместо mi поставьте nuestro: брат общий у вас двоих. Форма nuestro согласуется с мужским hermano; пол говорящих её не меняет.",
+        "uk": "Тепер ви із сестрою разом представляєте гостеві вашого спільного брата. Скажіть `Este es nuestro hermano` — «Це наш брат». Складіть `este` + `es` + `nuestro hermano`. Замість mi поставте nuestro: брат спільний у вас двох. Форма nuestro узгоджується з чоловічим hermano; стать мовців її не змінює."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-39:intro3:q",
+        "promptByLocale": {
+          "ru": "Представьте общего брата от вас и сестры: «Это наш брат». Начните с Este.",
+          "uk": "Представте спільного брата від вас і сестри: «Це наш брат». Почніть з Este."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-39:intro3:r1",
+              "text": "Este es nuestro hermano."
+            },
+            {
+              "responseId": "es:lesson-04:session-39:intro3:r2",
+              "text": "Este es nuestra hermano."
+            },
+            {
+              "responseId": "es:lesson-04:session-39:intro3:r3",
+              "text": "Este es nuestros hermano."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-39:intro3:r1",
+              "text": "Este es nuestro hermano."
+            },
+            {
+              "responseId": "es:lesson-04:session-39:intro3:r2",
+              "text": "Este es nuestra hermano."
+            },
+            {
+              "responseId": "es:lesson-04:session-39:intro3:r3",
+              "text": "Este es nuestros hermano."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Представьте общего брата от вас и сестры: «Это наш брат». Начните с Este.",
+          "uk": "Представте спільного брата від вас і сестри: «Це наш брат». Почніть з Este."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "795b442e2d199c04ffb1392ff318619b3bf49931d9b6cea8c7f3de8ce3ba8361"
+}

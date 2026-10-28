@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-04:session-41",
+  "learningOutcomeByLocale": {
+    "ru": "использовать eso отдельно от названия предмета.",
+    "uk": "використовувати eso окремо від назви предмета."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-04:session-41:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Назвать предмет",
+        "uk": "Назвати предмет"
+      },
+      "bodyByLocale": {
+        "ru": "Друг показывает на предмет рядом с собой, а вы узнаёте книгу. Скажите `Eso es un libro` — «Это книга». Соберите `eso` + `es` + `un libro`. Eso указывает на то, о чём идёт речь, ещё до названия предмета. Здесь предмет рядом с собеседником. После es назовите его: un libro. Eso стоит самостоятельно: сочетание eso libro не подходит.",
+        "uk": "Друг показує на предмет поруч із собою, а ви впізнаєте книжку. Скажіть `Eso es un libro` — «Це книжка». Складіть `eso` + `es` + `un libro`. Eso вказує на те, про що йдеться, ще до назви предмета. Тут предмет поруч зі співрозмовником. Після es назвіть його: un libro. Eso стоїть самостійно: сполучення eso libro не підходить."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-41:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите предмет рядом с другом: «Это книга». Начните с Eso.",
+          "uk": "Назвіть предмет поруч із другом: «Це книжка». Почніть з Eso."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-41:intro1:r1",
+              "text": "Eso es un libro."
+            },
+            {
+              "responseId": "es:lesson-04:session-41:intro1:r2",
+              "text": "Eso libro es."
+            },
+            {
+              "responseId": "es:lesson-04:session-41:intro1:r3",
+              "text": "Eso son un libro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-41:intro1:r1",
+              "text": "Eso es un libro."
+            },
+            {
+              "responseId": "es:lesson-04:session-41:intro1:r2",
+              "text": "Eso libro es."
+            },
+            {
+              "responseId": "es:lesson-04:session-41:intro1:r3",
+              "text": "Eso son un libro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите предмет рядом с другом: «Это книга». Начните с Eso.",
+          "uk": "Назвіть предмет поруч із другом: «Це книжка». Почніть з Eso."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-04:session-41:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Оказалось коробкой",
+        "uk": "Виявилося коробкою"
+      },
+      "bodyByLocale": {
+        "ru": "Друг показывает на другой предмет рядом с собой; вы узнаёте коробку. Скажите `Eso es una caja` — «Это коробка». Соберите `eso` + `es` + `una caja`. После es замените un libro на una caja. Перед женским caja нужен артикль una, но eso не меняется: это самостоятельное указательное слово без мужской или женской формы.",
+        "uk": "Друг показує на інший предмет поруч із собою; ви впізнаєте коробку. Скажіть `Eso es una caja` — «Це коробка». Складіть `eso` + `es` + `una caja`. Після es замініть un libro на una caja. Перед жіночим caja потрібен артикль una, але eso не змінюється: це самостійне вказівне слово без чоловічої чи жіночої форми."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-41:intro2:q",
+        "promptByLocale": {
+          "ru": "Назовите предмет рядом с другом: «Это коробка». Начните с Eso.",
+          "uk": "Назвіть предмет поруч із другом: «Це коробка». Почніть з Eso."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-41:intro2:r1",
+              "text": "Eso es una caja."
+            },
+            {
+              "responseId": "es:lesson-04:session-41:intro2:r2",
+              "text": "Eso es un caja."
+            },
+            {
+              "responseId": "es:lesson-04:session-41:intro2:r3",
+              "text": "Eso es una libro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-41:intro2:r1",
+              "text": "Eso es una caja."
+            },
+            {
+              "responseId": "es:lesson-04:session-41:intro2:r2",
+              "text": "Eso es un caja."
+            },
+            {
+              "responseId": "es:lesson-04:session-41:intro2:r3",
+              "text": "Eso es una libro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите предмет рядом с другом: «Это коробка». Начните с Eso.",
+          "uk": "Назвіть предмет поруч із другом: «Це коробка». Почніть з Eso."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-04:session-41:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Узнать сумку",
+        "uk": "Упізнати сумку"
+      },
+      "bodyByLocale": {
+        "ru": "Друг показывает на предмет возле своего стула. Вы узнаёте сумку. Скажите `Eso es un bolso` — «Это сумка». Соберите `eso` + `es` + `un bolso`. В этом ответе назовите сумку знакомым мужским словом bolso: перед ним нужен un. Начало Eso es сохраняется, меняется только название предмета после него.",
+        "uk": "Друг показує на предмет біля свого стільця. Ви впізнаєте сумку. Скажіть `Eso es un bolso` — «Це сумка». Складіть `eso` + `es` + `un bolso`. У цій відповіді назвіть сумку знайомим чоловічим словом bolso: перед ним потрібне un. Початок Eso es зберігається, змінюється лише назва предмета після нього."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-41:intro3:q",
+        "promptByLocale": {
+          "ru": "Назовите предмет рядом с другом: «Это сумка». Начните с Eso и используйте bolso.",
+          "uk": "Назвіть предмет поруч із другом: «Це сумка». Почніть з Eso й використайте bolso."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-41:intro3:r1",
+              "text": "Eso es un bolso."
+            },
+            {
+              "responseId": "es:lesson-04:session-41:intro3:r2",
+              "text": "Eso es una bolso."
+            },
+            {
+              "responseId": "es:lesson-04:session-41:intro3:r3",
+              "text": "Eso es un libro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-41:intro3:r1",
+              "text": "Eso es un bolso."
+            },
+            {
+              "responseId": "es:lesson-04:session-41:intro3:r2",
+              "text": "Eso es una bolso."
+            },
+            {
+              "responseId": "es:lesson-04:session-41:intro3:r3",
+              "text": "Eso es un libro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите предмет рядом с другом: «Это сумка». Начните с Eso и используйте bolso.",
+          "uk": "Назвіть предмет поруч із другом: «Це сумка». Почніть з Eso й використайте bolso."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d737e17f802ba37b5b8b52ef5cc45ffd795a55a1425a00ff1c452f1009ee44e1"
+}

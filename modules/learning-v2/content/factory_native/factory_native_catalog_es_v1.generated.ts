@@ -1449,4 +1449,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"ставить estas перед несколькими предметами женского рода.","uk":"ставити estas перед кількома предметами жіночого роду."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 4, sessionOrdinal: 39,
+    sourceFingerprint: "2486a7da701047d9b87cf5948fef5ace6ca72c76db5f8d0d227effd5d376a221",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбирать este или esta при представлении родственника.","uk":"вибирати este або esta, представляючи родича."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 4, sessionOrdinal: 40,
+    sourceFingerprint: "f3076f5541800188ad70414292c1c27958034773bc34a4fd3ff222711740eda0",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"закрепить este, esta, estos, estas с уже знакомыми словами.","uk":"закріпити este, esta, estos, estas зі вже знайомими словами."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 4, sessionOrdinal: 41,
+    sourceFingerprint: "a645c8456dbabc261e7d552cc5317042bea70ca9bf7464df46574413c4dc69aa",
+    newWordCount: 1,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"использовать eso отдельно от названия предмета.","uk":"використовувати eso окремо від назви предмета."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 4, sessionOrdinal: 42,
+    sourceFingerprint: "0fea14c9e1d508f5830fcaad1a556df97bc9abaa43b88b8eab11256a22e01a71",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"собрать вопрос ¿Qué es eso? и отдельно назвать предмет в ответе.","uk":"скласти запитання ¿Qué es eso? й окремо назвати предмет у відповіді."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
+  }),
 ]);

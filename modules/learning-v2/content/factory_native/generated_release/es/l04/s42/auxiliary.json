@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-04:session-42",
+  "entries": [
+    {
+      "interactionId": "es:lesson-04:session-42:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-42:intro1:r2": {
+          "ru": "Quién спрашивает о человеке; здесь нужно qué.",
+          "uk": "Quién запитує про людину; тут потрібне qué."
+        },
+        "es:lesson-04:session-42:intro1:r3": {
+          "ru": "В этом вопросе с eso нужно es.",
+          "uk": "У цьому запитанні з eso потрібне es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-42:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-42:intro2:r2": {
+          "ru": "Libro мужского рода: un.",
+          "uk": "Libro чоловічого роду: un."
+        },
+        "es:lesson-04:session-42:intro2:r3": {
+          "ru": "Один предмет: es.",
+          "uk": "Один предмет: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-42:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-42:intro3:r2": {
+          "ru": "Caja женского рода: una.",
+          "uk": "Caja жіночого роду: una."
+        },
+        "es:lesson-04:session-42:intro3:r3": {
+          "ru": "Нужно назвать коробку: una caja.",
+          "uk": "Потрібно назвати коробку: una caja."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "34e92c572536a3676d514f88b6cddee90c707523ed073a7739ef9bef5811d3ee"
+}

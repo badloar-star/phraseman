@@ -1,0 +1,652 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-04:session-41",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-04:session-41:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — eso",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-41:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — eso",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-41:i01:audio",
+          "transcript": "eso"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-04:session-41:i01:r1",
+            "targetText": "eso",
+            "meaningByLocale": {
+              "ru": "«это»: самостоятельное указание на предмет или то, о чём идёт речь; в нашей ситуации предмет рядом с собеседником. 🔊 *eso*",
+              "uk": "«це»: самостійне вказування на предмет або те, про що йдеться; у нашій ситуації предмет поруч зі співрозмовником. 🔊 *eso*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "eso",
+          "definitionByLocale": {
+            "ru": "«это»: самостоятельное указание на предмет или то, о чём идёт речь; в нашей ситуации предмет рядом с собеседником. 🔊 *eso*",
+            "uk": "«це»: самостійне вказування на предмет або те, про що йдеться; у нашій ситуації предмет поруч зі співрозмовником. 🔊 *eso*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-41:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-41:i02:r1",
+          "text": "eso"
+        },
+        {
+          "responseId": "es:lesson-04:session-41:i02:r2",
+          "text": "este"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-41:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-41:i02:audio",
+          "transcript": "eso"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-04:session-41:i02:r1",
+            "targetText": "eso",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-04:session-41:i02:r2",
+            "targetText": "este",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-41:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит eso, без t.",
+              "uk": "Звучить eso, без t."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-41:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — это книга; используйте eso",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-41:i03:r1",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-41:i03:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-41:i03:r3",
+          "text": "soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — это книга; используйте eso",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это книга; используйте eso",
+          "uk": "Вставте слово — це книжка; використайте eso"
+        },
+        "gappedTargetPhrase": "Eso ___ un libro.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-41:i03:r1",
+            "text": "es"
+          },
+          {
+            "responseId": "es:lesson-04:session-41:i03:r2",
+            "text": "son"
+          },
+          {
+            "responseId": "es:lesson-04:session-41:i03:r3",
+            "text": "soy"
+          }
+        ],
+        "testedDimension": "Вставьте слово — это книга; используйте eso",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-41:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это книга; используйте eso",
+            "feedbackByLocale": {
+              "ru": "Один предмет: es.",
+              "uk": "Один предмет: es."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-41:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это книга; используйте eso",
+            "feedbackByLocale": {
+              "ru": "Называете предмет, а не себя.",
+              "uk": "Називаєте предмет, а не себе."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-41:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это книга рядом с другом; начните с Eso",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-41:i04:r1",
+          "text": "Плитки: libro"
+        },
+        {
+          "responseId": "es:lesson-04:session-41:i04:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-04:session-41:i04:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-41:i04:r4",
+          "text": "eso"
+        },
+        {
+          "responseId": "es:lesson-04:session-41:i04:r5",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это книга рядом с другом; начните с Eso",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Eso es un libro.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это книга рядом с другом; начните с Eso",
+          "uk": "Зберіть фразу — це книжка поруч із другом; почніть з Eso"
+        },
+        "orderedTokens": [
+          "Eso",
+          "es",
+          "un",
+          "libro"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-41:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это книга рядом с другом; начните с Eso",
+            "feedbackByLocale": {
+              "ru": "libro мужского рода.",
+              "uk": "libro чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-41:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — это коробка",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-41:i05:r1",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-04:session-41:i05:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-04:session-41:i05:r3",
+          "text": "unos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — это коробка",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это коробка",
+          "uk": "Вставте слово — це коробка"
+        },
+        "gappedTargetPhrase": "Eso es ___ caja.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-41:i05:r1",
+            "text": "una"
+          },
+          {
+            "responseId": "es:lesson-04:session-41:i05:r2",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-04:session-41:i05:r3",
+            "text": "unos"
+          }
+        ],
+        "testedDimension": "Вставьте слово — это коробка",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-41:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это коробка",
+            "feedbackByLocale": {
+              "ru": "Caja женского рода: una.",
+              "uk": "Caja жіночого роду: una."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-41:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это коробка",
+            "feedbackByLocale": {
+              "ru": "Одна коробка женского рода: una.",
+              "uk": "Одна коробка жіночого роду: una."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-41:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это коробка рядом с другом; начните с Eso",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-41:i06:r1",
+          "text": "Плитки: caja"
+        },
+        {
+          "responseId": "es:lesson-04:session-41:i06:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-04:session-41:i06:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-41:i06:r4",
+          "text": "eso"
+        },
+        {
+          "responseId": "es:lesson-04:session-41:i06:r5",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это коробка рядом с другом; начните с Eso",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Eso es una caja.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это коробка рядом с другом; начните с Eso",
+          "uk": "Зберіть фразу — це коробка поруч із другом; почніть з Eso"
+        },
+        "orderedTokens": [
+          "Eso",
+          "es",
+          "una",
+          "caja"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-41:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это коробка рядом с другом; начните с Eso",
+            "feedbackByLocale": {
+              "ru": "caja женского рода.",
+              "uk": "caja жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-41:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это сумка рядом с другом; начните с Eso и используйте bolso",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-41:i07:r1",
+          "text": "Плитки: bolso"
+        },
+        {
+          "responseId": "es:lesson-04:session-41:i07:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-04:session-41:i07:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-41:i07:r4",
+          "text": "eso"
+        },
+        {
+          "responseId": "es:lesson-04:session-41:i07:r5",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это сумка рядом с другом; начните с Eso и используйте bolso",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Eso es un bolso.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это сумка рядом с другом; начните с Eso и используйте bolso",
+          "uk": "Зберіть фразу — це сумка поруч із другом; почніть з Eso й використайте bolso"
+        },
+        "orderedTokens": [
+          "Eso",
+          "es",
+          "un",
+          "bolso"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-41:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это сумка рядом с другом; начните с Eso и используйте bolso",
+            "feedbackByLocale": {
+              "ru": "bolso мужского рода.",
+              "uk": "bolso чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-41:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-41:i08:r1",
+          "text": "Плитки: una"
+        },
+        {
+          "responseId": "es:lesson-04:session-41:i08:r2",
+          "text": "caja"
+        },
+        {
+          "responseId": "es:lesson-04:session-41:i08:r3",
+          "text": "eso"
+        },
+        {
+          "responseId": "es:lesson-04:session-41:i08:r4",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-41:i08:r5",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-41:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-41:i08:audio",
+          "transcript": "Eso es una caja."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Eso es una caja.",
+        "orderedTokens": [
+          "Eso",
+          "es",
+          "una",
+          "caja"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-41:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит una.",
+              "uk": "звучить una."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-41:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — это книга рядом с другом; начните с Eso",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-41:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — это книга рядом с другом; начните с Eso",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-41:i09:audio",
+          "transcript": "Eso es un libro."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Eso es un libro.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-41:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — это коробка рядом с другом; начните с Eso",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-41:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — это коробка рядом с другом; начните с Eso",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-41:i10:audio",
+          "transcript": "Eso es una caja."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Eso es una caja.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-41:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — это сумка рядом с другом; начните с Eso и используйте bolso",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-41:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — это сумка рядом с другом; начните с Eso и используйте bolso",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-41:i11:audio",
+          "transcript": "Eso es un bolso."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Eso es un bolso.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-41:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — это стул рядом с другом; начните с Eso",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-41:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — это стул рядом с другом; начните с Eso",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-41:i12:audio",
+          "transcript": "Eso es una silla."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Eso es una silla.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "b26cf2bf64630fd8ce007272336daa8fed1de31a733fd3d78d7f5a3e1d1ca8f6"
+}

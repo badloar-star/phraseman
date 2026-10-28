@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-04:session-42",
+  "learningOutcomeByLocale": {
+    "ru": "собрать вопрос ¿Qué es eso? и отдельно назвать предмет в ответе.",
+    "uk": "скласти запитання ¿Qué es eso? й окремо назвати предмет у відповіді."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-04:session-42:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Узнать предмет",
+        "uk": "Упізнати предмет"
+      },
+      "bodyByLocale": {
+        "ru": "Друг держит небольшой предмет, но вы не понимаете, что это. Спросите `¿Qué es eso?` — «Что это?» Соберите `qué` + `es` + `eso`. Вопросительное qué означает «что» и пишется со знаком ударения. Eso указывает на предмет возле друга и стоит в конце этого вопроса. Поставьте ¿ в начале и ? в конце.",
+        "uk": "Друг тримає невеликий предмет, але ви не розумієте, що це. Запитайте `¿Qué es eso?` — «Що це?» Складіть `qué` + `es` + `eso`. Питальне qué означає «що» й пишеться зі знаком наголосу. Eso вказує на предмет біля друга й стоїть у кінці цього запитання. Поставте ¿ на початку та ? в кінці."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-42:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите о предмете рядом с другом: «Что это?» Используйте eso.",
+          "uk": "Запитайте про предмет поруч із другом: «Що це?» Використайте eso."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-42:intro1:r1",
+              "text": "¿Qué es eso?"
+            },
+            {
+              "responseId": "es:lesson-04:session-42:intro1:r2",
+              "text": "¿Quién es eso?"
+            },
+            {
+              "responseId": "es:lesson-04:session-42:intro1:r3",
+              "text": "¿Qué son eso?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-42:intro1:r1",
+              "text": "¿Qué es eso?"
+            },
+            {
+              "responseId": "es:lesson-04:session-42:intro1:r2",
+              "text": "¿Quién es eso?"
+            },
+            {
+              "responseId": "es:lesson-04:session-42:intro1:r3",
+              "text": "¿Qué son eso?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите о предмете рядом с другом: «Что это?» Используйте eso.",
+          "uk": "Запитайте про предмет поруч із другом: «Що це?» Використайте eso."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-04:session-42:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ответ: книга",
+        "uk": "Відповідь: книжка"
+      },
+      "bodyByLocale": {
+        "ru": "Теперь друг спрашивает вас о предмете рядом с вами. Вы держите книгу. Ответьте `Es un libro` — «Это книга». Соберите `es` + `un libro`. Предмет уже понятен из вопроса, поэтому короткий ответ можно начать с es. Перед мужским libro поставьте un. Сейчас произнесите только ответ, без повторения вопроса.",
+        "uk": "Тепер друг запитує вас про предмет поруч із вами. Ви тримаєте книжку. Дайте відповідь `Es un libro` — «Це книжка». Складіть `es` + `un libro`. Предмет уже зрозумілий із запитання, тому коротку відповідь можна почати з es. Перед чоловічим libro поставте un. Зараз промовте лише відповідь, не повторюючи запитання."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-42:intro2:q",
+        "promptByLocale": {
+          "ru": "Ответьте одним предложением: «Это книга». Начните с Es.",
+          "uk": "Дайте відповідь одним реченням: «Це книжка». Почніть з Es."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-42:intro2:r1",
+              "text": "Es un libro."
+            },
+            {
+              "responseId": "es:lesson-04:session-42:intro2:r2",
+              "text": "Es una libro."
+            },
+            {
+              "responseId": "es:lesson-04:session-42:intro2:r3",
+              "text": "Son un libro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-42:intro2:r1",
+              "text": "Es un libro."
+            },
+            {
+              "responseId": "es:lesson-04:session-42:intro2:r2",
+              "text": "Es una libro."
+            },
+            {
+              "responseId": "es:lesson-04:session-42:intro2:r3",
+              "text": "Son un libro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ответьте одним предложением: «Это книга». Начните с Es.",
+          "uk": "Дайте відповідь одним реченням: «Це книжка». Почніть з Es."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-04:session-42:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ответ: коробка",
+        "uk": "Відповідь: коробка"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает о предмете у вас в руках; на этот раз это коробка. Ответьте `Es una caja` — «Это коробка». Соберите `es` + `una caja`. Замените un libro на una caja. Перед женским caja нужен una. Короткое начало Es остаётся прежним.",
+        "uk": "Друг запитує про предмет у вас у руках; цього разу це коробка. Дайте відповідь `Es una caja` — «Це коробка». Складіть `es` + `una caja`. Замініть un libro на una caja. Перед жіночим caja потрібне una. Короткий початок Es залишається незмінним."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-42:intro3:q",
+        "promptByLocale": {
+          "ru": "Ответьте одним предложением: «Это коробка». Начните с Es.",
+          "uk": "Дайте відповідь одним реченням: «Це коробка». Почніть з Es."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-42:intro3:r1",
+              "text": "Es una caja."
+            },
+            {
+              "responseId": "es:lesson-04:session-42:intro3:r2",
+              "text": "Es un caja."
+            },
+            {
+              "responseId": "es:lesson-04:session-42:intro3:r3",
+              "text": "Es una libro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-42:intro3:r1",
+              "text": "Es una caja."
+            },
+            {
+              "responseId": "es:lesson-04:session-42:intro3:r2",
+              "text": "Es un caja."
+            },
+            {
+              "responseId": "es:lesson-04:session-42:intro3:r3",
+              "text": "Es una libro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ответьте одним предложением: «Это коробка». Начните с Es.",
+          "uk": "Дайте відповідь одним реченням: «Це коробка». Почніть з Es."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2f3a5bb5bae7bde247ecd3c0ce5c41cdb1ab47ee1754e711e17c7cabe26c886d"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-04:session-40",
+  "entries": [
+    {
+      "interactionId": "es:lesson-04:session-40:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-40:intro1:r2": {
+          "ru": "Нужно esta перед женским caja.",
+          "uk": "Потрібне esta перед жіночим caja."
+        },
+        "es:lesson-04:session-40:intro1:r3": {
+          "ru": "Коробка одна: esta.",
+          "uk": "Коробка одна: esta."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-40:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-40:intro2:r2": {
+          "ru": "Libros мужского рода: estos.",
+          "uk": "Libros чоловічого роду: estos."
+        },
+        "es:lesson-04:session-40:intro2:r3": {
+          "ru": "Книг несколько: estos.",
+          "uk": "Книжок кілька: estos."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-40:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-40:intro3:r2": {
+          "ru": "Представляете женщину: esta.",
+          "uk": "Представляєте жінку: esta."
+        },
+        "es:lesson-04:session-40:intro3:r3": {
+          "ru": "Сестра одна: es.",
+          "uk": "Сестра одна: es."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "370e792d06af25a0d351165fb2e8e5f64f9c33e1c3b731245fcff268512ac705"
+}

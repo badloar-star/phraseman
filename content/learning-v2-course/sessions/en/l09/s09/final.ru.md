@@ -65,7 +65,7 @@
 - maple — *В записи звучит marble*
 - marvel — *В записи звучит marble*
 
-**4 · Выберите форму для отрицания с I**
+**4 · Выберите, как сказать «не» с I**
 <!-- interaction_id: en:lesson-09:session-09:i03; family: context_gap_grammar -->
 I ___ not guessing. → **am** · is · are
 - is — *С I нужно am, затем not.*
@@ -129,7 +129,7 @@ marble — игровой шарик · quantity — количество · fla
 <!-- interaction_id: en:lesson-09:session-09:i13; family: scripted_repeat_compare -->
 🎙 **He is wearing a blindfold.**
 
-**18 · Выберите форму отрицания с they**
+**18 · Выберите, как сказать «не» с they**
 <!-- interaction_id: en:lesson-09:session-09:i14; family: context_gap_grammar -->
 They ___ not looking. → **are** · am · is
 - am — *С they нужно are, затем not.*

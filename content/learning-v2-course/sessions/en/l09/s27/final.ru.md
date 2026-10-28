@@ -136,7 +136,7 @@ ___ the sled sliding? → **Is** · Are · Am
 - Are — *Sled в единственном числе: is.*
 - Am — *Am употребляем с I.*
 
-**19 · Санки остановились. Соберите отрицание**
+**19 · Санки остановились. Соберите фразу с «не»**
 <!-- interaction_id: en:lesson-09:session-27:i15; family: phrase_builder -->
 Плитки: `sliding` `not` `is` `sled` `The` → **The sled is not sliding.**
 

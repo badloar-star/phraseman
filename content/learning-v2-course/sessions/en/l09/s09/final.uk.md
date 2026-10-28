@@ -65,7 +65,7 @@
 - maple — *У записі звучить marble*
 - marvel — *У записі звучить marble*
 
-**4 · Виберіть форму для заперечення з I**
+**4 · Виберіть, як сказати «не» з I**
 <!-- interaction_id: en:lesson-09:session-09:i03; family: context_gap_grammar -->
 I ___ not guessing. → **am** · is · are
 - is — *Із I потрібне am, потім not.*
@@ -129,7 +129,7 @@ marble — ігрова кулька · quantity — кількість · flavo
 <!-- interaction_id: en:lesson-09:session-09:i13; family: scripted_repeat_compare -->
 🎙 **He is wearing a blindfold.**
 
-**18 · Виберіть форму заперечення з they**
+**18 · Виберіть, як сказати «не» з they**
 <!-- interaction_id: en:lesson-09:session-09:i14; family: context_gap_grammar -->
 They ___ not looking. → **are** · am · is
 - am — *Із they потрібне are, потім not.*

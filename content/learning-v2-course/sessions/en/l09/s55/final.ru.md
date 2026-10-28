@@ -136,7 +136,7 @@ agenda — повестка встречи · briefing — краткий инс
 <!-- interaction_id: en:lesson-09:session-55:i14; family: listen_build_dictation -->
 🔊 *Is the attendee nodding?* Плитки: `nodding` `attendee` `the` `Is` → **Is the attendee nodding?**
 
-**19 · Выберите артикль перед attendee**
+**19 · Выберите слово перед attendee**
 <!-- interaction_id: en:lesson-09:session-55:i15; family: context_gap_grammar -->
 ___ attendee is nodding. → **An** · A · Are
 - A — *Первый звук гласный: an attendee.*

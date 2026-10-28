@@ -103,7 +103,7 @@ The horizon ___ clear. → **is** · are · am
 - The silhouette is bright. — *В записи звучит The silhouette is dark.*
 - The horizon is clear. — *В записи звучит The silhouette is dark.*
 
-**12 · Выберите артикль перед silhouette**
+**12 · Выберите слово перед silhouette**
 <!-- interaction_id: en:lesson-09:session-52:i09; family: context_gap_grammar -->
 This is ___ silhouette. → **a** · an · are
 - an — *Первый звук согласный, нужен a.*

@@ -83,7 +83,7 @@ The heron ___ standing in the water. → **is** · are · am
 - The heron is in the tree. — *В записи звучит The heron is in the marsh.*
 - The heron is near the marsh. — *В записи звучит The heron is in the marsh.*
 
-**8 · Выберите артикль перед marsh**
+**8 · Выберите слово перед marsh**
 <!-- interaction_id: en:lesson-09:session-48:i06; family: context_gap_grammar -->
 This is ___ marsh. → **a** · an · are
 - an — *Marsh начинается с согласного звука, нужен a.*

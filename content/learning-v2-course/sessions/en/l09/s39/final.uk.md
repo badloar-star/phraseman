@@ -111,7 +111,7 @@ I am referring ___ the appendix. → **to** · at · on
 - I am not reading the footnote. — *У записі звучить I am reading the footnote.*
 - It is a footnote. — *У записі звучить I am reading the footnote.*
 
-**14 · Виберіть артикль для однієї виноски**
+**14 · Виберіть слово для однієї виноски**
 <!-- interaction_id: en:lesson-09:session-39:i11; family: context_gap_grammar -->
 It is ___ footnote. → **a** · an · are
 - an — *Footnote починається з приголосного звука: a.*

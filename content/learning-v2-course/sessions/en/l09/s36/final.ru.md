@@ -63,7 +63,7 @@
 <!-- interaction_id: en:lesson-09:session-36:i02; family: phrase_builder -->
 Плитки: `brass` `is` `This` → **This is brass.**
 
-**4 · Выберите связку в названии материала**
+**4 · Выберите форму be в названии материала**
 <!-- interaction_id: en:lesson-09:session-36:i03; family: context_gap_grammar -->
 This ___ brass. → **is** · are · am
 - are — *С this используем is.*

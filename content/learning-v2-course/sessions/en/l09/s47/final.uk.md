@@ -64,7 +64,7 @@
 - The swatch is green. — *У записі звучить The swatch is blue.*
 - The wall is blue. — *У записі звучить The swatch is blue.*
 
-**4 · Виберіть артикль перед одним зразком**
+**4 · Виберіть слово перед одним зразком**
 <!-- interaction_id: en:lesson-09:session-47:i03; family: context_gap_grammar -->
 This is ___ swatch. → **a** · an · are
 - an — *Swatch починається з приголосного звука, потрібне a.*

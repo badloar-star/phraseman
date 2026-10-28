@@ -111,7 +111,7 @@ There ___ a power outage. → **is** · are · am
 - A glitch is not occurring. — *У записі звучить A glitch is occurring.*
 - It is a glitch. — *У записі звучить A glitch is occurring.*
 
-**14 · Виберіть артикль перед одним збоєм**
+**14 · Виберіть слово перед одним збоєм**
 <!-- interaction_id: en:lesson-09:session-38:i11; family: context_gap_grammar -->
 It is ___ glitch. → **a** · an · are
 - an — *Glitch починається з приголосного звука, тому a.*

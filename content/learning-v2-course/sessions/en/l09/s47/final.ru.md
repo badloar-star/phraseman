@@ -64,7 +64,7 @@
 - The swatch is green. — *В записи звучит The swatch is blue.*
 - The wall is blue. — *В записи звучит The swatch is blue.*
 
-**4 · Выберите артикль перед одним образцом**
+**4 · Выберите слово перед одним образцом**
 <!-- interaction_id: en:lesson-09:session-47:i03; family: context_gap_grammar -->
 This is ___ swatch. → **a** · an · are
 - an — *Swatch начинается с согласного звука, нужен a.*

@@ -103,7 +103,7 @@ He is ___ at the hologram. → **staring** · stareing · stare
 - The picture is moving. — *В записи звучит The picture is not moving.*
 - The mirror is not moving. — *В записи звучит The picture is not moving.*
 
-**12 · Выберите артикль перед illusion**
+**12 · Выберите слово перед illusion**
 <!-- interaction_id: en:lesson-09:session-50:i09; family: context_gap_grammar -->
 This is ___ illusion. → **an** · a · are
 - a — *Illusion начинается с гласного звука, нужен an.*
@@ -135,7 +135,7 @@ stare — пристально смотреть · hologram — голограм
 <!-- interaction_id: en:lesson-09:session-50:i14; family: listen_build_dictation -->
 🔊 *Is he staring at the hologram?* Плитки: `hologram` `the` `at` `staring` `he` `Is` → **Is he staring at the hologram?**
 
-**19 · Выберите форму be в отрицании движения**
+**19 · Выберите форму be с «не» о движении**
 <!-- interaction_id: en:lesson-09:session-50:i15; family: context_gap_grammar -->
 The picture ___ not moving. → **is** · are · am
 - are — *Одна картинка: is.*

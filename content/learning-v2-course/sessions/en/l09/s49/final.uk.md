@@ -103,7 +103,7 @@ The pacifier ___ in the bag. → **is** · are · am
 - The onesie is large. — *У записі звучить The onesie is small.*
 - The pacifier is small. — *У записі звучить The onesie is small.*
 
-**12 · Виберіть артикль за першим звуком onesie**
+**12 · Виберіть слово за першим звуком onesie**
 <!-- interaction_id: en:lesson-09:session-49:i09; family: context_gap_grammar -->
 This is ___ onesie. → **a** · an · are
 - an — *Перший звук /w/ приголосний: a onesie.*

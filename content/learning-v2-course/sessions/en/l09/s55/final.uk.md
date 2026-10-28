@@ -136,7 +136,7 @@ agenda — порядок денний зустрічі · briefing — коро
 <!-- interaction_id: en:lesson-09:session-55:i14; family: listen_build_dictation -->
 🔊 *Is the attendee nodding?* Плитки: `nodding` `attendee` `the` `Is` → **Is the attendee nodding?**
 
-**19 · Виберіть артикль перед attendee**
+**19 · Виберіть слово перед attendee**
 <!-- interaction_id: en:lesson-09:session-55:i15; family: context_gap_grammar -->
 ___ attendee is nodding. → **An** · A · Are
 - A — *Перший звук голосний: an attendee.*

@@ -63,7 +63,7 @@
 - The thumbnail is not small. — *В записи звучит The thumbnail is small.*
 - The photo is small. — *В записи звучит The thumbnail is small.*
 
-**4 · Выберите артикль для одной миниатюры**
+**4 · Выберите слово для одной миниатюры**
 <!-- interaction_id: en:lesson-09:session-43:i03; family: context_gap_grammar -->
 This is ___ thumbnail. → **a** · an · are
 - an — *Thumbnail начинается с согласного звука, нужен a.*

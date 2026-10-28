@@ -119,7 +119,7 @@ I ___ near the carousel. → **am** · is · are
 <!-- interaction_id: en:lesson-09:session-41:i11; family: phrase_builder -->
 Плитки: `eddy` `an` `is` `This` → **This is an eddy.**
 
-**16 · Виберіть артикль перед eddy**
+**16 · Виберіть слово перед eddy**
 <!-- interaction_id: en:lesson-09:session-41:i12; family: context_gap_grammar -->
 This is ___ eddy. → **an** · a · are
 - a — *Перед голосним звуком в eddy потрібне an.*

@@ -89,7 +89,7 @@ I am ___ the xylophone. → **playing** · play · plays
 - play — *После am для действия сейчас нужна форма playing.*
 - plays — *Plays не используется после am.*
 
-**9 · Послушайте и соберите отрицание**
+**9 · Послушайте и соберите фразу с «не»**
 <!-- interaction_id: en:lesson-09:session-40:i07; family: listen_build_dictation -->
 🔊 *I am not playing the xylophone.* Плитки: `xylophone` `the` `playing` `not` `am` `I` → **I am not playing the xylophone.**
 

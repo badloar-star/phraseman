@@ -83,7 +83,7 @@ He is ___. → **muttering** · mutter · mutters
 - The washer is under the table. — *В записи звучит The washer is on the table.*
 - The screw is on the table. — *В записи звучит The washer is on the table.*
 
-**8 · Выберите артикль перед washer**
+**8 · Выберите слово перед washer**
 <!-- interaction_id: en:lesson-09:session-54:i06; family: context_gap_grammar -->
 This is ___ washer. → **a** · an · are
 - an — *Первый звук согласный: a washer.*

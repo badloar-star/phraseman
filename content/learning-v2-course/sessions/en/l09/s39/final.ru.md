@@ -111,7 +111,7 @@ I am referring ___ the appendix. → **to** · at · on
 - I am not reading the footnote. — *В записи звучит I am reading the footnote.*
 - It is a footnote. — *В записи звучит I am reading the footnote.*
 
-**14 · Выберите артикль для одной сноски**
+**14 · Выберите слово для одной сноски**
 <!-- interaction_id: en:lesson-09:session-39:i11; family: context_gap_grammar -->
 It is ___ footnote. → **a** · an · are
 - an — *Footnote начинается с согласного звука: a.*

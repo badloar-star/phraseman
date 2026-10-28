@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-04:session-34:i01",
+    "correctText": "esta",
+    "correctResponseId": "es:lesson-04:session-34:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-34:i02",
+    "correctText": "Esta",
+    "correctResponseId": "es:lesson-04:session-34:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-34:i03",
+    "correctText": "Esta es mi amiga.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-34:i04",
+    "correctText": "nuestra",
+    "correctResponseId": "es:lesson-04:session-34:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-34:i05",
+    "correctText": "Esta es nuestra amiga.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-34:i06",
+    "correctText": "Esta es mi hermana.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-34:i07",
+    "correctText": "Esta es mi amiga.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-34:i08",
+    "correctText": "es",
+    "correctResponseId": "es:lesson-04:session-34:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-34:i09",
+    "correctText": "Esta es mi amiga.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-34:i10",
+    "correctText": "Esta es nuestra amiga.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-34:i11",
+    "correctText": "Esta es mi hermana.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-34:i12",
+    "correctText": "Esta es nuestra hermana.",
+    "correctResponseId": null
+  }
+]

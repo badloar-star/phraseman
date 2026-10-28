@@ -1400,4 +1400,25 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"отрицать общую принадлежность с nuestro и nuestra.","uk":"заперечувати спільну належність із nuestro й nuestra."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 4, sessionOrdinal: 32,
+    sourceFingerprint: "85bdca3b1f86c402dd2e6d5e9df63a552b55677ba86fe38a4799053dc9ae17c1",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбирать форму «наш» по роду и числу названного человека или предмета.","uk":"вибирати форму «наш» за родом і числом названої людини або предмета."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 4, sessionOrdinal: 33,
+    sourceFingerprint: "54e9971997c42ce74e330aaa04fb38cada97aa19c2b73d4d8883574bd16c0756",
+    newWordCount: 1,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"использовать este для указания на мужчину рядом с говорящим.","uk":"використовувати este, щоб указати на чоловіка поруч із мовцем."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 4, sessionOrdinal: 34,
+    sourceFingerprint: "b9787373689d0af42b361ba48e3a7cb5b8660a6fbc577b73ab3ab009cac83586",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбирать esta при указании на женщину рядом.","uk":"вибирати esta, вказуючи на жінку поруч."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
+  }),
 ]);

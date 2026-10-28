@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-04:session-32",
+  "entries": [
+    {
+      "interactionId": "es:lesson-04:session-32:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-32:intro1:r2": {
+          "ru": "Casa женского рода.",
+          "uk": "Casa жіночого роду."
+        },
+        "es:lesson-04:session-32:intro1:r3": {
+          "ru": "Дом один: es.",
+          "uk": "Будинок один: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-32:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-32:intro2:r2": {
+          "ru": "Amigas требует женского nuestras.",
+          "uk": "Amigas потребує жіночого nuestras."
+        },
+        "es:lesson-04:session-32:intro2:r3": {
+          "ru": "Подруг несколько: nuestras.",
+          "uk": "Подруг кілька: nuestras."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-32:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-32:intro3:r2": {
+          "ru": "Carro мужского рода.",
+          "uk": "Carro чоловічого роду."
+        },
+        "es:lesson-04:session-32:intro3:r3": {
+          "ru": "Машина одна: es.",
+          "uk": "Машина одна: es."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "068b5bcb7eca4f6eed682d81a6ffc52e1a9292358929ea1e9cf4d350093cc5b9"
+}

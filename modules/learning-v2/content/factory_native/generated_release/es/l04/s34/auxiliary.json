@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-04:session-34",
+  "entries": [
+    {
+      "interactionId": "es:lesson-04:session-34:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-34:intro1:r2": {
+          "ru": "Здесь представляете женщину: esta.",
+          "uk": "Тут представляєте жінку: esta."
+        },
+        "es:lesson-04:session-34:intro1:r3": {
+          "ru": "Подруга одна: es.",
+          "uk": "Подруга одна: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-34:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-34:intro2:r2": {
+          "ru": "Перед amiga нужно nuestra.",
+          "uk": "Перед amiga потрібне nuestra."
+        },
+        "es:lesson-04:session-34:intro2:r3": {
+          "ru": "Подруга одна: nuestra.",
+          "uk": "Подруга одна: nuestra."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-34:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-34:intro3:r2": {
+          "ru": "Представляете женщину: esta.",
+          "uk": "Представляєте жінку: esta."
+        },
+        "es:lesson-04:session-34:intro3:r3": {
+          "ru": "Сестра одна: mi.",
+          "uk": "Сестра одна: mi."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "22fd7a2d3cb827b10cead5294e27b9af20be51e0eb1f815def60609c673902c3"
+}

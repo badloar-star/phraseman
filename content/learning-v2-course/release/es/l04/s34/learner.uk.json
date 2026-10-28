@@ -1,0 +1,678 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-04:session-34",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-04:session-34:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-34:i01:r1",
+          "text": "esta"
+        },
+        {
+          "responseId": "es:lesson-04:session-34:i01:r2",
+          "text": "este"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-34:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-34:i01:audio",
+          "transcript": "esta"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-04:session-34:i01:r1",
+            "targetText": "esta",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-04:session-34:i01:r2",
+            "targetText": "este",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-34:i01:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит конечное a: esta.",
+              "uk": "Звучить кінцеве a: esta."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-34:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — представляєте подругу поруч",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-34:i02:r1",
+          "text": "Esta"
+        },
+        {
+          "responseId": "es:lesson-04:session-34:i02:r2",
+          "text": "Este"
+        },
+        {
+          "responseId": "es:lesson-04:session-34:i02:r3",
+          "text": "Yo"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — представляєте подругу поруч",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — представляете подругу рядом",
+          "uk": "Вставте слово — представляєте подругу поруч"
+        },
+        "gappedTargetPhrase": "___ es mi amiga.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-34:i02:r1",
+            "text": "Esta"
+          },
+          {
+            "responseId": "es:lesson-04:session-34:i02:r2",
+            "text": "Este"
+          },
+          {
+            "responseId": "es:lesson-04:session-34:i02:r3",
+            "text": "Yo"
+          }
+        ],
+        "testedDimension": "Вставте слово — представляєте подругу поруч",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-34:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — представляєте подругу поруч",
+            "feedbackByLocale": {
+              "ru": "Для женщины здесь esta.",
+              "uk": "Для жінки тут esta."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-34:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — представляєте подругу поруч",
+            "feedbackByLocale": {
+              "ru": "Представляете подругу, а не себя.",
+              "uk": "Представляєте подругу, а не себе."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-34:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це моя подруга поруч; почніть з Esta",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-34:i03:r1",
+          "text": "Плитки: amiga"
+        },
+        {
+          "responseId": "es:lesson-04:session-34:i03:r2",
+          "text": "mi"
+        },
+        {
+          "responseId": "es:lesson-04:session-34:i03:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-34:i03:r4",
+          "text": "esta"
+        },
+        {
+          "responseId": "es:lesson-04:session-34:i03:r5",
+          "text": "la."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це моя подруга поруч; почніть з Esta",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Esta es mi amiga.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это моя подруга рядом; начните с Esta",
+          "uk": "Зберіть фразу — це моя подруга поруч; почніть з Esta"
+        },
+        "orderedTokens": [
+          "Esta",
+          "es",
+          "mi",
+          "amiga"
+        ],
+        "authoredDistractorTokens": [
+          "la"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-34:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це моя подруга поруч; почніть з Esta",
+            "feedbackByLocale": {
+              "ru": "перед mi здесь нет артикля.",
+              "uk": "перед mi тут немає артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-34:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — це наша спільна подруга поруч",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-34:i04:r1",
+          "text": "nuestra"
+        },
+        {
+          "responseId": "es:lesson-04:session-34:i04:r2",
+          "text": "nuestro"
+        },
+        {
+          "responseId": "es:lesson-04:session-34:i04:r3",
+          "text": "nuestras"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — це наша спільна подруга поруч",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это наша общая подруга рядом",
+          "uk": "Вставте слово — це наша спільна подруга поруч"
+        },
+        "gappedTargetPhrase": "Esta es ___ amiga.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-34:i04:r1",
+            "text": "nuestra"
+          },
+          {
+            "responseId": "es:lesson-04:session-34:i04:r2",
+            "text": "nuestro"
+          },
+          {
+            "responseId": "es:lesson-04:session-34:i04:r3",
+            "text": "nuestras"
+          }
+        ],
+        "testedDimension": "Вставте слово — це наша спільна подруга поруч",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-34:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — це наша спільна подруга поруч",
+            "feedbackByLocale": {
+              "ru": "Amiga женского рода: nuestra.",
+              "uk": "Amiga жіночого роду: nuestra."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-34:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — це наша спільна подруга поруч",
+            "feedbackByLocale": {
+              "ru": "Подруга одна: nuestra.",
+              "uk": "Подруга одна: nuestra."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-34:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це наша спільна подруга поруч; почніть з Esta",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-34:i05:r1",
+          "text": "Плитки: amiga"
+        },
+        {
+          "responseId": "es:lesson-04:session-34:i05:r2",
+          "text": "nuestra"
+        },
+        {
+          "responseId": "es:lesson-04:session-34:i05:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-34:i05:r4",
+          "text": "esta"
+        },
+        {
+          "responseId": "es:lesson-04:session-34:i05:r5",
+          "text": "nuestro."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це наша спільна подруга поруч; почніть з Esta",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Esta es nuestra amiga.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это наша общая подруга рядом; начните с Esta",
+          "uk": "Зберіть фразу — це наша спільна подруга поруч; почніть з Esta"
+        },
+        "orderedTokens": [
+          "Esta",
+          "es",
+          "nuestra",
+          "amiga"
+        ],
+        "authoredDistractorTokens": [
+          "nuestro"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-34:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це наша спільна подруга поруч; почніть з Esta",
+            "feedbackByLocale": {
+              "ru": "amiga женского рода.",
+              "uk": "amiga жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-34:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це моя сестра поруч; почніть з Esta",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-34:i06:r1",
+          "text": "Плитки: hermana"
+        },
+        {
+          "responseId": "es:lesson-04:session-34:i06:r2",
+          "text": "mi"
+        },
+        {
+          "responseId": "es:lesson-04:session-34:i06:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-34:i06:r4",
+          "text": "esta"
+        },
+        {
+          "responseId": "es:lesson-04:session-34:i06:r5",
+          "text": "mis."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це моя сестра поруч; почніть з Esta",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Esta es mi hermana.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это моя сестра рядом; начните с Esta",
+          "uk": "Зберіть фразу — це моя сестра поруч; почніть з Esta"
+        },
+        "orderedTokens": [
+          "Esta",
+          "es",
+          "mi",
+          "hermana"
+        ],
+        "authoredDistractorTokens": [
+          "mis"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-34:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це моя сестра поруч; почніть з Esta",
+            "feedbackByLocale": {
+              "ru": "сестра одна.",
+              "uk": "сестра одна."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-34:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-34:i07:r1",
+          "text": "Плитки: mi"
+        },
+        {
+          "responseId": "es:lesson-04:session-34:i07:r2",
+          "text": "amiga"
+        },
+        {
+          "responseId": "es:lesson-04:session-34:i07:r3",
+          "text": "esta"
+        },
+        {
+          "responseId": "es:lesson-04:session-34:i07:r4",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-34:i07:r5",
+          "text": "este."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-34:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-34:i07:audio",
+          "transcript": "Esta es mi amiga."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Esta es mi amiga.",
+        "orderedTokens": [
+          "Esta",
+          "es",
+          "mi",
+          "amiga"
+        ],
+        "authoredDistractorTokens": [
+          "este"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-34:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит esta.",
+              "uk": "звучить esta."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-34:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — це моя сестра поруч",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-34:i08:r1",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-34:i08:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-34:i08:r3",
+          "text": "soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — це моя сестра поруч",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это моя сестра рядом",
+          "uk": "Вставте слово — це моя сестра поруч"
+        },
+        "gappedTargetPhrase": "Esta ___ mi hermana.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-34:i08:r1",
+            "text": "es"
+          },
+          {
+            "responseId": "es:lesson-04:session-34:i08:r2",
+            "text": "son"
+          },
+          {
+            "responseId": "es:lesson-04:session-34:i08:r3",
+            "text": "soy"
+          }
+        ],
+        "testedDimension": "Вставте слово — це моя сестра поруч",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-34:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — це моя сестра поруч",
+            "feedbackByLocale": {
+              "ru": "Сестра одна: es.",
+              "uk": "Сестра одна: es."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-34:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — це моя сестра поруч",
+            "feedbackByLocale": {
+              "ru": "Представляете сестру, а не себя.",
+              "uk": "Представляєте сестру, а не себе."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-34:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — це моя подруга поруч; почніть з Esta",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-34:i09:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — це моя подруга поруч; почніть з Esta",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-34:i09:audio",
+          "transcript": "Esta es mi amiga."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Esta es mi amiga.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-34:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — це наша спільна подруга поруч; почніть з Esta",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-34:i10:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — це наша спільна подруга поруч; почніть з Esta",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-34:i10:audio",
+          "transcript": "Esta es nuestra amiga."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Esta es nuestra amiga.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-34:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — це моя сестра поруч; почніть з Esta",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-34:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — це моя сестра поруч; почніть з Esta",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-34:i11:audio",
+          "transcript": "Esta es mi hermana."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Esta es mi hermana.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-34:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — це наша сестра поруч; почніть з Esta",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-34:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — це наша сестра поруч; почніть з Esta",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-34:i12:audio",
+          "transcript": "Esta es nuestra hermana."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Esta es nuestra hermana.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "31773d25803592d99d971cca14a1bce600400cb8514fce2d9ad2ac40200bf16a"
+}

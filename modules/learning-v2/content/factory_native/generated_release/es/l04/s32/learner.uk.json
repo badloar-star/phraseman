@@ -1,0 +1,1009 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-04:session-32",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-04:session-32:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-32:i01:r1",
+          "text": "nuestras"
+        },
+        {
+          "responseId": "es:lesson-04:session-32:i01:r2",
+          "text": "nuestros"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-32:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-32:i01:audio",
+          "transcript": "nuestras"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-04:session-32:i01:r1",
+            "targetText": "nuestras",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-04:session-32:i01:r2",
+            "targetText": "nuestros",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-32:i01:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит a перед конечным s: nuestras.",
+              "uk": "Звучить a перед кінцевим s: nuestras."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-32:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — це наша машина",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-32:i02:r1",
+          "text": "nuestro"
+        },
+        {
+          "responseId": "es:lesson-04:session-32:i02:r2",
+          "text": "nuestra"
+        },
+        {
+          "responseId": "es:lesson-04:session-32:i02:r3",
+          "text": "nuestros"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — це наша машина",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это наша машина",
+          "uk": "Вставте слово — це наша машина"
+        },
+        "gappedTargetPhrase": "Es ___ carro.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-32:i02:r1",
+            "text": "nuestro"
+          },
+          {
+            "responseId": "es:lesson-04:session-32:i02:r2",
+            "text": "nuestra"
+          },
+          {
+            "responseId": "es:lesson-04:session-32:i02:r3",
+            "text": "nuestros"
+          }
+        ],
+        "testedDimension": "Вставте слово — це наша машина",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-32:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — це наша машина",
+            "feedbackByLocale": {
+              "ru": "Carro мужского рода.",
+              "uk": "Carro чоловічого роду."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-32:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — це наша машина",
+            "feedbackByLocale": {
+              "ru": "Машина одна: nuestro.",
+              "uk": "Машина одна: nuestro."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-32:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це наш будинок",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-32:i03:r1",
+          "text": "Плитки: casa"
+        },
+        {
+          "responseId": "es:lesson-04:session-32:i03:r2",
+          "text": "nuestra"
+        },
+        {
+          "responseId": "es:lesson-04:session-32:i03:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-32:i03:r4",
+          "text": "la."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це наш будинок",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es nuestra casa.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это наш дом",
+          "uk": "Зберіть фразу — це наш будинок"
+        },
+        "orderedTokens": [
+          "Es",
+          "nuestra",
+          "casa"
+        ],
+        "authoredDistractorTokens": [
+          "la"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-32:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це наш будинок",
+            "feedbackByLocale": {
+              "ru": "перед nuestra здесь нет артикля.",
+              "uk": "перед nuestra тут немає артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-32:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — це наші друзі-чоловіки",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-32:i04:r1",
+          "text": "nuestros"
+        },
+        {
+          "responseId": "es:lesson-04:session-32:i04:r2",
+          "text": "nuestro"
+        },
+        {
+          "responseId": "es:lesson-04:session-32:i04:r3",
+          "text": "nuestras"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — це наші друзі-чоловіки",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это наши друзья-мужчины",
+          "uk": "Вставте слово — це наші друзі-чоловіки"
+        },
+        "gappedTargetPhrase": "Son ___ amigos.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-32:i04:r1",
+            "text": "nuestros"
+          },
+          {
+            "responseId": "es:lesson-04:session-32:i04:r2",
+            "text": "nuestro"
+          },
+          {
+            "responseId": "es:lesson-04:session-32:i04:r3",
+            "text": "nuestras"
+          }
+        ],
+        "testedDimension": "Вставте слово — це наші друзі-чоловіки",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-32:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — це наші друзі-чоловіки",
+            "feedbackByLocale": {
+              "ru": "Друзей несколько: nuestros.",
+              "uk": "Друзів кілька: nuestros."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-32:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — це наші друзі-чоловіки",
+            "feedbackByLocale": {
+              "ru": "Amigos мужского рода: nuestros.",
+              "uk": "Amigos чоловічого роду: nuestros."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-32:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це наші подруги",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-32:i05:r1",
+          "text": "Плитки: amigas"
+        },
+        {
+          "responseId": "es:lesson-04:session-32:i05:r2",
+          "text": "nuestras"
+        },
+        {
+          "responseId": "es:lesson-04:session-32:i05:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-32:i05:r4",
+          "text": "nuestra."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це наші подруги",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son nuestras amigas.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это наши подруги",
+          "uk": "Зберіть фразу — це наші подруги"
+        },
+        "orderedTokens": [
+          "Son",
+          "nuestras",
+          "amigas"
+        ],
+        "authoredDistractorTokens": [
+          "nuestra"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-32:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це наші подруги",
+            "feedbackByLocale": {
+              "ru": "подруг несколько.",
+              "uk": "подруг кілька."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-32:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — це наша сумка, називаємо її bolsa",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-32:i06:r1",
+          "text": "nuestra"
+        },
+        {
+          "responseId": "es:lesson-04:session-32:i06:r2",
+          "text": "nuestro"
+        },
+        {
+          "responseId": "es:lesson-04:session-32:i06:r3",
+          "text": "nuestras"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — це наша сумка, називаємо її bolsa",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это наша сумка, называем её bolsa",
+          "uk": "Вставте слово — це наша сумка, називаємо її bolsa"
+        },
+        "gappedTargetPhrase": "Es ___ bolsa.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-32:i06:r1",
+            "text": "nuestra"
+          },
+          {
+            "responseId": "es:lesson-04:session-32:i06:r2",
+            "text": "nuestro"
+          },
+          {
+            "responseId": "es:lesson-04:session-32:i06:r3",
+            "text": "nuestras"
+          }
+        ],
+        "testedDimension": "Вставте слово — це наша сумка, називаємо її bolsa",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-32:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — це наша сумка, називаємо її bolsa",
+            "feedbackByLocale": {
+              "ru": "Bolsa женского рода.",
+              "uk": "Bolsa жіночого роду."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-32:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — це наша сумка, називаємо її bolsa",
+            "feedbackByLocale": {
+              "ru": "Сумка одна: nuestra.",
+              "uk": "Сумка одна: nuestra."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-32:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — наш будинок дуже великий; почніть з Nuestra casa",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-32:i07:r1",
+          "text": "Плитки: grande"
+        },
+        {
+          "responseId": "es:lesson-04:session-32:i07:r2",
+          "text": "muy"
+        },
+        {
+          "responseId": "es:lesson-04:session-32:i07:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-32:i07:r4",
+          "text": "casa"
+        },
+        {
+          "responseId": "es:lesson-04:session-32:i07:r5",
+          "text": "nuestra"
+        },
+        {
+          "responseId": "es:lesson-04:session-32:i07:r6",
+          "text": "grandes."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — наш будинок дуже великий; почніть з Nuestra casa",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Nuestra casa es muy grande.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — наш дом очень большой; начните с Nuestra casa",
+          "uk": "Зберіть фразу — наш будинок дуже великий; почніть з Nuestra casa"
+        },
+        "orderedTokens": [
+          "Nuestra",
+          "casa",
+          "es",
+          "muy",
+          "grande"
+        ],
+        "authoredDistractorTokens": [
+          "grandes"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-32:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — наш будинок дуже великий; почніть з Nuestra casa",
+            "feedbackByLocale": {
+              "ru": "дом один.",
+              "uk": "будинок один."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-32:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — наші друзі привітні",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-32:i08:r1",
+          "text": "amables"
+        },
+        {
+          "responseId": "es:lesson-04:session-32:i08:r2",
+          "text": "amable"
+        },
+        {
+          "responseId": "es:lesson-04:session-32:i08:r3",
+          "text": "grande"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — наші друзі привітні",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — наши друзья приветливые",
+          "uk": "Вставте слово — наші друзі привітні"
+        },
+        "gappedTargetPhrase": "Nuestros amigos son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-32:i08:r1",
+            "text": "amables"
+          },
+          {
+            "responseId": "es:lesson-04:session-32:i08:r2",
+            "text": "amable"
+          },
+          {
+            "responseId": "es:lesson-04:session-32:i08:r3",
+            "text": "grande"
+          }
+        ],
+        "testedDimension": "Вставте слово — наші друзі привітні",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-32:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — наші друзі привітні",
+            "feedbackByLocale": {
+              "ru": "Друзей несколько: amables.",
+              "uk": "Друзів кілька: amables."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-32:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — наші друзі привітні",
+            "feedbackByLocale": {
+              "ru": "Нужно «приветливые»: amables.",
+              "uk": "Потрібно «привітні»: amables."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-32:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — наші подруги привітні; почніть з Nuestras amigas",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-32:i09:r1",
+          "text": "Плитки: amables"
+        },
+        {
+          "responseId": "es:lesson-04:session-32:i09:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-32:i09:r3",
+          "text": "amigas"
+        },
+        {
+          "responseId": "es:lesson-04:session-32:i09:r4",
+          "text": "nuestras"
+        },
+        {
+          "responseId": "es:lesson-04:session-32:i09:r5",
+          "text": "amable."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — наші подруги привітні; почніть з Nuestras amigas",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Nuestras amigas son amables.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — наши подруги приветливые; начните с Nuestras amigas",
+          "uk": "Зберіть фразу — наші подруги привітні; почніть з Nuestras amigas"
+        },
+        "orderedTokens": [
+          "Nuestras",
+          "amigas",
+          "son",
+          "amables"
+        ],
+        "authoredDistractorTokens": [
+          "amable"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-32:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — наші подруги привітні; почніть з Nuestras amigas",
+            "feedbackByLocale": {
+              "ru": "подруг несколько.",
+              "uk": "подруг кілька."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-32:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це не наша машина; використайте carro",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-32:i10:r1",
+          "text": "Плитки: carro"
+        },
+        {
+          "responseId": "es:lesson-04:session-32:i10:r2",
+          "text": "nuestro"
+        },
+        {
+          "responseId": "es:lesson-04:session-32:i10:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-32:i10:r4",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-04:session-32:i10:r5",
+          "text": "nuestra."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це не наша машина; використайте carro",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No es nuestro carro.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это не наша машина; используйте carro",
+          "uk": "Зберіть фразу — це не наша машина; використайте carro"
+        },
+        "orderedTokens": [
+          "No",
+          "es",
+          "nuestro",
+          "carro"
+        ],
+        "authoredDistractorTokens": [
+          "nuestra"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-32:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це не наша машина; використайте carro",
+            "feedbackByLocale": {
+              "ru": "carro мужского рода.",
+              "uk": "carro чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-32:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-32:i11:r1",
+          "text": "Плитки: bolsa"
+        },
+        {
+          "responseId": "es:lesson-04:session-32:i11:r2",
+          "text": "nuestra"
+        },
+        {
+          "responseId": "es:lesson-04:session-32:i11:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-32:i11:r4",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-04:session-32:i11:r5",
+          "text": "nuestro."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-32:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-32:i11:audio",
+          "transcript": "No es nuestra bolsa."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "No es nuestra bolsa.",
+        "orderedTokens": [
+          "No",
+          "es",
+          "nuestra",
+          "bolsa"
+        ],
+        "authoredDistractorTokens": [
+          "nuestro"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-32:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит nuestra.",
+              "uk": "звучить nuestra."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-32:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — наш будинок великий",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-32:i12:r1",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-32:i12:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-32:i12:r3",
+          "text": "soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — наш будинок великий",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — наш дом большой",
+          "uk": "Вставте слово — наш будинок великий"
+        },
+        "gappedTargetPhrase": "Nuestra casa ___ grande.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-32:i12:r1",
+            "text": "es"
+          },
+          {
+            "responseId": "es:lesson-04:session-32:i12:r2",
+            "text": "son"
+          },
+          {
+            "responseId": "es:lesson-04:session-32:i12:r3",
+            "text": "soy"
+          }
+        ],
+        "testedDimension": "Вставте слово — наш будинок великий",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-32:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — наш будинок великий",
+            "feedbackByLocale": {
+              "ru": "Дом один: es.",
+              "uk": "Будинок один: es."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-32:i12:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — наш будинок великий",
+            "feedbackByLocale": {
+              "ru": "Описываете дом, а не себя.",
+              "uk": "Описуєте будинок, а не себе."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-32:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — це наша машина; почніть з Es, використайте carro",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-32:i13:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — це наша машина; почніть з Es, використайте carro",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-32:i13:audio",
+          "transcript": "Es nuestro carro."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es nuestro carro.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-32:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — наш будинок великий; почніть з Nuestra casa",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-32:i14:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — наш будинок великий; почніть з Nuestra casa",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-32:i14:audio",
+          "transcript": "Nuestra casa es grande."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Nuestra casa es grande.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-32:i15",
+      "ordinal": 18,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — це наші друзі-чоловіки; почніть з Son",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-32:i15:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — це наші друзі-чоловіки; почніть з Son",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-32:i15:audio",
+          "transcript": "Son nuestros amigos."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son nuestros amigos.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-32:i16",
+      "ordinal": 19,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — наші подруги привітні; почніть з Nuestras amigas",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-32:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — наші подруги привітні; почніть з Nuestras amigas",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-32:i16:audio",
+          "transcript": "Nuestras amigas son amables."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Nuestras amigas son amables.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-32:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — це не наша машина; почніть з No es, використайте carro",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-32:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — це не наша машина; почніть з No es, використайте carro",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-32:i17:audio",
+          "transcript": "No es nuestro carro."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No es nuestro carro.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-32:i18",
+      "ordinal": 21,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — це не наша сумка; почніть з No es, використайте bolsa",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-32:i18:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — це не наша сумка; почніть з No es, використайте bolsa",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-32:i18:audio",
+          "transcript": "No es nuestra bolsa."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No es nuestra bolsa.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 18,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "d2dd45e0cdc177c1cf5cd113e721740cdb30236760d72322c093c11857e46bbf"
+}

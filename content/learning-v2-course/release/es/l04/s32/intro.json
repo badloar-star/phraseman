@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-04:session-32",
+  "learningOutcomeByLocale": {
+    "ru": "выбирать форму «наш» по роду и числу названного человека или предмета.",
+    "uk": "вибирати форму «наш» за родом і числом названої людини або предмета."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-04:session-32:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Наш дом",
+        "uk": "Наш будинок"
+      },
+      "bodyByLocale": {
+        "ru": "Показываете гостю семейный дом. Скажите `Es nuestra casa` — «Это наш дом». Соберите `es` + `nuestra casa`. Casa женского рода и в единственном числе, поэтому выбираем nuestra. Число членов семьи не меняет es: дом один.",
+        "uk": "Показуєте гостю сімейний будинок. Скажіть `Es nuestra casa` — «Це наш будинок». Зберіть `es` + `nuestra casa`. Casa жіночого роду й в однині, тому вибираємо nuestra. Кількість членів родини не змінює es: будинок один."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-32:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите: «Это наш дом». Начните с Es.",
+          "uk": "Скажіть: «Це наш будинок». Почніть з Es."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-32:intro1:r1",
+              "text": "Es nuestra casa."
+            },
+            {
+              "responseId": "es:lesson-04:session-32:intro1:r2",
+              "text": "Es nuestro casa."
+            },
+            {
+              "responseId": "es:lesson-04:session-32:intro1:r3",
+              "text": "Son nuestra casa."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-32:intro1:r1",
+              "text": "Es nuestra casa."
+            },
+            {
+              "responseId": "es:lesson-04:session-32:intro1:r2",
+              "text": "Es nuestro casa."
+            },
+            {
+              "responseId": "es:lesson-04:session-32:intro1:r3",
+              "text": "Son nuestra casa."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите: «Это наш дом». Начните с Es.",
+          "uk": "Скажіть: «Це наш будинок». Почніть з Es."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-04:session-32:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Наши подруги",
+        "uk": "Наші подруги"
+      },
+      "bodyByLocale": {
+        "ru": "К вам подошли общие подруги семьи. Представьте их гостю: `Son nuestras amigas` — «Это наши подруги». Соберите `son` + `nuestras amigas`. Amigas женского рода и во множественном числе; оба признака отражены в nuestras. Говорим о нескольких людях, поэтому son.",
+        "uk": "До вас підійшли спільні подруги родини. Представте їх гостю: `Son nuestras amigas` — «Це наші подруги». Зберіть `son` + `nuestras amigas`. Amigas жіночого роду й у множині; обидві ознаки відображені в nuestras. Говоримо про кількох людей, тому son."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-32:intro2:q",
+        "promptByLocale": {
+          "ru": "Представьте подруг: «Это наши подруги». Начните с Son.",
+          "uk": "Представте подруг: «Це наші подруги». Почніть з Son."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-32:intro2:r1",
+              "text": "Son nuestras amigas."
+            },
+            {
+              "responseId": "es:lesson-04:session-32:intro2:r2",
+              "text": "Son nuestros amigas."
+            },
+            {
+              "responseId": "es:lesson-04:session-32:intro2:r3",
+              "text": "Son nuestra amigas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-32:intro2:r1",
+              "text": "Son nuestras amigas."
+            },
+            {
+              "responseId": "es:lesson-04:session-32:intro2:r2",
+              "text": "Son nuestros amigas."
+            },
+            {
+              "responseId": "es:lesson-04:session-32:intro2:r3",
+              "text": "Son nuestra amigas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Представьте подруг: «Это наши подруги». Начните с Son.",
+          "uk": "Представте подруг: «Це наші подруги». Почніть з Son."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-04:session-32:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Чужая машина",
+        "uk": "Чужа машина"
+      },
+      "bodyByLocale": {
+        "ru": "Гость принял соседскую машину за вашу. Скажите `No es nuestro carro` — «Это не наша машина». Соберите `no` + `es` + `nuestro carro`. Мужское carro требует nuestro, а no перед es отрицает принадлежность. Отрицание не меняет род или число слов.",
+        "uk": "Гість прийняв сусідську машину за вашу. Скажіть `No es nuestro carro` — «Це не наша машина». Зберіть `no` + `es` + `nuestro carro`. Чоловіче carro потребує nuestro, а no перед es заперечує належність. Заперечення не змінює роду або числа слів."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-32:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите: «Это не наша машина». Начните с No es, используйте carro.",
+          "uk": "Скажіть: «Це не наша машина». Почніть з No es, використайте carro."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-32:intro3:r1",
+              "text": "No es nuestro carro."
+            },
+            {
+              "responseId": "es:lesson-04:session-32:intro3:r2",
+              "text": "No es nuestra carro."
+            },
+            {
+              "responseId": "es:lesson-04:session-32:intro3:r3",
+              "text": "No son nuestro carro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-32:intro3:r1",
+              "text": "No es nuestro carro."
+            },
+            {
+              "responseId": "es:lesson-04:session-32:intro3:r2",
+              "text": "No es nuestra carro."
+            },
+            {
+              "responseId": "es:lesson-04:session-32:intro3:r3",
+              "text": "No son nuestro carro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите: «Это не наша машина». Начните с No es, используйте carro.",
+          "uk": "Скажіть: «Це не наша машина». Почніть з No es, використайте carro."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "581ee37ed70d45b082a1610f6b1a67475f2c026f9c423047e7d7a27ba81a4098"
+}

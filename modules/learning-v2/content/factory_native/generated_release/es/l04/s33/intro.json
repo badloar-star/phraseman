@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-04:session-33",
+  "learningOutcomeByLocale": {
+    "ru": "использовать este для указания на мужчину рядом с говорящим.",
+    "uk": "використовувати este, щоб указати на чоловіка поруч із мовцем."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-04:session-33:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Представить друга рядом",
+        "uk": "Представити друга поруч"
+      },
+      "bodyByLocale": {
+        "ru": "Ваш друг стоит рядом с вами. Представьте его гостю: `Este es mi amigo` — «Это мой друг». Соберите `este` + `es` + `mi amigo`. Este здесь указывает на конкретного мужчину рядом с вами. В отличие от короткого Es mi amigo, теперь вы явно показываете, о ком говорите. Este пишется без знака ударения.",
+        "uk": "Ваш друг стоїть поруч із вами. Представте його гостю: `Este es mi amigo` — «Це мій друг». Зберіть `este` + `es` + `mi amigo`. Este тут указує на конкретного чоловіка поруч із вами. На відміну від короткого Es mi amigo, тепер ви явно показуєте, про кого говорите. Este пишеться без знака наголосу."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-33:intro1:q",
+        "promptByLocale": {
+          "ru": "Представьте друга рядом: «Это мой друг». Начните с Este.",
+          "uk": "Представте друга поруч: «Це мій друг». Почніть з Este."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-33:intro1:r1",
+              "text": "Este es mi amigo."
+            },
+            {
+              "responseId": "es:lesson-04:session-33:intro1:r2",
+              "text": "Este son mi amigo."
+            },
+            {
+              "responseId": "es:lesson-04:session-33:intro1:r3",
+              "text": "Este es el mi amigo."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-33:intro1:r1",
+              "text": "Este es mi amigo."
+            },
+            {
+              "responseId": "es:lesson-04:session-33:intro1:r2",
+              "text": "Este son mi amigo."
+            },
+            {
+              "responseId": "es:lesson-04:session-33:intro1:r3",
+              "text": "Este es el mi amigo."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Представьте друга рядом: «Это мой друг». Начните с Este.",
+          "uk": "Представте друга поруч: «Це мій друг». Почніть з Este."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-04:session-33:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Наш общий друг",
+        "uk": "Наш спільний друг"
+      },
+      "bodyByLocale": {
+        "ru": "Рядом с вами также сестра; вы оба дружите с этим мужчиной. Представьте его от вас двоих: `Este es nuestro amigo` — «Это наш друг». Соберите `este` + `es` + `nuestro amigo`. Замените mi на nuestro, чтобы показать общую дружбу. Este и es остаются: представляете того же одного мужчину.",
+        "uk": "Поруч із вами також сестра; ви обоє дружите із цим чоловіком. Представте його від вас двох: `Este es nuestro amigo` — «Це наш друг». Зберіть `este` + `es` + `nuestro amigo`. Замініть mi на nuestro, щоб показати спільну дружбу. Este й es залишаються: представляєте того самого одного чоловіка."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-33:intro2:q",
+        "promptByLocale": {
+          "ru": "Представьте вашего общего друга рядом: «Это наш друг». Начните с Este.",
+          "uk": "Представте вашого спільного друга поруч: «Це наш друг». Почніть з Este."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-33:intro2:r1",
+              "text": "Este es nuestro amigo."
+            },
+            {
+              "responseId": "es:lesson-04:session-33:intro2:r2",
+              "text": "Este es nuestros amigo."
+            },
+            {
+              "responseId": "es:lesson-04:session-33:intro2:r3",
+              "text": "Este son nuestro amigo."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-33:intro2:r1",
+              "text": "Este es nuestro amigo."
+            },
+            {
+              "responseId": "es:lesson-04:session-33:intro2:r2",
+              "text": "Este es nuestros amigo."
+            },
+            {
+              "responseId": "es:lesson-04:session-33:intro2:r3",
+              "text": "Este son nuestro amigo."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Представьте вашего общего друга рядом: «Это наш друг». Начните с Este.",
+          "uk": "Представте вашого спільного друга поруч: «Це наш друг». Почніть з Este."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-04:session-33:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Представить брата",
+        "uk": "Представити брата"
+      },
+      "bodyByLocale": {
+        "ru": "Теперь рядом с вами ваш брат. Скажите гостю `Este es mi hermano` — «Это мой брат». Соберите `este` + `es` + `mi hermano`. Сохраните Este es mi и замените название отношений: вместо amigo поставьте hermano. Este продолжает указывать на мужчину рядом.",
+        "uk": "Тепер поруч із вами ваш брат. Скажіть гостю `Este es mi hermano` — «Це мій брат». Зберіть `este` + `es` + `mi hermano`. Збережіть Este es mi й замініть назву стосунків: замість amigo поставте hermano. Este й далі вказує на чоловіка поруч."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-33:intro3:q",
+        "promptByLocale": {
+          "ru": "Представьте брата рядом: «Это мой брат». Начните с Este.",
+          "uk": "Представте брата поруч: «Це мій брат». Почніть з Este."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-33:intro3:r1",
+              "text": "Este es mi hermano."
+            },
+            {
+              "responseId": "es:lesson-04:session-33:intro3:r2",
+              "text": "Este es mis hermano."
+            },
+            {
+              "responseId": "es:lesson-04:session-33:intro3:r3",
+              "text": "Este son mi hermano."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-33:intro3:r1",
+              "text": "Este es mi hermano."
+            },
+            {
+              "responseId": "es:lesson-04:session-33:intro3:r2",
+              "text": "Este es mis hermano."
+            },
+            {
+              "responseId": "es:lesson-04:session-33:intro3:r3",
+              "text": "Este son mi hermano."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Представьте брата рядом: «Это мой брат». Начните с Este.",
+          "uk": "Представте брата поруч: «Це мій брат». Почніть з Este."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f240e9ffb79d4f40f955544c159f6fbd6f8d65c600adb46449caa2b10b91494d"
+}

@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-04:session-33:i01",
+    "correctText": "este",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-33:i02",
+    "correctText": "este",
+    "correctResponseId": "es:lesson-04:session-33:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-33:i03",
+    "correctText": "es",
+    "correctResponseId": "es:lesson-04:session-33:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-33:i04",
+    "correctText": "Este es mi amigo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-33:i05",
+    "correctText": "Este es nuestro amigo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-33:i06",
+    "correctText": "mi",
+    "correctResponseId": "es:lesson-04:session-33:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-33:i07",
+    "correctText": "Este es mi hermano.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-33:i08",
+    "correctText": "Este es mi amigo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-33:i09",
+    "correctText": "Este es mi amigo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-33:i10",
+    "correctText": "Este es nuestro amigo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-33:i11",
+    "correctText": "Este es mi hermano.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-33:i12",
+    "correctText": "Este es nuestro hermano.",
+    "correctResponseId": null
+  }
+]

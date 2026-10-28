@@ -1,0 +1,92 @@
+[
+  {
+    "interactionId": "es:lesson-04:session-32:i01",
+    "correctText": "nuestras",
+    "correctResponseId": "es:lesson-04:session-32:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-32:i02",
+    "correctText": "nuestro",
+    "correctResponseId": "es:lesson-04:session-32:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-32:i03",
+    "correctText": "Es nuestra casa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-32:i04",
+    "correctText": "nuestros",
+    "correctResponseId": "es:lesson-04:session-32:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-32:i05",
+    "correctText": "Son nuestras amigas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-32:i06",
+    "correctText": "nuestra",
+    "correctResponseId": "es:lesson-04:session-32:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-32:i07",
+    "correctText": "Nuestra casa es muy grande.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-32:i08",
+    "correctText": "amables",
+    "correctResponseId": "es:lesson-04:session-32:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-32:i09",
+    "correctText": "Nuestras amigas son amables.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-32:i10",
+    "correctText": "No es nuestro carro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-32:i11",
+    "correctText": "No es nuestra bolsa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-32:i12",
+    "correctText": "es",
+    "correctResponseId": "es:lesson-04:session-32:i12:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-32:i13",
+    "correctText": "Es nuestro carro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-32:i14",
+    "correctText": "Nuestra casa es grande.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-32:i15",
+    "correctText": "Son nuestros amigos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-32:i16",
+    "correctText": "Nuestras amigas son amables.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-32:i17",
+    "correctText": "No es nuestro carro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-32:i18",
+    "correctText": "No es nuestra bolsa.",
+    "correctResponseId": null
+  }
+]

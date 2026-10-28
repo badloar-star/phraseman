@@ -1,0 +1,652 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-04:session-33",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-04:session-33:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — este",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-33:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — este",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-33:i01:audio",
+          "transcript": "este"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-04:session-33:i01:r1",
+            "targetText": "este",
+            "meaningByLocale": {
+              "ru": "этот; здесь «это» при представлении мужчины рядом. Пишется без знака ударения. 🔊 *este*",
+              "uk": "цей; тут «це» під час представлення чоловіка поруч. Пишеться без знака наголосу. 🔊 *este*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "este",
+          "definitionByLocale": {
+            "ru": "этот; здесь «это» при представлении мужчины рядом. Пишется без знака ударения. 🔊 *este*",
+            "uk": "цей; тут «це» під час представлення чоловіка поруч. Пишеться без знака наголосу. 🔊 *este*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-33:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-33:i02:r1",
+          "text": "este"
+        },
+        {
+          "responseId": "es:lesson-04:session-33:i02:r2",
+          "text": "es"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-33:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-33:i02:audio",
+          "transcript": "este"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-04:session-33:i02:r1",
+            "targetText": "este",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-04:session-33:i02:r2",
+            "targetText": "es",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-33:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит полное este, не короткое es.",
+              "uk": "Звучить повне este, не коротке es."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-33:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — це мій друг поруч зі мною",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-33:i03:r1",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-33:i03:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-33:i03:r3",
+          "text": "soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — це мій друг поруч зі мною",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это мой друг рядом со мной",
+          "uk": "Вставте слово — це мій друг поруч зі мною"
+        },
+        "gappedTargetPhrase": "Este ___ mi amigo.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-33:i03:r1",
+            "text": "es"
+          },
+          {
+            "responseId": "es:lesson-04:session-33:i03:r2",
+            "text": "son"
+          },
+          {
+            "responseId": "es:lesson-04:session-33:i03:r3",
+            "text": "soy"
+          }
+        ],
+        "testedDimension": "Вставте слово — це мій друг поруч зі мною",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-33:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — це мій друг поруч зі мною",
+            "feedbackByLocale": {
+              "ru": "Друг один: es.",
+              "uk": "Друг один: es."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-33:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — це мій друг поруч зі мною",
+            "feedbackByLocale": {
+              "ru": "Представляете другого человека, не себя.",
+              "uk": "Представляєте іншу людину, не себе."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-33:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це мій друг поруч; почніть з Este",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-33:i04:r1",
+          "text": "Плитки: amigo"
+        },
+        {
+          "responseId": "es:lesson-04:session-33:i04:r2",
+          "text": "mi"
+        },
+        {
+          "responseId": "es:lesson-04:session-33:i04:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-33:i04:r4",
+          "text": "este"
+        },
+        {
+          "responseId": "es:lesson-04:session-33:i04:r5",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це мій друг поруч; почніть з Este",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Este es mi amigo.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это мой друг рядом; начните с Este",
+          "uk": "Зберіть фразу — це мій друг поруч; почніть з Este"
+        },
+        "orderedTokens": [
+          "Este",
+          "es",
+          "mi",
+          "amigo"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-33:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це мій друг поруч; почніть з Este",
+            "feedbackByLocale": {
+              "ru": "перед mi здесь нет артикля.",
+              "uk": "перед mi тут немає артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-33:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це наш спільний друг поруч; почніть з Este",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-33:i05:r1",
+          "text": "Плитки: amigo"
+        },
+        {
+          "responseId": "es:lesson-04:session-33:i05:r2",
+          "text": "nuestro"
+        },
+        {
+          "responseId": "es:lesson-04:session-33:i05:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-33:i05:r4",
+          "text": "este"
+        },
+        {
+          "responseId": "es:lesson-04:session-33:i05:r5",
+          "text": "nuestros."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це наш спільний друг поруч; почніть з Este",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Este es nuestro amigo.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это наш общий друг рядом; начните с Este",
+          "uk": "Зберіть фразу — це наш спільний друг поруч; почніть з Este"
+        },
+        "orderedTokens": [
+          "Este",
+          "es",
+          "nuestro",
+          "amigo"
+        ],
+        "authoredDistractorTokens": [
+          "nuestros"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-33:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це наш спільний друг поруч; почніть з Este",
+            "feedbackByLocale": {
+              "ru": "друг один.",
+              "uk": "друг один."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-33:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — представляєте свого брата поруч",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-33:i06:r1",
+          "text": "mi"
+        },
+        {
+          "responseId": "es:lesson-04:session-33:i06:r2",
+          "text": "mis"
+        },
+        {
+          "responseId": "es:lesson-04:session-33:i06:r3",
+          "text": "tu"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — представляєте свого брата поруч",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — представляете своего брата рядом",
+          "uk": "Вставте слово — представляєте свого брата поруч"
+        },
+        "gappedTargetPhrase": "Este es ___ hermano.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-33:i06:r1",
+            "text": "mi"
+          },
+          {
+            "responseId": "es:lesson-04:session-33:i06:r2",
+            "text": "mis"
+          },
+          {
+            "responseId": "es:lesson-04:session-33:i06:r3",
+            "text": "tu"
+          }
+        ],
+        "testedDimension": "Вставте слово — представляєте свого брата поруч",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-33:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — представляєте свого брата поруч",
+            "feedbackByLocale": {
+              "ru": "Брат один: mi.",
+              "uk": "Брат один: mi."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-33:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — представляєте свого брата поруч",
+            "feedbackByLocale": {
+              "ru": "Представляете своего брата: mi.",
+              "uk": "Представляєте свого брата: mi."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-33:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це мій брат поруч; почніть з Este",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-33:i07:r1",
+          "text": "Плитки: hermano"
+        },
+        {
+          "responseId": "es:lesson-04:session-33:i07:r2",
+          "text": "mi"
+        },
+        {
+          "responseId": "es:lesson-04:session-33:i07:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-33:i07:r4",
+          "text": "este"
+        },
+        {
+          "responseId": "es:lesson-04:session-33:i07:r5",
+          "text": "mis."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це мій брат поруч; почніть з Este",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Este es mi hermano.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это мой брат рядом; начните с Este",
+          "uk": "Зберіть фразу — це мій брат поруч; почніть з Este"
+        },
+        "orderedTokens": [
+          "Este",
+          "es",
+          "mi",
+          "hermano"
+        ],
+        "authoredDistractorTokens": [
+          "mis"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-33:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це мій брат поруч; почніть з Este",
+            "feedbackByLocale": {
+              "ru": "брат один.",
+              "uk": "брат один."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-33:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-33:i08:r1",
+          "text": "Плитки: mi"
+        },
+        {
+          "responseId": "es:lesson-04:session-33:i08:r2",
+          "text": "amigo"
+        },
+        {
+          "responseId": "es:lesson-04:session-33:i08:r3",
+          "text": "este"
+        },
+        {
+          "responseId": "es:lesson-04:session-33:i08:r4",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-33:i08:r5",
+          "text": "nuestro."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-33:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-33:i08:audio",
+          "transcript": "Este es mi amigo."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Este es mi amigo.",
+        "orderedTokens": [
+          "Este",
+          "es",
+          "mi",
+          "amigo"
+        ],
+        "authoredDistractorTokens": [
+          "nuestro"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-33:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит mi.",
+              "uk": "звучить mi."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-33:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — це мій друг поруч; почніть з Este",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-33:i09:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — це мій друг поруч; почніть з Este",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-33:i09:audio",
+          "transcript": "Este es mi amigo."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Este es mi amigo.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-33:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — це наш спільний друг поруч; почніть з Este",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-33:i10:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — це наш спільний друг поруч; почніть з Este",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-33:i10:audio",
+          "transcript": "Este es nuestro amigo."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Este es nuestro amigo.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-33:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — це мій брат поруч; почніть з Este",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-33:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — це мій брат поруч; почніть з Este",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-33:i11:audio",
+          "transcript": "Este es mi hermano."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Este es mi hermano.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-33:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — це наш брат поруч; почніть з Este",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-33:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — це наш брат поруч; почніть з Este",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-33:i12:audio",
+          "transcript": "Este es nuestro hermano."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Este es nuestro hermano.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "fa4087bbfa0d41a81e2753ab289f762013232d2e1d15f76da6e20c8fc94b9fb5"
+}

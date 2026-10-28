@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-04:session-33",
+  "entries": [
+    {
+      "interactionId": "es:lesson-04:session-33:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-33:intro1:r2": {
+          "ru": "Представляете одного человека: es.",
+          "uk": "Представляєте одну людину: es."
+        },
+        "es:lesson-04:session-33:intro1:r3": {
+          "ru": "Перед mi здесь не нужен el.",
+          "uk": "Перед mi тут не потрібен el."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-33:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-33:intro2:r2": {
+          "ru": "Друг один: nuestro.",
+          "uk": "Друг один: nuestro."
+        },
+        "es:lesson-04:session-33:intro2:r3": {
+          "ru": "Один человек: es.",
+          "uk": "Одна людина: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-33:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-33:intro3:r2": {
+          "ru": "Брат один: mi.",
+          "uk": "Брат один: mi."
+        },
+        "es:lesson-04:session-33:intro3:r3": {
+          "ru": "Один человек: es.",
+          "uk": "Одна людина: es."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9e4d5f8279db3294194ce742c3a4f41fc62b87db5340133ebab3e50f035a2874"
+}

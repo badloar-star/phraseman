@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-04:session-34",
+  "learningOutcomeByLocale": {
+    "ru": "выбирать esta при указании на женщину рядом.",
+    "uk": "вибирати esta, вказуючи на жінку поруч."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-04:session-34:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Представить подругу",
+        "uk": "Представити подругу"
+      },
+      "bodyByLocale": {
+        "ru": "Подруга стоит рядом с вами. Скажите гостю `Esta es mi amiga` — «Это моя подруга». Соберите `esta` + `es` + `mi amiga`. Для женщины используем esta — женскую форму знакомого este. Слово mi остаётся тем же: оно не меняется по роду. Esta пишется без знака ударения.",
+        "uk": "Подруга стоїть поруч із вами. Скажіть гостю `Esta es mi amiga` — «Це моя подруга». Зберіть `esta` + `es` + `mi amiga`. Для жінки використовуємо esta — жіночу форму знайомого este. Слово mi залишається тим самим: воно не змінюється за родом. Esta пишеться без знака наголосу."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-34:intro1:q",
+        "promptByLocale": {
+          "ru": "Представьте подругу рядом: «Это моя подруга». Начните с Esta.",
+          "uk": "Представте подругу поруч: «Це моя подруга». Почніть з Esta."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-34:intro1:r1",
+              "text": "Esta es mi amiga."
+            },
+            {
+              "responseId": "es:lesson-04:session-34:intro1:r2",
+              "text": "Este es mi amiga."
+            },
+            {
+              "responseId": "es:lesson-04:session-34:intro1:r3",
+              "text": "Esta son mi amiga."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-34:intro1:r1",
+              "text": "Esta es mi amiga."
+            },
+            {
+              "responseId": "es:lesson-04:session-34:intro1:r2",
+              "text": "Este es mi amiga."
+            },
+            {
+              "responseId": "es:lesson-04:session-34:intro1:r3",
+              "text": "Esta son mi amiga."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Представьте подругу рядом: «Это моя подруга». Начните с Esta.",
+          "uk": "Представте подругу поруч: «Це моя подруга». Почніть з Esta."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-04:session-34:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Общая подруга",
+        "uk": "Спільна подруга"
+      },
+      "bodyByLocale": {
+        "ru": "Рядом с вами брат; вы оба дружите с этой женщиной. Представьте её от вас двоих: `Esta es nuestra amiga` — «Это наша подруга». Соберите `esta` + `es` + `nuestra amiga`. Mi замените на nuestra. Nuestra согласуется с женским amiga; пол вас и брата эту форму не определяет.",
+        "uk": "Поруч із вами брат; ви обоє дружите із цією жінкою. Представте її від вас двох: `Esta es nuestra amiga` — «Це наша подруга». Зберіть `esta` + `es` + `nuestra amiga`. Mi замініть на nuestra. Nuestra узгоджується з жіночим amiga; стать вас і брата цієї форми не визначає."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-34:intro2:q",
+        "promptByLocale": {
+          "ru": "Представьте общую подругу рядом: «Это наша подруга». Начните с Esta.",
+          "uk": "Представте спільну подругу поруч: «Це наша подруга». Почніть з Esta."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-34:intro2:r1",
+              "text": "Esta es nuestra amiga."
+            },
+            {
+              "responseId": "es:lesson-04:session-34:intro2:r2",
+              "text": "Esta es nuestro amiga."
+            },
+            {
+              "responseId": "es:lesson-04:session-34:intro2:r3",
+              "text": "Esta es nuestras amiga."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-34:intro2:r1",
+              "text": "Esta es nuestra amiga."
+            },
+            {
+              "responseId": "es:lesson-04:session-34:intro2:r2",
+              "text": "Esta es nuestro amiga."
+            },
+            {
+              "responseId": "es:lesson-04:session-34:intro2:r3",
+              "text": "Esta es nuestras amiga."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Представьте общую подругу рядом: «Это наша подруга». Начните с Esta.",
+          "uk": "Представте спільну подругу поруч: «Це наша подруга». Почніть з Esta."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-04:session-34:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Представить сестру",
+        "uk": "Представити сестру"
+      },
+      "bodyByLocale": {
+        "ru": "Теперь знакомите гостя с сестрой рядом с вами. Скажите `Esta es mi hermana` — «Это моя сестра». Соберите `esta` + `es` + `mi hermana`. Сохраните Esta es mi, а вместо amiga поставьте hermana. Esta по-прежнему указывает на женщину рядом.",
+        "uk": "Тепер знайомите гостя із сестрою поруч із вами. Скажіть `Esta es mi hermana` — «Це моя сестра». Зберіть `esta` + `es` + `mi hermana`. Збережіть Esta es mi, а замість amiga поставте hermana. Esta й далі вказує на жінку поруч."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-34:intro3:q",
+        "promptByLocale": {
+          "ru": "Представьте сестру рядом: «Это моя сестра». Начните с Esta.",
+          "uk": "Представте сестру поруч: «Це моя сестра». Почніть з Esta."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-34:intro3:r1",
+              "text": "Esta es mi hermana."
+            },
+            {
+              "responseId": "es:lesson-04:session-34:intro3:r2",
+              "text": "Este es mi hermana."
+            },
+            {
+              "responseId": "es:lesson-04:session-34:intro3:r3",
+              "text": "Esta es mis hermana."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-34:intro3:r1",
+              "text": "Esta es mi hermana."
+            },
+            {
+              "responseId": "es:lesson-04:session-34:intro3:r2",
+              "text": "Este es mi hermana."
+            },
+            {
+              "responseId": "es:lesson-04:session-34:intro3:r3",
+              "text": "Esta es mis hermana."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Представьте сестру рядом: «Это моя сестра». Начните с Esta.",
+          "uk": "Представте сестру поруч: «Це моя сестра». Почніть з Esta."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a529548b4aee192eeb88ea587e0fdda7cae53b2ba58bae8bda062b11078afc14"
+}

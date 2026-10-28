@@ -59,7 +59,7 @@ Unhook — зняти з гачка чи відчепити. I had unhooked the 
 - I had inserted the card by the time the gate opened. — *У записі звучить I had inserted the ticket by the time the gate opened.*
 - She had inserted the ticket by the time the gate opened. — *У записі звучить I had inserted the ticket by the time the gate opened.*
 
-**3 · Ви закінчили ще до приходу друга. Доповніть Past Perfect.**
+**3 · Ви закінчили ще до приходу друга. Покажіть, що це сталося раніше.**
 <!-- interaction_id: en:lesson-25:session-33:i02; family: context_gap_grammar -->
 I ___ finished by the time my friend arrived. → **had** · have · was
 - have — *Have finished стосується теперішнього; тут завершення до минулого приходу.*

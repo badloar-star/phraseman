@@ -59,7 +59,7 @@ Unhook — снять с крючка или отцепить. I had unhooked th
 - I had inserted the card by the time the gate opened. — *В записи звучит I had inserted the ticket by the time the gate opened.*
 - She had inserted the ticket by the time the gate opened. — *В записи звучит I had inserted the ticket by the time the gate opened.*
 
-**3 · Вы закончили ещё до прихода друга. Дополните Past Perfect.**
+**3 · Вы закончили ещё до прихода друга. Покажите, что это случилось раньше.**
 <!-- interaction_id: en:lesson-25:session-33:i02; family: context_gap_grammar -->
 I ___ finished by the time my friend arrived. → **had** · have · was
 - have — *Have finished относится к настоящему; здесь завершение до прошлого прихода.*

@@ -119,7 +119,7 @@ rotten — гниле · mouldy — запліснявілий · spoiled — з
 <!-- interaction_id: en:lesson-25:session-27:i11; family: scripted_repeat_compare -->
 🎙 **Can I have another packet?**
 
-**16 · Ви вже прибрали холодильник до повернення родини. Доповніть Past Perfect.**
+**16 · Ви вже прибрали холодильник до повернення родини. Покажіть, що це сталося раніше.**
 <!-- interaction_id: en:lesson-25:session-27:i12; family: context_gap_grammar -->
 I ___ cleaned the fridge before my family returned. → **had** · have · was
 - have — *Have cleaned пов’язане з теперішнім; тут прибирання завершилося до іншої минулої події.*

@@ -109,7 +109,7 @@ The rabbit had ___ before I opened the gate. → **fled** · flee · fleeing
 <!-- interaction_id: en:lesson-25:session-23:i09; family: speed_match -->
 landed — приземлилась · fled — убежала · hunted — охотилась · released — выпустили
 
-**14 · Ворота закрыли раньше, чем собака выбежала во двор. Выберите Past Perfect.**
+**14 · Ворота закрыли раньше, чем собака выбежала во двор. Покажите, что это случилось раньше.**
 <!-- interaction_id: en:lesson-25:session-23:i10; family: context_gap_grammar -->
 I ___ closed the gate before the dog came outside. → **had** · have · was
 - have — *Have closed связано с настоящим, а здесь одно прошлое действие предшествует другому.*

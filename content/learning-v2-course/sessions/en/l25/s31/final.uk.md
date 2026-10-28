@@ -119,7 +119,7 @@ flame — полум’я · ash — попіл · log — поліно · firep
 - On winter evenings we would talk by the fire. — *У записі звучить On winter evenings we would read by the fire.*
 - On summer evenings we would read by the fire. — *У записі звучить On winter evenings we would read by the fire.*
 
-**16 · Гості вже пішли до моменту вашого повернення. Доповніть Past Perfect.**
+**16 · Гості вже пішли до моменту вашого повернення. Покажіть, що це сталося раніше.**
 <!-- interaction_id: en:lesson-25:session-31:i12; family: context_gap_grammar -->
 The guests ___ left before I returned. → **had** · have · were
 - have — *Have left пов’язане з теперішнім; тут відхід раніше за минуле повернення.*

@@ -119,7 +119,7 @@ sincere — искренним · impolite — невежливым · humble �
 - I used to be afraid of singing in class. — *В записи звучит I used to be afraid of speaking in class.*
 - She used to be afraid of speaking in class. — *В записи звучит I used to be afraid of speaking in class.*
 
-**16 · Разговор закончился ещё до прихода учителя. Дополните Past Perfect.**
+**16 · Разговор закончился ещё до прихода учителя. Покажите, что это случилось раньше.**
 <!-- interaction_id: en:lesson-25:session-29:i12; family: context_gap_grammar -->
 We ___ finished talking before the teacher arrived. → **had** · have · were
 - have — *Have finished относится к настоящему; здесь конец разговора раньше прошлого прихода.*

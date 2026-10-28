@@ -119,7 +119,7 @@ fiancé — жених · fiancée — невеста · stepson — пасын�
 - On Saturdays we would visit the grandparents. — *В записи звучит On Sundays we would visit the grandparents.*
 - On Sundays they would visit the grandparents. — *В записи звучит On Sundays we would visit the grandparents.*
 
-**16 · Вы подготовили комнату до приезда семьи. Дополните Past Perfect.**
+**16 · Вы подготовили комнату до приезда семьи. Покажите, что это случилось раньше.**
 <!-- interaction_id: en:lesson-25:session-32:i12; family: context_gap_grammar -->
 I ___ prepared the room before my family arrived. → **had** · have · was
 - have — *Have prepared связано с настоящим; здесь подготовка раньше прошлого приезда.*

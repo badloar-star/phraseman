@@ -99,7 +99,7 @@ Our family had ___ before the celebration began. → **reunited** · rewritten �
 <!-- interaction_id: en:lesson-25:session-18:i07; family: phrase_builder -->
 Плитки: `moved` `we` `before` `house` `old` `our` `revisited` `had` `We` → **We had revisited our old house before we moved.**
 
-**12 · Билеты купили раньше, чем вы позвонили. Дополните Past Perfect.**
+**12 · Билеты купили раньше, чем вы позвонили. Покажите, что это случилось раньше.**
 <!-- interaction_id: en:lesson-25:session-18:i08; family: context_gap_grammar -->
 They ___ bought the tickets before I called. → **had** · have · were
 - have — *Have bought связано с настоящим; здесь покупка предшествует прошлому звонку.*

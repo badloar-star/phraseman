@@ -105,7 +105,7 @@ She had ___ the fruit before she poured it into glasses. → **blended** · shre
 <!-- interaction_id: en:lesson-25:session-20:i08; family: phrase_builder -->
 Плитки: `down` `sat` `we` `before` `thickened` `had` `sauce` `The` → **The sauce had thickened before we sat down.**
 
-**13 · Стіл накрили раніше, ніж прийшли гості. Виберіть Past Perfect.**
+**13 · Стіл накрили раніше, ніж прийшли гості. Покажіть, що це сталося раніше.**
 <!-- interaction_id: en:lesson-25:session-20:i09; family: context_gap_grammar -->
 We ___ set the table before our guests came. → **had** · have · were
 - have — *Have set пов’язане з теперішнім; тут накрили стіл до минулої зустрічі.*

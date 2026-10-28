@@ -99,7 +99,7 @@ They had ___ the pond before they added the fish. → **deepened** · widened ·
 <!-- interaction_id: en:lesson-25:session-24:i07; family: phrase_builder -->
 Плитки: `back` `came` `I` `before` `expanded` `had` `dough` `The` → **The dough had expanded before I came back.**
 
-**12 · Хліб уже спекли до вашого повернення. Доповніть Past Perfect.**
+**12 · Хліб уже спекли до вашого повернення. Покажіть, що це сталося раніше.**
 <!-- interaction_id: en:lesson-25:session-24:i08; family: context_gap_grammar -->
 She ___ baked the bread before I returned. → **had** · has · was
 - has — *Has baked пов’язане з теперішнім; тут повернення вже в минулому.*

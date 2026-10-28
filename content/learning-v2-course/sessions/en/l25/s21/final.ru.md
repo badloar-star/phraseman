@@ -107,7 +107,7 @@ She had ___ the trousers before I tried them on. → **lengthened** · shortened
 <!-- interaction_id: en:lesson-25:session-21:i09; family: speed_match -->
 curled — завила · wrinkled — помялась · shortened — укоротил · lengthened — удлинила
 
-**14 · Сумку собрали раньше, чем приехало такси. Дополните Past Perfect.**
+**14 · Сумку собрали раньше, чем приехало такси. Покажите, что это случилось раньше.**
 <!-- interaction_id: en:lesson-25:session-21:i10; family: context_gap_grammar -->
 I ___ packed my bag before the taxi arrived. → **had** · have · was
 - have — *Have packed относится к настоящему; здесь точка отсчёта — приезд такси в прошлом.*

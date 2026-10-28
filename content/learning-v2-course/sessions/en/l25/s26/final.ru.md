@@ -119,7 +119,7 @@ grumbled — ворчал · nagged — пилила · scolded — отруга
 - I used to get tired very quickly. — *В записи звучит I used to get angry very quickly.*
 - She used to get angry very quickly. — *В записи звучит I used to get angry very quickly.*
 
-**16 · Вы уже убрали комнату до прихода мамы. Дополните Past Perfect.**
+**16 · Вы уже убрали комнату до прихода мамы. Покажите, что это случилось раньше.**
 <!-- interaction_id: en:lesson-25:session-26:i12; family: context_gap_grammar -->
 I ___ cleaned my room before my mother came home. → **had** · have · was
 - have — *Have cleaned связано с настоящим; здесь уборка предшествует прошлому приходу.*

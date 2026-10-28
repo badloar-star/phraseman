@@ -105,7 +105,7 @@ The sudden bang had ___ me before I saw the cat. → **scared** · confused · h
 - The explanation had satisfied her before she agreed. — *У записі звучить The explanation had satisfied me before I agreed.*
 - The explanation had confused me before I agreed. — *У записі звучить The explanation had satisfied me before I agreed.*
 
-**13 · Відповідь зняла ваші сумніви до того, як ви погодилися. Доповніть Past Perfect.**
+**13 · Відповідь зняла ваші сумніви до того, як ви погодилися. Покажіть, що це сталося раніше.**
 <!-- interaction_id: en:lesson-25:session-19:i09; family: context_gap_grammar -->
 The answer ___ satisfied me before I agreed. → **had** · has · was
 - has — *Has satisfied пов’язане з теперішнім; тут згода вже в минулому.*

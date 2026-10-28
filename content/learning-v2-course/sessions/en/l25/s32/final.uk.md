@@ -119,7 +119,7 @@ fiancé — наречений · fiancée — наречена · stepson — �
 - On Saturdays we would visit the grandparents. — *У записі звучить On Sundays we would visit the grandparents.*
 - On Sundays they would visit the grandparents. — *У записі звучить On Sundays we would visit the grandparents.*
 
-**16 · Ви підготували кімнату до приїзду родини. Доповніть Past Perfect.**
+**16 · Ви підготували кімнату до приїзду родини. Покажіть, що це сталося раніше.**
 <!-- interaction_id: en:lesson-25:session-32:i12; family: context_gap_grammar -->
 I ___ prepared the room before my family arrived. → **had** · have · was
 - have — *Have prepared пов’язане з теперішнім; тут підготовка раніше за минулий приїзд.*

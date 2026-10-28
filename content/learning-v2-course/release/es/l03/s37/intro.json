@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-03:session-37",
+  "learningOutcomeByLocale": {
+    "ru": "описать нескольких людей прилагательными на -e, не меняя форму по роду.",
+    "uk": "описувати кількох людей прикметниками на -e, не змінюючи форму за родом."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-03:session-37:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Приветливые соседи",
+        "uk": "Привітні сусіди"
+      },
+      "bodyByLocale": {
+        "ru": "Вы уже рассказали, кто помог. Теперь добавьте: `Son amables` — «Они приветливые». Соберите `son` + `amables`. У amable нет отдельной женской формы. Для нескольких людей добавьте -s: amables. Так можно описать мужчин, женщин или смешанную группу.",
+        "uk": "Ви вже розповіли, хто допоміг. Тепер додайте: `Son amables` — «Вони привітні». Зберіть `son` + `amables`. У amable немає окремої жіночої форми. Для кількох людей додайте -s: amables. Так можна описати чоловіків, жінок або змішану групу."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-37:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите, что эти люди приветливые. Без имён и местоимения.",
+          "uk": "Скажіть, що ці люди привітні. Без імен і займенника."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-37:intro1:r1",
+              "text": "Son amables."
+            },
+            {
+              "responseId": "es:lesson-03:session-37:intro1:r2",
+              "text": "Son amable."
+            },
+            {
+              "responseId": "es:lesson-03:session-37:intro1:r3",
+              "text": "Son amablas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-37:intro1:r1",
+              "text": "Son amables."
+            },
+            {
+              "responseId": "es:lesson-03:session-37:intro1:r2",
+              "text": "Son amable."
+            },
+            {
+              "responseId": "es:lesson-03:session-37:intro1:r3",
+              "text": "Son amablas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что эти люди приветливые. Без имён и местоимения.",
+          "uk": "Скажіть, що ці люди привітні. Без імен і займенника."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-03:session-37:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Терпеливые помощницы",
+        "uk": "Терплячі помічниці"
+      },
+      "bodyByLocale": {
+        "ru": "Две соседки спокойно отвечали на ваши многочисленные вопросы. Опишите их характер: `Son pacientes` — «Они терпеливые». Соберите `son` + `pacientes`. Как у amable, окончание -e сохраняется с женщинами. Множественное число получается добавлением -s: pacientes.",
+        "uk": "Дві сусідки спокійно відповідали на ваші численні питання. Опишіть їхній характер: `Son pacientes` — «Вони терплячі». Зберіть `son` + `pacientes`. Як у amable, закінчення -e зберігається з жінками. Множина утворюється додаванням -s: pacientes."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-37:intro2:q",
+        "promptByLocale": {
+          "ru": "О двух женщинах: они терпеливые. Без имён и местоимения.",
+          "uk": "Про двох жінок: вони терплячі. Без імен і займенника."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-37:intro2:r1",
+              "text": "Son pacientes."
+            },
+            {
+              "responseId": "es:lesson-03:session-37:intro2:r2",
+              "text": "Son pacientas."
+            },
+            {
+              "responseId": "es:lesson-03:session-37:intro2:r3",
+              "text": "Son paciente."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-37:intro2:r1",
+              "text": "Son pacientes."
+            },
+            {
+              "responseId": "es:lesson-03:session-37:intro2:r2",
+              "text": "Son pacientas."
+            },
+            {
+              "responseId": "es:lesson-03:session-37:intro2:r3",
+              "text": "Son paciente."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "О двух женщинах: они терпеливые. Без имён и местоимения.",
+          "uk": "Про двох жінок: вони терплячі. Без імен і займенника."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-03:session-37:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Очень терпеливые",
+        "uk": "Дуже терплячі"
+      },
+      "bodyByLocale": {
+        "ru": "Вы особенно цените, что соседки спокойно объясняют одно и то же. Скажите `Son muy pacientes` — «Они очень терпеливые». Соберите `son` + `muy pacientes`. Muy усиливает характеристику и стоит прямо перед pacientes. Менять muy из-за нескольких людей не нужно.",
+        "uk": "Ви особливо цінуєте, що сусідки спокійно пояснюють те саме. Скажіть `Son muy pacientes` — «Вони дуже терплячі». Зберіть `son` + `muy pacientes`. Muy посилює характеристику й стоїть прямо перед pacientes. Змінювати muy через кількох людей не потрібно."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-37:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите, что они очень терпеливые. Без имён и местоимения.",
+          "uk": "Скажіть, що вони дуже терплячі. Без імен і займенника."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-37:intro3:r1",
+              "text": "Son muy pacientes."
+            },
+            {
+              "responseId": "es:lesson-03:session-37:intro3:r2",
+              "text": "Son muy paciente."
+            },
+            {
+              "responseId": "es:lesson-03:session-37:intro3:r3",
+              "text": "Es muy pacientes."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-37:intro3:r1",
+              "text": "Son muy pacientes."
+            },
+            {
+              "responseId": "es:lesson-03:session-37:intro3:r2",
+              "text": "Son muy paciente."
+            },
+            {
+              "responseId": "es:lesson-03:session-37:intro3:r3",
+              "text": "Es muy pacientes."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что они очень терпеливые. Без имён и местоимения.",
+          "uk": "Скажіть, що вони дуже терплячі. Без імен і займенника."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d292e471ba8ab607d8e539549c36483b6a9782e3a9bc4e61da85ea8f179e7309"
+}

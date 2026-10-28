@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-03:session-37:i01",
+    "correctText": "amables",
+    "correctResponseId": "es:lesson-03:session-37:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-37:i02",
+    "correctText": "Son amables.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-37:i03",
+    "correctText": "pacientes",
+    "correctResponseId": "es:lesson-03:session-37:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-37:i04",
+    "correctText": "Son pacientes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-37:i05",
+    "correctText": "pacientes",
+    "correctResponseId": "es:lesson-03:session-37:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-37:i06",
+    "correctText": "Son muy pacientes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-37:i07",
+    "correctText": "Son muy amables.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-37:i08",
+    "correctText": "paciente",
+    "correctResponseId": "es:lesson-03:session-37:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-37:i09",
+    "correctText": "Son amables.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-37:i10",
+    "correctText": "Son pacientes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-37:i11",
+    "correctText": "Son muy pacientes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-37:i12",
+    "correctText": "Son muy amables.",
+    "correctResponseId": null
+  }
+]

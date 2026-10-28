@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-03:session-38:i01",
+    "correctText": "habladora",
+    "correctResponseId": "es:lesson-03:session-38:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-38:i02",
+    "correctText": "Ana es habladora.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-38:i03",
+    "correctText": "habladoras",
+    "correctResponseId": "es:lesson-03:session-38:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-38:i04",
+    "correctText": "Son habladoras.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-38:i05",
+    "correctText": "habladoras",
+    "correctResponseId": "es:lesson-03:session-38:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-38:i06",
+    "correctText": "Son muy habladoras.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-38:i07",
+    "correctText": "Ana es muy habladora.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-38:i08",
+    "correctText": "habladora",
+    "correctResponseId": "es:lesson-03:session-38:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-38:i09",
+    "correctText": "Ana es habladora.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-38:i10",
+    "correctText": "Son habladoras.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-38:i11",
+    "correctText": "Son muy habladoras.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-38:i12",
+    "correctText": "Ana es muy habladora.",
+    "correctResponseId": null
+  }
+]

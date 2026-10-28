@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-03:session-38",
+  "entries": [
+    {
+      "interactionId": "es:lesson-03:session-38:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-38:intro1:r2": {
+          "ru": "Нужна женская форма habladora.",
+          "uk": "Потрібна жіноча форма habladora."
+        },
+        "es:lesson-03:session-38:intro1:r3": {
+          "ru": "Одна женщина: habladora.",
+          "uk": "Одна жінка: habladora."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-38:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-38:intro2:r2": {
+          "ru": "Здесь обе женщины: habladoras.",
+          "uk": "Тут обидві жінки: habladoras."
+        },
+        "es:lesson-03:session-38:intro2:r3": {
+          "ru": "Людей несколько: habladoras.",
+          "uk": "Людей кілька: habladoras."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-38:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-38:intro3:r2": {
+          "ru": "Людей несколько: habladoras.",
+          "uk": "Людей кілька: habladoras."
+        },
+        "es:lesson-03:session-38:intro3:r3": {
+          "ru": "Речь о женщинах: habladoras.",
+          "uk": "Йдеться про жінок: habladoras."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5a67ae5b13fb9d7011bd6606606c06b53688c4b56b3e6577dca17089370b01e7"
+}

@@ -1,0 +1,659 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-03:session-37",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-03:session-37:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — ці люди привітні",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-37:i01:r1",
+          "text": "amables"
+        },
+        {
+          "responseId": "es:lesson-03:session-37:i01:r2",
+          "text": "amable"
+        },
+        {
+          "responseId": "es:lesson-03:session-37:i01:r3",
+          "text": "amablas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — ці люди привітні",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — эти люди приветливые",
+          "uk": "Вставте слово — ці люди привітні"
+        },
+        "gappedTargetPhrase": "Son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-37:i01:r1",
+            "text": "amables"
+          },
+          {
+            "responseId": "es:lesson-03:session-37:i01:r2",
+            "text": "amable"
+          },
+          {
+            "responseId": "es:lesson-03:session-37:i01:r3",
+            "text": "amablas"
+          }
+        ],
+        "testedDimension": "Вставте слово — ці люди привітні",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-37:i01:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — ці люди привітні",
+            "feedbackByLocale": {
+              "ru": "Людей несколько: amables.",
+              "uk": "Людей кілька: amables."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-37:i01:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — ці люди привітні",
+            "feedbackByLocale": {
+              "ru": "Amable не меняет -e на -a.",
+              "uk": "Amable не змінює -e на -a."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-37:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — вони привітні; без займенника",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-37:i02:r1",
+          "text": "Плитки: amables"
+        },
+        {
+          "responseId": "es:lesson-03:session-37:i02:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-37:i02:r3",
+          "text": "amable."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — вони привітні; без займенника",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son amables.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — они приветливые; без местоимения",
+          "uk": "Зберіть фразу — вони привітні; без займенника"
+        },
+        "orderedTokens": [
+          "Son",
+          "amables"
+        ],
+        "authoredDistractorTokens": [
+          "amable"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-37:i02:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — вони привітні; без займенника",
+            "feedbackByLocale": {
+              "ru": "людей несколько.",
+              "uk": "людей кілька."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-37:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — обидві жінки терплячі",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-37:i03:r1",
+          "text": "pacientes"
+        },
+        {
+          "responseId": "es:lesson-03:session-37:i03:r2",
+          "text": "paciente"
+        },
+        {
+          "responseId": "es:lesson-03:session-37:i03:r3",
+          "text": "pacientas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — обидві жінки терплячі",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — обе женщины терпеливые",
+          "uk": "Вставте слово — обидві жінки терплячі"
+        },
+        "gappedTargetPhrase": "Son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-37:i03:r1",
+            "text": "pacientes"
+          },
+          {
+            "responseId": "es:lesson-03:session-37:i03:r2",
+            "text": "paciente"
+          },
+          {
+            "responseId": "es:lesson-03:session-37:i03:r3",
+            "text": "pacientas"
+          }
+        ],
+        "testedDimension": "Вставте слово — обидві жінки терплячі",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-37:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — обидві жінки терплячі",
+            "feedbackByLocale": {
+              "ru": "Людей несколько: pacientes.",
+              "uk": "Людей кілька: pacientes."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-37:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — обидві жінки терплячі",
+            "feedbackByLocale": {
+              "ru": "Для женского рода тоже pacientes.",
+              "uk": "Для жіночого роду теж pacientes."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-37:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — вони терплячі; без займенника",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-37:i04:r1",
+          "text": "Плитки: pacientes"
+        },
+        {
+          "responseId": "es:lesson-03:session-37:i04:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-37:i04:r3",
+          "text": "paciente."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — вони терплячі; без займенника",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son pacientes.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — они терпеливые; без местоимения",
+          "uk": "Зберіть фразу — вони терплячі; без займенника"
+        },
+        "orderedTokens": [
+          "Son",
+          "pacientes"
+        ],
+        "authoredDistractorTokens": [
+          "paciente"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-37:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — вони терплячі; без займенника",
+            "feedbackByLocale": {
+              "ru": "людей несколько.",
+              "uk": "людей кілька."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-37:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — вони дуже терплячі",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-37:i05:r1",
+          "text": "pacientes"
+        },
+        {
+          "responseId": "es:lesson-03:session-37:i05:r2",
+          "text": "paciente"
+        },
+        {
+          "responseId": "es:lesson-03:session-37:i05:r3",
+          "text": "pacientas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — вони дуже терплячі",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — они очень терпеливые",
+          "uk": "Вставте слово — вони дуже терплячі"
+        },
+        "gappedTargetPhrase": "Son muy ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-37:i05:r1",
+            "text": "pacientes"
+          },
+          {
+            "responseId": "es:lesson-03:session-37:i05:r2",
+            "text": "paciente"
+          },
+          {
+            "responseId": "es:lesson-03:session-37:i05:r3",
+            "text": "pacientas"
+          }
+        ],
+        "testedDimension": "Вставте слово — вони дуже терплячі",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-37:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — вони дуже терплячі",
+            "feedbackByLocale": {
+              "ru": "Людей несколько: pacientes.",
+              "uk": "Людей кілька: pacientes."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-37:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — вони дуже терплячі",
+            "feedbackByLocale": {
+              "ru": "У прилагательного нет отдельной женской формы.",
+              "uk": "Прикметник не має окремої жіночої форми."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-37:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — вони дуже терплячі; без займенника",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-37:i06:r1",
+          "text": "Плитки: pacientes"
+        },
+        {
+          "responseId": "es:lesson-03:session-37:i06:r2",
+          "text": "muy"
+        },
+        {
+          "responseId": "es:lesson-03:session-37:i06:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-37:i06:r4",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — вони дуже терплячі; без займенника",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son muy pacientes.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — они очень терпеливые; без местоимения",
+          "uk": "Зберіть фразу — вони дуже терплячі; без займенника"
+        },
+        "orderedTokens": [
+          "Son",
+          "muy",
+          "pacientes"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-37:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — вони дуже терплячі; без займенника",
+            "feedbackByLocale": {
+              "ru": "людей несколько.",
+              "uk": "людей кілька."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-37:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-37:i07:r1",
+          "text": "Плитки: amables"
+        },
+        {
+          "responseId": "es:lesson-03:session-37:i07:r2",
+          "text": "muy"
+        },
+        {
+          "responseId": "es:lesson-03:session-37:i07:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-37:i07:r4",
+          "text": "amable."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-37:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-37:i07:audio",
+          "transcript": "Son muy amables."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Son muy amables.",
+        "orderedTokens": [
+          "Son",
+          "muy",
+          "amables"
+        ],
+        "authoredDistractorTokens": [
+          "amable"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-37:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит amables.",
+              "uk": "звучить amables."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-37:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — Ана терпляча",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-37:i08:r1",
+          "text": "paciente"
+        },
+        {
+          "responseId": "es:lesson-03:session-37:i08:r2",
+          "text": "pacientes"
+        },
+        {
+          "responseId": "es:lesson-03:session-37:i08:r3",
+          "text": "pacienta"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — Ана терпляча",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — Ана терпеливая",
+          "uk": "Вставте слово — Ана терпляча"
+        },
+        "gappedTargetPhrase": "Ana es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-37:i08:r1",
+            "text": "paciente"
+          },
+          {
+            "responseId": "es:lesson-03:session-37:i08:r2",
+            "text": "pacientes"
+          },
+          {
+            "responseId": "es:lesson-03:session-37:i08:r3",
+            "text": "pacienta"
+          }
+        ],
+        "testedDimension": "Вставте слово — Ана терпляча",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-37:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — Ана терпляча",
+            "feedbackByLocale": {
+              "ru": "Одна женщина: paciente.",
+              "uk": "Одна жінка: paciente."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-37:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — Ана терпляча",
+            "feedbackByLocale": {
+              "ru": "Прилагательное paciente не меняется по роду.",
+              "uk": "Прикметник paciente не змінюється за родом."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-37:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — вони привітні; без імен і займенника",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-37:i09:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — вони привітні; без імен і займенника",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-37:i09:audio",
+          "transcript": "Son amables."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son amables.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-37:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — вони терплячі; без імен і займенника",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-37:i10:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — вони терплячі; без імен і займенника",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-37:i10:audio",
+          "transcript": "Son pacientes."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son pacientes.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-37:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — вони дуже терплячі; без імен і займенника",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-37:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — вони дуже терплячі; без імен і займенника",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-37:i11:audio",
+          "transcript": "Son muy pacientes."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son muy pacientes.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-37:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — вони дуже привітні; без імен і займенника",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-37:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — вони дуже привітні; без імен і займенника",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-37:i12:audio",
+          "transcript": "Son muy amables."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son muy amables.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "e08d06d0fa82257a8a309c7736cdc988a81dc1c8472f5e65f10875978dc1b9c5"
+}

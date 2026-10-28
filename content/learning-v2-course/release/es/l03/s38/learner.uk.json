@@ -1,0 +1,669 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-03:session-38",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-03:session-38:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — Ана говірка",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-38:i01:r1",
+          "text": "habladora"
+        },
+        {
+          "responseId": "es:lesson-03:session-38:i01:r2",
+          "text": "hablador"
+        },
+        {
+          "responseId": "es:lesson-03:session-38:i01:r3",
+          "text": "habladoras"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — Ана говірка",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — Ана разговорчивая",
+          "uk": "Вставте слово — Ана говірка"
+        },
+        "gappedTargetPhrase": "Ana es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-38:i01:r1",
+            "text": "habladora"
+          },
+          {
+            "responseId": "es:lesson-03:session-38:i01:r2",
+            "text": "hablador"
+          },
+          {
+            "responseId": "es:lesson-03:session-38:i01:r3",
+            "text": "habladoras"
+          }
+        ],
+        "testedDimension": "Вставте слово — Ана говірка",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-38:i01:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — Ана говірка",
+            "feedbackByLocale": {
+              "ru": "О женщине: habladora.",
+              "uk": "Про жінку: habladora."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-38:i01:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — Ана говірка",
+            "feedbackByLocale": {
+              "ru": "Одна женщина: habladora.",
+              "uk": "Одна жінка: habladora."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-38:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — Ана говірка",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-38:i02:r1",
+          "text": "Плитки: habladora"
+        },
+        {
+          "responseId": "es:lesson-03:session-38:i02:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-38:i02:r3",
+          "text": "Ana"
+        },
+        {
+          "responseId": "es:lesson-03:session-38:i02:r4",
+          "text": "hablador."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — Ана говірка",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Ana es habladora.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — Ана разговорчивая",
+          "uk": "Зберіть фразу — Ана говірка"
+        },
+        "orderedTokens": [
+          "Ana",
+          "es",
+          "habladora"
+        ],
+        "authoredDistractorTokens": [
+          "hablador"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-38:i02:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — Ана говірка",
+            "feedbackByLocale": {
+              "ru": "описываем женщину.",
+              "uk": "описуємо жінку."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-38:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — обидві жінки говіркі",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-38:i03:r1",
+          "text": "habladoras"
+        },
+        {
+          "responseId": "es:lesson-03:session-38:i03:r2",
+          "text": "habladores"
+        },
+        {
+          "responseId": "es:lesson-03:session-38:i03:r3",
+          "text": "habladora"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — обидві жінки говіркі",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — обе женщины разговорчивые",
+          "uk": "Вставте слово — обидві жінки говіркі"
+        },
+        "gappedTargetPhrase": "Son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-38:i03:r1",
+            "text": "habladoras"
+          },
+          {
+            "responseId": "es:lesson-03:session-38:i03:r2",
+            "text": "habladores"
+          },
+          {
+            "responseId": "es:lesson-03:session-38:i03:r3",
+            "text": "habladora"
+          }
+        ],
+        "testedDimension": "Вставте слово — обидві жінки говіркі",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-38:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — обидві жінки говіркі",
+            "feedbackByLocale": {
+              "ru": "Обе женщины: habladoras.",
+              "uk": "Обидві жінки: habladoras."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-38:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — обидві жінки говіркі",
+            "feedbackByLocale": {
+              "ru": "Людей несколько: habladoras.",
+              "uk": "Людей кілька: habladoras."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-38:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — вони говіркі; обидві жінки, без займенника",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-38:i04:r1",
+          "text": "Плитки: habladoras"
+        },
+        {
+          "responseId": "es:lesson-03:session-38:i04:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-38:i04:r3",
+          "text": "habladores."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — вони говіркі; обидві жінки, без займенника",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son habladoras.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — они разговорчивые; обе женщины, без местоимения",
+          "uk": "Зберіть фразу — вони говіркі; обидві жінки, без займенника"
+        },
+        "orderedTokens": [
+          "Son",
+          "habladoras"
+        ],
+        "authoredDistractorTokens": [
+          "habladores"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-38:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — вони говіркі; обидві жінки, без займенника",
+            "feedbackByLocale": {
+              "ru": "речь о женщинах.",
+              "uk": "йдеться про жінок."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-38:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — обидві жінки дуже говіркі",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-38:i05:r1",
+          "text": "habladoras"
+        },
+        {
+          "responseId": "es:lesson-03:session-38:i05:r2",
+          "text": "habladora"
+        },
+        {
+          "responseId": "es:lesson-03:session-38:i05:r3",
+          "text": "habladores"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — обидві жінки дуже говіркі",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — обе женщины очень разговорчивые",
+          "uk": "Вставте слово — обидві жінки дуже говіркі"
+        },
+        "gappedTargetPhrase": "Son muy ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-38:i05:r1",
+            "text": "habladoras"
+          },
+          {
+            "responseId": "es:lesson-03:session-38:i05:r2",
+            "text": "habladora"
+          },
+          {
+            "responseId": "es:lesson-03:session-38:i05:r3",
+            "text": "habladores"
+          }
+        ],
+        "testedDimension": "Вставте слово — обидві жінки дуже говіркі",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-38:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — обидві жінки дуже говіркі",
+            "feedbackByLocale": {
+              "ru": "Людей несколько: habladoras.",
+              "uk": "Людей кілька: habladoras."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-38:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — обидві жінки дуже говіркі",
+            "feedbackByLocale": {
+              "ru": "Обе женщины: habladoras.",
+              "uk": "Обидві жінки: habladoras."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-38:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — вони дуже говіркі; обидві жінки, без займенника",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-38:i06:r1",
+          "text": "Плитки: habladoras"
+        },
+        {
+          "responseId": "es:lesson-03:session-38:i06:r2",
+          "text": "muy"
+        },
+        {
+          "responseId": "es:lesson-03:session-38:i06:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-38:i06:r4",
+          "text": "habladora."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — вони дуже говіркі; обидві жінки, без займенника",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son muy habladoras.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — они очень разговорчивые; обе женщины, без местоимения",
+          "uk": "Зберіть фразу — вони дуже говіркі; обидві жінки, без займенника"
+        },
+        "orderedTokens": [
+          "Son",
+          "muy",
+          "habladoras"
+        ],
+        "authoredDistractorTokens": [
+          "habladora"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-38:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — вони дуже говіркі; обидві жінки, без займенника",
+            "feedbackByLocale": {
+              "ru": "людей несколько.",
+              "uk": "людей кілька."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-38:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-38:i07:r1",
+          "text": "Плитки: habladora"
+        },
+        {
+          "responseId": "es:lesson-03:session-38:i07:r2",
+          "text": "muy"
+        },
+        {
+          "responseId": "es:lesson-03:session-38:i07:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-38:i07:r4",
+          "text": "Ana"
+        },
+        {
+          "responseId": "es:lesson-03:session-38:i07:r5",
+          "text": "hablador."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-38:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-38:i07:audio",
+          "transcript": "Ana es muy habladora."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Ana es muy habladora.",
+        "orderedTokens": [
+          "Ana",
+          "es",
+          "muy",
+          "habladora"
+        ],
+        "authoredDistractorTokens": [
+          "hablador"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-38:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит habladora.",
+              "uk": "звучить habladora."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-38:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — Ана дуже говірка",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-38:i08:r1",
+          "text": "habladora"
+        },
+        {
+          "responseId": "es:lesson-03:session-38:i08:r2",
+          "text": "hablador"
+        },
+        {
+          "responseId": "es:lesson-03:session-38:i08:r3",
+          "text": "habladoras"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — Ана дуже говірка",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — Ана очень разговорчивая",
+          "uk": "Вставте слово — Ана дуже говірка"
+        },
+        "gappedTargetPhrase": "Ana es muy ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-38:i08:r1",
+            "text": "habladora"
+          },
+          {
+            "responseId": "es:lesson-03:session-38:i08:r2",
+            "text": "hablador"
+          },
+          {
+            "responseId": "es:lesson-03:session-38:i08:r3",
+            "text": "habladoras"
+          }
+        ],
+        "testedDimension": "Вставте слово — Ана дуже говірка",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-38:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — Ана дуже говірка",
+            "feedbackByLocale": {
+              "ru": "О женщине: habladora.",
+              "uk": "Про жінку: habladora."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-38:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — Ана дуже говірка",
+            "feedbackByLocale": {
+              "ru": "Одна женщина: habladora.",
+              "uk": "Одна жінка: habladora."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-38:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — Ана говірка; назвіть її на ім'я",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-38:i09:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — Ана говірка; назвіть її на ім'я",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-38:i09:audio",
+          "transcript": "Ana es habladora."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Ana es habladora.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-38:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — обидві жінки говіркі; без імен і займенника",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-38:i10:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — обидві жінки говіркі; без імен і займенника",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-38:i10:audio",
+          "transcript": "Son habladoras."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son habladoras.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-38:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — обидві жінки дуже говіркі; без імен і займенника",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-38:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — обидві жінки дуже говіркі; без імен і займенника",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-38:i11:audio",
+          "transcript": "Son muy habladoras."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son muy habladoras.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-38:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — Ана дуже говірка; назвіть її на ім'я",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-38:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — Ана дуже говірка; назвіть її на ім'я",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-38:i12:audio",
+          "transcript": "Ana es muy habladora."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Ana es muy habladora.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "b75be2a796e69f91355f821e6418d4278c1bdc67dbf73ada7c136dcbdf196d45"
+}

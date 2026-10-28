@@ -1043,4 +1043,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"описать характер нескольких женщин формами tranquilas и alegres.","uk":"описувати характер кількох жінок формами tranquilas і alegres."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 37,
+    sourceFingerprint: "42816096d2ab533d1810231e69e1270be1ce146bac7373b9522c63072cf5d959",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"описать нескольких людей прилагательными на -e, не меняя форму по роду.","uk":"описувати кількох людей прикметниками на -e, не змінюючи форму за родом."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 38,
+    sourceFingerprint: "c9cdc787f4a1ba3aeeb367187eed077a754f897334bfaa7c89e17d6b5840ac99",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"использовать женские формы habladora и habladoras.","uk":"використовувати жіночі форми habladora і habladoras."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+  }),
 ]);

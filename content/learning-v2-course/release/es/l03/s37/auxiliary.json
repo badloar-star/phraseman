@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-03:session-37",
+  "entries": [
+    {
+      "interactionId": "es:lesson-03:session-37:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-37:intro1:r2": {
+          "ru": "Нужно множественное число amables.",
+          "uk": "Потрібна множина amables."
+        },
+        "es:lesson-03:session-37:intro1:r3": {
+          "ru": "Не заменяйте -e на -a: amables.",
+          "uk": "Не замінюйте -e на -a: amables."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-37:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-37:intro2:r2": {
+          "ru": "Не меняйте -e на -a: pacientes.",
+          "uk": "Не змінюйте -e на -a: pacientes."
+        },
+        "es:lesson-03:session-37:intro2:r3": {
+          "ru": "Людей несколько: pacientes.",
+          "uk": "Людей кілька: pacientes."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-37:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-37:intro3:r2": {
+          "ru": "Людей несколько: pacientes.",
+          "uk": "Людей кілька: pacientes."
+        },
+        "es:lesson-03:session-37:intro3:r3": {
+          "ru": "Для нескольких людей нужно son.",
+          "uk": "Для кількох людей потрібне son."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5bdfdcaf905110b26abd6ac922286e5accaee7a1e50f81bb25d55b562a3e651b"
+}

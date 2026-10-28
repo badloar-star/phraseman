@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-07:session-03",
+  "entries": [
+    {
+      "interactionId": "es:lesson-07:session-03:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-03:intro1:r2": {
+          "ru": "Silla женского рода: una.",
+          "uk": "Silla жіночого роду: una."
+        },
+        "es:lesson-07:session-03:intro1:r3": {
+          "ru": "Перед silla нужна форма una.",
+          "uk": "Перед silla потрібна форма una."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-07:session-03:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-03:intro2:r2": {
+          "ru": "Здесь подразумеваем silla женского рода: una.",
+          "uk": "Тут маємо на увазі silla жіночого роду: una."
+        },
+        "es:lesson-07:session-03:intro2:r3": {
+          "ru": "Короткая форма un не используется отдельно.",
+          "uk": "Коротка форма un не використовується окремо."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-07:session-03:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-03:intro3:r2": {
+          "ru": "Silla женского рода: una.",
+          "uk": "Silla жіночого роду: una."
+        },
+        "es:lesson-07:session-03:intro3:r3": {
+          "ru": "Перед silla нужна una.",
+          "uk": "Перед silla потрібна una."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a19d4eef089e9c048a4b1a95a155dc877884a9910a15952c261a77b7b3d827bf"
+}

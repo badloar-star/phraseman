@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-07:session-02",
+  "entries": [
+    {
+      "interactionId": "es:lesson-07:session-02:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-02:intro1:r2": {
+          "ru": "Un используем перед существительным, а здесь число отдельно.",
+          "uk": "Un використовуємо перед іменником, а тут число окремо."
+        },
+        "es:lesson-07:session-02:intro1:r3": {
+          "ru": "Cero — ноль, а книга одна.",
+          "uk": "Cero — нуль, а книжка одна."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-07:session-02:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-02:intro2:r2": {
+          "ru": "Перед libro нужна короткая форма un.",
+          "uk": "Перед libro потрібна коротка форма un."
+        },
+        "es:lesson-07:session-02:intro2:r3": {
+          "ru": "Libro мужского рода: un.",
+          "uk": "Libro чоловічого роду: un."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-07:session-02:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-02:intro3:r2": {
+          "ru": "Перед libro нужна un.",
+          "uk": "Перед libro потрібна un."
+        },
+        "es:lesson-07:session-02:intro3:r3": {
+          "ru": "Libro мужского рода: un.",
+          "uk": "Libro чоловічого роду: un."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "08bfd194f98c52b749960e468340fa67c6a0cb74de990c908d02bdfa5d64d604"
+}

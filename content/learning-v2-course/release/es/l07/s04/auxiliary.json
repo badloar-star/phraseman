@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-07:session-04",
+  "entries": [
+    {
+      "interactionId": "es:lesson-07:session-04:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-04:intro1:r2": {
+          "ru": "Книг две: libros во множественном числе.",
+          "uk": "Книжок дві: libros у множині."
+        },
+        "es:lesson-07:session-04:intro1:r3": {
+          "ru": "По условию две книги: dos.",
+          "uk": "За умовою дві книжки: dos."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-07:session-04:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-04:intro2:r2": {
+          "ru": "Стульев несколько: sillas.",
+          "uk": "Стільців кілька: sillas."
+        },
+        "es:lesson-07:session-04:intro2:r3": {
+          "ru": "По условию четыре: cuatro.",
+          "uk": "За умовою чотири: cuatro."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-07:session-04:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-04:intro3:r2": {
+          "ru": "После cinco здесь нужно libros.",
+          "uk": "Після cinco тут потрібно libros."
+        },
+        "es:lesson-07:session-04:intro3:r3": {
+          "ru": "Нужно пять: cinco.",
+          "uk": "Потрібно п'ять: cinco."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a715bbeea1ab82e17de71575e234c2b23394b6dbba107f7c856cbde48f8e1e35"
+}

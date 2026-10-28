@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-07:session-02:i01",
+    "correctText": "un",
+    "correctResponseId": "es:lesson-07:session-02:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-02:i02",
+    "correctText": "Un",
+    "correctResponseId": "es:lesson-07:session-02:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-02:i03",
+    "correctText": "Un libro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-02:i04",
+    "correctText": "un",
+    "correctResponseId": "es:lesson-07:session-02:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-02:i05",
+    "correctText": "Hay un libro aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-02:i06",
+    "correctText": "Hay un libro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-02:i07",
+    "correctText": "Hay un libro aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-02:i08",
+    "correctText": "un",
+    "correctResponseId": "es:lesson-07:session-02:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-02:i09",
+    "correctText": "Uno.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-02:i10",
+    "correctText": "Un libro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-02:i11",
+    "correctText": "Hay un libro aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-02:i12",
+    "correctText": "¿Hay un libro aquí?",
+    "correctResponseId": null
+  }
+]

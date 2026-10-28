@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-07:session-03:i01",
+    "correctText": "una",
+    "correctResponseId": "es:lesson-07:session-03:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-03:i02",
+    "correctText": "Una",
+    "correctResponseId": "es:lesson-07:session-03:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-03:i03",
+    "correctText": "Una silla.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-03:i04",
+    "correctText": "Un",
+    "correctResponseId": "es:lesson-07:session-03:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-03:i05",
+    "correctText": "Hay una silla aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-03:i06",
+    "correctText": "¿Hay una silla aquí?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-03:i07",
+    "correctText": "Hay una silla aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-03:i08",
+    "correctText": "una",
+    "correctResponseId": "es:lesson-07:session-03:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-03:i09",
+    "correctText": "Una silla.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-03:i10",
+    "correctText": "Una.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-03:i11",
+    "correctText": "Hay una silla aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-03:i12",
+    "correctText": "¿Hay una silla aquí?",
+    "correctResponseId": null
+  }
+]

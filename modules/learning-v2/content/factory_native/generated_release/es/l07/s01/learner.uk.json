@@ -1,0 +1,696 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-07:session-01",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-07:session-01:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cero",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-01:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cero",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-01:i01:audio",
+          "transcript": "cero"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-07:session-01:i01:r1",
+            "targetText": "cero",
+            "meaningByLocale": {
+              "ru": "ноль, 0. 🔊 *cero*",
+              "uk": "нуль, 0. 🔊 *cero*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cero",
+          "definitionByLocale": {
+            "ru": "ноль, 0. 🔊 *cero*",
+            "uk": "нуль, 0. 🔊 *cero*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-01:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-01:i02:r1",
+          "text": "cero"
+        },
+        {
+          "responseId": "es:lesson-07:session-01:i02:r2",
+          "text": "cinco"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-01:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-01:i02:audio",
+          "transcript": "cero"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-07:session-01:i02:r1",
+            "targetText": "cero",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-07:session-01:i02:r2",
+            "targetText": "cinco",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-07:session-01:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит cero — ноль.",
+              "uk": "Звучить cero — нуль."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-01:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — запис «нуль книжок»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-01:i03:r1",
+          "text": "Cero"
+        },
+        {
+          "responseId": "es:lesson-07:session-01:i03:r2",
+          "text": "Dos"
+        },
+        {
+          "responseId": "es:lesson-07:session-01:i03:r3",
+          "text": "Diez"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — запис «нуль книжок»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — запись «ноль книг»",
+          "uk": "Вставте слово — запис «нуль книжок»"
+        },
+        "gappedTargetPhrase": "___ libros.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-07:session-01:i03:r1",
+            "text": "Cero"
+          },
+          {
+            "responseId": "es:lesson-07:session-01:i03:r2",
+            "text": "Dos"
+          },
+          {
+            "responseId": "es:lesson-07:session-01:i03:r3",
+            "text": "Diez"
+          }
+        ],
+        "testedDimension": "Вставте слово — запис «нуль книжок»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-07:session-01:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — запис «нуль книжок»",
+            "feedbackByLocale": {
+              "ru": "Нужно ноль: cero.",
+              "uk": "Потрібно нуль: cero."
+            }
+          },
+          {
+            "responseId": "es:lesson-07:session-01:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — запис «нуль книжок»",
+            "feedbackByLocale": {
+              "ru": "Diez — десять, а нужен ноль.",
+              "uk": "Diez — десять, а потрібен нуль."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-01:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — запис «нуль книжок»; почніть з Cero, без hay та артикля",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-01:i04:r1",
+          "text": "Плитки: libros"
+        },
+        {
+          "responseId": "es:lesson-07:session-01:i04:r2",
+          "text": "Cero"
+        },
+        {
+          "responseId": "es:lesson-07:session-01:i04:r3",
+          "text": "libro."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — запис «нуль книжок»; почніть з Cero, без hay та артикля",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Cero libros.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — запись «ноль книг»; начните с Cero, без hay и артикля",
+          "uk": "Зберіть фразу — запис «нуль книжок»; почніть з Cero, без hay та артикля"
+        },
+        "orderedTokens": [
+          "Cero",
+          "libros"
+        ],
+        "authoredDistractorTokens": [
+          "libro"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-07:session-01:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — запис «нуль книжок»; почніть з Cero, без hay та артикля",
+            "feedbackByLocale": {
+              "ru": "здесь нужно множественное число libros.",
+              "uk": "тут потрібна множина libros."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-01:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — запис «нуль стільців»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-01:i05:r1",
+          "text": "sillas"
+        },
+        {
+          "responseId": "es:lesson-07:session-01:i05:r2",
+          "text": "silla"
+        },
+        {
+          "responseId": "es:lesson-07:session-01:i05:r3",
+          "text": "agua"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — запис «нуль стільців»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — запись «ноль стульев»",
+          "uk": "Вставте слово — запис «нуль стільців»"
+        },
+        "gappedTargetPhrase": "Cero ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-07:session-01:i05:r1",
+            "text": "sillas"
+          },
+          {
+            "responseId": "es:lesson-07:session-01:i05:r2",
+            "text": "silla"
+          },
+          {
+            "responseId": "es:lesson-07:session-01:i05:r3",
+            "text": "agua"
+          }
+        ],
+        "testedDimension": "Вставте слово — запис «нуль стільців»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-07:session-01:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — запис «нуль стільців»",
+            "feedbackByLocale": {
+              "ru": "После cero здесь нужно множественное число sillas.",
+              "uk": "Після cero тут потрібна множина sillas."
+            }
+          },
+          {
+            "responseId": "es:lesson-07:session-01:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — запис «нуль стільців»",
+            "feedbackByLocale": {
+              "ru": "Считаем стулья: sillas.",
+              "uk": "Рахуємо стільці: sillas."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-01:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — запис «нуль стільців»; почніть з Cero, без hay та артикля",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-01:i06:r1",
+          "text": "Плитки: sillas"
+        },
+        {
+          "responseId": "es:lesson-07:session-01:i06:r2",
+          "text": "Cero"
+        },
+        {
+          "responseId": "es:lesson-07:session-01:i06:r3",
+          "text": "silla."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — запис «нуль стільців»; почніть з Cero, без hay та артикля",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Cero sillas.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — запись «ноль стульев»; начните с Cero, без hay и артикля",
+          "uk": "Зберіть фразу — запис «нуль стільців»; почніть з Cero, без hay та артикля"
+        },
+        "orderedTokens": [
+          "Cero",
+          "sillas"
+        ],
+        "authoredDistractorTokens": [
+          "silla"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-07:session-01:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — запис «нуль стільців»; почніть з Cero, без hay та артикля",
+            "feedbackByLocale": {
+              "ru": "здесь нужно множественное число sillas.",
+              "uk": "тут потрібна множина sillas."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-01:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — книжок немає; почніть з No hay, використайте libros без артикля",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-01:i07:r1",
+          "text": "Плитки: libros"
+        },
+        {
+          "responseId": "es:lesson-07:session-01:i07:r2",
+          "text": "hay"
+        },
+        {
+          "responseId": "es:lesson-07:session-01:i07:r3",
+          "text": "No"
+        },
+        {
+          "responseId": "es:lesson-07:session-01:i07:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — книжок немає; почніть з No hay, використайте libros без артикля",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No hay libros.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — книг нет; начните с No hay, используйте libros без артикля",
+          "uk": "Зберіть фразу — книжок немає; почніть з No hay, використайте libros без артикля"
+        },
+        "orderedTokens": [
+          "No",
+          "hay",
+          "libros"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-07:session-01:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — книжок немає; почніть з No hay, використайте libros без артикля",
+            "feedbackByLocale": {
+              "ru": "здесь libros без артикля.",
+              "uk": "тут libros без артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-01:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-01:i08:r1",
+          "text": "Плитки: No"
+        },
+        {
+          "responseId": "es:lesson-07:session-01:i08:r2",
+          "text": "hay"
+        },
+        {
+          "responseId": "es:lesson-07:session-01:i08:r3",
+          "text": "libros"
+        },
+        {
+          "responseId": "es:lesson-07:session-01:i08:r4",
+          "text": "aquí"
+        },
+        {
+          "responseId": "es:lesson-07:session-01:i08:r5",
+          "text": "allí."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-01:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-01:i08:audio",
+          "transcript": "No hay libros aquí."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "No hay libros aquí.",
+        "orderedTokens": [
+          "No",
+          "hay",
+          "libros",
+          "aquí"
+        ],
+        "authoredDistractorTokens": [
+          "allí"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-07:session-01:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит aquí.",
+              "uk": "звучить aquí."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-01:i09",
+      "ordinal": 12,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — книжок немає",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-01:i09:r1",
+          "text": "No"
+        },
+        {
+          "responseId": "es:lesson-07:session-01:i09:r2",
+          "text": "Sí"
+        },
+        {
+          "responseId": "es:lesson-07:session-01:i09:r3",
+          "text": "Una"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — книжок немає",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — книг нет",
+          "uk": "Вставте слово — книжок немає"
+        },
+        "gappedTargetPhrase": "___ hay libros.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-07:session-01:i09:r1",
+            "text": "No"
+          },
+          {
+            "responseId": "es:lesson-07:session-01:i09:r2",
+            "text": "Sí"
+          },
+          {
+            "responseId": "es:lesson-07:session-01:i09:r3",
+            "text": "Una"
+          }
+        ],
+        "testedDimension": "Вставте слово — книжок немає",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-07:session-01:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — книжок немає",
+            "feedbackByLocale": {
+              "ru": "Отсутствие выражаем с no.",
+              "uk": "Відсутність виражаємо з no."
+            }
+          },
+          {
+            "responseId": "es:lesson-07:session-01:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — книжок немає",
+            "feedbackByLocale": {
+              "ru": "Нужно no перед hay.",
+              "uk": "Потрібно no перед hay."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-01:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — число нуль одним словом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-01:i10:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — число нуль одним словом",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-01:i10:audio",
+          "transcript": "Cero."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Cero.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-01:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — запис «нуль книжок»; почніть з Cero, без hay та артикля",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-01:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — запис «нуль книжок»; почніть з Cero, без hay та артикля",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-01:i11:audio",
+          "transcript": "Cero libros."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Cero libros.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-01:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — запис «нуль стільців»; почніть з Cero, без hay та артикля",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-01:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — запис «нуль стільців»; почніть з Cero, без hay та артикля",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-01:i12:audio",
+          "transcript": "Cero sillas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Cero sillas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-01:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — книжок немає; почніть з No hay, використайте libros без артикля",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-01:i13:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — книжок немає; почніть з No hay, використайте libros без артикля",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-01:i13:audio",
+          "transcript": "No hay libros."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No hay libros.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 13,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "bed7329512ab55cb8b17b4414fb517680143ac74cd1c95e4394c51de5d7bcc19"
+}

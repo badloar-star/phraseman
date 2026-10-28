@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-07:session-01",
+  "learningOutcomeByLocale": {
+    "ru": "назвать число ноль и связать его с отсутствием предметов.",
+    "uk": "назвати число нуль і пов'язати його з відсутністю предметів."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-07:session-01:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ни одной книги",
+        "uk": "Жодної книжки"
+      },
+      "bodyByLocale": {
+        "ru": "Вас попросили пересчитать книги, а место для них пустое. Назовите результат одним числом: `Cero` — «Ноль». Cero — это число 0. Для короткого ответа о количестве достаточно одного слова, без hay и артикля.",
+        "uk": "Вас попросили перерахувати книжки, а місце для них порожнє. Назвіть результат одним числом: `Cero` — «Нуль». Cero — це число 0. Для короткої відповіді про кількість достатньо одного слова, без hay та артикля."
+      },
+      "question": {
+        "interactionId": "es:lesson-07:session-01:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите число «ноль» одним словом.",
+          "uk": "Назвіть число «нуль» одним словом."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-07:session-01:intro1:r1",
+              "text": "Cero."
+            },
+            {
+              "responseId": "es:lesson-07:session-01:intro1:r2",
+              "text": "Dos."
+            },
+            {
+              "responseId": "es:lesson-07:session-01:intro1:r3",
+              "text": "Diez."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-07:session-01:intro1:r1",
+              "text": "Cero."
+            },
+            {
+              "responseId": "es:lesson-07:session-01:intro1:r2",
+              "text": "Dos."
+            },
+            {
+              "responseId": "es:lesson-07:session-01:intro1:r3",
+              "text": "Diez."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите число «ноль» одним словом.",
+          "uk": "Назвіть число «нуль» одним словом."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-07:session-01:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Нулевое количество в записи",
+        "uk": "Нульова кількість у записі"
+      },
+      "bodyByLocale": {
+        "ru": "Вы заполняете простой список книг и хотите произнести запись «Ноль книг». Скажите `Cero libros`. Соберите `Cero` + `libros`. После cero здесь используем множественное число libros, хотя количество равно нулю. Ноль книг — зато пересчёт прошёл быстро.",
+        "uk": "Ви заповнюєте простий список книжок і хочете вимовити запис «Нуль книжок». Скажіть `Cero libros`. Складіть `Cero` + `libros`. Після cero тут використовуємо множину libros, хоча кількість дорівнює нулю. Нуль книжок — зате підрахунок пройшов швидко."
+      },
+      "question": {
+        "interactionId": "es:lesson-07:session-01:intro2:q",
+        "promptByLocale": {
+          "ru": "Произнесите запись «Ноль книг». Начните с Cero, без hay и артикля.",
+          "uk": "Вимовте запис «Нуль книжок». Почніть з Cero, без hay та артикля."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-07:session-01:intro2:r1",
+              "text": "Cero libros."
+            },
+            {
+              "responseId": "es:lesson-07:session-01:intro2:r2",
+              "text": "Cero libro."
+            },
+            {
+              "responseId": "es:lesson-07:session-01:intro2:r3",
+              "text": "Dos libros."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-07:session-01:intro2:r1",
+              "text": "Cero libros."
+            },
+            {
+              "responseId": "es:lesson-07:session-01:intro2:r2",
+              "text": "Cero libro."
+            },
+            {
+              "responseId": "es:lesson-07:session-01:intro2:r3",
+              "text": "Dos libros."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Произнесите запись «Ноль книг». Начните с Cero, без hay и артикля.",
+          "uk": "Вимовте запис «Нуль книжок». Почніть з Cero, без hay та артикля."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-07:session-01:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Сообщить обычной фразой",
+        "uk": "Повідомити звичайною фразою"
+      },
+      "bodyByLocale": {
+        "ru": "Вместо записи в списке вы объясняете другу, что книг нет. Скажите знакомую фразу `No hay libros` — «Книг нет». Соберите `No hay` + `libros`. Cero libros называет количество, а No hay libros сообщает об отсутствии целым предложением. В этой ситуации смысл один: книг нет.",
+        "uk": "Замість запису в списку ви пояснюєте другу, що книжок немає. Скажіть знайому фразу `No hay libros` — «Книжок немає». Складіть `No hay` + `libros`. Cero libros називає кількість, а No hay libros повідомляє про відсутність цілим реченням. У цій ситуації зміст один: книжок немає."
+      },
+      "question": {
+        "interactionId": "es:lesson-07:session-01:intro3:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Книг нет». Начните с No hay, используйте libros без артикля.",
+          "uk": "Повідомте «Книжок немає». Почніть з No hay, використайте libros без артикля."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-07:session-01:intro3:r1",
+              "text": "No hay libros."
+            },
+            {
+              "responseId": "es:lesson-07:session-01:intro3:r2",
+              "text": "Hay libros."
+            },
+            {
+              "responseId": "es:lesson-07:session-01:intro3:r3",
+              "text": "No hay libro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-07:session-01:intro3:r1",
+              "text": "No hay libros."
+            },
+            {
+              "responseId": "es:lesson-07:session-01:intro3:r2",
+              "text": "Hay libros."
+            },
+            {
+              "responseId": "es:lesson-07:session-01:intro3:r3",
+              "text": "No hay libro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Книг нет». Начните с No hay, используйте libros без артикля.",
+          "uk": "Повідомте «Книжок немає». Почніть з No hay, використайте libros без артикля."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "7359db2e1c2381df7b58db407ea028adeb36e44230b80bc1657944dce64b2c2a"
+}

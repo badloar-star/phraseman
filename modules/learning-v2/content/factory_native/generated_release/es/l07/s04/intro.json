@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-07:session-04",
+  "learningOutcomeByLocale": {
+    "ru": "ставить знакомые числа перед существительным во множественном числе.",
+    "uk": "ставити знайомі числа перед іменником у множині."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-07:session-04:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Две книги",
+        "uk": "Дві книжки"
+      },
+      "bodyByLocale": {
+        "ru": "Вы положили две книги для гостей. Сообщите `Hay dos libros` — «Есть две книги». Соберите `Hay` + `dos` + `libros`. После dos существительное во множественном числе. В отличие от uno/una число dos не меняется по роду: две книги — dos libros, два стула — dos sillas.",
+        "uk": "Ви поклали дві книжки для гостей. Повідомте `Hay dos libros` — «Є дві книжки». Складіть `Hay` + `dos` + `libros`. Після dos іменник у множині. На відміну від uno/una число dos не змінюється за родом: дві книжки — dos libros, два стільці — dos sillas."
+      },
+      "question": {
+        "interactionId": "es:lesson-07:session-04:intro1:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Есть две книги». Начните с Hay, число поставьте перед libros.",
+          "uk": "Повідомте «Є дві книжки». Почніть з Hay, число поставте перед libros."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-07:session-04:intro1:r1",
+              "text": "Hay dos libros."
+            },
+            {
+              "responseId": "es:lesson-07:session-04:intro1:r2",
+              "text": "Hay dos libro."
+            },
+            {
+              "responseId": "es:lesson-07:session-04:intro1:r3",
+              "text": "Hay tres libros."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-07:session-04:intro1:r1",
+              "text": "Hay dos libros."
+            },
+            {
+              "responseId": "es:lesson-07:session-04:intro1:r2",
+              "text": "Hay dos libro."
+            },
+            {
+              "responseId": "es:lesson-07:session-04:intro1:r3",
+              "text": "Hay tres libros."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Есть две книги». Начните с Hay, число поставьте перед libros.",
+          "uk": "Повідомте «Є дві книжки». Почніть з Hay, число поставте перед libros."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-07:session-04:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Четыре стула",
+        "uk": "Чотири стільці"
+      },
+      "bodyByLocale": {
+        "ru": "Вы пересчитали места: стульев четыре. Скажите `Hay cuatro sillas` — «Есть четыре стула». Соберите `Hay` + `cuatro` + `sillas`. Cuatro сохраняет o даже перед существительным женского рода. Род меняет формы uno/una, но не четыре. Пересчитываем стулья, а не их ножки — так быстрее.",
+        "uk": "Ви перерахували місця: стільців чотири. Скажіть `Hay cuatro sillas` — «Є чотири стільці». Складіть `Hay` + `cuatro` + `sillas`. Cuatro зберігає o навіть перед іменником жіночого роду. Рід змінює форми uno/una, але не чотири. Рахуємо стільці, а не їхні ніжки — так швидше."
+      },
+      "question": {
+        "interactionId": "es:lesson-07:session-04:intro2:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Есть четыре стула». Начните с Hay, число поставьте перед sillas.",
+          "uk": "Повідомте «Є чотири стільці». Почніть з Hay, число поставте перед sillas."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-07:session-04:intro2:r1",
+              "text": "Hay cuatro sillas."
+            },
+            {
+              "responseId": "es:lesson-07:session-04:intro2:r2",
+              "text": "Hay cuatro silla."
+            },
+            {
+              "responseId": "es:lesson-07:session-04:intro2:r3",
+              "text": "Hay cinco sillas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-07:session-04:intro2:r1",
+              "text": "Hay cuatro sillas."
+            },
+            {
+              "responseId": "es:lesson-07:session-04:intro2:r2",
+              "text": "Hay cuatro silla."
+            },
+            {
+              "responseId": "es:lesson-07:session-04:intro2:r3",
+              "text": "Hay cinco sillas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Есть четыре стула». Начните с Hay, число поставьте перед sillas.",
+          "uk": "Повідомте «Є чотири стільці». Почніть з Hay, число поставте перед sillas."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-07:session-04:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Пять книг здесь",
+        "uk": "П'ять книжок тут"
+      },
+      "bodyByLocale": {
+        "ru": "В другом месте вы нашли пять книг и показываете их другу. Скажите `Hay cinco libros aquí` — «Здесь есть пять книг». Соберите `Hay` + `cinco libros` + `aquí`. Число перед предметами, место в конце. Libros остаётся во множественном числе.",
+        "uk": "В іншому місці ви знайшли п'ять книжок і показуєте їх другу. Скажіть `Hay cinco libros aquí` — «Тут є п'ять книжок». Складіть `Hay` + `cinco libros` + `aquí`. Число перед предметами, місце наприкінці. Libros залишається в множині."
+      },
+      "question": {
+        "interactionId": "es:lesson-07:session-04:intro3:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Здесь есть пять книг». Начните с Hay, число поставьте перед libros, место — в конце.",
+          "uk": "Повідомте «Тут є п'ять книжок». Почніть з Hay, число поставте перед libros, місце — наприкінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-07:session-04:intro3:r1",
+              "text": "Hay cinco libros aquí."
+            },
+            {
+              "responseId": "es:lesson-07:session-04:intro3:r2",
+              "text": "Hay cinco libro aquí."
+            },
+            {
+              "responseId": "es:lesson-07:session-04:intro3:r3",
+              "text": "Hay tres libros aquí."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-07:session-04:intro3:r1",
+              "text": "Hay cinco libros aquí."
+            },
+            {
+              "responseId": "es:lesson-07:session-04:intro3:r2",
+              "text": "Hay cinco libro aquí."
+            },
+            {
+              "responseId": "es:lesson-07:session-04:intro3:r3",
+              "text": "Hay tres libros aquí."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Здесь есть пять книг». Начните с Hay, число поставьте перед libros, место — в конце.",
+          "uk": "Повідомте «Тут є п'ять книжок». Почніть з Hay, число поставте перед libros, місце — наприкінці."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "dcb6cdedace224e232b24286dd50fa9b3445acaa868075aa3e618fd7b9c32d9e"
+}

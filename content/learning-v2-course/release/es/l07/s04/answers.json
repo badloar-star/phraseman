@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-07:session-04:i01",
+    "correctText": "cuatro",
+    "correctResponseId": "es:lesson-07:session-04:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-04:i02",
+    "correctText": "dos",
+    "correctResponseId": "es:lesson-07:session-04:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-04:i03",
+    "correctText": "Hay dos libros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-04:i04",
+    "correctText": "sillas",
+    "correctResponseId": "es:lesson-07:session-04:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-04:i05",
+    "correctText": "Hay cuatro sillas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-04:i06",
+    "correctText": "Hay cinco libros aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-04:i07",
+    "correctText": "Hay tres sillas aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-04:i08",
+    "correctText": "cuatro",
+    "correctResponseId": "es:lesson-07:session-04:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-04:i09",
+    "correctText": "Hay dos libros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-04:i10",
+    "correctText": "Hay tres sillas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-04:i11",
+    "correctText": "Hay cuatro sillas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-04:i12",
+    "correctText": "Hay cinco libros aquí.",
+    "correctResponseId": null
+  }
+]

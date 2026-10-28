@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-07:session-02",
+  "learningOutcomeByLocale": {
+    "ru": "использовать uno отдельно и un перед libro.",
+    "uk": "використовувати uno окремо та un перед libro."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-07:session-02:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ответить одним числом",
+        "uk": "Відповісти одним числом"
+      },
+      "bodyByLocale": {
+        "ru": "Вас попросили назвать число книг. Книга одна, и вы отвечаете только числом: `Uno` — «Один». Соберите ответ из одного слова uno. Когда существительное не произносим, сохраняем o в конце. Знакомое un перед libro отдельно здесь не подходит.",
+        "uk": "Вас попросили назвати число книжок. Книжка одна, і ви відповідаєте лише числом: `Uno` — «Один». Складіть відповідь з одного слова uno. Коли іменник не вимовляємо, зберігаємо o наприкінці. Знайоме un перед libro окремо тут не підходить."
+      },
+      "question": {
+        "interactionId": "es:lesson-07:session-02:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите количество «один» одним словом, без существительного.",
+          "uk": "Назвіть кількість «один» одним словом, без іменника."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-07:session-02:intro1:r1",
+              "text": "Uno."
+            },
+            {
+              "responseId": "es:lesson-07:session-02:intro1:r2",
+              "text": "Un."
+            },
+            {
+              "responseId": "es:lesson-07:session-02:intro1:r3",
+              "text": "Cero."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-07:session-02:intro1:r1",
+              "text": "Uno."
+            },
+            {
+              "responseId": "es:lesson-07:session-02:intro1:r2",
+              "text": "Un."
+            },
+            {
+              "responseId": "es:lesson-07:session-02:intro1:r3",
+              "text": "Cero."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите количество «один» одним словом, без существительного.",
+          "uk": "Назвіть кількість «один» одним словом, без іменника."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-07:session-02:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Назвать и число, и предмет",
+        "uk": "Назвати і число, і предмет"
+      },
+      "bodyByLocale": {
+        "ru": "Теперь уточните, что речь об одной книге: `Un libro` — «Одна книга». Соберите `Un` + `libro`. Перед существительным мужского рода libro число uno теряет конечное o и становится un. Русское слово «книга» женского рода, но форму выбираем по испанскому libro.",
+        "uk": "Тепер уточніть, що йдеться про одну книжку: `Un libro` — «Одна книжка». Складіть `Un` + `libro`. Перед іменником чоловічого роду libro число uno втрачає кінцеве o і стає un. Українське слово «книжка» жіночого роду, але форму обираємо за іспанським libro."
+      },
+      "question": {
+        "interactionId": "es:lesson-07:session-02:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «Одна книга», используя un перед libro, без hay.",
+          "uk": "Скажіть «Одна книжка», використавши un перед libro, без hay."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-07:session-02:intro2:r1",
+              "text": "Un libro."
+            },
+            {
+              "responseId": "es:lesson-07:session-02:intro2:r2",
+              "text": "Uno libro."
+            },
+            {
+              "responseId": "es:lesson-07:session-02:intro2:r3",
+              "text": "Una libro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-07:session-02:intro2:r1",
+              "text": "Un libro."
+            },
+            {
+              "responseId": "es:lesson-07:session-02:intro2:r2",
+              "text": "Uno libro."
+            },
+            {
+              "responseId": "es:lesson-07:session-02:intro2:r3",
+              "text": "Una libro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Одна книга», используя un перед libro, без hay.",
+          "uk": "Скажіть «Одна книжка», використавши un перед libro, без hay."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-07:session-02:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Сообщить о наличии",
+        "uk": "Повідомити про наявність"
+      },
+      "bodyByLocale": {
+        "ru": "Вы показываете, что здесь есть одна книга. Скажите `Hay un libro aquí` — «Здесь есть одна книга». Соберите `Hay` + `un libro` + `aquí`. Короткая форма un остаётся перед libro и внутри предложения. Место добавляем в конце. Для одного читателя небольшой библиотеки пока хватит.",
+        "uk": "Ви показуєте, що тут є одна книжка. Скажіть `Hay un libro aquí` — «Тут є одна книжка». Складіть `Hay` + `un libro` + `aquí`. Коротка форма un залишається перед libro й усередині речення. Місце додаємо наприкінці. Для одного читача невеликої бібліотеки поки вистачить."
+      },
+      "question": {
+        "interactionId": "es:lesson-07:session-02:intro3:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Здесь есть одна книга». Начните с Hay, используйте un libro, место поставьте в конце.",
+          "uk": "Повідомте «Тут є одна книжка». Почніть з Hay, використайте un libro, місце поставте наприкінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-07:session-02:intro3:r1",
+              "text": "Hay un libro aquí."
+            },
+            {
+              "responseId": "es:lesson-07:session-02:intro3:r2",
+              "text": "Hay uno libro aquí."
+            },
+            {
+              "responseId": "es:lesson-07:session-02:intro3:r3",
+              "text": "Hay una libro aquí."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-07:session-02:intro3:r1",
+              "text": "Hay un libro aquí."
+            },
+            {
+              "responseId": "es:lesson-07:session-02:intro3:r2",
+              "text": "Hay uno libro aquí."
+            },
+            {
+              "responseId": "es:lesson-07:session-02:intro3:r3",
+              "text": "Hay una libro aquí."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Здесь есть одна книга». Начните с Hay, используйте un libro, место поставьте в конце.",
+          "uk": "Повідомте «Тут є одна книжка». Почніть з Hay, використайте un libro, місце поставте наприкінці."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "8546027ea68c5273a622c53e45da3d87842223a03767b35dcafbbb5456a92515"
+}

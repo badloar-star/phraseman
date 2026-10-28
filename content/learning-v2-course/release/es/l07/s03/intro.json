@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-07:session-03",
+  "learningOutcomeByLocale": {
+    "ru": "выбрать una перед silla и в коротком ответе о стульях.",
+    "uk": "обрати una перед silla й у короткій відповіді про стільці."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-07:session-03:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Один стул",
+        "uk": "Один стілець"
+      },
+      "bodyByLocale": {
+        "ru": "Вам нужен один стул. Назовите количество вместе с предметом: `Una silla` — «Один стул». Соберите `Una` + `silla`. Испанское silla женского рода, поэтому una, хотя русский перевод «стул» мужского рода. Выбираем форму по испанскому слову.",
+        "uk": "Вам потрібен один стілець. Назвіть кількість разом із предметом: `Una silla` — «Один стілець». Складіть `Una` + `silla`. Іспанське silla жіночого роду, тому una, хоча український переклад «стілець» чоловічого роду. Обираємо форму за іспанським словом."
+      },
+      "question": {
+        "interactionId": "es:lesson-07:session-03:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите «Один стул», используя una перед silla, без hay.",
+          "uk": "Скажіть «Один стілець», використавши una перед silla, без hay."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-07:session-03:intro1:r1",
+              "text": "Una silla."
+            },
+            {
+              "responseId": "es:lesson-07:session-03:intro1:r2",
+              "text": "Un silla."
+            },
+            {
+              "responseId": "es:lesson-07:session-03:intro1:r3",
+              "text": "Uno silla."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-07:session-03:intro1:r1",
+              "text": "Una silla."
+            },
+            {
+              "responseId": "es:lesson-07:session-03:intro1:r2",
+              "text": "Un silla."
+            },
+            {
+              "responseId": "es:lesson-07:session-03:intro1:r3",
+              "text": "Uno silla."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Один стул», используя una перед silla, без hay.",
+          "uk": "Скажіть «Один стілець», використавши una перед silla, без hay."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-07:session-03:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Короткий ответ о стульях",
+        "uk": "Коротка відповідь про стільці"
+      },
+      "bodyByLocale": {
+        "ru": "Друг уточняет количество стульев. Стул один, и вы отвечаете одним словом: `Una` — «Один». Хотя silla не произносим, речь всё ещё об этом существительном женского рода, поэтому una. Это не просто название числа при счёте «один, два», а короткий ответ именно о стульях.",
+        "uk": "Друг уточнює кількість стільців. Стілець один, і ви відповідаєте одним словом: `Una` — «Один». Хоча silla не вимовляємо, йдеться все ще про цей іменник жіночого роду, тому una. Це не просто назва числа під час лічби «один, два», а коротка відповідь саме про стільці."
+      },
+      "question": {
+        "interactionId": "es:lesson-07:session-03:intro2:q",
+        "promptByLocale": {
+          "ru": "Ответьте одним словом: один стул; существительное silla не произносите, сохраните его род.",
+          "uk": "Дайте відповідь одним словом: один стілець; іменник silla не вимовляйте, збережіть його рід."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-07:session-03:intro2:r1",
+              "text": "Una."
+            },
+            {
+              "responseId": "es:lesson-07:session-03:intro2:r2",
+              "text": "Uno."
+            },
+            {
+              "responseId": "es:lesson-07:session-03:intro2:r3",
+              "text": "Un."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-07:session-03:intro2:r1",
+              "text": "Una."
+            },
+            {
+              "responseId": "es:lesson-07:session-03:intro2:r2",
+              "text": "Uno."
+            },
+            {
+              "responseId": "es:lesson-07:session-03:intro2:r3",
+              "text": "Un."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ответьте одним словом: один стул; существительное silla не произносите, сохраните его род.",
+          "uk": "Дайте відповідь одним словом: один стілець; іменник silla не вимовляйте, збережіть його рід."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-07:session-03:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Показать свободный стул",
+        "uk": "Показати вільний стілець"
+      },
+      "bodyByLocale": {
+        "ru": "Вы заметили один стул здесь и сообщаете гостю `Hay una silla aquí` — «Здесь есть один стул». Соберите `Hay` + `una silla` + `aquí`. Una остаётся перед silla; место ставим в конце. Для одного гостя это уже хорошая новость.",
+        "uk": "Ви помітили один стілець тут і повідомляєте гостю `Hay una silla aquí` — «Тут є один стілець». Складіть `Hay` + `una silla` + `aquí`. Una залишається перед silla; місце ставимо наприкінці. Для одного гостя це вже гарна новина."
+      },
+      "question": {
+        "interactionId": "es:lesson-07:session-03:intro3:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Здесь есть один стул». Начните с Hay, используйте una silla, место поставьте в конце.",
+          "uk": "Повідомте «Тут є один стілець». Почніть з Hay, використайте una silla, місце поставте наприкінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-07:session-03:intro3:r1",
+              "text": "Hay una silla aquí."
+            },
+            {
+              "responseId": "es:lesson-07:session-03:intro3:r2",
+              "text": "Hay un silla aquí."
+            },
+            {
+              "responseId": "es:lesson-07:session-03:intro3:r3",
+              "text": "Hay uno silla aquí."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-07:session-03:intro3:r1",
+              "text": "Hay una silla aquí."
+            },
+            {
+              "responseId": "es:lesson-07:session-03:intro3:r2",
+              "text": "Hay un silla aquí."
+            },
+            {
+              "responseId": "es:lesson-07:session-03:intro3:r3",
+              "text": "Hay uno silla aquí."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Здесь есть один стул». Начните с Hay, используйте una silla, место поставьте в конце.",
+          "uk": "Повідомте «Тут є один стілець». Почніть з Hay, використайте una silla, місце поставте наприкінці."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "992c44aeb56dfb380011f30366876380af29e219a2fa569bd220ebef17dd4af5"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-07:session-01",
+  "entries": [
+    {
+      "interactionId": "es:lesson-07:session-01:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-01:intro1:r2": {
+          "ru": "Dos — два, а предметов нет.",
+          "uk": "Dos — два, а предметів немає."
+        },
+        "es:lesson-07:session-01:intro1:r3": {
+          "ru": "Diez — десять, а нужен ноль.",
+          "uk": "Diez — десять, а потрібен нуль."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-07:session-01:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-01:intro2:r2": {
+          "ru": "После cero здесь нужно множественное число libros.",
+          "uk": "Після cero тут потрібна множина libros."
+        },
+        "es:lesson-07:session-01:intro2:r3": {
+          "ru": "В записи ноль, поэтому cero.",
+          "uk": "У записі нуль, тому cero."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-07:session-01:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-01:intro3:r2": {
+          "ru": "Без no получится, что книги есть.",
+          "uk": "Без no вийде, що книжки є."
+        },
+        "es:lesson-07:session-01:intro3:r3": {
+          "ru": "По условию используем множественное число libros.",
+          "uk": "За умовою використовуємо множину libros."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "62e75165f178040b160f08726425da425f6f90b5e09c826e4eb16c59423fdb0a"
+}

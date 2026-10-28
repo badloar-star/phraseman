@@ -7,10 +7,13 @@ import { Pressable, StyleSheet, Text } from 'react-native';
 
 import { hapticTap } from '../../hooks/use-haptics';
 import { buildKaraokeFrames } from './aha_karaoke';
-import { AHA_THEME } from './aha_theme';
+import { ahaStylesCache, useAhaTheme } from './use_aha_theme';
+import type { AhaTheme } from './aha_theme';
 import type { KaraokeLineProps } from './aha_types';
 
 export default function KaraokeLine({ line, playToken, variant, onPress }: KaraokeLineProps) {
+  const T = useAhaTheme();
+  const styles = makeStyles(T);
   const [litIndex, setLitIndex] = useState(-1);
   const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
 
@@ -68,7 +71,7 @@ export default function KaraokeLine({ line, playToken, variant, onPress }: Karao
   );
 }
 
-const styles = StyleSheet.create({
+const makeStyles = ahaStylesCache((T: AhaTheme) => StyleSheet.create({
   line: {
     fontSize: 18,
     lineHeight: 25,
@@ -80,12 +83,12 @@ const styles = StyleSheet.create({
     fontWeight: '800',
   },
   wordIdle: {
-    color: AHA_THEME.karaokeIdle,
+    color: T.karaokeIdle,
   },
   wordLit: {
-    color: AHA_THEME.karaokeLit,
+    color: T.karaokeLit,
   },
   wordAccent: {
-    color: AHA_THEME.karaokeAccent,
+    color: T.karaokeAccent,
   },
-});
+}));

@@ -121,12 +121,12 @@ export function ugcCardThemeLabel(id: string, lang: Lang): string {
  * чтобы он читался на белой поверхности.
  */
 const UGC_CARD_ACCENT: Record<UgcCardThemeId, { dark: string; light: string }> = {
-  neon_lime: { dark: '#C8FF00', light: '#6F8C00' },
-  aqua_pulse: { dark: '#00D0FF', light: '#0E7490' },
-  magenta_pop: { dark: '#FF006E', light: '#C01360' },
-  solar_gold: { dark: '#FBB040', light: '#B4720F' },
-  violet_nebula: { dark: '#A78BFA', light: '#6D46D6' },
-  ember_coal: { dark: '#E85D3A', light: '#B8431F' },
+  neon_lime: { dark: '#C8FF00', light: '#6F8C00' }, // theme-exempt: цвет карточки выбирает автор набора, это не тема приложения
+  aqua_pulse: { dark: '#00D0FF', light: '#0E7490' }, // theme-exempt: цвет карточки выбирает автор набора, это не тема приложения
+  magenta_pop: { dark: '#FF006E', light: '#C01360' }, // theme-exempt: цвет карточки выбирает автор набора, это не тема приложения
+  solar_gold: { dark: '#FBB040', light: '#B4720F' }, // theme-exempt: цвет карточки выбирает автор набора, это не тема приложения
+  violet_nebula: { dark: '#A78BFA', light: '#6D46D6' }, // theme-exempt: цвет карточки выбирает автор набора, это не тема приложения
+  ember_coal: { dark: '#E85D3A', light: '#B8431F' }, // theme-exempt: цвет карточки выбирает автор набора, это не тема приложения
 };
 
 export function ugcCardThemeAccent(id: string, opts?: { isLight?: boolean }): string {

@@ -16,7 +16,8 @@ import KaraokeLine from './KaraokeLine';
 import { AHA_STRINGS, pickTri, resolveAhaScenario } from './aha_scenes';
 import SceneBackdrop from './SceneBackdrop';
 import SpeechBeat from './SpeechBeat';
-import { AHA_THEME } from './aha_theme';
+import { ahaStylesCache, useAhaTheme } from './use_aha_theme';
+import type { AhaTheme } from './aha_theme';
 import type {
   AhaBeat,
   AhaBeat3Mode,
@@ -50,6 +51,8 @@ function EnterBeat({
   lang: AhaLang;
   onTyped: () => void;
 }) {
+  const T = useAhaTheme();
+  const styles = makeStyles(T);
   return (
     <View style={styles.enterCenter}>
       <AhaCompassBubble>
@@ -70,6 +73,8 @@ function ListenBeat({
   playHear: PlayHear;
   onContinue: () => void;
 }) {
+  const T = useAhaTheme();
+  const styles = makeStyles(T);
   const [playToken, setPlayToken] = useState(0);
   const [revealed, setRevealed] = useState(false);
   const playHearRef = useRef(playHear);
@@ -132,6 +137,8 @@ function AssembleBeat({
   playSay: () => void;
   onAdvance: () => void;
 }) {
+  const T = useAhaTheme();
+  const styles = makeStyles(T);
   const [solved, setSolved] = useState(false);
   const onAdvanceRef = useRef(onAdvance);
   onAdvanceRef.current = onAdvance;
@@ -165,6 +172,8 @@ function AssembleBeat({
 }
 
 function PayoffBeat({ lang, onContinue }: { lang: AhaLang; onContinue: () => void }) {
+  const T = useAhaTheme();
+  const styles = makeStyles(T);
   return (
     <View style={styles.payoff}>
       <Text style={styles.payoffTitle}>{pickTri(lang, AHA_STRINGS.payoffTitle)}</Text>
@@ -177,6 +186,8 @@ function PayoffBeat({ lang, onContinue }: { lang: AhaLang; onContinue: () => voi
 }
 
 export function AhaScene({ goal, lang, onDone, onSkip }: AhaSceneProps) {
+  const T = useAhaTheme();
+  const styles = makeStyles(T);
   const scenario = useMemo(() => resolveAhaScenario(goal), [goal]);
   const audio = useAhaSceneAudio(scenario.id);
   const { playPlanReady } = useOnboardingSounds();
@@ -289,10 +300,10 @@ export function AhaScene({ goal, lang, onDone, onSkip }: AhaSceneProps) {
   );
 }
 
-const styles = StyleSheet.create({
+const makeStyles = ahaStylesCache((T: AhaTheme) => StyleSheet.create({
   root: {
     flex: 1,
-    backgroundColor: AHA_THEME.bgGradient[2],
+    backgroundColor: T.bgGradient[2],
   },
   safe: {
     flex: 1,
@@ -320,31 +331,31 @@ const styles = StyleSheet.create({
     paddingBottom: 120,
   },
   bubbleText: {
-    color: AHA_THEME.textPrimary,
+    color: T.textPrimary,
     fontSize: 18,
     lineHeight: 25,
     fontWeight: '800',
   },
   glassCard: {
-    borderRadius: AHA_THEME.radiusCard,
-    backgroundColor: AHA_THEME.cardBg,
+    borderRadius: T.radiusCard,
+    backgroundColor: T.cardBg,
     borderWidth: 0,
-    borderColor: AHA_THEME.cardBorder,
+    borderColor: T.cardBorder,
     padding: 16,
     gap: 10,
   },
   translation: {
-    color: AHA_THEME.textSecondary,
+    color: T.textSecondary,
     fontSize: 15,
     lineHeight: 21,
   },
   hint: {
-    color: AHA_THEME.textMuted,
+    color: T.textMuted,
     fontSize: 13,
     textAlign: 'center',
   },
   praise: {
-    color: AHA_THEME.wordClean,
+    color: T.wordClean,
     fontSize: 16,
     fontWeight: '800',
     textAlign: 'center',
@@ -359,14 +370,14 @@ const styles = StyleSheet.create({
     gap: 14,
   },
   payoffTitle: {
-    color: AHA_THEME.textPrimary,
+    color: T.textPrimary,
     fontSize: 26,
     lineHeight: 33,
     fontWeight: '900',
     letterSpacing: 0.2,
   },
   payoffBody: {
-    color: AHA_THEME.textSecondary,
+    color: T.textSecondary,
     fontSize: 16,
     lineHeight: 22,
   },
@@ -376,4 +387,4 @@ const styles = StyleSheet.create({
   skipRow: {
     paddingVertical: 10,
   },
-});
+}));

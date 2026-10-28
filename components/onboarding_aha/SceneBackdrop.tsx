@@ -2,12 +2,15 @@ import React, { useEffect, useRef } from 'react';
 import { Animated, StyleSheet, View } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
-import { AHA_THEME } from './aha_theme';
+import { ahaStylesCache, useAhaTheme } from './use_aha_theme';
+import type { AhaTheme } from './aha_theme';
 
 const FADE_IN_MS = 600;
 
 /** Лёгкий фон сцен без старых растровых иллюстраций и Ken Burns. */
 export default function SceneBackdrop() {
+  const T = useAhaTheme();
+  const styles = makeStyles(T);
   const fadeIn = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
@@ -23,7 +26,7 @@ export default function SceneBackdrop() {
   return (
     <Animated.View pointerEvents="none" style={[StyleSheet.absoluteFill, { opacity: fadeIn }]}>
       <LinearGradient
-        colors={AHA_THEME.bgGradient}
+        colors={T.bgGradient}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
         style={StyleSheet.absoluteFill}
@@ -34,7 +37,7 @@ export default function SceneBackdrop() {
   );
 }
 
-const styles = StyleSheet.create({
+const makeStyles = ahaStylesCache((T: AhaTheme) => StyleSheet.create({
   liquidBlob: {
     position: 'absolute',
     borderRadius: 999,
@@ -45,13 +48,13 @@ const styles = StyleSheet.create({
     height: 260,
     top: -72,
     left: -72,
-    backgroundColor: AHA_THEME.blobBlue,
+    backgroundColor: T.blobBlue,
   },
   liquidBlobTwo: {
     width: 300,
     height: 300,
     right: -130,
     bottom: 80,
-    backgroundColor: AHA_THEME.blobViolet,
+    backgroundColor: T.blobViolet,
   },
-});
+}));

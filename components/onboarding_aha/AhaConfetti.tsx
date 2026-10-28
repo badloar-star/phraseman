@@ -6,7 +6,8 @@
 import React, { useEffect, useMemo, useRef } from 'react';
 import { Animated, Dimensions, StyleSheet, View } from 'react-native';
 
-import { AHA_THEME } from './aha_theme';
+import { useAhaTheme } from './use_aha_theme';
+import type { AhaTheme } from './aha_theme';
 
 const { width: WIN_W, height: WIN_H } = Dimensions.get('window');
 
@@ -70,11 +71,12 @@ function ConfettiPiece({ color, delay, startX, startY }: ConfettiPieceProps) {
 
 /** Праздничный burst пейоффа: частицы стартуют из верхней трети экрана. */
 export default function AhaConfetti({ count = 26 }: AhaConfettiProps) {
+  const T = useAhaTheme();
   const pieces = useMemo(
     () =>
       Array.from({ length: count }, (_, i) => ({
         key: i,
-        color: AHA_THEME.confettiColors[i % AHA_THEME.confettiColors.length],
+        color: T.confettiColors[i % T.confettiColors.length],
         delay: Math.floor(Math.random() * 100),
         startX: Math.floor(Math.random() * WIN_W),
         startY: Math.floor(Math.random() * (WIN_H / 3)),

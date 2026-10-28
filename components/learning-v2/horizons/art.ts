@@ -9,7 +9,7 @@ function landmark(index: number) {
     '<path d="m-31 64 24-68 22 30 12-49 24 87Z" fill="var(--terrain3)"/><path d="m-7-4 3 68H-31Zm34-19 2 87h22Z" fill="var(--accent)" opacity=".7"/><path d="m-7-4 22 30 12-49 2 87H-4Z" fill="var(--terrain)"/><path d="m-18 27 11 4 10-15m17-3 7 5 8-9" fill="none" stroke="var(--accent)" opacity=".7"/>',
     '<path d="M-20 63V21a30 30 0 0 1 60 0v42Z" fill="var(--terrain3)"/><path d="M-11 63V23a21 21 0 0 1 42 0v40Z" fill="var(--terrain)"/><path d="M-1 63V24a11 11 0 0 1 22 0v39Z" fill="var(--accent)" opacity=".7"/><path d="m-30 64 40 17 41-17M-33 72l43 17 44-17" fill="none" stroke="var(--gold)"/><circle cx="10" cy="-9" r="6" fill="var(--gold)"/>',
   ];
-  return `<g class="landmark" transform="translate(177 46)"><ellipse cx="10" cy="70" rx="52" ry="17" fill="#000" opacity=".17"/>${monuments[index % 7]}</g>`;
+  return `<g class="landmark" transform="translate(177 46)"><ellipse cx="10" cy="70" rx="52" ry="17" fill="#000" opacity=".17"/>${monuments[index % 7]}</g>`; // theme-exempt: палитра иллюстраций «Горизонтов» — арт, цвет часть картинки
 }
 
 function landscape(index: number, tall = false) {
@@ -20,7 +20,7 @@ function landscape(index: number, tall = false) {
   <rect width="390" height="${tall ? 695 : 260}" fill="url(#${id}-water)"/>
   <g fill="none" stroke="var(--terrain3)" opacity=".12" stroke-width=".7"><path d="M-30 110Q70 0 180 80T430 55M-40 118Q70 8 180 88T430 63M-40 126Q70 16 180 96T430 71M-40 134Q70 24 180 104T430 79M-40 142Q70 32 180 112T430 87"/><path d="M-50 230Q80 95 210 180T450 145M-50 240Q80 105 210 190T450 155M-50 250Q80 115 210 200T450 165M-50 260Q80 125 210 210T450 175"/></g>
   <g transform="translate(${tall ? -30 : 8} ${tall ? 150 : 10}) rotate(${rotate} 190 140) scale(${tall ? 1.14 : 0.97})">
-   <path d="M58 160C34 136 62 94 109 80L173 42C215 20 252 47 270 66L315 97C352 119 339 171 310 188L230 225C186 247 140 225 128 208L79 195Z" fill="#000" opacity=".22" transform="translate(1 21)"/>
+   <path d="M58 160C34 136 62 94 109 80L173 42C215 20 252 47 270 66L315 97C352 119 339 171 310 188L230 225C186 247 140 225 128 208L79 195Z" fill="#000" opacity=".22" transform="translate(1 21)"/> // theme-exempt: палитра иллюстраций «Горизонтов» — арт, цвет часть картинки
    <path d="M58 160C34 136 62 94 109 80L173 42C215 20 252 47 270 66L315 97C352 119 339 171 310 188L230 225C186 247 140 225 128 208L79 195Z" fill="var(--terrain)" stroke="var(--terrain2)" stroke-width="1" transform="translate(0 12)"/>
    <path d="M58 160C34 136 62 94 109 80L173 42C215 20 252 47 270 66L315 97C352 119 339 171 310 188L230 225C186 247 140 225 128 208L79 195Z" fill="url(#${id}-rock)" stroke="var(--terrain3)" stroke-opacity=".5"/>
    <path d="M77 143C68 122 100 108 128 101L183 65C208 48 238 64 250 80L295 112C320 129 306 157 285 169L222 201C191 215 164 196 153 184L104 171Z" fill="var(--terrain)" stroke="var(--terrain3)" stroke-opacity=".5" transform="translate(0 -9)"/>

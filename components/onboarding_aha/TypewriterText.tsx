@@ -6,13 +6,16 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Animated, AppState, Easing, Pressable, StyleSheet, Text } from 'react-native';
 
 import { useIsScreenFocused } from '../../hooks/use_is_screen_focused';
-import { AHA_THEME } from './aha_theme';
+import { ahaStylesCache, useAhaTheme } from './use_aha_theme';
+import type { AhaTheme } from './aha_theme';
 import type { TypewriterTextProps } from './aha_types';
 
 const DEFAULT_CHAR_MS = 32;
 const CURSOR_PHASE_MS = 500;
 
 export default function TypewriterText({ text, charMs = DEFAULT_CHAR_MS, onDone, skipOnPress, color }: TypewriterTextProps) {
+  const T = useAhaTheme();
+  const styles = makeStyles(T);
   const [shownLength, setShownLength] = useState(0);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const doneCalledRef = useRef(false);
@@ -142,17 +145,17 @@ export default function TypewriterText({ text, charMs = DEFAULT_CHAR_MS, onDone,
   return <Pressable onPress={handlePress}>{body}</Pressable>;
 }
 
-const styles = StyleSheet.create({
+const makeStyles = ahaStylesCache((T: AhaTheme) => StyleSheet.create({
   text: {
-    color: AHA_THEME.textPrimary,
+    color: T.textPrimary,
     fontSize: 18,
     lineHeight: 25,
     fontWeight: '800',
   },
   cursor: {
-    color: AHA_THEME.textPrimary,
+    color: T.textPrimary,
     fontSize: 18,
     lineHeight: 25,
     fontWeight: '800',
   },
-});
+}));

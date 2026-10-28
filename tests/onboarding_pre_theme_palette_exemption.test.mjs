@@ -15,12 +15,11 @@ const REASON = 'theme-exempt: до выбора темы; перевод на т
 // база на 25.10: литералы цвета в строках кода (комментарии не считаются)
 const ALLOWED = {
   'components/CleanOnboarding.tsx': 64,
-  'components/onboarding_aha/aha_theme.ts': 46,
   'components/onboarding_palette.ts': 1,
-  'components/onboarding_aha/aha_ui.tsx': 1,
-  'components/onboarding_aha/SpeechBeat.tsx': 3,
+  // 28.10: онбординг «ага» (aha_theme, aha_ui, SpeechBeat) переведён в цвета темы по умолчанию (решение владельца) — литералов 0, из списка убран;
+  // страж палитры — tests/onboarding_aha_theme_palette.test.ts. CleanOnboarding.tsx — файл Codex, остаётся до его правки.
 };
-const MUST_DECLARE = ['components/CleanOnboarding.tsx', 'components/onboarding_aha/aha_theme.ts'];
+const MUST_DECLARE = ['components/CleanOnboarding.tsx'];
 
 const reColor = /#[0-9A-Fa-f]{8}\b|#[0-9A-Fa-f]{6}\b|rgba?\(\s*\d+\s*,\s*\d+\s*,\s*\d+(?:\s*,\s*[\d.]+)?\s*\)/g;
 function walk(dir, out) {

@@ -365,12 +365,12 @@ export const loadExamMedalInfo = async (
 
 // ─── Dot colors for overlapping medal display ─────────────────────────────────
 export const MEDAL_DOT_COLOR: Record<string, string> = {
-  bronze:  '#CD7F32',
-  silver:  '#C0C0C0',
-  gold:    '#FFD700',
-  ruby:    '#E53935',
-  emerald: '#50C878',
-  diamond: '#4FC3F7',
+  bronze:  '#CD7F32', // theme-exempt: цвет металла медали (бронза / серебро / золото) — часть образа медали
+  silver:  '#C0C0C0', // theme-exempt: цвет металла медали (бронза / серебро / золото) — часть образа медали
+  gold:    '#FFD700', // theme-exempt: цвет металла медали (бронза / серебро / золото) — часть образа медали
+  ruby:    '#E53935', // theme-exempt: цвет металла медали (бронза / серебро / золото) — часть образа медали
+  emerald: '#50C878', // theme-exempt: цвет металла медали (бронза / серебро / золото) — часть образа медали
+  diamond: '#4FC3F7', // theme-exempt: цвет металла медали (бронза / серебро / золото) — часть образа медали
 };
 
 // Returns list of earned dot keys for a lesson
@@ -423,7 +423,7 @@ export const getProgressCellColor = (
   isCurrentCell: boolean,
 ): string => {
   // Текущая ячейка (под стрелкой) — белая, чтобы не путаться с зелёным "правильно"
-  if (isCurrentCell) return 'rgba(255,255,255,0.85)';
+  if (isCurrentCell) return 'rgba(255,255,255,0.85)'; // theme-exempt: цвет металла медали (бронза / серебро / золото) — часть образа медали
   if (status === 'wrong') return t.wrong;
   if (status === 'correct' || status === 'replay_correct') {
     // Каждое следующее прохождение → более тёмный оттенок основного цвета темы.

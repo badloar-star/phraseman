@@ -6,7 +6,8 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Animated, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import type { AhaChip, ChipsAssemblyProps } from './aha_types';
-import { AHA_THEME } from './aha_theme';
+import { ahaStylesCache, useAhaTheme } from './use_aha_theme';
+import type { AhaTheme } from './aha_theme';
 import { pickTri } from './aha_scenes';
 import { buildChipDeck, chipWordsFromLine, isChipCorrect } from './aha_chips_logic';
 import { hapticTap, hapticSuccess, hapticWarning } from '../../hooks/use-haptics';
@@ -20,6 +21,8 @@ interface AssembledWordProps {
 
 /** Слово в строке-слоте: fade+scale-in при появлении. */
 function AssembledWord({ word }: AssembledWordProps) {
+  const T = useAhaTheme();
+  const styles = makeStyles(T);
   const anim = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
@@ -55,6 +58,8 @@ interface ChipButtonProps {
 
 /** Один chip банка: staggered появление при маунте, shake при ошибке, scale-down при верном тапе. */
 function ChipButton({ chip, index, hinted, onTap, onVanished }: ChipButtonProps) {
+  const T = useAhaTheme();
+  const styles = makeStyles(T);
   const enterAnim = useRef(new Animated.Value(0)).current;
   const shakeAnim = useRef(new Animated.Value(0)).current;
   const scaleAnim = useRef(new Animated.Value(1)).current;
@@ -130,6 +135,8 @@ function ChipButton({ chip, index, hinted, onTap, onVanished }: ChipButtonProps)
 }
 
 export default function ChipsAssembly({ scenario, lang, onSolved, playSay }: ChipsAssemblyProps) {
+  const T = useAhaTheme();
+  const styles = makeStyles(T);
   const words = useMemo(() => chipWordsFromLine(scenario.say.text), [scenario]);
   const seed = useMemo(
     () => scenario.say.text.length + scenario.id.length,
@@ -210,16 +217,16 @@ export default function ChipsAssembly({ scenario, lang, onSolved, playSay }: Chi
   );
 }
 
-const styles = StyleSheet.create({
+const makeStyles = ahaStylesCache((T: AhaTheme) => StyleSheet.create({
   container: {
     width: '100%',
   },
   slotCard: {
     minHeight: 64,
-    backgroundColor: AHA_THEME.cardBg,
-    borderColor: AHA_THEME.cardBorder,
+    backgroundColor: T.cardBg,
+    borderColor: T.cardBorder,
     borderWidth: 0,
-    borderRadius: AHA_THEME.radiusCard,
+    borderRadius: T.radiusCard,
     paddingHorizontal: 14,
     paddingVertical: 10,
     justifyContent: 'center',
@@ -230,12 +237,12 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   assembledWord: {
-    color: AHA_THEME.textPrimary,
+    color: T.textPrimary,
     fontSize: 18,
     fontWeight: '600',
   },
   translation: {
-    color: AHA_THEME.textMuted,
+    color: T.textMuted,
     fontSize: 13,
     marginTop: 8,
     marginBottom: 18,
@@ -246,10 +253,10 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   chip: {
-    backgroundColor: AHA_THEME.chipBg,
-    borderColor: AHA_THEME.chipBorder,
+    backgroundColor: T.chipBg,
+    borderColor: T.chipBorder,
     borderWidth: 0,
-    borderRadius: AHA_THEME.radiusChip,
+    borderRadius: T.radiusChip,
     paddingHorizontal: 14,
     paddingVertical: 10,
     minHeight: 48,
@@ -257,15 +264,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   chipHinted: {
-    borderColor: AHA_THEME.chipHintBorder,
+    borderColor: T.chipHintBorder,
     borderWidth: 0,
   },
   chipPressed: {
     opacity: 0.85,
   },
   chipText: {
-    color: AHA_THEME.textPrimary,
+    color: T.textPrimary,
     fontSize: 16,
     fontWeight: '500',
   },
-});
+}));

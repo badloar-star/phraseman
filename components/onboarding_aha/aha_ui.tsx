@@ -1,6 +1,6 @@
 // Локальные UI-примитивы АХ-сцены в визуальном языке CleanOnboarding.
 // CleanOnboarding.tsx свои примитивы не экспортирует (и занят другой сессией),
-// поэтому здесь осознанная копия по спецификации; цвета — только из AHA_THEME.
+// поэтому здесь осознанная копия по спецификации; цвета — только из палитры текущей темы (useAhaTheme).
 // Анимации — только transform/opacity, useNativeDriver:true (Performance Bible).
 
 import { LinearGradient } from 'expo-linear-gradient';
@@ -9,7 +9,8 @@ import { Animated, Image, Pressable, StyleSheet, Text, View } from 'react-native
 import type { StyleProp, ViewStyle } from 'react-native';
 
 import { hapticTap } from '../../hooks/use-haptics';
-import { AHA_THEME } from './aha_theme';
+import { ahaStylesCache, useAhaTheme } from './use_aha_theme';
+import type { AhaTheme } from './aha_theme';
 import type { AhaBeat } from './aha_types';
 
 const COMPASS_LOGO = require('../../assets/images/onboarding_icon_cutout.webp');
@@ -22,9 +23,11 @@ export interface AhaPrimaryButtonProps {
 
 /** Главная CTA сцены: градиент + псевдо-3D подошва, как primary в онбординге. */
 export function AhaPrimaryButton({ label, onPress, disabled }: AhaPrimaryButtonProps) {
+  const T = useAhaTheme();
+  const styles = makeStyles(T);
   const colors = disabled
-    ? ([AHA_THEME.ctaDisabled, AHA_THEME.ctaDisabled] as const)
-    : AHA_THEME.ctaGradient;
+    ? ([T.ctaDisabled, T.ctaDisabled] as const)
+    : T.ctaGradient;
   return (
     <Pressable
       onPressIn={() => {
@@ -56,6 +59,8 @@ export interface AhaSecondaryLinkProps {
 
 /** Мелкая прозрачная кнопка-ссылка (скип и подобное). */
 export function AhaSecondaryLink({ label, onPress }: AhaSecondaryLinkProps) {
+  const T = useAhaTheme();
+  const styles = makeStyles(T);
   return (
     <Pressable
       onPressIn={() => {
@@ -77,6 +82,8 @@ export interface AhaCompassBubbleProps {
 
 /** Компас + speech-bubble: логотип слева, реплика в стеклянном пузыре. */
 export function AhaCompassBubble({ children }: AhaCompassBubbleProps) {
+  const T = useAhaTheme();
+  const styles = makeStyles(T);
   return (
     <View style={styles.bubbleRow}>
       <Image source={COMPASS_LOGO} style={styles.bubbleLogo} resizeMode="contain" />
@@ -168,7 +175,7 @@ export function AhaFadeIn({ children, style }: AhaFadeInProps) {
   return <Animated.View style={[style, { opacity }]}>{children}</Animated.View>;
 }
 
-const styles = StyleSheet.create({
+const makeStyles = ahaStylesCache((T: AhaTheme) => StyleSheet.create({
   primaryOuter: {
     minHeight: 64,
     borderRadius: 14,
@@ -180,19 +187,19 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingHorizontal: 18,
     borderWidth: 0,
-    borderColor: 'rgba(255,255,255,0.28)',
+    borderColor: T.ctaDisabled,
   },
   primarySole: {
     height: 8,
     marginHorizontal: 2,
     marginTop: -7,
     borderRadius: 14,
-    backgroundColor: AHA_THEME.ctaShadow,
+    backgroundColor: T.ctaShadow,
     opacity: 0.72,
     zIndex: -1,
   },
   primaryText: {
-    color: AHA_THEME.ctaTextColor,
+    color: T.ctaTextColor,
     fontSize: 18,
     fontWeight: '800',
     textAlign: 'center',
@@ -204,7 +211,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
   linkText: {
-    color: AHA_THEME.textMuted,
+    color: T.textMuted,
     fontSize: 15,
     fontWeight: '700',
     textAlign: 'center',
@@ -220,10 +227,10 @@ const styles = StyleSheet.create({
   },
   bubble: {
     flex: 1,
-    borderRadius: AHA_THEME.radiusBubble,
-    backgroundColor: AHA_THEME.bubbleBg,
+    borderRadius: T.radiusBubble,
+    backgroundColor: T.bubbleBg,
     borderWidth: 0,
-    borderColor: AHA_THEME.bubbleBorder,
+    borderColor: T.bubbleBorder,
     paddingHorizontal: 16,
     paddingVertical: 14,
   },
@@ -231,4 +238,4 @@ const styles = StyleSheet.create({
     transform: [{ scale: 0.985 }],
     opacity: 0.9,
   },
-});
+}));

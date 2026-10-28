@@ -35,7 +35,8 @@ import {
 import { trackAhaEvent } from './aha_events';
 import { AHA_STRINGS, pickTri } from './aha_scenes';
 import { pickBetterTranscript, softSpeechOutcome, type SoftSpeechOutcome } from './aha_speech_logic';
-import { AHA_THEME } from './aha_theme';
+import { ahaStylesCache, useAhaTheme } from './use_aha_theme';
+import type { AhaTheme } from './aha_theme';
 import type { AhaSpeechStatus, SpeechBeatProps, TriText } from './aha_types';
 import { isSpeechUnavailableOnDevice } from '../../app/speech_device_availability';
 import { DebugLogger } from '../../app/debug-logger';
@@ -43,9 +44,7 @@ import { DebugLogger } from '../../app/debug-logger';
 // Android-движок может принять start() и молчать вечно — 7с и выходим в shadow.
 const WATCHDOG_MS = 7000;
 
-// Градиент кнопки, пока она зажата (идёт запись) — «микрофонный» красный, как в
-// уроках/плане. Локальная константа: в теме АХ-сцены отдельного ключа нет.
-const HOLD_ACTIVE_GRADIENT = ['#FF6E78', '#FF4A55', '#E5484D'] as const;
+// Градиент кнопки, пока она зажата (идёт запись) — «микрофонный» красный: теперь токен bad текущей темы (ключ recordGradient палитры АХ-сцены).
 
 type Sub = { remove?: () => void } | undefined;
 type IoniconName = React.ComponentProps<typeof Ionicons>['name'];
@@ -74,6 +73,8 @@ function pressTap(): void {
 }
 
 export default function SpeechBeat({ scenario, lang, onDone, playSay }: SpeechBeatProps) {
+  const T = useAhaTheme();
+  const styles = makeStyles(T);
   const { playRecordStart } = useRecordStartCue();
   const runtimeActive = useRuntimeActive();
   const runtimeActiveRef = useRef(runtimeActive);
@@ -542,7 +543,7 @@ export default function SpeechBeat({ scenario, lang, onDone, playSay }: SpeechBe
             />
           </View>
           <Pressable onPressIn={pressTap} onPress={retryAttempt} hitSlop={10} style={styles.retryBtn}>
-            <Ionicons name="refresh" size={14} color={AHA_THEME.textMuted} />
+            <Ionicons name="refresh" size={14} color={T.textMuted} />
             <Text style={styles.retryText}>{t(AHA_STRINGS.retry)}</Text>
           </Pressable>
           <PrimaryCta label={t(AHA_STRINGS.continueCta)} onPress={completeSpoken} />
@@ -571,6 +572,8 @@ export default function SpeechBeat({ scenario, lang, onDone, playSay }: SpeechBe
 
 /** Живая подсветка слов цели по ходу распознавания (interim results). */
 function LiveTargetLine({ target, transcript }: { target: string; transcript: string }) {
+  const T = useAhaTheme();
+  const styles = makeStyles(T);
   const tokens = speakingTargetTokens(target);
   const flags = speakingMatchedFlags(target, transcript);
   return (
@@ -578,7 +581,7 @@ function LiveTargetLine({ target, transcript }: { target: string; transcript: st
       {tokens.map((word, i) => (
         <Text
           key={`${word}_${i}`}
-          style={[styles.wordText, { color: flags[i] ? AHA_THEME.karaokeLit : AHA_THEME.karaokeIdle }]}
+          style={[styles.wordText, { color: flags[i] ? T.karaokeLit : T.karaokeIdle }]}
         >
           {word}
         </Text>
@@ -587,21 +590,23 @@ function LiveTargetLine({ target, transcript }: { target: string; transcript: st
   );
 }
 
-function wordStatusColor(status: SpokenWordEntry['status']): string {
-  if (status === 'clean') return AHA_THEME.wordClean;
-  if (status === 'fuzzy') return AHA_THEME.wordFuzzy;
-  return AHA_THEME.wordMissed;
+function wordStatusColor(status: SpokenWordEntry['status'], T: AhaTheme): string {
+  if (status === 'clean') return T.wordClean;
+  if (status === 'fuzzy') return T.wordFuzzy;
+  return T.wordMissed;
 }
 
 /** Пословная карта попытки: чисто/нечётко/пропущено. */
 function WordMap({ target, report }: { target: string; report: readonly SpokenWordEntry[] }) {
+  const T = useAhaTheme();
+  const styles = makeStyles(T);
   const tokens = speakingTargetTokens(target);
   return (
     <View style={styles.wordsRow}>
       {tokens.map((word, i) => (
         <Text
           key={`${word}_${i}`}
-          style={[styles.wordText, { color: wordStatusColor(report[i]?.status ?? 'missed') }]}
+          style={[styles.wordText, { color: wordStatusColor(report[i]?.status ?? 'missed', T) }]}
         >
           {word}
         </Text>
@@ -612,6 +617,8 @@ function WordMap({ target, report }: { target: string; report: readonly SpokenWo
 
 /** Кольцо микрофона: пульс только на фокусе и активном AppState (паттерн AvatarAura). */
 function MicPulseRing({ active }: { active: boolean }) {
+  const T = useAhaTheme();
+  const styles = makeStyles(T);
   const phase = useRef(new Animated.Value(0)).current;
   const isFocused = useIsScreenFocused();
   const shouldAnimate = active && isFocused;
@@ -666,23 +673,25 @@ function MicPulseRing({ active }: { active: boolean }) {
         style={[
           styles.micRing,
           {
-            borderColor: active ? AHA_THEME.micRingActive : AHA_THEME.micRing,
+            borderColor: active ? T.micRingActive : T.micRing,
             transform: [{ scale }],
           },
         ]}
       />
       <View style={styles.micInner}>
-        <Ionicons name="mic" size={30} color={AHA_THEME.textPrimary} />
+        <Ionicons name="mic" size={30} color={T.textPrimary} />
       </View>
     </View>
   );
 }
 
 function PrimaryCta({ label, onPress }: { label: string; onPress: () => void }) {
+  const T = useAhaTheme();
+  const styles = makeStyles(T);
   return (
     <Pressable onPressIn={pressTap} onPress={onPress} style={styles.ctaWrap}>
       <LinearGradient
-        colors={AHA_THEME.ctaGradient}
+        colors={T.ctaGradient}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
         style={styles.ctaGradient}
@@ -708,6 +717,8 @@ function HoldCta({
   onPressIn: () => void;
   onPressOut: () => void;
 }) {
+  const T = useAhaTheme();
+  const styles = makeStyles(T);
   return (
     <Pressable
       onPressIn={() => {
@@ -720,7 +731,7 @@ function HoldCta({
       accessibilityLabel={label}
     >
       <LinearGradient
-        colors={active ? HOLD_ACTIVE_GRADIENT : AHA_THEME.ctaGradient}
+        colors={active ? T.recordGradient : T.ctaGradient}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
         style={styles.ctaGradient}
@@ -742,6 +753,8 @@ function TabButton({
   selected: boolean;
   onPress: () => void;
 }) {
+  const T = useAhaTheme();
+  const styles = makeStyles(T);
   return (
     <Pressable
       onPressIn={pressTap}
@@ -751,30 +764,30 @@ function TabButton({
       <Ionicons
         name={icon}
         size={16}
-        color={selected ? AHA_THEME.chipSelectedBorder : AHA_THEME.textSecondary}
+        color={selected ? T.chipSelectedBorder : T.textSecondary}
       />
       <Text style={[styles.tabText, selected && styles.tabTextSelected]}>{label}</Text>
     </Pressable>
   );
 }
 
-const styles = StyleSheet.create({
+const makeStyles = ahaStylesCache((T: AhaTheme) => StyleSheet.create({
   root: { flex: 1, width: '100%', alignItems: 'center', justifyContent: 'center', paddingBottom: 60 },
   centerBlock: { width: '100%', alignItems: 'center', gap: 14 },
   bubble: {
     width: '100%',
-    backgroundColor: AHA_THEME.bubbleBg,
-    borderColor: AHA_THEME.bubbleBorder,
+    backgroundColor: T.bubbleBg,
+    borderColor: T.bubbleBorder,
     borderWidth: 0,
-    borderRadius: AHA_THEME.radiusBubble,
+    borderRadius: T.radiusBubble,
     padding: 16,
     alignItems: 'center',
     gap: 10,
   },
-  bubbleTitle: { color: AHA_THEME.textPrimary, fontSize: 18, fontWeight: '700', textAlign: 'center' },
-  bubbleBody: { color: AHA_THEME.textSecondary, fontSize: 15, lineHeight: 21, textAlign: 'center' },
-  linkText: { color: AHA_THEME.textMuted, fontSize: 14, padding: 6 },
-  statusText: { color: AHA_THEME.textSecondary, fontSize: 14 },
+  bubbleTitle: { color: T.textPrimary, fontSize: 18, fontWeight: '700', textAlign: 'center' },
+  bubbleBody: { color: T.textSecondary, fontSize: 15, lineHeight: 21, textAlign: 'center' },
+  linkText: { color: T.textMuted, fontSize: 14, padding: 6 },
+  statusText: { color: T.textSecondary, fontSize: 14 },
   wordsRow: {
     flexDirection: 'row',
     flexWrap: 'wrap',
@@ -784,15 +797,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
   },
   wordText: { fontSize: 22, fontWeight: '700' },
-  resultText: { color: AHA_THEME.textPrimary, fontSize: 16, fontWeight: '600', textAlign: 'center' },
+  resultText: { color: T.textPrimary, fontSize: 16, fontWeight: '600', textAlign: 'center' },
   micWrap: { width: 96, height: 96, alignItems: 'center', justifyContent: 'center' },
   micRing: { position: 'absolute', width: 96, height: 96, borderRadius: 48, borderWidth: 0},
   micInner: {
     width: 72,
     height: 72,
     borderRadius: 36,
-    backgroundColor: AHA_THEME.cardBg,
-    borderColor: AHA_THEME.cardBorder,
+    backgroundColor: T.cardBg,
+    borderColor: T.cardBorder,
     borderWidth: 0,
     alignItems: 'center',
     justifyContent: 'center',
@@ -804,25 +817,25 @@ const styles = StyleSheet.create({
     gap: 6,
     paddingHorizontal: 14,
     paddingVertical: 9,
-    borderRadius: AHA_THEME.radiusChip,
-    backgroundColor: AHA_THEME.chipBg,
-    borderColor: AHA_THEME.chipBorder,
+    borderRadius: T.radiusChip,
+    backgroundColor: T.chipBg,
+    borderColor: T.chipBorder,
     borderWidth: 0,
   },
-  tabBtnSelected: { backgroundColor: AHA_THEME.chipSelectedBg, borderColor: AHA_THEME.chipSelectedBorder },
-  tabText: { color: AHA_THEME.textSecondary, fontSize: 14, fontWeight: '600' },
-  tabTextSelected: { color: AHA_THEME.textPrimary },
+  tabBtnSelected: { backgroundColor: T.chipSelectedBg, borderColor: T.chipSelectedBorder },
+  tabText: { color: T.textSecondary, fontSize: 14, fontWeight: '600' },
+  tabTextSelected: { color: T.textPrimary },
   retryBtn: { flexDirection: 'row', alignItems: 'center', gap: 5, padding: 6 },
-  retryText: { color: AHA_THEME.textMuted, fontSize: 13 },
+  retryText: { color: T.textMuted, fontSize: 13 },
   ctaWrap: {
     width: '100%',
-    borderRadius: AHA_THEME.radiusCard,
-    shadowColor: AHA_THEME.ctaShadow,
+    borderRadius: T.radiusCard,
+    shadowColor: T.ctaShadow,
     shadowOpacity: 0.35,
     shadowRadius: 12,
     shadowOffset: { width: 0, height: 4 },
     elevation: 6,
   },
-  ctaGradient: { borderRadius: AHA_THEME.radiusCard, paddingVertical: 15, alignItems: 'center' },
-  ctaText: { color: AHA_THEME.ctaTextColor, fontSize: 16, fontWeight: '800' },
-});
+  ctaGradient: { borderRadius: T.radiusCard, paddingVertical: 15, alignItems: 'center' },
+  ctaText: { color: T.ctaTextColor, fontSize: 16, fontWeight: '800' },
+}));

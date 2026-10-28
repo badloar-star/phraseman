@@ -93,7 +93,7 @@ She ___ sage. → **is going to buy** · is buying · buy
 <!-- interaction_id: en:lesson-15:session-37:word:coriander; family: word_card -->
 > **coriander** — кориандр, растение, листья и семена которого используют как приправу.
 
-**10 · Продавец подтвердил заказ кориандра и время получения на завтра. Это уже решено. Скажите: «Мы забираем кориандр завтра».**
+**10 · Продавец подтвердил заказ кориандра: забрать его можно завтра. Это уже решено. Скажите: «Мы забираем кориандр завтра».**
 <!-- interaction_id: en:lesson-15:session-37:i07; family: phrase_builder -->
 Плитки: `tomorrow` `coriander` `the` `collecting` `are` `We` → **We are collecting the coriander tomorrow.**
 
@@ -103,7 +103,7 @@ She ___ sage. → **is going to buy** · is buying · buy
 - We are going to collect the coriander tomorrow. — *В записи звучит We are collecting the coriander tomorrow.*
 - We is collecting the coriander tomorrow. — *В записи звучит We are collecting the coriander tomorrow.*
 
-**12 · Продавец подтвердил заказ кориандра и время получения на завтра. Скажите, что это уже решено.**
+**12 · Продавец подтвердил заказ кориандра: забрать его можно завтра. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-37:i09; family: context_gap_grammar -->
 We ___ the coriander tomorrow. → **are collecting** · are collect · collect
 - are collect — *После are нужна форма с -ing: are collecting.*

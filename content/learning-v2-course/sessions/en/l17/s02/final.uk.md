@@ -73,7 +73,7 @@ This is ___ shallot. → **a** · an · the two
 <!-- interaction_id: en:lesson-17:session-02:word:peppercorn; family: word_card -->
 > **peppercorn** — горошина перцю.
 
-**6 · Скажіть: «Якщо мисці дві горошини перцю». У peppercorn кілька — peppercorns.**
+**6 · Скажіть: «У мисці дві горошини перцю». Якщо peppercorn кілька — peppercorns.**
 <!-- interaction_id: en:lesson-17:session-02:i04; family: phrase_builder -->
 Плитки: `bowl` `the` `in` `peppercorns` `two` `are` `There` → **There are two peppercorns in the bowl.**
 

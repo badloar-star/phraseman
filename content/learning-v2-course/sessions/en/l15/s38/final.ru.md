@@ -93,7 +93,7 @@ She ___ cardamom. → **is going to try** · is trying · try
 <!-- interaction_id: en:lesson-15:session-38:word:cloves; family: word_card -->
 > **cloves** — гвоздика, пряность из высушенных бутонов.
 
-**10 · Магазин отложил для вас упаковку пряной гвоздики и подтвердил получение на завтра. Это уже решено. Скажите: «Мы забираем гвоздику завтра».**
+**10 · Магазин отложил для вас упаковку пряной гвоздики и подтвердил, что заказ можно забрать завтра. Это уже решено. Скажите: «Мы забираем гвоздику завтра».**
 <!-- interaction_id: en:lesson-15:session-38:i07; family: phrase_builder -->
 Плитки: `tomorrow` `cloves` `the` `collecting` `are` `We` → **We are collecting the cloves tomorrow.**
 
@@ -103,7 +103,7 @@ She ___ cardamom. → **is going to try** · is trying · try
 - We are going to collect the cloves tomorrow. — *В записи звучит We are collecting the cloves tomorrow.*
 - We is collecting the cloves tomorrow. — *В записи звучит We are collecting the cloves tomorrow.*
 
-**12 · Магазин отложил для вас упаковку пряной гвоздики и подтвердил получение на завтра. Скажите, что это уже решено.**
+**12 · Магазин отложил для вас упаковку пряной гвоздики и подтвердил, что заказ можно забрать завтра. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-38:i09; family: context_gap_grammar -->
 We ___ the cloves tomorrow. → **are collecting** · are collect · collect
 - are collect — *После are нужна форма с -ing: are collecting.*

@@ -73,7 +73,7 @@ This is ___ errand. → **an** · a · the two
 <!-- interaction_id: en:lesson-17:session-06:word:replacement; family: word_card -->
 > **replacement** — заміна, річ замість попередньої.
 
-**6 · Скажіть: «Якщо магазині є дві речі на заміну». У replacement кілька — replacements.**
+**6 · Скажіть: «У магазині є дві речі на заміну». Якщо replacement кілька — replacements.**
 <!-- interaction_id: en:lesson-17:session-06:i04; family: phrase_builder -->
 Плитки: `shop` `the` `in` `replacements` `two` `are` `There` → **There are two replacements in the shop.**
 

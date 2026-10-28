@@ -113,7 +113,7 @@ We ___ the flannel shirt tomorrow. → **are collecting** · are collect · coll
 <!-- interaction_id: en:lesson-15:session-52:word:muslin; family: word_card -->
 > **muslin** — муслін, тонка легка тканина, часто бавовняна.
 
-**14 · Ваші батьки замовили тонку муслінову тканину й узгодили отримання на суботу. Це вже вирішено. Скажіть: «Вони забирають муслінову тканину в суботу».**
+**14 · Ваші батьки замовили тонку муслінову тканину й заберуть замовлення в суботу. Це вже вирішено. Скажіть: «Вони забирають муслінову тканину в суботу».**
 <!-- interaction_id: en:lesson-15:session-52:i10; family: phrase_builder -->
 Плитки: `Saturday` `on` `cloth` `muslin` `the` `collecting` `are` `They` → **They are collecting the muslin cloth on Saturday.**
 
@@ -123,7 +123,7 @@ We ___ the flannel shirt tomorrow. → **are collecting** · are collect · coll
 - They are going to collect the muslin cloth on Saturday. — *У записі звучить They are collecting the muslin cloth on Saturday.*
 - They is collecting the muslin cloth on Saturday. — *У записі звучить They are collecting the muslin cloth on Saturday.*
 
-**16 · Ваші батьки замовили тонку муслінову тканину й узгодили отримання на суботу. Скажіть, що це вже вирішено.**
+**16 · Ваші батьки замовили тонку муслінову тканину й заберуть замовлення в суботу. Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-52:i12; family: context_gap_grammar -->
 They ___ the muslin cloth on Saturday. → **are collecting** · are collect · collect
 - are collect — *Після are потрібна форма з -ing: are collecting.*

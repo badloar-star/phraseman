@@ -73,7 +73,7 @@ This is ___ sapling. → **a** · an · the two
 <!-- interaction_id: en:lesson-17:session-07:word:planter; family: word_card -->
 > **planter** — контейнер или ящик для выращивания растений.
 
-**6 · Скажите: «Если двери два контейнера для растений». У planter несколько — planters.**
+**6 · Скажите: «У двери два контейнера для растений». Если planter несколько — planters.**
 <!-- interaction_id: en:lesson-17:session-07:i04; family: phrase_builder -->
 Плитки: `door` `the` `by` `planters` `two` `are` `There` → **There are two planters by the door.**
 

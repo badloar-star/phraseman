@@ -93,7 +93,7 @@ She ___ a patchwork blanket. → **is going to buy** · is buying · buy
 <!-- interaction_id: en:lesson-15:session-55:word:gingham; family: word_card -->
 > **gingham** — мелкая ровная клетка, обычно цветная с белым.
 
-**10 · Вы заказали рубашку в ровную мелкую клетку; магазин подтвердил получение на завтра. Это уже решено. Скажите: «Мы забираем рубашку в мелкую клетку завтра».**
+**10 · Вы заказали рубашку в ровную мелкую клетку; магазин подтвердил, что заказ можно забрать завтра. Это уже решено. Скажите: «Мы забираем рубашку в мелкую клетку завтра».**
 <!-- interaction_id: en:lesson-15:session-55:i07; family: phrase_builder -->
 Плитки: `tomorrow` `shirt` `gingham` `the` `collecting` `are` `We` → **We are collecting the gingham shirt tomorrow.**
 
@@ -103,7 +103,7 @@ She ___ a patchwork blanket. → **is going to buy** · is buying · buy
 - We are going to collect the gingham shirt tomorrow. — *В записи звучит We are collecting the gingham shirt tomorrow.*
 - We is collecting the gingham shirt tomorrow. — *В записи звучит We are collecting the gingham shirt tomorrow.*
 
-**12 · Вы заказали рубашку в ровную мелкую клетку; магазин подтвердил получение на завтра. Скажите, что это уже решено.**
+**12 · Вы заказали рубашку в ровную мелкую клетку; магазин подтвердил, что заказ можно забрать завтра. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-55:i09; family: context_gap_grammar -->
 We ___ the gingham shirt tomorrow. → **are collecting** · are collect · collect
 - are collect — *После are нужна форма с -ing: are collecting.*
@@ -113,7 +113,7 @@ We ___ the gingham shirt tomorrow. → **are collecting** · are collect · coll
 <!-- interaction_id: en:lesson-15:session-55:word:houndstooth; family: word_card -->
 > **houndstooth** — ломаный клетчатый узор «гусиная лапка».
 
-**14 · Ваши родители согласовали получение заказанного пальто с ломаной клеткой на субботу. Это уже решено. Скажите: «Они забирают пальто с узором «гусиная лапка» в субботу».**
+**14 · Ваши родители договорились забрать заказанное пальто с ломаной клеткой в субботу. Это уже решено. Скажите: «Они забирают пальто с узором «гусиная лапка» в субботу».**
 <!-- interaction_id: en:lesson-15:session-55:i10; family: phrase_builder -->
 Плитки: `Saturday` `on` `coat` `houndstooth` `the` `collecting` `are` `They` → **They are collecting the houndstooth coat on Saturday.**
 
@@ -123,7 +123,7 @@ We ___ the gingham shirt tomorrow. → **are collecting** · are collect · coll
 - They are going to collect the houndstooth coat on Saturday. — *В записи звучит They are collecting the houndstooth coat on Saturday.*
 - They is collecting the houndstooth coat on Saturday. — *В записи звучит They are collecting the houndstooth coat on Saturday.*
 
-**16 · Ваши родители согласовали получение заказанного пальто с ломаной клеткой на субботу. Скажите, что это уже решено.**
+**16 · Ваши родители договорились забрать заказанное пальто с ломаной клеткой в субботу. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-55:i12; family: context_gap_grammar -->
 They ___ the houndstooth coat on Saturday. → **are collecting** · are collect · collect
 - are collect — *После are нужна форма с -ing: are collecting.*

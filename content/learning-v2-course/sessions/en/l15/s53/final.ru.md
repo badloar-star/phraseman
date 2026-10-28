@@ -113,7 +113,7 @@ We ___ the unsweetened yoghurt tomorrow. → **are collecting** · are collect �
 <!-- interaction_id: en:lesson-15:session-53:word:unsalted; family: word_card -->
 > **unsalted** — без добавленной соли.
 
-**14 · Ваши родители заказали масло без добавленной соли и согласовали получение на пятницу. Это уже решено. Скажите: «Они забирают несолёное масло в пятницу».**
+**14 · Ваши родители заказали масло без добавленной соли и заберут заказ в пятницу. Это уже решено. Скажите: «Они забирают несолёное масло в пятницу».**
 <!-- interaction_id: en:lesson-15:session-53:i10; family: phrase_builder -->
 Плитки: `Friday` `on` `butter` `unsalted` `the` `collecting` `are` `They` → **They are collecting the unsalted butter on Friday.**
 
@@ -123,7 +123,7 @@ We ___ the unsweetened yoghurt tomorrow. → **are collecting** · are collect �
 - They are going to collect the unsalted butter on Friday. — *В записи звучит They are collecting the unsalted butter on Friday.*
 - They is collecting the unsalted butter on Friday. — *В записи звучит They are collecting the unsalted butter on Friday.*
 
-**16 · Ваши родители заказали масло без добавленной соли и согласовали получение на пятницу. Скажите, что это уже решено.**
+**16 · Ваши родители заказали масло без добавленной соли и заберут заказ в пятницу. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-53:i12; family: context_gap_grammar -->
 They ___ the unsalted butter on Friday. → **are collecting** · are collect · collect
 - are collect — *После are нужна форма с -ing: are collecting.*

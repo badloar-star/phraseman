@@ -93,7 +93,7 @@ She ___ the collection point. → **is going to use** · is using · use
 <!-- interaction_id: en:lesson-15:session-28:word:click-and-collect; family: word_card -->
 > **click and collect** — замовлення через інтернет з отриманням у магазині.
 
-**10 · Магазин підтвердив ваше замовлення; час отримання призначено на завтра. Це вже вирішено. Скажіть: «Ми отримуємо інтернет-замовлення в магазині завтра».**
+**10 · Магазин підтвердив ваше замовлення; забрати його можна завтра. Це вже вирішено. Скажіть: «Ми отримуємо інтернет-замовлення в магазині завтра».**
 <!-- interaction_id: en:lesson-15:session-28:i07; family: phrase_builder -->
 Плитки: `tomorrow` `collect` `and` `click` `using` `are` `We` → **We are using click and collect tomorrow.**
 
@@ -103,7 +103,7 @@ She ___ the collection point. → **is going to use** · is using · use
 - We are going to use click and collect tomorrow. — *У записі звучить We are using click and collect tomorrow.*
 - We is using click and collect tomorrow. — *У записі звучить We are using click and collect tomorrow.*
 
-**12 · Магазин підтвердив ваше замовлення; час отримання призначено на завтра. Скажіть, що це вже вирішено.**
+**12 · Магазин підтвердив ваше замовлення; забрати його можна завтра. Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-28:i09; family: context_gap_grammar -->
 We ___ click and collect tomorrow. → **are using** · are use · use
 - are use — *Після are потрібна форма з -ing: are using.*

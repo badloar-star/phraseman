@@ -73,7 +73,7 @@ She is ___ candidate. → **a** · an · the two
 <!-- interaction_id: en:lesson-17:session-04:word:vacancy; family: word_card -->
 > **vacancy** — вакансія, вільне робоче місце.
 
-**6 · Скажіть: «Якщо цьому магазині дві вакансії». У vacancy кілька — vacancies.**
+**6 · Скажіть: «У цьому магазині дві вакансії». Якщо vacancy кілька — vacancies.**
 <!-- interaction_id: en:lesson-17:session-04:i04; family: phrase_builder -->
 Плитки: `shop` `this` `in` `vacancies` `two` `are` `There` → **There are two vacancies in this shop.**
 

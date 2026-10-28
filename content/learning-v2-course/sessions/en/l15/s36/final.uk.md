@@ -113,7 +113,7 @@ We ___ the quince tomorrow. → **are collecting** · are collect · collect
 <!-- interaction_id: en:lesson-15:session-36:word:rhubarb; family: word_card -->
 > **rhubarb** — ревінь, рослина з кислими їстівними стеблами.
 
-**14 · Ваші батьки замовили ревінь для пирога й узгодили отримання на п’ятницю. Це вже вирішено. Скажіть: «Вони забирають ревінь у п’ятницю».**
+**14 · Ваші батьки замовили ревінь для пирога й заберуть замовлення в п’ятницю. Це вже вирішено. Скажіть: «Вони забирають ревінь у п’ятницю».**
 <!-- interaction_id: en:lesson-15:session-36:i10; family: phrase_builder -->
 Плитки: `Friday` `on` `rhubarb` `the` `collecting` `are` `They` → **They are collecting the rhubarb on Friday.**
 
@@ -123,7 +123,7 @@ We ___ the quince tomorrow. → **are collecting** · are collect · collect
 - They are going to collect the rhubarb on Friday. — *У записі звучить They are collecting the rhubarb on Friday.*
 - They is collecting the rhubarb on Friday. — *У записі звучить They are collecting the rhubarb on Friday.*
 
-**16 · Ваші батьки замовили ревінь для пирога й узгодили отримання на п’ятницю. Скажіть, що це вже вирішено.**
+**16 · Ваші батьки замовили ревінь для пирога й заберуть замовлення в п’ятницю. Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-36:i12; family: context_gap_grammar -->
 They ___ the rhubarb on Friday. → **are collecting** · are collect · collect
 - are collect — *Після are потрібна форма з -ing: are collecting.*

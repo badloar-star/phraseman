@@ -93,7 +93,7 @@ She ___ a tartan skirt. → **is going to buy** · is buying · buy
 <!-- interaction_id: en:lesson-15:session-51:word:polka-dots; family: word_card -->
 > **polka dots** — узор из круглых горошин.
 
-**10 · Магазин отложил заказанное платье в горошек; вы согласовали получение на завтра. Это уже решено. Скажите: «Мы забираем платье в горошек завтра».**
+**10 · Магазин отложил заказанное платье в горошек; вы договорились забрать заказ завтра. Это уже решено. Скажите: «Мы забираем платье в горошек завтра».**
 <!-- interaction_id: en:lesson-15:session-51:i07; family: phrase_builder -->
 Плитки: `tomorrow` `dots` `polka` `with` `dress` `the` `collecting` `are` `We` → **We are collecting the dress with polka dots tomorrow.**
 
@@ -103,7 +103,7 @@ She ___ a tartan skirt. → **is going to buy** · is buying · buy
 - We are going to collect the dress with polka dots tomorrow. — *В записи звучит We are collecting the dress with polka dots tomorrow.*
 - We is collecting the dress with polka dots tomorrow. — *В записи звучит We are collecting the dress with polka dots tomorrow.*
 
-**12 · Магазин отложил заказанное платье в горошек; вы согласовали получение на завтра. Скажите, что это уже решено.**
+**12 · Магазин отложил заказанное платье в горошек; вы договорились забрать заказ завтра. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-51:i09; family: context_gap_grammar -->
 We ___ the dress with polka dots tomorrow. → **are collecting** · are collect · collect
 - are collect — *После are нужна форма с -ing: are collecting.*
@@ -113,7 +113,7 @@ We ___ the dress with polka dots tomorrow. → **are collecting** · are collect
 <!-- interaction_id: en:lesson-15:session-51:word:herringbone; family: word_card -->
 > **herringbone** — узор или переплетение ёлочкой.
 
-**14 · Ваши родители заказали пальто с рисунком ёлочкой; магазин подтвердил получение на пятницу. Это уже решено. Скажите: «Они забирают пальто с рисунком ёлочкой в пятницу».**
+**14 · Ваши родители заказали пальто с рисунком ёлочкой; магазин подтвердил, что заказ можно забрать в пятницу. Это уже решено. Скажите: «Они забирают пальто с рисунком ёлочкой в пятницу».**
 <!-- interaction_id: en:lesson-15:session-51:i10; family: phrase_builder -->
 Плитки: `Friday` `on` `coat` `herringbone` `the` `collecting` `are` `They` → **They are collecting the herringbone coat on Friday.**
 
@@ -123,7 +123,7 @@ We ___ the dress with polka dots tomorrow. → **are collecting** · are collect
 - They are going to collect the herringbone coat on Friday. — *В записи звучит They are collecting the herringbone coat on Friday.*
 - They is collecting the herringbone coat on Friday. — *В записи звучит They are collecting the herringbone coat on Friday.*
 
-**16 · Ваши родители заказали пальто с рисунком ёлочкой; магазин подтвердил получение на пятницу. Скажите, что это уже решено.**
+**16 · Ваши родители заказали пальто с рисунком ёлочкой; магазин подтвердил, что заказ можно забрать в пятницу. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-51:i12; family: context_gap_grammar -->
 They ___ the herringbone coat on Friday. → **are collecting** · are collect · collect
 - are collect — *После are нужна форма с -ing: are collecting.*

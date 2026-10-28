@@ -78,6 +78,11 @@
   };
   const LIGHT_KEYS = { home: ['dialogs', 'sky', 'split', 'dawn'], dialogs: ['sky', 'split', 'dawn'], peak: ['dialogs', 'sky', 'split', 'dawn'], season: ['dialogs', 'sky', 'split', 'dawn'] };
   const SCREENS = ['home', 'dialogs', 'peak', 'season'];
+  // в светлом оформлении: «как в Диалогах» высветляет сцену под белым текстом Главной — не показываем; светлые Диалоги — светлая сцена с ТЁМНЫМ
+  // текстом, тёмные стили и света делают текст нечитаемым — показываем только «сейчас» с пометкой (варианты для светлого — отдельной задачей)
+  const keysFor = (screen) => (AP === 'light' ? LIGHT_KEYS[screen].filter((k) => k !== 'dialogs') : LIGHT_KEYS[screen]);
+  const lightDialogs = (m) => m.screen === 'dialogs' && m.ap === 'light';
+  const onlyNow = (m, title) => `<div class="sp-real-row"><h3>${title}<small>${m.file}${m.note ? ' · ' + m.note : ''}</small></h3><p class="sp-note sp-warn">Светлые Диалоги — светлая сцена с тёмным текстом: тёмные света и стили сделали бы текст нечитаемым, поэтому только «сейчас»; варианты для светлого оформления — отдельной задачей по слову владельца.</p><div class="phones">${col('Сейчас · кадр приложения', RF.phone({ src: `assets/real/${m.file}`, exists: true, cls: 'sp-rf', status: m.status || 100, tab: m.tab || 2140 }))}</div></div>`;
   const ART_KEYS = ['sumi', 'marker', 'aurora', 'facet', 'paper'];
   const SCREEN_NAME = { home: 'Главная', dialogs: 'Диалоги', peak: 'Пик', season: 'Сезон' };
 
@@ -105,11 +110,11 @@
     return `<section class="block" id="dt-colors"><h2>Цвета сцены — все темы × тёмное/светлое × стратегия</h2><p class="sp-note">А — тон темы ярче и глубже; Б — аналоговая (сосед по кругу); Б+ — та же аналоговая основа, но верх сцены заметно светлее и насыщеннее с явным источником света: три уровня (мягко · ярко · сияние), низ уходит в тёмный шов с карточкой; В — акцент-свет; Г — два света по сплиту. Белый на тексте ≥ 4,5 держится затемнением под самим текстом, не всем небом. Зажми телефон — «сейчас».</p>${body}</section>`;
   };
   const sectionLight = () => {
-    const rows = SCREENS.map((s) => { const m = frameOf(s); return m ? row(`${m.file}#light`, m, stylesOf(m, LIGHT_KEYS[s]), `${SCREEN_NAME[s]} · освещение`) : missing(`${SCREEN_NAME[s]} · освещение`, `scene_${s}_${THEME}_${AP}.png`); }).join('');
+    const rows = SCREENS.map((s) => { const m = frameOf(s); if (!m) return missing(`${SCREEN_NAME[s]} · освещение`, `scene_${s}_${THEME}_${AP}.png`); if (lightDialogs(m)) return onlyNow(m, `${SCREEN_NAME[s]} · освещение`); return row(`${m.file}#light`, m, stylesOf(m, keysFor(s)), `${SCREEN_NAME[s]} · освещение`); }).join('');
     return `<section class="block" id="dt-light"><h2>Освещение сцены — те же цвета темы, другой свет</h2><p class="sp-note">Источники света, отсветы и глубина неба считаются из цветов выбранной темы. Слева — кадр приложения как есть; правее — тот же кадр, где по пикселям перекрашен только фон сцены: герой, надписи, стекло, карточка и таббар — как сняты.</p>${rows}</section>`;
   };
   const sectionArt = () => {
-    const rows = SCREENS.map((s) => { const m = frameOf(s); return m ? row(`${m.file}#art`, m, stylesOf(m, ART_KEYS), `${SCREEN_NAME[s]} · стили`) : ''; }).join('');
+    const rows = SCREENS.map((s) => { const m = frameOf(s); if (!m || lightDialogs(m)) return ''; return row(`${m.file}#art`, m, stylesOf(m, ART_KEYS), `${SCREEN_NAME[s]} · стили`); }).join('');
     return `<section class="block" id="dt-art"><h2>Стили сцен — другие манеры рисования в цветах темы</h2><p class="sp-note">Суми-э (тушь на тёмной бумаге), маркер (пастельные штрихи), аврора, витраж (грани), бумажный коллаж. Каждый стиль берёт оттенок и свет темы, поэтому переносится на все темы; белый на зоне текста ≥ 4,5:1 — страж затемняет низ, если нужно.</p>${rows || '<p class="sp-note sp-warn">Кадры этой темы в этом оформлении ещё снимаются.</p>'}</section>`;
   };
   const sectionEvening = () => {

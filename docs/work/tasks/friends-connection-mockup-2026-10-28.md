@@ -1,6 +1,7 @@
 # Task packet: макет «Друзья: больше связи по всем разделам»
 
 Governance-ID: TG-BD998B71221D
+Governance-ID: TG-75197CEFC980 (публикация friends-connection как Artifact со всеми файлами — ссылка владельцу)
 Governance-ID: TG-0586EFFAB5D8 (продолжение той же задачи 3: живой макет friends-connection.{html,css,app.js,make.cjs})
 Status: In review (инвентаризация сделана, макет собран и снят; ждёт слова владельца)
 Owner: сессия 3 · МАКЕТЫ (Claude Fable 5.1), задача 3 координатора 2026-10-28 (слово владельца)

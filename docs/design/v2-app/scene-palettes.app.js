@@ -106,39 +106,13 @@ const nowSeason = (id, ap) => {
   return { top: from, bot: to, bg: `linear-gradient(to bottom, transparent 55%, rgba(0,0,0,.34) 100%), radial-gradient(120% 90% at 88% 0%, ${rgba(glow)} 0%, transparent 58%), linear-gradient(160deg, ${rgba(from)} 0%, ${rgba(to)} 100%)` };
 };
 
-/* ═════ «НОВЫЙ»: палитра сцены по теории цвета ═════
-   Правило на тему — от оттенка акцента H (OKLCH): комплементарная (S = H + 180), сплит-комплементарная (S = H + 150 или H + 210),
-   аналоговая (S = H ± 30…38, свет — сплит от сцены: S + 150), контраст температур — для нейтрального акцента («Затмение», C ≈ .04).
-   Основа сцены — оттенок S (верх L .50 C .16, низ L .34 C .11, низ чуть холоднее: S − 12), свет сверху слева — оттенок темы (так сцена
-   остаётся «своей»), второй свет снизу справа — S + 25 (глубина). Стражи: белый ≥ 4,6 на верхе, шов с карточкой ≥ 1,34 в тёмном. */
-const RULES = {
-  graphite: { kind: 'temp', scene: 50, light: 232, chroma: 0.9, why: 'акцент серый — дымчатая бронза против холодной стали' },
-  polar: { kind: 'analog', off: -38, why: 'иней: холодная бирюза, свет — розовый рассвет' },
-  slate: { kind: 'split', off: 150, chroma: 0.92, why: 'гроза на закате: медь, свет — электрик' },
-  ink: { kind: 'split', off: 150, tune: -4, why: 'сумерки: золотой горизонт, свет — индиго' },
-  lavender: { kind: 'split', off: 210, tune: 10, chroma: 0.9, why: 'туманность: изумрудный космос, свет — фиолет' },
-  iris: { kind: 'comp', tune: -8, chroma: 0.88, why: 'комета: зелёная ночь, свет — розовый хвост' },
-  rose: { kind: 'comp', why: 'рассвет: синее небо, свет — роза' },
-  terracotta: { kind: 'comp', why: 'закат: синяя ночь, свет — терракота' },
-  taupe: { kind: 'split', off: 210, why: 'дюна: индиго ночь, свет — песок' },
-  olive: { kind: 'comp', why: 'саванна: синяя ночь, свет — золото травы' },
-  sage: { kind: 'split', off: 150, why: 'мята: фиолетовый вечер, свет — мята' },
-  eucalyptus: { kind: 'split', off: 150, why: 'лагуна: сливовые сумерки, свет — бирюза' },
-  marine: { kind: 'split', off: 210, tune: -14, why: 'океан: янтарный закат, свет — морская синь' },
-  grad_aurora: { kind: 'split', off: 150, why: 'аврора: лиловая ночь, свет — зелёное сияние' },
-  grad_iris: { kind: 'split', off: 150, tune: -8, why: 'ирис: золотая сердцевина, свет — лепестки' },
-  grad_magma: { kind: 'comp', why: 'магма: остывшая синь, свет — лава' },
-  grad_midnight: { kind: 'analog', off: 40, why: 'полночь: фиолетовая ночь, свет — золото луны' },
-  grad_champagne: { kind: 'split', off: 210, why: 'шампань: фиолетовая ночь, свет — золото' },
-  grad_jade: { kind: 'comp', tune: -10, chroma: 0.85, why: 'нефрит: гранат, свет — нефрит' },
-  grad_orchid: { kind: 'split', off: 210, tune: 12, chroma: 0.9, why: 'орхидея: нефритовая листва, свет — орхидея' },
-  grad_ice: { kind: 'split', off: 210, tune: -10, why: 'лёд: зимнее солнце, свет — лёд' },
-  grad_coral: { kind: 'split', off: 150, why: 'коралл: бирюза рифа, свет — коралл' },
-  grad_lilac: { kind: 'split', off: 210, tune: 10, chroma: 0.88, why: 'сирень: весенняя листва, свет — сирень' },
-  grad_full_ref_storm_violet: { kind: 'split', off: 210, why: 'аметист: изумрудная ночь, свет — аметист' },
-  grad_full_titanium: { kind: 'comp', why: 'титан: холодная синь, свет — коралл' },
-};
-const KIND_RU = { comp: 'комплементарная', split: 'сплит-комплементарная', analog: 'аналоговая', temp: 'контраст температур' };
+/* ═════ «НОВЫЙ»: четыре стратегии цвета сцены — владелец переключает сам (владелец 28.10: «цвета не те»; координатор: А/Б/В/Г) ═════
+   Все — от оттенка акцента темы H и его насыщенности C (OKLCH):
+   А «тон темы, ярче и глубже» — сцена того же оттенка, насыщеннее (C × 1,6, не ниже .07 и не выше .17), верх L .50, низ L .30, свет — светлый тон темы;
+   Б «аналоговая» — сцена соседнего оттенка (+32°), свет — другой сосед (−24°);
+   В «акцент-свет» — основа в тоне темы, спокойнее (L .46, C × 1,2 ≤ .13), контрастный только свет — комплемент (H + 180°);
+   Г «два света по сплиту» — основа в тоне темы (L .48), два света разных оттенков по сплит-комплементу (H + 150° сверху слева, H + 210° снизу справа);
+   серый акцент (C < .05, «Затмение») в Г получает тёплый и холодный свет (40° / 215°). Стражи одни: белый ≥ 4,6 на верхе, шов с карточкой ≥ 1,34 в тёмном. */
 /* премиум-темы (координатор 28.10: отдельным коротким разделом, по одному кадру Главной; движение их шейдеров не показываем):
    спецификация — constants/premiumThemeVisualSpecs.ts дословно, токены — как premiumThemeTokenOverrides, имена — theme_display_names */
 const PREMIUM = [
@@ -155,25 +129,28 @@ const premiumTokens = (p, ap) => {
   return { bg, bgTop: bg, bgBottom: bg, opaqueCard: to, opaqueControl: from, text: dark ? '#fff9f6' : '#181a20', secondary: dark ? '#dacfd0' : '#55505b', accent, accentText: accent, cta, ctaInk: p.ink, accentGradient: [accent, accent], accentGlow: `${p.edge}8C`, bgGlow: [`${p.edge}40`], isLight: !dark };
 };
 PREMIUM.forEach((p) => { THEMES[p.id] = { name: p.name, premium: true, dark: premiumTokens(p, 'dark'), light: premiumTokens(p, 'light') }; });
+const STRATS = { A: 'А · тон темы, ярче и глубже', B: 'Б · аналоговая, соседние оттенки', C: 'В · акцент-свет', D: 'Г · тон темы, два света по сплиту' };
+let STRAT = 'A';
+const clampN = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
 const scenePal = (id, ap) => {
-  const t = THEMES[id][ap]; const [, C, H] = oklchOf(hx(t.accent)); const r = RULES[id] || { kind: 'comp' };
-  const S = norm((r.kind === 'temp' ? r.scene : r.kind === 'comp' ? H + 180 : H + r.off) + (r.tune || 0));
-  const Lh = norm(r.kind === 'temp' ? r.light : r.kind === 'analog' ? (r.light !== undefined ? r.light : S + 150) : H);
-  const dark = ap === 'dark'; const cm = r.chroma || 1;
-  // глубина «дорого»: верх не ярче L .47 (тёмное) / .49 (светлое), насыщенность .15 — ярко, но не леденец; низ глубокий, шов держит страж
-  const Lt = dark ? 0.47 : 0.49; const Ct = (dark ? 0.15 : 0.155) * cm;
+  const t = THEMES[id][ap]; const [, C, H] = oklchOf(hx(t.accent)); const dark = ap === 'dark'; const neutral = C < 0.05;
+  let S = H; let Lh = H; let Lh2 = norm(H + 18); let Ct; let Cb; let a1 = 0.85; let a2 = 0.55; let Lt = 0.50; let why = '';
+  if (STRAT === 'A') { Ct = clampN(C * 1.6, 0.07, 0.17); Cb = Ct * 0.7; why = 'тот же оттенок, насыщеннее и глубже; свет — светлый тон темы'; }
+  else if (STRAT === 'B') { const warm = H >= 40 && H <= 120; const d = warm ? -1 : 1; // жёлто-тёплые темы (Дюна, Саванна, Шампань) уходят к оранжевому, не к оливковому
+    S = norm(H + 32 * d); Ct = neutral ? 0.09 : 0.15; Cb = neutral ? 0.07 : 0.11; Lh = norm(H - 24 * d); Lh2 = norm(H + 60 * d); why = `сцена — соседний оттенок (${d > 0 ? '+' : '−'}32°), свет — другой сосед (${d > 0 ? '−' : '+'}24°)`; }
+  else if (STRAT === 'C') { Ct = clampN(C * 1.2, 0.06, 0.13); Cb = 0.09; Lh = norm(H + 180); Lh2 = norm(H + 180); a1 = 0.75; a2 = 0.35; Lt = 0.46; why = 'основа в тоне темы, спокойнее; контрастный только свет — комплемент'; }
+  else { Ct = clampN(C * 1.4, 0.07, 0.15); Cb = Ct * 0.7; Lh = neutral ? 40 : norm(H + 150); Lh2 = neutral ? 215 : norm(H + 210); a1 = 0.8; a2 = 0.6; Lt = 0.48; why = neutral ? 'серый акцент: основа графит, тёплый и холодный свет' : 'основа в тоне темы; два света по сплит-комплементу — глубина без смены цвета'; }
+  if (!dark) Lt += 0.02;
   let top = okRgb(Lt, Ct, S);
   for (let L = Lt; whiteOn(top) < 4.6 && L > 0.2; L -= 0.01) top = okRgb(L, Ct, S);
-  const Lb = dark ? 0.33 : 0.28; const Cb = (dark ? 0.10 : 0.11) * cm;
-  let bot = okRgb(Lb, Cb, norm(S - 12));
-  const card = hx(t.opaqueCard);
-  if (dark) for (let L = Lb; ratioc(bot, card) < 1.34 && L < 0.5; L += 0.01) bot = okRgb(L, Cb, norm(S - 12));
-  const lightC = okRgb(0.74, 0.16, Lh); const light2C = okRgb(0.56, 0.15, norm(S + 25));
-  const light = rgba(lightC, 0.85); const light2 = rgba(light2C, 0.55);
+  const Lb = dark ? 0.30 : 0.28; let bot = okRgb(Lb, Cb, norm(S - 8)); const card = hx(t.opaqueCard);
+  if (dark) for (let L = Lb; ratioc(bot, card) < 1.34 && L < 0.5; L += 0.01) bot = okRgb(L, Cb, norm(S - 8));
+  const lightC = okRgb(0.80, STRAT === 'A' ? Math.max(0.06, Ct * 0.9) : 0.15, Lh); const light2C = okRgb(0.62, STRAT === 'A' ? Math.max(0.06, Ct * 0.9) : 0.14, Lh2);
+  const light = rgba(lightC, a1); const light2 = rgba(light2C, a2);
   const bg = `radial-gradient(70% 50% at 18% 0%, ${light}, transparent 70%), radial-gradient(80% 42% at 86% 102%, ${light2}, transparent 70%), linear-gradient(165deg, ${hex(top)} 0%, ${hex(bot)} 100%)`;
-  return { id, ap, kind: r.kind, why: r.why || '', H: Math.round(H), S: Math.round(S), Lh: Math.round(Lh), top, bot, lightC, light2C, light, light2, bg, lightSoft: rgba(lightC, 0.42), whiteTop: whiteOn(top), whiteBot: whiteOn(bot), seam: ratioc(bot, card) };
+  return { id, ap, kind: STRAT, why, H: Math.round(H), S: Math.round(S), Lh: Math.round(Lh), Lh2: Math.round(Lh2), top, bot, lightC, light2C, light, light2, bg, lightSoft: rgba(lightC, 0.42), whiteTop: whiteOn(top), whiteBot: whiteOn(bot), seam: ratioc(bot, card) };
 };
-const schemeLine = (p) => `${KIND_RU[p.kind]} · тема ${p.H}° → сцена ${p.S}°, свет ${p.Lh}°`;
+const schemeLine = (p) => `${STRATS[p.kind]} · тема ${p.H}° → сцена ${p.S}°, свет ${p.Lh}°${p.kind === 'D' ? ' и ' + p.Lh2 + '°' : ''}`;
 
 /* ═════ токены телефона: переменные темы (как tokCss эталона) + «сейчас» сцены + «новый» слой ═════ */
 const uiCss = (id, ap) => {
@@ -311,7 +288,8 @@ const section4 = () => `<section class="block" id="sp-premium"><h2>Премиу�
 /* ═════ страница ═════ */
 const controls = () => {
   document.getElementById('apList').innerHTML = [['light', 'Светлое'], ['dark', 'Тёмное']].map(([k, n]) => `<span class="chp${AP === k ? ' on' : ''}" data-ap="${k}">${n}</span>`).join('');
-  document.getElementById('modeList').innerHTML = [['now', 'Сейчас'], ['new', 'Новый А · перекраска'], ['draw', 'Новый Б · отрисовка']].map(([k, n]) => `<span class="chp${MODE === k ? ' on' : ''}" data-mode="${k}">${n}</span>`).join('');
+  document.getElementById('modeList').innerHTML = [['now', 'Сейчас'], ['new', 'Перекраска'], ['draw', 'Отрисовка']].map(([k, n]) => `<span class="chp${MODE === k ? ' on' : ''}" data-mode="${k}">${n}</span>`).join('');
+  document.getElementById('stratList').innerHTML = Object.entries(STRATS).map(([k, n]) => `<span class="chp${STRAT === k ? ' on' : ''}" data-strat="${k}">${n}</span>`).join('');
   document.getElementById('thmList').innerHTML = THEME_IDS.map((id) => `<span class="chp${THEME_ID === id ? ' on' : ''}" data-th="${id}">${THEMES[id].name}</span>`).join('');
 };
 const render = (enter = true) => {
@@ -321,7 +299,7 @@ const render = (enter = true) => {
   root.innerHTML = section1() + section3() + section2() + section4();
   controls();
   if (R && R.applyScroll) R.applyScroll(root);
-  console.log(LOG, 'render', JSON.stringify({ theme: THEME_ID, ap: AP, mode: MODE, pal: schemeLine(scenePal(THEME_ID, AP)) })); // guard-ok: одна строка на перерисовку
+  console.log(LOG, 'render', JSON.stringify({ theme: THEME_ID, ap: AP, mode: MODE, strat: STRAT, pal: schemeLine(scenePal(THEME_ID, AP)) })); // guard-ok: одна строка на перерисовку
 };
 const setMode = (m) => { MODE = m; document.querySelectorAll('.ph[data-ph]').forEach((ph) => { ph.classList.toggle('sp-now', m === 'now'); ph.classList.toggle('sp-new', m !== 'now'); ph.classList.toggle('sp-drawn', m === 'draw'); }); document.querySelectorAll('.chp[data-mode]').forEach((c) => c.classList.toggle('on', c.dataset.mode === m)); };
 document.body.addEventListener('click', (e) => {
@@ -329,6 +307,7 @@ document.body.addEventListener('click', (e) => {
   if (e.target.closest('[data-replay]')) { render(true); return; }
   const m = e.target.closest('.chp[data-mode]'); if (m) { setMode(m.dataset.mode); return; }
   const rowEl = e.target.closest('.sp-grid [data-th]'); if (rowEl) { THEME_ID = rowEl.dataset.th; render(false); window.scrollTo({ top: 0, behavior: RM() ? 'auto' : 'smooth' }); return; }
+  const st = e.target.closest('.chp[data-strat]'); if (st) { STRAT = st.dataset.strat; render(false); return; }
   const c = e.target.closest('.chp[data-ap], .chp[data-th]'); if (!c) return;
   if (c.dataset.ap) AP = c.dataset.ap;
   if (c.dataset.th) THEME_ID = c.dataset.th;
@@ -339,8 +318,9 @@ document.body.addEventListener('click', (e) => {
   if (q.get('ap') === 'light' || q.get('ap') === 'dark') AP = q.get('ap');
   if (THEMES[q.get('th')]) THEME_ID = q.get('th');
   if (['now', 'new', 'draw'].includes(q.get('mode'))) MODE = q.get('mode');
+  if (STRATS[q.get('s')]) STRAT = q.get('s');
 }
 render(true);
 K.init();
-window.__sp = { THEME_IDS, scenePal, sceneTok, nowDialogs, nowSeason, schemeLine, setMode, render: () => render(true) };
+window.__sp = { THEME_IDS, scenePal, sceneTok, nowDialogs, nowSeason, schemeLine, setMode, setStrat: (k) => { STRAT = k; render(false); }, render: () => render(true) };
 })();

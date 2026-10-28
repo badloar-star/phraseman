@@ -1,0 +1,693 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-03:session-02",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-03:session-02:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — pequeño",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-02:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — pequeño",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-02:i01:audio",
+          "transcript": "pequeño"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-02:i01:r1",
+            "targetText": "pequeño",
+            "meaningByLocale": {
+              "ru": "маленький; pequeña — маленькая. Форму выбираем по испанскому существительному. 🔊 *pequeño*",
+              "uk": "маленький; pequeña — маленька. Форму вибираємо за іспанським іменником. 🔊 *pequeño*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pequeño",
+          "definitionByLocale": {
+            "ru": "маленький; pequeña — маленькая. Форму выбираем по испанскому существительному. 🔊 *pequeño*",
+            "uk": "маленький; pequeña — маленька. Форму вибираємо за іспанським іменником. 🔊 *pequeño*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-02:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-02:i02:r1",
+          "text": "pequeña"
+        },
+        {
+          "responseId": "es:lesson-03:session-02:i02:r2",
+          "text": "pequeño"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-02:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-02:i02:audio",
+          "transcript": "pequeña"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-02:i02:r1",
+            "targetText": "pequeña",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-03:session-02:i02:r2",
+            "targetText": "pequeño",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-02:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В конце слышно -a: pequeña.",
+              "uk": "Наприкінці чути -a: pequeña."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-02:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — комната маленькая",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-02:i03:r1",
+          "text": "Плитки: pequeña"
+        },
+        {
+          "responseId": "es:lesson-03:session-02:i03:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-02:i03:r3",
+          "text": "habitación"
+        },
+        {
+          "responseId": "es:lesson-03:session-02:i03:r4",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-03:session-02:i03:r5",
+          "text": "pequeño."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — комната маленькая",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "La habitación es pequeña.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — комната маленькая",
+          "uk": "Зберіть фразу — кімната маленька"
+        },
+        "orderedTokens": [
+          "La",
+          "habitación",
+          "es",
+          "pequeña"
+        ],
+        "authoredDistractorTokens": [
+          "pequeño"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-02:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — комната маленькая",
+            "feedbackByLocale": {
+              "ru": "habitación женского рода.",
+              "uk": "habitación жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-02:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — комната маленькая",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-02:i04:r1",
+          "text": "pequeña"
+        },
+        {
+          "responseId": "es:lesson-03:session-02:i04:r2",
+          "text": "pequeño"
+        },
+        {
+          "responseId": "es:lesson-03:session-02:i04:r3",
+          "text": "pequeñas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — комната маленькая",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — комната маленькая",
+          "uk": "Вставте слово — кімната маленька"
+        },
+        "gappedTargetPhrase": "La habitación es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-02:i04:r1",
+            "text": "pequeña"
+          },
+          {
+            "responseId": "es:lesson-03:session-02:i04:r2",
+            "text": "pequeño"
+          },
+          {
+            "responseId": "es:lesson-03:session-02:i04:r3",
+            "text": "pequeñas"
+          }
+        ],
+        "testedDimension": "Вставьте слово — комната маленькая",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-02:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — комната маленькая",
+            "feedbackByLocale": {
+              "ru": "Habitación женского рода: pequeña.",
+              "uk": "Habitación жіночого роду: pequeña."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-02:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — комната маленькая",
+            "feedbackByLocale": {
+              "ru": "Комната одна: pequeña.",
+              "uk": "Кімната одна: pequeña."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-02:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — диван маленький",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-02:i05:r1",
+          "text": "Плитки: pequeño"
+        },
+        {
+          "responseId": "es:lesson-03:session-02:i05:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-02:i05:r3",
+          "text": "sofá"
+        },
+        {
+          "responseId": "es:lesson-03:session-02:i05:r4",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-03:session-02:i05:r5",
+          "text": "pequeña."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — диван маленький",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "El sofá es pequeño.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — диван маленький",
+          "uk": "Зберіть фразу — диван маленький"
+        },
+        "orderedTokens": [
+          "El",
+          "sofá",
+          "es",
+          "pequeño"
+        ],
+        "authoredDistractorTokens": [
+          "pequeña"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-02:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — диван маленький",
+            "feedbackByLocale": {
+              "ru": "sofá мужского рода.",
+              "uk": "sofá чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-02:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — этот диван маленький",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-02:i06:r1",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-03:session-02:i06:r2",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-03:session-02:i06:r3",
+          "text": "los"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — этот диван маленький",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — этот диван маленький",
+          "uk": "Вставте слово — цей диван маленький"
+        },
+        "gappedTargetPhrase": "___ sofá es pequeño.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-02:i06:r1",
+            "text": "el"
+          },
+          {
+            "responseId": "es:lesson-03:session-02:i06:r2",
+            "text": "la"
+          },
+          {
+            "responseId": "es:lesson-03:session-02:i06:r3",
+            "text": "los"
+          }
+        ],
+        "testedDimension": "Вставьте слово — этот диван маленький",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-02:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — этот диван маленький",
+            "feedbackByLocale": {
+              "ru": "Sofá мужского рода: el.",
+              "uk": "Sofá чоловічого роду: el."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-02:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — этот диван маленький",
+            "feedbackByLocale": {
+              "ru": "Диван один: el.",
+              "uk": "Диван один: el."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-02:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — диван не маленький",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-02:i07:r1",
+          "text": "Плитки: pequeño"
+        },
+        {
+          "responseId": "es:lesson-03:session-02:i07:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-02:i07:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-03:session-02:i07:r4",
+          "text": "sofá"
+        },
+        {
+          "responseId": "es:lesson-03:session-02:i07:r5",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-03:session-02:i07:r6",
+          "text": "pequeña."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — диван не маленький",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "El sofá no es pequeño.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — диван не маленький",
+          "uk": "Зберіть фразу — диван не маленький"
+        },
+        "orderedTokens": [
+          "El",
+          "sofá",
+          "no",
+          "es",
+          "pequeño"
+        ],
+        "authoredDistractorTokens": [
+          "pequeña"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-02:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — диван не маленький",
+            "feedbackByLocale": {
+              "ru": "sofá мужского рода.",
+              "uk": "sofá чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-02:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-02:i08:r1",
+          "text": "Плитки: pequeña"
+        },
+        {
+          "responseId": "es:lesson-03:session-02:i08:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-02:i08:r3",
+          "text": "habitación"
+        },
+        {
+          "responseId": "es:lesson-03:session-02:i08:r4",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-03:session-02:i08:r5",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-02:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-02:i08:audio",
+          "transcript": "La habitación es pequeña."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "La habitación es pequeña.",
+        "orderedTokens": [
+          "La",
+          "habitación",
+          "es",
+          "pequeña"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-02:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит la.",
+              "uk": "звучить la."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-02:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — комната маленькая; назовите предмет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-02:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — комната маленькая; назовите предмет",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-02:i09:audio",
+          "transcript": "La habitación es pequeña."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "La habitación es pequeña.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-02:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — комната не маленькая",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-02:i10:r1",
+          "text": "pequeña"
+        },
+        {
+          "responseId": "es:lesson-03:session-02:i10:r2",
+          "text": "pequeño"
+        },
+        {
+          "responseId": "es:lesson-03:session-02:i10:r3",
+          "text": "pequeños"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — комната не маленькая",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — комната не маленькая",
+          "uk": "Вставте слово — кімната не маленька"
+        },
+        "gappedTargetPhrase": "La habitación no es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-02:i10:r1",
+            "text": "pequeña"
+          },
+          {
+            "responseId": "es:lesson-03:session-02:i10:r2",
+            "text": "pequeño"
+          },
+          {
+            "responseId": "es:lesson-03:session-02:i10:r3",
+            "text": "pequeños"
+          }
+        ],
+        "testedDimension": "Вставьте слово — комната не маленькая",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-02:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — комната не маленькая",
+            "feedbackByLocale": {
+              "ru": "Habitación женского рода: pequeña.",
+              "uk": "Habitación жіночого роду: pequeña."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-02:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — комната не маленькая",
+            "feedbackByLocale": {
+              "ru": "Нужна форма женского рода единственного числа: pequeña.",
+              "uk": "Потрібна форма жіночого роду однини: pequeña."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-02:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — диван маленький; назовите предмет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-02:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — диван маленький; назовите предмет",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-02:i11:audio",
+          "transcript": "El sofá es pequeño."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "El sofá es pequeño.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-02:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — диван не маленький; назовите предмет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-02:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — диван не маленький; назовите предмет",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-02:i12:audio",
+          "transcript": "El sofá no es pequeño."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "El sofá no es pequeño.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "70851cd11435dafa749298d3eaa67591bfc1d517654fbb44b8d5219a8219ab2a"
+}

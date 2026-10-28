@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-03:session-02:i01",
+    "correctText": "pequeño",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-02:i02",
+    "correctText": "pequeña",
+    "correctResponseId": "es:lesson-03:session-02:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-02:i03",
+    "correctText": "La habitación es pequeña.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-02:i04",
+    "correctText": "pequeña",
+    "correctResponseId": "es:lesson-03:session-02:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-02:i05",
+    "correctText": "El sofá es pequeño.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-02:i06",
+    "correctText": "el",
+    "correctResponseId": "es:lesson-03:session-02:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-02:i07",
+    "correctText": "El sofá no es pequeño.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-02:i08",
+    "correctText": "La habitación es pequeña.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-02:i09",
+    "correctText": "La habitación es pequeña.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-02:i10",
+    "correctText": "pequeña",
+    "correctResponseId": "es:lesson-03:session-02:i10:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-02:i11",
+    "correctText": "El sofá es pequeño.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-02:i12",
+    "correctText": "El sofá no es pequeño.",
+    "correctResponseId": null
+  }
+]

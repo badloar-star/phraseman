@@ -1593,4 +1593,18 @@ export const FACTORY_NATIVE_MANIFEST_ES_V1: readonly LearningV2FactoryNativeMani
     loadAnswers: () => require("./generated_release/es/l03/s01/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/es/l03/s01/auxiliary.json") as unknown,
   }),
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 2,
+    sourceFingerprint: "5b6df335dfc3b6125eb39e5ac4e41e3091c2c3f10f42cb553e7bd3efefde2f57",
+    introCorrectChoiceIndexes: Object.freeze([0,0,0]),
+    introPromptByAuthoredLocale: Object.freeze({"ru":["Скажите, что комната маленькая.","Скажите, что диван маленький.","Скажите, что диван не маленький."],"uk":["Скажіть, що кімната маленька.","Скажіть, що диван маленький.","Скажіть, що диван не маленький."]}),
+    introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Для habitación нужна форма pequeña.","Комната одна: es."],["Окончание слова sofá не меняет его мужской род.","Запомните el sofá и pequeño."],["Это утверждение, а нужно отрицание.","Для sofá нужна форма pequeño."]],"uk":[["Для habitación потрібна форма pequeña.","Кімната одна: es."],["Закінчення слова sofá не змінює його чоловічого роду.","Запам'ятайте el sofá та pequeño."],["Це ствердження, а потрібне заперечення.","Для sofá потрібна форма pequeño."]]}),
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбрать pequeño или pequeña по испанскому роду предмета.","uk":"вибрати pequeño або pequeña за іспанським родом предмета."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+    practiceTitlesByAuthoredLocale: Object.freeze({"ru":[{"ordinal":1,"title":"Карточка слова — pequeño"},{"ordinal":2,"title":"Послушайте и выберите слово"},{"ordinal":3,"title":"Соберите фразу — комната маленькая"},{"ordinal":4,"title":"Вставьте слово — комната маленькая"},{"ordinal":5,"title":"Соберите фразу — диван маленький"},{"ordinal":6,"title":"Вставьте слово — этот диван маленький"},{"ordinal":7,"title":"Соберите фразу — диван не маленький"},{"ordinal":8,"title":"Послушайте и соберите фразу"},{"ordinal":9,"title":"Скажите вслух — комната маленькая; назовите предмет"},{"ordinal":10,"title":"Вставьте слово — комната не маленькая"},{"ordinal":11,"title":"Скажите вслух — диван маленький; назовите предмет"},{"ordinal":12,"title":"Скажите вслух — диван не маленький; назовите предмет"}],"uk":[{"ordinal":1,"title":"Картка слова — pequeño"},{"ordinal":2,"title":"Послухайте й виберіть слово"},{"ordinal":3,"title":"Зберіть фразу — кімната маленька"},{"ordinal":4,"title":"Вставте слово — кімната маленька"},{"ordinal":5,"title":"Зберіть фразу — диван маленький"},{"ordinal":6,"title":"Вставте слово — цей диван маленький"},{"ordinal":7,"title":"Зберіть фразу — диван не маленький"},{"ordinal":8,"title":"Послухайте й зберіть фразу"},{"ordinal":9,"title":"Скажіть уголос — кімната маленька; назвіть предмет"},{"ordinal":10,"title":"Вставте слово — кімната не маленька"},{"ordinal":11,"title":"Скажіть уголос — диван маленький; назвіть предмет"},{"ordinal":12,"title":"Скажіть уголос — диван не маленький; назвіть предмет"}]}),
+    loadIntro: () => require("./generated_release/es/l03/s02/intro.json") as unknown,
+    loadLearner: (locale: "ru" | "uk") => locale === "uk" ? require("./generated_release/es/l03/s02/learner.uk.json") as unknown : require("./generated_release/es/l03/s02/learner.json") as unknown,
+    loadAnswers: () => require("./generated_release/es/l03/s02/answers.json") as unknown,
+    loadAuxiliary: () => require("./generated_release/es/l03/s02/auxiliary.json") as unknown,
+  }),
 ]);

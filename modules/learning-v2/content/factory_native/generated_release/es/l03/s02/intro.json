@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-03:session-02",
+  "learningOutcomeByLocale": {
+    "ru": "выбрать pequeño или pequeña по испанскому роду предмета.",
+    "uk": "вибрати pequeño або pequeña за іспанським родом предмета."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-03:session-02:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Комната небольшая",
+        "uk": "Кімната невелика"
+      },
+      "bodyByLocale": {
+        "ru": "Вы вошли в комнату и оцениваете её размер. `Pequeño` — «маленький», `pequeña` — «маленькая». Скажите `La habitación es pequeña` — «Комната маленькая». Соберите `la habitación` + `es` + `pequeña`. Habitación женского рода, поэтому у признака окончание -a. Это две формы одного нового слова.",
+        "uk": "Ви увійшли до кімнати й оцінюєте її розмір. `Pequeño` — «маленький», `pequeña` — «маленька». Скажіть `La habitación es pequeña` — «Кімната маленька». Складіть `la habitación` + `es` + `pequeña`. Habitación жіночого роду, тому в ознаки закінчення -a. Це дві форми одного нового слова."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-02:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите, что комната маленькая.",
+          "uk": "Скажіть, що кімната маленька."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-02:intro1:r1",
+              "text": "La habitación es pequeña."
+            },
+            {
+              "responseId": "es:lesson-03:session-02:intro1:r2",
+              "text": "La habitación es pequeño."
+            },
+            {
+              "responseId": "es:lesson-03:session-02:intro1:r3",
+              "text": "La habitación son pequeña."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-02:intro1:r1",
+              "text": "La habitación es pequeña."
+            },
+            {
+              "responseId": "es:lesson-03:session-02:intro1:r2",
+              "text": "La habitación es pequeño."
+            },
+            {
+              "responseId": "es:lesson-03:session-02:intro1:r3",
+              "text": "La habitación son pequeña."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что комната маленькая.",
+          "uk": "Скажіть, що кімната маленька."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-03:session-02:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Диван подходит по размеру",
+        "uk": "Диван підходить за розміром"
+      },
+      "bodyByLocale": {
+        "ru": "В эту комнату привезли маленький диван. Скажите `El sofá es pequeño` — «Диван маленький». Соберите `el sofá` + `es` + `pequeño`. Знакомое sofá мужского рода, несмотря на конечную -á. Поэтому выбирайте pequeño с -o, а не pequeña.",
+        "uk": "До цієї кімнати привезли маленький диван. Скажіть `El sofá es pequeño` — «Диван маленький». Складіть `el sofá` + `es` + `pequeño`. Знайоме sofá чоловічого роду, попри кінцеву -á. Тому вибирайте pequeño з -o, а не pequeña."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-02:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите, что диван маленький.",
+          "uk": "Скажіть, що диван маленький."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-02:intro2:r1",
+              "text": "El sofá es pequeño."
+            },
+            {
+              "responseId": "es:lesson-03:session-02:intro2:r2",
+              "text": "El sofá es pequeña."
+            },
+            {
+              "responseId": "es:lesson-03:session-02:intro2:r3",
+              "text": "La sofá es pequeña."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-02:intro2:r1",
+              "text": "El sofá es pequeño."
+            },
+            {
+              "responseId": "es:lesson-03:session-02:intro2:r2",
+              "text": "El sofá es pequeña."
+            },
+            {
+              "responseId": "es:lesson-03:session-02:intro2:r3",
+              "text": "La sofá es pequeña."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что диван маленький.",
+          "uk": "Скажіть, що диван маленький."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-03:session-02:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Другой диван",
+        "uk": "Інший диван"
+      },
+      "bodyByLocale": {
+        "ru": "Вам предлагают ещё один диван, но он совсем не маленький. Скажите `El sofá no es pequeño` — «Диван не маленький». Соберите `el sofá` + `no es` + `pequeño`. Отрицание no ставится перед es; форма pequeño по-прежнему согласуется с sofá.",
+        "uk": "Вам пропонують ще один диван, але він зовсім не маленький. Скажіть `El sofá no es pequeño` — «Диван не маленький». Складіть `el sofá` + `no es` + `pequeño`. Заперечення no ставиться перед es; форма pequeño й далі узгоджується із sofá."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-02:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите, что диван не маленький.",
+          "uk": "Скажіть, що диван не маленький."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-02:intro3:r1",
+              "text": "El sofá no es pequeño."
+            },
+            {
+              "responseId": "es:lesson-03:session-02:intro3:r2",
+              "text": "El sofá es pequeño."
+            },
+            {
+              "responseId": "es:lesson-03:session-02:intro3:r3",
+              "text": "El sofá no es pequeña."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-02:intro3:r1",
+              "text": "El sofá no es pequeño."
+            },
+            {
+              "responseId": "es:lesson-03:session-02:intro3:r2",
+              "text": "El sofá es pequeño."
+            },
+            {
+              "responseId": "es:lesson-03:session-02:intro3:r3",
+              "text": "El sofá no es pequeña."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что диван не маленький.",
+          "uk": "Скажіть, що диван не маленький."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e0a9a05c32d9e262db074da23c0de40410631b1c816968736bd232de9ef9ab2e"
+}

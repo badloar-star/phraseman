@@ -798,4 +798,11 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"описать размер словом grande, не меняя его по роду.","uk":"описати розмір словом grande, не змінюючи його за родом."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 2,
+    sourceFingerprint: "5b6df335dfc3b6125eb39e5ac4e41e3091c2c3f10f42cb553e7bd3efefde2f57",
+    newWordCount: 1,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбрать pequeño или pequeña по испанскому роду предмета.","uk":"вибрати pequeño або pequeña за іспанським родом предмета."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+  }),
 ]);

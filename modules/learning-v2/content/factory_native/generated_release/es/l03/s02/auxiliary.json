@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-03:session-02",
+  "entries": [
+    {
+      "interactionId": "es:lesson-03:session-02:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-02:intro1:r2": {
+          "ru": "Для habitación нужна форма pequeña.",
+          "uk": "Для habitación потрібна форма pequeña."
+        },
+        "es:lesson-03:session-02:intro1:r3": {
+          "ru": "Комната одна: es.",
+          "uk": "Кімната одна: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-02:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-02:intro2:r2": {
+          "ru": "Окончание слова sofá не меняет его мужской род.",
+          "uk": "Закінчення слова sofá не змінює його чоловічого роду."
+        },
+        "es:lesson-03:session-02:intro2:r3": {
+          "ru": "Запомните el sofá и pequeño.",
+          "uk": "Запам'ятайте el sofá та pequeño."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-02:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-02:intro3:r2": {
+          "ru": "Это утверждение, а нужно отрицание.",
+          "uk": "Це ствердження, а потрібне заперечення."
+        },
+        "es:lesson-03:session-02:intro3:r3": {
+          "ru": "Для sofá нужна форма pequeño.",
+          "uk": "Для sofá потрібна форма pequeño."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "dda1b190cf6a800379ea88f5f52fa8083cab4969be877e955d01a29ffecf84d1"
+}

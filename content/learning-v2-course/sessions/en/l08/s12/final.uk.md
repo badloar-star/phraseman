@@ -118,7 +118,7 @@ simmer — варити за слабкого кипіння · poach — гот
 
 **15 · Картка слова — tongs**
 <!-- interaction_id: en:lesson-08:session-12:word:tongs; family: word_card -->
-> **tongs** — кухонні щипці. Where are the tongs? — «Де кухонні щипці?» Tongs вживається у множині: потрібне are, навіть якщо щипці одні.
+> **tongs** — кухонні щипці. Where are the tongs? — «Де кухонні щипці?» Tongs вживається у формі для кількох: потрібне are, навіть якщо щипці одні.
 
 **16 · Хочете перекласти гарячу їжу. Запитайте «Де кухонні щипці?»**
 <!-- interaction_id: en:lesson-08:session-12:i12; family: phrase_builder -->

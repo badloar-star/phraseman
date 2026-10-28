@@ -118,7 +118,7 @@ sculpt — створювати скульптури · carve — вирізат
 
 **15 · Картка слова — clay**
 <!-- interaction_id: en:lesson-08:session-10:word:clay; family: word_card -->
-> **clay** — глина. Whose clay is this? — «Чия це глина?» Матеріал для ліплення. Як yarn, слово clay тут незлічуване: потрібне is, без a перед clay.
+> **clay** — глина. Whose clay is this? — «Чия це глина?» Матеріал для ліплення. Як yarn, слово clay тут не рахується поштучно: потрібне is, без a перед clay.
 
 **16 · На столі лежить глина для ліплення. Запитайте: «Чия це глина?»**
 <!-- interaction_id: en:lesson-08:session-10:i12; family: phrase_builder -->

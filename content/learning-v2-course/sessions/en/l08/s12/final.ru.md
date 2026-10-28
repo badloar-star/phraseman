@@ -118,7 +118,7 @@ simmer — варить при слабом кипении · poach — гото
 
 **15 · Карточка слова — tongs**
 <!-- interaction_id: en:lesson-08:session-12:word:tongs; family: word_card -->
-> **tongs** — кухонные щипцы. Where are the tongs? — «Где кухонные щипцы?» Tongs употребляется во множественном числе: нужно are, даже если щипцы одни.
+> **tongs** — кухонные щипцы. Where are the tongs? — «Где кухонные щипцы?» Tongs употребляется в форме для нескольких: нужно are, даже если щипцы одни.
 
 **16 · Хотите переложить горячую еду. Спросите «Где кухонные щипцы?»**
 <!-- interaction_id: en:lesson-08:session-12:i12; family: phrase_builder -->

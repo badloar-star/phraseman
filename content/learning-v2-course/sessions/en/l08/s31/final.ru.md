@@ -31,7 +31,7 @@
 
 - ✅ **There is a smudge.**
 - ❌ There are a smudge. — *С одним пятном нужно is.*
-- ❌ There is smudge. — *Перед исчисляемым smudge в единственном числе нужно a.*
+- ❌ There is smudge. — *Перед считается поштучно smudge в форме для одного нужно a.*
 
 ---
 

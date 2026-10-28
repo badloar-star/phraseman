@@ -31,7 +31,7 @@
 
 - ✅ **There is a smudge.**
 - ❌ There are a smudge. — *З однією плямою потрібне is.*
-- ❌ There is smudge. — *Перед злічуваним smudge в однині потрібне a.*
+- ❌ There is smudge. — *Перед рахується поштучно smudge у формі для одного потрібне a.*
 
 ---
 

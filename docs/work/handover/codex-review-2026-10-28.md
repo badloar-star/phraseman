@@ -21,8 +21,9 @@
 ### 2. Энергия и месячный лимит — решение владельца есть, старые комментарии надо убрать
 - Владелец согласовал в чате Codex 28.10 13:05: энергия 5, +1 за 30 минут, месячного лимита тренировок нет. Замок с этим значением добавил
   Ревизор: `docs/work/OWNER_LOCKS.md` (строка 28.10) и сторож `tests/owner_locks_energy_30min_no_month_cap_2026_10_28.test.ts`.
-- **Сторож зелёный только с твоими незакоммиченными правками** (`app/energy_contract.ts:36`, `app/monthly_training_sessions.ts:11`, `:168`).
-  На HEAD он красный, пока ты их не закоммитишь — закоммить их первыми.
+- **Сторож пока выключен** (`describe.skip` через `CODEX_ENERGY_COMMITTED = false` в начале теста): он зелёный только с твоими
+  незакоммиченными правками (`app/energy_contract.ts:36`, `app/monthly_training_sessions.ts:11`, `:168`), на HEAD был бы красным.
+  **Закоммить эти правки и в том же коммите поставь `CODEX_ENERGY_COMMITTED = true`** — сторож включится.
 - **Исправление (файлы твои):** в `app/energy_contract.ts` (шапка и комментарии строк ~1–35, где «D06/D07», «BIBLE +1 за 10 минут»,
   «PM-083») и в `app/energy_system.ts` заменить ссылки на старое правило на «замок владельца 28.10: +1 за 30 минут». Иначе следующая
   сессия «починит» обратно по комментарию.
@@ -85,6 +86,23 @@
 - **Исправление:** в реестрах — ленивые геттеры по уроку (`() => require('./chapter_exam_v2_lNN_cM')`) или `import()` по ключу
   «урок:глава» в `chapterExamV2BankFor`; загружать только нужную главу. Сторож правил банков (`tests/learning_v2_chapter_exam_v2_banks_rules.test.ts`)
   опирается на `CHAPTER_EXAM_V2_BANKS` — оставить экспорт полного списка для тестов, а приложению отдать ленивый доступ.
+
+### 8. Журнал темы сцены на Пике (от 4 · Темы, коммит e64ced49b)
+- `components/spire/scene/SpireScene.tsx` (у тебя незакоммичено): после строки 111
+  (`const tokens = useMemo(() => homeSceneTokensForTheme(...))`) добавить:
+  `useEffect(() => { logSceneTheme('spire', liquidGlassThemeId, liquidGlassAppearance, 'homeSceneTokensForTheme(max)', { top: tokens.sceneTop, bottom: tokens.sceneBottom, glow: tokens.sceneGlow }); }, [tokens, liquidGlassThemeId, liquidGlassAppearance]);`
+  и импорт `import { logSceneTheme } from '../../home/v2/scene/scene_theme_log';`. Зачем: Главная, обложки уроков и приветствие языка
+  уже пишут `[SCENE-THEME]`, Пик — нет; без строки нельзя проверить цвета сцены Пика по теме.
+- `components/spire/SpireHomeScreen.tsx`, `components/dialogs/DialogueV2PlusTools.tsx` — по проверке Тем хардкода цвета нет, не править.
+
+### 9. Убрать тумблер «Приветственная шторка» из «Пульта» (решение владельца 28.10)
+- `admin/v2/legacy.html` (у тебя незакоммичено):
+  (а) удалить блок `<label class="pm-setting-row">` «Приветственная шторка» с `input id="onb-flag-welcome"` (≈ строки 15996–16002, под
+  «Кнопка "Пропустить"»; на 28.10 вечером `id="onb-flag-welcome-state"` — строка 15999, `input` — 16000);
+  (б) удалить строку `renderOnboardingBehaviourFlag('onb-flag-welcome', bools.onboarding_welcome_sheet_enabled);` (≈ 44593).
+- Выкладка — только кнопкой владельца: `bash scripts/deploy_from_clean_head.sh --only "hosting:admin"` (сухой прогон), затем то же с `--execute`.
+- Проверить, что сам флаг `onboarding_welcome_sheet_enabled` в приложении не завязан на ручное включение из «Пульта» (значение по
+  умолчанию в `app/remote_flags.ts` должно давать нужное владельцу поведение без тумблера).
 
 ## Кнопка «Уроки» на Главной (жалоба владельца) — для сведения
 

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-04:session-55",
+  "learningOutcomeByLocale": {
+    "ru": "спрашивать о владельце и давать отдельный короткий ответ с именем.",
+    "uk": "запитувати про власника й давати окрему коротку відповідь з ім’ям."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-04:session-55:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Чья сумка?",
+        "uk": "Чия сумка?"
+      },
+      "bodyByLocale": {
+        "ru": "На столе осталась одна сумка. Чтобы найти владельца, спросите `¿De quién es el bolso?` — «Чья это сумка?». Соберите `de quién` + `es` + `el bolso`. De quién спрашивает, кому принадлежит вещь. Сумка одна, поэтому es. Здесь называем сумку без mi или tu: перед bolso ставим el.",
+        "uk": "На столі залишилася одна сумка. Щоб знайти власника, запитайте `¿De quién es el bolso?` — «Чия це сумка?». Складіть `de quién` + `es` + `el bolso`. De quién запитує, кому належить річ. Сумка одна, тому es. Тут називаємо сумку без mi або tu: перед bolso ставимо el."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-55:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите «Чья это сумка?». Используйте bolso и начните с De quién.",
+          "uk": "Запитайте «Чия це сумка?». Використайте bolso й почніть з De quién."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-55:intro1:r1",
+              "text": "¿De quién es el bolso?"
+            },
+            {
+              "responseId": "es:lesson-04:session-55:intro1:r2",
+              "text": "¿De quién son el bolso?"
+            },
+            {
+              "responseId": "es:lesson-04:session-55:intro1:r3",
+              "text": "¿Quién es el bolso?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-55:intro1:r1",
+              "text": "¿De quién es el bolso?"
+            },
+            {
+              "responseId": "es:lesson-04:session-55:intro1:r2",
+              "text": "¿De quién son el bolso?"
+            },
+            {
+              "responseId": "es:lesson-04:session-55:intro1:r3",
+              "text": "¿Quién es el bolso?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «Чья это сумка?». Используйте bolso и начните с De quién.",
+          "uk": "Запитайте «Чия це сумка?». Використайте bolso й почніть з De quién."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-04:session-55:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Вернуть Ане",
+        "uk": "Повернути Ані"
+      },
+      "bodyByLocale": {
+        "ru": "Друг узнал сумку Аны. На вопрос о сумке ответьте `Es de Ana` — «Она принадлежит Ане». Соберите `es` + `de` + `Ana`. После de назовите владельца. Сумку уже назвали в вопросе, поэтому в коротком ответе слово bolso не повторяем. Это отдельная реплика, не продолжение вопроса.",
+        "uk": "Друг упізнав сумку Ани. На запитання про сумку дайте відповідь `Es de Ana` — «Вона належить Ані». Складіть `es` + `de` + `Ana`. Після de назвіть власника. Сумку вже назвали в запитанні, тому в короткій відповіді слово bolso не повторюємо. Це окрема репліка, не продовження запитання."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-55:intro2:q",
+        "promptByLocale": {
+          "ru": "Ответьте о сумке «Она принадлежит Ане». Начните с Es и назовите Ану.",
+          "uk": "Дайте відповідь про сумку «Вона належить Ані». Почніть з Es і назвіть Ану."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-55:intro2:r1",
+              "text": "Es de Ana."
+            },
+            {
+              "responseId": "es:lesson-04:session-55:intro2:r2",
+              "text": "Es Ana."
+            },
+            {
+              "responseId": "es:lesson-04:session-55:intro2:r3",
+              "text": "Son de Ana."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-55:intro2:r1",
+              "text": "Es de Ana."
+            },
+            {
+              "responseId": "es:lesson-04:session-55:intro2:r2",
+              "text": "Es Ana."
+            },
+            {
+              "responseId": "es:lesson-04:session-55:intro2:r3",
+              "text": "Son de Ana."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ответьте о сумке «Она принадлежит Ане». Начните с Es и назовите Ану.",
+          "uk": "Дайте відповідь про сумку «Вона належить Ані». Почніть з Es і назвіть Ану."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-04:session-55:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Чьи ключи?",
+        "uk": "Чиї ключі?"
+      },
+      "bodyByLocale": {
+        "ru": "Рядом лежат несколько ключей. Спросите `¿De quién son las llaves?` — «Чьи это ключи?». Соберите `de quién` + `son` + `las llaves`. Меняем es на son, потому что ключей несколько. Quién остаётся: вы выясняете владельца, а число вещей выражено словами son и las llaves.",
+        "uk": "Поруч лежать кілька ключів. Запитайте `¿De quién son las llaves?` — «Чиї це ключі?». Складіть `de quién` + `son` + `las llaves`. Міняємо es на son, тому що ключів кілька. Quién залишається: ви з’ясовуєте власника, а кількість речей виражено словами son і las llaves."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-55:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите «Чьи это ключи?». Начните с De quién.",
+          "uk": "Запитайте «Чиї це ключі?». Почніть з De quién."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-55:intro3:r1",
+              "text": "¿De quién son las llaves?"
+            },
+            {
+              "responseId": "es:lesson-04:session-55:intro3:r2",
+              "text": "¿De quién es las llaves?"
+            },
+            {
+              "responseId": "es:lesson-04:session-55:intro3:r3",
+              "text": "¿De quién son la llaves?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-55:intro3:r1",
+              "text": "¿De quién son las llaves?"
+            },
+            {
+              "responseId": "es:lesson-04:session-55:intro3:r2",
+              "text": "¿De quién es las llaves?"
+            },
+            {
+              "responseId": "es:lesson-04:session-55:intro3:r3",
+              "text": "¿De quién son la llaves?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «Чьи это ключи?». Начните с De quién.",
+          "uk": "Запитайте «Чиї це ключі?». Почніть з De quién."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "0e57ea1cb5808494f21813c5957046b2c39c486e72136ae411716d2e0d3c7958"
+}

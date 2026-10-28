@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-04:session-56",
+  "entries": [
+    {
+      "interactionId": "es:lesson-04:session-56:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-56:intro1:r2": {
+          "ru": "О мужчине здесь este.",
+          "uk": "Про чоловіка тут este."
+        },
+        "es:lesson-04:session-56:intro1:r3": {
+          "ru": "Перед mi артикля нет.",
+          "uk": "Перед mi артикля немає."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-56:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-56:intro2:r2": {
+          "ru": "Книг несколько: son.",
+          "uk": "Книжок кілька: son."
+        },
+        "es:lesson-04:session-56:intro2:r3": {
+          "ru": "Libros мужского рода: nuevos.",
+          "uk": "Libros чоловічого роду: nuevos."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-56:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-56:intro3:r2": {
+          "ru": "Несколько ключей: son.",
+          "uk": "Кілька ключів: son."
+        },
+        "es:lesson-04:session-56:intro3:r3": {
+          "ru": "Llaves женского рода: las.",
+          "uk": "Llaves жіночого роду: las."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c5d0beda56b510afd9e65c080b5777ecd554bda0b049965eb991e930e5dbef38"
+}

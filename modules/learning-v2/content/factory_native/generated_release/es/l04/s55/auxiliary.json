@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-04:session-55",
+  "entries": [
+    {
+      "interactionId": "es:lesson-04:session-55:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-55:intro1:r2": {
+          "ru": "Son нужно для нескольких вещей; сумка одна.",
+          "uk": "Son потрібне для кількох речей; сумка одна."
+        },
+        "es:lesson-04:session-55:intro1:r3": {
+          "ru": "Чтобы спросить о владельце, нужно de quién.",
+          "uk": "Щоб запитати про власника, потрібно de quién."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-55:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-55:intro2:r2": {
+          "ru": "Так вы назвали бы сам предмет Аной; для принадлежности нужно de.",
+          "uk": "Так ви назвали б сам предмет Аною; для належності потрібно de."
+        },
+        "es:lesson-04:session-55:intro2:r3": {
+          "ru": "Речь об одной сумке: es.",
+          "uk": "Ідеться про одну сумку: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-55:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-55:intro3:r2": {
+          "ru": "Llaves во множественном числе: son.",
+          "uk": "Llaves у множині: son."
+        },
+        "es:lesson-04:session-55:intro3:r3": {
+          "ru": "Перед llaves нужна форма las.",
+          "uk": "Перед llaves потрібна форма las."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "cde1512d7509721660eefb9fce52da576465c2c800ab2effe7d6f2e2b2459e9a"
+}

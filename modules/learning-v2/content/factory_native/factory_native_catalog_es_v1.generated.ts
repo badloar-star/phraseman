@@ -1561,4 +1561,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"соединять указание на вещь с nuestro или nuestra.","uk":"поєднувати вказування на річ із nuestro або nuestra."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 4, sessionOrdinal: 55,
+    sourceFingerprint: "37bd8759d0b2967ec7069cde474cbf052e783bf6e5b457393fc7343584d4a6b3",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"спрашивать о владельце и давать отдельный короткий ответ с именем.","uk":"запитувати про власника й давати окрему коротку відповідь з ім’ям."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 4, sessionOrdinal: 56,
+    sourceFingerprint: "9cfa6ef1233235bd8742c5603c12e9a756c0a4fb39ed42b6d90794d10aba9be6",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"связать знакомые описания людей и вещей с указанием владельца.","uk":"поєднати знайомі описи людей і речей із зазначенням власника."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
+  }),
 ]);

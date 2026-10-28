@@ -1,0 +1,92 @@
+[
+  {
+    "interactionId": "es:lesson-04:session-56:i01",
+    "correctText": "nuestro",
+    "correctResponseId": "es:lesson-04:session-56:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-56:i02",
+    "correctText": "Este",
+    "correctResponseId": "es:lesson-04:session-56:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-56:i03",
+    "correctText": "Este es mi amigo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-56:i04",
+    "correctText": "simpático",
+    "correctResponseId": "es:lesson-04:session-56:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-56:i05",
+    "correctText": "Los libros son nuevos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-56:i06",
+    "correctText": "pequeña",
+    "correctResponseId": "es:lesson-04:session-56:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-56:i07",
+    "correctText": "Este es nuestro carro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-56:i08",
+    "correctText": "Es mi bolso.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-56:i09",
+    "correctText": "tus",
+    "correctResponseId": "es:lesson-04:session-56:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-56:i10",
+    "correctText": "¿De quién son las llaves?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-56:i11",
+    "correctText": "de",
+    "correctResponseId": "es:lesson-04:session-56:i11:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-56:i12",
+    "correctText": "suyo",
+    "correctResponseId": "es:lesson-04:session-56:i12:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-56:i13",
+    "correctText": "Esta es mi amiga.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-56:i14",
+    "correctText": "Los libros son nuevos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-56:i15",
+    "correctText": "Este es nuestro carro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-56:i16",
+    "correctText": "¿De quién son las llaves?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-56:i17",
+    "correctText": "Son de Ana.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-56:i18",
+    "correctText": "No es suyo.",
+    "correctResponseId": null
+  }
+]

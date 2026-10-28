@@ -1,0 +1,678 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-04:session-55",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-04:session-55:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-55:i01:r1",
+          "text": "quién"
+        },
+        {
+          "responseId": "es:lesson-04:session-55:i01:r2",
+          "text": "qué"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-55:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-55:i01:audio",
+          "transcript": "quién"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-04:session-55:i01:r1",
+            "targetText": "quién",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-04:session-55:i01:r2",
+            "targetText": "qué",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-55:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит quién.",
+              "uk": "Звучить quién."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-55:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — спросите о владельце одной сумки",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-55:i02:r1",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-55:i02:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-55:i02:r3",
+          "text": "soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — спросите о владельце одной сумки",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — спросите о владельце одной сумки",
+          "uk": "Вставте слово — запитайте про власника однієї сумки"
+        },
+        "gappedTargetPhrase": "¿De quién ___ el bolso?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-55:i02:r1",
+            "text": "es"
+          },
+          {
+            "responseId": "es:lesson-04:session-55:i02:r2",
+            "text": "son"
+          },
+          {
+            "responseId": "es:lesson-04:session-55:i02:r3",
+            "text": "soy"
+          }
+        ],
+        "testedDimension": "Вставьте слово — спросите о владельце одной сумки",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-55:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — спросите о владельце одной сумки",
+            "feedbackByLocale": {
+              "ru": "Сумка одна: es.",
+              "uk": "Сумка одна: es."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-55:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — спросите о владельце одной сумки",
+            "feedbackByLocale": {
+              "ru": "Не представляете себя, а спрашиваете о сумке.",
+              "uk": "Не представляєте себе, а запитуєте про сумку."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-55:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — чья это сумка; начните с De quién",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-55:i03:r1",
+          "text": "Плитки: el"
+        },
+        {
+          "responseId": "es:lesson-04:session-55:i03:r2",
+          "text": "bolso?"
+        },
+        {
+          "responseId": "es:lesson-04:session-55:i03:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-55:i03:r4",
+          "text": "quién"
+        },
+        {
+          "responseId": "es:lesson-04:session-55:i03:r5",
+          "text": "¿de"
+        },
+        {
+          "responseId": "es:lesson-04:session-55:i03:r6",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — чья это сумка; начните с De quién",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿De quién es el bolso?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — чья это сумка; начните с De quién",
+          "uk": "Зберіть фразу — чия це сумка; почніть з De quién"
+        },
+        "orderedTokens": [
+          "¿De",
+          "quién",
+          "es",
+          "el",
+          "bolso"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-55:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — чья это сумка; начните с De quién",
+            "feedbackByLocale": {
+              "ru": "сумка одна.",
+              "uk": "сумка одна."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-55:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — короткий ответ: сумка принадлежит Ане",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-55:i04:r1",
+          "text": "de"
+        },
+        {
+          "responseId": "es:lesson-04:session-55:i04:r2",
+          "text": "mi"
+        },
+        {
+          "responseId": "es:lesson-04:session-55:i04:r3",
+          "text": "la"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — короткий ответ: сумка принадлежит Ане",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — короткий ответ: сумка принадлежит Ане",
+          "uk": "Вставте слово — коротка відповідь: сумка належить Ані"
+        },
+        "gappedTargetPhrase": "Es ___ Ana.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-55:i04:r1",
+            "text": "de"
+          },
+          {
+            "responseId": "es:lesson-04:session-55:i04:r2",
+            "text": "mi"
+          },
+          {
+            "responseId": "es:lesson-04:session-55:i04:r3",
+            "text": "la"
+          }
+        ],
+        "testedDimension": "Вставьте слово — короткий ответ: сумка принадлежит Ане",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-55:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — короткий ответ: сумка принадлежит Ане",
+            "feedbackByLocale": {
+              "ru": "Перед именем владельца нужна связка de.",
+              "uk": "Перед ім’ям власника потрібна зв’язка de."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-55:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — короткий ответ: сумка принадлежит Ане",
+            "feedbackByLocale": {
+              "ru": "Принадлежность выражаем через de Ana.",
+              "uk": "Належність виражаємо через de Ana."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-55:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — ответьте о сумке: она принадлежит Ане; начните с Es",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-55:i05:r1",
+          "text": "Плитки: Ana"
+        },
+        {
+          "responseId": "es:lesson-04:session-55:i05:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-55:i05:r3",
+          "text": "de"
+        },
+        {
+          "responseId": "es:lesson-04:session-55:i05:r4",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — ответьте о сумке: она принадлежит Ане; начните с Es",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es de Ana.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — ответьте о сумке: она принадлежит Ане; начните с Es",
+          "uk": "Зберіть фразу — дайте відповідь про сумку: вона належить Ані; почніть з Es"
+        },
+        "orderedTokens": [
+          "Es",
+          "de",
+          "Ana"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-55:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — ответьте о сумке: она принадлежит Ане; начните с Es",
+            "feedbackByLocale": {
+              "ru": "сумка одна.",
+              "uk": "сумка одна."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-55:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — чьи это ключи; начните с De quién",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-55:i06:r1",
+          "text": "Плитки: llaves?"
+        },
+        {
+          "responseId": "es:lesson-04:session-55:i06:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-55:i06:r3",
+          "text": "¿de"
+        },
+        {
+          "responseId": "es:lesson-04:session-55:i06:r4",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-04:session-55:i06:r5",
+          "text": "quién"
+        },
+        {
+          "responseId": "es:lesson-04:session-55:i06:r6",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — чьи это ключи; начните с De quién",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿De quién son las llaves?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — чьи это ключи; начните с De quién",
+          "uk": "Зберіть фразу — чиї це ключі; почніть з De quién"
+        },
+        "orderedTokens": [
+          "¿De",
+          "quién",
+          "son",
+          "las",
+          "llaves"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-55:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — чьи это ключи; начните с De quién",
+            "feedbackByLocale": {
+              "ru": "ключей несколько.",
+              "uk": "ключів кілька."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-55:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-55:i07:r1",
+          "text": "Плитки: de"
+        },
+        {
+          "responseId": "es:lesson-04:session-55:i07:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-55:i07:r3",
+          "text": "Ana"
+        },
+        {
+          "responseId": "es:lesson-04:session-55:i07:r4",
+          "text": "mi."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-55:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-55:i07:audio",
+          "transcript": "Es de Ana."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Es de Ana.",
+        "orderedTokens": [
+          "Es",
+          "de",
+          "Ana"
+        ],
+        "authoredDistractorTokens": [
+          "mi"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-55:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "в записи её нет.",
+              "uk": "у записі її немає."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-55:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — ключи принадлежат Педро; отдельный короткий ответ",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-55:i08:r1",
+          "text": "Son"
+        },
+        {
+          "responseId": "es:lesson-04:session-55:i08:r2",
+          "text": "Es"
+        },
+        {
+          "responseId": "es:lesson-04:session-55:i08:r3",
+          "text": "Soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — ключи принадлежат Педро; отдельный короткий ответ",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — ключи принадлежат Педро; отдельный короткий ответ",
+          "uk": "Вставте слово — ключі належать Педро; окрема коротка відповідь"
+        },
+        "gappedTargetPhrase": "___ de Pedro.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-55:i08:r1",
+            "text": "Son"
+          },
+          {
+            "responseId": "es:lesson-04:session-55:i08:r2",
+            "text": "Es"
+          },
+          {
+            "responseId": "es:lesson-04:session-55:i08:r3",
+            "text": "Soy"
+          }
+        ],
+        "testedDimension": "Вставьте слово — ключи принадлежат Педро; отдельный короткий ответ",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-55:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — ключи принадлежат Педро; отдельный короткий ответ",
+            "feedbackByLocale": {
+              "ru": "Ключей несколько: son.",
+              "uk": "Ключів кілька: son."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-55:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — ключи принадлежат Педро; отдельный короткий ответ",
+            "feedbackByLocale": {
+              "ru": "Говорите о ключах, а не о себе.",
+              "uk": "Говорите про ключі, а не про себе."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-55:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — чья это сумка; начните с De quién и используйте bolso",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-55:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — чья это сумка; начните с De quién и используйте bolso",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-55:i09:audio",
+          "transcript": "¿De quién es el bolso?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿De quién es el bolso?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-55:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — сумка принадлежит Ане; короткий ответ, начните с Es и назовите Ану",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-55:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — сумка принадлежит Ане; короткий ответ, начните с Es и назовите Ану",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-55:i10:audio",
+          "transcript": "Es de Ana."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es de Ana.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-55:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — чьи это ключи; начните с De quién",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-55:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — чьи это ключи; начните с De quién",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-55:i11:audio",
+          "transcript": "¿De quién son las llaves?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿De quién son las llaves?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-55:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — ключи принадлежат Педро; короткий ответ, начните с Son и назовите Педро",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-55:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — ключи принадлежат Педро; короткий ответ, начните с Son и назовите Педро",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-55:i12:audio",
+          "transcript": "Son de Pedro."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son de Pedro.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "c1f235d5020c30811feb88bd421998c98cfc5af148de9e128565ac8b0e6cac00"
+}

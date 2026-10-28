@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-04:session-56",
+  "learningOutcomeByLocale": {
+    "ru": "связать знакомые описания людей и вещей с указанием владельца.",
+    "uk": "поєднати знайомі описи людей і речей із зазначенням власника."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-04:session-56:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Представить друга",
+        "uk": "Представити друга"
+      },
+      "bodyByLocale": {
+        "ru": "Вы знакомите семью с другом, который стоит рядом. Скажите `Este es mi amigo` — «Это мой друг». Соберите `este` + `es` + `mi amigo`. Este указывает на мужчину рядом, а mi перед amigo связывает его с вами. Перед mi артикль не нужен.",
+        "uk": "Ви знайомите родину з другом, який стоїть поруч. Скажіть `Este es mi amigo` — «Це мій друг». Складіть `este` + `es` + `mi amigo`. Este вказує на чоловіка поруч, а mi перед amigo пов’язує його з вами. Перед mi артикль не потрібний."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-56:intro1:q",
+        "promptByLocale": {
+          "ru": "Представьте друга: «Это мой друг». Начните с Este.",
+          "uk": "Представте друга: «Це мій друг». Почніть з Este."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-56:intro1:r1",
+              "text": "Este es mi amigo."
+            },
+            {
+              "responseId": "es:lesson-04:session-56:intro1:r2",
+              "text": "Esta es mi amigo."
+            },
+            {
+              "responseId": "es:lesson-04:session-56:intro1:r3",
+              "text": "Este es el mi amigo."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-56:intro1:r1",
+              "text": "Este es mi amigo."
+            },
+            {
+              "responseId": "es:lesson-04:session-56:intro1:r2",
+              "text": "Esta es mi amigo."
+            },
+            {
+              "responseId": "es:lesson-04:session-56:intro1:r3",
+              "text": "Este es el mi amigo."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Представьте друга: «Это мой друг». Начните с Este.",
+          "uk": "Представте друга: «Це мій друг». Почніть з Este."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-04:session-56:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Описать книги",
+        "uk": "Описати книжки"
+      },
+      "bodyByLocale": {
+        "ru": "Вы кладёте в сумку новые книги. Скажите `Los libros son nuevos` — «Книги новые». Соберите `los libros` + `son` + `nuevos`. Libros — несколько книг, мужской род. Поэтому берём los, son и окончание -os у nuevos. Описываем книги, не их владельца.",
+        "uk": "Ви кладете в сумку нові книжки. Скажіть `Los libros son nuevos` — «Книжки нові». Складіть `los libros` + `son` + `nuevos`. Libros — кілька книжок, чоловічий рід. Тому беремо los, son і закінчення -os у nuevos. Описуємо книжки, не їхнього власника."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-56:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «Книги новые». Начните с Los libros.",
+          "uk": "Скажіть «Книжки нові». Почніть з Los libros."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-56:intro2:r1",
+              "text": "Los libros son nuevos."
+            },
+            {
+              "responseId": "es:lesson-04:session-56:intro2:r2",
+              "text": "Los libros es nuevos."
+            },
+            {
+              "responseId": "es:lesson-04:session-56:intro2:r3",
+              "text": "Los libros son nuevas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-56:intro2:r1",
+              "text": "Los libros son nuevos."
+            },
+            {
+              "responseId": "es:lesson-04:session-56:intro2:r2",
+              "text": "Los libros es nuevos."
+            },
+            {
+              "responseId": "es:lesson-04:session-56:intro2:r3",
+              "text": "Los libros son nuevas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Книги новые». Начните с Los libros.",
+          "uk": "Скажіть «Книжки нові». Почніть з Los libros."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-04:session-56:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Найти владельца ключей",
+        "uk": "Знайти власника ключів"
+      },
+      "bodyByLocale": {
+        "ru": "У машины лежат ключи. Спросите `¿De quién son las llaves?` — «Чьи это ключи?». Соберите `de quién` + `son` + `las llaves`. De quién спрашивает о владельце. Son и las выбираем по слову llaves: ключей несколько, испанское слово женского рода.",
+        "uk": "Біля машини лежать ключі. Запитайте `¿De quién son las llaves?` — «Чиї це ключі?». Складіть `de quién` + `son` + `las llaves`. De quién запитує про власника. Son і las вибираємо за словом llaves: ключів кілька, іспанське слово жіночого роду."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-56:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите «Чьи это ключи?». Начните с De quién.",
+          "uk": "Запитайте «Чиї це ключі?». Почніть з De quién."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-56:intro3:r1",
+              "text": "¿De quién son las llaves?"
+            },
+            {
+              "responseId": "es:lesson-04:session-56:intro3:r2",
+              "text": "¿De quién es las llaves?"
+            },
+            {
+              "responseId": "es:lesson-04:session-56:intro3:r3",
+              "text": "¿De quién son los llaves?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-56:intro3:r1",
+              "text": "¿De quién son las llaves?"
+            },
+            {
+              "responseId": "es:lesson-04:session-56:intro3:r2",
+              "text": "¿De quién es las llaves?"
+            },
+            {
+              "responseId": "es:lesson-04:session-56:intro3:r3",
+              "text": "¿De quién son los llaves?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «Чьи это ключи?». Начните с De quién.",
+          "uk": "Запитайте «Чиї це ключі?». Почніть з De quién."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "4964040084a3fae39dcde550cafb14cd3f538273bd6f6e6638fca697e7df3fc1"
+}

@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useRef, useState } from 'react';
+import React, { memo, useEffect, useMemo, useRef, useState } from 'react';
 import {
   Animated,
   Easing,
@@ -17,7 +17,8 @@ import { inferExpoSpeechLanguage, useAudio } from '../hooks/use-audio';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
-import { dailyPhraseChromeFor } from '../app/daily_phrase_chrome';
+import { dailyPhraseChromeFromTokens } from '../app/daily_phrase_chrome';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { LinearGradient } from './SafeLinearGradient';
 import { triLang } from '../constants/i18n';
 import { softShadow, noAndroidOutline } from '../constants/androidGlow';
@@ -101,7 +102,7 @@ function DailyPhraseCard({
   variant = 'default',
   homeCardVisible = false,
 }: Props) {
-  const { theme: t, f, themeMode, liquidGlassAppearance } = useTheme();
+  const { theme: t, f, themeMode, liquidGlassAppearance, liquidGlassThemeId } = useTheme();
   // зачем (ассеты 2.0, 04.10): «Фраза дня» берёт предмет из реестра по яркости темы; кэш реестра — без пересоздания источника.
   const phraseArt = resolveThemedArt('phrase_of_day', liquidGlassAppearance === 'light' ? 'light' : 'dark').base ?? require('../assets/images/v2/mug_quote.png');
   const { lang } = useLang();
@@ -122,7 +123,9 @@ function DailyPhraseCard({
   const v2 = useV2Palette();
   const v2Glass = useHomePlateStyle(); // зачем: приказ владельца 11.10 19:2x — плашки Главной с фоном 50 % (альфа цвета фона), без блика/дымки; общий хук стекла остальных экранов не менялся
   const homeKickerFontSize = Math.max(12, f.caption);
-  const chrome = dailyPhraseChromeFor(themeMode);
+  // зачем (владелец 28.10, «каждый цвет — оттенок текущей темы»): оформление карточки — из токенов ТЕКУЩЕЙ темы, а не из таблицы по прежнему режиму (там у любой тёмной темы карточка была зелёной)
+  const glassTokens = liquidGlassTokens(liquidGlassThemeId);
+  const chrome = useMemo(() => dailyPhraseChromeFromTokens(glassTokens), [glassTokens]);
   const phraseOfDayArt = getHomeSupportingArt(themeMode).phraseOfDay;
   const [phrase, setPhrase] = useState<DailyPhrase | null>(() => (
     getTodayPhraseSyncForTarget(studyTarget, lang)
@@ -1297,7 +1300,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     // зачем: круг (radius 35) без непрозрачного фона — Android рисовал
     // квадратный outline вокруг него. На iOS зелёное свечение как было.
-    ...softShadow({ color: '#22C55E', opacity: 0.38, radius: 18, offsetY: 8, elevation: 9 }),
+    // цвет свечения задаёт место использования (t.correct — оттенок текущей темы), здесь только форма тени
+    ...softShadow({ color: 'transparent', opacity: 0.38, radius: 18, offsetY: 8, elevation: 9 }),
   },
   sheetHeader: {
     flexDirection: 'row',

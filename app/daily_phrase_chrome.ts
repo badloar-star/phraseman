@@ -1,11 +1,16 @@
 /**
  * Visual "chrome" for the Daily Phrase surface — the single source of truth for
- * how the phrase-of-the-day looks on EACH theme.
+ * how the phrase-of-the-day looks on the CURRENT theme.
  *
  * Used by components/DailyPhraseCard.tsx for the in-app card.
+ *
+ * зачем (владелец 28.10: «каждый цвет — оттенок текущей темы»; координатор: аудит цвета, пакет 1): раньше оформление брали из таблицы по прежнему
+ * «режиму» (dark / gold / olive / midnight …, 126 литералов): у любой тёмной темы карточка была зелёной (#193025), у серого «Затмения» тоже. Теперь
+ * цвета считаются из токенов Liquid Glass ТЕКУЩЕЙ темы: градиент — карточка темы с долей акцента, текст — text / secondary, акцент и кнопка — accentGraphic / cta.
  */
-
-import type { ThemeMode } from "../constants/theme";
+import { alphaHex, mixHex } from '../constants/v2Style';
+import type { GlassTokens } from '../constants/liquidGlassThemePalette';
+import { relativeLuminance } from '../components/home/v2/scene/home_scene_tokens';
 
 export interface DailyPhraseChrome {
   /** 3-stop vertical gradient, top → bottom. */
@@ -34,137 +39,37 @@ export interface DailyPhraseChrome {
   shadow: string;
 }
 
-export const DAILY_PHRASE_CHROME: Record<ThemeMode, DailyPhraseChrome> = {
-  dark: {
-    colors: ["#193025", "#13241C", "#09110D"],
-    border: "rgba(116,232,156,0.28)",
-    glow: "rgba(71,200,112,0.22)",
-    title: "#D9FFE5",
-    phrase: "#FFFFFF",
-    sub: "#B8D9C2",
-    iconBg: "rgba(116,232,156,0.13)",
-    iconBorder: "rgba(116,232,156,0.22)",
-    ornament: "#58CC89",
-    actionBg: "#58CC89",
-    actionText: "#07110A",
-    shadow: "#47C870",
-  },
-  gold: {
-    colors: ["#242424", "#151515", "#070707"],
-    border: "rgba(230,190,103,0.42)",
-    glow: "rgba(214,179,90,0.15)",
-    title: "#FFF0BF",
-    phrase: "#FFF8E8",
-    sub: "#D2BE91",
-    iconBg: "rgba(230,190,103,0.14)",
-    iconBorder: "rgba(230,190,103,0.34)",
-    ornament: "#D6B35A",
-    actionBg: "#D6B35A",
-    actionText: "#1B1205",
-    shadow: "#D6B35A",
-  },
-  // Olive Noir: matte depth with champagne reserved for deliberate actions.
-  // This same palette is serialized to WidgetKit/Glance for a coherent Plus deck.
-  olive: {
-    colors: ["#24281A", "#11140D", "#090A08"],
-    border: "rgba(201,168,76,0.28)",
-    glow: "rgba(201,168,76,0.13)",
-    title: "#E3CC88",
-    phrase: "#F4ECD8",
-    sub: "#C8C2AC",
-    iconBg: "rgba(201,168,76,0.14)",
-    iconBorder: "rgba(201,168,76,0.26)",
-    ornament: "#C9A84C",
-    actionBg: "#C9A84C",
-    actionText: "#111109",
-    shadow: "#000000",
-  },
-  sagePorcelain: {
-    colors: ["#FCFDF9", "#F0F1EC", "#E1E5DC"],
-    border: "#CFD6CE",
-    glow: "rgba(49,95,80,0.10)",
-    title: "#3C5A50",
-    phrase: "#17201D",
-    sub: "#52605A",
-    iconBg: "#D9E9E1",
-    iconBorder: "#BDC8BD",
-    ornament: "#315F50",
-    actionBg: "#315F50",
-    actionText: "#FCFDF9",
-    shadow: "rgba(35,50,43,0.14)",
-  },
-  midnight: {
-    colors: ["#1A1D2C", "#0D0E16", "#050506"],
-    border: "rgba(143,160,255,0.42)",
-    glow: "rgba(91,124,255,0.16)",
-    title: "#C9D2FF",
-    phrase: "#FFFFFF",
-    sub: "#A9AECB",
-    iconBg: "rgba(143,160,255,0.15)",
-    iconBorder: "rgba(143,160,255,0.31)",
-    ornament: "#8FA0FF",
-    actionBg: "#8FA0FF",
-    actionText: "#0D1030",
-    shadow: "#8FA0FF",
-  },
-  ember: {
-    colors: ["#231A12", "#0F0B07", "#050506"],
-    border: "rgba(255,204,85,0.42)",
-    glow: "rgba(255,138,42,0.16)",
-    title: "#FFE9B8",
-    phrase: "#FFFFFF",
-    sub: "#C9B4A4",
-    iconBg: "rgba(255,204,85,0.15)",
-    iconBorder: "rgba(255,204,85,0.31)",
-    ornament: "#FFCC55",
-    actionBg: "#FFCC55",
-    actionText: "#2A1A02",
-    shadow: "#FFCC55",
-  },
-  aurora: {
-    colors: ["#15211B", "#090F0C", "#050506"],
-    border: "rgba(61,232,166,0.42)",
-    glow: "rgba(46,230,160,0.16)",
-    title: "#9FF2CF",
-    phrase: "#FFFFFF",
-    sub: "#A7C0B5",
-    iconBg: "rgba(61,232,166,0.15)",
-    iconBorder: "rgba(61,232,166,0.31)",
-    ornament: "#3DE8A6",
-    actionBg: "#3DE8A6",
-    actionText: "#052A1C",
-    shadow: "#3DE8A6",
-  },
-  volt: {
-    colors: ["#1C2010", "#0C0E06", "#050506"],
-    border: "rgba(198,255,52,0.42)",
-    glow: "rgba(168,232,30,0.16)",
-    title: "#E8FF96",
-    phrase: "#FFFFFF",
-    sub: "#BFC6A3",
-    iconBg: "rgba(198,255,52,0.15)",
-    iconBorder: "rgba(198,255,52,0.31)",
-    ornament: "#C6FF34",
-    actionBg: "#C6FF34",
-    actionText: "#182002",
-    shadow: "#C6FF34",
-  },
-  indigo: {
-    colors: ["#222140", "#17162B", "#0A0912"],
-    border: "rgba(200,195,255,0.34)",
-    glow: "rgba(200,195,255,0.20)",
-    title: "#E4E1FF",
-    phrase: "#FFFFFF",
-    sub: "#B7B3D9",
-    iconBg: "rgba(200,195,255,0.13)",
-    iconBorder: "rgba(200,195,255,0.24)",
-    ornament: "#C8C3FF",
-    actionBg: "#C8C3FF",
-    actionText: "#17162B",
-    shadow: "#C8C3FF",
-  },
-};
+/** Доля акцента темы в верхней точке градиента карточки: тёмное оформление глубже, светлое — тоньше. */
+export const DAILY_PHRASE_ACCENT_MIX = { dark: 0.16, light: 0.1 } as const;
 
-export function dailyPhraseChromeFor(mode: ThemeMode): DailyPhraseChrome {
-  return DAILY_PHRASE_CHROME[mode] ?? DAILY_PHRASE_CHROME.indigo;
+/** Минимальный контраст формы кнопки к карточке (WCAG 1.4.11 для графики). */
+export const DAILY_PHRASE_ACTION_MIN_CONTRAST = 3;
+
+function contrastOf(a: string, b: string): number {
+  const la = relativeLuminance(a);
+  const lb = relativeLuminance(b);
+  if (la === null || lb === null) return 1;
+  return (Math.max(la, lb) + 0.05) / (Math.min(la, lb) + 0.05);
+}
+
+/** Оформление «Фразы дня» из токенов текущей темы (все 23 темы × светлое / тёмное). Чистая функция, мемоизируется вызывающим по объекту токенов. */
+export function dailyPhraseChromeFromTokens(g: Pick<GlassTokens, 'isLight' | 'opaqueCard' | 'bg' | 'accent' | 'accentGlow' | 'accentGraphic' | 'accentTextSafe' | 'glassEdge' | 'text' | 'secondary' | 'cta' | 'ctaInk' | 'shadowTint'>): DailyPhraseChrome {
+  const mix = g.isLight ? DAILY_PHRASE_ACCENT_MIX.light : DAILY_PHRASE_ACCENT_MIX.dark;
+  // зачем (замер 28.10): в части светлых тем заливка кнопки темы (cta) совпадает с карточкой (1,00:1) — кнопки не видно; тогда форма — тон текста темы, подпись — цвет карточки (как у кнопки сцены Диалогов)
+  const ctaVisible = contrastOf(g.cta, g.opaqueCard) >= DAILY_PHRASE_ACTION_MIN_CONTRAST;
+  return {
+    colors: [mixHex(g.opaqueCard, g.accent, mix), g.opaqueCard, g.bg],
+    border: g.glassEdge,
+    glow: g.accentGlow,
+    title: g.accentTextSafe,
+    phrase: g.text,
+    sub: g.secondary,
+    iconBg: alphaHex(g.accent, 0.14),
+    iconBorder: alphaHex(g.accent, 0.26),
+    ornament: g.accentGraphic,
+    actionBg: ctaVisible ? g.cta : g.text,
+    actionText: ctaVisible ? g.ctaInk : g.opaqueCard,
+    // тёмные темы — свечение акцентом (как было), светлые — мягкая тень тоном темы
+    shadow: g.isLight ? g.shadowTint : g.accent,
+  };
 }

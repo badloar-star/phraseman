@@ -1,11 +1,10 @@
 {
-  "total": 1295,
+  "total": 1168,
   "files": {
     "app/_layout.tsx": 11,
     "app/(tabs)/home.tsx": 7,
     "app/community_packs/CommunityPackSocialBar.tsx": 6,
     "app/community_packs/ugcCardThemePresets.ts": 12,
-    "app/daily_phrase_chrome.ts": 126,
     "app/flashcards_packs.tsx": 3,
     "app/flashcards/cardStatus.ts": 5,
     "app/flashcards/constants.ts": 8,
@@ -19,7 +18,6 @@
     "app/profile_card_system.ts": 66,
     "app/theory_topic_accents.ts": 76,
     "components/CleanOnboarding.tsx": 63,
-    "components/DailyPhraseCard.tsx": 1,
     "components/home/HomeMistakesLockedSheet.tsx": 1,
     "components/learning-v2/horizons/art.ts": 2,
     "components/learning-v2/horizons/model.ts": 70,

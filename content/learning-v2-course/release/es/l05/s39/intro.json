@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-05:session-39",
+  "learningOutcomeByLocale": {
+    "ru": "назвать возраст с diez и quince в знакомой конструкции tener.",
+    "uk": "назвати вік із diez і quince у знайомій конструкції tener."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-05:session-39:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Десятилетний мальчик",
+        "uk": "Десятирічний хлопчик"
+      },
+      "bodyByLocale": {
+        "ru": "Рассказываете знакомому о мальчике: `Él tiene diez años` — «Ему десять лет». Соберите `Él` + `tiene` + `diez años`. Diez уже знакомо: десять. Для возраста ставим его перед años, после tiene. Глагол относится к одному мальчику, поэтому tiene, а не tienen.",
+        "uk": "Розповідаєте знайомому про хлопчика: `Él tiene diez años` — «Йому десять років». Зберіть `Él` + `tiene` + `diez años`. Diez уже знайоме: десять. Для віку ставимо його перед años, після tiene. Дієслово стосується одного хлопчика, тому tiene, а не tienen."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-39:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите «Ему десять лет». Начните с Él tiene diez.",
+          "uk": "Скажіть «Йому десять років». Почніть з Él tiene diez."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-39:intro1:r1",
+              "text": "Él tiene diez años."
+            },
+            {
+              "responseId": "es:lesson-05:session-39:intro1:r2",
+              "text": "Él tienen diez años."
+            },
+            {
+              "responseId": "es:lesson-05:session-39:intro1:r3",
+              "text": "Él tiene diez año."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-39:intro1:r1",
+              "text": "Él tiene diez años."
+            },
+            {
+              "responseId": "es:lesson-05:session-39:intro1:r2",
+              "text": "Él tienen diez años."
+            },
+            {
+              "responseId": "es:lesson-05:session-39:intro1:r3",
+              "text": "Él tiene diez año."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Ему десять лет». Начните с Él tiene diez.",
+          "uk": "Скажіть «Йому десять років». Почніть з Él tiene diez."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-05:session-39:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Пятнадцатилетняя девочка",
+        "uk": "П’ятнадцятирічна дівчинка"
+      },
+      "bodyByLocale": {
+        "ru": "Представляете знакомому девочку: `Ella tiene quince años` — «Ей пятнадцать лет». Соберите `Ella` + `tiene` + `quince años`. Quince — «пятнадцать», одно слово. В знакомой конструкции меняется только число; años остаётся во множественном числе. Для возраста используем tiene.",
+        "uk": "Представляєте знайомому дівчинку: `Ella tiene quince años` — «Їй п’ятнадцять років». Зберіть `Ella` + `tiene` + `quince años`. Quince — «п’ятнадцять», одне слово. У знайомій конструкції змінюється лише число; años залишається у множині. Для віку використовуємо tiene."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-39:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «Ей пятнадцать лет». Начните с Ella tiene quince.",
+          "uk": "Скажіть «Їй п’ятнадцять років». Почніть з Ella tiene quince."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-39:intro2:r1",
+              "text": "Ella tiene quince años."
+            },
+            {
+              "responseId": "es:lesson-05:session-39:intro2:r2",
+              "text": "Ella es quince años."
+            },
+            {
+              "responseId": "es:lesson-05:session-39:intro2:r3",
+              "text": "Ella tiene quince año."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-39:intro2:r1",
+              "text": "Ella tiene quince años."
+            },
+            {
+              "responseId": "es:lesson-05:session-39:intro2:r2",
+              "text": "Ella es quince años."
+            },
+            {
+              "responseId": "es:lesson-05:session-39:intro2:r3",
+              "text": "Ella tiene quince año."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Ей пятнадцать лет». Начните с Ella tiene quince.",
+          "uk": "Скажіть «Їй п’ятнадцять років». Почніть з Ella tiene quince."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-05:session-39:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Подросток Педро",
+        "uk": "Підліток Педро"
+      },
+      "bodyByLocale": {
+        "ru": "На другой встрече рассказываете о пятнадцатилетнем Педро: `Pedro tiene quince años` — «Педро пятнадцать лет». Соберите `Pedro` + `tiene` + `quince años`. Имя заменяет местоимение, но форма tiene сохраняется. Quince не меняется в зависимости от пола человека.",
+        "uk": "На іншій зустрічі розповідаєте про п’ятнадцятирічного Педро: `Pedro tiene quince años` — «Педро п’ятнадцять років». Зберіть `Pedro` + `tiene` + `quince años`. Ім’я замінює займенник, але форма tiene зберігається. Quince не змінюється залежно від статі людини."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-39:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите «Педро пятнадцать лет». Начните с Pedro tiene quince.",
+          "uk": "Скажіть «Педро п’ятнадцять років». Почніть з Pedro tiene quince."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-39:intro3:r1",
+              "text": "Pedro tiene quince años."
+            },
+            {
+              "responseId": "es:lesson-05:session-39:intro3:r2",
+              "text": "Pedro tengo quince años."
+            },
+            {
+              "responseId": "es:lesson-05:session-39:intro3:r3",
+              "text": "Pedro tiene un quince años."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-39:intro3:r1",
+              "text": "Pedro tiene quince años."
+            },
+            {
+              "responseId": "es:lesson-05:session-39:intro3:r2",
+              "text": "Pedro tengo quince años."
+            },
+            {
+              "responseId": "es:lesson-05:session-39:intro3:r3",
+              "text": "Pedro tiene un quince años."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Педро пятнадцать лет». Начните с Pedro tiene quince.",
+          "uk": "Скажіть «Педро п’ятнадцять років». Почніть з Pedro tiene quince."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "df0e5f6d4f06a86a4917a603286a10879e09e3921be7385efabdc8c601bbce7c"
+}

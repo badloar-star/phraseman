@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-05:session-39",
+  "entries": [
+    {
+      "interactionId": "es:lesson-05:session-39:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-39:intro1:r2": {
+          "ru": "Один человек: tiene.",
+          "uk": "Одна людина: tiene."
+        },
+        "es:lesson-05:session-39:intro1:r3": {
+          "ru": "После diez нужно años.",
+          "uk": "Після diez потрібно años."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-39:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-39:intro2:r2": {
+          "ru": "Возраст выражаем через tiene.",
+          "uk": "Вік виражаємо через tiene."
+        },
+        "es:lesson-05:session-39:intro2:r3": {
+          "ru": "После quince нужно años.",
+          "uk": "Після quince потрібно años."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-39:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-39:intro3:r2": {
+          "ru": "Об одном другом человеке говорим tiene.",
+          "uk": "Про одну іншу людину кажемо tiene."
+        },
+        "es:lesson-05:session-39:intro3:r3": {
+          "ru": "Перед числом в этой фразе нет un.",
+          "uk": "Перед числом у цій фразі немає un."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f0b86bcfec4bac63ecbddc616f60e16babc6081e141aebe6fbf6bacd36568d1a"
+}

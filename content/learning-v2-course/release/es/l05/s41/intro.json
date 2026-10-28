@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-05:session-41",
+  "learningOutcomeByLocale": {
+    "ru": "выразить голод сочетанием tener hambre.",
+    "uk": "виразити голод сполученням tener hambre."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-05:session-41:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Пора поесть",
+        "uk": "Час поїсти"
+      },
+      "bodyByLocale": {
+        "ru": "После прогулки хотите предложить перерыв на еду. Скажите `Tengo hambre` — «Я хочу есть» или «Я голоден / голодна». Соберите `Tengo` + `hambre`. Hambre означает «голод», а tener hambre — буквально «иметь голод». В этой простой фразе перед hambre нет артикля. Tengo одинаково подходит говорящему мужчине и женщине: hambre здесь существительное, не прилагательное.",
+        "uk": "Після прогулянки хочете запропонувати перерву на їжу. Скажіть `Tengo hambre` — «Я хочу їсти» або «Я голодний / голодна». Зберіть `Tengo` + `hambre`. Hambre означає «голод», а tener hambre — буквально «мати голод». У цій простій фразі перед hambre немає артикля. Tengo однаково підходить мовцеві чоловікові й жінці: hambre тут іменник, не прикметник."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-41:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите «Я хочу есть» с помощью hambre. Начните с Tengo.",
+          "uk": "Скажіть «Я хочу їсти» за допомогою hambre. Почніть з Tengo."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-41:intro1:r1",
+              "text": "Tengo hambre."
+            },
+            {
+              "responseId": "es:lesson-05:session-41:intro1:r2",
+              "text": "Soy hambre."
+            },
+            {
+              "responseId": "es:lesson-05:session-41:intro1:r3",
+              "text": "Tengo una hambre."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-41:intro1:r1",
+              "text": "Tengo hambre."
+            },
+            {
+              "responseId": "es:lesson-05:session-41:intro1:r2",
+              "text": "Soy hambre."
+            },
+            {
+              "responseId": "es:lesson-05:session-41:intro1:r3",
+              "text": "Tengo una hambre."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Я хочу есть» с помощью hambre. Начните с Tengo.",
+          "uk": "Скажіть «Я хочу їсти» за допомогою hambre. Почніть з Tengo."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-05:session-41:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Именно вы проголодались",
+        "uk": "Саме ви зголодніли"
+      },
+      "bodyByLocale": {
+        "ru": "Друзья готовы гулять дальше, а вы хотите поесть. Выделите себя: `Yo tengo hambre` — «А я голоден / голодна». Соберите `Yo` + `tengo` + `hambre`. Yo явно называет говорящего. С ним сохраняется tengo, затем hambre без артикля. Других слов для мужского или женского пола не добавляем.",
+        "uk": "Друзі готові гуляти далі, а ви хочете поїсти. Виділіть себе: `Yo tengo hambre` — «А я голодний / голодна». Зберіть `Yo` + `tengo` + `hambre`. Yo явно називає мовця. З ним зберігається tengo, потім hambre без артикля. Інших слів для чоловічої або жіночої статі не додаємо."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-41:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «Я голоден / голодна», явно назвав себя. Начните с Yo tengo.",
+          "uk": "Скажіть «Я голодний / голодна», явно назвавши себе. Почніть з Yo tengo."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-41:intro2:r1",
+              "text": "Yo tengo hambre."
+            },
+            {
+              "responseId": "es:lesson-05:session-41:intro2:r2",
+              "text": "Yo tiene hambre."
+            },
+            {
+              "responseId": "es:lesson-05:session-41:intro2:r3",
+              "text": "Yo soy hambre."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-41:intro2:r1",
+              "text": "Yo tengo hambre."
+            },
+            {
+              "responseId": "es:lesson-05:session-41:intro2:r2",
+              "text": "Yo tiene hambre."
+            },
+            {
+              "responseId": "es:lesson-05:session-41:intro2:r3",
+              "text": "Yo soy hambre."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Я голоден / голодна», явно назвав себя. Начните с Yo tengo.",
+          "uk": "Скажіть «Я голодний / голодна», явно назвавши себе. Почніть з Yo tengo."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-05:session-41:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ана хочет поесть",
+        "uk": "Ана хоче їсти"
+      },
+      "bodyByLocale": {
+        "ru": "Ана сказала, что проголодалась. Передайте другу `Ana tiene hambre` — «Ана хочет есть». Соберите `Ana` + `tiene` + `hambre`. О другом человеке вместо tengo используем tiene. Само hambre не меняется: оно называет голод, а не признак, который согласуется с полом Аны.",
+        "uk": "Ана сказала, що зголодніла. Передайте другові `Ana tiene hambre` — «Ана хоче їсти». Зберіть `Ana` + `tiene` + `hambre`. Про іншу людину замість tengo використовуємо tiene. Саме hambre не змінюється: воно називає голод, а не ознаку, що узгоджується зі статтю Ани."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-41:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите «Ана хочет есть» с помощью hambre. Начните с Ana tiene.",
+          "uk": "Скажіть «Ана хоче їсти» за допомогою hambre. Почніть з Ana tiene."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-41:intro3:r1",
+              "text": "Ana tiene hambre."
+            },
+            {
+              "responseId": "es:lesson-05:session-41:intro3:r2",
+              "text": "Ana tengo hambre."
+            },
+            {
+              "responseId": "es:lesson-05:session-41:intro3:r3",
+              "text": "Ana es hambre."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-41:intro3:r1",
+              "text": "Ana tiene hambre."
+            },
+            {
+              "responseId": "es:lesson-05:session-41:intro3:r2",
+              "text": "Ana tengo hambre."
+            },
+            {
+              "responseId": "es:lesson-05:session-41:intro3:r3",
+              "text": "Ana es hambre."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Ана хочет есть» с помощью hambre. Начните с Ana tiene.",
+          "uk": "Скажіть «Ана хоче їсти» за допомогою hambre. Почніть з Ana tiene."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "fdd82b51f18a1079c3236ac538fb3326859541c93af47cb02eb3cfb202b95a38"
+}

@@ -1,0 +1,67 @@
+[
+  {
+    "interactionId": "es:lesson-05:session-42:i01",
+    "correctText": "sed",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-42:i02",
+    "correctText": "sed",
+    "correctResponseId": "es:lesson-05:session-42:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-42:i03",
+    "correctText": "sed",
+    "correctResponseId": "es:lesson-05:session-42:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-42:i04",
+    "correctText": "Tengo sed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-42:i05",
+    "correctText": "tiene",
+    "correctResponseId": "es:lesson-05:session-42:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-42:i06",
+    "correctText": "Ana tiene sed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-42:i07",
+    "correctText": "No tengo sed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-42:i08",
+    "correctText": "Tengo sed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-42:i09",
+    "correctText": "No",
+    "correctResponseId": "es:lesson-05:session-42:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-42:i10",
+    "correctText": "Tengo sed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-42:i11",
+    "correctText": "Ana tiene sed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-42:i12",
+    "correctText": "No tengo sed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-42:i13",
+    "correctText": "Tenemos sed.",
+    "correctResponseId": null
+  }
+]

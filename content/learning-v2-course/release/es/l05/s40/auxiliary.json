@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-05:session-40",
+  "entries": [
+    {
+      "interactionId": "es:lesson-05:session-40:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-40:intro1:r2": {
+          "ru": "После dos нужна форма hijos.",
+          "uk": "Після dos потрібна форма hijos."
+        },
+        "es:lesson-05:session-40:intro1:r3": {
+          "ru": "Количество уже задаёт dos.",
+          "uk": "Кількість уже задає dos."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-40:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-40:intro2:r2": {
+          "ru": "Для возраста нужно tengo.",
+          "uk": "Для віку потрібно tengo."
+        },
+        "es:lesson-05:session-40:intro2:r3": {
+          "ru": "После veinte нужно años.",
+          "uk": "Після veinte потрібно años."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-40:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-40:intro3:r2": {
+          "ru": "Перед años нужна форма cuántos.",
+          "uk": "Перед años потрібна форма cuántos."
+        },
+        "es:lesson-05:session-40:intro3:r3": {
+          "ru": "Возраст спрашиваем через tienes.",
+          "uk": "Вік питаємо через tienes."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c2655e3b9947a6aecd41dad5a817dbef168e176c2abe5e032315e78b3f38aecf"
+}

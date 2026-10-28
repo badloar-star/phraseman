@@ -1,0 +1,92 @@
+[
+  {
+    "interactionId": "es:lesson-05:session-40:i01",
+    "correctText": "quince",
+    "correctResponseId": "es:lesson-05:session-40:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-40:i02",
+    "correctText": "hijos",
+    "correctResponseId": "es:lesson-05:session-40:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-40:i03",
+    "correctText": "Tenemos dos hijos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-40:i04",
+    "correctText": "Tengo",
+    "correctResponseId": "es:lesson-05:session-40:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-40:i05",
+    "correctText": "Tengo veinte años.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-40:i06",
+    "correctText": "¿Cuántos años tienes?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-40:i07",
+    "correctText": "Tengo veinte años.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-40:i08",
+    "correctText": "tiene",
+    "correctResponseId": "es:lesson-05:session-40:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-40:i09",
+    "correctText": "Tenemos dos hijos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-40:i10",
+    "correctText": "Tengo veinte años.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-40:i11",
+    "correctText": "¿Cuántos años tienes?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-40:i12",
+    "correctText": "Ana tiene treinta años.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-40:i13",
+    "correctText": "libros",
+    "correctResponseId": "es:lesson-05:session-40:i13:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-40:i14",
+    "correctText": "Tengo tres libros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-40:i15",
+    "correctText": "quince",
+    "correctResponseId": "es:lesson-05:session-40:i15:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-40:i16",
+    "correctText": "Ella tiene quince años.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-40:i17",
+    "correctText": "Tengo tres libros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-40:i18",
+    "correctText": "Ella tiene quince años.",
+    "correctResponseId": null
+  }
+]

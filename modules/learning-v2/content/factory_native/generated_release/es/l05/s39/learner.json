@@ -1,0 +1,721 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-05:session-39",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-05:session-39:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — quince",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-39:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — quince",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-39:i01:audio",
+          "transcript": "quince"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-05:session-39:i01:r1",
+            "targetText": "quince",
+            "meaningByLocale": {
+              "ru": "пятнадцать. 🔊 *quince*",
+              "uk": "п’ятнадцять. 🔊 *quince*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "quince",
+          "definitionByLocale": {
+            "ru": "пятнадцать. 🔊 *quince*",
+            "uk": "п’ятнадцять. 🔊 *quince*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-39:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-39:i02:r1",
+          "text": "quince"
+        },
+        {
+          "responseId": "es:lesson-05:session-39:i02:r2",
+          "text": "cinco"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-39:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-39:i02:audio",
+          "transcript": "quince"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-05:session-39:i02:r1",
+            "targetText": "quince",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-05:session-39:i02:r2",
+            "targetText": "cinco",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-39:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит quince — пятнадцать, не cinco — пять.",
+              "uk": "Звучить quince — п’ятнадцять, не cinco — п’ять."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-39:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — ему десять лет",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-39:i03:r1",
+          "text": "diez"
+        },
+        {
+          "responseId": "es:lesson-05:session-39:i03:r2",
+          "text": "quince"
+        },
+        {
+          "responseId": "es:lesson-05:session-39:i03:r3",
+          "text": "cinco"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — ему десять лет",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — ему десять лет",
+          "uk": "Вставте слово — йому десять років"
+        },
+        "gappedTargetPhrase": "Él tiene ___ años.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-39:i03:r1",
+            "text": "diez"
+          },
+          {
+            "responseId": "es:lesson-05:session-39:i03:r2",
+            "text": "quince"
+          },
+          {
+            "responseId": "es:lesson-05:session-39:i03:r3",
+            "text": "cinco"
+          }
+        ],
+        "testedDimension": "Вставьте слово — ему десять лет",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-39:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — ему десять лет",
+            "feedbackByLocale": {
+              "ru": "Quince — пятнадцать; нужно десять: diez.",
+              "uk": "Quince — п’ятнадцять; потрібно десять: diez."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-39:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — ему десять лет",
+            "feedbackByLocale": {
+              "ru": "Cinco — пять; нужно diez.",
+              "uk": "Cinco — п’ять; потрібно diez."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-39:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — ему десять лет; начните с Él",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-39:i04:r1",
+          "text": "Плитки: diez"
+        },
+        {
+          "responseId": "es:lesson-05:session-39:i04:r2",
+          "text": "Él"
+        },
+        {
+          "responseId": "es:lesson-05:session-39:i04:r3",
+          "text": "años"
+        },
+        {
+          "responseId": "es:lesson-05:session-39:i04:r4",
+          "text": "tiene"
+        },
+        {
+          "responseId": "es:lesson-05:session-39:i04:r5",
+          "text": "tienen."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — ему десять лет; начните с Él",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Él tiene diez años.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — ему десять лет; начните с Él",
+          "uk": "Зберіть фразу — йому десять років; почніть з Él"
+        },
+        "orderedTokens": [
+          "Él",
+          "tiene",
+          "diez",
+          "años"
+        ],
+        "authoredDistractorTokens": [
+          "tienen"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-39:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — ему десять лет; начните с Él",
+            "feedbackByLocale": {
+              "ru": "говорим об одном мальчике.",
+              "uk": "кажемо про одного хлопчика."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-39:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — ей пятнадцать лет",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-39:i05:r1",
+          "text": "quince"
+        },
+        {
+          "responseId": "es:lesson-05:session-39:i05:r2",
+          "text": "cinco"
+        },
+        {
+          "responseId": "es:lesson-05:session-39:i05:r3",
+          "text": "diez"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — ей пятнадцать лет",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — ей пятнадцать лет",
+          "uk": "Вставте слово — їй п’ятнадцять років"
+        },
+        "gappedTargetPhrase": "Ella tiene ___ años.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-39:i05:r1",
+            "text": "quince"
+          },
+          {
+            "responseId": "es:lesson-05:session-39:i05:r2",
+            "text": "cinco"
+          },
+          {
+            "responseId": "es:lesson-05:session-39:i05:r3",
+            "text": "diez"
+          }
+        ],
+        "testedDimension": "Вставьте слово — ей пятнадцать лет",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-39:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — ей пятнадцать лет",
+            "feedbackByLocale": {
+              "ru": "Cinco — пять; пятнадцать — quince.",
+              "uk": "Cinco — п’ять; п’ятнадцять — quince."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-39:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — ей пятнадцать лет",
+            "feedbackByLocale": {
+              "ru": "Diez — десять; нужно quince.",
+              "uk": "Diez — десять; потрібно quince."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-39:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — ей пятнадцать лет; начните с Ella",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-39:i06:r1",
+          "text": "Плитки: años"
+        },
+        {
+          "responseId": "es:lesson-05:session-39:i06:r2",
+          "text": "Ella"
+        },
+        {
+          "responseId": "es:lesson-05:session-39:i06:r3",
+          "text": "quince"
+        },
+        {
+          "responseId": "es:lesson-05:session-39:i06:r4",
+          "text": "tiene"
+        },
+        {
+          "responseId": "es:lesson-05:session-39:i06:r5",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — ей пятнадцать лет; начните с Ella",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Ella tiene quince años.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — ей пятнадцать лет; начните с Ella",
+          "uk": "Зберіть фразу — їй п’ятнадцять років; почніть з Ella"
+        },
+        "orderedTokens": [
+          "Ella",
+          "tiene",
+          "quince",
+          "años"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-39:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — ей пятнадцать лет; начните с Ella",
+            "feedbackByLocale": {
+              "ru": "возраст выражаем через tiene.",
+              "uk": "вік виражаємо через tiene."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-39:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — Педро пятнадцать лет; начните с Pedro",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-39:i07:r1",
+          "text": "Плитки: quince"
+        },
+        {
+          "responseId": "es:lesson-05:session-39:i07:r2",
+          "text": "tiene"
+        },
+        {
+          "responseId": "es:lesson-05:session-39:i07:r3",
+          "text": "Pedro"
+        },
+        {
+          "responseId": "es:lesson-05:session-39:i07:r4",
+          "text": "años"
+        },
+        {
+          "responseId": "es:lesson-05:session-39:i07:r5",
+          "text": "año."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — Педро пятнадцать лет; начните с Pedro",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Pedro tiene quince años.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — Педро пятнадцать лет; начните с Pedro",
+          "uk": "Зберіть фразу — Педро п’ятнадцять років; почніть з Pedro"
+        },
+        "orderedTokens": [
+          "Pedro",
+          "tiene",
+          "quince",
+          "años"
+        ],
+        "authoredDistractorTokens": [
+          "año"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-39:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — Педро пятнадцать лет; начните с Pedro",
+            "feedbackByLocale": {
+              "ru": "после quince нужно años.",
+              "uk": "після quince потрібно años."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-39:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-39:i08:r1",
+          "text": "Плитки: tiene"
+        },
+        {
+          "responseId": "es:lesson-05:session-39:i08:r2",
+          "text": "Ella"
+        },
+        {
+          "responseId": "es:lesson-05:session-39:i08:r3",
+          "text": "años"
+        },
+        {
+          "responseId": "es:lesson-05:session-39:i08:r4",
+          "text": "quince"
+        },
+        {
+          "responseId": "es:lesson-05:session-39:i08:r5",
+          "text": "cinco."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-39:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-39:i08:audio",
+          "transcript": "Ella tiene quince años."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Ella tiene quince años.",
+        "orderedTokens": [
+          "Ella",
+          "tiene",
+          "quince",
+          "años"
+        ],
+        "authoredDistractorTokens": [
+          "cinco"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-39:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит quince.",
+              "uk": "звучить quince."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-39:i09",
+      "ordinal": 12,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — Педро пятнадцать лет",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-39:i09:r1",
+          "text": "tiene"
+        },
+        {
+          "responseId": "es:lesson-05:session-39:i09:r2",
+          "text": "tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-39:i09:r3",
+          "text": "es"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — Педро пятнадцать лет",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — Педро пятнадцать лет",
+          "uk": "Вставте слово — Педро п’ятнадцять років"
+        },
+        "gappedTargetPhrase": "Pedro ___ quince años.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-39:i09:r1",
+            "text": "tiene"
+          },
+          {
+            "responseId": "es:lesson-05:session-39:i09:r2",
+            "text": "tengo"
+          },
+          {
+            "responseId": "es:lesson-05:session-39:i09:r3",
+            "text": "es"
+          }
+        ],
+        "testedDimension": "Вставьте слово — Педро пятнадцать лет",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-39:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — Педро пятнадцать лет",
+            "feedbackByLocale": {
+              "ru": "О Педро говорим tiene.",
+              "uk": "Про Педро кажемо tiene."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-39:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — Педро пятнадцать лет",
+            "feedbackByLocale": {
+              "ru": "Возраст выражаем через tener.",
+              "uk": "Вік виражаємо через tener."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-39:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — ему десять лет; начните с Él tiene",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-39:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — ему десять лет; начните с Él tiene",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-39:i10:audio",
+          "transcript": "Él tiene diez años."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Él tiene diez años.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-39:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — ей пятнадцать лет; начните с Ella tiene",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-39:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — ей пятнадцать лет; начните с Ella tiene",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-39:i11:audio",
+          "transcript": "Ella tiene quince años."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Ella tiene quince años.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-39:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — Педро пятнадцать лет; начните с Pedro tiene",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-39:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — Педро пятнадцать лет; начните с Pedro tiene",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-39:i12:audio",
+          "transcript": "Pedro tiene quince años."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Pedro tiene quince años.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-39:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — ей десять лет; начните с Ella tiene",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-39:i13:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — ей десять лет; начните с Ella tiene",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-39:i13:audio",
+          "transcript": "Ella tiene diez años."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Ella tiene diez años.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 13,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "29ed60eb627c9f6532081bb75b255b49b9ea64ef90933e27af3d0e2a0b01e402"
+}

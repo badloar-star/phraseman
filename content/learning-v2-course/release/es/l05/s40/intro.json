@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-05:session-40",
+  "learningOutcomeByLocale": {
+    "ru": "закрепить число после tener для количества вещей и возраста.",
+    "uk": "закріпити число після tener для кількості речей і віку."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-05:session-40:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Двое детей в семье",
+        "uk": "Двоє дітей у сім’ї"
+      },
+      "bodyByLocale": {
+        "ru": "Рассказываете о своей семье от себя и партнёра: `Tenemos dos hijos` — «У нас двое детей». Соберите `Tenemos` + `dos` + `hijos`. Tenemos относится к вам обоим. Dos задаёт число детей, поэтому hijo получает s. Артикль un перед dos не добавляем.",
+        "uk": "Розповідаєте про свою сім’ю від себе й партнера: `Tenemos dos hijos` — «Ми маємо двох дітей». Зберіть `Tenemos` + `dos` + `hijos`. Tenemos стосується вас обох. Dos задає число дітей, тому hijo отримує s. Артикль un перед dos не додаємо."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-40:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите «У нас двое детей». Начните с Tenemos dos, используйте hijos.",
+          "uk": "Скажіть «Ми маємо двох дітей». Почніть з Tenemos dos, використайте hijos."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-40:intro1:r1",
+              "text": "Tenemos dos hijos."
+            },
+            {
+              "responseId": "es:lesson-05:session-40:intro1:r2",
+              "text": "Tenemos dos hijo."
+            },
+            {
+              "responseId": "es:lesson-05:session-40:intro1:r3",
+              "text": "Tenemos un dos hijos."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-40:intro1:r1",
+              "text": "Tenemos dos hijos."
+            },
+            {
+              "responseId": "es:lesson-05:session-40:intro1:r2",
+              "text": "Tenemos dos hijo."
+            },
+            {
+              "responseId": "es:lesson-05:session-40:intro1:r3",
+              "text": "Tenemos un dos hijos."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «У нас двое детей». Начните с Tenemos dos, используйте hijos.",
+          "uk": "Скажіть «Ми маємо двох дітей». Почніть з Tenemos dos, використайте hijos."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-05:session-40:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ваш возраст",
+        "uk": "Ваш вік"
+      },
+      "bodyByLocale": {
+        "ru": "При знакомстве сообщите `Tengo veinte años` — «Мне двадцать лет». Соберите `Tengo` + `veinte` + `años`. Возраст выражаем через tener. О себе говорим tengo, а после числа veinte используем años во множественном числе. Перед числом нет артикля.",
+        "uk": "При знайомстві повідомте `Tengo veinte años` — «Мені двадцять років». Зберіть `Tengo` + `veinte` + `años`. Вік виражаємо через tener. Про себе кажемо tengo, а після числа veinte використовуємо años у множині. Перед числом немає артикля."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-40:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «Мне двадцать лет». Начните с Tengo veinte.",
+          "uk": "Скажіть «Мені двадцять років». Почніть з Tengo veinte."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-40:intro2:r1",
+              "text": "Tengo veinte años."
+            },
+            {
+              "responseId": "es:lesson-05:session-40:intro2:r2",
+              "text": "Soy veinte años."
+            },
+            {
+              "responseId": "es:lesson-05:session-40:intro2:r3",
+              "text": "Tengo veinte año."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-40:intro2:r1",
+              "text": "Tengo veinte años."
+            },
+            {
+              "responseId": "es:lesson-05:session-40:intro2:r2",
+              "text": "Soy veinte años."
+            },
+            {
+              "responseId": "es:lesson-05:session-40:intro2:r3",
+              "text": "Tengo veinte año."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Мне двадцать лет». Начните с Tengo veinte.",
+          "uk": "Скажіть «Мені двадцять років». Почніть з Tengo veinte."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-05:session-40:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Вопрос знакомому",
+        "uk": "Запитання знайомому"
+      },
+      "bodyByLocale": {
+        "ru": "Вы с собеседником на «ты» и спрашиваете его возраст: `¿Cuántos años tienes?` — «Сколько тебе лет?» Соберите `¿Cuántos años` + `tienes?`. В начале ставим вопрос о количестве лет, затем tienes. Cuántos согласовано с años: мужской род, множественное число. Отдельное tú здесь не добавляем.",
+        "uk": "Ви зі співрозмовником на «ти» й питаєте його вік: `¿Cuántos años tienes?` — «Скільки тобі років?» Зберіть `¿Cuántos años` + `tienes?`. На початку ставимо запитання про кількість років, потім tienes. Cuántos узгоджене з años: чоловічий рід, множина. Окреме tú тут не додаємо."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-40:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите «Сколько тебе лет?» Начните с ¿Cuántos años, без tú.",
+          "uk": "Запитайте «Скільки тобі років?» Почніть з ¿Cuántos años, без tú."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-40:intro3:r1",
+              "text": "¿Cuántos años tienes?"
+            },
+            {
+              "responseId": "es:lesson-05:session-40:intro3:r2",
+              "text": "¿Cuánto años tienes?"
+            },
+            {
+              "responseId": "es:lesson-05:session-40:intro3:r3",
+              "text": "¿Cuántos años eres?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-40:intro3:r1",
+              "text": "¿Cuántos años tienes?"
+            },
+            {
+              "responseId": "es:lesson-05:session-40:intro3:r2",
+              "text": "¿Cuánto años tienes?"
+            },
+            {
+              "responseId": "es:lesson-05:session-40:intro3:r3",
+              "text": "¿Cuántos años eres?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «Сколько тебе лет?» Начните с ¿Cuántos años, без tú.",
+          "uk": "Запитайте «Скільки тобі років?» Почніть з ¿Cuántos años, без tú."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "cdc4f59b9d94a1332f47d8d8bf582b82e19da8a9a2a8e58fb6bda6ec841bda94"
+}

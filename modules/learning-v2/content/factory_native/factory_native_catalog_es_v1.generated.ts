@@ -1841,4 +1841,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"использовать tiene с небольшими числами и años.","uk":"використовувати tiene з невеликими числами та años."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 5, sessionOrdinal: 39,
+    sourceFingerprint: "31dd959edafeb77b78c16feef6fbb15f776f76d2648072cbdbe0e23c68d24281",
+    newWordCount: 1,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"назвать возраст с diez и quince в знакомой конструкции tener.","uk":"назвати вік із diez і quince у знайомій конструкції tener."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 5, sessionOrdinal: 40,
+    sourceFingerprint: "36886106c6c32bc2deaeeb047b2a6029e17ea078acaf5a583bb9db2e6ad98e6f",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"закрепить число после tener для количества вещей и возраста.","uk":"закріпити число після tener для кількості речей і віку."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 5, sessionOrdinal: 41,
+    sourceFingerprint: "d36ebf66cd6d90573b998326874bc57ac27ecf7e8c4ad8367c5dca7b3e876c73",
+    newWordCount: 1,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выразить голод сочетанием tener hambre.","uk":"виразити голод сполученням tener hambre."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 5, sessionOrdinal: 42,
+    sourceFingerprint: "71b4cade6b62377542209e8b4b03e94cf5230862d041f900c3d993a01089d68f",
+    newWordCount: 1,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выразить жажду сочетанием tener sed.","uk":"виразити спрагу сполученням tener sed."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
+  }),
 ]);

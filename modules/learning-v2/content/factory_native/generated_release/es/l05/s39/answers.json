@@ -1,0 +1,67 @@
+[
+  {
+    "interactionId": "es:lesson-05:session-39:i01",
+    "correctText": "quince",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-39:i02",
+    "correctText": "quince",
+    "correctResponseId": "es:lesson-05:session-39:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-39:i03",
+    "correctText": "diez",
+    "correctResponseId": "es:lesson-05:session-39:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-39:i04",
+    "correctText": "Él tiene diez años.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-39:i05",
+    "correctText": "quince",
+    "correctResponseId": "es:lesson-05:session-39:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-39:i06",
+    "correctText": "Ella tiene quince años.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-39:i07",
+    "correctText": "Pedro tiene quince años.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-39:i08",
+    "correctText": "Ella tiene quince años.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-39:i09",
+    "correctText": "tiene",
+    "correctResponseId": "es:lesson-05:session-39:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-39:i10",
+    "correctText": "Él tiene diez años.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-39:i11",
+    "correctText": "Ella tiene quince años.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-39:i12",
+    "correctText": "Pedro tiene quince años.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-39:i13",
+    "correctText": "Ella tiene diez años.",
+    "correctResponseId": null
+  }
+]

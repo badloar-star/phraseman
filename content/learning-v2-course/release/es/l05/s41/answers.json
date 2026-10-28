@@ -1,0 +1,67 @@
+[
+  {
+    "interactionId": "es:lesson-05:session-41:i01",
+    "correctText": "hambre",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-41:i02",
+    "correctText": "hambre",
+    "correctResponseId": "es:lesson-05:session-41:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-41:i03",
+    "correctText": "hambre",
+    "correctResponseId": "es:lesson-05:session-41:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-41:i04",
+    "correctText": "Tengo hambre.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-41:i05",
+    "correctText": "tengo",
+    "correctResponseId": "es:lesson-05:session-41:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-41:i06",
+    "correctText": "Yo tengo hambre.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-41:i07",
+    "correctText": "Ana tiene hambre.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-41:i08",
+    "correctText": "Tengo hambre.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-41:i09",
+    "correctText": "tiene",
+    "correctResponseId": "es:lesson-05:session-41:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-41:i10",
+    "correctText": "Tengo hambre.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-41:i11",
+    "correctText": "Yo tengo hambre.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-41:i12",
+    "correctText": "Ana tiene hambre.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-41:i13",
+    "correctText": "Tenemos hambre.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-05:session-42",
+  "entries": [
+    {
+      "interactionId": "es:lesson-05:session-42:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-42:intro1:r2": {
+          "ru": "Жажду выражаем через tengo sed.",
+          "uk": "Спрагу виражаємо через tengo sed."
+        },
+        "es:lesson-05:session-42:intro1:r3": {
+          "ru": "В изучаемой простой фразе артикль не нужен.",
+          "uk": "У цій простій фразі артикль не потрібен."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-42:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-42:intro2:r2": {
+          "ru": "О другом человеке нужно tiene.",
+          "uk": "Про іншу людину потрібно tiene."
+        },
+        "es:lesson-05:session-42:intro2:r3": {
+          "ru": "Состояние выражаем через tiene sed.",
+          "uk": "Стан виражаємо через tiene sed."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-42:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-42:intro3:r2": {
+          "ru": "No должно стоять перед tengo.",
+          "uk": "No має стояти перед tengo."
+        },
+        "es:lesson-05:session-42:intro3:r3": {
+          "ru": "Используем no tengo sed.",
+          "uk": "Використовуємо no tengo sed."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f8cec0aeaa5e7d58163d308b1b5e83efc279bbc1c753182a485c20176b68005a"
+}

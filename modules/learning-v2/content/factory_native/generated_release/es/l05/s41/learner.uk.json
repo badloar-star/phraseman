@@ -1,0 +1,691 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-05:session-41",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-05:session-41:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — hambre",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-41:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — hambre",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-41:i01:audio",
+          "transcript": "hambre"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-05:session-41:i01:r1",
+            "targetText": "hambre",
+            "meaningByLocale": {
+              "ru": "голод; tener hambre — хотеть есть, быть голодным. Начальная h не произносится. 🔊 *hambre*",
+              "uk": "голод; tener hambre — хотіти їсти, бути голодним. Початкова h не вимовляється. 🔊 *hambre*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hambre",
+          "definitionByLocale": {
+            "ru": "голод; tener hambre — хотеть есть, быть голодным. Начальная h не произносится. 🔊 *hambre*",
+            "uk": "голод; tener hambre — хотіти їсти, бути голодним. Початкова h не вимовляється. 🔊 *hambre*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-41:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-41:i02:r1",
+          "text": "hambre"
+        },
+        {
+          "responseId": "es:lesson-05:session-41:i02:r2",
+          "text": "año"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-41:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-41:i02:audio",
+          "transcript": "hambre"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-05:session-41:i02:r1",
+            "targetText": "hambre",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-05:session-41:i02:r2",
+            "targetText": "año",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-41:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи hambre — «голод», не año — «год».",
+              "uk": "У записі hambre — «голод», не año — «рік»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-41:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — я хочу їсти",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-41:i03:r1",
+          "text": "hambre"
+        },
+        {
+          "responseId": "es:lesson-05:session-41:i03:r2",
+          "text": "tiempo"
+        },
+        {
+          "responseId": "es:lesson-05:session-41:i03:r3",
+          "text": "libro"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — я хочу їсти",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — я хочу есть",
+          "uk": "Вставте слово — я хочу їсти"
+        },
+        "gappedTargetPhrase": "Tengo ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-41:i03:r1",
+            "text": "hambre"
+          },
+          {
+            "responseId": "es:lesson-05:session-41:i03:r2",
+            "text": "tiempo"
+          },
+          {
+            "responseId": "es:lesson-05:session-41:i03:r3",
+            "text": "libro"
+          }
+        ],
+        "testedDimension": "Вставте слово — я хочу їсти",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-41:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — я хочу їсти",
+            "feedbackByLocale": {
+              "ru": "Речь о голоде, не о времени: hambre.",
+              "uk": "Йдеться про голод, не про час: hambre."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-41:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — я хочу їсти",
+            "feedbackByLocale": {
+              "ru": "Нужно назвать голод: hambre.",
+              "uk": "Потрібно назвати голод: hambre."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-41:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — я хочу їсти; почніть з Tengo, використайте hambre",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-41:i04:r1",
+          "text": "Плитки: hambre"
+        },
+        {
+          "responseId": "es:lesson-05:session-41:i04:r2",
+          "text": "Tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-41:i04:r3",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — я хочу їсти; почніть з Tengo, використайте hambre",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Tengo hambre.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — я хочу есть; начните с Tengo, используйте hambre",
+          "uk": "Зберіть фразу — я хочу їсти; почніть з Tengo, використайте hambre"
+        },
+        "orderedTokens": [
+          "Tengo",
+          "hambre"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-41:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — я хочу їсти; почніть з Tengo, використайте hambre",
+            "feedbackByLocale": {
+              "ru": "в этой фразе hambre без артикля.",
+              "uk": "у цій фразі hambre без артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-41:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — я голодний / голодна",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-41:i05:r1",
+          "text": "tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-41:i05:r2",
+          "text": "tiene"
+        },
+        {
+          "responseId": "es:lesson-05:session-41:i05:r3",
+          "text": "soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — я голодний / голодна",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — я голоден / голодна",
+          "uk": "Вставте слово — я голодний / голодна"
+        },
+        "gappedTargetPhrase": "Yo ___ hambre.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-41:i05:r1",
+            "text": "tengo"
+          },
+          {
+            "responseId": "es:lesson-05:session-41:i05:r2",
+            "text": "tiene"
+          },
+          {
+            "responseId": "es:lesson-05:session-41:i05:r3",
+            "text": "soy"
+          }
+        ],
+        "testedDimension": "Вставте слово — я голодний / голодна",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-41:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — я голодний / голодна",
+            "feedbackByLocale": {
+              "ru": "С yo нужна форма tengo.",
+              "uk": "З yo потрібна форма tengo."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-41:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — я голодний / голодна",
+            "feedbackByLocale": {
+              "ru": "Используем tener hambre, не ser.",
+              "uk": "Використовуємо tener hambre, не ser."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-41:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — я голодний / голодна; почніть з Yo",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-41:i06:r1",
+          "text": "Плитки: tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-41:i06:r2",
+          "text": "Yo"
+        },
+        {
+          "responseId": "es:lesson-05:session-41:i06:r3",
+          "text": "hambre"
+        },
+        {
+          "responseId": "es:lesson-05:session-41:i06:r4",
+          "text": "tiene."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — я голодний / голодна; почніть з Yo",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Yo tengo hambre.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — я голоден / голодна; начните с Yo",
+          "uk": "Зберіть фразу — я голодний / голодна; почніть з Yo"
+        },
+        "orderedTokens": [
+          "Yo",
+          "tengo",
+          "hambre"
+        ],
+        "authoredDistractorTokens": [
+          "tiene"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-41:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — я голодний / голодна; почніть з Yo",
+            "feedbackByLocale": {
+              "ru": "с yo нужно tengo.",
+              "uk": "з yo потрібно tengo."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-41:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — Ана хоче їсти; почніть з Ana, використайте hambre",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-41:i07:r1",
+          "text": "Плитки: hambre"
+        },
+        {
+          "responseId": "es:lesson-05:session-41:i07:r2",
+          "text": "Ana"
+        },
+        {
+          "responseId": "es:lesson-05:session-41:i07:r3",
+          "text": "tiene"
+        },
+        {
+          "responseId": "es:lesson-05:session-41:i07:r4",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — Ана хоче їсти; почніть з Ana, використайте hambre",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Ana tiene hambre.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — Ана хочет есть; начните с Ana, используйте hambre",
+          "uk": "Зберіть фразу — Ана хоче їсти; почніть з Ana, використайте hambre"
+        },
+        "orderedTokens": [
+          "Ana",
+          "tiene",
+          "hambre"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-41:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — Ана хоче їсти; почніть з Ana, використайте hambre",
+            "feedbackByLocale": {
+              "ru": "состояние выражаем через tiene hambre.",
+              "uk": "стан виражаємо через tiene hambre."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-41:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-41:i08:r1",
+          "text": "Плитки: Tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-41:i08:r2",
+          "text": "hambre"
+        },
+        {
+          "responseId": "es:lesson-05:session-41:i08:r3",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-41:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-41:i08:audio",
+          "transcript": "Tengo hambre."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Tengo hambre.",
+        "orderedTokens": [
+          "Tengo",
+          "hambre"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-41:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "её нет в записи.",
+              "uk": "її немає в записі."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-41:i09",
+      "ordinal": 12,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — Ана хоче їсти",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-41:i09:r1",
+          "text": "tiene"
+        },
+        {
+          "responseId": "es:lesson-05:session-41:i09:r2",
+          "text": "tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-41:i09:r3",
+          "text": "tienen"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — Ана хоче їсти",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — Ана хочет есть",
+          "uk": "Вставте слово — Ана хоче їсти"
+        },
+        "gappedTargetPhrase": "Ana ___ hambre.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-41:i09:r1",
+            "text": "tiene"
+          },
+          {
+            "responseId": "es:lesson-05:session-41:i09:r2",
+            "text": "tengo"
+          },
+          {
+            "responseId": "es:lesson-05:session-41:i09:r3",
+            "text": "tienen"
+          }
+        ],
+        "testedDimension": "Вставте слово — Ана хоче їсти",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-41:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — Ана хоче їсти",
+            "feedbackByLocale": {
+              "ru": "Об Ане нужна форма tiene.",
+              "uk": "Про Ану потрібна форма tiene."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-41:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — Ана хоче їсти",
+            "feedbackByLocale": {
+              "ru": "Ана одна: tiene.",
+              "uk": "Ана одна: tiene."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-41:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — я хочу їсти; почніть з Tengo, використайте hambre",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-41:i10:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — я хочу їсти; почніть з Tengo, використайте hambre",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-41:i10:audio",
+          "transcript": "Tengo hambre."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tengo hambre.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-41:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — я голодний / голодна; почніть з Yo tengo",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-41:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — я голодний / голодна; почніть з Yo tengo",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-41:i11:audio",
+          "transcript": "Yo tengo hambre."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Yo tengo hambre.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-41:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — Ана хоче їсти; почніть з Ana tiene, використайте hambre",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-41:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — Ана хоче їсти; почніть з Ana tiene, використайте hambre",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-41:i12:audio",
+          "transcript": "Ana tiene hambre."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Ana tiene hambre.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-41:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — ми хочемо їсти; почніть з Tenemos, використайте hambre",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-41:i13:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — ми хочемо їсти; почніть з Tenemos, використайте hambre",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-41:i13:audio",
+          "transcript": "Tenemos hambre."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tenemos hambre.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 13,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "6804614bbe17b310609fa2d5edc61fa8f1769c2fef3f7afe2db718710eaac741"
+}

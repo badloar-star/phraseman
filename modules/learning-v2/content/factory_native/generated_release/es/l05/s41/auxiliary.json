@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-05:session-41",
+  "entries": [
+    {
+      "interactionId": "es:lesson-05:session-41:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-41:intro1:r2": {
+          "ru": "Голод в этой конструкции выражаем через tengo.",
+          "uk": "Голод у цій конструкції виражаємо через tengo."
+        },
+        "es:lesson-05:session-41:intro1:r3": {
+          "ru": "В изучаемой простой фразе артикль не нужен.",
+          "uk": "У цій простій фразі артикль не потрібен."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-41:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-41:intro2:r2": {
+          "ru": "С yo нужна форма tengo.",
+          "uk": "З yo потрібна форма tengo."
+        },
+        "es:lesson-05:session-41:intro2:r3": {
+          "ru": "Используем tener hambre: yo tengo hambre.",
+          "uk": "Використовуємо tener hambre: yo tengo hambre."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-41:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-41:intro3:r2": {
+          "ru": "О другом человеке нужна форма tiene.",
+          "uk": "Про іншу людину потрібна форма tiene."
+        },
+        "es:lesson-05:session-41:intro3:r3": {
+          "ru": "Состояние выражаем через tiene hambre.",
+          "uk": "Стан виражаємо через tiene hambre."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "12192c954c6d1c5b3e57163406436cccdde2cbdf8c465f6b7d439ab64a6ce60d"
+}
